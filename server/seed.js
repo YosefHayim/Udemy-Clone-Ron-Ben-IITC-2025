@@ -55,15 +55,18 @@ const generateDummyData = async () => {
     }
     const createdUsers = await User.insertMany(users);
 
-    // Generate Categories
-    const categories = [];
-    for (let i = 0; i < 5; i++) {
-      categories.push({
-        name: faker.commerce.department(),
-        slug: faker.lorem.slug(),
-      });
+    // Generate Unique Categories
+    const categories = new Set();
+    while (categories.size < 5) {
+      categories.add(faker.commerce.department());
     }
-    const createdCategories = await Category.insertMany(categories);
+
+    const categoryData = Array.from(categories).map((name) => ({
+      name,
+      slug: faker.lorem.slug(),
+    }));
+
+    const createdCategories = await Category.insertMany(categoryData);
 
     // Generate Courses
     const courses = [];
@@ -76,7 +79,7 @@ const generateDummyData = async () => {
         instructor: faker.helpers.arrayElement(
           createdUsers.filter((user) => user.role === "instructor")
         )._id,
-        averageRating: faker.datatype.float({ min: 0, max: 5, precision: 0.1 }),
+        averageRating: faker.number.float({ min: 0, max: 5, precision: 0.1 }),
       });
     }
     const createdCourses = await Course.insertMany(courses);
@@ -87,7 +90,7 @@ const generateDummyData = async () => {
       lessons.push({
         title: faker.lorem.words(3),
         content: faker.lorem.paragraph(),
-        duration: faker.datatype.number({ min: 5, max: 60 }),
+        duration: faker.number.int({ min: 5, max: 60 }),
         course: faker.helpers.arrayElement(createdCourses)._id,
       });
     }
@@ -120,7 +123,7 @@ const generateDummyData = async () => {
       enrollments.push({
         user: faker.helpers.arrayElement(createdUsers)._id,
         course: faker.helpers.arrayElement(createdCourses)._id,
-        progress: faker.datatype.number({ min: 0, max: 100 }),
+        progress: faker.number.int({ min: 0, max: 100 }),
       });
     }
     await Enrollment.insertMany(enrollments);
@@ -129,8 +132,8 @@ const generateDummyData = async () => {
     const coupons = [];
     for (let i = 0; i < 10; i++) {
       coupons.push({
-        code: faker.random.alphaNumeric(8).toUpperCase(),
-        discountPercentage: faker.datatype.number({ min: 5, max: 50 }),
+        code: faker.string.alphanumeric(8).toUpperCase(),
+        discountPercentage: faker.number.int({ min: 5, max: 50 }),
         course: faker.helpers.arrayElement(createdCourses)._id,
         validFrom: faker.date.recent(),
         validUntil: faker.date.soon(30),
