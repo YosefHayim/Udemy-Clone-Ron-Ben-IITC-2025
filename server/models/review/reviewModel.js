@@ -19,10 +19,27 @@ const reviewSchema = new mongoose.Schema(
       ref: "Users",
       required: [true, "Review must belong to a user."],
     },
-    commentsOfReview: [{ type: mongoose.Schema.ObjectId, ref: "Comments" }],
+    commentsOfReview: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Comments",
+      },
+    ],
+    likes: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+    dislikes: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
   },
   { timestamps: true }
 );
+
+module.exports = mongoose.model("Reviews", reviewSchema);
 
 // reviewSchema.pre(/^find/, function (next) {
 //   this.populate({

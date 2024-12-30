@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
-const { confirmEmailToken } = require("../controllers/authController");
 
 const userSchema = new mongoose.Schema(
   {
@@ -32,8 +31,8 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["user", "admin", "guest"],
-      default: "user",
+      enum: ["student", "instructor"],
+      default: "student",
       select: false,
     },
     password: {
@@ -44,10 +43,9 @@ const userSchema = new mongoose.Schema(
     passwordConfirm: {
       type: String,
       required: function () {
-        return this.isNew; // This is being required only when there is a new document.
+        return this.isNew;
       },
       validate: {
-        // This only works on CREATE and SAVE!!!
         validator: function (el) {
           return el === this.password;
         },
@@ -62,19 +60,23 @@ const userSchema = new mongoose.Schema(
       default: true,
       select: false,
     },
-    reviews: [{ type: mongoose.Schema.ObjectId, ref: "Reviews" }],
-    location: {
-      type: {
-        type: String,
-        default: "Point",
-        enum: ["Point"],
+    reviews: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Reviews",
+        validate: {
+          validator: function () {
+            return this.role === "instructor";
+          },
+          message: "Only instructors can have reviews.",
+        },
       },
-      coordinates: [Number],
-      firstAddress: String,
-    },
+    ],
   },
   { timestamps: true }
 );
+
+module.exports = mongoose.model("User", userSchema);
 
 // userSchema.pre(/^find/, function (next) {
 //   // 'this' refers to the query
