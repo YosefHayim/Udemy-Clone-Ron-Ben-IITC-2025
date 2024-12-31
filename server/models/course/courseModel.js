@@ -151,9 +151,34 @@ const courseSchema = new mongoose.Schema(
     lastTimeCourseUpdated: {
       type: Date,
     },
+    moneyBackGuarantee: {
+      type: Date,
+      default: Date.now(),
+      max: 30,
+      validate: {
+        validator: function () {
+          if (this.isPurchased) {
+            this.moneyBackGuarantee;
+          }
+        },
+      },
+    },
+    isPurchased: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
+
+courseSchema.pre("save", function (next) {
+  if (this.isPurchased) {
+    this.moneyBackGuarantee = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // Set to 30 days from now
+  } else {
+    this.moneyBackGuarantee = null; // Reset if not purchased
+  }
+  next();
+});
 
 const Courses = mongoose.model("Course", courseSchema);
 module.exports = Courses;

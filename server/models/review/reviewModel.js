@@ -14,15 +14,15 @@ const reviewSchema = new mongoose.Schema(
       minLength: [1, "Comment must be at least 1 character."],
       maxLength: [250, "Comment cannot exceed 250 characters."], // Extended length for meaningful comments
     },
-    userId: {
+    user: {
       type: mongoose.Schema.ObjectId,
-      ref: "Users",
+      ref: "User",
       required: [true, "Review must belong to a user."],
     },
     commentsOfReview: [
       {
         type: mongoose.Schema.ObjectId,
-        ref: "Comments",
+        ref: "Comment",
         validate: {
           validator: function (value) {
             return Array.isArray(value); // Ensure it's an array
