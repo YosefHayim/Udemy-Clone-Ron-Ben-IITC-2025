@@ -2,20 +2,13 @@ const mongoose = require("mongoose");
 const faker = require("@faker-js/faker").faker;
 const bcrypt = require("bcrypt");
 
-const User = require("./models/user/userModel");
-const Review = require("./models/review/reviewModel");
-const Comment = require("./models/review/commentModel");
-const Course = require("./models/course/courseModel");
-const Enrollment = require("./models/course/enrollmentModel");
-const Category = require("./models/course/categoryModel");
-const Coupon = require("./models/course/couponModel");
-const Lesson = require("./models/course/lessonModel");
-const Notification = require("./models/other/notificationModel");
-const Payment = require("./models/transaction/paymentModel");
-const Order = require("./models/transaction/orderModel");
-const Wishlist = require("./models/other/wishlistModel");
-const Certificate = require("./models/other/certificateModel");
-
+const User = require("./models/users/userModel");
+const Course = require("./models/courses/courseModel");
+const Lesson = require("./models/courses/lessonModel");
+const Section = require("./models/courses/sectionModel");
+const CourseAnalytics = require("./models/courses/courseAnalyticsModel");
+const Comment = require("./models/reviews/commentModel");
+const Instructor = require("./models/users/instructorModel");
 const connectDb = require("./config/connectDb");
 
 const generateDummyData = async () => {
@@ -24,18 +17,36 @@ const generateDummyData = async () => {
 
     // Clear all collections
     await User.deleteMany({});
-    await Review.deleteMany({});
-    await Comment.deleteMany({});
     await Course.deleteMany({});
-    await Enrollment.deleteMany({});
-    await Category.deleteMany({});
-    await Coupon.deleteMany({});
     await Lesson.deleteMany({});
-    await Notification.deleteMany({});
-    await Payment.deleteMany({});
-    await Order.deleteMany({});
-    await Wishlist.deleteMany({});
-    await Certificate.deleteMany({});
+    await Section.deleteMany({});
+    await CourseAnalytics.deleteMany({});
+    await Comment.deleteMany({});
+    await Instructor.deleteMany({});
+
+    const courseCategories = {
+      Development: {
+        subCategories: {
+          "Web Development": ["JavaScript", "HTML", "CSS", "React", "Node.js"],
+          "Data Science": [
+            "Python",
+            "R",
+            "SQL",
+            "Machine Learning",
+            "Deep Learning",
+          ],
+          "Mobile Development": ["Swift", "Kotlin", "Flutter", "React Native"],
+        },
+      },
+      Business: {
+        subCategories: {
+          Entrepreneurship: ["Business Strategy", "Leadership", "Startups"],
+          Marketing: ["SEO", "Content Marketing", "Social Media"],
+          Communication: ["Public Speaking", "Writing", "Negotiation"],
+          "Project Management": ["Agile", "Scrum", "PMP", "Risk Management"],
+        },
+      },
+    };
 
     // Generate Users
     const users = [];
@@ -44,163 +55,147 @@ const generateDummyData = async () => {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       users.push({
-        name: faker.person.fullName(),
+        fName: faker.person.firstName(),
+        lName: faker.person.lastName(),
         email: faker.internet.email().toLowerCase(),
         password: hashedPassword,
         passwordConfirm: hashedPassword,
         emailVerified: faker.datatype.boolean(),
-        photo: faker.image.avatar(),
         role: faker.helpers.arrayElement(["student", "instructor"]),
       });
     }
     const createdUsers = await User.insertMany(users);
 
-    // Generate Unique Categories
-    const categories = new Set();
-    while (categories.size < 5) {
-      categories.add(faker.commerce.department());
-    }
-
-    const categoryData = Array.from(categories).map((name) => ({
-      name,
-      slug: faker.lorem.slug(),
-    }));
-
-    const createdCategories = await Category.insertMany(categoryData);
-
     // Generate Courses
     const courses = [];
     for (let i = 0; i < 10; i++) {
+      const instructor = faker.helpers.arrayElement(
+        createdUsers.filter((user) => user.role === "instructor")
+      );
+      const parentCategory = faker.helpers.arrayElement(
+        Object.keys(courseCategories)
+      );
+      const subCategory = faker.helpers.arrayElement(
+        Object.keys(courseCategories[parentCategory].subCategories)
+      );
+
+      const topic = faker.helpers.arrayElement(
+        courseCategories[parentCategory].subCategories[subCategory]
+      );
+
+      if (!topic) {
+        throw new Error(
+          `Invalid topic generation for ${subCategory} under ${parentCategory}`
+        );
+      }
+
       courses.push({
-        title: faker.lorem.words(5),
-        description: faker.lorem.paragraph(),
-        price: faker.commerce.price(10, 200, 2),
-        category: faker.helpers.arrayElement(createdCategories)._id,
-        instructor: faker.helpers.arrayElement(
-          createdUsers.filter((user) => user.role === "instructor")
-        )._id,
-        averageRating: faker.number.float({ min: 0, max: 5, precision: 0.1 }),
+        courseName: faker.lorem.words(3),
+        courseDescription: faker.lorem.paragraph(),
+        coursePrice: faker.commerce.price(10, 500, 2),
+        courseLevel: faker.helpers.arrayElement([
+          "Beginner",
+          "Intermediate",
+          "Advanced",
+          "All Levels",
+        ]),
+        courseLanguages: faker.helpers.arrayElement([
+          "English",
+          "Spanish",
+          "French",
+          "German",
+        ]),
+        courseParentCategory: parentCategory, // Flattened structure
+        courseSubCategory: subCategory, // Flattened structure
+        courseTopic: topic, // Flattened structure
+        courseInstructor: instructor._id,
+        moneyBackGuarantee: new Date(
+          Date.now() +
+            faker.number.int({ min: 1, max: 30 }) * 24 * 60 * 60 * 1000
+        ), // Valid date within 30 days
       });
     }
     const createdCourses = await Course.insertMany(courses);
+
+    // Generate Course Analytics
+    const analytics = [];
+    for (let course of createdCourses) {
+      const newAnalytics = new CourseAnalytics({
+        course: course._id,
+        totalStudentsEnrolledInCourse: faker.helpers.arrayElement(
+          createdUsers.filter((user) => user.role === "student")
+        )._id,
+        averageRating: course._id, // Referencing the `Course` document for ObjectId
+        totalRatings: course._id, // Referencing the `Course` document for ObjectId
+        TotalCourseReviews: Array.from({ length: 5 }).map(() => ({
+          user: faker.helpers.arrayElement(createdUsers)._id,
+          rating: faker.number.int({ min: 1, max: 5 }),
+          comment: faker.lorem.sentence(),
+          createdAt: faker.date.recent(),
+        })),
+      });
+
+      analytics.push(newAnalytics);
+    }
+    const createdAnalytics = await CourseAnalytics.insertMany(analytics);
+
+    // Generate Instructors
+    const instructors = [];
+    for (let i = 0; i < 5; i++) {
+      const instructorUser = faker.helpers.arrayElement(
+        createdUsers.filter((user) => user.role === "instructor")
+      );
+
+      instructors.push({
+        user: instructorUser._id,
+        totalCourses: faker.number.int({ min: 1, max: 10 }),
+        totalStudentsTaught: faker.helpers.arrayElement(createdAnalytics)._id,
+        averageRating: faker.helpers.arrayElement(createdAnalytics)._id,
+        totalRatings: faker.helpers.arrayElement(createdAnalytics)._id,
+        reviews: [faker.helpers.arrayElement(createdAnalytics)._id],
+      });
+    }
+    const createdInstructors = await Instructor.insertMany(instructors);
+
+    // Generate Sections
+    const sections = [];
+    for (let i = 0; i < 15; i++) {
+      sections.push({
+        course: faker.helpers.arrayElement(createdCourses)._id,
+        title: faker.lorem.words(2),
+      });
+    }
+    const createdSections = await Section.insertMany(sections);
 
     // Generate Lessons
     const lessons = [];
     for (let i = 0; i < 50; i++) {
       lessons.push({
+        section: faker.helpers.arrayElement(createdSections)._id,
         title: faker.lorem.words(3),
-        content: faker.lorem.paragraph(),
+        videoUrl: faker.internet.url(),
         duration: faker.number.int({ min: 5, max: 60 }),
-        course: faker.helpers.arrayElement(createdCourses)._id,
+        order: i + 1,
+        resources: [
+          {
+            title: faker.lorem.words(2),
+            url: faker.internet.url(),
+          },
+        ],
       });
     }
     await Lesson.insertMany(lessons);
-
-    // Generate Reviews
-    const reviews = [];
-    for (let i = 0; i < 20; i++) {
-      reviews.push({
-        rating: faker.number.int({ min: 1, max: 5 }),
-        comment: faker.lorem.sentence(2),
-        userId: faker.helpers.arrayElement(createdUsers)._id,
-      });
-    }
-    const createdReviews = await Review.insertMany(reviews);
 
     // Generate Comments
     const comments = [];
     for (let i = 0; i < 20; i++) {
       comments.push({
-        comment: faker.lorem.sentence(2),
-        reviewId: faker.helpers.arrayElement(createdReviews)._id,
+        comment: faker.lorem.sentence(),
+        review: faker.helpers.arrayElement(createdAnalytics)._id,
+        instructor: faker.helpers.arrayElement(createdInstructors)._id,
       });
     }
     await Comment.insertMany(comments);
-
-    // Generate Enrollments
-    const enrollments = [];
-    for (let i = 0; i < 30; i++) {
-      enrollments.push({
-        user: faker.helpers.arrayElement(createdUsers)._id,
-        course: faker.helpers.arrayElement(createdCourses)._id,
-        progress: faker.number.int({ min: 0, max: 100 }),
-      });
-    }
-    await Enrollment.insertMany(enrollments);
-
-    // Generate Coupons
-    const coupons = [];
-    for (let i = 0; i < 10; i++) {
-      coupons.push({
-        code: faker.string.alphanumeric(8).toUpperCase(),
-        discountPercentage: faker.number.int({ min: 5, max: 50 }),
-        course: faker.helpers.arrayElement(createdCourses)._id,
-        validFrom: faker.date.recent(),
-        validUntil: faker.date.soon(30),
-      });
-    }
-    await Coupon.insertMany(coupons);
-
-    // Generate Orders
-    const orders = [];
-    for (let i = 0; i < 10; i++) {
-      orders.push({
-        user: faker.helpers.arrayElement(createdUsers)._id,
-        courses: [faker.helpers.arrayElement(createdCourses)._id],
-        totalPrice: faker.commerce.price(50, 500, 2),
-        status: faker.helpers.arrayElement(["pending", "completed", "failed"]),
-      });
-    }
-    const createdOrders = await Order.insertMany(orders);
-
-    // Generate Payments
-    const payments = [];
-    for (let i = 0; i < 10; i++) {
-      payments.push({
-        user: faker.helpers.arrayElement(createdUsers)._id,
-        order: faker.helpers.arrayElement(createdOrders)._id,
-        amount: faker.commerce.price(50, 500, 2),
-        status: faker.helpers.arrayElement(["success", "failed"]),
-      });
-    }
-    await Payment.insertMany(payments);
-
-    // Generate Wishlists
-    const wishlists = [];
-    for (let i = 0; i < 10; i++) {
-      wishlists.push({
-        user: faker.helpers.arrayElement(createdUsers)._id,
-        courses: [faker.helpers.arrayElement(createdCourses)._id],
-      });
-    }
-    await Wishlist.insertMany(wishlists);
-
-    // Generate Notifications
-    const notifications = [];
-    for (let i = 0; i < 20; i++) {
-      notifications.push({
-        user: faker.helpers.arrayElement(createdUsers)._id,
-        message: faker.lorem.sentence(),
-        type: faker.helpers.arrayElement([
-          "courseUpdate",
-          "review",
-          "reminder",
-        ]),
-      });
-    }
-    await Notification.insertMany(notifications);
-
-    // Generate Certificates
-    const certificates = [];
-    for (let i = 0; i < 10; i++) {
-      certificates.push({
-        user: faker.helpers.arrayElement(createdUsers)._id,
-        course: faker.helpers.arrayElement(createdCourses)._id,
-        issuedAt: faker.date.recent(),
-        certificateURL: faker.internet.url(),
-      });
-    }
-    await Certificate.insertMany(certificates);
 
     console.log("All dummy data generated successfully!");
     process.exit();

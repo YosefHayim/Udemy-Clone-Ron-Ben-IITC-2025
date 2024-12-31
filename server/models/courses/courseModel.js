@@ -94,43 +94,35 @@ const courseSchema = new mongoose.Schema(
       required: [true, "Course price must be provided"],
       min: [0, "Price cannot be negative"],
     },
-    courseCoupon: {
-      type: Number,
-      min: 0,
-      max: 100,
+    courseParentCategory: {
+      type: String,
+      required: [true, "Parent category is required"],
+      enum: Object.keys(courseCategories),
     },
-    courseCategory: {
-      courseParentCategory: {
-        type: String,
-        required: [true, "Parent category is required"],
-        enum: Object.keys(courseCategories),
-      },
-      courseSubCategory: {
-        type: String,
-        required: [true, "Subcategory is required"],
-        validate: {
-          validator: function (value) {
-            return Object.keys(
-              courseCategories[this.category.parentCategory]?.subCategories ||
-                {}
-            ).includes(value);
-          },
-          message: "Invalid subcategory for the selected parent category",
+    courseSubCategory: {
+      type: String,
+      required: [true, "Subcategory is required"],
+      validate: {
+        validator: function (value) {
+          return Object.keys(
+            courseCategories[this.courseParentCategory]?.subCategories || {}
+          ).includes(value);
         },
+        message: "Invalid subcategory for the selected parent category",
       },
-      courseTopic: {
-        type: String,
-        required: [true, "Topic is required"],
-        validate: {
-          validator: function (value) {
-            return (
-              courseCategories[this.category.parentCategory]?.subCategories[
-                this.category.subCategory
-              ]?.includes(value) || false
-            );
-          },
-          message: "Invalid topic for the selected subcategory",
+    },
+    courseTopic: {
+      type: String,
+      required: [true, "Topic is required"],
+      validate: {
+        validator: function (value) {
+          return (
+            courseCategories[this.courseParentCategory]?.subCategories[
+              this.courseSubCategory
+            ]?.includes(value) || false
+          );
         },
+        message: "Invalid topic for the selected subcategory",
       },
     },
     courseLevel: {
@@ -148,19 +140,13 @@ const courseSchema = new mongoose.Schema(
       ref: "Instructor",
       required: [true, "Instructor is required"],
     },
-    lastTimeCourseUpdated: {
-      type: Date,
-    },
     moneyBackGuarantee: {
       type: Date,
-      default: Date.now(),
-      max: 30,
       validate: {
-        validator: function () {
-          if (this.isPurchased) {
-            this.moneyBackGuarantee;
-          }
+        validator: function (value) {
+          return value <= new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
         },
+        message: "Money-back guarantee date must be within 30 days",
       },
     },
     isPurchased: {
@@ -173,6 +159,15 @@ const courseSchema = new mongoose.Schema(
 
 courseSchema.pre("save", function (next) {
   if (this.isPurchased) {
+    this.moneyBackGuarantee = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days
+  } else {
+    this.moneyBackGuarantee = null;
+  }
+  next();
+});
+
+courseSchema.pre("save", function (next) {
+  if (this.isPurchased) {
     this.moneyBackGuarantee = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // Set to 30 days from now
   } else {
     this.moneyBackGuarantee = null; // Reset if not purchased
@@ -180,5 +175,5 @@ courseSchema.pre("save", function (next) {
   next();
 });
 
-const Courses = mongoose.model("Course", courseSchema);
-module.exports = Courses;
+const Course = mongoose.model("Course", courseSchema);
+module.exports = Course;

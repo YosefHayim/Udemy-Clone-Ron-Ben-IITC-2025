@@ -1,5 +1,4 @@
-const Review = require("../../models/review/reviewModel");
-const User = require("../../models/user/userModel");
+const Review = require("../../models/reviews/reviewModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const { catchAsync } = require("../../utils/wrapperFn");
 

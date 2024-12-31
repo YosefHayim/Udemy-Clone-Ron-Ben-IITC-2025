@@ -6,7 +6,7 @@ const {
   updateCommentById,
   deleteCommentById,
   getCommentById,
-} = require("../../controllers/review/commentController");
+} = require("../../controllers/reviews/commentController");
 const {
   grantedAccess,
 } = require("../../controllers/authorization/authController");

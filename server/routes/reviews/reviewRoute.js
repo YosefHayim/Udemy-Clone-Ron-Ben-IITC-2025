@@ -5,7 +5,7 @@ const {
   deleteReviewByUserId,
   updateReviewByUserId,
   getReviewsByUserId,
-} = require("../../controllers/review/reviewController");
+} = require("../../controllers/reviews/reviewController");
 const {
   grantedAccess,
 } = require("../../controllers/authorization/authController");
