@@ -2,10 +2,14 @@ const mongoose = require("mongoose");
 
 const paymentSchema = new mongoose.Schema(
   {
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Users",
+      required: true,
+    },
     order: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Order",
+      ref: "Orders",
       required: true,
     },
     amount: { type: Number, required: true },
@@ -16,4 +20,5 @@ const paymentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Payments", paymentSchema);
+const Payments = mongoose.model("Payments", paymentSchema);
+module.exports = Payments;

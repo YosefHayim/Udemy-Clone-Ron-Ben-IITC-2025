@@ -60,6 +60,5 @@ reviewSchema.post("save", async function () {
   }
 });
 
-const Review = mongoose.model("Reviews", reviewSchema);
-
-module.exports = Review;
+const Reviews = mongoose.model("Reviews", reviewSchema);
+module.exports = Reviews;

@@ -15,3 +15,6 @@ const subscriptionSchema = new mongoose.Schema({
     default: "inactive",
   },
 });
+
+const Subscriptions = mongoose.model("subscriptions", subscriptionSchema);
+module.exports = Subscriptions;

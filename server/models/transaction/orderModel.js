@@ -2,9 +2,13 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema(
   {
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Users",
+      required: true,
+    },
     courses: [
-      { type: mongoose.Schema.Types.ObjectId, ref: "Course", required: true },
+      { type: mongoose.Schema.Types.ObjectId, ref: "Courses", required: true },
     ],
     totalPrice: { type: Number, required: true },
     status: {
@@ -20,4 +24,5 @@ const orderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Orders", orderSchema);
+const Orders = mongoose.model("Orders", orderSchema);
+module.exports = Orders;

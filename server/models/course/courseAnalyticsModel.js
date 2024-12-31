@@ -59,4 +59,8 @@ const courseAnalyticsSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("CourseAnalytics", courseAnalyticsSchema);
+const CoursesAnalytics = mongoose.model(
+  "coursesAnalytics",
+  courseAnalyticsSchema
+);
+module.exports = CoursesAnalytics;

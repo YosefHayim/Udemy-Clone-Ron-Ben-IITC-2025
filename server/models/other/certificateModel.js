@@ -2,10 +2,14 @@ const mongoose = require("mongoose");
 
 const certificateSchema = new mongoose.Schema(
   {
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Users",
+      required: true,
+    },
     course: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Course",
+      ref: "Courses",
       required: true,
     },
     issuedAt: { type: Date, default: Date.now },
@@ -14,4 +18,5 @@ const certificateSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Certificates", certificateSchema);
+const Certificates = mongoose.model("certificates", certificateSchema);
+module.exports = Certificates;
