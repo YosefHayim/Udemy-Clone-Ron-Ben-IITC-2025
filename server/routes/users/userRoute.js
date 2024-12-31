@@ -10,7 +10,7 @@ const {
   getUserById,
   confirmEmailAddress,
   resendEmailVerificationToken,
-} = require("../../controllers/user/userController");
+} = require("../../controllers/users/userController");
 const {
   grantedAccess,
 } = require("../../controllers/authorization/authController");

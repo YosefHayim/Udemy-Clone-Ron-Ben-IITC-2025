@@ -63,5 +63,4 @@ lessonSchema.pre("save", function (next) {
 });
 
 const Lesson = mongoose.model("Lesson", lessonSchema);
-
 module.exports = Lesson;

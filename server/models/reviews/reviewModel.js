@@ -45,8 +45,6 @@ const reviewSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Reviews", reviewSchema);
-
 // reviewSchema.pre(/^find/, function (next) {
 //   this.populate({
 //     path: "commentsOfReview",
@@ -66,5 +64,5 @@ module.exports = mongoose.model("Reviews", reviewSchema);
 //   }
 // });
 
-const Reviews = mongoose.model("reviews", reviewSchema);
-module.exports = Reviews;
+const Review = mongoose.model("reviews", reviewSchema);
+module.exports = Review

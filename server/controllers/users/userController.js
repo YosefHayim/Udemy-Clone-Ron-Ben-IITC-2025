@@ -1,4 +1,4 @@
-const User = require("../../models/user/userModel");
+const User = require("../../models/users/userModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const cookieOptions = require("../../utils/cookieOptions");
 const sendEmail = require("../../utils/email");

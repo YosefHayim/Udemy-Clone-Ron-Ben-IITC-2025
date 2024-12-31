@@ -178,6 +178,5 @@ userSchema.methods.generateEmailVerificationToken = function () {
   this.emailVerificationToken = confirmEmailToken(); // Generate a new token
 };
 
-const Users = mongoose.model("User", userSchema);
-
-module.exports = Users;
+const User = mongoose.model("User", userSchema);
+module.exports = User;
