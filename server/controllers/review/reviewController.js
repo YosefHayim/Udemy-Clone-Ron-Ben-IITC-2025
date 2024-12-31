@@ -1,7 +1,7 @@
-const Review = require("../models/reviewModel");
-const User = require("../models/userModel");
-const APIFeatures = require("../utils/apiFeatures");
-const { catchAsync } = require("../utils/wrapperFn");
+const Review = require("../../models/review/reviewModel");
+const User = require("../../models/user/userModel");
+const APIFeatures = require("../../utils/apiFeatures");
+const { catchAsync } = require("../../utils/wrapperFn");
 
 const getAllReviews = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Review.find(), req.query)

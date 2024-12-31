@@ -8,9 +8,9 @@ const limiter = require("./middlewares/rateLimit");
 const errorHandler = require("./middlewares/errorHandler");
 const undefinedRoute = require("./middlewares/undefinedRoutes");
 const connectDb = require("./config/connectDb");
-const commentRoute = require("./routes/commentRoute");
-const userRoute = require("./routes/userRoute");
-const reviewRoute = require("./routes/reviewRoute");
+const commentRoute = require("./routes/review/commentRoute");
+const userRoute = require("./routes/user/userRoute");
+const reviewRoute = require("./routes/review/reviewRoute");
 const loggerInfo = require("./middlewares/logger");
 
 const app = express();

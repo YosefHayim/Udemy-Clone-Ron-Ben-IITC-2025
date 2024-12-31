@@ -5,8 +5,10 @@ const {
   deleteReviewByUserId,
   updateReviewByUserId,
   getReviewsByUserId,
-} = require("../controllers/reviewController");
-const { grantedAccess } = require("../controllers/authController");
+} = require("../../controllers/review/reviewController");
+const {
+  grantedAccess,
+} = require("../../controllers/authorization/authController");
 
 const router = express.Router();
 

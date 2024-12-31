@@ -1,9 +1,9 @@
-const User = require("../models/userModel");
-const APIFeatures = require("../utils/apiFeatures");
-const cookieOptions = require("../utils/cookieOptions");
-const sendEmail = require("../utils/email");
-const { catchAsync } = require("../utils/wrapperFn");
-const { generateToken } = require("./authController");
+const User = require("../../models/user/userModel");
+const APIFeatures = require("../../utils/apiFeatures");
+const cookieOptions = require("../../utils/cookieOptions");
+const sendEmail = require("../../utils/email");
+const { catchAsync } = require("../../utils/wrapperFn");
+const { generateToken } = require("../authorization/authController");
 
 const getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query)

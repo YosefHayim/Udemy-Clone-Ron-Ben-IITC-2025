@@ -1,6 +1,6 @@
-const Comment = require("../models/commentModel");
-const APIFeatures = require("../utils/apiFeatures");
-const { catchAsync } = require("../utils/wrapperFn");
+const Comment = require("../../models/review/commentModel");
+const APIFeatures = require("../../utils/apiFeatures");
+const { catchAsync } = require("../../utils/wrapperFn");
 
 const getAllComments = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Comment.find(), req.query)

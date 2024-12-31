@@ -4,9 +4,50 @@ const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
+    fName: {
+      type: String,
+      required: [true, "Please tell us your first name!"],
+    },
+    lName: {
       type: String,
       required: [true, "Please tell us your name!"],
+    },
+    headline: {
+      type: String,
+    },
+    bio: {
+      type: String,
+      maxLength: [200, "bio cannot exceed 200 characters."],
+    },
+    preferredLanguage: {
+      type: String,
+      enum: [
+        "english",
+        "deutsch",
+        "espanol",
+        "français",
+        "italiano",
+        "português",
+        "nederlands",
+        "polski",
+        "日本語",
+        "한국어",
+        "中文",
+        "русский",
+        "العربية",
+        "עברית",
+        "tiếng Việt",
+        "ไทย",
+        "bahasa Indonesia",
+      ],
+      default: "english",
+    },
+    links: {
+      website: { type: String },
+      twitter: { type: String },
+      facebook: { type: String },
+      linkedin: { type: String },
+      youtube: { type: String },
     },
     email: {
       type: String,
@@ -17,6 +58,7 @@ const userSchema = new mongoose.Schema(
     },
     emailVerified: {
       type: Boolean,
+      lowercase: true,
       default: false,
     },
     emailVerificationToken: {
@@ -31,7 +73,6 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["student", "instructor"],
       default: "student",
       select: false,
     },
@@ -46,8 +87,8 @@ const userSchema = new mongoose.Schema(
         return this.isNew;
       },
       validate: {
-        validator: function (el) {
-          return el === this.password;
+        validator: function (confimedPw) {
+          return confimedPw === this.password;
         },
         message: "Passwords are not the same!",
       },
@@ -72,21 +113,18 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
+    coursesBought: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
+    subscription: [{ type: mongoose.Schema.ObjectId, ref: "Subscription" }],
+    notifications: [{ type: mongoose.Schema.ObjectId, ref: "Notification" }],
+    wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Wishlist" }],
+    orders: [{ type: mongoose.Schema.ObjectId, ref: "Order" }],
+    payments: [{ type: mongoose.Schema.ObjectId, ref: "Payment" }],
+    certificates: [{ type: mongoose.Schema.ObjectId, ref: "Certificate" }],
   },
   { timestamps: true }
 );
 
 module.exports = mongoose.model("User", userSchema);
-
-// userSchema.pre(/^find/, function (next) {
-//   // 'this' refers to the query
-//   this.populate({
-//     path: "reviews",
-//     select: "rating comment -_id",
-//   });
-
-//   next();
-// });
 
 userSchema.pre("save", async function (next) {
   // Only hash the password if it has been modified (or is new)
@@ -112,17 +150,6 @@ userSchema.pre("save", function (next) {
   }
   next();
 });
-
-// userSchema.pre(/^find/, function (next) {
-//   if (!this.getQuery().includeInactive) {
-//     // Exclude inactive users unless explicitly included
-//     this.find({ active: { $ne: false } });
-//   } else {
-//     // Remove the flag from the query so it doesn't affect database queries
-//     this.setQuery({ ...this.getQuery(), includeInactive: undefined });
-//   }
-//   next();
-// });
 
 userSchema.methods.updatePassword = async function (
   currentPassword,
@@ -151,6 +178,6 @@ userSchema.methods.generateEmailVerificationToken = function () {
   this.emailVerificationToken = confirmEmailToken(); // Generate a new token
 };
 
-const User = mongoose.model("Users", userSchema);
+const Users = mongoose.model("User", userSchema);
 
-module.exports = User;
+module.exports = Users;

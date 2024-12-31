@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { catchAsync } = require("../utils/wrapperFn");
+const { catchAsync } = require("../../utils/wrapperFn");
 const crypto = require("crypto");
 
 // Generate a random token for email confirmation

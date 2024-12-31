@@ -10,8 +10,10 @@ const {
   getUserById,
   confirmEmailAddress,
   resendEmailVerificationToken,
-} = require("../controllers/userController");
-const { grantedAccess } = require("../controllers/authController");
+} = require("../../controllers/user/userController");
+const {
+  grantedAccess,
+} = require("../../controllers/authorization/authController");
 
 const router = express.Router();
 

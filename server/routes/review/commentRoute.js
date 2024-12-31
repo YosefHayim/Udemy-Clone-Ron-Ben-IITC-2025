@@ -6,8 +6,10 @@ const {
   updateCommentById,
   deleteCommentById,
   getCommentById,
-} = require("../controllers/commentController");
-const { grantedAccess } = require("../controllers/authController");
+} = require("../../controllers/review/commentController");
+const {
+  grantedAccess,
+} = require("../../controllers/authorization/authController");
 
 const router = express.Router();
 
