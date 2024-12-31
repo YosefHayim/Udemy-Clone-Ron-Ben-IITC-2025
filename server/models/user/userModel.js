@@ -73,7 +73,6 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["student", "instructor"],
       default: "student",
       select: false,
     },
@@ -105,7 +104,7 @@ const userSchema = new mongoose.Schema(
     reviews: [
       {
         type: mongoose.Schema.ObjectId,
-        ref: "reviews",
+        ref: "Reviews",
         validate: {
           validator: function () {
             return this.role === "instructor";
@@ -114,13 +113,13 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
-    coursesBought: [{ type: mongoose.Schema.ObjectId, ref: "course" }],
-    subscription: [{ type: mongoose.Schema.ObjectId, ref: "subscription" }],
-    notifications: [{ type: mongoose.Schema.ObjectId, ref: "notification" }],
-    wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "wishlist" }],
-    orders: [{ type: mongoose.Schema.ObjectId, ref: "order" }],
-    payments: [{ type: mongoose.Schema.ObjectId, ref: "payment" }],
-    certificates: [{ type: mongoose.Schema.ObjectId, ref: "certificate" }],
+    coursesBought: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
+    subscription: [{ type: mongoose.Schema.ObjectId, ref: "Subscription" }],
+    notifications: [{ type: mongoose.Schema.ObjectId, ref: "Notification" }],
+    wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Wishlist" }],
+    orders: [{ type: mongoose.Schema.ObjectId, ref: "Order" }],
+    payments: [{ type: mongoose.Schema.ObjectId, ref: "Payment" }],
+    certificates: [{ type: mongoose.Schema.ObjectId, ref: "Certificate" }],
   },
   { timestamps: true }
 );
@@ -179,6 +178,6 @@ userSchema.methods.generateEmailVerificationToken = function () {
   this.emailVerificationToken = confirmEmailToken(); // Generate a new token
 };
 
-const Users = mongoose.model("users", userSchema);
+const Users = mongoose.model("Users", userSchema);
 
 module.exports = Users;

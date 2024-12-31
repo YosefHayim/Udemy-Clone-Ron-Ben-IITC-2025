@@ -145,26 +145,9 @@ const courseSchema = new mongoose.Schema(
     },
     courseInstructor: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "users",
+      ref: "Instructor",
       required: [true, "Instructor is required"],
     },
-    totalStudentsEnrolledInCourse: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "users",
-      default: 0,
-    },
-    totalAvgRatingCourse: {
-      type: Number,
-      default: 0,
-      min: 0,
-      max: 5,
-    },
-    TotalCourseReviews: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "courseReviews",
-      },
-    ],
     lastTimeCourseUpdated: {
       type: Date,
     },
@@ -172,5 +155,5 @@ const courseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Courses = mongoose.model("courses", courseSchema);
+const Courses = mongoose.model("Course", courseSchema);
 module.exports = Courses;

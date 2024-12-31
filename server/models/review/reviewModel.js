@@ -55,16 +55,16 @@ module.exports = mongoose.model("Reviews", reviewSchema);
 //   next();
 // });
 
-reviewSchema.post("save", async function () {
-  const review = this;
-  try {
-    await mongoose.model("Users").findByIdAndUpdate(review.userId, {
-      $push: { reviews: review._id },
-    });
-  } catch (err) {
-    console.error("Error updating user's reviews array:", err);
-  }
-});
+// reviewSchema.post("save", async function () {
+//   const review = this;
+//   try {
+//     await mongoose.model("Users").findByIdAndUpdate(review.userId, {
+//       $push: { reviews: review._id },
+//     });
+//   } catch (err) {
+//     console.error("Error updating user's reviews array:", err);
+//   }
+// });
 
 const Reviews = mongoose.model("reviews", reviewSchema);
 module.exports = Reviews;
