@@ -7,7 +7,7 @@ const commentSchema = new mongoose.Schema(
       required: [true, "Must provide a comment."],
       minLength: [1, "Comment must be at least 1 character long."],
     },
-    reviewId: [
+    reviews: [
       {
         type: mongoose.Schema.ObjectId,
         ref: "Reviews",

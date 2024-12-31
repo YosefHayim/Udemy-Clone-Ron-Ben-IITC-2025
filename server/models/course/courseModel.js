@@ -85,27 +85,27 @@ const courseSchema = new mongoose.Schema(
       type: String,
       required: [true, "To register a course, you must provide a name"],
     },
-    description: {
+    courseDescription: {
       type: String,
       required: [true, "A course description is required"],
     },
-    price: {
+    coursePrice: {
       type: Number,
       required: [true, "Course price must be provided"],
       min: [0, "Price cannot be negative"],
     },
-    coupon: {
-      type: Number, // Discount percentage or amount
+    courseCoupon: {
+      type: Number,
       min: 0,
       max: 100,
     },
-    category: {
-      parentCategory: {
+    courseCategory: {
+      courseParentCategory: {
         type: String,
         required: [true, "Parent category is required"],
         enum: Object.keys(courseCategories),
       },
-      subCategory: {
+      courseSubCategory: {
         type: String,
         required: [true, "Subcategory is required"],
         validate: {
@@ -118,7 +118,7 @@ const courseSchema = new mongoose.Schema(
           message: "Invalid subcategory for the selected parent category",
         },
       },
-      topic: {
+      courseTopic: {
         type: String,
         required: [true, "Topic is required"],
         validate: {
@@ -133,105 +133,44 @@ const courseSchema = new mongoose.Schema(
         },
       },
     },
-    level: {
+    courseLevel: {
       type: String,
       required: true,
       enum: ["Beginner", "Intermediate", "Advanced", "All Levels"],
     },
-    language: {
+    courseLanguages: {
       type: String,
       required: true,
       enum: ["English", "Spanish", "French", "German", "Other"],
     },
-    duration: {
-      type: Number, // Duration in hours
-      required: true,
-    },
-    whatYouWillLearn: {
-      type: [String], // Array of learning outcomes
-    },
-    prerequisites: {
-      type: [String], // Array of prerequisites
-    },
-    targetAudience: {
-      type: [String], // Array defining ideal audience
-    },
-    courseContent: [
-      {
-        sectionTitle: { type: String, required: true },
-        lessons: [
-          {
-            title: { type: String, required: true },
-            duration: { type: Number }, // Duration in minutes
-          },
-        ],
-      },
-    ],
-    thumbnail: {
-      type: String, // URL for the course thumbnail
-      required: true,
-    },
-    promoVideo: {
-      type: String, // URL for promotional video
-    },
-    isPublished: {
-      type: Boolean,
-      default: false,
-    },
-    lastUpdated: {
-      type: Date,
-      default: Date.now,
-    },
-    instructor: {
+    courseInstructor: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "users",
       required: [true, "Instructor is required"],
-      validate: {
-        validator: async function (value) {
-          const user = await mongoose.model("users").findById(value);
-          return user && user.role === "instructor";
-        },
-        message: "Assigned instructor must have a role of 'instructor'",
-      },
     },
-    studentsEnrolled: {
-      type: Number,
+    totalStudentsEnrolledInCourse: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
       default: 0,
-      validate: {
-        validator: async function () {
-          const count = await mongoose
-            .model("users")
-            .countDocuments({ coursesBought: this._id });
-          return count === this.studentsEnrolled;
-        },
-        message: "Students enrolled count does not match enrolled users.",
-      },
     },
-    avgRating: {
+    totalAvgRatingCourse: {
       type: Number,
       default: 0,
       min: 0,
       max: 5,
     },
-    reviews: [
+    TotalCourseReviews: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "reviews",
-        validate: {
-          validator: async function (value) {
-            const review = await mongoose.model("reviews").findById(value);
-            const user = await mongoose.model("users").findById(review.user);
-            return user && user.role === "student";
-          },
-          message:
-            "Reviews must be submitted by users with the role of 'student'.",
-        },
+        ref: "courseReviews",
       },
     ],
+    lastTimeCourseUpdated: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );
 
 const Courses = mongoose.model("courses", courseSchema);
-
 module.exports = Courses;
