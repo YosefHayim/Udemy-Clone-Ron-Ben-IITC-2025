@@ -114,6 +114,7 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
+    coursesBought: [{ type: mongoose.Schema.ObjectId, ref: "courses" }],
     subscription: [{ type: mongoose.Schema.ObjectId, ref: "subscription" }],
     notifications: [{ type: mongoose.Schema.ObjectId, ref: "notifications" }],
     wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "wishlists" }],
