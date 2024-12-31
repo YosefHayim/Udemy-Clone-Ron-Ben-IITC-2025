@@ -18,66 +18,44 @@ const SignUp = () => {
           <h2 className="text-3xl font-bold text-gray-800 mb-6">
             Sign up and start learning
           </h2>
+
           <form className="flex flex-col space-y-4">
             {/* Full Name */}
-            <div className="relative mb-4">
-              <label
-                htmlFor="fullName"
-                className="absolute top-0 left-4 text-sm text-gray-600 transform -translate-y-1/2 bg-white px-1"
-              >
-                Full Name
-              </label>
-              <input
-                type="text"
-                id="fullName"
-                placeholder=""
-                className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
+            <input
+              type="text"
+              id="fullName"
+              placeholder="Full name"
+              className="w-full px-4 py-3 border placeholder:text-pholdergray text-black font-semibold border-black rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
 
             {/* Email */}
-            <div className="relative mb-4">
-              <label
-                htmlFor="email"
-                className="absolute top-0 left-4 text-sm text-gray-600 transform -translate-y-1/2 bg-white px-1"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                placeholder=""
-                className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
+            <input
+              type="email"
+              id="email"
+              placeholder="E-mail"
+              className="w-full px-4 py-3 border placeholder:text-pholdergray text-black font-semibold border-black rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
 
             {/* Password */}
-            <div className="relative mb-4">
-              <label
-                htmlFor="password"
-                className="absolute top-0 left-4 text-sm text-gray-600 transform -translate-y-1/2 bg-white px-1"
-              >
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                placeholder=""
-                className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              className="w-full px-4 py-3 border placeholder:text-pholdergray text-black font-semibold border-black rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
 
             {/* Checkbox */}
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-3">
               <input
                 type="checkbox"
                 id="offers"
-                className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                className="w-4 h-4 border border-gray-400 rounded focus:ring-2 focus:ring-gray-600 bg-white text-gray-900 checked: checked:border-black"
               />
-              <label htmlFor="offers" className="text-gray-600 text-sm">
+              <label htmlFor="offers" className="text-gray-800 text-sm">
                 I want to receive special offers, personalized recommendations, and learning tips.
               </label>
             </div>
+
 
             {/* Button */}
             <button
@@ -89,11 +67,11 @@ const SignUp = () => {
 
             {/* Privacy Policy */}
             <p className="text-sm text-gray-500 mt-2">
-              By signing up, you agree to our{" "}
+              By signing up, you agree to our{' '}
               <a href="/terms" className="text-purple-600 hover:underline">
                 Terms of Use
-              </a>{" "}
-              and{" "}
+              </a>{' '}
+              and{' '}
               <a href="/privacy" className="text-purple-600 hover:underline">
                 Privacy Policy
               </a>.
@@ -103,7 +81,7 @@ const SignUp = () => {
           {/* Link to Login */}
           <div className="mt-6 text-center">
             <a href="/login" className="text-gray-800">
-              Already have an account?{" "}
+              Already have an account?{' '}
               <span className="text-purple-600 hover:underline">Log in</span>
             </a>
           </div>
