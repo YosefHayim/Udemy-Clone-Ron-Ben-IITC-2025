@@ -4,9 +4,50 @@ const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
+    fName: {
+      type: String,
+      required: [true, "Please tell us your first name!"],
+    },
+    lName: {
       type: String,
       required: [true, "Please tell us your name!"],
+    },
+    headline: {
+      type: String,
+    },
+    bio: {
+      type: String,
+      maxLength: [200, "bio cannot exceed 200 characters."],
+    },
+    preferredLanguage: {
+      type: String,
+      enum: [
+        "english",
+        "deutsch",
+        "espanol",
+        "français",
+        "italiano",
+        "português",
+        "nederlands",
+        "polski",
+        "日本語",
+        "한국어",
+        "中文",
+        "русский",
+        "العربية",
+        "עברית",
+        "tiếng Việt",
+        "ไทย",
+        "bahasa Indonesia",
+      ],
+      default: "english",
+    },
+    links: {
+      website: { type: String },
+      twitter: { type: String },
+      facebook: { type: String },
+      linkedin: { type: String },
+      youtube: { type: String },
     },
     email: {
       type: String,
@@ -72,6 +113,12 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
+    subscriptions: [{ type: mongoose.Schema.ObjectId, ref: "Subscriptions" }],
+    notifications: [{ type: mongoose.Schema.ObjectId, ref: "Notifications" }],
+    wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Wishlists" }],
+    orders: [{ type: mongoose.Schema.ObjectId, ref: "Orders" }],
+    payments: [{ type: mongoose.Schema.ObjectId, ref: "Payments" }],
+    certificates: [{ type: mongoose.Schema.ObjectId, ref: "Certificates" }],
   },
   { timestamps: true }
 );
