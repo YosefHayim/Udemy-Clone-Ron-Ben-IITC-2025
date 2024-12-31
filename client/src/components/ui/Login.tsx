@@ -1,4 +1,4 @@
-import illustration from '../../assets/images/image.png';
+import illustration from '../../assets/images/login.png';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { FaApple } from "react-icons/fa";
