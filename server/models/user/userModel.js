@@ -58,6 +58,7 @@ const userSchema = new mongoose.Schema(
     },
     emailVerified: {
       type: Boolean,
+      lowercase: true,
       default: false,
     },
     emailVerificationToken: {
@@ -87,8 +88,8 @@ const userSchema = new mongoose.Schema(
         return this.isNew;
       },
       validate: {
-        validator: function (el) {
-          return el === this.password;
+        validator: function (confimedPw) {
+          return confimedPw === this.password;
         },
         message: "Passwords are not the same!",
       },
@@ -104,7 +105,7 @@ const userSchema = new mongoose.Schema(
     reviews: [
       {
         type: mongoose.Schema.ObjectId,
-        ref: "Reviews",
+        ref: "reviews",
         validate: {
           validator: function () {
             return this.role === "instructor";
@@ -113,27 +114,17 @@ const userSchema = new mongoose.Schema(
         },
       },
     ],
-    subscriptions: [{ type: mongoose.Schema.ObjectId, ref: "Subscriptions" }],
-    notifications: [{ type: mongoose.Schema.ObjectId, ref: "Notifications" }],
-    wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Wishlists" }],
-    orders: [{ type: mongoose.Schema.ObjectId, ref: "Orders" }],
-    payments: [{ type: mongoose.Schema.ObjectId, ref: "Payments" }],
-    certificates: [{ type: mongoose.Schema.ObjectId, ref: "Certificates" }],
+    subscription: [{ type: mongoose.Schema.ObjectId, ref: "subscription" }],
+    notifications: [{ type: mongoose.Schema.ObjectId, ref: "notifications" }],
+    wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "wishlists" }],
+    orders: [{ type: mongoose.Schema.ObjectId, ref: "orders" }],
+    payments: [{ type: mongoose.Schema.ObjectId, ref: "payments" }],
+    certificates: [{ type: mongoose.Schema.ObjectId, ref: "certificates" }],
   },
   { timestamps: true }
 );
 
 module.exports = mongoose.model("User", userSchema);
-
-// userSchema.pre(/^find/, function (next) {
-//   // 'this' refers to the query
-//   this.populate({
-//     path: "reviews",
-//     select: "rating comment -_id",
-//   });
-
-//   next();
-// });
 
 userSchema.pre("save", async function (next) {
   // Only hash the password if it has been modified (or is new)
@@ -159,17 +150,6 @@ userSchema.pre("save", function (next) {
   }
   next();
 });
-
-// userSchema.pre(/^find/, function (next) {
-//   if (!this.getQuery().includeInactive) {
-//     // Exclude inactive users unless explicitly included
-//     this.find({ active: { $ne: false } });
-//   } else {
-//     // Remove the flag from the query so it doesn't affect database queries
-//     this.setQuery({ ...this.getQuery(), includeInactive: undefined });
-//   }
-//   next();
-// });
 
 userSchema.methods.updatePassword = async function (
   currentPassword,
@@ -198,6 +178,6 @@ userSchema.methods.generateEmailVerificationToken = function () {
   this.emailVerificationToken = confirmEmailToken(); // Generate a new token
 };
 
-const Users = mongoose.model("Users", userSchema);
+const Users = mongoose.model("users", userSchema);
 
 module.exports = Users;
