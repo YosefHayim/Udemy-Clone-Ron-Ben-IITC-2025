@@ -175,12 +175,24 @@ const courseSchema = new mongoose.Schema(
 );
 
 courseSchema.pre(/^find/, function (next) {
-  this.populate("analyticsOfCourse")
-    .populate("courseInstructor")
-    .populate("sections")
-    .populate("lessons");
+  this.populate("analyticsOfCourse");
   next();
 });
+
+// courseSchema.pre(/^find/, function (next) {
+//   this.populate("courseInstructor");
+//   next();
+// });
+
+// courseSchema.pre(/^find/, function (next) {
+//   this.populate("sections");
+//   next();
+// });
+
+// courseSchema.pre(/^find/, function (next) {
+//   this.populate("lessons");
+//   next();
+// });
 
 // Pre-save validation for category relationships
 courseSchema.pre("save", function (next) {

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const courseAnalyticsSchema = new mongoose.Schema({
-  course: {
+  courseData: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Course",
     required: [true, "Must provide a course ID"],
@@ -24,14 +24,14 @@ const courseAnalyticsSchema = new mongoose.Schema({
   },
 });
 
+courseAnalyticsSchema.pre(/^find/, function (next) {
+  this.populate("courseData");
+
+  next();
+});
+
 const CourseAnalytics = mongoose.model(
   "CourseAnalytics",
   courseAnalyticsSchema
 );
 module.exports = CourseAnalytics;
-
-courseAnalyticsSchema.pre(/^find/, function (next) {
-  this.populate("course");
-
-  next();
-});

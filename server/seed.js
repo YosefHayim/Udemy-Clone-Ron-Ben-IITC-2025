@@ -140,7 +140,7 @@ const generateUpdatedDummyData = async () => {
       instructors.push({
         user: user._id,
         coursesTeaching: [],
-        comments: [], // Ensure comments field exists
+        comments: [],
       });
     }
     const createdInstructors = await Instructor.insertMany(instructors);
@@ -277,11 +277,16 @@ const generateUpdatedDummyData = async () => {
         for (let j = 0; j < faker.number.int({ min: 1, max: 3 }); j++) {
           const commenter = faker.helpers.arrayElement(studentUsers); // Valid student user
           const comment = await InstructorComment.create({
-            student: commenter._id, // Link to a valid student user
+            student: commenter._id, // Correct field name matching the schema
             instructor: instructor.user, // Link to the instructor
             review: review._id, // Link to the review
             comment: faker.lorem.sentence(),
           });
+
+          if (!Array.isArray(instructor.comments)) {
+            instructor.comments = []; // Ensure the comments field is initialized as an array
+          }
+
           instructor.comments.push(comment._id); // Track the comment for the instructor
           await instructor.save();
         }

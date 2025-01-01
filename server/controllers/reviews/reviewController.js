@@ -127,7 +127,7 @@ const getAllReviewsByCourseId = catchAsync(async (req, res, next) => {
 
   const isCourseAnalyticsExist = CourseAnalytics.findById(courseId);
 
-  if (!isCourseExist) {
+  if (!isCourseAnalyticsExist) {
     return next(
       new Error(`There is no such CourseAnalytics with this ID: ${courseId}`)
     );
