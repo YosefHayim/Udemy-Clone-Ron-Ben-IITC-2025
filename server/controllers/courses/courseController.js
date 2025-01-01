@@ -69,34 +69,30 @@ const createCourse = catchAsync(async (req, res, next) => {
   }
 
   // Create a new course
-  const newCourse = await Course.create([
-    {
-      courseName,
-      courseDescription,
-      coursePrice,
-      courseParentCategory,
-      courseSubCategory,
-      courseTopic,
-      courseLevel,
-      courseLanguages,
-      courseInstructor,
-      moneyBackGuarantee,
-    },
-  ]);
+  const newCourse = await Course.create({
+    courseName,
+    courseDescription,
+    coursePrice,
+    courseParentCategory,
+    courseSubCategory,
+    courseTopic,
+    courseLevel,
+    courseLanguages,
+    courseInstructor: req.user._id,
+    moneyBackGuarantee,
+  });
 
-  if (!newCourse || newCourse.length === 0) {
+  if (!newCourse) {
     return next(new Error("Error occurred during course creation."));
   }
 
-  const addedCourseToUser = req.user.coursesCreated.push(newCourse._id);
-
-  if (!addedCourseToUser) {
-    return next(new Error("Error adding course to array user."));
-  }
+  // Add course to user's created courses
+  req.user.coursesCreated.push(newCourse._id);
+  await req.user.save();
 
   res.status(201).json({
     status: "success",
-    message: "Course has successfully created and assigned to user",
+    message: `Course has successfully created and assigned to user: ${req.user.fName}`,
     data: newCourse,
   });
 });

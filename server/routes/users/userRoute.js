@@ -11,6 +11,8 @@ const {
   confirmEmailAddress,
   resendEmailVerificationToken,
   joinCourseById,
+  updateUserInfo,
+  leaveCourseById,
 } = require("../../controllers/users/userController");
 const {
   grantedAccess,
@@ -25,17 +27,22 @@ router.param("id", (req, res, next, val) => {
 
 router.get("/", getAllUsers);
 router.get("/:id", getUserById);
-router.get("/add/course/:id", joinCourseById);
+router.get("/add/course/:id", grantedAccess, joinCourseById);
+router.get("/leave/course/:id", grantedAccess, leaveCourseById);
 router.get("/email/verification", confirmEmailAddress);
 
 router.post("/signup", SignUp);
-router.post("/email/resend/verification", resendEmailVerificationToken);
+router.post(
+  "/email/resend/verification",
+  grantedAccess,
+  resendEmailVerificationToken
+);
 router.post("/login", login);
 router.post("/logout", logout);
 router.post("/reactivate", reactiveUser);
 
-router.patch("/update/password", updatePassword);
-router.put("/");
-router.delete("/", deactivateUser);
+router.patch("/update/password", grantedAccess, updatePassword);
+router.put("/", updateUserInfo);
+router.delete("/", grantedAccess, deactivateUser);
 
 module.exports = router;

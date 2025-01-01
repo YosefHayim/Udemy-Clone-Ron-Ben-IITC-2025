@@ -177,23 +177,13 @@ const courseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-courseSchema.pre(/^find/, function (next) {
-  this.populate("analyticsOfCourse");
-  next();
-});
-
 // courseSchema.pre(/^find/, function (next) {
-//   this.populate("courseInstructor");
+//   this.populate("analyticsOfCourse");
 //   next();
 // });
 
 // courseSchema.pre(/^find/, function (next) {
-//   this.populate("sections");
-//   next();
-// });
-
-// courseSchema.pre(/^find/, function (next) {
-//   this.populate("lessons");
+//   this.populate("sections").populate("lessons");
 //   next();
 // });
 

@@ -75,7 +75,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["student", "instructor"],
       default: "student",
-      select: false,
     },
     password: {
       type: String,

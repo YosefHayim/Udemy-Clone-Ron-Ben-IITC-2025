@@ -282,33 +282,71 @@ const resendEmailVerificationToken = catchAsync(async (req, res, next) => {
 
 const joinCourseById = catchAsync(async (req, res, next) => {
   const courseId = req.params.id;
+  const user = req.user;
 
   if (!courseId) {
     return next(new Error("Please provide a course ID in the URL."));
   }
 
-  const isCourseExist = await Course.findById(courseId);
+  const isCourseExist = await Course.findOne({ _id: courseId });
+
+  if (isCourseExist.courseInstructor.toString() === req.user._id.toString()) {
+    return next(new Error(`You can׳t join to your own course.`));
+  }
 
   if (!isCourseExist) {
     return next(new Error(`No course exists with this ID: ${courseId}`));
   }
 
-  if (isCourseExist.courseBought.includes(courseId)) {
+  if (user.coursesBought.includes(courseId)) {
     return next(new Error("You have already joined this course."));
   }
 
-  isCourseExist.courseBought.push(courseId);
-  await isCourseExist.save();
+  user.coursesBought.push(courseId);
+  await user.save();
 
   res.status(200).json({
     status: "Success",
     response: `You have successfully joined the course ${isCourseExist.courseName}`,
-    data: isCourseExist,
+    data: user,
   });
 });
 
+const leaveCourseById = catchAsync(async (req, res, next) => {
+  const courseId = req.params.id;
+  const user = req.user;
+
+  if (!courseId) {
+    return next(new Error("Please provide a course ID in the URL."));
+  }
+
+  const isCourseExist = await Course.findOne({ _id: courseId });
+
+  if (!isCourseExist) {
+    return next(new Error(`No course exists with this ID: ${courseId}`));
+  }
+
+  if (!user.coursesBought.includes(courseId)) {
+    return next(new Error("You have not joined this course."));
+  }
+
+  user.coursesBought = user.coursesBought.filter(
+    (id) => id.toString() !== courseId.toString()
+  );
+  await user.save();
+
+  res.status(200).json({
+    status: "Success",
+    response: `You have successfully left the course ${isCourseExist.courseName}`,
+    data: user,
+  });
+});
+
+const updateUserInfo = catchAsync(async (req, res, next) => {});
+
 module.exports = {
   joinCourseById,
+  leaveCourseById,
   logout,
   login,
   SignUp,
@@ -319,4 +357,5 @@ module.exports = {
   getUserById,
   confirmEmailAddress,
   resendEmailVerificationToken,
+  updateUserInfo,
 };
