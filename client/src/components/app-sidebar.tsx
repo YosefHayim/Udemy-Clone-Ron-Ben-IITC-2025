@@ -1,4 +1,3 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 import { useSidebar } from "@/components/ui/sidebar";
 
 import {
@@ -7,44 +6,14 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-// Menu items.
-const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-];
+import courseData from "@/db"; // Import the course data
+import { CourseSidebarMenu } from "../components/CourseSliderBarMenu"; // Import the menu component
 
 export function AppSidebar() {
-  // Define a custom trigger within the component
   function CustomTrigger() {
-    const { toggleSidebar } = useSidebar(); // Access the sidebar toggle function
+    const { toggleSidebar } = useSidebar();
 
     return (
       <button
@@ -58,30 +27,19 @@ export function AppSidebar() {
 
   return (
     <>
-      {/* Render Sidebar */}
-      <Sidebar side='right'>
+      {/* Sidebar */}
+      <Sidebar side="left">
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel>Application</SidebarGroupLabel>
+            <SidebarGroupLabel>{courseData.title}</SidebarGroupLabel>
             <SidebarGroupContent>
-              <SidebarMenu>
-                {items.map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
-                      <a href={item.url}>
-                        <item.icon />
-                        <span>{item.title}</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
+              <CourseSidebarMenu sections={courseData.sections} />
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
       </Sidebar>
 
-      {/* Render Custom Trigger */}
+      {/* Custom Trigger */}
       <div className="mt-4">
         <CustomTrigger />
       </div>
