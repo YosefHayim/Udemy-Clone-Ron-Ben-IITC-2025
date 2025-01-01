@@ -22,14 +22,9 @@ const courseAnalyticsSchema = new mongoose.Schema({
   }, // Number of ratings
   TotalCourseReviews: [
     {
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-      },
-      rating: { type: Number, required: true }, // Rating out of 5
-      comment: { type: String },
-      createdAt: { type: Date, default: Date.now },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
+      required: true,
     },
   ],
   featuredReviews: {
@@ -39,6 +34,7 @@ const courseAnalyticsSchema = new mongoose.Schema({
     createdAt: { type: Date },
   },
 });
+
 const CourseAnalytics = mongoose.model(
   "CourseAnalytics",
   courseAnalyticsSchema

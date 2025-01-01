@@ -157,12 +157,22 @@ const courseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Pre-save validation for category relationships
 courseSchema.pre("save", function (next) {
-  if (this.isPurchased) {
-    this.moneyBackGuarantee = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days
-  } else {
-    this.moneyBackGuarantee = null;
+  const parentCategory = this.courseParentCategory;
+  const subCategories = courseCategories[parentCategory]?.subCategories;
+
+  if (!subCategories || !subCategories[this.courseSubCategory]) {
+    return next(
+      new Error("Invalid subcategory for the selected parent category")
+    );
   }
+
+  const topics = subCategories[this.courseSubCategory];
+  if (!topics.includes(this.courseTopic)) {
+    return next(new Error("Invalid topic for the selected subcategory"));
+  }
+
   next();
 });
 

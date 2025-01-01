@@ -4,7 +4,7 @@ const instructorSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // Reference to the User model
+      ref: "User",
       required: true,
     },
     role: {
@@ -14,7 +14,7 @@ const instructorSchema = new mongoose.Schema(
     coursesTeaching: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Course", // Reference to the Course model
+        ref: "Course",
       },
     ],
     totalStudentsTaught: {
@@ -42,6 +42,7 @@ const instructorSchema = new mongoose.Schema(
       },
     ],
   },
+
   { timestamps: true }
 );
 
