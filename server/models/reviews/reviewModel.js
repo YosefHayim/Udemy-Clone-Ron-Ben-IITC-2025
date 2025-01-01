@@ -19,18 +19,6 @@ const reviewSchema = new mongoose.Schema(
       ref: "User",
       required: [true, "Review must belong to a user."],
     },
-    commentsOfReview: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: "Comment",
-        validate: {
-          validator: function (value) {
-            return Array.isArray(value); // Ensure it's an array
-          },
-          message: "Comments of review must be an array of valid comment IDs.",
-        },
-      },
-    ],
     likes: {
       type: Number,
       default: 0,
@@ -45,24 +33,10 @@ const reviewSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// reviewSchema.pre(/^find/, function (next) {
-//   this.populate({
-//     path: "commentsOfReview",
-//     select: "comment -_id",
-//   });
-//   next();
-// });
-
-// reviewSchema.post("save", async function () {
-//   const review = this;
-//   try {
-//     await mongoose.model("Users").findByIdAndUpdate(review.userId, {
-//       $push: { reviews: review._id },
-//     });
-//   } catch (err) {
-//     console.error("Error updating user's reviews array:", err);
-//   }
-// });
+reviewSchema.pre(/^find/, function (next) {
+  this.populate("user");
+  next();
+});
 
 const Review = mongoose.model("Review", reviewSchema);
 module.exports = Review;

@@ -281,18 +281,24 @@ const resendEmailVerificationToken = catchAsync(async (req, res, next) => {
 });
 
 const joinCourseById = catchAsync(async (req, res, next) => {
-  if (!req.params.id) {
-    return next(
-      new Error(`Please provide course ID in the url: ${req.params.id}`)
-    );
+  const courseId = req.params.id;
+
+  if (!courseId) {
+    return next(new Error("Please provide a course ID in the URL."));
   }
-  const isCourseExist = Course.findById(req.params.id);
+
+  const isCourseExist = await Course.findById(courseId);
 
   if (!isCourseExist) {
-    return next(
-      new Error(`There is no such course exist with this ID: ${req.params.id}`)
-    );
+    return next(new Error(`No course exists with this ID: ${courseId}`));
   }
+
+  if (isCourseExist.courseBought.includes(courseId)) {
+    return next(new Error("You have already joined this course."));
+  }
+
+  isCourseExist.courseBought.push(courseId);
+  await isCourseExist.save();
 
   res.status(200).json({
     status: "Success",

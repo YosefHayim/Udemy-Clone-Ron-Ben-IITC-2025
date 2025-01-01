@@ -140,6 +140,10 @@ const courseSchema = new mongoose.Schema(
       ref: "Instructor",
       required: [true, "Instructor is required"],
     },
+    analyticsOfCourse: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "CourseAnalytics",
+    },
     moneyBackGuarantee: {
       type: Date,
       validate: {
@@ -149,20 +153,14 @@ const courseSchema = new mongoose.Schema(
         message: "Money-back guarantee date must be within 30 days",
       },
     },
-    totalRatings: {
-
-    },
-    courseAnalyticsSchema: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "CourseAnalytics",
-    },
-    isPurchased: {
-      type: Boolean,
-      default: false,
-    },
   },
   { timestamps: true }
 );
+
+courseSchema.pre(/^find/, function (next) {
+  this.populate("analyticsOfCourse").populate("courseInstructor");
+  next();
+});
 
 // Pre-save validation for category relationships
 courseSchema.pre("save", function (next) {

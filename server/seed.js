@@ -118,7 +118,7 @@ const generateDummyData = async () => {
     const comments = [];
 
     // Generate Users
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < 10; i++) {
       const password = "password123";
       const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -153,7 +153,7 @@ const generateDummyData = async () => {
     const instructors = createdUsers.filter(
       (user) => user.role === "instructor"
     );
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < 20; i++) {
       const instructor = faker.helpers.arrayElement(instructors);
 
       const parentCategory = faker.helpers.arrayElement(
@@ -170,16 +170,17 @@ const generateDummyData = async () => {
         courseName: faker.lorem.words(3),
         courseDescription: faker.lorem.paragraph(),
         coursePrice: faker.commerce.price(10, 500, 2),
+        courseParentCategory: parentCategory,
+        courseSubCategory: subCategory,
+        courseTopic: topic,
         courseLevel: faker.helpers.arrayElement([
           "Beginner",
           "Intermediate",
           "Advanced",
         ]),
         courseLanguages: faker.helpers.arrayElement(["English", "Spanish"]),
-        courseParentCategory: parentCategory,
-        courseSubCategory: subCategory,
-        courseTopic: topic,
         courseInstructor: instructor._id,
+        // AnalyticsOfCourse is later pushed
         moneyBackGuarantee: new Date(
           Date.now() +
             faker.number.int({ min: 1, max: 30 }) * 24 * 60 * 60 * 1000
@@ -264,8 +265,8 @@ const generateDummyData = async () => {
         course: course._id,
         totalStudentsEnrolledInCourse:
           faker.helpers.arrayElement(createdUsers)._id,
-        averageRating: faker.helpers.arrayElement(createdCourses)._id,
-        totalRatings: faker.helpers.arrayElement(createdCourses)._id,
+        averageRating: faker.number.float({ min: 0, max: 5, precision: 0.1 }),
+        totalRatings: faker.number.int({ min: 0, max: 1000 }),
         TotalCourseReviews: dummyReviews,
         featuredReviews: {
           user: faker.helpers.arrayElement(createdUsers)._id,
@@ -273,6 +274,11 @@ const generateDummyData = async () => {
           comment: faker.lorem.sentences(3),
           createdAt: faker.date.recent(),
         },
+      });
+
+      // Update the course with analytics reference
+      await Course.findByIdAndUpdate(course._id, {
+        analyticsOfCourse: analytics._id,
       });
 
       courseAnalytics.push(analytics._id);

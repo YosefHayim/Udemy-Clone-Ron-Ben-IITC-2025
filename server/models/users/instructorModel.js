@@ -17,34 +17,15 @@ const instructorSchema = new mongoose.Schema(
         ref: "Course",
       },
     ],
-    totalStudentsTaught: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "CourseAnalytics",
-      required: true,
-    },
-    totalCourses: {
-      type: Number,
-      default: 0,
-      min: [0, "Total courses cannot be negative."],
-    },
-    averageRating: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "CourseAnalytics",
-    },
-    totalRatings: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "CourseAnalytics",
-    },
-    reviews: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "CourseAnalytics",
-      },
-    ],
   },
 
   { timestamps: true }
 );
+
+instructorSchema.pre(/^find/, function (next) {
+  this.populate("user").populate("coursesTeaching");
+  next();
+});
 
 const Instructor = mongoose.model("Instructor", instructorSchema);
 module.exports = Instructor;

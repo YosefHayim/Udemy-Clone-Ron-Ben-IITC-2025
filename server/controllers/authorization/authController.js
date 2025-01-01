@@ -24,7 +24,7 @@ const verifyToken = (token) => {
 };
 
 const grantedAccess = catchAsync(async (req, res, next) => {
-  const User = require("../models/userModel");
+  const User = require("../../models/users/userModel");
 
   //  Getting token and check if it's there
   let token;

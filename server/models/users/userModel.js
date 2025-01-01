@@ -108,12 +108,23 @@ const userSchema = new mongoose.Schema(
     wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Wishlist" }],
     orders: [{ type: mongoose.Schema.ObjectId, ref: "Order" }],
     payments: [{ type: mongoose.Schema.ObjectId, ref: "Payment" }],
-    certificates: [{ type: mongoose.Schema.ObjectId, ref: "Certificate" }],
+    certificatesEarned: [
+      { type: mongoose.Schema.ObjectId, ref: "Certificate" },
+    ],
   },
   { timestamps: true }
 );
 
 module.exports = mongoose.model("User", userSchema);
+
+userSchema.pre(/^find/, function (next) {
+  if (this.coursesCreated.length > 1) {
+    this.populate("coursesBought").populate("coursesCreated");
+  } else {
+    this.populate("coursesBought");
+  }
+  next();
+});
 
 userSchema.pre("save", async function (next) {
   // Only hash the password if it has been modified (or is new)
