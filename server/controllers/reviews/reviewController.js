@@ -1,10 +1,10 @@
-const Review = require("../../models/review/reviewModel");
-const User = require("../../models/user/userModel");
+const CourseAnalytics = require("../../models/courses/courseAnalyticsModel");
+const courseReviews = require("../../models/reviews/courseReviewModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const { catchAsync } = require("../../utils/wrapperFn");
 
 const getAllReviews = catchAsync(async (req, res, next) => {
-  const features = new APIFeatures(Review.find(), req.query)
+  const features = new APIFeatures(courseReviews.find(), req.query)
     .filter()
     .sort()
     .limitFields()
@@ -19,13 +19,14 @@ const getAllReviews = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "Success",
     totalReviews: reviews.length,
-    response: reviews,
+    response: "Reviews list:",
+    reviews,
   });
 });
 
 const addReviewByUserId = catchAsync(async (req, res, next) => {
   // Get the user ID
-  const userId = req.params.id;
+  const userId = req.user._id;
 
   if (!userId) {
     return next(new Error(`Please provide userId.`));
@@ -61,7 +62,7 @@ const deleteReviewByUserId = catchAsync(async (req, res, next) => {
     return next(new Error(`Please provide reviewId in the url.`));
   }
 
-  const findReview = await Review.findByIdAndDelete(reviewId);
+  const findReview = await courseReviews.findByIdAndDelete(reviewId);
 
   if (!findReview) {
     return next(new Error(`There is no review with ID: ${reviewId}.`));
@@ -81,7 +82,7 @@ const updateReviewByUserId = catchAsync(async (req, res, next) => {
     return next(new Error(`Please provide reviewId in the URL.`));
   }
 
-  const updatedReview = await Review.findByIdAndUpdate(
+  const updatedReview = await courseReviews.findByIdAndUpdate(
     reviewId,
     { rating, comment },
     { new: true, runValidators: true }
@@ -105,7 +106,7 @@ const getReviewsByUserId = catchAsync(async (req, res, next) => {
     return next(new Error(`Please provide reviewId in the url.`));
   }
 
-  const findReview = await Review.findById(reviewId);
+  const findReview = await courseReviews.findById(reviewId);
 
   if (!findReview) {
     return next(new Error(`There is no review with ID: ${reviewId}.`));
@@ -117,10 +118,33 @@ const getReviewsByUserId = catchAsync(async (req, res, next) => {
   });
 });
 
+const getAllReviewsByCourseId = catchAsync(async (req, res, next) => {
+  const courseId = req.params.courseId;
+
+  if (!courseId) {
+    return next(new Error(`Please provide courseId in the url.`));
+  }
+
+  const isCourseAnalyticsExist = CourseAnalytics.findById(courseId);
+
+  if (!isCourseExist) {
+    return next(
+      new Error(`There is no such CourseAnalytics with this ID: ${courseId}`)
+    );
+  }
+
+  res.status(200).json({
+    success: "Success",
+    response: `All reviews for the course ID: ${courseId}`,
+    data: isCourseAnalyticsExist,
+  });
+});
+
 module.exports = {
   getAllReviews,
   updateReviewByUserId,
   addReviewByUserId,
   deleteReviewByUserId,
   getReviewsByUserId,
+  getAllReviewsByCourseId,
 };

@@ -10,7 +10,8 @@ const {
   getUserById,
   confirmEmailAddress,
   resendEmailVerificationToken,
-} = require("../../controllers/user/userController");
+  joinCourseById,
+} = require("../../controllers/users/userController");
 const {
   grantedAccess,
 } = require("../../controllers/authorization/authController");
@@ -24,16 +25,17 @@ router.param("id", (req, res, next, val) => {
 
 router.get("/", getAllUsers);
 router.get("/:id", getUserById);
-router.get("/email/verification", grantedAccess, confirmEmailAddress);
+router.get("/add/course/:id", joinCourseById);
+router.get("/email/verification", confirmEmailAddress);
 
-router.post("/signUp", SignUp);
+router.post("/signup", SignUp);
 router.post("/email/resend/verification", resendEmailVerificationToken);
 router.post("/login", login);
 router.post("/logout", logout);
 router.post("/reactivate", reactiveUser);
 
-router.patch("/update/password", grantedAccess, updatePassword);
+router.patch("/update/password", updatePassword);
 router.put("/");
-router.delete("/", grantedAccess, deactivateUser);
+router.delete("/", deactivateUser);
 
 module.exports = router;

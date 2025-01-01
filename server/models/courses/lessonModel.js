@@ -41,6 +41,11 @@ const lessonSchema = new mongoose.Schema(
   { timestamps: true } // Automatically adds createdAt and updatedAt timestamps
 );
 
+lessonSchema.pre(/^find/, function (next) {
+  this.populate("section");
+  next();
+});
+
 // Pre-save middleware for URL validation
 lessonSchema.pre("save", function (next) {
   const urlRegex = /^(http|https):\/\/[^ "]+$/;
@@ -63,5 +68,4 @@ lessonSchema.pre("save", function (next) {
 });
 
 const Lesson = mongoose.model("Lesson", lessonSchema);
-
 module.exports = Lesson;

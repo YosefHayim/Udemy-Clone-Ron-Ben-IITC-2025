@@ -5,7 +5,8 @@ const {
   deleteReviewByUserId,
   updateReviewByUserId,
   getReviewsByUserId,
-} = require("../../controllers/review/reviewController");
+  getAllReviewsByCourseId,
+} = require("../../controllers/reviews/reviewController");
 const {
   grantedAccess,
 } = require("../../controllers/authorization/authController");
@@ -13,6 +14,7 @@ const {
 const router = express.Router();
 
 router.get("/", grantedAccess, getAllReviews);
+router.get("/:courseId", grantedAccess, getAllReviewsByCourseId);
 router.post("/:id", grantedAccess, addReviewByUserId);
 router.delete("/:id", grantedAccess, deleteReviewByUserId);
 router.patch("/:id", grantedAccess, updateReviewByUserId);

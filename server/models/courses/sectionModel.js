@@ -29,6 +29,10 @@ const sectionSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Section = mongoose.model("Section", sectionSchema);
+sectionSchema.pre(/^find/, function (next) {
+  this.populate("course").populate("lessons");
+  next();
+});
 
+const Section = mongoose.model("Section", sectionSchema);
 module.exports = Section;

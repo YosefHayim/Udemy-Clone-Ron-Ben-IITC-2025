@@ -1,4 +1,4 @@
-const Comment = require("../../models/review/commentModel");
+const Comment = require("../../models/reviews/instructorCommentModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const { catchAsync } = require("../../utils/wrapperFn");
 

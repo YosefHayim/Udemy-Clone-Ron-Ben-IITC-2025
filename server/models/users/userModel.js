@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema(
     },
     links: {
       website: { type: String },
-      twitter: { type: String },
+      xPlatform: { type: String },
       facebook: { type: String },
       linkedin: { type: String },
       youtube: { type: String },
@@ -101,30 +101,30 @@ const userSchema = new mongoose.Schema(
       default: true,
       select: false,
     },
-    reviews: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: "Reviews",
-        validate: {
-          validator: function () {
-            return this.role === "instructor";
-          },
-          message: "Only instructors can have reviews.",
-        },
-      },
-    ],
+    coursesCreated: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     coursesBought: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
-    subscription: [{ type: mongoose.Schema.ObjectId, ref: "Subscription" }],
-    notifications: [{ type: mongoose.Schema.ObjectId, ref: "Notification" }],
-    wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Wishlist" }],
     orders: [{ type: mongoose.Schema.ObjectId, ref: "Order" }],
     payments: [{ type: mongoose.Schema.ObjectId, ref: "Payment" }],
-    certificates: [{ type: mongoose.Schema.ObjectId, ref: "Certificate" }],
+    certificatesEarned: [
+      { type: mongoose.Schema.ObjectId, ref: "Certificate" },
+    ],
   },
   { timestamps: true }
 );
 
+// subscription: [{ type: mongoose.Schema.ObjectId, ref: "Subscription" }],
+// notifications: [{ type: mongoose.Schema.ObjectId, ref: "Notification" }],
+// wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Wishlist" }],
 module.exports = mongoose.model("User", userSchema);
+
+userSchema.pre(/^find/, function (next) {
+  if (this.coursesCreated.length > 1) {
+    this.populate("coursesBought").populate("coursesCreated");
+  } else {
+    this.populate("coursesBought");
+  }
+  next();
+});
 
 userSchema.pre("save", async function (next) {
   // Only hash the password if it has been modified (or is new)
@@ -178,6 +178,5 @@ userSchema.methods.generateEmailVerificationToken = function () {
   this.emailVerificationToken = confirmEmailToken(); // Generate a new token
 };
 
-const Users = mongoose.model("User", userSchema);
-
-module.exports = Users;
+const User = mongoose.model("User", userSchema);
+module.exports = User;
