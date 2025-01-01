@@ -118,7 +118,7 @@ const generateDummyData = async () => {
     const comments = [];
 
     // Generate Users
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 300; i++) {
       const password = "password123";
       const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -139,10 +139,10 @@ const generateDummyData = async () => {
         role: faker.helpers.arrayElement(["student", "instructor"]),
         active: true,
         links: {
-          xPlatform: `https://x.com/${fName}?`,
-          facebook: `https://www.facebook.com/?profileName=${fName}`,
-          linkedin: `https://www.linkedin.com/in/${fName}/`,
-          youtube: `https://x.com/${fName}?`,
+          xPlatform: `https://x.com/?`,
+          facebook: `https://www.facebook.com/?`,
+          linkedin: `https://www.linkedin.com/in/`,
+          youtube: `https://x.com/?`,
         },
       });
     }
@@ -153,7 +153,7 @@ const generateDummyData = async () => {
     const instructors = createdUsers.filter(
       (user) => user.role === "instructor"
     );
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 300; i++) {
       const instructor = faker.helpers.arrayElement(instructors);
 
       const parentCategory = faker.helpers.arrayElement(

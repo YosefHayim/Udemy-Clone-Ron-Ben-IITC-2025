@@ -10,6 +10,7 @@ const {
   getUserById,
   confirmEmailAddress,
   resendEmailVerificationToken,
+  joinCourseById,
 } = require("../../controllers/users/userController");
 const {
   grantedAccess,
@@ -24,9 +25,10 @@ router.param("id", (req, res, next, val) => {
 
 router.get("/", getAllUsers);
 router.get("/:id", getUserById);
+router.get("/add/course/:id", grantedAccess, joinCourseById);
 router.get("/email/verification", grantedAccess, confirmEmailAddress);
 
-router.post("/signUp", SignUp);
+router.post("/signup", SignUp);
 router.post("/email/resend/verification", resendEmailVerificationToken);
 router.post("/login", login);
 router.post("/logout", logout);

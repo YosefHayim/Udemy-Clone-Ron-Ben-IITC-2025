@@ -1,3 +1,4 @@
+const Course = require("../../models/courses/courseModel");
 const User = require("../../models/users/userModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const cookieOptions = require("../../utils/cookieOptions");
@@ -46,7 +47,7 @@ const SignUp = catchAsync(async (req, res, next) => {
   const { fName, lName, email, password, passwordConfirm } = req.body;
 
   // If one of the fields is missing
-  if (!name || !email || !password || !passwordConfirm) {
+  if (!fName || !lName || !email || !password || !passwordConfirm) {
     return next(new Error("One of the fields is missing."));
   }
 
@@ -279,7 +280,29 @@ const resendEmailVerificationToken = catchAsync(async (req, res, next) => {
   });
 });
 
+const joinCourseById = catchAsync(async (req, res, next) => {
+  if (!req.params.id) {
+    return next(
+      new Error(`Please provide course ID in the url: ${req.params.id}`)
+    );
+  }
+  const isCourseExist = Course.findById(req.params.id);
+
+  if (!isCourseExist) {
+    return next(
+      new Error(`There is no such course exist with this ID: ${req.params.id}`)
+    );
+  }
+
+  res.status(200).json({
+    status: "Success",
+    response: `You have successfully joined the course ${isCourseExist.courseName}`,
+    data: isCourseExist,
+  });
+});
+
 module.exports = {
+  joinCourseById,
   logout,
   login,
   SignUp,

@@ -149,6 +149,13 @@ const courseSchema = new mongoose.Schema(
         message: "Money-back guarantee date must be within 30 days",
       },
     },
+    totalRatings: {
+
+    },
+    courseAnalyticsSchema: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "CourseAnalytics",
+    },
     isPurchased: {
       type: Boolean,
       default: false,
