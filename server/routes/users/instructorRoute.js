@@ -6,18 +6,18 @@ const {
   loginInstructor,
   confirmInstructorEmailAddress,
   logoutInstructor,
-} = require("../../controllers/instructors/instructorController");
+} = require("../../controllers/users/instructorController");
 const {
   grantedAccess,
 } = require("../../controllers/authorization/authController");
 
 const router = express.Router();
 
-router.get("/", grantedAccess, getAllInstructors);
-router.get("/:id", grantedAccess, getInstructorById);
+router.get("/", getAllInstructors);
+router.get("/:id", getInstructorById);
 router.post("/signup", signUpInstructor);
 router.post("/login", loginInstructor);
 router.get("/confirm-email", confirmInstructorEmailAddress);
-router.post("/logout", grantedAccess, logoutInstructor);
+router.post("/logout", logoutInstructor);
 
 module.exports = router;

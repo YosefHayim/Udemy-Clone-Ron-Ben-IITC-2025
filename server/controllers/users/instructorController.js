@@ -18,13 +18,11 @@ const getAllInstructors = catchAsync(async (req, res, next) => {
     return next(new Error("No Instructor documents found in database"));
   }
 
-  res
-    .status(200)
-    .json({
-      status: "Success",
-      totalInstructors: instructors.length,
-      response: instructors,
-    });
+  res.status(200).json({
+    status: "Success",
+    totalInstructors: instructors.length,
+    response: instructors,
+  });
 });
 
 const getInstructorById = catchAsync(async (req, res, next) => {
