@@ -2,10 +2,13 @@ const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema(
   {
-    user: {
+    student: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: [true, "Comment must be associated with an user you reply to."],
+      required: [
+        true,
+        "Comment must be associated with an student you reply to.",
+      ],
     },
     comment: {
       type: String,
@@ -22,7 +25,7 @@ const commentSchema = new mongoose.Schema(
 );
 
 commentSchema.pre(/^find/, function (next) {
-  this.populate("instructor").populate("user");
+  this.populate("instructor").populate("student");
   next();
 });
 

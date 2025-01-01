@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// Categories object for Udemy-like platform
 const courseCategories = {
   Development: {
     subCategories: {
@@ -153,6 +152,18 @@ const courseSchema = new mongoose.Schema(
         message: "Money-back guarantee date must be within 30 days",
       },
     },
+    sections: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Section",
+      },
+    ],
+    lessons: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Lesson",
+      },
+    ],
     reviews: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -164,7 +175,10 @@ const courseSchema = new mongoose.Schema(
 );
 
 courseSchema.pre(/^find/, function (next) {
-  this.populate("analyticsOfCourse").populate("courseInstructor");
+  this.populate("analyticsOfCourse")
+    .populate("courseInstructor")
+    .populate("sections")
+    .populate("lessons");
   next();
 });
 

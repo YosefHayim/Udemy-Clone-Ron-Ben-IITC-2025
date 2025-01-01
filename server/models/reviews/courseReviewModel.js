@@ -17,7 +17,7 @@ const courseReviewsSchema = new mongoose.Schema(
       type: String,
       required: [true, "You must provide a comment."],
       minLength: [1, "Comment must be at least 1 character."],
-      maxLength: [250, "Comment cannot exceed 250 characters."], // Extended length for meaningful comments
+      maxLength: [250, "Comment cannot exceed 250 characters."],
     },
     likes: {
       type: Number,

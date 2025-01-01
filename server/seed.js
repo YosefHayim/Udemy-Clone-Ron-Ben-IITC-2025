@@ -127,24 +127,24 @@ const generateUpdatedDummyData = async () => {
       });
     }
     const createdUsers = await User.insertMany(users);
-    console.log(`Done with users`);
+    console.log(`Users created successfully.`);
 
     // Separate instructors and students
     const studentUsers = createdUsers.filter((user) => user.role === "student");
     const instructorUsers = createdUsers.filter(
       (user) => user.role === "instructor"
     );
-    console.log(`Done with separate with instructors`);
 
     // Create Instructors
     for (const user of instructorUsers) {
       instructors.push({
         user: user._id,
         coursesTeaching: [],
+        comments: [], // Ensure comments field exists
       });
     }
     const createdInstructors = await Instructor.insertMany(instructors);
-    console.log(`Done with created Instructors`);
+    console.log(`Instructors created successfully.`);
 
     // Create Courses
     for (let i = 0; i < 20; i++) {
@@ -152,14 +152,13 @@ const generateUpdatedDummyData = async () => {
       const parentCategory = faker.helpers.arrayElement(
         Object.keys(courseCategories)
       );
+      const subCategories = courseCategories[parentCategory].subCategories;
       const subCategory = faker.helpers.arrayElement(
-        Object.keys(courseCategories[parentCategory].subCategories)
+        Object.keys(subCategories)
       );
-      const topic = faker.helpers.arrayElement(
-        courseCategories[parentCategory].subCategories[subCategory]
-      );
+      const topic = faker.helpers.arrayElement(subCategories[subCategory]);
 
-      courses.push({
+      const course = await Course.create({
         courseName: faker.lorem.words(3),
         courseDescription: faker.lorem.paragraph(),
         coursePrice: faker.commerce.price(10, 500, 2),
@@ -172,26 +171,31 @@ const generateUpdatedDummyData = async () => {
           "Advanced",
         ]),
         courseLanguages: faker.helpers.arrayElement(["English", "Spanish"]),
-        courseInstructor: faker.helpers.arrayElement(createdInstructors).user,
+        courseInstructor: instructor.user,
+        sections: [],
+        lessons: [],
         reviews: [],
       });
+
+      courses.push(course);
+      instructor.coursesTeaching.push(course._id);
+      await instructor.save(); // Save updated instructor
     }
-    const createdCourses = await Course.insertMany(courses);
-    console.log(`Done with created Courses`);
+    console.log(`Courses created successfully.`);
 
     // Assign random courses to students
     for (const user of studentUsers) {
       const purchasedCourses = faker.helpers.arrayElements(
-        createdCourses,
+        courses,
         faker.number.int({ min: 1, max: 5 })
       );
       user.coursesBought = purchasedCourses.map((course) => course._id);
       await user.save();
     }
-    console.log(`Done with assign random courses to students`);
+    console.log(`Courses assigned to students.`);
 
     // Create Sections for each course
-    for (const course of createdCourses) {
+    for (const course of courses) {
       const sectionCount = faker.number.int({ min: 1, max: 5 });
       for (let i = 0; i < sectionCount; i++) {
         const section = await Section.create({
@@ -199,8 +203,10 @@ const generateUpdatedDummyData = async () => {
           title: faker.lorem.words(4),
           lessons: [],
         });
-        sections.push(section); // Store the created section
+        sections.push(section);
+        course.sections.push(section._id);
       }
+      await course.save(); // Save updated course with sections
     }
 
     // Create Lessons for each section
@@ -208,74 +214,83 @@ const generateUpdatedDummyData = async () => {
       const lessonCount = faker.number.int({ min: 1, max: 10 });
       for (let j = 0; j < lessonCount; j++) {
         const lesson = await Lesson.create({
-          section: section._id, // Assign section ID
+          section: section._id,
           title: faker.lorem.words(3),
           videoUrl: faker.internet.url(),
           duration: faker.number.int({ min: 1, max: 30 }),
           order: j + 1,
         });
-        lessons.push(lesson); // Store the created lesson
-        section.lessons.push(lesson._id); // Add lesson ID to the section
+        lessons.push(lesson);
+        section.lessons.push(lesson._id);
+
+        // Link lessons to courses
+        const course = courses.find((c) => c._id.equals(section.course));
+        if (course) course.lessons.push(lesson._id);
       }
-      // Update the section with total lessons and durations
-      section.totalSectionLessons = section.lessons.length;
-      section.totalSectionDuration = lessons
-        .filter((lesson) => section.lessons.includes(lesson._id))
-        .reduce((total, lesson) => total + lesson.duration, 0);
-      await section.save(); // Save the updated section
+      await section.save();
     }
-    console.log(`Done with creating lessons for each section`);
+    console.log(`Sections and lessons created successfully.`);
 
     // Create Course Analytics
-    for (const course of createdCourses) {
+    for (const course of courses) {
       const enrolledStudents = faker.helpers.arrayElements(
         studentUsers,
         faker.number.int({ min: 1, max: 10 })
       );
-      const analytics = {
+      const validReviews = reviews.filter((r) =>
+        course.reviews.includes(r._id)
+      );
+      const totalRatings = validReviews.length;
+      const averageRating = totalRatings
+        ? validReviews.reduce((sum, r) => sum + r.rating, 0) / totalRatings
+        : 0;
+
+      const analytics = await CourseAnalytics.create({
         course: course._id,
         totalStudentsEnrolled: enrolledStudents.length,
-        averageRating: 0, // Placeholder
-        totalRatings: 0, // Placeholder
-      };
-      courseAnalytics.push(analytics);
-    }
-    const createdAnalytics = await CourseAnalytics.insertMany(courseAnalytics);
-
-    // Link Course Analytics to Courses
-    for (const [index, course] of createdCourses.entries()) {
-      course.analyticsOfCourse = createdAnalytics[index]._id;
+        averageRating,
+        totalRatings,
+      });
+      course.analyticsOfCourse = analytics._id;
       await course.save();
     }
+    console.log(`Course analytics created.`);
 
     // Create Reviews and Comments
-    for (const course of createdCourses) {
+    for (const course of courses) {
       const reviewCount = faker.number.int({ min: 5, max: 15 });
       for (let i = 0; i < reviewCount; i++) {
         const reviewer = faker.helpers.arrayElement(studentUsers);
-        const review = {
-          user: reviewer._id,
+        const review = await courseReviews.create({
+          user: reviewer._id, // Valid student user
           rating: faker.number.float({ min: 1, max: 5, precision: 0.1 }),
           comment: faker.lorem.sentence(),
           likes: faker.number.int({ min: 0, max: 50 }),
           dislikes: faker.number.int({ min: 0, max: 10 }),
-        };
+        });
         reviews.push(review);
+        course.reviews.push(review._id); // Link review to course
+        await course.save();
 
-        // Add instructor comments
+        // Add instructor comments for each review
         const instructor = faker.helpers.arrayElement(createdInstructors);
         for (let j = 0; j < faker.number.int({ min: 1, max: 3 }); j++) {
-          await InstructorComment.create({
-            instructor: instructor.user,
-            review: review._id,
+          const commenter = faker.helpers.arrayElement(studentUsers); // Valid student user
+          const comment = await InstructorComment.create({
+            student: commenter._id, // Link to a valid student user
+            instructor: instructor.user, // Link to the instructor
+            review: review._id, // Link to the review
             comment: faker.lorem.sentence(),
           });
+          instructor.comments.push(comment._id); // Track the comment for the instructor
+          await instructor.save();
         }
       }
     }
-    await courseReviews.insertMany(reviews);
 
-    console.log("All data seeded successfully with enhanced relationships!");
+    console.log(`Reviews and comments created successfully.`);
+
+    console.log("All dummy data seeded successfully!");
     process.exit();
   } catch (err) {
     console.error("Error generating dummy data:", err);
