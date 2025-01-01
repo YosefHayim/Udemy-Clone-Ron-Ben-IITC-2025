@@ -1,7 +1,12 @@
 const mongoose = require("mongoose");
 
-const reviewSchema = new mongoose.Schema(
+const courseReviewsSchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+      required: [true, "Review must belong to a user."],
+    },
     rating: {
       type: Number,
       required: [true, "You must provide a rating between 1 and 5."],
@@ -13,11 +18,6 @@ const reviewSchema = new mongoose.Schema(
       required: [true, "You must provide a comment."],
       minLength: [1, "Comment must be at least 1 character."],
       maxLength: [250, "Comment cannot exceed 250 characters."], // Extended length for meaningful comments
-    },
-    user: {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-      required: [true, "Review must belong to a user."],
     },
     likes: {
       type: Number,
@@ -33,10 +33,10 @@ const reviewSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-reviewSchema.pre(/^find/, function (next) {
+courseReviewsSchema.pre(/^find/, function (next) {
   this.populate("user");
   next();
 });
 
-const Review = mongoose.model("Review", reviewSchema);
-module.exports = Review;
+const courseReviews = mongoose.model("Review", courseReviewsSchema);
+module.exports = courseReviews;

@@ -26,5 +26,5 @@ commentSchema.pre(/^find/, function (next) {
   next();
 });
 
-const Comment = mongoose.model("Comment", commentSchema);
-module.exports = Comment;
+const InstructorComment = mongoose.model("Comment", commentSchema);
+module.exports = InstructorComment;

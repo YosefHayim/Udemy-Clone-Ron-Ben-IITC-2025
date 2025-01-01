@@ -103,14 +103,14 @@ const userSchema = new mongoose.Schema(
     },
     coursesCreated: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     coursesBought: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
-    subscription: [{ type: mongoose.Schema.ObjectId, ref: "Subscription" }],
-    notifications: [{ type: mongoose.Schema.ObjectId, ref: "Notification" }],
-    wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Wishlist" }],
     orders: [{ type: mongoose.Schema.ObjectId, ref: "Order" }],
     payments: [{ type: mongoose.Schema.ObjectId, ref: "Payment" }],
     certificatesEarned: [
       { type: mongoose.Schema.ObjectId, ref: "Certificate" },
     ],
+    // subscription: [{ type: mongoose.Schema.ObjectId, ref: "Subscription" }],
+    // notifications: [{ type: mongoose.Schema.ObjectId, ref: "Notification" }],
+    // wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Wishlist" }],
   },
   { timestamps: true }
 );

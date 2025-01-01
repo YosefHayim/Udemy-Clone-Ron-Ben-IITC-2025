@@ -153,6 +153,12 @@ const courseSchema = new mongoose.Schema(
         message: "Money-back guarantee date must be within 30 days",
       },
     },
+    reviews: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "reviews",
+      },
+    ],
   },
   { timestamps: true }
 );
@@ -178,15 +184,6 @@ courseSchema.pre("save", function (next) {
     return next(new Error("Invalid topic for the selected subcategory"));
   }
 
-  next();
-});
-
-courseSchema.pre("save", function (next) {
-  if (this.isPurchased) {
-    this.moneyBackGuarantee = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // Set to 30 days from now
-  } else {
-    this.moneyBackGuarantee = null; // Reset if not purchased
-  }
   next();
 });
 

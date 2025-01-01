@@ -1,10 +1,10 @@
 const CourseAnalytics = require("../../models/courses/courseAnalyticsModel");
-const Review = require("../../models/reviews/reviewModel");
+const courseReviews = require("../../models/reviews/courseReviewModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const { catchAsync } = require("../../utils/wrapperFn");
 
 const getAllReviews = catchAsync(async (req, res, next) => {
-  const features = new APIFeatures(Review.find(), req.query)
+  const features = new APIFeatures(courseReviews.find(), req.query)
     .filter()
     .sort()
     .limitFields()
@@ -62,7 +62,7 @@ const deleteReviewByUserId = catchAsync(async (req, res, next) => {
     return next(new Error(`Please provide reviewId in the url.`));
   }
 
-  const findReview = await Review.findByIdAndDelete(reviewId);
+  const findReview = await courseReviews.findByIdAndDelete(reviewId);
 
   if (!findReview) {
     return next(new Error(`There is no review with ID: ${reviewId}.`));
@@ -82,7 +82,7 @@ const updateReviewByUserId = catchAsync(async (req, res, next) => {
     return next(new Error(`Please provide reviewId in the URL.`));
   }
 
-  const updatedReview = await Review.findByIdAndUpdate(
+  const updatedReview = await courseReviews.findByIdAndUpdate(
     reviewId,
     { rating, comment },
     { new: true, runValidators: true }
@@ -106,7 +106,7 @@ const getReviewsByUserId = catchAsync(async (req, res, next) => {
     return next(new Error(`Please provide reviewId in the url.`));
   }
 
-  const findReview = await Review.findById(reviewId);
+  const findReview = await courseReviews.findById(reviewId);
 
   if (!findReview) {
     return next(new Error(`There is no review with ID: ${reviewId}.`));
