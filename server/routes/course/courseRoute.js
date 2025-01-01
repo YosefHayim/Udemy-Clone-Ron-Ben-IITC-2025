@@ -12,10 +12,10 @@ const {
 
 const router = express.Router();
 
-router.get("/", getAllCourses);
-router.get("/:id", getCourseById);
-router.post("/", createCourse);
-router.put("/", updateCourse);
-router.delete("/", deleteCourse);
+router.get("/", grantedAccess, getAllCourses);
+router.get("/:id", grantedAccess, getCourseById);
+router.post("/", grantedAccess, createCourse);
+router.put("/:id", grantedAccess, updateCourse);
+router.delete("/:id", grantedAccess, deleteCourse);
 
 module.exports = router;

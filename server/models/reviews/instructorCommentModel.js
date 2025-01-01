@@ -7,7 +7,7 @@ const commentSchema = new mongoose.Schema(
       ref: "User",
       required: [
         true,
-        "Comment must be associated with an student you reply to.",
+        "Comment must be associated with an user student you reply to.",
       ],
     },
     comment: {
@@ -17,8 +17,8 @@ const commentSchema = new mongoose.Schema(
     },
     instructor: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Instructor",
-      required: [true, "Comment must be associated with an instructor."],
+      ref: "User",
+      required: [true, "Comment must be associated with a user instructor."],
     },
   },
   { timestamps: true }

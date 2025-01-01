@@ -42,25 +42,61 @@ const getCourseById = catchAsync(async (req, res, next) => {
 });
 
 const createCourse = catchAsync(async (req, res, next) => {
-  const { title, description, instructor } = req.body;
+  const {
+    courseName,
+    courseDescription,
+    coursePrice,
+    courseParentCategory,
+    courseSubCategory,
+    courseTopic,
+    courseLevel,
+    courseLanguages,
+    moneyBackGuarantee,
+  } = req.body;
 
-  if (!title || !description || !instructor) {
-    return next(new Error("One of the fields is missing."));
+  // Check for missing fields
+  if (
+    !courseName ||
+    !courseDescription ||
+    !coursePrice ||
+    !courseParentCategory ||
+    !courseSubCategory ||
+    !courseTopic ||
+    !courseLevel ||
+    !courseLanguages
+  ) {
+    return next(new Error("One of the required fields is missing."));
   }
 
-  const newCourse = await Course.create({
-    title,
-    description,
-    instructor,
-  });
+  // Create a new course
+  const newCourse = await Course.create([
+    {
+      courseName,
+      courseDescription,
+      coursePrice,
+      courseParentCategory,
+      courseSubCategory,
+      courseTopic,
+      courseLevel,
+      courseLanguages,
+      courseInstructor,
+      moneyBackGuarantee,
+    },
+  ]);
 
-  if (!newCourse) {
+  if (!newCourse || newCourse.length === 0) {
     return next(new Error("Error occurred during course creation."));
+  }
+
+  const addedCourseToUser = req.user.coursesCreated.push(newCourse._id);
+
+  if (!addedCourseToUser) {
+    return next(new Error("Error adding course to array user."));
   }
 
   res.status(201).json({
     status: "success",
-    message: "Course created successfully.",
+    message: "Course has successfully created and assigned to user",
     data: newCourse,
   });
 });
@@ -72,10 +108,36 @@ const updateCourse = catchAsync(async (req, res, next) => {
     return next(new Error("Please provide the course ID in the URL."));
   }
 
-  const updatedCourse = await Course.findByIdAndUpdate(courseId, req.body, {
-    new: true,
-    runValidators: true,
-  });
+  const {
+    courseName,
+    courseDescription,
+    coursePrice,
+    courseParentCategory,
+    courseSubCategory,
+    courseTopic,
+    courseLevel,
+    courseLanguages,
+    courseInstructor,
+    moneyBackGuarantee,
+  } = req.body;
+
+  const updatedCourse = await Course.findByIdAndUpdate(
+    courseId,
+    courseName,
+    courseDescription,
+    coursePrice,
+    courseParentCategory,
+    courseSubCategory,
+    courseTopic,
+    courseLevel,
+    courseLanguages,
+    courseInstructor,
+    moneyBackGuarantee,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
 
   if (!updatedCourse) {
     return next(new Error("Error occurred during course update."));

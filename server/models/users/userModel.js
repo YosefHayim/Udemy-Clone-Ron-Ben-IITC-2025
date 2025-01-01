@@ -73,6 +73,7 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
+      enum: ["student", "instructor"],
       default: "student",
       select: false,
     },
@@ -101,8 +102,8 @@ const userSchema = new mongoose.Schema(
       default: true,
       select: false,
     },
-    coursesCreated: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     coursesBought: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
+    coursesCreated: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     orders: [{ type: mongoose.Schema.ObjectId, ref: "Order" }],
     payments: [{ type: mongoose.Schema.ObjectId, ref: "Payment" }],
     certificatesEarned: [
@@ -118,8 +119,8 @@ const userSchema = new mongoose.Schema(
 module.exports = mongoose.model("User", userSchema);
 
 userSchema.pre(/^find/, function (next) {
-  if (this.coursesCreated.length > 1) {
-    this.populate("coursesBought").populate("coursesCreated");
+  if (this.coursesCreated.length >= 1 && this.role === "instructor") {
+    this.populate("coursesCreated");
   } else {
     this.populate("coursesBought");
   }

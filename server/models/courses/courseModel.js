@@ -82,7 +82,10 @@ const courseSchema = new mongoose.Schema(
   {
     courseName: {
       type: String,
-      required: [true, "To register a course, you must provide a name"],
+      required: [
+        true,
+        "To register a course, you must provide a name for the course",
+      ],
     },
     courseDescription: {
       type: String,
@@ -136,7 +139,7 @@ const courseSchema = new mongoose.Schema(
     },
     courseInstructor: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Instructor",
+      ref: "User",
       required: [true, "Instructor is required"],
     },
     analyticsOfCourse: {

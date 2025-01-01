@@ -6,7 +6,6 @@ const Lesson = require("./models/courses/lessonModel");
 const Section = require("./models/courses/sectionModel");
 const CourseAnalytics = require("./models/courses/courseAnalyticsModel");
 const InstructorComment = require("./models/reviews/instructorCommentModel");
-const Instructor = require("./models/users/instructorModel");
 const courseReviews = require("./models/reviews/courseReviewModel");
 const connectDb = require("./config/connectDb");
 
@@ -101,8 +100,7 @@ const generateUpdatedDummyData = async () => {
       Lesson.deleteMany({}),
       CourseAnalytics.deleteMany({}),
       courseReviews.deleteMany({}),
-      InstructorComment.deleteMany({}),
-      Instructor.deleteMany({}),
+      InstructorComment.deleteMany({}), // Still used for comments
     ]);
     console.log("Cleared all collections");
 
@@ -110,9 +108,7 @@ const generateUpdatedDummyData = async () => {
     const courses = [];
     const sections = [];
     const lessons = [];
-    const courseAnalytics = [];
     const reviews = [];
-    const instructors = [];
 
     // Create Users
     for (let i = 0; i < 10; i++) {
@@ -135,20 +131,9 @@ const generateUpdatedDummyData = async () => {
       (user) => user.role === "instructor"
     );
 
-    // Create Instructors
-    for (const user of instructorUsers) {
-      instructors.push({
-        user: user._id,
-        coursesTeaching: [],
-        comments: [],
-      });
-    }
-    const createdInstructors = await Instructor.insertMany(instructors);
-    console.log(`Instructors created successfully.`);
-
     // Create Courses
     for (let i = 0; i < 20; i++) {
-      const instructor = faker.helpers.arrayElement(createdInstructors);
+      const instructor = faker.helpers.arrayElement(instructorUsers);
       const parentCategory = faker.helpers.arrayElement(
         Object.keys(courseCategories)
       );
@@ -171,15 +156,13 @@ const generateUpdatedDummyData = async () => {
           "Advanced",
         ]),
         courseLanguages: faker.helpers.arrayElement(["English", "Spanish"]),
-        courseInstructor: instructor.user,
+        courseInstructor: instructor._id, // Link directly to instructor user
         sections: [],
         lessons: [],
         reviews: [],
       });
 
       courses.push(course);
-      instructor.coursesTeaching.push(course._id);
-      await instructor.save(); // Save updated instructor
     }
     console.log(`Courses created successfully.`);
 
@@ -206,7 +189,7 @@ const generateUpdatedDummyData = async () => {
         sections.push(section);
         course.sections.push(section._id);
       }
-      await course.save(); // Save updated course with sections
+      await course.save();
     }
 
     // Create Lessons for each section
@@ -246,15 +229,15 @@ const generateUpdatedDummyData = async () => {
         : 0;
 
       const analytics = await CourseAnalytics.create({
-        course: course._id,
+        courseData: course._id, // Corrected field name
         totalStudentsEnrolled: enrolledStudents.length,
         averageRating,
         totalRatings,
       });
-      course.analyticsOfCourse = analytics._id;
+      course.analyticsOfCourse = analytics._id; // Link analytics to course
       await course.save();
     }
-    console.log(`Course analytics created.`);
+    console.log(`Course analytics created successfully.`);
 
     // Create Reviews and Comments
     for (const course of courses) {
@@ -262,38 +245,28 @@ const generateUpdatedDummyData = async () => {
       for (let i = 0; i < reviewCount; i++) {
         const reviewer = faker.helpers.arrayElement(studentUsers);
         const review = await courseReviews.create({
-          user: reviewer._id, // Valid student user
+          user: reviewer._id,
           rating: faker.number.float({ min: 1, max: 5, precision: 0.1 }),
           comment: faker.lorem.sentence(),
           likes: faker.number.int({ min: 0, max: 50 }),
           dislikes: faker.number.int({ min: 0, max: 10 }),
         });
         reviews.push(review);
-        course.reviews.push(review._id); // Link review to course
+        course.reviews.push(review._id);
         await course.save();
 
-        // Add instructor comments for each review
-        const instructor = faker.helpers.arrayElement(createdInstructors);
+        // Add comments to reviews
         for (let j = 0; j < faker.number.int({ min: 1, max: 3 }); j++) {
           const commenter = faker.helpers.arrayElement(studentUsers); // Valid student user
-          const comment = await InstructorComment.create({
-            student: commenter._id, // Correct field name matching the schema
-            instructor: instructor.user, // Link to the instructor
-            review: review._id, // Link to the review
+          await InstructorComment.create({
+            student: commenter._id,
             comment: faker.lorem.sentence(),
+            instructor: faker.helpers.arrayElement(instructorUsers)._id, // Reference instructor user
+            review: review._id,
           });
-
-          if (!Array.isArray(instructor.comments)) {
-            instructor.comments = []; // Ensure the comments field is initialized as an array
-          }
-
-          instructor.comments.push(comment._id); // Track the comment for the instructor
-          await instructor.save();
         }
       }
     }
-
-    console.log(`Reviews and comments created successfully.`);
 
     console.log("All dummy data seeded successfully!");
     process.exit();
