@@ -1,4 +1,4 @@
-const Section = require("../../models/course/sectionModel");
+const Section = require("../../models/courses/sectionModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const { catchAsync } = require("../../utils/wrapperFn");
 

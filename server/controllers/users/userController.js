@@ -43,7 +43,7 @@ const getUserById = catchAsync(async (req, res, next) => {
 });
 
 const SignUp = catchAsync(async (req, res, next) => {
-  const { name, email, password, passwordConfirm } = req.body;
+  const { fName, lName, email, password, passwordConfirm } = req.body;
 
   // If one of the fields is missing
   if (!name || !email || !password || !passwordConfirm) {
@@ -52,7 +52,8 @@ const SignUp = catchAsync(async (req, res, next) => {
 
   // Create user with email token and expiration
   const newUser = await User.create({
-    name,
+    fName,
+    lName,
     email,
     password,
     passwordConfirm,
@@ -66,8 +67,8 @@ const SignUp = catchAsync(async (req, res, next) => {
   const mailOptions = {
     from: "robustBackend@gmail.com",
     to: email,
-    subject: `Hi ${name}, welcome aboard`,
-    html: `<h1>Welcome to the robust backend website, ${name}!</h1>
+    subject: `Hi ${fName} ${lName}, welcome aboard`,
+    html: `<h1>Welcome to the robust backend website, ${fName}!</h1>
     <p> your email address by providing this code: http://localhost:3000/api/user/?token=${newUser.emailVerificationToken}</p>`,
   };
 

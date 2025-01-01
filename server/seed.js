@@ -108,8 +108,16 @@ const generateDummyData = async () => {
     ]);
     console.log("Cleared all collections");
 
-    // Generate Users
+    const lessons = [];
+    const sections = [];
     const users = [];
+    const courses = [];
+    const sectionLessons = [];
+    const courseAnalytics = [];
+    const dummyReviews = [];
+    const comments = [];
+
+    // Generate Users
     for (let i = 0; i < 20; i++) {
       const password = "password123";
       const hashedPassword = await bcrypt.hash(password, 10);
@@ -118,6 +126,7 @@ const generateDummyData = async () => {
         fName: faker.person.firstName(),
         lName: faker.person.lastName(),
         email: faker.internet.email().toLowerCase(),
+        photo: faker.image.avatar(),
         password: hashedPassword,
         passwordConfirm: hashedPassword,
         bio: faker.person.bio(),
@@ -129,13 +138,18 @@ const generateDummyData = async () => {
         ]),
         role: faker.helpers.arrayElement(["student", "instructor"]),
         active: true,
+        links: {
+          xPlatform: `https://x.com/${fName}?`,
+          facebook: `https://www.facebook.com/?profileName=${fName}`,
+          linkedin: `https://www.linkedin.com/in/${fName}/`,
+          youtube: `https://x.com/${fName}?`,
+        },
       });
     }
     const createdUsers = await User.insertMany(users);
     console.log("Users seeded successfully");
 
     // Generate Courses
-    const courses = [];
     const instructors = createdUsers.filter(
       (user) => user.role === "instructor"
     );
@@ -172,16 +186,32 @@ const generateDummyData = async () => {
         ),
       });
     }
+
     const createdCourses = await Course.insertMany(courses);
     console.log("Courses seeded successfully");
 
+    // Assign Courses to Users as 'coursesBought'
+    for (const user of createdUsers) {
+      // Randomly assign 1 to 5 courses to each user
+      const purchasedCourses = faker.helpers.arrayElements(
+        createdCourses,
+        faker.number.int({ min: 1, max: 5 })
+      );
+
+      // Map the course IDs and assign to the user
+      const purchasedCourseIds = purchasedCourses.map((course) => course._id);
+
+      // Update the user's coursesBought
+      await User.findByIdAndUpdate(user._id, {
+        coursesBought: purchasedCourseIds,
+      });
+    }
+    console.log("Courses assigned to users successfully");
+
     // Generate Sections and Lessons
-    const sections = [];
-    const lessons = [];
     for (const course of createdCourses) {
       const sectionCount = faker.number.int({ min: 1, max: 5 });
       for (let i = 0; i < sectionCount; i++) {
-        const sectionLessons = [];
         const section = await Section.create({
           course: course._id,
           title: faker.lorem.words(4),
@@ -218,9 +248,7 @@ const generateDummyData = async () => {
     console.log("Sections and lessons seeded successfully");
 
     // Generate Course Analytics and Reviews
-    const courseAnalytics = [];
     for (const course of createdCourses) {
-      const dummyReviews = [];
       for (let i = 0; i < faker.number.int({ min: 5, max: 20 }); i++) {
         const user = faker.helpers.arrayElement(createdUsers);
         const review = await Review.create({
@@ -252,7 +280,6 @@ const generateDummyData = async () => {
     console.log("Course analytics seeded successfully");
 
     // Generate Comments for Reviews
-    const comments = [];
     for (const analyticsId of courseAnalytics) {
       const analytics = await CourseAnalytics.findById(analyticsId).populate(
         "TotalCourseReviews"

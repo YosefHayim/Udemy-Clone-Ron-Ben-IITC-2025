@@ -1,4 +1,4 @@
-const Instructor = require("../../models/instructors/instructorModel");
+const Instructor = require("../../models/users/instructorModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const cookieOptions = require("../../utils/cookieOptions");
 const sendEmail = require("../../utils/email");

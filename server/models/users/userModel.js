@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema(
     },
     links: {
       website: { type: String },
-      twitter: { type: String },
+      xPlatform: { type: String },
       facebook: { type: String },
       linkedin: { type: String },
       youtube: { type: String },
@@ -101,18 +101,7 @@ const userSchema = new mongoose.Schema(
       default: true,
       select: false,
     },
-    reviews: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: "Reviews",
-        validate: {
-          validator: function () {
-            return this.role === "instructor";
-          },
-          message: "Only instructors can have reviews.",
-        },
-      },
-    ],
+    coursesCreated: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     coursesBought: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     subscription: [{ type: mongoose.Schema.ObjectId, ref: "Subscription" }],
     notifications: [{ type: mongoose.Schema.ObjectId, ref: "Notification" }],
