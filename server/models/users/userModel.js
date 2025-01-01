@@ -108,13 +108,13 @@ const userSchema = new mongoose.Schema(
     certificatesEarned: [
       { type: mongoose.Schema.ObjectId, ref: "Certificate" },
     ],
-    // subscription: [{ type: mongoose.Schema.ObjectId, ref: "Subscription" }],
-    // notifications: [{ type: mongoose.Schema.ObjectId, ref: "Notification" }],
-    // wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Wishlist" }],
   },
   { timestamps: true }
 );
 
+// subscription: [{ type: mongoose.Schema.ObjectId, ref: "Subscription" }],
+// notifications: [{ type: mongoose.Schema.ObjectId, ref: "Notification" }],
+// wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Wishlist" }],
 module.exports = mongoose.model("User", userSchema);
 
 userSchema.pre(/^find/, function (next) {

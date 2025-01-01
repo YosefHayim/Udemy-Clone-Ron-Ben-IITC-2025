@@ -20,7 +20,7 @@ const courseAnalyticsSchema = new mongoose.Schema({
   },
   TotalCourseReviews: {
     type: Number,
-    default: this.course.length,
+    default: 0,
   },
 });
 
