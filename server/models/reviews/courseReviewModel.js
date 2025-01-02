@@ -43,15 +43,10 @@ const courseReviewsSchema = new mongoose.Schema(
 );
 
 // courseReviewsSchema.pre(/^find/, function (next) {
-//   this.populate("user");
 //   this.populate("courseReview");
+//   this.where({ isActive: { $ne: false } });
 //   next();
 // });
-
-courseReviewsSchema.pre(/^find/, function (next) {
-  this.where({ isActive: { $ne: false } }); // Exclude documents with isActive set to false
-  next();
-});
 
 const courseReviews = mongoose.model("Review", courseReviewsSchema);
 module.exports = courseReviews;

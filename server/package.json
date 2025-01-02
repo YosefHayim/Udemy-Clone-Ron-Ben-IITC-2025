@@ -6,7 +6,8 @@
   "scripts": {
     "start:dev": "nodemon app.js",
     "start:prod": "node app.js",
-    "seed": "node seed.js"
+    "seed": "node seedDb.js",
+    "delete": "node deleteDb.js"
   },
   "keywords": [],
   "author": "",

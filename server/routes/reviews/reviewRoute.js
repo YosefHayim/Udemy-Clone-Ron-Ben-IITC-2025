@@ -3,7 +3,7 @@ const {
   getAllReviews,
   addReviewByCourseId,
   deleteReviewById,
-  updateReviewByCourseIdAndReviewId,
+  updateReviewById,
   getReviewByReviewId,
   getAllReviewsByCourseId,
   getAllReviewsOfSelfUser,
@@ -14,32 +14,33 @@ const {
 
 const router = express.Router();
 
+router.param("id", (req, res, next, val) => {
+  console.log(`ID is: ${val}`);
+  next();
+});
+
 // Get all reviews of all courses
 router.get("/", getAllReviews);
 
+// Get review by review id
+router.get("/single/:id", grantedAccess, getReviewByReviewId);
+
 // Get all reviews of specific course by its id
-router.get("/:id", getAllReviewsByCourseId);
+router.get("/course/:id", getAllReviewsByCourseId);
 
 // Get all reviews that the current user that is auth is commented
-router.get("/:userId", getAllReviewsOfSelfUser);
+router.get("/user/:id", grantedAccess, getAllReviewsOfSelfUser);
 
 // get review to a specific course by course id
-router.get("/:courseId", grantedAccess, addReviewByCourseId);
-
-// Get review by review id
-router.get("/:reviewId", grantedAccess, getReviewByReviewId);
+router.get("/:courseid", grantedAccess, addReviewByCourseId);
 
 // add review to a specific course by course id
 router.post("/:id", grantedAccess, addReviewByCourseId);
 
 // update a review by id and by the specific course
-router.patch(
-  "/:courseId/:reviewId",
-  grantedAccess,
-  updateReviewByCourseIdAndReviewId
-);
+router.patch("/:id", grantedAccess, updateReviewById);
 
 // delete review by its id
-router.delete("/:reviewId/:courseId", grantedAccess, deleteReviewById);
+router.delete("/:id", grantedAccess, deleteReviewById);
 
 module.exports = router;

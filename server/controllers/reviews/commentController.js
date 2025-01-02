@@ -22,6 +22,48 @@ const getAllComments = catchAsync(async (req, res, next) => {
   });
 });
 
+const getCommentById = catchAsync(async (req, res, next) => {
+  const commentId = req.params.id;
+
+  if (!commentId) {
+    return next(new Error(`Please provide commentId in the url.`));
+  }
+
+  const findComment = await Comment.findById(commentId);
+
+  if (!findComment) {
+    return next(
+      new Error(`There is no such comment with this ID: ${commentId}.`)
+    );
+  }
+
+  res.status(200).json({
+    status: "success",
+    response: findComment,
+  });
+});
+
+const getCommentsByReviewId = catchAsync(async (req, res, next) => {
+  const Review = require("../models/reviewModel");
+
+  const reviewId = req.params.reviewId;
+
+  if (!reviewId) {
+    return next(new Error(`Please provide reviewId in the url.`));
+  }
+
+  const findReview = await Review.findById(reviewId);
+
+  if (!findReview) {
+    return next(new Error(`There is no review with ID: ${reviewId}.`));
+  }
+
+  res.status(200).json({
+    status: "success",
+    response: findReview,
+  });
+});
+
 const addCommentByReviewId = catchAsync(async (req, res, next) => {
   // Get the user ID
   const userId = req.user._id;
@@ -98,48 +140,6 @@ const updateCommentById = catchAsync(async (req, res, next) => {
     status: "success",
     response: `Comment ID: ${commentId} has been updated`,
     data: updatedComment,
-  });
-});
-
-const getCommentsByReviewId = catchAsync(async (req, res, next) => {
-  const Review = require("../models/reviewModel");
-
-  const reviewId = req.params.reviewId;
-
-  if (!reviewId) {
-    return next(new Error(`Please provide reviewId in the url.`));
-  }
-
-  const findReview = await Review.findById(reviewId);
-
-  if (!findReview) {
-    return next(new Error(`There is no review with ID: ${reviewId}.`));
-  }
-
-  res.status(200).json({
-    status: "success",
-    response: findReview,
-  });
-});
-
-const getCommentById = catchAsync(async (req, res, next) => {
-  const commentId = req.params.id;
-
-  if (!commentId) {
-    return next(new Error(`Please provide commentId in the url.`));
-  }
-
-  const findComment = await Comment.findById(commentId);
-
-  if (!findComment) {
-    return next(
-      new Error(`There is no such comment with this ID: ${commentId}.`)
-    );
-  }
-
-  res.status(200).json({
-    status: "success",
-    response: findComment,
   });
 });
 

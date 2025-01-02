@@ -106,6 +106,7 @@ const login = catchAsync(async (req, res, next) => {
 
   // Generating the token and sending to client
   const token = generateToken(isFoundUser._id);
+
   res.cookie("cookie", token, cookieOptions);
 
   if (!isFoundUser.emailVerified) {
@@ -285,30 +286,44 @@ const joinCourseById = catchAsync(async (req, res, next) => {
   const user = req.user;
 
   if (!courseId) {
-    return next(new Error("Please provide a course ID in the URL."));
+    return next(new Error("Please provide a valid course ID in the URL."));
   }
 
-  const isCourseExist = await Course.findOne({ _id: courseId });
-
-  if (isCourseExist.courseInstructor.toString() === req.user._id.toString()) {
-    return next(new Error(`You can׳t join to your own course.`));
-  }
+  const isCourseExist = await Course.findById(courseId);
 
   if (!isCourseExist) {
     return next(new Error(`No course exists with this ID: ${courseId}`));
+  }
+
+  if (isCourseExist.courseInstructor.toString() === user._id.toString()) {
+    return next(new Error("You cannot join your own course."));
   }
 
   if (user.coursesBought.includes(courseId)) {
     return next(new Error("You have already joined this course."));
   }
 
+  // Add user to course enrollment
+  isCourseExist.totalStudentsEnrolled.students.push(user._id);
+  isCourseExist.totalStudentsEnrolled.count += 1;
+  await isCourseExist.save();
+
+  // Add course to user's purchased courses
   user.coursesBought.push(courseId);
   await user.save();
 
   res.status(200).json({
-    status: "Success",
-    response: `You have successfully joined the course ${isCourseExist.courseName}`,
-    data: user,
+    status: "success",
+    message: `You have successfully joined the course ${isCourseExist.courseName}`,
+    courseData: {
+      courseId: isCourseExist._id,
+      courseName: isCourseExist.courseName,
+      totalStudentsEnrolled: isCourseExist.totalStudentsEnrolled.count,
+    },
+    userData: {
+      userId: user._id,
+      coursesBought: user.coursesBought,
+    },
   });
 });
 

@@ -107,7 +107,33 @@ const deleteSection = catchAsync(async (req, res, next) => {
   });
 });
 
+const getSectionsByCourseId = catchAsync(async (req, res, next) => {
+  const courseId = req.params.id;
+
+  if (!courseId) {
+    return next(new Error("Please provide the course ID in the URL."));
+  }
+
+  // Find all sections with the matching courseId
+  const sectionsByCourseId = await Section.find({ courseId });
+
+  if (!sectionsByCourseId || sectionsByCourseId.length === 0) {
+    return next(
+      new Error(`No sections found for the course with ID: ${courseId}`)
+    );
+  }
+
+  res.status(200).json({
+    status: "success",
+    results: sectionsByCourseId.length,
+    data: {
+      sections: sectionsByCourseId,
+    },
+  });
+});
+
 module.exports = {
+  getSectionsByCourseId,
   getAllSections,
   getSectionById,
   createSection,

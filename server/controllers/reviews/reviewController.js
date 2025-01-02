@@ -1,4 +1,4 @@
-const CourseAnalytics = require("../../models/courses/courseAnalyticsModel");
+const Course = require("../../models/courses/courseModel");
 const courseReviews = require("../../models/reviews/courseReviewModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const { catchAsync } = require("../../utils/wrapperFn");
@@ -11,6 +11,7 @@ const getAllReviews = catchAsync(async (req, res, next) => {
     .paginate();
 
   const reviews = await features.query;
+  const courses = await Course.find();
 
   if (!reviews || reviews.length === 0) {
     return next(new Error("No reviews documents found in database"));
@@ -19,32 +20,41 @@ const getAllReviews = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "Success",
     totalReviews: reviews.length,
-    response: "Reviews list:",
+    totalCourses: courses.length,
+    response: "Reviews list",
     reviews,
   });
 });
 
 const addReviewByCourseId = catchAsync(async (req, res, next) => {
-  // Get the course ID
-  const courseId = req.params.courseId;
+  const courseId = req.params.id;
 
   if (!courseId) {
+    return next(new Error(`Please provide courseId to add a review.`));
+  }
+
+  if (!req.user.coursesBought?.map(String).includes(String(courseId))) {
+    return next(new Error(`You can't review a course you're not enrolled in.`));
+  }
+
+  const isReviewExistByUserInCourse = await courseReviews.findOne({
+    courseReview: courseId,
+    user: req.user._id,
+  });
+
+  const course = await Course.findById(courseId);
+
+  if (isReviewExistByUserInCourse) {
     return next(
-      new Error(`Please provide courseId that you want to add review to.`)
+      new Error(
+        `You can't add another review for course ${course.courseName}. Only one review is allowed.`
+      )
     );
   }
 
-  if (!req.user._id) {
-    return next(
-      new Error(`You must logged in, in order to add a review to a course.`)
-    );
-  }
-
-  // Get review data of user
   const { rating, comment } = req.body;
 
-  // Create the new review
-  const newReview = await Review.create({
+  const newReview = await courseReviews.create({
     courseReview: courseId,
     rating,
     comment,
@@ -52,14 +62,12 @@ const addReviewByCourseId = catchAsync(async (req, res, next) => {
   });
 
   if (!newReview) {
-    return next(
-      new Error(`Error occurred while adding review to course ID: ${courseId}`)
-    );
+    return next(new Error(`Failed to add a review for course : ${courseId}`));
   }
 
   res.status(201).json({
     status: "success",
-    response: "Review has been added successfully to the user",
+    response: `Review successfully added to the course ${course.courseName}`,
     data: newReview,
   });
 });
@@ -84,48 +92,39 @@ const deleteReviewById = catchAsync(async (req, res, next) => {
   findReview.isActive = false;
   await findReview.save();
 
-  res.status(200).json({
+  res.status(204).json({
     status: "success",
     response: `Review ID: ${reviewId} has been successfully deleted`,
   });
 });
 
-const updateReviewByCourseIdAndReviewId = catchAsync(async (req, res, next) => {
-  const courseId = req.params.courseId;
-  const reviewId = req.params.reviewId;
+const updateReviewById = catchAsync(async (req, res, next) => {
+  const reviewId = req.params.id;
   const { rating, comment } = req.body;
-
-  if (!rating || !comment) {
-    return next(
-      new Error(
-        `Either rating score or comment is missing in the body request.`
-      )
-    );
-  }
 
   if (!reviewId) {
     return next(new Error(`Please provide review ID in the URL.`));
   }
 
-  if (!courseId) {
-    return next(new Error(`Please provide course ID in the URL.`));
+  if (!rating || !comment) {
+    return next(
+      new Error(
+        `Either rating score or comment is missing in the request body.`
+      )
+    );
   }
 
-  let updatedReview = await courseReviews.findById(reviewId);
-
-  if (updatedReview.user !== req.user._id) {
-    return next(new Error(`You cant update someone else review`));
-  }
+  const updatedReview = await courseReviews.findById(reviewId);
 
   if (!updatedReview) {
     return next(new Error(`There is no review with ID: ${reviewId}.`));
   }
 
-  if (!updatedReview.courseReview !== courseId) {
-    return next(new Error(`There is no course with this ID: ${courseId}`));
+  if (updatedReview.user.toString() !== req.user._id.toString()) {
+    return next(new Error(`You can't update someone else's review.`));
   }
 
-  updatedReview = await courseReviews.findByIdAndUpdate(
+  const newReview = await courseReviews.findByIdAndUpdate(
     reviewId,
     { rating, comment },
     { new: true, runValidators: true }
@@ -134,12 +133,12 @@ const updateReviewByCourseIdAndReviewId = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     response: `Review ID: ${reviewId} has been updated`,
-    data: updatedReview,
+    data: newReview,
   });
 });
 
 const getReviewByReviewId = catchAsync(async (req, res, next) => {
-  const reviewId = req.params.reviewId;
+  const reviewId = req.params.id;
 
   if (!reviewId) {
     return next(new Error(`Please provide reviewId in the url.`));
@@ -164,9 +163,9 @@ const getAllReviewsByCourseId = catchAsync(async (req, res, next) => {
     return next(new Error(`Please provide courseId in the url.`));
   }
 
-  const isCourseAnalyticsExist = CourseAnalytics.findById(courseId);
+  const isCourseExist = await Course.findById(courseId);
 
-  if (!isCourseAnalyticsExist) {
+  if (!isCourseExist) {
     return next(
       new Error(`There is no such CourseAnalytics with this ID: ${courseId}`)
     );
@@ -174,13 +173,13 @@ const getAllReviewsByCourseId = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     success: "Success",
-    response: `All reviews for the course ID: ${courseId}`,
-    data: isCourseAnalyticsExist,
+    response: `All reviews for the course ${isCourseExist.courseName}`,
+    data: isCourseExist,
   });
 });
 
 const getAllReviewsOfSelfUser = catchAsync(async (req, res, next) => {
-  const userId = req.params.userId;
+  const userId = req.params.id;
 
   if (!userId) {
     return next(new Error("User ID is required."));
@@ -210,7 +209,7 @@ module.exports = {
   getAllReviews,
   addReviewByCourseId,
   deleteReviewById,
-  updateReviewByCourseIdAndReviewId,
+  updateReviewById,
   getReviewByReviewId,
   getAllReviewsByCourseId,
 };

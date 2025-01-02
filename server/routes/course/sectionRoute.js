@@ -5,6 +5,7 @@ const {
   createSection,
   updateSection,
   deleteSection,
+  getSectionsByCourseId,
 } = require("../../controllers/courses/sectionController");
 const {
   grantedAccess,
@@ -12,11 +13,18 @@ const {
 
 const router = express.Router();
 
+router.param("id", (req, res, next, val) => {
+  console.log(`ID is: ${val}`);
+  next();
+});
+
 // get all sections of all courses
 router.get("/", getAllSections);
 
 // get specific section by id
 router.get("/:id", getSectionById);
+
+router.get("/course/:id", getSectionsByCourseId);
 
 // create lesson
 router.post("/", createSection);

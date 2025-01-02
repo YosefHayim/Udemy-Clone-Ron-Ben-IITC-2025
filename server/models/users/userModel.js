@@ -117,15 +117,6 @@ const userSchema = new mongoose.Schema(
 // wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Wishlist" }],
 module.exports = mongoose.model("User", userSchema);
 
-userSchema.pre(/^find/, function (next) {
-  if (this.coursesCreated.length >= 1 && this.role === "instructor") {
-    this.populate("coursesCreated");
-  } else {
-    this.populate("coursesBought");
-  }
-  next();
-});
-
 userSchema.pre("save", async function (next) {
   // Only hash the password if it has been modified (or is new)
   if (!this.isModified("password")) return next();

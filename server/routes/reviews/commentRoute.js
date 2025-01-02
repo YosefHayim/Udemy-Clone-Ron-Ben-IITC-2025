@@ -13,6 +13,11 @@ const {
 
 const router = express.Router();
 
+router.param("id", (req, res, next, val) => {
+  console.log(`ID is: ${val}`);
+  next();
+});
+
 // Get a comment by its id
 router.get("/:id", grantedAccess, getCommentById);
 

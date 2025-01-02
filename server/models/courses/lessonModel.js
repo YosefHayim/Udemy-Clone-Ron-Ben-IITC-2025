@@ -41,10 +41,10 @@ const lessonSchema = new mongoose.Schema(
   { timestamps: true } // Automatically adds createdAt and updatedAt timestamps
 );
 
-lessonSchema.pre(/^find/, function (next) {
-  this.populate("section");
-  next();
-});
+// lessonSchema.pre(/^find/, function (next) {
+//   this.populate("section");
+//   next();
+// });
 
 // Pre-save middleware for URL validation
 lessonSchema.pre("save", function (next) {
