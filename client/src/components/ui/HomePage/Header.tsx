@@ -1,5 +1,7 @@
 import logo from '../../../assets/images/logo.png';
-import { ShoppingCartIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
+import { MdOutlineShoppingCart } from "react-icons/md";
+import { MdOutlineLanguage } from "react-icons/md";
+import { MdOutlineSearch } from "react-icons/md";
 
 // declare module '@heroicons/react/outline' {
 //   export const ShoppingCartIcon: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -12,52 +14,44 @@ const Header = () => {
   return (
     <header className="flex items-center justify-between px-6 py-3 bg-white shadow-md w-screen">
       {/* Logo */}
-      <div className="logo flex items-center gap-2">
-        <img src={logo} alt="Udemy Logo" className="h-12 w-auto max-w-full align-middle" />
+      <div className="logo flex items-center h-auto w-auto">
+      <img src={logo} alt="Udemy Logo" style={{ height: '2.625rem' }} className="w-auto max-w-full align-middle" />
+
 
       </div>
 
       {/* Navegação */}
       <nav className="flex gap-6 text-sm text-gray-700">
-        <a href="#" className="hover:text-black">Explore</a>
+        <a href="#" className=" hover:text-purple-800 ">Explore</a>
       </nav>
 
-      {/* Barra de Busca */}
-      <div className="flex items-center border border-gray-300 rounded-full bg-gray-100 overflow-hidden px-4 py-2 w-1/2">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-5 h-5 text-gray-500"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
-        >
-          <circle cx={11} cy={11} r={8} />
-          <line x1={21} y1={21} x2={16.65} y2={16.65} />
-        </svg>
+      {/* Search bar */}
+      <div className="flex items-center border border-gray-700 rounded-full bg-gray-100 overflow-hidden px-6 py-3 w-1/2 h-12">
+        <MdOutlineSearch className="w-6 h-6 text-gray-400" />
         <input
           type="text"
           placeholder="Search for anything"
-          className="flex-1 bg-transparent focus:outline-none text-sm ml-2"
+          className="flex-1 bg-transparent text-gray-700 focus:outline-none text-lg ml-3 placeholder-gray-500"
         />
       </div>
 
-      <a href="#" className="hover:text-black">Udemy Business</a>
-      <a href="#" className="hover:text-black">Teach on Udemy</a>
+
+      <a href="#" className=" text-sm text-gray-700 hover:text-purple-800 ">Udemy Business</a>
+      <a href="#" className=" text-sm text-gray-700 hover:text-purple-800 ">Teach on Udemy</a>
 
       {/* Ações */}
       <div className="flex items-center gap-4">
-        <button className="text-purple-600 hover:text-purple-800">
-          <ShoppingCartIcon className="w-6 h-6" />
+        <button className="text-black font-bold hover:text-purple-800">
+          <MdOutlineShoppingCart className="w-6 h-6" />
         </button>
 
 
-        <a href="#" className="text-gray-700 text-sm hover:text-black">Log in</a>
-        <a href="#" className="text-white bg-black px-4 py-1.5 rounded hover:bg-gray-800 text-sm">Sign up</a>
-     
+        <a href="#" className="text-gray-700 text-sm px-4 py-2 font-bold hover:text-black hover:bg-gray-200  rounded border border-solid border-[#2d2f31]">Log in</a>
+        <a href="#" className="text-white bg-black  font-bold px-4 py-2 rounded hover:opacity-80 text-sm">Sign up</a>
+
         {/* Idioma */}
         <button className="text-gray-700 hover:text-black">
-          <GlobeAltIcon className="w-6 h-6" />
+          <MdOutlineLanguage className="w-8 h-8 p-1 rounded border border-solid border-[#2d2f31]" />
         </button>
 
       </div>
