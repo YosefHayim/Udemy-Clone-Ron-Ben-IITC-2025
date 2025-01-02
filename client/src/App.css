@@ -6,10 +6,15 @@
 }
 
 .logo {
-  height: 6em;
+  /* height: 6em;
   padding: 1.5em;
   will-change: filter;
-  transition: filter 300ms;
+  transition: filter 300ms; */
+  font-family: var(--font-stack-heading);
+  color: var(--color-blue-300);
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
