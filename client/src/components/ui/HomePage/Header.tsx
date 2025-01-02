@@ -12,26 +12,26 @@ import { MdOutlineSearch } from "react-icons/md";
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-between px-6 py-3 bg-white shadow-md w-screen">
+    <header className="flex items-center justify-between px-6 py-3 bg-white shadow-md w-screen" style={{ height: "4.5rem" }}>
       {/* Logo */}
       <div className="logo flex items-center h-auto w-auto">
-      <img src={logo} alt="Udemy Logo" style={{ height: '2.625rem' }} className="w-auto max-w-full align-middle" />
+        <img src={logo} alt="Udemy Logo" style={{ height: '2.65rem' }} className="w-auto max-w-full align-middle" />
 
 
       </div>
 
       {/* Navegação */}
-      <nav className="flex gap-6 text-sm text-gray-700">
-        <a href="#" className=" hover:text-purple-800 ">Explore</a>
+      <nav>
+        <a href="#" className="text-[#020202] hover:text-purple-800 font-normal text-sm font-sans">Explore</a>
       </nav>
 
       {/* Search bar */}
-      <div className="flex items-center border border-gray-700 rounded-full bg-gray-100 overflow-hidden px-6 py-3 w-1/2 h-12">
+      <div className="flex items-center border border-gray-700 rounded-full overflow-hidden w-1/2 h-12 px-3 py-2 bg-gray-50">
         <MdOutlineSearch className="w-6 h-6 text-gray-400" />
         <input
           type="text"
           placeholder="Search for anything"
-          className="flex-1 bg-transparent text-gray-700 focus:outline-none text-lg ml-3 placeholder-gray-500"
+          className="flex-1 bg-transparent text-gray-700 focus:outline-none text-lg ml-3 placeholder-gray-500 placeholder:text-sm bg-gray-50"
         />
       </div>
 

@@ -6,13 +6,13 @@ import { setUser } from '@/redux/slices/userSlice';
 
 const Login = () => {
 
-    const [name, setName] = useState(''); // Estado local para o nome
-    const [email, setEmail] = useState(''); // Estado local para o e-mail
-    const dispatch = useDispatch(); // Permite usar a ação setUser
+    // const [name, setName] = useState(''); // Estado local para o nome
+    // const [email, setEmail] = useState(''); // Estado local para o e-mail
+    // const dispatch = useDispatch(); // Permite usar a ação setUser
 
     const handleLogin = () => {
         // Atualiza o estado global com o nome e o e-mail
-        dispatch(setUser({ name, email }));
+        // dispatch(setUser({ name, email }));
     };
 
     return (
