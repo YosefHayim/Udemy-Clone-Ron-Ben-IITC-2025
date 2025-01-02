@@ -115,7 +115,9 @@ const createCourse = catchAsync(async (req, res, next) => {
     !courseLevel ||
     !courseLanguages
   ) {
-    return next(new Error("One of the required fields is missing."));
+    return next(
+      new Error("One of the required fields for creating course is missing.")
+    );
   }
 
   // Create a new course

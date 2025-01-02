@@ -342,7 +342,15 @@ const leaveCourseById = catchAsync(async (req, res, next) => {
   }
 
   if (!user.coursesBought.includes(courseId)) {
-    return next(new Error("You have not joined this course."));
+    return next(new Error("You are not in this course."));
+  }
+
+  if (user.coursesCreated.includes(courseId)) {
+    return next(
+      new Error(
+        "You cant leave your own course. please use another route to de-activate it."
+      )
+    );
   }
 
   user.coursesBought = user.coursesBought.filter(

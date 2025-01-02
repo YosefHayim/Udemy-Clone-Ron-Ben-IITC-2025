@@ -61,6 +61,7 @@ router.post("/reactivate", reactiveUser);
 
 // update password of uer
 router.patch("/update/password", grantedAccess, updatePassword);
+
 // update user information
 router.put("/", updateUserInfo);
 
