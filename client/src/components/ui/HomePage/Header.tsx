@@ -22,7 +22,7 @@ const Header = () => {
 
       {/* Navegação */}
       <nav>
-        <a href="#" className="text-[#020202] hover:text-purple-800 font-normal text-sm font-sans">Explore</a>
+        <a href="#" className="text-[#020202] hover:text-purple-800 font-normal text-sm">Explore</a>
       </nav>
 
       {/* Search bar */}
@@ -36,8 +36,8 @@ const Header = () => {
       </div>
 
 
-      <a href="#" className=" text-sm text-gray-700 hover:text-purple-800 ">Udemy Business</a>
-      <a href="#" className=" text-sm text-gray-700 hover:text-purple-800 ">Teach on Udemy</a>
+      <a href="#" className=" text-[#020202]  font-normal text-sm hover:text-purple-800 ">Udemy Business</a>
+      <a href="#" className=" text-[#020202]  font-normal text-sm hover:text-purple-800 ">Teach on Udemy</a>
 
       {/* Ações */}
       <div className="flex items-center gap-4">
