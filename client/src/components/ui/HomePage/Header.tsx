@@ -1,6 +1,11 @@
-import React from 'react';
 import logo from '../../../assets/images/logo.png';
-import { ShoppingCartIcon, GlobeAltIcon } from "@heroicons/react/outline";
+import { ShoppingCartIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
+
+// declare module '@heroicons/react/outline' {
+//   export const ShoppingCartIcon: React.FC<React.SVGProps<SVGSVGElement>>;
+//   export const GlobeAltIcon: React.FC<React.SVGProps<SVGSVGElement>>;
+// }
+
 
 
 const Header = () => {
@@ -46,32 +51,15 @@ const Header = () => {
           <ShoppingCartIcon className="w-6 h-6" />
         </button>
 
+
+        <a href="#" className="text-gray-700 text-sm hover:text-black">Log in</a>
+        <a href="#" className="text-white bg-black px-4 py-1.5 rounded hover:bg-gray-800 text-sm">Sign up</a>
+     
         {/* Idioma */}
         <button className="text-gray-700 hover:text-black">
           <GlobeAltIcon className="w-6 h-6" />
         </button>
 
-        <a href="#" className="text-gray-700 text-sm hover:text-black">
-          Log in
-        </a>
-        <a
-          href="#"
-          className="text-white bg-black px-4 py-1.5 rounded hover:bg-gray-800 text-sm"
-        >
-          Sign up
-        </a>
-        <button className="text-gray-700 hover:text-black">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2ZM12 2V0M12 24v-2M0 12h2m22 0h-2M12 24v-2M0 12h2m22 0h-2M12 24v-2M0 12h2m22 0h-2" />
-          </svg>
-        </button>
       </div>
     </header>
   );
