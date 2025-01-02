@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 
 const courseReviewsSchema = new mongoose.Schema(
   {
+    courseReview: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Course",
+      required: [true, "ID of a course must be provided"],
+    },
     user: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
@@ -29,12 +34,22 @@ const courseReviewsSchema = new mongoose.Schema(
       default: 0,
       min: [0, "Dislikes cannot be negative."],
     },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );
 
+// courseReviewsSchema.pre(/^find/, function (next) {
+//   this.populate("user");
+//   this.populate("courseReview");
+//   next();
+// });
+
 courseReviewsSchema.pre(/^find/, function (next) {
-  this.populate("user");
+  this.where({ isActive: { $ne: false } }); // Exclude documents with isActive set to false
   next();
 });
 

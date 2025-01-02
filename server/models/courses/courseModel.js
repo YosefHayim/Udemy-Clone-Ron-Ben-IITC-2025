@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const User = require("../users/userModel");
 
 const courseCategories = {
   Development: {
@@ -177,33 +178,14 @@ const courseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// courseSchema.pre(/^find/, function (next) {
-//   this.populate("analyticsOfCourse");
-//   next();
-// });
+// Virtual field for total enrolled students and their IDs
+courseSchema.virtual("enrollmentData").get(async function () {
+  const enrolledUsers = await User.find({ coursesBought: this._id }, "_id"); // Fetch user IDs only
 
-// courseSchema.pre(/^find/, function (next) {
-//   this.populate("sections").populate("lessons");
-//   next();
-// });
-
-// Pre-save validation for category relationships
-courseSchema.pre("save", function (next) {
-  const parentCategory = this.courseParentCategory;
-  const subCategories = courseCategories[parentCategory]?.subCategories;
-
-  if (!subCategories || !subCategories[this.courseSubCategory]) {
-    return next(
-      new Error("Invalid subcategory for the selected parent category")
-    );
-  }
-
-  const topics = subCategories[this.courseSubCategory];
-  if (!topics.includes(this.courseTopic)) {
-    return next(new Error("Invalid topic for the selected subcategory"));
-  }
-
-  next();
+  return {
+    count: enrolledUsers.length,
+    userIds: enrolledUsers.map((user) => user._id),
+  };
 });
 
 const Course = mongoose.model("Course", courseSchema);
