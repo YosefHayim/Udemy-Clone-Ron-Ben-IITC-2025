@@ -85,6 +85,11 @@ const userSchema = new mongoose.Schema(
       default: true,
       select: false,
     },
+    udemyCredits: {
+      type: Number,
+      default: 0,
+    },
+    wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     coursesBought: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     coursesCreated: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     orders: [{ type: mongoose.Schema.ObjectId, ref: "Order" }],

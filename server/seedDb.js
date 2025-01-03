@@ -39,6 +39,12 @@ const generateUpdatedDummyData = async () => {
         password: hashedPassword,
         passwordConfirm: hashedPassword,
         role: faker.helpers.arrayElement(["student", "instructor"]),
+        udemyCredits: 0,
+        wishlistCourses: [],
+        coursesBought: [],
+        coursesCreated: [],
+        orders: [],
+        payments: [],
       });
     }
     const createdUsers = await User.insertMany(users);

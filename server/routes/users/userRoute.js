@@ -14,6 +14,7 @@ const {
   updateUserInfo,
   leaveCourseById,
   updateProfilePic,
+  toggleCourseWishlist,
 } = require("../../controllers/users/userController");
 const {
   grantedAccess,
@@ -35,6 +36,9 @@ router.get("/:id", getUserById);
 // join course by course id
 router.post("/add/course/:id", grantedAccess, joinCourseById);
 
+// Add or remove courses to wishlist
+router.post("/course/wishlist/:id", grantedAccess, toggleCourseWishlist);
+
 // leave course by course id
 router.post("/leave/course/:id", grantedAccess, leaveCourseById);
 
@@ -55,7 +59,7 @@ router.post(
 router.post("/auth/login", login);
 
 // logout and clear cookie
-router.post("/logout", logout);
+router.post("/logout", grantedAccess, logout);
 
 // reactivate "delete" account
 router.post("/reactivate", reactiveUser);

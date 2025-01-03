@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { catchAsync } = require("../../utils/wrapperFn");
 const crypto = require("crypto");
+const createError = require("../../utils/errorFn");
 
 // Generate a random token for email confirmation
 const confirmEmailToken = (length = 32) => {
@@ -35,7 +36,9 @@ const grantedAccess = catchAsync(async (req, res, next) => {
   }
 
   if (!token) {
-    return next(createError("No token found in the headers or cookies.", 401));
+    return next(
+      createError("You are not logged in or there is no token in headers.", 401)
+    );
   }
 
   // Verify token

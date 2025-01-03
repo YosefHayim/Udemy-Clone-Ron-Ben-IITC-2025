@@ -432,7 +432,44 @@ const updateProfilePic = catchAsync(async (req, res, next) => {
   });
 });
 
+const toggleCourseWishlist = catchAsync(async (req, res, next) => {
+  const courseId = req.params.id;
+
+  if (!courseId) {
+    return next(createError("Please provide a course ID in the URL.", 400));
+  }
+
+  const course = await Course.findById(courseId);
+
+  if (!course) {
+    return next(createError("Course not found.", 404));
+  }
+
+  const isInWishlist = req.user.wishlistCourses.includes(courseId);
+
+  if (isInWishlist) {
+    req.user.wishlistCourses = req.user.wishlistCourses.filter(
+      (wishlistId) => wishlistId.toString() !== courseId
+    );
+    await req.user.save();
+    res.status(200).json({
+      status: "success",
+      message: "Course removed from wishlist.",
+      wishlistCourses: req.user.wishlistCourses,
+    });
+  } else {
+    req.user.wishlistCourses.push(courseId);
+    await req.user.save();
+    res.status(200).json({
+      status: "success",
+      message: "Course added to wishlist.",
+      wishlistCourses: req.user.wishlistCourses,
+    });
+  }
+});
+
 module.exports = {
+  toggleCourseWishlist,
   updateProfilePic,
   joinCourseById,
   leaveCourseById,
