@@ -60,7 +60,7 @@ export function AppSidebar() {
   return (
     <>
       {/* Sidebar */}
-      <Sidebar side="left">
+      <Sidebar className="fixed top-[69px]" side="left">
         <SidebarContent>
           <SidebarGroup>
             <SidebarGroupLabel>{courseData.title}</SidebarGroupLabel>

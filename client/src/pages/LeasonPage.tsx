@@ -29,7 +29,6 @@ const LessonPage: React.FC = () => {
     <Layout>
 
       <div className="w-full max-w-screen-lg mx-auto">
-        <h1 className="text-2xl font-bold mb-4">{lesson.title}</h1>
         <ReactPlayer
           url={lesson.videoUrl}
           controls={true}
