@@ -18,19 +18,19 @@ router.param("id", (req, res, next, val) => {
   next();
 });
 
-// get all courses and filter by user queries
+// Get all courses and filter by user queries
 router.get("/", getAllCourses);
 
-// get course by specific course id
+// Get course by specific course id
 router.get("/:id", getCourseById);
 
-// create course
+// Create course
 router.post("/", grantedAccess, createCourse);
 
-// update course information by course id
+// Update course information by course id
 router.put("/:id", grantedAccess, updateCourse);
 
-// delete course by course id
+// Delete course by course id
 router.delete("/:id", grantedAccess, deleteCourse);
 
 // Re-activate course by the authorized creator

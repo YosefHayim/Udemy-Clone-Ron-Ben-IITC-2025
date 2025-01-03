@@ -89,7 +89,7 @@ const createSection = catchAsync(async (req, res, next) => {
   });
 });
 
-const updateSection = catchAsync(async (req, res, next) => {
+const updateSectionById = catchAsync(async (req, res, next) => {
   const sectionId = req.params.id;
 
   if (!sectionId) {
@@ -112,7 +112,7 @@ const updateSection = catchAsync(async (req, res, next) => {
   });
 });
 
-const deleteSection = catchAsync(async (req, res, next) => {
+const deleteSectionById = catchAsync(async (req, res, next) => {
   const sectionId = req.params.id;
 
   if (!sectionId) {
@@ -136,6 +136,6 @@ module.exports = {
   getAllSections,
   getSectionById,
   createSection,
-  updateSection,
-  deleteSection,
+  updateSectionById,
+  deleteSectionById,
 };

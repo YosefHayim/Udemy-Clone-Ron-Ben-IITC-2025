@@ -17,19 +17,19 @@ router.param("id", (req, res, next, val) => {
   next();
 });
 
-// get all lessons of all courses
+// Get all lessons of all courses
 router.get("/", getAllLessons);
 
-// get specific lesson by lesson id
+// Get specific lesson by lesson id
 router.get("/:id", getLessonById);
 
 // Create lesson
 router.post("/", createLesson);
 
 // Update lesson by id
-router.put("/", updateLessonById);
+router.put("/:id", updateLessonById);
 
 // Delete lesson by id
-router.delete("/", deleteLessonById);
+router.delete("/:id", deleteLessonById);
 
 module.exports = router;
