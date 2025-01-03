@@ -93,7 +93,6 @@ const userSchema = new mongoose.Schema(
       type: {
         type: String,
         enum: ["monthly", "yearly"],
-        required: [true, "Please select a subscription type"],
       },
       subscriptionPrice: {
         type: Number,
@@ -113,7 +112,7 @@ const userSchema = new mongoose.Schema(
       endDate: {
         type: Date,
         required: function () {
-          return this.isActive; // Required only if the subscription is active.
+          return this.isSubscriptionActive; // Required only if the subscription is active.
         },
       },
     },
