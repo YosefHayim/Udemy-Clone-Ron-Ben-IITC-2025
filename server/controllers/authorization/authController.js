@@ -35,7 +35,9 @@ const grantedAccess = catchAsync(async (req, res, next) => {
   }
 
   if (!token) {
-    return next(new Error("Please log in to get access."));
+    const err = new Error("No cookie in the headers.");
+    err.status = 401; // Unauthorized
+    return next(err);
   }
   // Verify token
   const decoded = verifyToken(token);
@@ -44,9 +46,9 @@ const grantedAccess = catchAsync(async (req, res, next) => {
   const currentUser = await User.findOne({ _id: decoded.id });
 
   if (!currentUser) {
-    return next(
-      new Error("You are not logged in or you this user does not exist")
-    );
+    const err = new Error("This user is not exist, please sign up.");
+    err.status = 401; // Unauthorized
+    return next(err);
   }
 
   req.user = currentUser;

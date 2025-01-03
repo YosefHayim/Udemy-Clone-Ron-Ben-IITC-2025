@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   getAllUsers,
-  SignUp,
+  signUp,
   login,
   logout,
   updatePassword,
@@ -42,7 +42,7 @@ router.post("/leave/course/:id", grantedAccess, leaveCourseById);
 router.get("/email/verification", confirmEmailAddress);
 
 // sign up
-router.post("/auth/signup", SignUp);
+router.post("/auth/signup", signUp);
 
 // resend verification email token
 router.post(

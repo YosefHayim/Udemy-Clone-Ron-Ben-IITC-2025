@@ -16,25 +16,27 @@ const getAllUsers = catchAsync(async (req, res, next) => {
   const users = await features.query;
 
   if (!users || users.length === 0) {
-    return next(new Error("No Users documents found in database"));
+    return next(createError("No users documents found in the database", 404));
   }
 
-  res
-    .status(200)
-    .json({ status: "Success", totalUsers: users.length, response: users });
+  res.status(200).json({
+    status: "Success",
+    totalUsers: users.length,
+    response: users,
+  });
 });
 
 const getUserById = catchAsync(async (req, res, next) => {
   const userId = req.params.id;
 
   if (!userId) {
-    return next(new Error("Please provide id in the url."));
+    return next(createError("Please provide ID in the URL.", 400));
   }
 
   const findUser = await User.findOne({ _id: userId });
 
   if (!findUser) {
-    return next(new Error("There is no such user in database"));
+    return next(createError("There is no such user in the database.", 404));
   }
 
   res.status(200).json({
@@ -43,7 +45,7 @@ const getUserById = catchAsync(async (req, res, next) => {
   });
 });
 
-const SignUp = catchAsync(async (req, res, next) => {
+const signUp = catchAsync(async (req, res, next) => {
   const { fullName, email, password } = req.body;
 
   // If one of the fields is missing
@@ -86,25 +88,17 @@ const SignUp = catchAsync(async (req, res, next) => {
 const login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
-  // Check if email and password exist
   if (!email || !password) {
-    return next(new Error("Email or password is missing."));
+    return next(createError("Email or password is missing.", 400));
   }
 
-  // Find user by email and include password
   const isFoundUser = await User.findOne({ email }).select("+password");
 
-  if (!isFoundUser) {
-    return next(new Error("Invalid email or password."));
+  if (!isFoundUser || isFoundUser.password !== password) {
+    return next(createError("Invalid email or password.", 401));
   }
 
-  // Check if password is correct
-  if (isFoundUser.password === password) {
-  }
-
-  // Generating the token and sending to client
   const token = generateToken(isFoundUser._id);
-
   res.cookie("cookie", token, cookieOptions);
 
   if (!isFoundUser.emailVerified) {
@@ -156,13 +150,13 @@ const confirmEmailAddress = catchAsync(async (req, res, next) => {
 });
 
 const logout = catchAsync(async (req, res, next) => {
-  // If user enter this route than we clear the cookie with "clear"
   res.cookie("cookie", "clear", {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
   });
   res.status(200).json({
     status: "success",
+    message: "User logged out successfully.",
   });
 });
 
@@ -170,10 +164,9 @@ const updatePassword = catchAsync(async (req, res, next) => {
   const { currentPassword, newPassword, confirmNewPassword } = req.body;
 
   if (!currentPassword || !newPassword || !confirmNewPassword) {
-    return next(new Error("One of the fields is missing."));
+    return next(createError("One of the fields is missing.", 400));
   }
 
-  // Call the instance method on the user
   await req.user.updatePassword(
     currentPassword,
     newPassword,
@@ -183,8 +176,9 @@ const updatePassword = catchAsync(async (req, res, next) => {
   sendEmail({
     to: req.user.email,
     subject: "Your account password has been updated",
-    html: `<p>enjoy our robust backend platform`,
+    html: `<p>Enjoy our robust backend platform</p>`,
   });
+
   res.status(200).json({
     status: "success",
     message: "New password has been successfully set.",
@@ -195,15 +189,15 @@ const deactivateUser = catchAsync(async (req, res, next) => {
   const findUser = await User.findById(req.user._id);
 
   if (!findUser) {
-    return next(new Error("The user doesn't exist in database."));
+    return next(createError("The user doesn't exist in the database.", 404));
   }
-  findUser.active = false;
 
+  findUser.active = false;
   await findUser.save({ validateBeforeSave: false });
 
   res.status(200).json({
     status: "success",
-    response: "User has been successfully de-activated",
+    response: "User has been successfully deactivated.",
   });
 });
 
@@ -211,10 +205,9 @@ const reactiveUser = catchAsync(async (req, res, next) => {
   const email = req.body.email.trim();
 
   if (!email) {
-    return next(new Error(`Wrong email provided: ${email}`));
+    return next(createError("Wrong email provided.", 400));
   }
 
-  // Find inactive user explicitly
   const findUser = await User.findOne({
     email,
     active: false,
@@ -223,17 +216,16 @@ const reactiveUser = catchAsync(async (req, res, next) => {
 
   if (!findUser) {
     return next(
-      new Error(`There is no user in the database with this email: ${email}`)
+      createError(`No inactive user found with this email: ${email}`, 404)
     );
   }
 
-  // Reactivate the user
   findUser.active = true;
   await findUser.save({ validateBeforeSave: false });
 
   res.status(200).json({
     status: "success",
-    response: "User has been successfully reactivated",
+    response: "User has been successfully reactivated.",
   });
 });
 
@@ -284,21 +276,23 @@ const joinCourseById = catchAsync(async (req, res, next) => {
   const user = req.user;
 
   if (!courseId) {
-    return next(new Error("Please provide a valid course ID in the URL."));
+    return next(
+      createError("Please provide a valid course ID in the URL.", 400)
+    );
   }
 
   const isCourseExist = await Course.findById(courseId);
 
   if (!isCourseExist) {
-    return next(new Error(`No course exists with this ID: ${courseId}`));
+    return next(createError(`No course exists with this ID: ${courseId}`, 404));
   }
 
   if (isCourseExist.courseInstructor.toString() === user._id.toString()) {
-    return next(new Error("You cannot join your own course."));
+    return next(createError("You cannot join your own course.", 403));
   }
 
   if (user.coursesBought.includes(courseId)) {
-    return next(new Error("You have already joined this course."));
+    return next(createError("You have already joined this course.", 400));
   }
 
   // Add user to course enrollment
@@ -310,7 +304,7 @@ const joinCourseById = catchAsync(async (req, res, next) => {
   user.coursesBought.push(courseId);
   await user.save();
 
-  res.status(200).json({
+  res.status(201).json({
     status: "success",
     message: `You have successfully joined the course ${isCourseExist.courseName}`,
     courseData: {
@@ -330,34 +324,36 @@ const leaveCourseById = catchAsync(async (req, res, next) => {
   const user = req.user;
 
   if (!courseId) {
-    return next(new Error("Please provide a course ID in the URL."));
+    return next(createError("Please provide a course ID in the URL.", 400));
   }
 
-  const isCourseExist = await Course.findOne({ _id: courseId });
+  const isCourseExist = await Course.findById(courseId);
 
   if (!isCourseExist) {
-    return next(new Error(`No course exists with this ID: ${courseId}`));
+    return next(createError(`No course exists with this ID: ${courseId}`, 404));
   }
 
   if (!user.coursesBought.includes(courseId)) {
-    return next(new Error("You are not in this course."));
+    return next(createError("You are not enrolled in this course.", 400));
   }
 
   if (user.coursesCreated.includes(courseId)) {
     return next(
-      new Error(
-        "You cant leave your own course. please use another route to de-activate it."
+      createError(
+        "You cannot leave your own course. Please use another route to deactivate it.",
+        403
       )
     );
   }
 
+  // Remove course from user's purchased courses
   user.coursesBought = user.coursesBought.filter(
     (id) => id.toString() !== courseId.toString()
   );
   await user.save();
 
   res.status(200).json({
-    status: "Success",
+    status: "success",
     response: `You have successfully left the course ${isCourseExist.courseName}`,
     data: user,
   });
@@ -392,13 +388,13 @@ const updateUserInfo = catchAsync(async (req, res, next) => {
       },
     },
     {
-      new: true, // Return the updated document
-      runValidators: true, // Run schema validation
+      new: true,
+      runValidators: true,
     }
   );
 
   if (!updatedUser) {
-    return next(new AppError("User not found", 404));
+    return next(createError("User not found.", 404));
   }
 
   res.status(200).json({
@@ -442,7 +438,7 @@ module.exports = {
   leaveCourseById,
   logout,
   login,
-  SignUp,
+  signUp,
   getAllUsers,
   updatePassword,
   deactivateUser,
