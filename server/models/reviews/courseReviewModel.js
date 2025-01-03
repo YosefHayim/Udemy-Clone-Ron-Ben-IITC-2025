@@ -40,11 +40,5 @@ const courseReviewsSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// courseReviewsSchema.pre(/^find/, function (next) {
-//   this.populate("courseReview");
-//   this.where({ isActive: { $ne: false } });
-//   next();
-// });
-
 const courseReviews = mongoose.model("Review", courseReviewsSchema);
 module.exports = courseReviews;

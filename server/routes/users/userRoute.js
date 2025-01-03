@@ -32,10 +32,10 @@ router.get("/", getAllUsers);
 router.get("/:id", getUserById);
 
 // join course by course id
-router.get("/add/course/:id", grantedAccess, joinCourseById);
+router.post("/add/course/:id", grantedAccess, joinCourseById);
 
 // leave course by course id
-router.get("/leave/course/:id", grantedAccess, leaveCourseById);
+router.post("/leave/course/:id", grantedAccess, leaveCourseById);
 
 // verify email address of user auth
 router.get("/email/verification", confirmEmailAddress);
@@ -63,7 +63,7 @@ router.post("/reactivate", reactiveUser);
 router.patch("/update/password", grantedAccess, updatePassword);
 
 // update user information
-router.put("/", updateUserInfo);
+router.put("/", grantedAccess, updateUserInfo);
 
 // "delete" user account
 router.delete("/", grantedAccess, deactivateUser);

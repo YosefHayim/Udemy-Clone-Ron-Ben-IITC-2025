@@ -146,7 +146,7 @@ const addReviewByCourseId = catchAsync(async (req, res, next) => {
   });
 });
 
-const toggleReviewReaction = catchAsync(async (req, res, next) => {
+const toggleLikeByReviewId = catchAsync(async (req, res, next) => {
   const reviewId = req.params.id;
 
   if (!reviewId) {
@@ -163,22 +163,81 @@ const toggleReviewReaction = catchAsync(async (req, res, next) => {
     return next(new Error("You can't react to your own review."));
   }
 
-  // Check if the user has already liked the review
-  const userIndexInLikes = review.likes.users.indexOf(req.user._id);
+  const userId = req.user._id.toString(); // Ensure ID is a string
+
+  // Toggle like
+  const userIndexInLikes = review.likes.users.findIndex(
+    (id) => id.toString() === userId
+  );
   if (userIndexInLikes !== -1) {
-    // If already liked, remove the like
+    // Remove like
     review.likes.users.splice(userIndexInLikes, 1);
     review.likes.count -= 1;
   } else {
-    // Otherwise, like the review
-    review.likes.users.push(req.user._id);
+    // Add like
+    review.likes.users.push(userId);
     review.likes.count += 1;
 
     // Remove dislike if present
-    const userIndexInDislikes = review.dislikes.users.indexOf(req.user._id);
+    const userIndexInDislikes = review.dislikes.users.findIndex(
+      (id) => id.toString() === userId
+    );
     if (userIndexInDislikes !== -1) {
       review.dislikes.users.splice(userIndexInDislikes, 1);
       review.dislikes.count -= 1;
+    }
+  }
+
+  await review.save();
+
+  res.status(200).json({
+    message: "success",
+    response: {
+      likes: review.likes.count,
+      dislikes: review.dislikes.count,
+    },
+  });
+});
+
+const toggleDislikeReaction = catchAsync(async (req, res, next) => {
+  const reviewId = req.params.id;
+
+  if (!reviewId) {
+    return next(new Error("Please provide reviewId in the URL."));
+  }
+
+  const review = await courseReviews.findById(reviewId);
+
+  if (!review) {
+    return next(new Error("There is no review with this ID."));
+  }
+
+  if (review.user.equals(req.user._id)) {
+    return next(new Error("You can't react to your own review."));
+  }
+
+  const userId = req.user._id.toString(); // Ensure ID is a string
+
+  // Toggle dislike
+  const userIndexInDislikes = review.dislikes.users.findIndex(
+    (id) => id.toString() === userId
+  );
+  if (userIndexInDislikes !== -1) {
+    // Remove dislike
+    review.dislikes.users.splice(userIndexInDislikes, 1);
+    review.dislikes.count -= 1;
+  } else {
+    // Add dislike
+    review.dislikes.users.push(userId);
+    review.dislikes.count += 1;
+
+    // Remove like if present
+    const userIndexInLikes = review.likes.users.findIndex(
+      (id) => id.toString() === userId
+    );
+    if (userIndexInLikes !== -1) {
+      review.likes.users.splice(userIndexInLikes, 1);
+      review.likes.count -= 1;
     }
   }
 
@@ -266,5 +325,6 @@ module.exports = {
   updateReviewById,
   getReviewByReviewId,
   getAllReviewsByCourseId,
-  toggleReviewReaction,
+  toggleLikeByReviewId,
+  toggleDislikeReaction,
 };

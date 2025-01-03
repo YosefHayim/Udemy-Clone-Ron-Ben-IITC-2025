@@ -8,6 +8,8 @@ const {
   getAllReviewsByCourseId,
   getAllReviewsOfSelfUser,
   toggleReviewReaction,
+  toggleLikeByReviewId,
+  toggleDislikeReaction,
 } = require("../../controllers/reviews/reviewController");
 const {
   grantedAccess,
@@ -38,8 +40,11 @@ router.get("/:courseid", grantedAccess, addReviewByCourseId);
 // Add review to a specific course by course id
 router.post("/:id", grantedAccess, addReviewByCourseId);
 
-// toggle like / dislike to a review by id
-router.post("/emotion/:id", grantedAccess, toggleReviewReaction);
+// toggle like by review id
+router.post("/like/:id", grantedAccess, toggleLikeByReviewId);
+
+// toggle dislike by review id
+router.post("/dislike/:id", grantedAccess, toggleDislikeReaction);
 
 // Update a review by id and by the specific course
 router.patch("/:id", grantedAccess, updateReviewById);

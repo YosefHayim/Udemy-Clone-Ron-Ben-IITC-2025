@@ -363,7 +363,51 @@ const leaveCourseById = catchAsync(async (req, res, next) => {
   });
 });
 
-const updateUserInfo = catchAsync(async (req, res, next) => {});
+const updateUserInfo = catchAsync(async (req, res, next) => {
+  const {
+    fullName,
+    headline,
+    biography,
+    preferredLanguage,
+    website,
+    xPlatform,
+    facebook,
+    linkedin,
+    youtube,
+  } = req.body;
+
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      fullName,
+      headline,
+      biography,
+      preferredLanguage,
+      links: {
+        website,
+        xPlatform,
+        facebook,
+        linkedin,
+        youtube,
+      },
+    },
+    {
+      new: true, // Return the updated document
+      runValidators: true, // Run schema validation
+    }
+  );
+
+  if (!updatedUser) {
+    return next(new AppError("User not found", 404));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      user: updatedUser,
+    },
+  });
+});
 
 module.exports = {
   joinCourseById,
