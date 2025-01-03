@@ -2,7 +2,7 @@ const errorHandler = (error, req, res, next) => {
   if (error.code === 11000) {
     return res.status(400).json({
       status: "Error",
-      message: "Duplicate key error",
+      message: "Duplicate creation error",
     });
   }
 
