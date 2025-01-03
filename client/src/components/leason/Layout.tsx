@@ -1,6 +1,6 @@
 import React from 'react';
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/leason/app-sidebar";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,9 +8,9 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <SidebarProvider>
+    <SidebarProvider >
       <AppSidebar />
-      <main > {/* Adjust margin to match sidebar width */}
+      <main className=""> {/* Adjust margin to match sidebar width */}
         {children}
       </main>
     </SidebarProvider>

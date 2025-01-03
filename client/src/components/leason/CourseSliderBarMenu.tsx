@@ -12,7 +12,8 @@ import {
     CollapsibleContent,
   } from "@/components/ui/collapsible";
   import { Link } from "react-router-dom";
-  
+  import { FaChevronDown } from "react-icons/fa";
+
   interface Lesson {
     id: string;
     title: string;
@@ -35,6 +36,7 @@ import {
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton>
                   <span>{section.title}</span>
+                  <FaChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                 </SidebarMenuButton>
               </CollapsibleTrigger>
   

@@ -10,11 +10,10 @@ const AppRoutes: React.FC = () => {
   return (
     <Router>
         <Routes>
-        <Route path="/video" element={<LeasonPage />} />
           <Route path="/Signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="/lesson/:id" element={<LeasonPage />} />
+          <Route path="/lesson/:id/*" element={<LeasonPage />} />
         </Routes>
     </Router>
   );
