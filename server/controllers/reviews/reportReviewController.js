@@ -89,11 +89,15 @@ const createReportByReviewId = catchAsync(async (req, res, next) => {
     return next(new Error(`No review found with ID: ${reviewId}`));
   }
 
+  if (req.user._id.toString() === review.user.toString()) {
+    return next(new Error("You cannot report your own review."));
+  }
+
   const report = await ReportReview.create({
+    user: req.user._id,
     review: reviewId,
     issueType,
     issueDetails,
-    user: req.user._id,
   });
 
   review.reports.entries.push(report._id);
