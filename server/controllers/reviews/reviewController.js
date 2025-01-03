@@ -1,6 +1,7 @@
 const Course = require("../../models/courses/courseModel");
 const courseReviews = require("../../models/reviews/courseReviewModel");
 const APIFeatures = require("../../utils/apiFeatures");
+const createError = require("../../utils/errorFn");
 const { catchAsync } = require("../../utils/wrapperFn");
 
 const getAllReviews = catchAsync(async (req, res, next) => {
@@ -291,7 +292,7 @@ const deleteReviewById = catchAsync(async (req, res, next) => {
 
   res.status(204).json({
     status: "success",
-    response: `Review ID: ${reviewId} has been successfully deleted.`,
+    response: `Review has been successfully deleted.`,
   });
 });
 
