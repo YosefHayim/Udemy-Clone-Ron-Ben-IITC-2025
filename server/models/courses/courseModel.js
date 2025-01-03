@@ -20,18 +20,18 @@ const courseSchema = new mongoose.Schema(
       required: [true, "Course price must be provided"],
       min: [0, "Price cannot be negative"],
     },
-    courseParentCategory: {
+    category: {
       type: String,
       required: [true, "Parent category is required"],
       enum: Object.keys(courseCategories),
     },
-    courseSubCategory: {
+    subCategory: {
       type: String,
       required: [true, "Subcategory is required"],
       validate: {
         validator: function (value) {
           return Object.keys(
-            courseCategories[this.courseParentCategory]?.subCategories || {}
+            courseCategories[this.category]?.subCategories || {}
           ).includes(value);
         },
         message: "Invalid subcategory for the selected parent category",
@@ -43,8 +43,8 @@ const courseSchema = new mongoose.Schema(
       validate: {
         validator: function (value) {
           return (
-            courseCategories[this.courseParentCategory]?.subCategories[
-              this.courseSubCategory
+            courseCategories[this.category]?.subCategories[
+              this.subCategory
             ]?.includes(value) || false
           );
         },
@@ -65,10 +65,6 @@ const courseSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: [true, "Instructor is required"],
-    },
-    analyticsOfCourse: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "CourseAnalytics",
     },
     moneyBackGuarantee: {
       type: Date,

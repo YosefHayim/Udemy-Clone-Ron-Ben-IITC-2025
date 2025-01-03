@@ -41,7 +41,7 @@ router.get("/leave/course/:id", grantedAccess, leaveCourseById);
 router.get("/email/verification", confirmEmailAddress);
 
 // sign up
-router.post("/signup", SignUp);
+router.post("/auth/signup", SignUp);
 
 // resend verification email token
 router.post(
@@ -51,7 +51,7 @@ router.post(
 );
 
 // login
-router.post("/login", login);
+router.post("/auth/login", login);
 
 // logout and clear cookie
 router.post("/logout", logout);

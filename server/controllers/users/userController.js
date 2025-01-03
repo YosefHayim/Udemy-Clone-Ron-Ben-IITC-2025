@@ -44,17 +44,16 @@ const getUserById = catchAsync(async (req, res, next) => {
 });
 
 const SignUp = catchAsync(async (req, res, next) => {
-  const { fName, lName, email, password, passwordConfirm } = req.body;
+  const { fullName, email, password } = req.body;
 
   // If one of the fields is missing
-  if (!fName || !lName || !email || !password || !passwordConfirm) {
+  if (!fullName || !email || !password) {
     return next(new Error("One of the fields is missing."));
   }
 
   // Create user with email token and expiration
   const newUser = await User.create({
-    fName,
-    lName,
+    fullName,
     email,
     password,
     passwordConfirm,

@@ -18,11 +18,11 @@ router.param("id", (req, res, next, val) => {
   next();
 });
 
-// get all courses
-router.get("/", grantedAccess, getAllCourses);
+// get all courses and filter by user queries
+router.get("/", getAllCourses);
 
 // get course by specific course id
-router.get("/:id", grantedAccess, getCourseById);
+router.get("/:id", getCourseById);
 
 // create course
 router.post("/", grantedAccess, createCourse);

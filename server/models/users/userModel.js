@@ -4,13 +4,9 @@ const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema(
   {
-    fName: {
+    fullName: {
       type: String,
       required: [true, "Please tell us your first name!"],
-    },
-    lName: {
-      type: String,
-      required: [true, "Please tell us your name!"],
     },
     headline: {
       type: String,
@@ -81,18 +77,6 @@ const userSchema = new mongoose.Schema(
       required: [true, "Please provide a password"],
       minlength: 8,
     },
-    passwordConfirm: {
-      type: String,
-      required: function () {
-        return this.isNew;
-      },
-      validate: {
-        validator: function (confimedPw) {
-          return confimedPw === this.password;
-        },
-        message: "Passwords are not the same!",
-      },
-    },
     passwordChangedAt: Date,
     passwordResetToken: String,
     passwordResetExpires: Date,
@@ -112,9 +96,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// subscription: [{ type: mongoose.Schema.ObjectId, ref: "Subscription" }],
-// notifications: [{ type: mongoose.Schema.ObjectId, ref: "Notification" }],
-// wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Wishlist" }],
 module.exports = mongoose.model("User", userSchema);
 
 userSchema.pre("save", async function (next) {
@@ -126,7 +107,6 @@ userSchema.pre("save", async function (next) {
       this.password + process.env.BCRYPT_PW,
       10
     );
-    this.passwordConfirm = undefined;
 
     next();
   } catch (err) {
@@ -160,7 +140,6 @@ userSchema.methods.updatePassword = async function (
 
   // Update the password
   this.password = newPassword;
-  this.passwordConfirm = undefined; // Exclude confirm password
   await this.save();
 };
 

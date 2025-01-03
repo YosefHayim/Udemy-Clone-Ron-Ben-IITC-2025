@@ -31,11 +31,10 @@ const generateUpdatedDummyData = async () => {
     const reviews = [];
 
     // Create Users
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 50; i++) {
       const hashedPassword = await bcrypt.hash("password123", 10);
       users.push({
-        fName: faker.person.firstName(),
-        lName: faker.person.lastName(),
+        fullName: faker.person.firstName(),
         email: faker.internet.email().toLowerCase(),
         password: hashedPassword,
         passwordConfirm: hashedPassword,
@@ -52,7 +51,7 @@ const generateUpdatedDummyData = async () => {
     );
 
     // Create Courses
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 50; i++) {
       const instructor = faker.helpers.arrayElement(instructorUsers);
       const parentCategory = faker.helpers.arrayElement(
         Object.keys(courseCategories)
@@ -67,8 +66,8 @@ const generateUpdatedDummyData = async () => {
         courseName: faker.lorem.words(3),
         courseDescription: faker.lorem.paragraph(),
         coursePrice: faker.commerce.price(10, 500, 2),
-        courseParentCategory: parentCategory,
-        courseSubCategory: subCategory,
+        category: parentCategory,
+        subCategory: subCategory,
         courseTopic: topic,
         courseLevel: faker.helpers.arrayElement([
           "Beginner",
