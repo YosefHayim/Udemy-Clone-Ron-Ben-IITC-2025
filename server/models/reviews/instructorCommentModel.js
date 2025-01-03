@@ -29,10 +29,5 @@ const commentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// commentSchema.pre(/^find/, function (next) {
-//   this.populate("instructor").populate("student");
-//   next();
-// });
-
 const InstructorComment = mongoose.model("Comment", commentSchema);
 module.exports = InstructorComment;

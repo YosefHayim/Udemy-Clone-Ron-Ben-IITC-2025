@@ -2,15 +2,15 @@ const mongoose = require("mongoose");
 
 const courseReviewsSchema = new mongoose.Schema(
   {
-    courseReview: {
-      type: mongoose.Schema.ObjectId,
-      ref: "Course",
-      required: [true, "ID of a course must be provided"],
-    },
     user: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
       required: [true, "Review must belong to a user."],
+    },
+    courseReview: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Course",
+      required: [true, "ID of a course must be provided"],
     },
     rating: {
       type: Number,
@@ -32,9 +32,9 @@ const courseReviewsSchema = new mongoose.Schema(
       users: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
       count: { type: Number, default: 0 },
     },
-    isActive: {
-      type: Boolean,
-      default: true,
+    reports: {
+      entries: [{ type: mongoose.Schema.Types.ObjectId, ref: "ReportReview" }],
+      count: { type: Number, default: 0 },
     },
   },
   { timestamps: true }

@@ -16,6 +16,7 @@ const sectionRoute = require("./routes/course/sectionRoute");
 const userRoute = require("./routes/users/userRoute");
 const commentRoute = require("./routes/reviews/commentRoute");
 const reviewRoute = require("./routes/reviews/reviewRoute");
+const reportReviewRoute = require("./routes/reviews/reportReviewRoute");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -42,11 +43,12 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/api/course", courseRoute);
-app.use("/api/lesson", lessonRoute);
-app.use("/api/section", sectionRoute);
-app.use("/api/review", reviewRoute);
 app.use("/api/user", userRoute);
+app.use("/api/course", courseRoute);
+app.use("/api/section", sectionRoute);
+app.use("/api/lesson", lessonRoute);
+app.use("/api/review", reviewRoute);
+app.use("/api/report/review", reportReviewRoute);
 app.use("/api/comment", commentRoute);
 
 app.all("*", undefinedRoute);
