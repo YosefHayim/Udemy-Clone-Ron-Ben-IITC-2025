@@ -409,7 +409,35 @@ const updateUserInfo = catchAsync(async (req, res, next) => {
   });
 });
 
+const updateProfilePic = catchAsync(async (req, res, next) => {
+  const { profilePic } = req.body;
+
+  if (!profilePic) {
+    return next(
+      new Error(`Please provide a URL of the profile picture in the body.`)
+    );
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user._id,
+    { profilePic },
+    { new: true, runValidators: true }
+  );
+
+  if (!updatedUser) {
+    return next(new Error("User not found"));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      user: updatedUser,
+    },
+  });
+});
+
 module.exports = {
+  updateProfilePic,
   joinCourseById,
   leaveCourseById,
   logout,

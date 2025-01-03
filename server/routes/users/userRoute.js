@@ -13,6 +13,7 @@ const {
   joinCourseById,
   updateUserInfo,
   leaveCourseById,
+  updateProfilePic,
 } = require("../../controllers/users/userController");
 const {
   grantedAccess,
@@ -64,6 +65,9 @@ router.patch("/update/password", grantedAccess, updatePassword);
 
 // update user information
 router.put("/", grantedAccess, updateUserInfo);
+
+// update user profile picture
+router.patch("/profile/picture", grantedAccess, updateProfilePic);
 
 // "delete" user account
 router.delete("/", grantedAccess, deactivateUser);

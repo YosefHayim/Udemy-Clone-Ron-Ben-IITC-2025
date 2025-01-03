@@ -63,9 +63,9 @@ const userSchema = new mongoose.Schema(
     emailVerificationExpires: {
       type: Date,
     },
-    photo: {
+    profilePic: {
       type: String,
-      default: "default.jpg",
+      default: "default-user-profile.svg",
     },
     role: {
       type: String,
