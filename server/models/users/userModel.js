@@ -89,6 +89,34 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    subscriptionPlan: {
+      type: {
+        type: String,
+        enum: ["monthly", "yearly"],
+        required: [true, "Please select a subscription type"],
+      },
+      subscriptionPrice: {
+        type: Number,
+        required: true,
+        default: function () {
+          return this.subscriptionPlan.type === "yearly" ? 66 * 12 : 95;
+        },
+      },
+      isSubscriptionActive: {
+        type: Boolean,
+        default: false, // By default, subscriptions are inactive.
+      },
+      startDate: {
+        type: Date,
+        default: Date.now,
+      },
+      endDate: {
+        type: Date,
+        required: function () {
+          return this.isActive; // Required only if the subscription is active.
+        },
+      },
+    },
     wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     coursesBought: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     coursesCreated: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
