@@ -13,7 +13,7 @@ const getAllCourses = catchAsync(async (req, res, next) => {
   const courses = await features.query;
 
   if (!courses || courses.length === 0) {
-    return next(new Error("No Course documents found in database"));
+    return next(createError("No Course documents found in the database", 404));
   }
 
   res.status(200).json({
@@ -27,13 +27,13 @@ const getCourseById = catchAsync(async (req, res, next) => {
   const courseId = req.params.id;
 
   if (!courseId) {
-    return next(new Error("Please provide id in the url."));
+    return next(createError("Please provide the course ID in the URL.", 400));
   }
 
   const findCourse = await Course.findOne({ _id: courseId });
 
   if (!findCourse) {
-    return next(new Error("There is no such course in database"));
+    return next(createError("There is no such course in the database.", 404));
   }
 
   res.status(200).json({
@@ -47,42 +47,16 @@ const updateCourse = catchAsync(async (req, res, next) => {
   const courseId = req.params.id;
 
   if (!courseId) {
-    return next(new Error("Please provide the course ID in the URL."));
+    return next(createError("Please provide the course ID in the URL.", 400));
   }
 
-  const {
-    courseName,
-    courseDescription,
-    coursePrice,
-    courseParentCategory,
-    courseSubCategory,
-    courseTopic,
-    courseLevel,
-    courseLanguages,
-    courseInstructor,
-    moneyBackGuarantee,
-  } = req.body;
-
-  const updatedCourse = await Course.findByIdAndUpdate(
-    courseId,
-    courseName,
-    courseDescription,
-    coursePrice,
-    courseParentCategory,
-    courseSubCategory,
-    courseTopic,
-    courseLevel,
-    courseLanguages,
-    courseInstructor,
-    moneyBackGuarantee,
-    {
-      new: true,
-      runValidators: true,
-    }
-  );
+  const updatedCourse = await Course.findByIdAndUpdate(courseId, req.body, {
+    new: true,
+    runValidators: true,
+  });
 
   if (!updatedCourse) {
-    return next(new Error("Error occurred during course update."));
+    return next(createError("Error occurred during course update.", 404));
   }
 
   res.status(200).json({
@@ -105,7 +79,6 @@ const createCourse = catchAsync(async (req, res, next) => {
     moneyBackGuarantee,
   } = req.body;
 
-  // Check for missing fields
   if (
     !courseName ||
     !courseDescription ||
@@ -117,11 +90,13 @@ const createCourse = catchAsync(async (req, res, next) => {
     !courseLanguages
   ) {
     return next(
-      new Error("One of the required fields for creating course is missing.")
+      createError(
+        "One of the required fields for creating course is missing.",
+        400
+      )
     );
   }
 
-  // Create a new course
   const newCourse = await Course.create({
     courseName,
     courseDescription,
@@ -136,17 +111,16 @@ const createCourse = catchAsync(async (req, res, next) => {
   });
 
   if (!newCourse) {
-    return next(new Error("Error occurred during course creation."));
+    return next(createError("Error occurred during course creation.", 500));
   }
 
-  // modify user info
   req.user.role = "instructor";
   req.user.coursesCreated.push(newCourse._id);
   await req.user.save();
 
   res.status(201).json({
     status: "success",
-    message: `Course has successfully created and assigned to user: ${req.user.fName}`,
+    message: `Course has successfully been created and assigned to user: ${req.user.fName}`,
     newCourse,
     newUserData: req.user,
   });
@@ -156,22 +130,20 @@ const deleteCourse = catchAsync(async (req, res, next) => {
   const courseId = req.params.id;
 
   if (!courseId) {
-    return next(new Error("Please provide the course ID in the URL."));
+    return next(createError("Please provide the course ID in the URL.", 400));
   }
 
-  // Fetch the course and ensure it exists
   const course = await Course.findById(courseId);
+
   if (!course) {
-    return next(new Error("Course not found."));
+    return next(createError("Course not found.", 404));
   }
 
-  // Find all students with the course in their coursesBought list
   const students = await User.find({
     role: "student",
     coursesBought: courseId,
   });
 
-  // Update each student's coursesBought field to remove the deleted course
   await Promise.all(
     students.map(async (student) => {
       student.coursesBought = student.coursesBought.filter(
@@ -182,7 +154,7 @@ const deleteCourse = catchAsync(async (req, res, next) => {
   );
 
   course.isActive = false;
-  course.save();
+  await course.save();
 
   res.status(200).json({
     status: "success",
@@ -196,9 +168,9 @@ const reactivateCourseById = catchAsync(async (req, res, next) => {
 
   if (!courseId) {
     return next(
-      new Error(
-        `Please provide a course id in the url in order to re-activate it`,
-        404
+      createError(
+        "Please provide a course ID in the URL to re-activate it.",
+        400
       )
     );
   }
@@ -207,15 +179,13 @@ const reactivateCourseById = catchAsync(async (req, res, next) => {
 
   if (!course) {
     return next(
-      new Error(`There is no de-activated course with id: ${courseId}`)
+      createError(`There is no de-activated course with ID: ${courseId}.`, 404)
     );
   }
 
-  if (course.courseInstructor !== user) {
+  if (!course.courseInstructor.equals(user)) {
     return next(
-      new Error(
-        `You cant re-activate course that you are not the creator of it.`
-      )
+      createError("You can't re-activate a course you didn't create.", 403)
     );
   }
 

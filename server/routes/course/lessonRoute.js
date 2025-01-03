@@ -3,8 +3,8 @@ const {
   getAllLessons,
   getLessonById,
   createLesson,
-  updateLesson,
-  deleteLesson,
+  updateLessonById,
+  deleteLessonById,
 } = require("../../controllers/courses/lessonController");
 const {
   grantedAccess,
@@ -23,13 +23,13 @@ router.get("/", getAllLessons);
 // get specific lesson by lesson id
 router.get("/:id", getLessonById);
 
-// create lesson
+// Create lesson
 router.post("/", createLesson);
 
-// update lesson
-router.put("/", updateLesson);
+// Update lesson by id
+router.put("/", updateLessonById);
 
-// delete lesson
-router.delete("/", deleteLesson);
+// Delete lesson by id
+router.delete("/", deleteLessonById);
 
 module.exports = router;

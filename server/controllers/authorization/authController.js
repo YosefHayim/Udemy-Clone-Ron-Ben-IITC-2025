@@ -26,7 +26,7 @@ const verifyToken = (token) => {
 const grantedAccess = catchAsync(async (req, res, next) => {
   const User = require("../../models/users/userModel");
 
-  //  Getting token and check if it's there
+  // Getting token and checking if it's there
   let token;
   if (req.headers.authorization) {
     token = req.headers.authorization.split(" ")[1];
@@ -35,20 +35,19 @@ const grantedAccess = catchAsync(async (req, res, next) => {
   }
 
   if (!token) {
-    const err = new Error("No cookie in the headers.");
-    err.status = 401; // Unauthorized
-    return next(err);
+    return next(createError("No token found in the headers or cookies.", 401));
   }
+
   // Verify token
   const decoded = verifyToken(token);
 
   // Check if the user still exists
-  const currentUser = await User.findOne({ _id: decoded.id });
+  const currentUser = await User.findById(decoded.id);
 
   if (!currentUser) {
-    const err = new Error("This user is not exist, please sign up.");
-    err.status = 401; // Unauthorized
-    return next(err);
+    return next(
+      createError("This user no longer exists. Please sign up.", 401)
+    );
   }
 
   req.user = currentUser;

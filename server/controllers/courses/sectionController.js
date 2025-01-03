@@ -12,7 +12,7 @@ const getAllSections = catchAsync(async (req, res, next) => {
   const sections = await features.query;
 
   if (!sections || sections.length === 0) {
-    return next(new Error("No Section documents found in database"));
+    return next(createError("No Section documents found in the database", 404));
   }
 
   res.status(200).json({
@@ -26,13 +26,13 @@ const getSectionById = catchAsync(async (req, res, next) => {
   const sectionId = req.params.id;
 
   if (!sectionId) {
-    return next(new Error("Please provide id in the url."));
+    return next(createError("Please provide the section ID in the URL.", 400));
   }
 
   const findSection = await Section.findOne({ _id: sectionId });
 
   if (!findSection) {
-    return next(new Error("There is no such section in database"));
+    return next(createError("There is no such section in the database.", 404));
   }
 
   res.status(200).json({
@@ -41,11 +41,35 @@ const getSectionById = catchAsync(async (req, res, next) => {
   });
 });
 
+const getSectionsByCourseId = catchAsync(async (req, res, next) => {
+  const courseId = req.params.id;
+
+  if (!courseId) {
+    return next(createError("Please provide the course ID in the URL.", 400));
+  }
+
+  const sectionsByCourseId = await Section.find({ courseId });
+
+  if (!sectionsByCourseId || sectionsByCourseId.length === 0) {
+    return next(
+      createError(`No sections found for the course with ID: ${courseId}`, 404)
+    );
+  }
+
+  res.status(200).json({
+    status: "success",
+    results: sectionsByCourseId.length,
+    data: {
+      sections: sectionsByCourseId,
+    },
+  });
+});
+
 const createSection = catchAsync(async (req, res, next) => {
   const { name, description, instructor } = req.body;
 
   if (!name || !description || !instructor) {
-    return next(new Error("One of the fields is missing."));
+    return next(createError("One of the required fields is missing.", 400));
   }
 
   const newSection = await Section.create({
@@ -55,7 +79,7 @@ const createSection = catchAsync(async (req, res, next) => {
   });
 
   if (!newSection) {
-    return next(new Error("Error occurred during section creation."));
+    return next(createError("Error occurred during section creation.", 500));
   }
 
   res.status(201).json({
@@ -69,7 +93,7 @@ const updateSection = catchAsync(async (req, res, next) => {
   const sectionId = req.params.id;
 
   if (!sectionId) {
-    return next(new Error("Please provide the section ID in the URL."));
+    return next(createError("Please provide the section ID in the URL.", 400));
   }
 
   const updatedSection = await Section.findByIdAndUpdate(sectionId, req.body, {
@@ -78,7 +102,7 @@ const updateSection = catchAsync(async (req, res, next) => {
   });
 
   if (!updatedSection) {
-    return next(new Error("Error occurred during section update."));
+    return next(createError("Error occurred during section update.", 404));
   }
 
   res.status(200).json({
@@ -92,43 +116,18 @@ const deleteSection = catchAsync(async (req, res, next) => {
   const sectionId = req.params.id;
 
   if (!sectionId) {
-    return next(new Error("Please provide the section ID in the URL."));
+    return next(createError("Please provide the section ID in the URL.", 400));
   }
 
   const deletedSection = await Section.findByIdAndDelete(sectionId);
 
   if (!deletedSection) {
-    return next(new Error("Error occurred during section deletion."));
+    return next(createError("Error occurred during section deletion.", 404));
   }
 
   res.status(204).json({
     status: "success",
     message: "Section deleted successfully.",
-  });
-});
-
-const getSectionsByCourseId = catchAsync(async (req, res, next) => {
-  const courseId = req.params.id;
-
-  if (!courseId) {
-    return next(new Error("Please provide the course ID in the URL."));
-  }
-
-  // Find all sections with the matching courseId
-  const sectionsByCourseId = await Section.find({ courseId });
-
-  if (!sectionsByCourseId || sectionsByCourseId.length === 0) {
-    return next(
-      new Error(`No sections found for the course with ID: ${courseId}`)
-    );
-  }
-
-  res.status(200).json({
-    status: "success",
-    results: sectionsByCourseId.length,
-    data: {
-      sections: sectionsByCourseId,
-    },
   });
 });
 
