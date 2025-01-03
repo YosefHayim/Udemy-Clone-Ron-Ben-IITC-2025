@@ -4,6 +4,7 @@ const Lesson = require("./models/courses/lessonModel");
 const Section = require("./models/courses/sectionModel");
 const courseReviews = require("./models/reviews/courseReviewModel");
 const InstructorComment = require("./models/reviews/instructorCommentModel");
+const ReportReview = require("./models/reviews/reportReviewModel");
 const User = require("./models/users/userModel");
 
 const deleteDb = async () => {
@@ -17,6 +18,7 @@ const deleteDb = async () => {
       Lesson.deleteMany(),
       courseReviews.deleteMany(),
       InstructorComment.deleteMany(),
+      ReportReview.deleteMany(),
     ]);
     console.log("Cleared all collections");
     process.exit();
