@@ -56,7 +56,6 @@ const SignUp = catchAsync(async (req, res, next) => {
     fullName,
     email,
     password,
-    passwordConfirm,
   });
 
   if (!newUser) {
@@ -64,15 +63,15 @@ const SignUp = catchAsync(async (req, res, next) => {
   }
 
   // // Send confirmation email
-  const mailOptions = {
-    from: "robustBackend@gmail.com",
-    to: email,
-    subject: `Hi ${fName} ${lName}, welcome aboard`,
-    html: `<h1>Welcome to the robust backend website, ${fName}!</h1>
-    <p> your email address by providing this code: http://localhost:3000/api/user/?token=${newUser.emailVerificationToken}</p>`,
-  };
+  // const mailOptions = {
+  //   from: "robustBackend@gmail.com",
+  //   to: email,
+  //   subject: `Hi ${fName} ${lName}, welcome aboard`,
+  //   html: `<h1>Welcome to the robust backend website, ${fName}!</h1>
+  //   <p> your email address by providing this code: http://localhost:3000/api/user/?token=${newUser.emailVerificationToken}</p>`,
+  // };
 
-  await sendEmail(mailOptions);
+  // await sendEmail(mailOptions);
 
   const token = generateToken(newUser._id);
   res.cookie("cookie", token, cookieOptions);

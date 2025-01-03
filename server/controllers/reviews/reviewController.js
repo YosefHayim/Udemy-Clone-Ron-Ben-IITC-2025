@@ -26,114 +26,29 @@ const getAllReviews = catchAsync(async (req, res, next) => {
   });
 });
 
-const addReviewByCourseId = catchAsync(async (req, res, next) => {
-  const courseId = req.params.id;
+const getAllReviewsOfSelfUser = catchAsync(async (req, res, next) => {
+  const userId = req.params.id;
 
-  if (!courseId) {
-    return next(new Error(`Please provide courseId to add a review.`));
+  if (!userId) {
+    return next(new Error("User ID is required."));
   }
 
-  if (!req.user.coursesBought?.map(String).includes(String(courseId))) {
-    return next(new Error(`You can't review a course you're not enrolled in.`));
-  }
-
-  const isReviewExistByUserInCourse = await courseReviews.findOne({
-    courseReview: courseId,
-    user: req.user._id,
+  const reviews = await courseReviews.find({
+    user: userId,
+    isActive: { $ne: false },
   });
 
-  const course = await Course.findById(courseId);
-
-  if (isReviewExistByUserInCourse) {
-    return next(
-      new Error(
-        `You can't add another review for course ${course.courseName}. Only one review is allowed.`
-      )
-    );
+  if (!reviews || reviews.length === 0) {
+    return res.status(404).json({
+      status: "error",
+      message: "No reviews found for the current user.",
+    });
   }
-
-  const { rating, comment } = req.body;
-
-  const newReview = await courseReviews.create({
-    courseReview: courseId,
-    rating,
-    comment,
-    user: req.user._id,
-  });
-
-  if (!newReview) {
-    return next(new Error(`Failed to add a review for course : ${courseId}`));
-  }
-
-  res.status(201).json({
-    status: "success",
-    response: `Review successfully added to the course ${course.courseName}`,
-    data: newReview,
-  });
-});
-
-const deleteReviewById = catchAsync(async (req, res, next) => {
-  const reviewId = req.params.id;
-
-  if (!reviewId) {
-    return next(new Error(`Please provide reviewId in the url.`));
-  }
-
-  const findReview = await courseReviews.findById(reviewId);
-
-  if (!findReview) {
-    return next(new Error(`There is no review with ID: ${reviewId}.`));
-  }
-
-  if (findReview.user.toString() !== req.user._id.toString()) {
-    return next(new Error(`You can't delete someone else's review.`));
-  }
-
-  findReview.isActive = false;
-  await findReview.save();
-
-  res.status(204).json({
-    status: "success",
-    response: `Review ID: ${reviewId} has been successfully deleted`,
-  });
-});
-
-const updateReviewById = catchAsync(async (req, res, next) => {
-  const reviewId = req.params.id;
-  const { rating, comment } = req.body;
-
-  if (!reviewId) {
-    return next(new Error(`Please provide review ID in the URL.`));
-  }
-
-  if (!rating || !comment) {
-    return next(
-      new Error(
-        `Either rating score or comment is missing in the request body.`
-      )
-    );
-  }
-
-  const updatedReview = await courseReviews.findById(reviewId);
-
-  if (!updatedReview) {
-    return next(new Error(`There is no review with ID: ${reviewId}.`));
-  }
-
-  if (updatedReview.user.toString() !== req.user._id.toString()) {
-    return next(new Error(`You can't update someone else's review.`));
-  }
-
-  const newReview = await courseReviews.findByIdAndUpdate(
-    reviewId,
-    { rating, comment },
-    { new: true, runValidators: true }
-  );
 
   res.status(200).json({
     status: "success",
-    response: `Review ID: ${reviewId} has been updated`,
-    data: newReview,
+    results: reviews.length,
+    data: reviews,
   });
 });
 
@@ -178,29 +93,168 @@ const getAllReviewsByCourseId = catchAsync(async (req, res, next) => {
   });
 });
 
-const getAllReviewsOfSelfUser = catchAsync(async (req, res, next) => {
-  const userId = req.params.id;
+const addReviewByCourseId = catchAsync(async (req, res, next) => {
+  const courseId = req.params.id;
 
-  if (!userId) {
-    return next(new Error("User ID is required."));
+  // Validate courseId
+  if (!courseId) {
+    return next(new Error("Please provide courseId to add a review."));
   }
 
-  const reviews = await courseReviews.find({
-    user: userId,
-    isActive: { $ne: false },
+  // Ensure user has bought the course
+  if (!req.user.coursesBought?.map(String).includes(String(courseId))) {
+    return next(new Error("You can't review a course you're not enrolled in."));
+  }
+
+  // Check if the user already added a review for this course
+  const existingReview = await courseReviews.findOne({
+    courseReview: courseId,
+    user: req.user._id,
   });
 
-  if (!reviews || reviews.length === 0) {
-    return res.status(404).json({
-      status: "error",
-      message: "No reviews found for the current user.",
-    });
+  if (existingReview) {
+    return next(
+      new Error(
+        `You can't add another review for course ${courseId}. Only one review is allowed.`
+      )
+    );
   }
+
+  const { rating, comment } = req.body;
+
+  // Create a new review
+  const newReview = await courseReviews.create({
+    courseReview: courseId,
+    rating,
+    comment,
+    user: req.user._id,
+  });
+
+  if (!newReview) {
+    return next(new Error(`Failed to add a review for course: ${courseId}`));
+  }
+
+  // Add the review ID to the course's reviews array
+  await Course.findByIdAndUpdate(courseId, {
+    $push: { reviews: newReview._id },
+  });
+
+  res.status(201).json({
+    status: "success",
+    response: `Review successfully added to the course.`,
+    data: newReview,
+  });
+});
+
+const toggleReviewReaction = catchAsync(async (req, res, next) => {
+  const reviewId = req.params.id;
+
+  if (!reviewId) {
+    return next(new Error("Please provide reviewId in the URL."));
+  }
+
+  const review = await courseReviews.findById(reviewId);
+
+  if (!review) {
+    return next(new Error("There is no review with this ID."));
+  }
+
+  if (review.user.equals(req.user._id)) {
+    return next(new Error("You can't react to your own review."));
+  }
+
+  // Check if the user has already liked the review
+  const userIndexInLikes = review.likes.users.indexOf(req.user._id);
+  if (userIndexInLikes !== -1) {
+    // If already liked, remove the like
+    review.likes.users.splice(userIndexInLikes, 1);
+    review.likes.count -= 1;
+  } else {
+    // Otherwise, like the review
+    review.likes.users.push(req.user._id);
+    review.likes.count += 1;
+
+    // Remove dislike if present
+    const userIndexInDislikes = review.dislikes.users.indexOf(req.user._id);
+    if (userIndexInDislikes !== -1) {
+      review.dislikes.users.splice(userIndexInDislikes, 1);
+      review.dislikes.count -= 1;
+    }
+  }
+
+  await review.save();
+
+  res.status(200).json({
+    message: "success",
+    response: {
+      likes: review.likes.count,
+      dislikes: review.dislikes.count,
+    },
+  });
+});
+
+const updateReviewById = catchAsync(async (req, res, next) => {
+  const reviewId = req.params.id;
+  const { rating, comment } = req.body;
+
+  if (!reviewId) {
+    return next(new Error(`Please provide review ID in the URL.`));
+  }
+
+  if (!rating || !comment) {
+    return next(
+      new Error(
+        `Either rating score or comment is missing in the request body.`
+      )
+    );
+  }
+
+  const updatedReview = await courseReviews.findById(reviewId);
+
+  if (!updatedReview) {
+    return next(new Error(`There is no review with ID: ${reviewId}.`));
+  }
+
+  if (updatedReview.user.toString() !== req.user._id.toString()) {
+    return next(new Error(`You can't update someone else's review.`));
+  }
+
+  const newReview = await courseReviews.findByIdAndUpdate(
+    reviewId,
+    { rating, comment },
+    { new: true, runValidators: true }
+  );
 
   res.status(200).json({
     status: "success",
-    results: reviews.length,
-    data: reviews,
+    response: `Review ID: ${reviewId} has been updated`,
+    data: newReview,
+  });
+});
+
+const deleteReviewById = catchAsync(async (req, res, next) => {
+  const reviewId = req.params.id;
+
+  if (!reviewId) {
+    return next(new Error(`Please provide reviewId in the url.`));
+  }
+
+  const findReview = await courseReviews.findById(reviewId);
+
+  if (!findReview) {
+    return next(new Error(`There is no review with ID: ${reviewId}.`));
+  }
+
+  if (findReview.user.toString() !== req.user._id.toString()) {
+    return next(new Error(`You can't delete someone else's review.`));
+  }
+
+  findReview.isActive = false;
+  await findReview.save();
+
+  res.status(204).json({
+    status: "success",
+    response: `Review ID: ${reviewId} has been successfully deleted`,
   });
 });
 
@@ -212,4 +266,5 @@ module.exports = {
   updateReviewById,
   getReviewByReviewId,
   getAllReviewsByCourseId,
+  toggleReviewReaction,
 };

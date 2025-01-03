@@ -25,14 +25,12 @@ const courseReviewsSchema = new mongoose.Schema(
       maxLength: [250, "Comment cannot exceed 250 characters."],
     },
     likes: {
-      type: Number,
-      default: 0,
-      min: [0, "Likes cannot be negative."],
+      users: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+      count: { type: Number, default: 0 },
     },
     dislikes: {
-      type: Number,
-      default: 0,
-      min: [0, "Dislikes cannot be negative."],
+      users: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+      count: { type: Number, default: 0 },
     },
     isActive: {
       type: Boolean,

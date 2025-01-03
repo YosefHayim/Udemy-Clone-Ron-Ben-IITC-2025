@@ -38,6 +38,7 @@ const getCourseById = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
+    totalReviewsCourseHas: findCourse.reviews.length,
     data: findCourse,
   });
 });

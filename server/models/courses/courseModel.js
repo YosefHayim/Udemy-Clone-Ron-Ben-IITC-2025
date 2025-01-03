@@ -106,12 +106,17 @@ const courseSchema = new mongoose.Schema(
     reviews: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "reviews",
+        ref: "Review",
       },
     ],
   },
   { timestamps: true }
 );
+
+courseSchema.pre(/^find/, function (next) {
+  this.populate("reviews");
+  next();
+});
 
 const Course = mongoose.model("Course", courseSchema);
 module.exports = Course;
