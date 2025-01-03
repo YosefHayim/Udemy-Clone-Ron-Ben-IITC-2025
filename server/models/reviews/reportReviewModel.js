@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 const allowedIssueTypes = require("../../utils/reportSubjects");
 
 const reportReviewSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: [true, "A report must belong to a user."],
+  },
   review: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Review",
@@ -24,5 +29,4 @@ const reportReviewSchema = new mongoose.Schema({
 });
 
 const ReportReview = mongoose.model("ReportReview", reportReviewSchema);
-
 module.exports = ReportReview;
