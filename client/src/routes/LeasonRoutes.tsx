@@ -1,5 +1,11 @@
 import React from "react";
-import { Routes, Route, Navigate, useLocation, useParams } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import NavBar from "../components/leason/NavBar";
 
 // Import tab components
@@ -28,7 +34,9 @@ const LessonRoutes: React.FC = () => {
 
   // Extract the relevant part of the path after "/lesson/:id/"
   const basePathIndex = location.pathname.indexOf(`/lesson/${id}/`);
-  const relevantPath = location.pathname.slice(basePathIndex + `/lesson/${id}/`.length);
+  const relevantPath = location.pathname.slice(
+    basePathIndex + `/lesson/${id}/`.length
+  );
 
   // Check if the relevant path is a valid tab
   const isValidPath = validPaths.includes(relevantPath);
