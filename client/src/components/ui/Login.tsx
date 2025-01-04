@@ -2,8 +2,19 @@ import illustration from '../../assets/images/login.png';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { FaApple } from "react-icons/fa";
+import { setUser } from '@/redux/slices/userSlice';
 
 const Login = () => {
+
+    // const [name, setName] = useState(''); // Estado local para o nome
+    // const [email, setEmail] = useState(''); // Estado local para o e-mail
+    // const dispatch = useDispatch(); // Permite usar a ação setUser
+
+    const handleLogin = () => {
+        // Atualiza o estado global com o nome e o e-mail
+        // dispatch(setUser({ name, email }));
+    };
+
     return (
         <div className="flex h-screen">
             {/* Left Illustration */}
