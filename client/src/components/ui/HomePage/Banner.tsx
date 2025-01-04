@@ -35,41 +35,43 @@ const Banner = () => {
     <div className="relative w-full h-[30rem] overflow-hidden">
       {/* Slides */}
       <div className="absolute inset-0 flex">
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute w-full h-full transition-transform duration-700 ${
-              index === currentSlide
-                ? "translate-x-0" // Slide atual no centro
-                : direction === "right" // Botão da Direita
-                ? index > currentSlide || (currentSlide === slides.length - 1 && index === 0)
-                  ? "translate-x-full" // Novo slide vem da direita
-                  : "translate-x-[-100%]" // Slide atual empurrado para a esquerda
-                : direction === "left" // Botão da Esquerda
-                ? index < currentSlide || (currentSlide === 0 && index === slides.length - 1)
-                  ? "translate-x-[-100%]" // Novo slide vem da esquerda
-                  : "translate-x-full" // Slide atual empurrado para a direita
-                : ""
-            }`}
-          >
-            <img
-              src={slide.img}
-              alt={slide.title}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute left-10 top-1/4 bg-white p-6 rounded-lg shadow-lg max-w-lg">
-              <h1 className="text-4xl font-bold text-gray-900 leading-tight">
-                {slide.title}
-              </h1>
-              <p className="text-lg text-gray-600 mt-4">{slide.description}</p>
-              {slide.button && (
-                <button className="mt-4 px-6 py-2 bg-black text-white rounded font-bold hover:opacity-80">
-                  {slide.button}
-                </button>
-              )}
+        {slides.map((slide, index) => {
+          const isActive = index === currentSlide;
+          const isPrevious = direction === "left" && index === (currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
+          const isNext = direction === "right" && index === (currentSlide === slides.length - 1 ? 0 : currentSlide + 1);
+
+          return (
+            <div
+              key={index}
+              className={`absolute w-full h-full transition-transform duration-700 ${
+                isActive
+                  ? "translate-x-0" // Slide atual no centro
+                  : isPrevious
+                  ? "translate-x-full" // Slide atual empurrado para a direita
+                  : isNext
+                  ? "translate-x-[-100%]" // Novo slide empurrado para a esquerda
+                  : ""
+              }`}
+            >
+              <img
+                src={slide.img}
+                alt={slide.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute left-10 top-1/4 bg-white p-6 rounded-lg shadow-lg max-w-lg">
+                <h1 className="text-4xl font-bold text-gray-900 leading-tight">
+                  {slide.title}
+                </h1>
+                <p className="text-lg text-gray-600 mt-4">{slide.description}</p>
+                {slide.button && (
+                  <button className="mt-4 px-6 py-2 bg-black text-white rounded font-bold hover:opacity-80">
+                    {slide.button}
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Botão de Navegação Esquerda */}

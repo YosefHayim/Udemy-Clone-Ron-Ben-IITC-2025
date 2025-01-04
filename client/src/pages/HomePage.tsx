@@ -1,18 +1,15 @@
-import React from 'react';
 import Header from '../components/ui/HomePage/Header';
 import Banner from '../components/ui/HomePage/Banner';
-// import Banner from '../components/homepage/Banner';
-// import Categories from '../components/homepage/Categories';
-// import CourseList from '../components/homepage/CourseList';
-// import Footer from '../components/homepage/Footer';
-// import Login from '../components/ui/Login';
-// import SignUp from '../components/ui/Signup';
+import Section from '../components/ui/HomePage/Sections'
 
 const HomePage = () => {
   return (
     <div>
       <Header />
+      <div className='container mx-auto px-6 lg:px-24'>
       <Banner />
+      <Section />
+      </div>
       {/* <Login />
       <SignUp /> */}
       {/* <Banner />
