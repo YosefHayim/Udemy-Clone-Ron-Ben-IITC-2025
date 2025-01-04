@@ -27,8 +27,8 @@ const Header = () => {
         <input
           type="text"
           placeholder="Search for anything"
-          className="flex-1 bg-transparent text-gray-700 focus:outline-none text-sm ml-3 placeholder-gray-700 placeholder:text-sm  placeholder:fonr-Sans placeholder:font-normal bg-gray-50"
-          onInput={(e) => setIsTyping(e.target.value !== "")} // Atualiza o estado baseado no texto digitado
+          className="flex-1 bg-transparent text-gray-700 focus:outline-none text-sm ml-3 placeholder-gray-700 placeholder:text-sm  placeholder:font-Sans placeholder:font-normal bg-gray-50"
+          onInput={(e) => setIsTyping((e.target as HTMLInputElement).value !== "")} // Atualiza o estado baseado no texto digitado
         />
       </div>
 
