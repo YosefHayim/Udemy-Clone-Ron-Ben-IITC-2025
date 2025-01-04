@@ -3,6 +3,7 @@ const User = require("../../models/users/userModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const cookieOptions = require("../../utils/cookieOptions");
 const sendEmail = require("../../utils/email");
+const createError = require("../../utils/errorFn");
 const { catchAsync } = require("../../utils/wrapperFn");
 const { generateToken } = require("../authorization/authController");
 
@@ -284,14 +285,19 @@ const joinCourseById = catchAsync(async (req, res, next) => {
     );
   }
 
-  const isCourseExist = await Course.findById(courseId);
+  const course = await Course.findById(courseId);
 
-  if (!isCourseExist) {
+  if (!course) {
     return next(createError(`No course exists with this ID: ${courseId}`, 404));
   }
 
-  if (isCourseExist.courseInstructor.toString() === user._id.toString()) {
-    return next(createError("You cannot join your own course.", 403));
+  if (user.coursesCreated.includes(courseId)) {
+    return next(
+      createError(
+        "You cannot leave your own course. Please use another route to deactivate it.",
+        403
+      )
+    );
   }
 
   if (user.coursesBought.includes(courseId)) {
@@ -299,9 +305,8 @@ const joinCourseById = catchAsync(async (req, res, next) => {
   }
 
   // Add user to course enrollment
-  isCourseExist.totalStudentsEnrolled.students.push(user._id);
-  isCourseExist.totalStudentsEnrolled.count += 1;
-  await isCourseExist.save();
+  course.totalStudentsEnrolled.students.push(user._id);
+  await course.save(); // `post('save')` will update the count automatically
 
   // Add course to user's purchased courses
   user.coursesBought.push(courseId);
@@ -309,16 +314,7 @@ const joinCourseById = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     status: "success",
-    message: `You have successfully joined the course ${isCourseExist.courseName}`,
-    courseData: {
-      courseId: isCourseExist._id,
-      courseName: isCourseExist.courseName,
-      totalStudentsEnrolled: isCourseExist.totalStudentsEnrolled.count,
-    },
-    userData: {
-      userId: user._id,
-      coursesBought: user.coursesBought,
-    },
+    message: `You have successfully joined the course ${course.courseName}`,
   });
 });
 
@@ -330,9 +326,9 @@ const leaveCourseById = catchAsync(async (req, res, next) => {
     return next(createError("Please provide a course ID in the URL.", 400));
   }
 
-  const isCourseExist = await Course.findById(courseId);
+  const course = await Course.findById(courseId);
 
-  if (!isCourseExist) {
+  if (!course) {
     return next(createError(`No course exists with this ID: ${courseId}`, 404));
   }
 
@@ -349,6 +345,13 @@ const leaveCourseById = catchAsync(async (req, res, next) => {
     );
   }
 
+  // Remove user from course enrollment
+  course.totalStudentsEnrolled.students =
+    course.totalStudentsEnrolled.students.filter(
+      (id) => id.toString() !== user._id.toString()
+    );
+  await course.save(); // `post('save')` will update the count automatically
+
   // Remove course from user's purchased courses
   user.coursesBought = user.coursesBought.filter(
     (id) => id.toString() !== courseId.toString()
@@ -357,8 +360,7 @@ const leaveCourseById = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
-    response: `You have successfully left the course ${isCourseExist.courseName}`,
-    data: user,
+    response: `You have successfully left the course ${course.courseName}`,
   });
 });
 

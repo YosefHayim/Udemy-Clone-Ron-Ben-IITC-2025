@@ -1,6 +1,7 @@
 const Course = require("../../models/courses/courseModel");
 const User = require("../../models/users/userModel");
 const APIFeatures = require("../../utils/apiFeatures");
+const createError = require("../../utils/errorFn");
 const { catchAsync } = require("../../utils/wrapperFn");
 
 const getAllCourses = catchAsync(async (req, res, next) => {
@@ -71,8 +72,8 @@ const createCourse = catchAsync(async (req, res, next) => {
     courseName,
     courseDescription,
     coursePrice,
-    courseParentCategory,
-    courseSubCategory,
+    category,
+    subCategory,
     courseTopic,
     courseLevel,
     courseLanguages,
@@ -83,8 +84,8 @@ const createCourse = catchAsync(async (req, res, next) => {
     !courseName ||
     !courseDescription ||
     !coursePrice ||
-    !courseParentCategory ||
-    !courseSubCategory ||
+    !category ||
+    !subCategory ||
     !courseTopic ||
     !courseLevel ||
     !courseLanguages
@@ -101,8 +102,8 @@ const createCourse = catchAsync(async (req, res, next) => {
     courseName,
     courseDescription,
     coursePrice,
-    courseParentCategory,
-    courseSubCategory,
+    category,
+    subCategory,
     courseTopic,
     courseLevel,
     courseLanguages,
@@ -122,7 +123,6 @@ const createCourse = catchAsync(async (req, res, next) => {
     status: "success",
     message: `Course has successfully been created and assigned to user: ${req.user.fName}`,
     newCourse,
-    newUserData: req.user,
   });
 });
 
@@ -159,6 +159,7 @@ const deleteCourse = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     message: "Course deleted successfully, and enrolled students updated.",
+    studentsUpdated: students,
   });
 });
 

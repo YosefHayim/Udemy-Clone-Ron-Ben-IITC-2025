@@ -113,8 +113,35 @@ const courseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Pre-save middleware to update student count
+courseSchema.pre("save", function (next) {
+  this.totalStudentsEnrolled.count = this.totalStudentsEnrolled.students.length;
+  next();
+});
+
+// Pre-remove middleware for cascading deletions
+courseSchema.pre("remove", async function (next) {
+  const Section = mongoose.model("Section");
+  const Lesson = mongoose.model("Lesson");
+  const Review = mongoose.model("Review");
+
+  // Delete related sections, lessons, and reviews
+  await Section.deleteMany({ _id: { $in: this.sections } });
+  await Lesson.deleteMany({ _id: { $in: this.lessons } });
+  await Review.deleteMany({ _id: { $in: this.reviews } });
+  next();
+});
+
+// Pre-find middleware to populate related fields
 courseSchema.pre(/^find/, function (next) {
-  this.populate("reviews");
+  this.populate("reviews")
+    .populate("courseInstructor", "fullName email -_id")
+    .populate({
+      path: "sections",
+      populate: {
+        path: "lessons",
+      },
+    });
   next();
 });
 
