@@ -93,7 +93,7 @@ const login = catchAsync(async (req, res, next) => {
     return next(createError("Email or password is missing.", 400));
   }
 
-  const isFoundUser = await User.findOne({ email }).select("+password");
+  const isFoundUser = await User.findOne({ email });
 
   if (!isFoundUser || isFoundUser.password !== password) {
     return next(createError("Invalid email or password.", 401));

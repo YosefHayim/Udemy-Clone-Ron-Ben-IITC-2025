@@ -130,8 +130,8 @@ const userSchema = new mongoose.Schema(
 
 module.exports = mongoose.model("User", userSchema);
 
+// Only hash the password if it has been modified (or is new)
 userSchema.pre("save", async function (next) {
-  // Only hash the password if it has been modified (or is new)
   if (!this.isModified("password")) return next();
 
   try {
@@ -147,6 +147,7 @@ userSchema.pre("save", async function (next) {
   }
 });
 
+// If email is new it will generate a verification token to user
 userSchema.pre("save", function (next) {
   if (this.isNew || this.isModified("email")) {
     this.generateEmailVerificationToken();
@@ -154,6 +155,7 @@ userSchema.pre("save", function (next) {
   next();
 });
 
+// method to update password
 userSchema.methods.updatePassword = async function (
   currentPassword,
   newPassword,
@@ -175,6 +177,7 @@ userSchema.methods.updatePassword = async function (
   await this.save();
 };
 
+// generate email verification token
 userSchema.methods.generateEmailVerificationToken = function () {
   this.emailVerificationExpires = Date.now() + 10 * 60 * 1000; // Token valid for 10 minutes
   this.emailVerificationToken = confirmEmailToken(); // Generate a new token
