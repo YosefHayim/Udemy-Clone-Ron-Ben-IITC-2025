@@ -115,20 +115,32 @@ const courseSchema = new mongoose.Schema(
 
 // Pre-save middleware to update student count
 courseSchema.pre("save", function (next) {
-  this.totalStudentsEnrolled.count = this.totalStudentsEnrolled.students.length;
+  if (
+    this.totalStudentsEnrolled &&
+    Array.isArray(this.totalStudentsEnrolled.students)
+  ) {
+    this.totalStudentsEnrolled.count =
+      this.totalStudentsEnrolled.students.length;
+  } else {
+    this.totalStudentsEnrolled = { students: [], count: 0 };
+  }
   next();
 });
 
-// Pre-remove middleware for cascading deletions
 courseSchema.pre("remove", async function (next) {
   const Section = mongoose.model("Section");
   const Lesson = mongoose.model("Lesson");
   const Review = mongoose.model("Review");
 
-  // Delete related sections, lessons, and reviews
-  await Section.deleteMany({ _id: { $in: this.sections } });
-  await Lesson.deleteMany({ _id: { $in: this.lessons } });
-  await Review.deleteMany({ _id: { $in: this.reviews } });
+  if (this.sections && this.sections.length > 0) {
+    await Section.deleteMany({ _id: { $in: this.sections } });
+  }
+  if (this.lessons && this.lessons.length > 0) {
+    await Lesson.deleteMany({ _id: { $in: this.lessons } });
+  }
+  if (this.reviews && this.reviews.length > 0) {
+    await Review.deleteMany({ _id: { $in: this.reviews } });
+  }
   next();
 });
 
@@ -140,6 +152,7 @@ courseSchema.pre(/^find/, function (next) {
       path: "sections",
       populate: {
         path: "lessons",
+        options: { retainNullValues: true },
       },
     });
   next();

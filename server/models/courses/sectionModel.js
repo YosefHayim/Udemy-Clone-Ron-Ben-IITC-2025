@@ -32,14 +32,24 @@ const sectionSchema = new mongoose.Schema(
 // Middleware to automatically update total lessons and duration
 sectionSchema.post("save", async function () {
   const Section = this.constructor;
-  const lessons = await this.populate("lessons").execPopulate();
-  const totalDuration = lessons.reduce(
-    (acc, lesson) => acc + lesson.duration,
-    0
-  );
-  this.totalSectionDuration = totalDuration;
-  this.totalSectionLessons = lessons.length;
-  await this.save();
+
+  // Properly populate lessons
+  await this.populate("lessons");
+
+  if (Array.isArray(this.lessons)) {
+    const totalDuration = this.lessons.reduce(
+      (acc, lesson) => acc + (lesson.duration || 0), // Handle undefined duration
+      0
+    );
+
+    this.totalSectionDuration = totalDuration;
+    this.totalSectionLessons = this.lessons.length;
+
+    // Save updated fields
+    await this.save();
+  } else {
+    console.error("Lessons is not an array during post-save operation.");
+  }
 });
 
 const Section = mongoose.model("Section", sectionSchema);

@@ -1,13 +1,14 @@
 const faker = require("@faker-js/faker").faker;
 const bcrypt = require("bcrypt");
+const connectDb = require("./config/connectDb");
 const User = require("./models/users/userModel");
 const Course = require("./models/courses/courseModel");
 const Lesson = require("./models/courses/lessonModel");
 const Section = require("./models/courses/sectionModel");
 const InstructorComment = require("./models/reviews/instructorCommentModel");
 const courseReviews = require("./models/reviews/courseReviewModel");
-const connectDb = require("./config/connectDb");
 const courseCategories = require("./utils/courseCategories");
+const ReportReview = require("./models/reviews/reportReviewModel");
 
 const generateUpdatedDummyData = async () => {
   try {
@@ -15,12 +16,13 @@ const generateUpdatedDummyData = async () => {
 
     // Clear collections
     await Promise.all([
-      User.deleteMany({}),
-      Course.deleteMany({}),
-      Section.deleteMany({}),
-      Lesson.deleteMany({}),
-      courseReviews.deleteMany({}),
-      InstructorComment.deleteMany({}),
+      User.deleteMany(),
+      Course.deleteMany(),
+      Section.deleteMany(),
+      Lesson.deleteMany(),
+      courseReviews.deleteMany(),
+      ReportReview.deleteMany(),
+      InstructorComment.deleteMany(),
     ]);
     console.log("Cleared all collections");
 
@@ -34,19 +36,47 @@ const generateUpdatedDummyData = async () => {
     for (let i = 0; i < 50; i++) {
       const hashedPassword = await bcrypt.hash("password123", 10);
       users.push({
-        fullName: faker.person.firstName(),
+        fullName: faker.person.fullName(),
+        headline: faker.person.jobTitle(),
+        biography: faker.lorem.sentence(15),
+        preferredLanguage: faker.helpers.arrayElement([
+          "english",
+          "deutsch",
+          "espanol",
+          "français",
+          "italiano",
+          "português",
+          "nederlands",
+          "polski",
+          "日本語",
+          "한국어",
+          "中文",
+          "русский",
+          "العربية",
+          "עברית",
+          "tiếng Việt",
+          "ไทย",
+          "bahasa Indonesia",
+        ]),
         email: faker.internet.email().toLowerCase(),
+        emailVerified: faker.datatype.boolean(),
+        profilePic: "default-user-profile.svg",
         password: hashedPassword,
-        passwordConfirm: hashedPassword,
         role: faker.helpers.arrayElement(["student", "instructor"]),
-        udemyCredits: 0,
+        udemyCredits: faker.number.int({ min: 0, max: 100 }),
         wishlistCourses: [],
         coursesBought: [],
         coursesCreated: [],
         orders: [],
         payments: [],
+        subscriptionPlan: {
+          type: faker.helpers.arrayElement(["monthly", "yearly"]),
+          subscriptionPrice: 0,
+          isSubscriptionActive: faker.datatype.boolean(),
+        },
       });
     }
+
     const createdUsers = await User.insertMany(users);
     console.log("Users created successfully.");
 
@@ -80,18 +110,68 @@ const generateUpdatedDummyData = async () => {
           "Intermediate",
           "Advanced",
         ]),
-        courseLanguages: faker.helpers.arrayElement(["English", "Spanish"]),
+        courseLanguages: faker.helpers.arrayElement([
+          "English",
+          "Spanish",
+          "French",
+          "German",
+          "Other",
+        ]),
         courseInstructor: instructor._id,
+        moneyBackGuarantee: faker.date.soon(30),
         averageRating: 0,
         totalRatings: 0,
-        totalStudentsEnrolled: { count: 0, userIds: [] },
+        totalStudentsEnrolled: { students: [], count: 0 },
+        isActive: faker.datatype.boolean(),
         sections: [],
         lessons: [],
         reviews: [],
       });
 
+      // Add unique Sections and Lessons for this course
+      const sectionCount = faker.number.int({ min: 1, max: 5 });
+      for (let j = 0; j < sectionCount; j++) {
+        const section = await Section.create({
+          course: course._id,
+          title: faker.lorem.words(4),
+          totalSectionDuration: 0,
+          totalSectionLessons: 0,
+          lessons: [],
+        });
+        course.sections.push(section._id);
+
+        const lessonCount = faker.datatype.number({ min: 1, max: 10 });
+        for (let k = 0; k < lessonCount; k++) {
+          const lesson = await Lesson.create({
+            section: section._id,
+            title: faker.lorem.words(3),
+            videoUrl: faker.internet.url(),
+            duration: faker.datatype.number({ min: 1, max: 30 }),
+            order: k + 1,
+            resources: [
+              {
+                title: faker.lorem.words(2),
+                url: faker.internet.url(),
+                type: faker.helpers.arrayElement([
+                  "PDF",
+                  "Video",
+                  "Image",
+                  "Link",
+                ]),
+              },
+            ],
+          });
+          section.lessons.push(lesson._id);
+          section.totalSectionDuration += lesson.duration;
+          section.totalSectionLessons += 1;
+          course.lessons.push(lesson._id);
+        }
+        await section.save();
+      }
+      await course.save();
       courses.push(course);
     }
+
     console.log("Courses created successfully.");
 
     // Assign courses to students
@@ -124,22 +204,38 @@ const generateUpdatedDummyData = async () => {
         const section = await Section.create({
           course: course._id,
           title: faker.lorem.words(4),
+          totalSectionDuration: 0,
+          totalSectionLessons: 0,
           lessons: [],
         });
         sections.push(section);
         course.sections.push(section._id);
 
-        const lessonCount = faker.number.int({ min: 1, max: 10 });
+        const lessonCount = faker.datatype.number({ min: 1, max: 10 });
         for (let j = 0; j < lessonCount; j++) {
           const lesson = await Lesson.create({
             section: section._id,
             title: faker.lorem.words(3),
             videoUrl: faker.internet.url(),
-            duration: faker.number.int({ min: 1, max: 30 }),
+            duration: faker.datatype.number({ min: 1, max: 30 }),
             order: j + 1,
+            resources: [
+              {
+                title: faker.lorem.words(2),
+                url: faker.internet.url(),
+                type: faker.helpers.arrayElement([
+                  "PDF",
+                  "Video",
+                  "Image",
+                  "Link",
+                ]),
+              },
+            ],
           });
           lessons.push(lesson);
           section.lessons.push(lesson._id);
+          section.totalSectionDuration += lesson.duration;
+          section.totalSectionLessons += 1;
           course.lessons.push(lesson._id);
         }
         await section.save();
@@ -150,20 +246,26 @@ const generateUpdatedDummyData = async () => {
 
     // Create Reviews
     for (const course of courses) {
-      const reviewCount = faker.number.int({ min: 5, max: 15 });
+      const reviewCount = faker.datatype.number({ min: 5, max: 15 });
       for (let i = 0; i < reviewCount; i++) {
         const reviewer = faker.helpers.arrayElement(studentUsers);
-        const rating = faker.number.float({ min: 1, max: 5, precision: 0.1 });
+        const rating = faker.datatype.float({ min: 1, max: 5, precision: 0.1 });
         const review = await courseReviews.create({
           user: reviewer._id,
           courseReview: course._id,
           rating,
           comment: faker.lorem.sentence(),
-          likes: faker.number.int({ min: 0, max: 50 }),
-          dislikes: faker.number.int({ min: 0, max: 10 }),
+          likes: {
+            count: faker.datatype.number({ min: 0, max: 50 }),
+            users: [],
+          },
+          dislikes: {
+            count: faker.datatype.number({ min: 0, max: 10 }),
+            users: [],
+          },
+          reports: { count: 0, entries: [] },
         });
 
-        reviews.push(review);
         course.reviews.push(review._id);
 
         // Update average rating and total ratings
@@ -176,7 +278,35 @@ const generateUpdatedDummyData = async () => {
       }
     }
 
+    console.log("reviews created successfully.");
+
+    // Create Reported Reviews
+    const reportedReviews = [];
+    for (const review of reviews) {
+      const reportCount = faker.number.int({ min: 0, max: 3 }); // Randomly decide how many reports a review gets
+      for (let i = 0; i < reportCount; i++) {
+        const reporter = faker.helpers.arrayElement(studentUsers); // Random student user as reporter
+        const issueType = faker.helpers.arrayElement(allowedIssueTypes);
+
+        const report = await ReportReview.create({
+          user: reporter._id,
+          review: review._id,
+          issueType,
+          issueDetails: faker.lorem.sentence(10),
+        });
+
+        // Add report to the review's reports field
+        review.reports.entries.push(report._id);
+        review.reports.count += 1;
+
+        reportedReviews.push(report);
+        await review.save();
+      }
+    }
+    console.log("Reported reviews created successfully.");
+
     console.log("All dummy data seeded successfully!");
+
     process.exit();
   } catch (err) {
     console.error("Error generating dummy data:", err);
