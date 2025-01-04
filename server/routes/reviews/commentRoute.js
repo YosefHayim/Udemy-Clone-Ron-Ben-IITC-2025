@@ -13,11 +13,27 @@ const {
 
 const router = express.Router();
 
+router.param("id", (req, res, next, val) => {
+  console.log(`ID is: ${val}`);
+  next();
+});
+
+// Get a comment by its id
 router.get("/:id", grantedAccess, getCommentById);
+
+// Get all comments
 router.get("/", grantedAccess, getAllComments);
+
+// Get comment by a review id
 router.get("/:reviewId", grantedAccess, getCommentsByReviewId);
+
+// Add comment by a review id
 router.post("/:id", grantedAccess, addCommentByReviewId);
+
+// updated comment by id
 router.put("/:id", grantedAccess, updateCommentById);
+
+// delete comment by id
 router.delete("/:id", grantedAccess, deleteCommentById);
 
 module.exports = router;

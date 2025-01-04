@@ -1,88 +1,15 @@
 const mongoose = require("mongoose");
-
-const courseCategories = {
-  Development: {
-    subCategories: {
-      "Web Development": ["JavaScript", "HTML", "CSS", "React", "Node.js"],
-      "Data Science": [
-        "Python",
-        "R",
-        "SQL",
-        "Machine Learning",
-        "Deep Learning",
-      ],
-      "Mobile Development": ["Swift", "Kotlin", "Flutter", "React Native"],
-    },
-  },
-  Business: {
-    subCategories: {
-      Entrepreneurship: ["Business Strategy", "Leadership", "Startups"],
-      Communication: ["Public Speaking", "Writing", "Negotiation"],
-      "Project Management": ["Agile", "Scrum", "PMP", "Risk Management"],
-    },
-  },
-  "Finance & Accounting": {
-    subCategories: {
-      "Accounting & Bookkeeping": [
-        "QuickBooks",
-        "Financial Statements",
-        "Tax Preparation",
-      ],
-      "Investing & Trading": ["Stock Trading", "Cryptocurrency", "Options"],
-      "Personal Finance": [
-        "Budgeting",
-        "Retirement Planning",
-        "Debt Reduction",
-      ],
-    },
-  },
-  "IT & Software": {
-    subCategories: {
-      "IT Certifications": ["AWS Certification", "CompTIA", "Cisco"],
-      "Network & Security": [
-        "Cybersecurity",
-        "Ethical Hacking",
-        "Network Administration",
-      ],
-      Hardware: ["Computer Repair", "IoT", "Raspberry Pi"],
-    },
-  },
-  Design: {
-    subCategories: {
-      "Graphic Design": ["Photoshop", "Illustrator", "Canva"],
-      "UI/UX Design": ["Wireframing", "Prototyping", "Figma", "Sketch"],
-      "3D & Animation": ["Blender", "Maya", "3ds Max"],
-    },
-  },
-  Marketing: {
-    subCategories: {
-      "Digital Marketing": [
-        "SEO",
-        "Google Ads",
-        "Content Marketing",
-        "Social Media Marketing",
-      ],
-      Branding: ["Logo Design", "Brand Identity", "Storytelling"],
-      "Analytics & Automation": [
-        "Google Analytics",
-        "Marketing Automation Tools",
-      ],
-    },
-  },
-  Lifestyle: {
-    subCategories: {
-      "Arts & Crafts": ["Painting", "Drawing", "Knitting"],
-      "Health & Fitness": ["Yoga", "Nutrition", "Personal Training"],
-      "Travel & Hobbies": ["Travel Planning", "Photography", "Gardening"],
-    },
-  },
-};
+const User = require("../users/userModel");
+const courseCategories = require("../../utils/courseCategories");
 
 const courseSchema = new mongoose.Schema(
   {
     courseName: {
       type: String,
-      required: [true, "To register a course, you must provide a name"],
+      required: [
+        true,
+        "To register a course, you must provide a name for the course",
+      ],
     },
     courseDescription: {
       type: String,
@@ -93,18 +20,18 @@ const courseSchema = new mongoose.Schema(
       required: [true, "Course price must be provided"],
       min: [0, "Price cannot be negative"],
     },
-    courseParentCategory: {
+    category: {
       type: String,
       required: [true, "Parent category is required"],
       enum: Object.keys(courseCategories),
     },
-    courseSubCategory: {
+    subCategory: {
       type: String,
       required: [true, "Subcategory is required"],
       validate: {
         validator: function (value) {
           return Object.keys(
-            courseCategories[this.courseParentCategory]?.subCategories || {}
+            courseCategories[this.category]?.subCategories || {}
           ).includes(value);
         },
         message: "Invalid subcategory for the selected parent category",
@@ -116,8 +43,8 @@ const courseSchema = new mongoose.Schema(
       validate: {
         validator: function (value) {
           return (
-            courseCategories[this.courseParentCategory]?.subCategories[
-              this.courseSubCategory
+            courseCategories[this.category]?.subCategories[
+              this.subCategory
             ]?.includes(value) || false
           );
         },
@@ -136,12 +63,8 @@ const courseSchema = new mongoose.Schema(
     },
     courseInstructor: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Instructor",
+      ref: "User",
       required: [true, "Instructor is required"],
-    },
-    analyticsOfCourse: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "CourseAnalytics",
     },
     moneyBackGuarantee: {
       type: Date,
@@ -151,6 +74,22 @@ const courseSchema = new mongoose.Schema(
         },
         message: "Money-back guarantee date must be within 30 days",
       },
+    },
+    averageRating: {
+      type: Number,
+      default: 0,
+    },
+    totalRatings: {
+      type: Number,
+      default: 0,
+    },
+    totalStudentsEnrolled: {
+      students: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+      count: { type: Number, default: 0 },
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
     },
     sections: [
       {
@@ -167,37 +106,55 @@ const courseSchema = new mongoose.Schema(
     reviews: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "reviews",
+        ref: "Review",
       },
     ],
   },
   { timestamps: true }
 );
 
-courseSchema.pre(/^find/, function (next) {
-  this.populate("analyticsOfCourse")
-    .populate("courseInstructor")
-    .populate("sections")
-    .populate("lessons");
+// Pre-save middleware to update student count
+courseSchema.pre("save", function (next) {
+  if (
+    this.totalStudentsEnrolled &&
+    Array.isArray(this.totalStudentsEnrolled.students)
+  ) {
+    this.totalStudentsEnrolled.count =
+      this.totalStudentsEnrolled.students.length;
+  } else {
+    this.totalStudentsEnrolled = { students: [], count: 0 };
+  }
   next();
 });
 
-// Pre-save validation for category relationships
-courseSchema.pre("save", function (next) {
-  const parentCategory = this.courseParentCategory;
-  const subCategories = courseCategories[parentCategory]?.subCategories;
+courseSchema.pre("remove", async function (next) {
+  const Section = mongoose.model("Section");
+  const Lesson = mongoose.model("Lesson");
+  const Review = mongoose.model("Review");
 
-  if (!subCategories || !subCategories[this.courseSubCategory]) {
-    return next(
-      new Error("Invalid subcategory for the selected parent category")
-    );
+  if (this.sections && this.sections.length > 0) {
+    await Section.deleteMany({ _id: { $in: this.sections } });
   }
-
-  const topics = subCategories[this.courseSubCategory];
-  if (!topics.includes(this.courseTopic)) {
-    return next(new Error("Invalid topic for the selected subcategory"));
+  if (this.lessons && this.lessons.length > 0) {
+    await Lesson.deleteMany({ _id: { $in: this.lessons } });
   }
+  if (this.reviews && this.reviews.length > 0) {
+    await Review.deleteMany({ _id: { $in: this.reviews } });
+  }
+  next();
+});
 
+// Pre-find middleware to populate related fields
+courseSchema.pre(/^find/, function (next) {
+  this.populate("reviews")
+    .populate("courseInstructor", "fullName email -_id")
+    .populate({
+      path: "sections",
+      populate: {
+        path: "lessons",
+        options: { retainNullValues: true },
+      },
+    });
   next();
 });
 

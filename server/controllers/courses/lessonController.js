@@ -12,7 +12,7 @@ const getAllLessons = catchAsync(async (req, res, next) => {
   const lessons = await features.query;
 
   if (!lessons || lessons.length === 0) {
-    return next(new Error("No Lesson documents found in database"));
+    return next(createError("No Lesson documents found in the database", 404));
   }
 
   res.status(200).json({
@@ -26,13 +26,13 @@ const getLessonById = catchAsync(async (req, res, next) => {
   const lessonId = req.params.id;
 
   if (!lessonId) {
-    return next(new Error("Please provide id in the url."));
+    return next(createError("Please provide the lesson ID in the URL.", 400));
   }
 
   const findLesson = await Lesson.findOne({ _id: lessonId });
 
   if (!findLesson) {
-    return next(new Error("There is no such lesson in database"));
+    return next(createError("There is no such lesson in the database.", 404));
   }
 
   res.status(200).json({
@@ -45,17 +45,13 @@ const createLesson = catchAsync(async (req, res, next) => {
   const { title, content, section } = req.body;
 
   if (!title || !content || !section) {
-    return next(new Error("One of the fields is missing."));
+    return next(createError("One of the required fields is missing.", 400));
   }
 
-  const newLesson = await Lesson.create({
-    title,
-    content,
-    section,
-  });
+  const newLesson = await Lesson.create({ title, content, section });
 
   if (!newLesson) {
-    return next(new Error("Error occurred during lesson creation."));
+    return next(createError("Error occurred during lesson creation.", 500));
   }
 
   res.status(201).json({
@@ -65,20 +61,27 @@ const createLesson = catchAsync(async (req, res, next) => {
   });
 });
 
-const updateLesson = catchAsync(async (req, res, next) => {
+const updateLessonById = catchAsync(async (req, res, next) => {
   const lessonId = req.params.id;
+  const { title, content, section } = req.body;
 
   if (!lessonId) {
-    return next(new Error("Please provide the lesson ID in the URL."));
+    return next(createError("Please provide the lesson ID in the URL.", 400));
   }
 
-  const updatedLesson = await Lesson.findByIdAndUpdate(lessonId, req.body, {
-    new: true,
-    runValidators: true,
-  });
+  const updatedLesson = await Lesson.findByIdAndUpdate(
+    lessonId,
+    title,
+    content,
+    section,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
 
   if (!updatedLesson) {
-    return next(new Error("Error occurred during lesson update."));
+    return next(createError("Error occurred during lesson update.", 404));
   }
 
   res.status(200).json({
@@ -88,17 +91,17 @@ const updateLesson = catchAsync(async (req, res, next) => {
   });
 });
 
-const deleteLesson = catchAsync(async (req, res, next) => {
+const deleteLessonById = catchAsync(async (req, res, next) => {
   const lessonId = req.params.id;
 
   if (!lessonId) {
-    return next(new Error("Please provide the lesson ID in the URL."));
+    return next(createError("Please provide the lesson ID in the URL.", 400));
   }
 
   const deletedLesson = await Lesson.findByIdAndDelete(lessonId);
 
   if (!deletedLesson) {
-    return next(new Error("Error occurred during lesson deletion."));
+    return next(createError("Error occurred during lesson deletion.", 404));
   }
 
   res.status(204).json({
@@ -111,6 +114,6 @@ module.exports = {
   getAllLessons,
   getLessonById,
   createLesson,
-  updateLesson,
-  deleteLesson,
+  updateLessonById,
+  deleteLessonById,
 };

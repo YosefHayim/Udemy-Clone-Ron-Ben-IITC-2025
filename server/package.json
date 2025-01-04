@@ -4,9 +4,10 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "start:dev": "nodemon app.js",
-    "start:prod": "node app.js",
-    "seed": "node seed.js"
+    "start": "nodemon app.js",
+    "dev": "node app.js",
+    "seed": "node seedDb.js",
+    "delete": "node deleteDb.js"
   },
   "keywords": [],
   "author": "",

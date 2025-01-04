@@ -7,6 +7,11 @@ const courseReviewsSchema = new mongoose.Schema(
       ref: "User",
       required: [true, "Review must belong to a user."],
     },
+    courseReview: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Course",
+      required: [true, "ID of a course must be provided"],
+    },
     rating: {
       type: Number,
       required: [true, "You must provide a rating between 1 and 5."],
@@ -20,23 +25,20 @@ const courseReviewsSchema = new mongoose.Schema(
       maxLength: [250, "Comment cannot exceed 250 characters."],
     },
     likes: {
-      type: Number,
-      default: 0,
-      min: [0, "Likes cannot be negative."],
+      users: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+      count: { type: Number, default: 0 },
     },
     dislikes: {
-      type: Number,
-      default: 0,
-      min: [0, "Dislikes cannot be negative."],
+      users: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+      count: { type: Number, default: 0 },
+    },
+    reports: {
+      entries: [{ type: mongoose.Schema.Types.ObjectId, ref: "ReportReview" }],
+      count: { type: Number, default: 0 },
     },
   },
   { timestamps: true }
 );
-
-courseReviewsSchema.pre(/^find/, function (next) {
-  this.populate("user");
-  next();
-});
 
 const courseReviews = mongoose.model("Review", courseReviewsSchema);
 module.exports = courseReviews;

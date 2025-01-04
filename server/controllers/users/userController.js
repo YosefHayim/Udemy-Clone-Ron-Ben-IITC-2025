@@ -3,6 +3,7 @@ const User = require("../../models/users/userModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const cookieOptions = require("../../utils/cookieOptions");
 const sendEmail = require("../../utils/email");
+const createError = require("../../utils/errorFn");
 const { catchAsync } = require("../../utils/wrapperFn");
 const { generateToken } = require("../authorization/authController");
 
@@ -16,25 +17,27 @@ const getAllUsers = catchAsync(async (req, res, next) => {
   const users = await features.query;
 
   if (!users || users.length === 0) {
-    return next(new Error("No Users documents found in database"));
+    return next(createError("No users documents found in the database", 404));
   }
 
-  res
-    .status(200)
-    .json({ status: "Success", totalUsers: users.length, response: users });
+  res.status(200).json({
+    status: "Success",
+    totalUsers: users.length,
+    response: users,
+  });
 });
 
 const getUserById = catchAsync(async (req, res, next) => {
   const userId = req.params.id;
 
   if (!userId) {
-    return next(new Error("Please provide id in the url."));
+    return next(createError("Please provide ID in the URL.", 400));
   }
 
   const findUser = await User.findOne({ _id: userId });
 
   if (!findUser) {
-    return next(new Error("There is no such user in database"));
+    return next(createError("There is no such user in the database.", 404));
   }
 
   res.status(200).json({
@@ -43,37 +46,35 @@ const getUserById = catchAsync(async (req, res, next) => {
   });
 });
 
-const SignUp = catchAsync(async (req, res, next) => {
-  const { fName, lName, email, password, passwordConfirm } = req.body;
+const signUp = catchAsync(async (req, res, next) => {
+  const { fullName, email, password } = req.body;
 
   // If one of the fields is missing
-  if (!fName || !lName || !email || !password || !passwordConfirm) {
-    return next(new Error("One of the fields is missing."));
+  if (!fullName || !email || !password) {
+    return next(createError("One of the required fields is missing.", 400));
   }
 
   // Create user with email token and expiration
   const newUser = await User.create({
-    fName,
-    lName,
+    fullName,
     email,
     password,
-    passwordConfirm,
   });
 
   if (!newUser) {
-    return next(new Error("Error occurred during user creation."));
+    return next(createError("Error occurred during user creation.", 500));
   }
 
   // // Send confirmation email
-  const mailOptions = {
-    from: "robustBackend@gmail.com",
-    to: email,
-    subject: `Hi ${fName} ${lName}, welcome aboard`,
-    html: `<h1>Welcome to the robust backend website, ${fName}!</h1>
-    <p> your email address by providing this code: http://localhost:3000/api/user/?token=${newUser.emailVerificationToken}</p>`,
-  };
+  // const mailOptions = {
+  //   from: "robustBackend@gmail.com",
+  //   to: email,
+  //   subject: `Hi ${fName} ${lName}, welcome aboard`,
+  //   html: `<h1>Welcome to the robust backend website, ${fName}!</h1>
+  //   <p>Verify your email address by providing this code: http://localhost:3000/api/user/?token=${newUser.emailVerificationToken}</p>`,
+  // };
 
-  await sendEmail(mailOptions);
+  // await sendEmail(mailOptions);
 
   const token = generateToken(newUser._id);
   res.cookie("cookie", token, cookieOptions);
@@ -88,23 +89,16 @@ const SignUp = catchAsync(async (req, res, next) => {
 const login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
-  // Check if email and password exist
   if (!email || !password) {
-    return next(new Error("Email or password is missing."));
+    return next(createError("Email or password is missing.", 400));
   }
 
-  // Find user by email and include password
-  const isFoundUser = await User.findOne({ email }).select("+password");
+  const isFoundUser = await User.findOne({ email });
 
-  if (!isFoundUser) {
-    return next(new Error("Invalid email or password."));
+  if (!isFoundUser || isFoundUser.password !== password) {
+    return next(createError("Invalid email or password.", 401));
   }
 
-  // Check if password is correct
-  if (isFoundUser.password === password) {
-  }
-
-  // Generating the token and sending to client
   const token = generateToken(isFoundUser._id);
   res.cookie("cookie", token, cookieOptions);
 
@@ -146,7 +140,7 @@ const confirmEmailAddress = catchAsync(async (req, res, next) => {
     sendEmail({
       to: req.user.email,
       subject: "Your account has been verified",
-      html: `<p>enjoy our robust backend platform`,
+      html: `<p>enjoy udemy`,
     });
 
     res.status(200).json({
@@ -157,13 +151,13 @@ const confirmEmailAddress = catchAsync(async (req, res, next) => {
 });
 
 const logout = catchAsync(async (req, res, next) => {
-  // If user enter this route than we clear the cookie with "clear"
   res.cookie("cookie", "clear", {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
   });
   res.status(200).json({
     status: "success",
+    message: "User logged out successfully.",
   });
 });
 
@@ -171,21 +165,27 @@ const updatePassword = catchAsync(async (req, res, next) => {
   const { currentPassword, newPassword, confirmNewPassword } = req.body;
 
   if (!currentPassword || !newPassword || !confirmNewPassword) {
-    return next(new Error("One of the fields is missing."));
+    return next(createError("One of the fields is missing.", 400));
   }
 
-  // Call the instance method on the user
-  await req.user.updatePassword(
+  const newUserPw = await req.user.updatePassword(
     currentPassword,
     newPassword,
     confirmNewPassword
   );
 
+  if (!newUserPw) {
+    return next(
+      createError("Failed to update the password. Please try again.", 500)
+    );
+  }
+
   sendEmail({
     to: req.user.email,
     subject: "Your account password has been updated",
-    html: `<p>enjoy our robust backend platform`,
+    html: `<p>Enjoy our robust backend platform</p>`,
   });
+
   res.status(200).json({
     status: "success",
     message: "New password has been successfully set.",
@@ -193,18 +193,18 @@ const updatePassword = catchAsync(async (req, res, next) => {
 });
 
 const deactivateUser = catchAsync(async (req, res, next) => {
-  const findUser = await User.findById(req.user._id);
+  const findUser = req.user;
 
-  if (!findUser) {
-    return next(new Error("The user doesn't exist in database."));
+  if (!findUser || !findUser._id) {
+    return next(createError("The user doesn't exist in the database.", 404));
   }
-  findUser.active = false;
 
+  findUser.active = false;
   await findUser.save({ validateBeforeSave: false });
 
   res.status(200).json({
     status: "success",
-    response: "User has been successfully de-activated",
+    message: "User has been successfully deactivated.",
   });
 });
 
@@ -212,10 +212,9 @@ const reactiveUser = catchAsync(async (req, res, next) => {
   const email = req.body.email.trim();
 
   if (!email) {
-    return next(new Error(`Wrong email provided: ${email}`));
+    return next(createError("Wrong email provided.", 400));
   }
 
-  // Find inactive user explicitly
   const findUser = await User.findOne({
     email,
     active: false,
@@ -224,48 +223,44 @@ const reactiveUser = catchAsync(async (req, res, next) => {
 
   if (!findUser) {
     return next(
-      new Error(`There is no user in the database with this email: ${email}`)
+      createError(`No inactive user found with this email: ${email}`, 404)
     );
   }
 
-  // Reactivate the user
   findUser.active = true;
   await findUser.save({ validateBeforeSave: false });
 
   res.status(200).json({
     status: "success",
-    response: "User has been successfully reactivated",
+    response: "User has been successfully reactivated.",
   });
 });
 
 const resendEmailVerificationToken = catchAsync(async (req, res, next) => {
-  const { email } = req.body;
+  const email = req.body.email;
 
   if (!email) {
     return next(
-      new Error(
-        "You must provide an email to receive a new verification token."
+      createError(
+        "You must provide an email to receive a new verification token.",
+        400
       )
     );
   }
 
-  // Find the user by email
   const findUser = await User.findOne({ email });
 
   if (!findUser) {
-    return next(new Error("No such email exists."));
+    return next(createError("No such email exists.", 404));
   }
 
-  // Check if the email is already verified
   if (findUser.emailVerified) {
-    return next(new Error("Email is already verified."));
+    return next(createError("Email is already verified.", 400));
   }
 
-  // Generate a new email verification token
   findUser.generateEmailVerificationToken();
   await findUser.save();
 
-  // Send the new token to the user's email (pseudo-code for email sending)
   sendEmail({
     to: findUser.email,
     subject: "Verify Your Email",
@@ -282,36 +277,213 @@ const resendEmailVerificationToken = catchAsync(async (req, res, next) => {
 
 const joinCourseById = catchAsync(async (req, res, next) => {
   const courseId = req.params.id;
+  const user = req.user;
 
   if (!courseId) {
-    return next(new Error("Please provide a course ID in the URL."));
+    return next(
+      createError("Please provide a valid course ID in the URL.", 400)
+    );
   }
 
-  const isCourseExist = await Course.findById(courseId);
+  const course = await Course.findById(courseId);
 
-  if (!isCourseExist) {
-    return next(new Error(`No course exists with this ID: ${courseId}`));
+  if (!course) {
+    return next(createError(`No course exists with this ID: ${courseId}`, 404));
   }
 
-  if (isCourseExist.courseBought.includes(courseId)) {
-    return next(new Error("You have already joined this course."));
+  if (user.coursesCreated.includes(courseId)) {
+    return next(
+      createError(
+        "You cannot leave your own course. Please use another route to deactivate it.",
+        403
+      )
+    );
   }
 
-  isCourseExist.courseBought.push(courseId);
-  await isCourseExist.save();
+  if (user.coursesBought.includes(courseId)) {
+    return next(createError("You have already joined this course.", 400));
+  }
 
-  res.status(200).json({
-    status: "Success",
-    response: `You have successfully joined the course ${isCourseExist.courseName}`,
-    data: isCourseExist,
+  // Add user to course enrollment
+  course.totalStudentsEnrolled.students.push(user._id);
+  await course.save(); // `post('save')` will update the count automatically
+
+  // Add course to user's purchased courses
+  user.coursesBought.push(courseId);
+  await user.save();
+
+  res.status(201).json({
+    status: "success",
+    message: `You have successfully joined the course ${course.courseName}`,
   });
 });
 
+const leaveCourseById = catchAsync(async (req, res, next) => {
+  const courseId = req.params.id;
+  const user = req.user;
+
+  if (!courseId) {
+    return next(createError("Please provide a course ID in the URL.", 400));
+  }
+
+  const course = await Course.findById(courseId);
+
+  if (!course) {
+    return next(createError(`No course exists with this ID: ${courseId}`, 404));
+  }
+
+  if (!user.coursesBought.includes(courseId)) {
+    return next(createError("You are not enrolled in this course.", 400));
+  }
+
+  if (user.coursesCreated.includes(courseId)) {
+    return next(
+      createError(
+        "You cannot leave your own course. Please use another route to deactivate it.",
+        403
+      )
+    );
+  }
+
+  // Remove user from course enrollment
+  course.totalStudentsEnrolled.students =
+    course.totalStudentsEnrolled.students.filter(
+      (id) => id.toString() !== user._id.toString()
+    );
+  await course.save(); // `post('save')` will update the count automatically
+
+  // Remove course from user's purchased courses
+  user.coursesBought = user.coursesBought.filter(
+    (id) => id.toString() !== courseId.toString()
+  );
+  await user.save();
+
+  res.status(200).json({
+    status: "success",
+    response: `You have successfully left the course ${course.courseName}`,
+  });
+});
+
+const updateUserInfo = catchAsync(async (req, res, next) => {
+  const {
+    fullName,
+    headline,
+    biography,
+    preferredLanguage,
+    website,
+    xPlatform,
+    facebook,
+    linkedin,
+    youtube,
+  } = req.body;
+
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      fullName,
+      headline,
+      biography,
+      preferredLanguage,
+      links: {
+        website,
+        xPlatform,
+        facebook,
+        linkedin,
+        youtube,
+      },
+    },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  if (!updatedUser) {
+    return next(createError("User not found.", 404));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      user: updatedUser,
+    },
+  });
+});
+
+const updateProfilePic = catchAsync(async (req, res, next) => {
+  const { profilePic } = req.body;
+
+  if (!profilePic) {
+    return next(
+      createError(
+        "Please provide a URL of the profile picture in the body.",
+        400
+      )
+    );
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user._id,
+    { profilePic },
+    { new: true, runValidators: true }
+  );
+
+  if (!updatedUser) {
+    return next(createError("User not found.", 404));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      user: updatedUser,
+    },
+  });
+});
+
+const toggleCourseWishlist = catchAsync(async (req, res, next) => {
+  const courseId = req.params.id;
+
+  if (!courseId) {
+    return next(createError("Please provide a course ID in the URL.", 400));
+  }
+
+  const course = await Course.findById(courseId);
+
+  if (!course) {
+    return next(createError("Course not found.", 404));
+  }
+
+  const isInWishlist = req.user.wishlistCourses.includes(courseId);
+
+  if (isInWishlist) {
+    req.user.wishlistCourses = req.user.wishlistCourses.filter(
+      (wishlistId) => wishlistId.toString() !== courseId
+    );
+    await req.user.save();
+    res.status(200).json({
+      status: "success",
+      message: "Course removed from wishlist.",
+      wishlistCourses: req.user.wishlistCourses,
+    });
+  } else {
+    req.user.wishlistCourses.push(courseId);
+    await req.user.save();
+    res.status(200).json({
+      status: "success",
+      message: "Course added to wishlist.",
+      wishlistCourses: req.user.wishlistCourses,
+    });
+  }
+});
+
 module.exports = {
+  toggleCourseWishlist,
+  updateProfilePic,
   joinCourseById,
+  leaveCourseById,
   logout,
   login,
-  SignUp,
+  signUp,
   getAllUsers,
   updatePassword,
   deactivateUser,
@@ -319,4 +491,5 @@ module.exports = {
   getUserById,
   confirmEmailAddress,
   resendEmailVerificationToken,
+  updateUserInfo,
 };

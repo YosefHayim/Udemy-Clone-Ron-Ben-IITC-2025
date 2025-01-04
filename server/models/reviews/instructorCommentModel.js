@@ -2,12 +2,17 @@ const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema(
   {
+    review: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
+      required: [true, "Comment must be associated with a review of a user."],
+    },
     student: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: [
         true,
-        "Comment must be associated with an student you reply to.",
+        "Comment must be associated with an user student you reply to.",
       ],
     },
     comment: {
@@ -17,17 +22,12 @@ const commentSchema = new mongoose.Schema(
     },
     instructor: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Instructor",
-      required: [true, "Comment must be associated with an instructor."],
+      ref: "User",
+      required: [true, "Comment must be associated with a user instructor."],
     },
   },
   { timestamps: true }
 );
-
-commentSchema.pre(/^find/, function (next) {
-  this.populate("instructor").populate("student");
-  next();
-});
 
 const InstructorComment = mongoose.model("Comment", commentSchema);
 module.exports = InstructorComment;

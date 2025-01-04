@@ -1,5 +1,6 @@
 const Comment = require("../../models/reviews/instructorCommentModel");
 const APIFeatures = require("../../utils/apiFeatures");
+const createError = require("../../utils/errorFn");
 const { catchAsync } = require("../../utils/wrapperFn");
 
 const getAllComments = catchAsync(async (req, res, next) => {
@@ -12,7 +13,9 @@ const getAllComments = catchAsync(async (req, res, next) => {
   const comments = await features.query;
 
   if (!comments || comments.length === 0) {
-    return next(new Error("No comments documents found in database"));
+    return next(
+      createError("No comments documents found in the database", 404)
+    );
   }
 
   res.status(200).json({
@@ -22,31 +25,74 @@ const getAllComments = catchAsync(async (req, res, next) => {
   });
 });
 
+const getCommentById = catchAsync(async (req, res, next) => {
+  const commentId = req.params.id;
+
+  if (!commentId) {
+    return next(createError("No comment ID provided in the url", 400));
+  }
+
+  const findComment = await Comment.findById(commentId);
+
+  if (!findComment) {
+    return next(createError("There is no such comment in the database.", 404));
+  }
+
+  res.status(200).json({
+    status: "success",
+    response: findComment,
+  });
+});
+
+const getCommentsByReviewId = catchAsync(async (req, res, next) => {
+  const Review = require("../../models/reviewModel");
+  const reviewId = req.params.reviewId;
+
+  if (!reviewId) {
+    return next(createError("Please provide review ID in the url", 400));
+  }
+
+  const findReview = await Review.findById(reviewId);
+
+  if (!findReview) {
+    return next(createError("There is no such comment in the database.", 404));
+  }
+
+  res.status(200).json({
+    status: "success",
+    response: findReview,
+  });
+});
+
 const addCommentByReviewId = catchAsync(async (req, res, next) => {
-  // Get the user ID
   const userId = req.user._id;
 
   if (req.user._id.toString() === userId) {
-    return next(new Error(`You can't add comment to yourself reviews.`));
+    return next(createError("You can't add comment to yourself reviews.", 403));
   }
 
   const reviewId = req.params.id;
 
   if (!reviewId) {
-    return next(new Error(`Please provide in the url the reviewId.`));
+    return next(createError("Please provide review ID in the url", 400));
   }
 
   const comment = req.body.comment;
 
   if (!comment) {
-    return next(new Error(`You cant reply to a review with empty comment.`));
+    return next(
+      createError("Please provide comment key with value in the body", 400)
+    );
   }
 
   const newComment = await Comment.create({ comment, reviewId });
 
   if (!newComment) {
     return next(
-      new Error(`Error occurred while adding review to user ID: ${userId}`)
+      createError(
+        `Error occurred while creating a comment on a review to user ID: ${userId}`,
+        409
+      )
     );
   }
 
@@ -57,31 +103,12 @@ const addCommentByReviewId = catchAsync(async (req, res, next) => {
   });
 });
 
-const deleteCommentById = catchAsync(async (req, res, next) => {
-  const commentId = req.params.id;
-
-  if (!commentId) {
-    return next(new Error(`Please provide commentId in the url.`));
-  }
-
-  const findComment = await Comment.findByIdAndDelete(commentId);
-
-  if (!findComment) {
-    return next(new Error(`There is no comment with ID: ${commentId}.`));
-  }
-
-  res.status(200).json({
-    status: "success",
-    response: `Comment ID: ${commentId} has been successfully deleted`,
-  });
-});
-
 const updateCommentById = catchAsync(async (req, res, next) => {
   const comment = req.body.comment;
   const commentId = req.params.id;
 
   if (!commentId) {
-    return next(new Error(`Please provide commentId in the URL.`));
+    return next(createError("Please provide comment ID in the url", 400));
   }
 
   const updatedComment = await Comment.findByIdAndUpdate(
@@ -91,7 +118,7 @@ const updateCommentById = catchAsync(async (req, res, next) => {
   );
 
   if (!updatedComment) {
-    return next(new Error(`There is no comment with ID: ${commentId}.`));
+    return next(createError(`There is no comment with ID: ${commentId}.`, 404));
   }
 
   res.status(200).json({
@@ -101,45 +128,22 @@ const updateCommentById = catchAsync(async (req, res, next) => {
   });
 });
 
-const getCommentsByReviewId = catchAsync(async (req, res, next) => {
-  const Review = require("../models/reviewModel");
-
-  const reviewId = req.params.reviewId;
-
-  if (!reviewId) {
-    return next(new Error(`Please provide reviewId in the url.`));
-  }
-
-  const findReview = await Review.findById(reviewId);
-
-  if (!findReview) {
-    return next(new Error(`There is no review with ID: ${reviewId}.`));
-  }
-
-  res.status(200).json({
-    status: "success",
-    response: findReview,
-  });
-});
-
-const getCommentById = catchAsync(async (req, res, next) => {
+const deleteCommentById = catchAsync(async (req, res, next) => {
   const commentId = req.params.id;
 
   if (!commentId) {
-    return next(new Error(`Please provide commentId in the url.`));
+    return next(createError("Please provide comment ID in the url", 400));
   }
 
-  const findComment = await Comment.findById(commentId);
+  const findComment = await Comment.findByIdAndDelete(commentId);
 
   if (!findComment) {
-    return next(
-      new Error(`There is no such comment with this ID: ${commentId}.`)
-    );
+    return next(createError(`There is no comment with ID: ${commentId}.`, 404));
   }
 
   res.status(200).json({
     status: "success",
-    response: findComment,
+    response: `Comment ID: ${commentId} has been successfully deleted`,
   });
 });
 
