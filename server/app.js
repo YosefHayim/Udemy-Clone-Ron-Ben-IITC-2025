@@ -39,7 +39,7 @@ app.use(morgan("dev"));
 app.get("/", (req, res) => {
   res.status(200).json({
     status: "success",
-    response: `Welcome to the robust server`,
+    response: `Welcome to the udemy clone backend server`,
   });
 });
 
