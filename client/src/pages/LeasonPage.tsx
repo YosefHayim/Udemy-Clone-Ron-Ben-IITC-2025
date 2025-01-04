@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import ReactPlayer from "react-player";
 import Layout from "../components/leason/Layout";
 import course from "@/db";
 import LessonRoutes from "../routes/LeasonRoutes"; // Import LessonRoutes component
+import VideoPlayer from "../components/leason/VideoPlayer"; // Import VideoPlayer component
 
 const LessonPage: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Get the lesson ID from the route params
@@ -25,21 +25,13 @@ const LessonPage: React.FC = () => {
   }
 
   return (
-    
     <Layout>
-
-      <div className="w-full max-w-screen-lg mx-auto">
-        <ReactPlayer
-          url={lesson.videoUrl}
-          controls={true}
-          playing={false}
-          width="100%"
-          height="auto"
-        />
+      <div className="w-full min-w-screen-lg mx-auto">
+        {/* Use the VideoPlayer component */}
+        <VideoPlayer videoUrl={lesson.videoUrl} />
       </div>
-            <LessonRoutes />
+      <LessonRoutes />
     </Layout>
-    
   );
 };
 

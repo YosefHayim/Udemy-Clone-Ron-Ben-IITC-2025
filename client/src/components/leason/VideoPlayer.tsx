@@ -1,49 +1,29 @@
-import React from 'react';
-import ReactPlayer from 'react-player';
+import React from "react";
+import ReactPlayer from "react-player";
 
 interface VideoPlayerProps {
-  url: string;
-  playing?: boolean;
+  videoUrl: string;
   controls?: boolean;
-  loop?: boolean;
-  muted?: boolean;
-  volume?: number;
-  onReady?: () => void;
-  onStart?: () => void;
-  onPause?: () => void;
-  onEnded?: () => void;
-  onError?: (error: any) => void;
+  playing?: boolean;
+  width?: string;
+  height?: string;
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
-  url,
-  playing = false,
+  videoUrl,
   controls = true,
-  loop = false,
-  muted = false,
-  volume = 0.8,
-  onReady,
-  onStart,
-  onPause,
-  onEnded,
-  onError,
+  playing = false,
+  width = "100%",
+  height = "auto",
 }) => {
   return (
-    <div className="video-player-wrapper">
+    <div className="video-player">
       <ReactPlayer
-        url={url}
-        playing={playing}
+        url={videoUrl}
         controls={controls}
-        loop={loop}
-        muted={muted}
-        volume={volume}
-        onReady={onReady}
-        onStart={onStart}
-        onPause={onPause}
-        onEnded={onEnded}
-        onError={onError}
-        width="100%"
-        height="100%"
+        playing={playing}
+        width={width}
+        height={height}
       />
     </div>
   );
