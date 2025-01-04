@@ -50,7 +50,7 @@ const signUp = catchAsync(async (req, res, next) => {
 
   // If one of the fields is missing
   if (!fullName || !email || !password) {
-    return next(new Error("One of the fields is missing."));
+    return next(createError("One of the required fields is missing.", 400));
   }
 
   // Create user with email token and expiration
@@ -61,7 +61,7 @@ const signUp = catchAsync(async (req, res, next) => {
   });
 
   if (!newUser) {
-    return next(new Error("Error occurred during user creation."));
+    return next(createError("Error occurred during user creation.", 500));
   }
 
   // // Send confirmation email
@@ -70,7 +70,7 @@ const signUp = catchAsync(async (req, res, next) => {
   //   to: email,
   //   subject: `Hi ${fName} ${lName}, welcome aboard`,
   //   html: `<h1>Welcome to the robust backend website, ${fName}!</h1>
-  //   <p> your email address by providing this code: http://localhost:3000/api/user/?token=${newUser.emailVerificationToken}</p>`,
+  //   <p>Verify your email address by providing this code: http://localhost:3000/api/user/?token=${newUser.emailVerificationToken}</p>`,
   // };
 
   // await sendEmail(mailOptions);
@@ -139,7 +139,7 @@ const confirmEmailAddress = catchAsync(async (req, res, next) => {
     sendEmail({
       to: req.user.email,
       subject: "Your account has been verified",
-      html: `<p>enjoy our robust backend platform`,
+      html: `<p>enjoy udemy`,
     });
 
     res.status(200).json({
@@ -167,11 +167,17 @@ const updatePassword = catchAsync(async (req, res, next) => {
     return next(createError("One of the fields is missing.", 400));
   }
 
-  await req.user.updatePassword(
+  const newUserPw = await req.user.updatePassword(
     currentPassword,
     newPassword,
     confirmNewPassword
   );
+
+  if (!newUserPw) {
+    return next(
+      createError("Failed to update the password. Please try again.", 500)
+    );
+  }
 
   sendEmail({
     to: req.user.email,
@@ -186,9 +192,9 @@ const updatePassword = catchAsync(async (req, res, next) => {
 });
 
 const deactivateUser = catchAsync(async (req, res, next) => {
-  const findUser = await User.findById(req.user._id);
+  const findUser = req.user;
 
-  if (!findUser) {
+  if (!findUser || !findUser._id) {
     return next(createError("The user doesn't exist in the database.", 404));
   }
 
@@ -197,7 +203,7 @@ const deactivateUser = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
-    response: "User has been successfully deactivated.",
+    message: "User has been successfully deactivated.",
   });
 });
 
@@ -230,33 +236,30 @@ const reactiveUser = catchAsync(async (req, res, next) => {
 });
 
 const resendEmailVerificationToken = catchAsync(async (req, res, next) => {
-  const { email } = req.body;
+  const email = req.body.email;
 
   if (!email) {
     return next(
-      new Error(
-        "You must provide an email to receive a new verification token."
+      createError(
+        "You must provide an email to receive a new verification token.",
+        400
       )
     );
   }
 
-  // Find the user by email
   const findUser = await User.findOne({ email });
 
   if (!findUser) {
-    return next(new Error("No such email exists."));
+    return next(createError("No such email exists.", 404));
   }
 
-  // Check if the email is already verified
   if (findUser.emailVerified) {
-    return next(new Error("Email is already verified."));
+    return next(createError("Email is already verified.", 400));
   }
 
-  // Generate a new email verification token
   findUser.generateEmailVerificationToken();
   await findUser.save();
 
-  // Send the new token to the user's email (pseudo-code for email sending)
   sendEmail({
     to: findUser.email,
     subject: "Verify Your Email",
@@ -410,7 +413,10 @@ const updateProfilePic = catchAsync(async (req, res, next) => {
 
   if (!profilePic) {
     return next(
-      new Error(`Please provide a URL of the profile picture in the body.`)
+      createError(
+        "Please provide a URL of the profile picture in the body.",
+        400
+      )
     );
   }
 
@@ -421,7 +427,7 @@ const updateProfilePic = catchAsync(async (req, res, next) => {
   );
 
   if (!updatedUser) {
-    return next(new Error("User not found"));
+    return next(createError("User not found.", 404));
   }
 
   res.status(200).json({
