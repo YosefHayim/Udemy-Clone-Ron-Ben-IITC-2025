@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Layout from "../components/leason/Layout";
+import Layout from "../../components/Lesson/Layout";
 import course from "@/db";
-import LessonRoutes from "../routes/LeasonRoutes"; // Import LessonRoutes component
-import VideoPlayer from "../components/leason/VideoPlayer"; // Import VideoPlayer component
+import LessonRoutes from "../../routes/LessonRoutes";
+import VideoPlayer from "../../components/Lesson/VideoPlayer";
 
 const LessonPage: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Get the lesson ID from the route params

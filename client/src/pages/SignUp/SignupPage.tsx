@@ -1,4 +1,4 @@
-import SignUp from "@/components/ui/Signup";
+import SignUp from "@/components/Signup/Signup";
 
 const LoginPage = () => {
     return (

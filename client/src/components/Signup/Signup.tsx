@@ -1,4 +1,4 @@
-import signup from '../../assets/images/signup.png';
+import signup from "/images/signup.png";
 
 const SignUp = () => {
   return (
@@ -52,10 +52,10 @@ const SignUp = () => {
                 className="w-4 h-4 border border-gray-400 rounded focus:ring-2 focus:ring-gray-600 bg-white text-gray-900 checked: checked:border-black"
               />
               <label htmlFor="offers" className="text-gray-800 text-sm">
-                I want to receive special offers, personalized recommendations, and learning tips.
+                I want to receive special offers, personalized recommendations,
+                and learning tips.
               </label>
             </div>
-
 
             {/* Button */}
             <button
@@ -67,21 +67,22 @@ const SignUp = () => {
 
             {/* Privacy Policy */}
             <p className="text-sm text-gray-500 mt-2">
-              By signing up, you agree to our{' '}
+              By signing up, you agree to our{" "}
               <a href="/terms" className="text-purple-600 hover:underline">
                 Terms of Use
-              </a>{' '}
-              and{' '}
+              </a>{" "}
+              and{" "}
               <a href="/privacy" className="text-purple-600 hover:underline">
                 Privacy Policy
-              </a>.
+              </a>
+              .
             </p>
           </form>
 
           {/* Link to Login */}
           <div className="mt-6 text-center">
             <a href="/login" className="text-gray-800">
-              Already have an account?{' '}
+              Already have an account?{" "}
               <span className="text-purple-600 hover:underline">Log in</span>
             </a>
           </div>

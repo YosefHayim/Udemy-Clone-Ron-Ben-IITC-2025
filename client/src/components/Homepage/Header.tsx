@@ -1,4 +1,3 @@
-// import logo from "../../../assets/images/logo.png";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { MdOutlineLanguage } from "react-icons/md";
 import { MdOutlineSearch } from "react-icons/md";

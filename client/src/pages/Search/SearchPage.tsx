@@ -1,5 +1,5 @@
 import { IoFilterOutline } from "react-icons/io5";
-import courseImgPlaceholder from "../assets//images/image.png";
+import courseImgPlaceholder from "/images/image.png";
 import { LuDot } from "react-icons/lu";
 
 const SearchPage = () => {

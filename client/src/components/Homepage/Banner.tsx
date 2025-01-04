@@ -1,17 +1,19 @@
 import React, { useState } from "react";
-import banner1 from "../../../assets/images/banner1.png";
-import banner2 from "../../../assets/images/banner2.png";
+import banner1 from "/images/banner1.png";
+import banner2 from "/images/banner2.png";
 
 const slides = [
   {
     title: "Make 2025 the year of your career",
-    description: "The skills you need are on sale from ₪39.90. [Sale ends January 10]",
+    description:
+      "The skills you need are on sale from ₪39.90. [Sale ends January 10]",
     button: null,
     img: banner1,
   },
   {
     title: "Certifications — the ultimate career move",
-    description: "Prepare for certification exams in COMPTIA, AWS Cloud, and so much more — on sale now.",
+    description:
+      "Prepare for certification exams in COMPTIA, AWS Cloud, and so much more — on sale now.",
     button: "Find courses",
     img: banner2,
   },
@@ -37,8 +39,14 @@ const Banner = () => {
       <div className="absolute inset-0 flex">
         {slides.map((slide, index) => {
           const isActive = index === currentSlide;
-          const isPrevious = direction === "left" && index === (currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
-          const isNext = direction === "right" && index === (currentSlide === slides.length - 1 ? 0 : currentSlide + 1);
+          const isPrevious =
+            direction === "left" &&
+            index ===
+              (currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
+          const isNext =
+            direction === "right" &&
+            index ===
+              (currentSlide === slides.length - 1 ? 0 : currentSlide + 1);
 
           return (
             <div
@@ -62,7 +70,9 @@ const Banner = () => {
                 <h1 className="text-4xl font-bold text-gray-900 leading-tight">
                   {slide.title}
                 </h1>
-                <p className="text-lg text-gray-600 mt-4">{slide.description}</p>
+                <p className="text-lg text-gray-600 mt-4">
+                  {slide.description}
+                </p>
                 {slide.button && (
                   <button className="mt-4 px-6 py-2 bg-black text-white rounded font-bold hover:opacity-80">
                     {slide.button}
