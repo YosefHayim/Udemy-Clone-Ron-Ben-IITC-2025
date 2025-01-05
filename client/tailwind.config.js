@@ -83,6 +83,9 @@ export default {
         btnHoverColor: {
           DEFAULT: "#8710d8",
         },
+        borderCommercial: {
+          DEFAULT: "#d1d7dc",
+        },
       },
       fontSize: {
         searchTitle: {

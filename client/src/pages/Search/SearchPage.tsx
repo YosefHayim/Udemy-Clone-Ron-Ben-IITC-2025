@@ -2,6 +2,7 @@ import SearchCourseCard from "@/pages/Search/SearchCourseCard/SearchCourseCard";
 import SidebarFilter from "./SidebarFilter/SidebarFilter";
 import FilterNSort from "./SidebarFilter/FilterNSort/FilterNSort";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
+import Commercial from "./Commercial/Commercial";
 
 const SearchPage = () => {
   return (
@@ -14,15 +15,19 @@ const SearchPage = () => {
         <div>
           <SidebarFilter />
         </div>
+
         <div>
           <div>
             <CourseHoverCardInfo />
           </div>
-          <SearchCourseCard />
-          <SearchCourseCard />
-          <SearchCourseCard />
-          <SearchCourseCard />
-          <SearchCourseCard />
+
+          <div>
+            <SearchCourseCard />
+          </div>
+
+          <div>
+            <Commercial />
+          </div>
         </div>
       </div>
     </div>
