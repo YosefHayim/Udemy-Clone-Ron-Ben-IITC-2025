@@ -53,6 +53,9 @@ export default {
         bestSellerTag: {
           DEFAULT: "#d2cf1e5e",
         },
+        newTag: {
+          DEFAULT: "#acd2cc",
+        },
         star: {
           DEFAULT: "#b4690e",
         },
