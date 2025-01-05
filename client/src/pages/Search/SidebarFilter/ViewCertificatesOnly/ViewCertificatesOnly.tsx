@@ -14,15 +14,9 @@ const ViewCertificatesOnly = () => {
       onClick={handleToggle}
     >
       {isActive ? (
-        <BsToggleOn
-          style={{ width: "2.5em" }}
-          className="text-toggleActive text-2xl"
-        />
+        <BsToggleOn className="text-toggleActive text-2xl" />
       ) : (
-        <BsToggleOff
-          style={{ width: "2.5em" }}
-          className="text-gray-400 text-2xl"
-        />
+        <BsToggleOff className="text-gray-400 text-2xl" />
       )}
       <p className="text-sm font-medium">
         View certification prep courses only

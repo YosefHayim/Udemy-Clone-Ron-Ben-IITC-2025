@@ -22,12 +22,16 @@ const SearchPage = () => {
           </select>
         </div>
       </div>
-      <SidebarFilter />
-      <SearchCourseCard />
-      <SearchCourseCard />
-      <SearchCourseCard />
-      <SearchCourseCard />
-      <SearchCourseCard />
+      <div>
+        <SidebarFilter />
+      </div>
+      <div>
+        <SearchCourseCard />
+        <SearchCourseCard />
+        <SearchCourseCard />
+        <SearchCourseCard />
+        <SearchCourseCard />
+      </div>
     </div>
   );
 };
