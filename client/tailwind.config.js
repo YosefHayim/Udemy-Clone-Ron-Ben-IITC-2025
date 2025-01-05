@@ -62,6 +62,12 @@ export default {
         weakGray: {
           DEFAULT: "#6a6f73",
         },
+        showLess: {
+          DEFAULT: "#5022c3",
+        },
+        showLessHover: {
+          DEFAULT: "#371783",
+        },
       },
     },
   },
