@@ -3,15 +3,16 @@ import SidebarFilter from "./SidebarFilter/SidebarFilter";
 import FilterNSort from "./SidebarFilter/FilterNSort/FilterNSort";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 import Commercial from "./Commercial/Commercial";
+import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
 
 const SearchPage = () => {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full gap-[1em]">
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
         13 results for "react"
       </h1>
       <FilterNSort />
-      <div className="flex flex-row justify-between w-full gap-[1.5em]">
+      <div className="flex flex-row justify-start w-full gap-[1.5em]">
         <div>
           <SidebarFilter />
         </div>
@@ -23,10 +24,22 @@ const SearchPage = () => {
 
           <div>
             <SearchCourseCard />
+            <SearchCourseCard />
+            <SearchCourseCard />
           </div>
 
           <div>
             <Commercial />
+          </div>
+
+          <div>
+            <SearchCourseCard />
+            <SearchCourseCard />
+            <SearchCourseCard />
+          </div>
+
+          <div>
+            <HotFreshCourses />
           </div>
         </div>
       </div>

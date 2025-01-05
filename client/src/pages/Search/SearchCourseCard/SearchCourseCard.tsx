@@ -4,11 +4,12 @@ import { LuDot } from "react-icons/lu";
 const SearchCourseCard = () => {
   return (
     <div>
-      <div className="flex justify-between items-start pb-[1.6em] w-full gap-[1em] cursor-pointer pt-[1.6em]">
+      <hr />
+      <div className="flex justify-start items-start pb-[1.6em] w-full gap-[1em] cursor-pointer pt-[1.6em]">
         <div>
           <img src={courseImgPlaceholder} alt="" className="w-[260px]" />
         </div>
-        <div className="flex flex-col items-start justify-start">
+        <div className="flex flex-col items-start justify-start gap-[0.3em]">
           <b>React - The Complete Guide 2024 (incl. Next.js, Redux)</b>
           <p className="text-[0.7em] w-[500px]">
             Dive in and learn <b>React</b> .js from scratch! Learn <b>React</b>,
@@ -30,7 +31,7 @@ const SearchCourseCard = () => {
             <LuDot />
             <p>All Levels</p>
           </div>
-          <b className="text-[0.8em] bg-bestSellerTag p-[0.3em] rounded-[0.5em]">
+          <b className="text-[0.85em] bg-bestSellerTag py-[0.2em] px-[0.3em] rounded-[0.5em]">
             Bestseller
           </b>
         </div>
@@ -39,7 +40,7 @@ const SearchCourseCard = () => {
           <p className="line-through text-gray-500 text-[0.9em]">₪369.90</p>
         </div>
       </div>
-      <hr className="border border-gray-100 w-full" />
+      <hr />
     </div>
   );
 };

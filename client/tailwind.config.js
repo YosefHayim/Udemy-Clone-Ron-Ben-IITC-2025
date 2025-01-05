@@ -86,6 +86,9 @@ export default {
         borderCommercial: {
           DEFAULT: "#d1d7dc",
         },
+        bgCommercial: {
+          DEFAULT: "#f7f9fa",
+        },
       },
       fontSize: {
         searchTitle: {

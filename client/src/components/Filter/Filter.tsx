@@ -59,7 +59,6 @@ const Filter: React.FC<FilterProps> = ({
             >
               Show Less
             </p>
-            <MdKeyboardArrowUp />
           </div>
         )}
       </div>
