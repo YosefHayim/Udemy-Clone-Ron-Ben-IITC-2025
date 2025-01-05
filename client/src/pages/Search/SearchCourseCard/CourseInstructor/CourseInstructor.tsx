@@ -1,9 +1,10 @@
 import React from "react";
 
-const CourseInstructor = () => {
+const CourseInstructor = ({ instructor }) => {
   return (
     <p className="text-gray-500 text-[0.7em]">
-      Academind by Maximilian Schwarzmüller, Maximilian Schwarzmüller
+      {instructor ||
+        "Academind by Maximilian Schwarzmüller, Maximilian Schwarzmüller"}
     </p>
   );
 };
