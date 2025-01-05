@@ -9,7 +9,6 @@ import CoursePrice from "./CoursePrice/CoursePrice";
 const SearchCourseCard = () => {
   return (
     <div>
-      <hr />
       <div className="flex justify-start items-start pb-[1.6em] w-full gap-[1em] cursor-pointer pt-[1.6em]">
         <CourseImg widthChosen="w-[260px]" />
         <div className="flex flex-col items-start justify-start gap-[0.3em]">

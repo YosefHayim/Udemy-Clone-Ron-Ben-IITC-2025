@@ -2,6 +2,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { MdOutlineLanguage } from "react-icons/md";
 import { MdOutlineSearch } from "react-icons/md";
 import { useState } from "react";
+import logo from "/images/logo.png";
 
 const Header = () => {
   const [isTyping, setIsTyping] = useState(false); // Estado para controlar se o usuário está digitando

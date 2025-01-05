@@ -6,10 +6,12 @@ import NotFound from "../pages/404/NotFound";
 import LessonPage from "../pages/Lesson/LessonPage";
 import SearchPage from "@/pages/Search/SearchPage";
 import Homepage from "@/pages/Home/Homepage";
+import Header from "@/pages/Home/Header";
 
 const AppRoutes: React.FC = () => {
   return (
     <Router>
+      <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/Signup" element={<Signup />} />

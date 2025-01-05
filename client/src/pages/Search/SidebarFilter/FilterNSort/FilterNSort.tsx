@@ -3,7 +3,7 @@ import SortDropDown from "./SortDropDown/SortDropDown";
 
 const FilterNSort = () => {
   return (
-    <div className="flex w-full items-center justify-between mb-[2.4em]">
+    <div className="flex  w-[1200px] items-center justify-between mb-[2.4em]">
       <div className="flex flex-row items-center gap-[0.5em]">
         <div>
           <FilterBtn />
