@@ -2,6 +2,7 @@ import Header from '../components/ui/HomePage/Header';
 import Banner from '../components/ui/HomePage/Banner';
 import Section from '../components/ui/HomePage/Sections';
 import TrustedBySection from '../components/ui/HomePage/TrustedbySection';
+import LearnersAreViewing from '../components/ui/HomePage/LearnersAreViewing';
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <Banner />
       <Section />
       <TrustedBySection />
+      <LearnersAreViewing />
       </div>
       {/* <Login />
       <SignUp /> */}
