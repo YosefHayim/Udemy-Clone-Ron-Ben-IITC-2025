@@ -1,7 +1,7 @@
-import jsCourse1 from "../../../assets/images/js-course1.jpg";
-import jsCourse2 from "../../../assets/images/js-course2.jpg";
-import jsCourse3 from "../../../assets/images/js-course3.jpg";
-import jsCourse4 from "../../../assets/images/js-course4.jpg";
+import jsCourse1 from "../../../assets/images/js1.jpg";
+import jsCourse2 from "../../../assets/images/js2.jpg";
+import jsCourse3 from "../../../assets/images/js3.jpg";
+import jsCourse4 from "../../../assets/images/js4.jpg";
 
 const courses = [
   {

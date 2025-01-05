@@ -3,6 +3,10 @@ import Banner from '../components/ui/HomePage/Banner';
 import Section from '../components/ui/HomePage/Sections';
 import TrustedBySection from '../components/ui/HomePage/TrustedbySection';
 import LearnersAreViewing from '../components/ui/HomePage/LearnersAreViewing';
+import SearchResult from '../components/ui/HomePage/SearchResult';
+import LearningGoals from '@/components/ui/HomePage/LearningGoals';
+import PlansSection from '@/components/ui/HomePage/PansSection';
+import Testimonials from '@/components/ui/HomePage/Testimonials';
 
 const HomePage = () => {
   return (
@@ -13,6 +17,10 @@ const HomePage = () => {
       <Section />
       <TrustedBySection />
       <LearnersAreViewing />
+      <SearchResult />
+      <LearningGoals />
+      <PlansSection />
+      <Testimonials />
       </div>
       {/* <Login />
       <SignUp /> */}
