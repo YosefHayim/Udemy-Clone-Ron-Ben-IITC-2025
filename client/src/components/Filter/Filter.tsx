@@ -17,49 +17,51 @@ const Filter: React.FC<FilterProps> = ({
   };
 
   return (
-    <div
-      className={`transition-all overflow-hidden ${
-        isClicked ? "h-auto" : `${chosenHeight}`
-      }`}
-    >
+    <div>
+      <hr />
       <div
-        className="flex justify-between items-center cursor-pointer"
-        onClick={handleClick}
+        className={`transition-all overflow-hidden ${
+          isClicked ? "h-auto" : `${chosenHeight}`
+        }`}
       >
-        <p className="font-bold text-lg pb-[1em]">{filterTitle}</p>
-        {isClicked ? <MdKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
-      </div>
-
-      <div>
-        {filterItems.map((item: DummyData) => (
-          <div
-            key={item.name}
-            className="flex gap-[0.5em] text-languageText text-[0.8em] py-[0.5em] cursor-pointer"
-          >
-            <p>
-              <Checkbox className="rounded-none" />
-            </p>
-            <p>{item.name}</p>
-            <p className="text-weakGray">({item.count})</p>
-          </div>
-        ))}
-      </div>
-
-      {isClicked && (
         <div
-          className="flex items-center gap-[0.5em] cursor-pointer"
+          className="flex justify-between items-center cursor-pointer"
           onClick={handleClick}
         >
-          <p
-            className={
-              display ? "text-showLess font-bold text-[0.8em]" : "hidden"
-            }
-          >
-            Show Less
-          </p>
-          <MdKeyboardArrowUp />
+          <p className="font-bold text-lg pb-[1em]">{filterTitle}</p>
+          {isClicked ? <MdKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
         </div>
-      )}
+        <div>
+          {filterItems.map((item: DummyData) => (
+            <div
+              key={item.name}
+              className="flex gap-[0.5em] text-languageText text-[0.8em] py-[0.5em] cursor-pointer"
+            >
+              <p>
+                <Checkbox className="rounded-none" />
+              </p>
+              <p>{item.name}</p>
+              <p className="text-weakGray">({item.count})</p>
+            </div>
+          ))}
+        </div>
+        {isClicked && (
+          <div
+            className="flex items-center gap-[0.5em] cursor-pointer"
+            onClick={handleClick}
+          >
+            <p
+              className={
+                display ? "text-showLess font-bold text-[0.8em]" : "hidden"
+              }
+            >
+              Show Less
+            </p>
+            <MdKeyboardArrowUp />
+          </div>
+        )}
+      </div>
+      <hr />
     </div>
   );
 };

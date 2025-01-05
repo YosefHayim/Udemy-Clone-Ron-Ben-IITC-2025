@@ -6,10 +6,12 @@ import Topics from "./Topics/Topics";
 import Levels from "./Levels/Levels";
 import Subtitles from "./Subtitles/Subtitles";
 import Price from "./Price/Price";
+import ViewCertificatesOnly from "./ViewCertificatesOnly/ViewCertificatesOnly";
 
 const SidebarFilter = () => {
   return (
-    <div>
+    <div className="absolute left-0">
+      <ViewCertificatesOnly />
       <RatingsFilter />
       <LanguageFilter />
       <HandsOnPractice />

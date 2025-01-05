@@ -68,6 +68,9 @@ export default {
         showLessHover: {
           DEFAULT: "#371783",
         },
+        toggleActive: {
+          DEFAULT: "#16a38c",
+        },
       },
     },
   },

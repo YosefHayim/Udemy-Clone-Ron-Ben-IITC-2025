@@ -23,11 +23,11 @@ const SearchPage = () => {
         </div>
       </div>
       <SidebarFilter />
-      {/* <SearchCourseCard />
       <SearchCourseCard />
       <SearchCourseCard />
       <SearchCourseCard />
-      <SearchCourseCard /> */}
+      <SearchCourseCard />
+      <SearchCourseCard />
     </div>
   );
 };
