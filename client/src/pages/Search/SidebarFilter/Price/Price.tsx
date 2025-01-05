@@ -10,7 +10,7 @@ const Price = () => {
       <Filter
         filterTitle={"Price"}
         filterItems={prices}
-        chosenHeight={"h-[30px]"}
+        chosenHeight={"h-[50px]"}
         display={display}
         setDisplay={setDisplay}
       />

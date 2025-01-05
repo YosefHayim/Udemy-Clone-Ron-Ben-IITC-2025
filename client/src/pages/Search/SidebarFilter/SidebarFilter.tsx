@@ -10,7 +10,7 @@ import ViewCertificatesOnly from "./ViewCertificatesOnly/ViewCertificatesOnly";
 
 const SidebarFilter = () => {
   return (
-    <div className="relative">
+    <div className="relative w-[310px]">
       <ViewCertificatesOnly />
       <RatingsFilter />
       <LanguageFilter />

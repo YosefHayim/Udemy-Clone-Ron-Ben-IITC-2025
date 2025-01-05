@@ -10,7 +10,7 @@ const VideosDurations = () => {
       <Filter
         filterTitle={"Video Duration"}
         filterItems={videoDurations}
-        chosenHeight={"h-[30px]"}
+        chosenHeight={"h-[50px]"}
         display={display}
         setDisplay={setDisplay}
       />

@@ -72,6 +72,12 @@ export default {
           DEFAULT: "#16a38c",
         },
       },
+      fontSize: {
+        searchTitle: {
+          DEFAULT:
+            "clamp(2rem, calc(2rem + (3.2 - 2) * (100vw - 36rem) / (144 - 36)), 3.2rem)",
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

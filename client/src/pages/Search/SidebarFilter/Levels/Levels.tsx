@@ -10,7 +10,7 @@ const Levels = () => {
       <Filter
         filterTitle={"Level"}
         filterItems={levels}
-        chosenHeight={"h-[30px]"}
+        chosenHeight={"h-[50px]"}
         display={display}
         setDisplay={setDisplay}
       />

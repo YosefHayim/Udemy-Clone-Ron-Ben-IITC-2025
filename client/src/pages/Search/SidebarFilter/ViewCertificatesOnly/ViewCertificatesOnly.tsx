@@ -10,7 +10,7 @@ const ViewCertificatesOnly = () => {
 
   return (
     <div
-      className="flex items-center gap-[0.5em] cursor-pointer"
+      className="flex items-center gap-[0.5em] cursor-pointer py-[0.5em]"
       onClick={handleToggle}
     >
       {isActive ? (

@@ -10,7 +10,7 @@ const HandsOnPractice = () => {
       <Filter
         filterTitle={"Hands-on Practice"}
         filterItems={handsOnPractice}
-        chosenHeight={"h-[30px]"}
+        chosenHeight={"h-[50px]"}
         display={display}
         setDisplay={setDisplay}
       />

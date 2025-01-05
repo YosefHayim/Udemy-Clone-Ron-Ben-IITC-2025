@@ -28,7 +28,7 @@ const Filter: React.FC<FilterProps> = ({
           className="flex justify-between items-center cursor-pointer"
           onClick={handleClick}
         >
-          <p className="font-bold text-lg pb-[1em]">{filterTitle}</p>
+          <p className="font-bold text-lg pb-[1em] py-[0.5em]">{filterTitle}</p>
           {isClicked ? <MdKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
         </div>
         <div>

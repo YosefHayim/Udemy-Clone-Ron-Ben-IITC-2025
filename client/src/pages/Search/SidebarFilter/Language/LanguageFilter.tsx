@@ -10,7 +10,7 @@ const LanguageFilter = () => {
       <Filter
         filterTitle={"Language"}
         filterItems={languages}
-        chosenHeight={"h-[30px]"}
+        chosenHeight={"h-[50px]"}
         display={display}
         setDisplay={setDisplay}
       />

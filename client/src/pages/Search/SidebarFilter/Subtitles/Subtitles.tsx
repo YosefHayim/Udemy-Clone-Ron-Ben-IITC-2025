@@ -10,7 +10,7 @@ const Subtitles = () => {
       <Filter
         filterTitle={"Subtitles"}
         filterItems={languages}
-        chosenHeight={"h-[30px]"}
+        chosenHeight={"h-[50px]"}
         display={display}
         setDisplay={setDisplay}
       />

@@ -25,7 +25,7 @@ const RatingsFilter = () => {
       <hr />
       <div
         className={`transition-all overflow-hidden ${
-          isClicked ? "h-auto" : "h-[30px]"
+          isClicked ? "h-auto" : "h-[50px]"
         }`}
       >
         {/* Header */}
@@ -33,7 +33,7 @@ const RatingsFilter = () => {
           className="flex justify-between items-center cursor-pointer"
           onClick={handleClick}
         >
-          <p className="font-bold text-lg">Ratings</p>
+          <p className="font-bold text-lg py-[0.5em]">Ratings</p>
           {isClicked ? <MdKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
         </div>
         {/* Ratings */}
