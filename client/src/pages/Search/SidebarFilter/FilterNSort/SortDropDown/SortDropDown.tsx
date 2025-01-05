@@ -1,9 +1,11 @@
 const SortDropDown = () => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center w-full ">
       <div className="relative w-full">
-        <b className="absolute text-[0.7em] left-[10%] top-[10%]">Sort by</b>
-        <select className="block w-full h-[4em] border border-gray-900 rounded-md bg-white text-gray-900 font-normal text-base px-[1em] pt-[1em] cursor-pointer focus:outline-none focus:ring-2 focus:none appearance-none mr-[2em]">
+        <b className="absolute text-[0.7em] left-[10%] top-[12%] cursor-pointer">
+          Sort by
+        </b>
+        <select className="block w-full h-[4em] border border-gray-900 rounded-[0.2em] bg-white text-gray-900 font-normal text-base px-[1em] pt-[1em] cursor-pointer focus:outline-none focus:ring-2 focus:none appearance-none mr-[2em] hover:bg-hoverDivGray">
           <option value="most-relevant">Most Relevant</option>
           <option value="most-reviewed">Most Reviewed</option>
           <option value="highest-rated">Highest Rated</option>

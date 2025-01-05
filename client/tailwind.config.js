@@ -71,6 +71,12 @@ export default {
         toggleActive: {
           DEFAULT: "#16a38c",
         },
+        grayResults: {
+          DEFAULT: "#6a6f73",
+        },
+        hoverDivGray: {
+          DEFAULT: "#1739531f",
+        },
       },
       fontSize: {
         searchTitle: {

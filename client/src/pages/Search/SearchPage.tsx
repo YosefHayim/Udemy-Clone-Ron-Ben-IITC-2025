@@ -4,10 +4,12 @@ import FilterNSort from "./SidebarFilter/FilterNSort/FilterNSort";
 
 const SearchPage = () => {
   return (
-    <div className="flex flex-col">
-      <h1 className="font-bold text-[1.5em]">13 results for "react"</h1>
+    <div className="flex flex-col w-full">
+      <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
+        13 results for "react"
+      </h1>
       <FilterNSort />
-      <div className="flex">
+      <div className="flex flex-row justify-between w-full gap-[1.5em]">
         <div>
           <SidebarFilter />
         </div>
