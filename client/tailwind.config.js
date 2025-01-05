@@ -56,6 +56,12 @@ export default {
         star: {
           DEFAULT: "#b4690e",
         },
+        languageText: {
+          DEFAULT: "#2d2f31",
+        },
+        weakGray: {
+          DEFAULT: "#6a6f73",
+        },
       },
     },
   },
