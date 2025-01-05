@@ -52,7 +52,9 @@ const Filter: React.FC<FilterProps> = ({
           >
             <p
               className={
-                display ? "text-showLess font-bold text-[0.8em]" : "hidden"
+                display
+                  ? "text-purpleStatic hover:text-purpleHover font-bold text-[0.8em]"
+                  : "hidden"
               }
             >
               Show Less

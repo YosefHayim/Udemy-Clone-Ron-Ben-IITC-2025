@@ -62,10 +62,10 @@ export default {
         weakGray: {
           DEFAULT: "#6a6f73",
         },
-        showLess: {
+        purpleStatic: {
           DEFAULT: "#5022c3",
         },
-        showLessHover: {
+        purpleHover: {
           DEFAULT: "#371783",
         },
         toggleActive: {

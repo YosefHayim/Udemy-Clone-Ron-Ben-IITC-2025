@@ -7,7 +7,12 @@ const FilterNSort = () => {
       <div>
         <FilterBtn />
       </div>
-      <div>{/* <SortDropDown /> */}</div>
+      <div>
+        <SortDropDown />
+      </div>
+      <button className="text-purpleStatic hover:text-purpleHover font-bold">
+        Clear filters
+      </button>
     </div>
   );
 };
