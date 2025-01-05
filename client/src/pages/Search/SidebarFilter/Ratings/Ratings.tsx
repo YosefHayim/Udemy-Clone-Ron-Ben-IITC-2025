@@ -1,10 +1,16 @@
 import { useState } from "react";
+import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 const RatingsFilter = () => {
   const [selectedRating, setSelectedRating] = useState<string | null>(null);
+  const [isClicked, setClicked] = useState(false);
 
   const handleRatingClick = (rating: string) => {
     setSelectedRating(rating);
+  };
+
+  const handleClick: React.MouseEventHandler<HTMLDivElement> = () => {
+    setClicked((prev) => !prev);
   };
 
   const ratings = [
@@ -15,10 +21,12 @@ const RatingsFilter = () => {
   ];
 
   return (
-    <div>
-      <hr />
-      <div className="flex flex-col space-y-4">
-        <p className="font-bold text-lg">Ratings</p>
+    <div onClick={handleClick}>
+      <div className={isClicked ? "h-[50px]" : "flex flex-col space-y-4"}>
+        <div className="flex">
+          {isClicked ? <MdKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
+          <p className="font-bold text-lg cursor-pointer">Ratings</p>
+        </div>
         {ratings.map(({ rating, value, count }) => (
           <label
             key={value}
@@ -45,7 +53,6 @@ const RatingsFilter = () => {
           </label>
         ))}
       </div>
-      <hr />
     </div>
   );
 };

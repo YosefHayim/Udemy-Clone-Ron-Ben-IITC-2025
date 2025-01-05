@@ -1,7 +1,7 @@
 import { IoFilterOutline } from "react-icons/io5";
 import SearchCourseCard from "@/pages/Search/SearchCourseCard/SearchCourseCard";
-import RatingsFilter from "./SidebarFilter/RatingsFilter/RatingsFilter";
-import LanguageFilter from "./SidebarFilter/LanguageFilter/LanguageFilter";
+import RatingsFilter from "./SidebarFilter/Ratings/Ratings";
+import LanguageFilter from "./SidebarFilter/Language/LanguageFilter";
 import SidebarFilter from "./SidebarFilter/SidebarFilter";
 
 const SearchPage = () => {
