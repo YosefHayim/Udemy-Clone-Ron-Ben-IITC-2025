@@ -9,7 +9,8 @@ import PlansSection from '@/components/ui/HomePage/PansSection';
 import Testimonials from '@/components/ui/HomePage/Testimonials';
 import TopTrends from '../components/ui/HomePage/TopTrends';
 import TrendingNow from '@/components/ui/HomePage/TrendingNow';
-import Carrosel from '../components/ui/HomePage/Carrosel'
+import Carrosel from '../components/ui/HomePage/Carrosel';
+import Footer from '@/components/ui/HomePage/Footer';
 
 const HomePage = () => {
   return (
@@ -28,6 +29,7 @@ const HomePage = () => {
       <TrendingNow />
       <Carrosel/>
       </div>
+      <Footer />
       {/* <Login />
       <SignUp /> */}
       {/* <Banner />
