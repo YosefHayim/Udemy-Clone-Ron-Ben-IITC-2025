@@ -1,6 +1,7 @@
 import SearchCourseCard from "@/pages/Search/SearchCourseCard/SearchCourseCard";
 import SidebarFilter from "./SidebarFilter/SidebarFilter";
 import FilterNSort from "./SidebarFilter/FilterNSort/FilterNSort";
+import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 
 const SearchPage = () => {
   return (
@@ -14,6 +15,9 @@ const SearchPage = () => {
           <SidebarFilter />
         </div>
         <div>
+          <div>
+            <CourseHoverCardInfo />
+          </div>
           <SearchCourseCard />
           <SearchCourseCard />
           <SearchCourseCard />

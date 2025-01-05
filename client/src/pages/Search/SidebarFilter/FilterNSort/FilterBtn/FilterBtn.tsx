@@ -10,7 +10,7 @@ const FilterBtn = () => {
         <b className="font-bold text-base leading-[1.2] ml-[0.4em]">Filter </b>
       </div>
       <div>
-        <b>(4)</b>
+        <b></b>
       </div>
     </div>
   );

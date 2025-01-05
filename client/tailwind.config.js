@@ -77,6 +77,12 @@ export default {
         hoverDivGray: {
           DEFAULT: "#1739531f",
         },
+        btnColor: {
+          DEFAULT: "#a435f0",
+        },
+        btnHoverColor: {
+          DEFAULT: "#8710d8",
+        },
       },
       fontSize: {
         searchTitle: {

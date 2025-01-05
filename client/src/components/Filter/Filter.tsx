@@ -63,7 +63,6 @@ const Filter: React.FC<FilterProps> = ({
           </div>
         )}
       </div>
-      <hr />
     </div>
   );
 };
