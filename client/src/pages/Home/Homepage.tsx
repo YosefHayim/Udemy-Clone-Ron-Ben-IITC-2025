@@ -1,6 +1,6 @@
-import Header from "../../components/Homepage/Header";
-import Banner from "../../components/Homepage/Banner";
-import Section from "../../components/Homepage/Sections";
+import Header from "./Header";
+import Banner from "./Banner";
+import Section from "./Sections";
 
 const Homepage = () => {
   return (

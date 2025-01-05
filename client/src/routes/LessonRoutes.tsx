@@ -6,16 +6,16 @@ import {
   useLocation,
   useParams,
 } from "react-router-dom";
-import NavBar from "../components/Lesson/NavBar";
+import NavBar from "../pages/Lesson/NavBar";
 
 // Import tab components
-import OverviewTab from "../components/Lesson/tabs/OverviewTab";
-import QnATab from "../components/Lesson/tabs/QnATab";
-import NotesTab from "../components/Lesson/tabs/NoteTab";
-import AnnouncementsTab from "../components/Lesson/tabs/AnnouncementsTab";
-import ReviewsTab from "../components/Lesson/tabs/ReviewTab";
-import LearningToolsTab from "../components/Lesson/tabs/LearningToolsTab";
-import SearchTab from "../components/Lesson/tabs/SearchTab";
+import OverviewTab from "../pages/Lesson/tabs/OverviewTab";
+import QnATab from "../pages/Lesson/tabs/QnATab";
+import NotesTab from "../pages/Lesson/tabs/NoteTab";
+import AnnouncementsTab from "../pages/Lesson/tabs/AnnouncementsTab";
+import ReviewsTab from "../pages/Lesson/tabs/ReviewTab";
+import LearningToolsTab from "../pages/Lesson/tabs/LearningToolsTab";
+import SearchTab from "../pages/Lesson/tabs/SearchTab";
 
 const LessonRoutes: React.FC = () => {
   const location = useLocation();
