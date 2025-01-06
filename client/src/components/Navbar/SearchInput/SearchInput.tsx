@@ -1,18 +1,30 @@
 import getAllCourses from "@/api/courses/getAllCourses";
 import { useQuery } from "@tanstack/react-query";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import SearchResults from "../SearchResults/SearchResults";
 
 const SearchInput = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedTerm, setDebouncedTerm] = useState("");
 
-  const handleOnChange = (e: React.InputHTMLAttributes<HTMLInputElement>) => {
+  // Debounce effect to delay API calls
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedTerm(searchTerm);
+    }, 300); // Adjust delay as needed (300ms here)
+
+    return () => {
+      clearTimeout(handler); // Clear timeout if the user types again
+    };
+  }, [searchTerm]);
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
+    setSearchTerm(input);
+
     if (input.length > 3) {
-      setSearchTerm(input);
-      console.log(input);
       setIsTyping(true);
     } else {
       setIsTyping(false);
@@ -20,8 +32,9 @@ const SearchInput = () => {
   };
 
   const { data } = useQuery({
-    queryKey: ["courses", searchTerm],
-    queryFn: () => getAllCourses(searchTerm),
+    queryKey: ["courses", debouncedTerm], // Use the debounced term
+    queryFn: () => getAllCourses(debouncedTerm),
+    enabled: !!debouncedTerm && debouncedTerm.length > 3, // Only fetch when valid term exists
   });
 
   return (
@@ -34,7 +47,7 @@ const SearchInput = () => {
       <input
         type="text"
         placeholder="Search for anything"
-        className="flex-1 bg-transparent text-gray-700 focus:outline-none text-sm ml-3 placeholder-gray-700 placeholder:text-sm  placeholder:font-Sans placeholder:font-normal bg-gray-50"
+        className="flex-1 bg-transparent text-gray-700 focus:outline-none text-sm ml-3 placeholder-gray-700 placeholder:text-sm placeholder:font-Sans placeholder:font-normal bg-gray-50"
         onChange={handleOnChange}
       />
       <SearchResults isTyping={isTyping} data={data} />

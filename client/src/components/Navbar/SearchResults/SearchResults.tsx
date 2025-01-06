@@ -2,10 +2,10 @@ import SearchResultRow from "./SearchResultRow/SearchResultRow";
 import SearchResultsCourseImg from "./SearchResultsCourseImg/SearchResultsCourseImg";
 
 const SearchResults = ({ isTyping, data }) => {
-  console.log(data);
   if (!data) {
     return;
   }
+
   return (
     <div
       className={`${
