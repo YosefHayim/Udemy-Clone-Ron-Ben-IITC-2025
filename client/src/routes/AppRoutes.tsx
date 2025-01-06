@@ -12,16 +12,35 @@ import Footer from "@/pages/Home/Footer";
 const AppRoutes: React.FC = () => {
   return (
     <Router>
-      <Header />
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/Signup" element={<Signup />} />
-        <Route path="/courses/search" element={<SearchPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/lesson/:id/*" element={<LessonPage />} />
+        {/* Routes where Header is shown */}
+        <Route
+          path="*"
+          element={
+            <>
+              <Header />
+              <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/Signup" element={<Signup />} />
+                <Route path="/courses/search" element={<SearchPage />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <Footer />
+            </>
+          }
+        />
+        {/* Route where Header is hidden */}
+        <Route
+          path="/lesson/:id/*"
+          element={
+            <>
+              <LessonPage />
+              <Footer />
+            </>
+          }
+        />
       </Routes>
-      <Footer />
     </Router>
   );
 };
