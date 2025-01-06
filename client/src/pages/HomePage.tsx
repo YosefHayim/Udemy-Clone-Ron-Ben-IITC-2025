@@ -1,22 +1,22 @@
-import Header from '../components/ui/HomePage/Header';
-import Banner from '../components/ui/HomePage/Banner';
-import Section from '../components/ui/HomePage/Sections';
-import TrustedBySection from '../components/ui/HomePage/TrustedBySection';
-import LearnersAreViewing from '../components/ui/HomePage/LearnersAreViewing';
-import SearchResult from '../components/ui/HomePage/SearchResult';
-import LearningGoals from '@/components/ui/HomePage/LearningGoals';
-import PlansSection from '@/components/ui/HomePage/PansSection';
-import Testimonials from '@/components/ui/HomePage/Testimonials';
-import TopTrends from '../components/ui/HomePage/TopTrends';
-import TrendingNow from '@/components/ui/HomePage/TrendingNow';
-import Carrosel from '../components/ui/HomePage/Carrosel';
-import Footer from '@/components/ui/HomePage/Footer';
+import { Section } from "lucide-react";
+import Banner from "./Home/Banner";
+import Header from "./Home/Header";
+import TrustedBySection from "./Home/TrustedBySection";
+import LearnersAreViewing from "./Home/LearnersAreViewing";
+import SearchResult from "./Home/SearchResult";
+import LearningGoals from "./Home/LearningGoals";
+import PlansSection from "./Home/PansSection";
+import Testimonials from "./Home/Testimonials";
+import TrendingNow from "./Home/TrendingNow";
+import Footer from "@/pages/Home/Footer";
+import TrendsReport from "./Home/TopTrends";
+import Carousel from "./Home/Carousel";
 
 const HomePage = () => {
   return (
     <div>
       <Header />
-      <div className='container mx-auto px-6 lg:px-24'>
+      <div className="container mx-auto px-6 lg:px-24">
         <Banner />
         <Section />
         <TrustedBySection />
@@ -25,9 +25,9 @@ const HomePage = () => {
         <LearningGoals />
         <PlansSection />
         <Testimonials />
-        <TopTrends />
+        <TrendsReport />
         <TrendingNow />
-        <Carrosel />
+        <Carousel />
       </div>
       <Footer />
       {/* <Login />
