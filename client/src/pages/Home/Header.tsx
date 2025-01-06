@@ -5,7 +5,13 @@ import { useState } from "react";
 import logo from "/images/logo.png";
 
 const Header = () => {
-  const [isTyping, setIsTyping] = useState(false); // Estado para controlar se o usuário está digitando
+  const [isTyping, setIsTyping] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("false");
+
+  const handleOnChange = (e) => {
+    const input = e.target.value;
+    console.log(input);
+  };
 
   return (
     <header
@@ -22,7 +28,6 @@ const Header = () => {
         />
       </div>
 
-      {/* Navegação */}
       <nav>
         <a
           href="#"
@@ -32,7 +37,6 @@ const Header = () => {
         </a>
       </nav>
 
-      {/* Search bar */}
       <div className="flex items-center border border-gray-700 rounded-full overflow-hidden w-1/2 h-12 px-3 py-2 bg-gray-50">
         <MdOutlineSearch
           className={`w-6 h-6 ${
@@ -43,9 +47,7 @@ const Header = () => {
           type="text"
           placeholder="Search for anything"
           className="flex-1 bg-transparent text-gray-700 focus:outline-none text-sm ml-3 placeholder-gray-700 placeholder:text-sm  placeholder:font-Sans placeholder:font-normal bg-gray-50"
-          onInput={(e) =>
-            setIsTyping((e.target as HTMLInputElement).value !== "")
-          } // Atualiza o estado baseado no texto digitado
+          onChange={handleOnChange}
         />
       </div>
 
