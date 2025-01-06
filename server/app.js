@@ -27,10 +27,10 @@ app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 app.use(loggerInfo);
-app.use(limiter);
+// app.use(limiter);
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:5173",
     withCredentials: true,
   })
 );

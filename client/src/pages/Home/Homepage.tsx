@@ -1,4 +1,8 @@
 import Banner from "./Banner";
+<<<<<<< HEAD
+=======
+import Header from "../../components/Navbar/Navbar";
+>>>>>>> 948e8a6d6c2e60fb7bc02faa8cd028efaa5cca69
 import TrustedBySection from "./TrustedBySection";
 import LearnersAreViewing from "./LearnersAreViewing";
 import SearchResult from "./SearchResult";
