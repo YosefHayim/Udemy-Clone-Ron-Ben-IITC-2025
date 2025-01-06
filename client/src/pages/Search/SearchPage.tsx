@@ -1,14 +1,10 @@
 import SearchCourseCard from "@/pages/Search/SearchCourseCard/SearchCourseCard";
 import SidebarFilter from "./SidebarFilter/SidebarFilter";
 import FilterNSort from "./SidebarFilter/FilterNSort/FilterNSort";
-import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
-import { RiInformationFill } from "react-icons/ri";
-import RelatedSearchHoverCard from "./RelatedSearchesArea/RelatedSearchHoverCard/RelatedSearchHoverCard";
-import RelatedSearchesFooterSearch from "./RelatedSearchesArea/RelatedSearchesFooterSearch/RelatedSearchesFooterSearch";
 import RelatedSearchesArea from "./RelatedSearchesArea/RelatedSearchesArea";
-import Pagination from "./Pagination/Pagination";
+import Pagination from "./PaginationPages/PaginationPages";
 
 const SearchPage = () => {
   return (
