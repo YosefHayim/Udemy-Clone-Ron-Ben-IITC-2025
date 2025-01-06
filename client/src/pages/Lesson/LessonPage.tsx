@@ -4,6 +4,8 @@ import Layout from "./Layout";
 import course from "@/db";
 import LessonRoutes from "../../routes/LessonRoutes";
 import VideoPlayer from "./VideoPlayer";
+import Footer from "@/pages/Home/Footer";
+
 
 const LessonPage: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Get the lesson ID from the route params
@@ -26,11 +28,11 @@ const LessonPage: React.FC = () => {
 
   return (
     <Layout>
-      <div className=" ">
         {/* Use the VideoPlayer component */}
         <VideoPlayer videoUrl={lesson.videoUrl} />
       <LessonRoutes />
-      </div>
+      <Footer />
+
     </Layout>
   );
 };
