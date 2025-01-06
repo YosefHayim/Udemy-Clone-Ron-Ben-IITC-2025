@@ -10,11 +10,19 @@ const SearchResults = ({ isTyping, data }) => {
     <div
       className={`${
         isTyping ? "block" : "hidden"
-      } absolute top-[8%] left-[13%] z-[1000] w-[700px] h-[600px] border border-gray-100 bg-white `}
+      } absolute top-[8%] left-[13%] z-[1000] w-[700px] border border-gray-100 bg-white `}
     >
-      {data.map((result) => (
+      {data.slice(0, 13).map((result, index) => (
         <div key={result._id}>
-          <SearchResultRow algoWord={result.courseName} />
+          {index < 9 ? (
+            <SearchResultRow algoWord={result.courseName} />
+          ) : (
+            <SearchResultsCourseImg
+              courseName={result.courseName}
+              instructorName={result.courseInstructor.fullName}
+              courseImg={result.courseImg}
+            />
+          )}
         </div>
       ))}
     </div>

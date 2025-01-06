@@ -29,26 +29,29 @@ const sectionSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Middleware to automatically update total lessons and duration
+// Middleware to calculate and set total lessons and duration
 sectionSchema.post("save", async function () {
-  const Section = this.constructor;
+  try {
+    // Populate lessons
+    await this.populate("lessons");
 
-  // Properly populate lessons
-  await this.populate("lessons");
+    if (Array.isArray(this.lessons)) {
+      // Calculate total duration and lessons count
+      const totalDuration = this.lessons.reduce(
+        (acc, lesson) => acc + (lesson.duration || 0),
+        0
+      );
 
-  if (Array.isArray(this.lessons)) {
-    const totalDuration = this.lessons.reduce(
-      (acc, lesson) => acc + (lesson.duration || 0), // Handle undefined duration
-      0
-    );
-
-    this.totalSectionDuration = totalDuration;
-    this.totalSectionLessons = this.lessons.length;
-
-    // Save updated fields
-    await this.save();
-  } else {
-    console.error("Lessons is not an array during post-save operation.");
+      // Update fields directly without triggering save recursion
+      await this.updateOne({
+        totalSectionDuration: totalDuration,
+        totalSectionLessons: this.lessons.length,
+      });
+    } else {
+      console.error("Lessons is not an array during post-save operation.");
+    }
+  } catch (err) {
+    console.error("Error in post-save middleware for Section:", err.message);
   }
 });
 
