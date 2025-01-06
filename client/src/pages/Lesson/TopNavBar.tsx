@@ -4,7 +4,7 @@ import logo from "/images/logo.png";
 const Navbar: React.FC = () => {
   return (
     <nav className="absolute top-0 left-0 w-full bg-gray-900 text-white shadow-md z-10">
-      <div className="max-w-7xl mx-0 px-4 py-3 flex items-center justify-between">
+      <div className=" mx-auto px-4 py-3 flex justify-between items-center">
         {/* Left-aligned logo and title */}
         <div className="flex items-center space-x-4">
           <img src={logo} alt="Logo" className="w-20" />

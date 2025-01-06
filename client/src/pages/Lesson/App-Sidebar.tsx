@@ -30,7 +30,7 @@ export function AppSidebar() {
               onClick={toggleSidebar}
               className={`p-4 ${
                 open ? "bg-black" : "bg-gray-500/50 hover:bg-gray-500"
-              } text-white rounded-md shadow-md transform transition-all duration-300 relative flex items-center ${
+              }  absolute  text-white rounded-md shadow-md transform transition-all duration-300 relative flex items-center ${
                 open ? "" : "hover:w-[150px]"
               }`}
               
@@ -60,7 +60,7 @@ export function AppSidebar() {
   return (
     <>
       {/* Sidebar */}
-      <Sidebar className="fixed top-[69px]" side="left">
+      <Sidebar className="absolute top-[69px]" side="left">
         <SidebarContent>
           <SidebarGroup>
             <SidebarGroupLabel>{courseData.title}</SidebarGroupLabel>

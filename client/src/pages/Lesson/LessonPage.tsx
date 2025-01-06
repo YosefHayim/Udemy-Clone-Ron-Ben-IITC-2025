@@ -26,7 +26,7 @@ const LessonPage: React.FC = () => {
 
   return (
     <Layout>
-      <div className="w-full min-w-screen-lg mx-auto">
+      <div className=" ">
         {/* Use the VideoPlayer component */}
         <VideoPlayer videoUrl={lesson.videoUrl} />
       </div>
