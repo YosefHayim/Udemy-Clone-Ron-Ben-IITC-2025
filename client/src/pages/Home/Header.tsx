@@ -3,15 +3,34 @@ import { MdOutlineLanguage } from "react-icons/md";
 import { MdOutlineSearch } from "react-icons/md";
 import { useState } from "react";
 import logo from "/images/logo.png";
+import getAllCourses from "@/api/courses/getAllCourses";
+import { useQuery } from "@tanstack/react-query";
 
 const Header = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [searchTerm, setSearchTerm] = useState("false");
 
-  const handleOnChange = (e) => {
+  const handleOnChange = (e: React.InputHTMLAttributes<HTMLInputElement>) => {
     const input = e.target.value;
+    if (input.length > 1) setSearchTerm(input);
     console.log(input);
   };
+
+  const { isPending, isError, data, error } = useQuery({
+    queryKey: ["courses", searchTerm],
+    queryFn: () => getAllCourses(searchTerm),
+  });
+
+  if (isPending) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
+
+  if (data) {
+  }
 
   return (
     <header
@@ -88,6 +107,7 @@ const Header = () => {
           <MdOutlineLanguage />
         </button>
       </div>
+      {console.log(data)}
     </header>
   );
 };
