@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { catchAsync } = require("../../utils/wrapperFn");
 const crypto = require("crypto");
+const createError = require("../../utils/errorFn");
 
 // Generate a random token for email confirmation
 const confirmEmailToken = (length = 32) => {
@@ -24,9 +25,9 @@ const verifyToken = (token) => {
 };
 
 const grantedAccess = catchAsync(async (req, res, next) => {
-  const User = require("../models/userModel");
+  const User = require("../../models/users/userModel");
 
-  //  Getting token and check if it's there
+  // Getting token and checking if it's there
   let token;
   if (req.headers.authorization) {
     token = req.headers.authorization.split(" ")[1];
@@ -35,21 +36,25 @@ const grantedAccess = catchAsync(async (req, res, next) => {
   }
 
   if (!token) {
-    return next(new Error("Please log in to get access."));
+    return next(
+      createError("You are not logged in or there is no token in headers.", 401)
+    );
   }
+
   // Verify token
   const decoded = verifyToken(token);
 
   // Check if the user still exists
-  const currentUser = await User.findOne({ _id: decoded.id });
+  const currentUser = await User.findById(decoded.id);
 
   if (!currentUser) {
     return next(
-      new Error("You are not logged in or you this user does not exist")
+      createError("This user no longer exists. Please sign up.", 401)
     );
   }
 
   req.user = currentUser;
+  console.log(req.user);
 
   next();
 });

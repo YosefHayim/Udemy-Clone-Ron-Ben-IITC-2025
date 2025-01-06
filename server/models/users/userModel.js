@@ -4,18 +4,14 @@ const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema(
   {
-    fName: {
+    fullName: {
       type: String,
       required: [true, "Please tell us your first name!"],
-    },
-    lName: {
-      type: String,
-      required: [true, "Please tell us your name!"],
     },
     headline: {
       type: String,
     },
-    bio: {
+    biography: {
       type: String,
       maxLength: [200, "bio cannot exceed 200 characters."],
     },
@@ -44,7 +40,7 @@ const userSchema = new mongoose.Schema(
     },
     links: {
       website: { type: String },
-      twitter: { type: String },
+      xPlatform: { type: String },
       facebook: { type: String },
       linkedin: { type: String },
       youtube: { type: String },
@@ -67,31 +63,19 @@ const userSchema = new mongoose.Schema(
     emailVerificationExpires: {
       type: Date,
     },
-    photo: {
+    profilePic: {
       type: String,
-      default: "default.jpg",
+      default: "default-user-profile.svg",
     },
     role: {
       type: String,
+      enum: ["student", "instructor"],
       default: "student",
-      select: false,
     },
     password: {
       type: String,
       required: [true, "Please provide a password"],
       minlength: 8,
-    },
-    passwordConfirm: {
-      type: String,
-      required: function () {
-        return this.isNew;
-      },
-      validate: {
-        validator: function (confimedPw) {
-          return confimedPw === this.password;
-        },
-        message: "Passwords are not the same!",
-      },
     },
     passwordChangedAt: Date,
     passwordResetToken: String,
@@ -101,33 +85,53 @@ const userSchema = new mongoose.Schema(
       default: true,
       select: false,
     },
-    reviews: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: "Reviews",
-        validate: {
-          validator: function () {
-            return this.role === "instructor";
-          },
-          message: "Only instructors can have reviews.",
+    udemyCredits: {
+      type: Number,
+      default: 0,
+    },
+    subscriptionPlan: {
+      type: {
+        type: String,
+        enum: ["monthly", "yearly"],
+      },
+      subscriptionPrice: {
+        type: Number,
+        required: true,
+        default: function () {
+          return this.subscriptionPlan.type === "yearly" ? 66 * 12 : 95;
         },
       },
-    ],
+      isSubscriptionActive: {
+        type: Boolean,
+        default: false, // By default, subscriptions are inactive.
+      },
+      startDate: {
+        type: Date,
+        default: Date.now,
+      },
+      endDate: {
+        type: Date,
+        required: function () {
+          return this.isSubscriptionActive; // Required only if the subscription is active.
+        },
+      },
+    },
+    wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     coursesBought: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
-    subscription: [{ type: mongoose.Schema.ObjectId, ref: "Subscription" }],
-    notifications: [{ type: mongoose.Schema.ObjectId, ref: "Notification" }],
-    wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Wishlist" }],
+    coursesCreated: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     orders: [{ type: mongoose.Schema.ObjectId, ref: "Order" }],
     payments: [{ type: mongoose.Schema.ObjectId, ref: "Payment" }],
-    certificates: [{ type: mongoose.Schema.ObjectId, ref: "Certificate" }],
+    certificatesEarned: [
+      { type: mongoose.Schema.ObjectId, ref: "Certificate" },
+    ],
   },
   { timestamps: true }
 );
 
 module.exports = mongoose.model("User", userSchema);
 
+// Only hash the password if it has been modified (or is new)
 userSchema.pre("save", async function (next) {
-  // Only hash the password if it has been modified (or is new)
   if (!this.isModified("password")) return next();
 
   try {
@@ -135,7 +139,6 @@ userSchema.pre("save", async function (next) {
       this.password + process.env.BCRYPT_PW,
       10
     );
-    this.passwordConfirm = undefined;
 
     next();
   } catch (err) {
@@ -144,6 +147,7 @@ userSchema.pre("save", async function (next) {
   }
 });
 
+// If email is new it will generate a verification token to user
 userSchema.pre("save", function (next) {
   if (this.isNew || this.isModified("email")) {
     this.generateEmailVerificationToken();
@@ -151,6 +155,7 @@ userSchema.pre("save", function (next) {
   next();
 });
 
+// method to update password
 userSchema.methods.updatePassword = async function (
   currentPassword,
   newPassword,
@@ -169,10 +174,10 @@ userSchema.methods.updatePassword = async function (
 
   // Update the password
   this.password = newPassword;
-  this.passwordConfirm = undefined; // Exclude confirm password
   await this.save();
 };
 
+// generate email verification token
 userSchema.methods.generateEmailVerificationToken = function () {
   this.emailVerificationExpires = Date.now() + 10 * 60 * 1000; // Token valid for 10 minutes
   this.emailVerificationToken = confirmEmailToken(); // Generate a new token
