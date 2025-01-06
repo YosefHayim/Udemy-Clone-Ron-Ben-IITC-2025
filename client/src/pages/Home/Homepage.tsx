@@ -1,6 +1,4 @@
-import { Section } from "lucide-react";
 import Banner from "./Banner";
-import Header from "./Header";
 import TrustedBySection from "./TrustedBySection";
 import LearnersAreViewing from "./LearnersAreViewing";
 import SearchResult from "./SearchResult";
@@ -10,7 +8,7 @@ import Testimonials from "./Testimonials";
 import TrendsReport from "./TopTrends";
 import TrendingNow from "./TrendingNow";
 import Carousel from "./Carousel";
-import Footer from "./Footer";
+import Section from "./Sections";
 
 const Homepage = () => {
   return (
