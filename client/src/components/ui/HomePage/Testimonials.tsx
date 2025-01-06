@@ -1,3 +1,9 @@
+import stack from '../../../assets/images/logo_stack.svg';
+import alvin from '../../../assets/images/Alvin_Lim.jpeg';
+import ian from '../../../assets/images/Ian_Stevens.png';
+import william from '../../../assets/images/William_A_Wachlin.jpeg';
+import quoteIcon from '../../../assets/images/quote.svg'; // Imagem das aspas
+
 const testimonials = [
   {
     quote:
@@ -6,7 +12,7 @@ const testimonials = [
     details: "37,076 responses collected",
     linkText: "View Web Development courses →",
     link: "#",
-    placeholderIcon: "🖥️", // Substituindo o logo da StackOverflow
+    placeholderIcon: stack,
   },
   {
     quote:
@@ -15,7 +21,7 @@ const testimonials = [
     details: "Technical Co-Founder, CTO at Dimensional",
     linkText: "View this iOS & Swift course →",
     link: "#",
-    placeholderIcon: "👨‍💻", // Placeholder para o ícone do autor
+    placeholderIcon: alvin,
   },
   {
     quote:
@@ -24,7 +30,7 @@ const testimonials = [
     details: "Partner Account Manager at Amazon Web Services",
     linkText: "View this AWS course →",
     link: "#",
-    placeholderIcon: "🌐", // Placeholder para o ícone do autor
+    placeholderIcon: william,
   },
   {
     quote:
@@ -33,7 +39,7 @@ const testimonials = [
     details: "Head of Capability Development, North America at Publicis Sapient",
     linkText: "Read full story →",
     link: "#",
-    placeholderIcon: "📈", // Placeholder para o ícone do autor
+    placeholderIcon: ian,
   },
 ];
 
@@ -49,17 +55,31 @@ const Testimonials = () => {
             key={index}
             className="border rounded-lg shadow-sm p-6 bg-white text-left"
           >
-            <div className="text-2xl text-gray-400 mb-4">“</div>
-            <p className="text-gray-900 mb-4">{testimonial.quote}</p>
+            {/* Aspas como imagem */}
+            <div className="mb-4">
+              <img
+                src={quoteIcon}
+                alt="Quote"
+                className="w-6 h-6"
+              />
+            </div>
+            {/* Texto do depoimento */}
+            <p className="text-gray-900 mb-4">
+              {testimonial.quote}
+            </p>
+            {/* Logo ou autor */}
             <div className="flex items-center mt-4">
-              <div className="w-10 h-10 flex items-center justify-center text-xl bg-gray-200 rounded-full mr-4">
-                {testimonial.placeholderIcon}
-              </div>
+              <img
+                src={testimonial.placeholderIcon}
+                alt={testimonial.author}
+                className="w-8 h-8 object-contain mr-4"
+              />
               <div>
                 <h3 className="font-bold text-gray-900">{testimonial.author}</h3>
                 <p className="text-sm text-gray-600">{testimonial.details}</p>
               </div>
             </div>
+            {/* Link de ação */}
             <a
               href={testimonial.link}
               className="text-purple-600 font-bold mt-4 inline-block hover:underline"

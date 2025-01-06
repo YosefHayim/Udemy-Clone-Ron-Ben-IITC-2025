@@ -17,17 +17,17 @@ const HomePage = () => {
     <div>
       <Header />
       <div className='container mx-auto px-6 lg:px-24'>
-      <Banner />
-      <Section />
-      <TrustedBySection />
-      <LearnersAreViewing />
-      <SearchResult />
-      <LearningGoals />
-      <PlansSection />
-      <Testimonials />
-      <TopTrends />
-      <TrendingNow />
-      <Carrosel/>
+        <Banner />
+        <Section />
+        <TrustedBySection />
+        <LearnersAreViewing />
+        <SearchResult />
+        <LearningGoals />
+        <PlansSection />
+        <Testimonials />
+        <TopTrends />
+        <TrendingNow />
+        <Carrosel />
       </div>
       <Footer />
       {/* <Login />
