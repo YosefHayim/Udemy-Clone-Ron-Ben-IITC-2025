@@ -6,8 +6,7 @@ const getAllCourses = async (searchTerm: String) => {
 
   try {
     const response = await axios.get(`${baseUrl}/api/course/`);
-    console.log(response);
-    return response;
+    return response.data.response;
   } catch (error) {
     console.error("Error fetching courses", error);
     throw error;

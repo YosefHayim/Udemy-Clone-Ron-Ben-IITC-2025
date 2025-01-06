@@ -1,6 +1,6 @@
 import { Section } from "lucide-react";
 import Banner from "./Banner";
-import Header from "./Header";
+import Header from "../../components/Navbar/Navbar";
 import TrustedBySection from "./TrustedBySection";
 import LearnersAreViewing from "./LearnersAreViewing";
 import SearchResult from "./SearchResult";
