@@ -8,6 +8,7 @@ const getAllReviews = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(courseReviews.find(), req.query)
     .filter()
     .sort()
+    .search()
     .limitFields()
     .paginate();
 

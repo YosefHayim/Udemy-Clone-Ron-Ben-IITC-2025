@@ -10,6 +10,7 @@ const { generateToken } = require("../authorization/authController");
 const getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query)
     .filter()
+    .search()
     .sort()
     .limitFields()
     .paginate();

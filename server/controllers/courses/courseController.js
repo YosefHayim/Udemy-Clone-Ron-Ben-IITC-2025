@@ -7,6 +7,7 @@ const { catchAsync } = require("../../utils/wrapperFn");
 const getAllCourses = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Course.find(), req.query)
     .filter()
+    .search()
     .sort()
     .limitFields()
     .paginate();

@@ -6,6 +6,7 @@ const getAllLessons = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Lesson.find(), req.query)
     .filter()
     .sort()
+    .search()
     .limitFields()
     .paginate();
 

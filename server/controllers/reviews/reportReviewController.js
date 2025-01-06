@@ -9,6 +9,7 @@ const getAllReports = catchAsync(async (req, res, next) => {
     .filter()
     .sort()
     .limitFields()
+    .search()
     .paginate();
 
   const reports = await features.query;
