@@ -1,11 +1,11 @@
 import axios from "axios";
-import { baseUrl, localhostUrl } from "../baseUrl";
+import { baseUrl } from "../baseUrl";
 
 const getAllCourses = async (searchTerm: String) => {
+  console.log(searchTerm);
+
   try {
-    const response = await axios.get(
-      `${localhostUrl}/api/course/?courseName=${searchTerm}`
-    );
+    const response = await axios.get(`${baseUrl}/api/course/`);
     console.log(response);
     return response;
   } catch (error) {
