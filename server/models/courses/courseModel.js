@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const User = require("../users/userModel");
 const courseCategories = require("../../utils/courseCategories");
 
 const courseSchema = new mongoose.Schema(
@@ -9,6 +8,13 @@ const courseSchema = new mongoose.Schema(
       required: [
         true,
         "To register a course, you must provide a name for the course",
+      ],
+    },
+    courseImg: {
+      type: String,
+      required: [
+        true,
+        "To register a course, you must provide an image for the course.",
       ],
     },
     courseDescription: {

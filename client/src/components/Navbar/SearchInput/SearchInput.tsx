@@ -1,16 +1,22 @@
 import getAllCourses from "@/api/courses/getAllCourses";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
+import SearchResults from "../SearchResults/SearchResults";
 
 const SearchInput = () => {
   const [isTyping, setIsTyping] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("false");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleOnChange = (e: React.InputHTMLAttributes<HTMLInputElement>) => {
     const input = e.target.value;
-    if (input.length > 1) setSearchTerm(input);
-    console.log(input);
+    if (input.length > 3) {
+      setSearchTerm(input);
+      console.log(input);
+      setIsTyping(true);
+    } else {
+      setIsTyping(false);
+    }
   };
 
   const { data } = useQuery({
@@ -31,7 +37,7 @@ const SearchInput = () => {
         className="flex-1 bg-transparent text-gray-700 focus:outline-none text-sm ml-3 placeholder-gray-700 placeholder:text-sm  placeholder:font-Sans placeholder:font-normal bg-gray-50"
         onChange={handleOnChange}
       />
-      {console.log(data)}
+      <SearchResults isTyping={isTyping} data={data} />
     </div>
   );
 };
