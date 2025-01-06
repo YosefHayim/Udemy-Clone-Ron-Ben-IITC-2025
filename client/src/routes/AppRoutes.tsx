@@ -7,6 +7,7 @@ import LessonPage from "../pages/Lesson/LessonPage";
 import SearchPage from "@/pages/Search/SearchPage";
 import Homepage from "@/pages/Home/Homepage";
 import Header from "@/pages/Home/Header";
+import Footer from "@/pages/Home/Footer";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes: React.FC = () => {
         <Route path="*" element={<NotFound />} />
         <Route path="/lesson/:id/*" element={<LessonPage />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };
