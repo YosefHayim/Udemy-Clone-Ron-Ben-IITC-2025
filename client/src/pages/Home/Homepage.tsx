@@ -5,7 +5,6 @@ import Section from "./Sections";
 const Homepage = () => {
   return (
     <div>
-      <Header />
       <div className="container mx-auto px-6 lg:px-24">
         <Banner />
         <Section />
