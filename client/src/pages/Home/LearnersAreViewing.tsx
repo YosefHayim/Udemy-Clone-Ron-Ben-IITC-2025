@@ -1,9 +1,7 @@
-import pythonImg from '../../../assets/images/learner1.jpg';
-import webDevImg from '../../../assets/images/learner2.jpg';
-import awsPractitionerImg from '../../../assets/images/learner3.jpg';
-import awsArchitectImg from '../../../assets/images/learner4.jpg';
-
-
+import pythonImg from "/images/learner1.jpg";
+import webDevImg from "/images/learner2.jpg";
+import awsPractitionerImg from "/images/learner3.jpg";
+import awsArchitectImg from "/images/learner4.jpg";
 
 const courses = [
   {
@@ -54,18 +52,33 @@ const LearnersAreViewing = () => {
       <h2 className="text-3xl font-bold mb-6">Learners are viewing</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {courses.map((course, index) => (
-          <div key={index} className="border rounded-lg overflow-hidden shadow-sm bg-white">
-            <img src={course.image} alt={course.title} className="w-full h-40 object-cover" />
+          <div
+            key={index}
+            className="border rounded-lg overflow-hidden shadow-sm bg-white"
+          >
+            <img
+              src={course.image}
+              alt={course.title}
+              className="w-full h-40 object-cover"
+            />
             <div className="p-4">
-              <h3 className="font-bold text-lg text-gray-900 truncate">{course.title}</h3>
-              <p className="text-sm text-gray-600 truncate">{course.instructor}</p>
+              <h3 className="font-bold text-lg text-gray-900 truncate">
+                {course.title}
+              </h3>
+              <p className="text-sm text-gray-600 truncate">
+                {course.instructor}
+              </p>
               <div className="flex items-center text-yellow-500 text-sm mt-2">
                 <span>{course.rating}</span>
-                <span className="text-gray-500 ml-1">({course.reviews.toLocaleString()})</span>
+                <span className="text-gray-500 ml-1">
+                  ({course.reviews.toLocaleString()})
+                </span>
               </div>
               <div className="flex items-baseline justify-between mt-2">
                 <div>
-                  <span className="font-bold text-gray-900">{course.price}</span>
+                  <span className="font-bold text-gray-900">
+                    {course.price}
+                  </span>
                   {course.oldPrice && (
                     <span className="line-through text-gray-500 text-sm ml-2">
                       {course.oldPrice}

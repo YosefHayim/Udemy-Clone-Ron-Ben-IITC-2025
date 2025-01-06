@@ -1,11 +1,11 @@
-import vwLogo from "../../../assets/images/volkswagen_logo.svg";
-import samsungLogo from "../../../assets/images/samsung_logo.svg";
-import ciscoLogo from "../../../assets/images/cisco_logo.svg";
-import vimeoLogo from "../../../assets/images/vimeo_logo_resized-2.svg";
-import pgLogo from "../../../assets/images/procter_gamble_logo.svg";
-import hpLogo from "../../../assets/images/hewlett_packard_enterprise_logo.svg";
-import citiLogo from "../../../assets/images/citi_logo.svg";
-import ericssonLogo from "../../../assets/images/ericsson_logo.svg";
+import vwLogo from "/images/volkswagen_logo.svg";
+import samsungLogo from "/images/samsung_logo.svg";
+import ciscoLogo from "/images/cisco_logo.svg";
+import vimeoLogo from "/images/vimeo_logo_resized-2.svg";
+import pgLogo from "/images/procter_gamble_logo.svg";
+import hpLogo from "/images/hewlett_packard_enterprise_logo.svg";
+import citiLogo from "/images/citi_logo.svg";
+import ericssonLogo from "/images/ericsson_logo.svg";
 
 const TrustedBySection = () => {
   const logos = [
@@ -23,7 +23,8 @@ const TrustedBySection = () => {
     <section className="py-12 bg-gray-50">
       <div className="text-center mb-8">
         <h2 className="text-lg text-gray-500 font-medium">
-          Trusted by over 16,000 companies and millions of learners around the world
+          Trusted by over 16,000 companies and millions of learners around the
+          world
         </h2>
       </div>
       <div className="flex flex-wrap justify-center items-center space-x-6">

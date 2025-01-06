@@ -1,8 +1,8 @@
-import stack from '../../../assets/images/logo_stack.svg';
-import alvin from '../../../assets/images/Alvin_Lim.jpeg';
-import ian from '../../../assets/images/Ian_Stevens.png';
-import william from '../../../assets/images/William_A_Wachlin.jpeg';
-import quoteIcon from '../../../assets/images/quote.svg'; // Imagem das aspas
+import stack from "/images/logo_stack.svg";
+import alvin from "/images/Alvin_Lim.jpeg";
+import ian from "/images/Ian_Stevens.png";
+import william from "/images/William_A_Wachlin.jpeg";
+import quoteIcon from "/images/quote.svg"; // Imagem das aspas
 
 const testimonials = [
   {
@@ -36,7 +36,8 @@ const testimonials = [
     quote:
       "With Udemy Business employees were able to marry the two together, technology and consultant soft skills... to help drive their careers forward.",
     author: "Ian Stevens",
-    details: "Head of Capability Development, North America at Publicis Sapient",
+    details:
+      "Head of Capability Development, North America at Publicis Sapient",
     linkText: "Read full story →",
     link: "#",
     placeholderIcon: ian,
@@ -57,16 +58,10 @@ const Testimonials = () => {
           >
             {/* Aspas como imagem */}
             <div className="mb-4">
-              <img
-                src={quoteIcon}
-                alt="Quote"
-                className="w-6 h-6"
-              />
+              <img src={quoteIcon} alt="Quote" className="w-6 h-6" />
             </div>
             {/* Texto do depoimento */}
-            <p className="text-gray-900 mb-4">
-              {testimonial.quote}
-            </p>
+            <p className="text-gray-900 mb-4">{testimonial.quote}</p>
             {/* Logo ou autor */}
             <div className="flex items-center mt-4">
               <img
@@ -75,7 +70,9 @@ const Testimonials = () => {
                 className="w-8 h-8 object-contain mr-4"
               />
               <div>
-                <h3 className="font-bold text-gray-900">{testimonial.author}</h3>
+                <h3 className="font-bold text-gray-900">
+                  {testimonial.author}
+                </h3>
                 <p className="text-sm text-gray-600">{testimonial.details}</p>
               </div>
             </div>

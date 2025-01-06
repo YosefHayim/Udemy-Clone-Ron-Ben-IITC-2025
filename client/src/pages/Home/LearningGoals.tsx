@@ -1,9 +1,8 @@
-
-import handsOnImage from "../../../assets/images/hands-on-practice.png"; // Substitua pelos caminhos reais
-import certificationImage from "../../../assets/images/certificate.png";
-import insightsImage from "../../../assets/images/empty-state-1.png";
-import customizableImage from "../../../assets/images/organization.png";
-import containerizationImage from "../../../assets/images/desktop-hands-on-learning-2x (1).png";
+import handsOnImage from "/images/hands-on-practice.png"; // Substitua pelos caminhos reais
+import certificationImage from "/images/certificate.png";
+import insightsImage from "/images/empty-state-1.png";
+import customizableImage from "/images/organization.png";
+import containerizationImage from "/images/desktop-hands-on-learning-2x (1).png";
 
 const LearningGoals = () => {
   const features = [

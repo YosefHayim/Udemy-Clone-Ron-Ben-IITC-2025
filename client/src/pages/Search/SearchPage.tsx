@@ -10,10 +10,10 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 const SearchPage = () => {
   const queryClient = useQueryClient();
 
-  const { isPending, isError, data, error } = useQuery({
-    queryKey: ["courses"],
-    queryFn: getAllCourses,
-  });
+  // const { isPending, isError, data, error } = useQuery({
+  //   queryKey: ["courses"],
+  //   queryFn: getAllCourses,
+  // });
 
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">

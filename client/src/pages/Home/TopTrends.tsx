@@ -1,5 +1,5 @@
 // import React from "react";
-import trendsReportImage from "../../../assets/images/toptrends2.png";
+import trendsReportImage from "/images/toptrends2.png";
 const TrendsReport = () => {
   return (
     <div className="flex flex-col lg:flex-row items-center  px-12 bg-white">

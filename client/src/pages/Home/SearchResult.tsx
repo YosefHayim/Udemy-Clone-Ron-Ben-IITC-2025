@@ -1,7 +1,7 @@
-import jsCourse1 from "../../../assets/images/js1.jpg";
-import jsCourse2 from "../../../assets/images/js2.jpg";
-import jsCourse3 from "../../../assets/images/js3.jpg";
-import jsCourse4 from "../../../assets/images/js4.jpg";
+import jsCourse1 from "/images/js1.jpg";
+import jsCourse2 from "/images/js2.jpg";
+import jsCourse3 from "/images/js3.jpg";
+import jsCourse4 from "/images/js4.jpg";
 
 const courses = [
   {
@@ -50,12 +50,14 @@ const SearchResult = () => {
   return (
     <section className="px-6 py-8">
       <h2 className="text-3xl font-bold mb-6">
-        Because you searched for{" "}
-        <span className="text-blue-500">"js"</span>
+        Because you searched for <span className="text-blue-500">"js"</span>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {courses.map((course, index) => (
-          <div key={index} className="border rounded-lg overflow-hidden shadow-sm bg-white">
+          <div
+            key={index}
+            className="border rounded-lg overflow-hidden shadow-sm bg-white"
+          >
             <img
               src={course.image}
               alt={course.title}
