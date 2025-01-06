@@ -14,10 +14,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   controls = true,
   playing = false,
   width = "100%",
-  height = "auto",
+  height = "820px",
 }) => {
   return (
-    <div className="video-player">
+    <div className="video-player bg-gray-500 ">
       <ReactPlayer
         url={videoUrl}
         controls={controls}

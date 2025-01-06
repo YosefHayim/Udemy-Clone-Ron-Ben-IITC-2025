@@ -29,8 +29,8 @@ const LessonPage: React.FC = () => {
       <div className=" ">
         {/* Use the VideoPlayer component */}
         <VideoPlayer videoUrl={lesson.videoUrl} />
-      </div>
       <LessonRoutes />
+      </div>
     </Layout>
   );
 };

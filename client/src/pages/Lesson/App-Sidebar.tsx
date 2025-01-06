@@ -26,28 +26,26 @@ export function AppSidebar() {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
-            <button
-              onClick={toggleSidebar}
-              className={`p-4 ${
-                open ? "bg-black" : "bg-gray-500/50 hover:bg-gray-500"
-              }  absolute  text-white rounded-md shadow-md transform transition-all duration-300 relative flex items-center ${
-                open ? "" : "hover:w-[150px]"
-              }`}
-              
-            >
-              {open ? (
-                <>
-                  <FaTimes className="mr-2" /> 
-                </>
-              ) : (
-                <>
-                  <FaArrowRight className="mr-2" />
-                  <span className="absolute left-full ml-2 opacity-0 transition-opacity duration-300 hover:opacity-100">
-                    Course Content
-                  </span>
-                </>
-              )}
-            </button>
+          <button
+  onClick={toggleSidebar}
+  className={`p-4 ${
+    open ? "bg-black" : "bg-gray-500/50 hover:bg-gray-500"
+  } absolute z-10 text-white rounded-md shadow-md transform transition-all duration-300 flex items-center ${
+    open ? "" : "w-30 hover:w-[150px]"
+  }`}
+>
+  {open ? (
+    <FaTimes className="mr-2" />
+  ) : (
+    <div className="relative flex items-center">
+      <span className="opacity-0 transition-opacity  hover:opacity-100">
+        Course Content
+      </span>
+      <FaArrowRight className="" />
+    </div>
+  )}
+</button>
+
           </TooltipTrigger>
           <TooltipContent>
             <p>{open ? "Close Sidebar" : "Open Sidebar"}</p>
@@ -60,7 +58,8 @@ export function AppSidebar() {
   return (
     <>
       {/* Sidebar */}
-      <Sidebar className="absolute top-[69px]" side="left">
+      
+      <Sidebar className="fixed min-h-full top-[69px]" side="left">
         <SidebarContent>
           <SidebarGroup>
             <SidebarGroupLabel>{courseData.title}</SidebarGroupLabel>
@@ -79,7 +78,7 @@ export function AppSidebar() {
 
       {/* Trigger outside the sidebar */}
       {!open && (
-        <div className="fixed left-4 top-1/2 transform -translate-y-1/2">
+        <div className="fixed top-1/2 transform -translate-y-1/2">
           <CustomTrigger />
         </div>
       )}
