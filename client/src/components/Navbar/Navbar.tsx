@@ -9,6 +9,8 @@ import SearchResults from "./SearchResults/SearchResults";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/index"; // Import RootState type for Redux
 import Heart from "./Heart/Heart";
+import Notifications from "./Notifications/Notifications";
+import Profile from "./Profile/Profile";
 
 const Navbar = () => {
 
@@ -16,7 +18,7 @@ const Navbar = () => {
 
   return (
     <div
-      className="flex items-center justify-between px-6 py-3 bg-white shadow-md w-screen"
+      className="flex items-center justify-between px-6 py-3 pr-12 bg-white shadow-md w-screen"
       style={{ height: "4.5rem" }}
     >
       <Logo />
@@ -28,9 +30,11 @@ const Navbar = () => {
         {!user && <LoginBtn />}
         {!user && <SignupBtn />}
         {user && <AtagBtn aTagName={"My learning"} />}
+        {user &&  <Heart />}
         <Cart />
-        <Heart />
-        <Language />
+        {user && <Notifications />}
+        {user && <Profile />}
+        {!user && <Language />}
       </div>
       <SearchResults />
     </div>
