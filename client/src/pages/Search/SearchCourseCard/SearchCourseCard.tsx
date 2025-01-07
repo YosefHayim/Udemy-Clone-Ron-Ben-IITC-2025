@@ -1,10 +1,10 @@
-import CourseImg from "./CourseImg/CourseImg";
-import CourseTitle from "./CourseTitle/CourseTitle";
-import CourseRecap from "./CourseRecap/CourseRecap";
-import CourseInstructor from "./CourseInstructor/CourseInstructor";
-import CourseRatings from "./CourseRatings/CourseRatings";
-import CourseTag from "./CourseTag/CourseTag";
-import CoursePrice from "./CoursePrice/CoursePrice";
+import CourseImg from "@/components/CourseCard/CourseImg/CourseImg";
+import CourseInstructor from "@/components/CourseCard/CourseInstructor/CourseInstructor";
+import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
+import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
+import CourseRecap from "@/components/CourseCard/CourseRecap/CourseRecap";
+import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
+import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
 
 const SearchCourseCard = () => {
   return (

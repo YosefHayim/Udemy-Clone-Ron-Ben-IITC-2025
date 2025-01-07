@@ -10,6 +10,7 @@ const { generateToken } = require("../authorization/authController");
 const getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query)
     .filter()
+    .search()
     .sort()
     .limitFields()
     .paginate();
@@ -76,7 +77,12 @@ const signUp = catchAsync(async (req, res, next) => {
 
   // await sendEmail(mailOptions);
 
-  const token = generateToken(newUser._id);
+  const token = generateToken(
+    newUser._id,
+    newUser.fullName,
+    newUser.profilePic,
+    newUser.role
+  );
   res.cookie("cookie", token, cookieOptions);
 
   res.status(200).json({
@@ -99,7 +105,12 @@ const login = catchAsync(async (req, res, next) => {
     return next(createError("Invalid email or password.", 401));
   }
 
-  const token = generateToken(isFoundUser._id);
+  const token = generateToken(
+    isFoundUser._id,
+    isFoundUser.fullName,
+    isFoundUser.profilePic,
+    isFoundUser.role
+  );
   res.cookie("cookie", token, cookieOptions);
 
   if (!isFoundUser.emailVerified) {

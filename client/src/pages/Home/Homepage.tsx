@@ -8,7 +8,7 @@ import Testimonials from "./Testimonials";
 import TrendsReport from "./TopTrends";
 import TrendingNow from "./TrendingNow";
 import Carousel from "./Carousel";
-import Section from "./Sections";
+import Footer from "./Footer";
 
 const Homepage = () => {
   return (

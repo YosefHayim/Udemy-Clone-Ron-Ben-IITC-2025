@@ -13,6 +13,9 @@ const HandsOnPractice = () => {
         chosenHeight={"h-[50px]"}
         display={display}
         setDisplay={setDisplay}
+        useForSection={false}
+        showLine={true}
+        hideIcons={true}
       />
     </div>
   );
