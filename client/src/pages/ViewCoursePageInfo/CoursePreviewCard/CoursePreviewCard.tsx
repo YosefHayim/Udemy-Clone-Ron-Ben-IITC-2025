@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 
 const CoursePreviewCard = () => {
   return (
-    <div className="w-[300px] h-[750px] p-[1.5em] shadow-previewCourseCardShadow">
+    <div className="w-[320px] p-[1.5em] shadow-previewCourseCardShadow">
       <div className="">
         <img src={coursePreviewImg} alt="" />
         <b className="absolute text-white translate-y-[-1.5em] text-center">
@@ -69,7 +69,7 @@ const CoursePreviewCard = () => {
         <b className="underline">Apply Coupon</b>
       </div>
       <div className="flex flex-row items-center justify-between mb-[0.5em]">
-        <div className="w-[300px] border-dashed border border-gray-500 p-[0.5em] flex flex-col items-start text-[0.8em] gap-[0.2em]">
+        <div className="w-[320px] border-dashed border border-gray-500 p-[0.5em] flex flex-col items-start text-[0.8em] gap-[0.2em]">
           <div className="flex flex-row gap-[0.2em]">
             <b className="text-[#6a6f73]">NEWYEARCAREER</b>
             <p>is applied</p>
@@ -84,6 +84,15 @@ const CoursePreviewCard = () => {
         <Input className="rounded-[0.2em]" placeholder="Enter Coupon"></Input>
         <Button className="rounded-[0.2em]">Apply</Button>
       </form>
+      <div className="mt-[1em] text-[0.8em] flex flex-col gap-[0.5em]">
+        <b className="font-bold">Training 5 or more people?</b>
+        <p>
+          Get your team access to 27,000+ top Udemy courses anytime,anywhere.
+        </p>
+        <Button className="w-full text-black bg-white border border-gray-900 rounded-[0.2em] hover:bg-hoverDivGray">
+          Try Udemy Business
+        </Button>
+      </div>
     </div>
   );
 };

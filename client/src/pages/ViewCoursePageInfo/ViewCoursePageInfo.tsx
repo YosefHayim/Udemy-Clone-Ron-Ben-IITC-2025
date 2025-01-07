@@ -8,13 +8,14 @@ import CourseRecap from "./CourseRecap/CourseRecap";
 import CourseStudentRatings from "./CourseStudentsRatings/CourseStudentRatings";
 import ExploreTopics from "./ExploreTopics/ExploreTopics";
 import StickyCourseNavbar from "./StickyCourseNavbar/StickyCourseNavbar";
+import StudentsAlsoBought from "./StudentsAlsoBought/StudentsAlsoBought";
 import TopicPathMenu from "./TopicPathMenu/TopicPathMenu";
 import WhatYouLearn from "./WhatYouLearn/WhatYouLearn";
 
 const ViewCoursePageInfo = () => {
   return (
-    <div className="flex flex-row">
-      <div className="p-[5em] flex flex-col items-start justify-start gap-[1em]">
+    <div className="flex flex-row p-[3em] items-start justify-start w-full">
+      <div className="flex flex-col items-start justify-start gap-[1em]">
         <StickyCourseNavbar />
         <TopicPathMenu />
         <CourseBigTitle />
@@ -28,6 +29,7 @@ const ViewCoursePageInfo = () => {
         <WhatYouLearn />
         <ExploreTopics />
         <CourseContent />
+        <StudentsAlsoBought />
       </div>
       <CoursePreviewCard />
     </div>
