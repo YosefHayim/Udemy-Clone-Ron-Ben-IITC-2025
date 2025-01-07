@@ -13,7 +13,7 @@ const courseSchema = new mongoose.Schema(
     courseImg: {
       type: String,
       required: [
-        true,
+        false,
         "To register a course, you must provide an image for the course.",
       ],
     },
