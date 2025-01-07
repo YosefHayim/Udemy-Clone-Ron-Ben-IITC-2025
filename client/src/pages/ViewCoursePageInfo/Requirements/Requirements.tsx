@@ -5,17 +5,19 @@ const Requirements = () => {
   const [isClicked, setClicked] = useState(false);
 
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex-col items-center w-[550px]">
       <hr />
-      <h2 className="font-bold">Requirements</h2>
-      <div
-        className={`transition-transform duration-300 ease-in-out ${
-          isClicked ? "rotate-180" : "rotate-0"
-        }`}
-      >
-        <MdOutlineKeyboardArrowUp />
+      <div className="flex flex-row items-center justify-between">
+        <h2 className="font-bold text-[1.2em]">Requirements</h2>
+        <div
+          className={`transition-transform duration-300 ease-in-out ${
+            isClicked ? "rotate-180" : "rotate-0"
+          }`}
+        >
+          <MdOutlineKeyboardArrowUp />
+        </div>
       </div>
-      <ul>
+      <ul className="list-disc">
         <li>Basic knowledge of science</li>
         <li>Fundamental ideas of current, voltage and electric field</li>
         <li>High school mathematics</li>

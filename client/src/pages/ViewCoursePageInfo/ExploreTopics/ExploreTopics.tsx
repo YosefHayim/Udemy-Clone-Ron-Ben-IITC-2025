@@ -1,11 +1,15 @@
+import BubbleBtn from "./BubbleBtn/BubbleBtn";
+
 const ExploreTopics = () => {
   return (
     <div>
-      <b>Explore related topics</b>
+      <h2 className="font-bold text-[1.5em] mb-[0.5em]">
+        Explore related topics
+      </h2>
       <div className="flex flex-row gap-[0.5em]">
-        <b>Electronics</b>
-        <b>Engineering</b>
-        <b>Teaching & Academics</b>
+        <BubbleBtn similarTopicName={"Electronics"} />
+        <BubbleBtn similarTopicName={"Engineering"} />
+        <BubbleBtn similarTopicName={"Teaching & Academics"} />
       </div>
     </div>
   );

@@ -1,7 +1,9 @@
 const CourseBigTitle = () => {
   return (
-    <div className="font-bold">
-      <h1>Electronics : Semiconductor - A thorough understanding</h1>
+    <div className="font-bold mt-[5em] w-[700px]">
+      <h1 className="text-[2em]">
+        Electronics : Semiconductor - A thorough understanding
+      </h1>
     </div>
   );
 };
