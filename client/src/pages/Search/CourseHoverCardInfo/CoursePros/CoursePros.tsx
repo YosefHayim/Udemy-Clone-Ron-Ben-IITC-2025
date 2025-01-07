@@ -7,7 +7,7 @@ const CoursePros = () => {
       <li>
         <div className="flex items-start gap-[1em]">
           <IoMdCheckmark className="text-[1.5em]" />
-          <p className="text-[0.8em]">
+          <p className="">
             Learn React from the ground up and finish the course as an advanced
             React developer
           </p>
@@ -16,7 +16,7 @@ const CoursePros = () => {
       <li>
         <div className="flex items-start gap-[1em]">
           <IoMdCheckmark className="text-[1.5em]" />
-          <p className="text-[0.8em]">
+          <p className="">
             Build multiple high-quality demo apps, including a fullstack app
             built with NextJS
           </p>
@@ -25,7 +25,7 @@ const CoursePros = () => {
       <li>
         <div className="flex items-start gap-[1em]">
           <IoMdCheckmark className="text-[1.5em]" />
-          <p className="text-[0.8em]">
+          <p className="">
             Join more than 900,000 students in this course & more than 3,000,000
             students I taught across all my courses
           </p>

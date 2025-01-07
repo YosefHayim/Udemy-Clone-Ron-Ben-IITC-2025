@@ -29,7 +29,7 @@ const Description = () => {
       >
         <div className="flex flex-col gap-[1em]">
           <h2 className="font-bold text-[1.2em]">Description</h2>
-          <p className="text-[0.8em] mb-[2em]">
+          <p className=" mb-[2em]">
             Learn the fundamentals of Semiconductors and take the first leap to
             the world of Electronics. This course will be very helpful for
             students with great interest towards science and especially
@@ -39,7 +39,7 @@ const Description = () => {
             quickly-
           </p>
         </div>
-        <ul className="list-disc text-[0.8em] flex flex-col items-start justify-start gap-[0.5em]">
+        <ul className="list-disc  flex flex-col items-start justify-start gap-[0.5em]">
           <li>Learn the basics of Semiconductors.</li>
           <li>Which materials are used as Semiconductors.</li>
           <li>
@@ -88,7 +88,7 @@ const Description = () => {
         </ul>
         <div className="mt-[1.5em]">
           <h2 className="font-bold text-[1.5em]">Who is this course for?:</h2>
-          <ul className="text-[0.8em] list-disc">
+          <ul className=" list-disc">
             <li>
               The course is for those who love electronics and love to explore
               the world of electronics.
@@ -100,7 +100,7 @@ const Description = () => {
         className="flex gap-[1em] items-center mt-[1em] cursor-pointer"
         onClick={handleToggle}
       >
-        <span className="text-purpleStatic hover:text-purpleHover font-bold text-[0.8em]">
+        <span className="text-purpleStatic hover:text-purpleHover font-bold ">
           {isExpanded ? "Show less" : "Show more"}
         </span>
         {isExpanded ? (

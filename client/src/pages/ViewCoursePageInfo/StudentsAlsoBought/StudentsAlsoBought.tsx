@@ -8,7 +8,7 @@ const StudentsAlsoBought = () => {
   return (
     <div>
       <h2 className="font-bold py-[0.5em]">Students also bought</h2>
-      <div className="p-[0.5em] flex flex-row items-start justify-around gap-[0.5em] text-[0.8em]">
+      <div className="p-[0.5em] flex flex-row items-start justify-around gap-[0.5em] ">
         <hr />
         <div className="">
           <img src={studentBoughtImg} alt="" />

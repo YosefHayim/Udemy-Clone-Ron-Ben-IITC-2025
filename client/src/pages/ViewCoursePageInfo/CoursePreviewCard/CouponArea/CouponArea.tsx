@@ -6,7 +6,7 @@ const CouponArea = () => {
   return (
     <div>
       <div className="flex flex-row items-center justify-between mb-[0.5em]">
-        <div className="w-[320px] border-dashed border border-gray-500 p-[0.5em] flex flex-col items-start text-[0.8em] gap-[0.2em]">
+        <div className="w-[320px] border-dashed border border-gray-500 p-[0.5em] flex flex-col items-start  gap-[0.2em]">
           <div className="flex flex-row gap-[0.2em]">
             <b className="text-[#6a6f73]">NEWYEARCAREER</b>
             <p>is applied</p>

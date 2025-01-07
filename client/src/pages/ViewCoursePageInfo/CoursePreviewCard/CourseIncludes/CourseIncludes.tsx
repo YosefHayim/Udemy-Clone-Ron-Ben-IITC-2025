@@ -7,7 +7,7 @@ const CourseIncludes = () => {
   return (
     <div className="mb-[0.5em]">
       <h2 className="font-bold mb-[0.5em]">This course includes:</h2>
-      <ul className="text-[0.8em] flex-col gap-[0.5em]">
+      <ul className=" flex-col gap-[0.5em]">
         <div className="flex items-center gap-[0.5em]">
           <MdOutlineOndemandVideo />
           <li>2 hours on-demand video</li>
