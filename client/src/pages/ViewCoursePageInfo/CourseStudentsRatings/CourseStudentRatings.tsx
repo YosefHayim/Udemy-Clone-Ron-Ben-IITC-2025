@@ -3,9 +3,9 @@ const CourseStudentRatings = ({
   totalStudents = "7,511",
 }) => {
   return (
-    <div>
-      <p>({amountRated}) ratings</p>
-      <p>{totalStudents}</p>
+    <div className="flex gap-[0.5em]">
+      <p className="underline text-[#c0c4fc]">({amountRated} ratings)</p>
+      <p>{totalStudents} students</p>
     </div>
   );
 };

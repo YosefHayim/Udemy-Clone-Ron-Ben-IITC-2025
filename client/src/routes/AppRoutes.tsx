@@ -14,12 +14,12 @@ const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
-        {/* Routes where Header is shown */}
+        {/* Routes where Navbar is shown */}
         <Route
           path="*"
           element={
             <>
-              <Navbar />
+              {/* <Navbar /> */}
               <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="/Signup" element={<Signup />} />
@@ -31,7 +31,7 @@ const AppRoutes: React.FC = () => {
                   element={<ViewCoursePageInfo />}
                 />
               </Routes>
-              <Footer />
+              {/* <Footer /> */}
             </>
           }
         />
