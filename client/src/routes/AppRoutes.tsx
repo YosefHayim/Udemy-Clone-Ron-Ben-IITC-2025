@@ -8,6 +8,7 @@ import SearchPage from "@/pages/Search/SearchPage";
 import Homepage from "@/pages/Home/Homepage";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/pages/Home/Footer";
+import ViewCoursePageInfo from "@/pages/ViewCoursePageInfo/ViewCoursePageInfo";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -25,6 +26,10 @@ const AppRoutes: React.FC = () => {
                 <Route path="/courses/search" element={<SearchPage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<NotFound />} />
+                <Route
+                  path="/course-view/:courseId"
+                  element={<ViewCoursePageInfo />}
+                />
               </Routes>
               <Footer />
             </>
