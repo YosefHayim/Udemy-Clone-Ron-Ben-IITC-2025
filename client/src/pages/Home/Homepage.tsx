@@ -8,14 +8,14 @@ import Testimonials from "./Testimonials";
 import TrendsReport from "./TopTrends";
 import TrendingNow from "./TrendingNow";
 import Carousel from "./Carousel";
-import Footer from "./Footer";
+import Sections from './Sections'
 
 const Homepage = () => {
   return (
     <div>
       <div className="container mx-auto px-6 lg:px-24">
         <Banner />
-        <Section />
+        <Sections />
         <TrustedBySection />
         <LearnersAreViewing />
         <SearchResult />
