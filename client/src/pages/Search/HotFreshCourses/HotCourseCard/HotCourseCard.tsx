@@ -1,9 +1,9 @@
-import CourseImg from "../../SearchCourseCard/CourseImg/CourseImg";
-import CourseInstructor from "../../SearchCourseCard/CourseInstructor/CourseInstructor";
-import CoursePrice from "../../SearchCourseCard/CoursePrice/CoursePrice";
-import CourseRatings from "../../SearchCourseCard/CourseRatings/CourseRatings";
-import CourseTag from "../../SearchCourseCard/CourseTag/CourseTag";
-import CourseTitle from "../../SearchCourseCard/CourseTitle/CourseTitle";
+import CourseImg from "../../../../components/CourseCard/CourseImg/CourseImg";
+import CourseInstructor from "../../../../components/CourseCard/CourseInstructor/CourseInstructor";
+import CoursePrice from "../../../../components/CourseCard/CoursePrice/CoursePrice";
+import CourseRatings from "../../../../components/CourseCard/CourseRatings/CourseRatings";
+import CourseTag from "../../../../components/CourseCard/CourseTag/CourseTag";
+import CourseTitle from "../../../../components/CourseCard/CourseTitle/CourseTitle";
 import hotFreshOne from "/images/hot-fresh-course-1.png";
 
 const HotCourseCard = () => {

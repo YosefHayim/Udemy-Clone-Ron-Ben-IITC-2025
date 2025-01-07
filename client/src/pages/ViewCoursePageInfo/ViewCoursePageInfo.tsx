@@ -1,4 +1,6 @@
-import Section from "@/components/Section/Section";
+import Description from "./Description/Description";
+import Requirements from "./Requirements/Requirements";
+import Section from "./Section/Section";
 
 const ViewCoursePageInfo = () => {
   return (
@@ -96,7 +98,10 @@ const ViewCoursePageInfo = () => {
           </div>
           <div>
             <Section />
+            <Section />
           </div>
+          <Requirements />
+          <Description />
         </div>
       </div>
     </div>
