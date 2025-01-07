@@ -2,10 +2,10 @@ import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 
 const Description = () => {
   return (
-    <div className="w-[500px] flex flex-col items-start justify-start">
+    <div className="w-full flex flex-col items-start justify-start">
       <div className="flex flex-col gap-[1em]">
         <h2 className="font-bold text-[1.2em]">Description</h2>
-        <p>
+        <p className="text-[0.8em] mb-[2em] w-[500px]">
           Learn the fundamentals of Semiconductors and take the first leap to
           the world of Electronics. This course will be very helpful for
           students with great interest towards science and especially
@@ -15,17 +15,17 @@ const Description = () => {
           quickly-
         </p>
       </div>
-      <li>Learn the basics of Semiconductors.</li>
-      <ul>
+      <ul className="list-disc text-[0.8em] flex flex-col items-start justify-start gap-[0.5em]">
+        <li>Learn the basics of Semiconductors.</li>
         <li>Which materials are used as Semiconductors.</li>
         <li>
           Energy Band concept and classification of materials w.r.t. this
           concept.
         </li>
         <li>Thorough discussion on Intrinsic and Extrinsic semiconductors.</li>
-        <li>
+        <li className="w-[650px]">
           Detailed discussion on Fermi-Dirac distribution and Fermi level. It is
-          a very important concept and helps students to further clarify the
+          a very important concept and help students to further clarify the
           understanding of semiconductors.
         </li>
         <li>
@@ -58,17 +58,19 @@ const Description = () => {
           competitive examinations.
         </li>
       </ul>
-      <div>
-        <h2 className="font-bold">Who is this course for?:</h2>
-        <ul>
+      <div className="mt-[1.5em]">
+        <h2 className="font-bold text-[1.5em]">Who is this course for?:</h2>
+        <ul className="text-[0.8em] list-disc">
           <li>
             The course is for those who love electronics and love to explore the
             world of electronics
           </li>
         </ul>
       </div>
-      <div className="flex gap-[1em]">
-        <span>Show less</span>
+      <div className="flex gap-[1em] items-center">
+        <span className="text-purpleStatic hover:text-purpleHover font-bold text-[0.8em]">
+          Show less
+        </span>
         <MdOutlineKeyboardArrowUp />
       </div>
     </div>

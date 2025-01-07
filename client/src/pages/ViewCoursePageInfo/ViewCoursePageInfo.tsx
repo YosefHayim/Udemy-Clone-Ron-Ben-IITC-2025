@@ -14,8 +14,8 @@ import WhatYouLearn from "./WhatYouLearn/WhatYouLearn";
 const ViewCoursePageInfo = () => {
   return (
     <div className="flex flex-row">
-      <div className="bg-[#1c1d1f p-[5em] flex flex-col items-start justify-start gap-[1em]">
-        {/* <StickyCourseNavbar /> */}
+      <div className="p-[5em] flex flex-col items-start justify-start gap-[1em]">
+        <StickyCourseNavbar />
         <TopicPathMenu />
         <CourseBigTitle />
         <CourseRecap />

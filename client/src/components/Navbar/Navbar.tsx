@@ -10,7 +10,7 @@ import SearchResults from "./SearchResults/SearchResults";
 const Navbar = () => {
   return (
     <div
-      className="flex items-center justify-between px-6 py-3 bg-white shadow-md w-screen"
+      className="flex items-center justify-between px-6 py-3 bg-white shadow-md w-screen z-[1000]"
       style={{ height: "4.5rem" }}
     >
       <Logo />
