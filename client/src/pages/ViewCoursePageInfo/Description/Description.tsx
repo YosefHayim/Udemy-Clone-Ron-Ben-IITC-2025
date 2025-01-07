@@ -2,16 +2,19 @@ import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 
 const Description = () => {
   return (
-    <div>
-      <h2>Description</h2>
-      <p>
-        Learn the fundamentals of Semiconductors and take the first leap to the
-        world of Electronics. This course will be very helpful for students with
-        great interest towards science and especially electronics. Finally ,the
-        course is so designed that if anyone goes from lecture 1 to last lecture
-        the entire subject can be thoroughly understood easily. So lets have a
-        highlight of the entire course quickly-
-      </p>
+    <div className="w-[500px] flex flex-col items-start justify-start">
+      <div className="flex flex-col gap-[1em]">
+        <h2 className="font-bold text-[1.2em]">Description</h2>
+        <p>
+          Learn the fundamentals of Semiconductors and take the first leap to
+          the world of Electronics. This course will be very helpful for
+          students with great interest towards science and especially
+          electronics. Finally ,the course is so designed that if anyone goes
+          from lecture 1 to last lecture the entire subject can be thoroughly
+          understood easily. So lets have a highlight of the entire course
+          quickly-
+        </p>
+      </div>
       <li>Learn the basics of Semiconductors.</li>
       <ul>
         <li>Which materials are used as Semiconductors.</li>
