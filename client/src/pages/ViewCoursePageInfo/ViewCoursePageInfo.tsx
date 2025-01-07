@@ -1,7 +1,9 @@
+import Section from "@/components/Section/Section";
+
 const ViewCoursePageInfo = () => {
   return (
     <div>
-      <div className="bg-[#1c1d1f]">
+      <div className="bg-[#1c1d1f] text-white">
         <div className="flex flex-row gap-[1em] text-[#c0c4fc]">
           <b>Teaching & Academics</b>
           <b>Engineering</b>
@@ -91,6 +93,9 @@ const ViewCoursePageInfo = () => {
             <p>2 sections</p>
             <p>15 lectures</p>
             <p>2h 13m total length</p>
+          </div>
+          <div>
+            <Section />
           </div>
         </div>
       </div>

@@ -9,6 +9,9 @@ const Filter: React.FC<FilterProps> = ({
   filterItems,
   chosenHeight,
   display,
+  useForSection,
+  showLine,
+  hideIcons,
 }) => {
   const [isClicked, setClicked] = useState(false);
 
@@ -17,8 +20,8 @@ const Filter: React.FC<FilterProps> = ({
   };
 
   return (
-    <div>
-      <hr />
+    <div className={useForSection ? "bg-[#f7f9fa]" : ""}>
+      <hr className={showLine ? "block" : "hidden"} />
       <div
         className={`transition-all overflow-hidden ${
           isClicked ? "h-auto" : `${chosenHeight}`
@@ -29,7 +32,13 @@ const Filter: React.FC<FilterProps> = ({
           onClick={handleClick}
         >
           <p className="font-bold text-lg pb-[1em] py-[0.5em]">{filterTitle}</p>
-          {isClicked ? <MdKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
+          {isClicked ? (
+            <MdKeyboardArrowUp className={hideIcons ? "hidden" : "block"} />
+          ) : (
+            <MdOutlineKeyboardArrowDown
+              className={hideIcons ? "hidden" : "block"}
+            />
+          )}
         </div>
         <div>
           {filterItems.map((item: DummyData) => (

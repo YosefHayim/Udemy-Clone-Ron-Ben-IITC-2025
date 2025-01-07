@@ -9,6 +9,9 @@ export interface FilterProps {
   filterItems: DummyData[];
   chosenHeight: string;
   display: boolean;
+  useForSection: boolean;
+  showLine: boolean;
+  hideIcons: boolean;
   setDisplay: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
