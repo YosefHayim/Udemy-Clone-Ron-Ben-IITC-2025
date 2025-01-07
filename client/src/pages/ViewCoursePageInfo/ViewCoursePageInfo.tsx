@@ -2,6 +2,7 @@ import CourseBasicInfo from "./CourseBasicInfo/CourseBasicInfo";
 import CourseBigTitle from "./CourseBigTitle/CourseBigTitle";
 import CourseContent from "./CourseContent/CourseContent";
 import CourseCreatedBy from "./CourseCreatedBy/CourseCreatedBy";
+import CoursePreviewCard from "./CoursePreviewCard/CoursePreviewCard";
 import CourseRating from "./CourseRating/CourseRating";
 import CourseRecap from "./CourseRecap/CourseRecap";
 import CourseStudentRatings from "./CourseStudentsRatings/CourseStudentRatings";
@@ -13,7 +14,8 @@ import WhatYouLearn from "./WhatYouLearn/WhatYouLearn";
 const ViewCoursePageInfo = () => {
   return (
     <div>
-      <div className="bg-[#1c1d1f p-[5em] flex flex-col items-start justify-start gap-[1em]">
+      <CoursePreviewCard />
+      {/* <div className="bg-[#1c1d1f p-[5em] flex flex-col items-start justify-start gap-[1em]">
         <StickyCourseNavbar />
         <TopicPathMenu />
         <CourseBigTitle />
@@ -27,7 +29,7 @@ const ViewCoursePageInfo = () => {
         <WhatYouLearn />
         <ExploreTopics />
         <CourseContent />
-      </div>
+      </div> */}
     </div>
   );
 };
