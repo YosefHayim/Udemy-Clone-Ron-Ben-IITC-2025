@@ -1,9 +1,13 @@
 import { MdOutlineStarPurple500 } from "react-icons/md";
 
-const CourseRating = ({ courseRating = 4.1, amountOfStars = 1 }) => {
+const CourseRating = ({
+  colorRating = "text-[#f69c08]",
+  courseRating = 4.1,
+  amountOfStars = 1,
+}) => {
   return (
     <div className="flex items-center gap-[0.1em]">
-      <b className="text-[#f69c08]">{courseRating}</b>
+      <b className={colorRating}>{courseRating}</b>
       {/* Dynamically render stars */}
       {Array(amountOfStars)
         .fill(null)
