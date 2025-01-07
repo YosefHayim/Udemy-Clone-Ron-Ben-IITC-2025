@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <SidebarProvider>
       <TopNavBar />
         <AppSidebar />
-        <main className=" bg-gray-100 w-full ">
+        <main className="w-full ">
           {children}
         </main>
       </SidebarProvider>

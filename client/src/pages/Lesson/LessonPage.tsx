@@ -30,7 +30,9 @@ const LessonPage: React.FC = () => {
     <Layout>
         {/* Use the VideoPlayer component */}
         <VideoPlayer videoUrl={lesson.videoUrl} />
+        <div className="px-15">
       <LessonRoutes />
+      </div>
       <Footer />
 
     </Layout>

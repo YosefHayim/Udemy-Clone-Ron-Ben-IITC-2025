@@ -21,7 +21,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const { open, toggleSidebar } = useSidebar(); // Access SidebarProvider context
 
   return (
-    <div className="relative video-player bg-gray-500" style={{ width, height }}>
+    <div className="relative video-player bg-[#1C1D1F]" style={{ width, height }}>
       {/* Video Player */}
       <div className="absolute inset-0 flex justify-start items-center">
         <CustomTrigger open={open} toggleSidebar={toggleSidebar} />

@@ -67,7 +67,7 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
                         <Link
                           to={`/lesson/${lesson.id}`}
                           className={`hover:underline ${
-                            completedLessons[lesson.id] ? "line-through text-gray-500" : "text-blue-500"
+                            completedLessons[lesson.id] ? " text-gray-500" : "text-blue"
                           }`}
                         >
                           {lesson.title}

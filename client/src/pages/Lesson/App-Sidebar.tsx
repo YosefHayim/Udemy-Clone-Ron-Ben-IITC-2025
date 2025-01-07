@@ -26,7 +26,7 @@ export function AppSidebar() {
     <>
       {/* Sidebar */}
       
-      <Sidebar className=" min-h-full top-[69px] bg-white" side="left">
+      <Sidebar className="absolute min-h-full top-[69px] bg-white" side="left">
         <SidebarContent>
           <SidebarGroup>
             <SidebarGroupLabel>{courseData.title}</SidebarGroupLabel>
