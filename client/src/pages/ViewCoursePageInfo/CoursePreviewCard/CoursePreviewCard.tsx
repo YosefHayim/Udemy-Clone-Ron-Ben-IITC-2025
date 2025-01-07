@@ -7,6 +7,9 @@ import { MdOutlineOndemandVideo } from "react-icons/md";
 import { BiMobile } from "react-icons/bi";
 import { IoIosInfinite } from "react-icons/io";
 import { IoTrophyOutline } from "react-icons/io5";
+import { IoMdClose } from "react-icons/io";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const CoursePreviewCard = () => {
   return (
@@ -39,7 +42,7 @@ const CoursePreviewCard = () => {
           30-Day Money-Back Guarantee
         </p>
       </div>
-      <div>
+      <div className="mb-[0.5em]">
         <h2 className="font-bold mb-[0.5em]">This course includes:</h2>
         <ul className="text-[0.8em] flex-col gap-[0.5em]">
           <div className="flex items-center gap-[0.5em]">
@@ -60,12 +63,27 @@ const CoursePreviewCard = () => {
           </div>
         </ul>
       </div>
-      <div className="flex flex-row gap-[2em]">
+      <div className="flex flex-row justify-around text-[0.8em] w-full mb-[1em]">
         <b className="underline">Span</b>
         <b className="underline">Gift this course</b>
         <b className="underline">Apply Coupon</b>
       </div>
-      <div className="border-dashed border-"></div>
+      <div className="flex flex-row items-center justify-between mb-[0.5em]">
+        <div className="w-[300px] border-dashed border border-gray-500 p-[0.5em] flex flex-col items-start text-[0.8em] gap-[0.2em]">
+          <div className="flex flex-row gap-[0.2em]">
+            <b className="text-[#6a6f73]">NEWYEARCAREER</b>
+            <p>is applied</p>
+            <div className="flex items-center">
+              <IoMdClose className="text-[#a435f0] text-[1.4em]" />
+            </div>
+          </div>
+          <p className="text-[#6a6f73]">Udemy coupon</p>
+        </div>
+      </div>
+      <form className="flex flex-row items-center gap-[0.5em]">
+        <Input className="rounded-[0.2em]" placeholder="Enter Coupon"></Input>
+        <Button className="rounded-[0.2em]">Apply</Button>
+      </form>
     </div>
   );
 };
