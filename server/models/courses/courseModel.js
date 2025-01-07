@@ -13,7 +13,7 @@ const courseSchema = new mongoose.Schema(
     courseImg: {
       type: String,
       required: [
-        true,
+        false,
         "To register a course, you must provide an image for the course.",
       ],
     },
@@ -103,12 +103,6 @@ const courseSchema = new mongoose.Schema(
         ref: "Section",
       },
     ],
-    lessons: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Lesson",
-      },
-    ],
     reviews: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -150,8 +144,8 @@ courseSchema.pre("remove", async function (next) {
   next();
 });
 
-// Pre-find middleware to populate related fields
 courseSchema.pre(/^find/, function (next) {
+  console.log("Pre-find middleware executed"); // Debugging
   this.populate("reviews")
     .populate("courseInstructor", "fullName email -_id")
     .populate({

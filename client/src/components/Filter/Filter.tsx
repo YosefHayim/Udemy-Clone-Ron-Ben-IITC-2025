@@ -44,7 +44,7 @@ const Filter: React.FC<FilterProps> = ({
           {filterItems.map((item: DummyData) => (
             <div
               key={item.name}
-              className="flex gap-[0.5em] text-languageText text-[0.8em] py-[0.5em] cursor-pointer"
+              className="flex gap-[0.5em] text-languageText  py-[0.5em] cursor-pointer"
             >
               <p>
                 <Checkbox className="rounded-none" />
@@ -62,7 +62,7 @@ const Filter: React.FC<FilterProps> = ({
             <p
               className={
                 display
-                  ? "text-purpleStatic hover:text-purpleHover font-bold text-[0.8em]"
+                  ? "text-purpleStatic hover:text-purpleHover font-bold "
                   : "hidden"
               }
             >

@@ -73,6 +73,7 @@ const createCourse = catchAsync(async (req, res, next) => {
     courseName,
     courseDescription,
     coursePrice,
+    courseImg,
     category,
     subCategory,
     courseTopic,
@@ -82,6 +83,7 @@ const createCourse = catchAsync(async (req, res, next) => {
   } = req.body;
 
   if (
+    !courseImg ||
     !courseName ||
     !courseDescription ||
     !coursePrice ||
@@ -104,6 +106,7 @@ const createCourse = catchAsync(async (req, res, next) => {
     courseDescription,
     coursePrice,
     category,
+    courseImg,
     subCategory,
     courseTopic,
     courseLevel,
