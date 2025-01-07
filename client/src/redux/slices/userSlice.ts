@@ -1,18 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
-  currentUser: null, // Começa vazio
+// Define the structure of the user state
+type User = {
+  message?: string;
+  status?: string;
 };
 
+// Define the initial state
+const initialState: User | null = null;
+
+// Create the slice
 const userSlice = createSlice({
-  name: "user",
-  initialState,
+  name: "user", // Slice name
+  initialState, // Initial state
   reducers: {
-    setUser: (state, action) => {
-      state.currentUser = action.payload; // Atualiza o estado com os dados do usuário
-    },
+    setUser: (state, action: PayloadAction<User>) => action.payload, // Save user data
+    clearUser: () => null, // Clear user data
   },
 });
 
-export const { setUser } = userSlice.actions; // Exporta a ação
-export default userSlice.reducer; // Exporta o reducer
+// Export actions to use in the app
+export const { setUser, clearUser } = userSlice.actions;
+
+// Export the reducer to add it to the store
+export default userSlice.reducer;

@@ -4,12 +4,15 @@ import { useNavigate } from "react-router-dom";
 import illustration from "/images/login.png";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook, FaApple } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/slices/userSlice"; // Import the setUser action
 
 const Login = () => {
   const [email, setEmail] = useState(""); // Estado para o email
   const [password, setPassword] = useState(""); // Estado para a senha
   const [error, setError] = useState(""); // Estado para mensagens de erro
   const [loading, setLoading] = useState(false); // Estado para o carregamento
+  const dispatch = useDispatch(); // Dispatch actions to Redux
   const navigate = useNavigate(); // Para redirecionar após login bem-sucedido
 
   // Função para enviar os dados do formulário
@@ -19,12 +22,10 @@ const Login = () => {
     setError(""); // Limpa mensagens de erro anteriores
 
     try {
-      const response = await axios.post(
-        "https://udemy-clone-ron-ben.onrender.com/api/user/auth/login",
-        { email, password }
-      );
-      console.log("Login bem-sucedido:", response.data); // Mostra os dados no console
+      const response = await axios.post("https://udemy-clone-ron-ben.onrender.com/api/user/auth/login", { email, password });
+      console.log("Login sucessed:", response.data); // Mostra os dados no console
       navigate("/"); // Redireciona para a página inicial
+      dispatch(setUser(response.data)); // Save the response to the global state
     } catch (err) {
       // Exibe mensagem de erro
       setError(err.response?.data?.message || "Algo deu errado. Tente novamente.");
