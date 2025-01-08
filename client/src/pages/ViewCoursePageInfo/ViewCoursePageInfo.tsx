@@ -9,6 +9,7 @@ import CourseStudentRatings from "./CourseStudentsRatings/CourseStudentRatings";
 import ExploreTopics from "./ExploreTopics/ExploreTopics";
 import FrequentlyBoughtTogether from "./FrequentlyBoughtTogether/FrequentlyBoughtTogether";
 import InstructurSection from "./InsturctorSection/InstructurSection";
+import ReviewsSection from "./ReviewsSection/ReviewsSection";
 import StickyCourseNavbar from "./StickyCourseNavbar/StickyCourseNavbar";
 import StudentsAlsoBought from "./StudentsAlsoBought/StudentsAlsoBought";
 import TopicPathMenu from "./TopicPathMenu/TopicPathMenu";
@@ -34,6 +35,7 @@ const ViewCoursePageInfo = () => {
         <StudentsAlsoBought />
         <FrequentlyBoughtTogether />
         <InstructurSection />
+        <ReviewsSection />
       </div>
       <CoursePreviewCard />
     </div>

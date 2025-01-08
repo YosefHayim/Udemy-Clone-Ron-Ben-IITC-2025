@@ -4,10 +4,14 @@ const CourseRating = ({
   colorRating = "text-[#f69c08]",
   courseRating = 4.1,
   amountOfStars = 1,
+  isShowRating = false,
 }) => {
   return (
     <div className="flex items-center gap-[0.1em]">
-      <b className={colorRating}>{courseRating}</b>
+      <b className={`${!isShowRating ? "hidden" : colorRating}`}>
+        {courseRating}
+      </b>
+
       {/* Dynamically render stars */}
       {Array(amountOfStars)
         .fill(null)
