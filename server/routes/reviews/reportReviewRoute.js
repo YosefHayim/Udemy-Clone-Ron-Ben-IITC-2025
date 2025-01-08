@@ -16,6 +16,6 @@ router.get("/", getAllReports);
 router.get("/:id", getReportById);
 router.get("/:reviewId", getReportsByReviewId);
 router.post("/:reviewId", grantedAccess, createReportByReviewId);
-router.delete("/:id", deleteReportById);
+router.delete("/:id", grantedAccess, deleteReportById);
 
 module.exports = router;

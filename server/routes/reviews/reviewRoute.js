@@ -26,16 +26,16 @@ router.param("id", (req, res, next, val) => {
 router.get("/", getAllReviews);
 
 // Get review by review id
-router.get("/single/:id", grantedAccess, getReviewByReviewId);
+router.get("/single/:id", getReviewByReviewId);
 
 // Get all reviews of specific course by its id
 router.get("/course/:id", getAllReviewsByCourseId);
 
 // Get all reviews that the current user that is auth is commented
-router.get("/user/:id", grantedAccess, getAllReviewsOfSelfUser);
+router.get("/user/:id", getAllReviewsOfSelfUser);
 
 // Get review to a specific course by course id
-router.get("/:courseid", grantedAccess, addReviewByCourseId);
+router.get("/:courseid", addReviewByCourseId);
 
 // Add review to a specific course by course id
 router.post("/:id", grantedAccess, addReviewByCourseId);
