@@ -31,7 +31,6 @@ const SearchInput = () => {
       setIsTyping(true);
     } else {
       setIsTyping(false);
-      setSearchTerm("");
     }
   };
 

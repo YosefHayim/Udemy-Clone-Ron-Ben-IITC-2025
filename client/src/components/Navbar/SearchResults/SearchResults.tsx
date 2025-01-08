@@ -2,11 +2,14 @@ import { SearchResultsProps } from "@/types/types";
 import SearchResultRow from "./SearchResultRow/SearchResultRow";
 import SearchResultsCourseImg from "./SearchResultsCourseImg/SearchResultsCourseImg";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
   if (!data) {
     return;
   }
+
+  console.log(data);
 
   const navigate = useNavigate();
 
@@ -16,6 +19,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
     navigate(`/course-view/:${courseId}`);
   };
 
+  useEffect(() => {
+    if (data) {
+    }
+  }, [data]);
+
   return (
     <div
       onClick={handleClick}
@@ -23,7 +31,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
         isTyping ? "block" : "hidden"
       } absolute top-[8%] left-[13%] z-[1000] w-[700px] border border-gray-100 bg-white `}
     >
-      {data.slice(0, 13).map((result, index) => (
+      {data.response.slice(0, 13).map((result, index) => (
         <div key={result._id}>
           {index < 9 ? (
             <SearchResultRow

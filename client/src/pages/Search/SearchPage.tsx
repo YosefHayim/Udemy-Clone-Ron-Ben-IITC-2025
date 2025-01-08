@@ -31,7 +31,7 @@ const SearchPage = () => {
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
-        {data?.totalCourses} results for {courseName}
+        {data?.totalCourses} results for "{courseName}""
       </h1>
       <FilterNSort totalResults={data.totalCourses} />
       <div className="flex flex-row justify-start w-full gap-[1.5em]">

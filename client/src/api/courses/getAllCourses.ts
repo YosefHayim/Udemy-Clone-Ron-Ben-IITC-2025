@@ -8,11 +8,10 @@ const getAllCourses = async (searchTerm: String) => {
 
   try {
     const { data } = await axios.get(
-      `${baseUrl}/api/course/?search=${searchTerm}&limit=13&fields=courseName,courseInstructor,_id,courseImg,coursePrice`
+      `${baseUrl}/api/course/?search=${searchTerm}&limit=13&fields=courseName,courseInstructor,_id,courseImg,courseFullPrice,courseDiscountPrice`
     );
 
     if (data) {
-      console.log(data);
       return data;
     } else {
       return null;
