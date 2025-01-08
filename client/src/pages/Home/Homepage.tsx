@@ -14,10 +14,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/index"; // Import RootState type for Redux 
 
 const Homepage = () => {
-  
+
   const user = useSelector((state: RootState) => state.user)
-  
+
   return (
+    <>
+      {/* Guest Home Page */}
       <div className="container mx-auto px-6 lg:px-24">
         {user && <Menu />}
         <Banner />
@@ -32,6 +34,11 @@ const Homepage = () => {
         <TrendingNow />
         <Carousel />
       </div>
+
+      {/* Loaged in Home Page */}
+      <div>
+      </div>
+    </>
   );
 };
 
