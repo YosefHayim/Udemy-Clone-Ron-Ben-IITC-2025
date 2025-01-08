@@ -28,13 +28,13 @@ const NavBar: React.FC = () => {
   const basePath = `/lesson/${id}`; // Define the base path dynamically
 
   return (
-    <div className=" px-10  ">
-      <nav className="flex bg-white text-gray-500  border-b ">
+    <div className="w-full">
+      <nav className="flex flex-wrap bg-white text-gray-500 px-4 sm:px-10 md:px-20 lg:px-40 border-b">
         {tabs.map((tab) => (
           <Link
             key={tab.path}
             to={`${basePath}/${tab.path}`} // Append tab path to the base path
-            className={`py-3 px-10  text-m font-medium flex items-center flex-start ${
+            className={`py-2 sm:py-3 px-2 sm:px-4 md:px-6 lg:px-10 text-sm sm:text-base font-medium flex items-center ${
               activePath === tab.path
                 ? "border-b-2 border-black text-black"
                 : "hover:text-black"

@@ -29,7 +29,6 @@ export function AppSidebar() {
       <Sidebar className="absolute min-h-full top-[69px] bg-white" side="left">
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel>{courseData.title}</SidebarGroupLabel>
             <SidebarGroupContent>
               <CourseSidebarMenu sections={courseData.sections} />
             </SidebarGroupContent>

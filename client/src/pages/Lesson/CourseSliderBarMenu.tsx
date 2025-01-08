@@ -42,14 +42,14 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
 
   return (
     <SidebarMenu>
+      <span className="text-lg"> Course content</span>
       {sections.map((section) => (
         <Collapsible key={section.id} defaultOpen className="group/collapsible">
           <SidebarMenuItem>
-            {/* Collapsible Trigger for the main section */}
             <CollapsibleTrigger asChild>
-              <SidebarMenuButton>
-                <span>{section.title}</span>
-                <FaChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+              <SidebarMenuButton className="bg-[#F7F9FA] focus:outline-none focus-visible:outline-none border-y rounded-none hover:border-y-inherit  ">
+                <span >{section.title}</span>
+                <FaChevronDown className=" ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </SidebarMenuButton>
             </CollapsibleTrigger>
 
@@ -58,17 +58,17 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
               <SidebarMenuSub>
                 {section.lessons.map((lesson) => (
                   <SidebarMenuSubItem key={lesson.id}>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center hover:bg-slate-400  gap-2">
                       <Checkbox
                         checked={!!completedLessons[lesson.id]}
                         onCheckedChange={() => toggleLessonCompletion(lesson.id)}
+                        className="focus:outline-none focus-visible:outline-none"
                       />
                       <SidebarMenuSubButton asChild>
                         <Link
                           to={`/lesson/${lesson.id}`}
-                          className={`hover:underline ${
-                            completedLessons[lesson.id] ? " text-gray-500" : "text-blue"
-                          }`}
+                          
+          
                         >
                           {lesson.title}
                         </Link>

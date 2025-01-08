@@ -51,12 +51,12 @@ const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
 
   return (
     <div className="flex justify-center p-10 min-h-screen">
-      <div>
+      <div className="min-w-fit">
         {sectionsToRender.map((section) => (
-          <Collapsible key={section.id} defaultOpen className=" min-w-80 border-y group/collapsible ">
+          <Collapsible key={section.id} defaultOpen className=" min-w-96 border-y group/collapsible ">
             <div className="flex items-center justify-between p-4 bg-[#F7F9FA] ">
               <CollapsibleTrigger asChild>
-                <button className="flex items-center w-full text-left focus-visible:bg-none">
+                <button className="flex items-center w-full text-left focus:outline-none focus-visible:outline-none">
                   <span className="text-l font-medium">{section.title}</span>
                   <FaChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                 </button>
@@ -71,7 +71,7 @@ const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
                     <Checkbox
                       checked={!!completedLessons[lesson.id]}
                       onCheckedChange={() => toggleLessonCompletion(lesson.id)}
-                      className="hover:border-black "
+                      className="hover:border-black focus:outline-none focus-visible:outline-none"
                     />
                     <Link
                       to={`/lesson/${lesson.id}`}
