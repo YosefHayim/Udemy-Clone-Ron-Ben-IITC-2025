@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate(); // redirect to homepage
   const dispatch = useDispatch(); // global state redux
 
-  // Função para autenticar usuário
+  // Do post requisition to the authentication url
   const loginUser = async (credentials) => {
     const response = await axios.post(
       "https://udemy-clone-ron-ben.onrender.com/api/user/auth/login",
@@ -21,7 +21,7 @@ const Login = () => {
     return response.data;
   };
 
-  // Configuração da mutação com TanStack Query (sintaxe atualizada)
+  // TanStack Query mutation for managing assync longinUser
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
@@ -30,15 +30,15 @@ const Login = () => {
     },
     onError: (error) => {
       setFormErrors({
-        general: error.response?.data?.message || "Algo deu errado. Tente novamente.",
+        general: error.response?.data?.message || "Something went wrong. Try again.",
       });
     },
   });
 
   const validateForm = () => {
     const errors = {};
-    if (!email) errors.email = "E-mail é obrigatório.";
-    if (!password) errors.password = "Senha é obrigatória.";
+    if (!email) errors.email = "E-mail is mandatory.";
+    if (!password) errors.password = "Password is mandatory.";
     return errors;
   };
 
