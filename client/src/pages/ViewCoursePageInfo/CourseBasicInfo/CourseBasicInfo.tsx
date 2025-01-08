@@ -3,7 +3,7 @@ import { TbWorld } from "react-icons/tb";
 
 const CourseBasicInfo = () => {
   return (
-    <div className="flex flex-row gap-[0.5em] items-center">
+    <div className="flex flex-row gap-[0.5em] items-center text-white z-10">
       <TbInfoHexagonFilled />
       <p>Last updated 9/2017</p>
       <TbWorld />

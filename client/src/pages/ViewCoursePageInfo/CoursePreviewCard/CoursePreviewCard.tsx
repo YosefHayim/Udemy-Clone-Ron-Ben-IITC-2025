@@ -10,7 +10,7 @@ import AddCartNBuyBtn from "./AddCartNBuyBtn/AddCartNBuyBtn";
 
 const CoursePreviewCard = () => {
   return (
-    <div className="shadow-previewCourseCardShadow w-[320px]">
+    <div className="shadow-previewCourseCardShadow w-[320px] z-[10] bg-white border border-b-gray-100">
       <div className="">
         <img src={coursePreviewImg} alt="" />
         <b className="absolute text-white translate-y-[-1.5em]">

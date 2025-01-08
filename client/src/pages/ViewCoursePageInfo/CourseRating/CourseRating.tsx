@@ -7,7 +7,7 @@ const CourseRating = ({
   isShowRating = false,
 }) => {
   return (
-    <div className="flex items-center gap-[0.1em]">
+    <div className="flex items-center gap-[0.1em] z-10 text-white">
       <b className={`${!isShowRating ? "hidden" : colorRating}`}>
         {courseRating}
       </b>

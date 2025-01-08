@@ -13,9 +13,6 @@ const MoreCoursesByInstructor = () => {
       <div className="my-[2em]">
         <hr />
       </div>
-      <div className="border border-black rounded-[0.2em] p-[0.8em] text-center hover:bg-hoverDivGray cursor-pointer">
-        <button>Show more</button>
-      </div>
     </div>
   );
 };

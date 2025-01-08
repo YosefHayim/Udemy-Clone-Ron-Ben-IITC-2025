@@ -1,7 +1,7 @@
 const CourseCreatedBy = () => {
   return (
     <div>
-      <p className="text-[#2d2f31]">
+      <p className="text-white z-10">
         Created by
         <span className="text-[#5022c3] underline">Sumanta kumar Pal</span>
       </p>
