@@ -122,9 +122,38 @@ const courseSchema = new mongoose.Schema(
         ref: "Review",
       },
     ],
+    totalDuration: {
+      type: Number,
+      default: 0,
+    },
+    totalLessons: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );
+
+courseSchema.pre("save", async function (next) {
+  const Section = mongoose.model("Section");
+  const sections = await Section.find({ course: this._id }).populate("lessons");
+
+  let totalDuration = 0;
+  let totalLessons = 0;
+
+  sections.forEach((section) => {
+    totalLessons += section.lessons.length;
+    totalDuration += section.lessons.reduce(
+      (sum, lesson) => sum + lesson.duration,
+      0
+    );
+  });
+
+  this.totalDuration = totalDuration;
+  this.totalLessons = totalLessons;
+
+  next();
+});
 
 // Pre-save middleware to update student count
 courseSchema.pre("save", function (next) {
