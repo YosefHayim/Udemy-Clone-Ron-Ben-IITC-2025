@@ -13,8 +13,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const courseId = (e.target as HTMLElement).closest("div")?.id;
-    console.log(courseId);
-    navigate(`/course-view/:${courseId}`);
+    navigate(`/course-view/${courseId}`);
   };
 
   useEffect(() => {

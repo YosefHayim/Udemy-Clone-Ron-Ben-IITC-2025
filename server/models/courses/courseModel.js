@@ -188,7 +188,7 @@ courseSchema.pre("remove", async function (next) {
 
 courseSchema.pre(/^find/, function (next) {
   this.populate("reviews")
-    .populate("courseInstructor", "fullName -_id")
+    .populate("courseInstructor", "fullName profilePic -_id")
     .populate({
       path: "sections",
       populate: {

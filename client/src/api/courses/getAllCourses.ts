@@ -14,7 +14,6 @@ const getAllCourses = async (searchTerm, limit = 18, page = 1) => {
     const { data } = await axios.get(url);
 
     if (data) {
-      console.log(data);
       return data;
     }
     return null;
