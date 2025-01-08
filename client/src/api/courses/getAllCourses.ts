@@ -8,11 +8,15 @@ const getAllCourses = async (searchTerm: String) => {
 
   try {
     const { data } = await axios.get(
-      `${baseUrl}/api/course/?search=${searchTerm}&limit=13&fields=courseName,courseInstructor,_id,courseImg`
+      `${baseUrl}/api/course/?search=${searchTerm}&limit=13&fields=courseName,courseInstructor,_id,courseImg,coursePrice`
     );
-    console.log(data);
 
-    return data.response;
+    if (data) {
+      console.log(data);
+      return data;
+    } else {
+      return null;
+    }
   } catch (error) {
     console.error("Error fetching courses", error);
     throw error;

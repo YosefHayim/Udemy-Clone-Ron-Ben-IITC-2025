@@ -15,7 +15,7 @@ const Topics = () => {
         setDisplay={setDisplay}
         useForSection={false}
         showLine={true}
-        hideIcons={true}
+        hideIcons={false}
       />
     </div>
   );

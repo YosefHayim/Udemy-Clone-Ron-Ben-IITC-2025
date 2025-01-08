@@ -21,10 +21,18 @@ const courseSchema = new mongoose.Schema(
       type: String,
       required: [true, "A course description is required"],
     },
-    coursePrice: {
+    courseRecapInfo: {
+      type: String,
+      required: [true, "Must provide short recap of the course."],
+    },
+    courseFullPrice: {
       type: Number,
-      required: [true, "Course price must be provided"],
+      required: [true, "Course full price must be provided"],
       min: [0, "Price cannot be negative"],
+    },
+    courseDiscountPrice: {
+      type: Number,
+      required: [true, "Course must have a discount price."],
     },
     category: {
       type: String,
@@ -97,6 +105,11 @@ const courseSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    courseTag: {
+      type: String,
+      enum: ["Bestseller", "Highest Rated", "Hot and New", "New"],
+      default: "New",
+    },
     sections: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -147,7 +160,7 @@ courseSchema.pre("remove", async function (next) {
 courseSchema.pre(/^find/, function (next) {
   console.log("Pre-find middleware executed"); // Debugging
   this.populate("reviews")
-    .populate("courseInstructor", "fullName email -_id")
+    .populate("courseInstructor", "fullName -_id")
     .populate({
       path: "sections",
       populate: {

@@ -1,13 +1,16 @@
 import getAllCourses from "@/api/courses/getAllCourses";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import SearchResults from "../SearchResults/SearchResults";
+import { useNavigate } from "react-router-dom";
 
 const SearchInput = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedTerm, setDebouncedTerm] = useState("");
+
+  const navigate = useNavigate();
 
   // Debounce effect to delay API calls
   useEffect(() => {
@@ -21,12 +24,21 @@ const SearchInput = () => {
   }, [searchTerm]);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value;
+    let input = e.target.value;
     setSearchTerm(input);
 
-    if (input.length > 3) {
+    if (input.length > 0) {
       setIsTyping(true);
     } else {
+      setIsTyping(false);
+      setSearchTerm("");
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (searchTerm.trim().length > 0) {
+      navigate(`/courses/search?src=ukw&q=${searchTerm}`);
       setIsTyping(false);
     }
   };
@@ -34,7 +46,7 @@ const SearchInput = () => {
   const { data } = useQuery({
     queryKey: ["courses", debouncedTerm], // Use the debounced term
     queryFn: () => getAllCourses(debouncedTerm),
-    enabled: !!debouncedTerm && debouncedTerm.length > 3, // Only fetch when valid term exists
+    enabled: !!debouncedTerm && debouncedTerm.length > 0, // Only fetch when valid term exists
   });
 
   return (
@@ -44,12 +56,14 @@ const SearchInput = () => {
           isTyping ? "text-gray-900" : "text-gray-400 opacity-200"
         }`}
       />
-      <input
-        type="text"
-        placeholder="Search for anything"
-        className="flex-1 bg-transparent text-gray-700 focus:outline-none text-sm ml-3 placeholder-gray-700 placeholder:text-sm placeholder:font-Sans placeholder:font-normal bg-gray-50"
-        onChange={handleOnChange}
-      />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Search for anything"
+          className="flex-1 bg-transparent text-gray-700 focus:outline-none text-sm ml-3 placeholder-gray-700 placeholder:text-sm placeholder:font-Sans placeholder:font-normal bg-gray-50"
+          onChange={handleOnChange}
+        />
+      </form>
       <SearchResults isTyping={isTyping} data={data} />
     </div>
   );

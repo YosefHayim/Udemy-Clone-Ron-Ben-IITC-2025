@@ -6,19 +6,28 @@ import CourseRecap from "@/components/CourseCard/CourseRecap/CourseRecap";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
 
-const SearchCourseCard = () => {
+const SearchCourseCard = ({ course }) => {
+  if (!course) {
+    return;
+  }
+
+  console.log(course);
+
   return (
-    <div>
+    <div className={course._id}>
       <div className="flex justify-start items-start pb-[1.6em] w-full gap-[1em] cursor-pointer pt-[1.6em]">
-        <CourseImg widthChosen="w-[260px]" />
+        <CourseImg courseImg={course.courseImg} widthChosen="w-[260px]" />
         <div className="flex flex-col items-start justify-start gap-[0.3em]">
-          <CourseTitle />
-          <CourseRecap />
-          <CourseInstructor />
+          <CourseTitle title={course.courseName} />
+          <CourseRecap recapInfo={course.recapInfo} />
+          <CourseInstructor instructor={course.courseInstructor.fullName} />
           <CourseRatings />
           <CourseTag />
         </div>
-        <CoursePrice />
+        <CoursePrice
+          fullPrice={course.courseFullPrice}
+          discountPrice={course.courseDiscountPrice}
+        />
       </div>
       <hr />
     </div>
