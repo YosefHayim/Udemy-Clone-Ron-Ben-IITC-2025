@@ -6,6 +6,8 @@ import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
+import Commercial from "./Commercial/Commercial";
+import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
@@ -18,11 +20,7 @@ const SearchPage = () => {
   });
 
   if (isLoading) {
-    return (
-      <div className="w-full flex items-center justify-center h-[1000px]">
-        <Loader />
-      </div>
-    );
+    return <Loader />;
   }
 
   if (error) {
@@ -40,11 +38,15 @@ const SearchPage = () => {
           <SidebarFilter />
         </div>
         <div>
-          {data?.response?.map((course) => (
-            <div key={course._id}>
-              <SearchCourseCard course={course} />
-            </div>
-          ))}
+          <div>
+            {data?.response?.flatMap((course, index) => [
+              <div key={course._id}>
+                <SearchCourseCard course={course} />
+              </div>,
+              index === 2 && <Commercial key="commercial" />,
+              index === 6 && <HotFreshCourses key="hotfreshcourses" />,
+            ])}
+          </div>
         </div>
       </div>
       <Pagination />
