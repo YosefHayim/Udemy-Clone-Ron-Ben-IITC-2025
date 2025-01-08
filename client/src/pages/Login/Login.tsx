@@ -6,11 +6,11 @@ import { setUser } from "../../redux/slices/userSlice";
 import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [formErrors, setFormErrors] = useState({});
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [email, setEmail] = useState(""); //email state
+  const [password, setPassword] = useState(""); // password state
+  const [formErrors, setFormErrors] = useState({}); // errors state
+  const navigate = useNavigate(); // redirect to homepage
+  const dispatch = useDispatch(); // global state redux
 
   // Função para autenticar usuário
   const loginUser = async (credentials) => {
