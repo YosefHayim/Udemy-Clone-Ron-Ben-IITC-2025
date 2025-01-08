@@ -12,14 +12,15 @@ import { useState } from "react";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
-  const courseName = searchParams.get("q");
+  const searchTerm = searchParams.get("q");
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 18;
+  const [currentCourses, setCurrentCourses] = useState(18);
+  const limit = null;
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["courses", courseName, currentPage],
-    queryFn: () => getAllCourses(courseName, currentPage, limit),
-    enabled: !!courseName,
+    queryKey: ["courses", searchTerm, currentPage],
+    queryFn: () => getAllCourses(searchTerm, limit, currentPage), // Ensure correct page and limit
+    enabled: !!searchTerm,
   });
 
   if (isLoading) {
@@ -33,7 +34,7 @@ const SearchPage = () => {
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
-        {data?.totalCourses} results for "{courseName}"
+        {data?.totalCourses} results for "{searchTerm}"
       </h1>
       <FilterNSort totalResults={data.totalCourses} />
       <div className="flex flex-row justify-start w-full gap-[1.5em]">
@@ -42,13 +43,15 @@ const SearchPage = () => {
         </div>
         <div>
           <div>
-            {data?.response?.slice(0, 18).flatMap((course, index) => [
-              <div key={course._id}>
-                <SearchCourseCard course={course} />
-              </div>,
-              index === 2 && <Commercial key="commercial" />,
-              index === 6 && <HotFreshCourses key="hotfreshcourses" />,
-            ])}
+            {data?.response
+              ?.slice(currentCourses, currentCourses)
+              .map((course, index) => [
+                <div key={course._id}>
+                  <SearchCourseCard course={course} />
+                </div>,
+                index === 2 && <Commercial key="commercial" />,
+                index === 6 && <HotFreshCourses key="hotfreshcourses" />,
+              ])}
           </div>
         </div>
       </div>

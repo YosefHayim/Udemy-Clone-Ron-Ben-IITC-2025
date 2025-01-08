@@ -1,18 +1,14 @@
 import axios from "axios";
 import { baseUrl } from "../baseUrl";
 
-const getAllCourses = async (
-  searchTerm = null,
-  limit = null,
-  pageNumber = null
-) => {
+const getAllCourses = async (searchTerm, limit = 18, page = 1) => {
   if (!searchTerm) {
-    return;
+    console.error("Search term is required");
+    return null;
   }
 
   const encodedSearchTerm = encodeURIComponent(searchTerm);
-  const url = `${baseUrl}/api/course/?search=${encodedSearchTerm}&page=${pageNumber}&limit=${limit}&fields=courseName,courseInstructor,_id,courseImg,courseFullPrice,courseDiscountPrice,courseTag,courseLevel,totalCourseDuration,totalCourseLessons`;
-  console.log(url);
+  const url = `${baseUrl}/api/course/?search=${encodedSearchTerm}&page=${page}&limit=${limit}`;
 
   try {
     const { data } = await axios.get(url);
@@ -20,11 +16,10 @@ const getAllCourses = async (
     if (data) {
       console.log(data);
       return data;
-    } else {
-      return null;
     }
+    return null;
   } catch (error) {
-    console.error("Error fetching courses", error);
+    console.error("Error fetching courses:", error);
     throw error;
   }
 };

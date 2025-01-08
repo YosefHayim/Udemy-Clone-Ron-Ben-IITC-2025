@@ -16,7 +16,7 @@ const SearchInput = () => {
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedTerm(searchTerm);
-    }, 300); // Adjust delay as needed (300ms here)
+    }, 200); // Adjust delay as needed (300ms here)
 
     return () => {
       clearTimeout(handler); // Clear timeout if the user types again
@@ -42,11 +42,12 @@ const SearchInput = () => {
     }
   };
   const limit = 13;
+  const page = 1;
 
-  const { data } = useQuery({
-    queryKey: ["courses", debouncedTerm], // Use the debounced term
-    queryFn: () => getAllCourses(debouncedTerm, limit),
-    enabled: !!debouncedTerm && debouncedTerm.length > 0, // Only fetch when valid term exists
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["courses", searchTerm, page],
+    queryFn: () => getAllCourses(searchTerm, limit, page), // Ensure correct page and limit
+    enabled: !!searchTerm,
   });
 
   return (
