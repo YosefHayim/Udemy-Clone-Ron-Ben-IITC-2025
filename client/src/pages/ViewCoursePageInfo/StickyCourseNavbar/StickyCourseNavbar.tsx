@@ -16,8 +16,8 @@ const StickyCourseNavbar = () => {
   return (
     <div
       className={`fixed left-0 ${
-        isVisible ? "top-[6.7%] z-[9]" : "top-[3%] z-[5] opacity-0"
-      } bg-[#1c1d1f] px-[1em] py-[0.5em]  w-full text-white`}
+        isVisible ? "top-[6.7%] z-[1000]" : "top-[3%]  opacity-0 z-[1000]"
+      } bg-[#1c1d1f] px-[1em] py-[0.5em]  w-full text-white z-[1000]`}
     >
       <h2 className="font-bold">
         Electronics : Semiconductor - A thorough understanding
