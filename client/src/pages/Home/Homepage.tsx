@@ -9,11 +9,17 @@ import TrendsReport from "./TopTrends";
 import TrendingNow from "./TrendingNow";
 import Carousel from "./Carousel";
 import Sections from './Sections'
+import Menu from "@/components/Menu/Menu";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/index"; // Import RootState type for Redux 
 
 const Homepage = () => {
+  
+  const user = useSelector((state: RootState) => state.user)
+  
   return (
-    <div>
       <div className="container mx-auto px-6 lg:px-24">
+        {user && <Menu />}
         <Banner />
         <Sections />
         <TrustedBySection />
@@ -26,13 +32,6 @@ const Homepage = () => {
         <TrendingNow />
         <Carousel />
       </div>
-      {/* <Login />
-      <SignUp /> */}
-      {/* <Banner />
-      <Categories />
-      <CourseList />
-      <Footer /> */}
-    </div>
   );
 };
 
