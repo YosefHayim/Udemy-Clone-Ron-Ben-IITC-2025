@@ -10,6 +10,9 @@ const courseReviews = require("./models/reviews/courseReviewModel");
 const ReportReview = require("./models/reviews/reportReviewModel");
 const courseCategories = require("./utils/courseCategories");
 const allowedIssueTypes = require("./utils/reportSubjects");
+const courseNames = require("./utils/courseNames");
+const sectionNames = require("./utils/sectionNames");
+const lessonsNames = require("./utils/lessonNames");
 
 const clearCollections = async () => {
   await Promise.all([
@@ -26,8 +29,8 @@ const clearCollections = async () => {
 
 const createUsers = async () => {
   const users = [];
-  for (let i = 0; i < 100; i++) {
-    console.log(`Creating user ${i + 1}/10...`);
+  for (let i = 0; i < 50; i++) {
+    console.log(`Creating user ${i + 1}...`);
     const hashedPassword = await bcrypt.hash("password123", 10);
     users.push({
       fullName: faker.person.fullName(),
@@ -39,10 +42,7 @@ const createUsers = async () => {
     });
   }
   const createdUsers = await User.insertMany(users);
-  console.log(
-    "Users created successfully:",
-    createdUsers.map((user) => user.email)
-  );
+  console.log("Users created successfully:");
   return createdUsers;
 };
 
@@ -53,7 +53,7 @@ const createCourses = async () => {
   }
 
   const courses = [];
-  for (let i = 0; i < 2000; i++) {
+  for (let i = 0; i < 50; i++) {
     console.log(`Creating course ${i + 1}...`);
 
     const instructor = faker.helpers.arrayElement(instructors);
@@ -65,14 +65,16 @@ const createCourses = async () => {
     const topic = faker.helpers.arrayElement(subCategories[subCategory]);
 
     const course = await Course.create({
-      courseName: faker.lorem.words(3),
+      courseName: faker.helpers.arrayElement(courseNames),
       courseImg: faker.image.urlPicsumPhotos({
         width: 640,
         height: 480,
         category: "education",
       }),
+      courseRecapInfo: faker.lorem.words(10),
       courseDescription: faker.lorem.paragraph(),
-      coursePrice: faker.commerce.price(10, 500, 2),
+      courseFullPrice: faker.commerce.price(10, 500, 2),
+      courseDiscountPrice: faker.commerce.price(10, 250, 2),
       category: parentCategory,
       subCategory: subCategory,
       courseTopic: topic,
@@ -86,6 +88,12 @@ const createCourses = async () => {
         "Spanish",
         "French",
         "German",
+      ]),
+      courseTag: faker.helpers.arrayElement([
+        "Bestseller",
+        "Highest Rated",
+        "Hot and New",
+        "New",
       ]),
       courseInstructor: instructor._id,
       moneyBackGuarantee: faker.date.soon(30),
@@ -126,7 +134,7 @@ const createSections = async () => {
 
       const section = await Section.create({
         course: randomCourseId,
-        title: faker.lorem.words(4),
+        title: faker.helpers.arrayElement(sectionNames),
         totalSectionDuration: 0,
         totalSectionLessons: 0,
         lessons: [],
@@ -178,35 +186,44 @@ const createLessons = async () => {
     throw new Error("No sections found for lesson creation.");
   }
 
-  const sectionIds = sections.map((section) => section._id);
-  const totalLessons = 10; // Total number of lessons to create
+  const totalLessonsPerSection = 5; // Number of lessons per section for realism
   const lessons = [];
 
-  for (let i = 0; i < totalLessons; i++) {
-    console.log(`Creating lesson ${i + 1}/${totalLessons}...`);
-    const randomSectionId = faker.helpers.arrayElement(sectionIds);
-
-    const lesson = await Lesson.create({
-      section: randomSectionId,
-      title: faker.lorem.words(3),
-      videoUrl: faker.internet.url(),
-      duration: faker.number.int({ min: 5, max: 30 }),
-      order: faker.number.int({ min: 1, max: 20 }),
-    });
-
-    const section = await Section.findById(randomSectionId);
-    section.lessons.push(lesson._id);
-    section.totalSectionDuration += lesson.duration;
-    section.totalSectionLessons += 1;
-    await section.save();
-
-    lessons.push(lesson);
-    console.log(
-      `Lesson ${i + 1} created:`,
-      lesson.title,
-      `Assigned to Section:`,
-      section.title
+  for (const section of sections) {
+    console.log(`Creating lessons for section: ${section.title}...`);
+    const uniqueOrders = Array.from(
+      { length: totalLessonsPerSection },
+      (_, i) => i + 1
     );
+
+    for (let i = 0; i < totalLessonsPerSection; i++) {
+      try {
+        const lesson = await Lesson.create({
+          section: section._id,
+          title: faker.helpers.arrayElement(lessonsNames), // Generate realistic lesson titles
+          videoUrl: faker.internet.url(),
+          duration: faker.number.int({ min: 5, max: 20 }), // Shorter durations for realism
+          order: uniqueOrders[i], // Ensure unique order values
+        });
+
+        // Update section details
+        section.lessons.push(lesson._id);
+        section.totalSectionDuration += lesson.duration;
+        section.totalSectionLessons += 1;
+
+        lessons.push(lesson);
+        console.log(
+          `Lesson created: ${lesson.title}, Order: ${uniqueOrders[i]}, Duration: ${lesson.duration} mins`
+        );
+      } catch (err) {
+        console.error(
+          `Error creating lesson for section: ${section.title}`,
+          err.message
+        );
+      }
+    }
+
+    await section.save(); // Save section after adding lessons
   }
 
   console.log(
