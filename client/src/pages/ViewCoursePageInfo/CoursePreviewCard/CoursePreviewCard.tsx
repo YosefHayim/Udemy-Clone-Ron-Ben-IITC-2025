@@ -9,7 +9,7 @@ import CouponArea from "./CouponArea/CouponArea";
 import UdemyBusiness from "./UdemyBusiness/UdemyBusiness";
 import AddCartNBuyBtn from "./AddCartNBuyBtn/AddCartNBuyBtn";
 
-const CoursePreviewCard = () => {
+const CoursePreviewCard = ({ courseImg, discountPrice, fullPrice }) => {
   const [isFixed, setIsFixed] = useState(false);
   const [opacity, setOpacity] = useState(1); // Default opacity for static
 
@@ -39,7 +39,7 @@ const CoursePreviewCard = () => {
       }}
     >
       <div>
-        <img src={coursePreviewImg} alt="" />
+        <img src={courseImg} alt="Image of the course" />
         <b className="absolute text-white translate-y-[-1.5em]">
           Preview this course
         </b>
@@ -47,8 +47,8 @@ const CoursePreviewCard = () => {
       <div className="p-[1.5em]">
         <div>
           <CoursePrice
-            discountPrice={"39.90"}
-            fullPrice={"79.90"}
+            discountPrice={discountPrice}
+            fullPrice={fullPrice}
             chooseFlex={"flex flex-row items-center"}
             discountPriceSize={"2em"}
           />

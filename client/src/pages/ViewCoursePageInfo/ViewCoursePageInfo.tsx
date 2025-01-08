@@ -78,7 +78,11 @@ const ViewCoursePageInfo = () => {
         <MoreCoursesByInstructor />
         <ReportAbuse />
       </div>
-      <CoursePreviewCard />
+      <CoursePreviewCard
+        courseImg={data.courseImg}
+        discountPrice={data.courseDiscountPrice}
+        fullPrice={data.courseFullPrice}
+      />
     </div>
   );
 };
