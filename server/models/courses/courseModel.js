@@ -122,11 +122,11 @@ const courseSchema = new mongoose.Schema(
         ref: "Review",
       },
     ],
-    totalDuration: {
+    totalCourseDuration: {
       type: Number,
       default: 0,
     },
-    totalLessons: {
+    totalCourseLessons: {
       type: Number,
       default: 0,
     },
@@ -149,8 +149,8 @@ courseSchema.pre("save", async function (next) {
     );
   });
 
-  this.totalDuration = totalDuration;
-  this.totalLessons = totalLessons;
+  this.totalCourseDuration = totalDuration;
+  this.totalCourseLessons = totalLessons;
 
   next();
 });
@@ -187,7 +187,6 @@ courseSchema.pre("remove", async function (next) {
 });
 
 courseSchema.pre(/^find/, function (next) {
-  console.log("Pre-find middleware executed"); // Debugging
   this.populate("reviews")
     .populate("courseInstructor", "fullName -_id")
     .populate({

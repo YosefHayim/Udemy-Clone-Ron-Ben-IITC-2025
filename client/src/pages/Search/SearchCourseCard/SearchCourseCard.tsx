@@ -21,7 +21,11 @@ const SearchCourseCard = ({ course }) => {
           <CourseRecap recapInfo={course.recapInfo} />
           <CourseInstructor instructor={course.courseInstructor.fullName} />
           <CourseRatings />
-          <CourseLength courseLevel={course.courseLevel} />
+          <CourseLength
+            courseLevel={course.courseLevel}
+            totalHours={course.totalCourseDuration}
+            totalLectures={course.totalCourseLessons}
+          />
           <CourseTag />
         </div>
         <CoursePrice
