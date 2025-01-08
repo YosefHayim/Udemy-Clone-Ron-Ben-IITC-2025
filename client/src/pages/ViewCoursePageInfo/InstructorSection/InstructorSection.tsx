@@ -3,7 +3,7 @@ import InstructorName from "./InstructorName/InstructorName";
 import InstructorProfession from "./InstructorProfession/InstructorProfession";
 import InstructorDescription from "./InstructorDescription/InstructorDescription";
 
-const InstructorSection = () => {
+const InstructorSection = ({ instructorImg }) => {
   return (
     <div className="flex flex-col items-start justify-start gap-[1em]">
       <div>
@@ -11,7 +11,7 @@ const InstructorSection = () => {
         <InstructorName />
         <InstructorProfession />
       </div>
-      <InstructorProfileImg />
+      <InstructorProfileImg instructorImg={instructorImg} />
       <InstructorDescription />
     </div>
   );

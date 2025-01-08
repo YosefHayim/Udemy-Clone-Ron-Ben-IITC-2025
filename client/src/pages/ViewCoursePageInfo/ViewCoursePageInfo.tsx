@@ -73,7 +73,7 @@ const ViewCoursePageInfo = () => {
         <CourseContent />
         <StudentsAlsoBought />
         <FrequentlyBoughtTogether />
-        <InstructorSection />
+        <InstructorSection instructorImg={data.profilePic} />
         <ReviewsSection />
         <MoreCoursesByInstructor />
         <ReportAbuse />
