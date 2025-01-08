@@ -1,9 +1,6 @@
 import SearchCourseCard from "@/pages/Search/SearchCourseCard/SearchCourseCard";
 import SidebarFilter from "./SidebarFilter/SidebarFilter";
 import FilterNSort from "./SidebarFilter/FilterNSort/FilterNSort";
-import Commercial from "./Commercial/Commercial";
-import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
-import RelatedSearchesArea from "./RelatedSearchesArea/RelatedSearchesArea";
 import Pagination from "./PaginationPages/PaginationPages";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -21,7 +18,11 @@ const SearchPage = () => {
   });
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div className="w-full flex items-center justify-center h-[1000px]">
+        <Loader />
+      </div>
+    );
   }
 
   if (error) {
@@ -31,7 +32,7 @@ const SearchPage = () => {
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
-        {data?.totalCourses} results for "{courseName}""
+        {data?.totalCourses} results for "{courseName}"
       </h1>
       <FilterNSort totalResults={data.totalCourses} />
       <div className="flex flex-row justify-start w-full gap-[1.5em]">
@@ -40,7 +41,9 @@ const SearchPage = () => {
         </div>
         <div>
           {data?.response?.map((course) => (
-            <SearchCourseCard key={course._id} course={course} />
+            <div key={course._id}>
+              <SearchCourseCard course={course} />
+            </div>
           ))}
         </div>
       </div>

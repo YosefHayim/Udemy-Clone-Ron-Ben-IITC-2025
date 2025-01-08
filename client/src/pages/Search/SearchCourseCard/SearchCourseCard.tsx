@@ -5,13 +5,12 @@ import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
 import CourseRecap from "@/components/CourseCard/CourseRecap/CourseRecap";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
+import CourseLength from "@/pages/ViewCoursePageInfo/MoreCoursesByInstructor/CourseLength/CourseLength";
 
 const SearchCourseCard = ({ course }) => {
   if (!course) {
     return;
   }
-
-  console.log(course);
 
   return (
     <div className={course._id}>
@@ -22,6 +21,7 @@ const SearchCourseCard = ({ course }) => {
           <CourseRecap recapInfo={course.recapInfo} />
           <CourseInstructor instructor={course.courseInstructor.fullName} />
           <CourseRatings />
+          <CourseLength courseLevel={course.courseLevel} />
           <CourseTag />
         </div>
         <CoursePrice

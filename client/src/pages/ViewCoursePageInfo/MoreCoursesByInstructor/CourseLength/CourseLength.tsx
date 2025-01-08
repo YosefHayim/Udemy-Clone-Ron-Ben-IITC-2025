@@ -1,13 +1,17 @@
 import { LuDot } from "react-icons/lu";
 
-const CourseLength = () => {
+const CourseLength = ({
+  courseLevel = "All Levels",
+  totalLectures = "14 lectures",
+  totalHours = "1 total hour",
+}) => {
   return (
     <div className="flex flex-row items-center justify-start text-[0.8em] text-[#6a6f73]">
-      <p>1 total hour</p>
+      <p>{totalHours}</p>
       <LuDot />
-      <p>14 lectures</p>
+      <p>{totalLectures}</p>
       <LuDot />
-      <p>All Levels</p>
+      <p>{courseLevel}</p>
     </div>
   );
 };
