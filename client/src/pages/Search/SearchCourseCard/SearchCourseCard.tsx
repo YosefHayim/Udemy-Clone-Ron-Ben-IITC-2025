@@ -15,7 +15,7 @@ const SearchCourseCard = ({ course }) => {
   return (
     <div className={course._id}>
       <div className="flex justify-start items-start pb-[1.6em] w-full gap-[1em] cursor-pointer pt-[1.6em]">
-        <CourseImg courseImg={course.courseImg} widthChosen="w-[260px]" />
+        <CourseImg courseImg={course.courseImg} widthChosen="260px" />
         <div className="flex flex-col items-start justify-start gap-[0.3em]">
           <CourseTitle title={course.courseName} />
           <CourseRecap recapInfo={course.recapInfo} />
@@ -23,7 +23,7 @@ const SearchCourseCard = ({ course }) => {
           <CourseRatings />
           <CourseLength
             courseLevel={course.courseLevel}
-            totalHours={course.totalCourseDuration}
+            totalMinutes={course.totalCourseDuration}
             totalLectures={course.totalCourseLessons}
           />
           <CourseTag />

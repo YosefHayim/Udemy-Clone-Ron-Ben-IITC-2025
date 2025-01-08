@@ -21,6 +21,7 @@ const getAllCourses = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "Success",
     totalCourses: courses.length,
+    currentPage: req.query.page || 1,
     response: courses,
   });
 });

@@ -41,10 +41,11 @@ const SearchInput = () => {
       setIsTyping(false);
     }
   };
+  const limit = 13;
 
   const { data } = useQuery({
     queryKey: ["courses", debouncedTerm], // Use the debounced term
-    queryFn: () => getAllCourses(debouncedTerm),
+    queryFn: () => getAllCourses(debouncedTerm, limit),
     enabled: !!debouncedTerm && debouncedTerm.length > 0, // Only fetch when valid term exists
   });
 

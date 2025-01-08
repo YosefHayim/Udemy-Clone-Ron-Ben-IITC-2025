@@ -8,14 +8,17 @@ import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
 import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
+import { useState } from "react";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const courseName = searchParams.get("q");
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 18;
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["courses", courseName],
-    queryFn: () => getAllCourses(courseName),
+    queryKey: ["courses", courseName, currentPage],
+    queryFn: () => getAllCourses(courseName, currentPage, limit),
     enabled: !!courseName,
   });
 
@@ -39,7 +42,7 @@ const SearchPage = () => {
         </div>
         <div>
           <div>
-            {data?.response?.flatMap((course, index) => [
+            {data?.response?.slice(0, 18).flatMap((course, index) => [
               <div key={course._id}>
                 <SearchCourseCard course={course} />
               </div>,
@@ -49,7 +52,7 @@ const SearchPage = () => {
           </div>
         </div>
       </div>
-      <Pagination />
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   );
 };

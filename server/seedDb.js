@@ -29,14 +29,14 @@ const clearCollections = async () => {
 
 const createUsers = async () => {
   const users = [];
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 400; i++) {
     console.log(`Creating user ${i + 1}...`);
     const hashedPassword = await bcrypt.hash("password123", 10);
     users.push({
       fullName: faker.person.fullName(),
       email: faker.internet.email().toLowerCase(),
       password: hashedPassword,
-      role: faker.helpers.arrayElement(["student", "instructor"]),
+      role: faker.helpers.arrayElement(["student", "instructor", "student"]),
       biography: faker.lorem.sentence(15),
       udemyCredits: faker.number.int({ min: 0, max: 100 }),
     });
@@ -52,9 +52,11 @@ const createCourses = async () => {
     throw new Error("No instructors found for course creation.");
   }
 
+  const amountOfCourses = 2000;
+
   const courses = [];
-  for (let i = 0; i < 50; i++) {
-    console.log(`Creating course ${i + 1}...`);
+  for (let i = 0; i < amountOfCourses; i++) {
+    console.log(`Creating course ${i + 1}/${amountOfCourses}...`);
 
     const instructor = faker.helpers.arrayElement(instructors);
     const parentCategory = faker.helpers.arrayElement(
@@ -188,7 +190,7 @@ const createLessons = async () => {
     throw new Error("No sections found for lesson creation.");
   }
 
-  const totalLessonsPerSection = 5; // Number of lessons per section
+  const totalLessonsPerSection = 10; // Number of lessons per section
   const lessons = [];
 
   for (const section of sections) {
@@ -258,7 +260,7 @@ const createReviews = async () => {
   }
 
   const courseIds = courses.map((course) => course._id);
-  const totalReviews = 5;
+  const totalReviews = 30;
   const reviews = [];
 
   for (let i = 0; i < totalReviews; i++) {

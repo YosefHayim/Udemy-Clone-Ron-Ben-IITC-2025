@@ -9,8 +9,6 @@ const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
     return;
   }
 
-  console.log(data);
-
   const navigate = useNavigate();
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
