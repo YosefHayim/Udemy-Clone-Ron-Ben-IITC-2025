@@ -1,8 +1,3 @@
-import { useState } from "react";
-import {
-  MdOutlineKeyboardArrowUp,
-  MdOutlineKeyboardArrowDown,
-} from "react-icons/md";
 import InstructorProfileImg from "./InstructorProfileImg/InstructorProfileImg";
 import InstructorName from "./InstructorName/InstructorName";
 import InstructorProfession from "./InstructorProfession/InstructorProfession";
