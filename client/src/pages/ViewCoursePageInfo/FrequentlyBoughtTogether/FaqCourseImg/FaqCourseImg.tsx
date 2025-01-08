@@ -1,9 +1,13 @@
-import frequentlyBoughtImg from "/images/frequntly-bought-course.png";
+import frequentlyBoughtImg from "/images/frequently-bought-course.png";
 
 const FaqCourseImg = () => {
   return (
     <div>
-      <img src={frequentlyBoughtImg} alt="" className="h-[8em]" />
+      <img
+        src={frequentlyBoughtImg}
+        alt=""
+        className="h-[8em] border border-b-gray-300"
+      />
     </div>
   );
 };

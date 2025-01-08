@@ -1,7 +1,7 @@
 const FaqTotalStudentsCourse = () => {
   return (
     <div>
-      <p>(106)</p>;
+      <p>(106)</p>
     </div>
   );
 };

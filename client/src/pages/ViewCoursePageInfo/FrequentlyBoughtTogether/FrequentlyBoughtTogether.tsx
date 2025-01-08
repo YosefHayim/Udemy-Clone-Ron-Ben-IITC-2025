@@ -12,9 +12,7 @@ const FrequentlyBoughtTogether = () => {
         <FrequentlyCourseCard />
         <FaqTotalCoursesPrice />
       </div>
-      <div>
-        <FaqPlusBtn />
-      </div>
+      <div>{/* <FaqPlusBtn /> */}</div>
     </div>
   );
 };

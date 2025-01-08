@@ -11,7 +11,7 @@ const FaqTotalCoursesPrice = () => {
         <p className="line-through ml-[0.5em]">₪79.90</p>
       </div>
       <div>
-        <AddToCart />
+        <AddToCart textBtn={"Add all to cart"} />
       </div>
     </div>
   );
