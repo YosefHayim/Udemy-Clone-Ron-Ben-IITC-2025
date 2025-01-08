@@ -1,44 +1,63 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import illustration from "/images/login.png";
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook, FaApple } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../redux/slices/userSlice"; // Import the setUser action
+import { useMutation } from "@tanstack/react-query"; // Sintaxe atualizada
+import { setUser } from "../../redux/slices/userSlice";
+import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState(""); // Estado para o email
-  const [password, setPassword] = useState(""); // Estado para a senha
-  const [error, setError] = useState(""); // Estado para mensagens de erro
-  const [loading, setLoading] = useState(false); // Estado para o carregamento
-  const dispatch = useDispatch(); // Dispatch actions to Redux
-  const navigate = useNavigate(); // Para redirecionar após login bem-sucedido
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [formErrors, setFormErrors] = useState({});
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // Função para enviar os dados do formulário
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Evita o comportamento padrão do formulário
-    setLoading(true); // Inicia o estado de carregamento
-    setError(""); // Limpa mensagens de erro anteriores
+  // Função para autenticar usuário
+  const loginUser = async (credentials) => {
+    const response = await axios.post(
+      "https://udemy-clone-ron-ben.onrender.com/api/user/auth/login",
+      credentials
+    );
+    return response.data;
+  };
 
-    try {
-      const response = await axios.post("https://udemy-clone-ron-ben.onrender.com/api/user/auth/login", { email, password });
-      console.log("Login sucessed:", response.data); // Mostra os dados no console
+  // Configuração da mutação com TanStack Query (sintaxe atualizada)
+  const mutation = useMutation({
+    mutationFn: loginUser,
+    onSuccess: (data) => {
+      dispatch(setUser(data)); // Atualiza o estado global
       navigate("/"); // Redireciona para a página inicial
-      dispatch(setUser(response.data)); // Save the response to the global state
-    } catch (err) {
-      // Exibe mensagem de erro
-      setError(err.response?.data?.message || "Algo deu errado. Tente novamente.");
-    } finally {
-      setLoading(false); // Finaliza o estado de carregamento
+    },
+    onError: (error) => {
+      setFormErrors({
+        general: error.response?.data?.message || "Algo deu errado. Tente novamente.",
+      });
+    },
+  });
+
+  const validateForm = () => {
+    const errors = {};
+    if (!email) errors.email = "E-mail é obrigatório.";
+    if (!password) errors.password = "Senha é obrigatória.";
+    return errors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
     }
+    setFormErrors({});
+    mutation.mutate({ email, password });
   };
 
   return (
     <div className="flex h-screen">
       {/* Esquerda: Ilustração */}
       <img
-        src={illustration}
+        src="/images/login.png"
         alt="Login Illustration"
         className="h-[90%] w-auto object-contain flex items-center justify-center bg-transparent"
       />
@@ -62,11 +81,13 @@ const Login = () => {
                 type="email"
                 id="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)} // Atualiza o estado do email
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="ben.kilinski@gmail.com"
-                className="w-full px-4 py-3 border border-gray-300 rounded-md bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
+                className={`w-full px-4 py-3 border rounded-md bg-blue-50 focus:outline-none ${
+                  formErrors.email ? "border-red-500" : "border-gray-300"
+                }`}
               />
+              {formErrors.email && <p className="text-red-500 text-sm">{formErrors.email}</p>}
             </div>
 
             {/* Campo de Senha */}
@@ -81,58 +102,29 @@ const Login = () => {
                 type="password"
                 id="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)} // Atualiza o estado da senha
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className="w-full px-4 py-3 border border-gray-300 rounded-md bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
+                className={`w-full px-4 py-3 border rounded-md bg-blue-50 focus:outline-none ${
+                  formErrors.password ? "border-red-500" : "border-gray-300"
+                }`}
               />
+              {formErrors.password && <p className="text-red-500 text-sm">{formErrors.password}</p>}
             </div>
 
             {/* Botão de Enviar */}
             <button
               type="submit"
-              className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition"
-              disabled={loading} // Desativa enquanto está carregando
+              className={`w-full py-2 rounded-md ${
+                mutation.isLoading ? "bg-gray-400" : "bg-purple-600 hover:bg-purple-700"
+              } text-white transition`}
+              disabled={mutation.isLoading}
             >
-              {loading ? "Logging in..." : "Continue with email"}
+              {mutation.isLoading ? "Logging in..." : "Continue with email"}
             </button>
 
-            {/* Exibe mensagem de erro */}
-            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-
-            {/* Opções de Login com Redes Sociais */}
-            <div className="flex items-center justify-center my-4">
-              <div className="flex-grow border-t border-gray-300"></div>
-              <span className="px-3 text-gray-500 text-sm">Other login options</span>
-              <div className="flex-grow border-t border-gray-300"></div>
-            </div>
-
-            <div className="flex justify-center space-x-4">
-              <button className="w-14 h-14 bg-white border border-gray-600 rounded-md flex items-center justify-center hover:bg-gray-100 transition">
-                <FcGoogle className="text-4xl" />
-              </button>
-              <button className="w-14 h-14 bg-white border border-gray-600 rounded-md flex items-center justify-center hover:bg-gray-100 transition">
-                <FaFacebook className="text-3xl text-blue-600" />
-              </button>
-              <button className="w-14 h-14 bg-white border border-gray-600 rounded-md flex items-center justify-center hover:bg-gray-100 transition">
-                <FaApple className="text-3xl text-black" />
-              </button>
-            </div>
+            {/* Mensagem de Erro Geral */}
+            {formErrors.general && <p className="text-red-500 text-sm mt-2">{formErrors.general}</p>}
           </form>
-
-          {/* Links de Cadastro */}
-          <div className="mt-6 text-center">
-            <a href="/register" className="text-gray-800">
-              Don't have an account? <span className="text-purple-600 hover:underline">Sign up</span>
-            </a>
-            <div className="border-t my-2"></div>
-            <a
-              href="/organization-login"
-              className="text-purple-600 hover:underline font-semibold"
-            >
-              Log in with your organization
-            </a>
-          </div>
         </div>
       </div>
     </div>
