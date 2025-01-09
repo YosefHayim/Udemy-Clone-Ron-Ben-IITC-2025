@@ -10,7 +10,7 @@ const HotCourseCard = () => {
   return (
     <div className="flex flex-row items-center justify-center gap-[2em] w-[200px]">
       <div>
-        <CourseImg img={hotFreshOne} widthChosen={`w-[250px]`} />
+        <CourseImg courseImg={hotFreshOne} />
         <div className="flex flex-col items-start justify-start gap-[0.3em]">
           <CourseTitle
             title={

@@ -7,13 +7,13 @@ const HotFreshCourses = () => {
 
   const scrollLeft = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -150, behavior: "smooth" });
+      carouselRef.current.scrollBy({ left: -50, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: 150, behavior: "smooth" });
+      carouselRef.current.scrollBy({ left: 50, behavior: "smooth" });
     }
   };
 

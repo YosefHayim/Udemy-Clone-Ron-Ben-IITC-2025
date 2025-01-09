@@ -19,13 +19,13 @@ router.param("id", (req, res, next, val) => {
 });
 
 // Get a comment by its id
-router.get("/:id", grantedAccess, getCommentById);
+router.get("/:id", getCommentById);
 
 // Get all comments
-router.get("/", grantedAccess, getAllComments);
+router.get("/", getAllComments);
 
 // Get comment by a review id
-router.get("/:reviewId", grantedAccess, getCommentsByReviewId);
+router.get("/:reviewId", getCommentsByReviewId);
 
 // Add comment by a review id
 router.post("/:id", grantedAccess, addCommentByReviewId);

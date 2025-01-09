@@ -1,14 +1,18 @@
-import frequentlyBoughtImg from "/images/frequntly-bought-course.png";
+import FrequentlyCourseCard from "./FaqCourseCard/FaqCourseCard";
+import FaqPlusBtn from "./FaqPlusBtn/FaqPlusBtn";
+import FaqTotalCoursesPrice from "./FaqTotalCoursesPrice/FaqTotalCoursesPrice";
 
 const FrequentlyBoughtTogether = () => {
   return (
-    <div className="flex flex-col p-[1em] border border-[#d1d7dc]">
-      <h2>FrequentlyBoughtTogether</h2>
-      <div className="flex gap-[1em]">
-        <img src={frequentlyBoughtImg} alt="" />
-        <b>Electronics : Semiconductor - A thorough understanding</b>
-        <p>Sumanta kumar Pal</p>
+    <div>
+      <div className="flex flex-col border border-[#d1d7dc] w-[515px] p-[1em]">
+        <h2 className="font-bold text-[1.5em]">Frequently Bought Together</h2>
+        <FrequentlyCourseCard />
+        <FrequentlyCourseCard />
+        <FrequentlyCourseCard />
+        <FaqTotalCoursesPrice />
       </div>
+      <div>{/* <FaqPlusBtn /> */}</div>
     </div>
   );
 };

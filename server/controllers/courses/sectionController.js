@@ -1,5 +1,6 @@
 const Section = require("../../models/courses/sectionModel");
 const APIFeatures = require("../../utils/apiFeatures");
+const createError = require("../../utils/errorFn");
 const { catchAsync } = require("../../utils/wrapperFn");
 
 const getAllSections = catchAsync(async (req, res, next) => {

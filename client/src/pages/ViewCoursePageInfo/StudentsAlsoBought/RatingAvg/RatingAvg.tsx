@@ -1,8 +1,11 @@
 import { MdOutlineStarPurple500 } from "react-icons/md";
 
-const RatingAvg = () => {
+const RatingAvg = ({
+  textSize = "1em",
+  flexChosen = "flex flex-row items-center",
+}) => {
   return (
-    <div className="flex flex-row items-center gap-[0.1em]">
+    <div className={`text-[${textSize}] ${flexChosen} gap-[0.1em]`}>
       <b>4.3</b>
       <MdOutlineStarPurple500 className="text-[1.3em] text-[#b4690e]" />
     </div>

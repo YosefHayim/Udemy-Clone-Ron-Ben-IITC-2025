@@ -8,6 +8,7 @@ import Homepage from "@/pages/Home/Homepage";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/pages/Home/Footer";
 import ViewCoursePageInfo from "@/pages/ViewCoursePageInfo/ViewCoursePageInfo";
+import Loader from "@/components/Loader/Loader";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const AppRoutes: React.FC = () => {
               <Navbar />
               <Routes>
                 <Route path="/" element={<Homepage />} />
+                <Route path="/loader" element={<Loader />} />
                 <Route path="/Signup" element={<Signup />} />
                 <Route path="/courses/search" element={<SearchPage />} />
                 <Route path="/login" element={<Login />} />

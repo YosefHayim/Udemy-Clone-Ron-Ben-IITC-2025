@@ -1,13 +1,17 @@
 .loader {
-  width: 50px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 8px solid black;
-  border-right-color: white;
-  animation: l2 1s infinite linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px; /* Increase width */
+  aspect-ratio: 1; /* Maintain the circular shape */
+  border-radius: 50%; /* Keep it circular */
+  border: 12px solid black; /* Increase border thickness proportionally */
+  border-right-color: white; /* Keep the styling consistent */
+  animation: l2 1s infinite linear; /* Retain smooth animation */
 }
+
 @keyframes l2 {
   to {
-    transform: rotate(1turn);
+    transform: rotate(1turn); /* Ensure full rotation */
   }
 }

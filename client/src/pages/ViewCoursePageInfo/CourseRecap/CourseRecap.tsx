@@ -1,10 +1,7 @@
-const CourseRecap = () => {
+const CourseRecap = ({ recapInfo }) => {
   return (
-    <div>
-      <p>
-        Learn the fundamentals of Semiconductors...Join the students over 3000
-        across the world..
-      </p>
+    <div className="text-white z-10">
+      <p>{recapInfo}</p>
     </div>
   );
 };

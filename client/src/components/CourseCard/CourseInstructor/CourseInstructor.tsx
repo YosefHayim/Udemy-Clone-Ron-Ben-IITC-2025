@@ -1,5 +1,3 @@
-import React from "react";
-
 const CourseInstructor = ({
   instructor = "Academind by Maximilian Schwarzmüller, Maximilian Schwarzmüller",
 }) => {

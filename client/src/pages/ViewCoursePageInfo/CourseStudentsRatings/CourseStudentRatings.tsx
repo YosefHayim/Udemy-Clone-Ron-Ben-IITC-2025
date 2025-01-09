@@ -1,10 +1,12 @@
 const CourseStudentRatings = ({
-  amountRated = 106,
+  totalRated = 106,
   totalStudents = "7,511",
 }) => {
   return (
-    <div className="flex gap-[0.5em]">
-      <p className="underline text-[#c0c4fc]">({amountRated} ratings)</p>
+    <div className="flex gap-[0.5em] z-10 text-white">
+      <p className="underline text-[#c0c4fc] cursor-pointer">
+        ({totalRated} ratings)
+      </p>
       <p>{totalStudents} students</p>
     </div>
   );

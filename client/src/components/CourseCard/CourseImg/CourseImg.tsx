@@ -1,12 +1,12 @@
 import courseImgPlaceholder from "/images/image.png";
 
 const CourseImg = ({
-  img = courseImgPlaceholder,
-  widthChosen = "w-[260px]",
+  courseImg = courseImgPlaceholder,
+  widthChosen = "260px",
 }) => {
   return (
     <div>
-      <img src={img} alt="" className={`${widthChosen}`} />
+      <img src={courseImg} alt="" className={`w-[${widthChosen}]`} />
     </div>
   );
 };

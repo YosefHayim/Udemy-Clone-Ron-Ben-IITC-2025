@@ -21,10 +21,18 @@ const courseSchema = new mongoose.Schema(
       type: String,
       required: [true, "A course description is required"],
     },
-    coursePrice: {
+    courseRecapInfo: {
+      type: String,
+      required: [true, "Must provide short recap of the course."],
+    },
+    courseFullPrice: {
       type: Number,
-      required: [true, "Course price must be provided"],
+      required: [true, "Course full price must be provided"],
       min: [0, "Price cannot be negative"],
+    },
+    courseDiscountPrice: {
+      type: Number,
+      required: [true, "Course must have a discount price."],
     },
     category: {
       type: String,
@@ -97,6 +105,11 @@ const courseSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    courseTag: {
+      type: String,
+      enum: ["Bestseller", "Highest Rated", "Hot and New", "New"],
+      default: "New",
+    },
     sections: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -109,9 +122,38 @@ const courseSchema = new mongoose.Schema(
         ref: "Review",
       },
     ],
+    totalCourseDuration: {
+      type: Number,
+      default: 0,
+    },
+    totalCourseLessons: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );
+
+courseSchema.pre("save", async function (next) {
+  const Section = mongoose.model("Section");
+  const sections = await Section.find({ course: this._id }).populate("lessons");
+
+  let totalDuration = 0;
+  let totalLessons = 0;
+
+  sections.forEach((section) => {
+    totalLessons += section.lessons.length;
+    totalDuration += section.lessons.reduce(
+      (sum, lesson) => sum + lesson.duration,
+      0
+    );
+  });
+
+  this.totalCourseDuration = totalDuration;
+  this.totalCourseLessons = totalLessons;
+
+  next();
+});
 
 // Pre-save middleware to update student count
 courseSchema.pre("save", function (next) {
@@ -145,9 +187,8 @@ courseSchema.pre("remove", async function (next) {
 });
 
 courseSchema.pre(/^find/, function (next) {
-  console.log("Pre-find middleware executed"); // Debugging
   this.populate("reviews")
-    .populate("courseInstructor", "fullName email -_id")
+    .populate("courseInstructor", "fullName profilePic -_id")
     .populate({
       path: "sections",
       populate: {
