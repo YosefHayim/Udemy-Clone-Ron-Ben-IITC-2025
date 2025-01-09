@@ -4,7 +4,7 @@ import {
   MdOutlineKeyboardArrowUp,
 } from "react-icons/md";
 
-const InstructorDescription = () => {
+const InstructorDescription = ({ descriptionInstructor }) => {
   const [isExpanded, setExpanded] = useState(true);
 
   const handleToggle = () => {
@@ -28,21 +28,7 @@ const InstructorDescription = () => {
         }}
       >
         <div className="w-[700px] flex flex-col items-start justify-start gap-[0.5em] leading-[1.5em]">
-          <p>
-            Hi, I am Sumanta Kumar Pal, Bachelor of Technology in Electronics
-            and communication engineering. I have some teaching experience while
-            I was in college and then I joined the Control and Instrumentation
-            department of a Power Plant in India and I have an experience of
-            more than 10 years in this field. I have much interest in analog
-            circuit designing and my courses on:
-            <ul>
-              <li>Zener Diode and LEDs</li>
-              <li>Semiconductors</li>
-              <li>Diodes</li>
-            </ul>
-            will be extremely interesting for students with basic and
-            intermediate knowledge of science. I love learning and teaching.
-          </p>
+          {descriptionInstructor}
         </div>
       </div>
       <div

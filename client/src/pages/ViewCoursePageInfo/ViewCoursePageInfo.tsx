@@ -92,6 +92,7 @@ const ViewCoursePageInfo = () => {
         <InstructorSection
           instructorImg={data.courseInstructor.profilePic}
           instructorName={data.courseInstructor.fullName}
+          descriptionInstructor={data.courseInstructorDescription}
         />
         <ReviewsSection />
         <MoreCoursesByInstructor />
