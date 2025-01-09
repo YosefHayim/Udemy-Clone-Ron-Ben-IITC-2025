@@ -98,6 +98,13 @@ const courseSchema = new mongoose.Schema(
       ref: "User",
       required: [true, "Instructor is required"],
     },
+    courseInstructorDescription: {
+      type: String,
+      required: [
+        true,
+        "Must provide a background description of yourself as instructor",
+      ],
+    },
     moneyBackGuarantee: {
       type: Date,
       validate: {
@@ -205,14 +212,8 @@ courseSchema.pre("remove", async function (next) {
 
 courseSchema.pre(/^find/, function (next) {
   this.populate("reviews")
-    .populate("courseInstructor", "fullName profilePic -_id")
-    .populate({
-      path: "sections",
-      populate: {
-        path: "lessons",
-        options: { retainNullValues: true },
-      },
-    });
+    .populate("courseInstructor", "fullName profilePic _id")
+    .populate("sections");
   next();
 });
 

@@ -16,7 +16,7 @@ const SearchInput = () => {
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedTerm(searchTerm);
-    }, 200); // Adjust delay as needed (300ms here)
+    }, 100); // Adjust delay as needed (300ms here)
 
     return () => {
       clearTimeout(handler); // Clear timeout if the user types again

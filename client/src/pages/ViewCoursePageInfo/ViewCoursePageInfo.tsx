@@ -67,7 +67,7 @@ const ViewCoursePageInfo = () => {
             totalStudents={data.totalStudentsEnrolled.count}
           />
         </div>
-        <CourseCreatedBy />
+        <CourseCreatedBy instructorName={data.courseInstructor.fullName} />
         <CourseBasicInfo
           lastUpdated={data.updatedAt}
           courseLanguage={data.courseLanguages}
@@ -79,12 +79,16 @@ const ViewCoursePageInfo = () => {
           topic={data.courseTopic}
         />
         <CourseContent
+          requirements={data.courseRequirements}
           description={data.courseDescription}
           whoThisFor={data.whoThisCourseIsFor}
         />
         <StudentsAlsoBought />
         <FrequentlyBoughtTogether />
-        <InstructorSection instructorImg={data.profilePic} />
+        <InstructorSection
+          instructorImg={data.courseInstructor.profilePic}
+          instructorName={data.courseInstructor.fullName}
+        />
         <ReviewsSection />
         <MoreCoursesByInstructor />
         <ReportAbuse />

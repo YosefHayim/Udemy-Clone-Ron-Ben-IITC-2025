@@ -34,6 +34,7 @@ const createUsers = async () => {
     const hashedPassword = await bcrypt.hash("password123", 10);
     users.push({
       fullName: faker.person.fullName(),
+      profilePic: faker.image.avatar(),
       email: faker.internet.email().toLowerCase(),
       password: hashedPassword,
       role: faker.helpers.arrayElement(["student", "instructor", "student"]),
@@ -78,6 +79,7 @@ const createCourses = async () => {
       courseFullPrice: faker.commerce.price(10, 500, 2),
       courseDiscountPrice: faker.commerce.price(10, 250, 2),
       whoThisCourseIsFor: faker.lorem.sentence(),
+      courseInstructorDescription: faker.lorem.paragraph(),
       WhatYouWillLearn: Array.from({ length: 8 }, () => faker.lorem.sentence()),
       courseRequirements: Array.from({ length: 5 }, () =>
         faker.lorem.sentence()
@@ -131,61 +133,57 @@ const createSections = async () => {
 
   console.log(`${courses.length} courses found.`);
   const sections = [];
-  const courseIds = courses.map((course) => course._id);
-  const sectionCount = 30; // Number of sections to create
-  const courseSectionsMap = {}; // Map for batch updating courses with sections
+  const courseSectionsMap = {}; // Map for tracking sections for each course
 
-  for (let i = 0; i < sectionCount; i++) {
-    console.log(`Creating section ${i + 1}/${sectionCount}...`);
+  for (const course of courses) {
+    const numSections = faker.number.int({ min: 3, max: 10 }); // Random number of sections per course
 
-    try {
-      const randomCourseId = faker.helpers.arrayElement(courseIds);
+    for (let i = 0; i < numSections; i++) {
+      console.log(
+        `Creating section ${i + 1} for course ${course.courseName}...`
+      );
 
-      const section = await Section.create({
-        course: randomCourseId,
-        title: faker.helpers.arrayElement(sectionNames),
-        totalSectionDuration: 0,
-        totalSectionLessons: 0,
-        lessons: [],
-      });
+      try {
+        const section = await Section.create({
+          course: course._id,
+          title: faker.helpers.arrayElement(sectionNames),
+          totalSectionDuration: 0,
+          totalSectionLessons: 0,
+          lessons: [],
+        });
 
-      // Track sections by course for batch update
-      if (!courseSectionsMap[randomCourseId]) {
-        courseSectionsMap[randomCourseId] = [];
+        // Add section ID to the course
+        if (!courseSectionsMap[course._id]) {
+          courseSectionsMap[course._id] = [];
+        }
+        courseSectionsMap[course._id].push(section._id);
+
+        sections.push(section);
+      } catch (err) {
+        console.error(
+          `Error creating section ${i + 1} for ${course.courseName}:`,
+          err.message
+        );
       }
-      courseSectionsMap[randomCourseId].push(section._id);
-
-      sections.push(section);
-
-      // Update course's total duration and lessons
-      const course = await Course.findById(randomCourseId);
-      course.totalCourseDuration += section.totalSectionDuration;
-      course.totalCourseLessons += section.totalSectionLessons;
-      await course.save();
-    } catch (err) {
-      console.error(`Error creating section ${i + 1}:`, err.message);
     }
   }
 
-  console.log("Batch updating courses with section IDs...");
+  console.log("Updating courses with their sections...");
   try {
-    await Promise.all(
-      Object.keys(courseSectionsMap).map(async (courseId) => {
-        const sectionIds = courseSectionsMap[courseId];
-        await Course.findByIdAndUpdate(courseId, {
-          $push: { sections: { $each: sectionIds } },
-        });
-        console.log(
-          `Updated Course ID: ${courseId} with sections:`,
-          sectionIds
-        );
-      })
-    );
+    for (const courseId of Object.keys(courseSectionsMap)) {
+      await Course.findByIdAndUpdate(courseId, {
+        $push: { sections: { $each: courseSectionsMap[courseId] } },
+      });
+      console.log(
+        `Updated course ID ${courseId} with sections:`,
+        courseSectionsMap[courseId]
+      );
+    }
   } catch (err) {
-    console.error("Error during batch update of courses:", err.message);
+    console.error("Error updating courses with sections:", err.message);
   }
 
-  console.log("Sections created successfully.");
+  console.log("Sections created and linked successfully.");
   return sections;
 };
 
@@ -210,27 +208,20 @@ const createLessons = async () => {
 
     for (let i = 0; i < totalLessonsPerSection; i++) {
       const duration = faker.number.int({ min: 5, max: 20 });
-      try {
-        const lesson = new Lesson({
-          section: section._id,
-          title: faker.helpers.arrayElement(lessonsNames),
-          videoUrl: faker.internet.url(),
-          duration,
-          order: uniqueOrders[i],
-        });
+      const lesson = new Lesson({
+        section: section._id,
+        title: faker.helpers.arrayElement(lessonsNames),
+        videoUrl: faker.internet.url(),
+        duration,
+        order: uniqueOrders[i],
+      });
 
-        sectionLessons.push(lesson);
-        totalDurationForSection += duration;
-        lessons.push(lesson);
-        console.log(
-          `Lesson created: ${lesson.title}, Order: ${uniqueOrders[i]}, Duration: ${duration} mins`
-        );
-      } catch (err) {
-        console.error(
-          `Error creating lesson for section: ${section.title}, Section ID: ${section._id}`,
-          err.message
-        );
-      }
+      sectionLessons.push(lesson);
+      totalDurationForSection += duration;
+      lessons.push(lesson);
+      console.log(
+        `Lesson created: ${lesson.title}, Order: ${uniqueOrders[i]}, Duration: ${duration} mins`
+      );
     }
 
     // Bulk insert lessons
@@ -264,32 +255,45 @@ const createReviews = async () => {
     throw new Error("No courses or students found for review creation.");
   }
 
-  const courseIds = courses.map((course) => course._id);
   const totalReviews = 30;
   const reviews = [];
 
   for (let i = 0; i < totalReviews; i++) {
     console.log(`Creating review ${i + 1}/${totalReviews}...`);
-    const randomCourseId = faker.helpers.arrayElement(courseIds);
+
+    const randomCourse = faker.helpers.arrayElement(courses);
     const randomStudent = faker.helpers.arrayElement(students);
+
+    // Validate student enrollment in course
+    if (
+      !randomCourse.totalStudentsEnrolled.students.includes(randomStudent._id)
+    ) {
+      console.error(
+        `Student ${randomStudent.email} not enrolled in course ${randomCourse.courseName}. Skipping review.`
+      );
+      continue;
+    }
 
     const review = await courseReviews.create({
       user: randomStudent._id,
-      courseReview: randomCourseId,
+      courseReview: randomCourse._id,
       rating: faker.number.float({ min: 1, max: 5, precision: 0.1 }),
       comment: faker.lorem.sentence(),
     });
 
-    const course = await Course.findById(randomCourseId);
-    course.reviews.push(review._id);
-    await course.save();
+    // Update course with review and recalculate average rating
+    randomCourse.reviews.push(review._id);
+    const ratings = await courseReviews
+      .find({ courseReview: randomCourse._id })
+      .select("rating");
+    randomCourse.averageRating =
+      ratings.reduce((sum, r) => sum + r.rating, 0) / ratings.length;
+    await randomCourse.save();
 
     reviews.push(review);
     console.log(
-      `Review ${i + 1} created:`,
-      review.comment,
-      `For Course:`,
-      course.courseName
+      `Review ${i + 1} created for course ${randomCourse.courseName}:`,
+      review.comment
     );
   }
 
@@ -371,6 +375,21 @@ const simulateCoursePurchases = async () => {
       console.log(`${user.fullName} bought ${course.courseName}`);
     }
   }
+
+  // Ensure lesson accessibility for enrolled students
+  console.log("Ensuring lessons are accessible for enrolled users...");
+  const lessons = await Lesson.find().populate("section");
+  for (const user of users) {
+    const purchasedCourses = user.coursesBought;
+    lessons.forEach((lesson) => {
+      if (!purchasedCourses.includes(lesson.section.course._id)) {
+        console.error(
+          `User ${user.email} cannot access lesson ${lesson.title} as they are not enrolled in the course.`
+        );
+      }
+    });
+  }
+
   console.log("Course purchases simulated successfully.");
 };
 
