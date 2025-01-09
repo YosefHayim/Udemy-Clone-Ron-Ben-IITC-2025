@@ -2,7 +2,7 @@ import { MdOutlineStarPurple500 } from "react-icons/md";
 
 const CourseRating = ({
   colorRating = "text-[#f69c08]",
-  courseRating = 4.1,
+  courseRating = 0,
   amountOfStars = 1,
   isShowRating = false,
 }) => {

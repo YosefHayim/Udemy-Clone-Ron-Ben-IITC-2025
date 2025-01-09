@@ -53,11 +53,15 @@ const ViewCoursePageInfo = () => {
           avgRating={data.averageRating}
           totalRatings={data.totalRatings}
         />
-        <TopicPathMenu />
+        <TopicPathMenu
+          category={data.category}
+          subcategory={data.subCategory}
+          topic={data.courseTopic}
+        />
         <CourseBigTitle courseTitle={data.courseName} />
         <CourseRecap recapInfo={data.courseRecapInfo} />
         <div className="flex flex-row items-start justify-start gap-[0.5em]">
-          <CourseRating amountOfStars={4} />
+          <CourseRating amountOfStars={data.averageRating} />
           <CourseStudentRatings
             totalRated={data.totalRatings}
             totalStudents={data.totalStudentsEnrolled.count}
@@ -68,9 +72,16 @@ const ViewCoursePageInfo = () => {
           lastUpdated={data.updatedAt}
           courseLanguage={data.courseLanguages}
         />
-        <WhatYouLearn />
-        <ExploreTopics />
-        <CourseContent description={data.courseDescription} />
+        <WhatYouLearn prosCourse={data.WhatYouWillLearn} />
+        <ExploreTopics
+          category={data.category}
+          subCategory={data.subCategory}
+          topic={data.courseTopic}
+        />
+        <CourseContent
+          description={data.courseDescription}
+          whoThisFor={data.whoThisCourseIsFor}
+        />
         <StudentsAlsoBought />
         <FrequentlyBoughtTogether />
         <InstructorSection instructorImg={data.profilePic} />

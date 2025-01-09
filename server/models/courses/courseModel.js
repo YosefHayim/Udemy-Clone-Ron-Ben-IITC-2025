@@ -35,6 +35,10 @@ const courseSchema = new mongoose.Schema(
         message: "WhatYouWillLearn must contain between 6 to 10 sentences",
       },
     },
+    courseRequirements: {
+      type: [String],
+      required: [true, "Course must have requirements for the students."],
+    },
     courseRecapInfo: {
       type: String,
       required: [true, "Must provide short recap of the course."],

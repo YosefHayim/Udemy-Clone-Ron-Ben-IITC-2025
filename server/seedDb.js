@@ -79,6 +79,9 @@ const createCourses = async () => {
       courseDiscountPrice: faker.commerce.price(10, 250, 2),
       whoThisCourseIsFor: faker.lorem.sentence(),
       WhatYouWillLearn: Array.from({ length: 8 }, () => faker.lorem.sentence()),
+      courseRequirements: Array.from({ length: 5 }, () =>
+        faker.lorem.sentence()
+      ),
       category: parentCategory,
       subCategory: subCategory,
       courseTopic: topic,

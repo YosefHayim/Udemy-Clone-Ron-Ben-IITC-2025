@@ -4,7 +4,7 @@ import {
   MdOutlineKeyboardArrowDown,
 } from "react-icons/md";
 
-const Description = ({ description }) => {
+const Description = ({ description, whoThisFor }) => {
   const [isExpanded, setExpanded] = useState(true);
 
   const handleToggle = () => {
@@ -81,10 +81,7 @@ const Description = ({ description }) => {
         <div className="mt-[1.5em]">
           <h2 className="font-bold text-[1.5em]">Who is this course for?:</h2>
           <ul className=" list-disc">
-            <li>
-              The course is for those who love electronics and love to explore
-              the world of electronics.
-            </li>
+            <li>{whoThisFor}</li>
           </ul>
         </div>
       </div>

@@ -3,7 +3,7 @@ import Requirements from "../Requirements/Requirements";
 import Section from "../Section/Section";
 import TotalCourseLength from "../TotalCourseLength/TotalCourseLength";
 
-const CourseContent = ({ description }) => {
+const CourseContent = ({ description, whoThisFor }) => {
   return (
     <div className="flex flex-col">
       <h2 className="font-bold text-[1.2em] mb-[1em]">Course Content</h2>
@@ -14,7 +14,7 @@ const CourseContent = ({ description }) => {
       </div>
       <hr className="w-[550px] mt-[2em]" />
       <Requirements />
-      <Description description={description} />
+      <Description description={description} whoThisFor={whoThisFor} />
     </div>
   );
 };
