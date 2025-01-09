@@ -163,6 +163,13 @@ const courseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+courseSchema.pre(/^find/, function (next) {
+  this.populate("reviews")
+    .populate("courseInstructor", "fullName profilePic _id")
+    .populate("sections");
+  next();
+});
+
 courseSchema.pre("save", async function (next) {
   const Section = mongoose.model("Section");
   const sections = await Section.find({ course: this._id }).populate("lessons");
@@ -211,13 +218,6 @@ courseSchema.pre("remove", async function (next) {
   if (this.reviews && this.reviews.length > 0) {
     await Review.deleteMany({ _id: { $in: this.reviews } });
   }
-  next();
-});
-
-courseSchema.pre(/^find/, function (next) {
-  this.populate("reviews")
-    .populate("courseInstructor", "fullName profilePic _id")
-    .populate("sections");
   next();
 });
 

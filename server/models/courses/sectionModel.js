@@ -30,6 +30,11 @@ const sectionSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+sectionSchema.pre(/^find/, function (next) {
+  this.populate("lessons");
+  next();
+});
+
 // Middleware to calculate and set total lessons and duration
 sectionSchema.post("save", async function () {
   try {
