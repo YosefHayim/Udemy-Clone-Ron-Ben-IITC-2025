@@ -83,6 +83,9 @@ const ViewCoursePageInfo = () => {
           topic={data.courseTopic}
         />
         <CourseContent
+          totalCourseSections={data.totalCourseSections}
+          totalCourseDuration={data.totalCourseDuration}
+          totalCourseLessons={data.totalCourseLessons}
           requirements={data.courseRequirements}
           description={data.courseDescription}
           whoThisFor={data.whoThisCourseIsFor}
@@ -98,7 +101,9 @@ const ViewCoursePageInfo = () => {
           avgRating={data.averageRating}
           totalRated={data.totalRatings}
         />
-        <MoreCoursesByInstructor />
+        <MoreCoursesByInstructor
+          instructorName={data.courseInstructor.fullName}
+        />
         <ReportAbuse />
       </div>
       <CoursePreviewCard
