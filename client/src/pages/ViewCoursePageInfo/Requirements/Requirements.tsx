@@ -15,7 +15,6 @@ const Requirements = ({ requirements }) => {
         isClicked ? "h-auto" : "h-[100px]"
       } flex-col items-center w-[550px] cursor-pointer`}
     >
-      <hr />
       <div className="flex flex-row items-center justify-between">
         <h2 className="font-bold text-[1.2em] mt-[1.5em] mb-[1em]">
           Requirements

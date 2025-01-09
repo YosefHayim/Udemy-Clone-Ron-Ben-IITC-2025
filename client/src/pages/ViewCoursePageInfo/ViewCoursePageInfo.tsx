@@ -44,7 +44,7 @@ const ViewCoursePageInfo = () => {
   }
 
   return (
-    <div className="flex flex-row p-[3em] items-start justify-center w-full gap-[3em]">
+    <div className="flex flex-row p-[3em] items-start justify-start w-full gap-[3em]">
       <div className="flex flex-col items-start justify-start gap-[1em]">
         <div className="bg-[#1c1d1f] h-[350px] absolute w-full left-0 top-[9%]"></div>
         <StickyCourseNavbar
