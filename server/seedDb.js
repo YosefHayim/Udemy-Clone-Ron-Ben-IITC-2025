@@ -38,7 +38,7 @@ const createUsers = async () => {
       password: hashedPassword,
       role: faker.helpers.arrayElement(["student", "instructor", "student"]),
       biography: faker.lorem.sentence(15),
-      udemyCredits: faker.number.int({ min: 0, max: 100 }),
+      udemyCredits: faker.number.int({ min: 1000, max: 3000 }),
     });
   }
   const createdUsers = await User.insertMany(users);
@@ -77,6 +77,8 @@ const createCourses = async () => {
       courseDescription: faker.lorem.paragraph(),
       courseFullPrice: faker.commerce.price(10, 500, 2),
       courseDiscountPrice: faker.commerce.price(10, 250, 2),
+      whoThisCourseIsFor: faker.lorem.sentence(),
+      WhatYouWillLearn: Array.from({ length: 8 }, () => faker.lorem.sentence()),
       category: parentCategory,
       subCategory: subCategory,
       courseTopic: topic,
@@ -340,6 +342,35 @@ const createReportedReviews = async () => {
   console.log("Reported reviews created successfully.");
 };
 
+const simulateCoursePurchases = async () => {
+  const users = await User.find({
+    role: "student",
+    udemyCredits: { $gte: 10 },
+  });
+  const courses = await Course.find({ isActive: true });
+
+  if (!users.length || !courses.length) {
+    throw new Error("No users or courses available for simulation.");
+  }
+
+  for (const user of users) {
+    const course = faker.helpers.arrayElement(courses);
+
+    if (!user.coursesBought.includes(course._id)) {
+      user.coursesBought.push(course._id);
+      user.udemyCredits -= course.courseDiscountPrice;
+
+      course.totalStudentsEnrolled.count += 1;
+      course.totalStudentsEnrolled.students.push(user._id);
+
+      await user.save();
+      await course.save();
+      console.log(`${user.fullName} bought ${course.courseName}`);
+    }
+  }
+  console.log("Course purchases simulated successfully.");
+};
+
 const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
@@ -368,6 +399,9 @@ const generateUpdatedDummyData = async () => {
 
     console.log("Seeding reported reviews...");
     await createReportedReviews();
+
+    await simulateCoursePurchases();
+    console.log("Simulate courses purchases completed");
 
     console.log("All dummy data seeded successfully!");
     process.exit();

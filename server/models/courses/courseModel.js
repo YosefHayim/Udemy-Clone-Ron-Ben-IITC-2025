@@ -32,7 +32,7 @@ const courseSchema = new mongoose.Schema(
         validator: function (v) {
           return Array.isArray(v) && v.length > 6 && v.length < 10;
         },
-        message: "WhatYouWillLearn must contain exactly 6 sentences",
+        message: "WhatYouWillLearn must contain between 6 to 10 sentences",
       },
     },
     courseRecapInfo: {
