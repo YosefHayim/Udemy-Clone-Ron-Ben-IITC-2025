@@ -4,8 +4,13 @@ import SectionName from "./SectionName/SectionName";
 import SectionDuration from "./SectionDuration/SectionDuration";
 import Lesson from "../Lesson/Lesson";
 
-const Section = () => {
+const Section = ({ lessonsOfSection, sectionName }) => {
   const [isClicked, setClicked] = useState(false);
+
+  const totalDuration = lessonsOfSection.reduce(
+    (sum, lesson) => sum + lesson.duration,
+    0
+  );
 
   return (
     <div>
@@ -20,17 +25,20 @@ const Section = () => {
         >
           <MdOutlineKeyboardArrowUp />
         </div>
-        <SectionName />
-        <SectionDuration />
+        <SectionName name={sectionName} />
+        <SectionDuration duration={totalDuration} />
       </div>
+
       <div className={isClicked ? "hidden" : "block w-[550px]"}>
-        <Lesson />
-        <Lesson />
-        <Lesson />
-        <Lesson />
-        <Lesson />
-        <Lesson />
-        <Lesson isQuizzLesson={true} />
+        {lessonsOfSection.map((lesson, index) => (
+          <Lesson
+            key={lesson._id}
+            title={lesson.title}
+            videoUrl={lesson.videoUrl}
+            duration={lesson.duration}
+            isQuizzLesson={index === lessonsOfSection.length - 1} // Example: Make last one a quiz
+          />
+        ))}
       </div>
     </div>
   );

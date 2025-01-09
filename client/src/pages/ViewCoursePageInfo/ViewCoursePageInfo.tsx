@@ -83,6 +83,7 @@ const ViewCoursePageInfo = () => {
           topic={data.courseTopic}
         />
         <CourseContent
+          sectionsOfCourse={data.sections}
           totalCourseSections={data.totalCourseSections}
           totalCourseDuration={data.totalCourseDuration}
           totalCourseLessons={data.totalCourseLessons}

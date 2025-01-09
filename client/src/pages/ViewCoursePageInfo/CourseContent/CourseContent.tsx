@@ -10,6 +10,7 @@ const CourseContent = ({
   totalCourseDuration,
   totalCourseLessons,
   totalCourseSections,
+  sectionsOfCourse,
 }) => {
   return (
     <div className="flex flex-col">
@@ -20,8 +21,13 @@ const CourseContent = ({
         totalCourseSections={totalCourseSections}
       />
       <div>
-        <Section />
-        <Section />
+        {sectionsOfCourse.map((courseSection) => (
+          <Section
+            key={courseSection._id}
+            lessonsOfSection={courseSection.lessons}
+            sectionName={courseSection.title}
+          />
+        ))}
       </div>
       <hr className="w-[550px] mt-[2em]" />
       <Requirements requirements={requirements} />

@@ -7,7 +7,7 @@ const TotalCourseLength = ({
     <div>
       <div className="flex w-[550px] justify-between mb-[0.5em]">
         <div className="flex flex-row gap-[0.5em]">
-          <p>{totalCourseSections} sections</p>
+          <p>{totalCourseSections + 1} sections</p>
           <p>{totalCourseLessons} lectures</p>
           <p>{totalCourseDuration}h total length</p>
         </div>

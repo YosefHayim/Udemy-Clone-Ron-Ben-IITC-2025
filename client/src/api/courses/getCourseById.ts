@@ -13,7 +13,6 @@ const getCourseById = async (courseId) => {
     const { data } = await axios.get(url);
 
     if (data) {
-      console.log(data.data);
       return data.data;
     }
     return null;
