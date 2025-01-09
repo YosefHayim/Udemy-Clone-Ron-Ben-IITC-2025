@@ -29,7 +29,7 @@ const clearCollections = async () => {
 
 const createUsers = async () => {
   const users = [];
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 200; i++) {
     console.log(`Creating user ${i + 1}...`);
     const hashedPassword = await bcrypt.hash("password123", 10);
     users.push({
@@ -39,7 +39,7 @@ const createUsers = async () => {
       password: hashedPassword,
       role: faker.helpers.arrayElement(["student", "instructor", "student"]),
       biography: faker.lorem.sentence(15),
-      udemyCredits: faker.number.int({ min: 1000, max: 3000 }),
+      udemyCredits: faker.number.int({ min: 5000, max: 10000 }),
     });
   }
   const createdUsers = await User.insertMany(users);
@@ -58,7 +58,7 @@ const createCourses = async () => {
     throw new Error("No students found for enrollment.");
   }
 
-  const amountOfCourses = 50;
+  const amountOfCourses = 300;
   const courses = [];
 
   for (let i = 0; i < amountOfCourses; i++) {
@@ -75,7 +75,7 @@ const createCourses = async () => {
     // Randomly select students to enroll in this course
     const enrolledStudents = faker.helpers.arrayElements(
       users,
-      faker.number.int({ min: 1, max: 10 })
+      faker.number.int({ min: 7, max: 15 })
     );
 
     const course = await Course.create({
@@ -156,7 +156,7 @@ const createSections = async () => {
   const sections = [];
 
   for (const course of courses) {
-    const numSections = faker.number.int({ min: 1, max: 3 }); // Random number of sections per course
+    const numSections = faker.number.int({ min: 5, max: 10 }); // Random number of sections per course
     const createdSections = [];
 
     for (let i = 0; i < numSections; i++) {
@@ -214,12 +214,12 @@ const createLessons = async () => {
   for (const section of sections) {
     console.log(`Creating lessons for section: ${section.title}...`);
 
-    const totalLessonsPerSection = faker.number.int({ min: 1, max: 2 }); // Randomize number of lessons
+    const totalLessonsPerSection = faker.number.int({ min: 6, max: 10 }); // Randomize number of lessons
     const createdLessons = [];
     let totalDurationForSection = 0;
 
     for (let i = 0; i < totalLessonsPerSection; i++) {
-      const duration = faker.number.int({ min: 5, max: 20 });
+      const duration = faker.number.int({ min: 10, max: 20 });
 
       const lesson = await Lesson.create({
         section: section._id,
@@ -462,7 +462,7 @@ const simulateCoursePurchases = async () => {
       // Randomly select courses for the user to purchase
       const coursesToPurchase = faker.helpers.arrayElements(
         courses,
-        faker.number.int({ min: 1, max: 5 })
+        faker.number.int({ min: 3, max: 5 })
       );
 
       for (const course of coursesToPurchase) {
