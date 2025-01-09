@@ -53,6 +53,7 @@ const ViewCoursePageInfo = () => {
           avgRating={data.averageRating}
           totalRatings={data.totalRatings}
         />
+
         <TopicPathMenu
           category={data.category}
           subcategory={data.subCategory}
@@ -67,7 +68,10 @@ const ViewCoursePageInfo = () => {
             totalStudents={data.totalStudentsEnrolled.count}
           />
         </div>
-        <CourseCreatedBy instructorName={data.courseInstructor.fullName} />
+        <CourseCreatedBy
+          instructorName={data.courseInstructor.fullName}
+          instructorId={data.courseInstructor._id}
+        />
         <CourseBasicInfo
           lastUpdated={data.updatedAt}
           courseLanguage={data.courseLanguages}
