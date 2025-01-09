@@ -13,6 +13,7 @@ const allowedIssueTypes = require("./utils/reportSubjects");
 const courseNames = require("./utils/courseNames");
 const sectionNames = require("./utils/sectionNames");
 const lessonsNames = require("./utils/lessonNames");
+const videosToDisplay = require("./utils/videosToDsiplay");
 
 const clearCollections = async () => {
   await Promise.all([
@@ -224,7 +225,7 @@ const createLessons = async () => {
       const lesson = await Lesson.create({
         section: section._id,
         title: faker.helpers.arrayElement(lessonsNames),
-        videoUrl: faker.internet.url(),
+        videoUrl: faker.helpers.arrayElement(videosToDisplay),
         duration,
         order: i + 1, // Sequential order within the section
       });
