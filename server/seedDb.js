@@ -263,99 +263,101 @@ const createLessons = async () => {
 };
 
 const createReviews = async () => {
-  console.log("Fetching courses and students for review creation...");
+  console.log("Fetching students with enrolled courses for review creation...");
 
   try {
-    // Ensure `Course` is properly imported and accessible
-    const courses = await Course.find().populate(
-      "totalStudentsEnrolled.students"
-    );
-    const students = await User.find({ role: "student" });
+    // Step 1: Fetch all students with enrolled courses
+    const students = await User.find({
+      role: "student",
+      coursesBought: { $exists: true, $ne: [] },
+    })
+      .populate("coursesBought")
+      .exec();
 
-    if (!courses || courses.length === 0) {
-      throw new Error("No courses found for review creation.");
+    if (!students.length) {
+      throw new Error("No students with enrolled courses found.");
     }
 
-    if (!students || students.length === 0) {
-      throw new Error("No students found for review creation.");
-    }
-
-    const totalReviews = 1; // Total number of reviews to create
+    const totalReviews = 30; // Number of reviews to create
     const reviews = [];
 
     for (let i = 0; i < totalReviews; i++) {
       console.log(`Creating review ${i + 1}/${totalReviews}...`);
 
-      // Filter courses to include only those with enrolled students
-      const eligibleCourses = courses.filter(
-        (course) =>
-          course &&
-          course.totalStudentsEnrolled &&
-          Array.isArray(course.totalStudentsEnrolled.students) &&
-          course.totalStudentsEnrolled.students.length > 0
-      );
+      // Step 2: Randomly select a student
+      const randomStudent = faker.helpers.arrayElement(students);
 
-      if (eligibleCourses.length === 0) {
-        console.error("No eligible courses with enrolled students found.");
-        break; // Exit loop if no eligible courses
+      if (!randomStudent.coursesBought?.length) {
+        console.error(
+          `Student "${randomStudent.email}" has no enrolled courses. Skipping...`
+        );
+        continue;
       }
 
-      // Randomly select an eligible course and a student from it
-      const randomCourse = faker.helpers.arrayElement(eligibleCourses);
-      const enrolledStudent = faker.helpers.arrayElement(
-        randomCourse.totalStudentsEnrolled.students
+      // Step 3: Randomly select a course from the student's enrolled courses
+      const randomCourse = faker.helpers.arrayElement(
+        randomStudent.coursesBought
       );
 
-      if (!randomCourse || !enrolledStudent) {
-        console.error("Invalid course or student data. Skipping...");
-        continue; // Skip invalid data
+      if (!randomCourse || !randomCourse._id) {
+        console.error(
+          `Invalid course for student "${randomStudent.email}". Skipping...`
+        );
+        continue;
       }
 
       try {
-        console.log("Selected course:", randomCourse.courseName);
-        console.log("Selected student:", enrolledStudent.email);
-
-        // Create the review
-        const review = await courseReviews.create({
-          user: enrolledStudent._id,
+        // Step 4: Create the review
+        const reviewPayload = {
+          user: randomStudent._id,
           courseReview: randomCourse._id,
           rating: faker.number.float({ min: 1, max: 5, precision: 0.1 }),
           comment: faker.lorem.sentence(),
-        });
+        };
 
-        // Update the course with the new review
-        randomCourse.reviews.push(review._id);
+        console.log("Review payload:", reviewPayload);
+        const review = await courseReviews.create(reviewPayload);
 
-        // Recalculate the course's average rating
-        const ratings = await courseReviews
-          .find({ courseReview: randomCourse._id })
-          .select("rating");
-
-        randomCourse.averageRating =
-          ratings.reduce((sum, r) => sum + r.rating, 0) / ratings.length;
-
-        await randomCourse.save();
+        // Step 5: Update the course with the review
+        console.log(
+          `Updating course "${randomCourse.courseName}" with review.`
+        );
+        await Course.findByIdAndUpdate(
+          randomCourse._id,
+          {
+            $push: { reviews: review._id },
+            $inc: { totalRatings: 1 },
+            $set: {
+              averageRating: await calculateAverageRating(randomCourse._id),
+            },
+          },
+          { new: true }
+        );
 
         reviews.push(review);
         console.log(
           `Review ${i + 1} created for course "${
             randomCourse.courseName
-          }" by student "${enrolledStudent.email}".`
+          }" by student "${randomStudent.email}".`
         );
-      } catch (error) {
-        console.error(`Error creating review ${i + 1}:`, error.message);
+      } catch (err) {
+        console.error(`Error creating review ${i + 1}:`, err.message);
       }
     }
 
-    console.log(
-      "Reviews created successfully:",
-      reviews.map((review) => review.comment)
-    );
+    console.log("Reviews created successfully:", reviews.length);
     return reviews;
   } catch (err) {
     console.error("Error during review creation:", err.message);
     throw err;
   }
+};
+
+// Helper function to calculate average rating
+const calculateAverageRating = async (courseId) => {
+  const allRatings = await courseReviews.find({ courseReview: courseId });
+  if (!allRatings.length) return 0;
+  return allRatings.reduce((sum, r) => sum + r.rating, 0) / allRatings.length;
 };
 
 const createReportedReviews = async () => {
@@ -376,7 +378,7 @@ const createReportedReviews = async () => {
     throw new Error("No students found for reporting.");
   }
 
-  const totalReports = 1;
+  const totalReports = 10;
 
   for (let i = 0; i < totalReports; i++) {
     console.log(`Creating report ${i + 1}/${totalReports}...`);
@@ -525,34 +527,34 @@ const simulateCoursePurchases = async () => {
 const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
-    console.log("Database connection established.");
-    await clearCollections();
+    // console.log("Database connection established.");
+    // await clearCollections();
 
-    console.log("Seeding users...");
-    const users = await createUsers();
-    console.log(`${users.length} users created.`);
+    // console.log("Seeding users...");
+    // const users = await createUsers();
+    // console.log(`${users.length} users created.`);
 
-    console.log("Seeding courses...");
-    const courses = await createCourses();
-    console.log(`${courses.length} courses created.`);
+    // console.log("Seeding courses...");
+    // const courses = await createCourses();
+    // console.log(`${courses.length} courses created.`);
 
-    console.log("Seeding sections...");
-    const sections = await createSections();
-    console.log(`${sections.length} sections created.`);
+    // console.log("Seeding sections...");
+    // const sections = await createSections();
+    // console.log(`${sections.length} sections created.`);
 
-    console.log("Seeding lessons...");
-    const lessons = await createLessons();
-    console.log(`${lessons.length} lessons created.`);
+    // console.log("Seeding lessons...");
+    // const lessons = await createLessons();
+    // console.log(`${lessons.length} lessons created.`);
 
     console.log("Seeding reviews...");
     const reviews = await createReviews();
     console.log(`${reviews.length} reviews created.`);
 
-    console.log("Seeding reported reviews...");
-    await createReportedReviews();
+    // console.log("Seeding reported reviews...");
+    // await createReportedReviews();
 
-    await simulateCoursePurchases();
-    console.log("Simulate courses purchases completed");
+    // await simulateCoursePurchases();
+    // console.log("Simulate courses purchases completed");
 
     console.log("All dummy data seeded successfully!");
     process.exit();

@@ -40,6 +40,12 @@ const courseReviewsSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+courseReviewsSchema.pre(/^find/, function (next) {
+  this.populate("courseReview").populate("user");
+
+  next();
+});
+
 courseReviewsSchema.post("save", async function () {
   const ratings = await this.constructor.find({
     courseReview: this.courseReview,
