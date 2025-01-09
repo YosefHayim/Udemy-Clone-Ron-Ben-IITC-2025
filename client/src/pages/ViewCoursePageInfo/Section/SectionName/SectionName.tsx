@@ -3,8 +3,6 @@ const SectionName = ({ name }) => {
     return;
   }
 
-  console.log(name);
-
   return (
     <div>
       <h2 className="font-bold">{name}</h2>

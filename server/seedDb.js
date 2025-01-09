@@ -30,7 +30,7 @@ const clearCollections = async () => {
 
 const createUsers = async () => {
   const users = [];
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 10; i++) {
     console.log(`Creating user ${i + 1}...`);
     const hashedPassword = await bcrypt.hash("password123", 10);
     users.push({
@@ -59,7 +59,7 @@ const createCourses = async () => {
     throw new Error("No students found for enrollment.");
   }
 
-  const amountOfCourses = 300;
+  const amountOfCourses = 10;
   const courses = [];
 
   for (let i = 0; i < amountOfCourses; i++) {
@@ -157,7 +157,7 @@ const createSections = async () => {
   const sections = [];
 
   for (const course of courses) {
-    const numSections = faker.number.int({ min: 5, max: 10 }); // Random number of sections per course
+    const numSections = faker.number.int({ min: 1, max: 3 }); // Random number of sections per course
     const createdSections = [];
 
     for (let i = 0; i < numSections; i++) {
@@ -215,7 +215,7 @@ const createLessons = async () => {
   for (const section of sections) {
     console.log(`Creating lessons for section: ${section.title}...`);
 
-    const totalLessonsPerSection = faker.number.int({ min: 6, max: 10 }); // Randomize number of lessons
+    const totalLessonsPerSection = faker.number.int({ min: 1, max: 2 }); // Randomize number of lessons
     const createdLessons = [];
     let totalDurationForSection = 0;
 
@@ -280,7 +280,7 @@ const createReviews = async () => {
       throw new Error("No students found for review creation.");
     }
 
-    const totalReviews = 30; // Total number of reviews to create
+    const totalReviews = 1; // Total number of reviews to create
     const reviews = [];
 
     for (let i = 0; i < totalReviews; i++) {
@@ -376,7 +376,7 @@ const createReportedReviews = async () => {
     throw new Error("No students found for reporting.");
   }
 
-  const totalReports = 5;
+  const totalReports = 1;
 
   for (let i = 0; i < totalReports; i++) {
     console.log(`Creating report ${i + 1}/${totalReports}...`);
