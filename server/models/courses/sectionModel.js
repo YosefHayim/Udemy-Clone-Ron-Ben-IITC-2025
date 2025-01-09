@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Lesson = require("./lessonModel");
 
 const sectionSchema = new mongoose.Schema(
   {
@@ -53,6 +54,19 @@ sectionSchema.post("save", async function () {
   } catch (err) {
     console.error("Error in post-save middleware for Section:", err.message);
   }
+});
+
+sectionSchema.post("save", async function () {
+  const lessons = await Lesson.find({ section: this._id });
+  const totalDuration = lessons.reduce(
+    (sum, lesson) => sum + lesson.duration,
+    0
+  );
+
+  await this.updateOne({
+    totalSectionDuration: totalDuration,
+    totalSectionLessons: lessons.length,
+  });
 });
 
 const Section = mongoose.model("Section", sectionSchema);
