@@ -4,7 +4,7 @@ import {
   MdOutlineKeyboardArrowDown,
 } from "react-icons/md";
 
-const Description = () => {
+const Description = ({ description }) => {
   const [isExpanded, setExpanded] = useState(true);
 
   const handleToggle = () => {
@@ -29,15 +29,7 @@ const Description = () => {
       >
         <div className="flex flex-col gap-[1em]">
           <h2 className="font-bold text-[1.2em]">Description</h2>
-          <p className=" mb-[2em]">
-            Learn the fundamentals of Semiconductors and take the first leap to
-            the world of Electronics. This course will be very helpful for
-            students with great interest towards science and especially
-            electronics. Finally, the course is so designed that if anyone goes
-            from lecture 1 to last lecture the entire subject can be thoroughly
-            understood easily. So let's have a highlight of the entire course
-            quickly-
-          </p>
+          <p className=" mb-[2em]">{description}</p>
         </div>
         <ul className="list-disc  flex flex-col items-start justify-start gap-[0.5em]">
           <li>Learn the basics of Semiconductors.</li>

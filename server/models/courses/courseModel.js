@@ -19,7 +19,21 @@ const courseSchema = new mongoose.Schema(
     },
     courseDescription: {
       type: String,
-      required: [true, "A course description is required"],
+      required: [true, "Course must have a description"],
+    },
+    whoThisCourseIsFor: {
+      type: String,
+      required: [true, "A course description must have a who is this is for."],
+    },
+    WhatYouWillLearn: {
+      type: [String],
+      required: [true, "A course must have at least 6 pros"],
+      validate: {
+        validator: function (v) {
+          return Array.isArray(v) && v.length > 6 && v.length < 10;
+        },
+        message: "WhatYouWillLearn must contain exactly 6 sentences",
+      },
     },
     courseRecapInfo: {
       type: String,
@@ -155,7 +169,6 @@ courseSchema.pre("save", async function (next) {
   next();
 });
 
-// Pre-save middleware to update student count
 courseSchema.pre("save", function (next) {
   if (
     this.totalStudentsEnrolled &&

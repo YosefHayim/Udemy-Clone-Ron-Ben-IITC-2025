@@ -70,7 +70,7 @@ const ViewCoursePageInfo = () => {
         />
         <WhatYouLearn />
         <ExploreTopics />
-        <CourseContent />
+        <CourseContent description={data.courseDescription} />
         <StudentsAlsoBought />
         <FrequentlyBoughtTogether />
         <InstructorSection instructorImg={data.profilePic} />

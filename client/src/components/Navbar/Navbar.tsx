@@ -1,5 +1,5 @@
 import SearchInput from "./SearchInput/SearchInput";
-import LoginBtn from "./Login/LoginBtn";
+import LoginBtn from "./LoginBtn/LoginBtn";
 import SignupBtn from "./SignupBtn/SignupBtn";
 import Cart from "./Cart/Cart";
 import Language from "./Language/Language";
