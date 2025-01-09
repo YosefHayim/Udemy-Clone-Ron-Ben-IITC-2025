@@ -18,23 +18,17 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   width = "100%",
   height = "820px",
 }) => {
-  const { open, toggleSidebar } = useSidebar(); // Access SidebarProvider context
+  const { open, toggleSidebar } = useSidebar();
 
   return (
     <div className="relative video-player bg-[#1C1D1F]" style={{ width, height }}>
-      {/* Video Player */}
-      <div className="absolute inset-0 flex justify-start items-center">
-        <CustomTrigger open={open} toggleSidebar={toggleSidebar} />
-      </div>
-      <ReactPlayer
-        url={videoUrl}
-        controls={controls}
-        playing={playing}
-        width="100%"
-        height="100%"
-      />
-
-      {/* Centered Custom Trigger */}
+      {/* Centered Trigger */}
+      {!open && (
+        <div className="absolute inset-0 flex justify-start pb-80 items-center ">
+          <CustomTrigger open={open} toggleSidebar={toggleSidebar} position="centered" />
+        </div>
+      )}
+      <ReactPlayer url={videoUrl} controls={controls} playing={playing} width="100%" height="100%" />
     </div>
   );
 };

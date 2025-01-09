@@ -67,8 +67,6 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
                       <SidebarMenuSubButton asChild>
                         <Link
                           to={`/lesson/${lesson.id}`}
-                          
-          
                         >
                           {lesson.title}
                         </Link>
