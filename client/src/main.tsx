@@ -9,13 +9,11 @@ import "./index.css";
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    {/* Redux Provider */}
-    <Provider store={store}>
-      {/* QueryClientProvider para TanStack Query */}
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>
-    </Provider>
-  </StrictMode>
+
+  <Provider store={store}>
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  </Provider>
+
 );

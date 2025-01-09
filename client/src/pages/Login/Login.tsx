@@ -11,13 +11,12 @@ const Login = () => {
   const [formErrors, setFormErrors] = useState({}); // errors state
   const navigate = useNavigate(); // redirect to homepage
   const dispatch = useDispatch(); // global state redux
+  // const localURL = // "https://udemy-clone-ron-ben.onrender.com/api/user/auth/login",
 
   // Do post requisition to the authentication url
   const loginUser = async (credentials) => {
-    const response = await axios.post(
-      "https://udemy-clone-ron-ben.onrender.com/api/user/auth/login",
-      credentials
-    );
+    axios.defaults.withCredentials = true;
+    const response = await axios.post('http://localhost:3000/api/user/auth/login', credentials);
     return response.data;
   };
 
@@ -83,9 +82,8 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="ben.kilinski@gmail.com"
-                className={`w-full px-4 py-3 border rounded-md bg-blue-50 focus:outline-none ${
-                  formErrors.email ? "border-red-500" : "border-gray-300"
-                }`}
+                className={`w-full px-4 py-3 border rounded-md bg-blue-50 focus:outline-none ${formErrors.email ? "border-red-500" : "border-gray-300"
+                  }`}
               />
               {formErrors.email && <p className="text-red-500 text-sm">{formErrors.email}</p>}
             </div>
@@ -104,9 +102,8 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className={`w-full px-4 py-3 border rounded-md bg-blue-50 focus:outline-none ${
-                  formErrors.password ? "border-red-500" : "border-gray-300"
-                }`}
+                className={`w-full px-4 py-3 border rounded-md bg-blue-50 focus:outline-none ${formErrors.password ? "border-red-500" : "border-gray-300"
+                  }`}
               />
               {formErrors.password && <p className="text-red-500 text-sm">{formErrors.password}</p>}
             </div>
@@ -114,9 +111,8 @@ const Login = () => {
             {/* Botão de Enviar */}
             <button
               type="submit"
-              className={`w-full py-2 rounded-md ${
-                mutation.isLoading ? "bg-gray-400" : "bg-purple-600 hover:bg-purple-700"
-              } text-white transition`}
+              className={`w-full py-2 rounded-md ${mutation.isLoading ? "bg-gray-400" : "bg-purple-600 hover:bg-purple-700"
+                } text-white transition`}
               disabled={mutation.isLoading}
             >
               {mutation.isLoading ? "Logging in..." : "Continue with email"}
