@@ -11,9 +11,11 @@ const confirmEmailToken = (length = 32) => {
 
 const generateToken = (payload) => {
   // Generating token once user logged in
-  return jwt.sign(payload, process.env.JWT_SECRET, {
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
+  console.log(token);
+  return token;
 };
 
 const verifyToken = (token) => {
