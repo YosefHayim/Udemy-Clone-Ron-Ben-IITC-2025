@@ -1,4 +1,3 @@
-import { Section } from "lucide-react";
 import Banner from "./Banner";
 import TrustedBySection from "./TrustedBySection";
 import LearnersAreViewing from "./LearnersAreViewing";
@@ -9,30 +8,55 @@ import Testimonials from "./Testimonials";
 import TrendsReport from "./TopTrends";
 import TrendingNow from "./TrendingNow";
 import Carousel from "./Carousel";
+import Sections from './Sections'
+import Menu from "@/components/Menu/Menu";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/index"; // Import RootState type for Redux 
 
 const Homepage = () => {
+
+  const user = useSelector((state: RootState) => state.user)
+
   return (
-    <div>
-      <div className="container mx-auto px-6 lg:px-24">
-        <Banner />
-        <Section />
-        <TrustedBySection />
-        <LearnersAreViewing />
-        <SearchResult />
-        <LearningGoals />
-        <PlansSection />
-        <Testimonials />
-        <TrendsReport />
-        <TrendingNow />
-        <Carousel />
-      </div>
-      {/* <Login />
-      <SignUp /> */}
-      {/* <Banner />
-      <Categories />
-      <CourseList />
-      <Footer /> */}
-    </div>
+    <>
+      {!user && (
+        <>
+          <div className="container mx-auto px-[5.6rem]">
+            <Banner />
+            <Sections />
+            <TrustedBySection />
+            <LearnersAreViewing />
+            <SearchResult />
+            <LearningGoals />
+            <PlansSection />
+            <Testimonials />
+            <TrendsReport />
+            <TrendingNow />
+            <Carousel />
+          </div>
+        </>
+      )}
+
+      {user && (
+        <>
+          <Menu />
+          <div className="container mx-auto px-[5.6rem]">
+            <Banner />
+            <Sections />
+            <TrustedBySection />
+            <LearnersAreViewing />
+            <SearchResult />
+            <LearningGoals />
+            <PlansSection />
+            <Testimonials />
+            <TrendsReport />
+            <TrendingNow />
+            <Carousel />
+          </div>
+        </>
+      )}
+
+    </>
   );
 };
 

@@ -1,36 +1,80 @@
-import illustration from "/images/login.png";
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
-import { FaApple } from "react-icons/fa";
-import { setUser } from "@/redux/slices/userSlice";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useMutation } from "@tanstack/react-query"; // Sintaxe atualizada
+import { setUser } from "../../redux/slices/userSlice";
+import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+
+
 
 const Login = () => {
-  // const [name, setName] = useState(''); // Estado local para o nome
-  // const [email, setEmail] = useState(''); // Estado local para o e-mail
-  // const dispatch = useDispatch(); // Permite usar a ação setUser
+  const [email, setEmail] = useState(""); //email state
+  const [password, setPassword] = useState(""); // password state
+  const [formErrors, setFormErrors] = useState({}); // errors state
+  const navigate = useNavigate(); // redirect to homepage
+  const dispatch = useDispatch(); // global state redux
+  // const localURL = // "https://udemy-clone-ron-ben.onrender.com/api/user/auth/login",
 
-  const handleLogin = () => {
-    // Atualiza o estado global com o nome e o e-mail
-    // dispatch(setUser({ name, email }));
+  // Do post requisition to the authentication url
+  const loginUser = async (credentials) => {
+    axios.defaults.withCredentials = true;
+    const response = await axios.post("https://udemy-clone-ron-ben.onrender.com/api/user/auth/login", credentials);
+    console.log(document.cookie);
+    const decode = jwtDecode(document.cookie)
+    console.log(decode)
+    return response.data;
+  };
+
+  // TanStack Query mutation for managing assync longinUser
+  const mutation = useMutation({
+    mutationFn: loginUser,
+    onSuccess: (data) => {
+      dispatch(setUser(data)); // Atualiza o estado global
+      navigate("/"); // Redireciona para a página inicial
+    },
+    onError: (error) => {
+      setFormErrors({
+        general: error.response?.data?.message || "Something went wrong. Try again.",
+      });
+    },
+  });
+
+  const validateForm = () => {
+    const errors = {};
+    if (!email) errors.email = "E-mail is mandatory.";
+    if (!password) errors.password = "Password is mandatory.";
+    return errors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      return;
+    }
+    setFormErrors({});
+    mutation.mutate({ email, password });
   };
 
   return (
     <div className="flex h-screen">
-      {/* Left Illustration */}
-
+      {/* Esquerda: Ilustração */}
       <img
-        src={illustration}
+        src="/images/login.png"
         alt="Login Illustration"
         className="h-[90%] w-auto object-contain flex items-center justify-center bg-transparent"
       />
 
-      {/* Right Form */}
+      {/* Direita: Formulário */}
       <div className="w-1/2 h-full flex items-center justify-center bg-white">
         <div className="w-3/4 max-w-sm">
           <h2 className="text-3xl font-bold text-gray-800 mb-6">
             Log in to continue your learning journey
           </h2>
-          <form className="flex flex-col space-y-4">
+          <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
+            {/* Campo de Email */}
             <div className="relative mb-4">
               <label
                 htmlFor="email"
@@ -41,50 +85,48 @@ const Login = () => {
               <input
                 type="email"
                 id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="ben.kilinski@gmail.com"
-                className="w-full px-4 py-3 border border-gray-300 rounded-md bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className={`w-full px-4 py-3 border rounded-md bg-blue-50 focus:outline-none ${formErrors.email ? "border-red-500" : "border-gray-300"
+                  }`}
               />
+              {formErrors.email && <p className="text-red-500 text-sm">{formErrors.email}</p>}
             </div>
 
+            {/* Campo de Senha */}
+            <div className="relative mb-4">
+              <label
+                htmlFor="password"
+                className="absolute top-0 left-4 text-sm text-gray-600 transform -translate-y-1/2 bg-blue-50 px-1"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                className={`w-full px-4 py-3 border rounded-md bg-blue-50 focus:outline-none ${formErrors.password ? "border-red-500" : "border-gray-300"
+                  }`}
+              />
+              {formErrors.password && <p className="text-red-500 text-sm">{formErrors.password}</p>}
+            </div>
+
+            {/* Botão de Enviar */}
             <button
               type="submit"
-              className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 transition"
+              className={`w-full py-2 rounded-md ${mutation.isLoading ? "bg-gray-400" : "bg-purple-600 hover:bg-purple-700"
+                } text-white transition`}
+              disabled={mutation.isLoading}
             >
-              Continue with email
+              {mutation.isLoading ? "Logging in..." : "Continue with email"}
             </button>
-            <div className="flex items-center justify-center my-4">
-              <div className="flex-grow border-t border-gray-300"></div>
-              <span className="px-3 text-gray-500 text-sm">
-                Other login options
-              </span>
-              <div className="flex-grow border-t border-gray-300"></div>
-            </div>
 
-            <div className="flex justify-center space-x-4">
-              <button className="w-14 h-14 bg-white border border-gray-600 rounded-md flex items-center justify-center hover:bg-gray-100 transition">
-                <FcGoogle className="text-4xl" />
-              </button>
-              <button className="w-14 h-14 bg-white border border-gray-600 rounded-md flex items-center justify-center hover:bg-gray-100 transition">
-                <FaFacebook className="text-3xl text-blue-600" />
-              </button>
-              <button className="w-14 h-14 bg-white border border-gray-600 rounded-md flex items-center justify-center hover:bg-gray-100 transition">
-                <FaApple className="text-3xl text-black" />
-              </button>
-            </div>
+            {/* Mensagem de Erro Geral */}
+            {formErrors.general && <p className="text-red-500 text-sm mt-2">{formErrors.general}</p>}
           </form>
-          <div className="mt-6 text-center">
-            <a href="/register" className="text-gray-800">
-              Don't have an account?{" "}
-              <span className="text-purple-600 hover:underline">Sign up</span>
-            </a>
-            <div className="border-t my-2"></div>
-            <a
-              href="/organization-login"
-              className="text-purple-600 hover:underline font-semibold"
-            >
-              Log in with your organization
-            </a>
-          </div>
         </div>
       </div>
     </div>
