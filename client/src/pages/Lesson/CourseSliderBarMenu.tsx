@@ -45,7 +45,7 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
   };
 
   return ( 
-    <SidebarMenu className="gap-0 mt-[-20px]">
+    <SidebarMenu className="gap-0 mt-[-20px]" >
        <div className="flex items-center justify-between border-b font-semibold">
        <span className="text-sm "> Course content</span>
       {open && (
@@ -55,27 +55,27 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
           )}
       </div>
       {sections.map((section) => (
-        <Collapsible key={section._id} defaultOpen className="group/collapsible">
+        <Collapsible key={section._id} defaultOpen className=" group/collapsible border-b flex p-4 items-center  justify-between">
           <SidebarMenuItem className="">
-            <CollapsibleTrigger asChild>
-              <SidebarMenuButton className="bg-[#F7F9FA]  p-4 font-bold focus:outline-none gap-0 focus-visible:outline-none flex items-center justify-between  border-b-2 rounded-none hover:border-y-inherit  ">
-                <span className="whitespace-normal break-words">{section.title}</span>
-                <FaChevronDown className=" overflow-visible transition-transform group-data-[state=open]/collapsible:rotate-180" />
+            <CollapsibleTrigger >
+              <SidebarMenuButton  className="bg-[#F7F9FA]  overflow-visible font-bold focus:outline-none gap-0 pl-0  focus-visible:outline-none rounded-none ">
+                <span className="whitespace-normal   break-words">{section.title}</span>
+                <FaChevronDown className="overflow-visible transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </SidebarMenuButton>
             </CollapsibleTrigger>
 
             {/* Collapsible Content for lessons */}
             <CollapsibleContent>
-              <SidebarMenuSub>
+              <SidebarMenuSub className=" m-0 p-0 mt-5 border-l-0   w-full">
                 {section.lessons.map((lesson) => (
-                  <SidebarMenuSubItem key={lesson._id}>
-                    <div className="flex items-center py-2 text-s hover:bg-slate-400 gap-2">
+                  <SidebarMenuSubItem className="hover:bg-slate-400 pt-4 h-full w-full" key={lesson._id}>
+                    <div className="flex items-center justify-between text-s hover:bg-slate-400  w-full ">
                       <Checkbox
                         checked={!!completedLessons[lesson._id]}
                         onCheckedChange={() => toggleLessonCompletion(lesson._id)}
-                        className="focus:outline-none focus-visible:outline-none  hover:border-black border-2 rounded-none"
+                        className="focus:outline-none focus-visible:outline-none hover:border-black border-2 rounded-none"
                       />
-                      <SidebarMenuSubButton asChild>
+                      <SidebarMenuSubButton className="overflow-visible  ">
                         <Link
                           to={`/lesson/${lesson._id}`}
                         >
