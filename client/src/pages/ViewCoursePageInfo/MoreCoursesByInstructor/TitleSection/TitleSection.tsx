@@ -1,9 +1,9 @@
-const TitleSection = () => {
+const TitleSection = ({ instructorName }) => {
   return (
-    <h2 className="font-bold text-[1.2em] mb-[1em]">
-      More Courses by
-      <span className="text-[#5022c3]">Sumanta kumar Pal</span>
-    </h2>
+    <div className="flex flex-row items-center justify-start gap-[0.5em] text-[1.2em]">
+      <h2 className="font-bold">More Courses by</h2>
+      <span className="text-[#5022c3] font-bold">{instructorName}</span>
+    </div>
   );
 };
 

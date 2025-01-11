@@ -40,5 +40,21 @@ const courseReviewsSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+courseReviewsSchema.pre(/^find/, function (next) {
+  this.populate("courseReview").populate("user");
+
+  next();
+});
+
+courseReviewsSchema.post("save", async function () {
+  const ratings = await this.constructor.find({
+    courseReview: this.courseReview,
+  });
+  const average =
+    ratings.reduce((sum, review) => sum + review.rating, 0) / ratings.length;
+
+  await Course.findByIdAndUpdate(this.courseReview, { averageRating: average });
+});
+
 const courseReviews = mongoose.model("Review", courseReviewsSchema);
 module.exports = courseReviews;

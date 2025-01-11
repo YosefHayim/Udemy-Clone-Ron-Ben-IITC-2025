@@ -53,29 +53,58 @@ const ViewCoursePageInfo = () => {
           avgRating={data.averageRating}
           totalRatings={data.totalRatings}
         />
-        <TopicPathMenu />
+
+        <TopicPathMenu
+          category={data.category}
+          subcategory={data.subCategory}
+          topic={data.courseTopic}
+        />
         <CourseBigTitle courseTitle={data.courseName} />
         <CourseRecap recapInfo={data.courseRecapInfo} />
         <div className="flex flex-row items-start justify-start gap-[0.5em]">
-          <CourseRating amountOfStars={4} />
+          <CourseRating amountOfStars={data.averageRating} />
           <CourseStudentRatings
             totalRated={data.totalRatings}
             totalStudents={data.totalStudentsEnrolled.count}
           />
         </div>
-        <CourseCreatedBy />
+        <CourseCreatedBy
+          instructorName={data.courseInstructor.fullName}
+          instructorId={data.courseInstructor._id}
+        />
         <CourseBasicInfo
           lastUpdated={data.updatedAt}
           courseLanguage={data.courseLanguages}
         />
-        <WhatYouLearn />
-        <ExploreTopics />
-        <CourseContent />
+        <WhatYouLearn prosCourse={data.WhatYouWillLearn} />
+        <ExploreTopics
+          category={data.category}
+          subCategory={data.subCategory}
+          topic={data.courseTopic}
+        />
+        <CourseContent
+          sectionsOfCourse={data.sections}
+          totalCourseSections={data.totalCourseSections}
+          totalCourseDuration={data.totalCourseDuration}
+          totalCourseLessons={data.totalCourseLessons}
+          requirements={data.courseRequirements}
+          description={data.courseDescription}
+          whoThisFor={data.whoThisCourseIsFor}
+        />
         <StudentsAlsoBought />
         <FrequentlyBoughtTogether />
-        <InstructorSection instructorImg={data.profilePic} />
-        <ReviewsSection />
-        <MoreCoursesByInstructor />
+        <InstructorSection
+          instructorImg={data.courseInstructor.profilePic}
+          instructorName={data.courseInstructor.fullName}
+          descriptionInstructor={data.courseInstructorDescription}
+        />
+        <ReviewsSection
+          avgRating={data.averageRating}
+          totalRated={data.totalRatings}
+        />
+        <MoreCoursesByInstructor
+          instructorName={data.courseInstructor.fullName}
+        />
         <ReportAbuse />
       </div>
       <CoursePreviewCard

@@ -65,7 +65,7 @@ const userSchema = new mongoose.Schema(
     },
     profilePic: {
       type: String,
-      default: "default-user-profile.svg",
+      default: "../../public/default-user-profile.svg",
     },
     role: {
       type: String,

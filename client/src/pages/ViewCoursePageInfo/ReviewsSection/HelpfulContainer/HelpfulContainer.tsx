@@ -4,8 +4,8 @@ const HelpfulContainer = () => {
   return (
     <div className="flex flex-row items-start justify-start gap-[1em]">
       <p>Helpful?</p>
-      <BiLike />
-      <BiDislike />
+      <BiLike className="cursor-pointer" />
+      <BiDislike className="cursor-pointer" />
     </div>
   );
 };

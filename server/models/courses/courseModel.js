@@ -19,7 +19,25 @@ const courseSchema = new mongoose.Schema(
     },
     courseDescription: {
       type: String,
-      required: [true, "A course description is required"],
+      required: [true, "Course must have a description"],
+    },
+    whoThisCourseIsFor: {
+      type: String,
+      required: [true, "A course description must have a who is this is for."],
+    },
+    WhatYouWillLearn: {
+      type: [String],
+      required: [true, "A course must have at least 6 pros"],
+      validate: {
+        validator: function (v) {
+          return Array.isArray(v) && v.length > 6 && v.length < 10;
+        },
+        message: "WhatYouWillLearn must contain between 6 to 10 sentences",
+      },
+    },
+    courseRequirements: {
+      type: [String],
+      required: [true, "Course must have requirements for the students."],
     },
     courseRecapInfo: {
       type: String,
@@ -80,6 +98,13 @@ const courseSchema = new mongoose.Schema(
       ref: "User",
       required: [true, "Instructor is required"],
     },
+    courseInstructorDescription: {
+      type: String,
+      required: [
+        true,
+        "Must provide a background description of yourself as instructor",
+      ],
+    },
     moneyBackGuarantee: {
       type: Date,
       validate: {
@@ -130,9 +155,20 @@ const courseSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    totalCourseSections: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );
+
+courseSchema.pre(/^find/, function (next) {
+  this.populate("reviews")
+    .populate("courseInstructor", "fullName profilePic _id")
+    .populate("sections");
+  next();
+});
 
 courseSchema.pre("save", async function (next) {
   const Section = mongoose.model("Section");
@@ -155,7 +191,6 @@ courseSchema.pre("save", async function (next) {
   next();
 });
 
-// Pre-save middleware to update student count
 courseSchema.pre("save", function (next) {
   if (
     this.totalStudentsEnrolled &&
@@ -183,19 +218,6 @@ courseSchema.pre("remove", async function (next) {
   if (this.reviews && this.reviews.length > 0) {
     await Review.deleteMany({ _id: { $in: this.reviews } });
   }
-  next();
-});
-
-courseSchema.pre(/^find/, function (next) {
-  this.populate("reviews")
-    .populate("courseInstructor", "fullName profilePic -_id")
-    .populate({
-      path: "sections",
-      populate: {
-        path: "lessons",
-        options: { retainNullValues: true },
-      },
-    });
   next();
 });
 

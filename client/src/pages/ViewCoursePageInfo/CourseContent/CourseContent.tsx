@@ -3,18 +3,37 @@ import Requirements from "../Requirements/Requirements";
 import Section from "../Section/Section";
 import TotalCourseLength from "../TotalCourseLength/TotalCourseLength";
 
-const CourseContent = () => {
+const CourseContent = ({
+  description,
+  whoThisFor,
+  requirements,
+  totalCourseDuration,
+  totalCourseLessons,
+  totalCourseSections,
+  sectionsOfCourse,
+}) => {
+  console.log(sectionsOfCourse);
+
   return (
     <div className="flex flex-col">
       <h2 className="font-bold text-[1.2em] mb-[1em]">Course Content</h2>
-      <TotalCourseLength />
+      <TotalCourseLength
+        totalCourseLessons={totalCourseLessons}
+        totalCourseDuration={totalCourseDuration}
+        totalCourseSections={totalCourseSections}
+      />
       <div>
-        <Section />
-        <Section />
+        {sectionsOfCourse.map((courseSection) => (
+          <Section
+            key={courseSection._id}
+            lessonsOfSection={courseSection.lessons}
+            sectionName={courseSection.title}
+          />
+        ))}
       </div>
       <hr className="w-[550px] mt-[2em]" />
-      <Requirements />
-      <Description />
+      <Requirements requirements={requirements} />
+      <Description description={description} whoThisFor={whoThisFor} />
     </div>
   );
 };

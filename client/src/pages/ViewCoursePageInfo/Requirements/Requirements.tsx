@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 
-const Requirements = () => {
+const Requirements = ({ requirements }) => {
   const [isClicked, setClicked] = useState(false);
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = () => {
@@ -15,7 +15,6 @@ const Requirements = () => {
         isClicked ? "h-auto" : "h-[100px]"
       } flex-col items-center w-[550px] cursor-pointer`}
     >
-      <hr />
       <div className="flex flex-row items-center justify-between">
         <h2 className="font-bold text-[1.2em] mt-[1.5em] mb-[1em]">
           Requirements
@@ -26,9 +25,9 @@ const Requirements = () => {
       </div>
       {isClicked && (
         <ul className="list-disc py-[0.5em] ml-[1em] flex flex-col gap-[0.5em]">
-          <li>Basic knowledge of science</li>
-          <li>Fundamental ideas of current, voltage and electric field</li>
-          <li>High school mathematics</li>
+          {requirements.map((requirement) => (
+            <li>{requirement}</li>
+          ))}
         </ul>
       )}
       <hr />

@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button";
 import ReviewSectionTitle from "./ReviewSectionTitle/ReviewSectionTitle";
 import UserCourseReview from "./UserCourseReview/UserCourseReview";
 
-const ReviewsSection = () => {
+const ReviewsSection = ({ totalRated, avgRating }) => {
   return (
     <div>
-      <ReviewSectionTitle />
+      <ReviewSectionTitle totalRated={totalRated} avgRating={avgRating} />
       <div className="grid grid-cols-2 gap-4 w-[700px] mb-[2em]">
         <UserCourseReview />
         <UserCourseReview />

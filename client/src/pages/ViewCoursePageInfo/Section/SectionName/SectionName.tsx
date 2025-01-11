@@ -1,7 +1,11 @@
-const SectionName = () => {
+const SectionName = ({ name }) => {
+  if (!name) {
+    return;
+  }
+
   return (
-    <div className="">
-      <h2 className="font-bold">Semiconductor : General Information</h2>
+    <div>
+      <h2 className="font-bold">{name}</h2>
     </div>
   );
 };

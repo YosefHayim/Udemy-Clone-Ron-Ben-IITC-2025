@@ -13,6 +13,7 @@ const allowedIssueTypes = require("./utils/reportSubjects");
 const courseNames = require("./utils/courseNames");
 const sectionNames = require("./utils/sectionNames");
 const lessonsNames = require("./utils/lessonNames");
+const videosToDisplay = require("./utils/videosToDsiplay");
 
 const clearCollections = async () => {
   await Promise.all([
@@ -29,16 +30,17 @@ const clearCollections = async () => {
 
 const createUsers = async () => {
   const users = [];
-  for (let i = 0; i < 400; i++) {
+  for (let i = 0; i < 10; i++) {
     console.log(`Creating user ${i + 1}...`);
     const hashedPassword = await bcrypt.hash("password123", 10);
     users.push({
       fullName: faker.person.fullName(),
+      profilePic: faker.image.avatar(),
       email: faker.internet.email().toLowerCase(),
       password: hashedPassword,
       role: faker.helpers.arrayElement(["student", "instructor", "student"]),
       biography: faker.lorem.sentence(15),
-      udemyCredits: faker.number.int({ min: 0, max: 100 }),
+      udemyCredits: faker.number.int({ min: 5000, max: 10000 }),
     });
   }
   const createdUsers = await User.insertMany(users);
@@ -52,9 +54,14 @@ const createCourses = async () => {
     throw new Error("No instructors found for course creation.");
   }
 
-  const amountOfCourses = 2000;
+  const users = await User.find({ role: "student" });
+  if (users.length === 0) {
+    throw new Error("No students found for enrollment.");
+  }
 
+  const amountOfCourses = 10;
   const courses = [];
+
   for (let i = 0; i < amountOfCourses; i++) {
     console.log(`Creating course ${i + 1}/${amountOfCourses}...`);
 
@@ -65,6 +72,12 @@ const createCourses = async () => {
     const subCategories = courseCategories[parentCategory].subCategories;
     const subCategory = faker.helpers.arrayElement(Object.keys(subCategories));
     const topic = faker.helpers.arrayElement(subCategories[subCategory]);
+
+    // Randomly select students to enroll in this course
+    const enrolledStudents = faker.helpers.arrayElements(
+      users,
+      faker.number.int({ min: 7, max: 15 })
+    );
 
     const course = await Course.create({
       courseName: faker.helpers.arrayElement(courseNames),
@@ -77,6 +90,12 @@ const createCourses = async () => {
       courseDescription: faker.lorem.paragraph(),
       courseFullPrice: faker.commerce.price(10, 500, 2),
       courseDiscountPrice: faker.commerce.price(10, 250, 2),
+      whoThisCourseIsFor: faker.lorem.sentence(),
+      courseInstructorDescription: faker.lorem.paragraphs(10),
+      WhatYouWillLearn: Array.from({ length: 8 }, () => faker.lorem.sentence()),
+      courseRequirements: Array.from({ length: 5 }, () =>
+        faker.lorem.sentence()
+      ),
       category: parentCategory,
       subCategory: subCategory,
       courseTopic: topic,
@@ -101,8 +120,11 @@ const createCourses = async () => {
       moneyBackGuarantee: faker.date.soon(30),
       averageRating: 0,
       totalRatings: 0,
-      totalStudentsEnrolled: { students: [], count: 0 },
-      isActive: faker.datatype.boolean(),
+      totalStudentsEnrolled: {
+        students: enrolledStudents.map((student) => student._id),
+        count: enrolledStudents.length,
+      },
+      isActive: true,
       totalCourseDuration: 0,
       totalCourseLessons: 0,
       sections: [],
@@ -110,9 +132,16 @@ const createCourses = async () => {
       reviews: [],
     });
 
+    // Update each user's `coursesBought` field with the created course
+    for (const student of enrolledStudents) {
+      student.coursesBought.push(course._id);
+      await student.save();
+    }
+
     courses.push(course);
-    console.log(`Course ${i + 1} created:`, course.courseName);
+    console.log(`Course ${i + 1} created: ${course.courseName}`);
   }
+
   console.log("Courses created successfully.");
   return courses;
 };
@@ -126,196 +155,274 @@ const createSections = async () => {
 
   console.log(`${courses.length} courses found.`);
   const sections = [];
-  const courseIds = courses.map((course) => course._id);
-  const sectionCount = 30; // Number of sections to create
-  const courseSectionsMap = {}; // Map for batch updating courses with sections
 
-  for (let i = 0; i < sectionCount; i++) {
-    console.log(`Creating section ${i + 1}/${sectionCount}...`);
+  for (const course of courses) {
+    const numSections = faker.number.int({ min: 1, max: 3 }); // Random number of sections per course
+    const createdSections = [];
 
-    try {
-      const randomCourseId = faker.helpers.arrayElement(courseIds);
+    for (let i = 0; i < numSections; i++) {
+      console.log(
+        `Creating section ${i + 1}/${numSections} for course "${
+          course.courseName
+        }"...`
+      );
 
-      const section = await Section.create({
-        course: randomCourseId,
-        title: faker.helpers.arrayElement(sectionNames),
-        totalSectionDuration: 0,
-        totalSectionLessons: 0,
-        lessons: [],
-      });
-
-      // Track sections by course for batch update
-      if (!courseSectionsMap[randomCourseId]) {
-        courseSectionsMap[randomCourseId] = [];
-      }
-      courseSectionsMap[randomCourseId].push(section._id);
-
-      sections.push(section);
-
-      // Update course's total duration and lessons
-      const course = await Course.findById(randomCourseId);
-      course.totalCourseDuration += section.totalSectionDuration;
-      course.totalCourseLessons += section.totalSectionLessons;
-      await course.save();
-    } catch (err) {
-      console.error(`Error creating section ${i + 1}:`, err.message);
-    }
-  }
-
-  console.log("Batch updating courses with section IDs...");
-  try {
-    await Promise.all(
-      Object.keys(courseSectionsMap).map(async (courseId) => {
-        const sectionIds = courseSectionsMap[courseId];
-        await Course.findByIdAndUpdate(courseId, {
-          $push: { sections: { $each: sectionIds } },
-        });
-        console.log(
-          `Updated Course ID: ${courseId} with sections:`,
-          sectionIds
-        );
-      })
-    );
-  } catch (err) {
-    console.error("Error during batch update of courses:", err.message);
-  }
-
-  console.log("Sections created successfully.");
-  return sections;
-};
-
-const createLessons = async () => {
-  const sections = await Section.find().populate("course");
-  if (sections.length === 0) {
-    throw new Error("No sections found for lesson creation.");
-  }
-
-  const totalLessonsPerSection = 10; // Number of lessons per section
-  const lessons = [];
-
-  for (const section of sections) {
-    console.log(`Creating lessons for section: ${section.title}...`);
-    const uniqueOrders = Array.from(
-      { length: totalLessonsPerSection },
-      (_, i) => i + 1
-    );
-
-    const sectionLessons = [];
-    let totalDurationForSection = 0;
-
-    for (let i = 0; i < totalLessonsPerSection; i++) {
-      const duration = faker.number.int({ min: 5, max: 20 });
       try {
-        const lesson = new Lesson({
-          section: section._id,
-          title: faker.helpers.arrayElement(lessonsNames),
-          videoUrl: faker.internet.url(),
-          duration,
-          order: uniqueOrders[i],
+        const section = await Section.create({
+          course: course._id,
+          title: faker.helpers.arrayElement(sectionNames),
+          totalSectionDuration: 0,
+          totalSectionLessons: 0,
+          lessons: [],
         });
 
-        sectionLessons.push(lesson);
-        totalDurationForSection += duration;
-        lessons.push(lesson);
-        console.log(
-          `Lesson created: ${lesson.title}, Order: ${uniqueOrders[i]}, Duration: ${duration} mins`
-        );
+        // Keep track of created sections for this course
+        createdSections.push(section._id);
+        sections.push(section);
       } catch (err) {
         console.error(
-          `Error creating lesson for section: ${section.title}, Section ID: ${section._id}`,
+          `Error creating section ${i + 1} for ${course.courseName}:`,
           err.message
         );
       }
     }
 
-    // Bulk insert lessons
-    await Lesson.insertMany(sectionLessons);
-
-    // Update section details
-    section.lessons.push(...sectionLessons.map((lesson) => lesson._id));
-    section.totalSectionDuration += totalDurationForSection;
-    section.totalSectionLessons += sectionLessons.length;
-    await section.save();
-
-    // Update course details
-    const course = await Course.findById(section.course._id);
-    course.totalCourseDuration += totalDurationForSection;
-    course.totalCourseLessons += sectionLessons.length;
-    await course.save();
+    // Update the course with created sections
+    if (createdSections.length > 0) {
+      course.sections.push(...createdSections);
+      await course.save();
+      console.log(
+        `Updated course "${course.courseName}" with ${createdSections.length} sections.`
+      );
+    }
   }
 
-  console.log(
-    "Lessons created successfully:",
-    lessons.map((lesson) => lesson.title)
-  );
+  console.log(`Successfully created and linked ${sections.length} sections.`);
+  return sections;
+};
+
+const createLessons = async () => {
+  console.log("Fetching sections for lesson creation...");
+  const sections = await Section.find().populate("course");
+
+  if (sections.length === 0) {
+    throw new Error("No sections found for lesson creation.");
+  }
+
+  console.log(`${sections.length} sections found.`);
+  const lessons = [];
+
+  for (const section of sections) {
+    console.log(`Creating lessons for section: ${section.title}...`);
+
+    const totalLessonsPerSection = faker.number.int({ min: 1, max: 2 }); // Randomize number of lessons
+    const createdLessons = [];
+    let totalDurationForSection = 0;
+
+    for (let i = 0; i < totalLessonsPerSection; i++) {
+      const duration = faker.number.int({ min: 10, max: 20 });
+
+      const lesson = await Lesson.create({
+        section: section._id,
+        title: faker.helpers.arrayElement(lessonsNames),
+        videoUrl: faker.helpers.arrayElement(videosToDisplay),
+        duration,
+        order: i + 1, // Sequential order within the section
+      });
+
+      createdLessons.push(lesson._id);
+      lessons.push(lesson);
+      totalDurationForSection += duration;
+
+      console.log(
+        `Lesson created: ${lesson.title}, Order: ${
+          i + 1
+        }, Duration: ${duration} mins`
+      );
+    }
+
+    // Update the section with created lessons
+    section.lessons.push(...createdLessons);
+    section.totalSectionDuration += totalDurationForSection;
+    section.totalSectionLessons += createdLessons.length;
+    await section.save();
+
+    // Update the course linked to the section
+    const course = await Course.findById(section.course._id);
+    course.totalCourseDuration += totalDurationForSection;
+    course.totalCourseLessons += createdLessons.length;
+    await course.save();
+
+    console.log(
+      `Updated section "${section.title}" with ${createdLessons.length} lessons.`
+    );
+  }
+
+  console.log(`Successfully created and linked ${lessons.length} lessons.`);
   return lessons;
 };
 
 const createReviews = async () => {
-  const courses = await Course.find();
-  const students = await User.find({ role: "student" });
+  console.log("Fetching students with enrolled courses for review creation...");
 
-  if (courses.length === 0 || students.length === 0) {
-    throw new Error("No courses or students found for review creation.");
+  try {
+    // Step 1: Fetch all students with enrolled courses
+    const students = await User.find({
+      role: "student",
+      coursesBought: { $exists: true, $ne: [] },
+    })
+      .populate("coursesBought")
+      .exec();
+
+    if (!students.length) {
+      throw new Error("No students with enrolled courses found.");
+    }
+
+    const totalReviews = 30; // Number of reviews to create
+    const reviews = [];
+
+    for (let i = 0; i < totalReviews; i++) {
+      console.log(`Creating review ${i + 1}/${totalReviews}...`);
+
+      // Step 2: Randomly select a student
+      const randomStudent = faker.helpers.arrayElement(students);
+
+      if (!randomStudent.coursesBought?.length) {
+        console.error(
+          `Student "${randomStudent.email}" has no enrolled courses. Skipping...`
+        );
+        continue;
+      }
+
+      // Step 3: Randomly select a course from the student's enrolled courses
+      const randomCourse = faker.helpers.arrayElement(
+        randomStudent.coursesBought
+      );
+
+      if (!randomCourse || !randomCourse._id) {
+        console.error(
+          `Invalid course for student "${randomStudent.email}". Skipping...`
+        );
+        continue;
+      }
+
+      try {
+        // Step 4: Create the review
+        const reviewPayload = {
+          user: randomStudent._id,
+          courseReview: randomCourse._id,
+          rating: faker.number.float({ min: 1, max: 5, precision: 0.1 }),
+          comment: faker.lorem.sentence(),
+        };
+
+        console.log("Review payload:", reviewPayload);
+        const review = await courseReviews.create(reviewPayload);
+
+        // Step 5: Update the course with the review
+        console.log(
+          `Updating course "${randomCourse.courseName}" with review.`
+        );
+        await Course.findByIdAndUpdate(
+          randomCourse._id,
+          {
+            $push: { reviews: review._id },
+            $inc: { totalRatings: 1 },
+            $set: {
+              averageRating: await calculateAverageRating(randomCourse._id),
+            },
+          },
+          { new: true }
+        );
+
+        reviews.push(review);
+        console.log(
+          `Review ${i + 1} created for course "${
+            randomCourse.courseName
+          }" by student "${randomStudent.email}".`
+        );
+      } catch (err) {
+        console.error(`Error creating review ${i + 1}:`, err.message);
+      }
+    }
+
+    console.log("Reviews created successfully:", reviews.length);
+    return reviews;
+  } catch (err) {
+    console.error("Error during review creation:", err.message);
+    throw err;
   }
+};
 
-  const courseIds = courses.map((course) => course._id);
-  const totalReviews = 30;
-  const reviews = [];
-
-  for (let i = 0; i < totalReviews; i++) {
-    console.log(`Creating review ${i + 1}/${totalReviews}...`);
-    const randomCourseId = faker.helpers.arrayElement(courseIds);
-    const randomStudent = faker.helpers.arrayElement(students);
-
-    const review = await courseReviews.create({
-      user: randomStudent._id,
-      courseReview: randomCourseId,
-      rating: faker.number.float({ min: 1, max: 5, precision: 0.1 }),
-      comment: faker.lorem.sentence(),
-    });
-
-    const course = await Course.findById(randomCourseId);
-    course.reviews.push(review._id);
-    await course.save();
-
-    reviews.push(review);
-    console.log(
-      `Review ${i + 1} created:`,
-      review.comment,
-      `For Course:`,
-      course.courseName
-    );
-  }
-
-  console.log(
-    "Reviews created successfully:",
-    reviews.map((review) => review.comment)
-  );
-  return reviews;
+// Helper function to calculate average rating
+const calculateAverageRating = async (courseId) => {
+  const allRatings = await courseReviews.find({ courseReview: courseId });
+  if (!allRatings.length) return 0;
+  return allRatings.reduce((sum, r) => sum + r.rating, 0) / allRatings.length;
 };
 
 const createReportedReviews = async () => {
-  const reviews = await courseReviews.find();
+  console.log("Fetching reviews and students for reporting...");
+
+  const reviews = await courseReviews.find().populate({
+    path: "courseReview",
+    select: "_id courseName",
+  });
+
   const students = await User.find({ role: "student" });
 
-  if (reviews.length === 0 || students.length === 0) {
-    throw new Error("No reviews or students found for reporting.");
+  if (!reviews || reviews.length === 0) {
+    throw new Error("No reviews found for reporting.");
   }
 
-  const totalReports = 5;
+  if (!students || students.length === 0) {
+    throw new Error("No students found for reporting.");
+  }
+
+  const totalReports = 10;
 
   for (let i = 0; i < totalReports; i++) {
     console.log(`Creating report ${i + 1}/${totalReports}...`);
-    const randomReview = faker.helpers.arrayElement(reviews);
-    const randomStudent = faker.helpers.arrayElement(students);
-    const randomIssueType = faker.helpers.arrayElement(allowedIssueTypes); // Select a valid issueType
+
+    // Filter reviews where the student has purchased the course
+    const eligibleReviews = reviews.filter((review) =>
+      students.some((student) =>
+        student.coursesBought.some((courseId) =>
+          courseId.equals(review.courseReview._id)
+        )
+      )
+    );
+
+    if (eligibleReviews.length === 0) {
+      console.error("No eligible reviews found for reporting.");
+      continue;
+    }
+
+    const randomReview = faker.helpers.arrayElement(eligibleReviews);
+    if (!randomReview || !randomReview.courseReview) {
+      console.error("Invalid review or course reference in review.");
+      continue;
+    }
+
+    const randomStudent = students.find((student) =>
+      student.coursesBought.some((courseId) =>
+        courseId.equals(randomReview.courseReview._id)
+      )
+    );
+
+    if (!randomStudent) {
+      console.error(
+        `No student found who bought the course "${randomReview.courseReview.courseName}".`
+      );
+      continue;
+    }
+
+    const randomIssueType = faker.helpers.arrayElement(allowedIssueTypes);
 
     try {
       const report = await ReportReview.create({
         user: randomStudent._id,
         review: randomReview._id,
-        issueType: randomIssueType, // Include the issueType
+        issueType: randomIssueType,
         issueDetails: faker.lorem.sentence(),
       });
 
@@ -340,34 +447,114 @@ const createReportedReviews = async () => {
   console.log("Reported reviews created successfully.");
 };
 
+const simulateCoursePurchases = async () => {
+  console.log("Fetching students and active courses...");
+  const users = await User.find({
+    role: "student",
+    udemyCredits: { $gte: 10 },
+  });
+  const courses = await Course.find({ isActive: true });
+
+  if (!users.length || !courses.length) {
+    throw new Error("No users or courses available for simulation.");
+  }
+
+  console.log("Simulating course purchases...");
+  for (const user of users) {
+    try {
+      // Randomly select courses for the user to purchase
+      const coursesToPurchase = faker.helpers.arrayElements(
+        courses,
+        faker.number.int({ min: 3, max: 5 })
+      );
+
+      for (const course of coursesToPurchase) {
+        if (!user.coursesBought.includes(course._id)) {
+          // Deduct credits and update user
+          const discountPrice = parseFloat(course.courseDiscountPrice);
+          if (user.udemyCredits >= discountPrice) {
+            user.coursesBought.push(course._id);
+            user.udemyCredits -= discountPrice;
+
+            // Update course with the student's enrollment
+            course.totalStudentsEnrolled.count += 1;
+            course.totalStudentsEnrolled.students.push(user._id);
+
+            // Save both user and course
+            await user.save();
+            await course.save();
+
+            console.log(`${user.fullName} purchased "${course.courseName}".`);
+          } else {
+            console.log(
+              `${user.fullName} does not have enough credits for "${course.courseName}".`
+            );
+          }
+        }
+      }
+    } catch (err) {
+      console.error(
+        `Error processing purchases for user ${user.email}:`,
+        err.message
+      );
+    }
+  }
+
+  console.log("Ensuring lesson accessibility for enrolled users...");
+  const lessons = await Lesson.find().populate("section");
+
+  for (const user of users) {
+    const purchasedCourses = user.coursesBought;
+
+    for (const lesson of lessons) {
+      const courseId = lesson.section.course;
+
+      if (purchasedCourses.includes(courseId.toString())) {
+        console.log(
+          `User ${user.email} can access lesson "${lesson.title}" in course ID ${courseId}.`
+        );
+      } else {
+        console.warn(
+          `User ${user.email} cannot access lesson "${lesson.title}" as they are not enrolled in the course.`
+        );
+      }
+    }
+  }
+
+  console.log("Course purchases simulated successfully.");
+};
+
 const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
-    console.log("Database connection established.");
-    await clearCollections();
+    // console.log("Database connection established.");
+    // await clearCollections();
 
-    console.log("Seeding users...");
-    const users = await createUsers();
-    console.log(`${users.length} users created.`);
+    // console.log("Seeding users...");
+    // const users = await createUsers();
+    // console.log(`${users.length} users created.`);
 
-    console.log("Seeding courses...");
-    const courses = await createCourses();
-    console.log(`${courses.length} courses created.`);
+    // console.log("Seeding courses...");
+    // const courses = await createCourses();
+    // console.log(`${courses.length} courses created.`);
 
-    console.log("Seeding sections...");
-    const sections = await createSections();
-    console.log(`${sections.length} sections created.`);
+    // console.log("Seeding sections...");
+    // const sections = await createSections();
+    // console.log(`${sections.length} sections created.`);
 
-    console.log("Seeding lessons...");
-    const lessons = await createLessons();
-    console.log(`${lessons.length} lessons created.`);
+    // console.log("Seeding lessons...");
+    // const lessons = await createLessons();
+    // console.log(`${lessons.length} lessons created.`);
 
     console.log("Seeding reviews...");
     const reviews = await createReviews();
     console.log(`${reviews.length} reviews created.`);
 
-    console.log("Seeding reported reviews...");
-    await createReportedReviews();
+    // console.log("Seeding reported reviews...");
+    // await createReportedReviews();
+
+    // await simulateCoursePurchases();
+    // console.log("Simulate courses purchases completed");
 
     console.log("All dummy data seeded successfully!");
     process.exit();

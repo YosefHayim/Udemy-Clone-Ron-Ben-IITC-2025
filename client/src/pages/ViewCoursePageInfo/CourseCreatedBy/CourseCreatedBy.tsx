@@ -1,10 +1,13 @@
-const CourseCreatedBy = () => {
+const CourseCreatedBy = ({ instructorName, instructorId }) => {
   return (
-    <div>
-      <p className="text-white">
-        Created by
-        <span className="text-[#5022c3] underline">Sumanta kumar Pal</span>
-      </p>
+    <div className="z-[1000] flex flex-row items-center justify-start gap-[0.5em]">
+      <p className="text-white">Created by</p>
+      <span
+        className="text-[#c0c4fc] underline cursor-pointer"
+        id={instructorId}
+      >
+        {instructorName}
+      </span>
     </div>
   );
 };

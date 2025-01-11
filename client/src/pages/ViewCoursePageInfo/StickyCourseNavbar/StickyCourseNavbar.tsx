@@ -3,10 +3,10 @@ import CourseRating from "../CourseRating/CourseRating";
 import CourseStudentRatings from "../CourseStudentsRatings/CourseStudentRatings";
 
 const StickyCourseNavbar = ({
-  courseName,
-  totalStudents,
-  avgRating,
-  totalRatings,
+  courseName = "Unknown",
+  totalStudents = 0,
+  avgRating = 0,
+  totalRatings = 0,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
