@@ -8,6 +8,7 @@ import { MdArrowForwardIos } from "react-icons/md";
 interface VideoPlayerProps {
   videoUrl: string;
   currentLesson: any;
+  lessonIndex: number; // Add lessonIndex to props
   nextLesson: any;
   prevLesson: any;
   onNavigate: (lessonId: string) => void;
@@ -20,6 +21,7 @@ interface VideoPlayerProps {
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
   videoUrl,
   currentLesson,
+  lessonIndex,
   nextLesson,
   prevLesson,
   onNavigate,
@@ -42,7 +44,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       <div
   className="absolute top-[50px] w-full text-start pl-10 text-white py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-black/75 to-transparent"
 >
-  {currentLesson.title}
+  {lessonIndex }. {currentLesson.title}
 </div>
 
 
@@ -66,30 +68,32 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         height="100%"
       />
 
-      {!open && (
-      <div className="absolute top-1/2 transform -translate-y-1/2 flex justify-between w-full px-4 z-[1000]">
-        {prevLesson && (
-          <button
-            className="text-white bg-gray-800 hover:bg-gray-700 rounded-full p-4"
-            onClick={() => onNavigate(prevLesson._id)}
-            title={`Previous: ${prevLesson.title}`}
-            aria-label={`Go to ${prevLesson.title}`}
-          >
-            <MdArrowBackIos size={24} />
-          </button>
-        )}
-        {nextLesson && (
-          <button
-            className="text-white bg-gray-800 hover:bg-gray-700 rounded-full p-4"
-            onClick={() => onNavigate(nextLesson._id)}
-            title={`Next: ${nextLesson.title}`}
-            aria-label={`Go to ${nextLesson.title}`}
-          >
-            <MdArrowForwardIos size={24} />
-          </button>
-        )}
-      </div>
-      )}
+{!open && (
+  <div className="absolute top-1/2 transform -translate-y-1/2 flex justify-between w-full z-[1000]">
+    <button
+      className={`text-white bg-gray-800 hover:bg-gray-700 rounded-sm p-4 ${
+        prevLesson ? "" : "invisible"
+      }`}
+      onClick={prevLesson ? () => onNavigate(prevLesson._id) : undefined}
+      title={prevLesson ? `Previous: ${prevLesson.title}` : ""}
+      aria-label={prevLesson ? `Go to ${prevLesson.title}` : ""}
+    >
+      <MdArrowBackIos size={24} />
+    </button>
+
+    <button
+      className={`text-white bg-gray-800 hover:bg-gray-700 rounded-sm p-4 ${
+        nextLesson ? "" : "invisible"
+      }`}
+      onClick={nextLesson ? () => onNavigate(nextLesson._id) : undefined}
+      title={nextLesson ? `Next: ${nextLesson.title}` : ""}
+      aria-label={nextLesson ? `Go to ${nextLesson.title}` : ""}
+    >
+      <MdArrowForwardIos size={24} />
+    </button>
+  </div>
+)}
+
     </div>
   );
 };

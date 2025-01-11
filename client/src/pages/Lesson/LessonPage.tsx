@@ -10,6 +10,7 @@ const LessonPage: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Get the lesson ID from the route params
   const navigate = useNavigate();
   const [lesson, setLesson] = useState<any>(null);
+  const [lessonIndex, setLessonIndex] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [nextLesson, setNextLesson] = useState<any>(null);
@@ -27,16 +28,18 @@ const LessonPage: React.FC = () => {
         const lessons = courseData.data.sections.flatMap((section: any) => section.lessons);
 
         // Find the current lesson and its index
-        const lessonIndex = lessons.findIndex((lesson: any) => lesson._id === id);
-        const foundLesson = lessonIndex !== -1 ? lessons[lessonIndex] : null;
+        const index = lessons.findIndex((lesson: any) => lesson._id === id);
+        setLessonIndex(index);
 
-        if (!foundLesson) {
+        if (index === -1) {
           setError("Lesson not found");
-        } else {
-          setLesson(foundLesson);
-          setNextLesson(lessons[lessonIndex + 1] || null);
-          setPrevLesson(lessons[lessonIndex - 1] || null);
+          return;
         }
+
+        const foundLesson = lessons[index];
+        setLesson(foundLesson);
+        setNextLesson(lessons[index + 1] || null);
+        setPrevLesson(lessons[index - 1] || null);
       } catch (err) {
         setError("Failed to load lesson data.");
       } finally {
@@ -85,6 +88,7 @@ const LessonPage: React.FC = () => {
     <Layout>
       <VideoPlayer
         currentLesson={lesson}
+        lessonIndex={(lessonIndex || 0) + 1} // Safely handle null for initial state
         videoUrl={lesson.videoUrl}
         nextLesson={nextLesson}
         prevLesson={prevLesson}
