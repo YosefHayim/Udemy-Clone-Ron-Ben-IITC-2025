@@ -4,6 +4,9 @@ import { useDispatch } from "react-redux";
 import { useMutation } from "@tanstack/react-query"; // Sintaxe atualizada
 import { setUser } from "../../redux/slices/userSlice";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+
+
 
 const Login = () => {
   const [email, setEmail] = useState(""); //email state
@@ -17,6 +20,9 @@ const Login = () => {
   const loginUser = async (credentials) => {
     axios.defaults.withCredentials = true;
     const response = await axios.post('http://localhost:3000/api/user/auth/login', credentials);
+    console.log(document.cookie);
+    const decode = jwtDecode(document.cookie)
+    console.log(decode)
     return response.data;
   };
 
