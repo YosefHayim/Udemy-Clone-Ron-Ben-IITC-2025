@@ -1,29 +1,54 @@
-import CourseInstructor from "@/components/CourseCard/CourseInstructor/CourseInstructor";
-import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
-import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
-import CourseImg from "./CourseImg/CourseImg";
-import CourseTitle from "./CourseTitle/CourseTitle";
+import React, { useState } from "react";
+import CourseCard from "@/components/CourseCard/CourseCard";
 
-const CourseCard = () => {
+const CoursesCarousel: React.FC = () => {
+  const courses = Array.from({ length: 20 }); // Simula 20 cursos
+  const visibleItems = 5; // Número de cursos visíveis no carrossel
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleNext = () => {
+    const nextIndex = currentIndex + visibleItems;
+    if (nextIndex < courses.length) {
+      setCurrentIndex(nextIndex);
+    } else {
+      setCurrentIndex(0); // Volta ao início se não houver mais cursos
+    }
+  };
+
   return (
-    <div>
-      <CourseImg />
-      <div>
-        <CourseTitle />
+    <div className="py-8 relative">
+      <div className="flex items-center">
+        {/* Contêiner do carrossel */}
+        <div className="overflow-hidden flex-1">
+          <div
+            className="flex transition-transform duration-300"
+            style={{
+              transform: `translateX(-${(currentIndex * 100) / visibleItems}%)`,
+              width: `${(courses.length * 100) / visibleItems}%`,
+            }}
+          >
+            {courses.map((_, idx) => (
+              <div
+                key={idx}
+                className="flex-shrink-0 w-[20%] px-2 box-border" // Garante que cada curso ocupa 20% da largura total
+              >
+                <CourseCard />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Botão para rolar para a direita */}
+        <button
+          onClick={handleNext}
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full z-10 shadow-md hover:bg-gray-600"
+        >
+          &#9654;
+        </button>
       </div>
-      <div>
-        <CourseInstructor instructor="Sumanta kumar Pal" />
-      </div>
-      <div>
-        <CourseRatings avgRatings="4.3" totalRatings="(106)" />
-      </div>
-      <CoursePrice
-        chooseFlex="flex flex-row items-center"
-        discountPrice="39.90"
-        fullPrice="79.90"
-      />
     </div>
   );
 };
 
-export default CourseCard;
+export default CoursesCarousel;
