@@ -19,7 +19,7 @@ const Login = () => {
   // Do post requisition to the authentication url
   const loginUser = async (credentials) => {
     axios.defaults.withCredentials = true;
-    const response = await axios.post('http://localhost:3000/api/user/auth/login', credentials);
+    const response = await axios.post("https://udemy-clone-ron-ben.onrender.com/api/user/auth/login", credentials);
     console.log(document.cookie);
     const decode = jwtDecode(document.cookie)
     console.log(decode)
