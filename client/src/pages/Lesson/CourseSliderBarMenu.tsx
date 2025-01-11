@@ -57,7 +57,7 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
       {sections.map((section) => (
         <Collapsible key={section._id} defaultOpen className=" group/collapsible border-b flex p-4 items-center  justify-between">
           <SidebarMenuItem className="">
-            <CollapsibleTrigger >
+            <CollapsibleTrigger asChild>
               <SidebarMenuButton  className="overflow-visible font-bold focus:outline-none gap-0 pl-0  focus-visible:outline-none rounded-none ">
                 <span className="whitespace-normal   break-words">{section.title}</span>
                 <FaChevronDown className="overflow-visible transition-transform group-data-[state=open]/collapsible:rotate-180" />
@@ -75,7 +75,7 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
                         onCheckedChange={() => toggleLessonCompletion(lesson._id)}
                         className="focus:outline-none focus-visible:outline-none hover:border-black border-2 rounded-none"
                       />
-                      <SidebarMenuSubButton className="overflow-visible  ">
+                      <SidebarMenuSubButton asChild className="overflow-visible  ">
                         <Link
                           to={`/lesson/${lesson._id}`}
                         >

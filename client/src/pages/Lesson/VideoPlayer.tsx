@@ -32,6 +32,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 }) => {
   const { open, toggleSidebar } = useSidebar();
   const [isHovered, setIsHovered] = useState(false);
+  
 
   return (
     <div
@@ -47,17 +48,17 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   {lessonIndex }. {currentLesson.title}
 </div>
 
-
       {/* Centered Trigger */}
-      {!open && (
-        <div className="absolute inset-0 flex justify-start pb-80 items-center">
-          <CustomTrigger
-            open={open}
-            toggleSidebar={toggleSidebar}
-            position="centered"
-          />
-        </div>
-      )}
+      {!open && window.innerWidth > 1000 && ( // Adjust the size threshold as needed
+  <div className="absolute inset-0 flex justify-start pb-80 items-center">
+    <CustomTrigger
+      open={open}
+      toggleSidebar={toggleSidebar}
+      position="centered"
+    />
+  </div>
+)}
+
 
       {/* Video Player */}
       <ReactPlayer

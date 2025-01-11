@@ -7,6 +7,26 @@ import React, { useEffect, useState } from "react";
 
 export function AppSidebar() {
   const [courseData, setCourseData] = useState<any>(null);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const { toggleSidebar, open } = useSidebar();
+
+  // Handle screen size changes
+  useEffect(() => {
+    const handleResize = () => {
+      const isSmall = window.innerWidth <= 1000; // Adjust threshold as needed
+      setIsSmallScreen(isSmall);
+
+      // Automatically close the sidebar if the screen is small
+      if (isSmall && open) {
+        toggleSidebar(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initial check
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [open, toggleSidebar]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +56,9 @@ export function AppSidebar() {
         </SidebarContent>
       </Sidebar>
 
-
+      {/* Centered Trigger */}
+      
+    
     </>
   );
 }
