@@ -6,7 +6,6 @@ import { fetchCourseById } from "@/services/courseService";
 import React, { useEffect, useState } from "react";
 
 export function AppSidebar() {
-  const { toggleSidebar, open } = useSidebar();
   const [courseData, setCourseData] = useState<any>(null);
 
   useEffect(() => {
@@ -34,19 +33,10 @@ export function AppSidebar() {
               <CourseSidebarMenu sections={courseData.sections} />
             </SidebarGroupContent>
           </SidebarGroup>
-          {open && (
-            <div className="p-4">
-              <CustomTrigger open={open} toggleSidebar={toggleSidebar} position="insideSidebar" />
-            </div>
-          )}
         </SidebarContent>
       </Sidebar>
 
-      {!open && (
-        <div className="fixed top-1/2 left-4 transform -translate-y-1/2">
-          <CustomTrigger open={open} toggleSidebar={toggleSidebar} position="centered" />
-        </div>
-      )}
+
     </>
   );
 }

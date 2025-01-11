@@ -5,6 +5,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
   SidebarMenuSubButton,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import {
   Collapsible,
@@ -15,6 +16,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Link } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
 import { useState } from "react";
+import CustomTrigger from "./CustomTrigger";
 
 interface Lesson {
   _id: string;
@@ -30,6 +32,8 @@ interface Section {
 }
 
 export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
+  const { toggleSidebar, open } = useSidebar();
+
   // State to track completed lessons
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
 
@@ -40,14 +44,21 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
     }));
   };
 
-  return (
-    <SidebarMenu>
-      <span className="text-lg"> Course content</span>
+  return ( 
+    <SidebarMenu className="gap-0">
+       <div className="flex items-center space-between border-b-2 font-semibold">
+       <span className="text-sm "> Course content</span>
+      {open && (
+            <div className="p-4 size">
+              <CustomTrigger open={open} toggleSidebar={toggleSidebar} position="insideSidebar" />
+            </div>
+          )}
+      </div>
       {sections.map((section) => (
-        <Collapsible key={section._id} defaultOpen className=" group/collapsible">
-          <SidebarMenuItem>
+        <Collapsible key={section._id} defaultOpen className="group/collapsible">
+          <SidebarMenuItem className="">
             <CollapsibleTrigger asChild>
-              <SidebarMenuButton className="bg-[#F7F9FA] font-bold focus:outline-none focus-visible:outline-none border-y-2 rounded-none hover:border-y-inherit  ">
+              <SidebarMenuButton className="bg-[#F7F9FA] font-bold focus:outline-none gap-0 focus-visible:outline-none border-b-2 rounded-none hover:border-y-inherit  ">
                 <span >{section.title}</span>
                 <FaChevronDown className=" ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </SidebarMenuButton>
@@ -62,7 +73,7 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
                       <Checkbox
                         checked={!!completedLessons[lesson._id]}
                         onCheckedChange={() => toggleLessonCompletion(lesson._id)}
-                        className="focus:outline-none focus-visible:outline-none hover:border-black border-2 rounded-none"
+                        className="focus:outline-none focus-visible:outline-none  hover:border-black border-2 rounded-none"
                       />
                       <SidebarMenuSubButton asChild>
                         <Link
@@ -78,6 +89,7 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
             </CollapsibleContent>
           </SidebarMenuItem>
         </Collapsible>
+        
       ))}
     </SidebarMenu>
   );

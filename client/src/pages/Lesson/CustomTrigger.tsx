@@ -28,7 +28,7 @@ const CustomTrigger: React.FC<CustomTriggerProps> = ({
   onClick={toggleSidebar}
   className={`p-2 z-40 ${
     isInsideSidebar
-      ? "text-gray-700 bg-transparent flex items-center"
+      ? "text-gray-700 bg-transparent flex items-center font-semibold "
       : "bg-gray-500/50 hover:bg-gray-500 text-white rounded-sm group flex items-center w-10 overflow-hidden transition-all duration-300 hover:w-48"
   } shadow-md transform transition-all duration-300 ${
     isInsideSidebar ? "" : "absolute"
@@ -36,7 +36,7 @@ const CustomTrigger: React.FC<CustomTriggerProps> = ({
 >
   {open ? (
     isInsideSidebar ? (
-      <IoClose className="text-2xl" />
+      <IoClose className="text-base" />
     ) : (
       <FaTimes className="mr-2" />
     )
