@@ -1,13 +1,13 @@
-// src/api/courseApi.ts
+import axios from "axios";
+
+const API_BASE_URL = "https://udemy-clone-ron-ben.onrender.com/api";
+
 export const fetchCourseById = async (id: string) => {
   try {
-    const response = await fetch(`https://udemy-clone-ron-ben.onrender.com/api/course/${id}`);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch course with ID ${id}`);
-    }
-    return response.json();
+    const response = await axios.get(`${API_BASE_URL}/course/${id}`);
+    return response.data;
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching course data:", error);
     throw error;
   }
 };

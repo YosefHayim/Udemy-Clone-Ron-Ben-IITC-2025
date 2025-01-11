@@ -17,14 +17,14 @@ import { FaChevronDown } from "react-icons/fa";
 import { useState } from "react";
 
 interface Lesson {
-  id: string;
+  _id: string;
   title: string;
   videoUrl: string;
   completed?: boolean; // Add completed property
 }
 
 interface Section {
-  id: string;
+  _id: string;
   title: string;
   lessons: Lesson[];
 }
@@ -44,10 +44,10 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
     <SidebarMenu>
       <span className="text-lg"> Course content</span>
       {sections.map((section) => (
-        <Collapsible key={section.id} defaultOpen className="group/collapsible">
+        <Collapsible key={section._id} defaultOpen className=" group/collapsible">
           <SidebarMenuItem>
             <CollapsibleTrigger asChild>
-              <SidebarMenuButton className="bg-[#F7F9FA] focus:outline-none focus-visible:outline-none border-y rounded-none hover:border-y-inherit  ">
+              <SidebarMenuButton className="bg-[#F7F9FA] font-bold focus:outline-none focus-visible:outline-none border-y-2 rounded-none hover:border-y-inherit  ">
                 <span >{section.title}</span>
                 <FaChevronDown className=" ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </SidebarMenuButton>
@@ -57,16 +57,16 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
             <CollapsibleContent>
               <SidebarMenuSub>
                 {section.lessons.map((lesson) => (
-                  <SidebarMenuSubItem key={lesson.id}>
-                    <div className="flex items-center hover:bg-slate-400  gap-2">
+                  <SidebarMenuSubItem key={lesson._id}>
+                    <div className="flex items-center py-2 text-s hover:bg-slate-400 gap-2">
                       <Checkbox
-                        checked={!!completedLessons[lesson.id]}
-                        onCheckedChange={() => toggleLessonCompletion(lesson.id)}
-                        className="focus:outline-none focus-visible:outline-none"
+                        checked={!!completedLessons[lesson._id]}
+                        onCheckedChange={() => toggleLessonCompletion(lesson._id)}
+                        className="focus:outline-none focus-visible:outline-none hover:border-black border-2 rounded-none"
                       />
                       <SidebarMenuSubButton asChild>
                         <Link
-                          to={`/lesson/${lesson.id}`}
+                          to={`/lesson/${lesson._id}`}
                         >
                           {lesson.title}
                         </Link>
