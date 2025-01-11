@@ -36,7 +36,7 @@ const CustomTrigger: React.FC<CustomTriggerProps> = ({
 >
   {open ? (
     isInsideSidebar ? (
-      <IoClose className="text-base" />
+      <IoClose className="text-sm" />
     ) : (
       <FaTimes className="mr-2" />
     )

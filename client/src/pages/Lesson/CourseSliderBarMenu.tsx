@@ -45,8 +45,8 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
   };
 
   return ( 
-    <SidebarMenu className="gap-0">
-       <div className="flex items-center space-between border-b-2 font-semibold">
+    <SidebarMenu className="gap-0 mt-[-20px]">
+       <div className="flex items-center justify-between border-b font-semibold">
        <span className="text-sm "> Course content</span>
       {open && (
             <div className="p-4 size">
@@ -58,9 +58,9 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
         <Collapsible key={section._id} defaultOpen className="group/collapsible">
           <SidebarMenuItem className="">
             <CollapsibleTrigger asChild>
-              <SidebarMenuButton className="bg-[#F7F9FA] font-bold focus:outline-none gap-0 focus-visible:outline-none border-b-2 rounded-none hover:border-y-inherit  ">
-                <span >{section.title}</span>
-                <FaChevronDown className=" ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+              <SidebarMenuButton className="bg-[#F7F9FA]  p-4 font-bold focus:outline-none gap-0 focus-visible:outline-none flex items-center justify-between  border-b-2 rounded-none hover:border-y-inherit  ">
+                <span className="whitespace-normal break-words">{section.title}</span>
+                <FaChevronDown className=" overflow-visible transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </SidebarMenuButton>
             </CollapsibleTrigger>
 

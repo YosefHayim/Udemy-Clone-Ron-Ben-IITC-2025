@@ -8,32 +8,45 @@ import {
   CollapsibleContent,
 } from "@/components/ui/collapsible";
 import { useSidebar } from "@/components/ui/sidebar";
-import courseData from "@/db"; // Import the course data
+import { fetchCourseById } from "@/services/courseService"; // Import API service
 
 interface Lesson {
-  id: string;
+  _id: string; // Adjusted to match your backend data structure
   title: string;
   videoUrl: string;
   completed?: boolean;
 }
 
 interface Section {
-  id: string;
+  _id: string; // Adjusted to match your backend data structure
   title: string;
   lessons: Lesson[];
 }
 
-interface CourseContentProps {
-  sections?: Section[]; // Pass sections as a prop
-}
-
-const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
-  const sectionsToRender = sections || courseData.sections;
-
+const CourseContent: React.FC = () => {
+  const [sections, setSections] = useState<Section[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
   const { open } = useSidebar(); // Get sidebar state
   const location = useLocation(); // Get current URL
   const navigate = useNavigate(); // For redirecting
+
+  // Fetch course data on mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const courseData = await fetchCourseById("67800ee6c7d3d0bd68dceb66"); // Replace with dynamic ID if needed
+        setSections(courseData.data.sections || []);
+      } catch (err) {
+        setError("Failed to load course data.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const toggleLessonCompletion = (lessonId: string) => {
     setCompletedLessons((prev) => ({
@@ -49,12 +62,20 @@ const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
     }
   }, [open, location, navigate]);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div className="flex justify-center p-10 min-h-screen">
       <div className="min-w-fit">
-        {sectionsToRender.map((section) => (
-          <Collapsible key={section.id} defaultOpen className=" min-w-96 border-y group/collapsible ">
-            <div className="flex items-center justify-between p-4 bg-[#F7F9FA] ">
+        {sections.map((section) => (
+          <Collapsible key={section._id} defaultOpen className="min-w-96 border-y group/collapsible">
+            <div className="flex items-center justify-between p-4 bg-[#F7F9FA]">
               <CollapsibleTrigger asChild>
                 <button className="flex items-center w-full text-left focus:outline-none focus-visible:outline-none">
                   <span className="text-l font-medium">{section.title}</span>
@@ -64,19 +85,21 @@ const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
             </div>
 
             <CollapsibleContent>
-              <ul className="mt-2 pl-4   ">
+              <ul className="mt-2 pl-4">
                 {section.lessons.map((lesson) => (
-                  <li key={lesson.id} className="flex items-center gap-3 mb-2
-                  hover:bg-slate-400  ">
+                  <li
+                    key={lesson._id}
+                    className="flex items-center gap-3 mb-2 hover:bg-slate-400"
+                  >
                     <Checkbox
-                      checked={!!completedLessons[lesson.id]}
-                      onCheckedChange={() => toggleLessonCompletion(lesson.id)}
+                      checked={!!completedLessons[lesson._id]}
+                      onCheckedChange={() => toggleLessonCompletion(lesson._id)}
                       className="hover:border-black focus:outline-none focus-visible:outline-none"
                     />
                     <Link
-                      to={`/lesson/${lesson.id}`}
-                      className={` ${
-                        completedLessons[lesson.id] ? " text-gray-500" : "text-gray-500"
+                      to={`/lesson/${lesson._id}`}
+                      className={`${
+                        completedLessons[lesson._id] ? "text-gray-500" : "text-gray-500"
                       }`}
                     >
                       {lesson.title}
