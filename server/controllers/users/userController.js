@@ -77,12 +77,12 @@ const signUp = catchAsync(async (req, res, next) => {
 
   // await sendEmail(mailOptions);
 
-  const token = generateToken(
-    newUser._id,
-    newUser.fullName,
-    newUser.profilePic,
-    newUser.role
-  );
+  const token = generateToken({
+    id: newUser._id,
+    fullName: newUser.fullName,
+    profilePic: newUser.profilePic,
+    role: newUser.role,
+  });
   res.cookie("cookie", token, cookieOptions);
 
   res.status(200).json({
@@ -105,12 +105,12 @@ const login = catchAsync(async (req, res, next) => {
     return next(createError("Invalid email or password.", 401));
   }
 
-  const token = generateToken(
-    isFoundUser._id,
-    isFoundUser.fullName,
-    isFoundUser.profilePic,
-    isFoundUser.role
-  );
+  const token = generateToken({
+    id: isFoundUser._id,
+    fullName: isFoundUser.fullName,
+    profilePic: isFoundUser.profilePic,
+    role: isFoundUser.role,
+  });
   res.cookie("cookie", token, cookieOptions);
 
   if (!isFoundUser.emailVerified) {
