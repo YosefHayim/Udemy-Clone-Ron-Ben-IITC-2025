@@ -2,11 +2,15 @@ import CourseInstructor from "@/components/CourseCard/CourseInstructor/CourseIns
 import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
 import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
 import CourseImg from "./CourseImg/CourseImg";
+import CourseTitle from "./CourseTitle/CourseTitle";
 
 const CourseCard = () => {
   return (
     <div>
       <CourseImg />
+      <div>
+        <CourseTitle />
+      </div>
       <div>
         <CourseInstructor instructor="Sumanta kumar Pal" />
       </div>

@@ -12,6 +12,9 @@ import Sections from './Sections'
 import Menu from "@/components/Menu/Menu";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/index"; // Import RootState type for Redux 
+import CourseCard from "@/components/CourseCard/CourseCard";
+import Welcome from "@/components/LogedinHomePage/Welcome";
+import TeamAcess from "./TeamAcess";
 
 const Homepage = () => {
 
@@ -41,7 +44,10 @@ const Homepage = () => {
         <>
           <Menu />
           <div className="container mx-auto px-[5.6rem]">
+          <Welcome />
             <Banner />
+            <TeamAcess />
+            <CourseCard />
             <Sections />
             <TrustedBySection />
             <LearnersAreViewing />
