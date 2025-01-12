@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/index"; // Import RootState type for Redux 
 import Welcome from "@/components/LogedinHomePage/Welcome";
 import TeamAcess from "./TeamAcess";
+import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 
 const Homepage = () => {
 
@@ -46,6 +47,7 @@ const Homepage = () => {
             <Welcome />
             <Banner />
             <TeamAcess />
+            {/* <CoursesCarousel /> */}
           </div>
         </>
       )}

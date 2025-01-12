@@ -1,3 +1,5 @@
+import LogoFooter from '../../../public/images/logo-udemy-inverted.svg'
+
 const Footer = () => {
   const sections = [
     {
@@ -151,7 +153,10 @@ const Footer = () => {
           </div>
 
           <div className="flex justify-between items-center mt-8 bg-[#101112]">
-            <p className="text-sm">&copy; 2025 Udemy, Inc.</p>
+            <div className="flex items-center">
+              <img src={LogoFooter} alt="Logo" className="h-8 w-auto mr-4" />
+              <p className="text-sm text-white">&copy; 2025 Udemy, Inc.</p>
+            </div>
             <p className="text-sm">Cookie settings</p>
             <p className="text-sm">🌐 English</p>
           </div>

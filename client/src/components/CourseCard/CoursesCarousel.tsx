@@ -2,50 +2,47 @@ import React, { useState } from "react";
 import CourseCard from "@/components/CourseCard/CourseCard";
 
 const CoursesCarousel: React.FC = () => {
-  const courses = Array.from({ length: 20 }); // Simula 20 cursos (substitua pelo seu array real no futuro)
-  const visibleItems = 10; // Número de cursos visíveis ao mesmo tempo
+  const courses = Array.from({ length: 20 }); // Placeholder for 20 courses
+  const visibleItems = 5; // Number of visible courses
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Manipulador para avançar no carrossel
+  // Maximum index before we reach the end
+  const maxIndex = courses.length - visibleItems;
+
   const handleNext = () => {
-    if (currentIndex + visibleItems < courses.length) {
-      setCurrentIndex((prev) => prev + 1); // Avança 1 curso
-    }
+    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
   };
 
-  // Manipulador para retroceder no carrossel
   const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prev) => prev - 1); // Retrocede 1 curso
-    }
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
   };
 
   return (
     <div className="relative py-8">
       <div className="relative flex items-center">
-        {/* Botão para rolar para a esquerda */}
+        {/* Left Arrow Button */}
         {currentIndex > 0 && (
           <button
             onClick={handlePrev}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full z-10 shadow-md hover:bg-gray-600"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full shadow-md hover:bg-gray-600 z-10"
           >
             &#9664;
           </button>
         )}
 
-        {/* Contêiner do carrossel */}
-        <div className="overflow-hidden flex-1">
+        {/* Carousel Container */}
+        <div className="overflow-hidden w-full">
           <div
-            className="flex transition-transform duration-300"
+            className="flex transition-transform duration-500 ease-in-out"
             style={{
-              transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`,
+              transform: `translateX(-${(currentIndex * 100) / visibleItems}%)`,
               width: `${(courses.length * 100) / visibleItems}%`,
             }}
           >
             {courses.map((_, idx) => (
               <div
                 key={idx}
-                className="flex-shrink-0 w-[10%] px-2 box-border" // 10% = 100% / 10 itens
+                className="flex-shrink-0 w-[20%] px-4 box-border" // Each course occupies 20%
               >
                 <CourseCard />
               </div>
@@ -53,11 +50,11 @@ const CoursesCarousel: React.FC = () => {
           </div>
         </div>
 
-        {/* Botão para rolar para a direita */}
-        {currentIndex + visibleItems < courses.length && (
+        {/* Right Arrow Button */}
+        {currentIndex < maxIndex && (
           <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full z-10 shadow-md hover:bg-gray-600"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full shadow-md hover:bg-gray-600 z-10"
           >
             &#9654;
           </button>
