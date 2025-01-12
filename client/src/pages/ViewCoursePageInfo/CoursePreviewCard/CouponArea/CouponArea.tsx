@@ -5,7 +5,7 @@ import { IoMdClose } from "react-icons/io";
 const CouponArea = ({ btnBgDesign }) => {
   return (
     <div className="">
-      <div className="flex flex-row border-dashed border border-gray-500 p-[1em] ">
+      <div className="flex flex-row border-dashed border border-gray-500 p-[1em] mb-[1em]">
         <div className="flex flex-row items-center justify-between mb-[0.5em]">
           <div className="w-[320px] flex flex-col items-start gap-[0.2em]">
             <div className="flex flex-row gap-[0.2em]">
