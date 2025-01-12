@@ -1,5 +1,5 @@
 import React from "react";
-import inverted from "../../../public/images/logo-udemy-inverted.svg";
+import inverted from "/images/logo-udemy-inverted.svg?url";
 
 const Navbar: React.FC<{ courseName: string }> = ({ courseName }) => {
   return (
