@@ -24,20 +24,52 @@ const Login = () => {
   };
 
   // TanStack Query mutation for managing assync longinUser
+  const getCookieValue = (cookie) => {
+    const match = document.cookie.match(new RegExp('(^| )' + cookie + '=([^;]+)'));
+    console.log("Cookies disponíveis no document.cookie:", document.cookie); // Log dos cookies
+    return match ? match[2] : null;
+  };
+
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      const decoded = jwtDecode(document.cookie)
-      console.log(decoded);
-      dispatch(setUser(data)); // Atualiza o estado global
-      navigate("/"); // Redireciona para a página inicial
+      try {
+        // Log da resposta do servidor
+        console.log("Resposta recebida na onSuccess:", data);
+
+        // Obter o token do cookie
+        const token = getCookieValue("cookie"); // Substitua "cookie" pelo nome correto do cookie
+        console.log("Token extraído dos cookies:", token);
+
+        if (!token) {
+          throw new Error("Token not found in cookies");
+        }
+
+        // Decodificar o token
+        const decoded = jwtDecode(token);
+        console.log("Token decodificado:", decoded);
+
+        // Atualizar o estado global com os dados decodificados
+        dispatch(setUser(decoded));
+        console.log("Estado global atualizado com dispatch:", decoded);
+
+        // Redirecionar para a página inicial
+        navigate("/");
+        console.log("Redirecionando para a página inicial");
+      } catch (error) {
+        console.error("Erro ao processar o login:", error);
+        setFormErrors({ general: "Failed to process login. Please try again." });
+      }
     },
     onError: (error) => {
+      console.error("Erro ao fazer login:", error.response || error.message || error);
       setFormErrors({
         general: error.response?.data?.message || "Something went wrong. Try again.",
       });
     },
   });
+
+
 
   const validateForm = () => {
     const errors = {};
