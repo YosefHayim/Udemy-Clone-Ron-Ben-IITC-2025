@@ -15,7 +15,7 @@ const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
-        {/* Routes where Navbar is shown */}
+        {/* Routes where Navbar is shodsdswn */}
         <Route
           path="*"
           element={
