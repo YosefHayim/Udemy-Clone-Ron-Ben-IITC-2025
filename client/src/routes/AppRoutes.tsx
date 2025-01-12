@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "../pages/Login/LoginPage";
-import Signup from "../pages/SignUp/SignupPage";
 import NotFound from "../pages/404/NotFound";
 import LessonPage from "../pages/Lesson/LessonPage";
 import SearchPage from "@/pages/Search/SearchPage";
@@ -10,6 +8,8 @@ import Footer from "@/pages/Home/Footer";
 import ViewCoursePageInfo from "@/pages/ViewCoursePageInfo/ViewCoursePageInfo";
 import Loader from "@/components/Loader/Loader";
 import ShoppingCart from "@/pages/ShoppingCart/ShoppingCart";
+import SignUp from "@/pages/SignUp/Signup";
+import Login from "@/pages/Login/Login";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -25,7 +25,7 @@ const AppRoutes: React.FC = () => {
                 <Route path="/" element={<Homepage />} />
                 <Route path="/cart" element={<ShoppingCart />} />
                 <Route path="/loader" element={<Loader />} />
-                <Route path="/Signup" element={<Signup />} />
+                <Route path="/Signup" element={<SignUp />} />
                 <Route path="/courses/search" element={<SearchPage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<NotFound />} />
