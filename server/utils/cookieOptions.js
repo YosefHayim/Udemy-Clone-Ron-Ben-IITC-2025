@@ -1,5 +1,5 @@
 const cookieOptions = {
-  // httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
+  httpOnly: false, // Prevents client-side JavaScript from accessing the cookie
   // secure: process.env.NODE_ENV === "production", // Sends cookies over HTTPS in production
   sameSite: "None", // Helps with CSRF protection
   expires: new Date(
