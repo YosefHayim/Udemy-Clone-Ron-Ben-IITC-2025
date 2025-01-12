@@ -7,8 +7,9 @@ const ShoppingCart = () => {
     <div className="p-[1em]">
       <div className="w-[1200px] flex flex-row items-start justify-start">
         <div className="flex flex-row items-baseline justify-center gap-[2em] w-full">
-          <ItemsInCart />
-          <CheckoutContainer />
+          {/* <ItemsInCart /> */}
+          {/* <CheckoutContainer /> */}
+          <EmptyCart />
         </div>
       </div>
     </div>
