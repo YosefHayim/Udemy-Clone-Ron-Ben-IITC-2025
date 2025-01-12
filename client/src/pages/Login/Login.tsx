@@ -2,10 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useMutation } from "@tanstack/react-query"; // Sintaxe atualizada
-import { setUser } from "../../redux/slices/userSlice";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
-import Cookies from "js-cookie";
+
+import loginUser from "@/api/users/loginUser";
 
 const Login = () => {
   const [email, setEmail] = useState(""); //email state
@@ -14,16 +12,6 @@ const Login = () => {
   const navigate = useNavigate(); // redirect to homepage
   const dispatch = useDispatch(); // global state redux
   // const localURL = // "https://udemy-clone-ron-ben.onrender.com/api/user/auth/login",
-
-  // Do post requisition to the authentication url
-  const loginUser = async (credentials: string) => {
-    axios.defaults.withCredentials = true;
-    const response = await axios.post(
-      "https://udemy-clone-ron-ben.onrender.com/api/user/auth/login",
-      credentials
-    );
-    return response.data;
-  };
 
   // TanStack Query mutation for managing assync longinUser
   const mutation = useMutation({
