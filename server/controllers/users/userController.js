@@ -111,7 +111,7 @@ const login = catchAsync(async (req, res, next) => {
     profilePic: isFoundUser.profilePic,
     role: isFoundUser.role,
   });
-  res.cookie("cookie", token, cookieOptions);
+  res.cookie("authToken", token, cookieOptions);
 
   if (!isFoundUser.emailVerified) {
     res.status(200).json({
