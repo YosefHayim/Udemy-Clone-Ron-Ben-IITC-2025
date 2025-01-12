@@ -9,12 +9,13 @@ import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/pages/Home/Footer";
 import ViewCoursePageInfo from "@/pages/ViewCoursePageInfo/ViewCoursePageInfo";
 import Loader from "@/components/Loader/Loader";
+import ShoppingCart from "@/pages/ShoppingCart/ShoppingCart";
 
 const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
-        {/* Routes where Navbar is shown */}
+        {/* Routes where Navbar is shodsdswn */}
         <Route
           path="*"
           element={
@@ -22,6 +23,7 @@ const AppRoutes: React.FC = () => {
               <Navbar />
               <Routes>
                 <Route path="/" element={<Homepage />} />
+                <Route path="/cart" element={<ShoppingCart />} />
                 <Route path="/loader" element={<Loader />} />
                 <Route path="/Signup" element={<Signup />} />
                 <Route path="/courses/search" element={<SearchPage />} />
@@ -42,7 +44,6 @@ const AppRoutes: React.FC = () => {
           element={
             <>
               <LessonPage />
-              <Footer />
             </>
           }
         />

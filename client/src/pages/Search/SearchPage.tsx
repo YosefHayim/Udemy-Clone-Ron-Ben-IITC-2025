@@ -14,6 +14,7 @@ const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("q");
   const [currentPage, setCurrentPage] = useState(1);
+  const [hoveredId, setHoveredId] = useState(null);
   const navigate = useNavigate();
 
   const limit = null;
@@ -43,6 +44,18 @@ const SearchPage = () => {
     }
   };
 
+  const handleMouseOver = (e) => {
+    const courseElement = e.target.closest("div[id]");
+    if (courseElement) {
+      setHoveredId(courseElement.id);
+      console.log(`Hovered over course: ${courseElement.id}`);
+    }
+  };
+
+  const handleMouseOut = () => {
+    setHoveredId(null);
+  };
+
   return (
     <div
       className="flex flex-col w-full gap-[1em] px-6 py-[3em]"
@@ -57,7 +70,7 @@ const SearchPage = () => {
           <SidebarFilter />
         </div>
         <div>
-          <div>
+          <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
             {data?.response?.slice(0, 18).map((course, index) => [
               <div key={course._id} id={course._id}>
                 <SearchCourseCard course={course} />

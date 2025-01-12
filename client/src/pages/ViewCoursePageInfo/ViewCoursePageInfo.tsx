@@ -18,7 +18,7 @@ import StudentsAlsoBought from "./StudentsAlsoBought/StudentsAlsoBought";
 import TopicPathMenu from "./TopicPathMenu/TopicPathMenu";
 import WhatYouLearn from "./WhatYouLearn/WhatYouLearn";
 import getCourseById from "@/api/courses/getCourseById";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loader from "@/components/Loader/Loader";
 
 const ViewCoursePageInfo = () => {
@@ -43,6 +43,13 @@ const ViewCoursePageInfo = () => {
     return <div>Error occurred: {error.message}</div>;
   }
 
+  const handleClick = () => {
+    const newCourseId = localStorage.setItem('courseId',courseId)
+    console.log(newCourseId);
+    
+
+  }
+
   return (
     <div className="flex flex-row p-[3em] items-start justify-start w-full gap-[3em]">
       <div className="flex flex-col items-start justify-start gap-[1em]">
@@ -53,7 +60,6 @@ const ViewCoursePageInfo = () => {
           avgRating={data.averageRating}
           totalRatings={data.totalRatings}
         />
-
         <TopicPathMenu
           category={data.category}
           subcategory={data.subCategory}

@@ -5,6 +5,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
   SidebarMenuSubButton,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import {
   Collapsible,
@@ -15,23 +16,29 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Link } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
 import { useState } from "react";
+import CustomTrigger from "./CustomTrigger";
 
 interface Lesson {
-  id: string;
+  _id: string;
   title: string;
   videoUrl: string;
   completed?: boolean; // Add completed property
+  duration?: number;
 }
 
 interface Section {
-  id: string;
+  _id: string;
   title: string;
   lessons: Lesson[];
 }
 
 export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
+  const { toggleSidebar, open } = useSidebar();
+
   // State to track completed lessons
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
+
+
 
   const toggleLessonCompletion = (lessonId: string) => {
     setCompletedLessons((prev) => ({
@@ -39,38 +46,46 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
       [lessonId]: !prev[lessonId],
     }));
   };
+  const lessons =sections.flatMap((section: any) => section.lessons);
 
-  return (
-    <SidebarMenu>
+console.log(lessons);
+
+  return ( 
+    <SidebarMenu className="gap-0 mt-[-20px]" >
+       <div className="flex items-center justify-between border-b font-semibold">
+       <span className="text-sm "> Course content</span>
+      {open && (
+            <div className="p-4 size">
+              <CustomTrigger open={open} toggleSidebar={toggleSidebar} position="insideSidebar" />
+            </div>
+          )}
+      </div>
       {sections.map((section) => (
-        <Collapsible key={section.id} defaultOpen className="group/collapsible">
-          <SidebarMenuItem>
-            {/* Collapsible Trigger for the main section */}
+        <Collapsible key={section._id} defaultOpen className=" group/collapsible border-b flex p-4 items-center  justify-between">
+          <SidebarMenuItem className="">
             <CollapsibleTrigger asChild>
-              <SidebarMenuButton>
-                <span>{section.title}</span>
-                <FaChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+              <SidebarMenuButton  className="overflow-visible font-bold focus:outline-none gap-0 pl-0  focus-visible:outline-none rounded-none ">
+                <span className="whitespace-normal   break-words">{section.title}</span>
+                <FaChevronDown className="overflow-visible transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </SidebarMenuButton>
             </CollapsibleTrigger>
 
             {/* Collapsible Content for lessons */}
             <CollapsibleContent>
-              <SidebarMenuSub>
+              <SidebarMenuSub className=" m-0 p-0 mt-5 border-l-0   w-full">
                 {section.lessons.map((lesson) => (
-                  <SidebarMenuSubItem key={lesson.id}>
-                    <div className="flex items-center gap-2">
+                  <SidebarMenuSubItem className="hover:bg-slate-400 pt-4 h-full w-full" key={lesson._id}>
+                    <div className="flex items-center justify-between text-s hover:bg-slate-400  w-full ">
                       <Checkbox
-                        checked={!!completedLessons[lesson.id]}
-                        onCheckedChange={() => toggleLessonCompletion(lesson.id)}
+                        checked={!!completedLessons[lesson._id]}
+                        onCheckedChange={() => toggleLessonCompletion(lesson._id)}
+                        className="focus:outline-none focus-visible:outline-none hover:border-black border-2 rounded-none"
                       />
-                      <SidebarMenuSubButton asChild>
+                      <SidebarMenuSubButton asChild className="overflow-visible  ">
                         <Link
-                          to={`/lesson/${lesson.id}`}
-                          className={`hover:underline ${
-                            completedLessons[lesson.id] ? "line-through text-gray-500" : "text-blue-500"
-                          }`}
+                          to={`/lesson/${lesson._id}`}
                         >
-                          {lesson.title}
+                          {lesson.duration}. {lesson.title}
                         </Link>
                       </SidebarMenuSubButton>
                     </div>
@@ -80,6 +95,7 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
             </CollapsibleContent>
           </SidebarMenuItem>
         </Collapsible>
+        
       ))}
     </SidebarMenu>
   );

@@ -13,13 +13,13 @@ import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
 
 const Navbar = () => {
-
   const user = useSelector((state: RootState) => state.user);
 
   return (
-    <div className="flex items-center justify-between py-3 bg-white shadow-md w-screen z-[10] px-6"
-      style={{ height: "4.5rem" }}>
-
+    <div
+      className="flex items-center justify-between py-3 bg-white shadow-md w-screen z-[10] px-6"
+      style={{ height: "4.5rem" }}
+    >
       <div className="flex items-center gap-6 w-screen">
         <Logo />
         <AtagBtn aTagName={"Explore"} />
@@ -35,7 +35,6 @@ const Navbar = () => {
         {user && <Profile />}
         {!user && <Language />}
       </div>
-
     </div>
   );
 };

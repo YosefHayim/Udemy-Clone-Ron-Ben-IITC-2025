@@ -2,11 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useMutation } from "@tanstack/react-query"; // Sintaxe atualizada
-import { setUser } from "../../redux/slices/userSlice";
-import axios from "axios";
+import Cookies from "js-cookie";
+import loginUser from "@/api/users/loginUser";
 import { jwtDecode } from "jwt-decode";
-
-
+import {
+  setFullName,
+  setProfilePic,
+  setRole,
+  setUser,
+} from "@/redux/slices/userSlice";
 
 const Login = () => {
   const [email, setEmail] = useState(""); //email state
@@ -20,6 +24,9 @@ const Login = () => {
   const loginUser = async (credentials) => {
     axios.defaults.withCredentials = true;
     const response = await axios.post("https://udemy-clone-ron-ben.onrender.com/api/user/auth/login", credentials);
+    console.log(document.cookie);
+    const decode = jwtDecode(document.cookie)
+    console.log(decode)
     return response.data;
   };
 
@@ -33,38 +40,13 @@ const Login = () => {
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      try {
-        // Log da resposta do servidor
-        console.log("Resposta recebida na onSuccess:", data);
-
-        // Obter o token do cookie
-        const token = getCookieValue("cookie"); // Substitua "cookie" pelo nome correto do cookie
-        console.log("Token extraído dos cookies:", token);
-
-        if (!token) {
-          throw new Error("Token not found in cookies");
-        }
-
-        // Decodificar o token
-        const decoded = jwtDecode(token);
-        console.log("Token decodificado:", decoded);
-
-        // Atualizar o estado global com os dados decodificados
-        dispatch(setUser(decoded));
-        console.log("Estado global atualizado com dispatch:", decoded);
-
-        // Redirecionar para a página inicial
-        navigate("/");
-        console.log("Redirecionando para a página inicial");
-      } catch (error) {
-        console.error("Erro ao processar o login:", error);
-        setFormErrors({ general: "Failed to process login. Please try again." });
-      }
+      dispatch(setUser(data)); // Atualiza o estado global
+      navigate("/"); // Redireciona para a página inicial
     },
     onError: (error) => {
-      console.error("Erro ao fazer login:", error.response || error.message || error);
       setFormErrors({
-        general: error.response?.data?.message || "Something went wrong. Try again.",
+        general:
+          error.response?.data?.message || "Something went wrong. Try again.",
       });
     },
   });
@@ -88,6 +70,15 @@ const Login = () => {
     setFormErrors({});
     mutation.mutate({ email, password });
   };
+
+  const cookie = Cookies.get("cookie");
+  if (cookie) {
+    const decoded = jwtDecode(cookie);
+    console.log(decoded);
+    dispatch(setFullName(decoded.fullName));
+    dispatch(setProfilePic(decoded.profilePic));
+    dispatch(setRole(decoded.role));
+  }
 
   return (
     <div className="flex h-screen">
@@ -119,10 +110,13 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="ben.kilinski@gmail.com"
-                className={`w-full px-4 py-3 border rounded-md bg-blue-50 focus:outline-none ${formErrors.email ? "border-red-500" : "border-gray-300"
-                  }`}
+                className={`w-full px-4 py-3 border rounded-md bg-blue-50 focus:outline-none ${
+                  formErrors.email ? "border-red-500" : "border-gray-300"
+                }`}
               />
-              {formErrors.email && <p className="text-red-500 text-sm">{formErrors.email}</p>}
+              {formErrors.email && (
+                <p className="text-red-500 text-sm">{formErrors.email}</p>
+              )}
             </div>
 
             {/* Campo de Senha */}
@@ -139,24 +133,32 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className={`w-full px-4 py-3 border rounded-md bg-blue-50 focus:outline-none ${formErrors.password ? "border-red-500" : "border-gray-300"
-                  }`}
+                className={`w-full px-4 py-3 border rounded-md bg-blue-50 focus:outline-none ${
+                  formErrors.password ? "border-red-500" : "border-gray-300"
+                }`}
               />
-              {formErrors.password && <p className="text-red-500 text-sm">{formErrors.password}</p>}
+              {formErrors.password && (
+                <p className="text-red-500 text-sm">{formErrors.password}</p>
+              )}
             </div>
 
             {/* Botão de Enviar */}
             <button
               type="submit"
-              className={`w-full py-2 rounded-md ${mutation.isLoading ? "bg-gray-400" : "bg-purple-600 hover:bg-purple-700"
-                } text-white transition`}
+              className={`w-full py-2 rounded-md ${
+                mutation.isLoading
+                  ? "bg-gray-400"
+                  : "bg-purple-600 hover:bg-purple-700"
+              } text-white transition`}
               disabled={mutation.isLoading}
             >
               {mutation.isLoading ? "Logging in..." : "Continue with email"}
             </button>
 
             {/* Mensagem de Erro Geral */}
-            {formErrors.general && <p className="text-red-500 text-sm mt-2">{formErrors.general}</p>}
+            {formErrors.general && (
+              <p className="text-red-500 text-sm mt-2">{formErrors.general}</p>
+            )}
           </form>
         </div>
       </div>

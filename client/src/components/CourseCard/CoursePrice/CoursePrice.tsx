@@ -3,13 +3,15 @@ const CoursePrice = ({
   fullPrice = "369.90",
   chooseFlex = "flex-col",
   discountPriceSize = "",
+  showFullPrice = true,
+  
 }) => {
   return (
     <div className={`${chooseFlex} gap-[0.5em]`}>
       <div>
         <b className={`text-[${discountPriceSize}]`}>{`₪` + discountPrice}</b>
       </div>
-      <div>
+      <div className={showFullPrice ? "block" : "hidden"}>
         <p className="line-through text-gray-500 text-[0.9em]">
           {`₪` + fullPrice}
         </p>

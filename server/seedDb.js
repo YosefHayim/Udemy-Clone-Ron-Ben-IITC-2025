@@ -30,7 +30,7 @@ const clearCollections = async () => {
 
 const createUsers = async () => {
   const users = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 300; i++) {
     console.log(`Creating user ${i + 1}...`);
     const hashedPassword = await bcrypt.hash("password123", 10);
     users.push({
@@ -59,7 +59,7 @@ const createCourses = async () => {
     throw new Error("No students found for enrollment.");
   }
 
-  const amountOfCourses = 10;
+  const amountOfCourses = 300;
   const courses = [];
 
   for (let i = 0; i < amountOfCourses; i++) {
@@ -527,34 +527,34 @@ const simulateCoursePurchases = async () => {
 const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
-    // console.log("Database connection established.");
-    // await clearCollections();
+    console.log("Database connection established.");
+    await clearCollections();
 
-    // console.log("Seeding users...");
-    // const users = await createUsers();
-    // console.log(`${users.length} users created.`);
+    console.log("Seeding users...");
+    const users = await createUsers();
+    console.log(`${users.length} users created.`);
 
-    // console.log("Seeding courses...");
-    // const courses = await createCourses();
-    // console.log(`${courses.length} courses created.`);
+    console.log("Seeding courses...");
+    const courses = await createCourses();
+    console.log(`${courses.length} courses created.`);
 
-    // console.log("Seeding sections...");
-    // const sections = await createSections();
-    // console.log(`${sections.length} sections created.`);
+    console.log("Seeding sections...");
+    const sections = await createSections();
+    console.log(`${sections.length} sections created.`);
 
-    // console.log("Seeding lessons...");
-    // const lessons = await createLessons();
-    // console.log(`${lessons.length} lessons created.`);
+    console.log("Seeding lessons...");
+    const lessons = await createLessons();
+    console.log(`${lessons.length} lessons created.`);
 
     console.log("Seeding reviews...");
     const reviews = await createReviews();
     console.log(`${reviews.length} reviews created.`);
 
-    // console.log("Seeding reported reviews...");
-    // await createReportedReviews();
+    console.log("Seeding reported reviews...");
+    await createReportedReviews();
 
-    // await simulateCoursePurchases();
-    // console.log("Simulate courses purchases completed");
+    await simulateCoursePurchases();
+    console.log("Simulate courses purchases completed");
 
     console.log("All dummy data seeded successfully!");
     process.exit();

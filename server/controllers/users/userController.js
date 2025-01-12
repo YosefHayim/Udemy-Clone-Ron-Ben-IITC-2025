@@ -77,18 +77,20 @@ const signUp = catchAsync(async (req, res, next) => {
 
   // await sendEmail(mailOptions);
 
-  const token = generateToken(
-    newUser._id,
-    newUser.fullName,
-    newUser.profilePic,
-    newUser.role
-  );
-  res.cookie("cookie", token, cookieOptions);
+  const token = generateToken({
+    id: newUser._id,
+    fullName: newUser.fullName,
+    profilePic: newUser.profilePic,
+    role: newUser.role,
+  });
+  res.cookie("Cookie", token, {
+    httpOnly: false,
+    maxAge: process.env.JWT_EXPIRES_IN * 24 * 60 * 60 * 1000,
+  });
 
   res.status(200).json({
     status: "success",
     message: "User created successfully. Please confirm your email to log in.",
-    data: newUser,
   });
 });
 
@@ -105,12 +107,12 @@ const login = catchAsync(async (req, res, next) => {
     return next(createError("Invalid email or password.", 401));
   }
 
-  const token = generateToken(
-    isFoundUser._id,
-    isFoundUser.fullName,
-    isFoundUser.profilePic,
-    isFoundUser.role
-  );
+  const token = generateToken({
+    id: isFoundUser._id,
+    fullName: isFoundUser.fullName,
+    profilePic: isFoundUser.profilePic,
+    role: isFoundUser.role,
+  });
   res.cookie("cookie", token, cookieOptions);
 
   if (!isFoundUser.emailVerified) {
