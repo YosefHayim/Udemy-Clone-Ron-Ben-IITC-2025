@@ -51,8 +51,9 @@ const Login = () => {
     mutation.mutate({ email, password });
   };
 
-  const cookie = Cookies.get("cookie");
+  const cookie = Cookies.get("cookie")?.toString();
   if (cookie) {
+    console.log(cookie);
     const decoded = jwtDecode(cookie);
     console.log(decoded);
     dispatch(setFullName(decoded.fullName));

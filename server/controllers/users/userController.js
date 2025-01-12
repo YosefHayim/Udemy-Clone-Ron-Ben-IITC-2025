@@ -83,8 +83,10 @@ const signUp = catchAsync(async (req, res, next) => {
     role: newUser.role,
   });
   res.cookie("Cookie", token, {
-    maxAge: 300 * 1000,
-    secure: false,
+    maxAge: 300 * 1000, // 5 minutes
+    secure: false, // Set to true if using HTTPS
+    httpOnly: false, // Allow access to the cookie from JavaScript
+    sameSite: "none", // Adjust if necessary (e.g., "none" for cross-origin)
   });
 
   res.status(200).json({
@@ -113,8 +115,10 @@ const login = catchAsync(async (req, res, next) => {
     role: isFoundUser.role,
   });
   res.cookie("cookie", token, {
-    maxAge: 300 * 1000,
-    secure: false,
+    maxAge: 300 * 1000, // 5 minutes
+    secure: false, // Set to true if using HTTPS
+    httpOnly: false, // Allow access to the cookie from JavaScript
+    sameSite: "none", // Adjust if necessary (e.g., "none" for cross-origin)
   });
 
   if (!isFoundUser.emailVerified) {
