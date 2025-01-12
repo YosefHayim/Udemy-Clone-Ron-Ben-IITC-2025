@@ -122,11 +122,11 @@ const Footer: React.FC = () => {
     <>
       {user && (
         <>
-          <FooterLogin />
+          <FooterLogin  />
           <footer className="text-white">
             {/* Top Section */}
             <div className="bg-[#1c1d1f]">
-              <div className="flex items-center justify-between font-bold my-8 border-y-[0.5px] border-y-[#9DA3A7] py-6 px-12">
+              <div className="flex items-center justify-between font-bold  border-y-[0.5px] border-y-[#9DA3A7] py-6 px-12">
                 <p className="text-[18px]">
                   Welcome back! Explore{" "}
                   <span className="text-[#C0C4FC]">Udemy Business</span> and
@@ -150,7 +150,7 @@ const Footer: React.FC = () => {
               </div>
 
               {/* Middle Section */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 px-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-8 pt-8 px-12">
                 <p className="col-span-full text-lg font-semibold mb-4">
                   Explore top skills and certifications
                 </p>
