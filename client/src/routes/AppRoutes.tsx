@@ -44,7 +44,6 @@ const AppRoutes: React.FC = () => {
           element={
             <>
               <LessonPage />
-              <Footer />
             </>
           }
         />

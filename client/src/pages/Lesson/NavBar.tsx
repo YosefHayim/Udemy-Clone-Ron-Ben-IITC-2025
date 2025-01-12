@@ -1,15 +1,17 @@
 import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
+import { useSidebar } from "@/components/ui/sidebar"; // Import the useSidebar hook
 
 const NavBar: React.FC = () => {
   const location = useLocation();
   const { id } = useParams<{ id: string }>(); // Get the lesson ID from the route params
+  const { open } = useSidebar(); // Get the sidebar state
+
   const activePath = location.pathname.split("/").pop(); // Get the active tab
 
   const tabs = [
     { name: <IoIosSearch />, path: "search" }, // Icon for the search tab
-
     { name: "Overview", path: "overview" },
     { name: "Q&A", path: "qna" },
     { name: "Notes", path: "notes" },
@@ -18,19 +20,24 @@ const NavBar: React.FC = () => {
     { name: "Learning Tools", path: "learning-tools" },
   ];
 
+  // Conditionally add the "Course Content" tab when the sidebar is closed
+  if (!open) {
+    tabs.splice(1, 0, { name: "Course Content", path: "course-content" });
+  }
+
   const basePath = `/lesson/${id}`; // Define the base path dynamically
 
   return (
-    <div className="border-t border-gray-300">
-      <nav className="flex justify-around bg-white text-black shadow-sm">
+    <div className="w-full">
+      <nav className="flex flex-wrap bg-white text-gray-500 px-4 sm:px-10 md:px-20 lg:px-40 border-b">
         {tabs.map((tab) => (
           <Link
             key={tab.path}
             to={`${basePath}/${tab.path}`} // Append tab path to the base path
-            className={`py-3 px-4 text-sm font-medium flex items-center justify-center ${
+            className={`py-2 sm:py-3 px-2 sm:px-4 md:px-6 lg:px-10 text-sm sm:text-base font-medium flex items-center ${
               activePath === tab.path
-                ? "border-b-2 border-blue-500 text-blue-500"
-                : "hover:text-gray-600"
+                ? "border-b-2 border-black text-black"
+                : "hover:text-black"
             }`}
           >
             {typeof tab.name === "string" ? (
