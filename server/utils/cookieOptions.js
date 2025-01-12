@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const cookieOptions = {
   httpOnly: false, // allow client-side JavaScript from accessing the cookie
   secure: process.env.NODE_ENV === "production", // Send cookie only over HTTPS in production
