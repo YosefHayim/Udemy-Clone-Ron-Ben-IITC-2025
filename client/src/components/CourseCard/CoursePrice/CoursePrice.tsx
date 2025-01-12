@@ -4,6 +4,7 @@ const CoursePrice = ({
   chooseFlex = "flex-col",
   discountPriceSize = "",
   showFullPrice = true,
+  
 }) => {
   return (
     <div className={`${chooseFlex} gap-[0.5em]`}>
