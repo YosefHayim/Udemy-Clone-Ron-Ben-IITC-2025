@@ -1,7 +1,6 @@
 const Course = require("../../models/courses/courseModel");
 const User = require("../../models/users/userModel");
 const APIFeatures = require("../../utils/apiFeatures");
-const cookieOptions = require("../../utils/cookieOptions");
 const sendEmail = require("../../utils/email");
 const createError = require("../../utils/errorFn");
 const { catchAsync } = require("../../utils/wrapperFn");
@@ -84,8 +83,10 @@ const signUp = catchAsync(async (req, res, next) => {
     role: newUser.role,
   });
   res.cookie("Cookie", token, {
-    httpOnly: false,
-    maxAge: process.env.JWT_EXPIRES_IN * 24 * 60 * 60 * 1000,
+    maxAge: 300 * 1000, // 5 minutes
+    secure: false, // Set to true if using HTTPS
+    httpOnly: false, // Allow access to the cookie from JavaScript
+    sameSite: "none", // Adjust if necessary (e.g., "none" for cross-origin)
   });
 
   res.status(200).json({
@@ -113,7 +114,12 @@ const login = catchAsync(async (req, res, next) => {
     profilePic: isFoundUser.profilePic,
     role: isFoundUser.role,
   });
-  res.cookie("cookie", token, cookieOptions);
+  res.cookie("cookie", token, {
+    maxAge: 300 * 1000, // 5 minutes
+    secure: false, // Set to true if using HTTPS
+    httpOnly: false, // Allow access to the cookie from JavaScript
+    sameSite: "none", // Adjust if necessary (e.g., "none" for cross-origin)
+  });
 
   if (!isFoundUser.emailVerified) {
     res.status(200).json({
