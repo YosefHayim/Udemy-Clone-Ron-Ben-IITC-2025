@@ -6,6 +6,7 @@ const sendEmail = require("../../utils/email");
 const createError = require("../../utils/errorFn");
 const { catchAsync } = require("../../utils/wrapperFn");
 const { generateToken } = require("../authorization/authController");
+const cookieOptions = require("../../utils/cookieOptions");
 
 const getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query)
@@ -83,10 +84,7 @@ const signUp = catchAsync(async (req, res, next) => {
     profilePic: newUser.profilePic,
     role: newUser.role,
   });
-  res.cookie("Cookie", token, {
-    httpOnly: false,
-    maxAge: process.env.JWT_EXPIRES_IN,
-  });
+  res.cookie("Cookie", token, cookieOptions);
 
   res.status(200).json({
     status: "success",
@@ -113,10 +111,7 @@ const login = catchAsync(async (req, res, next) => {
     profilePic: isFoundUser.profilePic,
     role: isFoundUser.role,
   });
-  res.cookie("cookie", token, {
-    httpOnly: false,
-    maxAge: process.env.JWT_EXPIRES_IN,
-  });
+  res.cookie("cookie", token, cookieOptions);
 
   if (!isFoundUser.emailVerified) {
     res.status(200).json({
