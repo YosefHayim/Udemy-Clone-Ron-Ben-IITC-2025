@@ -1,5 +1,5 @@
 import React from "react";
-import whiteTextLogo from "/images/whiteTextLogo-removebg-preview.png";
+import inverted from "../../../public/images/logo-udemy-inverted.svg";
 
 const Navbar: React.FC = () => {
   return (
@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
       <div className=" mx-auto px-4 py-3 flex justify-between items-center">
         {/* Left-aligned logo and title */}
         <div className="flex items-center justify-center space-x-4 ">
-          <img src={whiteTextLogo} alt="Logo" className="w-20 bg-transparent " />
+          <img src={inverted} alt="Logo" className="w-20 bg-transparent " />
           <span className="text-gray-500 min-h-4">
             |
           </span>
