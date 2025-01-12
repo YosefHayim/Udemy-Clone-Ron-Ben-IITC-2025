@@ -5,7 +5,12 @@ import { useMutation } from "@tanstack/react-query"; // Sintaxe atualizada
 import Cookies from "js-cookie";
 import loginUser from "@/api/users/loginUser";
 import { jwtDecode } from "jwt-decode";
-import { setUser } from "@/redux/slices/userSlice";
+import {
+  setFullName,
+  setProfilePic,
+  setRole,
+  setUser,
+} from "@/redux/slices/userSlice";
 
 const Login = () => {
   const [email, setEmail] = useState(""); //email state
@@ -49,8 +54,13 @@ const Login = () => {
   };
 
   const cookie = Cookies.get("cookie");
+
   const decoded = jwtDecode(cookie);
-  dispatch(setUser(decoded));
+  console.log(decoded);
+
+  dispatch(setFullName(decoded.fullName));
+  dispatch(setProfilePic(decoded.profilePic));
+  dispatch(setRole(decoded.role));
 
   return (
     <div className="flex h-screen">
