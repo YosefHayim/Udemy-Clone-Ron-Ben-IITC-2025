@@ -10,7 +10,7 @@ const SignUp = () => {
     mutationFn: registerUser,
     onSuccess: (data) => {
       console.log(data);
-      // navigate("/");
+      navigate("/");
     },
     onError: (error) => {
       console.error(error);
