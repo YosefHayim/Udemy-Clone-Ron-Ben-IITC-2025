@@ -1,12 +1,10 @@
 const Course = require("../../models/courses/courseModel");
 const User = require("../../models/users/userModel");
 const APIFeatures = require("../../utils/apiFeatures");
-const cookieOptions = require("../../utils/cookieOptions");
 const sendEmail = require("../../utils/email");
 const createError = require("../../utils/errorFn");
 const { catchAsync } = require("../../utils/wrapperFn");
 const { generateToken } = require("../authorization/authController");
-const cookieOptions = require("../../utils/cookieOptions");
 
 const getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query)
@@ -84,7 +82,11 @@ const signUp = catchAsync(async (req, res, next) => {
     profilePic: newUser.profilePic,
     role: newUser.role,
   });
-  res.cookie("Cookie", token, cookieOptions);
+  res.cookie("Cookie", token, {
+    maxAge: 300 * 1000,
+    domain: "http://localhost:5173",
+    secure: false,
+  });
 
   res.status(200).json({
     status: "success",
