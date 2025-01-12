@@ -23,6 +23,7 @@ interface Lesson {
   title: string;
   videoUrl: string;
   completed?: boolean; // Add completed property
+  duration?: number;
 }
 
 interface Section {
@@ -37,12 +38,17 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
   // State to track completed lessons
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
 
+
+
   const toggleLessonCompletion = (lessonId: string) => {
     setCompletedLessons((prev) => ({
       ...prev,
       [lessonId]: !prev[lessonId],
     }));
   };
+  const lessons =sections.flatMap((section: any) => section.lessons);
+
+console.log(lessons);
 
   return ( 
     <SidebarMenu className="gap-0 mt-[-20px]" >
@@ -79,7 +85,7 @@ export function CourseSidebarMenu({ sections }: { sections: Section[] }) {
                         <Link
                           to={`/lesson/${lesson._id}`}
                         >
-                          {lesson.title}
+                          {lesson.duration}. {lesson.title}
                         </Link>
                       </SidebarMenuSubButton>
                     </div>

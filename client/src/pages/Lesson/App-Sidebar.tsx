@@ -18,7 +18,7 @@ export function AppSidebar() {
 
       // Automatically close the sidebar if the screen is small
       if (isSmall && open) {
-        toggleSidebar(false);
+        toggleSidebar();
       }
     };
 

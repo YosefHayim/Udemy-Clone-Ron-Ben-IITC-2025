@@ -5,10 +5,13 @@ import LessonRoutes from "../../routes/LessonRoutes";
 import VideoPlayer from "./VideoPlayer";
 import Footer from "@/pages/Home/Footer";
 import { fetchCourseById } from "@/services/courseService";
+import TopNavBar from "./TopNavBar";
+
 
 const LessonPage: React.FC = () => {
   const { id } = useParams<{ id: string }>(); // Get the lesson ID from the route params
   const navigate = useNavigate();
+  const [courseName , setcourseName] = useState<any>(null)
   const [lesson, setLesson] = useState<any>(null);
   const [lessonIndex, setLessonIndex] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
@@ -23,10 +26,10 @@ const LessonPage: React.FC = () => {
 
         // Fetch the course data
         const courseData = await fetchCourseById("67800ee6c7d3d0bd68dceb66");
-
+        setcourseName(courseData.data.courseName);
         // Flatten lessons from all sections
         const lessons = courseData.data.sections.flatMap((section: any) => section.lessons);
-
+        
         // Find the current lesson and its index
         const index = lessons.findIndex((lesson: any) => lesson._id === id);
         setLessonIndex(index);
@@ -50,6 +53,7 @@ const LessonPage: React.FC = () => {
     fetchLesson();
   }, [id]);
 
+  
   const handleNavigate = (lessonId: string) => {
     navigate(`/lesson/${lessonId}`);
   };
@@ -86,7 +90,8 @@ const LessonPage: React.FC = () => {
 
   return (
     <Layout>
-      <VideoPlayer
+<TopNavBar courseName={courseName } />
+<VideoPlayer
         currentLesson={lesson}
         lessonIndex={(lessonIndex || 0) + 1} // Safely handle null for initial state
         videoUrl={lesson.videoUrl}

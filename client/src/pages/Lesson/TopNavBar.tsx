@@ -1,8 +1,9 @@
 import React from "react";
 import inverted from "../../../public/images/logo-udemy-inverted.svg";
 
-const Navbar: React.FC = () => {
+const Navbar: React.FC<{ courseName: string }> = ({ courseName }) => {
   return (
+
     <nav className="border-b border-gray-700 absolute top-0 left-0 w-full bg-[#1C1D1F] text-white z-10">
       <div className=" mx-auto px-4 py-3 flex justify-between items-center">
         {/* Left-aligned logo and title */}
@@ -12,7 +13,7 @@ const Navbar: React.FC = () => {
             |
           </span>
           <span className="text-lg font-semibold">
-            React - The Complete Guide 2024 (incl. Next.js, Redux)
+            {courseName}
           </span>
         </div>
 
