@@ -1,10 +1,11 @@
 import axios from "axios";
+import { baseUrl, localhostUrl } from "../baseUrl";
 
 const loginUser = async (credentials: string) => {
   axios.defaults.withCredentials = true;
   try {
     const response = await axios.post(
-      "https://udemy-clone-ron-ben.onrender.com/api/user/auth/login",
+      `${baseUrl}/api/user/auth/login`,
       credentials
     );
 

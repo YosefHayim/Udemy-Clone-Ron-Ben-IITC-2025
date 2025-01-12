@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useMutation } from "@tanstack/react-query"; // Sintaxe atualizada
-
+import Cookies from "js-cookie";
 import loginUser from "@/api/users/loginUser";
+import { jwtDecode } from "jwt-decode";
+import { setUser } from "@/redux/slices/userSlice";
 
 const Login = () => {
   const [email, setEmail] = useState(""); //email state
@@ -11,14 +13,13 @@ const Login = () => {
   const [formErrors, setFormErrors] = useState({}); // errors state
   const navigate = useNavigate(); // redirect to homepage
   const dispatch = useDispatch(); // global state redux
-  // const localURL = // "https://udemy-clone-ron-ben.onrender.com/api/user/auth/login",
 
   // TanStack Query mutation for managing assync longinUser
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
       console.log(data);
-      
+      navigate("/");
     },
     onError: (error) => {
       console.error(error);
@@ -46,6 +47,10 @@ const Login = () => {
     setFormErrors({});
     mutation.mutate({ email, password });
   };
+
+  const cookie = Cookies.get("cookie");
+  const decoded = jwtDecode(cookie);
+  dispatch(setUser(decoded));
 
   return (
     <div className="flex h-screen">
