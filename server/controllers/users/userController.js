@@ -84,7 +84,6 @@ const signUp = catchAsync(async (req, res, next) => {
   });
   res.cookie("Cookie", token, {
     maxAge: 300 * 1000,
-    domain: "localhost",
     secure: false,
   });
 
@@ -115,7 +114,6 @@ const login = catchAsync(async (req, res, next) => {
   });
   res.cookie("cookie", token, {
     maxAge: 300 * 1000,
-    domain: "localhost",
     secure: false,
   });
 
