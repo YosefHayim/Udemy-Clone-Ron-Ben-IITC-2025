@@ -83,7 +83,10 @@ const signUp = catchAsync(async (req, res, next) => {
     profilePic: newUser.profilePic,
     role: newUser.role,
   });
-  res.cookie("cookie", token, cookieOptions);
+  res.cookie("Cookie", token, {
+    httpOnly: false,
+    maxAge: process.env.JWT_EXPIRES_IN * 24 * 60 * 60 * 1000,
+  });
 
   res.status(200).json({
     status: "success",
