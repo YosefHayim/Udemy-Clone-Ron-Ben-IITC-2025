@@ -30,7 +30,7 @@ const clearCollections = async () => {
 
 const createUsers = async () => {
   const users = [];
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 300; i++) {
     console.log(`Creating user ${i + 1}...`);
     const hashedPassword = await bcrypt.hash("password123", 10);
     users.push({
