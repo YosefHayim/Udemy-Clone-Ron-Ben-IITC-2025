@@ -16,7 +16,7 @@ const Login = () => {
   // const localURL = // "https://udemy-clone-ron-ben.onrender.com/api/user/auth/login",
 
   // Do post requisition to the authentication url
-  const loginUser = async (credentials) => {
+  const loginUser = async (credentials: string) => {
     axios.defaults.withCredentials = true;
     const response = await axios.post(
       "https://udemy-clone-ron-ben.onrender.com/api/user/auth/login",
@@ -30,18 +30,6 @@ const Login = () => {
     mutationFn: loginUser,
     onSuccess: (data) => {
       console.log(data);
-
-      const cookie = Cookies.get("cookie");
-      console.log(cookie);
-      if (!cookie) {
-        throw new Error("Cookie must be a string");
-      }
-      const decoded = jwtDecode(cookie);
-      console.log(decoded);
-
-      console.log(decoded);
-      dispatch(setUser(decoded)); // Atualiza o estado global
-      navigate("/"); // Redireciona para a página inicial
     },
     onError: (error) => {
       console.error(error);
