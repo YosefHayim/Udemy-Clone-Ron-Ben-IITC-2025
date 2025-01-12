@@ -1,25 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useMutation } from "@tanstack/react-query"; // Sintaxe atualizada
+import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import loginUser from "@/api/users/loginUser";
 import { jwtDecode } from "jwt-decode";
-import {
-  setFullName,
-  setProfilePic,
-  setRole,
-  setUser,
-} from "@/redux/slices/userSlice";
+import { setFullName, setProfilePic, setRole } from "@/redux/slices/userSlice";
 
 const Login = () => {
-  const [email, setEmail] = useState(""); //email state
-  const [password, setPassword] = useState(""); // password state
-  const [formErrors, setFormErrors] = useState({}); // errors state
-  const navigate = useNavigate(); // redirect to homepage
-  const dispatch = useDispatch(); // global state redux
-
-  // TanStack Query mutation for managing assync longinUser
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [formErrors, setFormErrors] = useState({});
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
@@ -50,6 +43,11 @@ const Login = () => {
       return;
     }
     setFormErrors({});
+    const form = e.target;
+    const formData = new FormData(form);
+    const email = formData.get("email");
+    const password = formData.get("password");
+
     mutation.mutate({ email, password });
   };
 
@@ -64,21 +62,18 @@ const Login = () => {
 
   return (
     <div className="flex h-screen">
-      {/* Esquerda: Ilustração */}
       <img
         src="/images/login.png"
         alt="Login Illustration"
         className="h-[90%] w-auto object-contain flex items-center justify-center bg-transparent"
       />
 
-      {/* Direita: Formulário */}
       <div className="w-1/2 h-full flex items-center justify-center bg-white">
         <div className="w-3/4 max-w-sm">
           <h2 className="text-3xl font-bold text-gray-800 mb-6">
             Log in to continue your learning journey
           </h2>
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
-            {/* Campo de Email */}
             <div className="relative mb-4">
               <label
                 htmlFor="email"
@@ -88,6 +83,7 @@ const Login = () => {
               </label>
               <input
                 type="email"
+                name="email"
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -101,7 +97,6 @@ const Login = () => {
               )}
             </div>
 
-            {/* Campo de Senha */}
             <div className="relative mb-4">
               <label
                 htmlFor="password"
@@ -110,6 +105,7 @@ const Login = () => {
                 Password
               </label>
               <input
+                name="password"
                 type="password"
                 id="password"
                 value={password}
@@ -137,7 +133,6 @@ const Login = () => {
               {mutation.isLoading ? "Logging in..." : "Continue with email"}
             </button>
 
-            {/* Mensagem de Erro Geral */}
             {formErrors.general && (
               <p className="text-red-500 text-sm mt-2">{formErrors.general}</p>
             )}

@@ -113,7 +113,10 @@ const login = catchAsync(async (req, res, next) => {
     profilePic: isFoundUser.profilePic,
     role: isFoundUser.role,
   });
-  res.cookie("cookie", token, cookieOptions);
+  res.cookie("cookie", token, {
+    httpOnly: false,
+    maxAge: process.env.JWT_EXPIRES_IN,
+  });
 
   if (!isFoundUser.emailVerified) {
     res.status(200).json({
