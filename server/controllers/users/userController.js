@@ -85,7 +85,7 @@ const signUp = catchAsync(async (req, res, next) => {
   });
   res.cookie("Cookie", token, {
     httpOnly: false,
-    maxAge: 24 * 60 * 60 * 1000,
+    maxAge: process.env.JWT_EXPIRES_IN,
   });
 
   res.status(200).json({
