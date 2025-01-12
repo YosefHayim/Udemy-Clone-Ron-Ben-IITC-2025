@@ -31,6 +31,10 @@ const Login = () => {
     onSuccess: (data) => {
       const cookie = Cookies.get("cookie");
       console.log(cookie);
+      const decoded = jwtDecode(
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ODI2ZjA0OTM0YjkxNDA1Y2M4YWI0OSIsImZ1bGxOYW1lIjoieW9zZWYiLCJwcm9maWxlUGljIjoiLi4vLi4vcHVibGljL2RlZmF1bHQtdXNlci1wcm9maWxlLnN2ZyIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzM2NjgxMTI2LCJleHAiOjE3NDQ0NTcxMjZ9.CykZqtgX3K0dbVoxRR43x39OegeubcHkbY0gxG_fORE"
+      );
+      console.log(decoded);
 
       console.log(data), dispatch(setUser(data)); // Atualiza o estado global
       navigate("/"); // Redireciona para a página inicial
