@@ -2,6 +2,8 @@ import axios from "axios";
 import { baseUrl, localhostUrl } from "../baseUrl";
 
 const loginUser = async (credentials: string) => {
+  console.log(credentials);
+
   axios.defaults.withCredentials = true;
   try {
     const response = await axios.post(
@@ -10,6 +12,7 @@ const loginUser = async (credentials: string) => {
     );
 
     if (response) {
+      console.log(response);
       return response.data;
     }
   } catch (error) {

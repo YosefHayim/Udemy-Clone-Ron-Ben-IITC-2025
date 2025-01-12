@@ -17,7 +17,7 @@ const Login = () => {
     mutationFn: loginUser,
     onSuccess: (data) => {
       console.log(data);
-      navigate("/");
+      // navigate("/");
     },
     onError: (error) => {
       console.error(error);
