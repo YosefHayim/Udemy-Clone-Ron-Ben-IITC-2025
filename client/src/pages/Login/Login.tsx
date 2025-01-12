@@ -54,13 +54,13 @@ const Login = () => {
   };
 
   const cookie = Cookies.get("cookie");
-
-  const decoded = jwtDecode(cookie);
-  console.log(decoded);
-
-  dispatch(setFullName(decoded.fullName));
-  dispatch(setProfilePic(decoded.profilePic));
-  dispatch(setRole(decoded.role));
+  if (cookie) {
+    const decoded = jwtDecode(cookie);
+    console.log(decoded);
+    dispatch(setFullName(decoded.fullName));
+    dispatch(setProfilePic(decoded.profilePic));
+    dispatch(setRole(decoded.role));
+  }
 
   return (
     <div className="flex h-screen">
