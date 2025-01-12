@@ -20,9 +20,6 @@ const Login = () => {
   const loginUser = async (credentials) => {
     axios.defaults.withCredentials = true;
     const response = await axios.post("https://udemy-clone-ron-ben.onrender.com/api/user/auth/login", credentials);
-    console.log(document.cookie);
-    const decode = jwtDecode(document.cookie)
-    console.log(decode)
     return response.data;
   };
 
@@ -30,6 +27,8 @@ const Login = () => {
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
+      const decoded = jwtDecode(document.cookie)
+      console.log(decoded);
       dispatch(setUser(data)); // Atualiza o estado global
       navigate("/"); // Redireciona para a página inicial
     },
