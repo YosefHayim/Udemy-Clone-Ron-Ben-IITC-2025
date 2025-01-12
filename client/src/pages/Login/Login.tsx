@@ -9,7 +9,7 @@ import {
   setFullName,
   setProfilePic,
   setRole,
-  setUser,
+  // setUser,
 } from "@/redux/slices/userSlice";
 
 const Login = () => {

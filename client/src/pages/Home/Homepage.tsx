@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/index"; // Import RootState type for Redux 
 import Welcome from "@/components/LogedinHomePage/Welcome";
 import TeamAcess from "./TeamAcess";
-import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
+import DropdownMenu from "@/components/DropDownMenu";
 
 const Homepage = () => {
 
@@ -25,6 +25,7 @@ const Homepage = () => {
       {!user && (
         <>
           <div className="container mx-auto px-[5.6rem]">
+            <DropdownMenu />
             <Banner />
             <Sections />
             <TrustedBySection />
@@ -42,6 +43,7 @@ const Homepage = () => {
 
       {user && (
         <>
+          <DropdownMenu />
           <Menu />
           <div className="container mx-auto px-[5.6rem]">
             <Welcome />
