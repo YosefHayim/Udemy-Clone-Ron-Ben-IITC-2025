@@ -1,4 +1,12 @@
 import LogoFooter from '../../../public/images/logo-udemy-inverted.svg'
+import Nasdaq from '../../../public/images/nasdaq-light.svg';
+import Wolkswagen from '../../../public/images/volkswagen_logo.svg';
+import Box from '../../../public/images/box-light.svg';
+import Netapp from '../../../public/images/netapp-light.svg';
+import Eventbrite from '../../../public/images/eventbrite-light.svg';
+
+
+
 
 const Footer = () => {
   const sections = [
@@ -114,6 +122,14 @@ const Footer = () => {
           <span className="text-purple-500">Udemy Business</span> to build
           in-demand career skills.
         </p>
+        <div className="flex items-center">
+          <img src={Nasdaq} alt="Logo" className="h-8 w-auto mr-4" />
+          <img src={Wolkswagen} alt="Logo" className="h-8 w-auto mr-4" />
+          <img src={Box} alt="Logo" className="h-8 w-auto mr-4" />
+          <img src={Netapp} alt="Logo" className="h-8 w-auto mr-4" />
+          <img src={Eventbrite} alt="Logo" className="h-8 w-auto mr-4" />
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-b border-gray-700 pb-8">
           {sections.map((section, index) => (
             <div key={index}>
@@ -152,7 +168,7 @@ const Footer = () => {
             ))}
           </div>
 
-          <div className="flex justify-between items-center mt-8 bg-[#101112]">
+          <div className="flex justify-between items-center py-8 bg-[#101112]">
             <div className="flex items-center">
               <img src={LogoFooter} alt="Logo" className="h-8 w-auto mr-4" />
               <p className="text-sm text-white">&copy; 2025 Udemy, Inc.</p>
