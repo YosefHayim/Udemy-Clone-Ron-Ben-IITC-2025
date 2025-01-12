@@ -9,7 +9,9 @@ const loginUser = async (credentials: string) => {
       credentials
     );
 
-    return response.data;
+    if (response) {
+      return response.data;
+    }
   } catch (error) {
     console.error(`Error occurred durning the login of user: `, error);
   }
