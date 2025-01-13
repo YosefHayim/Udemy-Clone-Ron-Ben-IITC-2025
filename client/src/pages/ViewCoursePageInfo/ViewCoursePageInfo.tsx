@@ -153,7 +153,9 @@ const ViewCoursePageInfo: React.FC = () => {
         />
 
         {/* Additional Features */}
-        <MoreCoursesByInstructor instructorName={courseData.courseInstructor.fullName} />
+        <MoreCoursesByInstructor
+          instructorName={courseData.courseInstructor.fullName}
+        />
         <ReportAbuse />
       </div>
 

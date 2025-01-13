@@ -40,13 +40,13 @@ const AppRoutes: React.FC = () => {
         />
         {/* Route where Header is hidden */}
         <Route
-  path="/course/:courseId/lesson/:id/*"
-  element={
-    <>
-      <LessonPage />
-    </>
-  }
-/>
+          path="/course/:courseId/lesson/:id/*"
+          element={
+            <>
+              <LessonPage />
+            </>
+          }
+        />
       </Routes>
     </Router>
   );
