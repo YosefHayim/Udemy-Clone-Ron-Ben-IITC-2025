@@ -12,11 +12,10 @@ import { fetchCourseById } from "@/services/courseService";
 
 const CourseContent: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
-console.log('test');
+  console.log("test");
 
   // Sanitize courseId to remove any leading colon or whitespace
   const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
-  console.log("Sanitized courseId:", sanitizedCourseId);
 
   // Fetch course data using React Query
   const { data, isLoading, error } = useQuery({

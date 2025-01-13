@@ -27,7 +27,6 @@ const ViewCoursePageInfo: React.FC = () => {
 
   // Sanitize courseId
   const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
-  console.log("Sanitized courseId:", sanitizedCourseId);
 
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);

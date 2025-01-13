@@ -48,7 +48,7 @@ const SearchPage = () => {
 
     if (courseElement) {
       const courseId = courseElement.id;
-      console.log(courseId);
+
       navigate(`/course-view/${courseId}`);
     } else {
       return;

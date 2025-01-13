@@ -11,7 +11,6 @@ const OverviewTab: React.FC = () => {
   console.log("Raw courseId from useParams:", courseId);
 
   const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
-  console.log("Sanitized courseId:", sanitizedCourseId);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["course", sanitizedCourseId],
