@@ -103,6 +103,14 @@ const addReviewByCourseId = catchAsync(async (req, res, next) => {
     );
   }
 
+  const isCourseExist = await Course.findById(courseId);
+
+  if (!isCourseExist) {
+    return next(
+      createError(`There is no such course with this ID: ${courseId}`, 404)
+    );
+  }
+
   const existingReview = await courseReviews.findOne({
     courseReview: courseId,
     user: req.user._id,

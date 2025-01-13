@@ -214,6 +214,13 @@ const createLessons = async () => {
   const lessons = [];
 
   for (const section of sections) {
+    if (!section.course || !section.course._id) {
+      console.warn(
+        `Skipping section "${section.title}" due to missing course reference.`
+      );
+      continue; // Skip this section
+    }
+
     console.log(`Creating lessons for section: ${section.title}...`);
 
     const totalLessonsPerSection = faker.number.int({ min: 1, max: 2 }); // Randomize number of lessons
@@ -223,23 +230,27 @@ const createLessons = async () => {
     for (let i = 0; i < totalLessonsPerSection; i++) {
       const duration = faker.number.int({ min: 10, max: 20 });
 
-      const lesson = await Lesson.create({
-        section: section._id,
-        title: faker.helpers.arrayElement(lessonsNames),
-        videoUrl: faker.helpers.arrayElement(videosToDisplay),
-        duration,
-        order: i + 1, // Sequential order within the section
-      });
+      try {
+        const lesson = await Lesson.create({
+          section: section._id,
+          title: faker.helpers.arrayElement(lessonsNames),
+          videoUrl: faker.helpers.arrayElement(videosToDisplay),
+          duration,
+          order: section.lessons.length + createdLessons.length + 1, // Ensure unique order
+        });
 
-      createdLessons.push(lesson._id);
-      lessons.push(lesson);
-      totalDurationForSection += duration;
+        createdLessons.push(lesson._id);
+        lessons.push(lesson);
+        totalDurationForSection += duration;
 
-      console.log(
-        `Lesson created: ${lesson.title}, Order: ${
-          i + 1
-        }, Duration: ${duration} mins`
-      );
+        console.log(
+          `Lesson created: ${lesson.title}, Order: ${
+            section.lessons.length + createdLessons.length
+          }, Duration: ${duration} mins`
+        );
+      } catch (err) {
+        console.error(`Error creating lesson: ${err.message}`);
+      }
     }
 
     // Update the section with created lessons
@@ -249,10 +260,22 @@ const createLessons = async () => {
     await section.save();
 
     // Update the course linked to the section
-    const course = await Course.findById(section.course._id);
-    course.totalCourseDuration += totalDurationForSection;
-    course.totalCourseLessons += createdLessons.length;
-    await course.save();
+    try {
+      const course = await Course.findById(section.course._id);
+      if (course) {
+        course.totalCourseDuration += totalDurationForSection;
+        course.totalCourseLessons += createdLessons.length;
+        await course.save();
+      } else {
+        console.warn(
+          `No course found for section "${section.title}". Skipping course update.`
+        );
+      }
+    } catch (err) {
+      console.error(
+        `Error updating course for section "${section.title}": ${err.message}`
+      );
+    }
 
     console.log(
       `Updated section "${section.title}" with ${createdLessons.length} lessons.`
@@ -264,89 +287,79 @@ const createLessons = async () => {
 };
 
 const createReviews = async () => {
-  console.log("Fetching students with enrolled courses for review creation...");
-
   try {
-    // Step 1: Fetch all students with enrolled courses
+    // Fetch all students with enrolled courses and populate the coursesBought field
     const students = await User.find({
       role: "student",
       coursesBought: { $exists: true, $ne: [] },
-    })
-      .populate("coursesBought")
-      .exec();
+    }).populate({
+      path: "coursesBought",
+      select: "_id courseName",
+    });
 
     if (!students.length) {
-      throw new Error("No students with enrolled courses found.");
+      console.error("No students with enrolled courses found.");
+      return [];
     }
 
-    const totalReviews = 30; // Number of reviews to create
     const reviews = [];
 
-    for (let i = 0; i < totalReviews; i++) {
-      console.log(`Creating review ${i + 1}/${totalReviews}...`);
+    for (const student of students) {
+      console.log(`Creating reviews for student: ${student.email}`);
 
-      // Step 2: Randomly select a student
-      const randomStudent = faker.helpers.arrayElement(students);
+      for (const course of student.coursesBought || []) {
+        if (!course || !course._id) {
+          console.error(
+            `Invalid course reference for student "${student.email}". Skipping...`
+          );
+          continue;
+        }
 
-      if (!randomStudent.coursesBought?.length) {
-        console.error(
-          `Student "${randomStudent.email}" has no enrolled courses. Skipping...`
+        console.log(
+          `Processing course: ${JSON.stringify(course.courseName, null, 2)}`
         );
-        continue;
-      }
 
-      // Step 3: Randomly select a course from the student's enrolled courses
-      const randomCourse = faker.helpers.arrayElement(
-        randomStudent.coursesBought
-      );
-
-      if (!randomCourse || !randomCourse._id) {
-        console.error(
-          `Invalid course for student "${randomStudent.email}". Skipping...`
-        );
-        continue;
-      }
-
-      try {
-        // Step 4: Create the review
         const reviewPayload = {
-          user: randomStudent._id,
-          courseReview: randomCourse._id,
+          user: student._id,
+          courseReview: course._id,
           rating: faker.number.float({ min: 1, max: 5, precision: 0.1 }),
           comment: faker.lorem.sentence(),
         };
 
-        console.log("Review payload:", reviewPayload);
-        const review = await courseReviews.create(reviewPayload);
-
-        // Step 5: Update the course with the review
-        console.log(
-          `Updating course "${randomCourse.courseName}" with review.`
-        );
-        await Course.findByIdAndUpdate(
-          randomCourse._id,
-          {
-            $push: { reviews: review._id },
-            $inc: { totalRatings: 1 },
-            $set: {
-              averageRating: await calculateAverageRating(randomCourse._id),
+        try {
+          const review = await courseReviews.create(reviewPayload);
+          const updatedCourse = await Course.findByIdAndUpdate(
+            course._id,
+            {
+              $push: { reviews: review._id },
+              $inc: { totalRatings: 1 },
+              $set: {
+                averageRating: await calculateAverageRating(course._id),
+              },
             },
-          },
-          { new: true }
-        );
+            { new: true }
+          );
 
-        reviews.push(review);
-        console.log(
-          `Review ${i + 1} created for course "${
-            randomCourse.courseName
-          }" by student "${randomStudent.email}".`
-        );
-      } catch (err) {
-        console.error(`Error creating review ${i + 1}:`, err.message);
+          if (!updatedCourse) {
+            console.error(
+              `Course with ID ${course._id} not found while updating.`
+            );
+          } else {
+            console.log(
+              `Review added to course "${updatedCourse.courseName}" successfully.`
+            );
+          }
+
+          reviews.push(review);
+        } catch (err) {
+          console.error(
+            `Error creating review for course "${course.courseName}": ${err.message}`
+          );
+        }
       }
     }
 
-    console.log("Reviews created successfully:", reviews.length);
+    console.log(`Reviews created successfully: ${reviews.length}`);
     return reviews;
   } catch (err) {
     console.error("Error during review creation:", err.message);
@@ -356,9 +369,16 @@ const createReviews = async () => {
 
 // Helper function to calculate average rating
 const calculateAverageRating = async (courseId) => {
-  const allRatings = await courseReviews.find({ courseReview: courseId });
-  if (!allRatings.length) return 0;
-  return allRatings.reduce((sum, r) => sum + r.rating, 0) / allRatings.length;
+  try {
+    const allRatings = await courseReviews.find({ courseReview: courseId });
+    if (!allRatings.length) return 0;
+    return allRatings.reduce((sum, r) => sum + r.rating, 0) / allRatings.length;
+  } catch (err) {
+    console.error(
+      `Error calculating average rating for course ${courseId}: ${err.message}`
+    );
+    return 0;
+  }
 };
 
 const createReportedReviews = async () => {
@@ -529,35 +549,35 @@ const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
     console.log("Database connection established.");
-    await clearCollections();
+    // await clearCollections();
 
-    console.log("Seeding users...");
-    const users = await createUsers();
-    console.log(`${users.length} users created.`);
+    // console.log("Seeding users...");
+    // const users = await createUsers();
+    // console.log(`${users.length} users created.`);
 
-    console.log("Seeding courses...");
-    const courses = await createCourses();
-    console.log(`${courses.length} courses created.`);
+    // console.log("Seeding courses...");
+    // const courses = await createCourses();
+    // console.log(`${courses.length} courses created.`);
 
-    console.log("Seeding sections...");
-    const sections = await createSections();
-    console.log(`${sections.length} sections created.`);
+    // console.log("Seeding sections...");
+    // const sections = await createSections();
+    // console.log(`${sections.length} sections created.`);
 
-    console.log("Seeding lessons...");
-    const lessons = await createLessons();
-    console.log(`${lessons.length} lessons created.`);
+    // console.log("Seeding lessons...");
+    // const lessons = await createLessons();
+    // console.log(`${lessons.length} lessons created.`);
 
     console.log("Seeding reviews...");
     const reviews = await createReviews();
     console.log(`${reviews.length} reviews created.`);
 
-    console.log("Seeding reported reviews...");
-    await createReportedReviews();
+    // console.log("Seeding reported reviews...");
+    // await createReportedReviews();
 
-    await simulateCoursePurchases();
-    console.log("Simulate courses purchases completed");
+    // await simulateCoursePurchases();
+    // console.log("Simulate courses purchases completed");
 
-    console.log("All dummy data seeded successfully!");
+    // console.log("All dummy data seeded successfully!");
     process.exit();
   } catch (err) {
     console.error("Error generating dummy data:", err.message);
