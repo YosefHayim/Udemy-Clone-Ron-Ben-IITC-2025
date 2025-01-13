@@ -1,6 +1,8 @@
 import { IoMdCheckmark } from "react-icons/io";
 
-const CoursePros = () => {
+const CoursePros = ({ whatYouWillLearn }) => {
+  console.log(whatYouWillLearn);
+
   return (
     <ul className="flex flex-col items-start justify-start gap-[0.5em]">
       <span className="font-bold">What you’ll learn</span>

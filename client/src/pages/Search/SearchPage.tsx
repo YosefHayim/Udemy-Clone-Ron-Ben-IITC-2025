@@ -9,6 +9,8 @@ import Loader from "@/components/Loader/Loader";
 import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
 import { useState } from "react";
+import getCourseProsById from "@/api/courses/getCourseProsById";
+import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
@@ -43,7 +45,7 @@ const SearchPage = () => {
     return <div>Error occurred: {error.message}</div>;
   }
 
-  const handleClick = (e) => {
+  const handleClick = (e: React.DOMAttributes<HTMLDivElement>) => {
     const courseElement = e.target.closest("div[id]");
     if (courseElement) {
       const courseId = courseElement.id;
@@ -53,14 +55,14 @@ const SearchPage = () => {
     }
   };
 
-  const handleMouseEnter = (e) => {
-    const hoverDiv = e.target.closest("div[id]");
-    if (hoverDiv) {
-      const hoveredId = hoverDiv.id;
-      console.log(hoveredId);
-    } else {
-      console.log("Hovered over an unrelated element.");
-    }
+  const handleMouseEnter = (e: React.DOMAttributes<HTMLDivElement>) => {
+    // const hoverDiv = e.target.closest("div[id]");
+    // if (hoverDiv) {
+    //   const courseId = hoverDiv.id;
+    //   console.log(courseId);
+    // } else {
+    //   console.log("Hovered over an unrelated element.");
+    // }
   };
 
   return (
@@ -82,12 +84,16 @@ const SearchPage = () => {
         <div>
           <div>
             {data?.response?.slice(0, 18).map((course, index) => [
+              console.log(course),
               <div
                 key={course._id}
                 id={course._id}
                 onMouseEnter={handleMouseEnter}
               >
                 <SearchCourseCard course={course} />
+                <CourseHoverCardInfo
+                  whatYouWillLearn={course.whatYouWillLearn}
+                />
               </div>,
               index === 2 && <Commercial key="commercial" />,
               index === 6 && <HotFreshCourses key="hotfreshcourses" />,

@@ -25,7 +25,7 @@ const courseSchema = new mongoose.Schema(
       type: String,
       required: [true, "A course description must have a who is this is for."],
     },
-    WhatYouWillLearn: {
+    whatYouWillLearn: {
       type: [String],
       required: [true, "A course must have at least 6 pros"],
       validate: {

@@ -24,6 +24,8 @@ router.get("/", getAllCourses);
 
 // Get course by specific course id
 router.get("/:id", getCourseById);
+
+// Get course pros by courseId
 router.get("/pros/:courseId", getCourseProsById);
 
 // Re-activate course by the authorized creator
