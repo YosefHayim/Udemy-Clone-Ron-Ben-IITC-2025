@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   coursesAddedToCart,
@@ -5,28 +6,41 @@ import {
   totalCoursesPrice,
 } from "@/redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
+import Loader from "@/components/Loader/Loader";
 
 const AddToCart = ({ textBtn = "Add to cart", courseId, coursePrice }) => {
-  if (!courseId && coursePrice) {
-    return;
+  if (!courseId || coursePrice == null) {
+    return null; // Ensure both props are valid
   }
 
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false); // Track loading state
 
   const handleClick = (e, courseId) => {
+    setIsLoading(true); // Show loader
     console.log(`Course ID from button: ${courseId}`);
-    dispatch(setAmountOfCourses());
-    dispatch(totalCoursesPrice(coursePrice));
-    dispatch(coursesAddedToCart(courseId));
+
+    // Simulate a 2-second delay for loading
+    setTimeout(() => {
+      dispatch(setAmountOfCourses());
+      dispatch(totalCoursesPrice(coursePrice));
+      dispatch(coursesAddedToCart(courseId));
+      setIsLoading(false); // Hide loader after 2 seconds
+    }, 2000);
   };
 
   return (
     <Button
       onClick={(e) => handleClick(e, courseId)}
       id={courseId}
-      className={`font-bold bg-btnColor rounded-[0.2em] hover:bg-btnHoverColor w-full py-[1.5em] text-[1em]`}
+      disabled={isLoading} // Disable button during loading
+      className={`font-bold ${
+        isLoading
+          ? "bg-gray-400 cursor-not-allowed"
+          : "bg-btnColor hover:bg-btnHoverColor"
+      } rounded-[0.2em] w-full py-[1.5em] text-[1em]`}
     >
-      {textBtn}
+      {isLoading ? <Loader useSmallLoading={true} /> : textBtn}
     </Button>
   );
 };
