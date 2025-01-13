@@ -318,7 +318,7 @@ const createReviews = async () => {
         const reviewPayload = {
           user: student._id,
           courseReview: course._id,
-          rating: faker.number.float({ min: 1, max: 5, precision: 0.1 }),
+          rating: faker.number.int({ min: 1, max: 5 }),
           comment: faker.lorem.sentence(),
         };
 
@@ -331,8 +331,8 @@ const createReviews = async () => {
           const updatedCourse = await Course.findByIdAndUpdate(
             course._id,
             {
-              $push: { reviews: review._id }, // Add the review ID to the reviews array
-              $inc: { "reviews.count": 1 }, // Increment total ratings count
+              $push: { reviews: review._id }, // Add the ObjectId of the review
+              $inc: { totalRatings: 1 }, // Increment total ratings count
               $set: {
                 averageRating: await calculateAverageRating(course._id), // Recalculate average rating
               },
@@ -546,23 +546,23 @@ const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
     console.log("Database connection established.");
-    await clearCollections();
+    // await clearCollections();
 
-    console.log("Seeding users...");
-    const users = await createUsers();
-    console.log(`${users.length} users created.`);
+    // console.log("Seeding users...");
+    // const users = await createUsers();
+    // console.log(`${users.length} users created.`);
 
-    console.log("Seeding courses...");
-    const courses = await createCourses();
-    console.log(`${courses.length} courses created.`);
+    // console.log("Seeding courses...");
+    // const courses = await createCourses();
+    // console.log(`${courses.length} courses created.`);
 
-    console.log("Seeding sections...");
-    const sections = await createSections();
-    console.log(`${sections.length} sections created.`);
+    // console.log("Seeding sections...");
+    // const sections = await createSections();
+    // console.log(`${sections.length} sections created.`);
 
-    console.log("Seeding lessons...");
-    const lessons = await createLessons();
-    console.log(`${lessons.length} lessons created.`);
+    // console.log("Seeding lessons...");
+    // const lessons = await createLessons();
+    // console.log(`${lessons.length} lessons created.`);
 
     console.log("Seeding reviews...");
     const reviews = await createReviews();
@@ -574,7 +574,7 @@ const generateUpdatedDummyData = async () => {
     await simulateCoursePurchases();
     console.log("Simulate courses purchases completed");
 
-    console.log("All dummy data seeded successfully!");
+    // console.log("All dummy data seeded successfully!");
     process.exit();
   } catch (err) {
     console.error("Error generating dummy data:", err.message);

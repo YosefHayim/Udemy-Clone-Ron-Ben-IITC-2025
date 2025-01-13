@@ -6,14 +6,22 @@ import CourseRecap from "@/components/CourseCard/CourseRecap/CourseRecap";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
 import CourseLength from "@/pages/ViewCoursePageInfo/MoreCoursesByInstructor/CourseLength/CourseLength";
+import { useNavigate } from "react-router-dom";
 
 const SearchCourseCard = ({ course }) => {
   if (!course) {
     return;
   }
 
+  const navigate = useNavigate();
+
+  const handleCardClick = (courseId: string) => {
+    console.log(`Navigating to course: ${courseId}`);
+    // navigate(`/course-view/${courseId}`);
+  };
+
   return (
-    <div className={course._id}>
+    <div id={course._id} onClick={() => handleCardClick(course._id)}>
       <div className="flex justify-start items-start pb-[1.6em] w-full gap-[1em] cursor-pointer pt-[1.6em]">
         <CourseImg courseImg={course.courseImg} widthChosen="260px" />
         <div className="flex flex-col items-start justify-start gap-[0.3em]">

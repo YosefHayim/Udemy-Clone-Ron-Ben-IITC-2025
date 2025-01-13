@@ -2,7 +2,7 @@ import SearchCourseCard from "@/pages/Search/SearchCourseCard/SearchCourseCard";
 import SidebarFilter from "./SidebarFilter/SidebarFilter";
 import FilterNSort from "./SidebarFilter/FilterNSort/FilterNSort";
 import Pagination from "./PaginationPages/PaginationPages";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
@@ -26,7 +26,6 @@ const SearchPage = () => {
     price: "",
     certificate: true,
   });
-  const navigate = useNavigate();
 
   const limit = null;
 
@@ -44,28 +43,6 @@ const SearchPage = () => {
     return <div>Error occurred: {error.message}</div>;
   }
 
-  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-    const target = e.target as HTMLElement;
-    const courseElement = target.closest("div[id]") as HTMLElement;
-
-    if (courseElement && courseElement.tagName === "DIV") {
-      const courseId = courseElement.id;
-      if (courseId) {
-        navigate(`/course-view/${courseId}`);
-      } else {
-        console.error("No ID found on the div");
-      }
-    } else if (
-      target.tagName === "BUTTON" &&
-      target.textContent === "Add to Cart"
-    ) {
-      console.log("Add to Cart button clicked");
-      // Perform "Add to Cart" action here
-    } else {
-      console.log("Unhandled click target");
-    }
-  };
-
   const handleMouseEnter = (e: React.DOMAttributes<HTMLDivElement>) => {
     // const hoverDiv = e.target.closest("div[id]");
     // if (hoverDiv) {
@@ -77,10 +54,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div
-      className="flex flex-col w-full gap-[1em] px-6 py-[3em]"
-      onClick={handleClick}
-    >
+    <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
         {data?.totalCourses} results for "{searchTerm}"
       </h1>
@@ -97,7 +71,8 @@ const SearchPage = () => {
             {data?.response?.slice(0, 18).map((course, index) => [
               <div
                 key={course._id}
-                id={course._id}
+                id={`course-card-${course._id}`}
+                className={course._id}
                 onMouseEnter={handleMouseEnter}
               >
                 <SearchCourseCard course={course} />

@@ -4,7 +4,7 @@ const AddToCart = ({ textBtn = "Add to cart", courseId }) => {
   if (!courseId) {
     return;
   }
-  
+
   return (
     <Button
       id={courseId}

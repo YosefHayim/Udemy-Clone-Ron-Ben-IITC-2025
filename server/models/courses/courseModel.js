@@ -122,10 +122,6 @@ const courseSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    totalRatings: {
-      type: Number,
-      default: 0,
-    },
     totalStudentsEnrolled: {
       students: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
       count: { type: Number, default: 0 },
@@ -145,13 +141,8 @@ const courseSchema = new mongoose.Schema(
         ref: "Section",
       },
     ],
-    reviews: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Review",
-        count: { type: Number, default: 0 },
-      },
-    ],
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
+    totalRatings: { type: Number, default: 0 },
     totalCourseDuration: {
       type: Number,
       default: 0,
@@ -178,6 +169,25 @@ courseSchema.pre(/^find/, function (next) {
       select: "fullName profilePic _id", // Ensure instructor details load correctly
     })
     .populate("sections"); // Populate sections as needed
+
+  next();
+});
+
+courseSchema.pre("save", function (next) {
+  if (this.isModified("averageRating")) {
+    // Round averageRating to 1 decimal place
+    this.averageRating = Math.round(this.averageRating * 10) / 10;
+  }
+  next();
+});
+
+courseSchema.pre("findOneAndUpdate", function (next) {
+  const update = this.getUpdate();
+
+  if (update && update.$set && update.$set.averageRating != null) {
+    // Round averageRating to 1 decimal place
+    update.$set.averageRating = Math.round(update.$set.averageRating * 10) / 10;
+  }
 
   next();
 });
