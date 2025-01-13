@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Course = require("../courses/courseModel");
 
 const courseReviewsSchema = new mongoose.Schema(
   {
@@ -40,13 +41,31 @@ const courseReviewsSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-courseReviewsSchema.pre(/^find/, function (next) {
-  this.populate({ path: "courseReview", select: "_id" }).populate({
-    path: "user",
-    select: "_id",
-  });
+// Middleware to validate `courseReview` before saving or creating a review
+courseReviewsSchema.pre("save", async function (next) {
+  try {
+    // Check if the courseReview ID is valid and exists
+    const course = await Course.findById(this.courseReview);
+    if (!course) {
+      return next(new Error("Invalid course ID provided for courseReview."));
+    }
 
-  next();
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Middleware to update the course's `reviews` field after saving a review
+courseReviewsSchema.post("save", async function () {
+  try {
+    // Add the review ID to the course's reviews array
+    await Course.findByIdAndUpdate(this.courseReview, {
+      $addToSet: { reviews: this._id },
+    });
+  } catch (err) {
+    console.error("Error updating course reviews:", err);
+  }
 });
 
 courseReviewsSchema.post("save", async function () {

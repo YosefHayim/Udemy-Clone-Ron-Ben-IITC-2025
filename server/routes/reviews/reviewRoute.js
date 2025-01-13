@@ -6,7 +6,7 @@ const {
   updateReviewById,
   getReviewByReviewId,
   getAllReviewsByCourseId,
-  getAllReviewsOfSelfUser,
+  getAllReviewsOfUser,
   toggleReviewReaction,
   toggleLikeByReviewId,
   toggleDislikeReaction,
@@ -32,7 +32,7 @@ router.get("/single/:id", getReviewByReviewId);
 router.get("/course/:id", getAllReviewsByCourseId);
 
 // Get all reviews that the current user that is auth is commented
-router.get("/user/:id", getAllReviewsOfSelfUser);
+router.get("/user/:id", getAllReviewsOfUser);
 
 // Get review to a specific course by course id
 router.get("/:courseid", addReviewByCourseId);
