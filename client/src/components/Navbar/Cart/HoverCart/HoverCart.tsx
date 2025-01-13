@@ -21,11 +21,12 @@ const HoverCart = () => {
         ))}
       </div>
       <div className="w-full p-[1em] py-[0.5em] flex flex-col gap-[0.5em]">
-        <b>Total: ₪{totalToPay}</b>
-
-        <Button className="rounded-[0.2em] font-bold">
-          <Link to="/cart">Go to cart</Link>
-        </Button>
+        <b>Total: ₪{totalToPay.toLocaleString()}</b>
+        <Link to="/cart">
+          <Button className="rounded-[0.2em] font-bold w-full">
+            Go to cart
+          </Button>
+        </Link>
       </div>
     </div>
   );
