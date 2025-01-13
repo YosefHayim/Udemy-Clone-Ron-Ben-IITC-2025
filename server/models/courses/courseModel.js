@@ -17,6 +17,10 @@ const courseSchema = new mongoose.Schema(
         "To register a course, you must provide an image for the course.",
       ],
     },
+    courseTrailer: {
+      type: String,
+      required: [true, "A course must have a trailer video."],
+    },
     courseDescription: {
       type: String,
       required: [true, "Course must have a description"],

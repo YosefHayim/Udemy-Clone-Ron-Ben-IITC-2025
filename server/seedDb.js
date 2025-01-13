@@ -17,13 +17,13 @@ const videosToDisplay = require("./utils/videosToDsiplay");
 
 const clearCollections = async () => {
   await Promise.all([
-    User.deleteMany(),
+    // User.deleteMany(),
     Course.deleteMany(),
-    Section.deleteMany(),
-    Lesson.deleteMany(),
-    courseReviews.deleteMany(),
-    ReportReview.deleteMany(),
-    InstructorComment.deleteMany(),
+    // Section.deleteMany(),
+    // Lesson.deleteMany(),
+    // courseReviews.deleteMany(),
+    // ReportReview.deleteMany(),
+    // InstructorComment.deleteMany(),
   ]);
   console.log("Cleared all collections.");
 };
@@ -117,6 +117,7 @@ const createCourses = async () => {
         "New",
       ]),
       courseInstructor: instructor._id,
+      courseTrailer: faker.helpers.arrayElement(videosToDisplay),
       moneyBackGuarantee: faker.date.soon(30),
       averageRating: 0,
       totalRatings: 0,

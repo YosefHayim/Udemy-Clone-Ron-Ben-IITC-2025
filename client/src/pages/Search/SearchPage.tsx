@@ -9,7 +9,6 @@ import Loader from "@/components/Loader/Loader";
 import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
 import { useState } from "react";
-import getCourseProsById from "@/api/courses/getCourseProsById";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 
 const SearchPage = () => {
@@ -45,13 +44,25 @@ const SearchPage = () => {
     return <div>Error occurred: {error.message}</div>;
   }
 
-  const handleClick = (e: React.DOMAttributes<HTMLDivElement>) => {
-    const courseElement = e.target.closest("div[id]");
-    if (courseElement) {
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as HTMLElement;
+    const courseElement = target.closest("div[id]") as HTMLElement;
+
+    if (courseElement && courseElement.tagName === "DIV") {
       const courseId = courseElement.id;
-      navigate(`/course-view/${courseId}`);
+      if (courseId) {
+        navigate(`/course-view/${courseId}`);
+      } else {
+        console.error("No ID found on the div");
+      }
+    } else if (
+      target.tagName === "BUTTON" &&
+      target.textContent === "Add to Cart"
+    ) {
+      console.log("Add to Cart button clicked");
+      // Perform "Add to Cart" action here
     } else {
-      return;
+      console.log("Unhandled click target");
     }
   };
 
@@ -84,7 +95,6 @@ const SearchPage = () => {
         <div>
           <div>
             {data?.response?.slice(0, 18).map((course, index) => [
-              console.log(course),
               <div
                 key={course._id}
                 id={course._id}
@@ -93,6 +103,7 @@ const SearchPage = () => {
                 <SearchCourseCard course={course} />
                 <CourseHoverCardInfo
                   whatYouWillLearn={course.whatYouWillLearn}
+                  courseId={course._id}
                 />
               </div>,
               index === 2 && <Commercial key="commercial" />,
