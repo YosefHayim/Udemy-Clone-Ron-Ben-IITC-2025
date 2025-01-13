@@ -299,13 +299,11 @@ const createReviews = async () => {
 
     if (!students.length) {
       console.error("No students with enrolled courses found.");
-      return [];
+      return;
     }
 
-    const reviews = [];
-
     for (const student of students) {
-      console.log(`Creating reviews for student: ${student.email}`);
+      console.log(`Processing reviews for student: ${student.email}`);
 
       for (const course of student.coursesBought || []) {
         if (!course || !course._id) {
@@ -315,9 +313,7 @@ const createReviews = async () => {
           continue;
         }
 
-        console.log(
-          `Processing course: ${JSON.stringify(course.courseName, null, 2)}`
-        );
+        console.log(`Processing course ID: ${course._id}`);
 
         const reviewPayload = {
           user: student._id,
@@ -327,17 +323,21 @@ const createReviews = async () => {
         };
 
         try {
+          // Create the review
           const review = await courseReviews.create(reviewPayload);
+          console.log(`Review created for course ID: ${course._id}`);
+
+          // Update the course immediately after creating the review
           const updatedCourse = await Course.findByIdAndUpdate(
             course._id,
             {
-              $push: { reviews: review._id },
-              $inc: { totalRatings: 1 },
+              $push: { reviews: review._id }, // Add the review ID to the reviews array
+              $inc: { totalRatings: 1 }, // Increment total ratings count
               $set: {
-                averageRating: await calculateAverageRating(course._id),
+                averageRating: await calculateAverageRating(course._id), // Recalculate average rating
               },
             },
-            { new: true }
+            { new: true } // Return the updated course document
           );
 
           if (!updatedCourse) {
@@ -349,18 +349,15 @@ const createReviews = async () => {
               `Review added to course "${updatedCourse.courseName}" successfully.`
             );
           }
-
-          reviews.push(review);
         } catch (err) {
           console.error(
-            `Error creating review for course "${course.courseName}": ${err.message}`
+            `Error creating or updating review for course "${course.courseName}": ${err.message}`
           );
         }
       }
     }
 
-    console.log(`Reviews created successfully: ${reviews.length}`);
-    return reviews;
+    console.log("All reviews processed successfully.");
   } catch (err) {
     console.error("Error during review creation:", err.message);
     throw err;

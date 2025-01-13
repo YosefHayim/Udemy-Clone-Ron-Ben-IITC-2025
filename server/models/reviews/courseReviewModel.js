@@ -41,7 +41,10 @@ const courseReviewsSchema = new mongoose.Schema(
 );
 
 courseReviewsSchema.pre(/^find/, function (next) {
-  this.populate("courseReview").populate("user");
+  this.populate({ path: "courseReview", select: "_id" }).populate({
+    path: "user",
+    select: "_id",
+  });
 
   next();
 });
