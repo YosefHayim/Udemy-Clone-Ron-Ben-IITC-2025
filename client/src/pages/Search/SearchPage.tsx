@@ -79,6 +79,7 @@ const SearchPage = () => {
                 <CourseHoverCardInfo
                   whatYouWillLearn={course.whatYouWillLearn}
                   courseId={course._id}
+                  coursePrice={course.courseDiscountPrice}
                 />
               </div>,
               index === 2 && <Commercial key="commercial" />,

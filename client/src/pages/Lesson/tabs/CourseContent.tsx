@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/collapsible";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCourseById } from "@/services/courseService";
+import Loader from "@/components/Loader/Loader";
 
 const CourseContent: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -24,7 +25,7 @@ const CourseContent: React.FC = () => {
   });
 
   // Handle loading and error states
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   if (error || !data) return <div>Error loading course data</div>;
 
   const sections = data.data.sections;

@@ -7,6 +7,7 @@ const {
   deleteCourse,
   reactivateCourseById,
   getCourseProsById,
+  getCourseInfoForCart,
 } = require("../../controllers/courses/courseController");
 const {
   grantedAccess,
@@ -24,6 +25,9 @@ router.get("/", getAllCourses);
 
 // Get course by specific course id
 router.get("/:id", getCourseById);
+
+// Get cart course info by course id
+router.get("/cartInfo/:id", getCourseInfoForCart);
 
 // Get course pros by courseId
 router.get("/pros/:courseId", getCourseProsById);

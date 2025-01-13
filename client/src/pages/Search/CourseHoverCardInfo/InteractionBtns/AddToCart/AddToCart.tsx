@@ -1,12 +1,23 @@
 import { Button } from "@/components/ui/button";
+import {
+  coursesAddedToCart,
+  setAmountOfCourses,
+  totalCoursesPrice,
+} from "@/redux/slices/cartSlice";
+import { useDispatch } from "react-redux";
 
-const AddToCart = ({ textBtn = "Add to cart", courseId }) => {
-  if (!courseId) {
+const AddToCart = ({ textBtn = "Add to cart", courseId, coursePrice }) => {
+  if (!courseId && coursePrice) {
     return;
   }
 
+  const dispatch = useDispatch();
+
   const handleClick = (e, courseId) => {
     console.log(`Course ID from button: ${courseId}`);
+    dispatch(setAmountOfCourses());
+    dispatch(totalCoursesPrice(coursePrice));
+    dispatch(coursesAddedToCart(courseId));
   };
 
   return (

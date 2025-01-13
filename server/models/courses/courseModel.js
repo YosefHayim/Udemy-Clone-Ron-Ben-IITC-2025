@@ -159,7 +159,7 @@ const courseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-courseSchema.pre(/^find/, function (next) {
+courseSchema.pre(/^find^/, function (next) {
   this.populate({
     path: "reviews",
     select: "user comment rating", // Populate specific fields only
