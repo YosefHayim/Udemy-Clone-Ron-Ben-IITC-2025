@@ -44,7 +44,6 @@ const ViewCoursePageInfo: React.FC = () => {
         setIsLoading(true);
         const response = await getCourseById(sanitizedCourseId);
         setData(response);
-        console.log("Fetched course data:", response);
       } catch (err) {
         setError("Failed to fetch course data.");
         console.error(err);
