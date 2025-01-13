@@ -6,11 +6,6 @@ const ViewCertificatesOnly = ({ filterData, setFilterData }) => {
 
   const handleToggle = () => {
     setIsActive((prev) => !prev);
-    setFilterData((prevData) => ({
-      ...prevData,
-      certificate: !prevData.certificate,
-    }));
-    console.log(filterData.certificate);
   };
 
   return (

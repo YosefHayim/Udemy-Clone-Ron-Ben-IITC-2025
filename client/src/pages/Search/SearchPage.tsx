@@ -44,13 +44,12 @@ const SearchPage = () => {
   }
 
   const handleClick = (e) => {
-    const courseElement = e.target.closest("div").id;
-    console.log(courseElement);
+    const courseElement = e.target.closest("div[id]");
 
     if (courseElement) {
       const courseId = courseElement.id;
       console.log(courseId);
-      navigate(`/course-view/:${courseId}`);
+      navigate(`/course-view/${courseId}`);
     } else {
       return;
     }
@@ -75,8 +74,8 @@ const SearchPage = () => {
         <div>
           <div>
             {data?.response?.slice(0, 18).map((course, index) => [
-              <div key={course._id}>
-                <SearchCourseCard course={course} id={course._id} />
+              <div key={course._id} id={course._id}>
+                <SearchCourseCard course={course} />
               </div>,
               index === 2 && <Commercial key="commercial" />,
               index === 6 && <HotFreshCourses key="hotfreshcourses" />,
