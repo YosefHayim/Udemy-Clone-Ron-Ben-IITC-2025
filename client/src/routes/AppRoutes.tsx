@@ -10,12 +10,13 @@ import Loader from "@/components/Loader/Loader";
 import ShoppingCart from "@/pages/ShoppingCart/ShoppingCart";
 import SignUp from "@/pages/SignUp/Signup";
 import Login from "@/pages/Login/Login";
+import Wishlist from "@/pages/Wishlist/Wishlist";
 
 const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
-        {/* Routes where Navbar is shodsdswn */}
+        {/* Routes where Navbar is shown */}
         <Route
           path="*"
           element={
@@ -24,6 +25,7 @@ const AppRoutes: React.FC = () => {
               <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="/cart" element={<ShoppingCart />} />
+                <Route path="/wishlist" element={<Wishlist />} />
                 <Route path="/loader" element={<Loader />} />
                 <Route path="/Signup" element={<SignUp />} />
                 <Route path="/courses/search" element={<SearchPage />} />
