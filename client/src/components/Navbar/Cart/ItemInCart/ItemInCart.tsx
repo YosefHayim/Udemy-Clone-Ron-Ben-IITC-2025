@@ -5,8 +5,8 @@ import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseLength from "@/pages/ViewCoursePageInfo/MoreCoursesByInstructor/CourseLength/CourseLength";
 import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
 import { useQuery } from "@tanstack/react-query";
-import getCourseById from "@/api/courses/getCourseById";
 import Loader from "@/components/Loader/Loader";
+import getCourseCartInfoByCourseId from "@/api/courses/getCourseCartInfoByCourseId";
 
 const ItemInCart = ({ courseId }) => {
   if (!courseId) {
@@ -15,7 +15,7 @@ const ItemInCart = ({ courseId }) => {
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["course"],
-    queryFn: () => getCourseById(courseId),
+    queryFn: () => getCourseCartInfoByCourseId(courseId),
   });
 
   if (isLoading) return;
@@ -39,7 +39,7 @@ const ItemInCart = ({ courseId }) => {
               <CourseTag tagName={data.courseTag} />
               <CourseRatings
                 avgRatings={data.averageRating}
-                totalRatings={data.reviews.length}
+                totalRatings={data.totalRatings}
               />
             </div>
             <CourseLength

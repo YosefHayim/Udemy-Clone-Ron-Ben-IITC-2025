@@ -1,7 +1,11 @@
 import axios from "axios";
 import { baseUrl } from "../baseUrl";
 
-const getAllCourses = async (searchTerm, limit = 18, page = 1) => {
+const getAllCourses = async (
+  searchTerm: string,
+  limit: number = 18,
+  page: number = 1
+) => {
   if (!searchTerm) {
     console.error("Search term is required");
     return null;

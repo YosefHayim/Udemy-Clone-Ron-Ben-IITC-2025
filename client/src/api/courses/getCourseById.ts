@@ -1,7 +1,7 @@
 import axios from "axios";
 import { baseUrl } from "../baseUrl";
 
-const getCourseById = async (courseId) => {
+const getCourseById = async (courseId: string) => {
   if (!courseId || typeof courseId !== "string") {
     console.error("Invalid course ID provided.");
     return null;
@@ -13,7 +13,6 @@ const getCourseById = async (courseId) => {
   try {
     const response = await axios.get(url);
 
-    // Check if response contains the expected data
     if (response?.data?.data) {
       return response.data.data;
     }
@@ -22,7 +21,7 @@ const getCourseById = async (courseId) => {
     return null;
   } catch (error) {
     console.error(`Error fetching course with ID ${sanitizedCourseId}:`, error);
-    throw error; // Propagate the error to be handled by the caller
+    throw error;
   }
 };
 
