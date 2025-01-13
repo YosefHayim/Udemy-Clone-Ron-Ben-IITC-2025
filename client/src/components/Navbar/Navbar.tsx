@@ -12,6 +12,7 @@ import Heart from "./Heart/Heart";
 import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
 import { Link } from "react-router-dom";
+import ExploreMenu from "./ExploreMenu";
 
 const Navbar = () => {
   const user = useSelector((state: RootState) => state.user);
@@ -25,7 +26,7 @@ const Navbar = () => {
         <Link to="/">
           <Logo />
         </Link>
-        <AtagBtn aTagName={"Explore"} />
+        <ExploreMenu />
         <SearchInput />
         <AtagBtn aTagName={"Udemy Business"} />
         <AtagBtn aTagName={"Teach on Udemy"} />
