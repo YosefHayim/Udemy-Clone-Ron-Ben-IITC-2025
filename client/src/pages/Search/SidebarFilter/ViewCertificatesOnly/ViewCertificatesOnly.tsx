@@ -10,6 +10,7 @@ const ViewCertificatesOnly = ({ filterData, setFilterData }) => {
       ...prevData,
       certificate: !prevData.certificate,
     }));
+    console.log(filterData.certificate);
   };
 
   return (

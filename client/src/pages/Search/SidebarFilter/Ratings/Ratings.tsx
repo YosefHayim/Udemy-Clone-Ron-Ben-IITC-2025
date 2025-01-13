@@ -15,6 +15,7 @@ const RatingsFilter = ({ filterData, setFilterData }) => {
       ...prevData,
       rating: rating,
     }));
+    console.log(filterData.rating);
   };
 
   const ratings = [

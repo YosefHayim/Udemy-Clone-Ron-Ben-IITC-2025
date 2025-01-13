@@ -21,6 +21,11 @@ const Filter: React.FC<FilterProps> = ({
     setClicked((prev) => !prev);
   };
 
+  const handleFilterClicked = (e) => {
+    const value = e.target.value;
+    console.log(value);
+  };
+
   return (
     <div className={useForSection ? "bg-[#f7f9fa]" : ""}>
       <hr className={showLine ? "block" : "hidden"} />
@@ -42,7 +47,7 @@ const Filter: React.FC<FilterProps> = ({
             />
           )}
         </div>
-        <div>
+        <div onClick={handleFilterClicked}>
           {filterItems.map((item: DummyData) => (
             <label
               key={item.name}
