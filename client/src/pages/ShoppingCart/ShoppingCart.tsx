@@ -7,7 +7,7 @@ const ShoppingCart = () => {
   const countOfCourses = useSelector((state) => state.cart.amountOfCourses);
 
   return (
-    <div className="p-[1em]">
+    <div className="p-[1em] flex flex-row items-center justify-center">
       <div className="w-[1200px] flex flex-row items-start justify-start">
         <div className="flex flex-row items-baseline justify-center gap-[2em] w-full">
           {countOfCourses === 0 ? (
