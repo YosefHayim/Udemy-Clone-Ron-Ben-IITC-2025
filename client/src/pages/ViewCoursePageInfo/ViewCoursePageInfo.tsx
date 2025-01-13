@@ -1,4 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Loader from "@/components/Loader/Loader";
+import getCourseById from "@/api/courses/getCourseById";
 import CourseBasicInfo from "./CourseBasicInfo/CourseBasicInfo";
 import CourseBigTitle from "./CourseBigTitle/CourseBigTitle";
 import CourseContent from "./CourseContent/CourseContent";
@@ -17,106 +20,148 @@ import StickyCourseNavbar from "./StickyCourseNavbar/StickyCourseNavbar";
 import StudentsAlsoBought from "./StudentsAlsoBought/StudentsAlsoBought";
 import TopicPathMenu from "./TopicPathMenu/TopicPathMenu";
 import WhatYouLearn from "./WhatYouLearn/WhatYouLearn";
-import getCourseById from "@/api/courses/getCourseById";
-import { Link, useParams } from "react-router-dom";
-import Loader from "@/components/Loader/Loader";
 
-const ViewCoursePageInfo = () => {
-  const params = useParams();
-  let courseId = params.courseId;
+const ViewCoursePageInfo: React.FC = () => {
+  const { courseId } = useParams<{ courseId: string }>();
+  const navigate = useNavigate();
 
-  if (!courseId) {
-    return;
-  }
+  // Sanitize courseId
+  const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
+  console.log("Sanitized courseId:", sanitizedCourseId);
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["course"],
-    queryFn: () => getCourseById(courseId.replace(/^:/, "")),
-    enabled: !!courseId,
-  });
+  const [data, setData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  useEffect(() => {
+    if (!sanitizedCourseId) {
+      setError("Course ID is missing.");
+      setIsLoading(false);
+      return;
+    }
 
-  if (error) {
-    return <div>Error occurred: {error.message}</div>;
-  }
+    const fetchCourseData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await getCourseById(sanitizedCourseId);
+        setData(response);
+        console.log("Fetched course data:", response);
+      } catch (err) {
+        setError("Failed to fetch course data.");
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  const handleClick = () => {
-    const newCourseId = localStorage.setItem('courseId',courseId)
-    console.log(newCourseId);
-    
+    fetchCourseData();
+  }, [sanitizedCourseId]);
 
-  }
+  if (isLoading) return <Loader />;
+  if (error || !data) return <div>{error || "Error loading course data."}</div>;
+
+  const courseData = data;
+
+  // Navigate to the first lesson
+  const handleNavigateToFirstLesson = () => {
+    const firstLessonId = courseData.sections?.[0]?.lessons?.[0]?._id;
+    if (firstLessonId) {
+      navigate(`/course/${sanitizedCourseId}/lesson/${firstLessonId}/overview`);
+    } else {
+      console.error("No lessons found in the course.");
+    }
+  };
 
   return (
     <div className="flex flex-row p-[3em] items-start justify-start w-full gap-[3em]">
       <div className="flex flex-col items-start justify-start gap-[1em]">
+        {/* Background Section */}
         <div className="bg-[#1c1d1f] h-[350px] absolute w-full left-0 top-[9%]"></div>
+
+        {/* Sticky Navbar */}
         <StickyCourseNavbar
-          courseName={data.courseName}
-          totalStudents={data.totalStudentsEnrolled.count}
-          avgRating={data.averageRating}
-          totalRatings={data.totalRatings}
+          courseName={courseData.courseName}
+          totalStudents={courseData.totalStudentsEnrolled.count}
+          avgRating={courseData.averageRating}
+          totalRatings={courseData.totalRatings}
         />
+
+        {/* Topic Path */}
         <TopicPathMenu
-          category={data.category}
-          subcategory={data.subCategory}
-          topic={data.courseTopic}
+          category={courseData.category}
+          subcategory={courseData.subCategory}
+          topic={courseData.courseTopic}
         />
-        <CourseBigTitle courseTitle={data.courseName} />
-        <CourseRecap recapInfo={data.courseRecapInfo} />
+
+        {/* Course Details */}
+        <CourseBigTitle courseTitle={courseData.courseName} />
+        <CourseRecap recapInfo={courseData.courseRecapInfo} />
+
         <div className="flex flex-row items-start justify-start gap-[0.5em]">
-          <CourseRating amountOfStars={data.averageRating} />
+          <CourseRating amountOfStars={courseData.averageRating} />
           <CourseStudentRatings
-            totalRated={data.totalRatings}
-            totalStudents={data.totalStudentsEnrolled.count}
+            totalRated={courseData.totalRatings}
+            totalStudents={courseData.totalStudentsEnrolled.count}
           />
+          <button className="z-[1000]" onClick={handleNavigateToFirstLesson}>
+            Go to First Lesson
+          </button>
         </div>
+
+        {/* Additional Info */}
         <CourseCreatedBy
-          instructorName={data.courseInstructor.fullName}
-          instructorId={data.courseInstructor._id}
+          instructorName={courseData.courseInstructor.fullName}
+          instructorId={courseData.courseInstructor._id}
         />
         <CourseBasicInfo
-          lastUpdated={data.updatedAt}
-          courseLanguage={data.courseLanguages}
+          lastUpdated={courseData.updatedAt}
+          courseLanguage={courseData.courseLanguages}
         />
-        <WhatYouLearn prosCourse={data.WhatYouWillLearn} />
+        <WhatYouLearn prosCourse={courseData.WhatYouWillLearn} />
         <ExploreTopics
-          category={data.category}
-          subCategory={data.subCategory}
-          topic={data.courseTopic}
+          category={courseData.category}
+          subCategory={courseData.subCategory}
+          topic={courseData.courseTopic}
         />
+
+        {/* Course Content */}
         <CourseContent
-          sectionsOfCourse={data.sections}
-          totalCourseSections={data.totalCourseSections}
-          totalCourseDuration={data.totalCourseDuration}
-          totalCourseLessons={data.totalCourseLessons}
-          requirements={data.courseRequirements}
-          description={data.courseDescription}
-          whoThisFor={data.whoThisCourseIsFor}
+          sectionsOfCourse={courseData.sections}
+          totalCourseSections={courseData.sections.length}
+          totalCourseDuration={courseData.totalCourseDuration}
+          totalCourseLessons={courseData.totalCourseLessons}
+          requirements={courseData.courseRequirements}
+          description={courseData.courseDescription}
+          whoThisFor={courseData.whoThisCourseIsFor}
         />
+
+        {/* Recommended Courses */}
         <StudentsAlsoBought />
         <FrequentlyBoughtTogether />
+
+        {/* Instructor Section */}
         <InstructorSection
-          instructorImg={data.courseInstructor.profilePic}
-          instructorName={data.courseInstructor.fullName}
-          descriptionInstructor={data.courseInstructorDescription}
+          instructorImg={courseData.courseInstructor.profilePic}
+          instructorName={courseData.courseInstructor.fullName}
+          descriptionInstructor={courseData.courseInstructorDescription}
         />
+
+        {/* Reviews Section */}
         <ReviewsSection
-          avgRating={data.averageRating}
-          totalRated={data.totalRatings}
+          avgRating={courseData.averageRating}
+          totalRated={courseData.totalRatings}
         />
-        <MoreCoursesByInstructor
-          instructorName={data.courseInstructor.fullName}
-        />
+
+        {/* Additional Features */}
+        <MoreCoursesByInstructor instructorName={courseData.courseInstructor.fullName} />
         <ReportAbuse />
       </div>
+
+      {/* Preview Card */}
       <CoursePreviewCard
-        courseImg={data.courseImg}
-        discountPrice={data.courseDiscountPrice}
-        fullPrice={data.courseFullPrice}
+        courseImg={courseData.courseImg}
+        discountPrice={courseData.courseDiscountPrice}
+        fullPrice={courseData.courseFullPrice}
       />
     </div>
   );
