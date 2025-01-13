@@ -14,7 +14,17 @@ const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("q");
   const [currentPage, setCurrentPage] = useState(1);
-  const [hoveredId, setHoveredId] = useState(null);
+  const [filterData, setFilterData] = useState({
+    rating: 0.0,
+    language: [],
+    handsOnPractice: "",
+    videoDuration: 0,
+    topics: "",
+    level: "All Levels",
+    subtitles: "",
+    price: "",
+    certificate: true,
+  });
   const navigate = useNavigate();
 
   const limit = null;
@@ -34,7 +44,7 @@ const SearchPage = () => {
   }
 
   const handleClick = (e) => {
-    const courseElement = e.target.closest("div[id]");
+    const courseElement = e.target.closest("div").id;
     if (courseElement) {
       const courseId = courseElement.id;
       console.log(courseId);
@@ -42,18 +52,6 @@ const SearchPage = () => {
     } else {
       return;
     }
-  };
-
-  const handleMouseOver = (e) => {
-    const courseElement = e.target.closest("div[id]");
-    if (courseElement) {
-      setHoveredId(courseElement.id);
-      console.log(`Hovered over course: ${courseElement.id}`);
-    }
-  };
-
-  const handleMouseOut = () => {
-    setHoveredId(null);
   };
 
   return (
@@ -64,13 +62,16 @@ const SearchPage = () => {
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
         {data?.totalCourses} results for "{searchTerm}"
       </h1>
-      <FilterNSort totalResults={data.totalCourses} />
+      <FilterNSort totalResults={data.totalCourses} filterData={filterData} />
       <div className="flex flex-row justify-start w-full gap-[1.5em]">
         <div>
-          <SidebarFilter />
+          <SidebarFilter
+            filterData={filterData}
+            setFilterData={setFilterData}
+          />
         </div>
         <div>
-          <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+          <div>
             {data?.response?.slice(0, 18).map((course, index) => [
               <div key={course._id} id={course._id}>
                 <SearchCourseCard course={course} />

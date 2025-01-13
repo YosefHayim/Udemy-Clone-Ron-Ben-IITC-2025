@@ -5,6 +5,8 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 const Filter: React.FC<FilterProps> = ({
+  filterData,
+  setFilterData,
   filterTitle,
   filterItems,
   chosenHeight,
@@ -17,6 +19,21 @@ const Filter: React.FC<FilterProps> = ({
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = () => {
     setClicked((prev) => !prev);
+  };
+
+  const handleFilterClicked = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+
+    // Traverse to the closest label or relevant element
+    const labelElement = target.closest("label");
+    if (!labelElement) return;
+
+    // Get the category name from the label's child span
+    const category = labelElement.querySelector("span")?.textContent;
+
+    if (category) {
+      console.log(category);
+    }
   };
 
   return (
@@ -40,18 +57,15 @@ const Filter: React.FC<FilterProps> = ({
             />
           )}
         </div>
-        <div>
+        <div onClick={handleFilterClicked}>
           {filterItems.map((item: DummyData) => (
-            <div
+            <label
               key={item.name}
-              className="flex gap-[0.5em] text-languageText  py-[0.5em] cursor-pointer"
+              className="flex gap-[0.5em] text-languageText py-[0.5em] cursor-pointer"
             >
-              <p>
-                <Checkbox className="rounded-none" />
-              </p>
-              <p>{item.name}</p>
-              <p className="text-weakGray">({item.count})</p>
-            </div>
+              <Checkbox className="rounded-none" />
+              <span>{item.name}</span>
+            </label>
           ))}
         </div>
         {isClicked && (

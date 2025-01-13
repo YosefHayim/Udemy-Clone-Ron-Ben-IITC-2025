@@ -8,18 +8,21 @@ import Subtitles from "./Subtitles/Subtitles";
 import Price from "./Price/Price";
 import ViewCertificatesOnly from "./ViewCertificatesOnly/ViewCertificatesOnly";
 
-const SidebarFilter = () => {
+const SidebarFilter = ({ filterData, setFilterData }) => {
   return (
     <div className="relative w-[310px]">
-      <ViewCertificatesOnly />
-      <RatingsFilter />
-      <LanguageFilter />
-      <HandsOnPractice />
-      <VideosFilter />
-      <Topics />
-      <Levels />
-      <Subtitles />
-      <Price />
+      <ViewCertificatesOnly
+        filterData={filterData}
+        setFilterData={setFilterData}
+      />
+      <RatingsFilter filterData={filterData} setFilterData={setFilterData} />
+      <LanguageFilter filterData={filterData} setFilterData={setFilterData} />
+      <HandsOnPractice filterData={filterData} setFilterData={setFilterData} />
+      <VideosFilter filterData={filterData} setFilterData={setFilterData} />
+      <Topics filterData={filterData} setFilterData={setFilterData} />
+      <Levels filterData={filterData} setFilterData={setFilterData} />
+      <Subtitles filterData={filterData} setFilterData={setFilterData} />
+      <Price filterData={filterData} setFilterData={setFilterData} />
     </div>
   );
 };
