@@ -205,7 +205,27 @@ const reactivateCourseById = catchAsync(async (req, res, next) => {
   });
 });
 
+const getCourseProsById = catchAsync(async (req, res, next) => {
+  const courseId = req.params.courseId;
+
+  if (!courseId) {
+    return next(createError("Please provide the course ID in the URL.", 400));
+  }
+
+  const findCourse = await Course.findOne({ _id: courseId });
+
+  if (!findCourse) {
+    return next(createError("There is no such course in the database.", 404));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: findCourse.WhatYouWillLearn,
+  });
+});
+
 module.exports = {
+  getCourseProsById,
   reactivateCourseById,
   getAllCourses,
   getCourseById,

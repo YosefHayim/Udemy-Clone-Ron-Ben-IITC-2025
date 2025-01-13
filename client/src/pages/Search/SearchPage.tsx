@@ -45,13 +45,21 @@ const SearchPage = () => {
 
   const handleClick = (e) => {
     const courseElement = e.target.closest("div[id]");
-
     if (courseElement) {
       const courseId = courseElement.id;
-
       navigate(`/course-view/${courseId}`);
     } else {
       return;
+    }
+  };
+
+  const handleMouseEnter = (e) => {
+    const hoverDiv = e.target.closest("div[id]");
+    if (hoverDiv) {
+      const hoveredId = hoverDiv.id;
+      console.log(hoveredId);
+    } else {
+      console.log("Hovered over an unrelated element.");
     }
   };
 
@@ -74,7 +82,11 @@ const SearchPage = () => {
         <div>
           <div>
             {data?.response?.slice(0, 18).map((course, index) => [
-              <div key={course._id} id={course._id}>
+              <div
+                key={course._id}
+                id={course._id}
+                onMouseEnter={handleMouseEnter}
+              >
                 <SearchCourseCard course={course} />
               </div>,
               index === 2 && <Commercial key="commercial" />,

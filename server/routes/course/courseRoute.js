@@ -6,6 +6,7 @@ const {
   updateCourse,
   deleteCourse,
   reactivateCourseById,
+  getCourseProsById,
 } = require("../../controllers/courses/courseController");
 const {
   grantedAccess,
@@ -23,6 +24,7 @@ router.get("/", getAllCourses);
 
 // Get course by specific course id
 router.get("/:id", getCourseById);
+router.get("/:courseId", getCourseProsById);
 
 // Create course
 router.post("/", grantedAccess, createCourse);
