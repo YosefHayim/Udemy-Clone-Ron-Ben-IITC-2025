@@ -21,9 +21,19 @@ const Filter: React.FC<FilterProps> = ({
     setClicked((prev) => !prev);
   };
 
-  const handleFilterClicked = (e) => {
-    const value = e.target.value;
-    console.log(value);
+  const handleFilterClicked = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+
+    // Traverse to the closest label or relevant element
+    const labelElement = target.closest("label");
+    if (!labelElement) return;
+
+    // Get the category name from the label's child span
+    const category = labelElement.querySelector("span")?.textContent;
+
+    if (category) {
+      console.log(category);
+    }
   };
 
   return (
