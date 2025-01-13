@@ -26,7 +26,7 @@ const AddToCart = ({ textBtn = "Add to cart", courseId, coursePrice }) => {
       dispatch(totalCoursesPrice(coursePrice));
       dispatch(coursesAddedToCart(courseId));
       setIsLoading(false); // Hide loader after 2 seconds
-    }, 2000);
+    }, 1000);
   };
 
   return (

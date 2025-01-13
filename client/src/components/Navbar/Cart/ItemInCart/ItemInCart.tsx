@@ -40,6 +40,7 @@ const ItemInCart = ({
       removeCourseFromCart({
         courseId,
         coursePrice: data.courseDiscountPrice || 0,
+        amountToRemove: 1,
       })
     );
   };

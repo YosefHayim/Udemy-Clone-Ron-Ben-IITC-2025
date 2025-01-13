@@ -29,9 +29,13 @@ const cartSlice = createSlice({
     },
     removeCourseFromCart: (
       state,
-      action: PayloadAction<{ courseId: string; coursePrice: number }>
+      action: PayloadAction<{
+        courseId: string;
+        coursePrice: number;
+        amountToRemove: number;
+      }>
     ) => {
-      const { courseId, coursePrice, totalCoursesInCart } = action.payload;
+      const { courseId, coursePrice, amountToRemove } = action.payload;
 
       // Remove the course ID from the cart
       state.coursesAddedToCart = state.coursesAddedToCart.filter(
@@ -50,7 +54,7 @@ const cartSlice = createSlice({
       }
 
       // Remove the total courses in the cart.
-      state.amountOfCourses -= 1;
+      state.amountOfCourses -= amountToRemove;
       if (state.amountOfCourses < 0) {
         state.amountOfCourses = 0;
       }
