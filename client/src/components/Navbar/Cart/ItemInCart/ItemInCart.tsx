@@ -7,11 +7,23 @@ import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "@/components/Loader/Loader";
 import getCourseCartInfoByCourseId from "@/api/courses/getCourseCartInfoByCourseId";
+import { useDispatch } from "react-redux";
+import { removeCourseFromCart } from "@/redux/slices/cartSlice";
+import { useNavigate } from "react-router-dom";
 
-const ItemInCart = ({ courseId }) => {
+const ItemInCart = ({
+  courseId = "",
+  courseImgSize = "h-[5em]",
+  hide = true,
+  shortCutInstructor = false,
+  shortcutTitle = false,
+}) => {
   if (!courseId) {
     return;
   }
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["course"],
@@ -23,40 +35,74 @@ const ItemInCart = ({ courseId }) => {
 
   if (error) return <div>Error loading course data</div>;
 
-  console.log(data);
+  const handleRemove = () => {
+    dispatch(
+      removeCourseFromCart({
+        courseId,
+        coursePrice: data.courseDiscountPrice || 0,
+      })
+    );
+  };
+
+  const handleCourseView = (e: React.DOMAttributes<HTMLDivElement>) => {
+    if (e.target.tagName === "DIV") {
+      navigate(`/course-view/${courseId}`);
+    }
+  };
 
   return (
     <div>
-      <div className="flex flex-row items-start justify-start gap-[1em]">
+      <div
+        className="flex flex-row items-start justify-start gap-[1em] cursor-pointer"
+        onClick={handleCourseView}
+      >
         <div>
-          <img src={data.courseImg} alt="" className="h-[5em]" />
+          <img src={data.courseImg} alt="" className={`${courseImgSize}`} />
         </div>
         <div className="flex flex-row items-center justify-center gap-[1em]">
           <div className="flex flex-col items-start gap-[0.5em]">
-            <CourseTitle title={data.courseName} />
-            <CourseInstructor instructor={data.fullName} />
+            <CourseTitle
+              title={data.courseName}
+              shortcutTitle={shortcutTitle}
+            />
+            <CourseInstructor
+              instructor={data.fullName}
+              shortCutInstructor={shortCutInstructor}
+            />
             <div className="flex flex-row items-start justify-start gap-[1em]">
-              <CourseTag tagName={data.courseTag} />
-              <CourseRatings
-                avgRatings={data.averageRating}
-                totalRatings={data.totalRatings}
+              <div className={hide ? "block" : "hidden"}>
+                <CourseTag tagName={data.courseTag} />
+              </div>
+              <div className={hide ? "block" : "hidden"}>
+                <CourseRatings
+                  avgRatings={data.averageRating}
+                  totalRatings={data.totalRatings}
+                />
+              </div>
+            </div>
+            <div className={hide ? "block" : "hidden"}>
+              <CourseLength
+                courseLevel={data.courseLevel}
+                totalLectures={data.totalCourseLessons}
+                totalMinutes={data.totalCourseDuration}
               />
             </div>
-            <CourseLength
-              courseLevel={data.courseLevel}
-              totalLectures={data.totalCourseLessons}
-              totalMinutes={data.totalCourseDuration}
-            />
           </div>
-          <div className="text-[0.8em] text-[#5022c3] hover:text-[#3b198f]">
-            <p className="cursor-pointer">Remove</p>
-            <p className="cursor-pointer">Save for Later</p>
-            <p className="cursor-pointer">Move to Wishlist</p>
+          <div className={hide ? "block" : "hidden"}>
+            <div className="text-[0.8em] text-[#5022c3] hover:text-[#3b198f]">
+              <button className="cursor-pointer" onClick={handleRemove}>
+                Remove
+              </button>
+              <p className="cursor-pointer">Save for Later</p>
+              <p className="cursor-pointer">Move to Wishlist</p>
+            </div>
           </div>
           <div>
             <div className="flex flex-row items-center justify-center gap-[0.2em] text-[#a435f0]">
               <b className="">₪{data.courseDiscountPrice}</b>
-              <BsFillTagFill />
+              <div className={hide ? "block" : "hidden"}>
+                <BsFillTagFill />
+              </div>
             </div>
           </div>
         </div>

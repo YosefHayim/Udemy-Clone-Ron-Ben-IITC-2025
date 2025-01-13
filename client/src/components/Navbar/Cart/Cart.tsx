@@ -1,15 +1,31 @@
 import { MdOutlineShoppingCart } from "react-icons/md";
 import CartCoursesNumber from "./CartCoursesNumber/CartCoursesNumber";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import HoverCart from "./HoverCart/HoverCart";
 
 const Cart = () => {
+  const [showCartHover, setShowCartHover] = useState(false);
+
+  const handleMouseEnter = () => setShowCartHover(true);
+  const handleMouseLeave = () => setShowCartHover(false);
+
   return (
-    <Link to="/cart">
-      <button className="text-black font-bold hover:text-purple-800">
+    <div
+      className="relative"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <Link to="/cart" className="text-black font-bold hover:text-purple-800">
         <MdOutlineShoppingCart className="w-6 h-6" />
         <CartCoursesNumber />
-      </button>
-    </Link>
+      </Link>
+      {showCartHover && (
+        <div className="absolute top-full left-0 z-[1000] p-[2em]">
+          <HoverCart />
+        </div>
+      )}
+    </div>
   );
 };
 
