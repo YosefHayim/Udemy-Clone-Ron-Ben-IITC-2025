@@ -168,9 +168,16 @@ const courseSchema = new mongoose.Schema(
 );
 
 courseSchema.pre(/^find/, function (next) {
-  this.populate("reviews", "user courseReview comment")
-    .populate("courseInstructor", "fullName profilePic _id")
-    .populate("sections");
+  this.populate({
+    path: "reviews",
+    select: "user comment rating", // Populate specific fields only
+  })
+    .populate({
+      path: "courseInstructor",
+      select: "fullName profilePic _id", // Ensure instructor details load correctly
+    })
+    .populate("sections"); // Populate sections as needed
+
   next();
 });
 
