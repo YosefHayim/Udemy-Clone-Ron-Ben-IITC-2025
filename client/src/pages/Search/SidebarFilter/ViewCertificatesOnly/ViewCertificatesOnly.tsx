@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { BsToggleOn, BsToggleOff } from "react-icons/bs";
 
-const ViewCertificatesOnly = () => {
+const ViewCertificatesOnly = ({ filterData, setFilterData }) => {
   const [isActive, setIsActive] = useState(false);
 
   const handleToggle = () => {
     setIsActive((prev) => !prev);
+    setFilterData((prevData) => ({
+      ...prevData,
+      certificate: !prevData.certificate,
+    }));
   };
 
   return (

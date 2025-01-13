@@ -5,6 +5,8 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 const Filter: React.FC<FilterProps> = ({
+  filterData,
+  setFilterData,
   filterTitle,
   filterItems,
   chosenHeight,
@@ -42,16 +44,13 @@ const Filter: React.FC<FilterProps> = ({
         </div>
         <div>
           {filterItems.map((item: DummyData) => (
-            <div
+            <label
               key={item.name}
-              className="flex gap-[0.5em] text-languageText  py-[0.5em] cursor-pointer"
+              className="flex gap-[0.5em] text-languageText py-[0.5em] cursor-pointer"
             >
-              <p>
-                <Checkbox className="rounded-none" />
-              </p>
-              <p>{item.name}</p>
-              <p className="text-weakGray">({item.count})</p>
-            </div>
+              <Checkbox className="rounded-none" />
+              <span>{item.name}</span>
+            </label>
           ))}
         </div>
         {isClicked && (

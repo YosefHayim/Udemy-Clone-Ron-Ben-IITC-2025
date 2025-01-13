@@ -1,7 +1,7 @@
 import FilterBtn from "./FilterBtn/FilterBtn";
 import SortDropDown from "./SortDropDown/SortDropDown";
 
-const FilterNSort = ({ totalResults }) => {
+const FilterNSort = ({ totalResults, filterData }) => {
   return (
     <div className="flex  w-[1200px] items-center justify-between mb-[2.4em]">
       <div className="flex flex-row items-center gap-[0.5em]">
@@ -9,7 +9,7 @@ const FilterNSort = ({ totalResults }) => {
           <FilterBtn />
         </div>
         <div>
-          <SortDropDown />
+          <SortDropDown filterData={filterData} />
         </div>
         <span className="text-purpleStatic hover:text-purpleHover font-bold cursor-pointer">
           Clear filters

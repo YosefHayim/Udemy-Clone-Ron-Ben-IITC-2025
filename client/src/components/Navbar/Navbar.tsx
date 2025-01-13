@@ -11,6 +11,7 @@ import { RootState } from "../../redux/index"; // Import RootState type for Redu
 import Heart from "./Heart/Heart";
 import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const user = useSelector((state: RootState) => state.user);
@@ -21,7 +22,9 @@ const Navbar = () => {
       style={{ height: "4.5rem" }}
     >
       <div className="flex items-center gap-6 w-screen">
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
         <AtagBtn aTagName={"Explore"} />
         <SearchInput />
         <AtagBtn aTagName={"Udemy Business"} />
