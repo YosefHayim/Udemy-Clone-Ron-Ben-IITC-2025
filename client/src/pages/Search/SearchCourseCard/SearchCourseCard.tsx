@@ -17,7 +17,7 @@ const SearchCourseCard = ({ course }) => {
 
   const handleCardClick = (courseId: string) => {
     console.log(`Navigating to course: ${courseId}`);
-    // navigate(`/course-view/${courseId}`);
+    navigate(`/course-view/${courseId}`);
   };
 
   return (

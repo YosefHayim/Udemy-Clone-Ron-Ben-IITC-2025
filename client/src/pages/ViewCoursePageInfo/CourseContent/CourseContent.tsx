@@ -12,8 +12,6 @@ const CourseContent = ({
   totalCourseSections,
   sectionsOfCourse,
 }) => {
-  console.log(sectionsOfCourse);
-
   return (
     <div className="flex flex-col">
       <h2 className="font-bold text-[1.2em] mb-[1em]">Course Content</h2>

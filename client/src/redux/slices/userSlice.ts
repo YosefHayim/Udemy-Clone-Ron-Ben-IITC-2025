@@ -7,17 +7,14 @@ type User = {
   role: string;
 };
 
-// Define the initial state
-const initialState: User = {
-  fullName: "",
-  profilePic: "",
-  role: "",
-};
-
 // Create the slice
 const userSlice = createSlice({
   name: "user", // Slice name
-  initialState,
+  initialState: {
+    fullName: "",
+    profilePic: "",
+    role: "",
+  },
   reducers: {
     setFullName: (state, action: PayloadAction<string>) => {
       state.fullName = action.payload;
