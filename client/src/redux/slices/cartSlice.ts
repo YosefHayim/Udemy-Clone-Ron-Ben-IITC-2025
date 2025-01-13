@@ -1,29 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Cart {
-  id: string;
-  title: string;
-  instructor: string;
+  amountOfCourses: Number;
+  coursesAddedToCart: [string];
+  totalCoursesPrice: Number;
 }
 
-interface CourseState {
-  courses: Cart[];
-}
-
-const courseSlice = createSlice({
+const cartSlice = createSlice({
   name: "cart",
-  initialState: {},
+  initialState: {
+    amountOfCourses: 0,
+    coursesAddedToCart: [],
+    totalCoursesPrice: Number,
+  },
   reducers: {
-    addCourse: (state, action: PayloadAction<Cart>) => {
-      state.courses.push(action.payload);
+    setAmountOfCourses: (state, action: PayloadAction<Cart>) => {
+      //placeholder
     },
-    removeCourse: (state, action: PayloadAction<string>) => {
-      state.courses = state.courses.filter(
-        (course) => course.id !== action.payload
-      );
+    coursesAddedToCart: (state, action: PayloadAction<string>) => {
+      //placeholder
+    },
+    totalCoursesPrice: (state, action: PayloadAction<string>) => {
+      //placeholder
     },
   },
 });
 
-export const { addCourse, removeCourse } = courseSlice.actions;
-export default courseSlice.reducer;
+export const { setAmountOfCourses, coursesAddedToCart, totalCoursesPrice } =
+  cartSlice.actions;
+export default cartSlice.reducer;
