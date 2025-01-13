@@ -1,62 +1,10 @@
-// import React from "react";
 
-// const ExploreMenu = () => {
-//   return (
-//     <div className="relative group">
-//       {/* Trigger button */}
-//       <button className="text-lg font-semibold hover:text-gray-700 focus:outline-none">
-//         Explore
-//       </button>
-
-//       {/* Dropdown menu */}
-//       <div className="absolute z-50 left-0 mt-2 w-64 bg-white shadow-lg rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-//         <ul className="p-4">
-//           {/* Fixed title */}
-//           <li className="font-bold text-gray-900 text-sm px-4 py-2">
-//             Browse Certifications
-//           </li>
-//           {/* First item with divider */}
-//           <li className="relative text-gray-900 text-sm hover:text-purple-600 cursor-pointer px-4 py-2 flex justify-between items-center">
-//             Certification preparation
-//             <span className="text-gray-500">&#8250;</span>
-//           </li>
-//           <hr className="my-2 border-gray-300" />
-//           {/* Remaining items */}
-//           {[
-//             "Development",
-//             "Business",
-//             "Finance & Accounting",
-//             "IT & Software",
-//             "Office Productivity",
-//             "Personal Development",
-//             "Design",
-//             "Marketing",
-//             "Lifestyle",
-//             "Photography & Video",
-//             "Health & Fitness",
-//             "Music",
-//             "Teaching & Academics",
-//           ].map((item, index) => (
-//             <li
-//               key={index}
-//               className="relative text-gray-900 text-sm hover:text-purple-600 cursor-pointer px-4 py-2 flex justify-between items-center"
-//             >
-//               {item}
-//               <span className="text-gray-500">&#8250;</span>
-//             </li>
-//           ))}
-//         </ul>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ExploreMenu;
 
 import React, { useState } from "react";
 
 const ExploreMenu = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
+  const [menuVisible, setMenuVisible] = useState(false);
 
   const menuItems = [
     {
@@ -264,46 +212,69 @@ const ExploreMenu = () => {
   return (
     <div className="relative group">
       {/* Trigger button */}
-      <button className="text-lg font-semibold hover:text-gray-700 focus:outline-none">
+      <button
+        className="text-lg font-semibold hover:text-gray-700 focus:outline-none"
+        onMouseEnter={() => setMenuVisible(true)}
+        onMouseLeave={() => setMenuVisible(false)}
+      >
         Explore
       </button>
 
       {/* Main dropdown menu */}
-      <div className="absolute z-50 left-0 mt-2 w-64 bg-white shadow-lg rounded-lg opacity-100">
-        <ul className="p-4">
-          {menuItems.map((item, index) => (
-            <li
-              key={index}
-              onMouseEnter={() => setHoveredItem(index)}
-              onMouseLeave={() => setHoveredItem(null)}
-              className={`relative text-gray-900 text-sm hover:text-purple-600 cursor-pointer px-4 py-2 ${
-                item.subcategories.length ? "flex justify-between items-center" : ""
-              }`}
-            >
-              {item.title}
-              {item.subcategories.length > 0 && (
-                <span className="text-gray-500">&#8250;</span>
-              )}
-              {hoveredItem === index && item.subcategories.length > 0 && (
-                <div className="absolute top-0 left-full mt-0 w-64 bg-white shadow-lg rounded-lg">
-                  <ul className="p-4">
-                    {item.subcategories.map((subcategory, subIndex) => (
-                      <li
-                        key={subIndex}
-                        className="text-gray-700 text-sm hover:text-purple-600 cursor-pointer px-4 py-2"
-                      >
-                        {subcategory}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
+      {menuVisible && (
+        <div
+          className="absolute z-50 left-0 w-64 bg-white shadow-lg rounded-lg opacity-100"
+          onMouseEnter={() => setMenuVisible(true)}
+          onMouseLeave={() => setMenuVisible(false)}
+        >
+          <ul className="p-4">
+            {menuItems.map((item, index) => (
+              <li
+                key={index}
+                onMouseEnter={() => setHoveredItem(index)}
+                onMouseLeave={() => setHoveredItem(null)}
+                className={`relative text-gray-900 text-sm hover:text-purple-600 cursor-pointer px-4 py-2 ${
+                  item.subcategories.length ? "flex justify-between items-center" : ""
+                }`}
+              >
+                {item.title}
+                {item.subcategories.length > 0 && (
+                  <span className="text-gray-500">&#8250;</span>
+                )}
+                {hoveredItem === index && item.subcategories.length > 0 && (
+                  <div
+                    className="absolute top-0 left-full bg-white shadow-lg rounded-lg"
+                    style={{
+                      minHeight: "100%", // Igualar a altura ao menu principal
+                      width: "100%", // Mesma largura do menu principal
+                    }}
+                  >
+                    <ul className="p-4">
+                      {item.subcategories.map((subcategory, subIndex) => (
+                        <li
+                          key={subIndex}
+                          className="text-gray-700 text-sm hover:text-purple-600 cursor-pointer px-4 py-2"
+                        >
+                          {subcategory}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
 
 export default ExploreMenu;
+
+
+
+
+
+
+
