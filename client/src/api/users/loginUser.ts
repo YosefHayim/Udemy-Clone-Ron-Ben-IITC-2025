@@ -5,7 +5,7 @@ const loginUser = async (credentials: string) => {
 
   try {
     const response = await axiosClient.post(
-      `${baseUrl}/api/user/auth/login`,
+      `${localhostUrl}/api/user/auth/login`,
       credentials
     );
 
