@@ -25,9 +25,9 @@ const CourseContent: React.FC = () => {
     queryFn: () => fetchCourseById(sanitizedCourseId),
     enabled: !!sanitizedCourseId,
   });
+  const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
 
   // Track completed lessons
-  const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
 
   // Toggle completion state for a lesson
   const toggleLessonCompletion = (lessonId: string) => {
@@ -64,7 +64,9 @@ const CourseContent: React.FC = () => {
               <ul className="mt-2 pl-4">
                 {section.lessons.map((lesson: any) => {
                   const isCurrentLesson =
+                    location.pathname === `/course/${sanitizedCourseId}/lesson/${lesson._id}/course-content` ||
                     location.pathname === `/course/${sanitizedCourseId}/lesson/${lesson._id}`;
+
 
                   return (
                     <li

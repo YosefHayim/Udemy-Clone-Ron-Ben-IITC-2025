@@ -51,7 +51,7 @@ export function CourseSidebarMenu({ sections, courseId }: { sections: Section[];
   let lessonCounter = 0;
  
   return (
-    <SidebarMenu className="gap-0 ">
+    <SidebarMenu className="gap-0 overflow-hidden">
       <div className="flex p-4 items-center justify-between border-b  font-semibold">
         <span className="text-lg">Course content</span>
         {open && (
@@ -79,7 +79,7 @@ export function CourseSidebarMenu({ sections, courseId }: { sections: Section[];
             {/* Collapsible Content for lessons */}
 
       <CollapsibleContent>
-              <SidebarMenuSub className="m-0 p-0 mt-5 border-l-0 ">
+              <SidebarMenuSub className="m-0 p-0 mt-5 border-l-0 w-full">
                 {section.lessons.map((lesson) => {
                   lessonCounter += 1;
                   const isCurrentLesson =
