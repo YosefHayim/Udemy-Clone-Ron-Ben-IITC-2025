@@ -59,7 +59,7 @@ const LessonRoutes: React.FC = () => {
     <>
       {/* Render NavBar with course name */}
       <NavBar courseName={courseData?.courseName || "Course"} />
-
+      <div className=" px-20 flex justify-center items-center">
       <Routes>
         {/* Redirect to overview tab by default */}
         <Route index element={<Navigate to={defaultRoute} replace />} />
@@ -77,6 +77,7 @@ const LessonRoutes: React.FC = () => {
         {/* Redirect to defaultRoute for invalid paths */}
         <Route path="*" element={<Navigate to={defaultRoute} replace />} />
       </Routes>
+      </div>
     </>
   );
 };

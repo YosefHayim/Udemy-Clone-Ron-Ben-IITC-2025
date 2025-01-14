@@ -7,7 +7,7 @@ const SearchTab: React.FC = () => {
   return (
     <div id="notes" className="p-10">
       <h2 className="text-lg font-bold">Search</h2>
-      <input/>
+      <input className="bg-white"/>
     </div>
   );
 };

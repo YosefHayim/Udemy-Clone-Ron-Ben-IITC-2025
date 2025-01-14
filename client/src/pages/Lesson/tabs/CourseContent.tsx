@@ -42,20 +42,21 @@ const CourseContent: React.FC = () => {
   if (error || !data) return <div>Error loading course data</div>;
 
   const sections = data.data.sections;
+  let lessonCounter = 0;
 
   return (
-    <div className="flex justify-center p-10 min-h-screen">
-      <div className="min-w-fit">
+    <div className="flex justify-center py-10 min-h-screen">
+      <div className="">
         {sections.map((section: any) => (
           <Collapsible
             key={section._id}
             defaultOpen
-            className="min-w-96 border-y group/collapsible"
+            className="min-w-[800px] border-y group/collapsible"
           >
             <div className="flex items-center justify-between p-4 bg-[#F7F9FA]">
               <CollapsibleTrigger asChild>
                 <button className="flex items-center w-full text-left focus:outline-none focus-visible:outline-none">
-                  <span className="text-l font-medium">{section.title}</span>
+                  <span className="text-lg font-medium">{section.title}</span>
                   <FaChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                 </button>
               </CollapsibleTrigger>
@@ -67,7 +68,7 @@ const CourseContent: React.FC = () => {
                     location.pathname === `/course/${sanitizedCourseId}/lesson/${lesson._id}/course-content` ||
                     location.pathname === `/course/${sanitizedCourseId}/lesson/${lesson._id}`;
 
-
+                  lessonCounter +=1
                   return (
                     <li
                       key={lesson._id}
@@ -86,10 +87,10 @@ const CourseContent: React.FC = () => {
                         <Link
                           to={`/course/${sanitizedCourseId}/lesson/${lesson._id}`}
                           state={{ courseId: sanitizedCourseId }}
-                          className="flex items-center gap-2"
+                          className="flex-col  ml-2"
                         >
                           <span>
-                            {lesson.title}
+                          {lessonCounter}. {lesson.title}
                           </span>
                           <span
                             className={`flex items-center text-xs ${
