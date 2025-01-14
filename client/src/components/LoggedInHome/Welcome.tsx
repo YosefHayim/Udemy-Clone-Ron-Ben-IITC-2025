@@ -1,21 +1,26 @@
 import { useSelector } from "react-redux";
+import ProfilePic from "../ProfilePic/ProfilePic";
 
 const Welcome = () => {
   const fullName = useSelector((state) => state.user.fullName);
   const profilePic = useSelector((state) => state.user.profilePic);
+  const bio = useSelector((state) => state.user.bio);
+
+  const [firstWord, secondWord] = fullName.split(" ");
+
+  const shortcutName = (firstWord?.[0] || "") + (secondWord?.[0] || "");
 
   return (
     <div className="flex items-center space-x-4 bg-white p-6">
-      {/* Avatar */}
-      <div className="w-16 h-16 flex items-center justify-center bg-black text-white text-xl font-bold rounded-full">
-        BK
-      </div>
-      {/* Text Section */}
+      <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
       <div>
         <h2 className="text-2xl font-bold">Welcome back, {fullName}</h2>
-        <a href="#" className="text-purple-600 underline">
-          Add occupation and interests
-        </a>
+        <div className="flex flex-row items-start justify-start gap-[0.5em]">
+          <p>{bio}</p>
+          <a href="#" className="text-purple-600 underline">
+            Add occupation and interests
+          </a>
+        </div>
       </div>
     </div>
   );
