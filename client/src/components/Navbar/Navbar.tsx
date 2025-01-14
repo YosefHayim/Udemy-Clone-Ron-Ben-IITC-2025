@@ -12,7 +12,7 @@ import Heart from "./Heart/Heart";
 import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
 import { Link } from "react-router-dom";
-import ExploreMenu from "./ExploreMenu";
+import ExploreMenu from "./Explore/ExploreMenu";
 
 const Navbar = () => {
   const user = useSelector((state: RootState) => state.user);
