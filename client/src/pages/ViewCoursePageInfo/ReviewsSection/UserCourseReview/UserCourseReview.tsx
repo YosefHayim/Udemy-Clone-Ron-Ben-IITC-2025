@@ -14,7 +14,7 @@ const UserCourseReview = ({ review }) => {
         <div className="flex flex-row items-start justify-start gap-[1em]">
           <UserProfile />
           <div className="flex flex-col items-start justify-start">
-            <UserReviewRating />
+            <UserReviewRating reviewRating={review.rating} />
           </div>
         </div>
         <div>
