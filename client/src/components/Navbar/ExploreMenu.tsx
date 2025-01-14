@@ -831,17 +831,93 @@ const ExploreMenu = () => {
         },
       ],
     },
-    ,
     {
-      title: "Office Productivity",
+      "title": "Office Productivity",
       subcategories: [
-        "Microsoft",
-        "Apple",
-        "Google",
-        "SAP",
-        "Oracle",
-        "Other Office Productivity",
-      ],
+        {
+          "title": "Microsoft",
+          "topics": [
+            "Microsoft Excel",
+            "Microsoft 365 (Office)",
+            "Microsoft Power BI",
+            "Excel VBA",
+            "PowerPoint",
+            "Excel Formulas and Functions",
+            "Pivot Tables",
+            "Data Analysis",
+            "Microsoft SharePoint"
+          ]
+        },
+        {
+          "title": "Apple",
+          "topics": [
+            "Mac Basics",
+            "iMovie",
+            "Apple Keynote",
+            "Apple Products Basics",
+            "Numbers For Mac",
+            "macOS",
+            "Mac Pages",
+            "Personal Productivity",
+            "Microsoft 365 (Office)"
+          ]
+        },
+        {
+          "title": "Google",
+          "topics": [
+            "Google Sheets",
+            "Google Workspace (G Suite)",
+            "Google Looker Studio (Data Studio)",
+            "Google AppSheet",
+            "Google Looker",
+            "Google Apps Script",
+            "Gmail Productivity",
+            "Google Drive",
+            "Microsoft Excel"
+          ]
+        },
+        {
+          "title": "SAP",
+          "topics": [
+            "SAP S/4HANA",
+            "SAP Materials Management (SAP MM)",
+            "SAP ABAP",
+            "SAP Business Technology Platform (SAP BTP)",
+            "SAP Sales and Distribution (SAP SD)",
+            "SAP FICO",
+            "SAP HCM",
+            "SAP Analytics Cloud"
+          ]
+        },
+        {
+          "title": "Oracle",
+          "topics": [
+            "Oracle Primavera",
+            "Oracle SQL",
+            "Oracle Fusion HCM",
+            "PL/SQL",
+            "Oracle Database",
+            "Database Administration",
+            "Project Management",
+            "Oracle ERP",
+            "Oracle E-Business Suite"
+          ]
+        },
+        {
+          "title": "Other Office Productivity",
+          "topics": [
+            "ChatGPT",
+            "Python",
+            "Programming Fundamentals",
+            "Generative AI (GenAI)",
+            "Notion Workspace",
+            "Prompt Engineering",
+            "ServiceNow",
+            "Automation",
+            "Typing"
+          ]
+        }
+      ]
     },
     {
       title: "Personal Development",
