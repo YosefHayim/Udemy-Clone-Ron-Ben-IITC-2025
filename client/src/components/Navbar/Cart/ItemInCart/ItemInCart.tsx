@@ -17,6 +17,9 @@ const ItemInCart = ({
   hide = true,
   shortCutInstructor = false,
   shortcutTitle = false,
+  chooseFlex = "flex-row",
+  itemsPosition = "center",
+  textColor = "text-[#a435f0]",
 }) => {
   if (!courseId) {
     return;
@@ -52,22 +55,24 @@ const ItemInCart = ({
   };
 
   return (
-    <div>
+    <div className="p-[1em] w-full">
       <div
-        className="flex flex-row items-start justify-start gap-[1em] cursor-pointer"
+        className={`${chooseFlex} flex items-start justify-start gap-[1em] cursor-pointer`}
         onClick={handleCourseView}
       >
         <div>
           <img src={data.courseImg} alt="" className={`${courseImgSize}`} />
         </div>
-        <div className="flex flex-row items-center justify-center gap-[1em]">
+        <div
+          className={`${chooseFlex} flex flex-row items-${itemsPosition} justify-center gap-[1em]`}
+        >
           <div className="flex flex-col items-start gap-[0.5em]">
             <CourseTitle
               title={data.courseName}
               shortcutTitle={shortcutTitle}
             />
             <CourseInstructor
-              instructor={data.fullName}
+              instructor={data.courseInstructor.fullName}
               shortCutInstructor={shortCutInstructor}
             />
             <div className="flex flex-row items-start justify-start gap-[1em]">
@@ -99,7 +104,9 @@ const ItemInCart = ({
             </div>
           </div>
           <div>
-            <div className="flex flex-row items-center justify-center gap-[0.2em] text-[#a435f0]">
+            <div
+              className={`flex flex-row items-center justify-center gap-[0.2em] ${textColor}`}
+            >
               <b className="">₪{data.courseDiscountPrice}</b>
               <div className={hide ? "block" : "hidden"}>
                 <BsFillTagFill />
@@ -109,7 +116,7 @@ const ItemInCart = ({
         </div>
       </div>
       <div className="mb-[1em] mt-[0.5em]">
-        <hr className="relative w-full" />
+        <hr className="relative w-[285px]" />
       </div>
     </div>
   );
