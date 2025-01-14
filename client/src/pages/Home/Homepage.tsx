@@ -8,14 +8,13 @@ import Testimonials from "./Testimonials";
 import TrendsReport from "./TopTrends";
 import TrendingNow from "./TrendingNow";
 import Carousel from "./Carousel";
-import Sections from './Sections'
+import Sections from "./Sections";
 import Menu from "@/components/Menu/Menu";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/index"; // Import RootState type for Redux 
+import { RootState } from "../../redux/index"; // Import RootState type for Redux
 
 const Homepage = () => {
-
-  const user = useSelector((state: RootState) => state.user)
+  const user = useSelector((state: RootState) => state.user);
 
   return (
     <>
@@ -55,7 +54,6 @@ const Homepage = () => {
           </div>
         </>
       )}
-
     </>
   );
 };

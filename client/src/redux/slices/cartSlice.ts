@@ -42,21 +42,23 @@ const cartSlice = createSlice({
         (id) => id !== courseId
       );
 
-      // Decrease the number of courses
+      // Ensure the course quantity is reduced correctly
       if (state.amountOfCourses > 0) {
-        state.amountOfCourses -= 1;
+        state.amountOfCourses -= amountToRemove;
+        if (state.amountOfCourses < 0) {
+          state.amountOfCourses = 0; // Prevent negative quantity
+        }
       }
 
-      // Subtract the course price from the total
-      state.totalCoursesPrice -= coursePrice;
+      // Update the total course price
+      state.totalCoursesPrice -= coursePrice * amountToRemove;
       if (state.totalCoursesPrice < 0) {
-        state.totalCoursesPrice = 0;
+        state.totalCoursesPrice = 0; // Prevent negative price
       }
 
-      // Remove the total courses in the cart.
-      state.amountOfCourses -= amountToRemove;
-      if (state.amountOfCourses < 0) {
-        state.amountOfCourses = 0;
+      // Explicitly reset the total price if the cart is empty
+      if (state.coursesAddedToCart.length === 0) {
+        state.totalCoursesPrice = 0;
       }
     },
   },
