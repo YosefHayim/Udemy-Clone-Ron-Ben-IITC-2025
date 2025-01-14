@@ -1607,10 +1607,10 @@ const ExploreMenu = () => {
     },
     {
       "title": "Photography & Video",
-      "subcategories": [
+      subcategories: [
         {
-          "name": "Digital Photography",
-          "subcategories": [
+          name: "Digital Photography",
+          subcategories: [
             "iPhone Photography",
             "Photography",
             "Digital Camera Functionality",
@@ -1622,8 +1622,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Photography",
-          "subcategories": [
+          name: "Photography",
+          subcategories: [
             "Photography Composition",
             "Mobile Photography",
             "Product Photography",
@@ -1635,8 +1635,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Portrait Photography",
-          "subcategories": [
+          name: "Portrait Photography",
+          subcategories: [
             "Photography Lighting",
             "Posing",
             "Photography",
@@ -1648,8 +1648,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Photography Tools",
-          "subcategories": [
+          name: "Photography Tools",
+          subcategories: [
             "Adobe Lightroom",
             "Adobe Photoshop",
             "Image Editing",
@@ -1662,8 +1662,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Commercial Photography",
-          "subcategories": [
+          name: "Commercial Photography",
+          subcategories: [
             "Real Estate Photography",
             "Architecture Photography",
             "Photography Business",
@@ -1676,8 +1676,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Video Design",
-          "subcategories": [
+          name: "Video Design",
+          subcategories: [
             "Video Editing",
             "Adobe Premiere Pro",
             "Video Production",
@@ -1690,8 +1690,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Other Photography & Video",
-          "subcategories": [
+          name: "Other Photography & Video",
+          subcategories: [
             "Generative AI (GenAI)",
             "YouTube Audience Growth",
             "iPhone Photography",
@@ -1708,10 +1708,10 @@ const ExploreMenu = () => {
     ,
     {
       "title": "Health & Fitness",
-      "subcategories": [
+      subcategories: [
         {
-          "name": "Fitness",
-          "subcategories": [
+          name: "Fitness",
+          subcategories: [
             "Pilates",
             "Teacher Training",
             "Personal Trainer Business",
@@ -1723,8 +1723,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "General Health",
-          "subcategories": [
+          name: "General Health",
+          subcategories: [
             "Massage",
             "Herbalism",
             "Facial Massage",
@@ -1737,8 +1737,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Sports",
-          "subcategories": [
+          name: "Sports",
+          subcategories: [
             "Soccer",
             "Sport Psychology",
             "Swimming",
@@ -1751,8 +1751,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Nutrition & Diet",
-          "subcategories": [
+          name: "Nutrition & Diet",
+          subcategories: [
             "Nutrition",
             "Dieting",
             "Health Coach Training",
@@ -1765,8 +1765,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Yoga",
-          "subcategories": [
+          name: "Yoga",
+          subcategories: [
             "Pranayama",
             "Chair Yoga",
             "Breathing Techniques",
@@ -1778,8 +1778,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Mental Health",
-          "subcategories": [
+          name: "Mental Health",
+          subcategories: [
             "Cognitive Behavioral Therapy (CBT)",
             "Somatic Therapy",
             "Psychotherapy",
@@ -1791,8 +1791,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Martial Arts & Self Defense",
-          "subcategories": [
+          name: "Martial Arts & Self Defense",
+          subcategories: [
             "Martial Arts",
             "Self-Defense",
             "Krav Maga",
@@ -1805,8 +1805,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Safety & First Aid",
-          "subcategories": [
+          name: "Safety & First Aid",
+          subcategories: [
             "First Aid",
             "Workplace Health and Safety",
             "OSHA",
@@ -1819,8 +1819,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Dance",
-          "subcategories": [
+          name: "Dance",
+          subcategories: [
             "Salsa Dancing",
             "Belly Dancing",
             "Bachata",
@@ -1831,8 +1831,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Meditation",
-          "subcategories": [
+          name: "Meditation",
+          subcategories: [
             "Mindfulness",
             "Sound Therapy",
             "Counseling",
@@ -1843,8 +1843,8 @@ const ExploreMenu = () => {
           ]
         },
         {
-          "name": "Other Health & Fitness",
-          "subcategories": [
+          name: "Other Health & Fitness",
+          subcategories: [
             "Massage",
             "Sports Massage",
             "Facial Massage",
@@ -1859,32 +1859,251 @@ const ExploreMenu = () => {
       ]
     },
     {
-      title: "Music",
+      "title": "Music",
       subcategories: [
-        "Instruments",
-        "Music Production",
-        "Music Fundamentals",
-        "Vocal",
-        "Music Techniques",
-        "Music Software",
-        "Other Music",
-      ],
-    },
+        {
+          name: "Instruments",
+          subcategories: [
+            "Guitar",
+            "Piano",
+            "Keyboard Instrument",
+            "Bass Guitar",
+            "Drums",
+            "Piano Chords",
+            "Violin",
+            "Ukulele",
+            "Harmonica"
+          ]
+        },
+        {
+          name: "Music Production",
+          subcategories: [
+            "Ableton Live",
+            "FL Studio",
+            "Logic Pro",
+            "Music Mixing",
+            "Audio Engineering",
+            "Music Composition",
+            "Sound Design",
+            "Audio Production"
+          ]
+        },
+        {
+          name: "Music Fundamentals",
+          subcategories: [
+            "Music Theory",
+            "Music Composition",
+            "Songwriting",
+            "Electronic Music",
+            "Reading Music",
+            "Ear Training",
+            "Piano",
+            "Harmony (music)",
+            "Piano Chords"
+          ]
+        },
+        {
+          name: "Vocal",
+          subcategories: [
+            "Singing",
+            "Voice Training",
+            "Voice Acting",
+            "Meditation",
+            "Raga Music",
+            "Rapping",
+            "Yoga",
+            "Breathing Techniques",
+            "Voice-Over"
+          ]
+        },
+        {
+          name: "Music Techniques",
+          subcategories: [
+            "DJ",
+            "Reading Music",
+            "Music Composition",
+            "Fingerstyle Guitar",
+            "Piano",
+            "Music Theory",
+            "Guitar",
+            "Music Improvisation",
+            "Piano Chords"
+          ]
+        },
+        {
+          name: "Music Software",
+          subcategories: [
+            "FL Studio",
+            "Logic Pro",
+            "Music Theory",
+            "Ableton Live",
+            "Music Production",
+            "GarageBand",
+            "DJ",
+            "Sound Design",
+            "Cubase"
+          ]
+        },
+        {
+          name: "Other Music",
+          subcategories: [
+            "DJ",
+            "Music Business",
+            "Songwriting",
+            "Sound Therapy",
+            "Music Marketing",
+            "Rapping",
+            "Luthiery",
+            "Music Mixing",
+            "Acoustics"
+          ]
+        }
+      ]
+    }
+    ,
     {
-      title: "Teaching & Academics",
+      "title": "Teaching & Academics",
       subcategories: [
-        "Engineering",
-        "Humanities",
-        "Math",
-        "Science",
-        "Online Education",
-        "Social Science",
-        "Language Learning",
-        "Teacher Training",
-        "Test Prep",
-        "Other Teaching & Academics",
-      ],
-    },
+        {
+          name: "Engineering",
+          subcategories: [
+            "Electrical Engineering",
+            "Mechanical Engineering",
+            "Electricity",
+            "Civil Engineering",
+            "Electronics",
+            "Solar Energy",
+            "Automotive Engineering",
+            "Power Engineering",
+            "Electrical Design"
+          ]
+        },
+        {
+          name: "Humanities",
+          subcategories: [
+            "Philosophy",
+            "Art History",
+            "Statistics",
+            "World History",
+            "Christianity",
+            "Critical Thinking",
+            "Creative Writing",
+            "Cognitive Behavioral Therapy (CBT)",
+            "Autism"
+          ]
+        },
+        {
+          name: "Math",
+          subcategories: [
+            "Calculus",
+            "Statistics",
+            "Linear Algebra",
+            "Algebra",
+            "Probability",
+            "Trigonometry",
+            "Geometry",
+            "Discrete Math"
+          ]
+        },
+        {
+          name: "Science",
+          subcategories: [
+            "Physics Anatomy",
+            "Medical Coding",
+            "Chemistry",
+            "General Chemistry",
+            "Biology",
+            "Quantum Mechanics (physics)",
+            "Certified Professional Coder (CPC)",
+            "Organic Chemistry"
+          ]
+        },
+        {
+          name: "Online Education",
+          subcategories: [
+            "Online Course Creation",
+            "Instructional Design",
+            "Teaching Online",
+            "Project Management",
+            "Canva",
+            "Moodle",
+            "Coding For Kids",
+            "ChatGPT",
+            "Passive Income"
+          ]
+        },
+        {
+          name: "Social Science",
+          subcategories: [
+            "Psychology",
+            "Macroeconomics",
+            "Counseling",
+            "Econometrics",
+            "Economics",
+            "Criminology",
+            "Psychotherapy",
+            "Intelligence Analysis (security)",
+            "Cognitive Behavioral Therapy (CBT)"
+          ]
+        },
+        {
+          name: "Language Learning",
+          subcategories: [
+            "English Language",
+            "German Language",
+            "Spanish Language",
+            "English Grammar",
+            "French Language",
+            "Japanese Language",
+            "English Conversation",
+            "English Vocabulary",
+            "Arabic Language"
+          ]
+        },
+        {
+          name: "Teacher Training",
+          subcategories: [
+            "Train the Trainer",
+            "Early Childhood Education",
+            "English Language",
+            "Classroom Management",
+            "Instructional Design",
+            "Generative AI (GenAI)",
+            "Voice-Over",
+            "Coaching"
+          ]
+        },
+        {
+          name: "Test Prep",
+          subcategories: [
+            "IELTS",
+            "TOEFL",
+            "PMI Project Management Professional (PMP)",
+            "Statistics",
+            "Test Taking Skills",
+            "Canadian English Language Proficiency Index Program (CELPIP)",
+            "PMI PMBOK",
+            "English Language",
+            "CCAT"
+          ]
+        },
+        {
+          name: "Other Teaching & Academics",
+          subcategories: [
+            "Research Methods",
+            "Medical Coding",
+            "Proofreading",
+            "Medical Billing",
+            "Research Paper Writing",
+            "Academic Writing",
+            "Sewing",
+            "Chess",
+            "Clinical Research"
+          ]
+        }
+      ]
+    }
+    ,
   ];
 
   return (
