@@ -85,9 +85,9 @@ const signUp = catchAsync(async (req, res, next) => {
 
   res.cookie("cookie", token, {
     maxAge: 900 * 1000, // 15 minutes
-    secure: process.env.NODE_ENV === "production" ? true : false,
-    httpOnly: false,
-    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production", // Secure in production
+    httpOnly: false, // Allow JavaScript access
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
   });
 
   res.status(200).json({
@@ -115,11 +115,12 @@ const login = catchAsync(async (req, res, next) => {
     profilePic: isFoundUser.profilePic,
     role: isFoundUser.role,
   });
+
   res.cookie("cookie", token, {
-    maxAge: 300 * 1000, // 5 minutes
-    secure: false, // Set to true for HTTPS
+    maxAge: 900 * 1000, // 15 minutes
+    secure: process.env.NODE_ENV === "production", // Secure in production
     httpOnly: false, // Allow JavaScript access
-    sameSite: "lax", // Use "none" only if frontend/backend are on different origins
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
   });
 
   if (!isFoundUser.emailVerified) {
@@ -172,8 +173,10 @@ const confirmEmailAddress = catchAsync(async (req, res, next) => {
 
 const logout = catchAsync(async (req, res, next) => {
   res.cookie("cookie", "clear", {
-    expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: false,
+    maxAge: 900 * 1000, // 15 minutes
+    secure: process.env.NODE_ENV === "production", // Secure in production
+    httpOnly: false, // Allow JavaScript access
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
   });
   res.status(200).json({
     status: "success",
