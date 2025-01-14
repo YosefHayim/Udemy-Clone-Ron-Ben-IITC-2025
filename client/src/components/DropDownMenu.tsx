@@ -5,18 +5,20 @@ import ProfilePic from "./ProfilePic/ProfilePic";
 import { useSelector } from "react-redux";
 
 const DropdownMenu: React.FC = () => {
-  const fullName = useSelector((state) => state.user.fullName);
-  const profilePic = useSelector((state) => state.user.profilePic);
-  const email = useSelector((state) => state.user.email);
+  // Accessing Redux state for user data
+  const fullName = useSelector((state: any) => state.user.fullName);
+  const profilePic = useSelector((state: any) => state.user.profilePic);
+  const email = useSelector((state: any) => state.user.email);
 
-  const [firstWord, secondWord] = fullName.split(" ");
+  // Split fullName safely, handle case when fullName is empty or undefined
+  const [firstWord, secondWord] = fullName?.split(" ") || ["", ""];
 
+  // Safely generate shortcutName using first and second word initials
   const shortcutName =
-    (firstWord?.[0].toUpperCase() || "") +
-    (secondWord?.[0].toUpperCase() || "");
+    (firstWord?.[0]?.toUpperCase() || "") + (secondWord?.[0]?.toUpperCase() || "");
 
   if (!fullName && !profilePic && !email) {
-    return;
+    return null; // Return null if essential data is missing
   }
 
   return (

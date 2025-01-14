@@ -10,28 +10,36 @@ const Profile: React.FC = () => {
     (state: RootState) => state.user.profilePic
   );
 
-  const fullName = useSelector((state) => state.user.fullName);
-  const profilePic = useSelector((state) => state.user.profilePic);
+  const fullName = useSelector((state: RootState) => state.user.fullName);
+  const profilePic = useSelector((state: RootState) => state.user.profilePic);
 
-  const [firstWord, secondWord] = fullName.split(" ");
+  // Ensure fullName is defined before splitting
+  const [firstWord, secondWord] = fullName ? fullName.split(" ") : ["", ""];
 
+  // Safely generate the shortcut name
   const shortcutName =
-    (firstWord?.[0].toUpperCase() || "") +
-    (secondWord?.[0].toUpperCase() || "");
+    (firstWord?.[0]?.toUpperCase() || "") + (secondWord?.[0]?.toUpperCase() || "");
 
   if (!fullName && !profilePic) {
-    return;
+    return <div>Loading...</div>; // Return a loading state if needed
   }
 
-  // Função para pegar a inicial do email, caso não haja imagem
+  // Function to get the initial of the email if there is no profile picture
   const getInitial = (email: string | undefined) => {
-    if (!email) return "?"; // Retorna "?" se o email for inválido
-    return email.charAt(0).toUpperCase(); // Primeira letra maiúscula
+    if (!email) return "?"; // Returns "?" if the email is invalid
+    return email.charAt(0).toUpperCase(); // Uppercase first letter
   };
+
+  // If there's no profile picture, fallback to initials
+  const initialFromEmail = profilePic ? null : getInitial("user@example.com");
 
   return (
     <div className="relative group">
-      <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
+      {/* If no profilePic, fallback to initials */}
+      <ProfilePic
+        shortcutName={shortcutName || initialFromEmail}
+        profilePic={profilePic}
+      />
       <DropdownMenu />
     </div>
   );
