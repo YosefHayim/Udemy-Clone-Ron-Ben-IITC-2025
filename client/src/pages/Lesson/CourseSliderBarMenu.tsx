@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
 import { useState } from "react";
 import CustomTrigger from "./CustomTrigger";
+import { MdOndemandVideo } from "react-icons/md";
 
 interface Lesson {
   _id: string;
@@ -85,7 +86,7 @@ export function CourseSidebarMenu({ sections, courseId }: { sections: Section[];
                       />
                       <SidebarMenuSubButton asChild>
                         <Link to={`/course/${courseId}/lesson/${lesson._id}/overview`}>
-                          {lesson.duration}. {lesson.title}
+                        <MdOndemandVideo />. {lesson.duration}
                         </Link>
                       </SidebarMenuSubButton>
                     </div>
