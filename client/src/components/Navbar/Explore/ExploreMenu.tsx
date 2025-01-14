@@ -85,8 +85,7 @@ const ExploreMenu = () => {
           >
             {/* Título */}
             <div className="px-4 py-2 font-bold text-gray-700">Browse Certifications</div>
-            {/* <hr className="border-t border-gray-300 my-2" /> */}
-
+            
             {ExploreData.map((category, index) => (
               <>
                 <div
