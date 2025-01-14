@@ -920,25 +920,227 @@ const ExploreMenu = () => {
       ]
     },
     {
-      title: "Personal Development",
+      "title": "Personal Development",
       subcategories: [
-        "Personal Transformation",
-        "Personal Productivity",
-        "Leadership",
-        "Career Development",
-        "Parenting & Relationships",
-        "Happiness",
-        "Esoteric Practices",
-        "Religion & Spirituality",
-        "Personal Brand Building",
-        "Creativity",
-        "Influence",
-        "Self Esteem & Confidence",
-        "Stress Management",
-        "Memory & Study Skills",
-        "Motivation",
-        "Other Personal Development",
-      ],
+        {
+          name: "Personal Transformation",
+          subcategories: [
+            "Life Coach Training",
+            "Neuro-Linguistic Programming (NLP)",
+            "Personal Development",
+            "Sound Therapy",
+            "Horsemanship",
+            "Mindfulness",
+            "Coaching",
+            "Life Purpose"
+          ]
+        },
+        {
+          name: "Personal Productivity",
+          subcategories: [
+            "ChatGPT",
+            "Time Management",
+            "Notion Workspace",
+            "Speed Reading",
+            "Obsidian App",
+            "Organizational Skills",
+            "Writing",
+            "Procrastination",
+            "Focus Mastery"
+          ]
+        },
+        {
+          name: "Memory and Study Skills",
+          subcategories: [
+            "Memory",
+            "Speed Reading",
+            "Learning Strategies",
+            "Study Skills",
+            "Focus Mastery",
+            "Mind Mapping",
+            "Critical Thinking",
+            "Artificial Intelligence (AI)",
+            "Obsidian App"
+          ]
+        },
+        {
+          name: "Motivation",
+          subcategories: [
+            "Neuroplasticity",
+            "English Grammar",
+            "Neuro-Linguistic Programming (NLP)",
+            "Coaching",
+            "Manifestation and Law of Attraction",
+            "Procrastination",
+            "Personal Development",
+            "Philosophy"
+          ]
+        },
+        {
+          name: "Other Personal Management",
+          subcategories: [
+            "Project Development",
+            "Freight Brokering",
+            "Public Speaking",
+            "Personal Development",
+            "Hypnotherapy",
+            "Sound Therapy",
+            "Lucid Dreaming",
+            "Life Coach Training",
+            "Car Repair"
+          ]
+        },
+        {
+          name: "Leadership",
+          subcategories: [
+            "Management Skills",
+            "Manager Training",
+            "Coaching",
+            "Communication Skills",
+            "Conflict Management",
+            "Public Speaking",
+            "Relationship Building",
+            "Decision Making"
+          ]
+        },
+        {
+          name: "Career Development",
+          subcategories: [
+            "Interviewing Skills",
+            "Job Search",
+            "Resume and CV Writing",
+            "Business Communication",
+            "IT / Technical Support",
+            "Business Writing",
+            "Car Repair",
+            "Building Inspection"
+          ]
+        },
+        {
+          name: "Parenting & Relationships",
+          subcategories: [
+            "Parenting",
+            "Relationship Building",
+            "Generative AI (GenAI)",
+            "Couples Counseling",
+            "Child Psychology",
+            "Marriage",
+            "Love",
+            "Autism",
+            "Dating"
+          ]
+        },
+        {
+          name: "Happiness",
+          subcategories: [
+            "Life Coach Training",
+            "Manifestation and Law of Attraction",
+            "Cognitive Behavioral Therapy (CBT)",
+            "Neuro-Linguistic Programming (NLP)",
+            "Positive Psychology",
+            "Mindfulness",
+            "Psychology",
+            "Personal Success"
+          ]
+        },
+        {
+          name: "Esoteric Practices",
+          subcategories: [
+            "Reiki",
+            "Energy Healing",
+            "Tarot Reading",
+            "Astrology",
+            "Spiritual Healing",
+            "Hypnotherapy",
+            "Psychic",
+            "Chakra",
+            "Akashic Records"
+          ]
+        },
+        {
+          name: "Religion & Spirituality",
+          subcategories: [
+            "Spirituality",
+            "Tarot Reading",
+            "Energy Healing",
+            "Life Coach Training",
+            "Mindfulness",
+            "Reiki",
+            "Spiritual Healing",
+            "The Bible",
+            "Numerology"
+          ]
+        },
+        {
+          name: "Personal Brand Building",
+          subcategories: [
+            "Personal Branding",
+            "Meetings",
+            "LinkedIn",
+            "Career Development",
+            "Personal Networking",
+            "Business Strategy",
+            "Amazon Kindle Direct Publishing (KDP)",
+            "Audiobook Creation",
+            "Public Speaking"
+          ]
+        },
+        {
+          name: "Creativity",
+          subcategories: [
+            "Creative Writing",
+            "Screenwriting and Scriptwriting",
+            "Art Therapy",
+            "Writing a Book",
+            "Storytelling",
+            "Writing",
+            "Novel Writing",
+            "Fiction Writing",
+            "Self-Publishing"
+          ]
+        },
+        {
+          name: "Influence",
+          subcategories: [
+            "Voice Training",
+            "Communication Skills",
+            "Persuasion",
+            "Negotiation",
+            "Public Speaking",
+            "Body Language",
+            "English Grammar",
+            "Presentation Skills",
+            "Influence Skills"
+          ]
+        },
+        {
+          name: "Self Esteem & Confidence",
+          subcategories: [
+            "Confidence",
+            "Self-Esteem",
+            "Communication Skills",
+            "Psychotherapy",
+            "Personal Development",
+            "Social Skills",
+            "Family Constellations Therapy",
+            "Public Speaking",
+            "Dance"
+          ]
+        },
+        {
+          name: "Stress Management",
+          subcategories: [
+            "Anxiety Management",
+            "Emotional Intelligence",
+            "Resilience",
+            "Coaching",
+            "Anger Management",
+            "Grief Healing",
+            "Mindfulness",
+            "Work Life Balance"
+          ]
+        }
+      ]
     },
     {
       title: "Design",
