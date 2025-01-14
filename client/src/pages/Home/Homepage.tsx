@@ -11,8 +11,8 @@ import Carousel from "./Carousel";
 import Sections from "./Sections";
 import Menu from "@/components/Menu/Menu";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/index"; // Import RootState type for Redux 
-import Welcome from "@/components/LogedinHomePage/Welcome";
+import { RootState } from "../../redux/index"; // Import RootState type for Redux
+import Welcome from "@/components/LoggedInHome/Welcome";
 import TeamAcess from "./TeamAcess";
 import DropdownMenu from "@/components/DropDownMenu";
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";

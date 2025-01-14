@@ -23,16 +23,21 @@ const Login = () => {
   // Do post requisition to the authentication url
   const loginUser = async (credentials) => {
     axios.defaults.withCredentials = true;
-    const response = await axios.post("https://udemy-clone-ron-ben.onrender.com/api/user/auth/login", credentials);
+    const response = await axios.post(
+      "https://udemy-clone-ron-ben.onrender.com/api/user/auth/login",
+      credentials
+    );
     console.log(document.cookie);
-    const decode = jwtDecode(document.cookie)
-    console.log(decode)
+    const decode = jwtDecode(document.cookie);
+    console.log(decode);
     return response.data;
   };
 
   // TanStack Query mutation for managing assync longinUser
   const getCookieValue = (cookie) => {
-    const match = document.cookie.match(new RegExp('(^| )' + cookie + '=([^;]+)'));
+    const match = document.cookie.match(
+      new RegExp("(^| )" + cookie + "=([^;]+)")
+    );
     console.log("Cookies disponíveis no document.cookie:", document.cookie); // Log dos cookies
     return match ? match[2] : null;
   };
@@ -50,8 +55,6 @@ const Login = () => {
       });
     },
   });
-
-
 
   const validateForm = () => {
     const errors = {};
