@@ -65,7 +65,6 @@ const Login = () => {
     dispatch(setEmailAddress(decoded.email));
     dispatch(setBio(decoded.bio));
     dispatch(setRole(decoded.role));
-    navigate("/");
   }
 
   return (
