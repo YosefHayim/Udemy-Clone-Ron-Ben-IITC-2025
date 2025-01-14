@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import loginUser from "@/api/users/loginUser";
 import { jwtDecode } from "jwt-decode";
 import {
+  setBio,
   setFullName,
   setProfilePic,
   setRole,
@@ -86,6 +87,7 @@ const Login = () => {
     dispatch(setFullName(decoded.fullName));
     dispatch(setProfilePic(decoded.profilePic));
     dispatch(setRole(decoded.role));
+    dispatch(setBio(decoded.bio));
     navigate("/");
   }
 

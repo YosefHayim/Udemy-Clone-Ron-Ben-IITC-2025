@@ -81,6 +81,7 @@ const signUp = catchAsync(async (req, res, next) => {
     fullName: newUser.fullName,
     profilePic: newUser.profilePic,
     role: newUser.role,
+    bio: newUser.bio,
   });
 
   res.cookie("cookie", token, {
@@ -114,6 +115,7 @@ const login = catchAsync(async (req, res, next) => {
     fullName: isFoundUser.fullName,
     profilePic: isFoundUser.profilePic,
     role: isFoundUser.role,
+    bio: isFoundUser.bio,
   });
 
   res.cookie("cookie", token, {

@@ -13,6 +13,7 @@ const userSlice = createSlice({
   initialState: {
     fullName: "",
     profilePic: "",
+    bio: "",
     role: "",
   },
   reducers: {
@@ -25,6 +26,10 @@ const userSlice = createSlice({
     setRole: (state, action: PayloadAction<string>) => {
       state.role = action.payload;
     },
+    setBio: (state, action: PayloadAction<string>) => {
+      state.role = action.payload;
+    },
+
     clearUser: (state) => {
       state.fullName = "";
       state.profilePic = "";
@@ -34,7 +39,7 @@ const userSlice = createSlice({
 });
 
 // Export actions to use in the app
-export const { setFullName, setProfilePic, setRole, clearUser } =
+export const { setFullName, setProfilePic, setRole, clearUser, setBio } =
   userSlice.actions;
 
 // Export the reducer to add it to the store

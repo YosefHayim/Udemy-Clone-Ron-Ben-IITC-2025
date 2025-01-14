@@ -1,4 +1,9 @@
+import { useSelector } from "react-redux";
+
 const Welcome = () => {
+  const fullName = useSelector((state) => state.user.fullName);
+  const profilePic = useSelector((state) => state.user.profilePic);
+
   return (
     <div className="flex items-center space-x-4 bg-white p-6">
       {/* Avatar */}
@@ -7,7 +12,7 @@ const Welcome = () => {
       </div>
       {/* Text Section */}
       <div>
-        <h2 className="text-2xl font-bold">Welcome back, Ben</h2>
+        <h2 className="text-2xl font-bold">Welcome back, {fullName}</h2>
         <a href="#" className="text-purple-600 underline">
           Add occupation and interests
         </a>
