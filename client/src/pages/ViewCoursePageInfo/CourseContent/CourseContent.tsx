@@ -22,11 +22,12 @@ const CourseContent = ({
       />
       <div>
         {sectionsOfCourse.map((courseSection) => (
-          <Section
-            key={courseSection._id}
-            lessonsOfSection={courseSection.lessons}
-            sectionName={courseSection.title}
-          />
+          <div key={courseSection._id}>
+            <Section
+              lessonsOfSection={courseSection.lessons}
+              sectionName={courseSection.title}
+            />
+          </div>
         ))}
       </div>
       <hr className="w-[550px] mt-[2em]" />
