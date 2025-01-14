@@ -30,13 +30,13 @@ const CustomTrigger: React.FC<CustomTriggerProps> = ({
     isInsideSidebar
       ? "text-gray-700 bg-transparent flex items-center font-semibold "
       : "bg-gray-500/50 hover:bg-gray-500 text-white rounded-sm group flex items-center w-10 overflow-hidden transition-all duration-300 hover:w-48"
-  } shadow-md transform transition-all duration-300 ${
+  }  transform transition-all duration-300 ${
     isInsideSidebar ? "" : "absolute"
   }`}
 >
   {open ? (
     isInsideSidebar ? (
-      <IoClose className="text-sm" />
+      <IoClose className="text-xl" />
     ) : (
       <FaTimes className="mr-2" />
     )

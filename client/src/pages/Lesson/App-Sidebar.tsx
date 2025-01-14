@@ -53,9 +53,9 @@ export function AppSidebar() {
 
   return (
     <>
-      <Sidebar className="absolute min-h-full top-[69px] bg-white" side="left">
+      <Sidebar className="absolute min-h-full pt-[54px] px-0 bg-white" side="left">
         <SidebarContent>
-          <SidebarGroup>
+          <SidebarGroup className="p-0">
             <SidebarGroupContent>
               <CourseSidebarMenu sections={courseData.sections} courseId={courseId} />
             </SidebarGroupContent>

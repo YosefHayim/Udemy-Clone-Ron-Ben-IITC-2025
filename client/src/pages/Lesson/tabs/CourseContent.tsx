@@ -1,6 +1,7 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
+import { MdOndemandVideo } from "react-icons/md";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Collapsible,
@@ -13,6 +14,7 @@ import Loader from "@/components/Loader/Loader";
 
 const CourseContent: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
+  const location = useLocation();
 
   // Sanitize courseId to remove any leading colon or whitespace
   const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
@@ -23,6 +25,17 @@ const CourseContent: React.FC = () => {
     queryFn: () => fetchCourseById(sanitizedCourseId),
     enabled: !!sanitizedCourseId,
   });
+
+  // Track completed lessons
+  const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
+
+  // Toggle completion state for a lesson
+  const toggleLessonCompletion = (lessonId: string) => {
+    setCompletedLessons((prev) => ({
+      ...prev,
+      [lessonId]: !prev[lessonId],
+    }));
+  };
 
   // Handle loading and error states
   if (isLoading) return <Loader />;
@@ -49,20 +62,46 @@ const CourseContent: React.FC = () => {
             </div>
             <CollapsibleContent>
               <ul className="mt-2 pl-4">
-                {section.lessons.map((lesson: any) => (
-                  <li
-                    key={lesson._id}
-                    className="flex items-center gap-3 mb-2 hover:bg-slate-400"
-                  >
-                    <Checkbox className="hover:border-black focus:outline-none" />
-                    <Link
-                      to={`/course/${sanitizedCourseId}/lesson/${lesson._id}`}
-                      state={{ courseId: sanitizedCourseId }}
+                {section.lessons.map((lesson: any) => {
+                  const isCurrentLesson =
+                    location.pathname === `/course/${sanitizedCourseId}/lesson/${lesson._id}`;
+
+                  return (
+                    <li
+                      key={lesson._id}
+                      className={`flex items-center gap-3 mb-2 p-2 ${
+                        isCurrentLesson ? "bg-slate-400 text-white" : "hover:bg-slate-400"
+                      }`}
                     >
-                      {lesson.title}
-                    </Link>
-                  </li>
-                ))}
+                      <Checkbox
+                        checked={!!completedLessons[lesson._id]}
+                        onCheckedChange={() => toggleLessonCompletion(lesson._id)}
+                        className={`hover:border-black focus:outline-none ${
+                          isCurrentLesson ? "border-white" : ""
+                        }`}
+                      />
+                      <div className="flex flex-col">
+                        <Link
+                          to={`/course/${sanitizedCourseId}/lesson/${lesson._id}`}
+                          state={{ courseId: sanitizedCourseId }}
+                          className="flex items-center gap-2"
+                        >
+                          <span>
+                            {lesson.title}
+                          </span>
+                          <span
+                            className={`flex items-center text-xs ${
+                              isCurrentLesson ? "text-white" : "text-black"
+                            }`}
+                          >
+                            <MdOndemandVideo />
+                            <span>{lesson.duration ? `${lesson.duration} min` : ""}</span>
+                          </span>
+                        </Link>
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
             </CollapsibleContent>
           </Collapsible>

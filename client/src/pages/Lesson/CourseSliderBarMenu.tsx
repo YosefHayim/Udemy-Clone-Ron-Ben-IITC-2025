@@ -51,11 +51,11 @@ export function CourseSidebarMenu({ sections, courseId }: { sections: Section[];
   let lessonCounter = 0;
  
   return (
-    <SidebarMenu className="gap-0 mt-[-20px]">
-      <div className="flex items-center justify-between border-b font-semibold">
+    <SidebarMenu className="gap-0 ">
+      <div className="flex p-4 items-center justify-between border-b  font-semibold">
         <span className="text-lg">Course content</span>
         {open && (
-          <div className="p-4 size">
+          <div className="pl-6 size">
             <CustomTrigger open={open} toggleSidebar={toggleSidebar} position="insideSidebar" />
           </div>
         )}
@@ -66,30 +66,29 @@ export function CourseSidebarMenu({ sections, courseId }: { sections: Section[];
         <Collapsible
           key={section._id}
           defaultOpen
-          className="group/collapsible border-b flex  p-4  "
+          className="group/collapsible  py-4 border-b flex   w-full "
         >
           <SidebarMenuItem >
-            <CollapsibleTrigger asChild className="overflow-visible  font-bold focus:outline-none  gap-0 pl-0 focus-visible:outline-none rounded-none">
+            <CollapsibleTrigger asChild className="overflow-visible   font-bold focus:outline-none  gap-0 pl-0 focus-visible:outline-none rounded-none">
               <SidebarMenuButton className="overflow-visible   focus:outline-none flex items-center justify-between gap-0 pl-0 focus-visible:outline-none rounded-none">
-                <span className="whitespace-normal break-words text-sm mr-3">{section.title}</span>
-                <FaChevronDown className="overflow-visible transition-transform  absolute ml-48 group-data-[state=open]/collapsible:rotate-180" />
+                <span className="whitespace-normal break-words text-sm pl-2  ">{section.title}</span>
+                <FaChevronDown className="overflow-visible transition-transform  absolute ml-52 group-data-[state=open]/collapsible:rotate-180" />
               </SidebarMenuButton>
             </CollapsibleTrigger>
 
             {/* Collapsible Content for lessons */}
 
       <CollapsibleContent>
-              <SidebarMenuSub className="m-0 p-0 mt-5 border-l-0 w-full">
+              <SidebarMenuSub className="m-0 p-0 mt-5 border-l-0 ">
                 {section.lessons.map((lesson) => {
                   lessonCounter += 1;
                   const isCurrentLesson =
                     location.pathname === `/course/${courseId}/lesson/${lesson._id}/overview`; // Increment the global counter
                   return (
                     <SidebarMenuSubItem
-                      className="hover:bg-slate-400 h-full w-full"
-                      key={lesson._id}
-                    >
-                      <div className={isCurrentLesson ?'bg-slate-500 flex items-center justify-between group w-full' : "hover:bg-slate-500 flex items-center justify-between group w-full "}   >
+                       className={isCurrentLesson ?"bg-slate-400 h-full w-full" :"hover:bg-slate-400 h-full w-full"} 
+                      key={lesson._id}>
+                      <div className= 'flex items-center justify-between group w-full'>
                         <SidebarMenuSubButton asChild>
                           <div className="flex items-center  h-full">
                             {/* Checkbox */}
@@ -100,11 +99,11 @@ export function CourseSidebarMenu({ sections, courseId }: { sections: Section[];
                             />
                             <div className="flex  flex-col">
                               {/* Lesson Link */}
-                              <Link className='hover:bg-slate-500 ' to={`/course/${courseId}/lesson/${lesson._id}/overview`}>
+                              <Link  to={`/course/${courseId}/lesson/${lesson._id}/overview`}>
                                 <span className="">
                                   {lessonCounter}. {lesson.title}
                                 </span>
-                                <span className="flex text-sm text-gray-400 items-center ">
+                                <span className="flex text-xs text-black items-center hover:text-black">
                                   <MdOndemandVideo className="text" />
                                   <span className="text-sm"> {lesson.duration} min </span>
                                 </span>
