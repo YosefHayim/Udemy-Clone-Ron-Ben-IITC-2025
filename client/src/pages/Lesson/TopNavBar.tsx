@@ -1,5 +1,10 @@
 import React from "react";
 import inverted from "/images/logo-udemy-inverted.svg?url";
+import { AiOutlineTrophy } from "react-icons/ai";
+import { IoIosArrowDown, IoMdShareAlt } from "react-icons/io";
+import { HiDotsVertical } from "react-icons/hi";
+
+
 
 const Navbar: React.FC<{ courseName: string }> = ({ courseName }) => {
   return (
@@ -19,11 +24,20 @@ const Navbar: React.FC<{ courseName: string }> = ({ courseName }) => {
 
         {/* Right-aligned buttons */}
         <div className="flex  items-center space-x-4">
+          <div>
+          <AiOutlineTrophy className="rounded-lg text-gray-600 border-gray-600"/>
           <button className="hover:text-gray-300">Your Progress</button>
-          <button className="bg-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-600">
+          <IoIosArrowDown />
+          </div>
+          <div>
+          <button className="bg-gray-700 px-3 border-white py-1 rounded-sm text-sm hover:bg-gray-600">
             Share
           </button>
-          <button className="hover:text-gray-300">...</button>
+          <IoMdShareAlt />
+          </div>
+          <button className="hover:text-gray-300 border-white rounded-sm">
+          <HiDotsVertical />
+          </button>
         </div>
       </div>
     </nav>
