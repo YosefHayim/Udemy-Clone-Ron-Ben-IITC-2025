@@ -832,7 +832,7 @@ const ExploreMenu = () => {
       ],
     },
     {
-      "title": "Office Productivity",
+      title: "Office Productivity",
       subcategories: [
         {
           "title": "Microsoft",
@@ -920,7 +920,7 @@ const ExploreMenu = () => {
       ]
     },
     {
-      "title": "Personal Development",
+      title: "Personal Development",
       subcategories: [
         {
           name: "Personal Transformation",
@@ -1143,7 +1143,7 @@ const ExploreMenu = () => {
       ]
     },
     {
-      "title": "Design",
+      title: "Design",
       subcategories: [
         {
           name: "Web Design",
@@ -1285,63 +1285,578 @@ const ExploreMenu = () => {
     {
       title: "Marketing",
       subcategories: [
-        "Digital Marketing",
-        "Search Engine Optimization",
-        "Social Media Marketing",
-        "Branding",
-        "Marketing Fundamentals",
-        "Marketing Analytics & Automation",
-        "Public Relations",
-        "Paid Advertising",
-        "Video & Mobile Marketing",
-        "Content Marketing",
-        "Growth Hacking",
-        "Affiliate Marketing",
-        "Product Marketing",
-        "Other Marketing",
-      ],
+        {
+          name: "Digital Marketing",
+          subcategories: [
+            "Marketing Strategy",
+            "Social Media Marketing",
+            "Internet Marketing",
+            "ChatGPT",
+            "Google Analytics",
+            "Copywriting",
+            "Sales Funnel",
+            "Startup"
+          ]
+        },
+        {
+          name: "Search Engine Optimization",
+          subcategories: [
+            "Search Engine Optimization (SEO)",
+            "WordPress",
+            "Keyword Research",
+            "Google Business Profile (Google My Business)",
+            "Local SEO",
+            "SEO Audit",
+            "Link Building",
+            "ChatGPT",
+            "SEMrush"
+          ]
+        },
+        {
+          name: "Social Media Marketing",
+          subcategories: [
+            "Instagram Marketing",
+            "Social Media Management",
+            "Facebook Ads",
+            "Facebook Marketing",
+            "TikTok Marketing",
+            "YouTube Marketing",
+            "Canva",
+            "PPC Advertising"
+          ]
+        },
+        {
+          name: "Branding",
+          subcategories: [
+            "YouTube Audience Growth",
+            "YouTube Marketing",
+            "Business Branding",
+            "Brand Management",
+            "Personal Branding",
+            "Marketing Strategy",
+            "DaVinci Resolve",
+            "Online Course Marketing",
+            "Product Management"
+          ]
+        },
+        {
+          name: "Marketing Fundamentals",
+          subcategories: [
+            "Marketing Strategy",
+            "Copywriting",
+            "Marketing Psychology",
+            "Digital Marketing",
+            "Event Planning",
+            "Marketing Management",
+            "ChatGPT",
+            "Psychology",
+            "Market Research"
+          ]
+        },
+        {
+          name: "Marketing Analytics & Automation",
+          subcategories: [
+            "Google Analytics",
+            "HubSpot",
+            "Marketing Analytics",
+            "Google Tag Manager",
+            "Data Analysis",
+            "Marketo",
+            "Custom GPTs/GPT Builder",
+            "Google Analytics Individual Qualification (IQ)",
+            "Marketing Automation"
+          ]
+        },
+        {
+          name: "Public Relations",
+          subcategories: [
+            "Canva",
+            "Communication Skills",
+            "Podcasting",
+            "Media Training",
+            "Storytelling",
+            "Public Speaking",
+            "Business Communication",
+            "Grant Writing"
+          ]
+        },
+        {
+          name: "Paid Advertising",
+          subcategories: [
+            "Google Ads (Adwords)",
+            "Google Ads Certification",
+            "Facebook Ads",
+            "PPC Advertising",
+            "Retargeting",
+            "YouTube Marketing",
+            "Advertising Strategy",
+            "Copywriting",
+            "Email Marketing"
+          ]
+        },
+        {
+          name: "Video & Mobile Marketing",
+          subcategories: [
+            "YouTube Marketing",
+            "YouTube Audience Growth",
+            "Video Creation",
+            "PowerPoint",
+            "InVideo",
+            "Generative AI (GenAI)",
+            "Video Marketing",
+            "Video Production",
+            "Video Editing"
+          ]
+        },
+        {
+          name: "Growth Hacking",
+          subcategories: [
+            "Digital Marketing",
+            "Marketing Strategy",
+            "Passive Income",
+            "App Marketing",
+            "Account-Based Marketing (ABM)",
+            "ChatGPT",
+            "Facebook Ads",
+            "YouTube Audience Growth"
+          ]
+        },
+        {
+          name: "Content Marketing",
+          subcategories: [
+            "AI Content Generation",
+            "Content Writing",
+            "Copywriting",
+            "Writing",
+            "Blogging",
+            "Content Creation",
+            "Social Media Marketing",
+            "ChatGPT"
+          ]
+        },
+        {
+          name: "Affiliate Marketing",
+          subcategories: [
+            "ClickBank",
+            "Google Ads (Adwords)",
+            "Amazon Affiliate Marketing",
+            "Marketing Strategy",
+            "Search Engine Optimization (SEO)",
+            "Generative AI (GenAI)",
+            "Pinterest Marketing",
+            "Influencer Marketing"
+          ]
+        },
+        {
+          name: "Product Marketing",
+          subcategories: [
+            "Amazon Kindle Direct Publishing (KDP)",
+            "SaaS",
+            "Self-Publishing",
+            "Product Management",
+            "Book Marketing",
+            "Generative AI (GenAI)",
+            "Voice-Over",
+            "Marketing Strategy"
+          ]
+        },
+        {
+          name: "Other Marketing",
+          subcategories: [
+            "Copywriting",
+            "ChatGPT",
+            "Conversion Rate Optimization (CRO)",
+            "Marketing Strategy",
+            "Event Planning",
+            "Digital Marketing",
+            "Research Paper Writing",
+            "Google Tag Manager",
+            "Marketing Psychology"
+          ]
+        }
+      ]
     },
     {
-      title: "Lifestyle",
+      "title": "Lifestyle",
       subcategories: [
-        "Arts & Crafts",
-        "Beauty & Makeup",
-        "Esoteric Practices",
-        "Food & Beverage",
-        "Gaming",
-        "Home Improvement & Gardening",
-        "Pet Care & Training",
-        "Travel",
-        "Other Lifestyle",
-      ],
+        {
+          name: "Arts & Crafts",
+          subcategories: [
+            "Drawing",
+            "Watercolor Painting",
+            "Acrylic Painting",
+            "Figure Drawing",
+            "Painting",
+            "Sketching",
+            "Candle Making",
+            "Soapmaking",
+            "Oil Painting"
+          ]
+        },
+        {
+          name: "Beauty & Makeup",
+          subcategories: [
+            "Beauty",
+            "Makeup Artistry",
+            "Skincare",
+            "Nail Artistry",
+            "Perfume",
+            "Hair Styling",
+            "Cosmetics",
+            "Beauty Business",
+            "Face Lift"
+          ]
+        },
+        {
+          name: "Esoteric Practices",
+          subcategories: [
+            "Reiki",
+            "Energy Healing",
+            "Tarot Reading",
+            "Astrology",
+            "Spiritual Healing",
+            "Hypnotherapy",
+            "Psychic",
+            "Chakra",
+            "Akashic Records"
+          ]
+        },
+        {
+          name: "Food & Beverage",
+          subcategories: [
+            "Cooking",
+            "Coffee",
+            "Pastry",
+            "Cocktails and Bartending",
+            "Sourdough Bread Baking",
+            "Bread Baking",
+            "Wine Appreciation and Oenology",
+            "Baking",
+            "Cake Baking"
+          ]
+        },
+        {
+          name: "Gaming",
+          subcategories: [
+            "Chess",
+            "Poker",
+            "eSports",
+            "Open Broadcaster",
+            "Twitch",
+            "Fortnite",
+            "League of Legends",
+            "Character Design"
+          ]
+        },
+        {
+          name: "Home Improvement & Gardening",
+          subcategories: [
+            "Woodworking and Carpentry",
+            "Electricity",
+            "Home Repair",
+            "Gardening",
+            "Electrical Wiring",
+            "Mushroom Cultivation",
+            "Farming",
+            "Hydroponics",
+            "Organizational Skills"
+          ]
+        },
+        {
+          name: "Pet Care & Training",
+          subcategories: [
+            "Dog Training",
+            "Dog Care",
+            "Horsemanship",
+            "Dog Behavior",
+            "Pet Training",
+            "Pet Care",
+            "Animal Nutrition",
+            "Veterinary Medicine",
+            "Cat Behavior"
+          ]
+        },
+        {
+          name: "Travel",
+          subcategories: [
+            "Travel Tips",
+            "Travel Writing",
+            "Travel Business",
+            "Airbnb Hosting",
+            "Portuguese Language",
+            "Digital Nomad",
+            "Immigration",
+            "Working Abroad"
+          ]
+        },
+        {
+          name: "Other Lifestyle",
+          subcategories: [
+            "Electronics",
+            "PCB Design",
+            "Drawing",
+            "Stable Diffusion",
+            "Geometric Dimensioning and Tolerancing (GD&T)",
+            "AutoCAD",
+            "CATIA",
+            "Microservices",
+            "Software Architecture"
+          ]
+        }
+      ]
     },
     {
-      title: "Photography & Video",
-      subcategories: [
-        "Digital Photography",
-        "Photography",
-        "Portrait Photography",
-        "Photography Tools",
-        "Commercial Photography",
-        "Video Design",
-        "Other Photography & Video",
-      ],
-    },
+      "title": "Photography & Video",
+      "subcategories": [
+        {
+          "name": "Digital Photography",
+          "subcategories": [
+            "iPhone Photography",
+            "Photography",
+            "Digital Camera Functionality",
+            "Affinity Photo",
+            "Mobile Photography",
+            "Adobe Lightroom",
+            "GIMP",
+            "Adobe Photoshop"
+          ]
+        },
+        {
+          "name": "Photography",
+          "subcategories": [
+            "Photography Composition",
+            "Mobile Photography",
+            "Product Photography",
+            "Digital Photography",
+            "Night Photography",
+            "Landscape Photography",
+            "Street Photography",
+            "Food Photography"
+          ]
+        },
+        {
+          "name": "Portrait Photography",
+          "subcategories": [
+            "Photography Lighting",
+            "Posing",
+            "Photography",
+            "Photoshop Retouching",
+            "Family Portrait Photography",
+            "Image Editing",
+            "Video Editing",
+            "Photography Business"
+          ]
+        },
+        {
+          "name": "Photography Tools",
+          "subcategories": [
+            "Adobe Lightroom",
+            "Adobe Photoshop",
+            "Image Editing",
+            "Digital Camera Functionality",
+            "Affinity Photo",
+            "Photoshop Retouching",
+            "Drone and Aerial Photography",
+            "Photography",
+            "GIMP"
+          ]
+        },
+        {
+          "name": "Commercial Photography",
+          "subcategories": [
+            "Real Estate Photography",
+            "Architecture Photography",
+            "Photography Business",
+            "Photoshop Retouching",
+            "Wedding Photography",
+            "Product Photography",
+            "Photography",
+            "Food Photography",
+            "Drone and Aerial Photography"
+          ]
+        },
+        {
+          "name": "Video Design",
+          "subcategories": [
+            "Video Editing",
+            "Adobe Premiere Pro",
+            "Video Production",
+            "DaVinci Resolve",
+            "Adobe After Effects",
+            "CapCut",
+            "Unreal Engine",
+            "Color Grading",
+            "Filmmaking"
+          ]
+        },
+        {
+          "name": "Other Photography & Video",
+          "subcategories": [
+            "Generative AI (GenAI)",
+            "YouTube Audience Growth",
+            "iPhone Photography",
+            "Photography",
+            "AI Content Generation",
+            "Drone and Aerial Photography",
+            "Video Editing",
+            "Video Creation",
+            "Filmmaking"
+          ]
+        }
+      ]
+    }
+    ,
     {
-      title: "Health & Fitness",
-      subcategories: [
-        "Fitness",
-        "General Health",
-        "Sports",
-        "Nutrition & Diet",
-        "Yoga",
-        "Mental Health",
-        "Martial Arts & Self Defense",
-        "Safety & First Aid",
-        "Dance",
-        "Meditation",
-        "Other Health & Fitness",
-      ],
+      "title": "Health & Fitness",
+      "subcategories": [
+        {
+          "name": "Fitness",
+          "subcategories": [
+            "Pilates",
+            "Teacher Training",
+            "Personal Trainer Business",
+            "Home Workout",
+            "Muscle Building",
+            "Strength Training",
+            "Stretching Exercise",
+            "Boxing"
+          ]
+        },
+        {
+          "name": "General Health",
+          "subcategories": [
+            "Massage",
+            "Herbalism",
+            "Facial Massage",
+            "Breathing Techniques",
+            "Reflexology",
+            "Natural Medicine",
+            "Aromatherapy",
+            "Health",
+            "Holistic Medicine"
+          ]
+        },
+        {
+          "name": "Sports",
+          "subcategories": [
+            "Soccer",
+            "Sport Psychology",
+            "Swimming",
+            "Tennis",
+            "Sports Coaching",
+            "Golf",
+            "Sports Massage",
+            "Sports Management",
+            "Running"
+          ]
+        },
+        {
+          "name": "Nutrition & Diet",
+          "subcategories": [
+            "Nutrition",
+            "Dieting",
+            "Health Coach Training",
+            "Weight Loss",
+            "Gut Health",
+            "Sports Nutrition",
+            "Vegan Cooking",
+            "Ketogenic Diet",
+            "Face Yoga"
+          ]
+        },
+        {
+          "name": "Yoga",
+          "subcategories": [
+            "Pranayama",
+            "Chair Yoga",
+            "Breathing Techniques",
+            "Yoga for Kids",
+            "Ayurveda",
+            "Prenatal Yoga",
+            "Face Yoga",
+            "Tantra"
+          ]
+        },
+        {
+          "name": "Mental Health",
+          "subcategories": [
+            "Cognitive Behavioral Therapy (CBT)",
+            "Somatic Therapy",
+            "Psychotherapy",
+            "Art Therapy",
+            "Acceptance and Commitment Therapy (ACT)",
+            "Trauma-Informed Care",
+            "Dialectical Behavior Therapy (DBT)",
+            "Psychology"
+          ]
+        },
+        {
+          "name": "Martial Arts & Self Defense",
+          "subcategories": [
+            "Martial Arts",
+            "Self-Defense",
+            "Krav Maga",
+            "Tai Chi",
+            "Brazilian Jiu-Jitsu",
+            "Boxing",
+            "Close Combat",
+            "Wing Chun",
+            "Karate"
+          ]
+        },
+        {
+          "name": "Safety & First Aid",
+          "subcategories": [
+            "First Aid",
+            "Workplace Health and Safety",
+            "OSHA",
+            "Herbalism",
+            "Public Health",
+            "Survival Skills",
+            "Fire Safety",
+            "Advanced Trauma Life Support (ATLS)",
+            "Dog Care"
+          ]
+        },
+        {
+          "name": "Dance",
+          "subcategories": [
+            "Salsa Dancing",
+            "Belly Dancing",
+            "Bachata",
+            "Hip Hop Dancing",
+            "Ballet",
+            "Tango Dance",
+            "Poi Spinning"
+          ]
+        },
+        {
+          "name": "Meditation",
+          "subcategories": [
+            "Mindfulness",
+            "Sound Therapy",
+            "Counseling",
+            "Reiki",
+            "Breathing Techniques",
+            "Qigong",
+            "Mental Health"
+          ]
+        },
+        {
+          "name": "Other Health & Fitness",
+          "subcategories": [
+            "Massage",
+            "Sports Massage",
+            "Facial Massage",
+            "Qigong",
+            "Medical Coding",
+            "Spiritual Healing",
+            "Medical Terminology",
+            "Beauty",
+            "Kinesiology Taping"
+          ]
+        }
+      ]
     },
     {
       title: "Music",
