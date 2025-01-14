@@ -1,17 +1,21 @@
 import axios from "axios";
-import { baseUrl, localhostUrl } from "../baseUrl";
+import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import Cookies from "js-cookie";
 
 const loginUser = async (credentials: string) => {
   console.log(credentials);
 
-  axios.defaults.withCredentials = true;
   try {
-    const response = await axios.post(
-      `${baseUrl}/api/user/auth/login`,
+    const response = await axiosClient.post(
+      `${localhostUrl}/api/user/auth/login`,
       credentials
     );
 
     if (response) {
+      console.log(response);
+      const cookie = Cookies.get("cookie");
+      console.log(cookie);
+
       return response.data;
     }
   } catch (error) {

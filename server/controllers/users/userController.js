@@ -82,11 +82,12 @@ const signUp = catchAsync(async (req, res, next) => {
     profilePic: newUser.profilePic,
     role: newUser.role,
   });
-  res.cookie("Cookie", token, {
+
+  res.cookie("cookie", token, {
     maxAge: 300 * 1000, // 5 minutes
-    secure: false, // Set to true if using HTTPS
-    httpOnly: false, // Allow access to the cookie from JavaScript
-    sameSite: "none", // Adjust if necessary (e.g., "none" for cross-origin)
+    secure: false, // Set to true for HTTPS
+    httpOnly: false, // Allow JavaScript access
+    sameSite: "lax", // Use "none" only if frontend/backend are on different origins
   });
 
   res.status(200).json({
@@ -116,9 +117,9 @@ const login = catchAsync(async (req, res, next) => {
   });
   res.cookie("cookie", token, {
     maxAge: 300 * 1000, // 5 minutes
-    secure: false, // Set to true if using HTTPS
-    httpOnly: false, // Allow access to the cookie from JavaScript
-    sameSite: "none", // Adjust if necessary (e.g., "none" for cross-origin)
+    secure: false, // Set to true for HTTPS
+    httpOnly: false, // Allow JavaScript access
+    sameSite: "lax", // Use "none" only if frontend/backend are on different origins
   });
 
   if (!isFoundUser.emailVerified) {
@@ -172,7 +173,7 @@ const confirmEmailAddress = catchAsync(async (req, res, next) => {
 const logout = catchAsync(async (req, res, next) => {
   res.cookie("cookie", "clear", {
     expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true,
+    httpOnly: false,
   });
   res.status(200).json({
     status: "success",

@@ -1,14 +1,11 @@
 import axios from "axios";
-import { baseUrl, localhostUrl } from "../baseUrl";
+import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 const registerUser = async (data) => {
   axios.defaults.withCredentials = true;
 
   try {
-    const response = await axios.post(
-      `${baseUrl}/api/user/auth/signup`,
-      data
-    );
+    const response = await axiosClient.post(`${baseUrl}/api/user/auth/signup`, data);
     if (response) {
       console.log(response);
       return response;

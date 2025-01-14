@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseUrl } from "../baseUrl";
+import { axiosClient, baseUrl } from "../configuration";
 
 const getCourseCartInfoByCourseId = async (courseId: string) => {
   if (!courseId || typeof courseId !== "string") {
@@ -11,7 +11,7 @@ const getCourseCartInfoByCourseId = async (courseId: string) => {
   const url = `${baseUrl}/api/course/cartInfo/${sanitizedCourseId}`;
 
   try {
-    const response = await axios.get(url);
+    const response = await axiosClient.get(url);
 
     if (response?.data?.data) {
       return response.data.data;

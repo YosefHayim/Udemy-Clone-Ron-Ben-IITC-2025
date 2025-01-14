@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseUrl } from "../baseUrl";
+import { axiosClient, baseUrl } from "../configuration";
 
 const getAllCourses = async (
   searchTerm: string,
@@ -15,7 +15,7 @@ const getAllCourses = async (
   const url = `${baseUrl}/api/course/?search=${encodedSearchTerm}&page=${page}&limit=${limit}`;
 
   try {
-    const { data } = await axios.get(url);
+    const { data } = await axiosClient.get(url);
 
     if (data) {
       return data;
