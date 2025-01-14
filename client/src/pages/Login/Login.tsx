@@ -53,12 +53,12 @@ const Login = () => {
 
   const cookie = Cookies.get("cookie")?.toString();
   if (cookie) {
-    console.log(cookie);
     const decoded = jwtDecode(cookie);
     console.log(decoded);
     dispatch(setFullName(decoded.fullName));
     dispatch(setProfilePic(decoded.profilePic));
     dispatch(setRole(decoded.role));
+    navigate("/");
   }
 
   return (

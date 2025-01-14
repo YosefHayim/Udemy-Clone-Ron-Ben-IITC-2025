@@ -84,10 +84,10 @@ const signUp = catchAsync(async (req, res, next) => {
   });
 
   res.cookie("cookie", token, {
-    maxAge: 300 * 1000, // 5 minutes
-    secure: false, // Set to true for HTTPS
-    httpOnly: false, // Allow JavaScript access
-    sameSite: "lax", // Use "none" only if frontend/backend are on different origins
+    maxAge: 900 * 1000, // 15 minutes
+    secure: process.env.NODE_ENV === "production" ? true : false,
+    httpOnly: false,
+    sameSite: "lax",
   });
 
   res.status(200).json({
