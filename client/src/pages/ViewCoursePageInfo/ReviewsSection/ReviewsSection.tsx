@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import ReviewSectionTitle from "./ReviewSectionTitle/ReviewSectionTitle";
 import UserCourseReview from "./UserCourseReview/UserCourseReview";
-import DialogOfAllReviews from "@/components/DialogOfAllReviews/DialogOfAllReviews";
 import { useState } from "react";
+import DialogOfAllReviews from "./UserCourseReview/DialogOfAllReviews/DialogOfAllReviews";
 
 const ReviewsSection = ({ totalRated, avgRating, reviewsToRender }) => {
   const [isClicked, setClicked] = useState(false);

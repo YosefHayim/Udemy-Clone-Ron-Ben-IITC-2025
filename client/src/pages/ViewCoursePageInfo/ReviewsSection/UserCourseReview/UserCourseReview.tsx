@@ -22,6 +22,8 @@ const UserCourseReview = ({ review, widthOfReview = "w-[300px]" }) => {
         <div
           id={review._id}
           className="p-[0.5em] cursor-pointer rounded-[100em]"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <SlOptionsVertical />
         </div>

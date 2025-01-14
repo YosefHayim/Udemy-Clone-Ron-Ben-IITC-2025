@@ -9,11 +9,11 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { LuDot } from "react-icons/lu";
 import { useParams } from "react-router-dom";
-import Loader from "../Loader/Loader";
 import UserCourseReview from "@/pages/ViewCoursePageInfo/ReviewsSection/UserCourseReview/UserCourseReview";
-import { Button } from "../ui/button";
-import { MdOutlineStarPurple500, MdSearch } from "react-icons/md";
-import { Input } from "../ui/input";
+import { MdOutlineStarPurple500, MdSearch, MdStar } from "react-icons/md";
+import Loader from "@/components/Loader/Loader";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const DialogOfAllReviews = ({ avgRating, isClicked, setClicked }) => {
   const params = useParams();
@@ -31,7 +31,12 @@ const DialogOfAllReviews = ({ avgRating, isClicked, setClicked }) => {
         <DialogHeader>
           <DialogTitle>
             <div className="flex flex-row items-center justify-start">
-              {avgRating} course rating <LuDot /> 3K ratings
+              <MdStar className="text-[#c4710d]" />
+              <b>{avgRating} course rating</b>
+              <p>
+                <LuDot className="text-[2em]" />
+              </p>
+              <b>{data && data.length} ratings</b>
             </div>
           </DialogTitle>
           <DialogDescription>
