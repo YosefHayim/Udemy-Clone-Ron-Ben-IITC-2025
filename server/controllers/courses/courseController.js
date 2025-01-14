@@ -205,7 +205,70 @@ const reactivateCourseById = catchAsync(async (req, res, next) => {
   });
 });
 
+const getCourseProsById = catchAsync(async (req, res, next) => {
+  const courseId = req.params.courseId;
+
+  if (!courseId) {
+    return next(createError("Please provide the course ID in the URL.", 400));
+  }
+
+  const findCourse = await Course.findOne({ _id: courseId });
+
+  if (!findCourse) {
+    return next(createError("There is no such course in the database.", 404));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: findCourse.whatYouWillLearn,
+  });
+});
+
+const getCourseInfoForCart = catchAsync(async (req, res, next) => {
+  const courseId = req.params.id;
+
+  if (!courseId) {
+    return next(createError("Please provide the course ID in the URL.", 400));
+  }
+
+  const findCourse = await Course.findOne({ _id: courseId }).select(
+    "courseImg courseName courseInstructor averageRating courseDiscountPrice totalRatings totalCourseDuration totalCourseLessons totalCourseSections"
+  );
+
+  if (!findCourse) {
+    return next(createError("There is no such course in the database.", 404));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: findCourse,
+  });
+});
+
+const viewCourseById = catchAsync(async (req, res, next) => {
+  const courseId = req.params.courseId;
+
+  if (!courseId) {
+    return next(createError("Please provide the course ID in the URL.", 400));
+  }
+
+  const findCourse = await Course.findOne({ _id: courseId });
+
+  if (!findCourse) {
+    return next(createError("There is no such course in the database.", 404));
+  }
+
+  res.status(200).json({
+    status: "success",
+    totalReviewsCourseHas: findCourse.reviews.length,
+    data: findCourse,
+  });
+});
+
 module.exports = {
+  viewCourseById,
+  getCourseProsById,
+  getCourseInfoForCart,
   reactivateCourseById,
   getAllCourses,
   getCourseById,

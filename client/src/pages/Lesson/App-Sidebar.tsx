@@ -4,11 +4,13 @@ import { CourseSidebarMenu } from "./CourseSliderBarMenu";
 import CustomTrigger from "../Lesson/CustomTrigger";
 import { fetchCourseById } from "@/services/courseService";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 export function AppSidebar() {
   const [courseData, setCourseData] = useState<any>(null);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const { toggleSidebar, open } = useSidebar();
+  const { courseId } = useParams<{ courseId: string }>(); // Retrieve courseId from the URL
 
   // Handle screen size changes
   useEffect(() => {
@@ -31,14 +33,19 @@ export function AppSidebar() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchCourseById("67800ee6c7d3d0bd68dceb66");
+        if (!courseId) {
+          console.error("Missing courseId in the route.");
+          return;
+        }
+
+        const data = await fetchCourseById(courseId);
         setCourseData(data.data);
       } catch (error) {
-        console.error("Failed to fetch course data.");
+        console.error("Failed to fetch course data.", error);
       }
     };
     fetchData();
-  }, []);
+  }, [courseId]);
 
   if (!courseData) {
     return <div>Loading...</div>;
@@ -50,15 +57,13 @@ export function AppSidebar() {
         <SidebarContent>
           <SidebarGroup>
             <SidebarGroupContent>
-              <CourseSidebarMenu sections={courseData.sections} />
+              <CourseSidebarMenu sections={courseData.sections} courseId={courseId} />
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
       </Sidebar>
 
       {/* Centered Trigger */}
-      
-    
     </>
   );
 }

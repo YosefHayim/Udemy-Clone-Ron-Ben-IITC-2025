@@ -1,6 +1,10 @@
 import { IoMdCheckmark } from "react-icons/io";
 
 const WhatYouLearn = ({ prosCourse }) => {
+  if (!prosCourse) {
+    return null;
+  }
+
   const half = Math.ceil(prosCourse.length / 2); // Split the array into two columns
   const firstColumn = prosCourse.slice(0, half);
   const secondColumn = prosCourse.slice(half);

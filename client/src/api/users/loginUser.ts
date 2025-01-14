@@ -1,13 +1,9 @@
-import axios from "axios";
-import { baseUrl, localhostUrl } from "../baseUrl";
+import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 const loginUser = async (credentials: string) => {
-  console.log(credentials);
-
-  axios.defaults.withCredentials = true;
   try {
-    const response = await axios.post(
-      `${baseUrl}/api/user/auth/login`,
+    const response = await axiosClient.post(
+      `${localhostUrl}/api/user/auth/login`,
       credentials
     );
 

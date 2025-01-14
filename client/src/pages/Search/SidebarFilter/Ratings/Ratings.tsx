@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 
-const RatingsFilter = ({ filterData, setFilterData }) => {
+const RatingsFilter = () => {
   const [isClicked, setClicked] = useState(false);
   const [selectedRating, setSelectedRating] = useState<string | null>(null);
 
@@ -11,11 +11,6 @@ const RatingsFilter = ({ filterData, setFilterData }) => {
 
   const handleRatingClick = (rating: string) => {
     setSelectedRating(rating);
-    setFilterData((prevData) => ({
-      ...prevData,
-      rating: rating,
-    }));
-    console.log(filterData.rating);
   };
 
   const ratings = [

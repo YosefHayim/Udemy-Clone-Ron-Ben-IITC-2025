@@ -28,7 +28,7 @@ const getAllReviews = catchAsync(async (req, res, next) => {
   });
 });
 
-const getAllReviewsOfSelfUser = catchAsync(async (req, res, next) => {
+const getAllReviewsOfUser = catchAsync(async (req, res, next) => {
   const userId = req.params.id;
 
   if (!userId) {
@@ -46,7 +46,7 @@ const getAllReviewsOfSelfUser = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
-    results: reviews.length,
+    totalReviewsOfUserFound: reviews.length,
     data: reviews,
   });
 });
@@ -83,10 +83,15 @@ const getAllReviewsByCourseId = catchAsync(async (req, res, next) => {
     return next(createError(`No course found with ID: ${courseId}.`, 404));
   }
 
+  const allReviewsOfCourseId = await courseReviews.find({
+    courseReview: courseId,
+  });
+
   res.status(200).json({
     success: "Success",
     response: `All reviews for the course ${isCourseExist.courseName}`,
-    data: isCourseExist,
+    totalReviews: allReviewsOfCourseId.length,
+    data: allReviewsOfCourseId,
   });
 });
 
@@ -100,6 +105,14 @@ const addReviewByCourseId = catchAsync(async (req, res, next) => {
   if (!req.user.coursesBought?.map(String).includes(String(courseId))) {
     return next(
       createError("You can't review a course you're not enrolled in.", 403)
+    );
+  }
+
+  const isCourseExist = await Course.findById(courseId);
+
+  if (!isCourseExist) {
+    return next(
+      createError(`There is no such course with this ID: ${courseId}`, 404)
     );
   }
 
@@ -298,7 +311,7 @@ const deleteReviewById = catchAsync(async (req, res, next) => {
 });
 
 module.exports = {
-  getAllReviewsOfSelfUser,
+  getAllReviewsOfUser,
   getAllReviews,
   addReviewByCourseId,
   deleteReviewById,

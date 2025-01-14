@@ -2,18 +2,20 @@ import SearchCourseCard from "@/pages/Search/SearchCourseCard/SearchCourseCard";
 import SidebarFilter from "./SidebarFilter/SidebarFilter";
 import FilterNSort from "./SidebarFilter/FilterNSort/FilterNSort";
 import Pagination from "./PaginationPages/PaginationPages";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
 import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
 import { useState } from "react";
+import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("q");
   const [currentPage, setCurrentPage] = useState(1);
+  const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
   const [filterData, setFilterData] = useState({
     rating: 0.0,
     language: [],
@@ -25,7 +27,6 @@ const SearchPage = () => {
     price: "",
     certificate: true,
   });
-  const navigate = useNavigate();
 
   const limit = null;
 
@@ -43,22 +44,18 @@ const SearchPage = () => {
     return <div>Error occurred: {error.message}</div>;
   }
 
-  const handleClick = (e) => {
-    const courseElement = e.target.closest("div").id;
-    if (courseElement) {
-      const courseId = courseElement.id;
-      console.log(courseId);
-      navigate(`/course-view/:${courseId}`);
-    } else {
-      return;
-    }
+  const handleMouseEnter = (e: React.DOMAttributes<HTMLDivElement>) => {
+    // const hoverDiv = e.target.closest("div[id]");
+    // if (hoverDiv) {
+    //   const courseId = hoverDiv.id;
+    //   console.log(courseId);
+    // } else {
+    //   console.log("Hovered over an unrelated element.");
+    // }
   };
 
   return (
-    <div
-      className="flex flex-col w-full gap-[1em] px-6 py-[3em]"
-      onClick={handleClick}
-    >
+    <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
         {data?.totalCourses} results for "{searchTerm}"
       </h1>
@@ -72,13 +69,28 @@ const SearchPage = () => {
         </div>
         <div>
           <div>
-            {data?.response?.slice(0, 18).map((course, index) => [
-              <div key={course._id} id={course._id}>
+            {data?.response?.slice(0, 18).map((course, index) => (
+              <div
+                key={course._id}
+                id={`course-card-${course._id}`}
+                className="relative"
+                onMouseEnter={() => setHoveredCourse(course._id)}
+                onMouseLeave={() => setHoveredCourse(null)}
+              >
                 <SearchCourseCard course={course} />
-              </div>,
-              index === 2 && <Commercial key="commercial" />,
-              index === 6 && <HotFreshCourses key="hotfreshcourses" />,
-            ])}
+                {hoveredCourse === course._id && (
+                  <div className="absolute top-full left-0 z-[1000] p-[2em]">
+                    <CourseHoverCardInfo
+                      whatYouWillLearn={course.whatYouWillLearn}
+                      courseId={course._id}
+                      coursePrice={course.courseDiscountPrice}
+                    />
+                  </div>
+                )}
+                {index === 2 && <Commercial key="commercial" />}
+                {index === 6 && <HotFreshCourses key="hotfreshcourses" />}
+              </div>
+            ))}
           </div>
         </div>
       </div>

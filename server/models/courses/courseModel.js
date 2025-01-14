@@ -17,6 +17,10 @@ const courseSchema = new mongoose.Schema(
         "To register a course, you must provide an image for the course.",
       ],
     },
+    courseTrailer: {
+      type: String,
+      required: [true, "A course must have a trailer video."],
+    },
     courseDescription: {
       type: String,
       required: [true, "Course must have a description"],
@@ -25,7 +29,7 @@ const courseSchema = new mongoose.Schema(
       type: String,
       required: [true, "A course description must have a who is this is for."],
     },
-    WhatYouWillLearn: {
+    whatYouWillLearn: {
       type: [String],
       required: [true, "A course must have at least 6 pros"],
       validate: {
@@ -118,10 +122,6 @@ const courseSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    totalRatings: {
-      type: Number,
-      default: 0,
-    },
     totalStudentsEnrolled: {
       students: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
       count: { type: Number, default: 0 },
@@ -141,12 +141,8 @@ const courseSchema = new mongoose.Schema(
         ref: "Section",
       },
     ],
-    reviews: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Review",
-      },
-    ],
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
+    totalRatings: { type: Number, default: 0 },
     totalCourseDuration: {
       type: Number,
       default: 0,
@@ -164,9 +160,35 @@ const courseSchema = new mongoose.Schema(
 );
 
 courseSchema.pre(/^find/, function (next) {
-  this.populate("reviews")
-    .populate("courseInstructor", "fullName profilePic _id")
+  this.populate({
+    path: "reviews",
+    select: "user comment rating",
+  })
+    .populate({
+      path: "courseInstructor",
+      select: "fullName",
+    })
     .populate("sections");
+
+  next();
+});
+
+courseSchema.pre("save", function (next) {
+  if (this.isModified("averageRating")) {
+    // Round averageRating to 1 decimal place
+    this.averageRating = Math.round(this.averageRating * 10) / 10;
+  }
+  next();
+});
+
+courseSchema.pre("findOneAndUpdate", function (next) {
+  const update = this.getUpdate();
+
+  if (update && update.$set && update.$set.averageRating != null) {
+    // Round averageRating to 1 decimal place
+    update.$set.averageRating = Math.round(update.$set.averageRating * 10) / 10;
+  }
+
   next();
 });
 

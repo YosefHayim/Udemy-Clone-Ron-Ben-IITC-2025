@@ -7,17 +7,16 @@ type User = {
   role: string;
 };
 
-// Define the initial state
-const initialState: User = {
-  fullName: "",
-  profilePic: "",
-  role: "",
-};
-
 // Create the slice
 const userSlice = createSlice({
   name: "user", // Slice name
-  initialState,
+  initialState: {
+    fullName: "",
+    profilePic: "",
+    email: "",
+    bio: "",
+    role: "",
+  },
   reducers: {
     setFullName: (state, action: PayloadAction<string>) => {
       state.fullName = action.payload;
@@ -28,17 +27,31 @@ const userSlice = createSlice({
     setRole: (state, action: PayloadAction<string>) => {
       state.role = action.payload;
     },
+    setBio: (state, action: PayloadAction<string>) => {
+      state.bio = action.payload;
+    },
+    setEmailAddress: (state, action: PayloadAction<string>) => {
+      state.email = action.payload;
+    },
     clearUser: (state) => {
       state.fullName = "";
       state.profilePic = "";
+      state.role = "";
+      state.email = "";
       state.role = "";
     },
   },
 });
 
 // Export actions to use in the app
-export const { setFullName, setProfilePic, setRole, clearUser } =
-  userSlice.actions;
+export const {
+  setFullName,
+  setProfilePic,
+  setRole,
+  clearUser,
+  setBio,
+  setEmailAddress,
+} = userSlice.actions;
 
 // Export the reducer to add it to the store
 export default userSlice.reducer;

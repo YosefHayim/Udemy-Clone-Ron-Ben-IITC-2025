@@ -79,14 +79,17 @@ const signUp = catchAsync(async (req, res, next) => {
   const token = generateToken({
     id: newUser._id,
     fullName: newUser.fullName,
+    email: newUser.email,
     profilePic: newUser.profilePic,
     role: newUser.role,
+    bio: newUser.bio,
   });
-  res.cookie("Cookie", token, {
-    maxAge: 300 * 1000, // 5 minutes
-    secure: false, // Set to true if using HTTPS
-    httpOnly: false, // Allow access to the cookie from JavaScript
-    sameSite: "none", // Adjust if necessary (e.g., "none" for cross-origin)
+
+  res.cookie("cookie", token, {
+    maxAge: 900 * 1000, // 15 minutes
+    secure: process.env.NODE_ENV === "production", // Secure in production
+    httpOnly: false, // Allow JavaScript access
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
   });
 
   res.status(200).json({
@@ -111,14 +114,17 @@ const login = catchAsync(async (req, res, next) => {
   const token = generateToken({
     id: isFoundUser._id,
     fullName: isFoundUser.fullName,
+    email: isFoundUser.email,
     profilePic: isFoundUser.profilePic,
     role: isFoundUser.role,
+    bio: isFoundUser.bio,
   });
+
   res.cookie("cookie", token, {
-    maxAge: 300 * 1000, // 5 minutes
-    secure: false, // Set to true if using HTTPS
-    httpOnly: false, // Allow access to the cookie from JavaScript
-    sameSite: "none", // Adjust if necessary (e.g., "none" for cross-origin)
+    maxAge: 900 * 1000, // 15 minutes
+    secure: process.env.NODE_ENV === "production", // Secure in production
+    httpOnly: false, // Allow JavaScript access
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
   });
 
   if (!isFoundUser.emailVerified) {
@@ -171,8 +177,10 @@ const confirmEmailAddress = catchAsync(async (req, res, next) => {
 
 const logout = catchAsync(async (req, res, next) => {
   res.cookie("cookie", "clear", {
-    expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true,
+    maxAge: 900 * 1000, // 15 minutes
+    secure: process.env.NODE_ENV === "production", // Secure in production
+    httpOnly: false, // Allow JavaScript access
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
   });
   res.status(200).json({
     status: "success",

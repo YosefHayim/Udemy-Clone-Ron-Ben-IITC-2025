@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/index"; // Importa o RootState do Redux
-import LogoFooter from "../../../public/images/logo-udemy-inverted.svg";
-import Nasdaq from "../../../public/images/nasdaq-light.svg";
-import Wolkswagen from "../../../public/images/volkswagen-light (1).svg";
-import Box from "../../../public/images/box-light.svg";
-import Netapp from "../../../public/images/netapp-light.svg";
-import Eventbrite from "../../../public/images/eventbrite-light.svg";
+import LogoFooter from "/images/logo-udemy-inverted.svg";
+import Nasdaq from "/images/nasdaq-light.svg";
+import Wolkswagen from "/images/volkswagen-light (1).svg";
+import Box from "/images/box-light.svg";
+import Netapp from "/images/netapp-light.svg";
+import Eventbrite from "/images/eventbrite-light.svg";
 import { MdOutlineLanguage } from "react-icons/md";
 import FooterLogin from "@/components/FooterLogin.tsx/FooterLogin";
 
@@ -122,7 +122,7 @@ const Footer: React.FC = () => {
     <>
       {user && (
         <>
-          <FooterLogin  />
+          <FooterLogin />
           <footer className="text-white">
             {/* Top Section */}
             <div className="bg-[#1c1d1f]">
@@ -204,7 +204,9 @@ const Footer: React.FC = () => {
                       alt="Logo"
                       className="h-8 w-auto mr-4"
                     />
-                    <p className="text-sm text-white">&copy; 2025 Udemy, Inc.</p>
+                    <p className="text-sm text-white">
+                      &copy; 2025 Udemy, Inc.
+                    </p>
                   </div>
                   <div className="text-center">
                     <p className="text-sm text-gray-300 hover:text-white cursor-pointer">

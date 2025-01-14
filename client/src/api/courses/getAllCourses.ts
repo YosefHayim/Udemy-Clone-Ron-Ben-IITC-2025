@@ -1,7 +1,11 @@
 import axios from "axios";
-import { baseUrl } from "../baseUrl";
+import { axiosClient, baseUrl } from "../configuration";
 
-const getAllCourses = async (searchTerm, limit = 18, page = 1) => {
+const getAllCourses = async (
+  searchTerm: string,
+  limit: number = 18,
+  page: number = 1
+) => {
   if (!searchTerm) {
     console.error("Search term is required");
     return null;
@@ -11,7 +15,7 @@ const getAllCourses = async (searchTerm, limit = 18, page = 1) => {
   const url = `${baseUrl}/api/course/?search=${encodedSearchTerm}&page=${page}&limit=${limit}`;
 
   try {
-    const { data } = await axios.get(url);
+    const { data } = await axiosClient.get(url);
 
     if (data) {
       return data;

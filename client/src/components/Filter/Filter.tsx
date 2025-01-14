@@ -21,21 +21,6 @@ const Filter: React.FC<FilterProps> = ({
     setClicked((prev) => !prev);
   };
 
-  const handleFilterClicked = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLElement;
-
-    // Traverse to the closest label or relevant element
-    const labelElement = target.closest("label");
-    if (!labelElement) return;
-
-    // Get the category name from the label's child span
-    const category = labelElement.querySelector("span")?.textContent;
-
-    if (category) {
-      console.log(category);
-    }
-  };
-
   return (
     <div className={useForSection ? "bg-[#f7f9fa]" : ""}>
       <hr className={showLine ? "block" : "hidden"} />
@@ -57,7 +42,7 @@ const Filter: React.FC<FilterProps> = ({
             />
           )}
         </div>
-        <div onClick={handleFilterClicked}>
+        <div>
           {filterItems.map((item: DummyData) => (
             <label
               key={item.name}

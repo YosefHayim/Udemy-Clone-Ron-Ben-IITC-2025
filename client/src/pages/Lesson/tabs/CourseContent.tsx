@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link, useParams } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -7,74 +7,38 @@ import {
   CollapsibleTrigger,
   CollapsibleContent,
 } from "@/components/ui/collapsible";
-import { useSidebar } from "@/components/ui/sidebar";
-import { fetchCourseById } from "@/services/courseService"; // Import API service
-
-interface Lesson {
-  _id: string; // Adjusted to match your backend data structure
-  title: string;
-  videoUrl: string;
-  completed?: boolean;
-}
-
-interface Section {
-  _id: string; // Adjusted to match your backend data structure
-  title: string;
-  lessons: Lesson[];
-}
+import { useQuery } from "@tanstack/react-query";
+import { fetchCourseById } from "@/services/courseService";
+import Loader from "@/components/Loader/Loader";
 
 const CourseContent: React.FC = () => {
-  const [sections, setSections] = useState<Section[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
-  const { open } = useSidebar(); // Get sidebar state
-  const location = useLocation(); // Get current URL
-  const navigate = useNavigate(); // For redirecting
+  const { courseId } = useParams<{ courseId: string }>();
 
-  // Fetch course data on mount
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const courseData = await fetchCourseById("67800ee6c7d3d0bd68dceb66"); // Replace with dynamic ID if needed
-        setSections(courseData.data.sections || []);
-      } catch (err) {
-        setError("Failed to load course data.");
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Sanitize courseId to remove any leading colon or whitespace
+  const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
 
-    fetchData();
-  }, []);
+  // Fetch course data using React Query
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["course", sanitizedCourseId],
+    queryFn: () => fetchCourseById(sanitizedCourseId),
+    enabled: !!sanitizedCourseId,
+  });
 
-  const toggleLessonCompletion = (lessonId: string) => {
-    setCompletedLessons((prev) => ({
-      ...prev,
-      [lessonId]: !prev[lessonId],
-    }));
-  };
+  // Handle loading and error states
+  if (isLoading) return <Loader />;
+  if (error || !data) return <div>Error loading course data</div>;
 
-  // Redirect if sidebar is open and URL ends with /course-content
-  useEffect(() => {
-    if (open && location.pathname.endsWith("/course-content")) {
-      navigate(location.pathname.replace("/course-content", "/overview"));
-    }
-  }, [open, location, navigate]);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  const sections = data.data.sections;
 
   return (
     <div className="flex justify-center p-10 min-h-screen">
       <div className="min-w-fit">
-        {sections.map((section) => (
-          <Collapsible key={section._id} defaultOpen className="min-w-96 border-y group/collapsible">
+        {sections.map((section: any) => (
+          <Collapsible
+            key={section._id}
+            defaultOpen
+            className="min-w-96 border-y group/collapsible"
+          >
             <div className="flex items-center justify-between p-4 bg-[#F7F9FA]">
               <CollapsibleTrigger asChild>
                 <button className="flex items-center w-full text-left focus:outline-none focus-visible:outline-none">
@@ -83,24 +47,17 @@ const CourseContent: React.FC = () => {
                 </button>
               </CollapsibleTrigger>
             </div>
-
             <CollapsibleContent>
               <ul className="mt-2 pl-4">
-                {section.lessons.map((lesson) => (
+                {section.lessons.map((lesson: any) => (
                   <li
                     key={lesson._id}
                     className="flex items-center gap-3 mb-2 hover:bg-slate-400"
                   >
-                    <Checkbox
-                      checked={!!completedLessons[lesson._id]}
-                      onCheckedChange={() => toggleLessonCompletion(lesson._id)}
-                      className="hover:border-black focus:outline-none focus-visible:outline-none"
-                    />
+                    <Checkbox className="hover:border-black focus:outline-none" />
                     <Link
-                      to={`/lesson/${lesson._id}`}
-                      className={`${
-                        completedLessons[lesson._id] ? "text-gray-500" : "text-gray-500"
-                      }`}
+                      to={`/course/${sanitizedCourseId}/lesson/${lesson._id}`}
+                      state={{ courseId: sanitizedCourseId }}
                     >
                       {lesson.title}
                     </Link>

@@ -1,11 +1,11 @@
 import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
-import { useSidebar } from "@/components/ui/sidebar"; // Import the useSidebar hook
+import { useSidebar } from "@/components/ui/sidebar";
 
 const NavBar: React.FC = () => {
   const location = useLocation();
-  const { id } = useParams<{ id: string }>(); // Get the lesson ID from the route params
+  const { courseId, id } = useParams<{ courseId: string; id: string }>(); // Get courseId and lessonId from route params
   const { open } = useSidebar(); // Get the sidebar state
 
   const activePath = location.pathname.split("/").pop(); // Get the active tab
@@ -25,7 +25,9 @@ const NavBar: React.FC = () => {
     tabs.splice(1, 0, { name: "Course Content", path: "course-content" });
   }
 
-  const basePath = `/lesson/${id}`; // Define the base path dynamically
+  // Construct the base path dynamically
+  const basePath = `/course/${courseId}/lesson/${id}`;
+  tabs.map(tab =>console.log(tab.path))
 
   return (
     <div className="w-full">

@@ -12,8 +12,6 @@ const CourseContent = ({
   totalCourseSections,
   sectionsOfCourse,
 }) => {
-  console.log(sectionsOfCourse);
-
   return (
     <div className="flex flex-col">
       <h2 className="font-bold text-[1.2em] mb-[1em]">Course Content</h2>
@@ -24,11 +22,12 @@ const CourseContent = ({
       />
       <div>
         {sectionsOfCourse.map((courseSection) => (
-          <Section
-            key={courseSection._id}
-            lessonsOfSection={courseSection.lessons}
-            sectionName={courseSection.title}
-          />
+          <div key={courseSection._id}>
+            <Section
+              lessonsOfSection={courseSection.lessons}
+              sectionName={courseSection.title}
+            />
+          </div>
         ))}
       </div>
       <hr className="w-[550px] mt-[2em]" />

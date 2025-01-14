@@ -1,45 +1,122 @@
 import CourseInstructor from "@/components/CourseCard/CourseInstructor/CourseInstructor";
-import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
 import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
-import courseCartImg from "/images/course-cart-img.png";
 import { BsFillTagFill } from "react-icons/bs";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseLength from "@/pages/ViewCoursePageInfo/MoreCoursesByInstructor/CourseLength/CourseLength";
 import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "@/components/Loader/Loader";
+import getCourseCartInfoByCourseId from "@/api/courses/getCourseCartInfoByCourseId";
+import { useDispatch } from "react-redux";
+import { removeCourseFromCart } from "@/redux/slices/cartSlice";
+import { useNavigate } from "react-router-dom";
 
-const ItemInCart = () => {
+const ItemInCart = ({
+  courseId = "",
+  courseImgSize = "h-[5em]",
+  hide = true,
+  shortCutInstructor = false,
+  shortcutTitle = false,
+  chooseFlex = "flex-row",
+  itemsPosition = "center",
+  textColor = "text-[#a435f0]",
+}) => {
+  if (!courseId) {
+    return;
+  }
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["course"],
+    queryFn: () => getCourseCartInfoByCourseId(courseId),
+  });
+
+  if (isLoading) return;
+  <Loader />;
+
+  if (error) return <div>Error loading course data</div>;
+
+  const handleRemove = () => {
+    dispatch(
+      removeCourseFromCart({
+        courseId,
+        coursePrice: data.courseDiscountPrice || 0,
+        amountToRemove: 1,
+      })
+    );
+  };
+
+  const handleCourseView = (e: React.DOMAttributes<HTMLDivElement>) => {
+    if (e.target.tagName === "DIV") {
+      navigate(`/course-view/${courseId}`);
+    }
+  };
+
   return (
-    <div>
-      <div className="flex flex-row items-start justify-start gap-[1em]">
+    <div className="p-[1em] w-full">
+      <div
+        className={`${chooseFlex} flex items-start justify-start gap-[1em] cursor-pointer`}
+        onClick={handleCourseView}
+      >
         <div>
-          <img src={courseCartImg} alt="" className="rounded-[0.5em]" />
+          <img src={data.courseImg} alt="" className={`${courseImgSize}`} />
         </div>
-        <div className="flex flex-row items-center justify-center gap-[1em]">
+        <div
+          className={`${chooseFlex} flex flex-row items-${itemsPosition} justify-center gap-[1em]`}
+        >
           <div className="flex flex-col items-start gap-[0.5em]">
-            <CourseTitle />
-            <CourseInstructor />
-            <CoursePrice showFullPrice={false} chooseFlex="hidden" />
+            <CourseTitle
+              title={data.courseName}
+              shortcutTitle={shortcutTitle}
+            />
+            <CourseInstructor
+              instructor={data.courseInstructor.fullName}
+              shortCutInstructor={shortCutInstructor}
+            />
             <div className="flex flex-row items-start justify-start gap-[1em]">
-              <CourseTag />
-              <CourseRatings />
+              <div className={hide ? "block" : "hidden"}>
+                <CourseTag tagName={data.courseTag} />
+              </div>
+              <div className={hide ? "block" : "hidden"}>
+                <CourseRatings
+                  avgRatings={data.averageRating}
+                  totalRatings={data.totalRatings}
+                />
+              </div>
             </div>
-            <CourseLength />
+            <div className={hide ? "block" : "hidden"}>
+              <CourseLength
+                courseLevel={data.courseLevel}
+                totalLectures={data.totalCourseLessons}
+                totalMinutes={data.totalCourseDuration}
+              />
+            </div>
           </div>
-          <div className="text-[0.8em] text-[#5022c3] hover:text-[#3b198f]">
-            <p className="cursor-pointer">Remove</p>
-            <p className="cursor-pointer">Save for Later</p>
-            <p className="cursor-pointer">Move to Wishlist</p>
+          <div className={hide ? "block" : "hidden"}>
+            <div className="text-[0.8em] text-[#5022c3] hover:text-[#3b198f]">
+              <button className="cursor-pointer" onClick={handleRemove}>
+                Remove
+              </button>
+              <p className="cursor-pointer">Save for Later</p>
+              <p className="cursor-pointer">Move to Wishlist</p>
+            </div>
           </div>
           <div>
-            <div className="flex flex-row items-center justify-center gap-[0.2em] text-[#a435f0]">
-              <b className="">₪519.90</b>
-              <BsFillTagFill />
+            <div
+              className={`flex flex-row items-center justify-center gap-[0.2em] ${textColor}`}
+            >
+              <b className="">₪{data.courseDiscountPrice}</b>
+              <div className={hide ? "block" : "hidden"}>
+                <BsFillTagFill />
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div className="mb-[1em] mt-[0.5em]">
-        <hr className="relative w-full" />
+        <hr className="relative w-[285px]" />
       </div>
     </div>
   );

@@ -1,14 +1,14 @@
 import axios from "axios";
 import { axiosClient, baseUrl } from "../configuration";
 
-const getCourseById = async (courseId: string) => {
+const getCourseCartInfoByCourseId = async (courseId: string) => {
   if (!courseId || typeof courseId !== "string") {
     console.error("Invalid course ID provided.");
     return null;
   }
 
   const sanitizedCourseId = courseId.trim();
-  const url = `${baseUrl}/api/course/${sanitizedCourseId}`;
+  const url = `${baseUrl}/api/course/cartInfo/${sanitizedCourseId}`;
 
   try {
     const response = await axiosClient.get(url);
@@ -25,4 +25,4 @@ const getCourseById = async (courseId: string) => {
   }
 };
 
-export default getCourseById;
+export default getCourseCartInfoByCourseId;
