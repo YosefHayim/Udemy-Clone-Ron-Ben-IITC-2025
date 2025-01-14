@@ -1143,19 +1143,144 @@ const ExploreMenu = () => {
       ]
     },
     {
-      title: "Design",
+      "title": "Design",
       subcategories: [
-        "Web Design",
-        "Graphic Design & Illustration",
-        "Design Tools",
-        "User Experience Design",
-        "Game Design",
-        "3D & Animation",
-        "Fashion Design",
-        "Architectural Design",
-        "Interior Design",
-        "Other Design",
-      ],
+        {
+          name: "Web Design",
+          subcategories: [
+            "Mobile App Design",
+            "WordPress",
+            "CSS",
+            "Figma",
+            "User Interface Design",
+            "Elementor",
+            "Banner Design",
+            "HTML"
+          ]
+        },
+        {
+          name: "Graphic Design & Illustration",
+          subcategories: [
+            "Graphic Design",
+            "Canva",
+            "Adobe Photoshop",
+            "Drawing",
+            "Adobe Illustrator",
+            "Procreate Digital Illustration App",
+            "Design Theory",
+            "Digital Painting",
+            "Adobe InDesign"
+          ]
+        },
+        {
+          name: "Design Tools",
+          subcategories: [
+            "AutoCAD",
+            "Midjourney",
+            "SOLIDWORKS",
+            "Figma",
+            "Adobe After Effects",
+            "Procreate Digital Illustration App",
+            "AI Art Generation",
+            "Adobe Photoshop",
+            "Canva"
+          ]
+        },
+        {
+          name: "User Experience Design",
+          subcategories: [
+            "User Experience (UX) Design",
+            "Figma",
+            "UX Writing (User Experience Writing)",
+            "User Interface Design",
+            "Generative AI (GenAI)",
+            "Product Design",
+            "Web Accessibility",
+            "Design Thinking",
+            "Adobe XD"
+          ]
+        },
+        {
+          name: "Game Design",
+          subcategories: [
+            "Pixel Art",
+            "Unreal Engine",
+            "Unity",
+            "Blender",
+            "VFX (Visual Effects)",
+            "3D Environment Modeling",
+            "Digital Painting",
+            "3D Modeling"
+          ]
+        },
+        {
+          name: "3D & Animation",
+          subcategories: [
+            "Blender",
+            "3D Modeling",
+            "Adobe After Effects",
+            "Autodesk Fusion",
+            "Motion Graphics",
+            "3D Printing",
+            "3D Animation",
+            "zBrush",
+            "Unreal Engine"
+          ]
+        },
+        {
+          name: "Fashion Design",
+          subcategories: [
+            "Pattern Making (Fashion)",
+            "Sewing",
+            "Fashion",
+            "3D Fashion Design",
+            "Jewelry Design",
+            "Jewelry Making",
+            "Adobe Illustrator",
+            "Textiles"
+          ]
+        },
+        {
+          name: "Architectural Design",
+          subcategories: [
+            "Revit",
+            "AutoCAD",
+            "Building Information Modeling (BIM)",
+            "SketchUp",
+            "LEED",
+            "3D Modeling",
+            "ARCHICAD",
+            "Blender"
+          ]
+        },
+        {
+          name: "Interior Design",
+          subcategories: [
+            "SketchUp",
+            "Color Theory",
+            "Blender",
+            "Lighting Design",
+            "Home Staging",
+            "Electrical Engineering",
+            "Revit",
+            "Electricity"
+          ]
+        },
+        {
+          name: "Other Design",
+          subcategories: [
+            "Electronics",
+            "PCB Design",
+            "Drawing",
+            "Stable Diffusion",
+            "Geometric Dimensioning and Tolerancing (GD&T)",
+            "AutoCAD",
+            "CATIA",
+            "Microservices",
+            "Software Architecture"
+          ]
+        }
+      ]
     },
     {
       title: "Marketing",
