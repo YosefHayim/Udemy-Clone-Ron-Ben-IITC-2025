@@ -13,7 +13,7 @@ import {
   CollapsibleContent,
 } from "@/components/ui/collapsible";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
 import { useState } from "react";
 import CustomTrigger from "./CustomTrigger";
@@ -38,6 +38,9 @@ export function CourseSidebarMenu({ sections, courseId }: { sections: Section[];
 
   // State to track completed lessons
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
+  const location = useLocation(); // Get the current location
+
+
 
   const toggleLessonCompletion = (lessonId: string) => {
     setCompletedLessons((prev) => ({
@@ -45,11 +48,12 @@ export function CourseSidebarMenu({ sections, courseId }: { sections: Section[];
       [lessonId]: !prev[lessonId],
     }));
   };
-
+  let lessonCounter = 0;
+ 
   return (
     <SidebarMenu className="gap-0 mt-[-20px]">
       <div className="flex items-center justify-between border-b font-semibold">
-        <span className="text-sm">Course content</span>
+        <span className="text-lg">Course content</span>
         {open && (
           <div className="p-4 size">
             <CustomTrigger open={open} toggleSidebar={toggleSidebar} position="insideSidebar" />
@@ -57,41 +61,61 @@ export function CourseSidebarMenu({ sections, courseId }: { sections: Section[];
         )}
       </div>
       {sections.map((section) => (
+        
+        
         <Collapsible
           key={section._id}
           defaultOpen
-          className="group/collapsible border-b flex p-4 items-center justify-between"
+          className="group/collapsible border-b flex  p-4  "
         >
-          <SidebarMenuItem>
-            <CollapsibleTrigger asChild>
-              <SidebarMenuButton className="overflow-visible font-bold focus:outline-none gap-0 pl-0 focus-visible:outline-none rounded-none">
-                <span className="whitespace-normal break-words">{section.title}</span>
-                <FaChevronDown className="overflow-visible transition-transform group-data-[state=open]/collapsible:rotate-180" />
+          <SidebarMenuItem >
+            <CollapsibleTrigger asChild className="overflow-visible  font-bold focus:outline-none  gap-0 pl-0 focus-visible:outline-none rounded-none">
+              <SidebarMenuButton className="overflow-visible   focus:outline-none flex items-center justify-between gap-0 pl-0 focus-visible:outline-none rounded-none">
+                <span className="whitespace-normal break-words text-sm mr-3">{section.title}</span>
+                <FaChevronDown className="overflow-visible transition-transform  absolute ml-48 group-data-[state=open]/collapsible:rotate-180" />
               </SidebarMenuButton>
             </CollapsibleTrigger>
 
             {/* Collapsible Content for lessons */}
-            <CollapsibleContent>
+
+      <CollapsibleContent>
               <SidebarMenuSub className="m-0 p-0 mt-5 border-l-0 w-full">
-                {section.lessons.map((lesson) => (
-                  <SidebarMenuSubItem
-                    className="hover:bg-slate-400 pt-4 h-full w-full"
-                    key={lesson._id}
-                  >
-                    <div className="flex items-center justify-between text-s hover:bg-slate-400 w-full">
-                      <Checkbox
-                        checked={!!completedLessons[lesson._id]}
-                        onCheckedChange={() => toggleLessonCompletion(lesson._id)}
-                        className="focus:outline-none focus-visible:outline-none hover:border-black border-2 rounded-none"
-                      />
-                      <SidebarMenuSubButton asChild>
-                        <Link to={`/course/${courseId}/lesson/${lesson._id}/overview`}>
-                        <MdOndemandVideo />. {lesson.duration}
-                        </Link>
-                      </SidebarMenuSubButton>
-                    </div>
-                  </SidebarMenuSubItem>
-                ))}
+                {section.lessons.map((lesson) => {
+                  lessonCounter += 1;
+                  const isCurrentLesson =
+                    location.pathname === `/course/${courseId}/lesson/${lesson._id}/overview`; // Increment the global counter
+                  return (
+                    <SidebarMenuSubItem
+                      className="hover:bg-slate-400 h-full w-full"
+                      key={lesson._id}
+                    >
+                      <div className={isCurrentLesson ?'bg-slate-500 flex items-center justify-between group w-full' : "hover:bg-slate-500 flex items-center justify-between group w-full "}   >
+                        <SidebarMenuSubButton asChild>
+                          <div className="flex items-center  h-full">
+                            {/* Checkbox */}
+                            <Checkbox
+                              checked={!!completedLessons[lesson._id]}
+                              onCheckedChange={() => toggleLessonCompletion(lesson._id)}
+                              className="focus:outline-none focus-visible:outline-none hover:border-black border-2 self-start mt-1 rounded-none"
+                            />
+                            <div className="flex  flex-col">
+                              {/* Lesson Link */}
+                              <Link className='hover:bg-slate-500 ' to={`/course/${courseId}/lesson/${lesson._id}/overview`}>
+                                <span className="">
+                                  {lessonCounter}. {lesson.title}
+                                </span>
+                                <span className="flex text-sm text-gray-400 items-center ">
+                                  <MdOndemandVideo className="text" />
+                                  <span className="text-sm"> {lesson.duration} min </span>
+                                </span>
+                              </Link>
+                            </div>
+                          </div>
+                        </SidebarMenuSubButton>
+                      </div>
+                    </SidebarMenuSubItem>
+                  );
+                })}
               </SidebarMenuSub>
             </CollapsibleContent>
           </SidebarMenuItem>

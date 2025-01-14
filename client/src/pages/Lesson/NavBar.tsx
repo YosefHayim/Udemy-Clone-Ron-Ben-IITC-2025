@@ -27,7 +27,6 @@ const NavBar: React.FC = () => {
 
   // Construct the base path dynamically
   const basePath = `/course/${courseId}/lesson/${id}`;
-  tabs.map(tab =>console.log(tab.path))
 
   return (
     <div className="w-full">
