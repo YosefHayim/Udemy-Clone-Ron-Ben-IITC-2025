@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import ExploreData from "../Explore/ExploreData";
+import { IoIosArrowForward } from "react-icons/io";
 
 const ExploreMenu = () => {
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
@@ -7,6 +8,7 @@ const ExploreMenu = () => {
   const [hoveredSecondSubMenu, setHoveredSecondSubMenu] = useState<boolean>(false);
   const menuTimeout = useRef<NodeJS.Timeout | null>(null);
   const subMenuTimeout = useRef<NodeJS.Timeout | null>(null);
+  
 
   const getCategoryData = (categoryName: string) => {
     return categoryName
@@ -81,14 +83,25 @@ const ExploreMenu = () => {
             onMouseEnter={() => handleMenuEnter("main")}
             onMouseLeave={handleMenuLeave}
           >
+            {/* Título */}
+            <div className="px-4 py-2 font-bold text-gray-700">Browse Certifications</div>
+            {/* <hr className="border-t border-gray-300 my-2" /> */}
+
             {ExploreData.map((category, index) => (
-              <div
-                key={index}
-                className="hover:bg-gray-100 px-4 py-2 cursor-pointer"
-                onMouseEnter={() => handleMenuEnter(category.category || null)}
-              >
-                {category.category || "Unnamed Category"}
-              </div>
+              <>
+                <div
+                  key={index}
+                  className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
+                  onMouseEnter={() => handleMenuEnter(category.category || null)}
+                >
+                  <span>{category.category || "Unnamed Category"}</span>
+                  <span><IoIosArrowForward /></span>
+                </div>
+                {/* Linha divisória entre "Certification Preparation" e "Development" */}
+                {category.category === "Certification Preparation" && (
+                  <hr className="border-t border-gray-300 my-2" />
+                )}
+              </>
             ))}
 
             {/* Submenu */}
@@ -101,10 +114,11 @@ const ExploreMenu = () => {
                 {getCategoryData(hoveredMenu)?.subcategory.map((subCategory, index) => (
                   <div
                     key={index}
-                    className="hover:bg-gray-100 px-4 py-2 cursor-pointer"
+                    className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
                     onMouseEnter={() => handleSubMenuEnter(subCategory.title || subCategory.name || null)}
                   >
-                    {subCategory.title || subCategory.name || "Unnamed Subcategory"}
+                    <span>{subCategory.title || subCategory.name || "Unnamed Subcategory"}</span>
+                    <span><IoIosArrowForward /></span>
                   </div>
                 ))}
               </div>
@@ -121,11 +135,13 @@ const ExploreMenu = () => {
                   (topic, index) => (
                     <div
                       key={index}
-                      className="hover:bg-gray-100 px-4 py-2 cursor-pointer"
+                      className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
                     >
-                      {typeof topic === "string"
-                        ? topic
-                        : topic.title || topic.group || "Unnamed Topic"}
+                      <span>
+                        {typeof topic === "string"
+                          ? topic
+                          : topic.title || topic.group || "Unnamed Topic"}
+                      </span>
                     </div>
                   )
                 )}
@@ -139,6 +155,3 @@ const ExploreMenu = () => {
 };
 
 export default ExploreMenu;
-
-
-
