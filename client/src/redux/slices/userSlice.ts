@@ -30,20 +30,28 @@ const userSlice = createSlice({
     setBio: (state, action: PayloadAction<string>) => {
       state.bio = action.payload;
     },
-    setEmail: (state, action: PayloadAction<string>) => {
+    setEmailAddress: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
     },
     clearUser: (state) => {
       state.fullName = "";
       state.profilePic = "";
       state.role = "";
+      state.email = "";
+      state.role = "";
     },
   },
 });
 
 // Export actions to use in the app
-export const { setFullName, setProfilePic, setRole, clearUser, setBio } =
-  userSlice.actions;
+export const {
+  setFullName,
+  setProfilePic,
+  setRole,
+  clearUser,
+  setBio,
+  setEmailAddress,
+} = userSlice.actions;
 
 // Export the reducer to add it to the store
 export default userSlice.reducer;

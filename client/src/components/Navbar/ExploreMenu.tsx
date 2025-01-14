@@ -598,8 +598,7 @@ const ExploreMenu = () => {
           ],
         },
       ],
-    }
-    ,
+    },
     {
       title: "Finance & Accounting",
       subcategories: [
@@ -835,8 +834,8 @@ const ExploreMenu = () => {
       title: "Office Productivity",
       subcategories: [
         {
-          "title": "Microsoft",
-          "topics": [
+          title: "Microsoft",
+          topics: [
             "Microsoft Excel",
             "Microsoft 365 (Office)",
             "Microsoft Power BI",
@@ -845,12 +844,12 @@ const ExploreMenu = () => {
             "Excel Formulas and Functions",
             "Pivot Tables",
             "Data Analysis",
-            "Microsoft SharePoint"
-          ]
+            "Microsoft SharePoint",
+          ],
         },
         {
-          "title": "Apple",
-          "topics": [
+          title: "Apple",
+          topics: [
             "Mac Basics",
             "iMovie",
             "Apple Keynote",
@@ -859,12 +858,12 @@ const ExploreMenu = () => {
             "macOS",
             "Mac Pages",
             "Personal Productivity",
-            "Microsoft 365 (Office)"
-          ]
+            "Microsoft 365 (Office)",
+          ],
         },
         {
-          "title": "Google",
-          "topics": [
+          title: "Google",
+          topics: [
             "Google Sheets",
             "Google Workspace (G Suite)",
             "Google Looker Studio (Data Studio)",
@@ -873,12 +872,12 @@ const ExploreMenu = () => {
             "Google Apps Script",
             "Gmail Productivity",
             "Google Drive",
-            "Microsoft Excel"
-          ]
+            "Microsoft Excel",
+          ],
         },
         {
-          "title": "SAP",
-          "topics": [
+          title: "SAP",
+          topics: [
             "SAP S/4HANA",
             "SAP Materials Management (SAP MM)",
             "SAP ABAP",
@@ -886,12 +885,12 @@ const ExploreMenu = () => {
             "SAP Sales and Distribution (SAP SD)",
             "SAP FICO",
             "SAP HCM",
-            "SAP Analytics Cloud"
-          ]
+            "SAP Analytics Cloud",
+          ],
         },
         {
-          "title": "Oracle",
-          "topics": [
+          title: "Oracle",
+          topics: [
             "Oracle Primavera",
             "Oracle SQL",
             "Oracle Fusion HCM",
@@ -900,12 +899,12 @@ const ExploreMenu = () => {
             "Database Administration",
             "Project Management",
             "Oracle ERP",
-            "Oracle E-Business Suite"
-          ]
+            "Oracle E-Business Suite",
+          ],
         },
         {
-          "title": "Other Office Productivity",
-          "topics": [
+          title: "Other Office Productivity",
+          topics: [
             "ChatGPT",
             "Python",
             "Programming Fundamentals",
@@ -914,10 +913,10 @@ const ExploreMenu = () => {
             "Prompt Engineering",
             "ServiceNow",
             "Automation",
-            "Typing"
-          ]
-        }
-      ]
+            "Typing",
+          ],
+        },
+      ],
     },
     {
       title: "Personal Development",
@@ -932,8 +931,8 @@ const ExploreMenu = () => {
             "Horsemanship",
             "Mindfulness",
             "Coaching",
-            "Life Purpose"
-          ]
+            "Life Purpose",
+          ],
         },
         {
           name: "Personal Productivity",
@@ -946,8 +945,8 @@ const ExploreMenu = () => {
             "Organizational Skills",
             "Writing",
             "Procrastination",
-            "Focus Mastery"
-          ]
+            "Focus Mastery",
+          ],
         },
         {
           name: "Memory and Study Skills",
@@ -960,8 +959,8 @@ const ExploreMenu = () => {
             "Mind Mapping",
             "Critical Thinking",
             "Artificial Intelligence (AI)",
-            "Obsidian App"
-          ]
+            "Obsidian App",
+          ],
         },
         {
           name: "Motivation",
@@ -973,8 +972,8 @@ const ExploreMenu = () => {
             "Manifestation and Law of Attraction",
             "Procrastination",
             "Personal Development",
-            "Philosophy"
-          ]
+            "Philosophy",
+          ],
         },
         {
           name: "Other Personal Management",
@@ -987,8 +986,8 @@ const ExploreMenu = () => {
             "Sound Therapy",
             "Lucid Dreaming",
             "Life Coach Training",
-            "Car Repair"
-          ]
+            "Car Repair",
+          ],
         },
         {
           name: "Leadership",
@@ -1000,8 +999,8 @@ const ExploreMenu = () => {
             "Conflict Management",
             "Public Speaking",
             "Relationship Building",
-            "Decision Making"
-          ]
+            "Decision Making",
+          ],
         },
         {
           name: "Career Development",
@@ -1013,8 +1012,8 @@ const ExploreMenu = () => {
             "IT / Technical Support",
             "Business Writing",
             "Car Repair",
-            "Building Inspection"
-          ]
+            "Building Inspection",
+          ],
         },
         {
           name: "Parenting & Relationships",
@@ -1027,8 +1026,8 @@ const ExploreMenu = () => {
             "Marriage",
             "Love",
             "Autism",
-            "Dating"
-          ]
+            "Dating",
+          ],
         },
         {
           name: "Happiness",
@@ -1040,8 +1039,8 @@ const ExploreMenu = () => {
             "Positive Psychology",
             "Mindfulness",
             "Psychology",
-            "Personal Success"
-          ]
+            "Personal Success",
+          ],
         },
         {
           name: "Esoteric Practices",
@@ -1054,8 +1053,8 @@ const ExploreMenu = () => {
             "Hypnotherapy",
             "Psychic",
             "Chakra",
-            "Akashic Records"
-          ]
+            "Akashic Records",
+          ],
         },
         {
           name: "Religion & Spirituality",
@@ -1068,8 +1067,8 @@ const ExploreMenu = () => {
             "Reiki",
             "Spiritual Healing",
             "The Bible",
-            "Numerology"
-          ]
+            "Numerology",
+          ],
         },
         {
           name: "Personal Brand Building",
@@ -1082,8 +1081,8 @@ const ExploreMenu = () => {
             "Business Strategy",
             "Amazon Kindle Direct Publishing (KDP)",
             "Audiobook Creation",
-            "Public Speaking"
-          ]
+            "Public Speaking",
+          ],
         },
         {
           name: "Creativity",
@@ -1096,8 +1095,8 @@ const ExploreMenu = () => {
             "Writing",
             "Novel Writing",
             "Fiction Writing",
-            "Self-Publishing"
-          ]
+            "Self-Publishing",
+          ],
         },
         {
           name: "Influence",
@@ -1110,8 +1109,8 @@ const ExploreMenu = () => {
             "Body Language",
             "English Grammar",
             "Presentation Skills",
-            "Influence Skills"
-          ]
+            "Influence Skills",
+          ],
         },
         {
           name: "Self Esteem & Confidence",
@@ -1124,8 +1123,8 @@ const ExploreMenu = () => {
             "Social Skills",
             "Family Constellations Therapy",
             "Public Speaking",
-            "Dance"
-          ]
+            "Dance",
+          ],
         },
         {
           name: "Stress Management",
@@ -1137,10 +1136,10 @@ const ExploreMenu = () => {
             "Anger Management",
             "Grief Healing",
             "Mindfulness",
-            "Work Life Balance"
-          ]
-        }
-      ]
+            "Work Life Balance",
+          ],
+        },
+      ],
     },
     {
       title: "Design",
@@ -1155,8 +1154,8 @@ const ExploreMenu = () => {
             "User Interface Design",
             "Elementor",
             "Banner Design",
-            "HTML"
-          ]
+            "HTML",
+          ],
         },
         {
           name: "Graphic Design & Illustration",
@@ -1169,8 +1168,8 @@ const ExploreMenu = () => {
             "Procreate Digital Illustration App",
             "Design Theory",
             "Digital Painting",
-            "Adobe InDesign"
-          ]
+            "Adobe InDesign",
+          ],
         },
         {
           name: "Design Tools",
@@ -1183,8 +1182,8 @@ const ExploreMenu = () => {
             "Procreate Digital Illustration App",
             "AI Art Generation",
             "Adobe Photoshop",
-            "Canva"
-          ]
+            "Canva",
+          ],
         },
         {
           name: "User Experience Design",
@@ -1197,8 +1196,8 @@ const ExploreMenu = () => {
             "Product Design",
             "Web Accessibility",
             "Design Thinking",
-            "Adobe XD"
-          ]
+            "Adobe XD",
+          ],
         },
         {
           name: "Game Design",
@@ -1210,8 +1209,8 @@ const ExploreMenu = () => {
             "VFX (Visual Effects)",
             "3D Environment Modeling",
             "Digital Painting",
-            "3D Modeling"
-          ]
+            "3D Modeling",
+          ],
         },
         {
           name: "3D & Animation",
@@ -1224,8 +1223,8 @@ const ExploreMenu = () => {
             "3D Printing",
             "3D Animation",
             "zBrush",
-            "Unreal Engine"
-          ]
+            "Unreal Engine",
+          ],
         },
         {
           name: "Fashion Design",
@@ -1237,8 +1236,8 @@ const ExploreMenu = () => {
             "Jewelry Design",
             "Jewelry Making",
             "Adobe Illustrator",
-            "Textiles"
-          ]
+            "Textiles",
+          ],
         },
         {
           name: "Architectural Design",
@@ -1250,8 +1249,8 @@ const ExploreMenu = () => {
             "LEED",
             "3D Modeling",
             "ARCHICAD",
-            "Blender"
-          ]
+            "Blender",
+          ],
         },
         {
           name: "Interior Design",
@@ -1263,8 +1262,8 @@ const ExploreMenu = () => {
             "Home Staging",
             "Electrical Engineering",
             "Revit",
-            "Electricity"
-          ]
+            "Electricity",
+          ],
         },
         {
           name: "Other Design",
@@ -1277,10 +1276,10 @@ const ExploreMenu = () => {
             "AutoCAD",
             "CATIA",
             "Microservices",
-            "Software Architecture"
-          ]
-        }
-      ]
+            "Software Architecture",
+          ],
+        },
+      ],
     },
     {
       title: "Marketing",
@@ -1295,8 +1294,8 @@ const ExploreMenu = () => {
             "Google Analytics",
             "Copywriting",
             "Sales Funnel",
-            "Startup"
-          ]
+            "Startup",
+          ],
         },
         {
           name: "Search Engine Optimization",
@@ -1309,8 +1308,8 @@ const ExploreMenu = () => {
             "SEO Audit",
             "Link Building",
             "ChatGPT",
-            "SEMrush"
-          ]
+            "SEMrush",
+          ],
         },
         {
           name: "Social Media Marketing",
@@ -1322,8 +1321,8 @@ const ExploreMenu = () => {
             "TikTok Marketing",
             "YouTube Marketing",
             "Canva",
-            "PPC Advertising"
-          ]
+            "PPC Advertising",
+          ],
         },
         {
           name: "Branding",
@@ -1336,8 +1335,8 @@ const ExploreMenu = () => {
             "Marketing Strategy",
             "DaVinci Resolve",
             "Online Course Marketing",
-            "Product Management"
-          ]
+            "Product Management",
+          ],
         },
         {
           name: "Marketing Fundamentals",
@@ -1350,8 +1349,8 @@ const ExploreMenu = () => {
             "Marketing Management",
             "ChatGPT",
             "Psychology",
-            "Market Research"
-          ]
+            "Market Research",
+          ],
         },
         {
           name: "Marketing Analytics & Automation",
@@ -1364,8 +1363,8 @@ const ExploreMenu = () => {
             "Marketo",
             "Custom GPTs/GPT Builder",
             "Google Analytics Individual Qualification (IQ)",
-            "Marketing Automation"
-          ]
+            "Marketing Automation",
+          ],
         },
         {
           name: "Public Relations",
@@ -1377,8 +1376,8 @@ const ExploreMenu = () => {
             "Storytelling",
             "Public Speaking",
             "Business Communication",
-            "Grant Writing"
-          ]
+            "Grant Writing",
+          ],
         },
         {
           name: "Paid Advertising",
@@ -1391,8 +1390,8 @@ const ExploreMenu = () => {
             "YouTube Marketing",
             "Advertising Strategy",
             "Copywriting",
-            "Email Marketing"
-          ]
+            "Email Marketing",
+          ],
         },
         {
           name: "Video & Mobile Marketing",
@@ -1405,8 +1404,8 @@ const ExploreMenu = () => {
             "Generative AI (GenAI)",
             "Video Marketing",
             "Video Production",
-            "Video Editing"
-          ]
+            "Video Editing",
+          ],
         },
         {
           name: "Growth Hacking",
@@ -1418,8 +1417,8 @@ const ExploreMenu = () => {
             "Account-Based Marketing (ABM)",
             "ChatGPT",
             "Facebook Ads",
-            "YouTube Audience Growth"
-          ]
+            "YouTube Audience Growth",
+          ],
         },
         {
           name: "Content Marketing",
@@ -1431,8 +1430,8 @@ const ExploreMenu = () => {
             "Blogging",
             "Content Creation",
             "Social Media Marketing",
-            "ChatGPT"
-          ]
+            "ChatGPT",
+          ],
         },
         {
           name: "Affiliate Marketing",
@@ -1444,8 +1443,8 @@ const ExploreMenu = () => {
             "Search Engine Optimization (SEO)",
             "Generative AI (GenAI)",
             "Pinterest Marketing",
-            "Influencer Marketing"
-          ]
+            "Influencer Marketing",
+          ],
         },
         {
           name: "Product Marketing",
@@ -1457,8 +1456,8 @@ const ExploreMenu = () => {
             "Book Marketing",
             "Generative AI (GenAI)",
             "Voice-Over",
-            "Marketing Strategy"
-          ]
+            "Marketing Strategy",
+          ],
         },
         {
           name: "Other Marketing",
@@ -1471,13 +1470,13 @@ const ExploreMenu = () => {
             "Digital Marketing",
             "Research Paper Writing",
             "Google Tag Manager",
-            "Marketing Psychology"
-          ]
-        }
-      ]
+            "Marketing Psychology",
+          ],
+        },
+      ],
     },
     {
-      "title": "Lifestyle",
+      title: "Lifestyle",
       subcategories: [
         {
           name: "Arts & Crafts",
@@ -1490,8 +1489,8 @@ const ExploreMenu = () => {
             "Sketching",
             "Candle Making",
             "Soapmaking",
-            "Oil Painting"
-          ]
+            "Oil Painting",
+          ],
         },
         {
           name: "Beauty & Makeup",
@@ -1504,8 +1503,8 @@ const ExploreMenu = () => {
             "Hair Styling",
             "Cosmetics",
             "Beauty Business",
-            "Face Lift"
-          ]
+            "Face Lift",
+          ],
         },
         {
           name: "Esoteric Practices",
@@ -1518,8 +1517,8 @@ const ExploreMenu = () => {
             "Hypnotherapy",
             "Psychic",
             "Chakra",
-            "Akashic Records"
-          ]
+            "Akashic Records",
+          ],
         },
         {
           name: "Food & Beverage",
@@ -1532,8 +1531,8 @@ const ExploreMenu = () => {
             "Bread Baking",
             "Wine Appreciation and Oenology",
             "Baking",
-            "Cake Baking"
-          ]
+            "Cake Baking",
+          ],
         },
         {
           name: "Gaming",
@@ -1545,8 +1544,8 @@ const ExploreMenu = () => {
             "Twitch",
             "Fortnite",
             "League of Legends",
-            "Character Design"
-          ]
+            "Character Design",
+          ],
         },
         {
           name: "Home Improvement & Gardening",
@@ -1559,8 +1558,8 @@ const ExploreMenu = () => {
             "Mushroom Cultivation",
             "Farming",
             "Hydroponics",
-            "Organizational Skills"
-          ]
+            "Organizational Skills",
+          ],
         },
         {
           name: "Pet Care & Training",
@@ -1573,8 +1572,8 @@ const ExploreMenu = () => {
             "Pet Care",
             "Animal Nutrition",
             "Veterinary Medicine",
-            "Cat Behavior"
-          ]
+            "Cat Behavior",
+          ],
         },
         {
           name: "Travel",
@@ -1586,8 +1585,8 @@ const ExploreMenu = () => {
             "Portuguese Language",
             "Digital Nomad",
             "Immigration",
-            "Working Abroad"
-          ]
+            "Working Abroad",
+          ],
         },
         {
           name: "Other Lifestyle",
@@ -1600,13 +1599,13 @@ const ExploreMenu = () => {
             "AutoCAD",
             "CATIA",
             "Microservices",
-            "Software Architecture"
-          ]
-        }
-      ]
+            "Software Architecture",
+          ],
+        },
+      ],
     },
     {
-      "title": "Photography & Video",
+      title: "Photography & Video",
       subcategories: [
         {
           name: "Digital Photography",
@@ -1618,8 +1617,8 @@ const ExploreMenu = () => {
             "Mobile Photography",
             "Adobe Lightroom",
             "GIMP",
-            "Adobe Photoshop"
-          ]
+            "Adobe Photoshop",
+          ],
         },
         {
           name: "Photography",
@@ -1631,8 +1630,8 @@ const ExploreMenu = () => {
             "Night Photography",
             "Landscape Photography",
             "Street Photography",
-            "Food Photography"
-          ]
+            "Food Photography",
+          ],
         },
         {
           name: "Portrait Photography",
@@ -1644,8 +1643,8 @@ const ExploreMenu = () => {
             "Family Portrait Photography",
             "Image Editing",
             "Video Editing",
-            "Photography Business"
-          ]
+            "Photography Business",
+          ],
         },
         {
           name: "Photography Tools",
@@ -1658,8 +1657,8 @@ const ExploreMenu = () => {
             "Photoshop Retouching",
             "Drone and Aerial Photography",
             "Photography",
-            "GIMP"
-          ]
+            "GIMP",
+          ],
         },
         {
           name: "Commercial Photography",
@@ -1672,8 +1671,8 @@ const ExploreMenu = () => {
             "Product Photography",
             "Photography",
             "Food Photography",
-            "Drone and Aerial Photography"
-          ]
+            "Drone and Aerial Photography",
+          ],
         },
         {
           name: "Video Design",
@@ -1686,8 +1685,8 @@ const ExploreMenu = () => {
             "CapCut",
             "Unreal Engine",
             "Color Grading",
-            "Filmmaking"
-          ]
+            "Filmmaking",
+          ],
         },
         {
           name: "Other Photography & Video",
@@ -1700,14 +1699,13 @@ const ExploreMenu = () => {
             "Drone and Aerial Photography",
             "Video Editing",
             "Video Creation",
-            "Filmmaking"
-          ]
-        }
-      ]
-    }
-    ,
+            "Filmmaking",
+          ],
+        },
+      ],
+    },
     {
-      "title": "Health & Fitness",
+      title: "Health & Fitness",
       subcategories: [
         {
           name: "Fitness",
@@ -1719,8 +1717,8 @@ const ExploreMenu = () => {
             "Muscle Building",
             "Strength Training",
             "Stretching Exercise",
-            "Boxing"
-          ]
+            "Boxing",
+          ],
         },
         {
           name: "General Health",
@@ -1733,8 +1731,8 @@ const ExploreMenu = () => {
             "Natural Medicine",
             "Aromatherapy",
             "Health",
-            "Holistic Medicine"
-          ]
+            "Holistic Medicine",
+          ],
         },
         {
           name: "Sports",
@@ -1747,8 +1745,8 @@ const ExploreMenu = () => {
             "Golf",
             "Sports Massage",
             "Sports Management",
-            "Running"
-          ]
+            "Running",
+          ],
         },
         {
           name: "Nutrition & Diet",
@@ -1761,8 +1759,8 @@ const ExploreMenu = () => {
             "Sports Nutrition",
             "Vegan Cooking",
             "Ketogenic Diet",
-            "Face Yoga"
-          ]
+            "Face Yoga",
+          ],
         },
         {
           name: "Yoga",
@@ -1774,8 +1772,8 @@ const ExploreMenu = () => {
             "Ayurveda",
             "Prenatal Yoga",
             "Face Yoga",
-            "Tantra"
-          ]
+            "Tantra",
+          ],
         },
         {
           name: "Mental Health",
@@ -1787,8 +1785,8 @@ const ExploreMenu = () => {
             "Acceptance and Commitment Therapy (ACT)",
             "Trauma-Informed Care",
             "Dialectical Behavior Therapy (DBT)",
-            "Psychology"
-          ]
+            "Psychology",
+          ],
         },
         {
           name: "Martial Arts & Self Defense",
@@ -1801,8 +1799,8 @@ const ExploreMenu = () => {
             "Boxing",
             "Close Combat",
             "Wing Chun",
-            "Karate"
-          ]
+            "Karate",
+          ],
         },
         {
           name: "Safety & First Aid",
@@ -1815,8 +1813,8 @@ const ExploreMenu = () => {
             "Survival Skills",
             "Fire Safety",
             "Advanced Trauma Life Support (ATLS)",
-            "Dog Care"
-          ]
+            "Dog Care",
+          ],
         },
         {
           name: "Dance",
@@ -1827,8 +1825,8 @@ const ExploreMenu = () => {
             "Hip Hop Dancing",
             "Ballet",
             "Tango Dance",
-            "Poi Spinning"
-          ]
+            "Poi Spinning",
+          ],
         },
         {
           name: "Meditation",
@@ -1839,8 +1837,8 @@ const ExploreMenu = () => {
             "Reiki",
             "Breathing Techniques",
             "Qigong",
-            "Mental Health"
-          ]
+            "Mental Health",
+          ],
         },
         {
           name: "Other Health & Fitness",
@@ -1853,13 +1851,13 @@ const ExploreMenu = () => {
             "Spiritual Healing",
             "Medical Terminology",
             "Beauty",
-            "Kinesiology Taping"
-          ]
-        }
-      ]
+            "Kinesiology Taping",
+          ],
+        },
+      ],
     },
     {
-      "title": "Music",
+      title: "Music",
       subcategories: [
         {
           name: "Instruments",
@@ -1872,8 +1870,8 @@ const ExploreMenu = () => {
             "Piano Chords",
             "Violin",
             "Ukulele",
-            "Harmonica"
-          ]
+            "Harmonica",
+          ],
         },
         {
           name: "Music Production",
@@ -1885,8 +1883,8 @@ const ExploreMenu = () => {
             "Audio Engineering",
             "Music Composition",
             "Sound Design",
-            "Audio Production"
-          ]
+            "Audio Production",
+          ],
         },
         {
           name: "Music Fundamentals",
@@ -1899,8 +1897,8 @@ const ExploreMenu = () => {
             "Ear Training",
             "Piano",
             "Harmony (music)",
-            "Piano Chords"
-          ]
+            "Piano Chords",
+          ],
         },
         {
           name: "Vocal",
@@ -1913,8 +1911,8 @@ const ExploreMenu = () => {
             "Rapping",
             "Yoga",
             "Breathing Techniques",
-            "Voice-Over"
-          ]
+            "Voice-Over",
+          ],
         },
         {
           name: "Music Techniques",
@@ -1927,8 +1925,8 @@ const ExploreMenu = () => {
             "Music Theory",
             "Guitar",
             "Music Improvisation",
-            "Piano Chords"
-          ]
+            "Piano Chords",
+          ],
         },
         {
           name: "Music Software",
@@ -1941,8 +1939,8 @@ const ExploreMenu = () => {
             "GarageBand",
             "DJ",
             "Sound Design",
-            "Cubase"
-          ]
+            "Cubase",
+          ],
         },
         {
           name: "Other Music",
@@ -1955,14 +1953,13 @@ const ExploreMenu = () => {
             "Rapping",
             "Luthiery",
             "Music Mixing",
-            "Acoustics"
-          ]
-        }
-      ]
-    }
-    ,
+            "Acoustics",
+          ],
+        },
+      ],
+    },
     {
-      "title": "Teaching & Academics",
+      title: "Teaching & Academics",
       subcategories: [
         {
           name: "Engineering",
@@ -1975,8 +1972,8 @@ const ExploreMenu = () => {
             "Solar Energy",
             "Automotive Engineering",
             "Power Engineering",
-            "Electrical Design"
-          ]
+            "Electrical Design",
+          ],
         },
         {
           name: "Humanities",
@@ -1989,8 +1986,8 @@ const ExploreMenu = () => {
             "Critical Thinking",
             "Creative Writing",
             "Cognitive Behavioral Therapy (CBT)",
-            "Autism"
-          ]
+            "Autism",
+          ],
         },
         {
           name: "Math",
@@ -2002,8 +1999,8 @@ const ExploreMenu = () => {
             "Probability",
             "Trigonometry",
             "Geometry",
-            "Discrete Math"
-          ]
+            "Discrete Math",
+          ],
         },
         {
           name: "Science",
@@ -2015,8 +2012,8 @@ const ExploreMenu = () => {
             "Biology",
             "Quantum Mechanics (physics)",
             "Certified Professional Coder (CPC)",
-            "Organic Chemistry"
-          ]
+            "Organic Chemistry",
+          ],
         },
         {
           name: "Online Education",
@@ -2029,8 +2026,8 @@ const ExploreMenu = () => {
             "Moodle",
             "Coding For Kids",
             "ChatGPT",
-            "Passive Income"
-          ]
+            "Passive Income",
+          ],
         },
         {
           name: "Social Science",
@@ -2043,8 +2040,8 @@ const ExploreMenu = () => {
             "Criminology",
             "Psychotherapy",
             "Intelligence Analysis (security)",
-            "Cognitive Behavioral Therapy (CBT)"
-          ]
+            "Cognitive Behavioral Therapy (CBT)",
+          ],
         },
         {
           name: "Language Learning",
@@ -2057,8 +2054,8 @@ const ExploreMenu = () => {
             "Japanese Language",
             "English Conversation",
             "English Vocabulary",
-            "Arabic Language"
-          ]
+            "Arabic Language",
+          ],
         },
         {
           name: "Teacher Training",
@@ -2070,8 +2067,8 @@ const ExploreMenu = () => {
             "Instructional Design",
             "Generative AI (GenAI)",
             "Voice-Over",
-            "Coaching"
-          ]
+            "Coaching",
+          ],
         },
         {
           name: "Test Prep",
@@ -2084,8 +2081,8 @@ const ExploreMenu = () => {
             "Canadian English Language Proficiency Index Program (CELPIP)",
             "PMI PMBOK",
             "English Language",
-            "CCAT"
-          ]
+            "CCAT",
+          ],
         },
         {
           name: "Other Teaching & Academics",
@@ -2098,12 +2095,11 @@ const ExploreMenu = () => {
             "Academic Writing",
             "Sewing",
             "Chess",
-            "Clinical Research"
-          ]
-        }
-      ]
-    }
-    ,
+            "Clinical Research",
+          ],
+        },
+      ],
+    },
   ];
 
   return (
@@ -2124,7 +2120,9 @@ const ExploreMenu = () => {
           onMouseEnter={() => setMenuVisible(true)}
           onMouseLeave={() => setMenuVisible(false)}
         >
-          <div className="px-4 pt-4  pb-1 font-bold text-gray-900">Browse Certifications</div>
+          <div className="px-4 pt-4  pb-1 font-bold text-gray-900">
+            Browse Certifications
+          </div>
           <ul className="">
             {menuItems.map((item, index) => (
               <>
@@ -2134,7 +2132,9 @@ const ExploreMenu = () => {
                   onMouseEnter={() => setHoveredItem(index)}
                   onMouseLeave={() => setHoveredItem(null)}
                   className={`relative text-gray-900 text-sm hover:text-purple-600 cursor-pointer px-4 py-2 ${
-                    item.subcategories.length ? "flex justify-between items-center" : ""
+                    item.subcategories.length
+                      ? "flex justify-between items-center"
+                      : ""
                   }`}
                 >
                   {item.title}
@@ -2161,14 +2161,16 @@ const ExploreMenu = () => {
                               <>
                                 <strong>{subcategory.group}</strong>
                                 <ul className="ml-4">
-                                  {subcategory.items.map((subItem, itemIndex) => (
-                                    <li
-                                      key={itemIndex}
-                                      className="text-gray-600 hover:text-purple-500"
-                                    >
-                                      {subItem}
-                                    </li>
-                                  ))}
+                                  {subcategory.items.map(
+                                    (subItem, itemIndex) => (
+                                      <li
+                                        key={itemIndex}
+                                        className="text-gray-600 hover:text-purple-500"
+                                      >
+                                        {subItem}
+                                      </li>
+                                    )
+                                  )}
                                 </ul>
                               </>
                             )}
