@@ -11,7 +11,11 @@ import Carousel from "./Carousel";
 import Sections from "./Sections";
 import Menu from "@/components/Menu/Menu";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/index"; // Import RootState type for Redux
+import { RootState } from "../../redux/index"; // Import RootState type for Redux 
+import Welcome from "@/components/LogedinHomePage/Welcome";
+import TeamAcess from "./TeamAcess";
+import DropdownMenu from "@/components/DropDownMenu";
+import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 
 const Homepage = () => {
   const user = useSelector((state: RootState) => state.user);
@@ -21,6 +25,7 @@ const Homepage = () => {
       {!user && (
         <>
           <div className="container mx-auto px-[5.6rem]">
+            <DropdownMenu />
             <Banner />
             <Sections />
             <TrustedBySection />
@@ -38,19 +43,14 @@ const Homepage = () => {
 
       {user && (
         <>
+          <DropdownMenu />
           <Menu />
           <div className="container mx-auto px-[5.6rem]">
+            <Welcome />
             <Banner />
-            <Sections />
-            <TrustedBySection />
-            <LearnersAreViewing />
-            <SearchResult />
-            <LearningGoals />
-            <PlansSection />
-            <Testimonials />
-            <TrendsReport />
-            <TrendingNow />
-            <Carousel />
+            <CoursesCarousel />
+            <TeamAcess />
+            {/* <CoursesCarousel /> */}
           </div>
         </>
       )}
