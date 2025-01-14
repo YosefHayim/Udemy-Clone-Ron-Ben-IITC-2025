@@ -79,6 +79,7 @@ const signUp = catchAsync(async (req, res, next) => {
   const token = generateToken({
     id: newUser._id,
     fullName: newUser.fullName,
+    email: newUser.email,
     profilePic: newUser.profilePic,
     role: newUser.role,
     bio: newUser.bio,
@@ -113,6 +114,7 @@ const login = catchAsync(async (req, res, next) => {
   const token = generateToken({
     id: isFoundUser._id,
     fullName: isFoundUser.fullName,
+    email: isFoundUser.email,
     profilePic: isFoundUser.profilePic,
     role: isFoundUser.role,
     bio: isFoundUser.bio,

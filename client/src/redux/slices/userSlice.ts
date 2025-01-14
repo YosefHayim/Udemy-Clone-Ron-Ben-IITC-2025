@@ -13,6 +13,7 @@ const userSlice = createSlice({
   initialState: {
     fullName: "",
     profilePic: "",
+    email: "",
     bio: "",
     role: "",
   },
@@ -27,9 +28,11 @@ const userSlice = createSlice({
       state.role = action.payload;
     },
     setBio: (state, action: PayloadAction<string>) => {
-      state.role = action.payload;
+      state.bio = action.payload;
     },
-
+    setEmail: (state, action: PayloadAction<string>) => {
+      state.email = action.payload;
+    },
     clearUser: (state) => {
       state.fullName = "";
       state.profilePic = "";
