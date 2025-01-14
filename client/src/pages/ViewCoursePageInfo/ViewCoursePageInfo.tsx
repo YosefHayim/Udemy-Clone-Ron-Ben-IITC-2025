@@ -159,11 +159,11 @@ const ViewCoursePageInfo: React.FC = () => {
       </div>
 
       {/* Preview Card */}
-      <CoursePreviewCard
+      {/* <CoursePreviewCard
         courseImg={courseData.courseImg}
         discountPrice={courseData.courseDiscountPrice}
         fullPrice={courseData.courseFullPrice}
-      />
+      /> */}
     </div>
   );
 };
