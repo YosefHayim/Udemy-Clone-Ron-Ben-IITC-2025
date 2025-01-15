@@ -9,11 +9,6 @@ import Language from "../Language/Language";
 import Cookies from "js-cookie";
 
 const Profile: React.FC = () => {
-  // Acessa o estado do Redux para obter a imagem do perfil
-  const userProfileImg = useSelector(
-    (state: RootState) => state.user.profilePic
-  );
-
   const fullName = useSelector((state) => state.user.fullName);
   const profilePic = useSelector((state) => state.user.profilePic);
 
@@ -37,23 +32,13 @@ const Profile: React.FC = () => {
     );
   }
 
-  // Function to get the initial of the email if there is no profile picture
-  const getInitial = (email: string | undefined) => {
-    if (!email) return "?"; // Returns "?" if the email is invalid
-    return email.charAt(0).toUpperCase(); // Uppercase first letter
-  };
-
-  // If there's no profile picture, fallback to initials
-  const initialFromEmail = profilePic ? null : getInitial("user@example.com");
-
   return (
     <div className="relative group">
       {/* If no profilePic, fallback to initials */}
-      <ProfilePic
-        shortcutName={shortcutName || initialFromEmail}
-        profilePic={profilePic}
-      />
-      <DropdownMenu />
+      <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
+      <div className="pb-[1em]">
+        <DropdownMenu />
+      </div>
     </div>
   );
 };
