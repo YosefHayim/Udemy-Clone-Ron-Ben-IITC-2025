@@ -29,7 +29,7 @@ const CoursePreviewCard = ({ courseImg, discountPrice, fullPrice }) => {
 
   return (
     <div
-      className={`shadow-previewCourseCardShadow w-[320px] z-[2000] bg-white border border-b-gray-100 ${
+      className={`shadow-previewCourseCardShadow w-[320px] z-[1500] bg-white border border-b-gray-100 ${
         isFixed ? "fixed right-[20%] top-[2%]" : "static"
       } transition-all duration-300 ease-in-out`}
       style={{

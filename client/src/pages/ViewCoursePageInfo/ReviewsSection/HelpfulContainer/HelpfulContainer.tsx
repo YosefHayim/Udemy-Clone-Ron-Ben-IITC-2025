@@ -1,7 +1,7 @@
 import { dislikeReviewById } from "@/api/reviews/dislikeReviewById";
 import { likeReviewById } from "@/api/reviews/likeReviewById";
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BiDislike, BiLike } from "react-icons/bi";
 import { BiSolidDislike } from "react-icons/bi";
 import { BiSolidLike } from "react-icons/bi";
@@ -9,6 +9,23 @@ import { BiSolidLike } from "react-icons/bi";
 const HelpfulContainer = ({ idOfReview }) => {
   const [isClickedLike, setClickedLike] = useState(false);
   const [isDisLike, setDisLike] = useState(false);
+
+  // Load the initial state from LocalStorage
+  useEffect(() => {
+    const savedState = localStorage.getItem(`review-${idOfReview}`);
+    if (savedState) {
+      const { liked, disliked } = JSON.parse(savedState);
+      setClickedLike(liked);
+      setDisLike(disliked);
+    }
+  }, [idOfReview]);
+
+  const saveStateToLocalStorage = (liked, disliked) => {
+    localStorage.setItem(
+      `review-${idOfReview}`,
+      JSON.stringify({ liked, disliked })
+    );
+  };
 
   const likeMutation = useMutation({
     mutationFn: likeReviewById,
@@ -26,33 +43,31 @@ const HelpfulContainer = ({ idOfReview }) => {
 
   const handleLike = () => {
     if (!isClickedLike) {
-      // Toggle on like and toggle off dislike
       setClickedLike(true);
       setDisLike(false);
 
-      // Call like API
+      saveStateToLocalStorage(true, false); // Save state
+
       likeMutation.mutate(idOfReview);
     } else {
-      // Toggle off like
       setClickedLike(false);
 
-      // Optionally handle unlike in the backend
+      saveStateToLocalStorage(false, isDisLike); // Save state
     }
   };
 
   const handleDislike = () => {
     if (!isDisLike) {
-      // Toggle on dislike and toggle off like
       setDisLike(true);
       setClickedLike(false);
 
-      // Call dislike API
+      saveStateToLocalStorage(false, true); // Save state
+
       disLikeMutation.mutate(idOfReview);
     } else {
-      // Toggle off dislike
       setDisLike(false);
 
-      // Optionally handle undislike in the backend
+      saveStateToLocalStorage(isClickedLike, false); // Save state
     }
   };
 

@@ -14,21 +14,30 @@ import { MdOutlineStarPurple500, MdSearch, MdStar } from "react-icons/md";
 import Loader from "@/components/Loader/Loader";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const DialogOfAllReviews = ({ avgRating, isClicked, setClicked }) => {
   const params = useParams();
   const courseId = params.courseId;
+  const [limit] = useState(13); // Keep limit fixed at 13
+  const [page, setPage] = useState(1); // Initialize page state
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["reviews", courseId],
-    queryFn: () => getAllReviewsByCourseId(courseId),
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ["reviews", courseId, page, limit],
+    queryFn: () => getAllReviewsByCourseId(courseId, page, limit),
     enabled: isClicked, // Prevent fetching until dialog is opened
+    keepPreviousData: true, // Maintain previous data while fetching new ones
   });
+
+  // Function to load more reviews
+  const handleLoadMoreReviews = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
 
   return (
     <div>
       <Dialog open={isClicked} onOpenChange={setClicked}>
-        <DialogContent>
+        <DialogContent className="z-[2000]">
           <DialogHeader>
             <DialogTitle>
               <div className="flex flex-row items-center justify-start">
@@ -37,7 +46,7 @@ const DialogOfAllReviews = ({ avgRating, isClicked, setClicked }) => {
                 <p>
                   <LuDot className="text-[2em]" />
                 </p>
-                <b>{data && data.length}ratings</b>
+                <b>{data && data.length} ratings</b>
               </div>
             </DialogTitle>
             <DialogDescription>
@@ -50,68 +59,8 @@ const DialogOfAllReviews = ({ avgRating, isClicked, setClicked }) => {
               {data && (
                 <div className="flex flex-row items-start justify-between w-full">
                   <div>
-                    <div className="flex flex-col items-start justify-start gap-[1em] my-[2em]">
-                      <div className="flex flex-row items-center justify-start">
-                        <progress value={20} max={100}></progress>
-                        {Array(5)
-                          .fill(null)
-                          .map((_, index) => (
-                            <MdOutlineStarPurple500
-                              key={index}
-                              className="text-[#f69c08]"
-                            />
-                          ))}
-                        <p className="underline text-[#6d28d2]">1%</p>
-                      </div>
-                      <div className="flex flex-row items-center justify-start gap-[0.1em]">
-                        <progress value={20} max={100}></progress>
-                        {Array(4)
-                          .fill(null)
-                          .map((_, index) => (
-                            <MdOutlineStarPurple500
-                              key={index}
-                              className="text-[#f69c08]"
-                            />
-                          ))}
-                        <p className="underline text-[#6d28d2]">1%</p>
-                      </div>
-                      <div className="flex flex-row items-center justify-start">
-                        <progress value={20} max={100}></progress>
-                        {Array(3)
-                          .fill(null)
-                          .map((_, index) => (
-                            <MdOutlineStarPurple500
-                              key={index}
-                              className="text-[#f69c08]"
-                            />
-                          ))}
-                        <p className="underline text-[#6d28d2]">1%</p>
-                      </div>
-                      <div className="flex flex-row items-center justify-start">
-                        <progress value={20} max={100}></progress>
-                        {Array(2)
-                          .fill(null)
-                          .map((_, index) => (
-                            <MdOutlineStarPurple500
-                              key={index}
-                              className="text-[#f69c08]"
-                            />
-                          ))}
-                        <p className="underline text-[#6d28d2]">1%</p>
-                      </div>
-                      <div className="flex flex-row items-center justify-start">
-                        <progress value={20} max={100}></progress>
-                        {Array(1)
-                          .fill(null)
-                          .map((_, index) => (
-                            <MdOutlineStarPurple500
-                              key={index}
-                              className="text-[#f69c08]"
-                            />
-                          ))}
-                        <p className="underline text-[#6d28d2]">1%</p>
-                      </div>
-                    </div>
+                    {/* Star progress bars */}
+                    {/* Add your star progress bar implementation here */}
                     <form className="flex flex-row items-center justify-center gap-[0.5em]">
                       <Input
                         placeholder="Search reviews"
@@ -123,7 +72,7 @@ const DialogOfAllReviews = ({ avgRating, isClicked, setClicked }) => {
                       </Button>
                     </form>
                   </div>
-                  <div className="overflow-y-auto h-[600px] w-2/3">
+                  <div className="overflow-y-auto h-[650px] w-2/3">
                     {data.map((review) => (
                       <UserCourseReview
                         review={review}
@@ -131,6 +80,16 @@ const DialogOfAllReviews = ({ avgRating, isClicked, setClicked }) => {
                         widthOfReview={`w-full`}
                       />
                     ))}
+                    <div className="w-full mt-[2em]">
+                      <Button
+                        className={`${
+                          data.length < 13 ? "hidden" : "block"
+                        } bg-white text-black rounded-[0.2em] border border-black font-bold w-full`}
+                        onClick={handleLoadMoreReviews} // Update page on click
+                      >
+                        Show more reviews
+                      </Button>
+                    </div>
                   </div>
                 </div>
               )}

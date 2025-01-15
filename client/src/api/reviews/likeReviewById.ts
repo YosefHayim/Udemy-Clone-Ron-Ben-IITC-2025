@@ -11,7 +11,7 @@ export const likeReviewById = async (idOfReview: unknown) => {
     const res = await axiosClient.post(url);
 
     if (res) {
-      console.log(res);
+      console.log(res.data.data);
       return res;
     }
   } catch (error) {

@@ -83,9 +83,18 @@ const getAllReviewsByCourseId = catchAsync(async (req, res, next) => {
     return next(createError(`No course found with ID: ${courseId}.`, 404));
   }
 
-  const allReviewsOfCourseId = await courseReviews.find({
-    courseReview: courseId,
-  });
+  const defaultLimit = 13;
+  req.query.limit = req.query.limit || defaultLimit;
+
+  const features = new APIFeatures(
+    courseReviews.find({ courseReview: courseId }),
+    req.query
+  )
+    .sort()
+    .limitFields()
+    .paginate();
+
+  const allReviewsOfCourseId = await features.query;
 
   res.status(200).json({
     success: "Success",
