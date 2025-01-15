@@ -11,7 +11,6 @@ import { RootState } from "../../redux/index"; // Import RootState type for Redu
 import Heart from "./Heart/Heart";
 import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
-import { Link } from "react-router-dom";
 import ExploreMenu from "./Explore/ExploreMenu";
 
 const Navbar = () => {
@@ -23,9 +22,7 @@ const Navbar = () => {
       style={{ height: "4.5rem" }}
     >
       <div className="flex items-center gap-6 w-screen">
-        <Link to="/">
-          <Logo />
-        </Link>
+        <Logo />
         <ExploreMenu />
         <SearchInput />
         <AtagBtn aTagName={"Udemy Business"} />

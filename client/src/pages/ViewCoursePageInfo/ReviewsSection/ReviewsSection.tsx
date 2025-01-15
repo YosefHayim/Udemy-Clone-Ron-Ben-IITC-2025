@@ -13,7 +13,10 @@ const ReviewsSection = ({ totalRated, avgRating, reviewsToRender }) => {
 
   return (
     <div>
-      <ReviewSectionTitle totalRated={totalRated} avgRating={avgRating} />
+      <ReviewSectionTitle
+        totalRated={reviewsToRender.length}
+        avgRating={avgRating}
+      />
       <div className="grid grid-cols-2 gap-4 w-[700px] mb-[2em]">
         {reviewsToRender.slice(0, 4).map((review, index) => (
           <UserCourseReview review={review} key={index} />

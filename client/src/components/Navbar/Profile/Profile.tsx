@@ -6,6 +6,7 @@ import ProfilePic from "@/components/ProfilePic/ProfilePic";
 import LoginBtn from "../LoginBtn/LoginBtn";
 import SignupBtn from "../SignupBtn/SignupBtn";
 import Language from "../Language/Language";
+import Cookies from "js-cookie";
 
 const Profile: React.FC = () => {
   // Acessa o estado do Redux para obter a imagem do perfil
@@ -15,8 +16,9 @@ const Profile: React.FC = () => {
 
   const fullName = useSelector((state) => state.user.fullName);
   const profilePic = useSelector((state) => state.user.profilePic);
+  const cookie = Cookies.get("cookie");
 
-  if (!fullName && !profilePic) {
+  if (!fullName && !profilePic && !cookie) {
     return (
       <div className="flex flex-row gap-[1em]">
         <LoginBtn />

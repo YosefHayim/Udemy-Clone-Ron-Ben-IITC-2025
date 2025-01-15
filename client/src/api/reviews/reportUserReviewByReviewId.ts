@@ -21,9 +21,9 @@ const reportUserReviewByReviewId = async ({
     const payload = { issueType, issueDetails, userId };
     const response = await axiosClient.post(url, payload);
 
-    if (response && response.data) {
-      console.log(response.data);
-      return response.data;
+    if (response) {
+      console.log(response);
+      return response;
     }
 
     console.warn("No review data found in the response.");

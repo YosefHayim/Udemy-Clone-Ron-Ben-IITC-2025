@@ -5,6 +5,7 @@ import ProfilePic from "./ProfilePic/ProfilePic";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartCoursesNumber from "./Navbar/Cart/CartCoursesNumber/CartCoursesNumber";
+import Cookies from "js-cookie";
 
 const DropdownMenu: React.FC = () => {
   // Accessing Redux state for user data
@@ -21,6 +22,15 @@ const DropdownMenu: React.FC = () => {
   const shortcutName =
     (firstWord?.[0]?.toUpperCase() || "") +
     (secondWord?.[0]?.toUpperCase() || "");
+
+  const handleLogout = () => {
+    const cookie = Cookies.get("cookie");
+    console.log(cookie);
+    const cleared = Cookies.set("cookie", "");
+    if (cleared) {
+      console.log("Cookie has been cleared");
+    }
+  };
 
   return (
     <div className="absolute z-30 right-0 mt-2 w-72 bg-white border border-gray-300 shadow-md rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
@@ -158,9 +168,9 @@ const DropdownMenu: React.FC = () => {
             Help and Support
           </a>
         </li>
-        <li>
+        <li onClick={handleLogout}>
           <Link
-            to="/logout"
+            to="/login"
             className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
           >
             Logout

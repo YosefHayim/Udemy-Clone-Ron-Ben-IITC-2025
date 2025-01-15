@@ -45,7 +45,9 @@ const DialogReportReview = ({
   const mutation = useMutation({
     mutationFn: reportUserReviewByReviewId,
     onSuccess: () => {
-      setReportDrawer(false);
+      // Show the acknowledgment message
+      setIsClicked(true);
+      setSubmit(true);
     },
     onError: (error) => {
       console.error("Error reporting review:", error);
@@ -53,8 +55,10 @@ const DialogReportReview = ({
   });
 
   const handleCloseBtn = () => {
+    // Close the dialog when the user acknowledges
     setReportDrawer(false);
     setSubmit(false);
+    setIsClicked(false); // Reset the state for the next time the dialog opens
   };
 
   return (
@@ -108,7 +112,9 @@ const DialogReportReview = ({
                   name="issue-type"
                   id="issue-type"
                   required
-                  className="bg-white text-black border border-black rounded-[0.2em] p-[1em] w-full"
+                  className={`${
+                    isClicked ? "hidden" : "block"
+                  } bg-white text-black border border-black rounded-[0.2em] p-[1em] w-full`}
                 >
                   <option value="">Select an issue</option>
                   <option value="harmfulVioletHateful">
