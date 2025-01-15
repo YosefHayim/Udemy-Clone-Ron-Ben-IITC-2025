@@ -7,10 +7,8 @@ import Lesson from "../Lesson/Lesson";
 const Section = ({ lessonsOfSection, sectionName }) => {
   const [isClicked, setClicked] = useState(false);
 
-  const totalDuration = lessonsOfSection.reduce(
-    (sum, lesson) => sum + lesson.duration,
-    0
-  );
+  const totalDuration =
+    lessonsOfSection?.reduce((sum, lesson) => sum + lesson.duration, 0) || 0;
 
   return (
     <div>
@@ -30,15 +28,19 @@ const Section = ({ lessonsOfSection, sectionName }) => {
       </div>
 
       <div className={isClicked ? "hidden" : "block w-[550px]"}>
-        {lessonsOfSection.map((lesson, index) => (
-          <Lesson
-            key={lesson._id}
-            title={lesson.title}
-            videoUrl={lesson.videoUrl}
-            duration={lesson.duration}
-            isQuizzLesson={index === lessonsOfSection.length - 1} // Example: Make last one a quiz
-          />
-        ))}
+        {lessonsOfSection?.length > 0 ? (
+          lessonsOfSection.map((lesson, index) => (
+            <Lesson
+              key={lesson._id}
+              title={lesson.title}
+              videoUrl={lesson.videoUrl}
+              duration={lesson.duration}
+              isQuizzLesson={index === lessonsOfSection.length - 1} // Example: Make last one a quiz
+            />
+          ))
+        ) : (
+          <p>No lessons available.</p>
+        )}
       </div>
     </div>
   );

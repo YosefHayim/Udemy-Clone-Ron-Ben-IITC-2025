@@ -12,6 +12,7 @@ import SignUp from "@/pages/SignUp/Signup";
 import Login from "@/pages/Login/Login";
 import Wishlist from "@/pages/Wishlist/Wishlist";
 import Logout from "@/pages/Logout/Logout";
+import Payment from "@/pages/Payment/Payment";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const AppRoutes: React.FC = () => {
               <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="/cart" element={<ShoppingCart />} />
+                <Route path="/payment/checkout/" element={<Payment />} />
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route path="/loader" element={<Loader />} />
                 <Route path="/Signup" element={<SignUp />} />
