@@ -17,7 +17,8 @@ const DropdownMenu: React.FC = () => {
 
   // Safely generate shortcutName using first and second word initials
   const shortcutName =
-    (firstWord?.[0]?.toUpperCase() || "") + (secondWord?.[0]?.toUpperCase() || "");
+    (firstWord?.[0]?.toUpperCase() || "") +
+    (secondWord?.[0]?.toUpperCase() || "");
 
   return (
     <div className="absolute z-30 right-0 mt-2 w-72 bg-white border border-gray-300 shadow-md rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">

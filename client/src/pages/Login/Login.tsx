@@ -21,8 +21,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const mutation = useMutation({
     mutationFn: loginUser,
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: () => {
+      navigate("/");
     },
     onError: (error) => {
       console.error(error);

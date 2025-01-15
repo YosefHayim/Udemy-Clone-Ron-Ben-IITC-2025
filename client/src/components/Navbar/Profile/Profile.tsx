@@ -5,6 +5,7 @@ import DropdownMenu from "../../DropDownMenu"; // Importa o componente DropdownM
 import ProfilePic from "@/components/ProfilePic/ProfilePic";
 import LoginBtn from "../LoginBtn/LoginBtn";
 import SignupBtn from "../SignupBtn/SignupBtn";
+import Language from "../Language/Language";
 
 const Profile: React.FC = () => {
   // Acessa o estado do Redux para obter a imagem do perfil
@@ -20,6 +21,7 @@ const Profile: React.FC = () => {
       <div className="flex flex-row gap-[1em]">
         <LoginBtn />
         <SignupBtn />
+        <Language />
       </div>
     );
   }
@@ -29,7 +31,8 @@ const Profile: React.FC = () => {
 
   // Safely generate the shortcut name
   const shortcutName =
-    (firstWord?.[0]?.toUpperCase() || "") + (secondWord?.[0]?.toUpperCase() || "");
+    (firstWord?.[0]?.toUpperCase() || "") +
+    (secondWord?.[0]?.toUpperCase() || "");
 
   if (!fullName && !profilePic) {
     return <div>Loading...</div>; // Return a loading state if needed
