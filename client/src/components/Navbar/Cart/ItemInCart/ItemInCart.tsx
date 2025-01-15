@@ -34,7 +34,9 @@ const ItemInCart = ({
   });
 
   if (isLoading) return;
-  <Loader />;
+  <div>
+    <Loader />
+  </div>;
 
   if (error) return <div>Error loading course data</div>;
 

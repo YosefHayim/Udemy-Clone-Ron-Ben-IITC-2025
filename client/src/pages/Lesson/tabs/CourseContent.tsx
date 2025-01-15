@@ -25,7 +25,12 @@ const CourseContent: React.FC = () => {
   });
 
   // Handle loading and error states
-  if (isLoading) return <Loader />;
+  if (isLoading)
+    return (
+      <div>
+        <Loader />;
+      </div>
+    );
   if (error || !data) return <div>Error loading course data</div>;
 
   const sections = data.data.sections;

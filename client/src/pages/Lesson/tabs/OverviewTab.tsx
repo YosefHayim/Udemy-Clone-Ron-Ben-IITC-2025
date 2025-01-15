@@ -23,8 +23,11 @@ const OverviewTab: React.FC = () => {
 
   console.log("React Query status:", { isLoading, error, data });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading course data.</div>;
+  if (isLoading) return;
+  <div>
+    <Loader />
+  </div>;
+  if (error) return <div>Error loading course data</div>;
   if (!data) return <div>No course data found.</div>;
 
   const course = data.data;
@@ -33,7 +36,9 @@ const OverviewTab: React.FC = () => {
 
   return (
     <div id="overview" className="p-20 pt-5">
-      <h2 className="text-xl mb-4">{course.courseDescription || "No Description"}</h2>
+      <h2 className="text-xl mb-4">
+        {course.courseDescription || "No Description"}
+      </h2>
       <div className="flex items-start gap-10 text-xl py-4">
         <div className="flex flex-col">
           <div className="flex items-center">
@@ -44,7 +49,9 @@ const OverviewTab: React.FC = () => {
               <FaStar />
             </span>
           </div>
-          <span className="text-gray-500 text-sm">{course.totalRatings || 0} ratings</span>
+          <span className="text-gray-500 text-sm">
+            {course.totalRatings || 0} ratings
+          </span>
         </div>
       </div>
     </div>

@@ -36,7 +36,7 @@ const DialogOfAllReviews = ({ avgRating, isClicked, setClicked }) => {
               <p>
                 <LuDot className="text-[2em]" />
               </p>
-              <b>{data && data.length} ratings</b>
+              <b>{data && data.length}ratings</b>
             </div>
           </DialogTitle>
           <DialogDescription>
