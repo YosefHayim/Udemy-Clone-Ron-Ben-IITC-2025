@@ -160,8 +160,6 @@ const toggleLikeByReviewId = catchAsync(async (req, res, next) => {
 
   const review = await courseReviews.findById(reviewId);
 
-  console.log(review);
-
   if (!review) {
     return next(createError("No review found with this ID.", 404));
   }
@@ -195,10 +193,7 @@ const toggleLikeByReviewId = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     message: "success",
-    response: {
-      likes: review.likes.count,
-      dislikes: review.dislikes.count,
-    },
+    data: review,
   });
 });
 
@@ -244,10 +239,7 @@ const toggleDislikeReaction = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     message: "success",
-    response: {
-      likes: review.likes.count,
-      dislikes: review.dislikes.count,
-    },
+    data: review,
   });
 });
 
