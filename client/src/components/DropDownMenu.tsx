@@ -3,6 +3,8 @@ import { FaGlobe, FaExternalLinkAlt } from "react-icons/fa"; // Importa ícones
 import { MdLanguage } from "react-icons/md";
 import ProfilePic from "./ProfilePic/ProfilePic";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import CartCoursesNumber from "./Navbar/Cart/CartCoursesNumber/CartCoursesNumber";
 
 const DropdownMenu: React.FC = () => {
   // Accessing Redux state for user data
@@ -40,12 +42,14 @@ const DropdownMenu: React.FC = () => {
           </a>
         </li>
         <li>
-          <a
-            href="#"
-            className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-          >
-            My cart
-          </a>
+          <Link to="/cart">
+            <div className="flex flex-row justify-between  px-4 py-2 text-gray-700 hover:bg-gray-100">
+              My cart
+              <div className="absolute right-[20%] top-[19%]">
+                <CartCoursesNumber />
+              </div>
+            </div>
+          </Link>
         </li>
         <li>
           <a
@@ -155,12 +159,12 @@ const DropdownMenu: React.FC = () => {
           </a>
         </li>
         <li>
-          <a
-            href="#"
+          <Link
+            to="/logout"
             className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
           >
-            Log out
-          </a>
+            Logout
+          </Link>
         </li>
         <hr />
         <li className="px-4 py-2 text-gray-700 hover:bg-gray-100">
