@@ -146,6 +146,7 @@ const ViewCoursePageInfo: React.FC = () => {
 
         {/* Reviews Section */}
         <ReviewsSection
+          reviewsToRender={courseData.reviews}
           avgRating={courseData.averageRating}
           totalRated={courseData.totalRatings}
         />
@@ -158,11 +159,11 @@ const ViewCoursePageInfo: React.FC = () => {
       </div>
 
       {/* Preview Card */}
-      <CoursePreviewCard
+      {/* <CoursePreviewCard
         courseImg={courseData.courseImg}
         discountPrice={courseData.courseDiscountPrice}
         fullPrice={courseData.courseFullPrice}
-      />
+      /> */}
     </div>
   );
 };

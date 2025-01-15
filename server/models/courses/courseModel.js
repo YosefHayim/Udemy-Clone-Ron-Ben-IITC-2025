@@ -160,10 +160,7 @@ const courseSchema = new mongoose.Schema(
 );
 
 courseSchema.pre(/^find/, function (next) {
-  this.populate({
-    path: "reviews",
-    select: "user comment rating",
-  })
+  this.populate("reviews")
     .populate({
       path: "courseInstructor",
       select: "fullName",
