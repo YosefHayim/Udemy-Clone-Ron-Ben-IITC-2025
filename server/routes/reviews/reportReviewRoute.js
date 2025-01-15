@@ -15,7 +15,7 @@ const router = express.Router();
 router.get("/", getAllReports);
 router.get("/:id", getReportById);
 router.get("/:reviewId", getReportsByReviewId);
-router.post("/:reviewId", createReportByReviewId);
+router.post("/:reviewId", grantedAccess, createReportByReviewId);
 router.delete("/:id", grantedAccess, deleteReportById);
 
 module.exports = router;

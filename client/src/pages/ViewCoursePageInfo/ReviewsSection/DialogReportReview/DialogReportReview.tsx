@@ -15,6 +15,7 @@ const DialogReportReview = ({
   reviewId,
   isOpenReportDrawer,
   setReportDrawer,
+  userId,
 }) => {
   if (!reviewId) {
     return <div>No review selected to report.</div>;
@@ -38,7 +39,7 @@ const DialogReportReview = ({
       return;
     }
 
-    mutation.mutate({ reviewId, issueType, issueDetails });
+    mutation.mutate({ userId, reviewId, issueType, issueDetails });
   };
 
   const mutation = useMutation({
@@ -79,13 +80,16 @@ const DialogReportReview = ({
                   <p>
                     Flagged content is reviewed by Udemy staff to determine
                     whether it violates Terms of Service or Community
-                    Guidelines. If you have a question or technical issue,
-                    please contact our{" "}
+                    Guidelines.
+                  </p>
+                  <div>
+                    If you have a question or technical issue, please contact
+                    our{" "}
                     <span className="underline text-purpleStatic cursor-pointer">
                       Support team here
                     </span>
                     .
-                  </p>
+                  </div>
                 </div>
               )}
               <form

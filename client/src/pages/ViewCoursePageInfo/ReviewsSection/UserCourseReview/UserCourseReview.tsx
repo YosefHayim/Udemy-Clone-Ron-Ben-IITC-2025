@@ -57,6 +57,7 @@ const UserCourseReview = ({ review, widthOfReview = "w-[300px]" }) => {
           )}
           {isOpenReportDrawer ? (
             <DialogReportReview
+              userId={review.user._id}
               reviewId={review._id}
               isOpenReportDrawer={isOpenReportDrawer}
               setReportDrawer={setReportDrawer}

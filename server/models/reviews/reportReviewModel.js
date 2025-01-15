@@ -5,7 +5,7 @@ const reportReviewSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: [true, "A report must belong to a user."],
+    required: [true, "A report must belong to a user who reported the review."],
   },
   review: {
     type: mongoose.Schema.Types.ObjectId,
@@ -26,6 +26,13 @@ const reportReviewSchema = new mongoose.Schema({
     type: String,
     required: [true, "Issue details are required."],
   },
+});
+
+reportReviewSchema.pre("save", function (next) {
+  const d = this.issueType;
+  const c = this.issueDetails;
+  console.log(d, c);
+  next();
 });
 
 const ReportReview = mongoose.model("ReportReview", reportReviewSchema);

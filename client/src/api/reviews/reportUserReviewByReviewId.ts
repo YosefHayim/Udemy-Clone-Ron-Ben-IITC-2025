@@ -4,10 +4,7 @@ const reportUserReviewByReviewId = async ({
   reviewId,
   issueType,
   issueDetails,
-}: {
-  reviewId: string;
-  issueType: string;
-  issueDetails: string;
+  userId,
 }) => {
   if (!reviewId || typeof reviewId !== "string") {
     throw new Error("Invalid review ID provided.");
@@ -21,7 +18,7 @@ const reportUserReviewByReviewId = async ({
   const url = `${localhostUrl}/api/report/review/${sanitizedReviewId}`;
 
   try {
-    const payload = { issueType, issueDetails };
+    const payload = { issueType, issueDetails, userId };
     const response = await axiosClient.post(url, payload);
 
     if (response && response.data) {
