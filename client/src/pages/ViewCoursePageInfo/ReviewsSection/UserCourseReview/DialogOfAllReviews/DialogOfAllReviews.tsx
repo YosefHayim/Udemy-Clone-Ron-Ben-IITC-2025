@@ -23,10 +23,9 @@ const DialogOfAllReviews = ({ avgRating, isClicked, setClicked }) => {
   const [page, setPage] = useState(1); // Initialize page state
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ["reviews", courseId, page, limit],
-    queryFn: () => getAllReviewsByCourseId(courseId, page, limit),
+    queryKey: ["reviews", courseId],
+    queryFn: () => getAllReviewsByCourseId(courseId),
     enabled: isClicked, // Prevent fetching until dialog is opened
-    keepPreviousData: true, // Maintain previous data while fetching new ones
   });
 
   // Function to load more reviews

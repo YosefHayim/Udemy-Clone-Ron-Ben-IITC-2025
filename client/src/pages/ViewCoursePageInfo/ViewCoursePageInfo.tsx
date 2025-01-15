@@ -72,6 +72,8 @@ const ViewCoursePageInfo: React.FC = () => {
     }
   };
 
+  console.log(data);
+
   return (
     <div className="flex flex-row p-[3em] items-start justify-start w-full gap-[3em]">
       <div className="flex flex-col items-start justify-start gap-[1em]">

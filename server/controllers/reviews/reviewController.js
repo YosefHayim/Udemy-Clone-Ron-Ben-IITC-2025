@@ -28,6 +28,50 @@ const getAllReviews = catchAsync(async (req, res, next) => {
   });
 });
 
+const getAllReviewsCountOfallCourses = catchAsync(async (req, res, next) => {
+  // Aggregate reviews to count reviews for each course
+  const reviewsPerCourse = await courseReviews.aggregate([
+    {
+      $group: {
+        _id: "$courseReview", // Group by courseReview (assumed to be course ID)
+        reviewCount: { $sum: 1 }, // Count the number of reviews for each course
+      },
+    },
+    {
+      $lookup: {
+        from: "courses", // Name of the courses collection
+        localField: "_id", // Match courseReview ID with Course ID
+        foreignField: "_id",
+        as: "courseDetails", // Include course details
+      },
+    },
+    {
+      $unwind: "$courseDetails", // Flatten the courseDetails array
+    },
+    {
+      $project: {
+        _id: 1,
+        reviewCount: 1,
+        courseName: "$courseDetails.name", // Adjust according to your course schema
+      },
+    },
+    {
+      $sort: { reviewCount: -1 }, // Sort by reviewCount in descending order
+    },
+  ]);
+
+  if (!reviewsPerCourse || reviewsPerCourse.length === 0) {
+    return next(createError("No reviews found in the database", 404));
+  }
+
+  res.status(200).json({
+    status: "Success",
+    totalCourses: reviewsPerCourse.length,
+    response: "List of courses with review counts",
+    data: reviewsPerCourse,
+  });
+});
+
 const getAllReviewsOfUser = catchAsync(async (req, res, next) => {
   const userId = req.params.id;
 
@@ -86,6 +130,12 @@ const getAllReviewsByCourseId = catchAsync(async (req, res, next) => {
   const defaultLimit = 13;
   req.query.limit = req.query.limit || defaultLimit;
 
+  // Get total count of reviews for the course (ignoring pagination)
+  const totalReviews = await courseReviews.countDocuments({
+    courseReview: courseId,
+  });
+
+  // Apply filters, sorting, and pagination
   const features = new APIFeatures(
     courseReviews.find({ courseReview: courseId }),
     req.query
@@ -94,12 +144,13 @@ const getAllReviewsByCourseId = catchAsync(async (req, res, next) => {
     .limitFields()
     .paginate();
 
+  // Execute the paginated query
   const allReviewsOfCourseId = await features.query;
 
   res.status(200).json({
     success: "Success",
     response: `All reviews for the course ${isCourseExist.courseName}`,
-    totalReviews: allReviewsOfCourseId.length,
+    totalReviews: totalReviews,
     data: allReviewsOfCourseId,
   });
 });
@@ -314,6 +365,7 @@ const deleteReviewById = catchAsync(async (req, res, next) => {
 });
 
 module.exports = {
+  getAllReviewsCountOfallCourses,
   getAllReviewsOfUser,
   getAllReviews,
   addReviewByCourseId,

@@ -1,17 +1,13 @@
 import { axiosClient, baseUrl } from "../configuration";
 
-const getAllReviewsByCourseId = async (
-  courseId: string,
-  limit = 13,
-  page = 1
-) => {
+const getAllReviewsByCourseId = async (courseId: string) => {
   if (!courseId || typeof courseId !== "string") {
     console.error("Invalid course ID provided.");
     return null;
   }
 
   const sanitizedCourseId = courseId.trim();
-  const url = `${baseUrl}/api/review/course/${sanitizedCourseId}?limit=${limit}&page=${page}`;
+  const url = `${baseUrl}/api/review/course/${sanitizedCourseId}`;
 
   try {
     const response = await axiosClient.get(url);
