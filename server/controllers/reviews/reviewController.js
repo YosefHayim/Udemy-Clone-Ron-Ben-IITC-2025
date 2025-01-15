@@ -160,6 +160,8 @@ const toggleLikeByReviewId = catchAsync(async (req, res, next) => {
 
   const review = await courseReviews.findById(reviewId);
 
+  console.log(review);
+
   if (!review) {
     return next(createError("No review found with this ID.", 404));
   }

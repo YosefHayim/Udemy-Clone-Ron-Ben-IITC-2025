@@ -7,8 +7,6 @@ import { BiSolidDislike } from "react-icons/bi";
 import { BiSolidLike } from "react-icons/bi";
 
 const HelpfulContainer = ({ idOfReview }) => {
-  console.log(idOfReview);
-
   const [isClickedLike, setClickedLike] = useState(false);
   const [isDisLike, setDisLike] = useState(false);
 
