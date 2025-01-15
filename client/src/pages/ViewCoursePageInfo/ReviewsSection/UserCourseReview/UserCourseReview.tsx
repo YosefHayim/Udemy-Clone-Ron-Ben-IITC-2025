@@ -7,6 +7,10 @@ import { useState } from "react";
 import DialogReportReview from "../DialogReportReview/DialogReportReview";
 
 const UserCourseReview = ({ review, widthOfReview = "w-[300px]" }) => {
+  if (!review) {
+    return;
+  }
+
   const [activeReviewId, setActiveReviewId] = useState(null);
   const [isOpenReportDrawer, setReportDrawer] = useState(null);
 
@@ -53,6 +57,7 @@ const UserCourseReview = ({ review, widthOfReview = "w-[300px]" }) => {
           )}
           {isOpenReportDrawer ? (
             <DialogReportReview
+              reviewId={review._id}
               isOpenReportDrawer={isOpenReportDrawer}
               setReportDrawer={setReportDrawer}
             />

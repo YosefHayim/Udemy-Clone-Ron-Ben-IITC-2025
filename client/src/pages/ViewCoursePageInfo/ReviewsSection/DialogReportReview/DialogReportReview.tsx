@@ -1,3 +1,5 @@
+import reportUserReviewByReviewId from "@/api/reviews/reportUserReviewByReviewId";
+import Loader from "@/components/Loader/Loader";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -7,10 +9,33 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 
-const DialogReportReview = ({ isOpenReportDrawer, setReportDrawer }) => {
+const DialogReportReview = ({
+  reviewId,
+  isOpenReportDrawer,
+  setReportDrawer,
+}) => {
+  if (!reviewId) {
+    return;
+  }
+
   const [isClicked, setIsClicked] = useState(false);
+  const [isSubmit, setSubmit] = useState(false);
+
+  const handleClickSubmit = () => {
+    setIsClicked((prev) => !prev);
+  };
+
+  // const mutation = useMutation(reportUserReviewByReviewId, {
+  //   onSuccess: () => {
+  //     setIsClicked(true);
+  //   },
+  //   onError: (error) => {
+  //     console.error("Error reporting review:", error);
+  //   },
+  // });
 
   const handleSubmitReport = (e) => {
     e.preventDefault();
@@ -18,11 +43,12 @@ const DialogReportReview = ({ isOpenReportDrawer, setReportDrawer }) => {
     const issueType = formData.get("issue-type");
     const issueDetails = formData.get("issue-details");
 
-    console.log(issueType, issueDetails);
-  };
+    if (!issueType || !issueDetails) {
+      alert("Please fill in all fields before submitting.");
+      return;
+    }
 
-  const handleClickSubmit = () => {
-    setIsClicked((prev) => !prev);
+    // mutation.mutate({ reviewId, issueType, issueDetails });
   };
 
   return (
@@ -46,16 +72,14 @@ const DialogReportReview = ({ isOpenReportDrawer, setReportDrawer }) => {
               ) : (
                 <div>
                   <p>
-                    <p>
-                      Flagged content is reviewed by Udemy staff to determine
-                      whether it violates Terms of Service or Community
-                      Guidelines. If you have a question or technical issue,
-                      please contact our{" "}
-                      <span className="underline text-purpleStatic cursor-pointer">
-                        Support team here
-                      </span>
-                      .
-                    </p>
+                    Flagged content is reviewed by Udemy staff to determine
+                    whether it violates Terms of Service or Community
+                    Guidelines. If you have a question or technical issue,
+                    please contact our{" "}
+                    <span className="underline text-purpleStatic cursor-pointer">
+                      Support team here
+                    </span>
+                    .
                   </p>
                 </div>
               )}

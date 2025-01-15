@@ -5,7 +5,7 @@ const UserProfile = () => {
     <div>
       <div>
         <Avatar>
-          <AvatarImage src="httpss://github.com/shadcn.png" />
+          <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback className="bg-black font-bold text-white">
             CN
           </AvatarFallback>
