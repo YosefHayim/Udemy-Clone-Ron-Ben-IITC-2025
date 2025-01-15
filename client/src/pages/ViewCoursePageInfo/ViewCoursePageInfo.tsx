@@ -56,9 +56,7 @@ const ViewCoursePageInfo: React.FC = () => {
   }, [sanitizedCourseId]);
 
   if (isLoading) return;
-  <div>
-    <Loader />
-  </div>;
+  <Loader />;
 
   if (error) return <div>Error loading course data</div>;
 

@@ -15,10 +15,10 @@ const reportReviewSchema = new mongoose.Schema({
   issueType: {
     type: String,
     enum: {
-      values: allowedIssueTypes,
-      message: `Issue type must be one of the following: ${allowedIssueTypes.join(
-        ", "
-      )}`,
+      values: Object.keys(allowedIssueTypes),
+      message: `Issue type must be one of the following: ${Object.keys(
+        allowedIssueTypes
+      ).join(", ")}`,
     },
     required: [true, "Issue type is required."],
   },
