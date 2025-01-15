@@ -12,6 +12,7 @@ import Profile from "./Profile/Profile";
 import ExploreMenu from "./Explore/ExploreMenu";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [cookie, setCookie] = useState(Cookies.get("cookie"));
@@ -22,7 +23,9 @@ const Navbar = () => {
       style={{ height: "4.5rem" }}
     >
       <div className="flex items-center gap-6 w-screen">
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
         <ExploreMenu />
         <SearchInput />
         <AtagBtn aTagName={"Udemy Business"} />
@@ -31,7 +34,9 @@ const Navbar = () => {
         {!cookie && <SignupBtn />}
         {cookie && <AtagBtn aTagName={"My learning"} />}
         {cookie && <Heart />}
-        <Cart />
+        <Link to="/cart">
+          <Cart />
+        </Link>
         {cookie && <Notifications />}
         {cookie && <Profile />}
         {!cookie && <Language />}

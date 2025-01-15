@@ -55,8 +55,13 @@ const ViewCoursePageInfo: React.FC = () => {
     fetchCourseData();
   }, [sanitizedCourseId]);
 
-  if (isLoading) return;
-  <Loader />;
+  if (isLoading) {
+    return (
+      <div>
+        <Loader hSize="2000px" />
+      </div>
+    );
+  }
 
   if (error) return <div>Error loading course data</div>;
 
@@ -71,8 +76,6 @@ const ViewCoursePageInfo: React.FC = () => {
       console.error("No lessons found in the course.");
     }
   };
-
-  console.log(data);
 
   return (
     <div className="flex flex-row p-[3em] items-start justify-start w-full gap-[3em]">

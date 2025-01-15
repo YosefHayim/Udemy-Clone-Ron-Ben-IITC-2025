@@ -44,16 +44,6 @@ const SearchPage = () => {
     return <div>Error occurred: {error.message}</div>;
   }
 
-  const handleMouseEnter = (e: React.DOMAttributes<HTMLDivElement>) => {
-    // const hoverDiv = e.target.closest("div[id]");
-    // if (hoverDiv) {
-    //   const courseId = hoverDiv.id;
-    //   console.log(courseId);
-    // } else {
-    //   console.log("Hovered over an unrelated element.");
-    // }
-  };
-
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
