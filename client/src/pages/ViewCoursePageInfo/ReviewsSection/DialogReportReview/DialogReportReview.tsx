@@ -28,14 +28,14 @@ const DialogReportReview = ({
     setIsClicked((prev) => !prev);
   };
 
-  const mutation = useMutation(reportUserReviewByReviewId, {
-    onSuccess: () => {
-      setIsClicked(true);
-    },
-    onError: (error) => {
-      console.error("Error reporting review:", error);
-    },
-  });
+  // const mutation = useMutation(reportUserReviewByReviewId, {
+  //   onSuccess: () => {
+  //     setIsClicked(true);
+  //   },
+  //   onError: (error) => {
+  //     console.error("Error reporting review:", error);
+  //   },
+  // });
 
   const handleSubmitReport = (e) => {
     e.preventDefault();
@@ -48,7 +48,7 @@ const DialogReportReview = ({
       return;
     }
 
-    mutation.mutate({ reviewId, issueType, issueDetails });
+    // mutation.mutate({ reviewId, issueType, issueDetails });
   };
 
   return (
