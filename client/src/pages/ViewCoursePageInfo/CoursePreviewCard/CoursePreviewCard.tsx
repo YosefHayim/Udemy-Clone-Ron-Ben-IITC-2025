@@ -9,7 +9,12 @@ import CouponArea from "./CouponArea/CouponArea";
 import UdemyBusiness from "./UdemyBusiness/UdemyBusiness";
 import AddCartNBuyBtn from "./AddCartNBuyBtn/AddCartNBuyBtn";
 
-const CoursePreviewCard = ({ courseImg, discountPrice, fullPrice }) => {
+const CoursePreviewCard = ({
+  courseImg,
+  discountPrice,
+  fullPrice,
+  courseId,
+}) => {
   const [isFixed, setIsFixed] = useState(false);
   const [opacity, setOpacity] = useState(1); // Default opacity for static
 
@@ -54,7 +59,7 @@ const CoursePreviewCard = ({ courseImg, discountPrice, fullPrice }) => {
           />
         </div>
         <TimeLeftBuyCourse />
-        <AddCartNBuyBtn />
+        <AddCartNBuyBtn courseId={courseId} discountPrice={discountPrice} />
         <MoneyBack />
         <CourseIncludes />
         <InteractionBtns />

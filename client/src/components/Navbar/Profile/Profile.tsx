@@ -37,7 +37,13 @@ const Profile: React.FC = () => {
     (secondWord?.[0]?.toUpperCase() || "");
 
   if (!fullName && !profilePic) {
-    return <div>Loading...</div>; // Return a loading state if needed
+    return (
+      <div className="flex flex-row items-center gap-[1em]">
+        <LoginBtn />
+        <SignupBtn />
+        <Language />
+      </div>
+    ); // Return a loading state if needed
   }
 
   // Function to get the initial of the email if there is no profile picture

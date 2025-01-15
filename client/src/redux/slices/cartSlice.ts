@@ -1,11 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Cart {
-  amountOfCourses: Number;
-  coursesAddedToCart: [string];
-  totalCoursesPrice: Number;
-}
-
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
@@ -22,8 +16,12 @@ const cartSlice = createSlice({
       state.amountOfCourses += 1;
     },
     coursesAddedToCart: (state, action: PayloadAction<string>) => {
-      state.coursesAddedToCart.push(action.payload);
+      // Use a Set to ensure no duplicates, then convert back to an array
+      state.coursesAddedToCart = Array.from(
+        new Set([...state.coursesAddedToCart, action.payload])
+      );
     },
+
     totalCoursesPrice: (state, action: PayloadAction<number>) => {
       state.totalCoursesPrice += action.payload;
     },

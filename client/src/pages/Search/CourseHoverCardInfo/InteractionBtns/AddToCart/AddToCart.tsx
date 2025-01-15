@@ -8,11 +8,7 @@ import {
 import { useDispatch } from "react-redux";
 import Loader from "@/components/Loader/Loader";
 
-const AddToCart = ({ textBtn = "Add to cart", courseId, coursePrice }) => {
-  if (!courseId || coursePrice == null) {
-    return null; // Ensure both props are valid
-  }
-
+const AddToCart = ({ textBtn = "Add to cart", courseId, discountPrice }) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false); // Track loading state
 
@@ -23,7 +19,7 @@ const AddToCart = ({ textBtn = "Add to cart", courseId, coursePrice }) => {
     // Simulate a 2-second delay for loading
     setTimeout(() => {
       dispatch(setAmountOfCourses());
-      dispatch(totalCoursesPrice(coursePrice));
+      dispatch(totalCoursesPrice(discountPrice));
       dispatch(coursesAddedToCart(courseId));
       setIsLoading(false); // Hide loader after 2 seconds
     }, 1000);

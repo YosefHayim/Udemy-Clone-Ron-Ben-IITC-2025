@@ -164,6 +164,8 @@ const ViewCoursePageInfo: React.FC = () => {
 
       {/* Preview Card */}
       <CoursePreviewCard
+        coursePrice={courseData.discountPrice}
+        courseId={courseData._id}
         courseImg={courseData.courseImg}
         discountPrice={courseData.courseDiscountPrice}
         fullPrice={courseData.courseFullPrice}
