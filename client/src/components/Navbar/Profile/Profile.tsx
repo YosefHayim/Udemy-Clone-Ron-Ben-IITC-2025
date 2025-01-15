@@ -13,6 +13,10 @@ const Profile: React.FC = () => {
   const fullName = useSelector((state) => state.user.fullName);
   const profilePic = useSelector((state) => state.user.profilePic);
 
+  if (!fullName && !profilePic) {
+    return <div>No full name or profile</div>;
+  }
+
   const [firstWord, secondWord] = fullName.split(" ");
 
   const shortcutName =
