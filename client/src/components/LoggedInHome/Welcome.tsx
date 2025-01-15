@@ -6,6 +6,10 @@ const Welcome = () => {
   const profilePic = useSelector((state) => state.user.profilePic);
   const bio = useSelector((state) => state.user.bio);
 
+  if (!fullName && !profilePic) {
+    return <div></div>;
+  }
+
   const [firstWord, secondWord] = fullName.split(" ");
 
   const shortcutName = (firstWord?.[0] || "") + (secondWord?.[0] || "");
