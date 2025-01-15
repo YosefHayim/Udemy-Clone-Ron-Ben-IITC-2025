@@ -26,7 +26,7 @@ const Requirements = ({ requirements }) => {
       {isClicked && (
         <ul className="list-disc py-[0.5em] ml-[1em] flex flex-col gap-[0.5em]">
           {requirements.map((requirement) => (
-            <li>{requirement}</li>
+            <li key={requirement}>{requirement}</li>
           ))}
         </ul>
       )}
