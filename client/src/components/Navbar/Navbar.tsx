@@ -5,17 +5,16 @@ import Cart from "./Cart/Cart";
 import Language from "./Language/Language";
 import Logo from "../Logo/Logo";
 import AtagBtn from "../AtagBtn/AtagBtn";
-import SearchResults from "./SearchResults/SearchResults";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/index"; // Import RootState type for Redux
+// Import RootState type for Redux
 import Heart from "./Heart/Heart";
 import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
 import ExploreMenu from "./Explore/ExploreMenu";
 import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
-  const cookie = Cookies.get("cookie");
+  const [cookie, setCookie] = useState(Cookies.get("cookie"));
 
   return (
     <div

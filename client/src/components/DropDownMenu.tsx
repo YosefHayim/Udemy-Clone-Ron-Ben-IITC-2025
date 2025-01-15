@@ -25,7 +25,7 @@ const DropdownMenu: React.FC = () => {
     (secondWord?.[0]?.toUpperCase() || "");
 
   const handleLogout = () => {
-    cookie = Cookies.set("cookie", "");
+    Cookies.remove("cookie");
     console.log(cookie);
   };
 
