@@ -1,6 +1,8 @@
 import { IoMdLock } from "react-icons/io";
 import SelectCountry from "./SelectCountry/SelectCountry";
 import SelectPayment from "./SelectPayment/SelectPayment";
+import googleIcon from "/images/google-icon.svg";
+import { AiFillCreditCard } from "react-icons/ai";
 
 const Payment = () => {
   return (
@@ -12,7 +14,7 @@ const Payment = () => {
           <div>
             <SelectCountry />
           </div>
-          <div className="flex flex-row items-start justify-between w-full">
+          <div className="flex flex-row items-start justify-between w-[400px]">
             <h3 className="font-bold">Payment method</h3>
             <div className="flex flex-row gap-[0.5em] items-center">
               <p className="underline text-[#595c73]">Secure and encrypted</p>
@@ -20,7 +22,26 @@ const Payment = () => {
             </div>
           </div>
           <div>
-            <SelectPayment />
+            <SelectPayment
+              // paymentOptionName=""
+              showVisa={true}
+              providedIcon={<AiFillCreditCard className="text-[2em]" />}
+            />
+            <SelectPayment
+              showVisa={false}
+              paymentOptionName="Cards"
+              providedIcon={<AiFillCreditCard className="text-[2em]" />}
+            />
+            <SelectPayment
+              showVisa={false}
+              paymentOptionName="Google Pay"
+              providedIcon={<AiFillCreditCard className="text-[2em]" />}
+            />
+            <SelectPayment
+              showVisa={false}
+              paymentOptionName="PayPal"
+              providedIcon={<AiFillCreditCard className="text-[2em]" />}
+            />
           </div>
         </div>
       </div>
