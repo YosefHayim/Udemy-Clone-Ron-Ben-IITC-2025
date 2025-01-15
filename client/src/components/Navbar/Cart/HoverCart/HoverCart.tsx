@@ -4,9 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const HoverCart = () => {
-  const totalToPay = useSelector(
-    (state) => state.cart.totalCoursesPrice
-  ).toLocaleString();
+  const totalToPay = useSelector((state) => state.cart.totalCoursesPrice);
   const coursesIdAdded = useSelector((state) => state.cart.coursesAddedToCart);
 
   return (
