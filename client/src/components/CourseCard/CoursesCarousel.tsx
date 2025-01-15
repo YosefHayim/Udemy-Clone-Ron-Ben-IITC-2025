@@ -60,7 +60,7 @@ const CoursesCarousel: React.FC = () => {
             {courses.map((course) => (
               <div
                 key={course._id}
-                className="flex-shrink-0 w-[20%] px-2 box-border" // Ensures each course takes 20% of the total width
+                className="w-[20%] px-2 box-border" // Ensures each course takes 20% of the total width
               >
                 {/* Passing course data to the CourseCard component */}
                 <CourseCard
