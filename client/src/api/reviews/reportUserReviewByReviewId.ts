@@ -2,25 +2,31 @@ import { axiosClient, baseUrl } from "../configuration";
 
 const reportUserReviewByReviewId = async (reviewId: string) => {
   if (!reviewId || typeof reviewId !== "string") {
-    console.error("Invalid review ID provided.");
-    return null;
+    throw new Error("Invalid review ID provided.");
   }
 
   const sanitizedCourseId = reviewId.trim();
+  if (!sanitizedCourseId) {
+    throw new Error("Invalid review ID provided after sanitization.");
+  }
+
   const url = `${baseUrl}/api/report/review/${sanitizedCourseId}`;
 
   try {
     const response = await axiosClient.post(url);
 
-    if (response?.data?.data) {
-      return response.data.data;
+    if (response && response.data) {
+      return response.data; // Return response data to the caller
     }
 
     console.warn("No review data found in the response.");
-    return null;
+    return null; // Explicitly return null if no data is available
   } catch (error) {
-    console.error(`Error fetching course with ID ${sanitizedCourseId}:`, error);
-    throw error;
+    console.error(
+      `Error reporting review with ID ${sanitizedCourseId}:`,
+      error.message
+    );
+    throw new Error("Failed to report review. Please try again.");
   }
 };
 

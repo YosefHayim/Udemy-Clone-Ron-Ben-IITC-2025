@@ -10,8 +10,12 @@ const Profile: React.FC = () => {
     (state: RootState) => state.user.profilePic
   );
 
-  const fullName = useSelector((state: RootState) => state.user.fullName);
-  const profilePic = useSelector((state: RootState) => state.user.profilePic);
+  const fullName = useSelector((state) => state.user.fullName);
+  const profilePic = useSelector((state) => state.user.profilePic);
+
+  if (!fullName && !profilePic) {
+    return <div>No full name or profile</div>;
+  }
 
   // Ensure fullName is defined before splitting
   const [firstWord, secondWord] = fullName ? fullName.split(" ") : ["", ""];

@@ -2,8 +2,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const ProfilePic = ({ shortcutName, profilePic }) => {
   if (!shortcutName && !profilePic) {
-    return;
+    return <div>No full name or profile</div>;
   }
+
   return (
     <Avatar>
       <AvatarImage src={profilePic} />

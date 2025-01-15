@@ -1,5 +1,4 @@
 import reportUserReviewByReviewId from "@/api/reviews/reportUserReviewByReviewId";
-import Loader from "@/components/Loader/Loader";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -18,7 +17,7 @@ const DialogReportReview = ({
   setReportDrawer,
 }) => {
   if (!reviewId) {
-    return;
+    return <div>No review selected to report.</div>;
   }
 
   const [isClicked, setIsClicked] = useState(false);
@@ -27,15 +26,6 @@ const DialogReportReview = ({
   const handleClickSubmit = () => {
     setIsClicked((prev) => !prev);
   };
-
-  // const mutation = useMutation(reportUserReviewByReviewId, {
-  //   onSuccess: () => {
-  //     setIsClicked(true);
-  //   },
-  //   onError: (error) => {
-  //     console.error("Error reporting review:", error);
-  //   },
-  // });
 
   const handleSubmitReport = (e) => {
     e.preventDefault();
@@ -48,7 +38,21 @@ const DialogReportReview = ({
       return;
     }
 
-    // mutation.mutate({ reviewId, issueType, issueDetails });
+    mutation.mutate({ reviewId, issueType, issueDetails });
+  };
+
+  const mutation = useMutation(reportUserReviewByReviewId, {
+    onSuccess: () => {
+      setReportDrawer(false); // Close dialog on success
+    },
+    onError: (error) => {
+      console.error("Error reporting review:", error);
+    },
+  });
+
+  const handleCloseBtn = () => {
+    setReportDrawer(false);
+    setSubmit(false);
   };
 
   return (
@@ -98,13 +102,10 @@ const DialogReportReview = ({
                 <select
                   name="issue-type"
                   id="issue-type"
-                  className={`${
-                    isClicked ? "hidden" : "block"
-                  } bg-white text-black border border-black rounded-[0.2em] p-[1em] w-full`}
+                  required
+                  className="bg-white text-black border border-black rounded-[0.2em] p-[1em] w-full"
                 >
-                  <option value="" disabled selected>
-                    Select an issue
-                  </option>
+                  <option value="">Select an issue</option>
                   <option value="harmful-violent-hateful-criminal">
                     Inappropriate Course Content - Harmful, Violent, Hateful, or
                     Criminal
@@ -138,17 +139,22 @@ const DialogReportReview = ({
 
                 {isClicked ? (
                   <div className="flex flex-row items-end justify-end text-end w-full">
-                    <Button className="font-bold p-[1.3em] rounded-[0.3em]">
+                    <Button
+                      className="font-bold p-[1.3em] rounded-[0.3em]"
+                      onClick={handleCloseBtn}
+                    >
                       OK
                     </Button>
                   </div>
                 ) : (
                   <div className="flex flex-row items-end justify-end gap-[1em] text-end w-full">
-                    <Button className="font-bold p-[1.3em] bg-white text-black hover:bg-white shadow-none">
+                    <Button
+                      className="font-bold p-[1.3em] bg-white text-black hover:bg-white shadow-none"
+                      onClick={handleCloseBtn}
+                    >
                       Cancel
                     </Button>
                     <Button
-                      onClick={handleClickSubmit}
                       className="font-bold p-[1.3em] rounded-[0.3em]"
                       type="submit"
                     >

@@ -10,16 +10,14 @@ const DropdownMenu: React.FC = () => {
   const profilePic = useSelector((state: any) => state.user.profilePic);
   const email = useSelector((state: any) => state.user.email);
 
-  // Split fullName safely, handle case when fullName is empty or undefined
-  const [firstWord, secondWord] = fullName?.split(" ") || ["", ""];
+  if (!fullName && !profilePic && !email) {
+    return <div>No full name or profile or email</div>;
+  }
+  const [firstWord, secondWord] = fullName.split(" ");
 
   // Safely generate shortcutName using first and second word initials
   const shortcutName =
     (firstWord?.[0]?.toUpperCase() || "") + (secondWord?.[0]?.toUpperCase() || "");
-
-  if (!fullName && !profilePic && !email) {
-    return null; // Return null if essential data is missing
-  }
 
   return (
     <div className="absolute z-30 right-0 mt-2 w-72 bg-white border border-gray-300 shadow-md rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
