@@ -8,15 +8,15 @@ import CartCoursesNumber from "./Navbar/Cart/CartCoursesNumber/CartCoursesNumber
 import Cookies from "js-cookie";
 
 const DropdownMenu: React.FC = () => {
-  // Accessing Redux state for user data
   const fullName = useSelector((state: any) => state.user.fullName);
   const profilePic = useSelector((state: any) => state.user.profilePic);
   const email = useSelector((state: any) => state.user.email);
-  const cookie = Cookies.get("cookie");
+  let cookie = Cookies.get("cookie");
 
-  if (!fullName && !profilePic && !email && !cookie) {
+  if (cookie.length < 20) {
     return <div></div>;
   }
+
   const [firstWord, secondWord] = fullName.split(" ");
 
   // Safely generate shortcutName using first and second word initials
@@ -25,13 +25,8 @@ const DropdownMenu: React.FC = () => {
     (secondWord?.[0]?.toUpperCase() || "");
 
   const handleLogout = () => {
-    const cookie = Cookies.get("cookie");
+    cookie = Cookies.set("cookie", "");
     console.log(cookie);
-    const cleared = Cookies.set("cookie", "");
-
-    if (cleared.length < 20) {
-      console.log("Cookie has been cleared");
-    }
   };
 
   return (

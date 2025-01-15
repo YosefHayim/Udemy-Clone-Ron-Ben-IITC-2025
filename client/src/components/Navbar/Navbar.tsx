@@ -12,9 +12,10 @@ import Heart from "./Heart/Heart";
 import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
 import ExploreMenu from "./Explore/ExploreMenu";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
-  const user = useSelector((state: RootState) => state.user);
+  const cookie = Cookies.get("cookie");
 
   return (
     <div
@@ -27,14 +28,14 @@ const Navbar = () => {
         <SearchInput />
         <AtagBtn aTagName={"Udemy Business"} />
         <AtagBtn aTagName={"Teach on Udemy"} />
-        {!user && <LoginBtn />}
-        {!user && <SignupBtn />}
-        {user && <AtagBtn aTagName={"My learning"} />}
-        {user && <Heart />}
+        {!cookie && <LoginBtn />}
+        {!cookie && <SignupBtn />}
+        {cookie && <AtagBtn aTagName={"My learning"} />}
+        {cookie && <Heart />}
         <Cart />
-        {user && <Notifications />}
-        {user && <Profile />}
-        {!user && <Language />}
+        {cookie && <Notifications />}
+        {cookie && <Profile />}
+        {!cookie && <Language />}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 const ProfilePic = ({ shortcutName, profilePic }) => {
   const cookie = Cookies.get("cookie");
 
-  if (!shortcutName && !profilePic && !cookie) {
+  if (cookie.length < 20) {
     return (
       <div className="flex flex-row gap-[1em]">
         <LoginBtn />

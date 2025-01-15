@@ -16,13 +16,16 @@ import Welcome from "@/components/LoggedInHome/Welcome";
 import TeamAcess from "./TeamAcess";
 import DropdownMenu from "@/components/DropDownMenu";
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
+import Cookies from "js-cookie";
 
 const Homepage = () => {
-  const user = useSelector((state: RootState) => state.user);
+  const cookie = Cookies.get("cookie");
+  if (cookie.length > 20) {
+  }
 
   return (
     <>
-      {!user && (
+      {!cookie && (
         <>
           <div className="container mx-auto px-[5.6rem]">
             <DropdownMenu />
@@ -41,7 +44,7 @@ const Homepage = () => {
         </>
       )}
 
-      {user && (
+      {cookie && (
         <>
           <DropdownMenu />
           <Menu />

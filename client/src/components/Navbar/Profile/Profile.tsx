@@ -22,7 +22,7 @@ const Profile: React.FC = () => {
 
   const cookie = Cookies.get("cookie");
 
-  if (!fullName && !profilePic && !cookie) {
+  if (cookie.length < 20) {
     return (
       <div className="flex flex-row gap-[1em]">
         <LoginBtn />

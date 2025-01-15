@@ -8,7 +8,7 @@ const Welcome = () => {
   const bio = useSelector((state) => state.user.bio);
   const cookie = Cookies.get("cookie");
 
-  if (!fullName && !profilePic && !cookie) {
+  if (cookie.length < 20) {
     return <div></div>;
   }
 
