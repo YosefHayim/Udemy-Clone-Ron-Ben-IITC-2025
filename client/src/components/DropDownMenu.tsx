@@ -12,8 +12,9 @@ const DropdownMenu: React.FC = () => {
   const fullName = useSelector((state: any) => state.user.fullName);
   const profilePic = useSelector((state: any) => state.user.profilePic);
   const email = useSelector((state: any) => state.user.email);
+  const cookie = Cookies.get("cookie");
 
-  if (!fullName && !profilePic && !email) {
+  if (!fullName && !profilePic && !email && !cookie) {
     return <div></div>;
   }
   const [firstWord, secondWord] = fullName.split(" ");

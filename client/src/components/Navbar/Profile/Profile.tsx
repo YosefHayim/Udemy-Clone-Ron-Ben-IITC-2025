@@ -16,6 +16,15 @@ const Profile: React.FC = () => {
 
   const fullName = useSelector((state) => state.user.fullName);
   const profilePic = useSelector((state) => state.user.profilePic);
+
+  // Ensure fullName is defined before splitting
+  const [firstWord, secondWord] = fullName ? fullName.split(" ") : ["", ""];
+
+  // Safely generate the shortcut name
+  const shortcutName =
+    (firstWord?.[0]?.toUpperCase() || "") +
+    (secondWord?.[0]?.toUpperCase() || "");
+
   const cookie = Cookies.get("cookie");
 
   if (!fullName && !profilePic && !cookie) {
@@ -26,24 +35,6 @@ const Profile: React.FC = () => {
         <Language />
       </div>
     );
-  }
-
-  // Ensure fullName is defined before splitting
-  const [firstWord, secondWord] = fullName ? fullName.split(" ") : ["", ""];
-
-  // Safely generate the shortcut name
-  const shortcutName =
-    (firstWord?.[0]?.toUpperCase() || "") +
-    (secondWord?.[0]?.toUpperCase() || "");
-
-  if (!fullName && !profilePic) {
-    return (
-      <div className="flex flex-row items-center gap-[1em]">
-        <LoginBtn />
-        <SignupBtn />
-        <Language />
-      </div>
-    ); // Return a loading state if needed
   }
 
   // Function to get the initial of the email if there is no profile picture

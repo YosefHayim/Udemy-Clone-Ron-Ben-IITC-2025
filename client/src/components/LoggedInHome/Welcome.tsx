@@ -1,12 +1,14 @@
 import { useSelector } from "react-redux";
 import ProfilePic from "../ProfilePic/ProfilePic";
+import Cookies from "js-cookie";
 
 const Welcome = () => {
   const fullName = useSelector((state) => state.user.fullName);
   const profilePic = useSelector((state) => state.user.profilePic);
   const bio = useSelector((state) => state.user.bio);
+  const cookie = Cookies.get("cookie");
 
-  if (!fullName && !profilePic) {
+  if (!fullName && !profilePic && !cookie) {
     return <div></div>;
   }
 
