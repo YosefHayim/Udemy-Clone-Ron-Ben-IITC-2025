@@ -11,7 +11,7 @@ const DropdownMenu: React.FC = () => {
   const email = useSelector((state: any) => state.user.email);
 
   if (!fullName && !profilePic && !email) {
-    return <div>No full name or profile or email</div>;
+    return <div></div>;
   }
   const [firstWord, secondWord] = fullName.split(" ");
 

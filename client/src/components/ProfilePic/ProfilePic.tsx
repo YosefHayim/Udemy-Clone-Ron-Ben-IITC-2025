@@ -1,8 +1,15 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import LoginBtn from "../Navbar/LoginBtn/LoginBtn";
+import SignupBtn from "../Navbar/SignupBtn/SignupBtn";
 
 const ProfilePic = ({ shortcutName, profilePic }) => {
   if (!shortcutName && !profilePic) {
-    return <div>No full name or profile</div>;
+    return (
+      <div className="flex flex-row gap-[1em]">
+        <LoginBtn />
+        <SignupBtn />
+      </div>
+    );
   }
 
   return (

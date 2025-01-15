@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/index"; // Import RootState type for Redux
 import DropdownMenu from "../../DropDownMenu"; // Importa o componente DropdownMenu
 import ProfilePic from "@/components/ProfilePic/ProfilePic";
+import LoginBtn from "../LoginBtn/LoginBtn";
+import SignupBtn from "../SignupBtn/SignupBtn";
 
 const Profile: React.FC = () => {
   // Acessa o estado do Redux para obter a imagem do perfil
@@ -14,7 +16,12 @@ const Profile: React.FC = () => {
   const profilePic = useSelector((state) => state.user.profilePic);
 
   if (!fullName && !profilePic) {
-    return <div>No full name or profile</div>;
+    return (
+      <div className="flex flex-row gap-[1em]">
+        <LoginBtn />
+        <SignupBtn />
+      </div>
+    );
   }
 
   // Ensure fullName is defined before splitting
