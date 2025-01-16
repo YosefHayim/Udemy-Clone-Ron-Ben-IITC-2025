@@ -28,13 +28,14 @@ const Navbar = () => {
         <SearchInput />
         <AtagBtn aTagName={"Udemy Business"} />
         <AtagBtn aTagName={"Teach on Udemy"} />
+        <Link to="/cart">
+          <Cart />
+        </Link>
         {!cookie && <LoginBtn />}
         {!cookie && <SignupBtn />}
         {cookie && <AtagBtn aTagName={"My learning"} />}
         {cookie && <Heart />}
-        <Link to="/cart">
-          <Cart />
-        </Link>
+
         {cookie && <Notifications />}
         {cookie && <Profile />}
         {!cookie && <Language />}
