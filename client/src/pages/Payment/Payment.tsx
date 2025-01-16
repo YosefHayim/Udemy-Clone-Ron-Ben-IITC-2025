@@ -29,16 +29,19 @@ const Payment = () => {
             />
             <SelectPayment
               showVisa={false}
+              showProvideCardInfo={true}
               paymentOptionName="Cards"
               providedIcon={<AiFillCreditCard className="text-[2em]" />}
             />
             <SelectPayment
               showVisa={false}
+              isGooglePay={true}
               paymentOptionName="Google Pay"
               providedIcon={<AiFillCreditCard className="text-[2em]" />}
             />
             <SelectPayment
               showVisa={false}
+              isPayPal={true}
               paymentOptionName="PayPal"
               providedIcon={<AiFillCreditCard className="text-[2em]" />}
             />
