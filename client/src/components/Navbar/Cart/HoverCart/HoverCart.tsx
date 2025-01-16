@@ -8,7 +8,7 @@ const HoverCart = () => {
   const totalToPay = useSelector((state) => state.cart.totalCoursesPrice);
   const coursesIdAdded = useSelector((state) => state.cart.coursesAddedToCart);
 
-  useEffect(() => {}, [totalToPay]);
+  useEffect(() => {}, [totalToPay, coursesIdAdded]);
 
   return (
     <Link to="/cart" className="cursor-pointer">
@@ -38,16 +38,14 @@ const HoverCart = () => {
             )}
           </div>
           <div className="w-full p-[1em] flex flex-col gap-[0.5em]">
-            {totalToPay >= 0 ? (
+            {totalToPay && coursesIdAdded ? (
               <div>
-                <b>Total: ₪{totalToPay ? totalToPay.fixed(2) : 0}</b>
+                <b>Total: ₪{totalToPay ? totalToPay.toFixed(2) : "0.00"}</b>
                 <Button className="rounded-[0.2em] font-bold w-full">
                   Go to cart
                 </Button>
               </div>
-            ) : (
-              ""
-            )}
+            ) : null}
           </div>
         </div>
       </div>

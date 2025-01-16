@@ -15,9 +15,7 @@ const Checkout = () => {
     (state) => state.cart.totalCoursesOriginalPrices
   );
 
-  useEffect(() => {
-    console.log("Original Price:", originalPrice);
-  }, [originalPrice]);
+  useEffect(() => {}, [originalPrice, totalCourses, totalToPay]);
 
   return (
     <div className="flex flex-col items-start justify-start p-[3em] w-[340px]">
@@ -34,7 +32,7 @@ const Checkout = () => {
               <b>Total</b>
               <p>({totalCourses} course)</p>
             </div>
-            <b>₪{totalToPay}</b>
+            <b>₪{totalToPay?.toFixed(2) || 0}</b>
           </div>
         </div>
         <div className="mb-[1em]">

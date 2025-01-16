@@ -81,7 +81,7 @@ const Payment = () => {
                 <b>
                   LLM Engineering: Master AI, Large Language Models & Agents
                 </b>
-                <p>₪{totalToPay ? totalToPay.fixed(2) : 0}</p>
+                <p>₪{totalToPay?.toFixed(2) || 0}</p>
               </div>
             </div>
           </div>

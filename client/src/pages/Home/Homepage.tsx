@@ -25,13 +25,14 @@ import {
   setProfilePic,
   setRole,
 } from "@/redux/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 const Homepage = () => {
+  const dispatch = useDispatch();
+
   const cookie = Cookies.get("cookie");
   if (cookie) {
-    console.log(cookie);
     const decoded = jwtDecode(cookie);
-    console.log(decoded);
     dispatch(setFullName(decoded.fullName));
     dispatch(setProfilePic(decoded.profilePic));
     dispatch(setEmailAddress(decoded.email));
