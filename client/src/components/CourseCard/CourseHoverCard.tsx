@@ -30,9 +30,9 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
     top: string;
     transform: string;
   }>({
-    left: "100%", // Default para exibir à direita
-    top: "50%", // Centralizado verticalmente
-    transform: "translateY(-50%)", // Ajusta o centro verticalmente
+    left: "100%",
+    top: "50%",
+    transform: "translateY(-50%)",
   });
 
   useEffect(() => {
@@ -41,24 +41,21 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
         const hoverCardRect = hoverCardRef.current.getBoundingClientRect();
         const windowWidth = window.innerWidth;
 
-        let leftPosition = "100%"; // Posição inicial à direita
-        let transformValue = "translateY(-50%)"; // Centralizado verticalmente
-
-        // Se o hover card ultrapassar a largura da tela, muda para a esquerda
+        let leftPosition = "100%"; // Default para a direita
         if (hoverCardRect.right > windowWidth) {
-          leftPosition = "-320px"; // Move o card para a esquerda
+          leftPosition = "-320px"; // Move para a esquerda se necessário
         }
 
         setPosition({
           left: leftPosition,
           top: "50%", // Sempre centralizado verticalmente
-          transform: transformValue,
+          transform: "translateY(-50%)",
         });
       }
     };
 
     calculatePosition();
-    window.addEventListener("resize", calculatePosition); // Recalcular ao redimensionar a janela
+    window.addEventListener("resize", calculatePosition);
 
     return () => window.removeEventListener("resize", calculatePosition);
   }, []);
@@ -83,7 +80,7 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
       <div
         className="absolute w-4 h-4 bg-white transform rotate-45 shadow-md"
         style={{
-          left: position.left === "100%" ? "-8px" : "calc(100% - 8px)", // Ajusta a seta dependendo do lado
+          left: position.left === "100%" ? "-8px" : "calc(100% - 8px)",
           top: "50%",
           transform: "translateY(-50%) rotate(45deg)",
         }}
@@ -107,9 +104,28 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
           <li key={index}>{item}</li>
         ))}
       </ul>
-      <button className="mt-4 w-full bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600">
-        Add to cart
-      </button>
+      <div className="flex items-center justify-between mt-4">
+        <button className="w-[80%] bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600">
+          Add to cart
+        </button>
+        {/* Ícone do coração */}
+        <div className="w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full hover:border-red-500 cursor-pointer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6 text-gray-400 hover:text-red-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78v0z"
+            />
+          </svg>
+        </div>
+      </div>
     </div>
   );
 };
