@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
+  calculateDiscountPercentage,
+  calculateTotalSavings,
   setAddCourseToCart,
   setAmountOfCourses,
   setTotalCourseDiscountPrices,
@@ -8,7 +10,6 @@ import {
 } from "@/redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
 import Loader from "@/components/Loader/Loader";
-import { useNavigate } from "react-router-dom";
 
 const AddToCart = ({
   textBtn = "Add to cart",
@@ -28,6 +29,8 @@ const AddToCart = ({
       console.log(
         `Dispatching fullPrice:${fullPriceCourse} and discount price: ${coursePrice}`
       );
+      dispatch(calculateTotalSavings());
+      dispatch(calculateDiscountPercentage());
 
       dispatch(setAddCourseToCart(courseId)); // Add course to the cart
       setIsLoading(false); // Stop loading indicator

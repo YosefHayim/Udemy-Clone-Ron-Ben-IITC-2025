@@ -45,12 +45,14 @@ const ItemInCart = ({
   }
 
   const handleRemove = (e) => {
-    e.stopPropagation();
+    e.stopPropagation(); // Use only if necessary to stop event bubbling
+    if (!data) return; // Ensure data is available
+
     dispatch(
       removeCourseFromCart({
         courseId,
-        coursePrice: data.totalCourseDiscountPrices || 0, // Incorrect payload key
-        amountToRemove: 1, // Unused in reducer
+        originalPrice: data.courseFullPrice || 0,
+        discountPrice: data.courseDiscountPrice || 0,
       })
     );
   };

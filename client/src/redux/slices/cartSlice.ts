@@ -8,6 +8,8 @@ const cartSlice = createSlice({
     coursesAddedToCart: [],
     totalCourseDiscountPrices: 0,
     totalCoursesOriginalPrices: 0,
+    totalSavings: 0, // Total amount saved
+    totalDiscountPercentage: 0, // Total percentage off
   },
 
   reducers: {
@@ -38,33 +40,47 @@ const cartSlice = createSlice({
       }
       state.totalCourseDiscountPrices += action.payload; // Add discounted price
     },
+    calculateTotalSavings: (state) => {
+      state.totalSavings =
+        state.totalCoursesOriginalPrices - state.totalCourseDiscountPrices;
+
+      if (state.totalSavings < 0) {
+        state.totalSavings = 0; // Prevent negative savings
+      }
+    },
+    calculateDiscountPercentage: (state) => {
+      if (state.totalCoursesOriginalPrices > 0) {
+        state.totalDiscountPercentage = Math.round(
+          (state.totalSavings / state.totalCoursesOriginalPrices) * 100
+        );
+      } else {
+        state.totalDiscountPercentage = 0; // Avoid division by zero
+      }
+    },
     removeCourseFromCart: (
       state,
       action: PayloadAction<{
         courseId: string;
-        originalPrice?: number; // Mark as optional for flexibility
-        discountPrice?: number; // Mark as optional for flexibility
+        originalPrice: number;
+        discountPrice: number;
       }>
     ) => {
       const { courseId, originalPrice = 0, discountPrice = 0 } = action.payload;
 
-      // Validate the payload
       if (!courseId) {
         console.error("Invalid courseId:", courseId);
         return;
       }
 
-      // Remove the course ID from the cart
+      // Remove the course from the cart
       state.coursesAddedToCart = state.coursesAddedToCart.filter(
         (id) => id !== courseId
       );
 
-      // Decrease the amount of courses
       if (state.amountOfCourses > 0) {
         state.amountOfCourses -= 1;
       }
 
-      // Update the total original and discount prices
       state.totalCoursesOriginalPrices = Math.max(
         0,
         state.totalCoursesOriginalPrices - originalPrice
@@ -75,11 +91,25 @@ const cartSlice = createSlice({
         state.totalCourseDiscountPrices - discountPrice
       );
 
+      // Recalculate total savings and percentage discount
+      state.totalSavings =
+        state.totalCoursesOriginalPrices - state.totalCourseDiscountPrices;
+
+      if (state.totalCoursesOriginalPrices > 0) {
+        state.totalDiscountPercentage = Math.round(
+          (state.totalSavings / state.totalCoursesOriginalPrices) * 100
+        );
+      } else {
+        state.totalDiscountPercentage = 0;
+      }
+
       // Reset totals if the cart is empty
       if (state.coursesAddedToCart.length === 0) {
         state.totalCoursesOriginalPrices = 0;
         state.totalCourseDiscountPrices = 0;
         state.amountOfCourses = 0;
+        state.totalSavings = 0;
+        state.totalDiscountPercentage = 0;
       }
     },
   },
@@ -87,6 +117,8 @@ const cartSlice = createSlice({
 
 export const {
   setShowCart,
+  calculateTotalSavings,
+  calculateDiscountPercentage,
   setAmountOfCourses,
   setAddCourseToCart,
   setTotalOriginalCoursePrices,

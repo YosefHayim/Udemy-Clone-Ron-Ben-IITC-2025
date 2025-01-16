@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import {
+  calculateDiscountPercentage,
+  calculateTotalSavings,
   setAddCourseToCart,
   setAmountOfCourses,
   setTotalCourseDiscountPrices,
@@ -29,6 +31,8 @@ const BuyNowBtn = ({ courseId, discountPrice, fullPrice }) => {
       console.log(
         `Dispatching fullPrice:${fullPrice} and discount price: ${coursePrice}`
       );
+      dispatch(calculateTotalSavings());
+      dispatch(calculateDiscountPercentage());
       dispatch(setAddCourseToCart(courseId));
       setIsLoading(false);
     }, 1000);

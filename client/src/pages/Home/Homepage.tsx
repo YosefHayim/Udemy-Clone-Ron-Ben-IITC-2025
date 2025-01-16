@@ -17,9 +17,27 @@ import TeamAcess from "./TeamAcess";
 import DropdownMenu from "@/components/DropDownMenu";
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
+import {
+  setBio,
+  setEmailAddress,
+  setFullName,
+  setProfilePic,
+  setRole,
+} from "@/redux/slices/userSlice";
 
 const Homepage = () => {
   const cookie = Cookies.get("cookie");
+  if (cookie) {
+    console.log(cookie);
+    const decoded = jwtDecode(cookie);
+    console.log(decoded);
+    dispatch(setFullName(decoded.fullName));
+    dispatch(setProfilePic(decoded.profilePic));
+    dispatch(setEmailAddress(decoded.email));
+    dispatch(setBio(decoded.bio));
+    dispatch(setRole(decoded.role));
+  }
   return (
     <>
       {!cookie && (
