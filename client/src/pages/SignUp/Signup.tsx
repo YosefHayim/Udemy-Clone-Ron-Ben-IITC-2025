@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { RegisterUserPayload } from "@/types/types";
 
 const SignUp: React.FC = () => {
+  document.title = "Sign Up and Start Learning | Udemy";
   const navigate = useNavigate();
 
   const mutation = useMutation<unknown, Error, RegisterUserPayload>({
