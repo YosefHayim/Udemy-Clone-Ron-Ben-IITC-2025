@@ -60,22 +60,19 @@ const CoursesCarousel: React.FC = () => {
   }, []);
 
   const handleNext = () => {
-    const nextIndex = currentIndex + moveItems;
-    if (nextIndex + visibleItems <= courses.length) {
-      setCurrentIndex(nextIndex); // Move o carrossel para frente
-    } else {
-      setCurrentIndex(0); // Reinicia o carrossel
+    const nextIndex = currentIndex + 1; // Mova um item por vez
+    if (nextIndex < Math.ceil(courses.length / visibleItems)) {
+      setCurrentIndex(nextIndex);
     }
   };
-
+  
   const handlePrev = () => {
-    const prevIndex = currentIndex - moveItems;
+    const prevIndex = currentIndex - 1;
     if (prevIndex >= 0) {
-      setCurrentIndex(prevIndex); // Move o carrossel para trás
-    } else {
-      setCurrentIndex(Math.max(0, courses.length - visibleItems)); // Vai para o final do carrossel
+      setCurrentIndex(prevIndex);
     }
   };
+  
 
   return (
     <div className="py-8 relative w-full max-w-7xl mx-auto">
@@ -88,10 +85,11 @@ const CoursesCarousel: React.FC = () => {
           <div
             className="flex transition-transform duration-300"
             style={{
-              transform: `translateX(-${(currentIndex / visibleItems) * 100}%)`,
-              width: `${(courses.length / visibleItems) * 100}%`,
+              transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`, // Corrigido cálculo do transform
+              width: `${courses.length * (100 / visibleItems)}%`, // Corrigida largura total
             }}
           >
+
             {courses.map((course) => (
               <div
                 key={course._id}
