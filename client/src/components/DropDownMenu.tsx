@@ -13,7 +13,7 @@ const DropdownMenu: React.FC = () => {
   const email = useSelector((state: any) => state.user.email);
   let cookie = Cookies.get("cookie");
 
-  if (cookie.length < 20) {
+  if (!cookie) {
     return <div></div>;
   }
 

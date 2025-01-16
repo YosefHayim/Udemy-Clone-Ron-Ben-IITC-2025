@@ -20,9 +20,6 @@ import Cookies from "js-cookie";
 
 const Homepage = () => {
   const cookie = Cookies.get("cookie");
-  if (cookie.length > 20) {
-  }
-
   return (
     <>
       {!cookie && (

@@ -9,7 +9,7 @@ const HoverCart = () => {
 
   return (
     <div className="flex flex-col justify-center items-start rounded-[0.5em] border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-previewCourseCardShadow">
-      <div>
+      <div className="w-full">
         {coursesIdAdded.length > 0 ? (
           coursesIdAdded.map((courseId: string) => (
             <ItemInCart
@@ -24,7 +24,7 @@ const HoverCart = () => {
             />
           ))
         ) : (
-          <div>
+          <div className="flex flex-col items-center justify-center w-full text-center mt-[1em]">
             <p>Your cart is empty.</p>
             <b className="text-purpleStatic hover:text-purpleHover cursor-pointer">
               <Link to="/">Keep shopping</Link>
