@@ -8,7 +8,9 @@ const HoverCart = () => {
   const totalToPay = useSelector((state) => state.cart.totalCoursesPrice);
   const coursesIdAdded = useSelector((state) => state.cart.coursesAddedToCart);
 
-  useEffect(() => {}, [totalToPay]);
+  useEffect(() => {
+    console.log("Total to Pay updated:", totalToPay);
+  }, [totalToPay]);
 
   return (
     <div className="flex flex-col justify-center items-start rounded-[0.5em] border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-previewCourseCardShadow cursor-pointer">
@@ -36,7 +38,7 @@ const HoverCart = () => {
         )}
       </div>
       <div className="w-full p-[1em] flex flex-col gap-[0.5em]">
-        {totalToPay > 1 ? (
+        {totalToPay >= 0 ? (
           <div>
             <b>Total: ₪{totalToPay}</b>
             <Link to="/cart">

@@ -35,7 +35,7 @@ const ItemInCart = ({
   if (isLoading) {
     return (
       <div>
-        <Loader />
+        <Loader hSize="200px" />
       </div>
     );
   }

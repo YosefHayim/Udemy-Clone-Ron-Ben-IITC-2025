@@ -22,7 +22,7 @@ const cartSlice = createSlice({
       );
     },
 
-    totalCoursesPrice: (state, action: PayloadAction<number>) => {
+    updateTotalCoursesPrice: (state, action: PayloadAction<number>) => {
       state.totalCoursesPrice += action.payload;
     },
     removeCourseFromCart: (
@@ -66,7 +66,7 @@ export const {
   setShowCart,
   setAmountOfCourses,
   setAddCourseToCart,
-  totalCoursesPrice,
+  updateTotalCoursesPrice,
   removeCourseFromCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;

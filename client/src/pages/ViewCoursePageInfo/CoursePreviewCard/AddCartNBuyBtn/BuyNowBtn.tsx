@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import {
   setAddCourseToCart,
   setAmountOfCourses,
-  totalCoursesPrice,
+  updateTotalCoursesPrice,
 } from "@/redux/slices/cartSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -15,14 +15,20 @@ const BuyNowBtn = ({ courseId, discountPrice }) => {
 
   const handleClick = (e, courseId) => {
     setIsLoading(true);
-    console.log(`Course ID from button: ${courseId}`);
 
     setTimeout(() => {
       dispatch(setAmountOfCourses());
-      dispatch(totalCoursesPrice(discountPrice));
+
+      if (!discountPrice || isNaN(discountPrice)) {
+        console.error("Invalid discountPrice:", discountPrice);
+        return;
+      }
+      dispatch(updateTotalCoursesPrice(Number(discountPrice)));
+
       dispatch(setAddCourseToCart(courseId));
+      console.log("Course added:", courseId);
       setIsLoading(false);
-    }, 3000);
+    }, 1000);
     navigate("/cart");
   };
   return (

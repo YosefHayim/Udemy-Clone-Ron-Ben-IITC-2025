@@ -2,7 +2,7 @@ import AddToCart from "./AddToCart/AddToCart";
 import HeartBtn from "./HeartBtn/HeartBtn";
 
 const InteractionsBtns = ({ courseId, coursePrice }) => {
-  if (!courseId) {
+  if (!courseId && !coursePrice) {
     return;
   }
 
