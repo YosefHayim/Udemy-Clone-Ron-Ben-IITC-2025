@@ -7,6 +7,7 @@ import loginUser from "@/api/users/loginUser";
 import { jwtDecode } from "jwt-decode";
 import {
   setBio,
+  setCoursesBought,
   setEmailAddress,
   setFullName,
   setProfilePic,
@@ -66,6 +67,7 @@ const Login = () => {
     dispatch(setEmailAddress(decoded.email));
     dispatch(setBio(decoded.bio));
     dispatch(setRole(decoded.role));
+    dispatch(setCoursesBought(decoded.coursesBought));
   }
 
   return (

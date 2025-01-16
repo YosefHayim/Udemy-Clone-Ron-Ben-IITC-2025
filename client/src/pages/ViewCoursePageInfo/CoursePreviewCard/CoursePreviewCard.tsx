@@ -20,7 +20,7 @@ const CoursePreviewCard = ({
   const [isFixed, setIsFixed] = useState(false);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
 
-  const coursesInCart = useSelector((state) => state.cart.coursesAddedToCart);
+  const coursesBought = useSelector((state) => state.cart.coursesBought);
 
   useEffect(() => {
     if (Array.isArray(coursesInCart)) {
@@ -45,7 +45,7 @@ const CoursePreviewCard = ({
         isFixed ? "fixed right-[20%] top-[2%]" : "static"
       } transition-all duration-300 ease-in-out`}
       style={{
-        opacity: isFixed ? 1 : 0.9,
+        opacity: isFixed ? 1 : 1,
         transform: isFixed ? "translateY(0)" : "translateY(10px)",
       }}
     >
