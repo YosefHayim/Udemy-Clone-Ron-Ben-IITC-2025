@@ -66,6 +66,8 @@ const ViewCoursePageInfo: React.FC = () => {
   if (error) return <div>Error loading course data</div>;
 
   const courseData = data;
+  console.log(courseData);
+  
 
   // Navigate to the first lesson
   const handleNavigateToFirstLesson = () => {
@@ -166,13 +168,13 @@ const ViewCoursePageInfo: React.FC = () => {
       </div>
 
       {/* Preview Card */}
-      <CoursePreviewCard
+      {/* <CoursePreviewCard
         coursePrice={courseData.discountPrice}
         courseId={courseData._id}
         courseImg={courseData.courseImg}
         discountPrice={courseData.courseDiscountPrice}
         fullPrice={courseData.courseFullPrice}
-      />
+      /> */}
     </div>
   );
 };
