@@ -6,9 +6,9 @@ import SearchResults from "../SearchResults/SearchResults";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const SearchInput = () => {
-  const [isTyping, setIsTyping] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedTerm, setDebouncedTerm] = useState("");
+  const [isTyping, setIsTyping] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState<string | undefined>("");
+  const [debouncedTerm, setDebouncedTerm] = useState<string | undefined>("");
 
   const navigate = useNavigate();
   const location = useLocation();
