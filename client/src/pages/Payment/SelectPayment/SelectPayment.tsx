@@ -3,7 +3,7 @@ import visaIcon from "/images/visa-icon.svg";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
-import { FcGoogle } from "react-icons/fc";
+import GPayIcon from "../GPayIcon/GPayIcon";
 
 const PaymentOption = ({
   paymentOptionName = "Visa***0912",
@@ -12,6 +12,7 @@ const PaymentOption = ({
   showProvideCardInfo = false,
   isGooglePay = false,
   isPayPal = false,
+  radioName = "",
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,9 +27,13 @@ const PaymentOption = ({
   return (
     <div className="bg-[#f6f7f9] border border-gray-100 rounded-[0.2em] w-[400px]">
       <div className="flex items-center justify-between gap-[1em] border-[#d1d7dc] border-[1px]">
-        <div className="flex items-center justify-start gap-[1em]">
-          <input type="radio" className=" h-[3em] ml-[0.5em]" />
-          <div className="bg-white rounded-[0.2em] border-[#d1d7dc] border-[1px]">
+        <div className="flex items-center justify-start gap-[0.5em]">
+          <input
+            type="radio"
+            className="h-[3em] ml-[0.5em]"
+            name={`${radioName}`}
+          />
+          <div className="bg-white rounded-[0.2em] border-[#d1d7dc] border-[1px] p-[0.2em]">
             {providedIcon}
           </div>
           <b>{paymentOptionName}</b>
@@ -39,7 +44,6 @@ const PaymentOption = ({
             alt="visa icon"
             className={`${showVisa ? "block" : "hidden"} h-[2em]`}
           />
-          
         </div>
       </div>
       <div
@@ -123,8 +127,7 @@ const PaymentOption = ({
         {isGooglePay && (
           <div className="w-full px-[1em]">
             <Button className="w-full rounded-[0.3em]">
-              <FcGoogle />
-              Pay
+              <GPayIcon />
             </Button>
           </div>
         )}

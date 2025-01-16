@@ -14,7 +14,7 @@ const Section = ({ lessonsOfSection, sectionName }) => {
     <div>
       <div
         onClick={() => setClicked(!isClicked)}
-        className="cursor-pointer flex flex-row bg-[#f7f9fa] w-[550px] text-[#2d2f31] items-center justify-around p-[0.8em] border border-[#d1d7dc] border-[1px]"
+        className="cursor-pointer flex flex-row bg-[#f7f9fa] w-[550px] text-[#2d2f31] items-center justify-around p-[0.8em] border border-[#d1d7dc]"
       >
         <div
           className={`transition-transform duration-300 ease-in-out ${

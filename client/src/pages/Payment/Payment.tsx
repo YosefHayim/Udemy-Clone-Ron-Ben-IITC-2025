@@ -3,11 +3,14 @@ import SelectCountry from "./SelectCountry/SelectCountry";
 import SelectPayment from "./SelectPayment/SelectPayment";
 import googleIcon from "/images/google-icon.svg";
 import { AiFillCreditCard } from "react-icons/ai";
+import GPayIcon from "./GPayIcon/GPayIcon";
+import PayPalIcon from "./PayPalIcon/PayPalIcon";
+import Checkout from "./Checkout/Checkout";
 
 const Payment = () => {
   return (
-    <div className="p-[10em] pt-[2em]">
-      <div className="">
+    <div className="flex flex-row justify-around">
+      <div className="p-[10em] pt-[2em]">
         <div className=" flex flex-col items-start justify-start gap-[1em]">
           <h1 className="font-bold">Checkout</h1>
           <h2 className="font-bold">Billing address</h2>
@@ -21,34 +24,40 @@ const Payment = () => {
               <IoMdLock />
             </div>
           </div>
-          <div>
+          <div className="w-full flex flex-col items-start justify-start">
             <SelectPayment
               // paymentOptionName=""
+              radioName="reg-card"
               showVisa={true}
               providedIcon={<AiFillCreditCard className="text-[2em]" />}
             />
             <SelectPayment
               showVisa={false}
               showProvideCardInfo={true}
+              radioName="add-card"
               paymentOptionName="Cards"
               providedIcon={<AiFillCreditCard className="text-[2em]" />}
             />
             <SelectPayment
               showVisa={false}
               isGooglePay={true}
+              radioName="g-pay"
               paymentOptionName="Google Pay"
-              providedIcon={<AiFillCreditCard className="text-[2em]" />}
+              providedIcon={<GPayIcon extraDesign={`p-[0.1em] gap-[0.05em]`} />}
             />
             <SelectPayment
               showVisa={false}
               isPayPal={true}
+              radioName="paypal"
               paymentOptionName="PayPal"
-              providedIcon={<AiFillCreditCard className="text-[2em]" />}
+              providedIcon={<PayPalIcon extraDesign={``} />}
             />
           </div>
         </div>
       </div>
-      <div className="w-[45%] bg-[#f6f7f9]"></div>
+      <div className="w-[45%] bg-[#f6f7f9]">
+        <Checkout />
+      </div>
     </div>
   );
 };
