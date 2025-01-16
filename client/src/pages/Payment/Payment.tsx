@@ -6,6 +6,7 @@ import PaymentOptionsRadio from "./PaymentOptionsRadio/PaymentOptionsRadio";
 import OrderDetails from "./OrderDetails/OrderDetails";
 
 const Payment: React.FC = () => {
+  document.title = "Checkout | Udemy";
   return (
     <div>
       <div className="p-[1em] flex flex-col items-start justify-between w-full mb-[2em] shadow-md">

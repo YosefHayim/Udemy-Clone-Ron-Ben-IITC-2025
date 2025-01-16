@@ -3,16 +3,13 @@ import CheckoutContainer from "./CheckoutContainer/CheckoutContainer";
 import EmptyCart from "./EmptyCart/EmptyCart";
 import ItemsInCart from "./ItemsInCart/ItemsInCart";
 import { RootState } from "@/redux";
-import { useEffect } from "react";
 
 const ShoppingCart: React.FC = () => {
+  document.title = "Cart | Udemy";
+
   const countOfCourses = useSelector(
     (state: RootState) => state.cart.amountOfCourses
   );
-
-  useEffect(() => {
-    document.title = "Cart | Udemy";
-  }, []);
 
   return (
     <div className="p-[1em] flex flex-row items-center justify-center">
