@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import CouponArea from "@/pages/ViewCoursePageInfo/CoursePreviewCard/CouponArea/CouponArea";
+import { RootState } from "@/redux";
 import { setRole } from "@/redux/slices/userSlice";
+import { DecodedTokenProps } from "@/types/types";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { useEffect } from "react";
@@ -8,18 +10,20 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const CheckoutContainer = () => {
+const CheckoutContainer: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const totalToPay = useSelector(
-    (state) => state.cart.totalCourseDiscountPrices
+    (state: RootState) => state.cart.totalCourseDiscountPrices
   );
 
-  const totalSavings = useSelector((state) => state.cart.totalSavings);
+  const totalSavings = useSelector(
+    (state: RootState) => state.cart.totalSavings
+  );
 
   const totalDiscountPercent = useSelector(
-    (state) => state.cart.totalDiscountPercentage
+    (state: RootState) => state.cart.totalDiscountPercentage
   );
 
   useEffect(() => {}, [totalToPay, totalDiscountPercent, totalSavings]);
@@ -38,8 +42,8 @@ const CheckoutContainer = () => {
       // Decode the cookie
       let decoded;
       try {
-        decoded = jwtDecode(cookie);
-      } catch (err) {
+        decoded = jwtDecode<DecodedTokenProps>(cookie);
+      } catch (err: any) {
         console.error("Failed to decode cookie:", err.message);
         navigate("/login");
         return;
@@ -55,7 +59,7 @@ const CheckoutContainer = () => {
 
       // Navigate to checkout if all checks pass
       navigate("/payment/checkout/");
-    } catch (err) {
+    } catch (err: any) {
       console.error("An unexpected error occurred:", err.message);
       navigate("/login"); // Fallback to login in case of unexpected errors
     }

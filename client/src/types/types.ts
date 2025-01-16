@@ -61,9 +61,9 @@ export interface ReportUserReviewPayload {
 }
 
 export interface RegisterUserPayload {
-  fullName: string;
-  email: string;
-  password: string;
+  fullName?: string;
+  email?: string;
+  password?: string;
   [key: string]: any;
 }
 
@@ -170,4 +170,59 @@ export interface PaymentOptionProps {
   radioName?: string;
   isOpen?: boolean;
   onToggle?: () => void;
+}
+
+export interface CoursePreviewCardProps {
+  courseImg: string;
+  discountPrice: number;
+  fullPrice: number;
+  courseId: string;
+}
+
+export interface CourseTypeProps {
+  _id: string;
+  category: string;
+  courseDescription: string;
+  courseDiscountPrice: number;
+  courseFullPrice: number;
+  courseImg: string;
+  courseInstructor: {
+    _id: string;
+    fullName: string;
+    profilePic: string;
+  };
+  courseInstructorDescription: string;
+  courseLanguages: string;
+  courseLevel: string;
+  courseName: string;
+  courseRecapInfo: string;
+  courseRequirements: string[];
+  courseTag: string;
+  courseTopic: string;
+  courseTrailer: string;
+  createdAt: string; // ISO date string
+  updatedAt: string; // ISO date string
+  isActive: boolean;
+  moneyBackGuarantee: string; // ISO date string
+  reviews: Array<unknown>; // You can replace `unknown` with a specific review type if available
+  sections: Array<{
+    // Replace with specific section type if known
+    [key: string]: any;
+  }>;
+  subCategory: string;
+  totalCourseDuration: number; // in minutes
+  totalCourseLessons: number;
+  totalCourseSections: number;
+  totalRatings: number;
+  totalStudentsEnrolled: {
+    students: Array<unknown>; // Replace `unknown` with the appropriate student type
+    count: number;
+  };
+  whatYouWillLearn: string[];
+  whoThisCourseIsFor: string;
+}
+
+export interface CourseBasicInfoProps {
+  lastUpdated: Date;
+  courseLanguage: string;
 }

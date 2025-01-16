@@ -10,8 +10,10 @@ import AddCartNBuyBtn from "./AddCartNBuyBtn/AddCartNBuyBtn";
 import { useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
 import { AiFillInfoCircle } from "react-icons/ai";
+import { RootState } from "@/redux";
+import { CoursePreviewCardProps } from "@/types/types";
 
-const CoursePreviewCard = ({
+const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
   courseImg,
   discountPrice,
   fullPrice,
@@ -20,15 +22,17 @@ const CoursePreviewCard = ({
   const [isFixed, setIsFixed] = useState(false);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
 
-  const coursesBought = useSelector((state) => state.cart.coursesBought);
+  const coursesBought = useSelector(
+    (state: RootState) => state.cart.coursesBought
+  );
 
   useEffect(() => {
-    if (Array.isArray(coursesInCart)) {
-      setIsAddedToCart(coursesInCart.includes(courseId));
+    if (Array.isArray(coursesBought)) {
+      setIsAddedToCart(coursesBought.includes(courseId));
     } else {
-      setIsAddedToCart(coursesInCart === courseId);
+      setIsAddedToCart(coursesBought === courseId);
     }
-  }, [coursesInCart, courseId]);
+  }, [coursesBought, courseId]);
 
   useEffect(() => {
     const handleScroll = () => {

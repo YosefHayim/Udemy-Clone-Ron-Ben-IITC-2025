@@ -8,13 +8,14 @@ import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
 import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
-import { useState } from "react";
+import React, { useState } from "react";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
+import { CourseTypeProps } from "@/types/types";
 
-const SearchPage = () => {
+const SearchPage: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const searchTerm = searchParams.get("q");
-  const [currentPage, setCurrentPage] = useState(1);
+  const searchTerm: string | null = searchParams.get("q");
+  const [currentPage, setCurrentPage] = useState<number | null>(1);
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
   const [filterData, setFilterData] = useState({
     rating: 0.0,
@@ -37,12 +38,14 @@ const SearchPage = () => {
   });
 
   if (isLoading) {
-    return <Loader />;
+    return <Loader hSize="" useSmallLoading={false} />;
   }
 
   if (error) {
     return <div>Error occurred: {error.message}</div>;
   }
+
+  console.log(data);
 
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
@@ -59,29 +62,31 @@ const SearchPage = () => {
         </div>
         <div>
           <div>
-            {data?.response?.slice(0, 18).map((course, index) => (
-              <div
-                key={course._id}
-                id={`course-card-${course._id}`}
-                className="relative"
-                onMouseEnter={() => setHoveredCourse(course._id)}
-                onMouseLeave={() => setHoveredCourse(null)}
-              >
-                <SearchCourseCard course={course} />
-                {hoveredCourse === course._id && (
-                  <div className="absolute top-full left-0 z-[1000] p-[2em]">
-                    <CourseHoverCardInfo
-                      whatYouWillLearn={course.whatYouWillLearn}
-                      courseId={course._id}
-                      fullPriceCourse={course.courseFullPrice}
-                      coursePrice={course.courseDiscountPrice}
-                    />
-                  </div>
-                )}
-                {index === 2 && <Commercial key="commercial" />}
-                {index === 6 && <HotFreshCourses key="hotfreshcourses" />}
-              </div>
-            ))}
+            {data?.response
+              ?.slice(0, 18)
+              .map((course: CourseTypeProps, index: number) => (
+                <div
+                  key={course._id}
+                  id={`course-card-${course._id}`}
+                  className="relative"
+                  onMouseEnter={() => setHoveredCourse(course._id)}
+                  onMouseLeave={() => setHoveredCourse(null)}
+                >
+                  <SearchCourseCard course={course} />
+                  {hoveredCourse === course._id && (
+                    <div className="absolute top-full left-0 z-[1000] p-[2em]">
+                      <CourseHoverCardInfo
+                        whatYouWillLearn={course.whatYouWillLearn}
+                        courseId={course._id}
+                        fullPriceCourse={course.courseFullPrice}
+                        coursePrice={course.courseDiscountPrice}
+                      />
+                    </div>
+                  )}
+                  {index === 2 && <Commercial key="commercial" />}
+                  {index === 6 && <HotFreshCourses key="hotfreshcourses" />}
+                </div>
+              ))}
           </div>
         </div>
       </div>

@@ -1,7 +1,11 @@
+import { CourseBasicInfoProps } from "@/types/types";
 import { TbInfoHexagonFilled } from "react-icons/tb";
 import { TbWorld } from "react-icons/tb";
 
-const CourseBasicInfo = ({ lastUpdated, courseLanguage }) => {
+const CourseBasicInfo: React.FC<CourseBasicInfoProps> = ({
+  lastUpdated,
+  courseLanguage,
+}) => {
   // Extract month and year
   const date = new Date(lastUpdated);
   const formattedDate = `Last updated ${
