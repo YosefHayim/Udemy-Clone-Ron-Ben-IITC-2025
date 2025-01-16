@@ -109,7 +109,12 @@ const userSchema = new mongoose.Schema(
       },
     },
     wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
-    coursesBought: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
+    coursesBought: [
+      {
+        course: { type: mongoose.Schema.ObjectId, ref: "Course" },
+        boughtAt: { type: Date, default: Date.now },
+      },
+    ],
     coursesCreated: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     orders: [{ type: mongoose.Schema.ObjectId, ref: "Order" }],
     payments: [{ type: mongoose.Schema.ObjectId, ref: "Payment" }],

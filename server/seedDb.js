@@ -137,7 +137,10 @@ const createCourses = async () => {
 
     // Update each user's `coursesBought` field with the created course
     for (const student of enrolledStudents) {
-      student.coursesBought.push(course._id);
+      student.coursesBought.push({
+        course: course._id,
+        boughtAt: faker.date.past(1),
+      });
       await student.save();
     }
 
