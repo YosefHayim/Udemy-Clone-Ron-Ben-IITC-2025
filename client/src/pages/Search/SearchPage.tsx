@@ -8,11 +8,12 @@ import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
 import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 import { CourseTypeProps } from "@/types/types";
 
 const SearchPage: React.FC = () => {
+  document.title = "Search results | Udemy";
   const [searchParams] = useSearchParams();
   const searchTerm: string | null = searchParams.get("q");
   const [currentPage, setCurrentPage] = useState<number | null>(1);
@@ -44,8 +45,6 @@ const SearchPage: React.FC = () => {
   if (error) {
     return <div>Error occurred: {error.message}</div>;
   }
-
-  console.log(data);
 
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">

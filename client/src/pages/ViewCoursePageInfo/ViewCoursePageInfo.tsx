@@ -31,6 +31,13 @@ const ViewCoursePageInfo: React.FC = () => {
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const courseData = data;
+
+  useEffect(() => {
+    if (courseData?.courseName) {
+      document.title = courseData.courseName;
+    }
+  }, [courseData?.courseName]);
 
   useEffect(() => {
     if (!sanitizedCourseId) {
@@ -64,8 +71,6 @@ const ViewCoursePageInfo: React.FC = () => {
   }
 
   if (error) return <div>Error loading course data</div>;
-
-  const courseData = data;
 
   // Navigate to the first lesson
   const handleNavigateToFirstLesson = () => {
