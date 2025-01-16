@@ -1,6 +1,10 @@
 import { MdOutlineStarPurple500 } from "react-icons/md";
 
-const RatingAvg = ({
+const RatingAvg: React.FC<{
+  textSize?: string;
+  flexChosen?: string;
+  avgRating?: number;
+}> = ({
   textSize = "1em",
   flexChosen = "flex flex-row items-center",
   avgRating,

@@ -15,7 +15,7 @@ import { CoursePreviewCardProps } from "@/types/types";
 
 const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
   courseImg,
-  discountPrice,
+  coursePrice,
   fullPrice,
   courseId,
 }) => {
@@ -62,7 +62,8 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
       <div className="p-[1.5em]">
         <div className={isAddedToCart ? "hidden" : "block"}>
           <CoursePrice
-            discountPrice={discountPrice}
+            showFullPrice={true}
+            discountPrice={coursePrice}
             fullPrice={fullPrice}
             chooseFlex={"flex flex-row items-center"}
             discountPriceSize={"2em"}
@@ -85,7 +86,7 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
             <TimeLeftBuyCourse />
             <AddCartNBuyBtn
               courseId={courseId}
-              discountPrice={discountPrice}
+              discountPrice={coursePrice}
               fullPrice={fullPrice}
             />
           </div>

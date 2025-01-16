@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-const Wishlist = () => {
+const Wishlist: React.FC = () => {
   return (
     <div className="flex flex-col items-start justify-start p-[1em] bg-[#1d1e27] text-white">
       <div className="px-[15em]">

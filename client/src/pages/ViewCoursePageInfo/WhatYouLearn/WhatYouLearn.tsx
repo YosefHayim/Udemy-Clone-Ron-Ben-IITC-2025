@@ -1,6 +1,6 @@
 import { IoMdCheckmark } from "react-icons/io";
 
-const WhatYouLearn = ({ prosCourse }) => {
+const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
   if (!prosCourse) {
     return null;
   }

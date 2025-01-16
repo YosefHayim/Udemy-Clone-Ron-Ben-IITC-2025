@@ -2,7 +2,7 @@ import { FaCirclePlay } from "react-icons/fa6";
 import { IoIosRibbon } from "react-icons/io";
 import { MdOutlineStarPurple500, MdPeople } from "react-icons/md";
 
-const InstructorRatings = () => {
+const InstructorRatings: React.FC = () => {
   return (
     <div className="flex flex-col items-start justify-start gap-[0.5em]">
       <div className="flex flex-row items-center gap-[0.5em]">

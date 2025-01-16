@@ -16,11 +16,15 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-const DialogOfAllReviews = ({ avgRating, isClicked, setClicked }) => {
+const DialogOfAllReviews: React.FC<{
+  avgRating: string;
+  isClicked: boolean;
+  setClicked: (value: boolean) => void;
+}> = ({ avgRating, isClicked, setClicked }) => {
   const params = useParams();
-  const courseId = params.courseId;
-  const [limit, setLimit] = useState(13); // Keep limit fixed at 13
-  const [page, setPage] = useState(1); // Initialize page state
+  const courseId: string | undefined = params.courseId;
+  const [limit, setLimit] = useState<number>(13);
+  const [page, setPage] = useState<number>(1);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["reviews", courseId],

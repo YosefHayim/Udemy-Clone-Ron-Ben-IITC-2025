@@ -1,4 +1,4 @@
-const FaqCourseName = () => {
+const FaqCourseName: React.FC = () => {
   return (
     <div>
       <b>Electronics : Semiconductor - A thorough understanding</b>

@@ -1,7 +1,10 @@
 import RatingAvg from "../../StudentsAlsoBought/RatingAvg/RatingAvg";
 import { LuDot } from "react-icons/lu";
 
-const ReviewSectionTitle = ({ totalRated, avgRating }) => {
+const ReviewSectionTitle: React.FC<{
+  totalRated: number;
+  avgRating: number;
+}> = ({ totalRated, avgRating }) => {
   return (
     <div className="flex flex-row items-center justify-start gap-[0.2em] text-[1.5em] font-bold">
       <h2>

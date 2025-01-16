@@ -4,7 +4,7 @@ import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
 import CourseLength from "../CourseLength/CourseLength";
 import CourseImg from "../CourseImg/CourseImg";
 
-const CourseCard = () => {
+const CourseCard: React.FC = () => {
   return (
     <div>
       <CourseImg />
@@ -17,8 +17,8 @@ const CourseCard = () => {
       <CourseLength />
       <CoursePrice
         chooseFlex="flex flex-row items-center"
-        discountPrice="39.90"
-        fullPrice="79.90"
+        discountPrice={39.9}
+        fullPrice={79.9}
       />
     </div>
   );

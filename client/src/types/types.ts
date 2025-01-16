@@ -86,22 +86,22 @@ export interface CourseImgProps {
 }
 
 export interface CourseInstructorProps {
-  instructor: string;
-  shortCutInstructor: boolean;
+  instructor?: string;
+  shortCutInstructor?: boolean;
 }
 
 export interface CoursePriceProps {
-  discountPrice: number;
-  fullPrice: number;
-  chooseFlex: string;
-  discountPriceSize: string;
-  showFullPrice: boolean;
+  discountPrice?: number;
+  fullPrice?: number;
+  chooseFlex?: string;
+  discountPriceSize?: string;
+  showFullPrice?: boolean;
 }
 
 export interface CourseRatingsProps {
-  avgRatings: string;
-  stars: string;
-  totalRatings: string;
+  avgRatings?: string;
+  stars?: string;
+  totalRatings?: string;
 }
 
 export interface CourseTagProps {
@@ -183,7 +183,7 @@ export interface PaymentOptionProps {
 
 export interface CoursePreviewCardProps {
   courseImg: string;
-  discountPrice: number;
+  coursePrice: number;
   fullPrice: number;
   courseId: string;
 }
@@ -257,4 +257,11 @@ export interface CourseContentProps {
 export interface CourseCreatedByProps {
   instructorName: string;
   instructorId: string;
+}
+
+export interface LessonProps {
+  _id: string;
+  title: string;
+  videoUrl: string;
+  duration: number;
 }

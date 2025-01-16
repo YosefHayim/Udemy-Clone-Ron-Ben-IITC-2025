@@ -1,4 +1,4 @@
-const CoursePrice = () => {
+const CoursePrice: React.FC = () => {
   return (
     <div>
       <p>

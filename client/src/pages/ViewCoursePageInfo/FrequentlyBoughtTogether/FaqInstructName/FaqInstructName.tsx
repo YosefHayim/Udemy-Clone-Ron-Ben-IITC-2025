@@ -1,4 +1,4 @@
-const FaqInstructName = () => {
+const FaqInstructName: React.FC = () => {
   return (
     <div>
       <p>Sumanta kumar Pal</p>;

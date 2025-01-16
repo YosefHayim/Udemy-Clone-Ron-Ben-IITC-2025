@@ -2,7 +2,12 @@ import { useState, useEffect } from "react";
 import CourseRating from "../CourseRating/CourseRating";
 import CourseStudentRatings from "../CourseStudentsRatings/CourseStudentRatings";
 
-const StickyCourseNavbar = ({
+const StickyCourseNavbar: React.FC<{
+  courseName: string;
+  totalStudents: number;
+  avgRating: number;
+  totalRatings: number;
+}> = ({
   courseName = "Unknown",
   totalStudents = 0,
   avgRating = 0,

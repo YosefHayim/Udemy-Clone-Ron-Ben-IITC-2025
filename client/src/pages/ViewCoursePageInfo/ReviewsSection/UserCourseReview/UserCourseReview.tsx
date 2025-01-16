@@ -6,7 +6,10 @@ import UserProfile from "./UserProfile/UserProfile";
 import { useState } from "react";
 import DialogReportReview from "../DialogReportReview/DialogReportReview";
 
-const UserCourseReview = ({ review, widthOfReview = "w-[300px]" }) => {
+const UserCourseReview: React.FC<{
+  review: string;
+  widthOfReview?: string;
+}> = ({ review, widthOfReview = "w-[300px]" }) => {
   if (!review) {
     return;
   }

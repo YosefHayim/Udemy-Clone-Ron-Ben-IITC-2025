@@ -1,6 +1,6 @@
 import { LuPlus } from "react-icons/lu";
 
-const FaqPlusBtn = () => {
+const FaqPlusBtn: React.FC = () => {
   return (
     <div>
       <div className="border border-black rounded-[100em] p-[1em] z-[10] bg-white text-center">
