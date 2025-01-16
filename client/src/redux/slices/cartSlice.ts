@@ -15,7 +15,7 @@ const cartSlice = createSlice({
     setAmountOfCourses: (state) => {
       state.amountOfCourses += 1;
     },
-    coursesAddedToCart: (state, action: PayloadAction<string>) => {
+    setAddCourseToCart: (state, action: PayloadAction<string>) => {
       // Use a Set to ensure no duplicates, then convert back to an array
       state.coursesAddedToCart = Array.from(
         new Set([...state.coursesAddedToCart, action.payload])
@@ -65,7 +65,7 @@ const cartSlice = createSlice({
 export const {
   setShowCart,
   setAmountOfCourses,
-  coursesAddedToCart,
+  setAddCourseToCart,
   totalCoursesPrice,
   removeCourseFromCart,
 } = cartSlice.actions;

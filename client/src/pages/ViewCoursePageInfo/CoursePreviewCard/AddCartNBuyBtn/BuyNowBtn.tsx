@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import {
-  coursesAddedToCart,
+  setAddCourseToCart,
   setAmountOfCourses,
   totalCoursesPrice,
 } from "@/redux/slices/cartSlice";
@@ -20,7 +20,7 @@ const BuyNowBtn = ({ courseId, discountPrice }) => {
     setTimeout(() => {
       dispatch(setAmountOfCourses());
       dispatch(totalCoursesPrice(discountPrice));
-      dispatch(coursesAddedToCart(courseId));
+      dispatch(setAddCourseToCart(courseId));
       setIsLoading(false);
     }, 3000);
     navigate("/cart");

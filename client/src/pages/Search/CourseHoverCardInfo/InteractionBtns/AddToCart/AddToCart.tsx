@@ -14,7 +14,6 @@ const AddToCart = ({ textBtn = "Add to cart", courseId, discountPrice }) => {
 
   const handleClick = (e, courseId) => {
     setIsLoading(true); // Show loader
-    console.log(`Course ID from button: ${courseId}`);
 
     // Simulate a 2-second delay for loading
     setTimeout(() => {
