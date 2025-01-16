@@ -10,8 +10,9 @@ import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 
 const Profile: React.FC = () => {
-  const fullName = useSelector((state) => state.user.fullName);
-  const profilePic = useSelector((state) => state.user.profilePic);
+  const fullName = useSelector((state: RootState) => state.user.fullName);
+  const profilePic = useSelector((state: RootState) => state.user.profilePic);
+  const cookie: string | any = Cookies.get("cookie");
 
   // Ensure fullName is defined before splitting
   const [firstWord, secondWord] = fullName ? fullName.split(" ") : ["", ""];
@@ -20,8 +21,6 @@ const Profile: React.FC = () => {
   const shortcutName =
     (firstWord?.[0]?.toUpperCase() || "") +
     (secondWord?.[0]?.toUpperCase() || "");
-
-  const cookie = Cookies.get("cookie");
 
   if (cookie.length < 20) {
     return (

@@ -6,11 +6,12 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartCoursesNumber from "./Navbar/Cart/CartCoursesNumber/CartCoursesNumber";
 import Cookies from "js-cookie";
+import { RootState } from "@/redux";
 
 const DropdownMenu: React.FC = () => {
-  const fullName = useSelector((state: any) => state.user.fullName);
-  const profilePic = useSelector((state: any) => state.user.profilePic);
-  const email = useSelector((state: any) => state.user.email);
+  const fullName = useSelector((state: RootState) => state.user.fullName);
+  const profilePic = useSelector((state: RootState) => state.user.profilePic);
+  const email = useSelector((state: RootState) => state.user.email);
   let cookie = Cookies.get("cookie");
 
   if (!cookie) {

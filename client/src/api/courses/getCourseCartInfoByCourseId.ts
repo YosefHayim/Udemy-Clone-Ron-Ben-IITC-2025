@@ -1,4 +1,3 @@
-import axios from "axios";
 import { axiosClient, baseUrl } from "../configuration";
 
 const getCourseCartInfoByCourseId = async (courseId: string) => {

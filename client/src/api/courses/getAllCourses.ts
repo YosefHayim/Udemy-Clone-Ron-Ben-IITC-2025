@@ -1,4 +1,3 @@
-import axios from "axios";
 import { axiosClient, baseUrl } from "../configuration";
 
 const getAllCourses = async (

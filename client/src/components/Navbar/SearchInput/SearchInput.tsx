@@ -51,11 +51,15 @@ const SearchInput = () => {
   const limit = 13;
   const page = 1;
 
-  const { data, isLoading, error } = useQuery({
+  const { data, error } = useQuery({
     queryKey: ["courses", searchTerm, page],
     queryFn: () => getAllCourses(searchTerm, limit, page), // Ensure correct page and limit
     enabled: !!searchTerm,
   });
+
+  if (error) {
+    return <div>Error occurred</div>;
+  }
 
   return (
     <div className="flex items-center border border-gray-700 rounded-full overflow-hidden w-1/2 h-12 px-3 py-2 bg-gray-50 z-[1800]">

@@ -1,6 +1,4 @@
-type AtagBtnProps = {
-  aTagName: string;
-};
+import { AtagBtnProps } from "@/types/types";
 
 const AtagBtn: React.FC<AtagBtnProps> = ({ aTagName }) => {
   return (

@@ -1,4 +1,4 @@
-const CourseRecap = ({ recapInfo }) => {
+const CourseRecap = ({ recapInfo }: { recapInfo: string }) => {
   return (
     <p className="text-[0.7em] w-[500px]">
       {recapInfo || (

@@ -1,24 +1,18 @@
 import React, { useState, useEffect } from "react";
 import CourseCard from "@/components/CourseCard/CourseCard";
-
-interface Course {
-  _id: string;
-  courseName: string;
-  courseImg: string;
-  courseDescription: string;
-  courseFullPrice: number;
-  courseDiscountPrice: number;
-}
+import { CourseProps } from "@/types/types";
 
 const CoursesCarousel: React.FC = () => {
-  const [courses, setCourses] = useState<Course[]>([]); // State to store courses
+  const [courses, setCourses] = useState<CourseProps[]>([]); // State to store courses
   const [currentIndex, setCurrentIndex] = useState(0); // Current index in the carousel
   const visibleItems = 5; // Number of visible courses in the carousel
 
   // Function to fetch courses from the backend
   const fetchCourses = async () => {
     try {
-      const response = await fetch("https://udemy-clone-ron-ben.onrender.com/api/course"); // Backend API URL
+      const response = await fetch(
+        "https://udemy-clone-ron-ben.onrender.com/api/course"
+      ); // Backend API URL
       const data = await response.json();
       if (data.status === "Success") {
         setCourses(data.response); // Update state with fetched courses
@@ -88,4 +82,3 @@ const CoursesCarousel: React.FC = () => {
 };
 
 export default CoursesCarousel;
-

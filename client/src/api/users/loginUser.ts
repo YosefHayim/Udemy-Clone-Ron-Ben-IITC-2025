@@ -1,4 +1,4 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import { axiosClient, localhostUrl } from "../configuration";
 
 const loginUser = async (credentials: string) => {
   try {

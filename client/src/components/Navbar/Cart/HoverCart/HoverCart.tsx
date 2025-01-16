@@ -9,9 +9,11 @@ const HoverCart = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const totalToPay = useSelector(
-    (state) => state.cart.totalCourseDiscountPrices
+    (state: any) => state.cart.totalCourseDiscountPrices
   );
-  const coursesIdAdded = useSelector((state) => state.cart.coursesAddedToCart);
+  const coursesIdAdded = useSelector(
+    (state: any) => state.cart.coursesAddedToCart
+  );
 
   useEffect(() => {
     // Simulate a loading delay to mimic data fetching
@@ -24,7 +26,7 @@ const HoverCart = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center w-full h-full">
-        <Loader hSize="1000px" />
+        <Loader hSize="1000px" useSmallLoading={false} />
       </div>
     );
   }

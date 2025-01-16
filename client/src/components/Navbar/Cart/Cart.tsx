@@ -21,7 +21,7 @@ const Cart = () => {
       </div>
       {showCartHover && (
         <div className="absolute top-full left-0 z-[5000] p-[2em]">
-          <HoverCart className="z-[5000]" />
+          <HoverCart />
         </div>
       )}
     </div>

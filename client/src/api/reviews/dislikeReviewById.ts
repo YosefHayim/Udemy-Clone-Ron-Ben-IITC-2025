@@ -1,4 +1,4 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import { axiosClient, localhostUrl } from "../configuration";
 
 export const dislikeReviewById = async (idOfReview: unknown) => {
   if (!idOfReview || typeof idOfReview !== "string") {

@@ -43,7 +43,7 @@ const ItemInCart = ({
     return <div></div>;
   }
 
-  const handleRemove = (e) => {
+  const handleRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
     dispatch(
       removeCourseFromCart({
         courseId,
@@ -53,8 +53,8 @@ const ItemInCart = ({
     );
   };
 
-  const handleCourseView = (e) => {
-    if (e.target.tagName === "DIV") {
+  const handleCourseView = (e: React.MouseEvent<HTMLDivElement>): void => {
+    if ((e.target as HTMLElement).tagName === "DIV") {
       navigate(`/course-view/${courseId}`);
     }
   };
@@ -92,6 +92,7 @@ const ItemInCart = ({
               </div>
               <div className={hide ? "block" : "hidden"}>
                 <CourseRatings
+                  stars=""
                   avgRatings={data.averageRating}
                   totalRatings={data.totalRatings}
                 />

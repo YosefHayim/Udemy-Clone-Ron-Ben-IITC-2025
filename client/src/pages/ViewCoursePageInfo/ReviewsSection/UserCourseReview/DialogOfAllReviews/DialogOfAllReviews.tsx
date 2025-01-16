@@ -10,7 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { LuDot } from "react-icons/lu";
 import { useParams } from "react-router-dom";
 import UserCourseReview from "@/pages/ViewCoursePageInfo/ReviewsSection/UserCourseReview/UserCourseReview";
-import { MdOutlineStarPurple500, MdSearch, MdStar } from "react-icons/md";
+import { MdSearch, MdStar } from "react-icons/md";
 import Loader from "@/components/Loader/Loader";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -19,10 +19,10 @@ import { useState } from "react";
 const DialogOfAllReviews = ({ avgRating, isClicked, setClicked }) => {
   const params = useParams();
   const courseId = params.courseId;
-  const [limit] = useState(13); // Keep limit fixed at 13
+  const [limit, setLimit] = useState(13); // Keep limit fixed at 13
   const [page, setPage] = useState(1); // Initialize page state
 
-  const { data, isLoading, error, refetch } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["reviews", courseId],
     queryFn: () => getAllReviewsByCourseId(courseId),
     enabled: isClicked, // Prevent fetching until dialog is opened

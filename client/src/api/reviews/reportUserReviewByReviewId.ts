@@ -1,11 +1,12 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import { ReportUserReviewPayload } from "@/types/types";
+import { axiosClient, localhostUrl } from "../configuration";
 
 const reportUserReviewByReviewId = async ({
   reviewId,
   issueType,
   issueDetails,
   userId,
-}) => {
+}: ReportUserReviewPayload) => {
   if (!reviewId || typeof reviewId !== "string") {
     throw new Error("Invalid review ID provided.");
   }
