@@ -21,26 +21,31 @@ const ItemInCart = ({
   itemsPosition = "center",
   textColor = "text-[#a435f0]",
 }) => {
-  if (!courseId) {
-    return;
-  }
+  if (!courseId) return null;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["course"],
+    queryKey: ["course", courseId],
     queryFn: () => getCourseCartInfoByCourseId(courseId),
+    staleTime: 5 * 60 * 1000,
   });
 
-  if (isLoading) return;
-  <div>
-    <Loader />
-  </div>;
+  if (isLoading) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
 
-  if (error) return <div>Error loading course data</div>;
+  if (error) {
+    return <div>Error loading course data</div>;
+  }
 
-  const handleRemove = () => {
+  const handleRemove = (e) => {
+    e.stopPropagation();
     dispatch(
       removeCourseFromCart({
         courseId,
@@ -50,7 +55,7 @@ const ItemInCart = ({
     );
   };
 
-  const handleCourseView = (e: React.DOMAttributes<HTMLDivElement>) => {
+  const handleCourseView = (e) => {
     if (e.target.tagName === "DIV") {
       navigate(`/course-view/${courseId}`);
     }

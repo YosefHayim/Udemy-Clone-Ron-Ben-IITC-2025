@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
-  coursesAddedToCart,
+  setAddCourseToCart,
   setAmountOfCourses,
   totalCoursesPrice,
 } from "@/redux/slices/cartSlice";
@@ -10,25 +10,25 @@ import Loader from "@/components/Loader/Loader";
 
 const AddToCart = ({ textBtn = "Add to cart", courseId, discountPrice }) => {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false); // Track loading state
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = (e, courseId) => {
-    setIsLoading(true); // Show loader
+    setIsLoading(true);
 
-    // Simulate a 2-second delay for loading
     setTimeout(() => {
       dispatch(setAmountOfCourses());
       dispatch(totalCoursesPrice(discountPrice));
-      dispatch(coursesAddedToCart(courseId));
-      setIsLoading(false); // Hide loader after 2 seconds
+      dispatch(setAddCourseToCart(courseId));
+      console.log("Course added:", courseId);
+      setIsLoading(false);
     }, 1000);
   };
 
   return (
     <Button
       onClick={(e) => handleClick(e, courseId)}
-      id={courseId}
-      disabled={isLoading} // Disable button during loading
+      id={`btn-${courseId || "unknown"}`} // Add prefix for clarity
+      disabled={isLoading}
       className={`font-bold ${
         isLoading
           ? "bg-gray-400 cursor-not-allowed"

@@ -2,13 +2,16 @@ import { Button } from "@/components/ui/button";
 import ItemInCart from "../ItemInCart/ItemInCart";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const HoverCart = () => {
   const totalToPay = useSelector((state) => state.cart.totalCoursesPrice);
   const coursesIdAdded = useSelector((state) => state.cart.coursesAddedToCart);
 
+  useEffect(() => {}, [totalToPay]);
+
   return (
-    <div className="flex flex-col justify-center items-start rounded-[0.5em] border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-previewCourseCardShadow">
+    <div className="flex flex-col justify-center items-start rounded-[0.5em] border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-previewCourseCardShadow cursor-pointer">
       <div className="w-full">
         {coursesIdAdded.length > 0 ? (
           coursesIdAdded.map((courseId: string) => (
