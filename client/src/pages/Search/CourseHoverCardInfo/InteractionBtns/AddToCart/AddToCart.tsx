@@ -4,11 +4,17 @@ import {
   setAddCourseToCart,
   setAmountOfCourses,
   updateTotalCoursesPrice,
+  updateTotalDiscountCoursesPrice,
 } from "@/redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
 import Loader from "@/components/Loader/Loader";
 
-const AddToCart = ({ textBtn = "Add to cart", courseId, coursePrice }) => {
+const AddToCart = ({
+  textBtn = "Add to cart",
+  courseId,
+  coursePrice,
+  fullPrice,
+}) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,7 +28,8 @@ const AddToCart = ({ textBtn = "Add to cart", courseId, coursePrice }) => {
         console.error("Invalid discountPrice:", coursePrice);
         return;
       }
-      dispatch(updateTotalCoursesPrice(Number(coursePrice)));
+      dispatch(updateTotalDiscountCoursesPrice(Number(coursePrice)));
+      dispatch(updateTotalCoursesPrice(Number(fullPrice)));
 
       dispatch(setAddCourseToCart(courseId));
       console.log("Course added:", courseId);

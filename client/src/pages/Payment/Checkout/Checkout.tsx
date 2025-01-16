@@ -1,24 +1,34 @@
 import { Button } from "@/components/ui/button";
 import { BsFire } from "react-icons/bs";
 import { IoMdLock } from "react-icons/io";
+import { useSelector } from "react-redux";
 
 const Checkout = () => {
+  const totalToPay = useSelector(
+    (state) => state.cart.totalCoursesPrice
+  ).toFixed(2);
+
+  const totalCourses = useSelector((state) => state.cart.amountOfCourses);
+  const originalPrice = useSelector(
+    (state) => state.cart.totalCoursesOriginalPrice
+  );
+
   return (
     <div className="flex flex-col items-start justify-start p-[3em] w-[340px]">
       <div className="flex flex-col items-start justify-start">
         <h2 className="font-bold mb-[1em] text-[1.5em]">Summary</h2>
         <div className="flex flex-col items-start justify-start gap-[0.5em] w-full">
           <div className="flex flex-row items-start justify-between w-full gap-[5em]">
-            <p>Original price:</p>
-            <p>₪199.90</p>
+            <p>Original price: {originalPrice}</p>
+            <p>₪{totalToPay}</p>
           </div>
           <hr className="w-full border border-b-gray-400" />
           <div className="flex flex-row items-start justify-between w-full mb-[3em]">
             <div className="flex flex-row gap-[0.3em]">
               <b>Total</b>
-              <p>(1 course)</p>
+              <p>({totalCourses} course)</p>
             </div>
-            <b>₪199.90</b>
+            <b>₪{totalToPay}</b>
           </div>
         </div>
         <div className="mb-[1em]">

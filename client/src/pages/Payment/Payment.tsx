@@ -8,8 +8,13 @@ import Checkout from "./Checkout/Checkout";
 import courseImg from "/images/order-detail-course-img.png";
 import Logo from "@/components/Logo/Logo";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Payment = () => {
+  const totalToPay = useSelector(
+    (state) => state.cart.totalCoursesPrice
+  ).toFixed(2);
+
   return (
     <div>
       <div className="p-[1em] flex flex-col items-start justify-between w-full mb-[2em] shadow-md">
@@ -78,7 +83,7 @@ const Payment = () => {
                 <b>
                   LLM Engineering: Master AI, Large Language Models & Agents
                 </b>
-                <p>₪199.90</p>
+                <p>₪{totalToPay}</p>
               </div>
             </div>
           </div>

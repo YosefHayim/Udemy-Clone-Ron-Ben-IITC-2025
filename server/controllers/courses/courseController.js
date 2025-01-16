@@ -232,7 +232,7 @@ const getCourseInfoForCart = catchAsync(async (req, res, next) => {
   }
 
   const findCourse = await Course.findOne({ _id: courseId }).select(
-    "courseImg courseName courseInstructor averageRating courseDiscountPrice totalRatings totalCourseDuration totalCourseLessons totalCourseSections"
+    "courseFullPrice courseImg courseName courseInstructor averageRating courseDiscountPrice totalRatings totalCourseDuration totalCourseLessons totalCourseSections"
   );
 
   if (!findCourse) {

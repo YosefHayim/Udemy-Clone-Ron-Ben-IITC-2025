@@ -44,6 +44,8 @@ const ItemInCart = ({
     return <div>Error loading course data</div>;
   }
 
+  console.log(data);
+
   const handleRemove = (e) => {
     e.stopPropagation();
     dispatch(
@@ -73,7 +75,7 @@ const ItemInCart = ({
         <div
           className={`${chooseFlex} flex flex-row items-${itemsPosition} justify-center gap-[1em]`}
         >
-          <div className="flex flex-col items-start gap-[0.5em]">
+          <div className="flex flex-col items-start gap-[0.5em] w-[220px]">
             <CourseTitle
               title={data.courseName}
               shortcutTitle={shortcutTitle}
@@ -114,7 +116,12 @@ const ItemInCart = ({
             <div
               className={`flex flex-row items-center justify-center gap-[0.2em] ${textColor}`}
             >
-              <b className="">₪{data.courseDiscountPrice}</b>
+              <div className="flex flex-col items-start justify-start">
+                <b className="">₪{data.courseDiscountPrice}</b>
+                <b className="text-gray-600 line-through font-light">
+                  ₪{data.courseDiscountPrice}
+                </b>
+              </div>
               <div className={hide ? "block" : "hidden"}>
                 <BsFillTagFill />
               </div>
@@ -123,7 +130,7 @@ const ItemInCart = ({
         </div>
       </div>
       <div className="mb-[1em] mt-[0.5em]">
-        <hr className="relative w-[285px]" />
+        <hr className="relative w-full" />
       </div>
     </div>
   );

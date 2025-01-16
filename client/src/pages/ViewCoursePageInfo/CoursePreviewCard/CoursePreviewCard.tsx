@@ -59,7 +59,11 @@ const CoursePreviewCard = ({
           />
         </div>
         <TimeLeftBuyCourse />
-        <AddCartNBuyBtn courseId={courseId} discountPrice={discountPrice} />
+        <AddCartNBuyBtn
+          courseId={courseId}
+          discountPrice={discountPrice}
+          fullPrice={fullPrice}
+        />
         <MoneyBack />
         <CourseIncludes />
         <InteractionBtns />

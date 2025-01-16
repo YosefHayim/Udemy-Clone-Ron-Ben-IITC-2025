@@ -7,6 +7,7 @@ const cartSlice = createSlice({
     amountOfCourses: 0,
     coursesAddedToCart: [],
     totalCoursesPrice: 0,
+    totalCoursesOriginalPrice: 0,
   },
   reducers: {
     setShowCart: (state, action: PayloadAction<boolean>) => {
@@ -22,8 +23,11 @@ const cartSlice = createSlice({
       );
     },
 
-    updateTotalCoursesPrice: (state, action: PayloadAction<number>) => {
+    updateTotalDiscountCoursesPrice: (state, action: PayloadAction<number>) => {
       state.totalCoursesPrice += action.payload;
+    },
+    updateTotalCoursesPrice: (state, action: PayloadAction<number>) => {
+      state.totalCoursesOriginalPrice += action.payload;
     },
     removeCourseFromCart: (
       state,
@@ -64,9 +68,10 @@ const cartSlice = createSlice({
 
 export const {
   setShowCart,
+  updateTotalCoursesPrice,
   setAmountOfCourses,
   setAddCourseToCart,
-  updateTotalCoursesPrice,
+  updateTotalDiscountCoursesPrice,
   removeCourseFromCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;

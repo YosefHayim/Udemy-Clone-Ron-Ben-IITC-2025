@@ -3,12 +3,13 @@ import {
   setAddCourseToCart,
   setAmountOfCourses,
   updateTotalCoursesPrice,
+  updateTotalDiscountCoursesPrice,
 } from "@/redux/slices/cartSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const BuyNowBtn = ({ courseId, discountPrice }) => {
+const BuyNowBtn = ({ courseId, discountPrice, fullPrice }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +24,8 @@ const BuyNowBtn = ({ courseId, discountPrice }) => {
         console.error("Invalid discountPrice:", discountPrice);
         return;
       }
-      dispatch(updateTotalCoursesPrice(Number(discountPrice)));
+      dispatch(updateTotalDiscountCoursesPrice(Number(discountPrice)));
+      dispatch(updateTotalCoursesPrice(Number(fullPrice)));
 
       dispatch(setAddCourseToCart(courseId));
       console.log("Course added:", courseId);

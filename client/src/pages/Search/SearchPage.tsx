@@ -73,6 +73,7 @@ const SearchPage = () => {
                     <CourseHoverCardInfo
                       whatYouWillLearn={course.whatYouWillLearn}
                       courseId={course._id}
+                      fullPriceCourse={course.courseFullPrice}
                       coursePrice={course.courseDiscountPrice}
                     />
                   </div>
