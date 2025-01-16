@@ -117,13 +117,17 @@ const ItemInCart = ({
               className={`flex flex-row items-center justify-center gap-[0.2em] ${textColor}`}
             >
               <div className="flex flex-col items-start justify-start">
-                <b className="">₪{data.courseDiscountPrice}</b>
+                <div
+                  className={
+                    hide ? "flex flex-row items-center gap-[0.2em]" : "hidden"
+                  }
+                >
+                  <b className="">₪{data.courseDiscountPrice}</b>
+                  <BsFillTagFill />
+                </div>
                 <b className="text-gray-600 line-through font-light">
                   ₪{data.courseFullPrice}
                 </b>
-              </div>
-              <div className={hide ? "block" : "hidden"}>
-                <BsFillTagFill />
               </div>
             </div>
           </div>
