@@ -27,7 +27,6 @@ const AppRoutes: React.FC = () => {
               <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="/cart" element={<ShoppingCart />} />
-                <Route path="/payment/checkout/" element={<Payment />} />
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route path="/loader" element={<Loader />} />
                 <Route path="/Signup" element={<SignUp />} />
@@ -44,7 +43,8 @@ const AppRoutes: React.FC = () => {
             </>
           }
         />
-        {/* Route where Header is hidden */}
+        {/* Route where navbar is hidden */}
+        <Route path="/payment/checkout/" element={<Payment />} />
         <Route
           path="/course/:courseId/lesson/:id/*"
           element={
