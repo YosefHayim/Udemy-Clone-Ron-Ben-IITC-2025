@@ -5,9 +5,9 @@ import { TfiWorld } from "react-icons/tfi";
 const SelectCountry = () => {
   const [selectedCountry, setSelectedCountry] = useState("");
 
-  const handleChange = (event) => {
-    setSelectedCountry(event.target.value);
-    console.log("Selected Country:", event.target.value); // For testing purposes
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCountry(e.target.value);
+    console.log("Selected Country:", e.target.value);
   };
 
   return (

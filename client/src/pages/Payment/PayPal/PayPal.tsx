@@ -1,4 +1,4 @@
-const PayPal = () => {
+const PayPal: React.FC = () => {
   return (
     <div className="w-full px-[1em]">
       <p>

@@ -3,9 +3,10 @@ import visaIcon from "/images/visa-icon.svg";
 import AddCardInfo from "../AddCardInfo/AddCardInfo";
 import DefaultVisa from "../DefaultVisa/DefaultVisa";
 import GooglePay from "../GooglePay/GooglePay";
-import PayPal from "../PaymentOptionsRadio/PayPal";
+import PayPal from "../PayPal/PayPal";
+import { PaymentOptionProps } from "@/types/types";
 
-const PaymentOption = ({
+const PaymentOption: React.FC<PaymentOptionProps> = ({
   paymentOptionName = "Visa***0912",
   providedIcon = <AiFillCreditCard className="text-[2em]" />,
   showVisa = true,

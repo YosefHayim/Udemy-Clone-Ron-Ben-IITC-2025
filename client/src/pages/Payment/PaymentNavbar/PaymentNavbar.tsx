@@ -1,7 +1,7 @@
 import Logo from "@/components/Logo/Logo";
 import { Link } from "react-router-dom";
 
-const PaymentNavbar = () => {
+const PaymentNavbar: React.FC = () => {
   return (
     <div className="flex flex-row items-center justify-between w-full">
       <Logo />

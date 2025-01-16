@@ -4,10 +4,10 @@ import PaymentOption from "../PaymentOption/PaymentOption";
 import GPayIcon from "../GPayIcon/GPayIcon";
 import PayPalIcon from "../PayPalIcon/PayPalIcon";
 
-const PaymentOptionsRadio = () => {
-  const [activeOption, setActiveOption] = useState(null); // Tracks the active option
+const PaymentOptionsRadio: React.FC = () => {
+  const [activeOption, setActiveOption] = useState<string | null>(null); // Tracks the active option
 
-  const handleToggle = (option) => {
+  const handleToggle = (option: string | null): void => {
     setActiveOption((prev) => (prev === option ? null : option)); // Toggle open/close
   };
 

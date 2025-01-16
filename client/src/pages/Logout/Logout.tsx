@@ -1,4 +1,4 @@
-const Logout = () => {
+const Logout: React.FC = () => {
   return <div>Logout</div>;
 };
 

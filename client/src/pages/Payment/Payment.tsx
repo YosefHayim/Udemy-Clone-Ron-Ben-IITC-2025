@@ -5,7 +5,7 @@ import PaymentMethodNLock from "./PaymentMethodNLock/PaymentMethodNLock";
 import PaymentOptionsRadio from "./PaymentOptionsRadio/PaymentOptionsRadio";
 import OrderDetails from "./OrderDetails/OrderDetails";
 
-const Payment = () => {
+const Payment: React.FC = () => {
   return (
     <div>
       <div className="p-[1em] flex flex-col items-start justify-between w-full mb-[2em] shadow-md">

@@ -1,6 +1,6 @@
 import { IoMdLock } from "react-icons/io";
 
-const PaymentMethodNLock = () => {
+const PaymentMethodNLock: React.FC = () => {
   return (
     <div className="flex flex-row items-start justify-between w-[400px]">
       <h3 className="font-bold">Payment method</h3>

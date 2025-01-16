@@ -144,3 +144,30 @@ export interface MenuItemProps {
   title: string;
   subcategories: (GroupedSubcategory | Subcategory)[];
 }
+
+export interface DecodedTokenProps {
+  fullName: string;
+  profilePic: string;
+  email: string;
+  bio: string;
+  role: string;
+  coursesBought: string[];
+}
+
+export type FormErrors = {
+  email?: string;
+  password?: string;
+  general?: string;
+};
+
+export interface PaymentOptionProps {
+  paymentOptionName?: string;
+  providedIcon?: React.ReactNode;
+  showVisa?: boolean;
+  showProvideCardInfo?: boolean;
+  isGooglePay?: boolean;
+  isPayPal?: boolean;
+  radioName?: string;
+  isOpen?: boolean;
+  onToggle?: () => void;
+}

@@ -1,10 +1,11 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
+import React from "react";
 
-const AddCardInfo = () => {
-  const handleSubmit = (e) => {
+const AddCardInfo: React.FC = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const formData = new FormData(e.currentTarget);
     const visaOwnerName = formData.get("card-owner");
     const creditCardNumber = formData.get("card-number");
     const date = formData.get("date");
