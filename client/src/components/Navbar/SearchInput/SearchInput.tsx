@@ -62,7 +62,7 @@ const SearchInput = () => {
   }
 
   return (
-    <div className="flex items-center border border-gray-700 rounded-full overflow-hidden w-1/2 h-12 px-3 py-2 bg-gray-50 z-[1800]">
+    <div className="flex items-center border border-gray-700 rounded-full overflow-hidden w-1/2 h-[3rem] bg-gray-50 z-[1800] ">
       <MdOutlineSearch
         className={`w-6 h-6 ${
           isTyping ? "text-gray-900" : "text-gray-400 opacity-200"

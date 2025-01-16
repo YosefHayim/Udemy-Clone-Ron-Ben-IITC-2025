@@ -19,8 +19,8 @@ const Navbar = () => {
   useEffect(() => {}, [cookie]);
 
   return (
-    <div className="h-[4.5em] flex items-center justify-between py-3 bg-white shadow-md w-screen z-[10] px-[0.5em]">
-      <div className="flex items-center gap-[1em] w-full">
+    <div className="h-[4.5em] flex items-center justify-between py-3 bg-white w-screen z-[10] px-[0.5em]">
+      <div className="flex items-center gap-[1em] w-full shadow-md">
         <Link to="/">
           <Logo />
         </Link>
