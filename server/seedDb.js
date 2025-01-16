@@ -544,27 +544,57 @@ const simulateCoursePurchases = async () => {
   console.log("Course purchases simulated successfully.");
 };
 
+const addCoursesToWishlistOfUsers = async () => {
+  const users = await User.find({ role: "student" });
+  const courses = await Course.find(); // Fetch all available courses
+
+  if (!users.length) {
+    console.warn("No users found to update with wishlist.");
+    return;
+  }
+  if (!courses.length) {
+    console.warn("No courses available to add to wishlist.");
+    return;
+  }
+
+  console.log("Adding wishlist courses to users...");
+  for (const user of users) {
+    // Randomly select 1 to 5 courses for the wishlist
+    const wishlistCourses = faker.helpers.arrayElements(
+      courses.map((course) => course._id),
+      faker.number.int({ min: 1, max: 5 })
+    );
+
+    // Update the user's wishlist
+    user.wishlistCourses = wishlistCourses;
+    await user.save();
+    console.log(`Wishlist updated for user: ${user.fullName}`);
+  }
+
+  console.log("Wishlist courses added successfully.");
+};
+
 const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
     console.log("Database connection established.");
-    // await clearCollections();
+    await clearCollections();
 
-    // console.log("Seeding users...");
-    // const users = await createUsers();
-    // console.log(`${users.length} users created.`);
+    console.log("Seeding users...");
+    const users = await createUsers();
+    console.log(`${users.length} users created.`);
 
-    // console.log("Seeding courses...");
-    // const courses = await createCourses();
-    // console.log(`${courses.length} courses created.`);
+    console.log("Seeding courses...");
+    const courses = await createCourses();
+    console.log(`${courses.length} courses created.`);
 
-    // console.log("Seeding sections...");
-    // const sections = await createSections();
-    // console.log(`${sections.length} sections created.`);
+    console.log("Seeding sections...");
+    const sections = await createSections();
+    console.log(`${sections.length} sections created.`);
 
-    // console.log("Seeding lessons...");
-    // const lessons = await createLessons();
-    // console.log(`${lessons.length} lessons created.`);
+    console.log("Seeding lessons...");
+    const lessons = await createLessons();
+    console.log(`${lessons.length} lessons created.`);
 
     console.log("Seeding reviews...");
     const reviews = await createReviews();
@@ -574,7 +604,10 @@ const generateUpdatedDummyData = async () => {
     await createReportedReviews();
 
     await simulateCoursePurchases();
-    console.log("Simulate courses purchases completed");
+    console.log("Simulate courses purchases created.");
+
+    await addCoursesToWishlistOfUsers();
+    console.log("Simulate wishlist courses created.");
 
     // console.log("All dummy data seeded successfully!");
     process.exit();

@@ -95,7 +95,7 @@ const userSchema = new mongoose.Schema(
       },
       isSubscriptionActive: {
         type: Boolean,
-        default: false, // By default, subscriptions are inactive.
+        default: false,
       },
       startDate: {
         type: Date,
@@ -104,7 +104,7 @@ const userSchema = new mongoose.Schema(
       endDate: {
         type: Date,
         required: function () {
-          return this.isSubscriptionActive; // Required only if the subscription is active.
+          return this.isSubscriptionActive;
         },
       },
     },
