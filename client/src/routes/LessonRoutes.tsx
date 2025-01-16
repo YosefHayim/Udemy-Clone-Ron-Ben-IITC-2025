@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate, useParams } from "react-router-dom";
+import { Routes, Route, Navigate, useParams, useLocation } from "react-router-dom";
 import NavBar from "../pages/Lesson/NavBar";
 import { useQuery } from "@tanstack/react-query";
 import OverviewTab from "../pages/Lesson/tabs/OverviewTab";
@@ -52,6 +52,13 @@ const LessonRoutes: React.FC = () => {
     "search",
   ];
 
+
+
+  const sections = data.data.sections
+  
+
+
+
   // Construct the default route
   const defaultRoute = `/course/${courseId}/lesson/${id}/overview`;
 
@@ -66,13 +73,13 @@ const LessonRoutes: React.FC = () => {
 
         {/* Define routes for lesson tabs */}
         <Route path={`overview`} element={<OverviewTab />} />
-        <Route path="course-content" element={<CourseContent />} />
+        <Route path="course-content" element={<CourseContent sections={sections} />}  />
         <Route path="qna" element={<QnATab />} />
         <Route path="notes" element={<NotesTab />} />
         <Route path="announcements" element={<AnnouncementsTab />} />
         <Route path="reviews" element={<ReviewsTab />} />
         <Route path="learning-tools" element={<LearningToolsTab />} />
-        <Route path="search" element={<SearchTab />} />
+        <Route path="search" element={<SearchTab sections={sections} />} />
 
         {/* Redirect to defaultRoute for invalid paths */}
         <Route path="*" element={<Navigate to={defaultRoute} replace />} />

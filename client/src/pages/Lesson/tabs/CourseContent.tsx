@@ -8,23 +8,21 @@ import {
   CollapsibleTrigger,
   CollapsibleContent,
 } from "@/components/ui/collapsible";
-import { useQuery } from "@tanstack/react-query";
-import { fetchCourseById } from "@/services/courseService";
+
 import Loader from "@/components/Loader/Loader";
 
-const CourseContent: React.FC = () => {
+interface CourseContentProps {
+  sections: Array<any>; // Replace `any` with the exact structure of your sections if known
+}
+const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
   const { courseId } = useParams<{ courseId: string }>();
   const location = useLocation();
 
   // Sanitize courseId to remove any leading colon or whitespace
   const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
 
-  // Fetch course data using React Query
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["course", sanitizedCourseId],
-    queryFn: () => fetchCourseById(sanitizedCourseId),
-    enabled: !!sanitizedCourseId,
-  });
+
+
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
 
   // Track completed lessons
@@ -38,16 +36,16 @@ const CourseContent: React.FC = () => {
   };
 
   // Handle loading and error states
-  if (isLoading) return <Loader />;
-  if (error || !data) return <div>Error loading course data</div>;
+  if (!sections) {
+    return <div>No sections available for this course.</div>;
+  }
 
-  const sections = data.data.sections;
   let lessonCounter = 0;
 
   return (
     <div className="flex justify-center py-10 min-h-screen">
       <div className="">
-        {sections.map((section: any) => (
+        {sections.map((section: any, idx: number) => (
           <Collapsible
             key={section._id}
             defaultOpen
@@ -56,7 +54,7 @@ const CourseContent: React.FC = () => {
             <div className="flex items-center justify-between p-4 bg-[#F7F9FA]">
               <CollapsibleTrigger asChild>
                 <button className="flex items-center w-full text-left focus:outline-none focus-visible:outline-none">
-                  <span className="text-lg font-medium">{section.title}</span>
+                  <span className="text-lg font-medium">Section {idx + 1}: {section.title}</span>
                   <FaChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                 </button>
               </CollapsibleTrigger>

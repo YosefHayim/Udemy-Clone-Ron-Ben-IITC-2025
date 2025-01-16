@@ -9,11 +9,9 @@ export const fetchCourseById = async (id: string) => {
   }
 
   const sanitizedId = id.trim().replace(/^:/, ""); // Remove leading colon, if any
-  console.log("Fetching course with ID:", sanitizedId);
 
   try {
     const response = await axios.get(`${API_BASE_URL}/course/${sanitizedId}`);
-    console.log("Course data fetched successfully:", response.data);
     return response.data;
   } catch (error: any) {
     console.error("Error fetching course data:", {
