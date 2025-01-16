@@ -21,6 +21,21 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
 
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Highlight matching text
+  const highlightText = (text: string, query: string) => {
+    if (!query) return text;
+    const parts = text.split(new RegExp(`(${query})`, "gi"));
+    return parts.map((part, index) =>
+      part.toLowerCase() === query.toLowerCase() ? (
+        <span key={index} className="font-bold">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
+
   // Filter lessons based on the search query
   const filteredSections = sections
     .map((section) => ({
@@ -46,62 +61,80 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
       </div>
 
       {/* Filtered Results */}
-      {searchQuery ? filteredSections.length > 0 ? (
-        filteredSections.map((section, idx) => (
-          <div key={section._id} className="min-w-[800px] border-y group">
-            <div className="flex items-center justify-between p-4 bg-[#F7F9FA]">
-              <span className="text-lg font-medium">
-                Section {idx + 1}: {section.title}
-              </span>
-            </div>
-            <ul className="mt-2 pl-4">
-              {section.lessons.map((lesson) => {
-                const isCurrentLesson =
-                  location.pathname === `/course/${courseId}/lesson/${lesson._id}/search` ||
-                  location.pathname === `/course/${courseId}/lesson/${lesson._id}`;
+      {searchQuery ? (
+        filteredSections.length > 0 ? (
+          filteredSections.map((section, idx) => (
+            <div key={section._id} className="min-w-[800px] border-y group">
+              <div className="flex items-center justify-between p-4 bg-[#F7F9FA]">
+                <span className="text-lg font-medium">
+                  Section {idx + 1}: {section.title}
+                </span>
+              </div>
+              <ul className="mt-2 pl-4">
+                {section.lessons.map((lesson) => {
+                  const isCurrentLesson =
+                    location.pathname ===
+                      `/course/${courseId}/lesson/${lesson._id}/search` ||
+                    location.pathname ===
+                      `/course/${courseId}/lesson/${lesson._id}`;
 
-                return (
-                  <li
-                    key={lesson._id}
-                    className={`flex items-center gap-3 mb-2 p-2 ${
-                      isCurrentLesson ? "bg-slate-400 text-white" : "hover:bg-slate-400"
-                    }`}
-                  >
-                    <div className="flex flex-col">
-                      <Link
-                        to={`/course/${courseId}/lesson/${lesson._id}`}
-                        state={{ courseId }}
-                        className="flex-col ml-2"
-                      >
-                        <span>{lesson.title}</span>
-                        <span
-                          className={`flex items-center text-xs ${
-                            isCurrentLesson ? "text-white" : "text-black"
-                          }`}
+                  return (
+                    <li
+                      key={lesson._id}
+                      className={`flex items-center gap-3 mb-2 p-2 ${
+                        isCurrentLesson
+                          ? "bg-slate-400 text-white"
+                          : "hover:bg-slate-400"
+                      }`}
+                    >
+                      <div className="flex flex-col">
+                        <Link
+                          to={`/course/${courseId}/lesson/${lesson._id}`}
+                          state={{ courseId }}
+                          className="flex-col text-sm ml-2"
                         >
-                          <MdOndemandVideo />
-                          <span>{lesson.duration ? `${lesson.duration} min` : ""}</span>
-                        </span>
-                      </Link>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+                          <span>
+                            {highlightText(lesson.title, searchQuery)}
+                          </span>
+                          <span
+                            className={`flex items-center text-xs ${
+                              isCurrentLesson ? "text-white" : "text-black"
+                            }`}
+                          >
+                            <MdOndemandVideo />
+                            <span>
+                              {lesson.duration
+                                ? `${lesson.duration} min`
+                                : ""}
+                            </span>
+                          </span>
+                        </Link>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))
+        ) : (
+          // No Results Found
+          <div className="text-center mt-10">
+            <h2 className="text-2xl text-gray-600 font-bold">
+              No results found
+            </h2>
+            <p className="text-gray-500">Try a different search query.</p>
           </div>
-        ))
+        )
       ) : (
-        // No Results Found
-        <div className="text-center mt-10">
-          <h2 className="text-2xl text-gray-600 font-bold">No results found</h2>
-          <p className="text-gray-500">Try a different search query.</p>
-        </div>
-      ):
-      <span className="self-center flex flex-col items-center  my-[40px]">
-      <h2 className="text-2xl text-[##303141] font-bold ">Start a new search</h2>
-      <h2 className="text-sm text-black "> To find captions, lectures or resourcers</h2>
-      </span>}
-
+        <span className="self-center flex flex-col items-center  my-[40px]">
+          <h2 className="text-2xl text-[##303141] font-bold ">
+            Start a new search
+          </h2>
+          <h2 className="text-sm text-black ">
+            To find captions, lectures or resources
+          </h2>
+        </span>
+      )}
     </div>
   );
 };
