@@ -1,6 +1,5 @@
 import { MdOutlineShoppingCart } from "react-icons/md";
 import CartCoursesNumber from "./CartCoursesNumber/CartCoursesNumber";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import HoverCart from "./HoverCart/HoverCart";
 
@@ -8,7 +7,7 @@ const Cart = () => {
   const [showCartHover, setShowCartHover] = useState(false);
 
   const handleMouseEnter = () => setShowCartHover(true);
-  const handleMouseLeave = () => setShowCartHover(true);
+  const handleMouseLeave = () => setShowCartHover(false);
 
   return (
     <div

@@ -1,22 +1,6 @@
-import React, { useState } from "react";
+import { supportedCountries } from "@/utils/supportedCountries";
+import { useState } from "react";
 import { TfiWorld } from "react-icons/tfi";
-
-const supportedCountries = [
-  "United States",
-  "United Kingdom",
-  "Canada",
-  "Australia",
-  "India",
-  "Germany",
-  "France",
-  "Brazil",
-  "Mexico",
-  "Japan",
-  "South Korea",
-  "South Africa",
-  "Singapore",
-  // Add all other countries supported by Udemy payments
-];
 
 const SelectCountry = () => {
   const [selectedCountry, setSelectedCountry] = useState("");

@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
+const supportedCountries = require("../../utils/supportedCountries");
+const languagesToChoose = require("../../utils/languagesToChoose");
 
 const userSchema = new mongoose.Schema(
   {
@@ -15,27 +17,17 @@ const userSchema = new mongoose.Schema(
       type: String,
       maxLength: [200, "bio cannot exceed 200 characters."],
     },
+    country: {
+      type: String,
+      enum: supportedCountries,
+      required: [
+        true,
+        `Must provide a country to a user from the provided list: ${supportedCountries}`,
+      ],
+    },
     preferredLanguage: {
       type: String,
-      enum: [
-        "english",
-        "deutsch",
-        "espanol",
-        "français",
-        "italiano",
-        "português",
-        "nederlands",
-        "polski",
-        "日本語",
-        "한국어",
-        "中文",
-        "русский",
-        "العربية",
-        "עברית",
-        "tiếng Việt",
-        "ไทย",
-        "bahasa Indonesia",
-      ],
+      enum: languagesToChoose,
       default: "english",
     },
     links: {
