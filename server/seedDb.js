@@ -14,13 +14,12 @@ const courseNames = require("./utils/courseNames");
 const sectionNames = require("./utils/sectionNames");
 const lessonsNames = require("./utils/lessonNames");
 const videosToDisplay = require("./utils/videosToDsiplay");
-const supportedCountries = require("./utils/supportedCountries");
 
 const clearCollections = async () => {
   await Promise.all([
-    // User.deleteMany(),
-    // Course.deleteMany(),
-    // Section.deleteMany(),
+    User.deleteMany(),
+    Course.deleteMany(),
+    Section.deleteMany(),
     Lesson.deleteMany(),
     courseReviews.deleteMany(),
     ReportReview.deleteMany(),
@@ -137,10 +136,7 @@ const createCourses = async () => {
 
     // Update each user's `coursesBought` field with the created course
     for (const student of enrolledStudents) {
-      student.coursesBought.push({
-        course: course._id,
-        boughtAt: faker.date.past(1),
-      });
+      student.coursesBought.push(course._id);
       await student.save();
     }
 
@@ -296,10 +292,10 @@ const createReviews = async () => {
     // Fetch all students with enrolled courses and populate the coursesBought field
     const students = await User.find({
       role: "student",
-      coursesBought: { $exists: true, $ne: [] },
+      "coursesBought.course": { $exists: true }, // Ensures coursesBought has a course reference
     }).populate({
-      path: "coursesBought",
-      select: "_id courseName",
+      path: "coursesBought.course", // Populate the `course` sub-field inside `coursesBought`
+      select: "_id courseName", // Select only needed fields
     });
 
     if (!students.length) {
@@ -310,7 +306,11 @@ const createReviews = async () => {
     for (const student of students) {
       console.log(`Processing reviews for student: ${student.email}`);
 
-      for (const course of student.coursesBought || []) {
+      // Iterate over each course bought by the student
+      for (const courseEntry of student.coursesBought || []) {
+        const course = courseEntry.course; // Access the actual course document
+
+        // Check for a valid course and its ID
         if (!course || !course._id) {
           console.error(
             `Invalid course reference for student "${student.email}". Skipping...`
@@ -320,6 +320,7 @@ const createReviews = async () => {
 
         console.log(`Processing course ID: ${course._id}`);
 
+        // Create review payload
         const reviewPayload = {
           user: student._id,
           courseReview: course._id,
@@ -328,8 +329,15 @@ const createReviews = async () => {
         };
 
         try {
-          // Create the review
+          // Create the review and check if it's created successfully
           const review = await courseReviews.create(reviewPayload);
+          if (!review) {
+            console.error(
+              `Review creation failed for course ID: ${course._id}`
+            );
+            continue;
+          }
+
           console.log(`Review created for course ID: ${course._id}`);
 
           // Update the course immediately after creating the review
@@ -583,13 +591,13 @@ const generateUpdatedDummyData = async () => {
     console.log("Database connection established.");
     await clearCollections();
 
-    // console.log("Seeding users...");
-    // const users = await createUsers();
-    // console.log(`${users.length} users created.`);
+    console.log("Seeding users...");
+    const users = await createUsers();
+    console.log(`${users.length} users created.`);
 
-    // console.log("Seeding courses...");
-    // const courses = await createCourses();
-    // console.log(`${courses.length} courses created.`);
+    console.log("Seeding courses...");
+    const courses = await createCourses();
+    console.log(`${courses.length} courses created.`);
 
     console.log("Seeding sections...");
     const sections = await createSections();
@@ -607,12 +615,12 @@ const generateUpdatedDummyData = async () => {
     await createReportedReviews();
 
     await simulateCoursePurchases();
-    console.log("Simulate courses purchases created.");
+    console.log("Simulate courses purchases completed");
 
     await addCoursesToWishlistOfUsers();
-    console.log("Simulate wishlist courses created.");
+    console.log("Simulate courses wishlists completed");
 
-    // console.log("All dummy data seeded successfully!");
+    console.log("All dummy data seeded successfully!");
     process.exit();
   } catch (err) {
     console.error("Error generating dummy data:", err.message);

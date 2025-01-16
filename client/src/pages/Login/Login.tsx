@@ -40,10 +40,7 @@ const Login = () => {
   });
 
   const validateForm = () => {
-    const errors = {
-      email,
-      password,
-    };
+    const errors = {};
     if (!email) errors.email = "E-mail is mandatory.";
     if (!password) errors.password = "Password is mandatory.";
     return errors;
@@ -56,10 +53,7 @@ const Login = () => {
       setFormErrors(errors);
       return;
     }
-    setFormErrors({
-      email,
-      password,
-    });
+    setFormErrors({});
     mutation.mutate({ email, password });
   };
 

@@ -1,12 +1,9 @@
-import axios from "axios";
 import { axiosClient, localhostUrl } from "../configuration";
 import { RegisterUserPayload } from "@/types/types";
 
 type fn = (data: RegisterUserPayload) => Promise<any>;
 
 const registerUser: fn = async (data: RegisterUserPayload): Promise<any> => {
-  axios.defaults.withCredentials = true;
-
   try {
     const response = await axiosClient.post<RegisterUserPayload>(
       `${localhostUrl}/api/user/auth/signup`,
@@ -14,7 +11,7 @@ const registerUser: fn = async (data: RegisterUserPayload): Promise<any> => {
     );
     if (response) {
       console.log(response);
-      return response.data; // Ensure response structure matches `RegisterUserInfo`
+      return response.data;
     }
   } catch (error) {
     console.error(`Error occurred during the signup: `, error);

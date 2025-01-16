@@ -5,7 +5,6 @@ import Cart from "./Cart/Cart";
 import Language from "./Language/Language";
 import Logo from "../Logo/Logo";
 import AtagBtn from "../AtagBtn/AtagBtn";
-// Import RootState type for Redux
 import Heart from "./Heart/Heart";
 import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
@@ -20,11 +19,8 @@ const Navbar = () => {
   useEffect(() => {}, [cookie]);
 
   return (
-    <div
-      className="flex items-center justify-between py-3 bg-white shadow-md w-screen z-[10] px-6"
-      style={{ height: "4.5rem" }}
-    >
-      <div className="flex items-center gap-6 w-screen">
+    <div className="h-[4.5em] flex items-center justify-between py-3 bg-white shadow-md w-screen z-[10] px-[0.5em]">
+      <div className="flex items-center gap-[1em] w-full">
         <Link to="/">
           <Logo />
         </Link>

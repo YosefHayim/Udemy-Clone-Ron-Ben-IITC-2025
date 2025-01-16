@@ -7,8 +7,11 @@ import { Link } from "react-router-dom";
 import CartCoursesNumber from "./Navbar/Cart/CartCoursesNumber/CartCoursesNumber";
 import Cookies from "js-cookie";
 import { RootState } from "@/redux";
+import { useDispatch } from "react-redux";
+import { clearUser } from "@/redux/slices/userSlice";
 
 const DropdownMenu: React.FC = () => {
+  const dispatch = useDispatch();
   const fullName = useSelector((state: RootState) => state.user.fullName);
   const profilePic = useSelector((state: RootState) => state.user.profilePic);
   const email = useSelector((state: RootState) => state.user.email);
@@ -28,11 +31,12 @@ const DropdownMenu: React.FC = () => {
   const handleLogout = () => {
     Cookies.remove("cookie");
     console.log(cookie);
+    dispatch(clearUser());
   };
 
   return (
     <div>
-      <div className="absolute z-30 right-0 mt-[1em] w-72 bg-white border border-gray-300 shadow-md rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
+      <div className="absolute right-0 mt-[1em] w-72 bg-white border border-gray-300 shadow-md rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto z-[1000]">
         <div className="flex items-center p-4 border-b">
           <Link to="/instructor/profile/basic-information/">
             <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />

@@ -3,11 +3,15 @@ import LoginBtn from "../Navbar/LoginBtn/LoginBtn";
 import SignupBtn from "../Navbar/SignupBtn/SignupBtn";
 import Language from "../Navbar/Language/Language";
 import Cookies from "js-cookie";
+import { useEffect } from "react";
 
-const ProfilePic = ({ shortcutName, profilePic }) => {
+const ProfilePic: React.FC<{ shortcutName: string; profilePic: string }> = ({
+  shortcutName,
+  profilePic,
+}) => {
   const cookie = Cookies.get("cookie");
 
-  if (cookie.length < 20) {
+  if (!cookie) {
     return (
       <div className="flex flex-row gap-[1em]">
         <LoginBtn />
@@ -17,8 +21,10 @@ const ProfilePic = ({ shortcutName, profilePic }) => {
     );
   }
 
+  useEffect(() => {}, [cookie]);
+
   return (
-    <Avatar>
+    <Avatar className="">
       <AvatarImage src={profilePic} />
       <AvatarFallback className="bg-black text-white font-bold">
         {shortcutName.toUpperCase()}

@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: supportedCountries,
       required: [
-        true,
+        false,
         `Must provide a country to a user from the provided list: ${supportedCountries}`,
       ],
     },
