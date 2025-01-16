@@ -119,7 +119,7 @@ const ItemInCart = ({
               <div className="flex flex-col items-start justify-start">
                 <b className="">₪{data.courseDiscountPrice}</b>
                 <b className="text-gray-600 line-through font-light">
-                  ₪{data.courseDiscountPrice}
+                  ₪{data.courseFullPrice}
                 </b>
               </div>
               <div className={hide ? "block" : "hidden"}>
