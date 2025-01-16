@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const urlRegex = /^(http|https):\/\/[^ "]+$/;
+
 const lessonSchema = new mongoose.Schema(
   {
     section: {
