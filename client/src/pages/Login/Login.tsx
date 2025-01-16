@@ -5,8 +5,14 @@ import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import loginUser from "@/api/users/loginUser";
 import { jwtDecode } from "jwt-decode";
-import { setFullName, setProfilePic, setRole } from "@/redux/slices/userSlice";
-import LoginImg from "./LoginImg/LoginImg";
+import {
+  setBio,
+  setCoursesBought,
+  setEmailAddress,
+  setFullName,
+  setProfilePic,
+  setRole,
+} from "@/redux/slices/userSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,6 +22,9 @@ const Login = () => {
   const dispatch = useDispatch();
   const mutation = useMutation({
     mutationFn: loginUser,
+    onSuccess: () => {
+      navigate("/");
+    },
     onError: (error) => {
       console.error(error);
       setFormErrors({
@@ -50,17 +59,25 @@ const Login = () => {
 
   const cookie = Cookies.get("cookie")?.toString();
   if (cookie) {
+    console.log(cookie);
     const decoded = jwtDecode(cookie);
     console.log(decoded);
     dispatch(setFullName(decoded.fullName));
     dispatch(setProfilePic(decoded.profilePic));
+    dispatch(setEmailAddress(decoded.email));
+    dispatch(setBio(decoded.bio));
     dispatch(setRole(decoded.role));
-    navigate("/");
+    dispatch(setCoursesBought(decoded.coursesBought));
   }
 
   return (
     <div className="flex h-screen">
-      <LoginImg />
+      <img
+        src="/images/login.png"
+        alt="Login Illustration"
+        className="h-[90%] w-auto object-contain flex items-center justify-center bg-transparent"
+      />
+
       <div className="w-1/2 h-full flex items-center justify-center bg-white">
         <div className="w-3/4 max-w-sm">
           <h2 className="text-3xl font-bold text-gray-800 mb-6">

@@ -6,15 +6,21 @@ const CouponArea = ({ btnBgDesign }) => {
   return (
     <div className="">
       <div className="flex flex-row border-dashed border border-gray-500 p-[1em] mb-[1em]">
-        <div className="flex flex-row items-center justify-between mb-[0.5em]">
-          <div className="w-[320px] flex flex-col items-start gap-[0.2em]">
-            <div className="flex flex-row gap-[0.2em]">
-              <b className="text-[#6a6f73]">NEWYEARCAREER</b>
-              <p>is applied</p>
+        <div className="flex flex-row items-center justify-between mb-[0.5em] w-full">
+          <div className="relative w-full flex flex-col items-start gap-[0.2em]">
+            <div className="flex flex-row gap-[0.2em] w-full">
+              <div className="flex flex-row gap-[0.2em] w-full">
+                <b className="text-[#6a6f73]">NEWYEARCAREER</b>
+                <p>is applied</p>
+              </div>
+              <div>
+                <IoMdClose className="text-[#a435f0] text-[2em] cursor-pointer" />
+              </div>
             </div>
-            <p className="text-[#6a6f73]">Udemy coupon</p>
+            <div>
+              <p className="text-[#6a6f73]">Udemy coupon</p>
+            </div>
           </div>
-          <IoMdClose className="text-[#a435f0] text-[2em]" />
         </div>
       </div>
       <form className="flex flex-row items-center gap-[0.5em]">

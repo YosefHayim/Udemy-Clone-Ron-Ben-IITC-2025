@@ -1,30 +1,47 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/index"; // Import RootState type for Redux
+import DropdownMenu from "../../DropDownMenu"; // Importa o componente DropdownMenu
+import ProfilePic from "@/components/ProfilePic/ProfilePic";
+import LoginBtn from "../LoginBtn/LoginBtn";
+import SignupBtn from "../SignupBtn/SignupBtn";
+import Language from "../Language/Language";
+import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 const Profile: React.FC = () => {
-  // Access the user state from Redux
-  const userProfileImg = useSelector(
-    (state: RootState) => state.user.profilePic
-  );
+  const fullName = useSelector((state) => state.user.fullName);
+  const profilePic = useSelector((state) => state.user.profilePic);
 
-  // Extract the first initial from the user's email
-  const getInitial = (email: string | undefined) => {
-    if (!email) return "?"; // Default initial if email is missing
+  // Ensure fullName is defined before splitting
+  const [firstWord, secondWord] = fullName ? fullName.split(" ") : ["", ""];
 
-    console.log(email.charAt(0).toUpperCase()); // Logs the initial to the console for debugging
-    return email.charAt(0).toUpperCase(); // Returns the first character and makes it uppercase
-  };
+  // Safely generate the shortcut name
+  const shortcutName =
+    (firstWord?.[0]?.toUpperCase() || "") +
+    (secondWord?.[0]?.toUpperCase() || "");
+
+  const cookie = Cookies.get("cookie");
+
+  if (cookie.length < 20) {
+    return (
+      <div className="flex flex-row gap-[1em]">
+        <LoginBtn />
+        <SignupBtn />
+        <Language />
+      </div>
+    );
+  }
 
   return (
-    <div
-      className="flex items-center justify-center bg-black text-white font-bold rounded-full"
-      style={{
-        width: "32px", // Width of the circle
-        height: "32px", // Height of the circle
-      }}
-    >
-      <img src={{ userProfileImg }} alt="" />
+    <div className="relative group">
+      {/* If no profilePic, fallback to initials */}
+      <Link to="/instructor/profile/basic-information/">
+        <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
+      </Link>
+      <div className="pb-[1em]">
+        <DropdownMenu />
+      </div>
     </div>
   );
 };

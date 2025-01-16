@@ -76,11 +76,11 @@ const getReportsByReviewId = catchAsync(async (req, res, next) => {
 
 const createReportByReviewId = catchAsync(async (req, res, next) => {
   const { reviewId } = req.params;
-  const { issueType, issueDetails } = req.body;
+  const { issueType, issueDetails, userId } = req.body;
 
-  if (!issueType || !issueDetails) {
+  if (!issueType || !issueDetails || !userId) {
     return next(
-      createError("Please provide both issueType and issueDetails.", 400)
+      createError("Please provide issueType , userId, issueDetails.", 400)
     );
   }
 
@@ -92,6 +92,17 @@ const createReportByReviewId = catchAsync(async (req, res, next) => {
 
   if (!review) {
     return next(createError(`No review found with ID: ${reviewId}`, 404));
+  }
+
+  if (review.user._id.toString() !== userId.toString()) {
+    return next(
+      createError(
+        `Id of user review and of the user you provided is not valid:
+        You provided: ${userId}
+        Review Of User: ${review.user._id}`,
+        400
+      )
+    );
   }
 
   if (req.user._id.toString() === review.user.toString()) {

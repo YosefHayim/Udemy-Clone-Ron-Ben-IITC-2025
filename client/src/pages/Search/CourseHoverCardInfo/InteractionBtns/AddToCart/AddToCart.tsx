@@ -1,39 +1,47 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
-  coursesAddedToCart,
+  calculateDiscountPercentage,
+  calculateTotalSavings,
+  setAddCourseToCart,
   setAmountOfCourses,
-  totalCoursesPrice,
+  setTotalCourseDiscountPrices,
+  setTotalOriginalCoursePrices,
 } from "@/redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
 import Loader from "@/components/Loader/Loader";
 
-const AddToCart = ({ textBtn = "Add to cart", courseId, coursePrice }) => {
-  if (!courseId || coursePrice == null) {
-    return null; // Ensure both props are valid
-  }
-
+const AddToCart = ({
+  textBtn = "Add to cart",
+  courseId = "",
+  coursePrice = 0,
+  fullPriceCourse = 0,
+}) => {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false); // Track loading state
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleClick = (e, courseId) => {
-    setIsLoading(true); // Show loader
-    console.log(`Course ID from button: ${courseId}`);
-
-    // Simulate a 2-second delay for loading
+  const handleClick = (e, courseId: string) => {
+    setIsLoading(true);
     setTimeout(() => {
-      dispatch(setAmountOfCourses());
-      dispatch(totalCoursesPrice(coursePrice));
-      dispatch(coursesAddedToCart(courseId));
-      setIsLoading(false); // Hide loader after 2 seconds
+      dispatch(setAmountOfCourses()); // Increment the amount of courses
+      dispatch(setTotalCourseDiscountPrices(Number(coursePrice)));
+      dispatch(setTotalOriginalCoursePrices(Number(fullPriceCourse)));
+      console.log(
+        `Dispatching fullPrice:${fullPriceCourse} and discount price: ${coursePrice}`
+      );
+      dispatch(calculateTotalSavings());
+      dispatch(calculateDiscountPercentage());
+
+      dispatch(setAddCourseToCart(courseId)); // Add course to the cart
+      setIsLoading(false); // Stop loading indicator
     }, 1000);
   };
 
   return (
     <Button
       onClick={(e) => handleClick(e, courseId)}
-      id={courseId}
-      disabled={isLoading} // Disable button during loading
+      id={`btn-${courseId || "unknown"}`} // Add prefix for clarity
+      disabled={isLoading}
       className={`font-bold ${
         isLoading
           ? "bg-gray-400 cursor-not-allowed"

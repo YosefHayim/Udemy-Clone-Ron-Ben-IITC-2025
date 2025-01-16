@@ -10,7 +10,7 @@ const EmptyCart = () => {
       </div>
       <div className="flex flex-col items-center justify-center gap-[1em]">
         <p>Your cart is empty. Keep shopping to find a course!</p>
-        <Button className="bg-btnColor hover:bg-btnHoverColor rounded-[0.2em] text-[1.2em] font-bold p-[1.3em]">
+        <Button className="bg-btnColor hover:bg-btnHoverColor rounded-[0.2em] text-[1.2em] font-bold p-[1.3em] cursor-pointer">
           <Link to="/">Keep shopping</Link>
         </Button>
       </div>

@@ -9,11 +9,15 @@ const StickyCourseNavbar = ({
   totalRatings = 0,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isHighPriority, setIsHighPriority] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 100); // Adjust threshold as needed
+      const scrollY = window.scrollY;
+      setIsVisible(scrollY > 100); // Adjust visibility threshold
+      setIsHighPriority(scrollY > 150); // Adjust z-index threshold
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -21,8 +25,10 @@ const StickyCourseNavbar = ({
   return (
     <div
       className={`fixed left-0 ${
-        isVisible ? "top-[0] z-[1000]" : "top-[3%]  opacity-0 z-[1000]"
-      } bg-[#1c1d1f] px-[1em] py-[1em]  w-full text-white z-[1000]`}
+        isVisible ? "top-[0] opacity-100" : "top-[3%] opacity-0"
+      } ${
+        isHighPriority ? "z-[1000]" : "z-[10]"
+      } bg-[#1c1d1f] px-[1em] py-[1em] w-full text-white`}
     >
       <h2 className="font-bold">{courseName}</h2>
       <div className="flex flex-row items-start justify-start gap-[0.5em]">

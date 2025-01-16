@@ -8,6 +8,7 @@ const {
   reactivateCourseById,
   getCourseProsById,
   getCourseInfoForCart,
+  viewCourseById,
 } = require("../../controllers/courses/courseController");
 const {
   grantedAccess,
@@ -25,6 +26,9 @@ router.get("/", getAllCourses);
 
 // Get course by specific course id
 router.get("/:id", getCourseById);
+
+// view course by course id if it is part of the courses you bought
+router.get("/:courseId", grantedAccess, viewCourseById);
 
 // Get cart course info by course id
 router.get("/cartInfo/:id", getCourseInfoForCart);

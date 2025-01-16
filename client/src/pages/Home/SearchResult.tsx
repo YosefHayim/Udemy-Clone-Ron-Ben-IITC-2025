@@ -72,9 +72,7 @@ const SearchResult = () => {
               </p>
               <div className="flex items-center text-yellow-500 text-sm mt-2">
                 <span>{course.rating}</span>
-                <span className="text-gray-500 ml-1">
-                  ({course.reviews.toLocaleString()})
-                </span>
+                <span className="text-gray-500 ml-1">({course.reviews})</span>
               </div>
               <div className="flex items-baseline justify-between mt-2">
                 <div>

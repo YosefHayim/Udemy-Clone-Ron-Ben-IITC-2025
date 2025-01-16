@@ -56,6 +56,14 @@ courseReviewsSchema.pre("save", async function (next) {
   }
 });
 
+courseReviewsSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "user",
+    select: "fullName",
+  });
+  next();
+});
+
 // Middleware to update the course's `reviews` field after saving a review
 courseReviewsSchema.post("save", async function () {
   try {

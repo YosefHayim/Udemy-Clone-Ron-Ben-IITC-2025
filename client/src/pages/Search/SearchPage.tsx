@@ -15,6 +15,7 @@ const SearchPage = () => {
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("q");
   const [currentPage, setCurrentPage] = useState(1);
+  const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
   const [filterData, setFilterData] = useState({
     rating: 0.0,
     language: [],
@@ -43,16 +44,6 @@ const SearchPage = () => {
     return <div>Error occurred: {error.message}</div>;
   }
 
-  const handleMouseEnter = (e: React.DOMAttributes<HTMLDivElement>) => {
-    // const hoverDiv = e.target.closest("div[id]");
-    // if (hoverDiv) {
-    //   const courseId = hoverDiv.id;
-    //   console.log(courseId);
-    // } else {
-    //   console.log("Hovered over an unrelated element.");
-    // }
-  };
-
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
@@ -68,23 +59,29 @@ const SearchPage = () => {
         </div>
         <div>
           <div>
-            {data?.response?.slice(0, 18).map((course, index) => [
+            {data?.response?.slice(0, 18).map((course, index) => (
               <div
                 key={course._id}
                 id={`course-card-${course._id}`}
-                className={course._id}
-                onMouseEnter={handleMouseEnter}
+                className="relative"
+                onMouseEnter={() => setHoveredCourse(course._id)}
+                onMouseLeave={() => setHoveredCourse(null)}
               >
                 <SearchCourseCard course={course} />
-                <CourseHoverCardInfo
-                  whatYouWillLearn={course.whatYouWillLearn}
-                  courseId={course._id}
-                  coursePrice={course.courseDiscountPrice}
-                />
-              </div>,
-              index === 2 && <Commercial key="commercial" />,
-              index === 6 && <HotFreshCourses key="hotfreshcourses" />,
-            ])}
+                {hoveredCourse === course._id && (
+                  <div className="absolute top-full left-0 z-[1000] p-[2em]">
+                    <CourseHoverCardInfo
+                      whatYouWillLearn={course.whatYouWillLearn}
+                      courseId={course._id}
+                      fullPriceCourse={course.courseFullPrice}
+                      coursePrice={course.courseDiscountPrice}
+                    />
+                  </div>
+                )}
+                {index === 2 && <Commercial key="commercial" />}
+                {index === 6 && <HotFreshCourses key="hotfreshcourses" />}
+              </div>
+            ))}
           </div>
         </div>
       </div>

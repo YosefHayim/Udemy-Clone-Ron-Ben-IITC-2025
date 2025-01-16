@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import SearchResults from "../SearchResults/SearchResults";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const SearchInput = () => {
   const [isTyping, setIsTyping] = useState(false);
@@ -11,12 +11,13 @@ const SearchInput = () => {
   const [debouncedTerm, setDebouncedTerm] = useState("");
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Debounce effect to delay API calls
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedTerm(searchTerm);
-    }, 100); // Adjust delay as needed (300ms here)
+    }, 100); // Adjust delay as needed
 
     return () => {
       clearTimeout(handler); // Clear timeout if the user types again
@@ -41,6 +42,12 @@ const SearchInput = () => {
       setIsTyping(false);
     }
   };
+
+  // Hide results when navigating to a new page
+  useEffect(() => {
+    setIsTyping(false);
+  }, [location.pathname]);
+
   const limit = 13;
   const page = 1;
 
@@ -51,7 +58,7 @@ const SearchInput = () => {
   });
 
   return (
-    <div className="flex items-center border border-gray-700 rounded-full overflow-hidden w-1/2 h-12 px-3 py-2 bg-gray-50">
+    <div className="flex items-center border border-gray-700 rounded-full overflow-hidden w-1/2 h-12 px-3 py-2 bg-gray-50 z-[1800]">
       <MdOutlineSearch
         className={`w-6 h-6 ${
           isTyping ? "text-gray-900" : "text-gray-400 opacity-200"
@@ -61,11 +68,11 @@ const SearchInput = () => {
         <input
           type="text"
           placeholder="Search for anything"
-          className="flex-1 bg-transparent text-gray-700 focus:outline-none text-sm ml-3 placeholder-gray-700 placeholder:text-sm placeholder:font-Sans placeholder:font-normal bg-gray-50"
+          className="flex-1 bg-transparent text-gray-700 focus:outline-none text-sm ml-3 placeholder-gray-700 placeholder:text-sm placeholder:font-Sans placeholder:font-normal bg-gray-50 w-[400px]"
           onChange={handleOnChange}
         />
       </form>
-      <SearchResults isTyping={isTyping} data={data} />
+      <SearchResults isTyping={isTyping} data={data && data} />
     </div>
   );
 };

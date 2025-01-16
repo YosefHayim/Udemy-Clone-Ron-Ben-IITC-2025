@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
-import coursePreviewImg from "/images/course-preview-card.png";
 import MoneyBack from "./MoneyBack/MoneyBack";
 import CourseIncludes from "./CourseIncludes/CourseIncludes";
 import InteractionBtns from "./InteractionBtns/InteractionBtns";
@@ -8,34 +7,46 @@ import TimeLeftBuyCourse from "./TimeLeftBuyCourse/TimeLeftBuyCourse";
 import CouponArea from "./CouponArea/CouponArea";
 import UdemyBusiness from "./UdemyBusiness/UdemyBusiness";
 import AddCartNBuyBtn from "./AddCartNBuyBtn/AddCartNBuyBtn";
+import { useSelector } from "react-redux";
+import { Button } from "@/components/ui/button";
+import { AiFillInfoCircle } from "react-icons/ai";
 
-const CoursePreviewCard = ({ courseImg, discountPrice, fullPrice }) => {
+const CoursePreviewCard = ({
+  courseImg,
+  discountPrice,
+  fullPrice,
+  courseId,
+}) => {
   const [isFixed, setIsFixed] = useState(false);
-  const [opacity, setOpacity] = useState(1); // Default opacity for static
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+
+  const coursesBought = useSelector((state) => state.cart.coursesBought);
+
+  useEffect(() => {
+    if (Array.isArray(coursesInCart)) {
+      setIsAddedToCart(coursesInCart.includes(courseId));
+    } else {
+      setIsAddedToCart(coursesInCart === courseId);
+    }
+  }, [coursesInCart, courseId]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const shouldFix = window.scrollY > 350;
-      if (shouldFix && !isFixed) {
-        setOpacity(0); // Reset opacity before fade-in
-        setTimeout(() => setOpacity(1), 50); // Trigger fade-in
-      }
-      setIsFixed(shouldFix);
+      setIsFixed(window.scrollY > 350);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isFixed]);
+  }, []);
 
   return (
     <div
-      className={`shadow-previewCourseCardShadow w-[320px] z-[2000] bg-white border border-b-gray-100 ${
+      className={`shadow-previewCourseCardShadow w-[320px] z-[1500] bg-white border border-b-gray-100 ${
         isFixed ? "fixed right-[20%] top-[2%]" : "static"
       } transition-all duration-300 ease-in-out`}
       style={{
-        opacity: opacity, // Controlled opacity for fade-in
-        transform: isFixed ? "translateY(0)" : "translateY(20px)", // Adds movement effect
-        pointerEvents: "auto", // Ensure interactions are always possible
+        opacity: isFixed ? 1 : 1,
+        transform: isFixed ? "translateY(0)" : "translateY(10px)",
       }}
     >
       <div>
@@ -45,7 +56,7 @@ const CoursePreviewCard = ({ courseImg, discountPrice, fullPrice }) => {
         </b>
       </div>
       <div className="p-[1.5em]">
-        <div>
+        <div className={isAddedToCart ? "hidden" : "block"}>
           <CoursePrice
             discountPrice={discountPrice}
             fullPrice={fullPrice}
@@ -53,8 +64,29 @@ const CoursePreviewCard = ({ courseImg, discountPrice, fullPrice }) => {
             discountPriceSize={"2em"}
           />
         </div>
-        <TimeLeftBuyCourse />
-        <AddCartNBuyBtn />
+        {isAddedToCart ? (
+          <div className="w-full flex flex-col items-start justify-start">
+            <div className="flex flex-row items-start justify-start gap-[0.5em] mb-[0.5em]">
+              <AiFillInfoCircle className="text-[#6d28d2] text-[2.5em]" />
+              <b className="text-[1.3em]">
+                You purchased this course on Aug. 26, 2024
+              </b>
+            </div>
+            <Button className="font-bold text-white rounded-[0.2em] w-full">
+              Go to course
+            </Button>
+          </div>
+        ) : (
+          <div>
+            <TimeLeftBuyCourse />
+            <AddCartNBuyBtn
+              courseId={courseId}
+              discountPrice={discountPrice}
+              fullPrice={fullPrice}
+            />
+          </div>
+        )}
+
         <MoneyBack />
         <CourseIncludes />
         <InteractionBtns />

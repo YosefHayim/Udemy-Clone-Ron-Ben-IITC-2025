@@ -10,6 +10,7 @@ const {
   toggleReviewReaction,
   toggleLikeByReviewId,
   toggleDislikeReaction,
+  getAllReviewsCountOfallCourses,
 } = require("../../controllers/reviews/reviewController");
 const {
   grantedAccess,
@@ -27,6 +28,8 @@ router.get("/", getAllReviews);
 
 // Get review by review id
 router.get("/single/:id", getReviewByReviewId);
+
+router.get("/courses/analytics", getAllReviewsCountOfallCourses);
 
 // Get all reviews of specific course by its id
 router.get("/course/:id", getAllReviewsByCourseId);

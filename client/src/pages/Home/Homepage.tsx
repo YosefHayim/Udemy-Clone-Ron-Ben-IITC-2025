@@ -12,15 +12,39 @@ import Sections from "./Sections";
 import Menu from "@/components/Menu/Menu";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/index"; // Import RootState type for Redux
+import Welcome from "@/components/LoggedInHome/Welcome";
+import TeamAcess from "./TeamAcess";
+import DropdownMenu from "@/components/DropDownMenu";
+import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
+import {
+  setBio,
+  setEmailAddress,
+  setFullName,
+  setProfilePic,
+  setRole,
+} from "@/redux/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 const Homepage = () => {
-  const user = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
 
+  const cookie = Cookies.get("cookie");
+  if (cookie) {
+    const decoded = jwtDecode(cookie);
+    dispatch(setFullName(decoded.fullName));
+    dispatch(setProfilePic(decoded.profilePic));
+    dispatch(setEmailAddress(decoded.email));
+    dispatch(setBio(decoded.bio));
+    dispatch(setRole(decoded.role));
+  }
   return (
     <>
-      {!user && (
+      {!cookie && (
         <>
           <div className="container mx-auto px-[5.6rem]">
+            <DropdownMenu />
             <Banner />
             <Sections />
             <TrustedBySection />
@@ -36,21 +60,16 @@ const Homepage = () => {
         </>
       )}
 
-      {user && (
+      {cookie && (
         <>
+          <DropdownMenu />
           <Menu />
           <div className="container mx-auto px-[5.6rem]">
+            <Welcome />
             <Banner />
-            <Sections />
-            <TrustedBySection />
-            <LearnersAreViewing />
-            <SearchResult />
-            <LearningGoals />
-            <PlansSection />
-            <Testimonials />
-            <TrendsReport />
-            <TrendingNow />
-            <Carousel />
+            <CoursesCarousel />
+            <TeamAcess />
+            {/* <CoursesCarousel /> */}
           </div>
         </>
       )}

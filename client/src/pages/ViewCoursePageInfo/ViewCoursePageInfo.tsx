@@ -55,8 +55,15 @@ const ViewCoursePageInfo: React.FC = () => {
     fetchCourseData();
   }, [sanitizedCourseId]);
 
-  if (isLoading) return <Loader />;
-  if (error || !data) return <div>{error || "Error loading course data."}</div>;
+  if (isLoading) {
+    return (
+      <div>
+        <Loader hSize="2000px" />
+      </div>
+    );
+  }
+
+  if (error) return <div>Error loading course data</div>;
 
   const courseData = data;
 
@@ -146,6 +153,7 @@ const ViewCoursePageInfo: React.FC = () => {
 
         {/* Reviews Section */}
         <ReviewsSection
+          reviewsToRender={courseData.reviews}
           avgRating={courseData.averageRating}
           totalRated={courseData.totalRatings}
         />
@@ -159,6 +167,8 @@ const ViewCoursePageInfo: React.FC = () => {
 
       {/* Preview Card */}
       <CoursePreviewCard
+        coursePrice={courseData.discountPrice}
+        courseId={courseData._id}
         courseImg={courseData.courseImg}
         discountPrice={courseData.courseDiscountPrice}
         fullPrice={courseData.courseFullPrice}

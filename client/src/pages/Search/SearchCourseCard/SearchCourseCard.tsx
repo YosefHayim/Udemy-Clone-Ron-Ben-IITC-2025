@@ -26,9 +26,12 @@ const SearchCourseCard = ({ course }) => {
         <CourseImg courseImg={course.courseImg} widthChosen="260px" />
         <div className="flex flex-col items-start justify-start gap-[0.3em]">
           <CourseTitle title={course.courseName} />
-          <CourseRecap recapInfo={course.recapInfo} />
+          <CourseRecap recapInfo={course.courseRecapInfo} />
           <CourseInstructor instructor={course.courseInstructor.fullName} />
-          <CourseRatings />
+          <CourseRatings
+            totalRatings={course.totalRatings}
+            avgRatings={course.averageRating}
+          />
           <CourseLength
             courseLevel={course.courseLevel}
             totalMinutes={course.totalCourseDuration}

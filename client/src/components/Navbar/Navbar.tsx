@@ -5,16 +5,19 @@ import Cart from "./Cart/Cart";
 import Language from "./Language/Language";
 import Logo from "../Logo/Logo";
 import AtagBtn from "../AtagBtn/AtagBtn";
-import SearchResults from "./SearchResults/SearchResults";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/index"; // Import RootState type for Redux
+// Import RootState type for Redux
 import Heart from "./Heart/Heart";
 import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
+import ExploreMenu from "./Explore/ExploreMenu";
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const user = useSelector((state: RootState) => state.user);
+  const [cookie, setCookie] = useState(Cookies.get("cookie"));
+
+  useEffect(() => {}, [cookie]);
 
   return (
     <div
@@ -25,18 +28,20 @@ const Navbar = () => {
         <Link to="/">
           <Logo />
         </Link>
-        <AtagBtn aTagName={"Explore"} />
+        <ExploreMenu />
         <SearchInput />
         <AtagBtn aTagName={"Udemy Business"} />
         <AtagBtn aTagName={"Teach on Udemy"} />
-        {!user && <LoginBtn />}
-        {!user && <SignupBtn />}
-        {user && <AtagBtn aTagName={"My learning"} />}
-        {user && <Heart />}
-        <Cart />
-        {user && <Notifications />}
-        {user && <Profile />}
-        {!user && <Language />}
+        {!cookie && <LoginBtn />}
+        {!cookie && <SignupBtn />}
+        {cookie && <AtagBtn aTagName={"My learning"} />}
+        {cookie && <Heart />}
+        <Link to="/cart">
+          <Cart />
+        </Link>
+        {cookie && <Notifications />}
+        {cookie && <Profile />}
+        {!cookie && <Language />}
       </div>
     </div>
   );

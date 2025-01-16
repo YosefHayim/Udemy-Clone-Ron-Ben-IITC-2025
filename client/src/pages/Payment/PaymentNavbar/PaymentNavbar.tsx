@@ -1,0 +1,15 @@
+import Logo from "@/components/Logo/Logo";
+import { Link } from "react-router-dom";
+
+const PaymentNavbar = () => {
+  return (
+    <div className="flex flex-row items-center justify-between w-full">
+      <Logo />
+      <b className="text-[#6d28d2] hover:text-[#521e9f] cursor-pointer">
+        <Link to="/cart">Cancel</Link>
+      </b>
+    </div>
+  );
+};
+
+export default PaymentNavbar;
