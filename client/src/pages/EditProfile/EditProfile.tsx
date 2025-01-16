@@ -1,6 +1,4 @@
-import React from "react";
-
-const EditProfile = () => {
+const EditProfile: React.FC = () => {
   return <div>EditProfile</div>;
 };
 

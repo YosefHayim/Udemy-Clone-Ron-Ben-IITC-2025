@@ -18,9 +18,9 @@ const supportedCountries = require("./utils/supportedCountries");
 
 const clearCollections = async () => {
   await Promise.all([
-    User.deleteMany(),
-    Course.deleteMany(),
-    Section.deleteMany(),
+    // User.deleteMany(),
+    // Course.deleteMany(),
+    // Section.deleteMany(),
     Lesson.deleteMany(),
     courseReviews.deleteMany(),
     ReportReview.deleteMany(),
@@ -223,7 +223,7 @@ const createLessons = async () => {
       console.warn(
         `Skipping section "${section.title}" due to missing course reference.`
       );
-      continue; // continue even if there is no course references.
+      continue; // Skip this section
     }
 
     console.log(`Creating lessons for section: ${section.title}...`);
@@ -236,27 +236,12 @@ const createLessons = async () => {
       const duration = faker.number.int({ min: 10, max: 20 });
 
       try {
-        const resources = Array.from(
-          { length: faker.number.int({ min: 1, max: 3 }) },
-          () => ({
-            title: faker.lorem.words(3),
-            url: faker.internet.url(),
-            type: faker.helpers.arrayElement(["PDF", "Video", "Image", "Link"]),
-          })
-        );
-
         const lesson = await Lesson.create({
           section: section._id,
           title: faker.helpers.arrayElement(lessonsNames),
           videoUrl: faker.helpers.arrayElement(videosToDisplay),
           duration,
           order: section.lessons.length + createdLessons.length + 1, // Ensure unique order
-          resources, // Populate resources
-          isDone: faker.datatype.boolean(), // Randomly mark lessons as done or not
-          lastPlayedVideoTimePlayed: faker.number.int({
-            min: 0,
-            max: duration,
-          }), // Random last played time
         });
 
         createdLessons.push(lesson._id);
@@ -598,13 +583,13 @@ const generateUpdatedDummyData = async () => {
     console.log("Database connection established.");
     await clearCollections();
 
-    console.log("Seeding users...");
-    const users = await createUsers();
-    console.log(`${users.length} users created.`);
+    // console.log("Seeding users...");
+    // const users = await createUsers();
+    // console.log(`${users.length} users created.`);
 
-    console.log("Seeding courses...");
-    const courses = await createCourses();
-    console.log(`${courses.length} courses created.`);
+    // console.log("Seeding courses...");
+    // const courses = await createCourses();
+    // console.log(`${courses.length} courses created.`);
 
     console.log("Seeding sections...");
     const sections = await createSections();
