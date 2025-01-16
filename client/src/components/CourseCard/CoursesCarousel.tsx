@@ -6,6 +6,7 @@ import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
 import CourseLength from "@/pages/ViewCoursePageInfo/MoreCoursesByInstructor/CourseLength/CourseLength";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
+import CourseHoverCard from "./CourseHoverCard";
 
 interface Course {
   _id: string;
@@ -27,6 +28,7 @@ interface Course {
 
 const CoursesCarousel: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
+  const [hoveredCourse, setHoveredCourse] = useState<Course | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const visibleItems = 5; // Número de itens visíveis por vez
   const moveItems = 5; // Número de itens para mover por clique
@@ -64,7 +66,6 @@ const CoursesCarousel: React.FC = () => {
     } else {
       setCurrentIndex(0); // Reinicia o carrossel
     }
-    console.log("Avançando para o índice:", nextIndex);
   };
 
   const handlePrev = () => {
@@ -74,15 +75,7 @@ const CoursesCarousel: React.FC = () => {
     } else {
       setCurrentIndex(Math.max(0, courses.length - visibleItems)); // Vai para o final do carrossel
     }
-    console.log("Retornando para o índice:", prevIndex);
   };
-
-  // Depuração
-  console.log("Número total de cursos:", courses.length);
-  console.log("Índice atual:", currentIndex);
-  console.log("Itens visíveis:", visibleItems);
-  console.log("Largura calculada do contêiner:", `${(courses.length / visibleItems) * 100}%`);
-  console.log("Transform calculado:", `translateX(-${(currentIndex / visibleItems) * 100}%)`);
 
   return (
     <div className="py-8 relative w-full max-w-7xl mx-auto">
@@ -95,14 +88,16 @@ const CoursesCarousel: React.FC = () => {
           <div
             className="flex transition-transform duration-300"
             style={{
-              transform: `translateX(-${(currentIndex / visibleItems)}%)`,
+              transform: `translateX(-${(currentIndex / visibleItems) * 100}%)`,
               width: `${(courses.length / visibleItems) * 100}%`,
             }}
           >
             {courses.map((course) => (
               <div
                 key={course._id}
-                className="w-[20%] px-4 box-border"
+                className="w-[20%] px-4 box-border relative"
+                onMouseEnter={() => setHoveredCourse(course)} // Define o hover no curso
+                onMouseLeave={() => setHoveredCourse(null)} // Remove o hover
               >
                 <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 p-4">
                   <CourseImg courseImg={course.courseImg} widthChosen="260px" />
@@ -128,6 +123,11 @@ const CoursesCarousel: React.FC = () => {
                     discountPrice={course.courseDiscountPrice}
                   />
                 </div>
+
+                {/* Renderiza o hover card quando o curso está com hover */}
+                {hoveredCourse?._id === course._id && (
+                  <CourseHoverCard course={hoveredCourse} />
+                )}
               </div>
             ))}
           </div>
@@ -152,4 +152,3 @@ const CoursesCarousel: React.FC = () => {
 };
 
 export default CoursesCarousel;
-
