@@ -3,37 +3,34 @@ import { Button } from "@/components/ui/button";
 import {
   setAddCourseToCart,
   setAmountOfCourses,
-  updateTotalCoursesPrice,
-  updateTotalDiscountCoursesPrice,
+  setTotalCourseDiscountPrices,
+  setTotalOriginalCoursePrices,
 } from "@/redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
 import Loader from "@/components/Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const AddToCart = ({
   textBtn = "Add to cart",
-  courseId,
-  coursePrice,
-  fullPrice,
+  courseId = "",
+  coursePrice = 0,
+  fullPriceCourse = 0,
 }) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = (e, courseId: string) => {
     setIsLoading(true);
-
     setTimeout(() => {
-      dispatch(setAmountOfCourses());
+      dispatch(setAmountOfCourses()); // Increment the amount of courses
+      dispatch(setTotalCourseDiscountPrices(Number(coursePrice)));
+      dispatch(setTotalOriginalCoursePrices(Number(fullPriceCourse)));
+      console.log(
+        `Dispatching fullPrice:${fullPriceCourse} and discount price: ${coursePrice}`
+      );
 
-      if (!coursePrice || isNaN(coursePrice)) {
-        console.error("Invalid discountPrice:", coursePrice);
-        return;
-      }
-      dispatch(updateTotalDiscountCoursesPrice(Number(coursePrice)));
-      dispatch(updateTotalCoursesPrice(Number(fullPrice)));
-
-      dispatch(setAddCourseToCart(courseId));
-      console.log("Course added:", courseId);
-      setIsLoading(false);
+      dispatch(setAddCourseToCart(courseId)); // Add course to the cart
+      setIsLoading(false); // Stop loading indicator
     }, 1000);
   };
 

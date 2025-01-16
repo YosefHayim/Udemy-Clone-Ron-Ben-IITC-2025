@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 const HoverCart = () => {
-  const totalToPay = useSelector(
-    (state) => state.cart.totalCoursesPrice
-  ).toFixed(2);
+  const totalToPay = useSelector((state) => state.cart.totalCoursesPrice);
   const coursesIdAdded = useSelector((state) => state.cart.coursesAddedToCart);
 
   useEffect(() => {}, [totalToPay]);
@@ -42,7 +40,7 @@ const HoverCart = () => {
           <div className="w-full p-[1em] flex flex-col gap-[0.5em]">
             {totalToPay >= 0 ? (
               <div>
-                <b>Total: ₪{totalToPay}</b>
+                <b>Total: ₪{totalToPay ? totalToPay.fixed(2) : 0}</b>
                 <Button className="rounded-[0.2em] font-bold w-full">
                   Go to cart
                 </Button>

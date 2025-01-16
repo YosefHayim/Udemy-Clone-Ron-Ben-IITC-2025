@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import {
   setAddCourseToCart,
   setAmountOfCourses,
-  updateTotalCoursesPrice,
-  updateTotalDiscountCoursesPrice,
+  setTotalCourseDiscountPrices,
+  setTotalOriginalCoursePrices,
 } from "@/redux/slices/cartSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -24,11 +24,12 @@ const BuyNowBtn = ({ courseId, discountPrice, fullPrice }) => {
         console.error("Invalid discountPrice:", discountPrice);
         return;
       }
-      dispatch(updateTotalDiscountCoursesPrice(Number(discountPrice)));
-      dispatch(updateTotalCoursesPrice(Number(fullPrice)));
-
+      dispatch(setTotalCourseDiscountPrices(Number(discountPrice)));
+      dispatch(setTotalOriginalCoursePrices(Number(fullPrice)));
+      console.log(
+        `Dispatching fullPrice:${fullPrice} and discount price: ${coursePrice}`
+      );
       dispatch(setAddCourseToCart(courseId));
-      console.log("Course added:", courseId);
       setIsLoading(false);
     }, 1000);
     navigate("/cart");

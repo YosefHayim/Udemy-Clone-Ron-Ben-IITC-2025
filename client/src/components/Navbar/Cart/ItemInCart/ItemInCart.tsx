@@ -44,8 +44,6 @@ const ItemInCart = ({
     return <div>Error loading course data</div>;
   }
 
-  console.log(data);
-
   const handleRemove = (e) => {
     e.stopPropagation();
     dispatch(

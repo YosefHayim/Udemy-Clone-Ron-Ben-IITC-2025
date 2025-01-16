@@ -6,9 +6,10 @@ const cartSlice = createSlice({
     isShowCart: false,
     amountOfCourses: 0,
     coursesAddedToCart: [],
-    totalCoursesPrice: 0,
-    totalCoursesOriginalPrice: 0,
+    totalCourseDiscountPrices: 0,
+    totalCoursesOriginalPrices: 0,
   },
+
   reducers: {
     setShowCart: (state, action: PayloadAction<boolean>) => {
       state.isShowCart = action.payload;
@@ -17,50 +18,63 @@ const cartSlice = createSlice({
       state.amountOfCourses += 1;
     },
     setAddCourseToCart: (state, action: PayloadAction<string>) => {
-      // Use a Set to ensure no duplicates, then convert back to an array
+      // Prevent duplicate course additions
       state.coursesAddedToCart = Array.from(
         new Set([...state.coursesAddedToCart, action.payload])
       );
     },
-
-    updateTotalDiscountCoursesPrice: (state, action: PayloadAction<number>) => {
-      state.totalCoursesPrice += action.payload;
+    setTotalOriginalCoursePrices: (state, action: PayloadAction<number>) => {
+      if (!action.payload || isNaN(action.payload)) {
+        console.error("Invalid fullPrice payload:", action.payload);
+        return;
+      }
+      state.totalCoursesOriginalPrices += action.payload; // Add original price
     },
-    updateTotalCoursesPrice: (state, action: PayloadAction<number>) => {
-      state.totalCoursesOriginalPrice += action.payload;
+
+    setTotalCourseDiscountPrices: (state, action: PayloadAction<number>) => {
+      if (!action.payload || isNaN(action.payload)) {
+        console.error("Invalid discountPrice payload:", action.payload);
+        return;
+      }
+      state.totalCourseDiscountPrices += action.payload; // Add discounted price
     },
     removeCourseFromCart: (
       state,
       action: PayloadAction<{
         courseId: string;
-        coursePrice: number;
-        amountToRemove: number;
+        originalPrice: number;
+        discountPrice: number;
       }>
     ) => {
-      const { courseId, coursePrice, amountToRemove } = action.payload;
+      const { courseId, originalPrice, discountPrice } = action.payload;
 
       // Remove the course ID from the cart
       state.coursesAddedToCart = state.coursesAddedToCart.filter(
         (id) => id !== courseId
       );
 
-      // Ensure the course quantity is reduced correctly
+      // Decrease amount of courses
       if (state.amountOfCourses > 0) {
-        state.amountOfCourses -= amountToRemove;
-        if (state.amountOfCourses < 0) {
-          state.amountOfCourses = 0; // Prevent negative quantity
-        }
+        state.amountOfCourses -= 1;
       }
 
-      // Update the total course price
-      state.totalCoursesPrice -= coursePrice * amountToRemove;
-      if (state.totalCoursesPrice < 0) {
-        state.totalCoursesPrice = 0; // Prevent negative price
+      // Update the total original and discount prices
+      state.totalCoursesOriginalPrices -= originalPrice;
+      state.totalCourseDiscountPrices -= discountPrice;
+
+      // Prevent negative values
+      if (state.totalCoursesOriginalPrices < 0) {
+        state.totalCoursesOriginalPrices = 0;
+      }
+      if (state.totalCourseDiscountPrices < 0) {
+        state.totalCourseDiscountPrices = 0;
       }
 
-      // Explicitly reset the total price if the cart is empty
+      // Reset totals if the cart is empty
       if (state.coursesAddedToCart.length === 0) {
-        state.totalCoursesPrice = 0;
+        state.totalCoursesOriginalPrices = 0;
+        state.totalCourseDiscountPrices = 0;
+        state.amountOfCourses = 0;
       }
     },
   },
@@ -68,10 +82,11 @@ const cartSlice = createSlice({
 
 export const {
   setShowCart,
-  updateTotalCoursesPrice,
   setAmountOfCourses,
   setAddCourseToCart,
-  updateTotalDiscountCoursesPrice,
+  setTotalOriginalCoursePrices,
+  setTotalCourseDiscountPrices,
   removeCourseFromCart,
 } = cartSlice.actions;
+
 export default cartSlice.reducer;

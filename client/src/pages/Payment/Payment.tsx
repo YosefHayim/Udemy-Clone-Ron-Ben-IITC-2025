@@ -11,9 +11,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Payment = () => {
-  const totalToPay = useSelector(
-    (state) => state.cart.totalCoursesPrice
-  ).toFixed(2);
+  const totalToPay = useSelector((state) => state.cart.totalCoursesPrice);
 
   return (
     <div>
@@ -83,7 +81,7 @@ const Payment = () => {
                 <b>
                   LLM Engineering: Master AI, Large Language Models & Agents
                 </b>
-                <p>₪{totalToPay}</p>
+                <p>₪{totalToPay ? totalToPay.fixed(2) : 0}</p>
               </div>
             </div>
           </div>
