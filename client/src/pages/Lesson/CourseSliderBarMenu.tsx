@@ -70,10 +70,16 @@ export function CourseSidebarMenu({ sections, courseId }: { sections: Section[];
         >
           <SidebarMenuItem >
             <CollapsibleTrigger asChild className="overflow-visible   font-bold focus:outline-none  gap-0 pl-0 focus-visible:outline-none rounded-none">
-              <SidebarMenuButton className="overflow-visible   focus:outline-none flex items-center justify-between gap-0 pl-0 focus-visible:outline-none rounded-none">
-                <span className="whitespace-normal break-words text-sm pl-2  ">{section.title}</span>
-                <FaChevronDown className="overflow-visible transition-transform  absolute ml-52 group-data-[state=open]/collapsible:rotate-180" />
-              </SidebarMenuButton>
+            <SidebarMenuButton className="overflow-visible focus:outline-none flex items-start justify-between pl-0 focus-visible:outline-none rounded-none">
+  <div className="flex-1">
+    <span className="whitespace-normal break-words text-sm ">
+      {section.title}
+    </span>
+
+  </div>
+  <FaChevronDown className="absolute ml-56 self-end transition-transform group-data-[state=open]/collapsible:rotate-180" />
+</SidebarMenuButton>
+
             </CollapsibleTrigger>
 
             {/* Collapsible Content for lessons */}
