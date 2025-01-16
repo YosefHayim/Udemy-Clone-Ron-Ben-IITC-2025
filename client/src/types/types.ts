@@ -17,6 +17,15 @@ export interface FilterProps {
   setDisplay: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+export interface UserState {
+  fullName: string;
+  profilePic: string;
+  email: string;
+  bio: string;
+  role: string;
+  coursesBought: string[];
+}
+
 export interface searchResultCourseImgProps {
   courseName: String;
   instructorName: String;
@@ -225,4 +234,27 @@ export interface CourseTypeProps {
 export interface CourseBasicInfoProps {
   lastUpdated: Date;
   courseLanguage: string;
+}
+
+export interface CourseContentProps {
+  description: string;
+  whoThisFor: string;
+  requirements: string[];
+  totalCourseDuration: number; // in minutes
+  totalCourseLessons: number;
+  totalCourseSections: number;
+  sectionsOfCourse: Array<{
+    _id: string;
+    title: string;
+    lessons: Array<{
+      title: string;
+      duration: number; // in minutes
+      isPreviewAvailable: boolean;
+    }>;
+  }>;
+}
+
+export interface CourseCreatedByProps {
+  instructorName: string;
+  instructorId: string;
 }

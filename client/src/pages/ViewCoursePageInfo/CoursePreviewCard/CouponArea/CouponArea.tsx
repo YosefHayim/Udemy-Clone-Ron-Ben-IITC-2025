@@ -2,7 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { IoMdClose } from "react-icons/io";
 
-const CouponArea = ({ btnBgDesign }) => {
+const CouponArea: React.FC<{ btnBgDesign?: string }> = ({
+  btnBgDesign = "",
+}) => {
   return (
     <div className="">
       <div className="flex flex-row border-dashed border border-gray-500 p-[1em] mb-[1em]">

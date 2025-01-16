@@ -1,6 +1,6 @@
 import { LuAlarmClock } from "react-icons/lu";
 
-const TimeLeftBuyCourse = () => {
+const TimeLeftBuyCourse: React.FC = () => {
   return (
     <div className="text-[#b32d0f] flex flex-row gap-[0.2em] items-center">
       <LuAlarmClock />

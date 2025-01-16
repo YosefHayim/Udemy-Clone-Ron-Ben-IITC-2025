@@ -23,7 +23,7 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
   const [isAddedToCart, setIsAddedToCart] = useState(false);
 
   const coursesBought = useSelector(
-    (state: RootState) => state.cart.coursesBought
+    (state: RootState) => state.user.coursesBought
   );
 
   useEffect(() => {

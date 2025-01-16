@@ -1,9 +1,10 @@
+import { CourseContentProps } from "@/types/types";
 import Description from "../Description/Description";
 import Requirements from "../Requirements/Requirements";
 import Section from "../Section/Section";
 import TotalCourseLength from "../TotalCourseLength/TotalCourseLength";
 
-const CourseContent = ({
+const CourseContent: React.FC<CourseContentProps> = ({
   description,
   whoThisFor,
   requirements,

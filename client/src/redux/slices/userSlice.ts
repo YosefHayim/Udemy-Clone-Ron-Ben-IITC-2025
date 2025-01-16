@@ -1,16 +1,6 @@
+import { UserState } from "@/types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// Define the structure of the user state
-type UserState = {
-  fullName: string;
-  profilePic: string;
-  email: string;
-  bio: string;
-  role: string;
-  coursesBought: string[];
-};
-
-// Initial state with type definition
 const initialState: UserState = {
   fullName: "",
   profilePic: "",
@@ -22,7 +12,7 @@ const initialState: UserState = {
 
 // Create the slice
 const userSlice = createSlice({
-  name: "user", // Slice name
+  name: "user",
   initialState,
   reducers: {
     setFullName: (state, action: PayloadAction<string>) => {
