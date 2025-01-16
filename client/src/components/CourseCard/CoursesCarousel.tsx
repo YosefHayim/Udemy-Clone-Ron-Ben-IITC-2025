@@ -28,8 +28,8 @@ interface Course {
 const CoursesCarousel: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const visibleItems = 5; // Exibimos 5 itens por vez
-  const moveItems = 4; // Movemos 4 itens por clique
+  const visibleItems = 5; // Número de itens visíveis por vez
+  const moveItems = 5; // Número de itens para mover por clique
 
   // Função para buscar cursos da API
   const fetchCourses = async () => {
@@ -60,26 +60,34 @@ const CoursesCarousel: React.FC = () => {
   const handleNext = () => {
     const nextIndex = currentIndex + moveItems;
     if (nextIndex + visibleItems <= courses.length) {
-      setCurrentIndex(nextIndex); // Move 4 cursos para a direita
+      setCurrentIndex(nextIndex); // Move o carrossel para frente
     } else {
       setCurrentIndex(0); // Reinicia o carrossel
     }
+    console.log("Avançando para o índice:", nextIndex);
   };
 
   const handlePrev = () => {
     const prevIndex = currentIndex - moveItems;
     if (prevIndex >= 0) {
-      setCurrentIndex(prevIndex); // Move 4 cursos para a esquerda
+      setCurrentIndex(prevIndex); // Move o carrossel para trás
     } else {
-      setCurrentIndex(Math.max(0, courses.length - visibleItems)); // Vai para o final
+      setCurrentIndex(Math.max(0, courses.length - visibleItems)); // Vai para o final do carrossel
     }
+    console.log("Retornando para o índice:", prevIndex);
   };
+
+  // Depuração
+  console.log("Número total de cursos:", courses.length);
+  console.log("Índice atual:", currentIndex);
+  console.log("Itens visíveis:", visibleItems);
+  console.log("Largura calculada do contêiner:", `${(courses.length / visibleItems) * 100}%`);
+  console.log("Transform calculado:", `translateX(-${(currentIndex / visibleItems) * 100}%)`);
 
   return (
     <div className="py-8 relative w-full max-w-7xl mx-auto">
       <h2 className="text-xl font-semibold mb-4">
-        Because you viewed{" "}
-        <span className="text-purple-600">"Carousel Title"</span>
+        Because you viewed <span className="text-purple-600">"Carousel Title"</span>
       </h2>
 
       {courses.length > 0 && (
@@ -99,10 +107,7 @@ const CoursesCarousel: React.FC = () => {
                 <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 p-4">
                   <CourseImg courseImg={course.courseImg} widthChosen="260px" />
                   <CourseTitle title={course.courseName} />
-                  {/* <CourseRecap recapInfo={course.courseDescription} /> */}
-                  <CourseInstructor
-                    instructor={course.courseInstructor.fullName}
-                  />
+                  <CourseInstructor instructor={course.courseInstructor.fullName} />
                   <CourseRatings
                     totalRatings={course.totalRatings}
                     avgRatings={course.averageRating}
@@ -147,3 +152,4 @@ const CoursesCarousel: React.FC = () => {
 };
 
 export default CoursesCarousel;
+
