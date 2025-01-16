@@ -13,6 +13,7 @@ import Login from "@/pages/Login/Login";
 import Wishlist from "@/pages/Wishlist/Wishlist";
 import Logout from "@/pages/Logout/Logout";
 import Payment from "@/pages/Payment/Payment";
+import EditProfile from "@/pages/EditProfile/EditProfile";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -45,6 +46,10 @@ const AppRoutes: React.FC = () => {
         />
         {/* Route where navbar is hidden */}
         <Route path="/payment/checkout/" element={<Payment />} />
+        <Route
+          path="/instructor/profile/basic-information/"
+          element={<EditProfile />}
+        />
         <Route
           path="/course/:courseId/lesson/:id/*"
           element={

@@ -11,6 +11,7 @@ import { removeCourseFromCart } from "@/redux/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 
 const ItemInCart = ({
+  rowPrices = true,
   courseId = "",
   courseImgSize = "h-[5em] rounded-[0.3em]",
   hide = true,
@@ -20,6 +21,8 @@ const ItemInCart = ({
   itemsPosition = "center",
   textColor = "text-[#a435f0]",
   showDisPrice = false,
+  showHR = true,
+  showInstructor = true,
 }) => {
   if (!courseId) return null;
 
@@ -77,10 +80,12 @@ const ItemInCart = ({
               title={data.courseName}
               shortcutTitle={shortcutTitle}
             />
-            <CourseInstructor
-              instructor={data.courseInstructor.fullName}
-              shortCutInstructor={shortCutInstructor}
-            />
+            <div className={`${showInstructor ? "block" : "hidden"}`}>
+              <CourseInstructor
+                instructor={data.courseInstructor.fullName}
+                shortCutInstructor={shortCutInstructor}
+              />
+            </div>
             <div className="flex flex-row items-start justify-start gap-[1em]">
               <div className={hide ? "block" : "hidden"}>
                 <CourseTag tagName={data.courseTag} />
@@ -122,14 +127,19 @@ const ItemInCart = ({
                   <b className="">₪{data.courseDiscountPrice}</b>
                   <BsFillTagFill />
                 </div>
-                <div className="flex flex-row items-start gap-[0.2em]">
-                  <b className="font-bold text-black">
+                <div
+                  className={`${
+                    rowPrices
+                      ? "flex flex-row font-bold"
+                      : "flex flex-col font-light text-black"
+                  }  items-start gap-[0.2em]`}
+                >
+                  <p>
                     {data && showDisPrice ? `₪${data.courseDiscountPrice}` : ""}
-                  </b>
-
-                  <b className="text-gray-600 line-through font-light">
+                  </p>
+                  <p className="text-gray-600 line-through">
                     ₪{data.courseFullPrice}
-                  </b>
+                  </p>
                 </div>
               </div>
             </div>
@@ -137,7 +147,7 @@ const ItemInCart = ({
         </div>
       </div>
       <div className="mb-[1em] mt-[0.5em]">
-        <hr className="relative w-full" />
+        <hr className={`${showHR ? "block" : "hidden"} relative w-full`} />
       </div>
     </div>
   );

@@ -33,7 +33,9 @@ const DropdownMenu: React.FC = () => {
     <div>
       <div className="absolute z-30 right-0 mt-[1em] w-72 bg-white border border-gray-300 shadow-md rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto">
         <div className="flex items-center p-4 border-b">
-          <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
+          <Link to="/instructor/profile/basic-information/">
+            <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
+          </Link>
           <div className="ml-3">
             <div className="font-bold text-gray-800">{fullName}</div>
             <div className="text-sm text-gray-500">{email}</div>
