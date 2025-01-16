@@ -14,16 +14,17 @@ const courseNames = require("./utils/courseNames");
 const sectionNames = require("./utils/sectionNames");
 const lessonsNames = require("./utils/lessonNames");
 const videosToDisplay = require("./utils/videosToDsiplay");
+const supportedCountries = require("./utils/supportedCountries");
 
 const clearCollections = async () => {
   await Promise.all([
-    // User.deleteMany(),
+    User.deleteMany(),
     Course.deleteMany(),
-    // Section.deleteMany(),
-    // Lesson.deleteMany(),
-    // courseReviews.deleteMany(),
-    // ReportReview.deleteMany(),
-    // InstructorComment.deleteMany(),
+    Section.deleteMany(),
+    Lesson.deleteMany(),
+    courseReviews.deleteMany(),
+    ReportReview.deleteMany(),
+    InstructorComment.deleteMany(),
   ]);
   console.log("Cleared all collections.");
 };
@@ -41,6 +42,7 @@ const createUsers = async () => {
       role: faker.helpers.arrayElement(["student", "instructor", "student"]),
       biography: faker.lorem.sentence(15),
       udemyCredits: faker.number.int({ min: 5000, max: 10000 }),
+      country: faker.helpers.arrayElement(supportedCountries),
     });
   }
   const createdUsers = await User.insertMany(users);
@@ -88,8 +90,8 @@ const createCourses = async () => {
       }),
       courseRecapInfo: faker.lorem.words(10),
       courseDescription: faker.lorem.paragraph(),
-      courseFullPrice: faker.commerce.price(10, 500, 2),
-      courseDiscountPrice: faker.commerce.price(10, 250, 2),
+      courseFullPrice: faker.commerce.price(200, 800, 2),
+      courseDiscountPrice: faker.commerce.price(150, 400, 2),
       whoThisCourseIsFor: faker.lorem.sentence(),
       courseInstructorDescription: faker.lorem.paragraphs(10),
       whatYouWillLearn: Array.from({ length: 8 }, () => faker.lorem.sentence()),
