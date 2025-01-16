@@ -2,7 +2,9 @@ import axios from "axios";
 import { axiosClient, localhostUrl } from "../configuration";
 import { RegisterUserPayload } from "@/types/types";
 
-const registerUser = async (data: RegisterUserPayload): Promise<any> => {
+type fn = (data: RegisterUserPayload) => Promise<any>;
+
+const registerUser: fn = async (data: RegisterUserPayload): Promise<any> => {
   axios.defaults.withCredentials = true;
 
   try {

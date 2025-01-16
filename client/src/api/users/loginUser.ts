@@ -1,6 +1,8 @@
 import { axiosClient, localhostUrl } from "../configuration";
 
-const loginUser = async (credentials: string) => {
+type fn = (credentials: string) => Promise<any>;
+
+const loginUser: fn = async (credentials) => {
   try {
     const response = await axiosClient.post(
       `${localhostUrl}/api/user/auth/login`,
@@ -11,7 +13,7 @@ const loginUser = async (credentials: string) => {
       return response.data;
     }
   } catch (error) {
-    console.error(`Error occurred durning the login of user: `, error);
+    console.error(`Error occurred during the login of user: `, error);
   }
 };
 
