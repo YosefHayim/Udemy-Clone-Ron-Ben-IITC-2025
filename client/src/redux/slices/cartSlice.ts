@@ -42,33 +42,38 @@ const cartSlice = createSlice({
       state,
       action: PayloadAction<{
         courseId: string;
-        originalPrice: number;
-        discountPrice: number;
+        originalPrice?: number; // Mark as optional for flexibility
+        discountPrice?: number; // Mark as optional for flexibility
       }>
     ) => {
-      const { courseId, originalPrice, discountPrice } = action.payload;
+      const { courseId, originalPrice = 0, discountPrice = 0 } = action.payload;
+
+      // Validate the payload
+      if (!courseId) {
+        console.error("Invalid courseId:", courseId);
+        return;
+      }
 
       // Remove the course ID from the cart
       state.coursesAddedToCart = state.coursesAddedToCart.filter(
         (id) => id !== courseId
       );
 
-      // Decrease amount of courses
+      // Decrease the amount of courses
       if (state.amountOfCourses > 0) {
         state.amountOfCourses -= 1;
       }
 
       // Update the total original and discount prices
-      state.totalCoursesOriginalPrices -= originalPrice;
-      state.totalCourseDiscountPrices -= discountPrice;
+      state.totalCoursesOriginalPrices = Math.max(
+        0,
+        state.totalCoursesOriginalPrices - originalPrice
+      );
 
-      // Prevent negative values
-      if (state.totalCoursesOriginalPrices < 0) {
-        state.totalCoursesOriginalPrices = 0;
-      }
-      if (state.totalCourseDiscountPrices < 0) {
-        state.totalCourseDiscountPrices = 0;
-      }
+      state.totalCourseDiscountPrices = Math.max(
+        0,
+        state.totalCourseDiscountPrices - discountPrice
+      );
 
       // Reset totals if the cart is empty
       if (state.coursesAddedToCart.length === 0) {

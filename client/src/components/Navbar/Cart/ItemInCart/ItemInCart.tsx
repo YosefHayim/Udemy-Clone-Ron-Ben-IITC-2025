@@ -49,8 +49,8 @@ const ItemInCart = ({
     dispatch(
       removeCourseFromCart({
         courseId,
-        coursePrice: data.courseDiscountPrice || 0,
-        amountToRemove: 1,
+        coursePrice: data.totalCourseDiscountPrices || 0, // Incorrect payload key
+        amountToRemove: 1, // Unused in reducer
       })
     );
   };
