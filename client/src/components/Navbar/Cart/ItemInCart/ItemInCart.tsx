@@ -5,7 +5,6 @@ import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseLength from "@/pages/ViewCoursePageInfo/MoreCoursesByInstructor/CourseLength/CourseLength";
 import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
 import { useQuery } from "@tanstack/react-query";
-import Loader from "@/components/Loader/Loader";
 import getCourseCartInfoByCourseId from "@/api/courses/getCourseCartInfoByCourseId";
 import { useDispatch } from "react-redux";
 import { removeCourseFromCart } from "@/redux/slices/cartSlice";
@@ -13,41 +12,35 @@ import { useNavigate } from "react-router-dom";
 
 const ItemInCart = ({
   courseId = "",
-  courseImgSize = "h-[5em]",
+  courseImgSize = "h-[5em] rounded-[0.3em]",
   hide = true,
   shortCutInstructor = false,
   shortcutTitle = false,
   chooseFlex = "flex-row",
   itemsPosition = "center",
   textColor = "text-[#a435f0]",
+  showDisPrice = false,
 }) => {
   if (!courseId) return null;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { data, isLoading, error } = useQuery({
+  const { data, error, isPending } = useQuery({
     queryKey: ["course", courseId],
     queryFn: () => getCourseCartInfoByCourseId(courseId),
     staleTime: 5 * 60 * 1000,
   });
 
-  if (isLoading) {
-    return (
-      <div>
-        <Loader hSize="200px" />
-      </div>
-    );
-  }
-
   if (error) {
     return <div>Error loading course data</div>;
   }
 
-  const handleRemove = (e) => {
-    e.stopPropagation(); // Use only if necessary to stop event bubbling
-    if (!data) return; // Ensure data is available
+  if (isPending) {
+    return <div></div>;
+  }
 
+  const handleRemove = (e) => {
     dispatch(
       removeCourseFromCart({
         courseId,
@@ -66,11 +59,15 @@ const ItemInCart = ({
   return (
     <div className="p-[1em] w-full">
       <div
-        className={`${chooseFlex} flex items-start justify-start gap-[1em] cursor-pointer`}
+        className={`flex flex-row items-start justify-start gap-[1em] cursor-pointer`}
         onClick={handleCourseView}
       >
         <div>
-          <img src={data.courseImg} alt="" className={`${courseImgSize}`} />
+          <img
+            src={data?.courseImg}
+            alt={`${data.courseName} image`}
+            className={`${courseImgSize}`}
+          />
         </div>
         <div
           className={`${chooseFlex} flex flex-row items-${itemsPosition} justify-center gap-[1em]`}
@@ -125,9 +122,15 @@ const ItemInCart = ({
                   <b className="">₪{data.courseDiscountPrice}</b>
                   <BsFillTagFill />
                 </div>
-                <b className="text-gray-600 line-through font-light">
-                  ₪{data.courseFullPrice}
-                </b>
+                <div className="flex flex-row items-start gap-[0.2em]">
+                  <b className="font-bold text-black">
+                    {data && showDisPrice ? `₪${data.courseDiscountPrice}` : ""}
+                  </b>
+
+                  <b className="text-gray-600 line-through font-light">
+                    ₪{data.courseFullPrice}
+                  </b>
+                </div>
               </div>
             </div>
           </div>

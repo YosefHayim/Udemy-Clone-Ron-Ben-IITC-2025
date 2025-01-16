@@ -25,13 +25,40 @@ const CheckoutContainer = () => {
   useEffect(() => {}, [totalToPay, totalDiscountPercent, totalSavings]);
 
   const handleCheckout = () => {
-    const cookie = Cookies.get("cookie");
-    const decoded = jwtDecode(cookie);
-    const isLogged = dispatch(setRole(decoded.role));
-    if (!cookie && cookie.length < 20 && !isLogged) {
-      navigate("/login");
+    try {
+      const cookie = Cookies.get("cookie")?.toString();
+
+      // Check if the cookie exists
+      if (!cookie || cookie.length < 20) {
+        console.error("Invalid or missing cookie. Redirecting to login.");
+        navigate("/login");
+        return;
+      }
+
+      // Decode the cookie
+      let decoded;
+      try {
+        decoded = jwtDecode(cookie);
+      } catch (err) {
+        console.error("Failed to decode cookie:", err.message);
+        navigate("/login");
+        return;
+      }
+
+      // Dispatch user role and validate login status
+      const isLogged = dispatch(setRole(decoded?.role));
+      if (!isLogged) {
+        console.error("User role dispatch failed. Redirecting to login.");
+        navigate("/login");
+        return;
+      }
+
+      // Navigate to checkout if all checks pass
+      navigate("/payment/checkout/");
+    } catch (err) {
+      console.error("An unexpected error occurred:", err.message);
+      navigate("/login"); // Fallback to login in case of unexpected errors
     }
-    navigate("/payment/checkout/");
   };
 
   return (

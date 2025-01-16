@@ -8,7 +8,7 @@ const Cart = () => {
   const [showCartHover, setShowCartHover] = useState(false);
 
   const handleMouseEnter = () => setShowCartHover(true);
-  const handleMouseLeave = () => setShowCartHover(false);
+  const handleMouseLeave = () => setShowCartHover(true);
 
   return (
     <div

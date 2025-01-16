@@ -2,13 +2,32 @@ import { Button } from "@/components/ui/button";
 import ItemInCart from "../ItemInCart/ItemInCart";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Loader from "@/components/Loader/Loader";
 
 const HoverCart = () => {
-  const totalToPay = useSelector((state) => state.cart.totalCoursesPrice);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const totalToPay = useSelector(
+    (state) => state.cart.totalCourseDiscountPrices
+  );
   const coursesIdAdded = useSelector((state) => state.cart.coursesAddedToCart);
 
-  useEffect(() => {}, [totalToPay, coursesIdAdded]);
+  useEffect(() => {
+    // Simulate a loading delay to mimic data fetching
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500); // Adjust delay as needed
+    return () => clearTimeout(timer);
+  }, [totalToPay, coursesIdAdded]);
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center w-full h-full">
+        <Loader hSize="1000px" />
+      </div>
+    );
+  }
 
   return (
     <Link to="/cart" className="cursor-pointer">
@@ -21,6 +40,7 @@ const HoverCart = () => {
                   key={courseId}
                   courseId={courseId}
                   hide={false}
+                  showDisPrice={true}
                   shortCutInstructor={true}
                   shortcutTitle={true}
                   chooseFlex={"flex flex-col"}

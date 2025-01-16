@@ -17,6 +17,8 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [cookie, setCookie] = useState(Cookies.get("cookie"));
 
+  useEffect(() => {}, [cookie]);
+
   return (
     <div
       className="flex items-center justify-between py-3 bg-white shadow-md w-screen z-[10] px-6"
