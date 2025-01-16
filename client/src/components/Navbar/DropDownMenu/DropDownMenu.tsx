@@ -1,10 +1,10 @@
 import React from "react";
 import { FaGlobe, FaExternalLinkAlt } from "react-icons/fa"; // Importa ícones
 import { MdLanguage } from "react-icons/md";
-import ProfilePic from "./ProfilePic/ProfilePic";
+import ProfilePic from "../../ProfilePic/ProfilePic";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import CartCoursesNumber from "./Navbar/Cart/CartCoursesNumber/CartCoursesNumber";
+import CartCoursesNumber from "../Cart/CartCoursesNumber/CartCoursesNumber";
 import Cookies from "js-cookie";
 import { RootState } from "@/redux";
 import { useDispatch } from "react-redux";

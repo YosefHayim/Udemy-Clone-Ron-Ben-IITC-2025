@@ -12,7 +12,7 @@ import Sections from "./Sections";
 import Menu from "@/components/Menu/Menu";
 import Welcome from "@/components/LoggedInHome/Welcome";
 import TeamAcess from "./TeamAcess";
-import DropdownMenu from "@/components/DropDownMenu";
+import DropdownMenu from "@/components/Navbar/DropDownMenu/DropDownMenu";
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 import Cookies from "js-cookie";
 import { jwtDecode, JwtDecodeOptions } from "jwt-decode";

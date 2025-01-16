@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/index"; // Import RootState type for Redux
-import DropdownMenu from "../../DropDownMenu"; // Importa o componente DropdownMenu
+import DropdownMenu from "../DropDownMenu/DropDownMenu"; // Importa o componente DropdownMenu
 import ProfilePic from "@/components/ProfilePic/ProfilePic";
 import LoginBtn from "../LoginBtn/LoginBtn";
 import SignupBtn from "../SignupBtn/SignupBtn";
