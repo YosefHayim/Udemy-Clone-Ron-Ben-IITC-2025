@@ -8,7 +8,7 @@ import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
 import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 import { CourseTypeProps } from "@/types/types";
 
@@ -16,7 +16,7 @@ const SearchPage: React.FC = () => {
   document.title = "Search results | Udemy";
   const [searchParams] = useSearchParams();
   const searchTerm: string | null = searchParams.get("q");
-  const [currentPage, setCurrentPage] = useState<number | null>(1);
+  const [currentPage, setCurrentPage] = useState<number | null>(null);
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
   const [filterData, setFilterData] = useState({
     rating: 0.0,
@@ -34,7 +34,12 @@ const SearchPage: React.FC = () => {
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["courses", searchTerm, currentPage],
-    queryFn: () => getAllCourses(searchTerm, limit, currentPage), // Ensure correct page and limit
+    queryFn: () => {
+      if (!searchTerm && !currentPage && !limit) {
+        throw new Error("Course ID is undefined");
+      }
+      return getAllCourses(searchTerm, currentPage, limit);
+    },
     enabled: !!searchTerm,
   });
 

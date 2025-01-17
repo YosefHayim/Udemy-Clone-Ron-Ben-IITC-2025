@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import { setShowCart } from "@/redux/slices/cartSlice";
+import React from "react";
 
 const CartCoursesNumber = () => {
   const dispatch = useDispatch();

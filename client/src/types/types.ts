@@ -1,14 +1,14 @@
 export interface DummyData {
-  code: string;
-  name: string;
-  count: number;
+  code?: string;
+  name?: string;
+  count?: number;
 }
 
 export interface FilterProps {
-  setFilterData: boolean;
-  filterData: boolean;
+  setFilterData?: boolean;
+  filterData?: boolean;
   filterTitle: string;
-  filterItems: DummyData[];
+  filterItems?: DummyData[];
   chosenHeight: string;
   display: boolean;
   useForSection: boolean;
@@ -120,9 +120,9 @@ export interface CourseCardProps {
   title: string;
   image: string;
   description: string;
-  fullPrice: string;
-  discountPrice: string;
-  tag: string;
+  fullPrice: number;
+  discountPrice: number;
+  tag?: string;
 }
 
 export interface CourseProps {
@@ -140,17 +140,14 @@ export interface LoaderProps {
 }
 
 interface Subcategory {
-  group?: string; // Make `group` optional
-  items?: string[]; // Make `items` optional
-  title?: string;
-  name?: string;
-  subcategories?: (Subcategory | string)[];
-  topics?: string[];
+  title?: string; // Subcategory title
+  name?: string; // Alternative name for the subcategory
+  topics?: string[]; // List of topics within the subcategory
 }
 
 interface GroupedSubcategory {
-  group: string; // Name of the group
-  items: (Subcategory | string)[]; // Allow plain strings as items
+  group: string; // Group name
+  items: Subcategory[]; // Array of subcategories
 }
 
 export interface MenuItemProps {
@@ -217,7 +214,7 @@ export interface FilterDataProps {
 
 export interface SidebarFilterProps {
   filterData: FilterDataProps;
-  setFilterData?: boolean;
+  setFilterData: React.Dispatch<React.SetStateAction<FilterDataProps>>;
 }
 
 export interface CourseTypeProps {
@@ -269,7 +266,7 @@ export interface CourseBasicInfoProps {
 
 export interface CourseContentProps {
   description: string;
-  whoThisFor: string;
+  whoThisFor: string[];
   requirements: string[];
   totalCourseDuration: number; // in minutes
   totalCourseLessons: number;

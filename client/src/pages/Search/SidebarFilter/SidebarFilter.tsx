@@ -15,18 +15,15 @@ const SidebarFilter: React.FC<SidebarFilterProps> = ({
 }) => {
   return (
     <div className="relative w-[310px]">
-      <ViewCertificatesOnly
-        filterData={filterData}
-        setFilterData={setFilterData}
-      />
-      <RatingsFilter filterData={filterData} setFilterData={setFilterData} />
+      <ViewCertificatesOnly />
+      <RatingsFilter />
       <LanguageFilter filterData={filterData} setFilterData={setFilterData} />
-      <HandsOnPractice filterData={filterData} setFilterData={setFilterData} />
-      <VideosFilter filterData={filterData} setFilterData={setFilterData} />
-      <Topics filterData={filterData} setFilterData={setFilterData} />
-      <Levels filterData={filterData} setFilterData={setFilterData} />
-      <Subtitles filterData={filterData} setFilterData={setFilterData} />
-      <Price filterData={filterData} setFilterData={setFilterData} />
+      <HandsOnPractice />
+      <VideosFilter />
+      <Topics />
+      <Levels />
+      <Subtitles />
+      <Price />
     </div>
   );
 };

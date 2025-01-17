@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { BsToggleOn, BsToggleOff } from "react-icons/bs";
 
-const ViewCertificatesOnly = ({ filterData, setFilterData }) => {
-  const [isActive, setIsActive] = useState(false);
+const ViewCertificatesOnly = () => {
+  const [isActive, setIsActive] = useState<boolean | null>(false);
 
   const handleToggle = () => {
     setIsActive((prev) => !prev);

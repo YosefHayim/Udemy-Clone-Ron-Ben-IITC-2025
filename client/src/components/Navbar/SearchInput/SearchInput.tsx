@@ -53,7 +53,12 @@ const SearchInput = () => {
 
   const { data, error } = useQuery({
     queryKey: ["courses", searchTerm, page],
-    queryFn: () => getAllCourses(searchTerm || "", limit, page),
+    queryFn: () => {
+      if (!searchTerm) {
+        throw new Error("Course ID is undefined");
+      }
+      return getAllCourses(searchTerm, limit, page);
+    },
     enabled: !!searchTerm,
   });
 

@@ -16,7 +16,7 @@ const UserCourseReview: React.FC<{
   }
 
   const [activeReviewId, setActiveReviewId] = useState<string | null>(null);
-  const [isOpenReportDrawer, setReportDrawer] = useState<string | null>(null);
+  const [isOpenReportDrawer, setReportDrawer] = useState<boolean | null>(null);
 
   const handleToggle = (id: string) => {
     // Toggle the clicked review or close if it's already active

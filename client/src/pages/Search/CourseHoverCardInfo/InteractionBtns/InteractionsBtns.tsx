@@ -1,7 +1,11 @@
 import AddToCart from "./AddToCart/AddToCart";
 import HeartBtn from "./HeartBtn/HeartBtn";
 
-const InteractionsBtns = ({ courseId, coursePrice, fullPriceCourse }) => {
+const InteractionsBtns: React.FC<{
+  courseId: string;
+  coursePrice: number;
+  fullPriceCourse: number;
+}> = ({ courseId, coursePrice, fullPriceCourse }) => {
   if (!courseId && !coursePrice) {
     return;
   }

@@ -31,7 +31,12 @@ const ItemInCart = ({
 
   const { data, error, isPending } = useQuery({
     queryKey: ["course", courseId],
-    queryFn: () => getCourseCartInfoByCourseId(courseId),
+    queryFn: () => {
+      if (!courseId) {
+        throw new Error("Course ID is undefined");
+      }
+      return getCourseCartInfoByCourseId(courseId);
+    },
     staleTime: 5 * 60 * 1000,
   });
 
