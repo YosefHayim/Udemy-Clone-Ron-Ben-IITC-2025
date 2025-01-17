@@ -17,6 +17,11 @@ export interface FilterProps {
   setDisplay: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+export interface LoginPayload {
+  email: string;
+  password: string;
+}
+
 export interface UserState {
   fullName: string;
   profilePic: string;

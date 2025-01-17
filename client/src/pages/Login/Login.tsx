@@ -16,7 +16,6 @@ import {
 import { DecodedTokenProps, FormErrors } from "@/types/types";
 
 const Login = () => {
-  document.title = "Log in to continue your learning journey | Udemy";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [formErrors, setFormErrors] = useState<FormErrors>({
@@ -147,6 +146,7 @@ const Login = () => {
                 "Continue with email"
               )}
             </button>
+            <div className=""></div>
 
             {formErrors.general && (
               <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative">
