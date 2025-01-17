@@ -91,22 +91,22 @@ const ExploreMenu = () => {
               Browse Certifications
             </div>
 
-            {ExploreData.map((category, index) => (
+            {exploreData.map((category, index: number) => (
               <>
                 <div
                   key={index}
                   className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
                   onMouseEnter={() =>
-                    handleMenuEnter(category.category || null)
+                    handleMenuEnter(category?.category || null)
                   }
                 >
-                  <span>{category.category || "Unnamed Category"}</span>
+                  <span>{category?.category || "Unnamed Category"}</span>
                   <span>
                     <IoIosArrowForward />
                   </span>
                 </div>
                 {/* Linha divisória entre "Certification Preparation" e "Development" */}
-                {category.category === "Certification Preparation" && (
+                {category?.category === "Certification Preparation" && (
                   <hr className="border-t border-gray-300 my-2" />
                 )}
               </>
@@ -152,7 +152,7 @@ const ExploreMenu = () => {
                 onMouseLeave={handleSecondSubMenuLeave}
               >
                 {getSubCategoryData(hoveredMenu, hoveredSubMenu)?.topics?.map(
-                  (topic, index) => (
+                  (topic: any, index: number) => (
                     <div
                       key={index}
                       className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"

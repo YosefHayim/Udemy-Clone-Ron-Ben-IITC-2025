@@ -1,4 +1,3 @@
-import React from "react";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "./App-Sidebar";
 interface LayoutProps {
@@ -10,9 +9,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <>
       <SidebarProvider>
         <AppSidebar />
-        <main className="w-full ">
-          {children}
-        </main>
+        <main className="w-full ">{children}</main>
       </SidebarProvider>
     </>
   );

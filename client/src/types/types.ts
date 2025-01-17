@@ -27,15 +27,15 @@ export interface UserState {
 }
 
 export interface searchResultCourseImgProps {
-  courseName: String;
-  instructorName: String;
-  courseImg: String;
-  courseId: String;
+  courseName: string;
+  instructorName: string;
+  courseImg: string;
+  courseId: string;
 }
 
 export type SearchResultProps = {
   algoWord: string;
-  courseId: String;
+  courseId: string;
 };
 
 export interface SearchResultsArray {
@@ -140,20 +140,22 @@ export interface LoaderProps {
 }
 
 interface Subcategory {
-  title?: string; // Title of the subcategory
-  name?: string; // Alternative title for the subcategory
-  subcategories?: Subcategory[]; // Nested subcategories, if any
-  topics?: string[]; // List of topics in the subcategory
+  group?: string; // Make `group` optional
+  items?: string[]; // Make `items` optional
+  title?: string;
+  name?: string;
+  subcategories?: (Subcategory | string)[];
+  topics?: string[];
 }
 
 interface GroupedSubcategory {
   group: string; // Name of the group
-  items: Subcategory[]; // List of subcategories within the group
+  items: (Subcategory | string)[]; // Allow plain strings as items
 }
 
 export interface MenuItemProps {
   title: string; // Title of the menu item
-  subcategories: (GroupedSubcategory | Subcategory)[]; // Mixed array of grouped and standalone subcategories
+  subcategories: (GroupedSubcategory | Subcategory | string)[]; // Allow mixed types, including strings
 }
 
 export interface DecodedTokenProps {
@@ -188,6 +190,34 @@ export interface CoursePreviewCardProps {
   coursePrice: number;
   fullPrice: number;
   courseId: string;
+}
+
+export interface Review {
+  _id: string;
+  comment: string;
+  createdAt: string;
+  rating: number;
+  user: {
+    _id: string;
+    fullName: string;
+  };
+}
+
+export interface FilterDataProps {
+  certificate: boolean;
+  handsOnPractice: string;
+  language: string[];
+  level: string;
+  price: string;
+  rating: number;
+  subtitles: string;
+  topics: string;
+  videoDuration: number;
+}
+
+export interface SidebarFilterProps {
+  filterData: FilterDataProps;
+  setFilterData?: boolean;
 }
 
 export interface CourseTypeProps {

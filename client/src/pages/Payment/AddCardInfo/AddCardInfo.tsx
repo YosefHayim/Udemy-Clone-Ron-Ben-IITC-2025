@@ -1,6 +1,5 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import React from "react";
 
 const AddCardInfo: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

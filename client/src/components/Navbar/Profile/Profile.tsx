@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/index"; // Import RootState type for Redux
 import DropdownMenu from "../DropDownMenu/DropDownMenu"; // Importa o componente DropdownMenu
@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const Profile: React.FC = () => {
   const fullName = useSelector((state: RootState) => state.user.fullName);
   const profilePic = useSelector((state: RootState) => state.user.profilePic);
-  const [cookie, setCookie] = useState(Cookies.get("cookie"));
+  const cookie = Cookies.get("cookie");
 
   useEffect(() => {}, [cookie]);
 

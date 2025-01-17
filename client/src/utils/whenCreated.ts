@@ -1,6 +1,6 @@
-export const calculateTimeDifference = (date) => {
-  const now = new Date();
-  const commentDate = new Date(date);
+export const calculateTimeDifference = (date: Date) => {
+  const now = new Date().getTime(); // Convert to timestamp
+  const commentDate = new Date(date).getTime(); // Convert to timestamp
   const differenceInSeconds = Math.floor((now - commentDate) / 1000);
 
   const years = Math.floor(differenceInSeconds / (60 * 60 * 24 * 365));

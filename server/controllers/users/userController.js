@@ -88,7 +88,7 @@ const signUp = catchAsync(async (req, res, next) => {
 
   res.cookie("cookie", token, {
     httpOnly: true,
-    secure: true, // Change to false for localhost
+    secure: process.env.NODE_ENV === "production", // Secure in production
     sameSite: "none",
     path: "/",
     expires: new Date(Date.now() + 900000),
@@ -124,10 +124,11 @@ const login = catchAsync(async (req, res, next) => {
   });
 
   res.cookie("cookie", token, {
-    maxAge: 90 * 24 * 60 * 60 * 1000, // 90d
+    httpOnly: true,
     secure: process.env.NODE_ENV === "production", // Secure in production
-    httpOnly: false, // Allow JavaScript access
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
+    sameSite: "none",
+    path: "/",
+    expires: new Date(Date.now() + 900000),
   });
 
   if (!isFoundUser.emailVerified) {

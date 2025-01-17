@@ -11,11 +11,10 @@ import Carousel from "./Carousel";
 import Sections from "./Sections";
 import Menu from "@/components/Menu/Menu";
 import Welcome from "@/components/LoggedInHome/Welcome";
-import TeamAcess from "./TeamAcess";
 import DropdownMenu from "@/components/Navbar/DropDownMenu/DropDownMenu";
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 import Cookies from "js-cookie";
-import { jwtDecode, JwtDecodeOptions } from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import {
   setBio,
   setEmailAddress,
@@ -25,6 +24,7 @@ import {
 } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { DecodedTokenProps } from "@/types/types";
+import TeamAccess from "./TeamAcess";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const Homepage = () => {
             <Welcome />
             <Banner />
             <CoursesCarousel />
-            <TeamAcess />
+            <TeamAccess />
             {/* <CoursesCarousel /> */}
           </div>
         </>

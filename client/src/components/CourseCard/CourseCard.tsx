@@ -1,5 +1,4 @@
 import { CourseCardProps } from "@/types/types";
-import React from "react";
 
 const CourseCard: React.FC<CourseCardProps> = ({
   title,

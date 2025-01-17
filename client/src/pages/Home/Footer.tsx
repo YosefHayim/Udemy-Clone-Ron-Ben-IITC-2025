@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/index"; // Importa o RootState do Redux
 import LogoFooter from "/images/logo-udemy-inverted.svg";

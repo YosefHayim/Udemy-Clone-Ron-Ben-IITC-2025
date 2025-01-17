@@ -15,6 +15,7 @@ import Loader from "@/components/Loader/Loader";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Review } from "@/types/types";
 
 const DialogOfAllReviews: React.FC<{
   avgRating: string;
@@ -28,7 +29,12 @@ const DialogOfAllReviews: React.FC<{
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["reviews", courseId],
-    queryFn: () => getAllReviewsByCourseId(courseId),
+    queryFn: () => {
+      if (!courseId) {
+        throw new Error("Course ID is undefined");
+      }
+      return getAllReviewsByCourseId(courseId);
+    },
     enabled: isClicked, // Prevent fetching until dialog is opened
   });
 
@@ -53,7 +59,7 @@ const DialogOfAllReviews: React.FC<{
               </div>
             </DialogTitle>
             <DialogDescription>
-              {isLoading && <Loader />}
+              {isLoading && <Loader hSize="" useSmallLoading={false} />}
               {error && (
                 <div className="text-red-500">
                   Error loading reviews. Please try again later.
@@ -76,7 +82,7 @@ const DialogOfAllReviews: React.FC<{
                     </form>
                   </div>
                   <div className="overflow-y-auto h-[650px] w-2/3">
-                    {data.map((review) => (
+                    {data.map((review: Review) => (
                       <UserCourseReview
                         review={review}
                         key={review._id}

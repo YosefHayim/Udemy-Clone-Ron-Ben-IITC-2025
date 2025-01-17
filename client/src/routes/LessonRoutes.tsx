@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route, Navigate, useParams } from "react-router-dom";
 import NavBar from "../pages/Lesson/NavBar";
 import { useQuery } from "@tanstack/react-query";
@@ -38,7 +37,6 @@ const LessonRoutes: React.FC = () => {
 
   const courseData = data.data;
   console.log(courseData);
-  
 
   // Define valid paths for lesson tabs
   const validPaths = [

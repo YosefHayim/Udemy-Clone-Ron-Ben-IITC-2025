@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { useSidebar } from "@/components/ui/sidebar";

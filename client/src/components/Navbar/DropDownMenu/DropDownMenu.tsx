@@ -1,4 +1,3 @@
-import React from "react";
 import { FaGlobe, FaExternalLinkAlt } from "react-icons/fa"; // Importa ícones
 import { MdLanguage } from "react-icons/md";
 import ProfilePic from "../../ProfilePic/ProfilePic";

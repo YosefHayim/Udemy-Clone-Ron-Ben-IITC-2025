@@ -65,7 +65,7 @@ const ExploreMenu = () => {
                                 <strong>{subcategory.group}</strong>
                                 <ul className="ml-4">
                                   {subcategory.items.map(
-                                    (subItem, itemIndex) => (
+                                    (subItem, itemIndex: number) => (
                                       <li
                                         key={itemIndex}
                                         className="text-gray-600 hover:text-purple-500"

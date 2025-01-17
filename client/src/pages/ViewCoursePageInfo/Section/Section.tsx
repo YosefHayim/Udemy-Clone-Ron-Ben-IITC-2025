@@ -12,7 +12,10 @@ const Section: React.FC<{
   const [isClicked, setClicked] = useState(false);
 
   const totalDuration =
-    lessonsOfSection?.reduce((sum, lesson) => sum + lesson.duration, 0) || 0;
+    lessonsOfSection?.reduce(
+      (sum, lesson) => sum + (lesson.duration || 0),
+      0
+    ) || 0;
 
   return (
     <div>
@@ -39,9 +42,9 @@ const Section: React.FC<{
           lessonsOfSection.map((lesson, index) => (
             <Lesson
               key={lesson._id}
-              title={lesson.title}
-              videoUrl={lesson.videoUrl}
-              duration={lesson.duration}
+              title={lesson.title || ""}
+              videoUrl={lesson.videoUrl || ""}
+              duration={lesson.duration || 0}
               isQuizzLesson={index === lessonsOfSection.length - 1} // Example: Make last one a quiz
             />
           ))
