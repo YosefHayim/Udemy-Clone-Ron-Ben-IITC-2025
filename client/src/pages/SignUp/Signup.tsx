@@ -24,9 +24,9 @@ const SignUp: React.FC = () => {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const fullName = formData.get("fullName");
-    const email = formData.get("email");
-    const password = formData.get("password");
+    const fullName = formData.get("fullName") as string | undefined;
+    const email = formData.get("email") as string | undefined;
+    const password = formData.get("password") as string | undefined;
 
     mutation.mutate({ fullName, email, password });
   };

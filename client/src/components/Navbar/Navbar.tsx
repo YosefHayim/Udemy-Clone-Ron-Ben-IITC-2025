@@ -10,12 +10,11 @@ import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
 import ExploreMenu from "./Explore/ExploreMenu";
 import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [cookie, setCookie] = useState(Cookies.get("cookie"));
-
+  const cookie = Cookies.get("cookie");
   useEffect(() => {}, [cookie]);
 
   return (

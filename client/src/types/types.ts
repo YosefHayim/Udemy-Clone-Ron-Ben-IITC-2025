@@ -57,8 +57,10 @@ interface ResultProps {
 }
 
 export interface SearchResultsProps {
-  isTyping: Boolean;
-  data: SearchResultsArray[];
+  isTyping: boolean;
+  data: {
+    response: SearchResultsArray[];
+  };
   response: ResultProps;
 }
 
@@ -138,20 +140,20 @@ export interface LoaderProps {
 }
 
 interface Subcategory {
-  title?: string;
-  name?: string;
-  subcategories?: string[] | Subcategory[];
-  topics?: string[];
+  title?: string; // Title of the subcategory
+  name?: string; // Alternative title for the subcategory
+  subcategories?: Subcategory[]; // Nested subcategories, if any
+  topics?: string[]; // List of topics in the subcategory
 }
 
 interface GroupedSubcategory {
-  group: string;
-  items: Subcategory[];
+  group: string; // Name of the group
+  items: Subcategory[]; // List of subcategories within the group
 }
 
 export interface MenuItemProps {
-  title: string;
-  subcategories: (GroupedSubcategory | Subcategory)[];
+  title: string; // Title of the menu item
+  subcategories: (GroupedSubcategory | Subcategory)[]; // Mixed array of grouped and standalone subcategories
 }
 
 export interface DecodedTokenProps {
@@ -209,22 +211,21 @@ export interface CourseTypeProps {
   courseTag: string;
   courseTopic: string;
   courseTrailer: string;
-  createdAt: string; // ISO date string
-  updatedAt: string; // ISO date string
+  createdAt: string;
+  updatedAt: string;
   isActive: boolean;
-  moneyBackGuarantee: string; // ISO date string
-  reviews: Array<unknown>; // You can replace `unknown` with a specific review type if available
+  moneyBackGuarantee: string;
+  reviews: Array<string>;
   sections: Array<{
-    // Replace with specific section type if known
     [key: string]: any;
   }>;
   subCategory: string;
-  totalCourseDuration: number; // in minutes
+  totalCourseDuration: number;
   totalCourseLessons: number;
   totalCourseSections: number;
   totalRatings: number;
   totalStudentsEnrolled: {
-    students: Array<unknown>; // Replace `unknown` with the appropriate student type
+    students: Array<string>;
     count: number;
   };
   whatYouWillLearn: string[];
@@ -260,8 +261,8 @@ export interface CourseCreatedByProps {
 }
 
 export interface LessonProps {
-  _id: string;
-  title: string;
-  videoUrl: string;
-  duration: number;
+  _id?: string;
+  title?: string;
+  videoUrl?: string;
+  duration?: number;
 }

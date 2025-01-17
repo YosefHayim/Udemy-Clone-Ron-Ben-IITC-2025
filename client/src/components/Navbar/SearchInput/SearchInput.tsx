@@ -37,7 +37,7 @@ const SearchInput = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (searchTerm.trim().length > 0) {
+    if (searchTerm || "".trim().length > 0) {
       navigate(`/courses/search?src=ukw&q=${searchTerm}`);
       setIsTyping(false);
     }
@@ -53,7 +53,7 @@ const SearchInput = () => {
 
   const { data, error } = useQuery({
     queryKey: ["courses", searchTerm, page],
-    queryFn: () => getAllCourses(searchTerm, limit, page), // Ensure correct page and limit
+    queryFn: () => getAllCourses(searchTerm || "", limit, page),
     enabled: !!searchTerm,
   });
 

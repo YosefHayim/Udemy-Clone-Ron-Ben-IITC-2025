@@ -5,7 +5,7 @@ type fn = (searchTerm: string, limit: number, page: number) => Promise<any>;
 const getAllCourses: fn = async (searchTerm = "", limit = 18, page = 1) => {
   if (!searchTerm) {
     console.error("Search term is required");
-    return null;
+    return "";
   }
 
   const encodedSearchTerm = encodeURIComponent(searchTerm);
