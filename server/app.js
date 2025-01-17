@@ -22,6 +22,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 connectDb();
 
+app.set("trust proxy", true);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(helmet());
 app.use(express.json());
@@ -30,7 +31,7 @@ app.use(loggerInfo);
 // app.use(limiter);
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: true,
     credentials: true,
   })
 );
