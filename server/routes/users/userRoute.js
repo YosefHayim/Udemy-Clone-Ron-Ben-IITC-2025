@@ -19,6 +19,7 @@ const {
 const {
   grantedAccess,
 } = require("../../controllers/authorization/authController");
+const { OAuth2Client } = require("google-auth-library");
 
 const router = express.Router();
 
@@ -55,8 +56,29 @@ router.post(
   resendEmailVerificationToken
 );
 
-// login
+// login regular
 router.post("/auth/login", login);
+
+// generate url for google sign up
+router.post("/auth/google/signup", (req, res, next) => {
+  const redirectUrl = "http://localhost:5137";
+
+  const oAuth2Client = new OAuth2Client(
+    process.env.CLIENT_ID,
+    process.env.CLIENT_SECRET,
+    redirectUrl
+  );
+
+  const authorizeUrl = oAuth2Client.generateAuthUrl({
+    access_type: "offline",
+    scope: "https://www.googleapis.com/auth/userinfo.profile openid",
+    prompt: "consent",
+  });
+
+  res.status(201).json({
+    url: authorizeUrl,
+  });
+});
 
 // logout and clear cookie
 router.post("/logout", grantedAccess, logout);
