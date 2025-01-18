@@ -12,9 +12,9 @@ import ExploreMenu from "./Explore/ExploreMenu";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import MarketingGuest from "../NavBarMarketing/MarketingGuest";
-import Login from "@/pages/Login/Login";
-import SignUp from "@/pages/SignUp/Signup";
+// import MarketingGuest from "../NavBarMarketing/MarketingGuest";
+// import Login from "@/pages/Login/Login";
+// import SignUp from "@/pages/SignUp/Signup";
 
 const Navbar = () => {
   const cookie = Cookies.get("cookie");
