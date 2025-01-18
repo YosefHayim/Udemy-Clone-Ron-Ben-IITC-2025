@@ -72,7 +72,6 @@ const ViewCoursePageInfo: React.FC = () => {
 
   if (error) return <div>Error loading course data</div>;
 
-  const courseData = data;
   console.log(courseData);
   
 
