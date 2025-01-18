@@ -130,7 +130,7 @@ const userSchema = new mongoose.Schema(
         },
         lessons: [
           {
-            lesson: {
+            lessonId: {
               type: mongoose.Schema.Types.ObjectId,
               ref: "Lesson",
               required: [true, "Progress must specify a lesson."],

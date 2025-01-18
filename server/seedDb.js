@@ -520,7 +520,7 @@ const simulateCoursePurchases = async () => {
               (section) => section.lessons
             );
             const lessonsProgress = lessons.map((lesson) => ({
-              lesson: lesson._id,
+              lessonId: lesson._id,
               isDone: faker.datatype.boolean(),
               lastPlayedVideoTime: faker.number.int({
                 min: 0,

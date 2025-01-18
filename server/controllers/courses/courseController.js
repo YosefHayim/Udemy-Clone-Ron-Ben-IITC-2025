@@ -291,36 +291,39 @@ const updateCourseProgressById = catchAsync(async (req, res, next) => {
     return next(createError("User data or courses bought not found.", 400));
   }
 
-  if (!req.user.coursesProgress) {
-    return next(createError("Courses progress not found.", 400));
-  }
-
-  // Check if the user has bought the course
-  if (!req.user.coursesBought.some((course) => course.course === courseId)) {
+  // Convert courseId to string and check if the user has bought the course
+  if (
+    !req.user.coursesBought.some(
+      (course) => course.course.toString() === courseId
+    )
+  ) {
     return next(
       createError("This course is not included in the courses you bought.", 400)
     );
   }
 
-  // Find the course in the user's progress
+  // Find the course progress for the specified courseId
   const courseProgress = req.user.coursesProgress.find(
     (progress) => progress.course.toString() === courseId
   );
 
   if (!courseProgress) {
     return next(
-      createError("This course is not included in the courses progress.", 400)
+      createError("This course progress was not found for the user.", 400)
     );
   }
 
-  // Find the lesson in the course progress
+  // Find the lesson progress for the specified lessonId
   const lessonProgress = courseProgress.lessons.find(
     (lesson) => lesson.lesson.toString() === lessonId
   );
 
   if (!lessonProgress) {
     return next(
-      createError("This lesson is not found in the course progress.", 400)
+      createError(
+        "This lesson progress was not found in the course progress.",
+        400
+      )
     );
   }
 
@@ -330,7 +333,7 @@ const updateCourseProgressById = catchAsync(async (req, res, next) => {
     lessonProgress.lastPlayedVideoTime = lastPlayedVideoTime;
   }
 
-  // Save the user's updated progress
+  // Save the updated user data
   await req.user.save();
 
   res.status(200).json({
