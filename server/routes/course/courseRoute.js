@@ -9,6 +9,7 @@ const {
   getCourseProsById,
   getCourseInfoForCart,
   viewCourseById,
+  updateCourseProgressById,
 } = require("../../controllers/courses/courseController");
 const {
   grantedAccess,
@@ -24,11 +25,11 @@ router.param("id", (req, res, next, val) => {
 // Get all courses and filter by user queries
 router.get("/", getAllCourses);
 
-// Get course by specific course id
-router.get("/:id", getCourseById);
-
 // view course by course id if it is part of the courses you bought
 router.get("/:courseId", grantedAccess, viewCourseById);
+
+// Get course by specific course id
+router.get("/:id", getCourseById);
 
 // Get cart course info by course id
 router.get("/cartInfo/:id", getCourseInfoForCart);
@@ -44,6 +45,8 @@ router.post("/", grantedAccess, createCourse);
 
 // Update course information by course id
 router.put("/:id", grantedAccess, updateCourse);
+
+router.patch("/:id", grantedAccess, updateCourseProgressById);
 
 // Delete course by course id
 router.delete("/:id", grantedAccess, deleteCourse);

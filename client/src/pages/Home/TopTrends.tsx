@@ -1,4 +1,4 @@
-// import React from "react";
+//
 import trendsReportImage from "/images/toptrends2.png";
 const TrendsReport = () => {
   return (

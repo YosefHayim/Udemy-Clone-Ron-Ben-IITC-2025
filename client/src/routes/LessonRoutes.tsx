@@ -24,7 +24,12 @@ const LessonRoutes: React.FC = () => {
   // Fetch course data dynamically using courseId
   const { data, isLoading, error } = useQuery({
     queryKey: ["course", courseId],
-    queryFn: () => fetchCourseById(courseId),
+    queryFn: () => {
+      if (!courseId) {
+        throw new Error("Course ID is undefined");
+      }
+      return fetchCourseById(courseId);
+    },
     enabled: !!courseId,
   });
 
@@ -38,7 +43,6 @@ const LessonRoutes: React.FC = () => {
 
   const courseData = data.data;
   console.log(courseData);
-  
 
   // Define valid paths for lesson tabs
   const validPaths = [

@@ -2,11 +2,13 @@ import signup from "/images/signup.png";
 import { useNavigate } from "react-router-dom";
 import registerUser from "@/api/users/registerUser";
 import { useMutation } from "@tanstack/react-query";
+import { RegisterUserPayload } from "@/types/types";
 
-const SignUp = () => {
+const SignUp: React.FC = () => {
+  document.title = "Sign Up and Start Learning | Udemy";
   const navigate = useNavigate();
 
-  const mutation = useMutation({
+  const mutation = useMutation<unknown, Error, RegisterUserPayload>({
     mutationFn: registerUser,
     onSuccess: (data) => {
       console.log(data);
@@ -17,14 +19,14 @@ const SignUp = () => {
     },
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const form = e.target;
+    const form = e.currentTarget;
     const formData = new FormData(form);
-    const fullName = formData.get("fullName");
-    const email = formData.get("email");
-    const password = formData.get("password");
+    const fullName = formData.get("fullName") as string | undefined;
+    const email = formData.get("email") as string | undefined;
+    const password = formData.get("password") as string | undefined;
 
     mutation.mutate({ fullName, email, password });
   };

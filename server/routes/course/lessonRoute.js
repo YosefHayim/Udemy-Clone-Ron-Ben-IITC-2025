@@ -26,6 +26,8 @@ router.get("/:id", getLessonById);
 // Create lesson
 router.post("/", createLesson);
 
+// mark lesson as done and update last time seconds view of lesson
+
 // Update lesson by id
 router.put("/:id", updateLessonById);
 

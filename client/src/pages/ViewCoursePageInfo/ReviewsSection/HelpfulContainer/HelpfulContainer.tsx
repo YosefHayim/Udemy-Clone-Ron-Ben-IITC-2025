@@ -6,7 +6,7 @@ import { BiDislike, BiLike } from "react-icons/bi";
 import { BiSolidDislike } from "react-icons/bi";
 import { BiSolidLike } from "react-icons/bi";
 
-const HelpfulContainer = ({ idOfReview }) => {
+const HelpfulContainer: React.FC<{ idOfReview: string }> = ({ idOfReview }) => {
   const [isClickedLike, setClickedLike] = useState(false);
   const [isDisLike, setDisLike] = useState(false);
 
@@ -20,7 +20,7 @@ const HelpfulContainer = ({ idOfReview }) => {
     }
   }, [idOfReview]);
 
-  const saveStateToLocalStorage = (liked, disliked) => {
+  const saveStateToLocalStorage = (liked: boolean, disliked: boolean) => {
     localStorage.setItem(
       `review-${idOfReview}`,
       JSON.stringify({ liked, disliked })

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
@@ -13,23 +13,30 @@ import {
   setProfilePic,
   setRole,
 } from "@/redux/slices/userSlice";
+import { DecodedTokenProps, FormErrors } from "@/types/types";
+import googleRedirectUrl from "@/api/users/googleRedirectUrl";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [formErrors, setFormErrors] = useState({});
+  const cookie = Cookies.get("cookie")?.toString();
+  const [formErrors, setFormErrors] = useState<FormErrors>({
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: () => {
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     },
     onError: (error) => {
       console.error(error);
       setFormErrors({
-        general:
-          error.response?.data?.message || "Something went wrong. Try again.",
+        general: error.message || "Something went wrong. Try again.",
       });
     },
   });
@@ -41,7 +48,7 @@ const Login = () => {
     return errors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
@@ -49,26 +56,38 @@ const Login = () => {
       return;
     }
     setFormErrors({});
-    const form = e.target;
-    const formData = new FormData(form);
-    const email = formData.get("email");
-    const password = formData.get("password");
-
     mutation.mutate({ email, password });
   };
 
-  const cookie = Cookies.get("cookie")?.toString();
-  if (cookie) {
-    console.log(cookie);
-    const decoded = jwtDecode(cookie);
-    console.log(decoded);
-    dispatch(setFullName(decoded.fullName));
-    dispatch(setProfilePic(decoded.profilePic));
-    dispatch(setEmailAddress(decoded.email));
-    dispatch(setBio(decoded.bio));
-    dispatch(setRole(decoded.role));
-    dispatch(setCoursesBought(decoded.coursesBought));
-  }
+  useEffect(() => {
+    if (cookie) {
+      const decoded = jwtDecode<DecodedTokenProps>(cookie);
+      dispatch(setFullName(decoded.fullName));
+      dispatch(setProfilePic(decoded.profilePic));
+      dispatch(setEmailAddress(decoded.email));
+      dispatch(setBio(decoded.bio));
+      dispatch(setRole(decoded.role));
+      dispatch(setCoursesBought(decoded.coursesBought));
+    }
+  }, [cookie]);
+
+  const googleMutation = useMutation({
+    mutationFn: googleRedirectUrl,
+    onSuccess: (redirectUrl) => {
+      if (redirectUrl) {
+        window.location.href = redirectUrl;
+      } else {
+        console.error("Redirect URL not found.");
+      }
+    },
+    onError: (error) => {
+      console.error("Error during Google Redirect:", error);
+    },
+  });
+
+  const handleGoogle = () => {
+    googleMutation.mutate();
+  };
 
   return (
     <div className="flex h-screen">
@@ -135,16 +154,30 @@ const Login = () => {
               type="submit"
               className={`w-full py-2 rounded-md ${
                 mutation.isLoading
-                  ? "bg-gray-400"
+                  ? "bg-gray-400 cursor-not-allowed"
                   : "bg-purple-600 hover:bg-purple-700"
               } text-white transition`}
               disabled={mutation.isLoading}
             >
-              {mutation.isLoading ? "Logging in..." : "Continue with email"}
+              {mutation.isLoading ? (
+                <span className="spinner" />
+              ) : (
+                "Continue with email"
+              )}
             </button>
+            <div className="">
+              <button
+                className="bg-pink-400 p-[1em] hover:bg-purple-200"
+                onClick={handleGoogle}
+              >
+                Login with google
+              </button>
+            </div>
 
             {formErrors.general && (
-              <p className="text-red-500 text-sm mt-2">{formErrors.general}</p>
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative">
+                {formErrors.general}
+              </div>
             )}
           </form>
         </div>

@@ -1,6 +1,6 @@
 import courseImg from "/images/more-courses-by-instructor.png";
 
-const CourseImg = () => {
+const CourseImg: React.FC = () => {
   return (
     <div>
       <img src={courseImg} alt="" className="h-[10em]" />

@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const urlRegex = /^(http|https):\/\/[^ "]+$/;
+
 const lessonSchema = new mongoose.Schema(
   {
     section: {
@@ -64,14 +66,6 @@ const lessonSchema = new mongoose.Schema(
         },
       },
     ],
-    isDone: {
-      type: Boolean,
-      default: false,
-    },
-    lastPlayedVideoTimePlayed: {
-      type: Number,
-      default: 0,
-    },
   },
   { timestamps: true }
 );

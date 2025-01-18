@@ -1,6 +1,9 @@
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
-const PaginationPages = ({ currentPage, setCurrentPage }) => {
+const PaginationPages: React.FC<{
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+}> = ({ currentPage, setCurrentPage }) => {
   const handleNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
   const handlePreviousPage = () =>
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));

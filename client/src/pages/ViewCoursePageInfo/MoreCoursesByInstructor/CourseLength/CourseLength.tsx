@@ -1,9 +1,13 @@
 import { LuDot } from "react-icons/lu";
 
-const CourseLength = ({
+const CourseLength: React.FC<{
+  courseLevel?: string;
+  totalLectures?: string;
+  totalMinutes?: number;
+}> = ({
   courseLevel = "All Levels",
   totalLectures = "14 lectures",
-  totalMinutes = 60, // Pass total duration in minutes as a prop
+  totalMinutes = 60,
 }) => {
   const totalHours =
     totalMinutes >= 60

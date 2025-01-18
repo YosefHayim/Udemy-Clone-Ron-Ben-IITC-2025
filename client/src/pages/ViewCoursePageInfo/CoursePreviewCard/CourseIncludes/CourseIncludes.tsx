@@ -3,7 +3,7 @@ import { IoIosInfinite } from "react-icons/io";
 import { IoTrophyOutline } from "react-icons/io5";
 import { MdOutlineOndemandVideo } from "react-icons/md";
 
-const CourseIncludes = () => {
+const CourseIncludes: React.FC = () => {
   return (
     <div className="mb-[0.5em]">
       <h2 className="font-bold mb-[0.5em]">This course includes:</h2>

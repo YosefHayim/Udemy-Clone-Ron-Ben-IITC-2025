@@ -1,4 +1,4 @@
-const InstructorProfession = () => {
+const InstructorProfession: React.FC = () => {
   return (
     <div>
       <p>Electronics Engineer, Electronics at its best</p>

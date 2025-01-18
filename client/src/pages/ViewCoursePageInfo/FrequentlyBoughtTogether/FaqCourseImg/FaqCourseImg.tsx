@@ -1,6 +1,6 @@
 import frequentlyBoughtImg from "/images/frequently-bought-course.png";
 
-const FaqCourseImg = () => {
+const FaqCourseImg: React.FC = () => {
   return (
     <div>
       <img

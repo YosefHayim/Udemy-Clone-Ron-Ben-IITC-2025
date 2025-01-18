@@ -28,7 +28,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
         isTyping ? "block" : "hidden"
       } absolute top-[8%] left-[13%] z-[1000] w-[700px] border border-gray-100 bg-white `}
     >
-      {data.response.slice(0, 13).map((result, index) => (
+      {data.response?.slice(0, 13).map((result, index: number) => (
         <div key={result._id}>
           {index < 9 ? (
             <SearchResultRow

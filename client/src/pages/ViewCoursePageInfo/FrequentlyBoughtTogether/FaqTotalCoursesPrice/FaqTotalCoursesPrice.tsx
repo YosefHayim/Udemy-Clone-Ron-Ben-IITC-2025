@@ -1,6 +1,6 @@
 import AddToCart from "@/pages/Search/CourseHoverCardInfo/InteractionBtns/AddToCart/AddToCart";
 
-const FaqTotalCoursesPrice = () => {
+const FaqTotalCoursesPrice: React.FC = () => {
   return (
     <div className="flex flex-row ml-[0.7em] justify-between items-center">
       <div className="flex flex-row">

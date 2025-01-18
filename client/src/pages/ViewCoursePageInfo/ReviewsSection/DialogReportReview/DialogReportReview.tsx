@@ -11,26 +11,26 @@ import { Input } from "@/components/ui/input";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 
-const DialogReportReview = ({
-  reviewId,
-  isOpenReportDrawer,
-  setReportDrawer,
-  userId,
-}) => {
+const DialogReportReview: React.FC<{
+  reviewId: string;
+  isOpenReportDrawer?: boolean;
+  setReportDrawer?: boolean;
+  userId?: string;
+}> = ({ reviewId, isOpenReportDrawer, setReportDrawer, userId }) => {
   if (!reviewId) {
     return <div>No review selected to report.</div>;
   }
 
-  const [isClicked, setIsClicked] = useState(false);
-  const [isSubmit, setSubmit] = useState(false);
+  const [isClicked, setIsClicked] = useState<boolean | null>(false);
+  const [isSubmit, setSubmit] = useState<boolean | null>(false);
 
   const handleClickSubmit = () => {
     setIsClicked((prev) => !prev);
   };
 
-  const handleSubmitReport = (e) => {
+  const handleSubmitReport = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const formData = new FormData(e.currentTarget);
     const issueType = String(formData.get("issue-type"));
     const issueDetails = String(formData.get("issue-details"));
 

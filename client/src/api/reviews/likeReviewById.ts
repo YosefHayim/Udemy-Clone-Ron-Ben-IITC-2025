@@ -1,6 +1,8 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import { axiosClient, localhostUrl } from "../configuration";
 
-export const likeReviewById = async (idOfReview: unknown) => {
+type fn = (idOfReview: string) => Promise<any>;
+
+export const likeReviewById: fn = async (idOfReview: string) => {
   if (!idOfReview || typeof idOfReview !== "string") {
     console.error(`Invalid reviewId: ${idOfReview}`);
     return;

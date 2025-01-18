@@ -2,7 +2,7 @@ import Filter from "@/components/Filter/Filter";
 import { videoDurations } from "@/utils/videoDuration";
 import { useState } from "react";
 
-const VideosDurations = () => {
+const VideosDurations: React.FC = () => {
   const [display, setDisplay] = useState<boolean>(true);
 
   return (

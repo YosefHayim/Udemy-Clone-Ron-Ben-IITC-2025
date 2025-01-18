@@ -1,16 +1,20 @@
 import { useSidebar } from "@/components/ui/sidebar";
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent } from "@/components/ui/sidebar";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+} from "@/components/ui/sidebar";
 import { CourseSidebarMenu } from "./CourseSliderBarMenu";
-import CustomTrigger from "../Lesson/CustomTrigger";
 import { fetchCourseById } from "@/services/courseService";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export function AppSidebar() {
+export const AppSidebar: React.FC = () => {
   const [courseData, setCourseData] = useState<any>(null);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState<boolean | null>(false);
   const { toggleSidebar, open } = useSidebar();
-  const { courseId } = useParams<{ courseId: string }>(); // Retrieve courseId from the URL
+  let { courseId } = useParams<{ courseId: string | undefined }>(); // Retrieve courseId from the URL
 
   // Handle screen size changes
   useEffect(() => {
@@ -38,7 +42,7 @@ export function AppSidebar() {
           return;
         }
 
-        const data = await fetchCourseById(courseId);
+        const data = await fetchCourseById((courseId = ""));
         setCourseData(data.data);
       } catch (error) {
         console.error("Failed to fetch course data.", error);
@@ -57,7 +61,10 @@ export function AppSidebar() {
         <SidebarContent>
           <SidebarGroup className="p-0">
             <SidebarGroupContent>
-              <CourseSidebarMenu sections={courseData.sections} courseId={courseId} />
+              <CourseSidebarMenu
+                sections={courseData.sections}
+                courseId={courseId}
+              />
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
@@ -66,4 +73,4 @@ export function AppSidebar() {
       {/* Centered Trigger */}
     </>
   );
-}
+};

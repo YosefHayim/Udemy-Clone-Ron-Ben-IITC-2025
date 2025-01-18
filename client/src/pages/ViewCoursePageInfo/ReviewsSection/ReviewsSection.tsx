@@ -4,7 +4,11 @@ import UserCourseReview from "./UserCourseReview/UserCourseReview";
 import { useState } from "react";
 import DialogOfAllReviews from "./UserCourseReview/DialogOfAllReviews/DialogOfAllReviews";
 
-const ReviewsSection = ({ totalRated, avgRating, reviewsToRender }) => {
+const ReviewsSection: React.FC<{
+  totalRated: number;
+  avgRating: number;
+  reviewsToRender: string[];
+}> = ({ totalRated, avgRating, reviewsToRender }) => {
   const [isClicked, setClicked] = useState(false);
 
   const handleClick = () => {

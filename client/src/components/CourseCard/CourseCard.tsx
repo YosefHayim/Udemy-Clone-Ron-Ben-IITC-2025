@@ -1,19 +1,4 @@
-
-// import CourseInstructor from "@/components/CourseCard/CourseInstructor/CourseInstructor";
-// import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
-// import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
-// import CourseImg from "./CourseImg/CourseImg";
-
-import React from "react";
-
-interface CourseCardProps {
-  title: string;
-  image: string;
-  description: string;
-  fullPrice: string;
-  discountPrice: string;
-  tag: string;
-}
+import { CourseCardProps } from "@/types/types";
 
 const CourseCard: React.FC<CourseCardProps> = ({
   title,
@@ -44,4 +29,3 @@ const CourseCard: React.FC<CourseCardProps> = ({
 };
 
 export default CourseCard;
-

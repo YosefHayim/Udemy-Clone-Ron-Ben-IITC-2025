@@ -1,18 +1,21 @@
 import { Button } from "@/components/ui/button";
+import { RootState } from "@/redux";
 import { useEffect } from "react";
 import { BsFire } from "react-icons/bs";
 import { IoMdLock } from "react-icons/io";
 import { useSelector } from "react-redux";
 
-const Checkout = () => {
+const Checkout: React.FC = () => {
   const totalToPay = useSelector(
-    (state) => state.cart.totalCourseDiscountPrices
+    (state: RootState) => state.cart.totalCourseDiscountPrices
   );
 
-  const totalCourses = useSelector((state) => state.cart.amountOfCourses);
+  const totalCourses = useSelector(
+    (state: RootState) => state.cart.amountOfCourses
+  );
 
   const originalPrice = useSelector(
-    (state) => state.cart.totalCoursesOriginalPrices
+    (state: RootState) => state.cart.totalCoursesOriginalPrices
   );
 
   useEffect(() => {}, [originalPrice, totalCourses, totalToPay]);

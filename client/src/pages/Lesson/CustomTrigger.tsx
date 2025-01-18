@@ -1,5 +1,9 @@
-import React from "react";
-import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipProvider,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
 import { FaTimes, FaArrowRight } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 

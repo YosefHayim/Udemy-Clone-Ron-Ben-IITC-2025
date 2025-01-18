@@ -5,7 +5,7 @@ const cartSlice = createSlice({
   initialState: {
     isShowCart: false,
     amountOfCourses: 0,
-    coursesAddedToCart: [],
+    coursesAddedToCart: [] as string[],
     totalCourseDiscountPrices: 0,
     totalCoursesOriginalPrices: 0,
     totalSavings: 0, // Total amount saved

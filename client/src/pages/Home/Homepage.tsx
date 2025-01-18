@@ -10,11 +10,8 @@ import TrendingNow from "./TrendingNow";
 import Carousel from "./Carousel";
 import Sections from "./Sections";
 import Menu from "@/components/Menu/Menu";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/index"; // Import RootState type for Redux
 import Welcome from "@/components/LoggedInHome/Welcome";
-import TeamAcess from "./TeamAcess";
-import DropdownMenu from "@/components/DropDownMenu";
+import DropdownMenu from "@/components/Navbar/DropDownMenu/DropDownMenu";
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
@@ -26,13 +23,15 @@ import {
   setRole,
 } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
+import { DecodedTokenProps } from "@/types/types";
+import TeamAccess from "./TeamAcess";
 
 const Homepage = () => {
   const dispatch = useDispatch();
 
   const cookie = Cookies.get("cookie");
   if (cookie) {
-    const decoded = jwtDecode(cookie);
+    const decoded = jwtDecode<DecodedTokenProps>(cookie);
     dispatch(setFullName(decoded.fullName));
     dispatch(setProfilePic(decoded.profilePic));
     dispatch(setEmailAddress(decoded.email));
@@ -68,7 +67,7 @@ const Homepage = () => {
             <Welcome />
             <Banner />
             <CoursesCarousel />
-            <TeamAcess />
+            <TeamAccess />
             {/* <CoursesCarousel /> */}
           </div>
         </>

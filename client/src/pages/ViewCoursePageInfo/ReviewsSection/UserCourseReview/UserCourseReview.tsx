@@ -5,16 +5,20 @@ import UserReviewRating from "./UserReviewRating/UserReviewRating";
 import UserProfile from "./UserProfile/UserProfile";
 import { useState } from "react";
 import DialogReportReview from "../DialogReportReview/DialogReportReview";
+import { Review } from "@/types/types";
 
-const UserCourseReview = ({ review, widthOfReview = "w-[300px]" }) => {
+const UserCourseReview: React.FC<{
+  review?: Review;
+  widthOfReview?: string;
+}> = ({ review, widthOfReview = "w-[300px]" }) => {
   if (!review) {
     return;
   }
 
-  const [activeReviewId, setActiveReviewId] = useState(null);
-  const [isOpenReportDrawer, setReportDrawer] = useState(null);
+  const [activeReviewId, setActiveReviewId] = useState<string | null>(null);
+  const [isOpenReportDrawer, setReportDrawer] = useState<boolean | null>(null);
 
-  const handleToggle = (id) => {
+  const handleToggle = (id: string) => {
     // Toggle the clicked review or close if it's already active
     setActiveReviewId((prevId) => (prevId === id ? null : id));
   };

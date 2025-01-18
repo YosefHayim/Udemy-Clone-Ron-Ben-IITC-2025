@@ -3,12 +3,19 @@ import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 import SectionName from "./SectionName/SectionName";
 import SectionDuration from "./SectionDuration/SectionDuration";
 import Lesson from "../Lesson/Lesson";
+import { LessonProps } from "@/types/types";
 
-const Section = ({ lessonsOfSection, sectionName }) => {
+const Section: React.FC<{
+  lessonsOfSection: LessonProps[];
+  sectionName: string;
+}> = ({ lessonsOfSection, sectionName }) => {
   const [isClicked, setClicked] = useState(false);
 
   const totalDuration =
-    lessonsOfSection?.reduce((sum, lesson) => sum + lesson.duration, 0) || 0;
+    lessonsOfSection?.reduce(
+      (sum, lesson) => sum + (lesson.duration || 0),
+      0
+    ) || 0;
 
   return (
     <div>
@@ -24,7 +31,10 @@ const Section = ({ lessonsOfSection, sectionName }) => {
           <MdOutlineKeyboardArrowUp />
         </div>
         <SectionName name={sectionName} />
-        <SectionDuration duration={totalDuration} />
+        <SectionDuration
+          duration={totalDuration}
+          totalLessons={lessonsOfSection.length}
+        />
       </div>
 
       <div className={isClicked ? "hidden" : "block w-[550px]"}>
@@ -32,9 +42,9 @@ const Section = ({ lessonsOfSection, sectionName }) => {
           lessonsOfSection.map((lesson, index) => (
             <Lesson
               key={lesson._id}
-              title={lesson.title}
-              videoUrl={lesson.videoUrl}
-              duration={lesson.duration}
+              title={lesson.title || ""}
+              videoUrl={lesson.videoUrl || ""}
+              duration={lesson.duration || 0}
               isQuizzLesson={index === lessonsOfSection.length - 1} // Example: Make last one a quiz
             />
           ))

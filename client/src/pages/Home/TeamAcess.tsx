@@ -1,6 +1,4 @@
-import React from "react";
-
-const TeamAcess = () => {
+const TeamAccess = () => {
   return (
     <div className="bg-[#1c1d1f] text-white p-4 rounded-md flex justify-between items-center mt-24 mb-20 mx-10">
       <p className="text-sm md:text-base">
@@ -19,4 +17,4 @@ const TeamAcess = () => {
   );
 };
 
-export default TeamAcess;
+export default TeamAccess;

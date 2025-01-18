@@ -1,6 +1,6 @@
 import { IoPeople } from "react-icons/io5";
 
-const StudentsEnroll = () => {
+const StudentsEnroll: React.FC = () => {
   return (
     <div className="flex flex-row gap-[0.5em] items-center">
       <IoPeople />

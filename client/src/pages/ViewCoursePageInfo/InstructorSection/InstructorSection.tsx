@@ -3,11 +3,11 @@ import InstructorName from "./InstructorName/InstructorName";
 import InstructorProfession from "./InstructorProfession/InstructorProfession";
 import InstructorDescription from "./InstructorDescription/InstructorDescription";
 
-const InstructorSection = ({
-  instructorImg,
-  instructorName,
-  descriptionInstructor,
-}) => {
+const InstructorSection: React.FC<{
+  instructorImg: string;
+  instructorName: string;
+  descriptionInstructor: string;
+}> = ({ instructorImg, instructorName, descriptionInstructor }) => {
   return (
     <div className="flex flex-col items-start justify-start gap-[1em]">
       <div>

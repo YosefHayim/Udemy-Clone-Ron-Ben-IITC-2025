@@ -1,4 +1,5 @@
-const Logout = () => {
+const Logout: React.FC = () => {
+  document.title = "udemy.com/logout/";
   return <div>Logout</div>;
 };
 

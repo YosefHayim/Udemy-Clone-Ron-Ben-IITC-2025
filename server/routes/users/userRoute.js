@@ -19,6 +19,10 @@ const {
 const {
   grantedAccess,
 } = require("../../controllers/authorization/authController");
+const { OAuth2Client } = require("google-auth-library");
+const getUserData = require("../../utils/loginViaGoogle");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const router = express.Router();
 
@@ -55,8 +59,53 @@ router.post(
   resendEmailVerificationToken
 );
 
-// login
+// login regular
 router.post("/auth/login", login);
+
+// generate url for google
+router.post("/auth/google/", (req, res, next) => {
+  const redirectUrl = "http://localhost:5137/oauth/callback";
+
+  const oAuth2Client = new OAuth2Client(
+    process.env.CLIENT_ID,
+    process.env.CLIENT_SECRET,
+    redirectUrl
+  );
+
+  const authorizeUrl = oAuth2Client.generateAuthUrl({
+    access_type: "offline",
+    scope: "https://www.googleapis.com/auth/userinfo.profile openid",
+    prompt: "consent",
+  });
+
+  res.status(201).json({
+    url: authorizeUrl,
+  });
+});
+
+// get token info of the user login with google
+router.post("/oauth/callback", async (req, res) => {
+  const { code } = req.body;
+
+  const oAuth2Client = new OAuth2Client(
+    process.env.CLIENT_ID,
+    process.env.CLIENT_SECRET,
+    "http://localhost:5137/api/user/oauth/callback"
+  );
+
+  try {
+    const { tokens } = await oAuth2Client.getToken(code);
+    oAuth2Client.setCredentials(tokens);
+
+    // Retrieve user info
+    const userInfo = await getUserData(tokens.access_token);
+
+    res.status(200).json({ tokens, user: userInfo });
+  } catch (error) {
+    console.error("Token exchange error:", error);
+    res.status(500).json({ error: "Failed to authenticate" });
+  }
+});
 
 // logout and clear cookie
 router.post("/logout", grantedAccess, logout);

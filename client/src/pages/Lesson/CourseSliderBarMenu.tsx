@@ -33,7 +33,13 @@ interface Section {
   lessons: Lesson[];
 }
 
-export function CourseSidebarMenu({ sections, courseId }: { sections: Section[]; courseId: string }) {
+export function CourseSidebarMenu({
+  sections,
+  courseId,
+}: {
+  sections: Section[];
+  courseId: string;
+}) {
   const { toggleSidebar, open } = useSidebar();
 
   // State to track completed lessons

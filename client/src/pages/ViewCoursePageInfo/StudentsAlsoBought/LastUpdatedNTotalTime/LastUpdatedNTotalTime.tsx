@@ -1,6 +1,6 @@
 import { LuDot } from "react-icons/lu";
 
-const LastUpdatedNTotalTime = () => {
+const LastUpdatedNTotalTime: React.FC = () => {
   return (
     <div className="flex items-center gap-[0.2em]">
       <p className="font-bold text-[#1e6055]">18 total hours</p>

@@ -1,4 +1,4 @@
-const DefaultVisa = () => {
+const DefaultVisa: React.FC = () => {
   return (
     <div className="flex flex-row items-start justify-around gap-[0.5em] w-full">
       <div className="flex flex-col items-start justify-start gap-[0.5em]">

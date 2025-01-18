@@ -10,21 +10,31 @@ import { useQuery } from "@tanstack/react-query";
 import { LuDot } from "react-icons/lu";
 import { useParams } from "react-router-dom";
 import UserCourseReview from "@/pages/ViewCoursePageInfo/ReviewsSection/UserCourseReview/UserCourseReview";
-import { MdOutlineStarPurple500, MdSearch, MdStar } from "react-icons/md";
+import { MdSearch, MdStar } from "react-icons/md";
 import Loader from "@/components/Loader/Loader";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Review } from "@/types/types";
 
-const DialogOfAllReviews = ({ avgRating, isClicked, setClicked }) => {
+const DialogOfAllReviews: React.FC<{
+  avgRating: string;
+  isClicked: boolean;
+  setClicked: (value: boolean) => void;
+}> = ({ avgRating, isClicked, setClicked }) => {
   const params = useParams();
-  const courseId = params.courseId;
-  const [limit] = useState(13); // Keep limit fixed at 13
-  const [page, setPage] = useState(1); // Initialize page state
+  const courseId: string | undefined = params.courseId;
+  const [limit, setLimit] = useState<number>(13);
+  const [page, setPage] = useState<number>(1);
 
-  const { data, isLoading, error, refetch } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["reviews", courseId],
-    queryFn: () => getAllReviewsByCourseId(courseId),
+    queryFn: () => {
+      if (!courseId) {
+        throw new Error("Course ID is undefined");
+      }
+      return getAllReviewsByCourseId(courseId);
+    },
     enabled: isClicked, // Prevent fetching until dialog is opened
   });
 
@@ -49,7 +59,7 @@ const DialogOfAllReviews = ({ avgRating, isClicked, setClicked }) => {
               </div>
             </DialogTitle>
             <DialogDescription>
-              {isLoading && <Loader />}
+              {isLoading && <Loader hSize="" useSmallLoading={false} />}
               {error && (
                 <div className="text-red-500">
                   Error loading reviews. Please try again later.
@@ -72,7 +82,7 @@ const DialogOfAllReviews = ({ avgRating, isClicked, setClicked }) => {
                     </form>
                   </div>
                   <div className="overflow-y-auto h-[650px] w-2/3">
-                    {data.map((review) => (
+                    {data.map((review: Review) => (
                       <UserCourseReview
                         review={review}
                         key={review._id}

@@ -6,9 +6,9 @@ import SearchResults from "../SearchResults/SearchResults";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const SearchInput = () => {
-  const [isTyping, setIsTyping] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedTerm, setDebouncedTerm] = useState("");
+  const [isTyping, setIsTyping] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState<string | undefined>("");
+  const [debouncedTerm, setDebouncedTerm] = useState<string | undefined>("");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,7 +37,7 @@ const SearchInput = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (searchTerm.trim().length > 0) {
+    if (searchTerm || "".trim().length > 0) {
       navigate(`/courses/search?src=ukw&q=${searchTerm}`);
       setIsTyping(false);
     }
@@ -51,14 +51,23 @@ const SearchInput = () => {
   const limit = 13;
   const page = 1;
 
-  const { data, isLoading, error } = useQuery({
+  const { data, error } = useQuery({
     queryKey: ["courses", searchTerm, page],
-    queryFn: () => getAllCourses(searchTerm, limit, page), // Ensure correct page and limit
+    queryFn: () => {
+      if (!searchTerm) {
+        throw new Error("Course ID is undefined");
+      }
+      return getAllCourses(searchTerm, limit, page);
+    },
     enabled: !!searchTerm,
   });
 
+  if (error) {
+    return <div>Error occurred</div>;
+  }
+
   return (
-    <div className="flex items-center border border-gray-700 rounded-full overflow-hidden w-1/2 h-12 px-3 py-2 bg-gray-50 z-[1800]">
+    <div className="flex items-center border border-gray-700 rounded-full overflow-hidden w-1/2 h-[3rem] bg-gray-50 z-[1800] ">
       <MdOutlineSearch
         className={`w-6 h-6 ${
           isTyping ? "text-gray-900" : "text-gray-400 opacity-200"

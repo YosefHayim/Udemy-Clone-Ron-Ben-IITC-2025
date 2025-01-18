@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: supportedCountries,
       required: [
-        true,
+        false,
         `Must provide a country to a user from the provided list: ${supportedCountries}`,
       ],
     },
@@ -120,6 +120,26 @@ const userSchema = new mongoose.Schema(
     payments: [{ type: mongoose.Schema.ObjectId, ref: "Payment" }],
     certificatesEarned: [
       { type: mongoose.Schema.ObjectId, ref: "Certificate" },
+    ],
+    coursesProgress: [
+      {
+        course: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Course",
+          required: [true, "Progress must be linked to a course."],
+        },
+        lessons: [
+          {
+            lessonId: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "Lesson",
+              required: [true, "Progress must specify a lesson."],
+            },
+            isDone: { type: Boolean, default: false }, // User-specific
+            lastPlayedVideoTime: { type: Number, default: 0 }, // User-specific
+          },
+        ],
+      },
     ],
   },
   { timestamps: true }

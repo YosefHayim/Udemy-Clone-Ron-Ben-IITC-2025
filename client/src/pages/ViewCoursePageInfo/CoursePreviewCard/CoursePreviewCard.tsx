@@ -10,25 +10,29 @@ import AddCartNBuyBtn from "./AddCartNBuyBtn/AddCartNBuyBtn";
 import { useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
 import { AiFillInfoCircle } from "react-icons/ai";
+import { RootState } from "@/redux";
+import { CoursePreviewCardProps } from "@/types/types";
 
-const CoursePreviewCard = ({
+const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
   courseImg,
-  discountPrice,
+  coursePrice,
   fullPrice,
   courseId,
 }) => {
   const [isFixed, setIsFixed] = useState(false);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
 
-  const coursesBought = useSelector((state) => state.cart.coursesBought);
+  const coursesBought = useSelector(
+    (state: RootState) => state.user.coursesBought
+  );
 
   useEffect(() => {
-    if (Array.isArray(coursesInCart)) {
-      setIsAddedToCart(coursesInCart.includes(courseId));
+    if (Array.isArray(coursesBought)) {
+      setIsAddedToCart(coursesBought.includes(courseId));
     } else {
-      setIsAddedToCart(coursesInCart === courseId);
+      setIsAddedToCart(coursesBought === courseId);
     }
-  }, [coursesInCart, courseId]);
+  }, [coursesBought, courseId]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,7 +62,8 @@ const CoursePreviewCard = ({
       <div className="p-[1.5em]">
         <div className={isAddedToCart ? "hidden" : "block"}>
           <CoursePrice
-            discountPrice={discountPrice}
+            showFullPrice={true}
+            discountPrice={coursePrice}
             fullPrice={fullPrice}
             chooseFlex={"flex flex-row items-center"}
             discountPriceSize={"2em"}
@@ -81,7 +86,7 @@ const CoursePreviewCard = ({
             <TimeLeftBuyCourse />
             <AddCartNBuyBtn
               courseId={courseId}
-              discountPrice={discountPrice}
+              discountPrice={coursePrice}
               fullPrice={fullPrice}
             />
           </div>

@@ -1,5 +1,3 @@
-import React from "react";
-
 const LearningToolsTab: React.FC = () => {
   return (
     <div id="learning-tools" className="p-10">

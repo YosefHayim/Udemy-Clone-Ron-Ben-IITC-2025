@@ -1,4 +1,4 @@
-const InteractionBtns = () => {
+const InteractionBtns: React.FC = () => {
   return (
     <div className="flex flex-row justify-around  w-full mb-[1em]">
       <b className="underline">Share</b>

@@ -314,7 +314,11 @@ const joinCourseById = catchAsync(async (req, res, next) => {
     );
   }
 
-  const course = await Course.findById(courseId);
+  // Populate sections and their lessons
+  const course = await Course.findById(courseId).populate({
+    path: "sections",
+    populate: { path: "lessons -_id" },
+  });
 
   if (!course) {
     return next(createError(`No course exists with this ID: ${courseId}`, 404));
@@ -329,16 +333,32 @@ const joinCourseById = catchAsync(async (req, res, next) => {
     );
   }
 
-  if (user.coursesBought.includes(courseId)) {
+  if (user.coursesBought.some((bought) => bought.course === courseId)) {
     return next(createError("You have already joined this course.", 400));
   }
 
   // Add user to course enrollment
   course.totalStudentsEnrolled.students.push(user._id);
-  await course.save(); // `post('save')` will update the count automatically
+  await course.save();
 
   // Add course to user's purchased courses
-  user.coursesBought.push(courseId);
+  user.coursesBought.push({ course: courseId, boughtAt: new Date() });
+
+  // Initialize course progress
+  if (!user.coursesProgress) user.coursesProgress = [];
+
+  // Gather all lessons from the course sections
+  const lessons = course.sections.flatMap((section) => section.lessons);
+
+  user.coursesProgress.push({
+    course: courseId,
+    lessons: lessons.map((lesson) => ({
+      lesson: lesson._id,
+      isDone: false,
+      lastPlayedVideoTime: 0,
+    })),
+  });
+
   await user.save();
 
   res.status(201).json({

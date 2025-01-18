@@ -4,7 +4,10 @@ import {
   MdOutlineKeyboardArrowDown,
 } from "react-icons/md";
 
-const Description = ({ description, whoThisFor }) => {
+const Description: React.FC<{ description: string; whoThisFor: string[] }> = ({
+  description,
+  whoThisFor,
+}) => {
   const [isExpanded, setExpanded] = useState(true);
 
   const handleToggle = () => {
