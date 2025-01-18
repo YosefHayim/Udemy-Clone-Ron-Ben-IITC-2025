@@ -21,7 +21,7 @@ const slides = [
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [direction, setDirection] = useState(null); // Define a direção da animação
+  const [direction, setDirection] = useState(""); // Define a direção da animação
 
   const handlePrev = () => {
     setDirection("left"); // Novo slide vem da esquerda

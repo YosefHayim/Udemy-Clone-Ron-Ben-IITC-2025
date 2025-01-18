@@ -1,11 +1,11 @@
 import CourseRating from "@/pages/ViewCoursePageInfo/CourseRating/CourseRating";
 import { calculateTimeDifference } from "@/utils/whenCreated";
 
-const UserReviewRating = ({
-  reviewRating,
-  reviewUserName,
-  createCommentAt,
-}) => {
+const UserReviewRating: React.FC<{
+  reviewRating: number;
+  reviewUserName: string;
+  createCommentAt: Date;
+}> = ({ reviewRating, reviewUserName, createCommentAt }) => {
   return (
     <div>
       <b>{reviewUserName}</b>

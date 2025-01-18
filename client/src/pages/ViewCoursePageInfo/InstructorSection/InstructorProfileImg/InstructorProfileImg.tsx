@@ -1,6 +1,8 @@
 import InstructorRatings from "../InstructorRatings/InstructorRatings";
 
-const InstructorProfileImg = ({ instructorImg }) => {
+const InstructorProfileImg: React.FC<{ instructorImg: string }> = ({
+  instructorImg,
+}) => {
   return (
     <div className="flex flex-row items-center justify-start gap-[2em]">
       <div>

@@ -1,8 +1,8 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import notFoundImg from "/images/udemy-not-found.png";
 
 const NotFound: React.FC = () => {
+  document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
   return (
     <div className="flex flex-col items-center justify-center gap-[1em] p-[2em]">
       <div>

@@ -1,4 +1,4 @@
-const CourseRecap = ({ recapInfo }) => {
+const CourseRecap: React.FC<{ recapInfo: string }> = ({ recapInfo }) => {
   return (
     <div className="text-white z-10">
       <p>{recapInfo}</p>

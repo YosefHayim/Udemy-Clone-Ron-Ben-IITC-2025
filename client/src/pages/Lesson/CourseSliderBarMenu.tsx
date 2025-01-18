@@ -33,11 +33,19 @@ interface Section {
   lessons: Lesson[];
 }
 
-export function CourseSidebarMenu({ sections, courseId }: { sections: Section[]; courseId: string }) {
+export function CourseSidebarMenu({
+  sections,
+  courseId,
+}: {
+  sections: Section[];
+  courseId: string;
+}) {
   const { toggleSidebar, open } = useSidebar();
 
   // State to track completed lessons
-  const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
+  const [completedLessons, setCompletedLessons] = useState<
+    Record<string, boolean>
+  >({});
 
   const toggleLessonCompletion = (lessonId: string) => {
     setCompletedLessons((prev) => ({
@@ -52,7 +60,11 @@ export function CourseSidebarMenu({ sections, courseId }: { sections: Section[];
         <span className="text-sm">Course content</span>
         {open && (
           <div className="p-4 size">
-            <CustomTrigger open={open} toggleSidebar={toggleSidebar} position="insideSidebar" />
+            <CustomTrigger
+              open={open}
+              toggleSidebar={toggleSidebar}
+              position="insideSidebar"
+            />
           </div>
         )}
       </div>
@@ -65,7 +77,9 @@ export function CourseSidebarMenu({ sections, courseId }: { sections: Section[];
           <SidebarMenuItem>
             <CollapsibleTrigger asChild>
               <SidebarMenuButton className="overflow-visible font-bold focus:outline-none gap-0 pl-0 focus-visible:outline-none rounded-none">
-                <span className="whitespace-normal break-words">{section.title}</span>
+                <span className="whitespace-normal break-words">
+                  {section.title}
+                </span>
                 <FaChevronDown className="overflow-visible transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </SidebarMenuButton>
             </CollapsibleTrigger>
@@ -81,12 +95,16 @@ export function CourseSidebarMenu({ sections, courseId }: { sections: Section[];
                     <div className="flex items-center justify-between text-s hover:bg-slate-400 w-full">
                       <Checkbox
                         checked={!!completedLessons[lesson._id]}
-                        onCheckedChange={() => toggleLessonCompletion(lesson._id)}
+                        onCheckedChange={() =>
+                          toggleLessonCompletion(lesson._id)
+                        }
                         className="focus:outline-none focus-visible:outline-none hover:border-black border-2 rounded-none"
                       />
                       <SidebarMenuSubButton asChild>
-                        <Link to={`/course/${courseId}/lesson/${lesson._id}/overview`}>
-                        <MdOndemandVideo />. {lesson.duration}
+                        <Link
+                          to={`/course/${courseId}/lesson/${lesson._id}/overview`}
+                        >
+                          <MdOndemandVideo />. {lesson.duration}
                         </Link>
                       </SidebarMenuSubButton>
                     </div>

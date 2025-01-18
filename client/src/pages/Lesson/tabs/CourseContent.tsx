@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
 import { Checkbox } from "@/components/ui/checkbox";

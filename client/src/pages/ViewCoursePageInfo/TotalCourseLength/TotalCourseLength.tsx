@@ -1,8 +1,8 @@
-const TotalCourseLength = ({
-  totalCourseLessons,
-  totalCourseDuration,
-  totalCourseSections,
-}) => {
+const TotalCourseLength: React.FC<{
+  totalCourseLessons: number;
+  totalCourseDuration: number;
+  totalCourseSections: number;
+}> = ({ totalCourseLessons, totalCourseDuration, totalCourseSections }) => {
   return (
     <div>
       <div className="flex w-[550px] justify-between mb-[0.5em]">

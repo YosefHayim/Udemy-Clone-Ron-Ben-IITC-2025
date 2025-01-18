@@ -2,7 +2,7 @@ import FrequentlyCourseCard from "./FaqCourseCard/FaqCourseCard";
 import FaqPlusBtn from "./FaqPlusBtn/FaqPlusBtn";
 import FaqTotalCoursesPrice from "./FaqTotalCoursesPrice/FaqTotalCoursesPrice";
 
-const FrequentlyBoughtTogether = () => {
+const FrequentlyBoughtTogether: React.FC = () => {
   return (
     <div>
       <div className="flex flex-col border border-[#d1d7dc] w-[515px] p-[1em]">

@@ -1,6 +1,6 @@
-const CourseBigTitle = ({ courseTitle }) => {
+const CourseBigTitle: React.FC<{ courseTitle: string }> = ({ courseTitle }) => {
   return (
-    <div className="font-bold w-[700px] z-10 text-white">
+    <div className="font-bold w-[700px]  text-white z-[10]">
       <h1 className="text-[2em]">{courseTitle}</h1>
     </div>
   );

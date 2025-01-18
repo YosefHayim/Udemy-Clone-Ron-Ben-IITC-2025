@@ -5,7 +5,7 @@ import FaqCourseName from "../FaqCourseName/FaqCourseName";
 import FaqInstructName from "../FaqInstructName/FaqInstructName";
 import FaqTotalStudentsCourse from "../FaqTotalStudentsCourse/FaqTotalStudentsCourse";
 
-const FrequentlyCourseCard = () => {
+const FrequentlyCourseCard: React.FC = () => {
   return (
     <div className="flex flex-col p-[1em]">
       <div className="flex flex-row gap-[1em]">

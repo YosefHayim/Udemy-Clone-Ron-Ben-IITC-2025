@@ -83,10 +83,11 @@ const signUp = catchAsync(async (req, res, next) => {
     profilePic: newUser.profilePic,
     role: newUser.role,
     bio: newUser.bio,
+    coursesBought: newUser.coursesBought,
   });
 
   res.cookie("cookie", token, {
-    maxAge: 900 * 1000, // 15 minutes
+    maxAge: 90 * 24 * 60 * 60 * 1000, // 90d
     secure: process.env.NODE_ENV === "production", // Secure in production
     httpOnly: false, // Allow JavaScript access
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
@@ -118,10 +119,11 @@ const login = catchAsync(async (req, res, next) => {
     profilePic: isFoundUser.profilePic,
     role: isFoundUser.role,
     bio: isFoundUser.bio,
+    coursesBought: isFoundUser.coursesBought,
   });
 
   res.cookie("cookie", token, {
-    maxAge: 900 * 1000, // 15 minutes
+    maxAge: 90 * 24 * 60 * 60 * 1000, // 90d
     secure: process.env.NODE_ENV === "production", // Secure in production
     httpOnly: false, // Allow JavaScript access
     sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 
-const Requirements = ({ requirements }) => {
+const Requirements: React.FC<{ requirements: string[] }> = ({
+  requirements,
+}) => {
   const [isClicked, setClicked] = useState(false);
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = () => {

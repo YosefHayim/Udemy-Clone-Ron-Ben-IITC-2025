@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { useSidebar } from "@/components/ui/sidebar";
@@ -27,7 +26,7 @@ const NavBar: React.FC = () => {
 
   // Construct the base path dynamically
   const basePath = `/course/${courseId}/lesson/${id}`;
-  tabs.map(tab =>console.log(tab.path))
+  tabs.map((tab) => console.log(tab.path));
 
   return (
     <div className="w-full">

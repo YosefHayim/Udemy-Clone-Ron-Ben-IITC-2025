@@ -1,4 +1,4 @@
-const FaqTotalStudentsCourse = () => {
+const FaqTotalStudentsCourse: React.FC = () => {
   return (
     <div>
       <p>(106)</p>

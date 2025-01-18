@@ -1,6 +1,5 @@
 import { MdOutlineShoppingCart } from "react-icons/md";
 import CartCoursesNumber from "./CartCoursesNumber/CartCoursesNumber";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import HoverCart from "./HoverCart/HoverCart";
 
@@ -16,12 +15,12 @@ const Cart = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Link to="/cart" className="text-black font-bold hover:text-purple-800">
+      <div className="text-black font-bold hover:text-purple-800">
         <MdOutlineShoppingCart className="w-6 h-6" />
         <CartCoursesNumber />
-      </Link>
+      </div>
       {showCartHover && (
-        <div className="absolute top-full left-0 z-[1000] p-[2em]">
+        <div className="absolute top-full left-0 z-[5000] p-[2em]">
           <HoverCart />
         </div>
       )}

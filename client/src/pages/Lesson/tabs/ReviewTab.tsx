@@ -1,5 +1,3 @@
-import React from "react";
-
 const ReviewsTab: React.FC = () => {
   return (
     <div id="reviews" className="p-10">

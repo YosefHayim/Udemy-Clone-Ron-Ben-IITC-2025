@@ -1,9 +1,14 @@
 import { MdOutlineOndemandVideo } from "react-icons/md";
 import { GoLightBulb } from "react-icons/go";
 
-const Lesson = ({ isQuizzLesson = false, title, videoUrl, duration }) => {
+const Lesson: React.FC<{
+  isQuizzLesson: boolean;
+  title: string;
+  videoUrl: string;
+  duration: number;
+}> = ({ isQuizzLesson = false, title, videoUrl, duration }) => {
   return (
-    <div className="flex flex-row justify-between items-center bg-white w-[550px] p-[0.5em] text-[0.9em]">
+    <div className="flex flex-row justify-between items-center bg-white w-[550px] p-[0.5em] text-[0.9em] border-right border border-left">
       <div className="flex gap-[1em] items-center">
         {isQuizzLesson ? (
           <GoLightBulb className="text-[#2d2f31]" />

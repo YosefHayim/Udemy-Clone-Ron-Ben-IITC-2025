@@ -43,7 +43,7 @@ const Filter: React.FC<FilterProps> = ({
           )}
         </div>
         <div>
-          {filterItems.map((item: DummyData) => (
+          {filterItems?.map((item: DummyData) => (
             <label
               key={item.name}
               className="flex gap-[0.5em] text-languageText py-[0.5em] cursor-pointer"

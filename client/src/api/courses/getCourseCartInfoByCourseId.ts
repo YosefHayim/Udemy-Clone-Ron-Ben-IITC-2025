@@ -1,7 +1,8 @@
-import axios from "axios";
 import { axiosClient, baseUrl } from "../configuration";
 
-const getCourseCartInfoByCourseId = async (courseId: string) => {
+type fn = (courseId: string) => Promise<any>;
+
+const getCourseCartInfoByCourseId: fn = async (courseId: string) => {
   if (!courseId || typeof courseId !== "string") {
     console.error("Invalid course ID provided.");
     return null;

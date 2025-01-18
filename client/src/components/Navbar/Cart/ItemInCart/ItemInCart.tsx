@@ -5,53 +5,61 @@ import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseLength from "@/pages/ViewCoursePageInfo/MoreCoursesByInstructor/CourseLength/CourseLength";
 import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
 import { useQuery } from "@tanstack/react-query";
-import Loader from "@/components/Loader/Loader";
 import getCourseCartInfoByCourseId from "@/api/courses/getCourseCartInfoByCourseId";
 import { useDispatch } from "react-redux";
 import { removeCourseFromCart } from "@/redux/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 
 const ItemInCart = ({
+  rowPrices = true,
   courseId = "",
-  courseImgSize = "h-[5em]",
+  courseImgSize = "h-[5em] rounded-[0.3em]",
   hide = true,
   shortCutInstructor = false,
   shortcutTitle = false,
   chooseFlex = "flex-row",
   itemsPosition = "center",
   textColor = "text-[#a435f0]",
+  showDisPrice = false,
+  showHR = true,
+  showInstructor = true,
 }) => {
-  if (!courseId) {
-    return;
-  }
+  if (!courseId) return null;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["course"],
-    queryFn: () => getCourseCartInfoByCourseId(courseId),
+  const { data, error, isPending } = useQuery({
+    queryKey: ["course", courseId],
+    queryFn: () => {
+      if (!courseId) {
+        throw new Error("Course ID is undefined");
+      }
+      return getCourseCartInfoByCourseId(courseId);
+    },
+    staleTime: 5 * 60 * 1000,
   });
 
-  if (isLoading) return;
-  <div>
-    <Loader />
-  </div>;
+  if (error) {
+    return <div>Error loading course data</div>;
+  }
 
-  if (error) return <div>Error loading course data</div>;
+  if (isPending) {
+    return <div></div>;
+  }
 
-  const handleRemove = () => {
+  const handleRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
     dispatch(
       removeCourseFromCart({
         courseId,
-        coursePrice: data.courseDiscountPrice || 0,
-        amountToRemove: 1,
+        originalPrice: data.courseFullPrice || 0,
+        discountPrice: data.courseDiscountPrice || 0,
       })
     );
   };
 
-  const handleCourseView = (e: React.DOMAttributes<HTMLDivElement>) => {
-    if (e.target.tagName === "DIV") {
+  const handleCourseView = (e: React.MouseEvent<HTMLDivElement>): void => {
+    if ((e.target as HTMLElement).tagName === "DIV") {
       navigate(`/course-view/${courseId}`);
     }
   };
@@ -59,30 +67,37 @@ const ItemInCart = ({
   return (
     <div className="p-[1em] w-full">
       <div
-        className={`${chooseFlex} flex items-start justify-start gap-[1em] cursor-pointer`}
+        className={`flex flex-row items-start justify-start gap-[1em] cursor-pointer`}
         onClick={handleCourseView}
       >
         <div>
-          <img src={data.courseImg} alt="" className={`${courseImgSize}`} />
+          <img
+            src={data?.courseImg}
+            alt={`${data.courseName} image`}
+            className={`${courseImgSize}`}
+          />
         </div>
         <div
           className={`${chooseFlex} flex flex-row items-${itemsPosition} justify-center gap-[1em]`}
         >
-          <div className="flex flex-col items-start gap-[0.5em]">
+          <div className="flex flex-col items-start gap-[0.5em] w-[220px]">
             <CourseTitle
               title={data.courseName}
               shortcutTitle={shortcutTitle}
             />
-            <CourseInstructor
-              instructor={data.courseInstructor.fullName}
-              shortCutInstructor={shortCutInstructor}
-            />
+            <div className={`${showInstructor ? "block" : "hidden"}`}>
+              <CourseInstructor
+                instructor={data.courseInstructor.fullName}
+                shortCutInstructor={shortCutInstructor}
+              />
+            </div>
             <div className="flex flex-row items-start justify-start gap-[1em]">
               <div className={hide ? "block" : "hidden"}>
                 <CourseTag tagName={data.courseTag} />
               </div>
               <div className={hide ? "block" : "hidden"}>
                 <CourseRatings
+                  stars=""
                   avgRatings={data.averageRating}
                   totalRatings={data.totalRatings}
                 />
@@ -109,16 +124,36 @@ const ItemInCart = ({
             <div
               className={`flex flex-row items-center justify-center gap-[0.2em] ${textColor}`}
             >
-              <b className="">₪{data.courseDiscountPrice}</b>
-              <div className={hide ? "block" : "hidden"}>
-                <BsFillTagFill />
+              <div className="flex flex-col items-start justify-start">
+                <div
+                  className={
+                    hide ? "flex flex-row items-center gap-[0.2em]" : "hidden"
+                  }
+                >
+                  <b className="">₪{data.courseDiscountPrice}</b>
+                  <BsFillTagFill />
+                </div>
+                <div
+                  className={`${
+                    rowPrices
+                      ? "flex flex-row font-bold"
+                      : "flex flex-col font-light text-black"
+                  }  items-start gap-[0.2em]`}
+                >
+                  <p>
+                    {data && showDisPrice ? `₪${data.courseDiscountPrice}` : ""}
+                  </p>
+                  <p className="text-gray-600 line-through">
+                    ₪{data.courseFullPrice}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="mb-[1em] mt-[0.5em]">
-        <hr className="relative w-[285px]" />
+        <hr className={`${showHR ? "block" : "hidden"} relative w-full`} />
       </div>
     </div>
   );

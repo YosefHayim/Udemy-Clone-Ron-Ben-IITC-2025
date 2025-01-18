@@ -1,4 +1,6 @@
-const CourseTag = ({
+import { CourseTagProps } from "@/types/types";
+
+const CourseTag: React.FC<CourseTagProps> = ({
   tagName = "Bestseller",
   bgColorTag = "bg-bestSellerTag",
 }) => {

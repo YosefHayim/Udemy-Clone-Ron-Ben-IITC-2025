@@ -1,10 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import React from "react";
+
 import { setShowCart } from "@/redux/slices/cartSlice";
+import React from "react";
 
 const CartCoursesNumber = () => {
   const dispatch = useDispatch();
-  const countOfCourses = useSelector((state) => state.cart.amountOfCourses);
+  const countOfCourses = useSelector(
+    (state: any) => state.cart.amountOfCourses
+  );
 
   // Use useEffect to manage cart visibility
   React.useEffect(() => {

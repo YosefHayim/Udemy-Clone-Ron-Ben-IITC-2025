@@ -1,6 +1,10 @@
 import { CiHeart } from "react-icons/ci";
 
-const HeartBtn = ({ iconSize = "2em", courseId, showHeart = false }) => {
+const HeartBtn: React.FC<{
+  iconSize?: string;
+  courseId?: string;
+  showHeart?: boolean;
+}> = ({ iconSize = "2em", courseId, showHeart = false }) => {
   if (!courseId) {
     return;
   }

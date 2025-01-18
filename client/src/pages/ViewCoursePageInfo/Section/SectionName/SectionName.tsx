@@ -1,4 +1,4 @@
-const SectionName = ({ name }) => {
+const SectionName: React.FC<{ name: string }> = ({ name }) => {
   if (!name) {
     return;
   }

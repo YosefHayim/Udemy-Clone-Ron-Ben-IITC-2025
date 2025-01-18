@@ -6,7 +6,7 @@ import StudentsEnroll from "../StudentsEnroll/StudentsEnroll";
 import CoursePrice from "../CoursePrice/CoursePrice";
 import HeartBtn from "@/pages/Search/CourseHoverCardInfo/InteractionBtns/HeartBtn/HeartBtn";
 
-const CourseCard = () => {
+const CourseCard: React.FC = () => {
   return (
     <div>
       <div className="py-[0.5em] flex flex-row items-start justify-around gap-[1em] ">

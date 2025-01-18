@@ -1,6 +1,11 @@
 import { MdOutlineStarPurple500 } from "react-icons/md";
 
-const CourseRating = ({
+const CourseRating: React.FC<{
+  colorRating?: string;
+  courseRating?: number;
+  amountOfStars?: number;
+  isShowRating?: boolean;
+}> = ({
   colorRating = "text-[#f69c08]",
   courseRating = 0,
   amountOfStars = 1,

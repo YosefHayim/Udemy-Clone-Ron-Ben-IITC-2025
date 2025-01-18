@@ -163,7 +163,7 @@ courseSchema.pre(/^find/, function (next) {
   this.populate("reviews")
     .populate({
       path: "courseInstructor",
-      select: "fullName",
+      select: "fullName profilePic",
     })
     .populate("sections");
 

@@ -11,39 +11,43 @@ import { Input } from "@/components/ui/input";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 
-const DialogReportReview = ({
-  reviewId,
-  isOpenReportDrawer,
-  setReportDrawer,
-}) => {
+const DialogReportReview: React.FC<{
+  reviewId: string;
+  isOpenReportDrawer?: boolean;
+  setReportDrawer?: boolean;
+  userId?: string;
+}> = ({ reviewId, isOpenReportDrawer, setReportDrawer, userId }) => {
   if (!reviewId) {
     return <div>No review selected to report.</div>;
   }
 
-  const [isClicked, setIsClicked] = useState(false);
-  const [isSubmit, setSubmit] = useState(false);
+  const [isClicked, setIsClicked] = useState<boolean | null>(false);
+  const [isSubmit, setSubmit] = useState<boolean | null>(false);
 
   const handleClickSubmit = () => {
     setIsClicked((prev) => !prev);
   };
 
-  const handleSubmitReport = (e) => {
+  const handleSubmitReport = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const issueType = formData.get("issue-type");
-    const issueDetails = formData.get("issue-details");
+    const formData = new FormData(e.currentTarget);
+    const issueType = String(formData.get("issue-type"));
+    const issueDetails = String(formData.get("issue-details"));
 
     if (!issueType || !issueDetails) {
       alert("Please fill in all fields before submitting.");
       return;
     }
 
-    mutation.mutate({ reviewId, issueType, issueDetails });
+    mutation.mutate({ userId, reviewId, issueType, issueDetails });
   };
 
-  const mutation = useMutation(reportUserReviewByReviewId, {
+  const mutation = useMutation({
+    mutationFn: reportUserReviewByReviewId,
     onSuccess: () => {
-      setReportDrawer(false); // Close dialog on success
+      // Show the acknowledgment message
+      setIsClicked(true);
+      setSubmit(true);
     },
     onError: (error) => {
       console.error("Error reporting review:", error);
@@ -51,8 +55,10 @@ const DialogReportReview = ({
   });
 
   const handleCloseBtn = () => {
+    // Close the dialog when the user acknowledges
     setReportDrawer(false);
     setSubmit(false);
+    setIsClicked(false); // Reset the state for the next time the dialog opens
   };
 
   return (
@@ -78,13 +84,16 @@ const DialogReportReview = ({
                   <p>
                     Flagged content is reviewed by Udemy staff to determine
                     whether it violates Terms of Service or Community
-                    Guidelines. If you have a question or technical issue,
-                    please contact our{" "}
+                    Guidelines.
+                  </p>
+                  <div>
+                    If you have a question or technical issue, please contact
+                    our{" "}
                     <span className="underline text-purpleStatic cursor-pointer">
                       Support team here
                     </span>
                     .
-                  </p>
+                  </div>
                 </div>
               )}
               <form
@@ -103,23 +112,25 @@ const DialogReportReview = ({
                   name="issue-type"
                   id="issue-type"
                   required
-                  className="bg-white text-black border border-black rounded-[0.2em] p-[1em] w-full"
+                  className={`${
+                    isClicked ? "hidden" : "block"
+                  } bg-white text-black border border-black rounded-[0.2em] p-[1em] w-full`}
                 >
                   <option value="">Select an issue</option>
-                  <option value="harmful-violent-hateful-criminal">
+                  <option value="harmfulVioletHateful">
                     Inappropriate Course Content - Harmful, Violent, Hateful, or
                     Criminal
                   </option>
-                  <option value="course-content-other">
+                  <option value="courseContentOther">
                     Inappropriate Course Content - Other
                   </option>
-                  <option value="inappropriate-behavior">
+                  <option value="inappropriateBehavior">
                     Inappropriate Behavior
                   </option>
-                  <option value="udemy-policy-violation">
+                  <option value="udemyPolicyViolation">
                     Udemy Policy Violation
                   </option>
-                  <option value="spammy-content">Spammy Content</option>
+                  <option value="spammyContent">Spammy Content</option>
                   <option value="other">Other</option>
                 </select>
                 <label
@@ -172,8 +183,3 @@ const DialogReportReview = ({
 };
 
 export default DialogReportReview;
-
-//Thank you for helping maintain the integrity of our marketplace.
-// We will review your report as soon as possible.
-// As a matter of policy we will only follow up if
-// we require additional information.

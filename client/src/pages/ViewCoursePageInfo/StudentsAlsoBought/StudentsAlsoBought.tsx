@@ -1,7 +1,7 @@
 import CourseCard from "./CourseCard/CourseCard";
 import ShowMore from "./ShowMore/ShowMore";
 
-const StudentsAlsoBought = () => {
+const StudentsAlsoBought: React.FC = () => {
   return (
     <div>
       <h2 className="font-bold py-[0.5em]">Students also bought</h2>

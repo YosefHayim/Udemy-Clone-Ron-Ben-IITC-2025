@@ -4,7 +4,9 @@ import {
   MdOutlineKeyboardArrowUp,
 } from "react-icons/md";
 
-const InstructorDescription = ({ descriptionInstructor }) => {
+const InstructorDescription: React.FC<{ descriptionInstructor: string }> = ({
+  descriptionInstructor,
+}) => {
   const [isExpanded, setExpanded] = useState(true);
 
   const handleToggle = () => {

@@ -1,6 +1,5 @@
 import BtnRelatedSearchTopics from "./BtnRelatedSearchTopics/BtnRelatedSearchTopics";
 import RelatedSearchesFooterSearch from "./RelatedSearchesFooterSearch/RelatedSearchesFooterSearch";
-import RelatedSearchHoverCard from "./RelatedSearchHoverCard/RelatedSearchHoverCard";
 
 const RelatedSearchesArea = () => {
   return (

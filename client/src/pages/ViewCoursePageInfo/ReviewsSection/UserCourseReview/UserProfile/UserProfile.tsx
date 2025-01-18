@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const UserProfile = () => {
+const UserProfile: React.FC = () => {
   return (
     <div>
       <div>

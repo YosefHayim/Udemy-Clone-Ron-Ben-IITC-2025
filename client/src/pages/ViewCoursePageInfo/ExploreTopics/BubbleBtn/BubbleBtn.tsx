@@ -1,4 +1,6 @@
-const BubbleBtn = ({ similarTopicName = "Electronics" }) => {
+const BubbleBtn: React.FC<{ similarTopicName: string }> = ({
+  similarTopicName = "Electronics",
+}) => {
   return (
     <div className="rounded-[100em] border border-black p-[0.5em] hover:bg-hoverDivGray cursor-pointer">
       <b>{similarTopicName}</b>

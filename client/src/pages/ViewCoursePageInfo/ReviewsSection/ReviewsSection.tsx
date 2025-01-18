@@ -4,7 +4,11 @@ import UserCourseReview from "./UserCourseReview/UserCourseReview";
 import { useState } from "react";
 import DialogOfAllReviews from "./UserCourseReview/DialogOfAllReviews/DialogOfAllReviews";
 
-const ReviewsSection = ({ totalRated, avgRating, reviewsToRender }) => {
+const ReviewsSection: React.FC<{
+  totalRated: number;
+  avgRating: number;
+  reviewsToRender: string[];
+}> = ({ totalRated, avgRating, reviewsToRender }) => {
   const [isClicked, setClicked] = useState(false);
 
   const handleClick = () => {
@@ -13,7 +17,10 @@ const ReviewsSection = ({ totalRated, avgRating, reviewsToRender }) => {
 
   return (
     <div>
-      <ReviewSectionTitle totalRated={totalRated} avgRating={avgRating} />
+      <ReviewSectionTitle
+        totalRated={reviewsToRender.length}
+        avgRating={avgRating}
+      />
       <div className="grid grid-cols-2 gap-4 w-[700px] mb-[2em]">
         {reviewsToRender.slice(0, 4).map((review, index) => (
           <UserCourseReview review={review} key={index} />

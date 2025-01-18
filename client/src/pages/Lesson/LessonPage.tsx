@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Layout from "./Layout";
@@ -38,7 +37,9 @@ const LessonPage: React.FC = () => {
   }
 
   const courseData = data.data;
-  const lessons = courseData.sections.flatMap((section: any) => section.lessons);
+  const lessons = courseData.sections.flatMap(
+    (section: any) => section.lessons
+  );
   const lessonIndex = lessons.findIndex((lesson: any) => lesson._id === id);
 
   if (lessonIndex === -1) {
@@ -59,7 +60,9 @@ const LessonPage: React.FC = () => {
         videoUrl={currentLesson.videoUrl}
         nextLesson={nextLesson}
         prevLesson={prevLesson}
-        onNavigate={(lessonId) => navigate(`/course/${courseId}/lesson/${lessonId}/overview`)}
+        onNavigate={(lessonId) =>
+          navigate(`/course/${courseId}/lesson/${lessonId}/overview`)
+        }
       />
       <div className="px-15">
         <LessonRoutes />

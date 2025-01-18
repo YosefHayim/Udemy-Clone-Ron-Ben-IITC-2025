@@ -1,6 +1,10 @@
 import BubbleBtn from "./BubbleBtn/BubbleBtn";
 
-const ExploreTopics = ({ category, subCategory, topic }) => {
+const ExploreTopics: React.FC<{
+  category: string;
+  subCategory: string;
+  topic: string;
+}> = ({ category, subCategory, topic }) => {
   return (
     <div>
       <h2 className="font-bold text-[1.5em] mb-[0.5em]">

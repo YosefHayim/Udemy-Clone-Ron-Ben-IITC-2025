@@ -1,6 +1,7 @@
+import { CourseImgProps } from "@/types/types";
 import courseImgPlaceholder from "/images/image.png";
 
-const CourseImg = ({
+const CourseImg: React.FC<CourseImgProps> = ({
   courseImg = courseImgPlaceholder,
   widthChosen = "260px",
 }) => {
@@ -12,3 +13,4 @@ const CourseImg = ({
 };
 
 export default CourseImg;
+
