@@ -121,6 +121,26 @@ const userSchema = new mongoose.Schema(
     certificatesEarned: [
       { type: mongoose.Schema.ObjectId, ref: "Certificate" },
     ],
+    coursesProgress: [
+      {
+        courses: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Course",
+          required: [true, "Progress must be linked to a course."],
+        },
+        lessons: [
+          {
+            lesson: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "Lesson",
+              required: [true, "Progress must specify a lesson."],
+            },
+            isDone: { type: Boolean, default: false }, // User-specific
+            lastPlayedVideoTime: { type: Number, default: 0 }, // User-specific
+          },
+        ],
+      },
+    ],
   },
   { timestamps: true }
 );

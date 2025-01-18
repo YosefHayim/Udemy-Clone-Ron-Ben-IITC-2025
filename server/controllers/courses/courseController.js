@@ -265,7 +265,78 @@ const viewCourseById = catchAsync(async (req, res, next) => {
   });
 });
 
+const updateCourseProgressById = catchAsync(async (req, res, next) => {
+  const { id: courseId } = req.params;
+  const { lessonId, isDone, lastPlayedVideoTime } = req.body;
+
+  if (!courseId) {
+    return next(createError("Please provide the course ID in the URL.", 400));
+  }
+
+  if (
+    !lessonId ||
+    typeof isDone !== "boolean" ||
+    typeof lastPlayedVideoTime !== "number"
+  ) {
+    return next(
+      createError(
+        "Invalid input: lessonId must be provided, isDone must be a boolean, and lastPlayedVideoTime must be a number.",
+        400
+      )
+    );
+  }
+
+  // Check if the user has bought the course
+  if (
+    !req.user.coursesBought.some(
+      (course) => course.course.toString() === courseId
+    )
+  ) {
+    return next(
+      createError("This course is not included in the courses you bought.", 400)
+    );
+  }
+
+  // Find the course in the user's progress
+  const courseProgress = req.user.coursesProgress.find(
+    (progress) => progress.course.toString() === courseId
+  );
+
+  if (!courseProgress) {
+    return next(
+      createError("This course is not included in the courses progress.", 400)
+    );
+  }
+
+  // Find the lesson in the course progress
+  const lessonProgress = courseProgress.lessons.find(
+    (lesson) => lesson.lesson.toString() === lessonId
+  );
+
+  if (!lessonProgress) {
+    return next(
+      createError("This lesson is not found in the course progress.", 400)
+    );
+  }
+
+  // Update the lesson progress
+  if (isDone !== undefined) lessonProgress.isDone = isDone;
+  if (lastPlayedVideoTime !== undefined) {
+    lessonProgress.lastPlayedVideoTime = lastPlayedVideoTime;
+  }
+
+  // Save the user's updated progress
+  await req.user.save();
+
+  res.status(200).json({
+    status: "success",
+    message: "Lesson progress updated successfully",
+    data: { courseId, lessonId, isDone, lastPlayedVideoTime },
+  });
+});
+
 module.exports = {
+  updateCourseProgressById,
   viewCourseById,
   getCourseProsById,
   getCourseInfoForCart,

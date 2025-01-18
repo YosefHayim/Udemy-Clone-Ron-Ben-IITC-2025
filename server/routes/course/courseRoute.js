@@ -9,6 +9,7 @@ const {
   getCourseProsById,
   getCourseInfoForCart,
   viewCourseById,
+  updateCourseProgressById,
 } = require("../../controllers/courses/courseController");
 const {
   grantedAccess,
@@ -44,6 +45,8 @@ router.post("/", grantedAccess, createCourse);
 
 // Update course information by course id
 router.put("/:id", grantedAccess, updateCourse);
+
+router.patch("/:id", grantedAccess, updateCourseProgressById);
 
 // Delete course by course id
 router.delete("/:id", grantedAccess, deleteCourse);

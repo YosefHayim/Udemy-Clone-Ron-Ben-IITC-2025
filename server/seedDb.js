@@ -484,7 +484,10 @@ const simulateCoursePurchases = async () => {
     role: "student",
     udemyCredits: { $gte: 10 },
   });
-  const courses = await Course.find({ isActive: true });
+  const courses = await Course.find({ isActive: true }).populate({
+    path: "sections",
+    populate: { path: "lessons" },
+  });
 
   if (!users.length || !courses.length) {
     throw new Error("No users or courses available for simulation.");
@@ -493,29 +496,49 @@ const simulateCoursePurchases = async () => {
   console.log("Simulating course purchases...");
   for (const user of users) {
     try {
-      // Randomly select courses for the user to purchase
       const coursesToPurchase = faker.helpers.arrayElements(
         courses,
         faker.number.int({ min: 3, max: 5 })
       );
 
       for (const course of coursesToPurchase) {
-        if (!user.coursesBought.includes(course._id)) {
-          // Deduct credits and update user
+        if (
+          !user.coursesBought.some((bought) => bought.course.equals(course._id))
+        ) {
           const discountPrice = parseFloat(course.courseDiscountPrice);
           if (user.udemyCredits >= discountPrice) {
-            user.coursesBought.push(course._id);
+            user.coursesBought.push({
+              course: course._id,
+              boughtAt: new Date(),
+            });
             user.udemyCredits -= discountPrice;
 
-            // Update course with the student's enrollment
+            // Add `coursesProgress` for the purchased course
+            const lessons = course.sections.flatMap(
+              (section) => section.lessons
+            );
+            const lessonsProgress = lessons.map((lesson) => ({
+              lesson: lesson._id,
+              isDone: faker.datatype.boolean(), // Random completion status
+              lastPlayedVideoTime: faker.number.int({
+                min: 0,
+                max: lesson.duration,
+              }),
+            }));
+
+            user.coursesProgress.push({
+              courses: course._id,
+              lessons: lessonsProgress,
+            });
+
+            // Update course with student's enrollment
             course.totalStudentsEnrolled.count += 1;
             course.totalStudentsEnrolled.students.push(user._id);
 
-            // Save both user and course
-            await user.save();
             await course.save();
-
-            console.log(`${user.fullName} purchased "${course.courseName}".`);
+            console.log(
+              `${user.fullName} purchased "${course.courseName}". Progress added.`
+            );
           } else {
             console.log(
               `${user.fullName} does not have enough credits for "${course.courseName}".`
@@ -523,32 +546,13 @@ const simulateCoursePurchases = async () => {
           }
         }
       }
+
+      await user.save();
     } catch (err) {
       console.error(
         `Error processing purchases for user ${user.email}:`,
         err.message
       );
-    }
-  }
-
-  console.log("Ensuring lesson accessibility for enrolled users...");
-  const lessons = await Lesson.find().populate("section");
-
-  for (const user of users) {
-    const purchasedCourses = user.coursesBought;
-
-    for (const lesson of lessons) {
-      const courseId = lesson.section.course;
-
-      if (purchasedCourses.includes(courseId.toString())) {
-        console.log(
-          `User ${user.email} can access lesson "${lesson.title}" in course ID ${courseId}.`
-        );
-      } else {
-        console.warn(
-          `User ${user.email} cannot access lesson "${lesson.title}" as they are not enrolled in the course.`
-        );
-      }
     }
   }
 
