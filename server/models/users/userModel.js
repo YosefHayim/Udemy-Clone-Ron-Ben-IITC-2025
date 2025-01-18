@@ -123,7 +123,7 @@ const userSchema = new mongoose.Schema(
     ],
     coursesProgress: [
       {
-        courses: {
+        course: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Course",
           required: [true, "Progress must be linked to a course."],

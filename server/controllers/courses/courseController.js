@@ -286,6 +286,14 @@ const updateCourseProgressById = catchAsync(async (req, res, next) => {
     );
   }
 
+  if (!req.user || !req.user.coursesBought) {
+    return next(createError("User data or courses bought not found.", 400));
+  }
+
+  if (!req.user.coursesProgress) {
+    return next(createError("Courses progress not found.", 400));
+  }
+
   // Check if the user has bought the course
   if (
     !req.user.coursesBought.some(
