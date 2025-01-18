@@ -77,7 +77,11 @@ const LessonRoutes: React.FC = () => {
         <Route path="qna" element={<QnATab />} />
         <Route path="notes" element={<NotesTab />} />
         <Route path="announcements" element={<AnnouncementsTab />} />
-        <Route path="reviews" element={<ReviewsTab />} />
+        <Route path="reviews" element={<ReviewsTab 
+                  reviewsToRender={courseData.reviews}
+                  avgRating={courseData.averageRating}
+                  totalRated={courseData.totalRatings}
+        />} />
         <Route path="learning-tools" element={<LearningToolsTab />} />
         <Route path="search" element={<SearchTab sections={sections} />} />
 

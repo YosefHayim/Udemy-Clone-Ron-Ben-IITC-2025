@@ -30,12 +30,12 @@ const NavBar: React.FC = () => {
 
   return (
     <div className="max-w-full px-40">
-      <nav className="flex flex-wrap bg-white text-gray-500 px-4  border-b">
+      <nav className="flex flex-wrap bg-white text-gray-500  border-b">
         {tabs.map((tab) => (
           <Link
             key={tab.path}
             to={`${basePath}/${tab.path}`} // Append tab path to the base path
-            className={`px-4 py-2 text-sm sm:text-base font-medium flex items-center ${
+            className={`px-4 py-2 text-xl xl:text-base font-medium flex items-center ${
               activePath === tab.path
                 ? "border-b-2 border-black text-black"
                 : "hover:text-black"
@@ -44,7 +44,7 @@ const NavBar: React.FC = () => {
             {typeof tab.name === "string" ? (
               tab.name
             ) : (
-              <span className="text-lg">{tab.name}</span> // Render icon if name is not a string
+              <span className="text-xl">{tab.name}</span> // Render icon if name is not a string
             )}
           </Link>
         ))}

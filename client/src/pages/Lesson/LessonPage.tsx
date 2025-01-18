@@ -61,7 +61,7 @@ const LessonPage: React.FC = () => {
         prevLesson={prevLesson}
         onNavigate={(lessonId) => navigate(`/course/${courseId}/lesson/${lessonId}/overview`)}
       />
-      <div className="px-15">
+      <div className="px-0">
         <LessonRoutes />
       </div>
       <Footer />

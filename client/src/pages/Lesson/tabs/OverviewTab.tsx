@@ -72,7 +72,7 @@ const OverviewTab: React.FC = () => {
         <div className="flex flex-col">
           <div className="flex items-center">
             <span className="text-[#000000] text-lg font-bold mr-2">
-              {course.totalCourseDuration || "0.0"}
+              {course.totalCourseDuration || "0.0"} hours
             </span>
 
           </div>
