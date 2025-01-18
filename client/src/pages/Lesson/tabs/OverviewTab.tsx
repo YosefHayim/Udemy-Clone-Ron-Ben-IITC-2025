@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { fetchCourseById } from "@/services/courseService";
+import  fetchCourseById  from "@/services/courseService";
 import { FaStar } from "react-icons/fa";
 import { BsPatchExclamationFill } from "react-icons/bs";
 import { MdOutlineLanguage } from "react-icons/md";
@@ -34,7 +34,7 @@ const OverviewTab: React.FC = () => {
   if (error) return <div>Error loading course data</div>;
   if (!data) return <div>No course data found.</div>;
 
-  const course = data.data;
+  const course = data;
 
   console.log("Fetched course data:", course);
 

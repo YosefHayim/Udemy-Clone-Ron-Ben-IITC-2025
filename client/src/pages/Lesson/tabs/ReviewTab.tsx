@@ -4,7 +4,7 @@ import { LuDot } from "react-icons/lu";
 import { useParams } from "react-router-dom";
 import UserCourseReview from "@/pages/ViewCoursePageInfo/ReviewsSection/UserCourseReview/UserCourseReview";
 import { MdSearch, MdStar, MdOutlineStarHalf } from "react-icons/md";
-import { IoIosStar } from "react-icons/io";
+import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 import Loader from "@/components/Loader/Loader";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -31,14 +31,15 @@ const ReviewsTab = ({ avgRating }) => {
     const hasHalfStar = rating % 1 >= 0.5;
 
     return (
-      <div className="flex items-center">
+      <div className="flex items-center justify-between ">
         {Array.from({ length: 5 }, (_, i) => {
           if (i < fullStars) {
-            return <IoIosStar key={i} className="text-[#c4710d] mr-1" />;
+            return <IoIosStar key={i} className="text-[#c4710d] ml-1" />;
           } else if (i === fullStars && hasHalfStar) {
-            return <MdOutlineStarHalf key={i} className="text-[#c4710d] mr-1" />;
+            return <MdOutlineStarHalf key={i} className="text-[#c4710d] ml-1" />;
           } else {
-            return <MdStar key={i} className="text-gray-300 mr-1" />;
+            return <IoIosStarOutline
+            key={i} className="text-[#c4710d] ml-1" />;
           }
         })}
       </div>
@@ -49,15 +50,15 @@ const ReviewsTab = ({ avgRating }) => {
     <div className="min-w-fit mt-4">
         {/* Student Feedback Section */}
         <h2 className="text-2xl font-bold mb-4">Student feedback</h2>
-      <div className="mb-6 flex flex-col">
+      <div className="mb-6 flex flex-col py-2">
 
-        <div className="flex  flex-row  justify-between min-w-full ">
-        <div className="flex flex-col items-center ">
-          <div className="text-7xl max-w-min font-bold text-[#c4710d] ">
+        <div className="flex  flex-row items-center min-w-full gap-5 p-4 ">
+        <div className="flex flex-col w-full justify-center items-center ">
+          <div className="text-6xl font-bold w-full text-[#c4710d] ">
             {avgRating.toFixed(1)}
           </div>
-          <div className="ml-4">{renderStars(avgRating)}</div>
-          <span className="ml-4 text-lg text-[#c4710d] font-semibold">Course Rating</span>
+          <div className="ml-4 text-lg w-full pr-4">{renderStars(avgRating)}</div>
+          <span className="ml-4 text-lg w-full text-[#c4710d] font-semibold">Course Rating</span>
         </div>
 
         <div className="space-y-2">
@@ -70,19 +71,20 @@ const ReviewsTab = ({ avgRating }) => {
               : 0;
 
             return (
-              <div key={stars} className="flex items-center">
-                <div className="flex items-center">
-                  {renderStars(stars)}
-                </div>
-                <div className="min-w-80  bg-gray-200 rounded-full mx-2 relative">
+              <div key={stars} className="flex  items-center">
+
+                <div className="min-w-[720px]  bg-gray-200  mx-2 relative">
                   <div
-                    className="h-2 bg-[#c4710d] rounded-full"
+                    className="h-2 bg-[#9194AC] "
                     style={{ width: `${percentage}%` }}
                   ></div>
                 </div>
                 <span className="text-sm font-semibold text-gray-700">
                   {percentage}% 
                 </span>
+                <div className="flex items-center">
+                  {renderStars(stars)}
+                </div>
               </div>
             );
           })}
@@ -92,15 +94,31 @@ const ReviewsTab = ({ avgRating }) => {
 
       {/* Reviews Section */}
       <form className="flex flex-row items-center gap-2 mb-6">
-        <Input
-          placeholder="Search reviews"
-          type="text"
-          className="bg-white min-w-[744px] min-h-[48px] focus:outline-none px-4 border border-black rounded-sm text-lg"
-        />
-        <Button className="border border-black hover:bg-[#1739531f] px-4 min-h-[48px] bg-white">
-          <MdSearch className="text-black" />
-        </Button>
-      </form>
+  {/* Search Input */}
+  <Input
+    placeholder="Search reviews"
+    type="text"
+    className="bg-white min-w-[744px] min-h-[48px] focus:outline-none px-4 border border-black rounded-sm text-lg"
+  />
+
+  {/* Search Button */}
+  <Button className="bg-[#6D28D2] hover:bg-[#7551a7] px-4 min-h-[48px] ">
+    <MdSearch className="text-black" />
+  </Button>
+
+  {/* Dropdown Filter */}
+  <select
+    className="bg-white border border-black rounded-sm px-4 min-h-[48px] text-lg focus:outline-none"
+    defaultValue="all"
+  >
+    <option value="all">All ratings</option>
+    <option value="5">Five stars</option>
+    <option value="4">Four stars</option>
+    <option value="3">Three stars</option>
+    <option value="2">Two stars</option>
+    <option value="1">One star</option>
+  </select>
+</form>
       {isLoading && <Loader />}
       {error && (
         <div className="text-red-500">

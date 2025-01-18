@@ -10,7 +10,7 @@ import ReviewsTab from "../pages/Lesson/tabs/ReviewTab";
 import LearningToolsTab from "../pages/Lesson/tabs/LearningToolsTab";
 import SearchTab from "../pages/Lesson/tabs/SearchTab";
 import CourseContent from "../pages/Lesson/tabs/CourseContent";
-import { fetchCourseById } from "@/services/courseService";
+import  fetchCourseById  from "@/services/courseService";
 
 const LessonRoutes: React.FC = () => {
   const { id, courseId } = useParams<{ id: string; courseId: string }>();
@@ -41,7 +41,7 @@ const LessonRoutes: React.FC = () => {
     return <div>Error loading course data.</div>;
   }
 
-  const courseData = data.data;
+  const courseData = data;
   console.log(courseData);
 
   // Define valid paths for lesson tabs
@@ -58,7 +58,7 @@ const LessonRoutes: React.FC = () => {
 
 
 
-  const sections = data.data.sections
+  const sections = data.sections
   
 
 
