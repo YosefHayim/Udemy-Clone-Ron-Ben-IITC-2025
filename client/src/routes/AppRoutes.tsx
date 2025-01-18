@@ -14,6 +14,7 @@ import Wishlist from "@/pages/Wishlist/Wishlist";
 import Logout from "@/pages/Logout/Logout";
 import Payment from "@/pages/Payment/Payment";
 import EditProfile from "@/pages/EditProfile/EditProfile";
+import OAuthCallback from "@/pages/Login/OAuthCallback";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -27,13 +28,17 @@ const AppRoutes: React.FC = () => {
               <Navbar />
               <Routes>
                 <Route path="/" element={<Homepage />} />
+                <Route path="/oauth/callback" element={<OAuthCallback />} />
                 <Route path="/cart" element={<ShoppingCart />} />
                 <Route path="/wishlist" element={<Wishlist />} />
-                <Route path="/loader" element={<Loader />} />
+                <Route
+                  path="/loader"
+                  element={<Loader useSmallLoading={false} hSize="" />}
+                />
                 <Route path="/Signup" element={<SignUp />} />
                 <Route path="/logout" element={<Logout />} />
-                <Route path="/courses/search" element={<SearchPage />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/courses/search" element={<SearchPage />} />
                 <Route path="*" element={<NotFound />} />
                 <Route
                   path="/course-view/:courseId"

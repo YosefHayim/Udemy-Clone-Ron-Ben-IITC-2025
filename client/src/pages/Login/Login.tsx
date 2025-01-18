@@ -14,10 +14,12 @@ import {
   setRole,
 } from "@/redux/slices/userSlice";
 import { DecodedTokenProps, FormErrors } from "@/types/types";
+import googleRedirectUrl from "@/api/users/googleRedirectUrl";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const cookie = Cookies.get("cookie")?.toString();
   const [formErrors, setFormErrors] = useState<FormErrors>({
     email: "",
     password: "",
@@ -58,7 +60,6 @@ const Login = () => {
   };
 
   useEffect(() => {
-    const cookie = Cookies.get("cookie")?.toString();
     if (cookie) {
       const decoded = jwtDecode<DecodedTokenProps>(cookie);
       dispatch(setFullName(decoded.fullName));
@@ -68,7 +69,25 @@ const Login = () => {
       dispatch(setRole(decoded.role));
       dispatch(setCoursesBought(decoded.coursesBought));
     }
-  }, [dispatch]);
+  }, [cookie]);
+
+  const googleMutation = useMutation({
+    mutationFn: googleRedirectUrl,
+    onSuccess: (redirectUrl) => {
+      if (redirectUrl) {
+        window.location.href = redirectUrl;
+      } else {
+        console.error("Redirect URL not found.");
+      }
+    },
+    onError: (error) => {
+      console.error("Error during Google Redirect:", error);
+    },
+  });
+
+  const handleGoogle = () => {
+    googleMutation.mutate();
+  };
 
   return (
     <div className="flex h-screen">
@@ -146,7 +165,14 @@ const Login = () => {
                 "Continue with email"
               )}
             </button>
-            <div className=""></div>
+            <div className="">
+              <button
+                className="bg-pink-400 p-[1em] hover:bg-purple-200"
+                onClick={handleGoogle}
+              >
+                Login with google
+              </button>
+            </div>
 
             {formErrors.general && (
               <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative">

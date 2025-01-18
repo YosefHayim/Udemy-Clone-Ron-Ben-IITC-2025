@@ -70,7 +70,7 @@ const lessonSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    lastPlayedVideoTimePlayed: {
+    lastPlayedVideoTime: {
       type: Number,
       default: 0,
     },

@@ -26,12 +26,8 @@ const AddToCart = ({
       dispatch(setAmountOfCourses()); // Increment the amount of courses
       dispatch(setTotalCourseDiscountPrices(Number(coursePrice)));
       dispatch(setTotalOriginalCoursePrices(Number(fullPriceCourse)));
-      console.log(
-        `Dispatching fullPrice:${fullPriceCourse} and discount price: ${coursePrice}`
-      );
       dispatch(calculateTotalSavings());
       dispatch(calculateDiscountPercentage());
-
       dispatch(setAddCourseToCart(courseId)); // Add course to the cart
       setIsLoading(false); // Stop loading indicator
     }, 1000);
