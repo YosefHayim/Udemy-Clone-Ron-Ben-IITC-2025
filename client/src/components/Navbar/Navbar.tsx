@@ -12,14 +12,17 @@ import ExploreMenu from "./Explore/ExploreMenu";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import MarketingGuest from "../NavBarMarketing/MarketingGuest";
 
 const Navbar = () => {
   const cookie = Cookies.get("cookie");
   useEffect(() => {}, [cookie]);
 
   return (
-    <div className="h-[4.5em] flex items-center py-3 bg-white w-screen z-[10] px-[0.5em]">
-      <div className="flex items-center w-full shadow-md justify-between">
+    <>
+    {!cookie && <MarketingGuest />}
+     <div className="h-[4.5em] flex items-center py-9 bg-white w-screen z-[10]">
+      <div className="flex items-center w-full shadow-md justify-between px-[2.4rem] fonte-[1.4rem]">
         <Link to="/">
           <Logo />
         </Link>
@@ -40,6 +43,8 @@ const Navbar = () => {
         {!cookie && <Language />}
       </div>
     </div>
+    </>
+   
   );
 };
 
