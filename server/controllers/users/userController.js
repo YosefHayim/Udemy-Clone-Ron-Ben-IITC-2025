@@ -329,16 +329,28 @@ const joinCourseById = catchAsync(async (req, res, next) => {
     );
   }
 
-  if (user.coursesBought.includes(courseId)) {
+  if (user.coursesBought.some((bought) => bought.course === courseId)) {
     return next(createError("You have already joined this course.", 400));
   }
 
   // Add user to course enrollment
   course.totalStudentsEnrolled.students.push(user._id);
-  await course.save(); // `post('save')` will update the count automatically
+  await course.save();
 
   // Add course to user's purchased courses
-  user.coursesBought.push(courseId);
+  user.coursesBought.push({ course: courseId, boughtAt: new Date() });
+
+  // Initialize course progress
+  if (!user.coursesProgress) user.coursesProgress = [];
+  user.coursesProgress.push({
+    course: courseId,
+    lessons: course.lessons.map((lesson) => ({
+      lesson: lesson._id,
+      isDone: false,
+      lastPlayedVideoTime: 0,
+    })),
+  });
+
   await user.save();
 
   res.status(201).json({

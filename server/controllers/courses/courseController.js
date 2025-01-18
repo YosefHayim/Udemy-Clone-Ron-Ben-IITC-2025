@@ -296,11 +296,7 @@ const updateCourseProgressById = catchAsync(async (req, res, next) => {
   }
 
   // Check if the user has bought the course
-  if (
-    !req.user.coursesBought.some(
-      (course) => course.course.toString() === courseId
-    )
-  ) {
+  if (!req.user.coursesBought.some((course) => course.course === courseId)) {
     return next(
       createError("This course is not included in the courses you bought.", 400)
     );
