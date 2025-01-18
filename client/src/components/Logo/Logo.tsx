@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "/images/logo.png";
+import logo from "../../../public/images/logo-udemy-nav.svg";
 
 const Logo = () => {
   return (
@@ -9,7 +9,7 @@ const Logo = () => {
           <img
             src={logo}
             alt="Udemy Logo"
-            style={{ height: "2.65rem" }}
+            style={{ height: "2.15rem" }}
             className="w-auto max-w-full align-middle"
           />
         </div>

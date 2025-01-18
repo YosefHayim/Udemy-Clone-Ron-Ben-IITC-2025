@@ -76,7 +76,7 @@ const ExploreMenu = () => {
         onMouseLeave={handleMenuLeave}
       >
         <button
-          className="text-[#020202] text-sm  font-[400] text-[0.9rem] px-4 py-2 rounded-md hover:bg-purple-100 hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300">
+          className="text-[#020202] text-sm  font-[400] text-[0.9rem] rounded-md hover:bg-purple-100 hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300">
           Explore
         </button>
 
