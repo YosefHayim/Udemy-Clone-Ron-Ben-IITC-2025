@@ -37,7 +37,7 @@ const createUsers = async () => {
       fullName: faker.person.fullName(),
       profilePic: faker.image.avatar(),
       email: faker.internet.email().toLowerCase(),
-      password: faker.password({ length: 10 }),
+      password: faker.internet.password(10),
       role: faker.helpers.arrayElement(["student", "instructor", "student"]),
       biography: faker.lorem.sentence(15),
       udemyCredits: faker.number.int({ min: 5000, max: 10000 }),
@@ -560,7 +560,7 @@ const simulateCoursePurchases = async () => {
 
 const addCoursesToWishlistOfUsers = async () => {
   const users = await User.find({ role: "student" });
-  const courses = await Course.find(); // Fetch all available courses
+  const courses = await Course.find();
 
   if (!users.length) {
     console.warn("No users found to update with wishlist.");

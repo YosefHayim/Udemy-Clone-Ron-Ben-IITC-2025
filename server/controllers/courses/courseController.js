@@ -260,6 +260,7 @@ const viewCourseById = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
+    permission: "You are eligible to watch the course content",
     totalReviewsCourseHas: findCourse.reviews.length,
     data: findCourse,
   });
