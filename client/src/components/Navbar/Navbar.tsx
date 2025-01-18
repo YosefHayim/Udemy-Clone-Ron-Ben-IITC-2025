@@ -46,7 +46,7 @@ const Navbar = () => {
 
       {/* (Guest) */}
       {!cookie && (
-        <div className="flex items-center bg-white w-screen z-[10] shadow-md justify-between px-[1.55rem] py-[0.775rem] font-medium text-[1.4rem]">
+        <div className="flex items-center bg-white w-screen z-[10] shadow-md justify-between px-[1.55rem] py-[0.75rem] font-medium text-[1.4rem]">
           <Link to="/">
             <Logo />
           </Link>
@@ -57,7 +57,7 @@ const Navbar = () => {
           <Link to="/cart">
             <Cart />
           </Link>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-[0.4rem] pr-4">
             <LoginBtn />
             <SignupBtn />
             <Language />

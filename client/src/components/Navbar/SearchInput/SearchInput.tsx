@@ -67,7 +67,7 @@ const SearchInput = () => {
   }
 
   return (
-    <div className="flex items-center border border-gray-700 rounded-full overflow-hidden w-1/2 h-[3rem] bg-gray-50 z-[1800] ">
+    <div className="px-2 flex items-center border border-gray-400 rounded-full overflow-hidden w-1/2 h-[3rem] hover:bg-gray-50 z-[1800] ">
       <MdOutlineSearch
         className={`w-6 h-6 ${
           isTyping ? "text-gray-900" : "text-gray-400 opacity-200"
@@ -77,7 +77,7 @@ const SearchInput = () => {
         <input
           type="text"
           placeholder="Search for anything"
-          className="flex-1 bg-transparent text-gray-700 focus:outline-none text-sm ml-3 placeholder-gray-700 placeholder:text-sm placeholder:font-Sans placeholder:font-normal bg-gray-50 w-[400px]"
+          className="pb-[0.6rem] flex-1 bg-transparent text-gray-700 focus:outline-none text-sm ml-3 placeholder-gray-600 placeholder:text-sm placeholder:font-Sans placeholder:font-normal bg-gray-50"
           onChange={handleOnChange}
         />
       </form>
