@@ -1,4 +1,4 @@
-const SortDropDown = ({ filterData }) => {
+const SortDropDown = () => {
   return (
     <div className="flex flex-col items-center w-full ">
       <div className="relative w-full">
