@@ -10,6 +10,8 @@ const InteractionsBtns: React.FC<{
     return;
   }
 
+  console.log(coursePrice, fullPriceCourse);
+
   return (
     <div className="flex items-center justify-start w-full gap-[0.5em] mt-[1em]">
       <AddToCart
