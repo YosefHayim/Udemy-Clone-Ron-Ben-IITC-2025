@@ -38,3 +38,24 @@ export const languages = [
   { code: "uz", name: "O‘zbek" },
   { code: "lt", name: "Lietuvių" },
 ];
+
+export const btnLanguages = [
+  { code: "en", name: "English" },
+  { code: "de", name: "Deutsch" },
+  { code: "es", name: "Español" },
+  { code: "fr", name: "Français" },
+  { code: "id", name: "Bahasa Indonesia" },
+  { code: "it", name: "Italiano" },
+  { code: "ja", name: "日本語" },
+  { code: "ko", name: "한국어" },
+  { code: "nl", name: "Nederlands" },
+  { code: "pl", name: "Polski" },
+  { code: "pt", name: "Português" },
+  { code: "ro", name: "Română" },
+  { code: "ru", name: "Русский" },
+  { code: "th", name: "ภาษาไทย" },
+  { code: "tr", name: "Türkçe" },
+  { code: "vi", name: "Tiếng Việt" },
+  { code: "zh-cn", name: "中文(简体)" },
+  { code: "zh-tw", name: "中文(繁體)" },
+];

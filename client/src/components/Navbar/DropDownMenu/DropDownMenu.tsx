@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import { RootState } from "@/redux";
 import { useDispatch } from "react-redux";
 import { clearUser } from "@/redux/slices/userSlice";
+import ChangeLanguage from "./ChangeLanguage/ChangeLanguage";
 
 const DropdownMenu: React.FC = () => {
   const dispatch = useDispatch();
@@ -127,6 +128,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <div className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
               <span className="text-sm">Language</span>
+              <ChangeLanguage />
               <span className="ml-auto mr-2 text-sm">English</span>
               <MdLanguage className="text-lg" />
             </div>

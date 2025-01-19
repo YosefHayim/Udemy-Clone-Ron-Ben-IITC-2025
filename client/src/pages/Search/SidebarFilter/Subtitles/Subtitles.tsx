@@ -1,5 +1,5 @@
 import Filter from "@/components/Filter/Filter";
-import { languages } from "@/utils/languanges";
+import { languages } from "@/utils/languages";
 import { useState } from "react";
 
 const Subtitles = () => {
