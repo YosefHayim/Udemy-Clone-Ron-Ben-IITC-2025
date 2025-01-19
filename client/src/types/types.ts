@@ -68,7 +68,7 @@ export interface SearchResultsProps {
   data: {
     response: SearchResultsArray[];
   };
-  response: ResultProps;
+  response?: ResultProps;
 }
 
 export interface ReportUserReviewPayload {
@@ -226,7 +226,7 @@ export interface CoursePreviewCardProps {
 export interface Review {
   _id: string;
   comment: string;
-  createdAt: string;
+  createdAt: Date;
   rating: number;
   user: {
     _id: string;
