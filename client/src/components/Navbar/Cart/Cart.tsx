@@ -15,7 +15,7 @@ const Cart = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="text-black font-bold hover:text-purple-800">
+      <div className="text-black font-bold hover:text-purple-800 hover:bg-purple-100 py-[0.6rem] px-[0.6rem] rounded-md">
         <MdOutlineShoppingCart className="w-6 h-6" />
         <CartCoursesNumber />
       </div>

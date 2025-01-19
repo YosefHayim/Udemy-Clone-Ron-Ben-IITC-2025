@@ -12,14 +12,18 @@ import ExploreMenu from "./Explore/ExploreMenu";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+// import MarketingGuest from "../NavBarMarketing/MarketingGuest";
+// import Login from "@/pages/Login/Login";
+// import SignUp from "@/pages/SignUp/Signup";
 
 const Navbar = () => {
   const cookie = Cookies.get("cookie");
-  useEffect(() => {}, [cookie]);
+  useEffect(() => { }, [cookie]);
 
   return (
-    <div className="h-[4.5em] flex items-center py-3 bg-white w-screen z-[10] px-[0.5em]">
-      <div className="flex items-center w-full shadow-md justify-between">
+    <>
+      {/* {!cookie && <MarketingGuest />}
+      <div className="h-[4.5em] flex items-center bg-white w-screen z-[10] shadow-md justify-between px-[1.55rem] py-[2.25rem] fonte-[1.4rem]">
         <Link to="/">
           <Logo />
         </Link>
@@ -38,8 +42,49 @@ const Navbar = () => {
         {cookie && <Notifications />}
         {cookie && <Profile />}
         {!cookie && <Language />}
-      </div>
-    </div>
+      </div> */}
+
+      {/* (Guest) */}
+      {!cookie && (
+        <div className="flex items-center bg-white w-screen z-[10] shadow-md justify-between px-[1.55rem] py-[0.75rem] font-medium text-[1.4rem]">
+          <Link to="/">
+            <Logo />
+          </Link>
+          <ExploreMenu />
+          <SearchInput />
+          <AtagBtn aTagName={"Udemy Business"} />
+          <AtagBtn aTagName={"Teach on Udemy"} />
+          <Link to="/cart">
+            <Cart />
+          </Link>
+          <div className="flex items-center space-x-[0.4rem] pr-4">
+            <LoginBtn />
+            <SignupBtn />
+            <Language />
+          </div>
+        </div>
+      )}
+
+      {/* Users */}
+      {cookie && (
+        <div className="h-[4.5em] flex items-center bg-white w-screen z-[10] shadow-md justify-between px-[1.55rem] py-[2.25rem] font-medium text-[1.4rem]">
+          <Link to="/">
+            <Logo />
+          </Link>
+          <ExploreMenu />
+          <SearchInput />
+          <AtagBtn aTagName={"Udemy Business"} />
+          <AtagBtn aTagName={"Teach on Udemy"} />
+          <AtagBtn aTagName={"My learning"} />
+          <Heart />
+          <Link to="/cart">
+            <Cart />
+          </Link>
+          <Notifications />
+          <Profile />
+        </div>
+      )}
+    </>
   );
 };
 
