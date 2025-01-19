@@ -30,10 +30,10 @@ const CustomTrigger: React.FC<CustomTriggerProps> = ({
         <TooltipTrigger asChild>
         <button
   onClick={toggleSidebar}
-  className={`p-2 z-40 ${
+  className={` z-40 ${
     isInsideSidebar
       ? "text-gray-700 bg-transparent flex items-center font-semibold "
-      : "bg-gray-500/50 hover:bg-gray-500 text-white rounded-sm group flex items-center w-10 overflow-hidden transition-all duration-300 hover:w-48"
+      : "bg-purple-500 bg-opacity-60  p-4 hover:bg-[#892DE1] hover:bg-[#892DE1] text-white rounded-sm group flex items-center justify-around pr- w-10 overflow-hidden transition-all duration-300 hover:w-48"
   }  transform transition-all duration-300 ${
     isInsideSidebar ? "" : "absolute"
   }`}
