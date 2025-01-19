@@ -27,6 +27,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 app.use(loggerInfo);
+
 // app.use(limiter);
 
 app.use(
@@ -35,6 +36,7 @@ app.use(
     credentials: true,
   })
 );
+app.options("*", cors());
 app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
