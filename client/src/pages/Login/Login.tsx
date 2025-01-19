@@ -86,7 +86,7 @@ const Login = () => {
   });
 
   const handleGoogle = () => {
-    mutation.mutate({ email, password });
+    googleMutation.mutate();
   };
 
   return (

@@ -1,12 +1,12 @@
 import { axiosClient, localhostUrl } from "../configuration";
 
-const googleRedirectUrl = async (code: string | null) => {
+const googleRedirectUrl = async () => {
   try {
     const url = `${localhostUrl}/api/user/auth/google/`;
 
     const {
       data: { url: redirectUrl },
-    } = await axiosClient.post(url, { code });
+    } = await axiosClient.post(url);
 
     if (redirectUrl) {
       console.log(redirectUrl);
