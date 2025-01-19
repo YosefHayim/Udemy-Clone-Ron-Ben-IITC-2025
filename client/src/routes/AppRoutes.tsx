@@ -18,6 +18,7 @@ import OAuthCallback from "@/pages/Login/OAuthCallback";
 import ProfileMain from "@/pages/ProfilePage/ProfileMain";
 import UdemyCredits from "@/pages/UdemyCredits/UdemyCredits";
 import PurchaseHistory from "@/pages/PurchaseHistory/PurchaseHistory";
+import Subscription from "@/pages/Subscription/Subscription";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -41,6 +42,10 @@ const AppRoutes: React.FC = () => {
                   element={<PurchaseHistory />}
                 />
                 <Route path="/" element={<OAuthCallback />} />
+                <Route
+                  path="/user/manage-subscriptions/"
+                  element={<Subscription />}
+                />
                 <Route path="/cart" element={<ShoppingCart />} />
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route
