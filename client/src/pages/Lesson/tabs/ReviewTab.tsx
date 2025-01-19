@@ -1,32 +1,24 @@
 import getAllReviewsByCourseId from "@/api/reviews/getAllReviewsByCourseId";
 import { useQuery } from "@tanstack/react-query";
-import { LuDot } from "react-icons/lu";
 import { useParams } from "react-router-dom";
 import UserCourseReview from "@/pages/ViewCoursePageInfo/ReviewsSection/UserCourseReview/UserCourseReview";
-import { MdSearch, MdStar, MdOutlineStarHalf } from "react-icons/md";
+import { MdSearch, MdOutlineStarHalf } from "react-icons/md";
 import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 import Loader from "@/components/Loader/Loader";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { Review } from "@/types/types";
 
-const ReviewsTab = ({ avgRating }) => {
+const ReviewsTab: React.FC<{ avgRating: number }> = ({ avgRating }) => {
   const params = useParams();
-  const courseId = params.courseId;
-  const [limit] = useState(13); // Set the limit of reviews per page
-  const [page, setPage] = useState(1); // Initialize page state
+  let courseId: string | undefined = params.courseId;
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["reviews", courseId, page],
-    queryFn: () =>
-      getAllReviewsByCourseId(courseId, { limit, page }), // Fetch reviews with pagination
+    queryKey: ["reviews", courseId],
+    queryFn: () => getAllReviewsByCourseId((courseId = "")),
   });
 
-  const handleLoadMoreReviews = () => {
-    setPage((prevPage) => prevPage + 1);
-  };
-
-  const renderStars = (rating) => {
+  const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
 
@@ -36,10 +28,11 @@ const ReviewsTab = ({ avgRating }) => {
           if (i < fullStars) {
             return <IoIosStar key={i} className="text-[#c4710d] ml-1" />;
           } else if (i === fullStars && hasHalfStar) {
-            return <MdOutlineStarHalf key={i} className="text-[#c4710d] ml-1" />;
+            return (
+              <MdOutlineStarHalf key={i} className="text-[#c4710d] ml-1" />
+            );
           } else {
-            return <IoIosStarOutline
-            key={i} className="text-[#c4710d] ml-1" />;
+            return <IoIosStarOutline key={i} className="text-[#c4710d] ml-1" />;
           }
         })}
       </div>
@@ -48,78 +41,79 @@ const ReviewsTab = ({ avgRating }) => {
 
   return (
     <div className="min-w-fit mt-4">
-        {/* Student Feedback Section */}
-        <h2 className="text-2xl font-bold mb-4">Student feedback</h2>
+      {/* Student Feedback Section */}
+      <h2 className="text-2xl font-bold mb-4">Student feedback</h2>
       <div className="mb-6 flex flex-col py-2">
-
         <div className="flex  flex-row items-center min-w-full gap-5 p-4 ">
-        <div className="flex flex-col w-full justify-center items-center ">
-          <div className="text-6xl font-bold w-full text-[#c4710d] ">
-            {avgRating.toFixed(1)}
+          <div className="flex flex-col w-full justify-center items-center ">
+            <div className="text-6xl font-bold w-full text-[#c4710d] ">
+              {avgRating.toFixed(1)}
+            </div>
+            <div className="ml-4 text-lg w-full pr-4">
+              {renderStars(avgRating)}
+            </div>
+            <span className="ml-4 text-lg w-full text-[#c4710d] font-semibold">
+              Course Rating
+            </span>
           </div>
-          <div className="ml-4 text-lg w-full pr-4">{renderStars(avgRating)}</div>
-          <span className="ml-4 text-lg w-full text-[#c4710d] font-semibold">Course Rating</span>
-        </div>
 
-        <div className="space-y-2">
-          {[5, 4, 3, 2, 1].map((stars) => {
-            const count = data?.filter(
-              (review) => Math.round(review.rating) === stars
-            ).length || 0;
-            const percentage = data?.length
-              ? ((count / data.length) * 100).toFixed(1)
-              : 0;
+          <div className="space-y-2">
+            {[5, 4, 3, 2, 1].map((stars) => {
+              const count =
+                data?.filter(
+                  (review: Review) => Math.round(review.rating) === stars
+                ).length || 0;
+              const percentage = data?.length
+                ? ((count / data.length) * 100).toFixed(1)
+                : 0;
 
-            return (
-              <div key={stars} className="flex  items-center">
-
-                <div className="min-w-[720px]  bg-gray-200  mx-2 relative">
-                  <div
-                    className="h-2 bg-[#9194AC] "
-                    style={{ width: `${percentage}%` }}
-                  ></div>
+              return (
+                <div key={stars} className="flex  items-center">
+                  <div className="min-w-[720px]  bg-gray-200  mx-2 relative">
+                    <div
+                      className="h-2 bg-[#9194AC] "
+                      style={{ width: `${percentage}%` }}
+                    ></div>
+                  </div>
+                  <span className="text-sm font-semibold text-gray-700">
+                    {percentage}%
+                  </span>
+                  <div className="flex items-center">{renderStars(stars)}</div>
                 </div>
-                <span className="text-sm font-semibold text-gray-700">
-                  {percentage}% 
-                </span>
-                <div className="flex items-center">
-                  {renderStars(stars)}
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
       </div>
 
       {/* Reviews Section */}
       <form className="flex flex-row items-center gap-2 mb-6">
-  {/* Search Input */}
-  <Input
-    placeholder="Search reviews"
-    type="text"
-    className="bg-white min-w-[744px] min-h-[48px] focus:outline-none px-4 border border-black rounded-sm text-lg"
-  />
+        {/* Search Input */}
+        <Input
+          placeholder="Search reviews"
+          type="text"
+          className="bg-white min-w-[744px] min-h-[48px] focus:outline-none px-4 border border-black rounded-sm text-lg"
+        />
 
-  {/* Search Button */}
-  <Button className="bg-[#6D28D2] hover:bg-[#7551a7] px-4 min-h-[48px] ">
-    <MdSearch className="text-black" />
-  </Button>
+        {/* Search Button */}
+        <Button className="bg-[#6D28D2] hover:bg-[#7551a7] px-4 min-h-[48px] ">
+          <MdSearch className="text-black" />
+        </Button>
 
-  {/* Dropdown Filter */}
-  <select
-    className="bg-white border border-black rounded-sm px-4 min-h-[48px] text-lg focus:outline-none"
-    defaultValue="all"
-  >
-    <option value="all">All ratings</option>
-    <option value="5">Five stars</option>
-    <option value="4">Four stars</option>
-    <option value="3">Three stars</option>
-    <option value="2">Two stars</option>
-    <option value="1">One star</option>
-  </select>
-</form>
-      {isLoading && <Loader />}
+        {/* Dropdown Filter */}
+        <select
+          className="bg-white border border-black rounded-sm px-4 min-h-[48px] text-lg focus:outline-none"
+          defaultValue="all"
+        >
+          <option value="all">All ratings</option>
+          <option value="5">Five stars</option>
+          <option value="4">Four stars</option>
+          <option value="3">Three stars</option>
+          <option value="2">Two stars</option>
+          <option value="1">One star</option>
+        </select>
+      </form>
+      {isLoading && <Loader hSize="" useSmallLoading={false} />}
       {error && (
         <div className="text-red-500">
           Error loading reviews. Please try again later.
@@ -128,7 +122,7 @@ const ReviewsTab = ({ avgRating }) => {
       {data && (
         <div className="overflow-y-auto min-w-full h-auto">
           <div className="space-y-4">
-            {data.map((review) => (
+            {data.map((review: Review) => (
               <UserCourseReview
                 review={review}
                 key={review._id}
@@ -141,7 +135,6 @@ const ReviewsTab = ({ avgRating }) => {
               className={`$ {
                 data.length < limit ? "hidden" : "block"
               } bg-white text-black rounded-[0.2em] border border-black font-bold w-full`}
-              onClick={handleLoadMoreReviews}
             >
               Show more reviews
             </Button>
