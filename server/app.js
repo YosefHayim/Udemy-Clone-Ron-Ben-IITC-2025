@@ -28,12 +28,24 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(loggerInfo);
 // app.use(limiter);
+
+const allowedOrigins = [
+  "http://localhost:5173", // Frontend in development
+  "https://udemy-clone-ron-and-ben-front.onrender.com", // Frontend in production
+];
 app.use(
   cors({
-    origin: "https://udemy-clone-ron-and-ben-front.onrender.com",
-    credentials: true,
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // Allow cookies
   })
 );
+
 app.use(morgan("dev"));
 
 app.get("/", (req, res) => {

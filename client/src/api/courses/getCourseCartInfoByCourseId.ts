@@ -1,4 +1,4 @@
-import { axiosClient, baseUrl } from "../configuration";
+import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 type fn = (courseId: string) => Promise<any>;
 
@@ -9,7 +9,7 @@ const getCourseCartInfoByCourseId: fn = async (courseId: string) => {
   }
 
   const sanitizedCourseId = courseId.trim();
-  const url = `${baseUrl}/api/course/cartInfo/${sanitizedCourseId}`;
+  const url = `${localhostUrl}/api/course/cartInfo/${sanitizedCourseId}`;
 
   try {
     const response = await axiosClient.get(url);

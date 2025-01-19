@@ -1,4 +1,4 @@
-import { axiosClient, baseUrl } from "../configuration";
+import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 type Credentials = {
   email: string;
@@ -10,7 +10,7 @@ type fn = (credentials: Credentials) => Promise<any>;
 const loginUser: fn = async (credentials) => {
   try {
     const response = await axiosClient.post(
-      `${baseUrl}/api/user/auth/login`,
+      `${localhostUrl}/api/user/auth/login`,
       credentials
     );
 
