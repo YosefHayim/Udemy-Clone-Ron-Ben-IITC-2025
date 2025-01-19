@@ -6,12 +6,17 @@ import CourseRecap from "@/components/CourseCard/CourseRecap/CourseRecap";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
 import CourseLength from "@/pages/ViewCoursePageInfo/MoreCoursesByInstructor/CourseLength/CourseLength";
+import { CourseTypeProps } from "@/types/types";
 import { useNavigate } from "react-router-dom";
 
-const SearchCourseCard = ({ course }) => {
+const SearchCourseCard: React.FC<{ course: CourseTypeProps }> = ({
+  course,
+}) => {
   if (!course) {
     return;
   }
+
+  console.log(course);
 
   const navigate = useNavigate();
 

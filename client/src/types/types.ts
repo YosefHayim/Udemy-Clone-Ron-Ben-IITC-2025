@@ -298,3 +298,7 @@ export interface LessonProps {
   videoUrl?: string;
   duration?: number;
 }
+
+export interface SearchCourseCardProps {
+  
+}
