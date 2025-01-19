@@ -1,5 +1,3 @@
-// import { MenuItemProps } from "@/types/types";
-
 interface MenuItemProps {
   title: string; // Main category title
   subcategories?: Subcategory[]; // Optional subcategories
@@ -33,8 +31,8 @@ export const menuItems: MenuItemProps[] = [
               { title: "AWS Certified DevOps Engineer - Professional" },
               { title: "AWS Certified Security - Specialty" },
               { title: "AWS Certified Machine Learning - Specialty" },
-              { title: "AWS Certified Advanced Networking - Specialty" },
-            ],
+              { title: "AWS Certified Advanced Networking - Specialty" }
+            ]
           },
           {
             title: "Microsoft Certifications",
@@ -53,8 +51,8 @@ export const menuItems: MenuItemProps[] = [
               { title: "MS-900: Microsoft 365 Fundamentals" },
               { title: "SC-200: Microsoft Security Operations Analyst Associate" },
               { title: "SC-900: Microsoft Security, Compliance, and Identity Fundamentals" },
-              { title: "DP-100: Microsoft Azure Data Scientist Associate" },
-            ],
+              { title: "DP-100: Microsoft Azure Data Scientist Associate" }
+            ]
           },
           {
             title: "Cisco Certifications",
@@ -66,199 +64,201 @@ export const menuItems: MenuItemProps[] = [
               { title: "Cisco CCIE Enterprise Infrastructure" },
               { title: "Cisco CCNP Service Provider" },
               { title: "Cisco CCT Routing and Switching" },
-              { title: "Cisco CCIE Data Center" },
-            ],
+              { title: "Cisco CCIE Data Center" }
+            ]
           },
           {
             title: "CompTIA Certifications",
             subcategories: [
-              "CompTIA A+",
-              "CompTIA Security+",
-              "CompTIA Network+",
-              "CompTIA Cybersecurity Analyst (CySA+)",
-              "CompTIA Linux+",
-              "CompTIA IT Fundamentals (ITF+)",
-              "CompTIA PenTest+",
-              "CompTIA Advanced Security Practitioner (CASP+)",
-              "CompTIA Cloud+",
-              "CompTIA Server+",
-              "CompTIA Cloud Essentials+",
-              "CompTIA Data+",
-            ],
+              { title: "CompTIA A+" },
+              { title: "CompTIA Security+" },
+              { title: "CompTIA Network+" },
+              { title: "CompTIA Cybersecurity Analyst (CySA+)" },
+              { title: "CompTIA Linux+" },
+              { title: "CompTIA IT Fundamentals (ITF+)" },
+              { title: "CompTIA PenTest+" },
+              { title: "CompTIA Advanced Security Practitioner (CASP+)" },
+              { title: "CompTIA Cloud+" },
+              { title: "CompTIA Server+" },
+              { title: "CompTIA Cloud Essentials+" },
+              { title: "CompTIA Data+" }
+            ]
           },
           {
             title: "Project Management Institute (PMI) Certifications",
             subcategories: [
-              "PMI Project Management Professional (PMP)",
-              "PMI Certified Associate in Project Management (CAPM)",
-              "PMI Agile Certified Practitioner (PMI-ACP)",
-              "PMI Risk Management Professional (PMI-RMP)",
-              "PMI Program Management Professional (PgMP)",
-              "PMI Professional in Business Analysis (PMI-PBA)",
-              "SAP Certified Associate - SAP Activate Project Manager",
-            ],
+              { title: "PMI Project Management Professional (PMP)" },
+              { title: "PMI Certified Associate in Project Management (CAPM)" },
+              { title: "PMI Agile Certified Practitioner (PMI-ACP)" },
+              { title: "PMI Risk Management Professional (PMI-RMP)" },
+              { title: "PMI Program Management Professional (PgMP)" },
+              { title: "PMI Professional in Business Analysis (PMI-PBA)" },
+              { title: "SAP Certified Associate - SAP Activate Project Manager" }
+            ]
           },
           {
             title: "Google Cloud Certifications",
             subcategories: [
-              "Google Cloud Associate Cloud Engineer",
-              "Google Cloud Professional Cloud Architect",
-              "Google Cloud Professional Data Engineer",
-              "Google Cloud Professional Cloud Developer",
-              "Google Cloud Digital Leader",
-              "Google Cloud Professional Cloud DevOps Engineer",
-              "Google Cloud Professional Cloud Network Engineer",
-              "Google Cloud Professional Cloud Security Engineer",
-              "Google Cloud Professional Machine Learning Engineer",
-              "Google Cloud Professional Cloud Database Engineer",
-            ],
+              { title: "Google Cloud Associate Cloud Engineer" },
+              { title: "Google Cloud Professional Cloud Architect" },
+              { title: "Google Cloud Professional Data Engineer" },
+              { title: "Google Cloud Professional Cloud Developer" },
+              { title: "Google Cloud Digital Leader" },
+              { title: "Google Cloud Professional Cloud DevOps Engineer" },
+              { title: "Google Cloud Professional Cloud Network Engineer" },
+              { title: "Google Cloud Professional Cloud Security Engineer" },
+              { title: "Google Cloud Professional Machine Learning Engineer" },
+              { title: "Google Cloud Professional Cloud Database Engineer" }
+            ]
           },
           {
             title: "Six Sigma Certifications",
             subcategories: [
-              "Lean Six Sigma Green Belt Certification",
-              "Lean Six Sigma White Belt Certification",
-              "Lean Six Sigma Yellow Belt Certification",
-              "Lean Six Sigma Black Belt Certification",
-              "Six Sigma Black Belt Certification",
-              "Six Sigma Green Belt Certification",
-              "Six Sigma Yellow Belt Certification",
-              "Six Sigma White Belt Certification",
-            ],
+              { title: "Lean Six Sigma Green Belt Certification" },
+              { title: "Lean Six Sigma White Belt Certification" },
+              { title: "Lean Six Sigma Yellow Belt Certification" },
+              { title: "Lean Six Sigma Black Belt Certification" },
+              { title: "Six Sigma Black Belt Certification" },
+              { title: "Six Sigma Green Belt Certification" },
+              { title: "Six Sigma Yellow Belt Certification" },
+              { title: "Six Sigma White Belt Certification" }
+            ]
           },
           {
             title: "Oracle Certifications",
             subcategories: [
-              "1Z0-071: Oracle Database SQL Certified Associate",
-              "1Z0-808: Oracle Certified Associate, Java SE 8 Programmer",
-              "1Z0-819: Oracle Certified Professional: Java SE 11 Developer",
-              "1Z0-149: Oracle Database PL/SQL Developer Certified Professional",
-              "1Z0-133: Oracle Certified Associate, WebLogic Server 12c Administrator",
-            ],
-          },
-        ],
+              { title: "1Z0-071: Oracle Database SQL Certified Associate" },
+              { title: "1Z0-808: Oracle Certified Associate, Java SE 8 Programmer" },
+              { title: "1Z0-819: Oracle Certified Professional: Java SE 11 Developer" },
+              { title: "1Z0-149: Oracle Database PL/SQL Developer Certified Professional" },
+              { title: "1Z0-133: Oracle Certified Associate, WebLogic Server 12c Administrator" }
+            ]
+          }
+        ]
       },
+      
       {
         group: "Popular Subjects",
         items: [
           {
             title: "Cloud Certification",
             subcategories: [
-              "AWS Certified Solutions Architect - Associate",
-              "AWS Certified Cloud Practitioner",
-              "AZ-900: Microsoft Azure Fundamentals",
-              "AWS Certified Developer - Associate",
-              "AZ-104: Microsoft Azure Administrator Associate",
-              "AWS Certified SysOps Administrator - Associate",
-              "AWS Certified Solutions Architect - Professional",
-              "Google Cloud Associate Cloud Engineer",
-              "Google Cloud Professional Cloud Architect",
-              "Certified Kubernetes Administrator (CKA)",
-              "AWS Certified DevOps Engineer - Professional",
-              "AWS Certified Security - Specialty",
-              "AZ-204: Microsoft Azure Developer Associate",
-              "Google Cloud Professional Data Engineer",
-              "AWS Certified Machine Learning - Specialty",
-            ],
+              { title: "AWS Certified Solutions Architect - Associate" },
+              { title: "AWS Certified Cloud Practitioner" },
+              { title: "AZ-900: Microsoft Azure Fundamentals" },
+              { title: "AWS Certified Developer - Associate" },
+              { title: "AZ-104: Microsoft Azure Administrator Associate" },
+              { title: "AWS Certified SysOps Administrator - Associate" },
+              { title: "AWS Certified Solutions Architect - Professional" },
+              { title: "Google Cloud Associate Cloud Engineer" },
+              { title: "Google Cloud Professional Cloud Architect" },
+              { title: "Certified Kubernetes Administrator (CKA)" },
+              { title: "AWS Certified DevOps Engineer - Professional" },
+              { title: "AWS Certified Security - Specialty" },
+              { title: "AZ-204: Microsoft Azure Developer Associate" },
+              { title: "Google Cloud Professional Data Engineer" },
+              { title: "AWS Certified Machine Learning - Specialty" }
+            ]
           },
           {
             title: "Networking Certification",
             subcategories: [
-              "Cisco Certified Network Associate (CCNA)",
-              "CompTIA Network+",
-              "Cisco CCNP Enterprise",
-              "AWS Certified Advanced Networking - Specialty",
-              "Juniper Networks Certified Internet Associate (JNCIA)",
-              "F5 BIG-IP Certification",
-              "VMware Certified Professional - Network Virtualization (VCP-NV)",
-              "Cisco CCIE Enterprise Infrastructure",
-              "Juniper Networks Certified Internet Specialist (JNCIS)",
-              "Cisco CCNP Service Provider",
-              "Cisco CCT Routing and Switching",
-              "Palo Alto Networks Certified Network Security Administrator (PCNSA)",
-              "HashiCorp Certified: Consul Associate",
-            ],
+              { title: "Cisco Certified Network Associate (CCNA)" },
+              { title: "CompTIA Network+" },
+              { title: "Cisco CCNP Enterprise" },
+              { title: "AWS Certified Advanced Networking - Specialty" },
+              { title: "Juniper Networks Certified Internet Associate (JNCIA)" },
+              { title: "F5 BIG-IP Certification" },
+              { title: "VMware Certified Professional - Network Virtualization (VCP-NV)" },
+              { title: "Cisco CCIE Enterprise Infrastructure" },
+              { title: "Juniper Networks Certified Internet Specialist (JNCIS)" },
+              { title: "Cisco CCNP Service Provider" },
+              { title: "Cisco CCT Routing and Switching" },
+              { title: "Palo Alto Networks Certified Network Security Administrator (PCNSA)" },
+              { title: "HashiCorp Certified: Consul Associate" }
+            ]
           },
           {
             title: "Cybersecurity Certification",
             subcategories: [
-              "CompTIA Security+",
-              "Certified Information Systems Security Professional (CISSP)",
-              "AWS Certified Security - Specialty",
-              "CompTIA Cybersecurity Analyst (CySA+)",
-              "Certified in Cybersecurity (CC)",
-              "Certified Information Security Manager (CISM)",
-              "CompTIA PenTest+",
-              "Certified Information Systems Auditor (CISA)",
-              "Cisco Certified CyberOps Associate",
-              "CompTIA Advanced Security Practitioner (CASP+)",
-              "Certified Cloud Security Professional (CCSP)",
-              "Certified in Risk and Information Systems Control (CRISC)",
-              "SC-200: Microsoft Security Operations Analyst Associate",
-              "Google Cloud Professional Cloud Security Engineer",
-              "SC-900: Microsoft Security, Compliance, and Identity Fundamentals",
-            ],
+              { title: "CompTIA Security+" },
+              { title: "Certified Information Systems Security Professional (CISSP)" },
+              { title: "AWS Certified Security - Specialty" },
+              { title: "CompTIA Cybersecurity Analyst (CySA+)" },
+              { title: "Certified in Cybersecurity (CC)" },
+              { title: "Certified Information Security Manager (CISM)" },
+              { title: "CompTIA PenTest+" },
+              { title: "Certified Information Systems Auditor (CISA)" },
+              { title: "Cisco Certified CyberOps Associate" },
+              { title: "CompTIA Advanced Security Practitioner (CASP+)" },
+              { title: "Certified Cloud Security Professional (CCSP)" },
+              { title: "Certified in Risk and Information Systems Control (CRISC)" },
+              { title: "SC-200: Microsoft Security Operations Analyst Associate" },
+              { title: "Google Cloud Professional Cloud Security Engineer" },
+              { title: "SC-900: Microsoft Security, Compliance, and Identity Fundamentals" }
+            ]
           },
           {
             title: "Project Management Certification",
             subcategories: [
-              "PMI Project Management Professional (PMP)",
-              "PMI Certified Associate in Project Management (CAPM)",
-              "PMI Agile Certified Practitioner (PMI-ACP)",
-              "PMI Risk Management Professional (PMI-RMP)",
-              "PMI Program Management Professional (PgMP)",
-              "PMI Professional in Business Analysis (PMI-PBA)",
-              "SAP Certified Associate - SAP Activate Project Manager",
-            ],
+              { title: "PMI Project Management Professional (PMP)" },
+              { title: "PMI Certified Associate in Project Management (CAPM)" },
+              { title: "PMI Agile Certified Practitioner (PMI-ACP)" },
+              { title: "PMI Risk Management Professional (PMI-RMP)" },
+              { title: "PMI Program Management Professional (PgMP)" },
+              { title: "PMI Professional in Business Analysis (PMI-PBA)" },
+              { title: "SAP Certified Associate - SAP Activate Project Manager" }
+            ]
           },
           {
             title: "DevOps Certification",
             subcategories: [
-              "CompTIA A+",
-              "CompTIA IT Fundamentals (ITF+)",
-              "Japanese Information Technology Passport Examination",
-              "COBIT Foundation Certificate",
-            ],
+              { title: "CompTIA A+" },
+              { title: "CompTIA IT Fundamentals (ITF+)" },
+              { title: "Japanese Information Technology Passport Examination" },
+              { title: "COBIT Foundation Certificate" }
+            ]
           },
           {
             title: "Coding Certification",
             subcategories: [
-              "AWS Certified Developer - Associate",
-              "Certified Entry-Level Python Programmer (PCEP)",
-              "Certified Associate in Python Programming (PCAP)",
-              "1Z0-819: Oracle Certified Professional: Java SE 11 Developer",
-            ],
+              { title: "AWS Certified Developer - Associate" },
+              { title: "Certified Entry-Level Python Programmer (PCEP)" },
+              { title: "Certified Associate in Python Programming (PCAP)" },
+              { title: "1Z0-819: Oracle Certified Professional: Java SE 11 Developer" }
+            ]
           },
           {
             title: "System Administration Certification",
             subcategories: [
-              "Red Hat Certified System Administrator (RHCSA)",
-              "Red Hat Certified Engineer (RHCE)",
-              "VMware Certified Professional - Desktop Management (VCP-DTM)",
-              "MS-700: Microsoft 365 Teams Administrator Associate",
-              "MS-203: Microsoft 365 Messaging Administrator Associate",
-              "1Z0-133: Oracle Certified Associate, WebLogic Server 12c Administrator",
-            ],
+              { title: "Red Hat Certified System Administrator (RHCSA)" },
+              { title: "Red Hat Certified Engineer (RHCE)" },
+              { title: "VMware Certified Professional - Desktop Management (VCP-DTM)" },
+              { title: "MS-700: Microsoft 365 Teams Administrator Associate" },
+              { title: "MS-203: Microsoft 365 Messaging Administrator Associate" },
+              { title: "1Z0-133: Oracle Certified Associate, WebLogic Server 12c Administrator" }
+            ]
           },
           {
             title: "Artificial Intelligence Certification",
             subcategories: [
-              "AWS Certified Machine Learning - Specialty",
-              "AI-900: Microsoft Azure AI Fundamentals",
-              "DP-100: Microsoft Azure Data Scientist Associate",
-              "Google Cloud Professional Machine Learning Engineer",
-              "AI-102: Microsoft Azure AI Engineer Associate",
-              "Databricks Certified Data Engineer Associate",
-              "Splunk Enterprise Certified Admin",
-              "Databricks Certified Associate Developer for Apache Spark",
-              "Splunk Core Certified Power User",
-              "Splunk Core Certified User",
-            ],
-          },
-        ],
-      },
+              { title: "AWS Certified Machine Learning - Specialty" },
+              { title: "AI-900: Microsoft Azure AI Fundamentals" },
+              { title: "DP-100: Microsoft Azure Data Scientist Associate" },
+              { title: "Google Cloud Professional Machine Learning Engineer" },
+              { title: "AI-102: Microsoft Azure AI Engineer Associate" },
+              { title: "Databricks Certified Data Engineer Associate" },
+              { title: "Splunk Enterprise Certified Admin" },
+              { title: "Databricks Certified Associate Developer for Apache Spark" },
+              { title: "Splunk Core Certified Power User" },
+              { title: "Splunk Core Certified User" }
+            ]
+          }
+        ]
+      }
     ],
   },
+
   {
     title: "Development",
     subcategories: [
