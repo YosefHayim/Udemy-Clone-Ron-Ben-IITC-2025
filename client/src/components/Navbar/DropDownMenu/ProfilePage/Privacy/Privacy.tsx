@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SideBarProfile from "../ProfilePage/SideBarProfile"; // Importando o componente da Sidebar
+import SideBarProfile from "../SideBarProfile/SideBarProfile"; // Importando o componente da Sidebar
 
 const Privacy = () => {
   // Estados para as configurações de privacidade
@@ -20,7 +20,9 @@ const Privacy = () => {
       <main className="flex-1 p-8">
         <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Privacy</h2>
-          <p className="text-gray-600 mb-4">Modify your privacy settings here.</p>
+          <p className="text-gray-600 mb-4">
+            Modify your privacy settings here.
+          </p>
 
           {/* Profile Page Settings */}
           <div className="mb-6">

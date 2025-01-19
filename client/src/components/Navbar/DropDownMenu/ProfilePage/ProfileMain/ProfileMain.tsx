@@ -1,4 +1,4 @@
-import SideBarProfile from "../ProfilePage/SideBarProfile";
+import SideBarProfile from "../SideBarProfile/SideBarProfile";
 
 const ProfileMain = () => {
   document.title = "Udemy | Edit profile";

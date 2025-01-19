@@ -15,9 +15,10 @@ import Logout from "@/pages/Logout/Logout";
 import Payment from "@/pages/Payment/Payment";
 import EditProfile from "@/pages/EditProfile/EditProfile";
 import OAuthCallback from "@/pages/Login/OAuthCallback";
-import ProfileMain from "@/pages/ProfilePage/ProfileMain";
-import UdemyCredits from "@/pages/UdemyCredits/UdemyCredits";
-import PurchaseHistory from "@/pages/PurchaseHistory/PurchaseHistory";
+import ProfileMain from "@/components/Navbar/DropDownMenu/ProfilePage/ProfileMain/ProfileMain";
+import UdemyCredits from "@/components/Navbar/DropDownMenu/UdemyCredits/UdemyCredits";
+import PurchaseHistory from "@/components/Navbar/DropDownMenu/PurchaseHistory/PurchaseHistory";
+import Subscription from "@/components/Navbar/DropDownMenu/Subscription/Subscription";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -41,6 +42,10 @@ const AppRoutes: React.FC = () => {
                   element={<PurchaseHistory />}
                 />
                 <Route path="/" element={<OAuthCallback />} />
+                <Route
+                  path="/user/manage-subscriptions/"
+                  element={<Subscription />}
+                />
                 <Route path="/cart" element={<ShoppingCart />} />
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SideBarProfile from "../ProfilePage/SideBarProfile"; // Importando o componente da Sidebar
+import SideBarProfile from "../SideBarProfile/SideBarProfile"; // Importando o componente da Sidebar
 
 const NotificationPreferences = () => {
   // Estados para os switches de categorias
@@ -164,9 +164,7 @@ const NotificationPreferences = () => {
                     type="checkbox"
                     id="courseRecommendations"
                     checked={preferences.courseRecommendations}
-                    onChange={() =>
-                      togglePreference("courseRecommendations")
-                    }
+                    onChange={() => togglePreference("courseRecommendations")}
                     className="h-5 w-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
                   />
                   <label
