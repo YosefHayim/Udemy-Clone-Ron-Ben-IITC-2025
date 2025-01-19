@@ -1,5 +1,4 @@
 import FrequentlyCourseCard from "./FaqCourseCard/FaqCourseCard";
-import FaqPlusBtn from "./FaqPlusBtn/FaqPlusBtn";
 import FaqTotalCoursesPrice from "./FaqTotalCoursesPrice/FaqTotalCoursesPrice";
 
 const FrequentlyBoughtTogether: React.FC = () => {
@@ -12,7 +11,6 @@ const FrequentlyBoughtTogether: React.FC = () => {
         <FrequentlyCourseCard />
         <FaqTotalCoursesPrice />
       </div>
-      <div>{/* <FaqPlusBtn /> */}</div>
     </div>
   );
 };

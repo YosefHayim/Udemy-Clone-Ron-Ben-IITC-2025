@@ -1,8 +1,6 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import { axiosClient, localhostUrl } from "../configuration";
 
-type fn = (code: string | null) => Promise<any>;
-
-const googleRedirectUrl: fn = async (code: string | null) => {
+const googleRedirectUrl = async (code: string | null) => {
   try {
     const url = `${localhostUrl}/api/user/auth/google/`;
 

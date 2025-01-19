@@ -20,7 +20,7 @@ const OverviewTab: React.FC = () => {
     queryKey: ["course", sanitizedCourseId],
     queryFn: () => {
       console.log("Calling fetchCourseById with:", sanitizedCourseId);
-      return fetchCourseById(sanitizedCourseId);
+      return fetchCourseById(sanitizedCourseId || '');
     },
     enabled: !!sanitizedCourseId,
   });

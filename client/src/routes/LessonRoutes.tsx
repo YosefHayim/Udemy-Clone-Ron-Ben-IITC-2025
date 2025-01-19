@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate, useParams, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useParams } from "react-router-dom";
 import NavBar from "../pages/Lesson/NavBar";
 import { useQuery } from "@tanstack/react-query";
 import OverviewTab from "../pages/Lesson/tabs/OverviewTab";
@@ -10,7 +10,7 @@ import ReviewsTab from "../pages/Lesson/tabs/ReviewTab";
 import LearningToolsTab from "../pages/Lesson/tabs/LearningToolsTab";
 import SearchTab from "../pages/Lesson/tabs/SearchTab";
 import CourseContent from "../pages/Lesson/tabs/CourseContent";
-import  fetchCourseById  from "@/services/courseService";
+import fetchCourseById from "@/services/courseService";
 
 const LessonRoutes: React.FC = () => {
   const { id, courseId } = useParams<{ id: string; courseId: string }>();
@@ -44,24 +44,7 @@ const LessonRoutes: React.FC = () => {
   const courseData = data;
   console.log(courseData);
 
-  // Define valid paths for lesson tabs
-  const validPaths = [
-    "overview",
-    "course-content",
-    "qna",
-    "notes",
-    "announcements",
-    "reviews",
-    "learning-tools",
-    "search",
-  ];
-
-
-
-  const sections = data.sections
-  
-
-
+  const sections = data.sections;
 
   // Construct the default route
   const defaultRoute = `/course/${courseId}/lesson/${id}/overview`;
@@ -69,29 +52,31 @@ const LessonRoutes: React.FC = () => {
   return (
     <>
       {/* Render NavBar with course name */}
-      <NavBar courseName={courseData?.courseName || "Course"} />
+      <NavBar />
       <div className=" px-20 flex justify-center items-center">
-      <Routes>
-        {/* Redirect to overview tab by default */}
-        <Route index element={<Navigate to={defaultRoute} replace />} />
+        <Routes>
+          {/* Redirect to overview tab by default */}
+          <Route index element={<Navigate to={defaultRoute} replace />} />
 
-        {/* Define routes for lesson tabs */}
-        <Route path={`overview`} element={<OverviewTab />} />
-        <Route path="course-content" element={<CourseContent sections={sections} />}  />
-        <Route path="qna" element={<QnATab />} />
-        <Route path="notes" element={<NotesTab />} />
-        <Route path="announcements" element={<AnnouncementsTab />} />
-        <Route path="reviews" element={<ReviewsTab 
-                  reviewsToRender={courseData.reviews}
-                  avgRating={courseData.averageRating}
-                  totalRated={courseData.totalRatings}
-        />} />
-        <Route path="learning-tools" element={<LearningToolsTab />} />
-        <Route path="search" element={<SearchTab sections={sections} />} />
+          {/* Define routes for lesson tabs */}
+          <Route path={`overview`} element={<OverviewTab />} />
+          <Route
+            path="course-content"
+            element={<CourseContent sections={sections} />}
+          />
+          <Route path="qna" element={<QnATab />} />
+          <Route path="notes" element={<NotesTab />} />
+          <Route path="announcements" element={<AnnouncementsTab />} />
+          <Route
+            path="reviews"
+            element={<ReviewsTab avgRating={courseData.averageRating} />}
+          />
+          <Route path="learning-tools" element={<LearningToolsTab />} />
+          <Route path="search" element={<SearchTab sections={sections} />} />
 
-        {/* Redirect to defaultRoute for invalid paths */}
-        <Route path="*" element={<Navigate to={defaultRoute} replace />} />
-      </Routes>
+          {/* Redirect to defaultRoute for invalid paths */}
+          <Route path="*" element={<Navigate to={defaultRoute} replace />} />
+        </Routes>
       </div>
     </>
   );
