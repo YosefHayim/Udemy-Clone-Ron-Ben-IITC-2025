@@ -20,6 +20,7 @@ const CoursesCarousel: React.FC = () => {
     try {
       const response = await fetch(
         "https://udemy-clone-ron-ben.onrender.com/api/course"
+        // ?search=financial
       );
       const data = await response.json();
       if (data.status === "Success") {
