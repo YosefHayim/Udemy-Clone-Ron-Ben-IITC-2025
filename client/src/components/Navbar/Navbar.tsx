@@ -12,37 +12,13 @@ import ExploreMenu from "./Explore/ExploreMenu";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-// import MarketingGuest from "../NavBarMarketing/MarketingGuest";
-// import Login from "@/pages/Login/Login";
-// import SignUp from "@/pages/SignUp/Signup";
 
 const Navbar = () => {
   const cookie = Cookies.get("cookie");
-  useEffect(() => {}, [cookie]);
+  useEffect(() => { }, [cookie]);
 
   return (
     <>
-      {/* {!cookie && <MarketingGuest />}
-      <div className="h-[4.5em] flex items-center bg-white w-screen z-[10] shadow-md justify-between px-[1.55rem] py-[2.25rem] fonte-[1.4rem]">
-        <Link to="/">
-          <Logo />
-        </Link>
-        <ExploreMenu />
-        <SearchInput />
-        <AtagBtn aTagName={"Udemy Business"} />
-        <AtagBtn aTagName={"Teach on Udemy"} />
-        <Link to="/cart">
-          <Cart />
-        </Link>
-        {!cookie && <LoginBtn />}
-        {!cookie && <SignupBtn />}
-        {cookie && <AtagBtn aTagName={"My learning"} />}
-        {cookie && <Heart />}
-
-        {cookie && <Notifications />}
-        {cookie && <Profile />}
-        {!cookie && <Language />}
-      </div> */}
 
       {/* (Guest) */}
       {!cookie && (
@@ -83,9 +59,12 @@ const Navbar = () => {
             <Cart />
           </Link>
           <Notifications />
-          <Profile />
+          <Link to="/edit-profile">
+            <Profile />
+          </Link>
         </div>
       )}
+
     </>
   );
 };
