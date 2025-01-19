@@ -4,7 +4,10 @@ const APIFeatures = require("../../utils/apiFeatures");
 const sendEmail = require("../../utils/email");
 const createError = require("../../utils/errorFn");
 const { catchAsync } = require("../../utils/wrapperFn");
-const { generateToken } = require("../authorization/authController");
+const {
+  generateToken,
+  verifyToken,
+} = require("../authorization/authController");
 
 const getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query)
@@ -124,7 +127,7 @@ const login = catchAsync(async (req, res, next) => {
     coursesBought: isFoundUser.coursesBought,
   });
 
-  console.log(token);
+  console.log(verifyToken(token));
 
   res.cookie("cookie", token, {
     domain: "udemy-clone-ron-and-ben-front.onrender.com", // Set domain if needed
