@@ -1,4 +1,3 @@
-
 import SideBarProfile from "../ProfilePage/SideBarProfile"; // Importando o componente da Sidebar
 
 const AccountSecurity = () => {

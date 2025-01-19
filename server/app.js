@@ -13,6 +13,7 @@ const loggerInfo = require("./middlewares/logger");
 const courseRoute = require("./routes/course/courseRoute");
 const lessonRoute = require("./routes/course/lessonRoute");
 const sectionRoute = require("./routes/course/sectionRoute");
+const courseProgressRoute = require("./routes/course/courseProgressRoute");
 const userRoute = require("./routes/users/userRoute");
 const commentRoute = require("./routes/reviews/commentRoute");
 const reviewRoute = require("./routes/reviews/reviewRoute");
@@ -56,6 +57,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/user", userRoute);
+app.use("/api/progress/course", courseProgressRoute);
 app.use("/api/course", courseRoute);
 app.use("/api/section", sectionRoute);
 app.use("/api/lesson", lessonRoute);

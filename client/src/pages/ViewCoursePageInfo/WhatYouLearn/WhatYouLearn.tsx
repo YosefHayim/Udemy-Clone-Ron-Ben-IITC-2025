@@ -10,7 +10,7 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
   const secondColumn = prosCourse.slice(half);
 
   return (
-    <div className="flex flex-col items-start justify-start border p-[1em] w-[700px] text-[0.9em] mt-[12em]">
+    <div className="flex flex-col items-start justify-start border p-[1em] w-[700px] text-[0.9em] mt-[10em]">
       <h2 className="font-bold w-full p-[0.5em] text-[1.5em]">
         What you'll learn
       </h2>

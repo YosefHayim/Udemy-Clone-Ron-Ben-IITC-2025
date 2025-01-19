@@ -15,9 +15,9 @@ import { CourseTypeProps, FilterDataProps } from "@/types/types";
 const SearchPage: React.FC = () => {
   document.title = "Search results | Udemy";
   const [searchParams] = useSearchParams();
-  const searchTerm: string | null = searchParams.get("q");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
+  const searchTerm: string | null = searchParams.get("q")?.toLowerCase() || "";
   const [filterData, setFilterData] = useState<FilterDataProps>({
     rating: 0.0,
     language: [],
@@ -33,12 +33,12 @@ const SearchPage: React.FC = () => {
   const limit = null;
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["courses", searchTerm, currentPage],
+    queryKey: ["courses", searchTerm?.toLowerCase(), currentPage],
     queryFn: () => {
       if (!searchTerm && !currentPage && !limit) {
         throw new Error("Course ID is undefined");
       }
-      return getAllCourses(searchTerm || "", currentPage || 1, limit || 13);
+      return getAllCourses(searchTerm || "", currentPage || 1, limit || 100);
     },
     enabled: !!searchTerm,
   });
@@ -51,12 +51,14 @@ const SearchPage: React.FC = () => {
     return <div>Error occurred: {error.message}</div>;
   }
 
+  console.log(data);
+
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
-        {data?.totalCourses} results for "{searchTerm}"
+        {data?.totalCourses || 0} results for "{searchTerm}"
       </h1>
-      <FilterNSort totalResults={data.totalCourses} />
+      <FilterNSort totalResults={data.totalCourses || 0} />
       <div className="flex flex-row justify-start w-full gap-[1.5em]">
         <div>
           <SidebarFilter

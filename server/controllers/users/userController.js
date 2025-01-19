@@ -1,4 +1,5 @@
 const Course = require("../../models/courses/courseModel");
+const courseProgress = require("../../models/courses/courseProgressModel");
 const User = require("../../models/users/userModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const sendEmail = require("../../utils/email");
@@ -319,27 +320,28 @@ const joinCourseById = catchAsync(async (req, res, next) => {
     );
   }
 
-  // Populate sections and their lessons
-  const course = await Course.findById(courseId).populate({
-    path: "sections",
-    populate: { path: "lessons -_id" },
-  });
+  const course = await Course.findById(courseId);
 
   if (!course) {
     return next(createError(`No course exists with this ID: ${courseId}`, 404));
   }
 
   if (user.coursesCreated.includes(courseId)) {
-    return next(
-      createError(
-        "You cannot leave your own course. Please use another route to deactivate it.",
-        403
-      )
-    );
+    return next(createError("You cannot join your own course.", 403));
   }
 
   if (user.coursesBought.some((bought) => bought.course === courseId)) {
     return next(createError("You have already joined this course.", 400));
+  }
+
+  // Check if courseProgress already exists
+  const existingProgress = await courseProgress.findOne({
+    user: req.user._id,
+    course: courseId,
+  });
+
+  if (existingProgress) {
+    return next(createError("You already have progress for this course.", 400));
   }
 
   // Add user to course enrollment
@@ -349,19 +351,10 @@ const joinCourseById = catchAsync(async (req, res, next) => {
   // Add course to user's purchased courses
   user.coursesBought.push({ course: courseId, boughtAt: new Date() });
 
-  // Initialize course progress
-  if (!user.coursesProgress) user.coursesProgress = [];
-
-  // Gather all lessons from the course sections
-  const lessons = course.sections.flatMap((section) => section.lessons);
-
-  user.coursesProgress.push({
+  // Create course progress
+  const initCourseProgress = await courseProgress.create({
+    user: req.user._id,
     course: courseId,
-    lessons: lessons.map((lesson) => ({
-      lesson: lesson._id,
-      isDone: false,
-      lastPlayedVideoTime: 0,
-    })),
   });
 
   await user.save();
@@ -369,6 +362,7 @@ const joinCourseById = catchAsync(async (req, res, next) => {
   res.status(201).json({
     status: "success",
     message: `You have successfully joined the course ${course.courseName}`,
+    courseProgress: initCourseProgress,
   });
 });
 
@@ -376,7 +370,6 @@ const joinCoursesByIds = catchAsync(async (req, res, next) => {
   let courseIds = req.body.courses;
   const user = req.user;
 
-  // Ensure courseIds is always an array
   if (!courseIds) {
     return next(
       createError(
@@ -389,34 +382,61 @@ const joinCoursesByIds = catchAsync(async (req, res, next) => {
     courseIds = [courseIds];
   }
 
-  // Filter out courses the user already bought
-  const newCourseIds = courseIds.filter(
-    (courseId) =>
-      !user.coursesBought.some(
-        (bought) => bought.course.toString() === courseId
-      )
-  );
-
-  if (newCourseIds.length === 0) {
+  if (courseIds.length === 0) {
     return next(
-      createError("You have already joined all the provided courses.", 400)
+      createError(
+        `You have already joined all the provided courses: ${alreadyJoinedCourses.join(
+          ", "
+        )}`,
+        400
+      )
     );
   }
 
   // Add new courses to user's purchased courses
-  const purchasedCourses = newCourseIds.map((courseId) => ({
+  const purchasedCourses = courseIds.map((courseId) => ({
     course: courseId,
     boughtAt: new Date(),
   }));
 
   user.coursesBought.push(...purchasedCourses);
+
+  // Initialize course progress for each new course
+  const initCoursesProgress = await Promise.all(
+    courseIds.map(async (courseId) => {
+      const existingProgress = await courseProgress.find({
+        user: req.user._id,
+        course: courseId,
+      });
+
+      if (existingProgress) {
+        return next(
+          createError(
+            `You already have progress for this courses: ${courseIds}`,
+            400
+          )
+        );
+      }
+
+      return courseProgress.create({
+        user: req.user._id,
+        course: courseId,
+      });
+    })
+  );
+
   await user.save();
 
   res.status(201).json({
     status: "success",
-    message: `You have successfully joined the course(s): ${newCourseIds.join(
-      ", "
-    )}`,
+    message: `Successfully joined courses: ${newCourseIds.join(", ")}${
+      alreadyJoinedCourses.length > 0
+        ? `. You had already joined these courses: ${alreadyJoinedCourses.join(
+            ", "
+          )}`
+        : ""
+    }`,
+    coursesJoined: initCoursesProgress.filter(Boolean), // Remove nulls
   });
 });
 

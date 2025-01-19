@@ -2,8 +2,10 @@ import { Category, Subcategory } from "@/types/types";
 import { exploreData } from "@/utils/exploreData";
 import { useState, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const ExploreMenu = () => {
+  const navigate = useNavigate();
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [hoveredSubMenu, setHoveredSubMenu] = useState<string | null>(null);
   const [hoveredSecondSubMenu, setHoveredSecondSubMenu] = useState<
@@ -69,6 +71,14 @@ const ExploreMenu = () => {
     subMenuTimeout.current = setTimeout(() => {
       setHoveredSecondSubMenu(false);
     }, 300);
+  };
+
+  const handleNavigate = (searchTerm: string) => {
+    navigate(
+      `/courses/search?src=ukw&q=${encodeURIComponent(
+        searchTerm.toLowerCase()
+      )}`
+    );
   };
 
   return (

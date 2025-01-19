@@ -43,6 +43,7 @@ const HoverCart = () => {
                   courseId={courseId}
                   hide={false}
                   showDisPrice={true}
+                  showFullPrice={false}
                   shortCutInstructor={true}
                   shortcutTitle={true}
                   chooseFlex={"flex flex-col"}

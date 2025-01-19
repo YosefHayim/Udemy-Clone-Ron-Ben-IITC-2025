@@ -15,6 +15,7 @@ import Logout from "@/pages/Logout/Logout";
 import Payment from "@/pages/Payment/Payment";
 import EditProfile from "@/pages/EditProfile/EditProfile";
 import OAuthCallback from "@/pages/Login/OAuthCallback";
+import ProfileMain from "@/pages/ProfilePage/ProfileMain";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -28,7 +29,8 @@ const AppRoutes: React.FC = () => {
               <Navbar />
               <Routes>
                 <Route path="/" element={<Homepage />} />
-                <Route path="/oauth/callback" element={<OAuthCallback />} />
+                <Route path="/edit-profile" element={<ProfileMain />} />
+                <Route path="/" element={<OAuthCallback />} />
                 <Route path="/cart" element={<ShoppingCart />} />
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route

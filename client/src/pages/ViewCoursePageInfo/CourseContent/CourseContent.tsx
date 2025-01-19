@@ -13,6 +13,14 @@ const CourseContent: React.FC<CourseContentProps> = ({
   totalCourseSections,
   sectionsOfCourse,
 }) => {
+  if (sectionsOfCourse.length === 0) {
+    return (
+      <div>
+        <b>This course has no sections and lessons yet</b>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col">
       <h2 className="font-bold text-[1.2em] mb-[1em]">Course Content</h2>

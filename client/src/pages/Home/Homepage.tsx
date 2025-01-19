@@ -12,7 +12,6 @@ import {
 import { useDispatch } from "react-redux";
 import { DecodedTokenProps } from "@/types/types";
 import Banner from "./Banner";
-import Section from "./Sections";
 import TrustedBySection from "./TrustedBySection";
 import LearnersAreViewing from "./LearnersAreViewing";
 import SearchResult from "./SearchResult";
@@ -22,10 +21,10 @@ import Testimonials from "./Testimonials";
 import TrendsReport from "./TopTrends";
 import TrendingNow from "./TrendingNow";
 import Carousel from "./Carousel";
+import Sections from "./Sections";
 import Welcome from "@/components/LoggedInHome/Welcome";
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 import TeamAccess from "./TeamAcess";
-
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -46,7 +45,7 @@ const Homepage = () => {
           <div className="container mx-auto px-[5.6rem]">
             <DropdownMenu />
             <Banner />
-            <Section />
+            <Sections />
             <TrustedBySection />
             <LearnersAreViewing />
             <SearchResult />
@@ -68,7 +67,7 @@ const Homepage = () => {
             <Welcome />
             <Banner />
             <CoursesCarousel />
-            <TeamAccess /> 
+            <TeamAccess />
             <CoursesCarousel />
           </div>
         </>

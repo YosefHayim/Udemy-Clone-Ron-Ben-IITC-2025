@@ -68,7 +68,7 @@ router.post("/auth/login", login);
 
 // generate url for google
 router.post("/auth/google/", (req, res, next) => {
-  const redirectUrl = "http://localhost:5137/oauth/callback";
+  const redirectUrl = "http://localhost:5137/";
 
   const oAuth2Client = new OAuth2Client(
     process.env.CLIENT_ID,
@@ -78,7 +78,7 @@ router.post("/auth/google/", (req, res, next) => {
 
   const authorizeUrl = oAuth2Client.generateAuthUrl({
     access_type: "offline",
-    scope: "https://www.googleapis.com/auth/userinfo.profile openid",
+    scope: "https://www.googleapis.com/authw/userinfo.profile openid",
     prompt: "consent",
   });
 
