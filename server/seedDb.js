@@ -515,24 +515,6 @@ const simulateCoursePurchases = async () => {
             });
             user.udemyCredits -= discountPrice;
 
-            // Add progress
-            const lessons = course.sections.flatMap(
-              (section) => section.lessons
-            );
-            const lessonsProgress = lessons.map((lesson) => ({
-              lessonId: lesson._id,
-              isDone: faker.datatype.boolean(),
-              lastPlayedVideoTime: faker.number.int({
-                min: 0,
-                max: lesson.duration,
-              }),
-            }));
-
-            user.coursesProgress.push({
-              course: course._id,
-              lessons: lessonsProgress,
-            });
-
             // Update course enrollment
             course.totalStudentsEnrolled.count += 1;
             course.totalStudentsEnrolled.students.push(user._id);

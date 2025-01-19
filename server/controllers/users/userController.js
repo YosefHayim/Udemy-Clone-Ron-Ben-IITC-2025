@@ -330,12 +330,7 @@ const joinCourseById = catchAsync(async (req, res, next) => {
   }
 
   if (user.coursesCreated.includes(courseId)) {
-    return next(
-      createError(
-        "You cannot leave your own course. Please use another route to deactivate it.",
-        403
-      )
-    );
+    return next(createError("You cannot join your own course.", 403));
   }
 
   if (user.coursesBought.some((bought) => bought.course === courseId)) {
@@ -348,21 +343,6 @@ const joinCourseById = catchAsync(async (req, res, next) => {
 
   // Add course to user's purchased courses
   user.coursesBought.push({ course: courseId, boughtAt: new Date() });
-
-  // Initialize course progress
-  if (!user.coursesProgress) user.coursesProgress = [];
-
-  // Gather all lessons from the course sections
-  const lessons = course.sections.flatMap((section) => section.lessons);
-
-  user.coursesProgress.push({
-    course: courseId,
-    lessons: lessons.map((lesson) => ({
-      lesson: lesson._id,
-      isDone: false,
-      lastPlayedVideoTime: 0,
-    })),
-  });
 
   await user.save();
 

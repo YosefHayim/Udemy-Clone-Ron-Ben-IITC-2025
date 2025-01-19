@@ -11,14 +11,18 @@ import {
 } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { DecodedTokenProps } from "@/types/types";
-import ProfileMain from "../ProfilePage/ProfileMain";
 import AccountSecurity from "../ProfilePage/AccountSecurity";
-import Photo from "../ProfilePage/Photo";
-import Subscriptions from "../ProfilePage/Subscription";
-import Privacy from "../ProfilePage/Privacy";
-import NotificationPreferences from "../ProfilePage/NotificationPreferences";
-import ApiClients from "../ProfilePage/ApiClients";
-import ViewPublicProfile from "../ProfilePage/ViewPublicProfile";
+import Banner from "./Banner";
+import TrustedBySection from "./TrustedBySection";
+import LearnersAreViewing from "./LearnersAreViewing";
+import SearchResult from "./SearchResult";
+import LearningGoals from "./LearningGoals";
+import PlansSection from "./PansSection";
+import Testimonials from "./Testimonials";
+import TrendsReport from "./TopTrends";
+import TrendingNow from "./TrendingNow";
+import Carousel from "./Carousel";
+import Sections from "./Sections";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -38,8 +42,7 @@ const Homepage = () => {
         <>
           <div className="container mx-auto px-[5.6rem]">
             <DropdownMenu />
-            <ProfileMain />
-            {/* <Banner />
+            <Banner />
             <Sections />
             <TrustedBySection />
             <LearnersAreViewing />
@@ -49,7 +52,7 @@ const Homepage = () => {
             <Testimonials />
             <TrendsReport />
             <TrendingNow />
-            <Carousel /> */}
+            <Carousel />
           </div>
         </>
       )}
