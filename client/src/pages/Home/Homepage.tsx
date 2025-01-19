@@ -66,9 +66,17 @@ const Homepage = () => {
           <div className="container mx-auto px-[5.6rem]">
             <Welcome />
             <Banner />
-            <CoursesCarousel searchTerm={"figma"} />
             <TeamAccess />
+            <CoursesCarousel searchTerm={"JavaScript"} />
             <CoursesCarousel searchTerm={"python"} />
+            <CoursesCarousel searchTerm={"Books"} />
+            <CoursesCarousel searchTerm={"Investing"} />
+            <CoursesCarousel searchTerm={"Science"} />
+            <CoursesCarousel searchTerm={"Amazon"} />
+            <CoursesCarousel searchTerm={"Learning"} />
+            <CoursesCarousel searchTerm={"Meditation"} />
+            <CoursesCarousel searchTerm={"Cooking"} />
+            <CoursesCarousel searchTerm={"Microsoft"} />
           </div>
         </>
       )}
