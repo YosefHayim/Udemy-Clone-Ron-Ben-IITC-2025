@@ -62,7 +62,9 @@ const DropdownMenu: React.FC = () => {
             </Link>
           </li>
           <Link to="/wishlist">
-            <li>Wishlist</li>
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+              Wishlist
+            </li>
           </Link>
           <li>
             <a
