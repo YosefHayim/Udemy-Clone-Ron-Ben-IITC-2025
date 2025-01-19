@@ -19,6 +19,7 @@ import StickyCourseNavbar from "./StickyCourseNavbar/StickyCourseNavbar";
 import StudentsAlsoBought from "./StudentsAlsoBought/StudentsAlsoBought";
 import TopicPathMenu from "./TopicPathMenu/TopicPathMenu";
 import WhatYouLearn from "./WhatYouLearn/WhatYouLearn";
+import CoursePreviewCard from "./CoursePreviewCard/CoursePreviewCard";
 
 const ViewCoursePageInfo: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -171,13 +172,12 @@ const ViewCoursePageInfo: React.FC = () => {
       </div>
 
       {/* Preview Card */}
-      {/* <CoursePreviewCard
-        coursePrice={courseData.discountPrice}
+      <CoursePreviewCard
         courseId={courseData._id}
         courseImg={courseData.courseImg}
         coursePrice={courseData.courseDiscountPrice}
         fullPrice={courseData.courseFullPrice}
-      /> */}
+      />
     </div>
   );
 };
