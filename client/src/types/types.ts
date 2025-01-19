@@ -5,8 +5,10 @@ export interface DummyData {
 }
 
 export interface FilterProps {
-  setFilterData?: boolean;
-  filterData?: boolean;
+  setFilterData?:
+    | boolean
+    | React.Dispatch<React.SetStateAction<FilterDataProps>>;
+  filterData?: boolean | FilterDataProps;
   filterTitle: string;
   filterItems?: DummyData[];
   chosenHeight: string;
