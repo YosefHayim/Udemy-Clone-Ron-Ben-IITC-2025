@@ -24,7 +24,7 @@ const Navbar = () => {
   }, [cookie]);
 
   return (
-    <div className="flex items-center bg-white w-screen z-[1000] absolute top-0 shadow-md justify-between px-[1.55rem] py-[0.75rem] font-medium text-[1.4rem]">
+    <div className="flex items-center bg-white w-screen z-[1000] relative shadow-md justify-between px-[1.55rem] py-[0.75rem] font-medium text-[1.4rem]">
       <Link to="/">
         <Logo />
       </Link>
