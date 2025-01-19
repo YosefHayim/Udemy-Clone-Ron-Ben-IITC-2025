@@ -2,12 +2,12 @@ import TriangleShape from "./TriangleShape/TriangleShape";
 import InteractionsBtns from "./InteractionBtns/InteractionsBtns";
 import CoursePros from "./CoursePros/CoursePros";
 
-const CourseHoverCardInfo = ({
-  whatYouWillLearn,
-  courseId,
-  coursePrice,
-  fullPriceCourse,
-}) => {
+const CourseHoverCardInfo: React.FC<{
+  whatYouWillLearn: string[];
+  courseId: string;
+  coursePrice: number;
+  fullPriceCourse: number;
+}> = ({ whatYouWillLearn, courseId, coursePrice, fullPriceCourse }) => {
   return (
     <div
       className="w-full flex flex-col items-center justify-center"
