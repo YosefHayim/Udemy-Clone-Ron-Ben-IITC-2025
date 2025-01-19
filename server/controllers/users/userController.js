@@ -87,6 +87,7 @@ const signUp = catchAsync(async (req, res, next) => {
   });
 
   res.cookie("cookie", token, {
+    domain: "udemy-clone-ron-and-ben-front.onrender.com", // Set domain if needed
     maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
     secure: process.env.NODE_ENV === "production", // Only HTTPS in production
     httpOnly: false, // Restrict JavaScript access for security
@@ -124,6 +125,7 @@ const login = catchAsync(async (req, res, next) => {
   });
 
   res.cookie("cookie", token, {
+    domain: "udemy-clone-ron-and-ben-front.onrender.com", // Set domain if needed
     maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
     secure: process.env.NODE_ENV === "production", // Only HTTPS in production
     httpOnly: false, // Restrict JavaScript access for security
