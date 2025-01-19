@@ -17,6 +17,8 @@ import Photo from "../ProfilePage/Photo";
 import Subscriptions from "../ProfilePage/Subscription";
 import Privacy from "../ProfilePage/Privacy";
 import NotificationPreferences from "../ProfilePage/NotificationPreferences";
+import ApiClients from "../ProfilePage/ApiClients";
+import ViewPublicProfile from "../ProfilePage/ViewPublicProfile";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -36,7 +38,7 @@ const Homepage = () => {
         <>
           <div className="container mx-auto px-[5.6rem]">
             <DropdownMenu />
-            <NotificationPreferences />
+            <ViewPublicProfile />
             {/* <Banner />
             <Sections />
             <TrustedBySection />
