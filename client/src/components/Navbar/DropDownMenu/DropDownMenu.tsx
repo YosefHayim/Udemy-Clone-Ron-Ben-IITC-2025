@@ -36,7 +36,7 @@ const DropdownMenu: React.FC = () => {
     <div>
       <div className="absolute right-0 mt-[1em] w-72 bg-white border border-gray-300 shadow-md rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto z-[1000]">
         <div className="flex items-center p-4 border-b">
-          <Link to="/instructor/profile/basic-information/">
+          <Link to="/edit-profile">
             <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
           </Link>
           <div className="ml-3">
@@ -46,14 +46,11 @@ const DropdownMenu: React.FC = () => {
         </div>
         {/* Menu Items */}
         <ul className="py-2 text-sm">
-          <li>
-            <a
-              href="/wishlist"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-            >
+          <Link to="/wishlist">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
               My learning
-            </a>
-          </li>
+            </li>
+          </Link>
           <li>
             <Link to="/cart">
               <div className="flex flex-row justify-between  px-4 py-2 text-gray-700 hover:bg-gray-100">
@@ -64,14 +61,11 @@ const DropdownMenu: React.FC = () => {
               </div>
             </Link>
           </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-            >
+          <Link to="/wishlist">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
               Wishlist
-            </a>
-          </li>
+            </li>
+          </Link>
           <li>
             <a
               href="#"
