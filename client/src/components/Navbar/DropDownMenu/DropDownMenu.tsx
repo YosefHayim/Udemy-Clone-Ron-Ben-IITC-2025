@@ -36,7 +36,7 @@ const DropdownMenu: React.FC = () => {
     <div>
       <div className="absolute right-0 mt-[1em] w-72 bg-white border border-gray-300 shadow-md rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto z-[1000]">
         <div className="flex items-center p-4 border-b">
-          <Link to="/instructor/profile/basic-information/">
+          <Link to="/edit-profile">
             <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
           </Link>
           <div className="ml-3">
@@ -66,7 +66,7 @@ const DropdownMenu: React.FC = () => {
           </li>
           <li>
             <a
-              href="#"
+              href="/wishlist"
               className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
             >
               Wishlist

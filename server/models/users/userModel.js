@@ -127,6 +127,19 @@ const userSchema = new mongoose.Schema(
 
 module.exports = mongoose.model("User", userSchema);
 
+// Pre-save hook to remove duplicate course entries
+userSchema.pre("save", function (next) {
+  // Create a set to ensure uniqueness based on the `course` field
+  const uniqueCourses = new Map();
+  this.coursesBought.forEach((item) => {
+    uniqueCourses.set(item.course.toString(), item);
+  });
+
+  // Convert the map back to an array
+  this.coursesBought = Array.from(uniqueCourses.values());
+  next();
+});
+
 userSchema.pre("save", async function (next) {
   // Only hash the password if it is new or has been modified
   if (!this.isNew && !this.isModified("password")) return next();
