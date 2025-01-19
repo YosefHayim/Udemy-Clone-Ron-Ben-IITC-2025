@@ -48,7 +48,7 @@ const ItemInCart = ({
     return <div></div>;
   }
 
-  const handleRemove = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleRemove = () => {
     dispatch(
       removeCourseFromCart({
         courseId,
