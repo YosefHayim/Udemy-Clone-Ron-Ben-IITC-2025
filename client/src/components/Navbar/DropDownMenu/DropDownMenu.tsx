@@ -46,14 +46,11 @@ const DropdownMenu: React.FC = () => {
         </div>
         {/* Menu Items */}
         <ul className="py-2 text-sm">
-          <li>
-            <a
-              href="/wishlist"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-            >
+          <Link to="/wishlist">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
               My learning
-            </a>
-          </li>
+            </li>
+          </Link>
           <li>
             <Link to="/cart">
               <div className="flex flex-row justify-between  px-4 py-2 text-gray-700 hover:bg-gray-100">
@@ -64,14 +61,9 @@ const DropdownMenu: React.FC = () => {
               </div>
             </Link>
           </li>
-          <li>
-            <a
-              href="/wishlist"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-            >
-              Wishlist
-            </a>
-          </li>
+          <Link to="/wishlist">
+            <li>Wishlist</li>
+          </Link>
           <li>
             <a
               href="#"
