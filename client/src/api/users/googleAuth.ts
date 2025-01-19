@@ -1,8 +1,6 @@
 import { axiosClient, localhostUrl } from "../configuration";
 
-type fn = () => Promise<any>;
-
-const googleAuth: fn = async () => {
+const googleAuth = async () => {
   try {
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");

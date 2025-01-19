@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import HotCourseCard from "./HotCourseCard/HotCourseCard";
 
 const HotFreshCourses = () => {
-  const carouselRef = useRef(null);
+  const carouselRef = useRef<HTMLDivElement | null>(null);
 
   const scrollLeft = () => {
     if (carouselRef.current) {

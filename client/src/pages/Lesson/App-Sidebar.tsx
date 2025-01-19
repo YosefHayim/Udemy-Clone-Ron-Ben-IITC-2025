@@ -16,7 +16,7 @@ export const AppSidebar: React.FC = () => {
   const { toggleSidebar, open } = useSidebar();
   let { courseId } = useParams<{ courseId: string | undefined }>(); // Retrieve courseId from the URL
   console.log(courseId);
-  
+
   // Handle screen size changes
   useEffect(() => {
     const handleResize = () => {
@@ -43,7 +43,7 @@ export const AppSidebar: React.FC = () => {
           return;
         }
 
-        const data = await fetchCourseById((courseId));
+        const data = await fetchCourseById(courseId);
         setCourseData(data);
       } catch (error) {
         console.error("Failed to fetch course data.", error);
@@ -58,13 +58,16 @@ export const AppSidebar: React.FC = () => {
 
   return (
     <>
-      <Sidebar className="absolute min-h-full pt-[54px] px-0 bg-white" side="left">
+      <Sidebar
+        className="absolute min-h-full pt-[54px] px-0 bg-white"
+        side="left"
+      >
         <SidebarContent>
           <SidebarGroup className="p-0">
             <SidebarGroupContent>
               <CourseSidebarMenu
                 sections={courseData.sections}
-                courseId={courseId}
+                courseId={courseId || ""}
               />
             </SidebarGroupContent>
           </SidebarGroup>

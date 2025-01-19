@@ -9,8 +9,6 @@ import {
   CollapsibleContent,
 } from "@/components/ui/collapsible";
 
-import Loader from "@/components/Loader/Loader";
-
 interface CourseContentProps {
   sections: Array<any>; // Replace `any` with the exact structure of your sections if known
 }
@@ -21,9 +19,9 @@ const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
   // Sanitize courseId to remove any leading colon or whitespace
   const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
 
-
-
-  const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>({});
+  const [completedLessons, setCompletedLessons] = useState<
+    Record<string, boolean>
+  >({});
 
   // Track completed lessons
 
@@ -54,7 +52,9 @@ const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
             <div className="flex items-center justify-between p-4 bg-[#F7F9FA]">
               <CollapsibleTrigger asChild>
                 <button className="flex items-center w-full text-left focus:outline-none focus-visible:outline-none">
-                  <span className="text-lg font-medium">Section {idx + 1}: {section.title}</span>
+                  <span className="text-lg font-medium">
+                    Section {idx + 1}: {section.title}
+                  </span>
                   <FaChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                 </button>
               </CollapsibleTrigger>
@@ -63,20 +63,26 @@ const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
               <ul className="mt-2 pl-4">
                 {section.lessons.map((lesson: any) => {
                   const isCurrentLesson =
-                    location.pathname === `/course/${sanitizedCourseId}/lesson/${lesson._id}/course-content` ||
-                    location.pathname === `/course/${sanitizedCourseId}/lesson/${lesson._id}`;
+                    location.pathname ===
+                      `/course/${sanitizedCourseId}/lesson/${lesson._id}/course-content` ||
+                    location.pathname ===
+                      `/course/${sanitizedCourseId}/lesson/${lesson._id}`;
 
-                  lessonCounter +=1
+                  lessonCounter += 1;
                   return (
                     <li
                       key={lesson._id}
                       className={`flex items-center gap-3 mb-2 p-2 ${
-                        isCurrentLesson ? "bg-slate-400 text-white" : "hover:bg-slate-400"
+                        isCurrentLesson
+                          ? "bg-slate-400 text-white"
+                          : "hover:bg-slate-400"
                       }`}
                     >
                       <Checkbox
                         checked={!!completedLessons[lesson._id]}
-                        onCheckedChange={() => toggleLessonCompletion(lesson._id)}
+                        onCheckedChange={() =>
+                          toggleLessonCompletion(lesson._id)
+                        }
                         className={`hover:border-black focus:outline-none ${
                           isCurrentLesson ? "border-white" : ""
                         }`}
@@ -88,7 +94,7 @@ const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
                           className="flex-col  ml-2"
                         >
                           <span>
-                          {lessonCounter}. {lesson.title}
+                            {lessonCounter}. {lesson.title}
                           </span>
                           <span
                             className={`flex items-center text-xs ${
@@ -96,7 +102,9 @@ const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
                             }`}
                           >
                             <MdOndemandVideo />
-                            <span>{lesson.duration ? `${lesson.duration} min` : ""}</span>
+                            <span>
+                              {lesson.duration ? `${lesson.duration} min` : ""}
+                            </span>
                           </span>
                         </Link>
                       </div>

@@ -4,7 +4,7 @@ import Layout from "./Layout";
 import LessonRoutes from "../../routes/LessonRoutes";
 import VideoPlayer from "./VideoPlayer";
 import Footer from "@/pages/Home/Footer";
-import  fetchCourseById  from "@/services/courseService";
+import fetchCourseById from "@/services/courseService";
 import TopNavBar from "./TopNavBar";
 
 const LessonPage: React.FC = () => {
@@ -13,7 +13,7 @@ const LessonPage: React.FC = () => {
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["course", courseId],
-    queryFn: () => fetchCourseById(courseId),
+    queryFn: () => fetchCourseById(courseId || ""),
     enabled: !!courseId,
   });
 
