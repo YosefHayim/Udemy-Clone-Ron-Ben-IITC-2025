@@ -6,6 +6,7 @@ const cartSlice = createSlice({
     isShowCart: false,
     amountOfCourses: 0,
     coursesAddedToCart: [] as string[],
+    coursesAddedToWishList: [] as string[],
     totalCourseDiscountPrices: 0,
     totalCoursesOriginalPrices: 0,
     totalSavings: 0, // Total amount saved
@@ -23,6 +24,12 @@ const cartSlice = createSlice({
       // Prevent duplicate course additions
       state.coursesAddedToCart = Array.from(
         new Set([...state.coursesAddedToCart, action.payload])
+      );
+    },
+    SetCoursesAddedToWishList: (state, action: PayloadAction<string>) => {
+      // Prevent duplicate course additions
+      state.coursesAddedToWishList = Array.from(
+        new Set([...state.coursesAddedToWishList, action.payload])
       );
     },
     setTotalOriginalCoursePrices: (state, action: PayloadAction<number>) => {
@@ -124,6 +131,7 @@ export const {
   setTotalOriginalCoursePrices,
   setTotalCourseDiscountPrices,
   removeCourseFromCart,
+  SetCoursesAddedToWishList,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

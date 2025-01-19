@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const cookie = Cookies.get("cookie");
-  useEffect(() => { }, [cookie]);
+  useEffect(() => {}, [cookie]);
 
   return (
     <>
@@ -75,7 +75,9 @@ const Navbar = () => {
           <SearchInput />
           <AtagBtn aTagName={"Udemy Business"} />
           <AtagBtn aTagName={"Teach on Udemy"} />
-          <AtagBtn aTagName={"My learning"} />
+          <Link to="/wishlist">
+            <AtagBtn aTagName={"My learning"} />
+          </Link>
           <Heart />
           <Link to="/cart">
             <Cart />

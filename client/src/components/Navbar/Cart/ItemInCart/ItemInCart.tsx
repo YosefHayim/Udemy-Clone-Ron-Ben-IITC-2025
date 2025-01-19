@@ -9,6 +9,7 @@ import getCourseCartInfoByCourseId from "@/api/courses/getCourseCartInfoByCourse
 import { useDispatch } from "react-redux";
 import { removeCourseFromCart } from "@/redux/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
+import Loader from "@/components/Loader/Loader";
 
 const ItemInCart = ({
   rowPrices = true,
@@ -23,6 +24,8 @@ const ItemInCart = ({
   showDisPrice = false,
   showHR = true,
   showInstructor = true,
+  showFullPrice = true,
+  isColCourseBox = false,
 }) => {
   if (!courseId) return null;
 
@@ -45,7 +48,11 @@ const ItemInCart = ({
   }
 
   if (isPending) {
-    return <div></div>;
+    return (
+      <div>
+        <Loader hSize="" useSmallLoading={false} />
+      </div>
+    );
   }
 
   const handleRemove = () => {
@@ -67,7 +74,11 @@ const ItemInCart = ({
   return (
     <div className="p-[1em] w-full">
       <div
-        className={`flex flex-row items-start justify-start gap-[1em] cursor-pointer`}
+        className={`${
+          isColCourseBox
+            ? "flex flex-col items-start justify-start gap-[1em] cursor-pointer"
+            : "flex flex-row items-start justify-start gap-[1em] cursor-pointer"
+        }`}
         onClick={handleCourseView}
       >
         <div>
@@ -143,7 +154,11 @@ const ItemInCart = ({
                   <p>
                     {data && showDisPrice ? `₪${data.courseDiscountPrice}` : ""}
                   </p>
-                  <p className="text-gray-600 line-through">
+                  <p
+                    className={
+                      showFullPrice ? "text-gray-600 line-through" : "hidden"
+                    }
+                  >
                     ₪{data.courseFullPrice}
                   </p>
                 </div>
