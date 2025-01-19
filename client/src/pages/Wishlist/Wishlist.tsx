@@ -32,23 +32,30 @@ const Wishlist: React.FC = () => {
       >
         {coursesBought && coursesBought.length > 0 ? (
           <div className="grid grid-cols-4 gap-4 w-full text-center p-[5em]">
-            {coursesBought.map((courseBought) => (
-              <ItemInCart
-                showInstructor={false}
-                rowPrices={false}
-                showHR={false}
-                courseImgSize="w-[100px]"
-                key={courseBought._id}
-                courseId={courseBought._id}
-                hide={false}
-                showDisPrice={true}
-                shortCutInstructor={true}
-                shortcutTitle={false}
-                chooseFlex={"flex flex-row"}
-                itemsPosition="start"
-                textColor="text-black"
-              />
-            ))}
+            {coursesBought.map(
+              (courseBought) => (
+                console.log(courseBought),
+                (
+                  <ItemInCart
+                    showInstructor={false}
+                    rowPrices={false}
+                    showHR={false}
+                    courseImgSize="w-full"
+                    key={courseBought.course}
+                    courseId={courseBought.course}
+                    showFullPrice={false}
+                    isColCourseBox={true}
+                    hide={false}
+                    showDisPrice={false}
+                    shortCutInstructor={true}
+                    shortcutTitle={false}
+                    chooseFlex={"flex flex-row"}
+                    itemsPosition="start"
+                    textColor="text-black"
+                  />
+                )
+              )
+            )}
           </div>
         ) : (
           <Button className="font-bold rounded-[0.2em] mt-[10em]">

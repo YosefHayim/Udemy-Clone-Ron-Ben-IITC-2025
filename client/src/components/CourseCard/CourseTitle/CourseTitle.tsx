@@ -6,7 +6,7 @@ const CourseTitle: React.FC<CourseTitleProps> = ({
 }) => {
   const cuttedTitleCourse =
     shortcutTitle && title.length > 20 ? `${title.slice(0, 20)}...` : title;
-  return <b className="">{cuttedTitleCourse}</b>;
+  return <b className="w-full">{cuttedTitleCourse}</b>;
 };
 
 export default CourseTitle;
