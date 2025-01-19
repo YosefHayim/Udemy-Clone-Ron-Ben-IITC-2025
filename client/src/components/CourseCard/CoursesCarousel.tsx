@@ -9,7 +9,9 @@ import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
 import CourseHoverCard from "./CourseHoverCard";
 import { Course } from "@/types/types";
 
-const CoursesCarousel: React.FC = () => {
+const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
+  searchTerm = "",
+}) => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [hoveredCourse, setHoveredCourse] = useState<Course | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -19,8 +21,7 @@ const CoursesCarousel: React.FC = () => {
   const fetchCourses = async () => {
     try {
       const response = await fetch(
-        "https://udemy-clone-ron-ben.onrender.com/api/course"
-        // ?search=financial
+        `http://localhost:3000/api/course/?search=${encodeURI(searchTerm)}`
       );
       const data = await response.json();
       if (data.status === "Success") {
@@ -59,8 +60,7 @@ const CoursesCarousel: React.FC = () => {
   return (
     <div className="py-8 relative w-full max-w-7xl mx-auto">
       <h2 className="text-xl font-semibold mb-4">
-        Because you viewed{" "}
-        <span className="text-purple-600">"Carousel Title"</span>
+        Because you viewed <span className="text-purple-600">{searchTerm}</span>
       </h2>
 
       {courses.length > 0 && (

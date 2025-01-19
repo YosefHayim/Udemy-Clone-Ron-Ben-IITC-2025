@@ -66,9 +66,9 @@ const Homepage = () => {
           <div className="container mx-auto px-[5.6rem]">
             <Welcome />
             <Banner />
-            <CoursesCarousel />
+            <CoursesCarousel searchTerm={"figma"} />
             <TeamAccess />
-            <CoursesCarousel />
+            <CoursesCarousel searchTerm={"python"} />
           </div>
         </>
       )}
