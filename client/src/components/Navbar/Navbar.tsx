@@ -59,7 +59,7 @@ const Navbar = () => {
             <Cart />
           </Link>
           <Notifications />
-          <Link to="client\src\pages\ProfilePage\ProfileMain.tsx">
+          <Link to="/edit-profile">
             <Profile />
           </Link>
         </div>
