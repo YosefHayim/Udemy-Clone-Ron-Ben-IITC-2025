@@ -170,15 +170,17 @@ export interface ExploreItem {
 }
 
 export interface ExploreGroup {
-  group?: string; // Optional because some subcategories have only `title`.
+  group?: string;
   items: ExploreItem[];
 }
 
 export interface ExploreSubcategory {
-  title?: string; // Optional because some subcategories have only `group`.
+  name?: string; // Optional for cases like "Photography & Video".
+  title?: string; // Optional for subcategories with no `name`.
   group?: string;
-  items?: ExploreItem[]; // Optional for flexibility.
-  topics?: string[]; // Optional for subcategories with direct topics.
+  items?: ExploreItem[]; // For subcategories containing grouped items.
+  topics?: string[]; // For subcategories with direct topics as strings.
+  topic?: string[]; // Optional alternative for subcategories using `topic` instead of `topics`.
 }
 
 export interface ExploreCategory {
