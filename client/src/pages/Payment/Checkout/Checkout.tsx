@@ -20,6 +20,10 @@ const Checkout: React.FC = () => {
 
   useEffect(() => {}, [originalPrice, totalCourses, totalToPay]);
 
+  const handleClick = () => {
+    
+  }
+
   return (
     <div className="flex flex-col items-start justify-start p-[3em] w-[340px]">
       <div className="flex flex-col items-start justify-start">
@@ -45,7 +49,10 @@ const Checkout: React.FC = () => {
           </p>
         </div>
         <div className="mb-[2em] w-full">
-          <Button className="w-full rounded-[0.2em] bg-[#a435f0] hover:bg-[#8710d8] font-bold text-white p-[1.5em]">
+          <Button
+            onClick={handleClick}
+            className="w-full rounded-[0.2em] bg-[#a435f0] hover:bg-[#8710d8] font-bold text-white p-[1.5em]"
+          >
             <IoMdLock />
             Complete Checkout
           </Button>
