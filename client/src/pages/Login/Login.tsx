@@ -94,7 +94,7 @@ const Login = () => {
       <img
         src="/images/login.png"
         alt="Login Illustration"
-        className="h-[90%] w-auto object-contain flex items-center justify-center bg-transparent"
+        className="h-[90%] w-auto object-contain flex items-center justify-center bg-transparent mt-[9em]"
       />
 
       <div className="w-1/2 h-full flex items-center justify-center bg-white">
