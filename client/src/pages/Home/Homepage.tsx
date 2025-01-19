@@ -27,6 +27,7 @@ import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 import TeamAccess from "./TeamAcess";
 
 const Homepage = () => {
+  document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
   const dispatch = useDispatch();
 
   const cookie = Cookies.get("cookie");
