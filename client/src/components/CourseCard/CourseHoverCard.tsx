@@ -60,10 +60,13 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
     return () => window.removeEventListener("resize", calculatePosition);
   }, []);
 
-  const formattedDate = new Date(course.updatedAt).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-  });
+  const formattedDate = new Date(course.updatedAt || "").toLocaleDateString(
+    "en-US",
+    {
+      year: "numeric",
+      month: "long",
+    }
+  );
 
   return (
     <div
@@ -87,7 +90,7 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
       ></div>
 
       <h3 className="font-bold text-lg">
-        {truncateText(course.courseName, 50)}
+        {truncateText(course.courseName || "", 50)}
       </h3>
       {course.isNew && (
         <span className="text-xs text-white bg-green-500 px-2 py-1 rounded-full mt-1 inline-block">
@@ -100,10 +103,10 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
         {course.courseLevel}
       </p>
       <p className="text-xs text-gray-600 mt-2">
-        {truncateText(course.courseDescription, 100)}
+        {truncateText(course.courseDescription || "", 100)}
       </p>
       <ul className="list-disc list-inside text-sm text-gray-700 mt-2">
-        {truncateList(course.whatYouWillLearn, 3).map((item, index) => (
+        {truncateList(course.whatYouWillLearn || [""], 3).map((item, index) => (
           <li key={index}>{item}</li>
         ))}
       </ul>

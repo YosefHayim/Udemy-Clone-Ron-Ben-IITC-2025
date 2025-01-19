@@ -12,7 +12,7 @@ const CourseCard: React.FC = () => {
         <CourseInstructor instructor="Sumanta kumar Pal" />
       </div>
       <div>
-        <CourseRatings avgRatings="4.3" totalRatings="(106)" />
+        <CourseRatings avgRatings={4.3} totalRatings={106} />
       </div>
       <CourseLength />
       <CoursePrice

@@ -5,8 +5,10 @@ export interface DummyData {
 }
 
 export interface FilterProps {
-  setFilterData?: boolean;
-  filterData?: boolean;
+  setFilterData?:
+    | boolean
+    | React.Dispatch<React.SetStateAction<FilterDataProps>>;
+  filterData?: boolean | FilterDataProps;
   filterTitle: string;
   filterItems?: DummyData[];
   chosenHeight: string;
@@ -152,7 +154,7 @@ interface Subcategory {
 
 interface GroupedSubcategory {
   group: string; // Group name
-  items: Subcategory[]; // Array of subcategories
+  items: Subcategory; // Array of subcategories
 }
 
 export interface MenuItemProps {
@@ -172,7 +174,6 @@ export interface DecodedTokenProps {
 export type FormErrors = {
   email?: string;
   password?: string;
-  general?: string;
 };
 
 export interface PaymentOptionProps {

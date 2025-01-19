@@ -5,8 +5,6 @@ import { MdKeyboardArrowUp } from "react-icons/md";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 const Filter: React.FC<FilterProps> = ({
-  filterData,
-  setFilterData,
   filterTitle,
   filterItems,
   chosenHeight,

@@ -7,7 +7,7 @@ import {
   setTotalCourseDiscountPrices,
   setTotalOriginalCoursePrices,
 } from "@/redux/slices/cartSlice";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 

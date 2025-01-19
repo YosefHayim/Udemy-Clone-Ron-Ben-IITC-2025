@@ -26,25 +26,25 @@ const Login = () => {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const mutation = useMutation({
-    mutationFn: loginUser,
-    onSuccess: () => {
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
-    },
-    onError: (error) => {
-      console.error(error);
-      setFormErrors({
-        general: error.message || "Something went wrong. Try again.",
-      });
-    },
-  });
+
+  const mutation = useMutation<any, Error, { email: string; password: string }>(
+    {
+      mutationFn: loginUser,
+      onSuccess: () => {
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+      },
+      onError: (error) => {
+        console.error(error);
+      },
+    }
+  );
 
   const validateForm = () => {
     const errors = {};
-    if (!email) errors.email = "E-mail is mandatory.";
-    if (!password) errors.password = "Password is mandatory.";
+    if (!email) console.error("E-mail is mandatory.");
+    if (!password) console.error("Password is mandatory.");
     return errors;
   };
 
@@ -86,7 +86,7 @@ const Login = () => {
   });
 
   const handleGoogle = () => {
-    googleMutation.mutate();
+    mutation.mutate({ email, password });
   };
 
   return (
@@ -153,13 +153,13 @@ const Login = () => {
             <button
               type="submit"
               className={`w-full py-2 rounded-md ${
-                mutation.isLoading
+                mutation.isPending
                   ? "bg-gray-400 cursor-not-allowed"
                   : "bg-purple-600 hover:bg-purple-700"
               } text-white transition`}
-              disabled={mutation.isLoading}
+              disabled={mutation.isPending}
             >
-              {mutation.isLoading ? (
+              {mutation.isPending ? (
                 <span className="spinner" />
               ) : (
                 "Continue with email"
@@ -173,12 +173,6 @@ const Login = () => {
                 Login with google
               </button>
             </div>
-
-            {formErrors.general && (
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative">
-                {formErrors.general}
-              </div>
-            )}
           </form>
         </div>
       </div>
