@@ -14,7 +14,6 @@ import { MdSearch, MdStar } from "react-icons/md";
 import Loader from "@/components/Loader/Loader";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { Review } from "@/types/types";
 
 const DialogOfAllReviews: React.FC<{
@@ -24,8 +23,6 @@ const DialogOfAllReviews: React.FC<{
 }> = ({ avgRating, isClicked, setClicked }) => {
   const params = useParams();
   const courseId: string | undefined = params.courseId;
-  const [limit, setLimit] = useState<number>(13);
-  const [page, setPage] = useState<number>(1);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["reviews", courseId],
@@ -37,11 +34,6 @@ const DialogOfAllReviews: React.FC<{
     },
     enabled: isClicked, // Prevent fetching until dialog is opened
   });
-
-  // Function to load more reviews
-  const handleLoadMoreReviews = () => {
-    setPage((prevPage) => prevPage + 1);
-  };
 
   return (
     <div>
@@ -94,7 +86,6 @@ const DialogOfAllReviews: React.FC<{
                         className={`${
                           data.length < 13 ? "hidden" : "block"
                         } bg-white text-black rounded-[0.2em] border border-black font-bold w-full`}
-                        onClick={handleLoadMoreReviews} // Update page on click
                       >
                         Show more reviews
                       </Button>
