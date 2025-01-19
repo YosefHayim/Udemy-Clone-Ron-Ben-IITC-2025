@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 
 interface CourseHoverCardProps {
   course: {
-    courseName: string;
-    updatedAt: string;
-    courseDescription: string;
-    totalCourseDuration: number;
-    courseLevel: string;
-    whatYouWillLearn: string[];
+    courseName?: string;
+    updatedAt?: string;
+    courseDescription?: string;
+    totalCourseDuration?: number;
+    courseLevel?: string;
+    whatYouWillLearn?: string[];
     isNew?: boolean;
   };
 }
@@ -86,7 +86,9 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
         }}
       ></div>
 
-      <h3 className="font-bold text-lg">{truncateText(course.courseName, 50)}</h3>
+      <h3 className="font-bold text-lg">
+        {truncateText(course.courseName, 50)}
+      </h3>
       {course.isNew && (
         <span className="text-xs text-white bg-green-500 px-2 py-1 rounded-full mt-1 inline-block">
           New
@@ -94,7 +96,8 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
       )}
       <p className="text-xs text-gray-500 mt-1">Updated {formattedDate}</p>
       <p className="text-xs text-gray-500 mt-1">
-        {course.totalCourseDuration.toFixed(1)} total hours • {course.courseLevel}
+        {course.totalCourseDuration?.toFixed(1)} total hours •{" "}
+        {course.courseLevel}
       </p>
       <p className="text-xs text-gray-600 mt-2">
         {truncateText(course.courseDescription, 100)}

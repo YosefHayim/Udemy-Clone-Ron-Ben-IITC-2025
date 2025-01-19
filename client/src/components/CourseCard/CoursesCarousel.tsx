@@ -7,31 +7,13 @@ import CourseLength from "@/pages/ViewCoursePageInfo/MoreCoursesByInstructor/Cou
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
 import CourseHoverCard from "./CourseHoverCard";
-
-interface Course {
-  _id: string;
-  courseName: string;
-  courseImg: string;
-  courseDescription: string;
-  courseFullPrice: number;
-  courseDiscountPrice: number;
-  averageRating: number;
-  reviews: any[];
-  totalRatings: number;
-  courseLevel: string;
-  totalCourseDuration: number;
-  totalCourseLessons: number;
-  courseInstructor: { fullName: string };
-  isNew?: boolean;
-  isBestseller?: boolean;
-}
+import { Course } from "@/types/types";
 
 const CoursesCarousel: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [hoveredCourse, setHoveredCourse] = useState<Course | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const visibleItems = 5; // Número de itens visíveis por vez
-  const moveItems = 5; // Número de itens para mover por clique
 
   // Função para buscar cursos da API
   const fetchCourses = async () => {
@@ -65,19 +47,19 @@ const CoursesCarousel: React.FC = () => {
       setCurrentIndex(nextIndex);
     }
   };
-  
+
   const handlePrev = () => {
     const prevIndex = currentIndex - 1;
     if (prevIndex >= 0) {
       setCurrentIndex(prevIndex);
     }
   };
-  
 
   return (
     <div className="py-8 relative w-full max-w-7xl mx-auto">
       <h2 className="text-xl font-semibold mb-4">
-        Because you viewed <span className="text-purple-600">"Carousel Title"</span>
+        Because you viewed{" "}
+        <span className="text-purple-600">"Carousel Title"</span>
       </h2>
 
       {courses.length > 0 && (
@@ -89,7 +71,6 @@ const CoursesCarousel: React.FC = () => {
               width: `${courses.length * (100 / visibleItems)}%`, // Corrigida largura total
             }}
           >
-
             {courses.map((course) => (
               <div
                 key={course._id}
@@ -100,7 +81,9 @@ const CoursesCarousel: React.FC = () => {
                 <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 p-4">
                   <CourseImg courseImg={course.courseImg} widthChosen="260px" />
                   <CourseTitle title={course.courseName} />
-                  <CourseInstructor instructor={course.courseInstructor.fullName} />
+                  <CourseInstructor
+                    instructor={course.courseInstructor.fullName}
+                  />
                   <CourseRatings
                     totalRatings={course.totalRatings}
                     avgRatings={course.averageRating}
@@ -111,7 +94,10 @@ const CoursesCarousel: React.FC = () => {
                     totalLectures={course.totalCourseLessons}
                   />
                   {course.isBestseller && (
-                    <CourseTag tagName="Bestseller" bgColorTag="bg-bestSellerTag" />
+                    <CourseTag
+                      tagName="Bestseller"
+                      bgColorTag="bg-bestSellerTag"
+                    />
                   )}
                   {course.isNew && (
                     <CourseTag tagName="New" bgColorTag="bg-green-500" />

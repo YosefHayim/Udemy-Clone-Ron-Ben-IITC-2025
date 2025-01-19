@@ -106,9 +106,9 @@ export interface CoursePriceProps {
 }
 
 export interface CourseRatingsProps {
-  avgRatings?: string;
+  avgRatings?: number;
   stars?: string;
-  totalRatings?: string;
+  totalRatings?: number;
 }
 
 export interface CourseTagProps {
@@ -297,4 +297,24 @@ export interface LessonProps {
   title?: string;
   videoUrl?: string;
   duration?: number;
+}
+
+export interface SearchCourseCardProps {}
+
+export interface Course {
+  _id: string;
+  courseName: string;
+  courseImg: string;
+  courseDescription: string;
+  courseFullPrice: number;
+  courseDiscountPrice: number;
+  averageRating: number;
+  reviews: any[];
+  totalRatings: number;
+  courseLevel: string;
+  totalCourseDuration: number;
+  totalCourseLessons: number;
+  courseInstructor: { fullName: string };
+  isNew?: boolean;
+  isBestseller?: boolean;
 }
