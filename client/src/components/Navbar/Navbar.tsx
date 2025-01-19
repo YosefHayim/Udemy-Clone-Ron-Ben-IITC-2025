@@ -15,10 +15,11 @@ import { Link } from "react-router-dom";
 // import MarketingGuest from "../NavBarMarketing/MarketingGuest";
 // import Login from "@/pages/Login/Login";
 // import SignUp from "@/pages/SignUp/Signup";
+import 
 
 const Navbar = () => {
   const cookie = Cookies.get("cookie");
-  useEffect(() => {}, [cookie]);
+  useEffect(() => { }, [cookie]);
 
   return (
     <>
@@ -83,7 +84,9 @@ const Navbar = () => {
             <Cart />
           </Link>
           <Notifications />
-          <Profile />
+          <Link to="client\src\pages\ProfilePage\ProfileMain.tsx">
+            <Profile />
+          </Link>
         </div>
       )}
     </>

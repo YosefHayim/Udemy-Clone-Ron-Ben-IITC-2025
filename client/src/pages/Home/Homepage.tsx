@@ -11,14 +11,21 @@ import {
 } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { DecodedTokenProps } from "@/types/types";
-import ProfileMain from "../ProfilePage/ProfileMain";
-import AccountSecurity from "../ProfilePage/AccountSecurity";
-import Photo from "../ProfilePage/Photo";
-import Subscriptions from "../ProfilePage/Subscription";
-import Privacy from "../ProfilePage/Privacy";
-import NotificationPreferences from "../ProfilePage/NotificationPreferences";
-import ApiClients from "../ProfilePage/ApiClients";
-import ViewPublicProfile from "../ProfilePage/ViewPublicProfile";
+import Banner from "./Banner";
+import Section from "./Sections";
+import TrustedBySection from "./TrustedBySection";
+import LearnersAreViewing from "./LearnersAreViewing";
+import SearchResult from "./SearchResult";
+import LearningGoals from "./LearningGoals";
+import PlansSection from "./PansSection";
+import Testimonials from "./Testimonials";
+import TrendsReport from "./TopTrends";
+import TrendingNow from "./TrendingNow";
+import Carousel from "./Carousel";
+import Welcome from "@/components/LoggedInHome/Welcome";
+import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
+import TeamAccess from "./TeamAcess";
+
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -38,9 +45,8 @@ const Homepage = () => {
         <>
           <div className="container mx-auto px-[5.6rem]">
             <DropdownMenu />
-            <ProfileMain />
-            {/* <Banner />
-            <Sections />
+            <Banner />
+            <Section />
             <TrustedBySection />
             <LearnersAreViewing />
             <SearchResult />
@@ -49,7 +55,7 @@ const Homepage = () => {
             <Testimonials />
             <TrendsReport />
             <TrendingNow />
-            <Carousel /> */}
+            <Carousel />
           </div>
         </>
       )}
@@ -59,12 +65,11 @@ const Homepage = () => {
           <DropdownMenu />
           <Menu />
           <div className="container mx-auto px-[5.6rem]">
-            <AccountSecurity />
-            {/* <Welcome />
+            <Welcome />
             <Banner />
             <CoursesCarousel />
-            <TeamAccess /> */}
-            {/* <CoursesCarousel /> */}
+            <TeamAccess /> 
+            <CoursesCarousel />
           </div>
         </>
       )}
