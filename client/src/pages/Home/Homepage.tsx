@@ -11,7 +11,6 @@ import {
 } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { DecodedTokenProps } from "@/types/types";
-import AccountSecurity from "../ProfilePage/AccountSecurity";
 import Banner from "./Banner";
 import TrustedBySection from "./TrustedBySection";
 import LearnersAreViewing from "./LearnersAreViewing";
@@ -23,6 +22,9 @@ import TrendsReport from "./TopTrends";
 import TrendingNow from "./TrendingNow";
 import Carousel from "./Carousel";
 import Sections from "./Sections";
+import Welcome from "@/components/LoggedInHome/Welcome";
+import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
+import TeamAccess from "./TeamAcess";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -62,12 +64,11 @@ const Homepage = () => {
           <DropdownMenu />
           <Menu />
           <div className="container mx-auto px-[5.6rem]">
-            <AccountSecurity />
-            {/* <Welcome />
+            <Welcome />
             <Banner />
             <CoursesCarousel />
-            <TeamAccess /> */}
-            {/* <CoursesCarousel /> */}
+            <TeamAccess />
+            <CoursesCarousel />
           </div>
         </>
       )}
