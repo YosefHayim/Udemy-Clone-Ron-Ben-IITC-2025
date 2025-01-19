@@ -22,11 +22,6 @@ const DialogReportReview: React.FC<{
   }
 
   const [isClicked, setIsClicked] = useState<boolean | null>(false);
-  const [isSubmit, setSubmit] = useState<boolean | null>(false);
-
-  const handleClickSubmit = () => {
-    setIsClicked((prev) => !prev);
-  };
 
   const handleSubmitReport = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,7 +42,6 @@ const DialogReportReview: React.FC<{
     onSuccess: () => {
       // Show the acknowledgment message
       setIsClicked(true);
-      setSubmit(true);
     },
     onError: (error) => {
       console.error("Error reporting review:", error);
@@ -57,7 +51,6 @@ const DialogReportReview: React.FC<{
   const handleCloseBtn = () => {
     // Close the dialog when the user acknowledges
     setReportDrawer(false);
-    setSubmit(false);
     setIsClicked(false); // Reset the state for the next time the dialog opens
   };
 
