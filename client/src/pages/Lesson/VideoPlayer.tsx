@@ -32,6 +32,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   nextLesson,
   prevLesson,
   onNavigate,
+  controls = true,
   playing = false,
   width = "100%",
   height = "820px",
@@ -61,9 +62,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Display Current Lesson Title */}
-      <div className="absolute top-[50px] w-full text-start text-xl pl-10 text-white py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-black/75 to-transparent">
-        {lessonIndex}. {currentLesson.title}
-      </div>
+      <div
+  className="absolute top-[50px] w-full text-start text-xl pl-10 text-white py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-black/75 to-transparent"
+>
+  {lessonIndex }. {currentLesson.title}
+</div>
 
 
       {/* Button to toggle paused state */}
@@ -144,18 +147,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   </div>
 )}
 
-          <button
-            className={`text-white bg-gray-800 hover:bg-gray-700 rounded-sm p-4 ${
-              nextLesson ? "" : "invisible"
-            }`}
-            onClick={nextLesson ? () => onNavigate(nextLesson._id) : undefined}
-            title={nextLesson ? `Next: ${nextLesson.title}` : ""}
-            aria-label={nextLesson ? `Go to ${nextLesson.title}` : ""}
-          >
-            <MdArrowForwardIos size={24} />
-          </button>
-        </div>
-      )}
     </div>
   );
 };
