@@ -58,7 +58,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
   };
 
   return (
-    <div className="py-8 relative w-full max-w-7xl mx-auto">
+    <div className=" relative w-full max-w-7xl mx-auto">
       <h2 className="text-xl font-semibold mb-4">
         Because you viewed <span className="text-purple-600">{searchTerm}</span>
       </h2>
