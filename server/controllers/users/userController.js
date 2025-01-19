@@ -88,6 +88,7 @@ const signUp = catchAsync(async (req, res, next) => {
     bio: newUser.bio,
     role: newUser.role,
     coursesBought: newUser.coursesBought,
+    udemyCredits: newUser.udemyCredits,
   });
 
   res.cookie("cookie", token, {
@@ -125,6 +126,7 @@ const login = catchAsync(async (req, res, next) => {
     role: isFoundUser.role,
     bio: isFoundUser.bio,
     coursesBought: isFoundUser.coursesBought,
+    udemyCredits: isFoundUser.udemyCredits,
   });
 
   res.cookie("cookie", token, {

@@ -12,6 +12,7 @@ import {
   setFullName,
   setProfilePic,
   setRole,
+  setUdemyCredits,
 } from "@/redux/slices/userSlice";
 import { DecodedTokenProps, FormErrors } from "@/types/types";
 import googleRedirectUrl from "@/api/users/googleRedirectUrl";
@@ -68,6 +69,7 @@ const Login = () => {
       dispatch(setBio(decoded.bio));
       dispatch(setRole(decoded.role));
       dispatch(setCoursesBought(decoded.coursesBought));
+      dispatch(setUdemyCredits(decoded.udemyCredits));
     }
   }, [cookie]);
 

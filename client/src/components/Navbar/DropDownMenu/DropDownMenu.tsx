@@ -116,14 +116,11 @@ const DropdownMenu: React.FC = () => {
               Subscriptions
             </a>
           </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-            >
+          <Link to="/dashboard/credit-history">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
               Udemy credits
-            </a>
-          </li>
+            </li>
+          </Link>
           <li>
             <a
               href="#"
