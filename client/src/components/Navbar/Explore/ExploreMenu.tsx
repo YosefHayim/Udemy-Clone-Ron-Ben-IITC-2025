@@ -9,6 +9,8 @@ const ExploreMenu = () => {
   const [hoveredSecondSubMenu, setHoveredSecondSubMenu] = useState<
     boolean | null
   >(false);
+  console.log(hoveredSecondSubMenu);
+
   const menuTimeout = useRef<NodeJS.Timeout | null>(null);
   const subMenuTimeout = useRef<NodeJS.Timeout | null>(null);
 

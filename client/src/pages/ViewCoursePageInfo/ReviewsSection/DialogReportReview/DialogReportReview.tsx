@@ -14,7 +14,7 @@ import { useState } from "react";
 const DialogReportReview: React.FC<{
   reviewId: string;
   isOpenReportDrawer: boolean;
-  setReportDrawer: React.Dispatch<React.SetStateAction<boolean>>;
+  setReportDrawer: React.Dispatch<React.SetStateAction<boolean | undefined>>;
   userId?: string;
 }> = ({ reviewId, isOpenReportDrawer, setReportDrawer, userId }) => {
   if (!reviewId) {

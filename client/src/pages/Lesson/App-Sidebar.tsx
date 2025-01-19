@@ -16,6 +16,7 @@ export const AppSidebar: React.FC = () => {
   const { toggleSidebar, open } = useSidebar();
   let { courseId } = useParams<{ courseId: string | undefined }>(); // Retrieve courseId from the URL
   console.log(courseId);
+  console.log(isSmallScreen);
 
   // Handle screen size changes
   useEffect(() => {
