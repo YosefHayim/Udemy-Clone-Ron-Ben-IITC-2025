@@ -1,8 +1,8 @@
-import { axiosClient, localhostUrl } from "../configuration";
+import { axiosClient, baseUrl } from "../configuration";
 
 const googleRedirectUrl = async () => {
   try {
-    const url = `${localhostUrl}/api/user/auth/google/`;
+    const url = `${baseUrl}/api/user/auth/google/`;
 
     const {
       data: { url: redirectUrl },

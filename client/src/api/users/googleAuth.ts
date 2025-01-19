@@ -1,5 +1,5 @@
 import { GoogleAuthResponse } from "@/types/types";
-import { axiosClient, localhostUrl } from "../configuration";
+import { axiosClient, baseUrl } from "../configuration";
 
 const googleAuth = async (): Promise<GoogleAuthResponse> => {
   try {
@@ -10,7 +10,7 @@ const googleAuth = async (): Promise<GoogleAuthResponse> => {
       throw new Error("No code found in the URL.");
     }
 
-    const url = `${localhostUrl}/api/user/auth/google/callback`;
+    const url = `${baseUrl}/api/user/auth/google/callback`;
 
     const response = await axiosClient.post<GoogleAuthResponse>(url, { code });
 

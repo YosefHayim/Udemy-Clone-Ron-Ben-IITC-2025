@@ -1,4 +1,4 @@
-import { axiosClient, localhostUrl } from "../configuration";
+import { axiosClient, baseUrl } from "../configuration";
 
 type fn = (idOfReview: string) => Promise<any>;
 
@@ -8,7 +8,7 @@ export const likeReviewById: fn = async (idOfReview: string) => {
     return;
   }
   const sanitizedReviewId = idOfReview.trim();
-  const url = `${localhostUrl}/api/review/like/${sanitizedReviewId}`;
+  const url = `${baseUrl}/api/review/like/${sanitizedReviewId}`;
   try {
     const res = await axiosClient.post(url);
 
