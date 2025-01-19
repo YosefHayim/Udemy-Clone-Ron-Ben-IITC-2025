@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-const ReviewsTab = ({ avgRating }) => {
+const ReviewsTab = ({ avgRating,  }) => {
   const params = useParams();
   const courseId = params.courseId;
   const [limit] = useState(13); // Set the limit of reviews per page
@@ -49,19 +49,19 @@ const ReviewsTab = ({ avgRating }) => {
   return (
     <div className="min-w-fit mt-4">
         {/* Student Feedback Section */}
-        <h2 className="text-2xl font-bold mb-4">Student feedback</h2>
+        <h2 className="text-3xl font-bold my-4">Student feedback</h2>
       <div className="mb-6 flex flex-col py-2">
 
         <div className="flex  flex-row items-center min-w-full gap-5 p-4 ">
         <div className="flex flex-col w-full justify-center items-center ">
-          <div className="text-6xl font-bold w-full text-[#c4710d] ">
+          <div className="text-7xl font-bold w-fit text-[#c4710d] ">
             {avgRating.toFixed(1)}
           </div>
-          <div className="ml-4 text-lg w-full pr-4">{renderStars(avgRating)}</div>
-          <span className="ml-4 text-lg w-full text-[#c4710d] font-semibold">Course Rating</span>
+          <div className=" text-lg  ">{renderStars(avgRating)}</div>
+        <span className=" text-lg font-semibold text-[#c4710d]">Course Rating</span>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-2 p-4">
           {[5, 4, 3, 2, 1].map((stars) => {
             const count = data?.filter(
               (review) => Math.round(review.rating) === stars
@@ -119,7 +119,7 @@ const ReviewsTab = ({ avgRating }) => {
     <option value="1">One star</option>
   </select>
 </form>
-      {isLoading && <Loader />}
+      {isLoading && <Loader/>}
       {error && (
         <div className="text-red-500">
           Error loading reviews. Please try again later.
