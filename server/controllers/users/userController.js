@@ -412,7 +412,7 @@ const joinCoursesByIds = catchAsync(async (req, res, next) => {
       if (existingProgress) {
         return next(
           createError(
-            `You already have progress for this courses: ${existingProgress}`,
+            `You already have progress for this courses: ${courseIds}`,
             400
           )
         );

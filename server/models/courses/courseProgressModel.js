@@ -14,15 +14,15 @@ const courseProgressSchema = new mongoose.Schema({
   },
 });
 
-courseProgressSchema.pre(/^find/, function (next) {
-  this.populate("course");
-  next();
-});
-
 courseProgressSchema.index(
   { user: 1, course: 1 },
   { unique: true, message: "This user already has progress for this course." }
 );
+
+courseProgressSchema.pre(/^find/, function (next) {
+  this.populate("course");
+  next();
+});
 
 const CourseProgress = mongoose.model("CourseProgress", courseProgressSchema);
 module.exports = CourseProgress;
