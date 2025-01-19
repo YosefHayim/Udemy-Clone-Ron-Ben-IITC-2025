@@ -39,6 +39,8 @@ const ReviewsTab: React.FC<{ avgRating: number }> = ({ avgRating }) => {
     );
   };
 
+  const limit = data.length;
+
   return (
     <div className="min-w-fit mt-4">
       {/* Student Feedback Section */}
@@ -132,7 +134,7 @@ const ReviewsTab: React.FC<{ avgRating: number }> = ({ avgRating }) => {
           </div>
           <div className="w-full mt-4">
             <Button
-              className={`$ {
+              className={`${
                 data.length < limit ? "hidden" : "block"
               } bg-white text-black rounded-[0.2em] border border-black font-bold w-full`}
             >

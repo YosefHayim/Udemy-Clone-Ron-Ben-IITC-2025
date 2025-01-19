@@ -12,15 +12,19 @@ import { Button } from "@/components/ui/button";
 import { AiFillInfoCircle } from "react-icons/ai";
 import { RootState } from "@/redux";
 import { CoursePreviewCardProps } from "@/types/types";
+import { IoPlayCircleSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
   courseImg,
   coursePrice,
   fullPrice,
   courseId,
+  firstLessonId,
 }) => {
   const [isFixed, setIsFixed] = useState(false);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const navigate = useNavigate();
 
   const coursesBought = useSelector(
     (state: RootState) => state.user.coursesBought
@@ -44,6 +48,10 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navigateCourseLesson = () => {
+    navigate(`/course/${courseId}/lesson/${firstLessonId}/overview`);
+  };
+
   return (
     <div
       className={`shadow-previewCourseCardShadow w-[320px] z-[1500] bg-white border border-b-gray-100 ${
@@ -54,12 +62,21 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
         transform: isFixed ? "translateY(0)" : "translateY(10px)",
       }}
     >
-      <div>
-        <img src={courseImg} alt="Image of the course" />
-        <b className="absolute text-white translate-y-[-1.5em]">
-          Preview this course
-        </b>
+      <div className="relative" onClick={navigateCourseLesson}>
+        <img
+          src={courseImg}
+          alt="Image of the course"
+          className="w-full h-full object-cover"
+        />
+
+        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 cursor-pointer">
+          <IoPlayCircleSharp className="text-white text-[6em]" />
+          <b className="font-bold text-white absolute bottom-[5%] text-[1.4em]">
+            Preview this course
+          </b>
+        </div>
       </div>
+
       <div className="p-[1.5em]">
         <div className={isAddedToCart ? "hidden" : "block"}>
           <CoursePrice
@@ -78,7 +95,10 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
                 You purchased this course on Aug. 26, 2024
               </b>
             </div>
-            <Button className="font-bold text-white rounded-[0.2em] w-full">
+            <Button
+              className="font-bold text-white rounded-[0.2em] w-full"
+              onClick={navigateCourseLesson}
+            >
               Go to course
             </Button>
           </div>

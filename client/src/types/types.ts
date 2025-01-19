@@ -221,6 +221,7 @@ export interface CoursePreviewCardProps {
   coursePrice: number;
   fullPrice: number;
   courseId: string;
+  firstLessonId?: string;
 }
 
 export interface Review {
