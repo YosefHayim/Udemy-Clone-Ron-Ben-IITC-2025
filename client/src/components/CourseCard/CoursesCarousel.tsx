@@ -8,6 +8,8 @@ import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
 import CourseHoverCard from "./CourseHoverCard";
 import { Course } from "@/types/types";
+import { MdOutlineStarHalf } from "react-icons/md";
+import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 
 const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
   searchTerm = "",
@@ -57,166 +59,124 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
     }
   };
 
+  const renderStars = (rating: number) => {
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+
+    return (
+      <div className="flex items-center justify-between ">
+        {Array.from({ length: 5 }, (_, i) => {
+          if (i < fullStars) {
+            return <IoIosStar key={i} className="text-[#c4710d] ml-1" />;
+          } else if (i === fullStars && hasHalfStar) {
+            return (
+              <MdOutlineStarHalf key={i} className="text-[#c4710d] ml-1" />
+            );
+          } else {
+            return <IoIosStarOutline key={i} className="text-[#c4710d] ml-1" />;
+          }
+        })}
+      </div>
+    );
+  };
+
   return (
-    // <div className=" relative w-full max-w-7xl mx-auto">
-    //   <h2 className="text-xl font-semibold mb-4">
-    //     Because you viewed <span className="text-purple-600">{searchTerm}</span>
-    //   </h2>
+    <>
 
-    //   {courses.length > 0 && (
-    //     <div className="overflow-hidden relative">
-    //       <div
-    //         className="flex transition-transform duration-300"
-    //         style={{
-    //           transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`, // Corrigido cálculo do transform
-    //           width: `${courses.length * (100 / visibleItems)}%`, // Corrigida largura total
-    //         }}
-    //       >
-    //         {courses.map((course) => (
-    //           <div
-    //             key={course._id}
-    //             className="w-[20%] px-4 box-border relative"
-    //             onMouseEnter={() => setHoveredCourse(course)} // Define o hover no curso
-    //             onMouseLeave={() => setHoveredCourse(null)} // Remove o hover
-    //           >
-    //             <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 p-4">
-    //               <CourseImg courseImg={course.courseImg} widthChosen="260px" />
-    //               <CourseTitle title={course.courseName} />
-    //               <CourseInstructor
-    //                 instructor={course.courseInstructor.fullName}
-    //               />
-    //               <CourseRatings
-    //                 totalRatings={course.totalRatings}
-    //                 avgRatings={course.averageRating}
-    //               />
-    //               <CourseLength
-    //                 courseLevel={course.courseLevel}
-    //                 totalMinutes={course.totalCourseDuration}
-    //                 totalLectures={course.totalCourseLessons}
-    //               />
-    //               {course.isBestseller && (
-    //                 <CourseTag
-    //                   tagName="Bestseller"
-    //                   bgColorTag="bg-bestSellerTag"
-    //                 />
-    //               )}
-    //               {course.isNew && (
-    //                 <CourseTag tagName="New" bgColorTag="bg-green-500" />
-    //               )}
-    //               <CoursePrice
-    //                 fullPrice={course.courseFullPrice}
-    //                 discountPrice={course.courseDiscountPrice}
-    //               />
-    //             </div>
 
-    //             {/* Renderiza o hover card quando o curso está com hover */}
-    //             {hoveredCourse?._id === course._id && (
-    //               <CourseHoverCard course={hoveredCourse} />
-    //             )}
-    //           </div>
-    //         ))}
-    //       </div>
-    //     </div>
-    //   )}
+      <div className="relative w-full max-w-7xl mx-auto py-8">
+        <h2 className="text-xl font-semibold mb-4">
+          Because you viewed{" "}
+          <span className="text-purple-600 font-bold">{searchTerm}</span>
+        </h2>
 
-    //   <button
-    //     onClick={handlePrev}
-    //     className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full z-10 shadow-md hover:bg-gray-600"
-    //   >
-    //     &#9664;
-    //   </button>
-
-    //   <button
-    //     onClick={handleNext}
-    //     className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full z-10 shadow-md hover:bg-gray-600"
-    //   >
-    //     &#9654;
-    //   </button>
-    // </div>
-    <div className="relative w-full max-w-7xl mx-auto py-8">
-      <h2 className="text-xl font-semibold mb-4">
-        Because you viewed{" "}
-        <span className="text-purple-600 font-bold">{searchTerm}</span>
-      </h2>
-
-      {courses.length > 0 && (
-        <div className="overflow-hidden relative">
-          <div
-            className="flex transition-transform duration-300"
-            style={{
-              transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`,
-              width: `${courses.length * (100 / visibleItems)}%`,
-            }}
-          >
-            {courses.map((course) => (
-              <div
-                key={course._id}
-                className="w-[calc(100%/5)] px-4 box-border relative"
-              >
-                <div className="border rounded-lg shadow-sm overflow-hidden bg-white flex flex-col h-[350px]">
-                  <div className="h-40 w-full">
-                    <img
-                      src={course.courseImg}
-                      alt={course.courseName}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="p-4 flex flex-col justify-between flex-grow">
-                    <div>
-                      <h3 className="font-bold text-lg text-gray-900 line-clamp-2 mb-1">
+        {courses.length > 0 && (
+          <div className="overflow-hidden relative">
+            <div
+              className="flex transition-transform duration-300"
+              style={{
+                transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`,
+                width: `${courses.length * (100 / visibleItems)}%`,
+              }}
+            >
+              {courses.map((course) => (
+                <div
+                  key={course._id}
+                  className="w-[calc(100%/5)] px-4 box-border relative"
+                >
+                  <div className="border rounded-lg shadow-sm overflow-hidden bg-white flex flex-col h-[350px]">
+                    <div className="h-40 w-full">
+                      <img
+                        src={course.courseImg}
+                        alt={course.courseName}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-4 flex flex-col justify-between flex-grow">
+                      {/* Título */}
+                      <h3 className="font-bold text-sm text-gray-900 line-clamp-2 mb-1">
                         {course.courseName}
                       </h3>
-                      <p className="text-sm text-gray-600 truncate">
+
+                      {/* Nome do Instrutor */}
+                      <p className="text-xs text-gray-600 truncate mb-2">
                         {course.courseInstructor.fullName}
                       </p>
-                    </div>
-                    <div className="flex items-center text-yellow-500 text-sm mt-2">
-                      <span>{course.averageRating.toFixed(1)}</span>
-                      <span className="text-gray-500 ml-1">
-                        ({course.totalRatings.toLocaleString()})
-                      </span>
-                    </div>
-                    <div className="flex items-baseline justify-between mt-2">
+
+                      {/* Avaliação */}
                       <div>
-                        <span className="font-bold text-gray-900">
-                          ₪{course.courseDiscountPrice.toFixed(2)}
-                        </span>
-                        {course.courseFullPrice && (
-                          <span className="line-through text-gray-500 text-sm ml-2">
-                            ₪{course.courseFullPrice.toFixed(2)}
+                        <div className="text-sm font-bold w-fit text-[#c4710d] ">
+
+                          {course.averageRating.toFixed(1)}
+                        </div>
+                        <div className=" text-lg  ">{renderStars(course.averageRating)}</div>
+                        <span>{course.totalRatings}</span>
+                      </div>
+
+                      {/* Preço e Tag */}
+                      <div className="flex items-baseline justify-between mt-2">
+                        <div>
+                          <span className="font-bold text-gray-900">
+                            ₪{course.courseDiscountPrice.toFixed(2)}
+                          </span>
+                          {course.courseFullPrice && (
+                            <span className="line-through text-gray-500 text-xs ml-2">
+                              ₪{course.courseFullPrice.toFixed(2)}
+                            </span>
+                          )}
+                        </div>
+                        {course.isBestseller && (
+                          <span className="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded-full">
+                            Bestseller
                           </span>
                         )}
                       </div>
-                      {course.isBestseller && (
-                        <span className="text-sm bg-yellow-200 text-yellow-800 px-2 py-1 rounded-full">
-                          Bestseller
-                        </span>
-                      )}
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Navigation buttons */}
-      <button
-        onClick={handlePrev}
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full z-10 shadow-md hover:bg-gray-600"
-        aria-label="Scroll Left"
-      >
-        &#9664;
-      </button>
-      <button
-        onClick={handleNext}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full z-10 shadow-md hover:bg-gray-600"
-        aria-label="Scroll Right"
-      >
-        &#9654;
-      </button>
-    </div>
+        {/* Botões de navegação */}
+        <button
+          onClick={handlePrev}
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full z-10 shadow-md hover:bg-gray-600"
+          aria-label="Scroll Left"
+        >
+          &#9664;
+        </button>
+        <button
+          onClick={handleNext}
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full z-10 shadow-md hover:bg-gray-600"
+          aria-label="Scroll Right"
+        >
+          &#9654;
+        </button>
+      </div>
+    </>
+
   );
 };
 

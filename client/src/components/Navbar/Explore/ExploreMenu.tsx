@@ -93,7 +93,7 @@ const ExploreMenu = () => {
           Explore
         </button>
 
-        {/* Menu Principal */}
+        {/* Menu one */}
         {hoveredMenu && (
           <div
             className="absolute left-0 mt-2 w-64 bg-white border rounded-md shadow-lg z-10"
@@ -158,7 +158,7 @@ const ExploreMenu = () => {
               </div>
             )}
 
-            {/* Segundo Submenu */}
+            {/* Second Submenu */}
             {hoveredSubMenu && hoveredMenu && (
               <div
                 className="absolute top-0 left-full ml-64 mt-0 w-64 bg-white border rounded-md shadow-lg z-30"
