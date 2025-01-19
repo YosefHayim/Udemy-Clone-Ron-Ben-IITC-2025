@@ -7,11 +7,11 @@ const ProfileMain = () => {
       <SideBarProfile />
 
       {/* Main Content */}
-      <main className="flex-1  border border-gray-800 ">
-        <div className="bg-white shadow-lg rounded-lg">
+      <main className="flex-1  border border-gray-300 ">
+        <div className="bg-white">
 
 
-          <div className="border-b border-gray-800 min-w-full text-center p-4">
+          <div className="border-b border-gray-300 min-w-full text-center p-4">
             <h2 className="text-2xl font-bold text-gray-800">Public Profile</h2>
             <p className="text-gray-600">Add information about yourself</p>
           </div>

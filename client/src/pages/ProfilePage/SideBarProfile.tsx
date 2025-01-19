@@ -1,7 +1,7 @@
 const SideBarProfile = () => {
   return (
-    <aside className="w-64 bg-white shadow-md">
-      <div className="p-6">
+    <div className="w-64 bg-white border-l border-b border-t border-gray-300">
+      <div className="p-6 ">
         <div className="flex items-center space-x-4">
           <div className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-white text-xl">
             BK
@@ -90,7 +90,7 @@ const SideBarProfile = () => {
           </li>
         </ul>
       </nav>
-    </aside>
+    </div>
   );
 };
 
