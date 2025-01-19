@@ -152,7 +152,7 @@ interface Subcategory {
 
 interface GroupedSubcategory {
   group: string; // Group name
-  items: Subcategory[]; // Array of subcategories
+  items: Subcategory; // Array of subcategories
 }
 
 export interface MenuItemProps {

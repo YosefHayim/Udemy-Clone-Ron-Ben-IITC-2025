@@ -11,22 +11,24 @@ const ExploreMenu = () => {
   const menuTimeout = useRef<NodeJS.Timeout | null>(null);
   const subMenuTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  const getCategoryData = (categoryName: string) => {
+  const getCategoryData = (categoryName: string | null) => {
     return categoryName
       ? exploreData.find((cat) => cat?.category === categoryName) || null
       : null;
   };
 
   const getSubCategoryData = (
-    categoryName: string,
-    subCategoryName: string | null
+    categoryName: { title?: string; name?: string },
+    subCategoryName: { title?: string; name?: string }
   ) => {
     const category = getCategoryData(categoryName);
     if (!category || !category.subcategory) return null;
+
     return subCategoryName
       ? category.subcategory.find(
           (subCat) =>
-            subCat.title === subCategoryName || subCat.name === subCategoryName
+            subCat.title === subCategoryName.title ||
+            subCat.name === subCategoryName.name
         ) || null
       : null;
   };
