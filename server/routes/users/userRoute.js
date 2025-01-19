@@ -68,7 +68,7 @@ router.post("/auth/login", login);
 
 // generate url for google
 router.post("/auth/google/", (req, res, next) => {
-  const redirectUrl = "http://localhost:5137/oauth/callback";
+  const redirectUrl = "http://localhost:5137/";
 
   const oAuth2Client = new OAuth2Client(
     process.env.CLIENT_ID,
