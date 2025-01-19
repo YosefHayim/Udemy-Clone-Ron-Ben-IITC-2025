@@ -1,18 +1,5 @@
-import Banner from "./Banner";
-import TrustedBySection from "./TrustedBySection";
-import LearnersAreViewing from "./LearnersAreViewing";
-import SearchResult from "./SearchResult";
-import LearningGoals from "./LearningGoals";
-import PlansSection from "./PansSection";
-import Testimonials from "./Testimonials";
-import TrendsReport from "./TopTrends";
-import TrendingNow from "./TrendingNow";
-import Carousel from "./Carousel";
-import Sections from "./Sections";
 import Menu from "@/components/Menu/Menu";
-import Welcome from "@/components/LoggedInHome/Welcome";
 import DropdownMenu from "@/components/Navbar/DropDownMenu/DropDownMenu";
-import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import {
@@ -24,7 +11,6 @@ import {
 } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { DecodedTokenProps } from "@/types/types";
-import TeamAccess from "./TeamAcess";
 import ProfileMain from "../ProfilePage/ProfileMain";
 
 const Homepage = () => {
