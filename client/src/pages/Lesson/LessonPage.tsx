@@ -4,7 +4,7 @@ import Layout from "./Layout";
 import LessonRoutes from "../../routes/LessonRoutes";
 import VideoPlayer from "./VideoPlayer";
 import Footer from "@/pages/Home/Footer";
-import { fetchCourseById } from "@/services/courseService";
+import  fetchCourseById  from "@/services/courseService";
 import TopNavBar from "./TopNavBar";
 
 const LessonPage: React.FC = () => {
@@ -36,7 +36,7 @@ const LessonPage: React.FC = () => {
     );
   }
 
-  const courseData = data.data;
+  const courseData = data;
   const lessons = courseData.sections.flatMap(
     (section: any) => section.lessons
   );
@@ -64,7 +64,7 @@ const LessonPage: React.FC = () => {
           navigate(`/course/${courseId}/lesson/${lessonId}/overview`)
         }
       />
-      <div className="px-15">
+      <div className="px-0">
         <LessonRoutes />
       </div>
       <Footer />

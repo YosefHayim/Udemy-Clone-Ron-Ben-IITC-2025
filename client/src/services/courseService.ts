@@ -1,25 +1,29 @@
-import axios from "axios";
+import { axiosClient, localhostUrl } from "../api/configuration";
 
-const API_BASE_URL = "https://udemy-clone-ron-ben.onrender.com/api";
+type fn = (courseId: string) => Promise<any>;
 
-export const fetchCourseById = async (id: string) => {
-  if (!id || typeof id !== "string") {
-    console.error("Invalid course ID:", id);
-    throw new Error("Invalid course ID");
+const fetchCourseById: fn = async (courseId: string) => {
+  if (!courseId || typeof courseId !== "string") {
+    console.error("Invalid course ID provided.");
+    return null;
   }
 
-  const sanitizedId = id.trim().replace(/^:/, ""); // Remove leading colon, if any
-  console.log("Fetching course with ID:", sanitizedId);
+  const sanitizedCourseId = courseId.trim();
+  const url = `${localhostUrl}/api/course/${sanitizedCourseId}`;
 
   try {
-    const response = await axios.get(`${API_BASE_URL}/course/${sanitizedId}`);
-    console.log("Course data fetched successfully:", response.data);
-    return response.data;
-  } catch (error: any) {
-    console.error("Error fetching course data:", {
-      message: error.message,
-      response: error.response?.data,
-    });
+    const response = await axiosClient.get(url);
+
+    if (response?.data?.data) {
+      return response.data.data;
+    }
+
+    console.warn("No course data found in the response.");
+    return null;
+  } catch (error) {
+    console.error(`Error fetching course with ID ${sanitizedCourseId}:`, error);
     throw error;
   }
 };
+
+export default fetchCourseById; // Default export

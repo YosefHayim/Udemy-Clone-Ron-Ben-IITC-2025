@@ -16,19 +16,21 @@ const Navbar: React.FC<{ courseName: string }> = ({ courseName }) => {
 
         {/* Right-aligned buttons */}
         <div className="flex  items-center space-x-4">
-          <div>
-            <AiOutlineTrophy className="rounded-lg text-gray-600 border-gray-600" />
-            <button className="hover:text-gray-300">Your Progress</button>
-            <IoIosArrowDown />
+        <button >
+          <div className="flex items-center gap-1 justify-between text-lg rounded-sm">
+          <AiOutlineTrophy className="size-8 text-sm p-1  mr-1 rounded-full border text-gray-600 border-gray-600"/>
+          <span className="hover:text-gray-300">Your Progress</span >
+          <IoIosArrowDown />
           </div>
+          </button>
           <div>
-            <button className="bg-gray-700 px-3 border-white py-1 rounded-sm text-sm hover:bg-gray-600">
-              Share
-            </button>
-            <IoMdShareAlt />
+          <button className="border px-3 h-[2rem] flex p-4 justify-between items-center hover:border-white py-1 rounded-sm text-sm hover:bg-gray-600">
+            Share
+          <IoMdShareAlt className="ml-2" />
+          </button>
           </div>
-          <button className="hover:text-gray-300 border-white rounded-sm">
-            <HiDotsVertical />
+          <button className="hover:bg-gray-300 border-white rounded-sm">
+          <HiDotsVertical className="border size-8 p-2 rounded-sm size-5"/>
           </button>
         </div>
       </div>
