@@ -27,13 +27,16 @@ app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 app.use(loggerInfo);
+
 // app.use(limiter);
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://udemy-clone-ron-and-ben-front.onrender.com",
     credentials: true,
   })
 );
+app.options("*", cors());
 app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
