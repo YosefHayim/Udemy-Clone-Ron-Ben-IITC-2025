@@ -9,6 +9,7 @@ import { RootState } from "@/redux";
 import { useDispatch } from "react-redux";
 import { clearUser } from "@/redux/slices/userSlice";
 import ChangeLanguage from "./ChangeLanguage/ChangeLanguage";
+import { useState } from "react";
 
 const DropdownMenu: React.FC = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,12 @@ const DropdownMenu: React.FC = () => {
   const profilePic = useSelector((state: RootState) => state.user.profilePic);
   const email = useSelector((state: RootState) => state.user.email);
   let cookie = Cookies.get("cookie");
+
+  const [isClicked, setClicked] = useState(false);
+
+  const handleClick = () => {
+    setClicked((prev) => !prev);
+  };
 
   if (!cookie) {
     return <div></div>;
@@ -127,8 +134,9 @@ const DropdownMenu: React.FC = () => {
           <hr />
           <li>
             <div className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
-              <span className="text-sm">Language</span>
-              <ChangeLanguage />
+              <span className="text-sm">
+                <ChangeLanguage isClicked={isClicked} setClicked={setClicked} />
+              </span>
               <span className="ml-auto mr-2 text-sm">English</span>
               <MdLanguage className="text-lg" />
             </div>
