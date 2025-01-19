@@ -10,7 +10,7 @@ const HotCourseCard = () => {
   return (
     <div className="flex flex-row items-center justify-center gap-[2em] w-[200px]">
       <div>
-        <CourseImg courseImg={hotFreshOne} />
+        <CourseImg courseImg={hotFreshOne} widthChosen="" />
         <div className="flex flex-col items-start justify-start gap-[0.3em]">
           <CourseTitle
             title={
@@ -24,8 +24,8 @@ const HotCourseCard = () => {
             totalRatings={"(1)"}
           />
           <CoursePrice
-            discountPrice={"39.90"}
-            fullPrice={"79.90"}
+            discountPrice={39.9}
+            fullPrice={79.9}
             chooseFlex={"flex flex-row"}
           />
           <CourseTag tagName={"New"} bgColorTag={"bg-newTag"} />
