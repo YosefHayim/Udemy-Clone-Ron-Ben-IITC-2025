@@ -127,8 +127,6 @@ const login = catchAsync(async (req, res, next) => {
     coursesBought: isFoundUser.coursesBought,
   });
 
-  console.log(verifyToken(token));
-
   res.cookie("cookie", token, {
     domain: "udemy-clone-ron-and-ben-front.onrender.com", // Set domain if needed
     maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days

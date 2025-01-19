@@ -39,7 +39,7 @@ const createUsers = async () => {
       email: faker.internet.email().toLowerCase(),
       password: faker.internet.password(10),
       role: faker.helpers.arrayElement(["student", "instructor", "student"]),
-      biography: faker.lorem.sentence(15),
+      bio: faker.lorem.sentence(1),
       udemyCredits: faker.number.int({ min: 5000, max: 10000 }),
       country: faker.helpers.arrayElement(supportedCountries),
     });
