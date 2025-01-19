@@ -48,7 +48,7 @@ const DropdownMenu: React.FC = () => {
         <ul className="py-2 text-sm">
           <li>
             <a
-              href="#"
+              href="/wishlist"
               className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
             >
               My learning

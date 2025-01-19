@@ -9,6 +9,7 @@ import getCourseCartInfoByCourseId from "@/api/courses/getCourseCartInfoByCourse
 import { useDispatch } from "react-redux";
 import { removeCourseFromCart } from "@/redux/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
+import Loader from "@/components/Loader/Loader";
 
 const ItemInCart = ({
   rowPrices = true,
@@ -45,8 +46,14 @@ const ItemInCart = ({
   }
 
   if (isPending) {
-    return <div></div>;
+    return (
+      <div>
+        <Loader hSize="" useSmallLoading={false} />
+      </div>
+    );
   }
+
+  console.log(data);
 
   const handleRemove = () => {
     dispatch(

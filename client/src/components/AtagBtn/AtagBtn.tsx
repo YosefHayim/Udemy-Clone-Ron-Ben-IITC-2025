@@ -41,7 +41,9 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
               : "Turn what you know into an opportunity and reach millions around the world."}
           </p>
           <button className="bg-purple-700 text-base text-white font-bold rounded-md mt-5 px-4 py-3 w-full hover:bg-purple-800">
-            {aTagName === "Udemy Business" ? "Try Udemy Business" : "Learn more"}
+            {aTagName === "Udemy Business"
+              ? "Try Udemy Business"
+              : "Learn more"}
           </button>
         </div>
       )}
