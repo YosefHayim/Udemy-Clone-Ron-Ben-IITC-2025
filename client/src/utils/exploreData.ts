@@ -1,4 +1,6 @@
-export const exploreData = [
+import { ExploreCategory } from "@/types/types";
+
+export const exploreData: ExploreCategory[] = [
   {
     category: "Certification Preparation",
     subcategory: [

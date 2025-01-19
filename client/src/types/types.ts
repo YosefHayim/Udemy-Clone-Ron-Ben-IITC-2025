@@ -145,22 +145,48 @@ export interface LoaderProps {
   hSize: string;
   useSmallLoading: boolean;
 }
-
-interface Subcategory {
-  title?: string; // Subcategory title
-  name?: string; // Alternative name for the subcategory
-  topics?: string[]; // List of topics within the subcategory
+// explore data ts
+export interface Topic {
+  title?: string;
+  group?: string;
 }
 
-interface GroupedSubcategory {
-  group: string; // Group name
-  items: Subcategory; // Array of subcategories
+export interface Subcategory {
+  title?: string;
+  name?: string;
+  group?: string;
+  items?: Topic[]; // For subcategories containing topics as a list.
+  topics?: string[]; // For subcategories containing topics directly as strings.
 }
 
-export interface MenuItemProps {
-  title: string; // Title of the menu item
-  subcategories: (GroupedSubcategory | Subcategory | string)[]; // Allow mixed types, including strings
+export interface Category {
+  category: string;
+  subcategory: Subcategory[];
 }
+
+export interface ExploreItem {
+  title: string;
+  topics: string[];
+}
+
+export interface ExploreGroup {
+  group?: string; // Optional because some subcategories have only `title`.
+  items: ExploreItem[];
+}
+
+export interface ExploreSubcategory {
+  title?: string; // Optional because some subcategories have only `group`.
+  group?: string;
+  items?: ExploreItem[]; // Optional for flexibility.
+  topics?: string[]; // Optional for subcategories with direct topics.
+}
+
+export interface ExploreCategory {
+  category: string;
+  subcategory: ExploreSubcategory[];
+}
+
+// explore data ts
 
 export interface DecodedTokenProps {
   fullName: string;

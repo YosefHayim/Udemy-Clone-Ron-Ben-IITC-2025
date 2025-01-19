@@ -1,3 +1,4 @@
+import { Category, Subcategory } from "@/types/types";
 import { exploreData } from "@/utils/exploreData";
 import { useState, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
@@ -11,24 +12,23 @@ const ExploreMenu = () => {
   const menuTimeout = useRef<NodeJS.Timeout | null>(null);
   const subMenuTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  const getCategoryData = (categoryName: string | null) => {
+  const getCategoryData = (categoryName: string | null): Category | null => {
     return categoryName
-      ? exploreData.find((cat) => cat?.category === categoryName) || null
+      ? exploreData.find((cat) => cat.category === categoryName) || null
       : null;
   };
 
   const getSubCategoryData = (
-    categoryName: { title?: string; name?: string },
-    subCategoryName: { title?: string; name?: string }
-  ) => {
+    categoryName: string | null,
+    subCategoryName: string | null
+  ): Subcategory | null => {
     const category = getCategoryData(categoryName);
     if (!category || !category.subcategory) return null;
 
     return subCategoryName
       ? category.subcategory.find(
           (subCat) =>
-            subCat.title === subCategoryName.title ||
-            subCat.name === subCategoryName.name
+            subCat.title === subCategoryName || subCat.name === subCategoryName
         ) || null
       : null;
   };
