@@ -72,14 +72,13 @@ const ItemInCart = ({
   };
 
   return (
-    <div className="p-[1em] w-full">
+    <div className="p-[1em] w-full" onClick={handleCourseView}>
       <div
         className={`${
           isColCourseBox
             ? "flex flex-col items-start justify-start gap-[1em] cursor-pointer"
             : "flex flex-row items-start justify-start gap-[1em] cursor-pointer"
         }`}
-        onClick={handleCourseView}
       >
         <div>
           <img

@@ -171,6 +171,7 @@ const ViewCoursePageInfo: React.FC = () => {
 
       {/* Preview Card */}
       <CoursePreviewCard
+        firstLessonId={courseData.sections?.[0]?.lessons?.[0]?._id}
         courseId={courseData._id}
         courseImg={courseData.courseImg}
         coursePrice={courseData.courseDiscountPrice}
