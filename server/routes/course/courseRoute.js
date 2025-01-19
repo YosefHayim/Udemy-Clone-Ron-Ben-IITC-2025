@@ -26,7 +26,7 @@ router.param("id", (req, res, next, val) => {
 router.get("/", getAllCourses);
 
 // view course by course id if it is part of the courses you bought
-router.get("/:courseId", grantedAccess, viewCourseById);
+router.get("/:courseId", viewCourseById);
 
 // Get course by specific course id
 router.get("/:id", getCourseById);
