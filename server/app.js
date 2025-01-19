@@ -28,9 +28,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(loggerInfo);
 // app.use(limiter);
+
 app.use(
   cors({
-    origin: "*",
+    origin: "https://udemy-clone-ron-and-ben-front.onrender.com",
     credentials: true,
   })
 );
