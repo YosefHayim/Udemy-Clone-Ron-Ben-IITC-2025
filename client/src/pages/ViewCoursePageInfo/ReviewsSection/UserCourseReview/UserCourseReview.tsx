@@ -16,8 +16,9 @@ const UserCourseReview: React.FC<{
   }
 
   const [activeReviewId, setActiveReviewId] = useState<string | null>(null);
-  const [isOpenReportDrawer, setReportDrawer] = useState<boolean | undefined>(undefined);
-
+  const [isOpenReportDrawer, setReportDrawer] = useState<boolean | undefined>(
+    false
+  );
 
   const handleToggle = (id: string) => {
     // Toggle the clicked review or close if it's already active
@@ -25,7 +26,7 @@ const UserCourseReview: React.FC<{
   };
 
   const handleReportDrawer = () => {
-    setReportDrawer((prevId) => !prevId);
+    setReportDrawer((prev) => !prev); // `prev` is inferred as `boolean | undefined`
   };
 
   return (
@@ -39,7 +40,6 @@ const UserCourseReview: React.FC<{
               reviewRating={review.rating}
               reviewUserName={review.user.fullName}
               createCommentAt={new Date(review.createdAt)}
-
             />
           </div>
         </div>
