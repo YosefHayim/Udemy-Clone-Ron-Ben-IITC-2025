@@ -15,7 +15,7 @@ const Navbar: React.FC<{ courseName: string }> = ({ courseName }) => {
         </div>
 
         {/* Right-aligned buttons */}
-        <div className="flex  items-center space-x-4">
+        <div className="flex  items-center  space-x-4">
         <button >
           <div className="flex items-center gap-1 justify-between text-lg rounded-sm">
           <AiOutlineTrophy className="size-8 text-sm p-1  mr-1 rounded-full border text-gray-600 border-gray-600"/>
