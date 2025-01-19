@@ -66,6 +66,14 @@ const lessonSchema = new mongoose.Schema(
         },
       },
     ],
+    isDone: {
+      type: Boolean,
+      default: false,
+    },
+    lastTimeVideoPlayed: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );
