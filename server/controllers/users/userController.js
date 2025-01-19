@@ -81,8 +81,8 @@ const signUp = catchAsync(async (req, res, next) => {
     fullName: newUser.fullName,
     email: newUser.email,
     profilePic: newUser.profilePic,
-    role: newUser.role,
     bio: newUser.bio,
+    role: newUser.role,
     coursesBought: newUser.coursesBought,
   });
 
@@ -123,6 +123,8 @@ const login = catchAsync(async (req, res, next) => {
     bio: isFoundUser.bio,
     coursesBought: isFoundUser.coursesBought,
   });
+
+  console.log(token);
 
   res.cookie("cookie", token, {
     domain: "udemy-clone-ron-and-ben-front.onrender.com", // Set domain if needed
