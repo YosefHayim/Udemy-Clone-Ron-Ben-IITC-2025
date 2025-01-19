@@ -172,7 +172,6 @@ export interface DecodedTokenProps {
 export type FormErrors = {
   email?: string;
   password?: string;
-  general?: string;
 };
 
 export interface PaymentOptionProps {

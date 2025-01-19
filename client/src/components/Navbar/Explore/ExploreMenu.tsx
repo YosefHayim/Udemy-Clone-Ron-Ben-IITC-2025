@@ -5,8 +5,9 @@ import { IoIosArrowForward } from "react-icons/io";
 const ExploreMenu = () => {
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [hoveredSubMenu, setHoveredSubMenu] = useState<string | null>(null);
-  const [hoveredSecondSubMenu, setHoveredSecondSubMenu] =
-    useState<boolean>(false);
+  const [hoveredSecondSubMenu, setHoveredSecondSubMenu] = useState<
+    boolean | null
+  >(false);
   const menuTimeout = useRef<NodeJS.Timeout | null>(null);
   const subMenuTimeout = useRef<NodeJS.Timeout | null>(null);
 
@@ -24,9 +25,9 @@ const ExploreMenu = () => {
     if (!category || !category.subcategory) return null;
     return subCategoryName
       ? category.subcategory.find(
-        (subCat) =>
-          subCat.title === subCategoryName || subCat.name === subCategoryName
-      ) || null
+          (subCat) =>
+            subCat.title === subCategoryName || subCat.name === subCategoryName
+        ) || null
       : null;
   };
 
@@ -75,103 +76,102 @@ const ExploreMenu = () => {
         onMouseEnter={() => handleMenuEnter("main")}
         onMouseLeave={handleMenuLeave}
       >
-        <button
-          className="text-[#020202] text-sm  mb-3 font-[400] text-[0.9rem] rounded-md hover:bg-purple-100 hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300">
+        <button className="text-[#020202] text-sm  mb-3 font-[400] text-[0.9rem] rounded-md hover:bg-purple-100 hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300">
           Explore
         </button>
 
-      {/* Menu Principal */}
-      {hoveredMenu && (
-        <div
-          className="absolute left-0 mt-2 w-64 bg-white border rounded-md shadow-lg z-10"
-          onMouseEnter={() => handleMenuEnter("main")}
-          onMouseLeave={handleMenuLeave}
-        >
-          {/* Título */}
-          <div className="px-4 py-2 font-bold text-gray-700">
-            Browse Certifications
-          </div>
+        {/* Menu Principal */}
+        {hoveredMenu && (
+          <div
+            className="absolute left-0 mt-2 w-64 bg-white border rounded-md shadow-lg z-10"
+            onMouseEnter={() => handleMenuEnter("main")}
+            onMouseLeave={handleMenuLeave}
+          >
+            {/* Título */}
+            <div className="px-4 py-2 font-bold text-gray-700">
+              Browse Certifications
+            </div>
 
-          {exploreData.map((category, index: number) => (
-            <>
+            {exploreData.map((category, index: number) => (
+              <>
+                <div
+                  key={index}
+                  className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
+                  onMouseEnter={() =>
+                    handleMenuEnter(category?.category || null)
+                  }
+                >
+                  <span>{category?.category || "Unnamed Category"}</span>
+                  <span>
+                    <IoIosArrowForward />
+                  </span>
+                </div>
+                {/* Linha divisória entre "Certification Preparation" e "Development" */}
+                {category?.category === "Certification Preparation" && (
+                  <hr className="border-t border-gray-300 my-2" />
+                )}
+              </>
+            ))}
+
+            {/* Submenu */}
+            {hoveredMenu && hoveredMenu !== "main" && (
               <div
-                key={index}
-                className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
-                onMouseEnter={() =>
-                  handleMenuEnter(category?.category || null)
-                }
+                className="absolute top-0 left-64 mt-0 w-64 bg-white border rounded-md shadow-lg z-20"
+                onMouseEnter={() => handleSubMenuEnter(hoveredMenu)}
+                onMouseLeave={handleSubMenuLeave}
               >
-                <span>{category?.category || "Unnamed Category"}</span>
-                <span>
-                  <IoIosArrowForward />
-                </span>
+                {getCategoryData(hoveredMenu)?.subcategory.map(
+                  (subCategory, index) => (
+                    <div
+                      key={index}
+                      className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
+                      onMouseEnter={() =>
+                        handleSubMenuEnter(
+                          subCategory.title || subCategory.name || null
+                        )
+                      }
+                    >
+                      <span>
+                        {subCategory.title ||
+                          subCategory.name ||
+                          "Unnamed Subcategory"}
+                      </span>
+                      <span>
+                        <IoIosArrowForward />
+                      </span>
+                    </div>
+                  )
+                )}
               </div>
-              {/* Linha divisória entre "Certification Preparation" e "Development" */}
-              {category?.category === "Certification Preparation" && (
-                <hr className="border-t border-gray-300 my-2" />
-              )}
-            </>
-          ))}
+            )}
 
-          {/* Submenu */}
-          {hoveredMenu && hoveredMenu !== "main" && (
-            <div
-              className="absolute top-0 left-64 mt-0 w-64 bg-white border rounded-md shadow-lg z-20"
-              onMouseEnter={() => handleSubMenuEnter(hoveredMenu)}
-              onMouseLeave={handleSubMenuLeave}
-            >
-              {getCategoryData(hoveredMenu)?.subcategory.map(
-                (subCategory, index) => (
-                  <div
-                    key={index}
-                    className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
-                    onMouseEnter={() =>
-                      handleSubMenuEnter(
-                        subCategory.title || subCategory.name || null
-                      )
-                    }
-                  >
-                    <span>
-                      {subCategory.title ||
-                        subCategory.name ||
-                        "Unnamed Subcategory"}
-                    </span>
-                    <span>
-                      <IoIosArrowForward />
-                    </span>
-                  </div>
-                )
-              )}
-            </div>
-          )}
-
-          {/* Segundo Submenu */}
-          {hoveredSubMenu && hoveredMenu && (
-            <div
-              className="absolute top-0 left-full ml-64 mt-0 w-64 bg-white border rounded-md shadow-lg z-30"
-              onMouseEnter={handleSecondSubMenuEnter}
-              onMouseLeave={handleSecondSubMenuLeave}
-            >
-              {getSubCategoryData(hoveredMenu, hoveredSubMenu)?.topics?.map(
-                (topic: any, index: number) => (
-                  <div
-                    key={index}
-                    className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
-                  >
-                    <span>
-                      {typeof topic === "string"
-                        ? topic
-                        : topic.title || topic.group || "Unnamed Topic"}
-                    </span>
-                  </div>
-                )
-              )}
-            </div>
-          )}
-        </div>
-      )}
+            {/* Segundo Submenu */}
+            {hoveredSubMenu && hoveredMenu && (
+              <div
+                className="absolute top-0 left-full ml-64 mt-0 w-64 bg-white border rounded-md shadow-lg z-30"
+                onMouseEnter={handleSecondSubMenuEnter}
+                onMouseLeave={handleSecondSubMenuLeave}
+              >
+                {getSubCategoryData(hoveredMenu, hoveredSubMenu)?.topics?.map(
+                  (topic: any, index: number) => (
+                    <div
+                      key={index}
+                      className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
+                    >
+                      <span>
+                        {typeof topic === "string"
+                          ? topic
+                          : topic.title || topic.group || "Unnamed Topic"}
+                      </span>
+                    </div>
+                  )
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
-    </div >
   );
 };
 
