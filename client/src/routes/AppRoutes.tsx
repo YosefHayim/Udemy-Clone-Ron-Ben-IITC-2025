@@ -28,7 +28,7 @@ const AppRoutes: React.FC = () => {
               <Navbar />
               <Routes>
                 <Route path="/" element={<Homepage />} />
-                <Route path="/oauth/callback" element={<OAuthCallback />} />
+                <Route path="/" element={<OAuthCallback />} />
                 <Route path="/cart" element={<ShoppingCart />} />
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route

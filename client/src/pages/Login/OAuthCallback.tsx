@@ -8,12 +8,11 @@ const OAuthCallback = () => {
   const navigate = useNavigate();
 
   const mutation = useMutation<GoogleAuthResponse, unknown, void>({
-    mutationFn: googleAuth, // Correctly pass the function
+    mutationFn: googleAuth,
     onSuccess: (data) => {
       console.log("Google Auth Success:", data);
-      // Handle tokens and user data
       localStorage.setItem("accessToken", data.accessToken);
-      navigate("/"); // Redirect after successful auth
+      navigate("/");
     },
     onError: (err) => {
       console.error("Google Auth Failed:", err);
@@ -21,7 +20,7 @@ const OAuthCallback = () => {
   });
 
   useEffect(() => {
-    mutation.mutate(); // Trigger the mutation on component mount
+    mutation.mutate();
   }, [mutation]);
 
   return (
