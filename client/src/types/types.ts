@@ -31,6 +31,7 @@ export interface UserState {
   bio: string;
   role: string;
   coursesBought: string[];
+  udemyCredits: number;
 }
 
 export interface searchResultCourseImgProps {

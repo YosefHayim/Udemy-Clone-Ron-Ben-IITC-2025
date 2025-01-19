@@ -8,6 +8,7 @@ const initialState: UserState = {
   bio: "",
   role: "",
   coursesBought: [],
+  udemyCredits: 0,
 };
 
 // Create the slice
@@ -37,6 +38,9 @@ const userSlice = createSlice({
         state.coursesBought.push(action.payload);
       }
     },
+    setUdemyCredits: (state, action: PayloadAction<number>) => {
+      state.udemyCredits = action.payload;
+    },
     clearUser: (state) => {
       state.fullName = "";
       state.profilePic = "";
@@ -57,6 +61,7 @@ export const {
   setEmailAddress,
   setCoursesBought,
   clearUser,
+  setUdemyCredits,
 } = userSlice.actions;
 
 // Export the reducer to add it to the store

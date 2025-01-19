@@ -16,6 +16,8 @@ import Payment from "@/pages/Payment/Payment";
 import EditProfile from "@/pages/EditProfile/EditProfile";
 import OAuthCallback from "@/pages/Login/OAuthCallback";
 import ProfileMain from "@/pages/ProfilePage/ProfileMain";
+import UdemyCredits from "@/pages/UdemyCredits/UdemyCredits";
+import PurchaseHistory from "@/pages/PurchaseHistory/PurchaseHistory";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -29,7 +31,15 @@ const AppRoutes: React.FC = () => {
               <Navbar />
               <Routes>
                 <Route path="/" element={<Homepage />} />
+                <Route
+                  path="/dashboard/credit-history"
+                  element={<UdemyCredits />}
+                />
                 <Route path="/edit-profile" element={<ProfileMain />} />
+                <Route
+                  path="/dashboard/purchase-history/"
+                  element={<PurchaseHistory />}
+                />
                 <Route path="/" element={<OAuthCallback />} />
                 <Route path="/cart" element={<ShoppingCart />} />
                 <Route path="/wishlist" element={<Wishlist />} />

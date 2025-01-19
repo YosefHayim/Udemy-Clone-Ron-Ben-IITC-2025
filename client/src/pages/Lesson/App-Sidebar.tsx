@@ -59,10 +59,7 @@ export const AppSidebar: React.FC = () => {
 
   return (
     <>
-      <Sidebar
-        className="absolute min-h-full pt-[54px] px-0 bg-white"
-        side="left"
-      >
+      <Sidebar className="absolute min-h-full pt-[60px] px-0 bg-white" side="left">
         <SidebarContent>
           <SidebarGroup className="p-0">
             <SidebarGroupContent>

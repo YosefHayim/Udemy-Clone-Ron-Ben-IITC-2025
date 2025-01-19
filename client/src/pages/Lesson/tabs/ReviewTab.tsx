@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Review } from "@/types/types";
 
-const ReviewsTab: React.FC<{ avgRating: number }> = ({ avgRating }) => {
+const ReviewsTab = ({ avgRating,  }) => {
   const params = useParams();
   let courseId: string | undefined = params.courseId;
 
@@ -43,31 +43,26 @@ const ReviewsTab: React.FC<{ avgRating: number }> = ({ avgRating }) => {
 
   return (
     <div className="min-w-fit mt-4">
-      {/* Student Feedback Section */}
-      <h2 className="text-2xl font-bold mb-4">Student feedback</h2>
+        {/* Student Feedback Section */}
+        <h2 className="text-3xl font-bold my-4">Student feedback</h2>
       <div className="mb-6 flex flex-col py-2">
         <div className="flex  flex-row items-center min-w-full gap-5 p-4 ">
-          <div className="flex flex-col w-full justify-center items-center ">
-            <div className="text-6xl font-bold w-full text-[#c4710d] ">
-              {avgRating.toFixed(1)}
-            </div>
-            <div className="ml-4 text-lg w-full pr-4">
-              {renderStars(avgRating)}
-            </div>
-            <span className="ml-4 text-lg w-full text-[#c4710d] font-semibold">
-              Course Rating
-            </span>
+        <div className="flex flex-col w-full justify-center items-center ">
+          <div className="text-7xl font-bold w-fit text-[#c4710d] ">
+            {avgRating.toFixed(1)}
           </div>
+          <div className=" text-lg  ">{renderStars(avgRating)}</div>
+        <span className=" text-lg font-semibold text-[#c4710d]">Course Rating</span>
+        </div>
 
-          <div className="space-y-2">
-            {[5, 4, 3, 2, 1].map((stars) => {
-              const count =
-                data?.filter(
-                  (review: Review) => Math.round(review.rating) === stars
-                ).length || 0;
-              const percentage = data?.length
-                ? ((count / data.length) * 100).toFixed(1)
-                : 0;
+        <div className="space-y-2 p-4">
+          {[5, 4, 3, 2, 1].map((stars) => {
+            const count = data?.filter(
+              (review) => Math.round(review.rating) === stars
+            ).length || 0;
+            const percentage = data?.length
+              ? ((count / data.length) * 100).toFixed(1)
+              : 0;
 
               return (
                 <div key={stars} className="flex  items-center">
@@ -102,20 +97,20 @@ const ReviewsTab: React.FC<{ avgRating: number }> = ({ avgRating }) => {
           <MdSearch className="text-black" />
         </Button>
 
-        {/* Dropdown Filter */}
-        <select
-          className="bg-white border border-black rounded-sm px-4 min-h-[48px] text-lg focus:outline-none"
-          defaultValue="all"
-        >
-          <option value="all">All ratings</option>
-          <option value="5">Five stars</option>
-          <option value="4">Four stars</option>
-          <option value="3">Three stars</option>
-          <option value="2">Two stars</option>
-          <option value="1">One star</option>
-        </select>
-      </form>
-      {isLoading && <Loader hSize="" useSmallLoading={false} />}
+  {/* Dropdown Filter */}
+  <select
+    className="bg-white border border-black rounded-sm px-4 min-h-[48px] text-lg focus:outline-none"
+    defaultValue="all"
+  >
+    <option value="all">All ratings</option>
+    <option value="5">Five stars</option>
+    <option value="4">Four stars</option>
+    <option value="3">Three stars</option>
+    <option value="2">Two stars</option>
+    <option value="1">One star</option>
+  </select>
+</form>
+      {isLoading && <Loader/>}
       {error && (
         <div className="text-red-500">
           Error loading reviews. Please try again later.
