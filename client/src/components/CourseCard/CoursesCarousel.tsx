@@ -26,6 +26,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
         `http://localhost:3000/api/course/?search=${encodeURI(searchTerm)}`
       );
       const data = await response.json();
+      console.log(data)
       if (data.status === "Success") {
         const updatedCourses = data.response.map((course: any) => ({
           ...course,
@@ -44,6 +45,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
   useEffect(() => {
     fetchCourses();
   }, []);
+
 
   const handleNext = () => {
     const nextIndex = currentIndex + 1; // Mova um item por vez
@@ -123,15 +125,22 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                         {course.courseInstructor.fullName}
                       </p>
 
-                      {/* Avaliação */}
-                      <div>
-                        <div className="text-sm font-bold w-fit text-[#c4710d] ">
+                      {/* Rating Section */}
+                      <div className="flex items-center text-sm text-[#c4710d] font-bold">
+                        {/* Rating Score */}
+                        <span className="mr-1">{course.averageRating.toFixed(1)}</span>
 
-                          {course.averageRating.toFixed(1)}
+                        {/* Stars */}
+                        <div className="flex">
+                          {renderStars(course.averageRating)}
                         </div>
-                        <div className=" text-lg  ">{renderStars(course.averageRating)}</div>
-                        <span>{course.totalRatings}</span>
+
+                        {/* Total Ratings */}
+                        <span className="ml-2 text-gray-500 text-xs">
+                          ({course.totalRatings.toLocaleString()})
+                        </span>
                       </div>
+
 
                       {/* Preço e Tag */}
                       <div className="flex items-baseline justify-between mt-2">
@@ -145,12 +154,8 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                             </span>
                           )}
                         </div>
-                        {course.isBestseller && (
-                          <span className="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded-full">
-                            Bestseller
-                          </span>
-                        )}
                       </div>
+                      <CourseTag tagName={course.courseTag} />
                     </div>
                   </div>
                 </div>
