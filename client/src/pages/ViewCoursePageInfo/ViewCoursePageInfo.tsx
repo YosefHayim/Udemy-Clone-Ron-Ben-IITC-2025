@@ -6,7 +6,6 @@ import CourseBasicInfo from "./CourseBasicInfo/CourseBasicInfo";
 import CourseBigTitle from "./CourseBigTitle/CourseBigTitle";
 import CourseContent from "./CourseContent/CourseContent";
 import CourseCreatedBy from "./CourseCreatedBy/CourseCreatedBy";
-import CoursePreviewCard from "./CoursePreviewCard/CoursePreviewCard";
 import CourseRating from "./CourseRating/CourseRating";
 import CourseRecap from "./CourseRecap/CourseRecap";
 import CourseStudentRatings from "./CourseStudentsRatings/CourseStudentRatings";
@@ -73,7 +72,6 @@ const ViewCoursePageInfo: React.FC = () => {
   if (error) return <div>Error loading course data</div>;
 
   console.log(courseData);
-  
 
   // Navigate to the first lesson
   const handleNavigateToFirstLesson = () => {
