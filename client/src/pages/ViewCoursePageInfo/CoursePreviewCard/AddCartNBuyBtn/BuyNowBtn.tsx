@@ -36,7 +36,7 @@ const BuyNowBtn: React.FC<{
       dispatch(calculateDiscountPercentage());
       dispatch(setAddCourseToCart(courseId));
     }, 1000);
-    navigate("/cart");
+    navigate("/payment/checkout/");
   };
   return (
     <Button

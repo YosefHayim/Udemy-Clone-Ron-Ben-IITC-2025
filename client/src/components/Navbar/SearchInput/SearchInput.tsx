@@ -38,7 +38,9 @@ const SearchInput = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (searchTerm || "".trim().length > 0) {
-      navigate(`/courses/search?src=ukw&q=${searchTerm}`);
+      navigate(
+        `/courses/search?src=ukw&q=${encodeURIComponent(searchTerm || "")}`
+      );
       setIsTyping(false);
     }
   };
@@ -48,8 +50,8 @@ const SearchInput = () => {
     setIsTyping(false);
   }, [location.pathname]);
 
-  const limit = 13;
-  const page = 1;
+  const limit = null;
+  const page = null;
 
   const { data, error } = useQuery({
     queryKey: ["courses", searchTerm, page],

@@ -31,7 +31,7 @@ const clearCollections = async () => {
 
 const createUsers = async () => {
   const users = [];
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 300; i++) {
     console.log(`Creating user ${i + 1}...`);
     users.push({
       fullName: faker.person.fullName(),
@@ -60,7 +60,7 @@ const createCourses = async () => {
     throw new Error("No students found for enrollment.");
   }
 
-  const amountOfCourses = 10;
+  const amountOfCourses = 1000;
   const courses = [];
 
   for (let i = 0; i < amountOfCourses; i++) {
@@ -591,8 +591,8 @@ const addCoursesToWishlistOfUsers = async () => {
 const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
-    console.log("Database connection established.");
-    await clearCollections();
+    // console.log("Database connection established.");
+    // await clearCollections();
 
     console.log("Seeding users...");
     const users = await createUsers();
