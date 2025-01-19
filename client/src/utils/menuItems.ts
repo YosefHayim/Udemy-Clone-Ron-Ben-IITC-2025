@@ -18,7 +18,7 @@ export const menuItems: MenuItemProps[] = [
     title: "Certification Preparation",
     subcategories: [
       {
-        group: "Popular Issuers",
+        title: "Popular Issuers",
         items: [
           {
             title: "Amazon Web Services (AWS) Certifications",
@@ -138,7 +138,7 @@ export const menuItems: MenuItemProps[] = [
       },
       
       {
-        group: "Popular Subjects",
+        title: "Popular Subjects",
         items: [
           {
             title: "Cloud Certification",
