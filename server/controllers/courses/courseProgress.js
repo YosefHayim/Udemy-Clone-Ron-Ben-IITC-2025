@@ -3,6 +3,7 @@ const Course = require("../../models/courses/courseModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const createError = require("../../utils/errorFn");
 const { catchAsync } = require("../../utils/wrapperFn");
+const { mongoose } = require("mongoose");
 
 const getAllCoursesProgress = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(CourseProgress.find(), req.query)
@@ -48,6 +49,26 @@ const getCourseProgressByUserId = catchAsync(async (req, res, next) => {
   });
 });
 
+const getCourseProgressById = catchAsync(async (req, res, next) => {
+  const courseProgressId = req.params.courseProgressId;
+
+  const courseProgress = await CourseProgress.findById(courseProgressId);
+
+  if (courseProgress.length < 1) {
+    return next(
+      createError(
+        `There is no such course progress with this id: ${courseProgressId}.`,
+        404
+      )
+    );
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: courseProgress,
+  });
+});
+
 const updateLessonByCourseId = catchAsync(async (req, res, next) => {
   const courseId = req.params.id;
   const userId = req.user._id;
@@ -58,31 +79,25 @@ const updateLessonByCourseId = catchAsync(async (req, res, next) => {
     return next(createError("Lesson ID is required to update progress.", 400));
   }
 
-  // Find the course progress for the user and course
-  const courseProg = await CourseProgress.findOne({
-    course: courseId,
-    user: userId,
-  });
+  // Fetch the course with its sections and lessons
+  const course = await Course.findById(courseId);
 
-  if (!courseProg) {
-    return next(
-      createError(
-        `No course progress found for course ID: ${courseId} and user ID: ${userId}.`,
-        404
-      )
-    );
+  if (!course) {
+    return next(createError(`Course ID: ${courseId} does not exist.`, 404));
   }
 
-  // Ensure the lesson exists in the course
-  const course = await Course.findById(courseId).populate({
-    path: "sections",
-    populate: { path: "lessons" },
-  });
-
-  const lessonExists = course.sections.some((section) =>
-    section.lessons.some((lesson) => lesson._id === lessonId)
+  // Extract lessons from sections
+  const allLessons = course.sections.flatMap((section) =>
+    section.lessons.map((lesson) => ({
+      lesson: lesson._id,
+      isDone: false,
+    }))
   );
 
+  // Check if the lesson exists in the course
+  const lessonExists = allLessons.some((lesson) =>
+    lesson.lesson.equals(lessonId)
+  );
   if (!lessonExists) {
     return next(
       createError(
@@ -92,17 +107,30 @@ const updateLessonByCourseId = catchAsync(async (req, res, next) => {
     );
   }
 
-  // Update the lesson progress
+  // Find or create course progress
+  let courseProg = await CourseProgress.findOne({
+    course: courseId,
+    user: userId,
+  });
+  if (!courseProg) {
+    courseProg = await CourseProgress.create({
+      course: courseId,
+      user: userId,
+      lessons: allLessons, // Attach all lessons to course progress
+    });
+  }
+
+  // Modify the specific lesson's progress
   const updatedProgress = await CourseProgress.findOneAndUpdate(
     {
       course: courseId,
       user: userId,
-      "lessons.lesson": lessonId,
+      "lessons.lesson": lessonId, // Match the specific lesson
     },
     {
-      $set: { "lessons.$.isDone": true },
+      $set: { "lessons.$.isDone": true }, // Update isDone to true
     },
-    { new: true, upsert: false }
+    { new: true }
   );
 
   if (!updatedProgress) {
@@ -123,6 +151,7 @@ const updateLessonByCourseId = catchAsync(async (req, res, next) => {
 
 module.exports = {
   getAllCoursesProgress,
+  getCourseProgressById,
   getCourseProgressByUserId,
   updateLessonByCourseId,
 };
