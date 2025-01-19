@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Review } from "@/types/types";
 
 const DialogOfAllReviews: React.FC<{
-  avgRating: string;
+  avgRating: number;
   isClicked: boolean;
   setClicked: (value: boolean) => void;
 }> = ({ avgRating, isClicked, setClicked }) => {

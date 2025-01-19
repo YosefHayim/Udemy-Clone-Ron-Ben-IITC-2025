@@ -161,7 +161,6 @@ const ViewCoursePageInfo: React.FC = () => {
         <ReviewsSection
           reviewsToRender={courseData.reviews}
           avgRating={courseData.averageRating}
-          totalRated={courseData.totalRatings}
         />
 
         {/* Additional Features */}
