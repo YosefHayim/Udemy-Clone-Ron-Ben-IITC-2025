@@ -4,7 +4,6 @@ const PaginationPages: React.FC<{
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }> = ({ currentPage, setCurrentPage }) => {
-  
   if (!currentPage && !setCurrentPage) {
     return <div></div>;
   }

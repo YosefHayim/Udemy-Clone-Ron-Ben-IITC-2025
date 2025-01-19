@@ -68,7 +68,7 @@ export interface SearchResultsProps {
   data: {
     response: SearchResultsArray[];
   };
-  response: ResultProps;
+  response?: ResultProps;
 }
 
 export interface ReportUserReviewPayload {
@@ -145,22 +145,50 @@ export interface LoaderProps {
   hSize: string;
   useSmallLoading: boolean;
 }
-
-interface Subcategory {
-  title?: string; // Subcategory title
-  name?: string; // Alternative name for the subcategory
-  topics?: string[]; // List of topics within the subcategory
+// explore data ts
+export interface Topic {
+  title?: string;
+  group?: string;
 }
 
-interface GroupedSubcategory {
-  group: string; // Group name
-  items: Subcategory; // Array of subcategories
+export interface Subcategory {
+  title?: string;
+  name?: string;
+  group?: string;
+  items?: Topic[]; // For subcategories containing topics as a list.
+  topics?: string[]; // For subcategories containing topics directly as strings.
 }
 
-export interface MenuItemProps {
-  title: string; // Title of the menu item
-  subcategories: (GroupedSubcategory | Subcategory | string)[]; // Allow mixed types, including strings
+export interface Category {
+  category: string;
+  subcategory: Subcategory[];
 }
+
+export interface ExploreItem {
+  title: string;
+  topics: string[];
+}
+
+export interface ExploreGroup {
+  group?: string;
+  items: ExploreItem[];
+}
+
+export interface ExploreSubcategory {
+  name?: string; // Optional for cases like "Photography & Video".
+  title?: string; // Optional for subcategories with no `name`.
+  group?: string;
+  items?: ExploreItem[]; // For subcategories containing grouped items.
+  topics?: string[]; // For subcategories with direct topics as strings.
+  topic?: string[]; // Optional alternative for subcategories using `topic` instead of `topics`.
+}
+
+export interface ExploreCategory {
+  category: string;
+  subcategory: ExploreSubcategory[];
+}
+
+// explore data ts
 
 export interface DecodedTokenProps {
   fullName: string;
@@ -198,7 +226,7 @@ export interface CoursePreviewCardProps {
 export interface Review {
   _id: string;
   comment: string;
-  createdAt: string;
+  createdAt: Date;
   rating: number;
   user: {
     _id: string;
@@ -263,6 +291,7 @@ export interface CourseTypeProps {
   };
   whatYouWillLearn: string[];
   whoThisCourseIsFor: string;
+  averageRating: number;
 }
 
 export interface CourseBasicInfoProps {

@@ -16,7 +16,7 @@ const SearchPage: React.FC = () => {
   document.title = "Search results | Udemy";
   const [searchParams] = useSearchParams();
   const searchTerm: string | null = searchParams.get("q");
-  const [currentPage, setCurrentPage] = useState<number | null>(null);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
   const [filterData, setFilterData] = useState<FilterDataProps>({
     rating: 0.0,
@@ -56,7 +56,7 @@ const SearchPage: React.FC = () => {
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
         {data?.totalCourses} results for "{searchTerm}"
       </h1>
-      <FilterNSort totalResults={data.totalCourses} filterData={filterData} />
+      <FilterNSort totalResults={data.totalCourses} />
       <div className="flex flex-row justify-start w-full gap-[1.5em]">
         <div>
           <SidebarFilter
