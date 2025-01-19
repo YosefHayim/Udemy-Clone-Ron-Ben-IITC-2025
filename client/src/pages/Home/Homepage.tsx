@@ -15,6 +15,8 @@ import ProfileMain from "../ProfilePage/ProfileMain";
 import AccountSecurity from "../ProfilePage/AccountSecurity";
 import Photo from "../ProfilePage/Photo";
 import Subscriptions from "../ProfilePage/Subscription";
+import Privacy from "../ProfilePage/Privacy";
+import NotificationPreferences from "../ProfilePage/NotificationPreferences";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -34,7 +36,7 @@ const Homepage = () => {
         <>
           <div className="container mx-auto px-[5.6rem]">
             <DropdownMenu />
-            <Subscriptions />
+            <NotificationPreferences />
             {/* <Banner />
             <Sections />
             <TrustedBySection />
