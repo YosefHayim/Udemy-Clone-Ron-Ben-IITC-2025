@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import Loader from "@/components/Loader/Loader";
 
 const AddToCart: React.FC<{
-  textBtn: string;
+  textBtn?: string;
   courseId: string;
   discountPrice: number;
   fullPrice: number;

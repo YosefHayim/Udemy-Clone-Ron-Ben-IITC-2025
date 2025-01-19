@@ -9,7 +9,6 @@ const AddCartNBuyBtn: React.FC<{
   return (
     <div className="flex flex-col gap-[0.5em] mb-[0.5em]">
       <AddToCart
-        textBtn=""
         courseId={courseId}
         discountPrice={discountPrice}
         fullPrice={fullPrice}
