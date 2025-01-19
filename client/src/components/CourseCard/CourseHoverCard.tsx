@@ -96,7 +96,7 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
       )}
       <p className="text-xs text-gray-500 mt-1">Updated {formattedDate}</p>
       <p className="text-xs text-gray-500 mt-1">
-        {course.totalCourseDuration.toFixed(1)} total hours •{" "}
+        {course.totalCourseDuration?.toFixed(1)} total hours •{" "}
         {course.courseLevel}
       </p>
       <p className="text-xs text-gray-600 mt-2">

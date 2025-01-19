@@ -4,6 +4,11 @@ const PaginationPages: React.FC<{
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }> = ({ currentPage, setCurrentPage }) => {
+  
+  if (!currentPage && !setCurrentPage) {
+    return <div></div>;
+  }
+
   const handleNextPage = () => setCurrentPage((prevPage) => prevPage + 1);
   const handlePreviousPage = () =>
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));

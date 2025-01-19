@@ -10,7 +10,7 @@ import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
 import React, { useState } from "react";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
-import { CourseTypeProps } from "@/types/types";
+import { CourseTypeProps, FilterDataProps } from "@/types/types";
 
 const SearchPage: React.FC = () => {
   document.title = "Search results | Udemy";
@@ -18,7 +18,7 @@ const SearchPage: React.FC = () => {
   const searchTerm: string | null = searchParams.get("q");
   const [currentPage, setCurrentPage] = useState<number | null>(null);
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
-  const [filterData, setFilterData] = useState({
+  const [filterData, setFilterData] = useState<FilterDataProps>({
     rating: 0.0,
     language: [],
     handsOnPractice: "",
@@ -38,7 +38,7 @@ const SearchPage: React.FC = () => {
       if (!searchTerm && !currentPage && !limit) {
         throw new Error("Course ID is undefined");
       }
-      return getAllCourses(searchTerm, currentPage, limit);
+      return getAllCourses(searchTerm || "", currentPage || 1, limit || 13);
     },
     enabled: !!searchTerm,
   });
@@ -94,7 +94,10 @@ const SearchPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Pagination
+        currentPage={currentPage || 1}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };
