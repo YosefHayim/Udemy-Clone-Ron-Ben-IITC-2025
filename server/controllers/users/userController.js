@@ -4,7 +4,10 @@ const APIFeatures = require("../../utils/apiFeatures");
 const sendEmail = require("../../utils/email");
 const createError = require("../../utils/errorFn");
 const { catchAsync } = require("../../utils/wrapperFn");
-const { generateToken } = require("../authorization/authController");
+const {
+  generateToken,
+  verifyToken,
+} = require("../authorization/authController");
 
 const getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query)
@@ -81,12 +84,13 @@ const signUp = catchAsync(async (req, res, next) => {
     fullName: newUser.fullName,
     email: newUser.email,
     profilePic: newUser.profilePic,
-    role: newUser.role,
     bio: newUser.bio,
+    role: newUser.role,
     coursesBought: newUser.coursesBought,
   });
 
   res.cookie("cookie", token, {
+    domain: "udemy-clone-ron-and-ben-front.onrender.com", // Set domain if needed
     maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
     secure: process.env.NODE_ENV === "production", // Only HTTPS in production
     httpOnly: false, // Restrict JavaScript access for security
@@ -124,6 +128,7 @@ const login = catchAsync(async (req, res, next) => {
   });
 
   res.cookie("cookie", token, {
+    domain: "udemy-clone-ron-and-ben-front.onrender.com", // Set domain if needed
     maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
     secure: process.env.NODE_ENV === "production", // Only HTTPS in production
     httpOnly: false, // Restrict JavaScript access for security

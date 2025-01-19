@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema(
     headline: {
       type: String,
     },
-    biography: {
+    bio: {
       type: String,
       maxLength: [200, "bio cannot exceed 200 characters."],
     },
