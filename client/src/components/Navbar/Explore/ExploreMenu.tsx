@@ -16,7 +16,7 @@ const ExploreMenu = () => {
 
   const getCategoryData = (categoryName: string | null): Category | null => {
     return categoryName
-      ? exploreData.find((cat) => cat.category === categoryName) || null
+      ? exploreData.find((cat) => cat?.category === categoryName) || null
       : null;
   };
 
