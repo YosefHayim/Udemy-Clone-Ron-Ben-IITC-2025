@@ -25,6 +25,7 @@ import {
 import { useDispatch } from "react-redux";
 import { DecodedTokenProps } from "@/types/types";
 import TeamAccess from "./TeamAcess";
+import ProfileMain from "../ProfilePage/ProfileMain";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -44,7 +45,8 @@ const Homepage = () => {
         <>
           <div className="container mx-auto px-[5.6rem]">
             <DropdownMenu />
-            <Banner />
+            <ProfileMain />
+            {/* <Banner />
             <Sections />
             <TrustedBySection />
             <LearnersAreViewing />
@@ -54,7 +56,7 @@ const Homepage = () => {
             <Testimonials />
             <TrendsReport />
             <TrendingNow />
-            <Carousel />
+            <Carousel /> */}
           </div>
         </>
       )}
@@ -64,10 +66,11 @@ const Homepage = () => {
           <DropdownMenu />
           <Menu />
           <div className="container mx-auto px-[5.6rem]">
-            <Welcome />
+            <ProfileMain />
+            {/* <Welcome />
             <Banner />
             <CoursesCarousel />
-            <TeamAccess />
+            <TeamAccess /> */}
             {/* <CoursesCarousel /> */}
           </div>
         </>
