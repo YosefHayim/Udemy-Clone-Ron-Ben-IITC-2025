@@ -2,13 +2,14 @@ import AddToCart from "@/pages/Search/CourseHoverCardInfo/InteractionBtns/AddToC
 import BuyNowBtn from "./BuyNowBtn";
 
 const AddCartNBuyBtn: React.FC<{
-  courseId?: string;
-  discountPrice?: number;
-  fullPrice?: number;
+  courseId: string;
+  discountPrice: number;
+  fullPrice: number;
 }> = ({ courseId = "", discountPrice = 0, fullPrice = 0 }) => {
   return (
     <div className="flex flex-col gap-[0.5em] mb-[0.5em]">
       <AddToCart
+        textBtn=""
         courseId={courseId}
         discountPrice={discountPrice}
         fullPrice={fullPrice}
