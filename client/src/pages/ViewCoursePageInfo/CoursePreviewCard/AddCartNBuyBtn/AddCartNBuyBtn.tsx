@@ -11,7 +11,7 @@ const AddCartNBuyBtn: React.FC<{
       <AddToCart
         courseId={courseId}
         discountPrice={discountPrice}
-        fullPrice={fullPrice}
+        fullPriceCourse={fullPrice}
       />
       <BuyNowBtn
         courseId={courseId}

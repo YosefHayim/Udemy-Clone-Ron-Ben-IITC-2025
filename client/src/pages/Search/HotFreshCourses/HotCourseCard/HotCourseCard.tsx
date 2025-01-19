@@ -19,9 +19,9 @@ const HotCourseCard = () => {
           />
           <CourseInstructor instructor={"Manas Roy | GenAI Instructor"} />
           <CourseRatings
-            avgRatings={"4.0"}
+            avgRatings={4}
             stars={"★★★★☆"}
-            totalRatings={"(1)"}
+            totalRatings={1}
           />
           <CoursePrice
             discountPrice={39.9}

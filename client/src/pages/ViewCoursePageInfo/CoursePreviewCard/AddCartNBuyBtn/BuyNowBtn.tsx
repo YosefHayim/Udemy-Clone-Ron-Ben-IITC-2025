@@ -18,11 +18,8 @@ const BuyNowBtn: React.FC<{
 }> = ({ courseId, discountPrice, fullPrice }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  let loading = false;
 
   const handleClick = (courseId: string) => {
-    loading = true;
-
     setTimeout(() => {
       dispatch(setAmountOfCourses());
 
@@ -38,7 +35,6 @@ const BuyNowBtn: React.FC<{
       dispatch(calculateTotalSavings());
       dispatch(calculateDiscountPercentage());
       dispatch(setAddCourseToCart(courseId));
-      loading = false;
     }, 1000);
     navigate("/cart");
   };

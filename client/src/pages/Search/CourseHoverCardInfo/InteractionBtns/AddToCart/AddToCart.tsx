@@ -13,9 +13,9 @@ import Loader from "@/components/Loader/Loader";
 
 const AddToCart: React.FC<{
   textBtn?: string;
-  courseId: string;
-  discountPrice: number;
-  fullPriceCourse: number;
+  courseId?: string;
+  discountPrice?: number;
+  fullPriceCourse?: number;
 }> = ({
   textBtn = "Add to cart",
   courseId = "",
