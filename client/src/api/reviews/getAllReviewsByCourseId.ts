@@ -1,4 +1,4 @@
-import { axiosClient, baseUrl } from "../configuration";
+import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 type fn = (courseId: string | null) => Promise<any>;
 
@@ -9,7 +9,7 @@ const getAllReviewsByCourseId: fn = async (courseId = "") => {
   }
 
   const sanitizedCourseId = courseId.trim();
-  const url = `${baseUrl}/api/review/course/${sanitizedCourseId}`;
+  const url = `${localhostUrl}/api/review/course/${sanitizedCourseId}`;
 
   try {
     const response = await axiosClient.get(url);

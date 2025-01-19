@@ -1,4 +1,4 @@
-import { axiosClient, baseUrl } from "../configuration";
+import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 type fn = (searchTerm: string, limit: number, page: number) => Promise<any>;
 
@@ -9,7 +9,7 @@ const getAllCourses: fn = async (searchTerm = "", limit = 18, page = 1) => {
   }
 
   const encodedSearchTerm = encodeURIComponent(searchTerm);
-  const url = `${baseUrl}/api/course/?search=${encodedSearchTerm}&page=${page}&limit=${limit}`;
+  const url = `${localhostUrl}/api/course/?search=${encodedSearchTerm}&page=${page}&limit=${limit}`;
 
   try {
     const { data } = await axiosClient.get(url);

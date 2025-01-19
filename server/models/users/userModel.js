@@ -135,8 +135,8 @@ const userSchema = new mongoose.Schema(
               ref: "Lesson",
               required: [true, "Progress must specify a lesson."],
             },
-            isDone: { type: Boolean, default: false }, // User-specific
-            lastPlayedVideoTime: { type: Number, default: 0 }, // User-specific
+            isDone: { type: Boolean, default: false },
+            lastPlayedVideoTime: { type: Number, default: 0 },
           },
         ],
       },
@@ -147,9 +147,9 @@ const userSchema = new mongoose.Schema(
 
 module.exports = mongoose.model("User", userSchema);
 
-// Only hash the password if it has been modified (or is new)
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
+  // Only hash the password if it is new or has been modified
+  if (!this.isNew && !this.isModified("password")) return next();
 
   try {
     this.password = await bcrypt.hash(
@@ -159,8 +159,8 @@ userSchema.pre("save", async function (next) {
 
     next();
   } catch (err) {
-    console.log(Error`occurred during hashing password:`, err);
-    next();
+    console.error(`Error occurred during hashing password:`, err);
+    next(err);
   }
 });
 
@@ -179,7 +179,10 @@ userSchema.methods.updatePassword = async function (
   confirmNewPassword
 ) {
   // Verify current password
-  const isPasswordCorrect = bcrypt.compare(currentPassword, this.password);
+  const isPasswordCorrect = await bcrypt.compare(
+    currentPassword,
+    this.password
+  );
   if (!isPasswordCorrect) {
     throw new Error("Current password is incorrect.");
   }
