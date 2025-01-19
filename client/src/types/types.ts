@@ -291,6 +291,7 @@ export interface CourseTypeProps {
   };
   whatYouWillLearn: string[];
   whoThisCourseIsFor: string;
+  averageRating: number;
 }
 
 export interface CourseBasicInfoProps {
