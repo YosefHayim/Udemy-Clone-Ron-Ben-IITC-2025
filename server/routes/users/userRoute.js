@@ -15,6 +15,7 @@ const {
   leaveCourseById,
   updateProfilePic,
   toggleCourseWishlist,
+  joinCoursesByIds,
 } = require("../../controllers/users/userController");
 const {
   grantedAccess,
@@ -36,6 +37,9 @@ router.get("/", getAllUsers);
 
 // get user by is id
 router.get("/:id", getUserById);
+
+// join courses by array of courses ids
+router.post("/add/courses", grantedAccess, joinCoursesByIds);
 
 // join course by course id
 router.post("/add/course/:id", grantedAccess, joinCourseById);

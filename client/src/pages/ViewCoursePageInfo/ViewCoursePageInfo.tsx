@@ -72,8 +72,6 @@ const ViewCoursePageInfo: React.FC = () => {
 
   if (error) return <div>Error loading course data</div>;
 
-  console.log(courseData);
-
   // Navigate to the first lesson
   const handleNavigateToFirstLesson = () => {
     const firstLessonId = courseData.sections?.[0]?.lessons?.[0]?._id;

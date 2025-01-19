@@ -28,9 +28,10 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
 
   useEffect(() => {
     if (Array.isArray(coursesBought)) {
-      setIsAddedToCart(coursesBought.includes(courseId));
+      const boughtCourseIds = coursesBought.map((course) => course.course); // Extract course IDs
+      setIsAddedToCart(boughtCourseIds.includes(courseId)); // Check if courseId exists
     } else {
-      setIsAddedToCart(coursesBought === courseId);
+      setIsAddedToCart(false); // Handle cases where coursesBought is not an array
     }
   }, [coursesBought, courseId]);
 

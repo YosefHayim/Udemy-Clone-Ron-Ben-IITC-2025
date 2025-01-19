@@ -1,11 +1,15 @@
+import buyCourseById from "@/api/users/buyCourseId";
 import { Button } from "@/components/ui/button";
 import { RootState } from "@/redux";
+import { useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { BsFire } from "react-icons/bs";
 import { IoMdLock } from "react-icons/io";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Checkout: React.FC = () => {
+  const navigate = useNavigate();
   const totalToPay = useSelector(
     (state: RootState) => state.cart.totalCourseDiscountPrices
   );
@@ -18,11 +22,22 @@ const Checkout: React.FC = () => {
     (state: RootState) => state.cart.totalCoursesOriginalPrices
   );
 
+  const coursesIds = useSelector(
+    (state: RootState) => state.cart.coursesAddedToCart
+  );
+
   useEffect(() => {}, [originalPrice, totalCourses, totalToPay]);
 
+  const checkOutMutation = useMutation({
+    mutationFn: buyCourseById,
+    onSuccess: () => {
+      navigate(`/view-course/${coursesIds[0]}`);
+    },
+  });
+
   const handleClick = () => {
-    
-  }
+    checkOutMutation.mutate(coursesIds);
+  };
 
   return (
     <div className="flex flex-col items-start justify-start p-[3em] w-[340px]">

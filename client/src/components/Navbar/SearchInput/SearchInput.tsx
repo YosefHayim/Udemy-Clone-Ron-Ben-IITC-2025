@@ -9,7 +9,6 @@ const SearchInput = () => {
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string | undefined>("");
   const [debouncedTerm, setDebouncedTerm] = useState<string | undefined>("");
-  console.log(debouncedTerm);
 
   const navigate = useNavigate();
   const location = useLocation();

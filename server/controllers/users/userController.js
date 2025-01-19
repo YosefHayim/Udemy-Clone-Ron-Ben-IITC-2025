@@ -372,6 +372,54 @@ const joinCourseById = catchAsync(async (req, res, next) => {
   });
 });
 
+const joinCoursesByIds = catchAsync(async (req, res, next) => {
+  let courseIds = req.body.courses;
+  const user = req.user;
+
+  // Ensure courseIds is always an array
+  if (!courseIds) {
+    return next(
+      createError(
+        "Please provide a valid course ID or an array of course IDs.",
+        400
+      )
+    );
+  }
+  if (!Array.isArray(courseIds)) {
+    courseIds = [courseIds];
+  }
+
+  // Filter out courses the user already bought
+  const newCourseIds = courseIds.filter(
+    (courseId) =>
+      !user.coursesBought.some(
+        (bought) => bought.course.toString() === courseId
+      )
+  );
+
+  if (newCourseIds.length === 0) {
+    return next(
+      createError("You have already joined all the provided courses.", 400)
+    );
+  }
+
+  // Add new courses to user's purchased courses
+  const purchasedCourses = newCourseIds.map((courseId) => ({
+    course: courseId,
+    boughtAt: new Date(),
+  }));
+
+  user.coursesBought.push(...purchasedCourses);
+  await user.save();
+
+  res.status(201).json({
+    status: "success",
+    message: `You have successfully joined the course(s): ${newCourseIds.join(
+      ", "
+    )}`,
+  });
+});
+
 const leaveCourseById = catchAsync(async (req, res, next) => {
   const courseId = req.params.id;
   const user = req.user;
@@ -531,6 +579,7 @@ const toggleCourseWishlist = catchAsync(async (req, res, next) => {
 });
 
 module.exports = {
+  joinCoursesByIds,
   toggleCourseWishlist,
   updateProfilePic,
   joinCourseById,
