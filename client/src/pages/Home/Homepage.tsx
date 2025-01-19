@@ -38,7 +38,7 @@ const Homepage = () => {
         <>
           <div className="container mx-auto px-[5.6rem]">
             <DropdownMenu />
-            <ViewPublicProfile />
+            <ProfileMain />
             {/* <Banner />
             <Sections />
             <TrustedBySection />
