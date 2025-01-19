@@ -2,36 +2,32 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import googleAuth from "@/api/users/googleAuth";
 import { useEffect } from "react";
+import { GoogleAuthResponse } from "@/types/types";
 
 const OAuthCallback = () => {
   const navigate = useNavigate();
 
-  const {
-    mutate: handleGoogleAuth,
-    isLoading,
-    error,
-  } = useMutation(googleAuth, {
-    onSuccess: (data: string) => {
+  const mutation = useMutation<GoogleAuthResponse, unknown, void>({
+    mutationFn: googleAuth, // Correctly pass the function
+    onSuccess: (data) => {
       console.log("Google Auth Success:", data);
-      // Handle the tokens and user data (e.g., save to Redux or localStorage)
-      navigate("/"); // Redirect to the homepage or dashboard
+      // Handle tokens and user data
+      localStorage.setItem("accessToken", data.accessToken);
+      navigate("/"); // Redirect after successful auth
     },
-    onError: (error: any) => {
-      console.error("Google Auth Failed:", error);
+    onError: (err) => {
+      console.error("Google Auth Failed:", err);
     },
   });
 
   useEffect(() => {
-    handleGoogleAuth();
-  }, [handleGoogleAuth]);
+    mutation.mutate(); // Trigger the mutation on component mount
+  }, [mutation]);
 
   return (
     <div>
-      {isLoading
-        ? "Processing authentication..."
-        : error
-        ? "Authentication failed"
-        : null}
+      {mutation.isPending && "Processing authentication..."}
+      {mutation.isError && "Authentication failed"}
     </div>
   );
 };

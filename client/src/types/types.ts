@@ -348,3 +348,11 @@ export interface Course {
   isNew?: boolean;
   isBestseller?: boolean;
 }
+
+export interface GoogleAuthResponse {
+  accessToken: string;
+  user: {
+    id: string;
+    email: string;
+  };
+}

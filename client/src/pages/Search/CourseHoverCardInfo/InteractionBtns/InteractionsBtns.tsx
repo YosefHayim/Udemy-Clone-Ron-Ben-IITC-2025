@@ -14,7 +14,7 @@ const InteractionsBtns: React.FC<{
     <div className="flex items-center justify-start w-full gap-[0.5em] mt-[1em]">
       <AddToCart
         courseId={courseId}
-        coursePrice={coursePrice}
+        discountPrice={coursePrice}
         fullPriceCourse={fullPriceCourse}
       />
       <HeartBtn iconSize={"2em"} courseId={courseId} />

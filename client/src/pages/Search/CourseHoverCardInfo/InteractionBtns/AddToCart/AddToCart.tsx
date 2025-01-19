@@ -15,12 +15,12 @@ const AddToCart: React.FC<{
   textBtn?: string;
   courseId: string;
   discountPrice: number;
-  fullPrice: number;
+  fullPriceCourse: number;
 }> = ({
   textBtn = "Add to cart",
   courseId = "",
   discountPrice = 0,
-  fullPrice = 0,
+  fullPriceCourse = 0,
 }) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +30,7 @@ const AddToCart: React.FC<{
     setTimeout(() => {
       dispatch(setAmountOfCourses()); // Increment the amount of courses
       dispatch(setTotalCourseDiscountPrices(Number(discountPrice)));
-      dispatch(setTotalOriginalCoursePrices(Number(fullPrice)));
+      dispatch(setTotalOriginalCoursePrices(Number(fullPriceCourse)));
       dispatch(calculateTotalSavings());
       dispatch(calculateDiscountPercentage());
       dispatch(setAddCourseToCart(courseId)); // Add course to the cart
