@@ -16,6 +16,7 @@ const courseProgressSchema = new mongoose.Schema({
   courseId: { type: mongoose.Schema.Types.ObjectId, ref: "Course", required: true },
   sections: [sectionProgressSchema], // Array of sections
 }, { timestamps: true });
+courseProgressSchema.index({ userId: 1, courseId: 1 }, { unique: true });
 
 const CourseProgress = mongoose.model("CourseProgress", courseProgressSchema);
 module.exports = CourseProgress;

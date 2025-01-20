@@ -338,8 +338,8 @@ const joinCourseById = catchAsync(async (req, res, next) => {
 
   // Check if courseProgress already exists
   const existingProgress = await courseProgress.findOne({
-    user: req.user._id,
-    course: courseId,
+    userId: req.user._id,
+    courseId: courseId,
   });
 
   if (existingProgress) {
@@ -355,8 +355,8 @@ const joinCourseById = catchAsync(async (req, res, next) => {
 
   // Create course progress
   const initCourseProgress = await courseProgress.create({
-    user: req.user._id,
-    course: courseId,
+    userId: req.user._id,
+    courseId: courseId,
   });
 
   await user.save();
@@ -407,8 +407,8 @@ const joinCoursesByIds = catchAsync(async (req, res, next) => {
   const initCoursesProgress = await Promise.all(
     courseIds.map(async (courseId) => {
       const existingProgress = await courseProgress.find({
-        user: req.user._id,
-        course: courseId,
+        userId: req.user._id,
+        courseId: courseId,
       });
 
       if (existingProgress) {
@@ -421,8 +421,8 @@ const joinCoursesByIds = catchAsync(async (req, res, next) => {
       }
 
       return courseProgress.create({
-        user: req.user._id,
-        course: courseId,
+        userId: req.user._id,
+        courseId: courseId,
       });
     })
   );

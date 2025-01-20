@@ -165,15 +165,17 @@ const DropdownMenu: React.FC = () => {
             </Link>
           </li>
           <hr />
-          <li className="px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
-            <div className="flex items-center justify-between">
-              <span>Udemy Business</span>
-              <FaExternalLinkAlt />
-            </div>
-            <p className="text-xs text-gray-500 mt-1">
-              Bring learning to your company
-            </p>
-          </li>
+          <Link to="/demo-business">
+            <li className="px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
+              <div className="flex items-center justify-between">
+                <span>Udemy Business</span>
+                <FaExternalLinkAlt />
+              </div>
+              <p className="text-xs text-gray-500 mt-1">
+                Bring learning to your company
+              </p>
+            </li>
+          </Link>
         </ul>
       </div>
     </div>
