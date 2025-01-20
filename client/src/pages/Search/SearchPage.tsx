@@ -10,7 +10,7 @@ import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
 import React, { useState } from "react";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
-import { CourseTypeProps, FilterDataProps } from "@/types/types";
+import { CourseTypeProps } from "@/types/types";
 
 const SearchPage: React.FC = () => {
   document.title = "Search results | Udemy";
@@ -19,17 +19,6 @@ const SearchPage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
   const searchTerm: string | null = searchParams.get("q")?.toLowerCase() || "";
-  const [filterData, setFilterData] = useState<FilterDataProps>({
-    rating: 0.0,
-    language: [],
-    handsOnPractice: "",
-    videoDuration: 0,
-    topics: "",
-    level: "All Levels",
-    subtitles: "",
-    price: "",
-    certificate: true,
-  });
 
   const limit = null;
 
@@ -49,7 +38,7 @@ const SearchPage: React.FC = () => {
   }
 
   if (error) {
-    navigate("/error-not-found");
+    navigate("//error-not-found");
   }
 
   // console.log(data);
@@ -62,10 +51,7 @@ const SearchPage: React.FC = () => {
       <FilterNSort totalResults={data.totalCourses || 0} />
       <div className="flex flex-row justify-start w-full gap-[1.5em]">
         <div>
-          <SidebarFilter
-            filterData={filterData}
-            setFilterData={setFilterData}
-          />
+          <SidebarFilter />
         </div>
         <div>
           <div>

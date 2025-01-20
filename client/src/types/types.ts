@@ -249,8 +249,8 @@ export interface FilterDataProps {
 }
 
 export interface SidebarFilterProps {
-  filterData: FilterDataProps;
-  setFilterData: React.Dispatch<React.SetStateAction<FilterDataProps>>;
+  filterData?: FilterDataProps;
+  setFilterData?: React.Dispatch<React.SetStateAction<FilterDataProps>>;
 }
 
 export interface CourseTypeProps {
