@@ -55,13 +55,13 @@ const DropdownMenu: React.FC = () => {
         {/* Menu Items */}
         <ul className="py-2 text-sm">
           <Link to="/wishlist">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
               My learning
             </li>
           </Link>
           <li>
             <Link to="/cart">
-              <div className="flex flex-row justify-between  px-4 py-2 text-gray-700 hover:bg-gray-100">
+              <div className="flex flex-row justify-between  px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
                 My cart
                 <div className="absolute right-[20%] top-[19%]">
                   <CartCoursesNumber />
@@ -70,14 +70,14 @@ const DropdownMenu: React.FC = () => {
             </Link>
           </li>
           <Link to="/wishlist">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
               Wishlist
             </li>
           </Link>
           <li>
             <a
               href="#"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
             >
               Teach on Udemy
             </a>
@@ -86,7 +86,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <a
               href="#"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
             >
               Notifications
             </a>
@@ -94,7 +94,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <a
               href="#"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
             >
               Messages
             </a>
@@ -103,7 +103,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <a
               href="#"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
             >
               Account settings
             </a>
@@ -111,30 +111,30 @@ const DropdownMenu: React.FC = () => {
           <li>
             <a
               href="#"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
             >
               Payment methods
             </a>
           </li>
           <Link to="/user/manage-subscriptions/">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
               Subscriptions
             </li>
           </Link>
           <Link to="/dashboard/credit-history">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
               Udemy credits
             </li>
           </Link>
           <Link to="/dashboard/purchase-history">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
               Purchase history
             </li>
           </Link>
           <hr />
           <li>
             <div
-              className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100"
+              className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
               onClick={handleClick}
             >
               <span className="text-sm">
@@ -145,33 +145,30 @@ const DropdownMenu: React.FC = () => {
             </div>
           </li>
           <Link to="/user/public-profile">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
               Public profile
             </li>
           </Link>
           <Link to="/edit-profile">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
               Edit profile
             </li>
           </Link>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-            >
-              Help and Support
-            </a>
-          </li>
+          <Link to="/edit-profile">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
+              Help and support
+            </li>
+          </Link>
           <li onClick={handleLogout}>
             <Link
               to="/login"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
             >
               Logout
             </Link>
           </li>
           <hr />
-          <li className="px-4 py-2 text-gray-700 hover:bg-gray-100">
+          <li className="px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
             <div className="flex items-center justify-between">
               <span>Udemy Business</span>
               <FaExternalLinkAlt />
