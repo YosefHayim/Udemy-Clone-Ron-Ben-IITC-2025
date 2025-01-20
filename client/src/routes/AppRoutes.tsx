@@ -23,12 +23,13 @@ import PublicProfile from "@/components/Navbar/DropDownMenu/PublicProfile/Public
 import PaymentMethods from "@/components/Navbar/DropDownMenu/PaymentMethods/PaymentMethods";
 import UdemyBusinessContact from "@/components/Navbar/DropDownMenu/UdemyBusinessContact/UdemyBusinessContact";
 import { createContext, useState } from "react";
+import { FilterDataProps } from "@/types/types";
 
-export const filterContext = createContext({
+export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
   handsOnPractice: "",
-  language: "",
-  levels: "",
+  language: [],
+  levels: [],
   price: "",
   ratings: 0,
   subtitles: [],

@@ -237,15 +237,16 @@ export interface Review {
 }
 
 export interface FilterDataProps {
-  certificate: boolean;
+  sortBy: "";
+  certificateOnly: boolean;
   handsOnPractice: string;
   language: string[];
-  level: string;
+  levels: string[];
   price: string;
-  rating: number;
-  subtitles: string;
-  topics: string;
-  videoDuration: number;
+  ratings: number;
+  subtitles: string[];
+  topics: string[];
+  videosDurations: number[];
 }
 
 export interface SidebarFilterProps {

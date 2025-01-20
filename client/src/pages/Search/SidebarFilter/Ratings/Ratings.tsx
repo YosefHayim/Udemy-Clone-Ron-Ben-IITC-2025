@@ -2,17 +2,19 @@ import { useState } from "react";
 import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useContext } from "react";
 import { filterContext } from "@/routes/AppRoutes";
+import { FilterDataProps } from "@/types/types";
 
 const RatingsFilter = () => {
   const [isClicked, setClicked] = useState(false);
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
-  const [filterData, setFilterData] = useContext(filterContext);
+  const [filterData, setFilterData] =
+    useContext<FilterDataProps>(filterContext);
 
   // Handle rating selection and update context immediately
   const handleRatingClick = (rating: number) => {
     setSelectedRating(rating);
 
-    setFilterData((prev) => ({
+    setFilterData((prev: any) => ({
       ...prev,
       ratings: rating,
     }));

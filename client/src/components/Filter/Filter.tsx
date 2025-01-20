@@ -21,6 +21,38 @@ const Filter: React.FC<FilterProps> = ({
     setClicked((prev) => !prev);
   };
 
+  console.log();
+
+  const handleClickValue = (name: string) => {
+    if (filterTitle === "Language") {
+      console.log("Selected language is: ", name);
+      
+    }
+    if (filterTitle === "Hands-on Practice") {
+      console.log("Selected Hands-on Practice is: ", name);
+    }
+
+    if (filterTitle === "Video Duration") {
+      console.log("Video Duration: ", name);
+    }
+
+    if (filterTitle === "Topics") {
+      console.log("Topics: ", name);
+    }
+
+    if (filterTitle === "Level") {
+      console.log("Level: ", name);
+    }
+
+    if (filterTitle === "Subtitles") {
+      console.log("Subtitles: ", name);
+    }
+
+    if (filterTitle === "Price") {
+      console.log("Price: ", name);
+    }
+  };
+
   return (
     <div className={useForSection ? "bg-[#f7f9fa]" : ""}>
       <hr className={showLine ? "block" : "hidden"} />
@@ -46,6 +78,7 @@ const Filter: React.FC<FilterProps> = ({
           {filterItems?.map((item: DummyData) => (
             <label
               key={item.name}
+              onClick={() => handleClickValue(item.name!)}
               className="flex gap-[0.5em] text-languageText py-[0.5em] cursor-pointer"
             >
               <Checkbox className="rounded-none" />
