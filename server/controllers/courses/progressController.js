@@ -5,13 +5,11 @@ const CourseProgress = require("././../../models/courses/courseProgressModel");
  * Initialize progress for a user when they start a course.
  */
 exports.initializeProgress = async (req, res) => {
-  const { userId, courseId } = req.body;
+  const courseId = req.params.id;
+  const userId = req.user._id;
 
   try {
-    const course = await Course.findById(courseId).populate({
-      path: "sections",
-      populate: { path: "lessons" },
-    });
+    const course = await Course.findById(courseId);
 
     if (!course) {
       return res.status(404).json({ message: "Course not found" });
