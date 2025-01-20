@@ -21,6 +21,7 @@ import PurchaseHistory from "@/components/Navbar/DropDownMenu/PurchaseHistory/Pu
 import Subscription from "@/components/Navbar/DropDownMenu/Subscription/Subscription";
 import PublicProfile from "@/components/Navbar/DropDownMenu/PublicProfile/PublicProfile";
 import PaymentMethods from "@/components/Navbar/DropDownMenu/PaymentMethods/PaymentMethods";
+import UdemyBusinessContact from "@/components/Navbar/DropDownMenu/UdemyBusinessContact/UdemyBusinessContact";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -77,6 +78,7 @@ const AppRoutes: React.FC = () => {
           }
         />
         {/* Route where navbar is hidden */}
+        <Route path="/demo-business" element={<UdemyBusinessContact />} />
         <Route path="/payment/checkout/" element={<Payment />} />
         <Route
           path="/instructor/profile/basic-information/"

@@ -1,0 +1,35 @@
+import { Button } from "@/components/ui/button";
+import udemyBusinessLogo from "/images/udemy-business-logo.svg";
+import { TbWorld } from "react-icons/tb";
+
+const UdemyBusinessNavbar = () => {
+  return (
+    <div className="w-full">
+      <div className="top-0 absolute w-full p-[1em]">
+        <div className="flex flex-row items-center justify-between w-full">
+          <div className="flex items-center gap-[1em] w-full">
+            <img src={udemyBusinessLogo} alt="" />
+            <p>What we do</p>
+            <p>How we do it</p>
+            <p>Resources</p>
+            <p>Plans</p>
+          </div>
+          <div className="flex items-center justify-end gap-[1em] w-full">
+            <Button className="text-black bg-white hover:bg-white shadow-none font-bold hover:text-[#6d28d2]">
+              Login
+            </Button>
+            <Button className="font-bold bg-[#6d28d2] text-white shadow-none hover:bg-black rounded-[0.2em] h-[3em]">
+              Get started
+            </Button>
+            <div className="rounded-[0em bg-white] border border-black hover:bg-white shadow-none p-[1em]">
+              <TbWorld className="text-black text-[1.5em]" />
+            </div>
+          </div>
+        </div>
+        <hr className="border w-full mt-[1em]" />
+      </div>
+    </div>
+  );
+};
+
+export default UdemyBusinessNavbar;
