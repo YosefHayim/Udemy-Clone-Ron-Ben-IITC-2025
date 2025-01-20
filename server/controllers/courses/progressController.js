@@ -45,7 +45,7 @@ exports.initializeProgress = async (req, res) => {
  */
 exports.updateLessonProgress = async (req, res) => {
   const { courseId, lessonId } = req.params;
-  const { userId } = req; // Assuming userId is extracted from the authenticated request
+  const userId = req.user._id 
   const { completed, lastWatched } = req.body;
 
   try {
@@ -84,23 +84,25 @@ exports.updateLessonProgress = async (req, res) => {
  */
 exports.getCourseProgress = async (req, res) => {
   const { courseId } = req.params;
-  const { userId } = req; // Assuming userId is extracted from the authenticated request
+  const userId = req.user._id 
 
   try {
+    // Find progress for the user and course
     const progress = await CourseProgress.findOne({ userId, courseId })
       .populate({
-        path: "sections.sectionId",
-        select: "title", // Select specific fields if needed
+        path: "sections.sectionId", // Populate section information
+        select: "title course totalSectionDuration totalSectionLessons", // Select required fields
       })
       .populate({
-        path: "sections.lessons.lessonId",
-        select: "title duration", // Select specific fields if needed
+        path: "sections.lessons.lessonId", // Populate lesson information
+        select: "title videoUrl duration order resources createdAt updatedAt", // Select required fields
       });
 
     if (!progress) {
       return res.status(404).json({ message: "Progress not found" });
     }
 
+    // Return the complete progress data
     res.status(200).json(progress);
   } catch (err) {
     res.status(500).json({ error: "Failed to retrieve progress", details: err.message });
