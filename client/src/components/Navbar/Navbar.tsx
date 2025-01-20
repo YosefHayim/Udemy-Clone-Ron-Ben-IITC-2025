@@ -48,8 +48,12 @@ const Navbar = () => {
         </>
       ) : (
         <div className="flex items-center space-x-[0.4rem] pr-4">
-          <LoginBtn />
-          <SignupBtn />
+          <Link to="/login">
+            <LoginBtn />
+          </Link>
+          <Link to="/signup">
+            <SignupBtn />
+          </Link>
           <Language />
         </div>
       )}

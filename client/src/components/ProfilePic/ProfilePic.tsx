@@ -24,7 +24,7 @@ const ProfilePic: React.FC<{ shortcutName: string; profilePic: string }> = ({
   useEffect(() => {}, [cookie]);
 
   return (
-    <Avatar className="">
+    <Avatar>
       <AvatarImage src={profilePic} />
       <AvatarFallback className="bg-black text-white font-bold">
         {shortcutName.toUpperCase()}

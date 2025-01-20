@@ -7,7 +7,6 @@ import LoginBtn from "../LoginBtn/LoginBtn";
 import SignupBtn from "../SignupBtn/SignupBtn";
 import Language from "../Language/Language";
 import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
 
 const Profile: React.FC = () => {
   const fullName = useSelector((state: RootState) => state.user.fullName);
@@ -36,9 +35,7 @@ const Profile: React.FC = () => {
         <div className="relative group">
           {/* If no profilePic, fallback to initials */}
           <div className="pt-[1em]">
-            <Link to="/edit-profile">
-              <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
-            </Link>
+            <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
           </div>
           <div className="pb-[1em]">
             <DropdownMenu />
