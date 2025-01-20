@@ -30,7 +30,11 @@ const SearchPage: React.FC = () => {
       if (!searchTerm && !currentPage && !limit) {
         throw new Error("Course ID is undefined");
       }
-      return getAllCourses(searchTerm || "", currentPage || 1, limit || 100);
+      return getAllCourses(
+        searchTerm || "",
+        currentPage || 1,
+        limit || 100 || filterData
+      );
     },
     enabled: !!searchTerm,
   });

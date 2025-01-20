@@ -13,7 +13,6 @@ const RatingsFilter = () => {
   // Handle rating selection and update context immediately
   const handleRatingClick = (rating: number) => {
     setSelectedRating(rating);
-
     setFilterData((prev: any) => ({
       ...prev,
       ratings: rating,
@@ -55,10 +54,10 @@ const RatingsFilter = () => {
             <label
               key={value}
               className="flex items-center cursor-pointer space-x-2 py-2"
-              onClick={() => handleRatingClick(value)}
             >
               {/* Custom Radio Button */}
               <span
+                onClick={() => handleRatingClick(value)}
                 className={`w-4 h-4 flex items-center justify-center border-2 rounded-full ${
                   selectedRating === value ? "border-black" : "border-gray-400"
                 }`}

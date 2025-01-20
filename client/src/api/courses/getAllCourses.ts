@@ -2,13 +2,29 @@ import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 type fn = (searchTerm: string, limit: number, page: number) => Promise<any>;
 
-const getAllCourses: fn = async (searchTerm = "") => {
+const getAllCourses: fn = async (
+  searchTerm = "",
+  filterData,
+  limit = 1,
+  page = 1
+) => {
   if (!searchTerm) {
     console.error("Search term is required");
     return "";
   }
 
-  // console.log(searchTerm);
+  const {
+    sortBy,
+    handsOnPractice,
+    language,
+    levels,
+    price,
+    ratings,
+    subtitles,
+    topics,
+    videosDurations,
+    certificateOnly,
+  } = filterData;
 
   const encodedSearchTerm = encodeURIComponent(searchTerm);
   const url = `${localhostUrl}/api/course/?search=${encodedSearchTerm}`;

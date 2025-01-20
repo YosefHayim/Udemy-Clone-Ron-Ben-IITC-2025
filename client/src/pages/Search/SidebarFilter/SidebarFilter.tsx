@@ -9,15 +9,12 @@ import Price from "./Price/Price";
 import ViewCertificatesOnly from "./ViewCertificatesOnly/ViewCertificatesOnly";
 import { SidebarFilterProps } from "@/types/types";
 
-const SidebarFilter: React.FC<SidebarFilterProps> = ({
-  filterData,
-  setFilterData,
-}) => {
+const SidebarFilter: React.FC<SidebarFilterProps> = () => {
   return (
     <div className="relative w-[310px]">
       <ViewCertificatesOnly />
       <RatingsFilter />
-      <LanguageFilter filterData={filterData} setFilterData={setFilterData} />
+      <LanguageFilter />
       <HandsOnPractice />
       <VideosFilter />
       <Topics />

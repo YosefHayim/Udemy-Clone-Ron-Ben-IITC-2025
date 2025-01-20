@@ -239,14 +239,14 @@ export interface Review {
 export interface FilterDataProps {
   sortBy: "";
   certificateOnly: boolean;
-  handsOnPractice: string;
+  handsOnPractice: Set<string>;
   language: Set<string>;
   levels: Set<string>;
-  price: Set<string>;
+  price: "";
   ratings: number;
   subtitles: Set<string>;
   topics: Set<string>;
-  videosDurations: number[];
+  videosDurations: Set<string>;
 }
 
 export interface SidebarFilterProps {
