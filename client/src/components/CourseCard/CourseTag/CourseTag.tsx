@@ -3,19 +3,25 @@ import { CourseTagProps } from "@/types/types";
 const CourseTag: React.FC<CourseTagProps> = ({ tagName = "Bestseller" }) => {
   // Mapping tag names to specific styles
   const tagStyles: { [key: string]: string } = {
-    Bestseller: "bg-teal-100 text-teal-800",
-    New: "bg-green-100 text-green-800",
-    "Highest Rated": "bg-yellow-100 text-yellow-800",
-    "Hot & New": "bg-[#FFD1CE] text-[#940A00]",
+    Bestseller: "bg-[#C2E9EB] text-[#0D5261]",
+    New: "bg-[#BBE7D3] text-[#123825]",
+    "Highest Rated": "bg-[#FFE1B2] text-[#8B4309]",
+    "Hot and New": "bg-[#FFD1CE] text-[#940A00]",
   };
 
   // Default style if the tagName does not match any key
   const style = tagStyles[tagName] || "bg-gray-100 text-gray-800";
 
   return (
-    <b className={`${style} text-[0.7em] py-[0.2em] px-[0.3em] rounded-[0.5em]`}>
+    <span
+      className={`${style} text-xs font-bold py-1 px-2 rounded-md inline-block`}
+      style={{
+        whiteSpace: "nowrap", // Prevents the span from expanding to fit the container
+        width: "auto", // Ensures the width is only as wide as the content
+      }}
+    >
       {tagName}
-    </b>
+    </span>
   );
 };
 

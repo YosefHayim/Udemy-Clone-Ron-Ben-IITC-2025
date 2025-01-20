@@ -65,7 +65,6 @@ app.use("/api/report/review", reportReviewRoute);
 app.use("/api/comment", commentRoute);
 app.use("/api/course-progress", courseProgressRoutes);
 
-
 app.all("*", undefinedRoute);
 app.use(errorHandler);
 

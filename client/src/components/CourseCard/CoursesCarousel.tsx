@@ -69,13 +69,13 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
       <div className="flex items-center justify-between ">
         {Array.from({ length: 5 }, (_, i) => {
           if (i < fullStars) {
-            return <IoIosStar key={i} className="text-[#c4710d] ml-1" />;
+            return <IoIosStar key={i} className="text-[#c4710d] ml-[1px]" />;
           } else if (i === fullStars && hasHalfStar) {
             return (
-              <MdOutlineStarHalf key={i} className="text-[#c4710d] ml-1" />
+              <MdOutlineStarHalf key={i} className="text-[#c4710d] ml-[1px]" />
             );
           } else {
-            return <IoIosStarOutline key={i} className="text-[#c4710d] ml-1" />;
+            return <IoIosStarOutline key={i} className="text-[#c4710d] ml-[1px]" />;
           }
         })}
       </div>
@@ -84,9 +84,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
 
   return (
     <>
-
-
-      <div className="relative w-full max-w-7xl mx-auto py-8">
+      <div className="relative w-full max-w-[80rem] mx-auto py-6">
         <h2 className="text-xl font-semibold mb-4">
           Because you viewed{" "}
           <span className="text-purple-600 font-bold">{searchTerm}</span>
@@ -104,24 +102,24 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
               {courses.map((course) => (
                 <div
                   key={course._id}
-                  className="w-[calc(100%/5)] px-4 box-border relative"
+                  className="w-[calc(100%/5)] px-[0.5rem] box-border relative"
                 >
-                  <div className="border rounded-lg shadow-sm overflow-hidden bg-white flex flex-col h-[350px]">
-                    <div className="h-40 w-full">
+                  <div className="shadow-sm overflow-hidden bg-white flex flex-col maxh-[18rem]">
+                    <div className="h-36 w-full">
                       <img
                         src={course.courseImg}
                         alt={course.courseName}
-                        className="w-full h-full object-cover"
+                        className="border border-gray-300 w-full h-full object-cover"
                       />
                     </div>
-                    <div className="p-4 flex flex-col justify-between flex-grow">
-                      {/* Título */}
-                      <h3 className="font-bold text-sm text-gray-900 line-clamp-2 mb-1">
+                    <div className="flex flex-col justify-between flex-grow">
+                      {/* Title */}
+                      <h3 className="font-bold text-[1rem] text-[#303141] line-clamp-2 pt-[0.3rem] leading-5">
                         {course.courseName}
                       </h3>
 
-                      {/* Nome do Instrutor */}
-                      <p className="text-xs text-gray-600 truncate mb-2">
+                      {/* Instructor Name */}
+                      <p className="text-xs text-gray-600 truncate py-[0.2rem]">
                         {course.courseInstructor.fullName}
                       </p>
 
@@ -141,11 +139,10 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                         </span>
                       </div>
 
-
-                      {/* Preço e Tag */}
-                      <div className="flex items-baseline justify-between mt-2">
+                      {/* Price */}
+                      <div className="flex items-baseline justify-between py-[0.15rem]">
                         <div>
-                          <span className="font-bold text-gray-900">
+                          <span className="font-[700] text-[#303141] text-[1rem]">
                             ₪{course.courseDiscountPrice.toFixed(2)}
                           </span>
                           {course.courseFullPrice && (
@@ -155,7 +152,11 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                           )}
                         </div>
                       </div>
-                      <CourseTag tagName={course.courseTag} />
+
+                      {/* Tag */}
+                      <span className="inline-block pt-[0.3rem]">
+                        <CourseTag tagName={course.courseTag} />
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -164,7 +165,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
           </div>
         )}
 
-        {/* Botões de navegação */}
+        {/* Navigation Buttons */}
         <button
           onClick={handlePrev}
           className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full z-10 shadow-md hover:bg-gray-600"
@@ -180,6 +181,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
           &#9654;
         </button>
       </div>
+
     </>
 
   );
