@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import ProfilePic from "../ProfilePic/ProfilePic";
 import Cookies from "js-cookie";
 import { RootState } from "@/redux";
+import { Link } from "react-router-dom";
 
 const Welcome = () => {
   const fullName = useSelector((state: RootState) => state.user.fullName) || "";
@@ -24,9 +25,9 @@ const Welcome = () => {
         <h2 className="text-2xl font-bold">Welcome back, {fullName}</h2>
         <div className="flex flex-row items-start justify-start gap-[0.5em]">
           <p>{bio}</p>
-          <a href="#" className="text-purple-600 underline">
+          <Link to="#" className="text-purple-600 underline">
             Add occupation and interests
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import ProfilePic from "@/components/ProfilePic/ProfilePic";
 import { RootState } from "@/redux";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const SideBarProfile = () => {
   const fullName = useSelector((state: RootState) => state.user.fullName);
@@ -24,85 +25,85 @@ const SideBarProfile = () => {
           <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
           <div>
             <h2 className="font-bold text-lg text-gray-800">{fullName}</h2>
-            <a href="#" className="text-indigo-600 text-sm">
+            <Link to="/public-profile" className="text-indigo-600 text-sm">
               View public profile
-            </a>
+            </Link>
           </div>
         </div>
       </div>
       <nav className="mt-6">
         <ul className="space-y-2">
           <li>
-            <a
-              href="#"
+            <Link
+              to="/profile"
               className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
             >
               Profile
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/photo"
               className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
             >
               Photo
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/account-security"
               className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
             >
               Account Security
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/subscriptions"
               className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
             >
               Subscriptions
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/payment-methods"
               className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
             >
               Payment methods
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/privacy"
               className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
             >
               Privacy
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/notification-preferences"
               className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
             >
               Notification Preferences
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/api-clients"
               className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
             >
               API clients
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/close-account"
               className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
             >
               Close account
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

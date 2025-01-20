@@ -1,4 +1,4 @@
-import { FaExternalLinkAlt } from "react-icons/fa"; // Importa ícones
+import { FaExternalLinkAlt } from "react-icons/fa";
 import { MdLanguage } from "react-icons/md";
 import ProfilePic from "../../ProfilePic/ProfilePic";
 import { useSelector } from "react-redux";
@@ -30,7 +30,6 @@ const DropdownMenu: React.FC = () => {
 
   const [firstWord, secondWord] = fullName.split(" ") || "";
 
-  // Safely generate shortcutName using first and second word initials
   const shortcutName =
     (firstWord?.[0]?.toUpperCase() || "") +
     (secondWord?.[0]?.toUpperCase() || "");
@@ -54,80 +53,97 @@ const DropdownMenu: React.FC = () => {
         </div>
         {/* Menu Items */}
         <ul className="py-2 text-sm">
-          <Link to="/wishlist">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
-              My learning
-            </li>
-          </Link>
           <li>
-            <Link to="/cart">
-              <div className="flex flex-row justify-between  px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
-                My cart
-                <div className="absolute right-[20%] top-[19%]">
-                  <CartCoursesNumber />
-                </div>
-              </div>
+            <Link
+              to="/wishlist"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+            >
+              My learning
             </Link>
           </li>
-          <Link to="/wishlist">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
-              Wishlist
-            </li>
-          </Link>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/cart"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer flex justify-between items-center"
+            >
+              My cart
+              <CartCoursesNumber />
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/wishlist"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+            >
+              Wishlist
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/wishlist"
               className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
             >
               Teach on Udemy
-            </a>
+            </Link>
           </li>
           <hr />
           <li>
-            <a
-              href="#"
+            <Link
+              to="/wishlist"
               className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
             >
               Notifications
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/wishlist"
               className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
             >
               Messages
-            </a>
+            </Link>
           </li>
           <hr />
           <li>
-            <a
-              href="#"
+            <Link
+              to="/wishlist"
               className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
             >
               Account settings
-            </a>
+            </Link>
           </li>
-          <Link to="/user/edit-payment-methods/">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
+          <li>
+            <Link
+              to="/user/edit-payment-methods/"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+            >
               Payment methods
-            </li>
-          </Link>
-          <Link to="/user/manage-subscriptions/">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/user/manage-subscriptions/"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+            >
               Subscriptions
-            </li>
-          </Link>
-          <Link to="/dashboard/credit-history">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/dashboard/credit-history"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+            >
               Udemy credits
-            </li>
-          </Link>
-          <Link to="/dashboard/purchase-history">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/dashboard/purchase-history"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+            >
               Purchase history
-            </li>
-          </Link>
+            </Link>
+          </li>
           <hr />
           <li>
             <div
@@ -141,21 +157,30 @@ const DropdownMenu: React.FC = () => {
               <MdLanguage className="text-lg" />
             </div>
           </li>
-          <Link to="/user/public-profile">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
+          <li>
+            <Link
+              to="/user/public-profile"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+            >
               Public profile
-            </li>
-          </Link>
-          <Link to="/edit-profile">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/edit-profile"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+            >
               Edit profile
-            </li>
-          </Link>
-          <Link to="/edit-profile">
-            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/edit-profile"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+            >
               Help and support
-            </li>
-          </Link>
+            </Link>
+          </li>
           <li onClick={handleLogout}>
             <Link
               to="/login"
@@ -165,8 +190,11 @@ const DropdownMenu: React.FC = () => {
             </Link>
           </li>
           <hr />
-          <Link to="/demo-business">
-            <li className="px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
+          <li>
+            <Link
+              to="/demo-business"
+              className="px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+            >
               <div className="flex items-center justify-between">
                 <span>Udemy Business</span>
                 <FaExternalLinkAlt />
@@ -174,8 +202,8 @@ const DropdownMenu: React.FC = () => {
               <p className="text-xs text-gray-500 mt-1">
                 Bring learning to your company
               </p>
-            </li>
-          </Link>
+            </Link>
+          </li>
         </ul>
       </div>
     </div>

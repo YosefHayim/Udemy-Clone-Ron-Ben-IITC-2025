@@ -1,5 +1,5 @@
 import signup from "/images/signup.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import registerUser from "@/api/users/registerUser";
 import { useMutation } from "@tanstack/react-query";
 import { RegisterUserPayload } from "@/types/types";
@@ -87,21 +87,21 @@ const SignUp: React.FC = () => {
             </button>
             <p className="text-sm text-gray-500 mt-2">
               By signing up, you agree to our
-              <a href="/terms" className="text-purple-600 hover:underline">
+              <Link to="/terms" className="text-purple-600 hover:underline">
                 Terms of Use
-              </a>
+              </Link>
               and
-              <a href="/privacy" className="text-purple-600 hover:underline">
+              <Link to="/privacy" className="text-purple-600 hover:underline">
                 Privacy Policy
-              </a>
+              </Link>
               .
             </p>
           </form>
           <div className="mt-6 text-center">
-            <a href="/login" className="text-gray-800">
+            <Link to="/login" className="text-gray-800">
               Already have an account?
               <span className="text-purple-600 hover:underline">Log in</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import certificationImage from "/images/certificate.png";
 import insightsImage from "/images/empty-state-1.png";
 import customizableImage from "/images/organization.png";
 import containerizationImage from "/images/desktop-hands-on-learning-2x (1).png";
+import { Link } from "react-router-dom";
 
 const LearningGoals = () => {
   const features = [
@@ -71,12 +72,12 @@ const LearningGoals = () => {
                 </span>
               )}
               {feature.linkText && (
-                <a
-                  href="#"
+                <Link
+                  to="#"
                   className="text-purple-600 text-sm font-bold mt-2 inline-block"
                 >
                   {feature.linkText}
-                </a>
+                </Link>
               )}
             </div>
           </div>

@@ -3,6 +3,7 @@ import alvin from "/images/Alvin_Lim.jpeg";
 import ian from "/images/Ian_Stevens.png";
 import william from "/images/William_A_Wachlin.jpeg";
 import quoteIcon from "/images/quote.svg"; // Imagem das aspas
+import { Link } from "react-router-dom";
 
 const testimonials = [
   {
@@ -77,12 +78,12 @@ const Testimonials = () => {
               </div>
             </div>
             {/* Link de ação */}
-            <a
-              href={testimonial.link}
+            <Link
+              to={testimonial.link}
               className="text-purple-600 font-bold mt-4 inline-block hover:underline"
             >
               {testimonial.linkText}
-            </a>
+            </Link>
           </div>
         ))}
       </div>

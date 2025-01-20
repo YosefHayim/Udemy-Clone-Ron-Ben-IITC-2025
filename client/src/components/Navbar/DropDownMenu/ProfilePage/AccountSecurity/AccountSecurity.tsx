@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SideBarProfile from "../SideBarProfile/SideBarProfile"; // Importando o componente da Sidebar
 
 const AccountSecurity = () => {
@@ -74,9 +75,9 @@ const AccountSecurity = () => {
               Increase your account security by requiring that a code emailed to
               you be entered when you log in. For more information on how
               multi-factor authentication works, refer to our{" "}
-              <a href="#" className="text-purple-600 hover:text-purple-800">
+              <Link to="#" className="text-purple-600 hover:text-purple-800">
                 Help Center article
-              </a>
+              </Link>
               .
             </p>
             <button
