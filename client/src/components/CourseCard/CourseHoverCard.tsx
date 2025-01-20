@@ -71,7 +71,7 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
   return (
     <div
       ref={hoverCardRef}
-      className="absolute bg-white shadow-lg rounded-lg p-4 border z-10"
+      className="absolute bg-white shadow-lg rounded-lg p-4 border z-[1000]"
       style={{
         left: position.left,
         top: position.top,

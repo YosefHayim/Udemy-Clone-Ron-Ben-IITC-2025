@@ -84,7 +84,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
         })}
       </div>
     );
-  };n
+  };
 
   return (
     <div className="relative w-full max-w-[80rem] mx-auto py-6">
