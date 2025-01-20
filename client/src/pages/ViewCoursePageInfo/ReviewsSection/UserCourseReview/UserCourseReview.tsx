@@ -38,7 +38,7 @@ const UserCourseReview: React.FC<{
           <div className="flex flex-col items-start justify-start">
             <UserReviewRating
               reviewRating={review.rating}
-              reviewUserName={review.user.fullName}
+              reviewUserName={review?.user?.fullName || ""}
               createCommentAt={new Date(review.createdAt)}
             />
           </div>

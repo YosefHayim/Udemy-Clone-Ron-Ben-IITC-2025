@@ -13,7 +13,7 @@ import { useState } from "react";
 
 const DropdownMenu: React.FC = () => {
   const dispatch = useDispatch();
-  const fullName = useSelector((state: RootState) => state.user.fullName);
+  const fullName = useSelector((state: RootState) => state.user.fullName) || "";
   const profilePic = useSelector((state: RootState) => state.user.profilePic);
   const email = useSelector((state: RootState) => state.user.email);
   let cookie = Cookies.get("cookie");
@@ -28,7 +28,7 @@ const DropdownMenu: React.FC = () => {
     return <div></div>;
   }
 
-  const [firstWord, secondWord] = fullName.split(" ");
+  const [firstWord, secondWord] = fullName.split(" ") || "";
 
   // Safely generate shortcutName using first and second word initials
   const shortcutName =
