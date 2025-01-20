@@ -84,10 +84,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
         })}
       </div>
     );
-  };
-
-
-
+  };n
 
   return (
     <div className="relative w-full max-w-[80rem] mx-auto py-6">
@@ -107,9 +104,6 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
             }}
           >
             {courses.map((course) => (
-
-
-
               <div
               key={course._id}
               className="w-[calc(100%/5)] px-[0.5rem] box-border relative"
