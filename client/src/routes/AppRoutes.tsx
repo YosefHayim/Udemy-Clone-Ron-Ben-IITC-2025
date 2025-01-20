@@ -20,6 +20,7 @@ import UdemyCredits from "@/components/Navbar/DropDownMenu/UdemyCredits/UdemyCre
 import PurchaseHistory from "@/components/Navbar/DropDownMenu/PurchaseHistory/PurchaseHistory";
 import Subscription from "@/components/Navbar/DropDownMenu/Subscription/Subscription";
 import PublicProfile from "@/components/Navbar/DropDownMenu/PublicProfile/PublicProfile";
+import PaymentMethods from "@/components/Navbar/DropDownMenu/PaymentMethods/PaymentMethods";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -58,6 +59,10 @@ const AppRoutes: React.FC = () => {
                   element={<Loader useSmallLoading={false} hSize="" />}
                 />
                 <Route path="/Signup" element={<SignUp />} />
+                <Route
+                  path="/user/edit-payment-methods/"
+                  element={<PaymentMethods />}
+                />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/courses/search" element={<SearchPage />} />

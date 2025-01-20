@@ -108,14 +108,11 @@ const DropdownMenu: React.FC = () => {
               Account settings
             </a>
           </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
-            >
+          <Link to="/user/edit-payment-methods/">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
               Payment methods
-            </a>
-          </li>
+            </li>
+          </Link>
           <Link to="/user/manage-subscriptions/">
             <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
               Subscriptions
