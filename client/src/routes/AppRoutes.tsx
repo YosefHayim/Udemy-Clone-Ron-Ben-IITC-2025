@@ -19,6 +19,7 @@ import ProfileMain from "@/components/Navbar/DropDownMenu/ProfilePage/ProfileMai
 import UdemyCredits from "@/components/Navbar/DropDownMenu/UdemyCredits/UdemyCredits";
 import PurchaseHistory from "@/components/Navbar/DropDownMenu/PurchaseHistory/PurchaseHistory";
 import Subscription from "@/components/Navbar/DropDownMenu/Subscription/Subscription";
+import PublicProfile from "@/components/Navbar/DropDownMenu/PublicProfile/PublicProfile";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -47,6 +48,10 @@ const AppRoutes: React.FC = () => {
                   element={<Subscription />}
                 />
                 <Route path="/cart" element={<ShoppingCart />} />
+                <Route
+                  path="/user/public-profile"
+                  element={<PublicProfile />}
+                />
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route
                   path="/loader"

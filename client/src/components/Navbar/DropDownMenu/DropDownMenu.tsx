@@ -144,22 +144,16 @@ const DropdownMenu: React.FC = () => {
               <MdLanguage className="text-lg" />
             </div>
           </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-            >
+          <Link to="/user/public-profile">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
               Public profile
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-            >
+            </li>
+          </Link>
+          <Link to="/edit-profile">
+            <li className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
               Edit profile
-            </a>
-          </li>
+            </li>
+          </Link>
           <li>
             <a
               href="#"
