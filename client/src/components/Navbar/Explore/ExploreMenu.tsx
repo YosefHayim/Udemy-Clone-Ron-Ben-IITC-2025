@@ -141,7 +141,7 @@ const ExploreMenu = () => {
                         handleNavigate(
                           subCategory?.title
                             ? subCategory?.title
-                            : subCategory.topics[0]
+                            : subCategory?.topics[0]
                         )
                       }
                       key={index}
