@@ -66,9 +66,7 @@ const ItemInCart = ({
   };
 
   const handleCourseView = (e: React.MouseEvent<HTMLDivElement>): void => {
-    if ((e.target as HTMLElement).tagName === "DIV") {
-      navigate(`/course-view/${courseId}`);
-    }
+    navigate(`/course-view/${courseId}`);
   };
 
   return (

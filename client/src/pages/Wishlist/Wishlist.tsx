@@ -32,13 +32,13 @@ const Wishlist: React.FC = () => {
       >
         {coursesBought && coursesBought.length > 0 ? (
           <div className="grid grid-cols-4 gap-4 w-full text-center p-[5em]">
-            {coursesBought.map((courseBought) => (
+            {coursesBought.map((courseBought, index) => (
               <ItemInCart
                 showInstructor={false}
                 rowPrices={false}
                 showHR={false}
                 courseImgSize="w-full"
-                key={courseBought.course}
+                key={courseBought.course + index}
                 courseId={courseBought.course}
                 showFullPrice={false}
                 isColCourseBox={true}
