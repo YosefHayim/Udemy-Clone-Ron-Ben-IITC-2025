@@ -26,13 +26,13 @@ const clearCollections = async () => {
     ReportReview.deleteMany(),
     InstructorComment.deleteMany(),
   ]);
-  console.log("Cleared all collections.");
+  // console.log("Cleared all collections.");
 };
 
 const createUsers = async () => {
   const users = [];
   for (let i = 0; i < 300; i++) {
-    console.log(`Creating user ${i + 1}...`);
+    // console.log(`Creating user ${i + 1}...`);
     users.push({
       fullName: faker.person.fullName(),
       profilePic: faker.image.avatar(),
@@ -45,7 +45,7 @@ const createUsers = async () => {
     });
   }
   const createdUsers = await User.insertMany(users);
-  console.log("Users created successfully:");
+  // console.log("Users created successfully:");
   return createdUsers;
 };
 
@@ -64,7 +64,7 @@ const createCourses = async () => {
   const courses = [];
 
   for (let i = 0; i < amountOfCourses; i++) {
-    console.log(`Creating course ${i + 1}/${amountOfCourses}...`);
+    // console.log(`Creating course ${i + 1}/${amountOfCourses}...`);
 
     const instructor = faker.helpers.arrayElement(instructors);
     const parentCategory = faker.helpers.arrayElement(
@@ -141,21 +141,21 @@ const createCourses = async () => {
     }
 
     courses.push(course);
-    console.log(`Course ${i + 1} created: ${course.courseName}`);
+    // console.log(`Course ${i + 1} created: ${course.courseName}`);
   }
 
-  console.log("Courses created successfully.");
+  // console.log("Courses created successfully.");
   return courses;
 };
 
 const createSections = async () => {
-  console.log("Fetching courses for section creation...");
+  // console.log("Fetching courses for section creation...");
   const courses = await Course.find();
   if (courses.length === 0) {
     throw new Error("No courses found for section creation.");
   }
 
-  console.log(`${courses.length} courses found.`);
+  // console.log(`${courses.length} courses found.`);
   const sections = [];
 
   for (const course of courses) {
@@ -163,7 +163,7 @@ const createSections = async () => {
     const createdSections = [];
 
     for (let i = 0; i < numSections; i++) {
-      console.log(
+      // console.log(
         `Creating section ${i + 1}/${numSections} for course "${
           course.courseName
         }"...`
@@ -193,25 +193,25 @@ const createSections = async () => {
     if (createdSections.length > 0) {
       course.sections.push(...createdSections);
       await course.save();
-      console.log(
+      // console.log(
         `Updated course "${course.courseName}" with ${createdSections.length} sections.`
       );
     }
   }
 
-  console.log(`Successfully created and linked ${sections.length} sections.`);
+  // console.log(`Successfully created and linked ${sections.length} sections.`);
   return sections;
 };
 
 const createLessons = async () => {
-  console.log("Fetching sections for lesson creation...");
+  // console.log("Fetching sections for lesson creation...");
   const sections = await Section.find().populate("course");
 
   if (sections.length === 0) {
     throw new Error("No sections found for lesson creation.");
   }
 
-  console.log(`${sections.length} sections found.`);
+  // console.log(`${sections.length} sections found.`);
   const lessons = [];
 
   for (const section of sections) {
@@ -222,7 +222,7 @@ const createLessons = async () => {
       continue; // Skip this section
     }
 
-    console.log(`Creating lessons for section: ${section.title}...`);
+    // console.log(`Creating lessons for section: ${section.title}...`);
 
     const totalLessonsPerSection = faker.number.int({ min: 2, max: 5 }); // Randomize number of lessons
     const createdLessons = [];
@@ -244,7 +244,7 @@ const createLessons = async () => {
         lessons.push(lesson);
         totalDurationForSection += duration;
 
-        console.log(
+        // console.log(
           `Lesson created: ${lesson.title}, Order: ${
             section.lessons.length + createdLessons.length
           }, Duration: ${duration} mins`
@@ -278,12 +278,12 @@ const createLessons = async () => {
       );
     }
 
-    console.log(
+    // console.log(
       `Updated section "${section.title}" with ${createdLessons.length} lessons.`
     );
   }
 
-  console.log(`Successfully created and linked ${lessons.length} lessons.`);
+  // console.log(`Successfully created and linked ${lessons.length} lessons.`);
   return lessons;
 };
 
@@ -304,7 +304,7 @@ const createReviews = async () => {
     }
 
     for (const student of students) {
-      console.log(`Processing reviews for student: ${student.email}`);
+      // console.log(`Processing reviews for student: ${student.email}`);
 
       // Iterate over each course bought by the student
       for (const courseEntry of student.coursesBought || []) {
@@ -318,7 +318,7 @@ const createReviews = async () => {
           continue;
         }
 
-        console.log(`Processing course ID: ${course._id}`);
+        // console.log(`Processing course ID: ${course._id}`);
 
         // Create review payload
         const reviewPayload = {
@@ -338,7 +338,7 @@ const createReviews = async () => {
             continue;
           }
 
-          console.log(`Review created for course ID: ${course._id}`);
+          // console.log(`Review created for course ID: ${course._id}`);
 
           // Update the course immediately after creating the review
           const updatedCourse = await Course.findByIdAndUpdate(
@@ -358,7 +358,7 @@ const createReviews = async () => {
               `Course with ID ${course._id} not found while updating.`
             );
           } else {
-            console.log(
+            // console.log(
               `Review added to course "${updatedCourse.courseName}" successfully.`
             );
           }
@@ -370,7 +370,7 @@ const createReviews = async () => {
       }
     }
 
-    console.log("All reviews processed successfully.");
+    // console.log("All reviews processed successfully.");
   } catch (err) {
     console.error("Error during review creation:", err.message);
     throw err;
@@ -392,7 +392,7 @@ const calculateAverageRating = async (courseId) => {
 };
 
 const createReportedReviews = async () => {
-  console.log("Fetching reviews and students for reporting...");
+  // console.log("Fetching reviews and students for reporting...");
 
   const reviews = await courseReviews.find().populate({
     path: "courseReview",
@@ -412,7 +412,7 @@ const createReportedReviews = async () => {
   const totalReports = 10;
 
   for (let i = 0; i < totalReports; i++) {
-    console.log(`Creating report ${i + 1}/${totalReports}...`);
+    // console.log(`Creating report ${i + 1}/${totalReports}...`);
 
     // Filter reviews where the student has purchased the course
     const eligibleReviews = reviews.filter((review) =>
@@ -462,7 +462,7 @@ const createReportedReviews = async () => {
       randomReview.reports.count += 1;
       await randomReview.save();
 
-      console.log(
+      // console.log(
         `Report ${i + 1} created for Review:`,
         randomReview.comment,
         `Reported by:`,
@@ -475,11 +475,11 @@ const createReportedReviews = async () => {
     }
   }
 
-  console.log("Reported reviews created successfully.");
+  // console.log("Reported reviews created successfully.");
 };
 
 const simulateCoursePurchases = async () => {
-  console.log("Fetching students and active courses...");
+  // console.log("Fetching students and active courses...");
   const users = await User.find({
     role: "student",
     udemyCredits: { $gte: 10 },
@@ -493,7 +493,7 @@ const simulateCoursePurchases = async () => {
     throw new Error("No users or courses available for simulation.");
   }
 
-  console.log("Simulating course purchases...");
+  // console.log("Simulating course purchases...");
   for (const user of users) {
     try {
       const coursesToPurchase = faker.helpers.arrayElements(
@@ -520,9 +520,9 @@ const simulateCoursePurchases = async () => {
             course.totalStudentsEnrolled.students.push(user._id);
 
             await course.save();
-            console.log(`${user.fullName} purchased "${course.courseName}".`);
+            // console.log(`${user.fullName} purchased "${course.courseName}".`);
           } else {
-            console.log(
+            // console.log(
               `${user.fullName} does not have enough credits for "${course.courseName}".`
             );
           }
@@ -537,7 +537,7 @@ const simulateCoursePurchases = async () => {
     }
   }
 
-  console.log("Course purchases simulated successfully.");
+  // console.log("Course purchases simulated successfully.");
 };
 
 const addCoursesToWishlistOfUsers = async () => {
@@ -553,7 +553,7 @@ const addCoursesToWishlistOfUsers = async () => {
     return;
   }
 
-  console.log("Adding wishlist courses to users...");
+  // console.log("Adding wishlist courses to users...");
   for (const user of users) {
     // Randomly select 1 to 5 courses for the wishlist
     const wishlistCourses = faker.helpers.arrayElements(
@@ -564,48 +564,48 @@ const addCoursesToWishlistOfUsers = async () => {
     // Update the user's wishlist
     user.wishlistCourses = wishlistCourses;
     await user.save();
-    console.log(`Wishlist updated for user: ${user.fullName}`);
+    // console.log(`Wishlist updated for user: ${user.fullName}`);
   }
 
-  console.log("Wishlist courses added successfully.");
+  // console.log("Wishlist courses added successfully.");
 };
 
 const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
-    // console.log("Database connection established.");
+    // // console.log("Database connection established.");
     // await clearCollections();
 
-    console.log("Seeding users...");
+    // console.log("Seeding users...");
     const users = await createUsers();
-    console.log(`${users.length} users created.`);
+    // console.log(`${users.length} users created.`);
 
-    console.log("Seeding courses...");
+    // console.log("Seeding courses...");
     const courses = await createCourses();
-    console.log(`${courses.length} courses created.`);
+    // console.log(`${courses.length} courses created.`);
 
-    console.log("Seeding sections...");
+    // console.log("Seeding sections...");
     const sections = await createSections();
-    console.log(`${sections.length} sections created.`);
+    // console.log(`${sections.length} sections created.`);
 
-    console.log("Seeding lessons...");
+    // console.log("Seeding lessons...");
     const lessons = await createLessons();
-    console.log(`${lessons.length} lessons created.`);
+    // console.log(`${lessons.length} lessons created.`);
 
     await simulateCoursePurchases();
-    console.log("Simulate courses purchases completed");
+    // console.log("Simulate courses purchases completed");
 
-    console.log("Seeding reviews...");
+    // console.log("Seeding reviews...");
     const reviews = await createReviews();
-    console.log(`${reviews.length} reviews created.`);
+    // console.log(`${reviews.length} reviews created.`);
 
-    console.log("Seeding reported reviews...");
+    // console.log("Seeding reported reviews...");
     await createReportedReviews();
 
     await addCoursesToWishlistOfUsers();
-    console.log("Simulate courses wishlists completed");
+    // console.log("Simulate courses wishlists completed");
 
-    console.log("All dummy data seeded successfully!");
+    // console.log("All dummy data seeded successfully!");
     process.exit();
   } catch (err) {
     console.error("Error generating dummy data:", err.message);

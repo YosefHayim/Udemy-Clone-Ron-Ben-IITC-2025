@@ -11,7 +11,7 @@ const SignUp: React.FC = () => {
   const mutation = useMutation<unknown, Error, RegisterUserPayload>({
     mutationFn: registerUser,
     onSuccess: (data) => {
-      console.log(data);
+      // console.log(data);
       navigate("/");
     },
     onError: (error) => {

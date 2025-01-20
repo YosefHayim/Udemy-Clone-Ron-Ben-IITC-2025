@@ -29,9 +29,7 @@ const BuyNowBtn: React.FC<{
       }
       dispatch(setTotalCourseDiscountPrices(Number(discountPrice)));
       dispatch(setTotalOriginalCoursePrices(Number(fullPrice)));
-      console.log(
-        `Dispatching fullPrice:${fullPrice} and discount price: ${discountPrice}`
-      );
+      // console.log(`Dispatching fullPrice:${fullPrice} and discount price: ${discountPrice}`);
       dispatch(calculateTotalSavings());
       dispatch(calculateDiscountPercentage());
       dispatch(setAddCourseToCart(courseId));

@@ -25,7 +25,7 @@ const reportUserReviewByReviewId: fn = async ({
     const response = await axiosClient.post(url, payload);
 
     if (response) {
-      console.log(response);
+      // // console.log(response);
       return response;
     }
 

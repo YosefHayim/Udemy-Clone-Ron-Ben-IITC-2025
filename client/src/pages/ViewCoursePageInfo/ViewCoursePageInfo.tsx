@@ -72,7 +72,7 @@ const ViewCoursePageInfo: React.FC = () => {
 
   if (error) return <div>Error loading course data</div>;
 
-  console.log(data);
+  // console.log(data);
 
   // Navigate to the first lesson
   const handleNavigateToFirstLesson = () => {

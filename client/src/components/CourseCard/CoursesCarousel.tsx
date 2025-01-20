@@ -54,14 +54,11 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
     }
   };
 
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleCardClick = (courseId: string) => {
-    console.log(`Navigating to course: ${courseId}`);
+    // console.log(`Navigating to course: ${courseId}`);
     navigate(`/course-view/${courseId}`);
   };
-
-
 
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
@@ -89,8 +86,10 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
   return (
     <div className="relative w-full max-w-[80rem] mx-auto py-6">
       <h2 className="text-2xl font-bold mb-4 text-[#303141]">
-        Because you viewed {" "}
-        <span className="text-purple-600 font-bold underline">{searchTerm}</span>
+        Because you viewed{" "}
+        <span className="text-purple-600 font-bold underline">
+          {searchTerm}
+        </span>
       </h2>
 
       {courses.length > 0 && (
@@ -98,29 +97,30 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
           <div
             className="flex transition-transform duration-300"
             style={{
-              transform: `translateX(-${currentIndex * (100 / visibleItems)
-                }%)`,
+              transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`,
               width: `${courses.length * (100 / visibleItems)}%`,
             }}
           >
             {courses.map((course) => (
               <div
-              key={course._id}
-              className="w-[calc(100%/5)] px-[0.5rem] box-border relative"
-              onMouseEnter={() => setHoveredCourse(course)}
-              onMouseLeave={(e) => {
-                const relatedTarget = e.relatedTarget as Node;
-                if (
-                  hoverCardRef.current &&
-                  hoverCardRef.current.contains(relatedTarget)
-                ) {
-                  return; // Don't clear hover state if moving to hover card
-                }
-                setHoveredCourse(null);
+                key={course._id}
+                className="w-[calc(100%/5)] px-[0.5rem] box-border relative"
+                onMouseEnter={() => setHoveredCourse(course)}
+                onMouseLeave={(e) => {
+                  const relatedTarget = e.relatedTarget as Node;
+                  if (
+                    hoverCardRef.current &&
+                    hoverCardRef.current.contains(relatedTarget)
+                  ) {
+                    return; // Don't clear hover state if moving to hover card
+                  }
+                  setHoveredCourse(null);
                 }}
+              >
+                <div
+                  onClick={() => handleCardClick(course._id)}
+                  className="cursor-pointer shadow-sm overflow-hidden bg-white flex flex-col maxh-[18rem]"
                 >
-                <div onClick={() => handleCardClick(course._id)} className="cursor-pointer shadow-sm overflow-hidden bg-white flex flex-col maxh-[18rem]">
-                
                   <div className="h-36 w-full">
                     <img
                       src={course.courseImg}
@@ -139,7 +139,9 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                       <span className="mr-1">
                         {course.averageRating.toFixed(1)}
                       </span>
-                      <div className="flex">{renderStars(course.averageRating)}</div>
+                      <div className="flex">
+                        {renderStars(course.averageRating)}
+                      </div>
                       <span className="ml-2 text-gray-500 text-xs">
                         ({course.totalRatings.toLocaleString()})
                       </span>

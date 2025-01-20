@@ -8,7 +8,7 @@ const getAllCourses: fn = async (searchTerm = "") => {
     return "";
   }
 
-  console.log(searchTerm);
+  // console.log(searchTerm);
 
   const encodedSearchTerm = encodeURIComponent(searchTerm);
   const url = `${localhostUrl}/api/course/?search=${encodedSearchTerm}`;
@@ -17,7 +17,7 @@ const getAllCourses: fn = async (searchTerm = "") => {
     const { data } = await axiosClient.get(url);
 
     if (data) {
-      console.log(data);
+      // // console.log(data);
 
       return data;
     }

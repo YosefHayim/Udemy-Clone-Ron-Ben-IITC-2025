@@ -2,7 +2,7 @@ import SearchCourseCard from "@/pages/Search/SearchCourseCard/SearchCourseCard";
 import SidebarFilter from "./SidebarFilter/SidebarFilter";
 import FilterNSort from "./SidebarFilter/FilterNSort/FilterNSort";
 import Pagination from "./PaginationPages/PaginationPages";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
@@ -14,6 +14,7 @@ import { CourseTypeProps, FilterDataProps } from "@/types/types";
 
 const SearchPage: React.FC = () => {
   document.title = "Search results | Udemy";
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
@@ -48,10 +49,10 @@ const SearchPage: React.FC = () => {
   }
 
   if (error) {
-    return <div>Error occurred: {error.message}</div>;
+    navigate("/error-not-found");
   }
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
