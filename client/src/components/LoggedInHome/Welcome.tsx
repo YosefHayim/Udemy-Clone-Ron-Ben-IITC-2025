@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { RootState } from "@/redux";
 
 const Welcome = () => {
-  const fullName = useSelector((state: RootState) => state.user.fullName);
+  const fullName = useSelector((state: RootState) => state.user.fullName) || "";
   const profilePic = useSelector((state: RootState) => state.user.profilePic);
   const bio = useSelector((state: RootState) => state.user.bio);
   const cookie: string | any = Cookies.get("cookie");
@@ -13,7 +13,7 @@ const Welcome = () => {
     return <div></div>;
   }
 
-  const [firstWord, secondWord] = fullName.split(" ");
+  const [firstWord, secondWord] = fullName?.split(" ") || "";
 
   const shortcutName = (firstWord?.[0] || "") + (secondWord?.[0] || "");
 

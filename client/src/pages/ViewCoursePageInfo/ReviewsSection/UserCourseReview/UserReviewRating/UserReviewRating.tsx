@@ -6,6 +6,9 @@ const UserReviewRating: React.FC<{
   reviewUserName: string;
   createCommentAt: Date;
 }> = ({ reviewRating, reviewUserName, createCommentAt }) => {
+  if (!reviewUserName) {
+    return <div></div>;
+  }
   return (
     <div>
       <b>{reviewUserName}</b>

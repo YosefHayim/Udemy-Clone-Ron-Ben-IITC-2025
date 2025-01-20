@@ -41,14 +41,14 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
         const hoverCardRect = hoverCardRef.current.getBoundingClientRect();
         const windowWidth = window.innerWidth;
 
-        let leftPosition = "100%"; // Default para a direita
+        let leftPosition = "100%"; // Default to the right
         if (hoverCardRect.right > windowWidth) {
-          leftPosition = "-320px"; // Move para a esquerda se necessário
+          leftPosition = "-340px"; // Adjust to the left if it overflows
         }
 
         setPosition({
           left: leftPosition,
-          top: "50%", // Sempre centralizado verticalmente
+          top: "50%",
           transform: "translateY(-50%)",
         });
       }
@@ -71,7 +71,7 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
   return (
     <div
       ref={hoverCardRef}
-      className="absolute bg-white shadow-lg rounded-lg p-4 border z-10"
+      className="absolute bg-white shadow-lg rounded-lg p-4 border z-[1000]"
       style={{
         left: position.left,
         top: position.top,
@@ -79,7 +79,7 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
         width: "320px",
       }}
     >
-      {/* Seta para conectar ao curso */}
+      {/* Arrow to connect with the course card */}
       <div
         className="absolute w-4 h-4 bg-white transform rotate-45 shadow-md"
         style={{
@@ -89,6 +89,7 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
         }}
       ></div>
 
+      {/* Hover Card Content */}
       <h3 className="font-bold text-lg">
         {truncateText(course.courseName || "", 50)}
       </h3>
@@ -114,7 +115,7 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
         <button className="w-[80%] bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600">
           Add to cart
         </button>
-        {/* Ícone do coração */}
+        {/* Heart Icon */}
         <div className="w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full hover:border-red-500 cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -137,3 +138,6 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
 };
 
 export default CourseHoverCard;
+
+
+

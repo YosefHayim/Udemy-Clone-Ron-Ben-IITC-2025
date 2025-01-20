@@ -5,16 +5,14 @@ const CourseProgress = require("././../../models/courses/courseProgressModel");
  * Initialize progress for a user when they start a course.
  */
 exports.initializeProgress = async (req, res) => {
-  const { userId, courseId } = req.body;
+  const courseId = req.params.id;
+  const userId = req.user._id;
 
   if (!userId || !courseId) {
     return res.status(400).json({ error: "User ID and Course ID are required" });
   }
   try {
-    const course = await Course.findById(courseId).populate({
-      path: "sections",
-      populate: { path: "lessons" },
-    });
+    const course = await Course.findById(courseId);
 
     if (!course) {
       return res.status(404).json({ message: "Course not found" });
@@ -39,7 +37,9 @@ exports.initializeProgress = async (req, res) => {
     await progress.save();
     res.status(201).json(progress);
   } catch (err) {
-    res.status(500).json({ error: "Failed to initialize progress", details: err.message });
+    res
+      .status(500)
+      .json({ error: "Failed to initialize progress", details: err.message });
   }
 };
 
@@ -48,7 +48,7 @@ exports.initializeProgress = async (req, res) => {
  */
 exports.updateLessonProgress = async (req, res) => {
   const { courseId, lessonId } = req.params;
-  const userId = req.user._id 
+  const userId = req.user._id;
   const { completed, lastWatched } = req.body;
 
   try {
@@ -72,13 +72,17 @@ exports.updateLessonProgress = async (req, res) => {
     }
 
     if (!lessonUpdated) {
-      return res.status(404).json({ message: "Lesson not found in progress data" });
+      return res
+        .status(404)
+        .json({ message: "Lesson not found in progress data" });
     }
 
     await progress.save();
     res.status(200).json({ message: "Lesson progress updated", progress });
   } catch (err) {
-    res.status(500).json({ error: "Failed to update progress", details: err.message });
+    res
+      .status(500)
+      .json({ error: "Failed to update progress", details: err.message });
   }
 };
 
@@ -87,7 +91,7 @@ exports.updateLessonProgress = async (req, res) => {
  */
 exports.getCourseProgress = async (req, res) => {
   const { courseId } = req.params;
-  const userId = req.user._id 
+  const userId = req.user._id;
 
   try {
     // Find progress for the user and course
@@ -108,6 +112,8 @@ exports.getCourseProgress = async (req, res) => {
     // Return the complete progress data
     res.status(200).json(progress);
   } catch (err) {
-    res.status(500).json({ error: "Failed to retrieve progress", details: err.message });
+    res
+      .status(500)
+      .json({ error: "Failed to retrieve progress", details: err.message });
   }
 };

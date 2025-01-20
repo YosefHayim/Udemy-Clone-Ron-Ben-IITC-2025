@@ -115,9 +115,6 @@ const ViewCoursePageInfo: React.FC = () => {
             totalRated={courseData.totalRatings}
             totalStudents={courseData.totalStudentsEnrolled.count}
           />
-          <button className="z-[1000]" onClick={handleNavigateToFirstLesson}>
-            Go to First Lesson
-          </button>
         </div>
 
         {/* Additional Info */}
