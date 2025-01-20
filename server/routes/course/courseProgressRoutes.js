@@ -6,7 +6,11 @@ const {
 } = require("../../controllers/authorization/authController");
 
 // Initialize progress for a course
-router.post("/initialize", progressController.initializeProgress);
+router.post(
+  "/initialize/:id",
+  grantedAccess,
+  progressController.initializeProgress
+);
 
 // Update progress for a specific lesson
 router.patch(
