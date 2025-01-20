@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import { filterContext } from "@/routes/AppRoutes";
+
 const SortDropDown = () => {
+  const [filterData, setFilterData] = useContext(filterContext);
+
   return (
     <div className="flex flex-col items-center w-full ">
       <div className="relative w-full">

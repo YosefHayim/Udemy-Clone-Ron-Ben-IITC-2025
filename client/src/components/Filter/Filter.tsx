@@ -1,6 +1,7 @@
 import { Checkbox } from "@/components/ui/checkbox";
+import { filterContext } from "@/routes/AppRoutes";
 import { DummyData, FilterProps } from "@/types/types";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
@@ -14,6 +15,7 @@ const Filter: React.FC<FilterProps> = ({
   hideIcons,
 }) => {
   const [isClicked, setClicked] = useState(false);
+  const [filterData, setFilterData] = useContext(filterContext);
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = () => {
     setClicked((prev) => !prev);

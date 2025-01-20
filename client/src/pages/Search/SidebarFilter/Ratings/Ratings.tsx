@@ -1,23 +1,34 @@
 import { useState } from "react";
 import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { useContext } from "react";
+import { filterContext } from "@/routes/AppRoutes";
 
 const RatingsFilter = () => {
   const [isClicked, setClicked] = useState(false);
-  const [selectedRating, setSelectedRating] = useState<string | null>(null);
+  const [selectedRating, setSelectedRating] = useState<number | null>(null);
+  const [filterData, setFilterData] = useContext(filterContext);
 
+  // Handle rating selection and update context immediately
+  const handleRatingClick = (rating: number) => {
+    setSelectedRating(rating);
+
+    setFilterData((prev) => ({
+      ...prev,
+      ratings: rating,
+    }));
+    console.log(filterData.ratings);
+  };
+
+  // Toggle the dropdown open/close state
   const handleClick: React.MouseEventHandler<HTMLDivElement> = () => {
     setClicked((prev) => !prev);
   };
 
-  const handleRatingClick = (rating: string) => {
-    setSelectedRating(rating);
-  };
-
   const ratings = [
-    { rating: "★★★★½", value: "4.5", count: "4,394" },
-    { rating: "★★★★☆", value: "4.0", count: "8,757" },
-    { rating: "★★★½☆", value: "3.5", count: "9,900" },
-    { rating: "★★★☆☆", value: "3.0", count: "10,000" },
+    { rating: "★★★★½", value: 4.5, count: "4,394" },
+    { rating: "★★★★☆", value: 4.0, count: "8,757" },
+    { rating: "★★★½☆", value: 3.5, count: "9,900" },
+    { rating: "★★★☆☆", value: 3, count: "10,000" },
   ];
 
   return (

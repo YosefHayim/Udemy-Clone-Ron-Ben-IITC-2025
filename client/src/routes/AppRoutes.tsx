@@ -22,8 +22,35 @@ import Subscription from "@/components/Navbar/DropDownMenu/Subscription/Subscrip
 import PublicProfile from "@/components/Navbar/DropDownMenu/PublicProfile/PublicProfile";
 import PaymentMethods from "@/components/Navbar/DropDownMenu/PaymentMethods/PaymentMethods";
 import UdemyBusinessContact from "@/components/Navbar/DropDownMenu/UdemyBusinessContact/UdemyBusinessContact";
+import { createContext, useState } from "react";
+
+export const filterContext = createContext({
+  sortBy: "",
+  handsOnPractice: "",
+  language: "",
+  levels: "",
+  price: "",
+  ratings: 0,
+  subtitles: [],
+  topics: [],
+  videosDurations: [],
+  certificateOnly: false,
+});
 
 const AppRoutes: React.FC = () => {
+  const [filterData, setFilterData] = useState({
+    sortBy: "",
+    handsOnPractice: "",
+    language: "",
+    levels: "",
+    price: "",
+    ratings: 0,
+    subtitles: [],
+    topics: [],
+    videosDurations: [],
+    certificateOnly: false,
+  });
+
   return (
     <Router>
       <Routes>
@@ -66,7 +93,14 @@ const AppRoutes: React.FC = () => {
                 />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/courses/search" element={<SearchPage />} />
+                <Route
+                  path="/courses/search"
+                  element={
+                    <filterContext.Provider value={[filterData, setFilterData]}>
+                      <SearchPage />
+                    </filterContext.Provider>
+                  }
+                />
                 <Route path="*" element={<NotFound />} />
                 <Route path="/error-not-found" element={<NotFound />} />
                 <Route

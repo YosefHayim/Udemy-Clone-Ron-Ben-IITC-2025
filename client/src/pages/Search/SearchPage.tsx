@@ -8,18 +8,20 @@ import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
 import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 import { CourseTypeProps } from "@/types/types";
+import { filterContext } from "@/routes/AppRoutes";
 
 const SearchPage: React.FC = () => {
+  const [filterData, setFilterData] = useContext(filterContext);
+
   document.title = "Search results | Udemy";
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
   const searchTerm: string | null = searchParams.get("q")?.toLowerCase() || "";
-
   const limit = null;
 
   const { data, isLoading, error } = useQuery({
@@ -38,10 +40,8 @@ const SearchPage: React.FC = () => {
   }
 
   if (error) {
-    navigate("//error-not-found");
+    navigate("/error-not-found");
   }
-
-  // console.log(data);
 
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">

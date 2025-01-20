@@ -1,9 +1,12 @@
 import Filter from "@/components/Filter/Filter";
 import { languages } from "@/utils/languages";
 import { useState } from "react";
+import { useContext } from "react";
+import { filterContext } from "@/routes/AppRoutes";
 
 const Subtitles = () => {
   const [display, setDisplay] = useState<boolean>(false);
+  const [filterData, setFilterData] = useContext(filterContext);
 
   return (
     <div>
