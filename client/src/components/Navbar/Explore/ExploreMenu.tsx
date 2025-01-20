@@ -136,9 +136,14 @@ const ExploreMenu = () => {
               >
                 {getCategoryData(hoveredMenu)?.subcategory.map(
                   (subCategory, index) => (
-                    // console.log(subCategory),
                     <div
-                      onClick={() => handleNavigate(subCategory.title || "web")}
+                      onClick={() =>
+                        handleNavigate(
+                          subCategory?.title
+                            ? subCategory?.title
+                            : subCategory.topics[0]
+                        )
+                      }
                       key={index}
                       className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
                       onMouseEnter={() =>
@@ -171,9 +176,7 @@ const ExploreMenu = () => {
                 {getSubCategoryData(hoveredMenu, hoveredSubMenu)?.topics?.map(
                   (topic: any, index: number) => (
                     <div
-                      onClick={() =>
-                        handleNavigate(topic.title || topic.group || "web")
-                      }
+                      onClick={() => handleNavigate(topic)}
                       key={index}
                       className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
                     >
