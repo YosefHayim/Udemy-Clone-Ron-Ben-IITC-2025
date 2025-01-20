@@ -78,9 +78,9 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
 
   return (
     <div className="relative w-full max-w-[80rem] mx-auto py-6">
-      <h2 className="text-xl font-semibold mb-4">
-        Because you viewed{" "}
-        <span className="text-purple-600 font-bold">{searchTerm}</span>
+      <h2 className="text-2xl font-bold mb-4 text-[#303141]">
+        Because you viewed {" "}
+        <span className="text-purple-600 font-bold underline">{searchTerm}</span>
       </h2>
 
       {courses.length > 0 && (
