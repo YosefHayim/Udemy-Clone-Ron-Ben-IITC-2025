@@ -7,7 +7,7 @@ const DefaultVisa: React.FC = () => {
       </div>
       <div className="flex flex-col items-start justify-start gap-[0.5em]">
         <b>Card number</b>
-        <p>****0912</p>
+        <p>*******0422</p>
       </div>
       <div className="flex flex-col items-start justify-start gap-[0.5em]">
         <b>Expiry date</b>

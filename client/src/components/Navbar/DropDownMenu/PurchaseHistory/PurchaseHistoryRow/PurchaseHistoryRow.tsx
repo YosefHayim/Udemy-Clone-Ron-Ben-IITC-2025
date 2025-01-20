@@ -20,7 +20,7 @@ const PurchaseHistoryRow = () => {
         <p>₪149.90</p>
       </div>
       <div>
-        <p>₪149.90 Visa ****0912</p>
+        <p>₪149.90 Visa ****9042</p>
       </div>
       <div>
         <div className="flex flex-row items-end justify-end gap-[1em]">

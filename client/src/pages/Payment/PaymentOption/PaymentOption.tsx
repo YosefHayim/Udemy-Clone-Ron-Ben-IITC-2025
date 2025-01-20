@@ -7,7 +7,7 @@ import PayPal from "../PayPal/PayPal";
 import { PaymentOptionProps } from "@/types/types";
 
 const PaymentOption: React.FC<PaymentOptionProps> = ({
-  paymentOptionName = "Visa***0912",
+  paymentOptionName = "Visa***9042",
   providedIcon = <AiFillCreditCard className="text-[2em]" />,
   showVisa = true,
   showProvideCardInfo = false,
