@@ -30,7 +30,7 @@ const Navbar: React.FC<{ courseName: string }> = ({ courseName }) => {
           </button>
           </div>
           <button className="hover:bg-gray-300 border-white rounded-sm">
-          <HiDotsVertical className="border size-8 p-2 rounded-sm size-5"/>
+          <HiDotsVertical className="border size-8 p-2 rounded-sm "/>
           </button>
         </div>
       </div>

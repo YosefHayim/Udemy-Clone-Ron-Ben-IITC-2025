@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { FaChevronDown } from "react-icons/fa";
 import { MdOndemandVideo } from "react-icons/md";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -8,44 +9,75 @@ import {
   CollapsibleTrigger,
   CollapsibleContent,
 } from "@/components/ui/collapsible";
+import { fetchCourseProgress, updateLessonProgress } from "../../../services/ProgressService";
 
-interface CourseContentProps {
-  sections: Array<any>; // Replace `any` with the exact structure of your sections if known
+// Define TypeScript interfaces
+interface Lesson {
+  lessonId: {
+    _id: string;
+    title: string;
+    duration: number;
+  };
+  completed: boolean;
+  lastWatched: number;
 }
-const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
+
+interface Section {
+  sectionId: {
+    _id: string;
+    title: string;
+  };
+  lessons: Lesson[];
+}
+
+interface CourseProgressResponse {
+  sections: Section[];
+}
+
+const CourseContent: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
   const location = useLocation();
+  const queryClient = useQueryClient();
 
-  // Sanitize courseId to remove any leading colon or whitespace
-  const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
+  const sanitizedCourseId = courseId?.trim();
 
-  const [completedLessons, setCompletedLessons] = useState<
-    Record<string, boolean>
-  >({});
+  // React Query: Fetch course progress
+  const { data, isLoading, isError, error } = useQuery<CourseProgressResponse, Error>({
+    queryKey: ["courseProgress", sanitizedCourseId],
+    queryFn: () => fetchCourseProgress(sanitizedCourseId!),
+    enabled: !!sanitizedCourseId, // Only fetch when courseId is valid
+  });
 
-  // Track completed lessons
+  // Mutation for updating lesson progress
+  const mutation = useMutation({
+    mutationFn: ({ lessonId, payload }: { lessonId: string; payload: { completed?: boolean } }) =>
+      updateLessonProgress(sanitizedCourseId!, lessonId, payload),
+    onSuccess: () => {
+      if (sanitizedCourseId) {
+        queryClient.invalidateQueries(["courseProgress", sanitizedCourseId]);
+      }
+    },
+  });
 
-  // Toggle completion state for a lesson
-  const toggleLessonCompletion = (lessonId: string) => {
-    setCompletedLessons((prev) => ({
-      ...prev,
-      [lessonId]: !prev[lessonId],
-    }));
+  // Handle checkbox toggle for lesson completion
+  const toggleLessonCompletion = (lessonId: string, currentState: boolean) => {
+    mutation.mutate({
+      lessonId,
+      payload: { completed: !currentState },
+    });
   };
 
-  // Handle loading and error states
-  if (!sections) {
-    return <div>No sections available for this course.</div>;
-  }
+  if (isLoading) return <div>Loading course content...</div>;
+  if (isError) return <div>Error: {error.message}</div>;
 
   let lessonCounter = 0;
 
   return (
     <div className="flex justify-center py-10 min-h-screen">
-      <div className="">
-        {sections.map((section: any, idx: number) => (
+      <div>
+        {data?.sections.map((section, idx) => (
           <Collapsible
-            key={section._id}
+            key={section.sectionId._id}
             defaultOpen
             className="min-w-[800px] border-y group/collapsible"
           >
@@ -53,7 +85,7 @@ const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
               <CollapsibleTrigger asChild>
                 <button className="flex items-center w-full text-left focus:outline-none focus-visible:outline-none">
                   <span className="text-lg font-medium">
-                    Section {idx + 1}: {section.title}
+                    Section {idx + 1}: {section.sectionId.title}
                   </span>
                   <FaChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                 </button>
@@ -61,17 +93,18 @@ const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
             </div>
             <CollapsibleContent>
               <ul className="mt-2 pl-4">
-                {section.lessons.map((lesson: any) => {
+                {section.lessons.map((lesson) => {
                   const isCurrentLesson =
                     location.pathname ===
-                      `/course/${sanitizedCourseId}/lesson/${lesson._id}/course-content` ||
+                      `/course/${sanitizedCourseId}/lesson/${lesson.lessonId._id}/course-content` ||
                     location.pathname ===
-                      `/course/${sanitizedCourseId}/lesson/${lesson._id}`;
+                      `/course/${sanitizedCourseId}/lesson/${lesson.lessonId._id}`;
 
                   lessonCounter += 1;
+
                   return (
                     <li
-                      key={lesson._id}
+                      key={lesson.lessonId._id}
                       className={`flex items-center gap-3 mb-2 p-2 ${
                         isCurrentLesson
                           ? "bg-slate-400 text-white"
@@ -79,9 +112,12 @@ const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
                       }`}
                     >
                       <Checkbox
-                        checked={!!completedLessons[lesson._id]}
+                        checked={lesson.completed}
                         onCheckedChange={() =>
-                          toggleLessonCompletion(lesson._id)
+                          toggleLessonCompletion(
+                            lesson.lessonId._id,
+                            lesson.completed
+                          )
                         }
                         className={`hover:border-black focus:outline-none ${
                           isCurrentLesson ? "border-white" : ""
@@ -89,12 +125,12 @@ const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
                       />
                       <div className="flex flex-col">
                         <Link
-                          to={`/course/${sanitizedCourseId}/lesson/${lesson._id}`}
+                          to={`/course/${sanitizedCourseId}/lesson/${lesson.lessonId._id}`}
                           state={{ courseId: sanitizedCourseId }}
-                          className="flex-col  ml-2"
+                          className="flex-col ml-2"
                         >
                           <span>
-                            {lessonCounter}. {lesson.title}
+                            {lessonCounter}. {lesson.lessonId.title}
                           </span>
                           <span
                             className={`flex items-center text-xs ${
@@ -103,7 +139,9 @@ const CourseContent: React.FC<CourseContentProps> = ({ sections }) => {
                           >
                             <MdOndemandVideo />
                             <span>
-                              {lesson.duration ? `${lesson.duration} min` : ""}
+                              {lesson.lessonId.duration
+                                ? `${lesson.lessonId.duration} min`
+                                : ""}
                             </span>
                           </span>
                         </Link>
