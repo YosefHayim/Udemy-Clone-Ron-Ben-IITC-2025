@@ -7,6 +7,9 @@ const CourseProgress = require("././../../models/courses/courseProgressModel");
 exports.initializeProgress = async (req, res) => {
   const { userId, courseId } = req.body;
 
+  if (!userId || !courseId) {
+    return res.status(400).json({ error: "User ID and Course ID are required" });
+  }
   try {
     const course = await Course.findById(courseId).populate({
       path: "sections",
