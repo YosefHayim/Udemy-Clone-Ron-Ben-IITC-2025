@@ -1,27 +1,21 @@
-const { mongoose } = require("mongoose");
+const mongoose = require("mongoose");
+
+const lessonProgressSchema = new mongoose.Schema({
+  lessonId: { type: mongoose.Schema.Types.ObjectId, ref: "Lesson", required: true },
+  completed: { type: Boolean, default: false },
+  lastWatched: { type: Number, default: 0 }, // Last second viewed
+});
+
+const sectionProgressSchema = new mongoose.Schema({
+  sectionId: { type: mongoose.Schema.Types.ObjectId, ref: "Section", required: true },
+  lessons: [lessonProgressSchema], // Array of lessons with progress
+});
 
 const courseProgressSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: [true, "Must provide a user id to start course progress"],
-  },
-  course: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Course",
-    required: [true, "Must provide a course id to start course progress"],
-  },
-});
-
-courseProgressSchema.index(
-  { user: 1, course: 1 },
-  { unique: true, message: "This user already has progress for this course." }
-);
-
-courseProgressSchema.pre(/^find/, function (next) {
-  this.populate("course");
-  next();
-});
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  courseId: { type: mongoose.Schema.Types.ObjectId, ref: "Course", required: true },
+  sections: [sectionProgressSchema], // Array of sections
+}, { timestamps: true });
 
 const CourseProgress = mongoose.model("CourseProgress", courseProgressSchema);
 module.exports = CourseProgress;
