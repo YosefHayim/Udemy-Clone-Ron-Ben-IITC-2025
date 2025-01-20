@@ -46,10 +46,10 @@ const Filter: React.FC<FilterProps> = ({
     }
 
     if (filterTitle === "Video Duration") {
-      if (filterData.videosDurations.has(Number(name))) {
-        filterData.videosDurations.delete(Number(name));
+      if (filterData.videosDurations.has(name)) {
+        filterData.videosDurations.delete(name);
       } else {
-        filterData.videosDurations.add(Number(name));
+        filterData.videosDurations.add(name);
       }
       setFilterData({ ...filterData });
       console.log(
@@ -125,10 +125,12 @@ const Filter: React.FC<FilterProps> = ({
           {filterItems?.map((item: DummyData) => (
             <label
               key={item.name}
-              onClick={() => handleClickValue(item.name!)}
               className="flex gap-[0.5em] text-languageText py-[0.5em] cursor-pointer"
             >
-              <Checkbox className="rounded-none" />
+              <Checkbox
+                className="rounded-none"
+                onClick={() => handleClickValue(item.name!)}
+              />
               <span>{item.name}</span>
             </label>
           ))}
