@@ -19,7 +19,7 @@ const ReviewsTab = ({ avgRating = 1 }) => {
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["reviews", courseId],
-    queryFn: () => getAllReviewsByCourseId((courseId = "")),
+    queryFn: () => getAllReviewsByCourseId((courseId || "")),
   });
 
   const renderStars = (rating) => {
