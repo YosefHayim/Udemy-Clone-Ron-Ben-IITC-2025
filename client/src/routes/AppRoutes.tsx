@@ -27,28 +27,28 @@ import { FilterDataProps } from "@/types/types";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
-  handsOnPractice: "",
-  language: [],
-  levels: [],
+  handsOnPractice: new Set(),
+  language: new Set(),
+  levels: new Set(),
   price: "",
   ratings: 0,
-  subtitles: [],
-  topics: [],
-  videosDurations: [],
+  subtitles: new Set(),
+  topics: new Set(),
+  videosDurations: new Set(),
   certificateOnly: false,
 });
 
 const AppRoutes: React.FC = () => {
   const [filterData, setFilterData] = useState({
     sortBy: "",
-    handsOnPractice: "",
-    language: "",
-    levels: "",
+    handsOnPractice: new Set(),
+    language: new Set(),
+    levels: new Set(),
     price: "",
     ratings: 0,
-    subtitles: [],
-    topics: [],
-    videosDurations: [],
+    subtitles: new Set(),
+    topics: new Set(),
+    videosDurations: new Set(),
     certificateOnly: false,
   });
 

@@ -240,12 +240,12 @@ export interface FilterDataProps {
   sortBy: "";
   certificateOnly: boolean;
   handsOnPractice: string;
-  language: string[];
-  levels: string[];
-  price: string;
+  language: Set<string>;
+  levels: Set<string>;
+  price: Set<string>;
   ratings: number;
-  subtitles: string[];
-  topics: string[];
+  subtitles: Set<string>;
+  topics: Set<string>;
   videosDurations: number[];
 }
 

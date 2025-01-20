@@ -21,35 +21,82 @@ const Filter: React.FC<FilterProps> = ({
     setClicked((prev) => !prev);
   };
 
-  console.log();
-
   const handleClickValue = (name: string) => {
     if (filterTitle === "Language") {
-      console.log("Selected language is: ", name);
-      
+      if (filterData.language.has(name)) {
+        filterData.language.delete(name); // Remove if it exists
+      } else {
+        filterData.language.add(name); // Add if it doesn't exist
+      }
+      setFilterData({ ...filterData });
+      console.log(`Updated language set:`, Array.from(filterData.language));
     }
+
     if (filterTitle === "Hands-on Practice") {
-      console.log("Selected Hands-on Practice is: ", name);
+      if (filterData.handsOnPractice.has(name)) {
+        filterData.handsOnPractice.delete(name);
+      } else {
+        filterData.handsOnPractice.add(name);
+      }
+      setFilterData({ ...filterData });
+      console.log(
+        `Updated hands-on practice set:`,
+        Array.from(filterData.handsOnPractice)
+      );
     }
 
     if (filterTitle === "Video Duration") {
-      console.log("Video Duration: ", name);
+      if (filterData.videosDurations.has(Number(name))) {
+        filterData.videosDurations.delete(Number(name));
+      } else {
+        filterData.videosDurations.add(Number(name));
+      }
+      setFilterData({ ...filterData });
+      console.log(
+        `Updated video duration set:`,
+        Array.from(filterData.videosDurations)
+      );
     }
 
     if (filterTitle === "Topics") {
-      console.log("Topics: ", name);
+      if (filterData.topics.has(name)) {
+        filterData.topics.delete(name);
+      } else {
+        filterData.topics.add(name);
+      }
+      setFilterData({ ...filterData });
+      console.log(`Updated topics set:`, Array.from(filterData.topics));
     }
 
     if (filterTitle === "Level") {
-      console.log("Level: ", name);
+      if (filterData.levels.has(name)) {
+        filterData.levels.delete(name);
+      } else {
+        filterData.levels.add(name);
+      }
+      setFilterData({ ...filterData });
+      console.log(`Updated levels set:`, Array.from(filterData.levels));
     }
 
     if (filterTitle === "Subtitles") {
-      console.log("Subtitles: ", name);
+      if (filterData.subtitles.has(name)) {
+        filterData.subtitles.delete(name);
+      } else {
+        filterData.subtitles.add(name);
+      }
+      setFilterData({ ...filterData });
+      console.log(`Updated subtitles set:`, Array.from(filterData.subtitles));
     }
 
     if (filterTitle === "Price") {
-      console.log("Price: ", name);
+      if (filterData.price === name) {
+        filterData.price = "";
+      } else {
+        filterData.price = name;
+      }
+
+      setFilterData({ ...filterData });
+      console.log(`Updated price:`, filterData.price || "None");
     }
   };
 
