@@ -69,13 +69,13 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
       <div className="flex items-center justify-between ">
         {Array.from({ length: 5 }, (_, i) => {
           if (i < fullStars) {
-            return <IoIosStar key={i} className="text-[#c4710d] ml-1" />;
+            return <IoIosStar key={i} className="text-[#c4710d] ml-[1px]" />;
           } else if (i === fullStars && hasHalfStar) {
             return (
-              <MdOutlineStarHalf key={i} className="text-[#c4710d] ml-1" />
+              <MdOutlineStarHalf key={i} className="text-[#c4710d] ml-[1px]" />
             );
           } else {
-            return <IoIosStarOutline key={i} className="text-[#c4710d] ml-1" />;
+            return <IoIosStarOutline key={i} className="text-[#c4710d] ml-[1px]" />;
           }
         })}
       </div>
@@ -104,24 +104,24 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
               {courses.map((course) => (
                 <div
                   key={course._id}
-                  className="w-[calc(100%/5)] px-4 box-border relative"
+                  className="w-[calc(100%/5)] px-[0.5rem] box-border relative"
                 >
-                  <div className="border rounded-lg shadow-sm overflow-hidden bg-white flex flex-col h-[350px]">
+                  <div className="shadow-sm overflow-hidden bg-white flex flex-col h-[350px]">
                     <div className="h-40 w-full">
                       <img
                         src={course.courseImg}
                         alt={course.courseName}
-                        className="w-full h-full object-cover"
+                        className="border border-gray-300 w-full h-full object-cover"
                       />
                     </div>
-                    <div className="p-4 flex flex-col justify-between flex-grow">
+                    <div className="p-1 flex flex-col justify-between flex-grow">
                       {/* Título */}
-                      <h3 className="font-bold text-sm text-gray-900 line-clamp-2 mb-1">
+                      <h3 className="font-bold text-sm text-gray-900 line-clamp-2">
                         {course.courseName}
                       </h3>
 
                       {/* Nome do Instrutor */}
-                      <p className="text-xs text-gray-600 truncate mb-2">
+                      <p className="text-xs text-gray-600 truncate">
                         {course.courseInstructor.fullName}
                       </p>
 
@@ -142,8 +142,8 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                       </div>
 
 
-                      {/* Preço e Tag */}
-                      <div className="flex items-baseline justify-between mt-2">
+                      {/* Price */}
+                      <div className="flex items-baseline justify-between">
                         <div>
                           <span className="font-bold text-gray-900">
                             ₪{course.courseDiscountPrice.toFixed(2)}
@@ -155,7 +155,12 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                           )}
                         </div>
                       </div>
-                      <CourseTag tagName={course.courseTag} />
+
+                      {/* Tag */}
+                      <span className="inline-block">
+                        <CourseTag tagName={course.courseTag} />
+                      </span>
+
                     </div>
                   </div>
                 </div>
