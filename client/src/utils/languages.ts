@@ -1,4 +1,4 @@
-export const languages = [
+export const languages: { code: string; name: string }[] = [
   { code: "en", name: "English" },
   { code: "es", name: "Español" },
   { code: "tr", name: "Türkçe" },
@@ -37,4 +37,25 @@ export const languages = [
   { code: "gu", name: "ગુજરાતી" },
   { code: "uz", name: "O‘zbek" },
   { code: "lt", name: "Lietuvių" },
+];
+
+export const btnLanguages: { code: string; name: string }[] = [
+  { code: "English", name: "English" },
+  { code: "Deutsch", name: "Deutsch" },
+  { code: "Español", name: "Español" },
+  { code: "Français", name: "Français" },
+  { code: "Bahasa Indonesia", name: "Bahasa Indonesia" },
+  { code: "Italiano", name: "Italiano" },
+  { code: "日本語", name: "日本語" },
+  { code: "한국어", name: "한국어" },
+  { code: "Nederlands", name: "Nederlands" },
+  { code: "Polski", name: "Polski" },
+  { code: "Português", name: "Português" },
+  { code: "Română", name: "Română" },
+  { code: "Русский", name: "Русский" },
+  { code: "ภาษาไทย", name: "ภาษาไทย" },
+  { code: "Türkçe", name: "Türkçe" },
+  { code: "Tiếng Việt", name: "Tiếng Việt" },
+  { code: "中文(简体)", name: "中文(简体)" },
+  { code: "中文(繁體)", name: "中文(繁體)" },
 ];

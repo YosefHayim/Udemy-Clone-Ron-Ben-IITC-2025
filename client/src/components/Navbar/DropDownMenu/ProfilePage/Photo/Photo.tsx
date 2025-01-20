@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SideBarProfile from "../ProfilePage/SideBarProfile"; // Importando o componente da Sidebar
+import SideBarProfile from "../SideBarProfile/SideBarProfile"; // Importando o componente da Sidebar
 
 const Photo = () => {
   const [selectedFile, setSelectedFile] = useState(null); // Estado para armazenar o arquivo selecionado
@@ -37,7 +37,9 @@ const Photo = () => {
       <main className="flex-1 p-8">
         <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Photo</h2>
-          <p className="text-gray-600 mb-4">Add a nice photo of yourself for your profile.</p>
+          <p className="text-gray-600 mb-4">
+            Add a nice photo of yourself for your profile.
+          </p>
 
           {/* Image Preview */}
           <div className="mb-6">

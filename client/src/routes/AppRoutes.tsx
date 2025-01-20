@@ -15,10 +15,11 @@ import Logout from "@/pages/Logout/Logout";
 import Payment from "@/pages/Payment/Payment";
 import EditProfile from "@/pages/EditProfile/EditProfile";
 import OAuthCallback from "@/pages/Login/OAuthCallback";
-import ProfileMain from "@/pages/ProfilePage/ProfileMain";
-import UdemyCredits from "@/pages/UdemyCredits/UdemyCredits";
-import PurchaseHistory from "@/pages/PurchaseHistory/PurchaseHistory";
-import Subscription from "@/pages/Subscription/Subscription";
+import ProfileMain from "@/components/Navbar/DropDownMenu/ProfilePage/ProfileMain/ProfileMain";
+import UdemyCredits from "@/components/Navbar/DropDownMenu/UdemyCredits/UdemyCredits";
+import PurchaseHistory from "@/components/Navbar/DropDownMenu/PurchaseHistory/PurchaseHistory";
+import Subscription from "@/components/Navbar/DropDownMenu/Subscription/Subscription";
+import PublicProfile from "@/components/Navbar/DropDownMenu/PublicProfile/PublicProfile";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -47,6 +48,10 @@ const AppRoutes: React.FC = () => {
                   element={<Subscription />}
                 />
                 <Route path="/cart" element={<ShoppingCart />} />
+                <Route
+                  path="/user/public-profile"
+                  element={<PublicProfile />}
+                />
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route
                   path="/loader"

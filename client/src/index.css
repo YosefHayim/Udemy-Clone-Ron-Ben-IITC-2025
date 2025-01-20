@@ -19,6 +19,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@layer utilities {
+  .hover-color-mix:hover {
+    background-color: color-mix(in sRGB, #6d28d2 12%, transparent);
+  }
+}
+
 a {
   /* font-weight: 500; */
   /* color: #646cff; */

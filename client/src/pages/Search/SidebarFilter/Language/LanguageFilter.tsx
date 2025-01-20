@@ -1,6 +1,6 @@
 import Filter from "@/components/Filter/Filter";
 import { SidebarFilterProps } from "@/types/types";
-import { languages } from "@/utils/languanges";
+import { languages } from "@/utils/languages";
 import { useState } from "react";
 
 const LanguageFilter: React.FC<SidebarFilterProps> = ({

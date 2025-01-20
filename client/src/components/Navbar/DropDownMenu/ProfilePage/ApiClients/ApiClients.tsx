@@ -1,5 +1,4 @@
-
-import SideBarProfile from "../ProfilePage/SideBarProfile";
+import SideBarProfile from "../SideBarProfile/SideBarProfile";
 const ApiClients = () => {
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -10,7 +9,9 @@ const ApiClients = () => {
       <main className="flex-1 p-8">
         <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">API Clients</h2>
-          <p className="text-gray-600 mb-6">Create and list your API clients.</p>
+          <p className="text-gray-600 mb-6">
+            Create and list your API clients.
+          </p>
 
           {/* Affiliate API Section */}
           <div className="mb-10">
@@ -21,10 +22,7 @@ const ApiClients = () => {
               The Udemy Affiliate API exposes functionalities of Udemy to help
               developers build client applications and integrations with Udemy.
               To see more details, please visit{" "}
-              <a
-                href="#"
-                className="text-purple-600 hover:underline"
-              >
+              <a href="#" className="text-purple-600 hover:underline">
                 Udemy Affiliate API
               </a>
               .
