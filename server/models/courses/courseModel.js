@@ -155,6 +155,10 @@ const courseSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    certificateOnly: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true }
 );
