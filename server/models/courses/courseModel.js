@@ -54,6 +54,7 @@ const courseSchema = new mongoose.Schema(
     },
     courseDiscountPrice: {
       type: Number,
+      default: 0,
       required: [true, "Course must have a discount price."],
     },
     category: {
