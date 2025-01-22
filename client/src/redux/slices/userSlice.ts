@@ -9,6 +9,7 @@ const initialState: UserState = {
   role: "",
   coursesBought: [],
   udemyCredits: 0,
+  cookie: "",
 };
 
 // Create the slice
@@ -41,6 +42,9 @@ const userSlice = createSlice({
     setUdemyCredits: (state, action: PayloadAction<number>) => {
       state.udemyCredits = action.payload;
     },
+    setCookie: (state, action: PayloadAction<string>) => {
+      state.cookie = action.payload;
+    },
     clearUser: (state) => {
       state.fullName = "";
       state.profilePic = "";
@@ -62,6 +66,7 @@ export const {
   setCoursesBought,
   clearUser,
   setUdemyCredits,
+  setCookie,
 } = userSlice.actions;
 
 // Export the reducer to add it to the store

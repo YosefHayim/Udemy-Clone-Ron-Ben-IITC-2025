@@ -12,16 +12,13 @@ import Heart from "./Heart/Heart";
 import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
 import ExploreMenu from "./Explore/ExploreMenu";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux";
 
 const Navbar = () => {
-  const [cookie, setCookie] = useState(Cookies.get("cookie"));
+  const cookie = useSelector((state: RootState) => state.user.cookie) || "";
 
-  useEffect(() => {
-    const currentCookie = Cookies.get("cookie");
-    if (currentCookie !== cookie) {
-      setCookie(currentCookie);
-    }
-  }, [cookie]);
+  useEffect(() => {}, [cookie]);
 
   return (
     <div className="flex items-center bg-white w-screen z-[1000] relative shadow-md justify-between px-[1.55rem] py-[0.75rem] font-medium text-[1.4rem]">
@@ -48,6 +45,9 @@ const Navbar = () => {
         </>
       ) : (
         <div className="flex items-center space-x-[0.4rem] pr-4">
+          <Link to="/cart">
+            <Cart />
+          </Link>
           <Link to="/login">
             <LoginBtn />
           </Link>

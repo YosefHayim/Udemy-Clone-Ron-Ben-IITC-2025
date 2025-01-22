@@ -32,6 +32,7 @@ export interface UserState {
   role: string;
   coursesBought: string[];
   udemyCredits: number;
+  cookie: string;
 }
 
 export interface searchResultCourseImgProps {
@@ -198,6 +199,7 @@ export interface DecodedTokenProps {
   bio: string;
   role: string;
   coursesBought: string[];
+  udemyCredits: number;
 }
 
 export type FormErrors = {

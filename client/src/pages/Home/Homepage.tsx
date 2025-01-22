@@ -40,8 +40,8 @@ const Homepage = () => {
     dispatch(setRole(decoded.role));
   }
   return (
-    <>
-      {!cookie && (
+    <div>
+      {!cookie ? (
         <>
           <div className="container mx-auto px-[9.6rem]">
             <DropdownMenu />
@@ -58,10 +58,8 @@ const Homepage = () => {
             <Carousel />
           </div>
         </>
-      )}
-
-      {cookie && (
-        <>
+      ) : (
+        <div>
           <DropdownMenu />
           <Menu />
           <div className="container mx-auto px-[5.6rem]">
@@ -79,9 +77,9 @@ const Homepage = () => {
             <CoursesCarousel searchTerm={"Cooking"} />
             <CoursesCarousel searchTerm={"Microsoft"} />
           </div>
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 };
 

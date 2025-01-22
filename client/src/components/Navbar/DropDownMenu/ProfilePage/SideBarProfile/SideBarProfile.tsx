@@ -10,7 +10,7 @@ const SideBarProfile = () => {
   const bio = useSelector((state: RootState) => state.user.bio);
   const cookie: string | any = Cookies.get("cookie");
 
-  if (cookie.length < 20) {
+  if (cookie && cookie.length < 20) {
     return <div></div>;
   }
 

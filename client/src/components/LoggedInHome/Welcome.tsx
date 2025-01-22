@@ -10,7 +10,7 @@ const Welcome = () => {
   const bio = useSelector((state: RootState) => state.user.bio);
   const cookie: string | any = Cookies.get("cookie");
 
-  if (cookie.length < 20) {
+  if (cookie.length && cookie < 20) {
     return <div></div>;
   }
 

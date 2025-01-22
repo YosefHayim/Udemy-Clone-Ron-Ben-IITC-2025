@@ -183,7 +183,7 @@ const DropdownMenu: React.FC = () => {
           </li>
           <li onClick={handleLogout}>
             <Link
-              to="/login"
+              to="/"
               className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
             >
               Logout

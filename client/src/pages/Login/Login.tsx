@@ -7,6 +7,7 @@ import loginUser from "@/api/users/loginUser";
 import { jwtDecode } from "jwt-decode";
 import {
   setBio,
+  setCookie,
   setCoursesBought,
   setEmailAddress,
   setFullName,
@@ -63,6 +64,7 @@ const Login = () => {
   useEffect(() => {
     if (cookie) {
       const decoded = jwtDecode<DecodedTokenProps>(cookie);
+      dispatch(setCookie(cookie));
       dispatch(setFullName(decoded.fullName));
       dispatch(setProfilePic(decoded.profilePic));
       dispatch(setEmailAddress(decoded.email));
