@@ -60,7 +60,12 @@ const SearchPage: React.FC = () => {
   }, [filterData, currentPage, searchTerm, setSearchParams]);
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["courses", searchTerm.toLowerCase(), currentPage, filterData],
+    queryKey: [
+      "courses",
+      searchTerm.toLowerCase(),
+      currentPage,
+      JSON.stringify(filterData),
+    ],
     queryFn: () => {
       if (!searchTerm && !currentPage && !limit) {
         throw new Error("Course ID is undefined");

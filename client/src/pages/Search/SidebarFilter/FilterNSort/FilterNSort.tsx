@@ -7,6 +7,22 @@ const FilterNSort: React.FC<{
   totalResults: number;
 }> = ({ totalResults }) => {
   const [filterData, setFilterData] = useContext(filterContext);
+  const handleClick = () => {
+    const resetState = {
+      sortBy: "",
+      handsOnPractice: new Set(),
+      language: new Set(),
+      levels: new Set(),
+      price: "",
+      ratings: 0,
+      subtitles: new Set(),
+      topics: new Set(),
+      videosDurations: new Set(),
+      certificateOnly: false,
+    };
+    setFilterData(resetState);
+    console.log("Filters reset to:", resetState);
+  };
 
   return (
     <div className="flex  w-[1200px] items-center justify-between mb-[2.4em]">
@@ -17,7 +33,10 @@ const FilterNSort: React.FC<{
         <div>
           <SortDropDown />
         </div>
-        <span className="text-purpleStatic hover:text-purpleHover font-bold cursor-pointer">
+        <span
+          className="text-purpleStatic hover:text-purpleHover font-bold cursor-pointer"
+          onClick={handleClick}
+        >
           Clear filters
         </span>
       </div>
