@@ -1,24 +1,18 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import LoginBtn from "../Navbar/LoginBtn/LoginBtn";
-import SignupBtn from "../Navbar/SignupBtn/SignupBtn";
-import Language from "../Navbar/Language/Language";
-import Cookies from "js-cookie";
+import { RootState } from "@/redux";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePic: React.FC<{ shortcutName: string; profilePic: string }> = ({
   shortcutName,
   profilePic,
 }) => {
-  const cookie = Cookies.get("cookie");
+  const navigate = useNavigate();
+  const cookie = useSelector((state: RootState) => state.user.cookie) || "";
 
   if (!cookie) {
-    return (
-      <div className="flex flex-row gap-[1em]">
-        <LoginBtn />
-        <SignupBtn />
-        <Language />
-      </div>
-    );
+    return navigate("/logout");
   }
 
   useEffect(() => {}, [cookie]);

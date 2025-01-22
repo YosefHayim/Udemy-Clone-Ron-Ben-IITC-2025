@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import ProfilePic from "../ProfilePic/ProfilePic";
-import Cookies from "js-cookie";
 import { RootState } from "@/redux";
 import { Link } from "react-router-dom";
 
@@ -8,9 +7,9 @@ const Welcome = () => {
   const fullName = useSelector((state: RootState) => state.user.fullName) || "";
   const profilePic = useSelector((state: RootState) => state.user.profilePic);
   const bio = useSelector((state: RootState) => state.user.bio);
-  const cookie: string | any = Cookies.get("cookie");
+  const cookie = useSelector((state: RootState) => state.user.cookie) || "";
 
-  if (cookie.length && cookie < 20) {
+  if (!cookie) {
     return <div></div>;
   }
 

@@ -2,7 +2,7 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import { MdLanguage } from "react-icons/md";
 import ProfilePic from "../../ProfilePic/ProfilePic";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import CartCoursesNumber from "../Cart/CartCoursesNumber/CartCoursesNumber";
 import Cookies from "js-cookie";
 import { RootState } from "@/redux";
@@ -12,6 +12,7 @@ import ChangeLanguage from "./ChangeLanguage/ChangeLanguage";
 import { useState } from "react";
 
 const DropdownMenu: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const fullName = useSelector((state: RootState) => state.user.fullName) || "";
   const profilePic = useSelector((state: RootState) => state.user.profilePic);
@@ -37,6 +38,7 @@ const DropdownMenu: React.FC = () => {
   const handleLogout = () => {
     Cookies.remove("cookie");
     dispatch(clearUser());
+    navigate("/logout");
   };
 
   return (

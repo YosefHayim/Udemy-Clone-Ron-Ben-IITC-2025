@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchInput from "./SearchInput/SearchInput";
 import LoginBtn from "./LoginBtn/LoginBtn";
@@ -29,7 +28,7 @@ const Navbar = () => {
       <SearchInput />
       <AtagBtn aTagName={"Udemy Business"} />
       <AtagBtn aTagName={"Teach on Udemy"} />
-      {cookie ? (
+      {cookie.length > 1 ? (
         <>
           <Link to="/wishlist">
             <AtagBtn aTagName={"My learning"} />

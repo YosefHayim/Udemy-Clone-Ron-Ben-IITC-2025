@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/index"; // Import RootState type for Redux
 import DropdownMenu from "../DropDownMenu/DropDownMenu"; // Importa o componente DropdownMenu
@@ -7,17 +7,19 @@ import LoginBtn from "../LoginBtn/LoginBtn";
 import SignupBtn from "../SignupBtn/SignupBtn";
 import Language from "../Language/Language";
 import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { setCookie } from "@/redux/slices/userSlice";
 
 const Profile: React.FC = () => {
+  const dispatch = useDispatch();
   const fullName = useSelector((state: RootState) => state.user.fullName);
   const profilePic = useSelector((state: RootState) => state.user.profilePic);
-
-  const [cookie, setCookie] = useState(Cookies.get("cookie"));
+  const cookie = useSelector((state: RootState) => state.user.cookie) || "";
 
   useEffect(() => {
     const currentCookie = Cookies.get("cookie");
-    if (currentCookie !== cookie) {
-      setCookie(currentCookie);
+    if (currentCookie && currentCookie !== cookie) {
+      dispatch(setCookie(currentCookie));
     }
   }, [cookie]);
 
@@ -31,7 +33,7 @@ const Profile: React.FC = () => {
 
   return (
     <div>
-      {cookie ? (
+      {cookie.length > 1 ? (
         <div className="relative group">
           {/* If no profilePic, fallback to initials */}
           <div className="pt-[1em]">
