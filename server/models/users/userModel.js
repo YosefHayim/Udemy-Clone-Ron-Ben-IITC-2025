@@ -113,6 +113,7 @@ const userSchema = new mongoose.Schema(
       {
         course: { type: mongoose.Schema.ObjectId, ref: "Course" },
         boughtAt: { type: Date, default: Date.now },
+        coursePrice: { type: Number, default: 0 },
       },
     ],
     coursesCreated: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],

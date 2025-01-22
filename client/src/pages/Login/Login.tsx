@@ -71,6 +71,8 @@ const Login = () => {
       dispatch(setBio(decoded.bio));
       dispatch(setRole(decoded.role));
       dispatch(setCoursesBought(decoded.coursesBought));
+      console.log(decoded.udemyCredits);
+
       dispatch(setUdemyCredits(decoded.udemyCredits));
     }
   }, [cookie]);
