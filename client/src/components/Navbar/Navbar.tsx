@@ -37,7 +37,7 @@ const Navbar = () => {
       <SearchInput />
       <AtagBtn aTagName={"Udemy Business"} />
       <AtagBtn aTagName={"Teach on Udemy"} />
-      {cookie.length > 1 ? (
+      {cookie ? (
         <>
           <Link to="/wishlist">
             <AtagBtn aTagName={"My learning"} />

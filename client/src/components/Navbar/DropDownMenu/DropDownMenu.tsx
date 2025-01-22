@@ -2,7 +2,7 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import { MdLanguage } from "react-icons/md";
 import ProfilePic from "../../ProfilePic/ProfilePic";
 import { useSelector } from "react-redux";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CartCoursesNumber from "../Cart/CartCoursesNumber/CartCoursesNumber";
 import Cookies from "js-cookie";
 import { RootState } from "@/redux";
