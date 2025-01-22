@@ -11,20 +11,20 @@ import {
 } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { DecodedTokenProps } from "@/types/types";
-import Banner from "./Banner";
-import TrustedBySection from "./TrustedBySection";
-import LearnersAreViewing from "./LearnersAreViewing";
-import SearchResult from "./SearchResult";
-import LearningGoals from "./LearningGoals";
-import PlansSection from "./PansSection";
-import Testimonials from "./Testimonials";
-import TrendsReport from "./TopTrends";
-import TrendingNow from "./TrendingNow";
-import Carousel from "./Carousel";
-import Sections from "./Sections";
+import Banner from "./Banner/Banner";
+import TrustedBySection from "./TrustedBySection/TrustedBySection";
+import LearnersAreViewing from "./LearnersAreViewing/LearnersAreViewing";
+import SearchResult from "./SearchResult/SearchResult";
+import LearningGoals from "./LearningGoals/LearningGoals";
+import PlansSection from "./PansSection/PansSection";
+import Testimonials from "./Testimonials/Testimonials";
+import TrendsReport from "./TopTrends/TopTrends";
+import TrendingNow from "./TrendingNow/TrendingNow";
+import Carousel from "./Carousel/Carousel";
+import Sections from "./Sections/Sections";
 import Welcome from "@/components/LoggedInHome/Welcome";
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
-import TeamAccess from "./TeamAcess";
+import TeamAccess from "./TeamAccess/TeamAcess";
 
 const Homepage = () => {
   document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";

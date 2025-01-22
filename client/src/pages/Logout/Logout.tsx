@@ -1,8 +1,8 @@
 import DropdownMenu from "@/components/Navbar/DropDownMenu/DropDownMenu";
-import Banner from "../Home/Banner";
-import TrustedBySection from "../Home/TrustedBySection";
-import LearnersAreViewing from "../Home/LearnersAreViewing";
-import Sections from "../Home/Sections";
+import Banner from "../Home/Banner/Banner";
+import TrustedBySection from "../Home/TrustedBySection/TrustedBySection";
+import LearnersAreViewing from "../Home/LearnersAreViewing/LearnersAreViewing";
+import Sections from "../Home/Sections/Sections";
 import LogoutMessage from "../Home/LogoutMessage/LogoutMessage";
 
 const Logout: React.FC = () => {
