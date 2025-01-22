@@ -83,7 +83,7 @@ const Navbar = () => {
             </Link>
           </>
         ) : (
-          <div className="flex items-center space-x-[0.4rem] pr-4">
+          <div className="flex items-center gap-[0.5em]">
             <Link to="/cart">
               <Cart />
             </Link>

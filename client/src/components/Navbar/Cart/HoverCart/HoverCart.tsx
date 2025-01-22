@@ -53,7 +53,7 @@ const HoverCart = () => {
               ))
             ) : (
               <div className="flex flex-col items-center justify-center w-full text-center mt-[1em]">
-                <p>Your cart is empty.</p>
+                <p className="text-gray-300 font-light">Your cart is empty.</p>
                 <b className="text-purpleStatic hover:text-purpleHover cursor-pointer">
                   <Link to="/">Keep shopping</Link>
                 </b>
