@@ -1,4 +1,6 @@
+import { Input } from "@/components/ui/input";
 import SideBarProfile from "../SideBarProfile/SideBarProfile";
+import { Button } from "@/components/ui/button";
 
 const ProfileMain = () => {
   document.title = "Udemy | Edit profile";
@@ -21,27 +23,27 @@ const ProfileMain = () => {
               <p className="font-sans font-bold text-[1rem] pb-2 pt-8">
                 Basics:
               </p>
-              <input
+              <Input
                 id="firstName"
                 type="text"
                 placeholder="First Name"
-                className="bg-white mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300"
+                className="rounded-[0.2em] border border-gray-400"
               />
             </div>
 
             {/* Last Name */}
             <div>
-              <input
+              <Input
                 id="lastName"
                 type="text"
                 placeholder="Last Name"
-                className="bg-white  mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300"
+                className="rounded-[0.2em] border border-gray-400"
               />
             </div>
 
             {/* Headline */}
             <div>
-              <input
+              <Input
                 id="headline"
                 type="text"
                 placeholder="A professional headline"
@@ -55,7 +57,7 @@ const ProfileMain = () => {
                 id="bio"
                 placeholder="A brief bio about yourself"
                 rows={4}
-                className="bg-white  mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300"
+                className="rounded-[0.2em] border border-gray-400"
               ></textarea>
             </div>
 
@@ -63,7 +65,7 @@ const ProfileMain = () => {
             <div>
               <select
                 id="language"
-                className="bg-white  mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300"
+                className="rounded-[0.2em] border border-gray-400"
               >
                 <option value="en">English (US)</option>
                 <option value="es">Spanish</option>
@@ -78,47 +80,69 @@ const ProfileMain = () => {
                 Links:
               </label>
               <div className="space-y-4 mt-2">
-                {/* Website */}
-                <input
-                  type="url"
-                  placeholder="Website (http://...)"
-                  className="bg-white block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300"
-                />
-                {/* Twitter */}
-                <input
-                  type="url"
-                  placeholder="Twitter Profile"
-                  className="bg-white block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300"
-                />
-                {/* Facebook */}
-                <input
-                  type="url"
-                  placeholder="Facebook Profile"
-                  className="bg-white block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300"
-                />
-                {/* LinkedIn */}
-                <input
-                  type="url"
-                  placeholder="LinkedIn Profile"
-                  className="bg-white block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300"
-                />
-                {/* YouTube */}
-                <input
-                  type="url"
-                  placeholder="YouTube Profile"
-                  className="bg-white block w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300"
-                />
+                <div>
+                  {/* Website */}
+                  <Input
+                    type="url"
+                    placeholder="Website (http://...)"
+                    className="rounded-[0.2em] border border-gray-400"
+                  />
+                </div>
+                <div>
+                  {/* Twitter */}
+                  <Input
+                    type="url"
+                    placeholder="Twitter Profile"
+                    className="rounded-[0.2em] border border-gray-400"
+                  />
+                  <p className="text-[0.8em] text-gray-600">
+                    Add your twitter username (e.g. johnsmith)
+                  </p>
+                </div>
+                <div>
+                  {/* Facebook */}
+                  <Input
+                    type="url"
+                    placeholder="Facebook Profile"
+                    className="rounded-[0.2em] border border-gray-400"
+                  />
+                  <p className="text-[0.8em] text-gray-600">
+                    Add your twitter username (e.g. johnsmith)
+                  </p>
+                </div>
+                <div>
+                  {/* LinkedIn */}
+                  <Input
+                    type="url"
+                    placeholder="LinkedIn Profile"
+                    className="rounded-[0.2em] border border-gray-400"
+                  />
+                  <p className="text-[0.8em] text-gray-600">
+                    Add your twitter username (e.g. johnsmith)
+                  </p>
+                </div>
+                <div>
+                  {/* YouTube */}
+                  <Input
+                    type="url"
+                    placeholder="YouTube Profile"
+                    className="rounded-[0.2em] border border-gray-400"
+                  />
+                  <p className="text-[0.8em] text-gray-600">
+                    Add your twitter username (e.g. johnsmith)
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Save Button */}
-            <div className="flex justify-end">
-              <button
+            <div className="flex justify-start w-full">
+              <Button
                 type="submit"
-                className="px-6 py-2 bg-indigo-600 text-white font-medium rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="mb-[1em] font-bold transition duration-150 text-sm font-Sans py-[1.21rem] bg-[#6D28D2] hover:bg-[#892DE1] text-white rounded-[0.2rem] px-4 focus:outline-none"
               >
                 Save
-              </button>
+              </Button>
             </div>
           </form>
         </div>
