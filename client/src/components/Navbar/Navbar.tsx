@@ -13,11 +13,20 @@ import Profile from "./Profile/Profile";
 import ExploreMenu from "./Explore/ExploreMenu";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
+import Cookies from "js-cookie";
+import { setCookie } from "@/redux/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
   const cookie = useSelector((state: RootState) => state.user.cookie) || "";
+  const dispatch = useDispatch();
 
-  useEffect(() => {}, [cookie]);
+  useEffect(() => {
+    const currentCookie = Cookies.get("cookie");
+    if (currentCookie && currentCookie !== cookie) {
+      dispatch(setCookie(currentCookie));
+    }
+  }, [cookie, dispatch]);
 
   return (
     <div className="flex items-center bg-white w-screen z-[1000] relative shadow-md justify-between px-[1.55rem] py-[0.75rem] font-medium text-[1.4rem]">
@@ -39,7 +48,7 @@ const Navbar = () => {
           </Link>
           <Notifications />
           <Link to="/edit-profile">
-            <Profile />
+            <Profile cookie={cookie} />
           </Link>
         </>
       ) : (

@@ -1,5 +1,6 @@
 import { UserState } from "@/types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 const initialState: UserState = {
   fullName: "",
@@ -9,10 +10,9 @@ const initialState: UserState = {
   role: "",
   coursesBought: [],
   udemyCredits: 0,
-  cookie: "",
+  cookie: Cookies.get("cookie") || "",
 };
 
-// Create the slice
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -52,6 +52,7 @@ const userSlice = createSlice({
       state.bio = "";
       state.role = "";
       state.coursesBought = [];
+      state.cookie = "";
     },
   },
 });

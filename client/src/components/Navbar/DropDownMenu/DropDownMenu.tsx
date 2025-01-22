@@ -17,17 +17,12 @@ const DropdownMenu: React.FC = () => {
   const fullName = useSelector((state: RootState) => state.user.fullName) || "";
   const profilePic = useSelector((state: RootState) => state.user.profilePic);
   const email = useSelector((state: RootState) => state.user.email);
-  let cookie = Cookies.get("cookie");
 
   const [isClicked, setClicked] = useState(false);
 
   const handleClick = () => {
     setClicked((prev) => !prev);
   };
-
-  if (!cookie) {
-    return <div></div>;
-  }
 
   const [firstWord, secondWord] = fullName.split(" ") || "";
 
