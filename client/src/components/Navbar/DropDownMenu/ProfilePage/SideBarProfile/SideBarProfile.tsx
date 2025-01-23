@@ -104,7 +104,7 @@ const SideBarProfile = () => {
           </li>
           <li>
             <Link
-              to="/close-account"
+              to="/user/close-account"
               className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Close account
