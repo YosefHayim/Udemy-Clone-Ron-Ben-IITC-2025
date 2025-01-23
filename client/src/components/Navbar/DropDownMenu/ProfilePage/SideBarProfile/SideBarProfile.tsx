@@ -21,143 +21,134 @@ const SideBarProfile = () => {
 
   return (
     <div className="w-56 bg-white border-l border-b border-t border-gray-300">
-      
+
+      {/* Picture & Name */}
       <div className="p-6 ">
         <div className="flex flex-col items-center space-y-4">
           <div className="flex items-center justify-center w-[8rem] h-[8rem] rounded-full bg-[#1D1E27] text-white text-4xl font-bold">
-          <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
+            <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
           </div>
           <div>
             <h2 className="text-lg font-bold text-gray-800">{fullName}</h2>
           </div>
         </div>
       </div>
-      
-      
+      {/* Profile Nav_Side_Bar */}
       <nav className="mt-6">
-      <ul className="space-y-2">
-        <li>
-          <Link
-            to="/user/public-profile"
-            className={`block py-2 px-6 font-medium cursor ${
-              location.pathname === "/user/public-profile"
+        <ul className="space-y-2">
+          <li>
+            <Link
+              to="/user/public-profile"
+              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/public-profile"
                 ? "bg-gray-300 text-gray-900"
                 : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-            }`}
-          >
-            View public Profile
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/user/edit-profile"
-            className={`block py-2 px-6 font-medium cursor ${
-              location.pathname === "/user/edit-profile"
+                }`}
+            >
+              View public Profile
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/user/edit-profile"
+              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/edit-profile"
                 ? "bg-gray-300 text-gray-900"
                 : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-            }`}
-          >
-            Profile
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/user/photo"
-            className={`block py-2 px-6 font-medium cursor ${
-              location.pathname === "/user/photo"
+                }`}
+            >
+              Profile
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/user/photo"
+              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/photo"
+                ? "bg-[#9194AC] text-[#FFFFFF]"
+                : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
+                }`}
+            >
+              Photo
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/user/edit-account"
+              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/edit-account"
                 ? "bg-gray-300 text-gray-900"
                 : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-            }`}
-          >
-            Photo
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/user/edit-account"
-            className={`block py-2 px-6 font-medium cursor ${
-              location.pathname === "/user/edit-account"
+                }`}
+            >
+              Account Security
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/user/manage-subscriptions"
+              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/manage-subscriptions"
                 ? "bg-gray-300 text-gray-900"
                 : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-            }`}
-          >
-            Account Security
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/user/manage-subscriptions"
-            className={`block py-2 px-6 font-medium cursor ${
-              location.pathname === "/user/manage-subscriptions"
+                }`}
+            >
+              Subscriptions
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/user/edit-payment-methods/"
+              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/edit-payment-methods/"
                 ? "bg-gray-300 text-gray-900"
                 : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-            }`}
-          >
-            Subscriptions
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/user/edit-payment-methods/"
-            className={`block py-2 px-6 font-medium cursor ${
-              location.pathname === "/user/edit-payment-methods/"
+                }`}
+            >
+              Payment methods
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/user/edit-privacy"
+              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/edit-privacy"
                 ? "bg-gray-300 text-gray-900"
                 : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-            }`}
-          >
-            Payment methods
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/user/edit-privacy"
-            className={`block py-2 px-6 font-medium cursor ${
-              location.pathname === "/user/edit-privacy"
+                }`}
+            >
+              Privacy
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/user/edit-notifications/"
+              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/edit-notifications/"
                 ? "bg-gray-300 text-gray-900"
                 : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-            }`}
-          >
-            Privacy
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/user/edit-notifications/"
-            className={`block py-2 px-6 font-medium cursor ${
-              location.pathname === "/user/edit-notifications/"
+                }`}
+            >
+              Notification Preferences
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/user/edit-api-clients/"
+              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/edit-api-clients/"
                 ? "bg-gray-300 text-gray-900"
                 : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-            }`}
-          >
-            Notification Preferences
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/user/edit-api-clients/"
-            className={`block py-2 px-6 font-medium cursor ${
-              location.pathname === "/user/edit-api-clients/"
+                }`}
+            >
+              API clients
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/user/close-account"
+              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/close-account"
                 ? "bg-gray-300 text-gray-900"
                 : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-            }`}
-          >
-            API clients
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/user/close-account"
-            className={`block py-2 px-6 font-medium cursor ${
-              location.pathname === "/user/close-account"
-                ? "bg-gray-300 text-gray-900"
-                : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-            }`}
-          >
-            Close account
-          </Link>
-        </li>
-      </ul>
-    </nav>
+                }`}
+            >
+              Close account
+            </Link>
+          </li>
+        </ul>
+      </nav>
+
     </div>
   );
 };
