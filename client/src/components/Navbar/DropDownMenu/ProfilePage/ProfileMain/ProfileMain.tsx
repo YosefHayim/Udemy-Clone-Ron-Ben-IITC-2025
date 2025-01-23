@@ -86,69 +86,78 @@ const ProfileMain = () => {
 
             {/* Links */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Links:
-              </label>
+              <label className="block text-sm font-medium">Links:</label>
               <div className="space-y-4 mt-2">
                 <div>
                   {/* Website */}
                   <Input
                     type="url"
                     placeholder="Website (http://...)"
-                    className="rounded-[0em] border border-gray-400"
+                    className="rounded-[0em] border-black"
                   />
                 </div>
                 <div className="flex flex-col items-start justify-start w-full">
-                  {/* Twitter */}
                   <div className="flex flex-row items-center justify-center w-full border-b border-gray-600">
-                    <label
-                      htmlFor="twitter"
-                      className="bg-gray-100 p-[0.7em] text-gray-500"
-                    >
+                    <label htmlFor="twitter" className="bg-gray-100 p-[0.7em]">
                       http://twitter.com/
                     </label>
                     <Input
                       type="url"
                       name="twitter"
                       placeholder="Twitter Profile"
-                      className="rounded-[0em] border-t border-l border-gray-600 border-b-0"
+                      className="rounded-[0em] border-t border-l border-gray-600 border-b-0 placeholder:text-[#9194AC]"
                     />
                   </div>
-                  <p className="text-[0.8em] text-gray-600">
+                  <p className="text-[0.8em] text-gray-600 mb-[1em]">
                     Add your twitter username (e.g. johnsmith)
                   </p>
                 </div>
-                <div>
-                  {/* Facebook */}
-                  <Input
-                    type="url"
-                    placeholder="Facebook Profile"
-                    className="rounded-[0em] border border-gray-400"
-                  />
-                  <p className="text-[0.8em] text-gray-600">
-                    Add your twitter username (e.g. johnsmith)
+                <div className="flex flex-col items-start justify-start w-full">
+                  <div className="flex flex-row items-center justify-center w-full border-b border-gray-600">
+                    <label htmlFor="facebook" className="bg-gray-100 p-[0.7em]">
+                      http://www.facebook.com/
+                    </label>
+                    <Input
+                      type="url"
+                      name="facebook"
+                      placeholder="Facebook Profile"
+                      className="rounded-[0em] border-t border-l border-gray-600 border-b-0 placeholder:text-[#9194AC]"
+                    />
+                  </div>
+                  <p className="text-[0.8em] text-gray-600 mb-[1em]">
+                    input your Facebook username (e.g. johnsmith)
                   </p>
                 </div>
-                <div>
-                  {/* LinkedIn */}
-                  <Input
-                    type="url"
-                    placeholder="LinkedIn Profile"
-                    className="rounded-[0em] border border-gray-400"
-                  />
-                  <p className="text-[0.8em] text-gray-600">
-                    Add your twitter username (e.g. johnsmith)
+                <div className="flex flex-col items-start justify-start w-full">
+                  <div className="flex flex-row items-center justify-center w-full border-b border-gray-600">
+                    <label htmlFor="linkedin" className="bg-gray-100 p-[0.7em]">
+                      http://www.Linkedin.com/
+                    </label>
+                    <Input
+                      type="url"
+                      name="linkedin"
+                      placeholder="Linkedin Profile"
+                      className="rounded-[0em] border-t border-l border-gray-600 border-b-0 placeholder:text-[#9194AC]"
+                    />
+                  </div>
+                  <p className="text-[0.8em] text-gray-600 mb-[1em]">
+                    input your linkedin username (e.g. johnsmith)
                   </p>
                 </div>
-                <div>
-                  {/* YouTube */}
-                  <Input
-                    type="url"
-                    placeholder="YouTube Profile"
-                    className="rounded-[0em] border border-gray-400"
-                  />
-                  <p className="text-[0.8em] text-gray-600">
-                    Add your twitter username (e.g. johnsmith)
+                <div className="flex flex-col items-start justify-start w-full">
+                  <div className="flex flex-row items-center justify-center w-full border-b border-gray-600">
+                    <label htmlFor="youtube" className="bg-gray-100 p-[0.7em]">
+                      http://www.youtube.com/
+                    </label>
+                    <Input
+                      type="url"
+                      name="youtube"
+                      placeholder="Youtube Profile"
+                      className="rounded-[0em] border-t border-l border-gray-600 border-b-0 placeholder:text-[#9194AC]"
+                    />
+                  </div>
+                  <p className="text-[0.8em] text-gray-600 mb-[1em]">
+                    input your Youtube username (e.g. johnsmith)
                   </p>
                 </div>
               </div>
