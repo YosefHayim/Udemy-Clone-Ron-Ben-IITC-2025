@@ -7,7 +7,7 @@ const ProfilePic: React.FC<{ shortcutName: string; profilePic: string }> = ({
   return (
     <Avatar>
       <AvatarImage src={profilePic} />
-      <AvatarFallback className="bg-black text-white font-bold">
+      <AvatarFallback className="bg-[#1D1E27] text-white font-bold">
         {shortcutName.toUpperCase()}
       </AvatarFallback>
     </Avatar>

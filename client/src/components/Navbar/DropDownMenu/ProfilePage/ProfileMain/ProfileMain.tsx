@@ -8,7 +8,7 @@ const ProfileMain = () => {
   const fullName = useSelector((state) => state.user.fullName);
 
   return (
-    <div className="flex min-h-screen bg-gray-100 mx-[6rem] mt-[1.5rem] mb-[3rem]">
+    <div className="flex min-h-screen bg-gray-100 mx-[12rem] mt-[1.5rem] mb-[3rem]">
       {/* Sidebar */}
       <SideBarProfile />
 
