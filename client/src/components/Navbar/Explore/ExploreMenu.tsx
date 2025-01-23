@@ -108,6 +108,7 @@ const ExploreMenu = () => {
             {exploreData.map((category, index: number) => (
               <>
                 <div
+                  onClick={() => handleNavigate(category?.category || "")}
                   key={index}
                   className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
                   onMouseEnter={() =>
@@ -136,6 +137,13 @@ const ExploreMenu = () => {
                 {getCategoryData(hoveredMenu)?.subcategory.map(
                   (subCategory, index) => (
                     <div
+                      onClick={() =>
+                        handleNavigate(
+                          subCategory?.title
+                            ? subCategory?.title
+                            : subCategory?.topics[0]
+                        )
+                      }
                       key={index}
                       className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
                       onMouseEnter={() =>
@@ -168,13 +176,14 @@ const ExploreMenu = () => {
                 {getSubCategoryData(hoveredMenu, hoveredSubMenu)?.topics?.map(
                   (topic: any, index: number) => (
                     <div
+                      onClick={() => handleNavigate(topic)}
                       key={index}
                       className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
                     >
                       <span>
                         {typeof topic === "string"
                           ? topic
-                          : topic.title || topic.group || "Unnamed Topic"}
+                          : topic.title || topic.group || "web"}
                       </span>
                     </div>
                   )

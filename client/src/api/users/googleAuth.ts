@@ -15,7 +15,7 @@ const googleAuth = async (): Promise<GoogleAuthResponse> => {
     const response = await axiosClient.post<GoogleAuthResponse>(url, { code });
 
     if (response) {
-      console.log("Tokens and user data:", response.data);
+      // console.log("Tokens and user data:", response.data);
       return response.data; // Return tokens and user data
     }
 

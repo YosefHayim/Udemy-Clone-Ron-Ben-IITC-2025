@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/index"; // Import RootState type for Redux
 import DropdownMenu from "../DropDownMenu/DropDownMenu"; // Importa o componente DropdownMenu
@@ -6,21 +6,12 @@ import ProfilePic from "@/components/ProfilePic/ProfilePic";
 import LoginBtn from "../LoginBtn/LoginBtn";
 import SignupBtn from "../SignupBtn/SignupBtn";
 import Language from "../Language/Language";
-import Cookies from "js-cookie";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-const Profile: React.FC = () => {
+const Profile: React.FC = ({ cookie }) => {
+  const dispatch = useDispatch();
   const fullName = useSelector((state: RootState) => state.user.fullName);
   const profilePic = useSelector((state: RootState) => state.user.profilePic);
-
-  const [cookie, setCookie] = useState(Cookies.get("cookie"));
-
-  useEffect(() => {
-    const currentCookie = Cookies.get("cookie");
-    if (currentCookie !== cookie) {
-      setCookie(currentCookie);
-    }
-  }, [cookie]);
 
   // Ensure fullName is defined before splitting
   const [firstWord, secondWord] = fullName ? fullName.split(" ") : ["", ""];
@@ -32,13 +23,11 @@ const Profile: React.FC = () => {
 
   return (
     <div>
-      {cookie ? (
+      {cookie.length > 1 ? (
         <div className="relative group">
           {/* If no profilePic, fallback to initials */}
           <div className="pt-[1em]">
-            <Link to="/edit-profile">
-              <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
-            </Link>
+            <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
           </div>
           <div className="pb-[1em]">
             <DropdownMenu />

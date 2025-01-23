@@ -1,5 +1,6 @@
 import { UserState } from "@/types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 const initialState: UserState = {
   fullName: "",
@@ -9,9 +10,9 @@ const initialState: UserState = {
   role: "",
   coursesBought: [],
   udemyCredits: 0,
+  cookie: Cookies.get("cookie") || "",
 };
 
-// Create the slice
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -41,6 +42,9 @@ const userSlice = createSlice({
     setUdemyCredits: (state, action: PayloadAction<number>) => {
       state.udemyCredits = action.payload;
     },
+    setCookie: (state, action: PayloadAction<string>) => {
+      state.cookie = action.payload;
+    },
     clearUser: (state) => {
       state.fullName = "";
       state.profilePic = "";
@@ -48,6 +52,7 @@ const userSlice = createSlice({
       state.bio = "";
       state.role = "";
       state.coursesBought = [];
+      state.cookie = "";
     },
   },
 });
@@ -62,6 +67,7 @@ export const {
   setCoursesBought,
   clearUser,
   setUdemyCredits,
+  setCookie,
 } = userSlice.actions;
 
 // Export the reducer to add it to the store

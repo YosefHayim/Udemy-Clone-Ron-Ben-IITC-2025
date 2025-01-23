@@ -9,7 +9,7 @@ const googleRedirectUrl = async () => {
     } = await axiosClient.post(url);
 
     if (redirectUrl) {
-      console.log(redirectUrl);
+      // console.log(redirectUrl);
       return redirectUrl;
     }
   } catch (error) {

@@ -1,23 +1,39 @@
 import { useState } from "react";
 import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { useContext } from "react";
+import { filterContext } from "@/routes/AppRoutes";
+import { FilterDataProps } from "@/types/types";
+import { useEffect } from "react";
 
 const RatingsFilter = () => {
-  const [isClicked, setClicked] = useState(false);
-  const [selectedRating, setSelectedRating] = useState<string | null>(null);
+  const [isClicked, setClicked] = useState(true);
+  const [selectedRating, setSelectedRating] = useState<number | null>(null);
+  const [filterData, setFilterData] =
+    useContext<FilterDataProps>(filterContext);
+
+  // Sync selectedRating with filterData on mount
+  useEffect(() => {
+    setSelectedRating(filterData.ratings || null);
+  }, [filterData.ratings]);
+
+  const handleRatingClick = (rating: number) => {
+    setSelectedRating(rating);
+    setFilterData((prev: any) => ({
+      ...prev,
+      ratings: rating,
+    }));
+    console.log("Selected Rating:", rating);
+  };
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = () => {
     setClicked((prev) => !prev);
   };
 
-  const handleRatingClick = (rating: string) => {
-    setSelectedRating(rating);
-  };
-
   const ratings = [
-    { rating: "★★★★½", value: "4.5", count: "4,394" },
-    { rating: "★★★★☆", value: "4.0", count: "8,757" },
-    { rating: "★★★½☆", value: "3.5", count: "9,900" },
-    { rating: "★★★☆☆", value: "3.0", count: "10,000" },
+    { rating: "★★★★½", value: 4.5, count: "4,394" },
+    { rating: "★★★★☆", value: 4.0, count: "8,757" },
+    { rating: "★★★½☆", value: 3.5, count: "9,900" },
+    { rating: "★★★☆☆", value: 3, count: "10,000" },
   ];
 
   return (
@@ -28,7 +44,6 @@ const RatingsFilter = () => {
           isClicked ? "h-auto" : "h-[50px]"
         }`}
       >
-        {/* Header */}
         <div
           className="flex justify-between items-center cursor-pointer"
           onClick={handleClick}
@@ -36,16 +51,14 @@ const RatingsFilter = () => {
           <p className="font-bold text-lg py-[0.5em]">Ratings</p>
           {isClicked ? <MdKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
         </div>
-        {/* Ratings */}
         <div className={`${isClicked ? "block" : "hidden"}`}>
           {ratings.map(({ rating, value, count }) => (
             <label
               key={value}
               className="flex items-center cursor-pointer space-x-2 py-2"
-              onClick={() => handleRatingClick(value)}
             >
-              {/* Custom Radio Button */}
               <span
+                onClick={() => handleRatingClick(value)}
                 className={`w-4 h-4 flex items-center justify-center border-2 rounded-full ${
                   selectedRating === value ? "border-black" : "border-gray-400"
                 }`}

@@ -15,6 +15,7 @@ const sectionNames = require("./utils/sectionNames");
 const lessonsNames = require("./utils/lessonNames");
 const videosToDisplay = require("./utils/videosToDisplay");
 const supportedCountries = require("./utils/supportedCountries");
+const algoSearch = require("./utils/algoSearch");
 
 const clearCollections = async () => {
   await Promise.all([
@@ -31,22 +32,45 @@ const clearCollections = async () => {
 
 const createUsers = async () => {
   const users = [];
+  const generatedEmails = new Set();
+
+  // Fetch all existing emails from the database
+  const existingUsers = await User.find({}, { email: 1, _id: 0 });
+  existingUsers.forEach((user) => generatedEmails.add(user.email));
+
+  // Generate new users
   for (let i = 0; i < 300; i++) {
-    console.log(`Creating user ${i + 1}...`);
+    let email;
+
+    // Ensure the email is unique (not in existing or newly generated emails)
+    do {
+      email = faker.internet.email().toLowerCase();
+    } while (generatedEmails.has(email));
+
+    generatedEmails.add(email);
+
     users.push({
       fullName: faker.person.fullName(),
       profilePic: faker.image.avatar(),
-      email: faker.internet.email().toLowerCase(),
+      email, // Use the unique email
       password: faker.internet.password(10),
       role: faker.helpers.arrayElement(["student", "instructor", "student"]),
       bio: faker.lorem.sentence(1),
       udemyCredits: faker.number.int({ min: 5000, max: 10000 }),
       country: faker.helpers.arrayElement(supportedCountries),
+      recentSearches: faker.helpers.arrayElements([algoSearch]),
     });
   }
-  const createdUsers = await User.insertMany(users);
-  console.log("Users created successfully:");
-  return createdUsers;
+
+  // Insert the new users into the database
+  try {
+    const createdUsers = await User.insertMany(users);
+    console.log("Users created successfully:", createdUsers.length);
+    return createdUsers;
+  } catch (error) {
+    console.error("Error inserting users:", error);
+    throw error;
+  }
 };
 
 const createCourses = async () => {
@@ -60,7 +84,7 @@ const createCourses = async () => {
     throw new Error("No students found for enrollment.");
   }
 
-  const amountOfCourses = 1000;
+  const amountOfCourses = 300;
   const courses = [];
 
   for (let i = 0; i < amountOfCourses; i++) {
@@ -89,8 +113,8 @@ const createCourses = async () => {
       }),
       courseRecapInfo: faker.lorem.words(10),
       courseDescription: faker.lorem.paragraph(),
-      courseFullPrice: faker.commerce.price(200, 800, 2),
-      courseDiscountPrice: faker.commerce.price(150, 400, 2),
+      courseFullPrice: 0,
+      courseDiscountPrice: 0,
       whoThisCourseIsFor: faker.lorem.sentence(),
       courseInstructorDescription: faker.lorem.paragraphs(10),
       whatYouWillLearn: Array.from({ length: 8 }, () => faker.lorem.sentence()),
@@ -126,6 +150,7 @@ const createCourses = async () => {
         students: enrolledStudents.map((student) => student._id),
         count: enrolledStudents.length,
       },
+      certificateOnly: faker.datatype.boolean(),
       isActive: true,
       totalCourseDuration: 0,
       totalCourseLessons: 0,
@@ -159,7 +184,7 @@ const createSections = async () => {
   const sections = [];
 
   for (const course of courses) {
-    const numSections = faker.number.int({ min: 1, max: 2 }); // Random number of sections per course
+    const numSections = faker.number.int({ min: 5, max: 7 }); // Random number of sections per course
     const createdSections = [];
 
     for (let i = 0; i < numSections; i++) {
@@ -409,7 +434,7 @@ const createReportedReviews = async () => {
     throw new Error("No students found for reporting.");
   }
 
-  const totalReports = 10;
+  const totalReports = 100;
 
   for (let i = 0; i < totalReports; i++) {
     console.log(`Creating report ${i + 1}/${totalReports}...`);

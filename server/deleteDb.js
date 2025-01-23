@@ -20,7 +20,7 @@ const deleteDb = async () => {
       InstructorComment.deleteMany(),
       ReportReview.deleteMany(),
     ]);
-    console.log("Cleared all collections");
+    // console.log("Cleared all collections");
     process.exit();
   } catch (error) {
     console.error(error);

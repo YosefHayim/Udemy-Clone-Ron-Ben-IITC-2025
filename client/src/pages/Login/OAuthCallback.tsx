@@ -10,7 +10,7 @@ const OAuthCallback = () => {
   const mutation = useMutation<GoogleAuthResponse, unknown, void>({
     mutationFn: googleAuth,
     onSuccess: (data) => {
-      console.log("Google Auth Success:", data);
+      // console.log("Google Auth Success:", data);
       localStorage.setItem("accessToken", data.accessToken);
       navigate("/");
     },

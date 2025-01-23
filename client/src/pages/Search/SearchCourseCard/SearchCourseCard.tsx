@@ -16,12 +16,12 @@ const SearchCourseCard: React.FC<{ course: CourseTypeProps }> = ({
     return;
   }
 
-  console.log(course);
+  // console.log(course);
 
   const navigate = useNavigate();
 
   const handleCardClick = (courseId: string) => {
-    console.log(`Navigating to course: ${courseId}`);
+    // console.log(`Navigating to course: ${courseId}`);
     navigate(`/course-view/${courseId}`);
   };
 

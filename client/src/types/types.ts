@@ -32,6 +32,7 @@ export interface UserState {
   role: string;
   coursesBought: string[];
   udemyCredits: number;
+  cookie: string;
 }
 
 export interface searchResultCourseImgProps {
@@ -198,6 +199,7 @@ export interface DecodedTokenProps {
   bio: string;
   role: string;
   coursesBought: string[];
+  udemyCredits: number;
 }
 
 export type FormErrors = {
@@ -237,20 +239,21 @@ export interface Review {
 }
 
 export interface FilterDataProps {
-  certificate: boolean;
-  handsOnPractice: string;
-  language: string[];
-  level: string;
-  price: string;
-  rating: number;
-  subtitles: string;
-  topics: string;
-  videoDuration: number;
+  sortBy: "";
+  certificateOnly: boolean;
+  handsOnPractice: Set<string>;
+  language: Set<string>;
+  levels: Set<string>;
+  price: "";
+  ratings: number;
+  subtitles: Set<string>;
+  topics: Set<string>;
+  videosDurations: Set<string>;
 }
 
 export interface SidebarFilterProps {
-  filterData: FilterDataProps;
-  setFilterData: React.Dispatch<React.SetStateAction<FilterDataProps>>;
+  filterData?: FilterDataProps;
+  setFilterData?: React.Dispatch<React.SetStateAction<FilterDataProps>>;
 }
 
 export interface CourseTypeProps {

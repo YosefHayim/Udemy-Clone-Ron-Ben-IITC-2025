@@ -2,6 +2,7 @@ import ProfilePic from "@/components/ProfilePic/ProfilePic";
 import { RootState } from "@/redux";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const SideBarProfile = () => {
   const fullName = useSelector((state: RootState) => state.user.fullName);
@@ -9,7 +10,7 @@ const SideBarProfile = () => {
   const bio = useSelector((state: RootState) => state.user.bio);
   const cookie: string | any = Cookies.get("cookie");
 
-  if (cookie.length < 20) {
+  if (cookie && cookie.length < 20) {
     return <div></div>;
   }
 
@@ -24,85 +25,90 @@ const SideBarProfile = () => {
           <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
           <div>
             <h2 className="font-bold text-lg text-gray-800">{fullName}</h2>
-            <a href="#" className="text-indigo-600 text-sm">
-              View public profile
-            </a>
           </div>
         </div>
       </div>
       <nav className="mt-6">
         <ul className="space-y-2">
           <li>
-            <a
-              href="#"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+            <Link
+              to="/user/public-profile"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
+            >
+              View public Profile
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/user/edit-profile"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Profile
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+            <Link
+              to="/user/photo"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Photo
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+            <Link
+              to="/user/edit-account"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Account Security
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+            <Link
+              to="/user/manage-subscriptions"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Subscriptions
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+            <Link
+              to="/user/edit-payment-methods/"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Payment methods
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+            <Link
+              to="/user/edit-privacy"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Privacy
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+            <Link
+              to="/user/edit-notifications/"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Notification Preferences
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+            <Link
+              to="/user/edit-api-clients/"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               API clients
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+            <Link
+              to="/user/close-account"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Close account
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

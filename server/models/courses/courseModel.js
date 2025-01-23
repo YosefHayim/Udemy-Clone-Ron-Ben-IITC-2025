@@ -54,6 +54,7 @@ const courseSchema = new mongoose.Schema(
     },
     courseDiscountPrice: {
       type: Number,
+      default: 0,
       required: [true, "Course must have a discount price."],
     },
     category: {
@@ -154,6 +155,10 @@ const courseSchema = new mongoose.Schema(
     totalCourseSections: {
       type: Number,
       default: 0,
+    },
+    certificateOnly: {
+      type: Boolean,
+      default: true,
     },
   },
   { timestamps: true }

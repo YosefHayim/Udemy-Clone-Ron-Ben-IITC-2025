@@ -2,43 +2,80 @@ import SearchCourseCard from "@/pages/Search/SearchCourseCard/SearchCourseCard";
 import SidebarFilter from "./SidebarFilter/SidebarFilter";
 import FilterNSort from "./SidebarFilter/FilterNSort/FilterNSort";
 import Pagination from "./PaginationPages/PaginationPages";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
 import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
-import { CourseTypeProps, FilterDataProps } from "@/types/types";
+import { CourseTypeProps } from "@/types/types";
+import { filterContext } from "@/routes/AppRoutes";
+import { useEffect } from "react";
 
 const SearchPage: React.FC = () => {
+  const [filterData, setFilterData] = useContext(filterContext);
+
   document.title = "Search results | Udemy";
-  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchTerm: string | null = searchParams.get("q")?.toLowerCase() || "";
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
-  const searchTerm: string | null = searchParams.get("q")?.toLowerCase() || "";
-  const [filterData, setFilterData] = useState<FilterDataProps>({
-    rating: 0.0,
-    language: [],
-    handsOnPractice: "",
-    videoDuration: 0,
-    topics: "",
-    level: "All Levels",
-    subtitles: "",
-    price: "",
-    certificate: true,
-  });
+  const limit = 100;
 
-  const limit = null;
+  // Update URL dynamically when filterData or page changes
+  useEffect(() => {
+    console.log("Filter Data Price:", filterData.price); // Debugging
+    const params: Record<string, string> = {
+      q: searchTerm || "",
+      page: currentPage.toString(),
+      limit: limit.toString(),
+    };
+
+    // Add valid filters from filterData
+    if (filterData.language.size > 0) {
+      params.courseLanguages = Array.from(filterData.language).join(",");
+    }
+    if (filterData.levels.size > 0) {
+      params.courseLevel = Array.from(filterData.levels).join(",");
+    }
+    if (filterData.topics.size > 0) {
+      params.courseTopic = Array.from(filterData.topics).join(",");
+    }
+    if (filterData.ratings) {
+      params.averageRating = filterData.ratings.toString();
+    }
+    if (filterData.certificateOnly) {
+      params.certificateOnly = "true";
+    }
+
+    if (filterData.price) {
+      params.price = filterData.price; // Include price filter
+    }
+
+    console.log("Updated Params:", params); // Debugging
+    setSearchParams(params);
+  }, [filterData, currentPage, searchTerm, setSearchParams]);
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["courses", searchTerm?.toLowerCase(), currentPage],
+    queryKey: [
+      "courses",
+      searchTerm.toLowerCase(),
+      currentPage,
+      JSON.stringify(filterData),
+    ],
     queryFn: () => {
       if (!searchTerm && !currentPage && !limit) {
         throw new Error("Course ID is undefined");
       }
-      return getAllCourses(searchTerm || "", currentPage || 1, limit || 100);
+      return getAllCourses(
+        searchTerm || "",
+        filterData || {},
+        limit,
+        currentPage
+      );
     },
     enabled: !!searchTerm,
   });
@@ -48,23 +85,18 @@ const SearchPage: React.FC = () => {
   }
 
   if (error) {
-    return <div>Error occurred: {error.message}</div>;
+    navigate("/error-not-found");
   }
-
-  console.log(data);
 
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
         {data?.totalCourses || 0} results for "{searchTerm}"
       </h1>
-      <FilterNSort totalResults={data.totalCourses || 0} />
+      <FilterNSort totalResults={data?.totalCourses || 0} />
       <div className="flex flex-row justify-start w-full gap-[1.5em]">
         <div>
-          <SidebarFilter
-            filterData={filterData}
-            setFilterData={setFilterData}
-          />
+          <SidebarFilter />
         </div>
         <div>
           <div>

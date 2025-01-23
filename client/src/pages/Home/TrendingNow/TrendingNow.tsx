@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 const TrendingNow = () => {
   return (
@@ -9,13 +9,15 @@ const TrendingNow = () => {
       <div className="mt-6 border-t border-gray-300 pt-6 flex flex-col lg:flex-row justify-between">
         {/* Coluna 1 */}
         <div className="mb-8 lg:mb-0 lg:w-1/4">
-          <h3 className="text-xl font-bold text-gray-900">ChatGPT is a top skill</h3>
-          <a
-            href="#"
+          <h3 className="text-xl font-bold text-gray-900">
+            ChatGPT is a top skill
+          </h3>
+          <Link
+            to="/chatgpt-courses"
             className="text-purple-600 hover:underline text-lg block mt-2"
           >
             See ChatGPT courses →
-          </a>
+          </Link>
           <p className="text-gray-600 text-sm mt-1">3,957,244 learners</p>
           <button className="mt-6 px-6 py-3 border border-gray-900 text-gray-900 font-bold rounded-lg hover:bg-gray-100 transition duration-200 flex items-center space-x-2">
             Show all trending skills
@@ -27,19 +29,28 @@ const TrendingNow = () => {
         <div className="mb-8 lg:mb-0 lg:w-1/4">
           <h3 className="text-lg font-bold text-gray-900 mb-4">Development</h3>
           <div className="space-y-3">
-            <a href="#" className="text-purple-600 hover:underline">
+            <Link
+              to="/courses/python"
+              className="text-purple-600 hover:underline"
+            >
               Python →
-            </a>
+            </Link>
             <p className="text-gray-600 text-sm">46,814,772 learners</p>
 
-            <a href="#" className="text-purple-600 hover:underline">
+            <Link
+              to="/courses/web-development"
+              className="text-purple-600 hover:underline"
+            >
               Web Development →
-            </a>
+            </Link>
             <p className="text-gray-600 text-sm">13,826,607 learners</p>
 
-            <a href="#" className="text-purple-600 hover:underline">
+            <Link
+              to="/courses/data-science"
+              className="text-purple-600 hover:underline"
+            >
               Data Science →
-            </a>
+            </Link>
             <p className="text-gray-600 text-sm">7,612,352 learners</p>
           </div>
         </div>
@@ -48,19 +59,28 @@ const TrendingNow = () => {
         <div className="mb-8 lg:mb-0 lg:w-1/4">
           <h3 className="text-lg font-bold text-gray-900 mb-4">Design</h3>
           <div className="space-y-3">
-            <a href="#" className="text-purple-600 hover:underline">
+            <Link
+              to="/courses/blender"
+              className="text-purple-600 hover:underline"
+            >
               Blender →
-            </a>
+            </Link>
             <p className="text-gray-600 text-sm">2,833,276 learners</p>
 
-            <a href="#" className="text-purple-600 hover:underline">
+            <Link
+              to="/courses/graphic-design"
+              className="text-purple-600 hover:underline"
+            >
               Graphic Design →
-            </a>
+            </Link>
             <p className="text-gray-600 text-sm">4,426,658 learners</p>
 
-            <a href="#" className="text-purple-600 hover:underline">
+            <Link
+              to="/courses/adobe-photoshop"
+              className="text-purple-600 hover:underline"
+            >
               Adobe Photoshop →
-            </a>
+            </Link>
             <p className="text-gray-600 text-sm">12,570,400 learners</p>
           </div>
         </div>
@@ -69,19 +89,28 @@ const TrendingNow = () => {
         <div className="lg:w-1/4">
           <h3 className="text-lg font-bold text-gray-900 mb-4">Business</h3>
           <div className="space-y-3">
-            <a href="#" className="text-purple-600 hover:underline">
+            <Link
+              to="/courses/pmp-certification"
+              className="text-purple-600 hover:underline"
+            >
               PMI Project Management Professional (PMP) →
-            </a>
+            </Link>
             <p className="text-gray-600 text-sm">2,464,690 learners</p>
 
-            <a href="#" className="text-purple-600 hover:underline">
+            <Link
+              to="/courses/microsoft-power-bi"
+              className="text-purple-600 hover:underline"
+            >
               Microsoft Power BI →
-            </a>
+            </Link>
             <p className="text-gray-600 text-sm">4,455,426 learners</p>
 
-            <a href="#" className="text-purple-600 hover:underline">
+            <Link
+              to="/courses/project-management"
+              className="text-purple-600 hover:underline"
+            >
               Project Management →
-            </a>
+            </Link>
             <p className="text-gray-600 text-sm">3,822,469 learners</p>
           </div>
         </div>

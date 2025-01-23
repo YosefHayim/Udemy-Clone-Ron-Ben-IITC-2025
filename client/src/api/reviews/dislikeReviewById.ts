@@ -13,7 +13,7 @@ export const dislikeReviewById: fn = async (idOfReview: string) => {
     const res = await axiosClient.post(url);
 
     if (res) {
-      console.log(res.data.data);
+      // // console.log(res.data.data);
       return res;
     }
   } catch (error) {

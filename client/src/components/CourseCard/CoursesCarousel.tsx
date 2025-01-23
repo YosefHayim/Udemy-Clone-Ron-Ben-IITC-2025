@@ -3,7 +3,7 @@ import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseHoverCard from "./CourseHoverCard";
 import { Course } from "@/types/types";
 import { MdOutlineStarHalf } from "react-icons/md";
-import { IoIosStar, IoIosStarOutline } from "react-icons/io";
+import { IoIosStar, IoIosStarOutline, IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
 const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
@@ -54,14 +54,11 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
     }
   };
 
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleCardClick = (courseId: string) => {
-    console.log(`Navigating to course: ${courseId}`);
+    // console.log(`Navigating to course: ${courseId}`);
     navigate(`/course-view/${courseId}`);
   };
-
-
 
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
@@ -87,40 +84,43 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
   };
 
   return (
-    <div className="relative w-full max-w-[80rem] mx-auto py-6">
-      <h2 className="text-2xl font-bold mb-4 text-[#303141]">
-        Because you viewed {" "}
-        <span className="text-purple-600 font-bold underline">{searchTerm}</span>
+    <div className="relative w-full max-w-[80rem] mx-auto py-6 overflow-visible">
+      <h2 className="text-2xl font-bold mb-4 pl-2 text-[#303141]">
+        Because you viewed{" "}
+        <span className="text-[#6d28d2] font-bold underline hover:text-[#521e9f]">
+          {searchTerm}
+        </span>
       </h2>
 
       {courses.length > 0 && (
-        <div className="overflow-hidden relative">
+        <div className="overflow-x-hidden overflow-y-visible relative">
           <div
-            className="flex transition-transform duration-300"
+            className="flex transition-transform duration-300 overflow-y-visible"
             style={{
-              transform: `translateX(-${currentIndex * (100 / visibleItems)
-                }%)`,
+              transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`,
               width: `${courses.length * (100 / visibleItems)}%`,
             }}
           >
             {courses.map((course) => (
               <div
-              key={course._id}
-              className="w-[calc(100%/5)] px-[0.5rem] box-border relative"
-              onMouseEnter={() => setHoveredCourse(course)}
-              onMouseLeave={(e) => {
-                const relatedTarget = e.relatedTarget as Node;
-                if (
-                  hoverCardRef.current &&
-                  hoverCardRef.current.contains(relatedTarget)
-                ) {
-                  return; // Don't clear hover state if moving to hover card
-                }
-                setHoveredCourse(null);
+                key={course._id}
+                className="w-[calc(100%/5)] px-[0.5rem] box-border relative overflow-visible"
+                onMouseEnter={() => setHoveredCourse(course)}
+                onMouseLeave={(e) => {
+                  const relatedTarget = e.relatedTarget as Node;
+                  if (
+                    hoverCardRef.current &&
+                    hoverCardRef.current.contains(relatedTarget)
+                  ) {
+                    return; // Don't clear hover state if moving to hover card
+                  }
+                  setHoveredCourse(null);
                 }}
+              >
+                <div
+                  onClick={() => handleCardClick(course._id)}
+                  className="cursor-pointer shadow-sm bg-white flex flex-col maxh-[18rem]"
                 >
-                <div onClick={() => handleCardClick(course._id)} className="cursor-pointer shadow-sm overflow-hidden bg-white flex flex-col maxh-[18rem]">
-                
                   <div className="h-36 w-full">
                     <img
                       src={course.courseImg}
@@ -132,14 +132,16 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                     <h3 className="font-bold text-[1rem] text-[#303141] line-clamp-2 pt-[0.3rem] leading-5">
                       {course.courseName}
                     </h3>
-                    <p className="text-xs text-gray-600 truncate py-[0.2rem]">
+                    <p className="text-xs text-[#595C73] truncate py-[0.2rem]">
                       {course.courseInstructor.fullName}
                     </p>
-                    <div className="flex items-center text-sm text-[#c4710d] font-bold">
-                      <span className="mr-1">
+                    <div className="flex items-center text-sm text-[#8B4309] font-bold">
+                      <span className="mr-1 text-[#8B4309]">
                         {course.averageRating.toFixed(1)}
                       </span>
-                      <div className="flex">{renderStars(course.averageRating)}</div>
+                      <div className="flex">
+                        {renderStars(course.averageRating)}
+                      </div>
                       <span className="ml-2 text-gray-500 text-xs">
                         ({course.totalRatings.toLocaleString()})
                       </span>
@@ -165,7 +167,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                 {hoveredCourse?._id === course._id && (
                   <div
                     ref={hoverCardRef}
-                    className="absolute top-0 left-full ml-2"
+                    className="absolute top-0 left-full ml-2 overflow-visible"
                     onMouseLeave={() => setHoveredCourse(null)}
                   >
                     <CourseHoverCard course={hoveredCourse} />
@@ -179,17 +181,17 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
 
       <button
         onClick={handlePrev}
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full z-10 shadow-md hover:bg-gray-600"
+        className="absolute left-[-1rem] top-[9.2rem] w-[3.2rem] h-[3.2rem] transform -translate-y-1/2 bg-white text-[#303141] p-3 rounded-full z-10 shadow-md hover:bg-[#E9EAF2]"
         aria-label="Scroll Left"
       >
-        &#9664;
+        <IoIosArrowBack className="text-[1.4rem]" />
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full z-10 shadow-md hover:bg-gray-600"
+        className="absolute right-[-1rem] top-[9.2rem] w-[3.2rem] h-[3.2rem] transform -translate-y-1/2 bg-white text-[#303141] p-3 rounded-full z-10 shadow-md hover:bg-[#E9EAF2]"
         aria-label="Scroll Right"
       >
-        &#9654;
+        <IoIosArrowForward className="text-[1.4rem]" />
       </button>
     </div>
   );

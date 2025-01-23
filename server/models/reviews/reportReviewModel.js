@@ -31,7 +31,7 @@ const reportReviewSchema = new mongoose.Schema({
 reportReviewSchema.pre("save", function (next) {
   const d = this.issueType;
   const c = this.issueDetails;
-  console.log(d, c);
+  // console.log(d, c);
   next();
 });
 

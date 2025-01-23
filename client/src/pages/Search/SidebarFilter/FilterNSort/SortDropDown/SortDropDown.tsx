@@ -1,11 +1,52 @@
+import { useContext, useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { filterContext } from "@/routes/AppRoutes";
+
 const SortDropDown = () => {
+  const [filterData, setFilterData] = useContext(filterContext);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedSort, setSelectedSort] = useState<string>(
+    filterData.sortBy || "most-relevant"
+  );
+
+  // Sync with URL and filterData on mount
+  useEffect(() => {
+    const sortFromURL = searchParams.get("sortBy");
+    if (sortFromURL) {
+      setSelectedSort(sortFromURL);
+      setFilterData((prev) => ({
+        ...prev,
+        sortBy: sortFromURL,
+      }));
+    }
+  }, [searchParams, setFilterData]);
+
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newSort = event.target.value;
+    setSelectedSort(newSort);
+    setFilterData((prev: any) => ({
+      ...prev,
+      sortBy: newSort,
+    }));
+
+    // Update URL
+    setSearchParams({
+      ...Object.fromEntries(searchParams.entries()), // Preserve other parameters
+      sortBy: newSort,
+    });
+  };
+
   return (
-    <div className="flex flex-col items-center w-full ">
+    <div className="flex flex-col items-center w-full">
       <div className="relative w-full">
         <b className="absolute text-[0.7em] left-[10%] top-[12%] cursor-pointer">
           Sort by
         </b>
-        <select className="block w-full h-[4em] border border-gray-900 rounded-[0.2em] bg-white text-gray-900 font-normal text-base px-[1em] pt-[1em] cursor-pointer focus:outline-none focus:ring-2 focus:none appearance-none mr-[2em] hover:bg-hoverDivGray">
+        <select
+          value={selectedSort}
+          onChange={handleSortChange}
+          className="block w-full h-[4em] border border-gray-900 rounded-[0.2em] bg-white text-gray-900 font-normal text-base px-[1em] pt-[1em] cursor-pointer focus:outline-none focus:ring-2 focus:none appearance-none mr-[2em] hover:bg-hoverDivGray"
+        >
           <option value="most-relevant">Most Relevant</option>
           <option value="most-reviewed">Most Reviewed</option>
           <option value="highest-rated">Highest Rated</option>

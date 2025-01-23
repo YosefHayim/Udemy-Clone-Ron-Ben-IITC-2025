@@ -42,7 +42,7 @@ const LessonRoutes: React.FC = () => {
   }
 
   const courseData = data;
-  console.log(courseData);
+  // console.log(courseData);
 
   const sections = data.sections;
 
