@@ -182,7 +182,7 @@ const createSections = async () => {
   const sections = [];
 
   for (const course of courses) {
-    const numSections = faker.number.int({ min: 1, max: 2 }); // Random number of sections per course
+    const numSections = faker.number.int({ min: 5, max: 7 }); // Random number of sections per course
     const createdSections = [];
 
     for (let i = 0; i < numSections; i++) {
@@ -432,7 +432,7 @@ const createReportedReviews = async () => {
     throw new Error("No students found for reporting.");
   }
 
-  const totalReports = 10;
+  const totalReports = 100;
 
   for (let i = 0; i < totalReports; i++) {
     console.log(`Creating report ${i + 1}/${totalReports}...`);
@@ -596,8 +596,8 @@ const addCoursesToWishlistOfUsers = async () => {
 const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
-    //  console.log("Database connection established.");
-    // await clearCollections();
+    console.log("Database connection established.");
+    await clearCollections();
 
     console.log("Seeding users...");
     const users = await createUsers();
