@@ -25,9 +25,6 @@ const SideBarProfile = () => {
           <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
           <div>
             <h2 className="font-bold text-lg text-gray-800">{fullName}</h2>
-            <Link to="/public-profile" className="text-indigo-600 text-sm">
-              View public profile
-            </Link>
           </div>
         </div>
       </div>
@@ -35,8 +32,16 @@ const SideBarProfile = () => {
         <ul className="space-y-2">
           <li>
             <Link
+              to="/user/public-profile"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
+            >
+              View public Profile
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/profile"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Profile
             </Link>
@@ -44,7 +49,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/photo"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Photo
             </Link>
@@ -52,7 +57,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/account-security"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Account Security
             </Link>
@@ -60,7 +65,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/subscriptions"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Subscriptions
             </Link>
@@ -68,7 +73,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/payment-methods"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Payment methods
             </Link>
@@ -76,7 +81,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/privacy"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Privacy
             </Link>
@@ -84,7 +89,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/notification-preferences"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Notification Preferences
             </Link>
@@ -92,7 +97,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/api-clients"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               API clients
             </Link>
@@ -100,7 +105,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/close-account"
-              className="block py-2 px-6 text-gray-700 hover:bg-gray-200 rounded-md"
+              className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Close account
             </Link>

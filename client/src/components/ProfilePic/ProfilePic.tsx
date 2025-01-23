@@ -1,12 +1,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useNavigate } from "react-router-dom";
 
 const ProfilePic: React.FC<{ shortcutName: string; profilePic: string }> = ({
   shortcutName,
   profilePic,
 }) => {
-  const navigate = useNavigate();
-
   return (
     <Avatar>
       <AvatarImage src={profilePic} />
