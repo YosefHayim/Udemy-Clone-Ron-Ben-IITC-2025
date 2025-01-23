@@ -116,6 +116,11 @@ const userSchema = new mongoose.Schema(
         coursePrice: { type: Number, default: 0 },
       },
     ],
+    recentSearches: [
+      {
+        type: String,
+      },
+    ],
     coursesCreated: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     orders: [{ type: mongoose.Schema.ObjectId, ref: "Order" }],
     payments: [{ type: mongoose.Schema.ObjectId, ref: "Payment" }],

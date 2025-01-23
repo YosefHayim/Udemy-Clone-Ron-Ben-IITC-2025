@@ -3,6 +3,7 @@ const User = require("../../models/users/userModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const createError = require("../../utils/errorFn");
 const { catchAsync } = require("../../utils/wrapperFn");
+const { verifyToken } = require("../authorization/authController");
 
 const getAllCourses = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Course.find(), req.query)
@@ -11,6 +12,19 @@ const getAllCourses = catchAsync(async (req, res, next) => {
     .sort()
     .limitFields()
     .paginate();
+
+  if (req.cookies.cookie) {
+    const decoded = verifyToken(req.cookies.cookie);
+    const userId = decoded.id;
+    const user = await User.findById({ userId });
+
+    for (const [key, value] of Object.entries(req.query)) {
+      user.recentSearches.push(value);
+      console.log(`${value}`);
+    }
+    await user.save();
+    
+  }
 
   const courses = await features.query;
 

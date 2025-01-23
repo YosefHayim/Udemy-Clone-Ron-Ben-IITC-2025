@@ -15,6 +15,7 @@ const sectionNames = require("./utils/sectionNames");
 const lessonsNames = require("./utils/lessonNames");
 const videosToDisplay = require("./utils/videosToDisplay");
 const supportedCountries = require("./utils/supportedCountries");
+const algoSearch = require("./utils/algoSearch");
 
 const clearCollections = async () => {
   await Promise.all([
@@ -57,6 +58,7 @@ const createUsers = async () => {
       bio: faker.lorem.sentence(1),
       udemyCredits: faker.number.int({ min: 5000, max: 10000 }),
       country: faker.helpers.arrayElement(supportedCountries),
+      recentSearches: faker.helpers.arrayElements(algoSearch),
     });
   }
 
