@@ -87,7 +87,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
     <div className="relative w-full max-w-[80rem] mx-auto py-6">
       <h2 className="text-2xl font-bold mb-4 pl-2 text-[#303141]">
         Because you viewed{" "}
-        <span className="text-purple-600 font-bold underline">
+        <span className="text-[#6d28d2] font-bold underline hover:text-[#521e9f]">
           {searchTerm}
         </span>
       </h2>
@@ -132,11 +132,11 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                     <h3 className="font-bold text-[1rem] text-[#303141] line-clamp-2 pt-[0.3rem] leading-5">
                       {course.courseName}
                     </h3>
-                    <p className="text-xs text-gray-600 truncate py-[0.2rem]">
+                    <p className="text-xs text-[#595C73] truncate py-[0.2rem]">
                       {course.courseInstructor.fullName}
                     </p>
-                    <div className="flex items-center text-sm text-[#c4710d] font-bold">
-                      <span className="mr-1">
+                    <div className="flex items-center text-sm text-[#8B4309] font-bold">
+                      <span className="mr-1 text-[#8B4309]">
                         {course.averageRating.toFixed(1)}
                       </span>
                       <div className="flex">
