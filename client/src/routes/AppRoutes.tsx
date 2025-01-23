@@ -24,6 +24,12 @@ import PaymentMethods from "@/components/Navbar/DropDownMenu/PaymentMethods/Paym
 import UdemyBusinessContact from "@/components/Navbar/DropDownMenu/UdemyBusinessContact/UdemyBusinessContact";
 import { createContext, useState } from "react";
 import { FilterDataProps } from "@/types/types";
+import AccountSecurity from "@/components/Navbar/DropDownMenu/ProfilePage/AccountSecurity/AccountSecurity";
+import ApiClients from "@/components/Navbar/DropDownMenu/ProfilePage/ApiClients/ApiClients";
+import Photo from "@/components/Navbar/DropDownMenu/ProfilePage/Photo/Photo";
+import NotificationPreferences from "@/components/Navbar/DropDownMenu/ProfilePage/NotificationPrefrences/NotificationPreferences";
+import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privacy";
+import CloseAccount from "@/components/Navbar/DropDownMenu/ProfilePage/CloseAccount/CloseAccount";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
@@ -67,7 +73,8 @@ const AppRoutes: React.FC = () => {
                   path="/dashboard/credit-history"
                   element={<UdemyCredits />}
                 />
-                <Route path="/edit-profile" element={<ProfileMain />} />
+                <Route path="/user/edit-profile" element={<ProfileMain />} />
+                <Route path="/user/edit-privacy" element={<Privacy />} />
                 <Route
                   path="/dashboard/purchase-history/"
                   element={<PurchaseHistory />}
@@ -82,12 +89,23 @@ const AppRoutes: React.FC = () => {
                   path="/user/public-profile"
                   element={<PublicProfile />}
                 />
+                <Route
+                  path="/user/edit-account"
+                  element={<AccountSecurity />}
+                />
+                <Route path="/user/close-account" element={<CloseAccount />} />
+                <Route path="/user/photo" element={<Photo />} />
+                <Route path="/user/edit-api-clients" element={<ApiClients />} />
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route
                   path="/loader"
                   element={<Loader useSmallLoading={false} hSize="" />}
                 />
                 <Route path="/Signup" element={<SignUp />} />
+                <Route
+                  path="/user/edit-notifications/"
+                  element={<NotificationPreferences />}
+                />
                 <Route
                   path="/user/edit-payment-methods/"
                   element={<PaymentMethods />}
@@ -116,10 +134,6 @@ const AppRoutes: React.FC = () => {
         {/* Route where navbar is hidden */}
         <Route path="/demo-business" element={<UdemyBusinessContact />} />
         <Route path="/payment/checkout/" element={<Payment />} />
-        <Route
-          path="/instructor/profile/basic-information/"
-          element={<EditProfile />}
-        />
         <Route
           path="/course/:courseId/lesson/:id/*"
           element={

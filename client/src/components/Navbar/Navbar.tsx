@@ -16,7 +16,6 @@ import { RootState } from "@/redux";
 import Cookies from "js-cookie";
 import { setCookie } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
-import { realTimeCounts } from "@/utils/realTimeCount";
 
 const Navbar = () => {
   const cookie = useSelector((state: RootState) => state.user.cookie) || "";
@@ -78,7 +77,7 @@ const Navbar = () => {
               <Cart />
             </Link>
             <Notifications />
-            <Link to="/edit-profile">
+            <Link to="/user/edit-profile">
               <Profile cookie={cookie} />
             </Link>
           </>
