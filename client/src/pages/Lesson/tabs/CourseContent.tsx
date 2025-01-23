@@ -129,7 +129,7 @@ const CourseContent: React.FC = () => {
                       key={lesson.lessonId._id}
                       className={`flex items-center gap-3 mb-2 p-2 ${
                         isCurrentLesson
-                          ? "bg-slate-400 text-white"
+                          ? "bg-slate-400 "
                           : "hover:bg-slate-400"
                       }`}
                     >

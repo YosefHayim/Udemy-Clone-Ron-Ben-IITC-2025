@@ -57,6 +57,7 @@ const LessonPage: React.FC = () => {
        courseName={courseData.courseName}
        courseId={courseId} />
       <VideoPlayer
+        courseId={courseId}
         currentLesson={currentLesson}
         lessonIndex={lessonIndex + 1}
         videoUrl={currentLesson.videoUrl}
