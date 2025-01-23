@@ -43,7 +43,7 @@ const Homepage = () => {
     <div>
       {!cookie ? (
         <>
-          <div className="container mx-auto">
+          <div className="container mx-auto px-[5.7rem]">
             <DropdownMenu />
             <Banner />
             <Sections />
