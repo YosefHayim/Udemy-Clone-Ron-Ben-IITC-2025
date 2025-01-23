@@ -17,6 +17,8 @@ import {
   CollapsibleTrigger,
   CollapsibleContent,
 } from "@/components/ui/collapsible";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { updateLessonProgress } from "@/services/ProgressService";
 import CustomTrigger from "./CustomTrigger";
 
 interface Lesson {
@@ -42,8 +44,9 @@ export function CourseSidebarMenu({
 }) {
   const { toggleSidebar, open } = useSidebar();
   const location = useLocation();
+  const queryClient = useQueryClient();
 
-  // Initialize completedLessons from localStorage
+  // Initialize completedLessons from local state
   const [completedLessons, setCompletedLessons] = useState<Record<string, boolean>>(() => {
     const saved = localStorage.getItem("completedLessons");
     return saved ? JSON.parse(saved) : {};
@@ -54,11 +57,43 @@ export function CourseSidebarMenu({
     localStorage.setItem("completedLessons", JSON.stringify(completedLessons));
   }, [completedLessons]);
 
-  const toggleLessonCompletion = (lessonId: string) => {
-    setCompletedLessons((prev) => ({
-      ...prev,
-      [lessonId]: !prev[lessonId],
-    }));
+  // Mutation for lesson completion
+  const mutation = useMutation({
+    mutationFn: ({ lessonId, completed }: { lessonId: string; completed: boolean }) =>
+      updateLessonProgress(courseId, lessonId, { completed }),
+    onMutate: async ({ lessonId, completed }) => {
+      // Cancel any ongoing queries for this course
+      await queryClient.cancelQueries(["courseProgress", courseId]);
+
+      // Snapshot the previous state
+      const previousState = completedLessons;
+
+      // Optimistically update the state
+      setCompletedLessons((prev) => ({
+        ...prev,
+        [lessonId]: completed,
+      }));
+
+      return { previousState };
+    },
+    onError: (error, variables, context) => {
+      // Rollback to the previous state on error
+      if (context?.previousState) {
+        setCompletedLessons(context.previousState);
+      }
+    },
+    onSettled: () => {
+      // Optionally refetch the data
+      queryClient.invalidateQueries(["courseProgress", courseId]);
+    },
+  });
+
+  // Toggle lesson completion
+  const toggleLessonCompletion = (lessonId: string, currentState: boolean) => {
+    mutation.mutate({
+      lessonId,
+      completed: !currentState,
+    });
   };
 
   let lessonCounter = 0;
@@ -100,7 +135,11 @@ export function CourseSidebarMenu({
 
                   return (
                     <SidebarMenuSubItem
-                      className={isCurrentLesson ? "bg-slate-400 h-full w-full" : "hover:bg-slate-400 h-full w-full"}
+                      className={
+                        isCurrentLesson
+                          ? "bg-slate-400 h-full w-full"
+                          : "hover:bg-slate-400 h-full w-full"
+                      }
                       key={lesson._id}
                     >
                       <div className="flex items-center justify-between group w-full">
@@ -108,7 +147,9 @@ export function CourseSidebarMenu({
                           <div className="flex items-center h-full">
                             <Checkbox
                               checked={!!completedLessons[lesson._id]}
-                              onCheckedChange={() => toggleLessonCompletion(lesson._id)}
+                              onCheckedChange={() =>
+                                toggleLessonCompletion(lesson._id, !!completedLessons[lesson._id])
+                              }
                               className="focus:outline-none focus-visible:outline-none hover:border-black border-2 self-start mt-1 rounded-none"
                             />
                             <div className="flex flex-col">
