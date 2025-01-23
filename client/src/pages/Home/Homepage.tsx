@@ -4,10 +4,13 @@ import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import {
   setBio,
+  setCookie,
+  setCoursesBought,
   setEmailAddress,
   setFullName,
   setProfilePic,
   setRole,
+  setUdemyCredits,
 } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { DecodedTokenProps } from "@/types/types";
@@ -25,20 +28,26 @@ import Sections from "./Sections/Sections";
 import Welcome from "@/components/LoggedInHome/Welcome";
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 import TeamAccess from "./TeamAccess/TeamAccess";
+import { useEffect } from "react";
 
 const Homepage = () => {
   document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
   const dispatch = useDispatch();
-
   const cookie = Cookies.get("cookie");
-  if (cookie) {
-    const decoded = jwtDecode<DecodedTokenProps>(cookie);
-    dispatch(setFullName(decoded.fullName));
-    dispatch(setProfilePic(decoded.profilePic));
-    dispatch(setEmailAddress(decoded.email));
-    dispatch(setBio(decoded.bio));
-    dispatch(setRole(decoded.role));
-  }
+
+  useEffect(() => {
+    if (cookie) {
+      const decoded = jwtDecode<DecodedTokenProps>(cookie);
+      dispatch(setCookie(cookie));
+      dispatch(setFullName(decoded.fullName));
+      dispatch(setProfilePic(decoded.profilePic));
+      dispatch(setEmailAddress(decoded.email));
+      dispatch(setBio(decoded.bio));
+      dispatch(setRole(decoded.role));
+      dispatch(setCoursesBought(decoded.coursesBought));
+      dispatch(setUdemyCredits(decoded.udemyCredits));
+    }
+  }, [cookie]);
   return (
     <div>
       {!cookie ? (
