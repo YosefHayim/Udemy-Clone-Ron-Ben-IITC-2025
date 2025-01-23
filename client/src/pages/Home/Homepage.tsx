@@ -62,7 +62,7 @@ const Homepage = () => {
         <div>
           <DropdownMenu />
           <Menu />
-          <div className="container mx-auto px-[5.6rem]">
+          <div className="container mx-auto ">
             <Welcome />
             <Banner />
             <TeamAccess />
