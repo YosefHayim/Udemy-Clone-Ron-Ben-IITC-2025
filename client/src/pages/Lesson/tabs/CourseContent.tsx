@@ -24,12 +24,12 @@ const CourseContent: React.FC = () => {
 
   // React Query: Fetch course progress
   const { data, isLoading, isError, error } = useQuery<CourseProgressResponse>({
-    queryKey: ["courseProgress", courseId], // Query key
-    queryFn: () => fetchCourseProgress(courseId), // Query function
-    enabled: !!courseId, // Fetch only if courseId exists
+    queryKey: ["courseProgress", courseId],
+    queryFn: () => fetchCourseProgress(courseId),
+    enabled: !!courseId,
   });
 
-  // Mutation for updating lesson progress
+  // Mutation with optimistic updates
   const mutation = useMutation({
     mutationFn: ({
       lessonId,
@@ -38,14 +38,49 @@ const CourseContent: React.FC = () => {
       lessonId: string;
       payload: LessonProgressPayload;
     }) => updateLessonProgress(sanitizedCourseId!, lessonId, payload),
-    onSuccess: () => {
-      if (sanitizedCourseId) {
-        queryClient.invalidateQueries(["courseProgress", sanitizedCourseId]);
+    onMutate: async ({ lessonId, payload }) => {
+      await queryClient.cancelQueries(["courseProgress", sanitizedCourseId]);
+
+      const previousData = queryClient.getQueryData<CourseProgressResponse>([
+        "courseProgress",
+        sanitizedCourseId,
+      ]);
+
+      if (previousData) {
+        queryClient.setQueryData<CourseProgressResponse>(
+          ["courseProgress", sanitizedCourseId],
+          {
+            ...previousData,
+            progress: {
+              ...previousData.progress,
+              sections: previousData.progress.sections.map((section) => ({
+                ...section,
+                lessons: section.lessons.map((lesson) =>
+                  lesson.lessonId._id === lessonId
+                    ? { ...lesson, completed: payload.completed }
+                    : lesson
+                ),
+              })),
+            },
+          }
+        );
       }
+
+      return { previousData };
+    },
+    onError: (err, variables, context) => {
+      if (context?.previousData) {
+        queryClient.setQueryData<CourseProgressResponse>(
+          ["courseProgress", sanitizedCourseId],
+          context.previousData
+        );
+      }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(["courseProgress", sanitizedCourseId]);
     },
   });
 
-  // Handle checkbox toggle for lesson completion
   const toggleLessonCompletion = (lessonId: string, currentState: boolean) => {
     mutation.mutate({
       lessonId,
