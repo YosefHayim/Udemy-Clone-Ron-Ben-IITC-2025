@@ -67,14 +67,14 @@ const Homepage = () => {
             <Banner />
             <TeamAccess />
             <CoursesCarousel searchTerm={"JavaScript"} />
-            <CoursesCarousel searchTerm={"python"} />
+            <CoursesCarousel searchTerm={"Python"} />
             <CoursesCarousel searchTerm={"Books"} />
             <CoursesCarousel searchTerm={"Investing"} />
             <CoursesCarousel searchTerm={"Science"} />
             <CoursesCarousel searchTerm={"Amazon"} />
             <CoursesCarousel searchTerm={"Learning"} />
             <CoursesCarousel searchTerm={"Meditation"} />
-            <CoursesCarousel searchTerm={"Cooking"} />
+            <CoursesCarousel searchTerm={"Web Development"} />
             <CoursesCarousel searchTerm={"Microsoft"} />
           </div>
         </div>
