@@ -4,7 +4,7 @@ import LessonPage from "../pages/Lesson/LessonPage";
 import SearchPage from "@/pages/Search/SearchPage";
 import Homepage from "@/pages/Home/Homepage";
 import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/pages/Home/Footer";
+import Footer from "../pages/Home/Footer/Footer";
 import ViewCoursePageInfo from "@/pages/ViewCoursePageInfo/ViewCoursePageInfo";
 import Loader from "@/components/Loader/Loader";
 import ShoppingCart from "@/pages/ShoppingCart/ShoppingCart";
