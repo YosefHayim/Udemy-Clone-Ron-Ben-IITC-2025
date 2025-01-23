@@ -9,30 +9,11 @@ import {
   CollapsibleTrigger,
   CollapsibleContent,
 } from "@/components/ui/collapsible";
-import { fetchCourseProgress, updateLessonProgress } from "../../../services/ProgressService";
-
-// Define TypeScript interfaces
-interface Lesson {
-  lessonId: {
-    _id: string;
-    title: string;
-    duration: number;
-  };
-  completed: boolean;
-  lastWatched: number;
-}
-
-interface Section {
-  sectionId: {
-    _id: string;
-    title: string;
-  };
-  lessons: Lesson[];
-}
-
-interface CourseProgressResponse {
-  sections: Section[];
-}
+import {
+  fetchCourseProgress,
+  updateLessonProgress,
+} from "../../../services/ProgressService";
+import { CourseProgressResponse, LessonProgressPayload } from "@/types";
 
 const CourseContent: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -42,16 +23,21 @@ const CourseContent: React.FC = () => {
   const sanitizedCourseId = courseId?.trim();
 
   // React Query: Fetch course progress
-  const { data, isLoading, isError, error } = useQuery<CourseProgressResponse, Error>({
-    queryKey: ["courseProgress", sanitizedCourseId],
-    queryFn: () => fetchCourseProgress(sanitizedCourseId!),
-    enabled: !!sanitizedCourseId, // Only fetch when courseId is valid
+  const { data, isLoading, isError, error } = useQuery<CourseProgressResponse>({
+    queryKey: ["courseProgress", courseId], // Query key
+    queryFn: () => fetchCourseProgress(courseId), // Query function
+    enabled: !!courseId, // Fetch only if courseId exists
   });
 
   // Mutation for updating lesson progress
   const mutation = useMutation({
-    mutationFn: ({ lessonId, payload }: { lessonId: string; payload: { completed?: boolean } }) =>
-      updateLessonProgress(sanitizedCourseId!, lessonId, payload),
+    mutationFn: ({
+      lessonId,
+      payload,
+    }: {
+      lessonId: string;
+      payload: LessonProgressPayload;
+    }) => updateLessonProgress(sanitizedCourseId!, lessonId, payload),
     onSuccess: () => {
       if (sanitizedCourseId) {
         queryClient.invalidateQueries(["courseProgress", sanitizedCourseId]);
@@ -68,14 +54,15 @@ const CourseContent: React.FC = () => {
   };
 
   if (isLoading) return <div>Loading course content...</div>;
-  if (isError) return <div>Error: {error.message}</div>;
+  if (isError && error instanceof Error)
+    return <div>Error: {error.message}</div>;
 
   let lessonCounter = 0;
 
   return (
     <div className="flex justify-center py-10 min-h-screen">
       <div>
-        {data?.sections.map((section, idx) => (
+        {data?.progress.sections.map((section, idx) => (
           <Collapsible
             key={section.sectionId._id}
             defaultOpen

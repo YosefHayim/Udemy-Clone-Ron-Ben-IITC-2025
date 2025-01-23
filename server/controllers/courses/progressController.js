@@ -145,26 +145,28 @@ exports.getCourseProgress = async (req, res) => {
       return res.status(404).json({ message: "Progress not found" });
     }
 
-    // Calculate total lessons and completed lessons
+    // Calculate completed lessons and total lessons
     let totalLessons = 0;
     let completedLessons = 0;
 
     progress.sections.forEach((section) => {
-      totalLessons += section.lessons.length; // Count all lessons
       section.lessons.forEach((lesson) => {
+        totalLessons++; // Count all lessons
         if (lesson.completed) {
           completedLessons++; // Count completed lessons
         }
       });
     });
 
-    // Calculate completion percentage as a float
-    const completionPercentage = totalLessons > 0 ? completedLessons / totalLessons : 0;
+    // Calculate percentage of completion
+    const percentageCompleted = totalLessons > 0 ? completedLessons / totalLessons : 0;
 
-    // Add the percentage to the response
+    // Add the calculated stats to the response
     res.status(200).json({
       progress,
-      completionPercentage,
+      totalLessons,
+      completedLessons,
+      percentageCompleted, // Returns as a float (e.g., 0.25 for 25%)
     });
   } catch (err) {
     console.error("Error retrieving course progress:", err.message);

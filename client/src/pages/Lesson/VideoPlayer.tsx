@@ -63,7 +63,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     >
       {/* Display Current Lesson Title */}
       <div
-  className="absolute top-[50px] w-full text-start text-xl pl-10 text-white py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-black/75 to-transparent"
+  className="absolute top-[65px] w-full text-start text-xl pl-10 text-white py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-black/75 to-transparent"
 >
   {lessonIndex }. {currentLesson.title}
 </div>
