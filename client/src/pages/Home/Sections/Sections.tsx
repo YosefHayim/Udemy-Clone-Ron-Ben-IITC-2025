@@ -68,10 +68,11 @@ const Section = () => {
         <h1 className="text-3xl font-bold text-gray-900">
           All the skills you need in one place
         </h1>
-        <p className="text-gray-600 mt-2 text-base">
+        <p className="text-gray-600 mt-2 text-base mb-[2.5em]">
           From critical skills to technical topics, Udemy supports your
           professional development.
         </p>
+        <hr />
       </div>
 
       <section className="px-8 py-6">

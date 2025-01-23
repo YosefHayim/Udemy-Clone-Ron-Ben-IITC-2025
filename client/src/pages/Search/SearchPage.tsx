@@ -12,28 +12,69 @@ import React, { useContext, useState } from "react";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 import { CourseTypeProps } from "@/types/types";
 import { filterContext } from "@/routes/AppRoutes";
+import { useEffect } from "react";
 
 const SearchPage: React.FC = () => {
   const [filterData, setFilterData] = useContext(filterContext);
 
   document.title = "Search results | Udemy";
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const searchTerm: string | null = searchParams.get("q")?.toLowerCase() || "";
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
-  const limit = null;
+  const limit = 100;
+
+  // Update URL dynamically when filterData or page changes
+  useEffect(() => {
+    console.log("Filter Data Price:", filterData.price); // Debugging
+    const params: Record<string, string> = {
+      q: searchTerm || "",
+      page: currentPage.toString(),
+      limit: limit.toString(),
+    };
+
+    // Add valid filters from filterData
+    if (filterData.language.size > 0) {
+      params.courseLanguages = Array.from(filterData.language).join(",");
+    }
+    if (filterData.levels.size > 0) {
+      params.courseLevel = Array.from(filterData.levels).join(",");
+    }
+    if (filterData.topics.size > 0) {
+      params.courseTopic = Array.from(filterData.topics).join(",");
+    }
+    if (filterData.ratings) {
+      params.averageRating = filterData.ratings.toString();
+    }
+    if (filterData.certificateOnly) {
+      params.certificateOnly = "true";
+    }
+
+    if (filterData.price) {
+      params.price = filterData.price; // Include price filter
+    }
+
+    console.log("Updated Params:", params); // Debugging
+    setSearchParams(params);
+  }, [filterData, currentPage, searchTerm, setSearchParams]);
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["courses", searchTerm?.toLowerCase(), currentPage, filterData],
+    queryKey: [
+      "courses",
+      searchTerm.toLowerCase(),
+      currentPage,
+      JSON.stringify(filterData),
+    ],
     queryFn: () => {
       if (!searchTerm && !currentPage && !limit) {
         throw new Error("Course ID is undefined");
       }
       return getAllCourses(
         searchTerm || "",
-        currentPage || 1,
-        limit || 100 || filterData
+        filterData || {},
+        limit,
+        currentPage
       );
     },
     enabled: !!searchTerm,
@@ -52,7 +93,7 @@ const SearchPage: React.FC = () => {
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
         {data?.totalCourses || 0} results for "{searchTerm}"
       </h1>
-      <FilterNSort totalResults={data.totalCourses || 0} />
+      <FilterNSort totalResults={data?.totalCourses || 0} />
       <div className="flex flex-row justify-start w-full gap-[1.5em]">
         <div>
           <SidebarFilter />

@@ -3,24 +3,28 @@ import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useContext } from "react";
 import { filterContext } from "@/routes/AppRoutes";
 import { FilterDataProps } from "@/types/types";
+import { useEffect } from "react";
 
 const RatingsFilter = () => {
-  const [isClicked, setClicked] = useState(false);
+  const [isClicked, setClicked] = useState(true);
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
   const [filterData, setFilterData] =
     useContext<FilterDataProps>(filterContext);
 
-  // Handle rating selection and update context immediately
+  // Sync selectedRating with filterData on mount
+  useEffect(() => {
+    setSelectedRating(filterData.ratings || null);
+  }, [filterData.ratings]);
+
   const handleRatingClick = (rating: number) => {
     setSelectedRating(rating);
     setFilterData((prev: any) => ({
       ...prev,
       ratings: rating,
     }));
-    console.log(filterData.ratings);
+    console.log("Selected Rating:", rating);
   };
 
-  // Toggle the dropdown open/close state
   const handleClick: React.MouseEventHandler<HTMLDivElement> = () => {
     setClicked((prev) => !prev);
   };
@@ -40,7 +44,6 @@ const RatingsFilter = () => {
           isClicked ? "h-auto" : "h-[50px]"
         }`}
       >
-        {/* Header */}
         <div
           className="flex justify-between items-center cursor-pointer"
           onClick={handleClick}
@@ -48,14 +51,12 @@ const RatingsFilter = () => {
           <p className="font-bold text-lg py-[0.5em]">Ratings</p>
           {isClicked ? <MdKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
         </div>
-        {/* Ratings */}
         <div className={`${isClicked ? "block" : "hidden"}`}>
           {ratings.map(({ rating, value, count }) => (
             <label
               key={value}
               className="flex items-center cursor-pointer space-x-2 py-2"
             >
-              {/* Custom Radio Button */}
               <span
                 onClick={() => handleRatingClick(value)}
                 className={`w-4 h-4 flex items-center justify-center border-2 rounded-full ${

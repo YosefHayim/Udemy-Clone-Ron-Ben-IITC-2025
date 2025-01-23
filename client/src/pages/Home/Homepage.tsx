@@ -24,7 +24,7 @@ import Carousel from "./Carousel/Carousel";
 import Sections from "./Sections/Sections";
 import Welcome from "@/components/LoggedInHome/Welcome";
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
-import TeamAccess from "./TeamAccess/TeamAcess";
+import TeamAccess from "./TeamAccess/TeamAccess";
 
 const Homepage = () => {
   document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";

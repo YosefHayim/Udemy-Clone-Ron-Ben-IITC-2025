@@ -1,10 +1,15 @@
 import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
-type fn = (searchTerm: string, limit: number, page: number) => Promise<any>;
+type fn = (
+  searchTerm: string,
+  limit: number,
+  page: number,
+  filterData: {}
+) => Promise<any>;
 
 const getAllCourses: fn = async (
   searchTerm = "",
-  filterData = {}, // Default to an empty object if not provided
+  filterData = {},
   limit = 1,
   page = 1
 ) => {
@@ -14,31 +19,46 @@ const getAllCourses: fn = async (
   }
 
   const {
-    sortBy = "", // Default to an empty string if not provided
+    sortBy = "",
     handsOnPractice = "",
-    language = "",
-    levels = "",
-    price = "",
+    language = new Set(),
+    levels = new Set(),
+    price = null,
     ratings = "",
-    subtitles = "",
-    topics = "",
-    videosDurations = "",
+    subtitles = new Set(),
+    topics = new Set(),
+    videosDurations = new Set(),
     certificateOnly = "",
   } = filterData;
 
   const encodedSearchTerm = encodeURIComponent(searchTerm);
 
-  // Construct query string, only including fields if they are not empty
+  // Safely convert Set to strings if they exist
+  const languageStr = language.size ? Array.from(language).join(",") : "";
+  const levelsStr = levels.size ? Array.from(levels).join(",") : "";
+  const topicsStr = topics.size ? Array.from(topics).join(",") : "";
+  const subtitlesStr = subtitles.size ? Array.from(subtitles).join(",") : "";
+  const videosDurationsStr = videosDurations.size
+    ? Array.from(videosDurations).join(",")
+    : "";
+
+  // Construct query string, including only valid parameters
   const url =
     `${localhostUrl}/api/course/?search=${encodedSearchTerm}` +
+    (price === "Free" ? `&courseDiscountPrice=0` : "") + // Fix for free courses
+    (price === "Paid" ? `&courseDiscountPrice[gte]=0.01` : "") + // Fix for paid courses
     (ratings ? `&averageRating[gte]=${ratings}` : "") +
-    (language ? `&courseLanguages=${language}` : "") +
+    (languageStr ? `&courseLanguages=${languageStr}` : "") +
     (certificateOnly ? `&certificateOnly=${certificateOnly}` : "") +
-    (levels ? `&courseLevel=${levels}` : "") +
-    (topics ? `&courseTopic=${topics}` : "") +
-    (videosDurations ? `&totalCourseDuration[gte]=${videosDurations}` : "") +
-    (price ? `&courseFullPrice[lte]=${price}` : "") +
-    (sortBy ? `&sort=${sortBy}` : "");
+    (levelsStr ? `&courseLevel=${levelsStr}` : "") +
+    (topicsStr ? `&courseTopic=${topicsStr}` : "") +
+    (videosDurationsStr
+      ? `&totalCourseDuration[gte]=${videosDurationsStr}`
+      : "") +
+    (sortBy ? `&sort=${sortBy}` : "") +
+    `&page=${page}&limit=${limit}`;
+
+  console.log("Constructed URL:", url);
 
   try {
     const { data } = await axiosClient.get(url);

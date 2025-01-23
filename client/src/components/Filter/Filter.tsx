@@ -130,6 +130,27 @@ const Filter: React.FC<FilterProps> = ({
               <Checkbox
                 className="rounded-none"
                 onClick={() => handleClickValue(item.name!)}
+                checked={
+                  filterTitle === "Language" &&
+                  filterData.language.has(item.name)
+                    ? true
+                    : filterTitle === "Hands-on Practice" &&
+                      filterData.handsOnPractice.has(item.name)
+                    ? true
+                    : filterTitle === "Video Duration" &&
+                      filterData.videosDurations.has(item.name)
+                    ? true
+                    : filterTitle === "Topics" &&
+                      filterData.topics.has(item.name)
+                    ? true
+                    : filterTitle === "Level" &&
+                      filterData.levels.has(item.name)
+                    ? true
+                    : filterTitle === "Subtitles" &&
+                      filterData.subtitles.has(item.name)
+                    ? true
+                    : filterTitle === "Price" && filterData.price === item.name
+                }
               />
               <span>{item.name}</span>
             </label>
