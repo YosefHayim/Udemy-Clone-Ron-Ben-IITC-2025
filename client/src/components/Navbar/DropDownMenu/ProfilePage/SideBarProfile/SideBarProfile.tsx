@@ -19,11 +19,11 @@ const SideBarProfile = () => {
   const shortcutName = (firstWord?.[0] || "") + (secondWord?.[0] || "");
 
   return (
-    <div className="w-64 bg-white border-l border-b border-t border-gray-300">
+    <div className="w-56 bg-white border-l border-b border-t border-gray-300">
       
       <div className="p-6 ">
         <div className="flex flex-col items-center space-y-4">
-          <div className="flex items-center justify-center w-24 h-24 rounded-full bg-[#1D1E27] text-white text-2xl font-bold">
+          <div className="flex items-center justify-center w-[8rem] h-[8rem] rounded-full bg-[#1D1E27] text-white text-4xl font-bold">
           <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
           </div>
           <div>
