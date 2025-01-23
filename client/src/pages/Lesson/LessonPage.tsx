@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import Layout from "./Layout";
 import LessonRoutes from "../../routes/LessonRoutes";
 import VideoPlayer from "./VideoPlayer";
-import Footer from "@/pages/Home/Footer/Footer";
+import Footer from "../../pages/Home/Footer/Footer";
 import fetchCourseById from "@/services/courseService";
 import TopNavBar from "./TopNavBar";
 
