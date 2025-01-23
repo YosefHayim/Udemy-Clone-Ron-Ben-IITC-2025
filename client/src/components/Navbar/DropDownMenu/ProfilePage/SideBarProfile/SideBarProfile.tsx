@@ -40,7 +40,7 @@ const SideBarProfile = () => {
           </li>
           <li>
             <Link
-              to="/profile"
+              to="/user/edit-profile"
               className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Profile
@@ -48,7 +48,7 @@ const SideBarProfile = () => {
           </li>
           <li>
             <Link
-              to="/photo"
+              to="/user/photo"
               className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Photo
@@ -56,7 +56,7 @@ const SideBarProfile = () => {
           </li>
           <li>
             <Link
-              to="/account-security"
+              to="/user/edit-account"
               className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Account Security
@@ -64,7 +64,7 @@ const SideBarProfile = () => {
           </li>
           <li>
             <Link
-              to="/subscriptions"
+              to="/user/manage-subscriptions"
               className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Subscriptions
@@ -72,7 +72,7 @@ const SideBarProfile = () => {
           </li>
           <li>
             <Link
-              to="/payment-methods"
+              to="/user/edit-payment-methods/"
               className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Payment methods
@@ -80,7 +80,7 @@ const SideBarProfile = () => {
           </li>
           <li>
             <Link
-              to="/privacy"
+              to="/user/edit-privacy"
               className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Privacy
@@ -88,7 +88,7 @@ const SideBarProfile = () => {
           </li>
           <li>
             <Link
-              to="/notification-preferences"
+              to="/user/edit-notifications/"
               className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               Notification Preferences
@@ -96,7 +96,7 @@ const SideBarProfile = () => {
           </li>
           <li>
             <Link
-              to="/api-clients"
+              to="/user/edit-api-clients/"
               className="block py-2 px-6 text-gray-700 hover:bg-[#9194ac]  hover:text-white font-medium cursor"
             >
               API clients

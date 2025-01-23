@@ -24,6 +24,11 @@ import PaymentMethods from "@/components/Navbar/DropDownMenu/PaymentMethods/Paym
 import UdemyBusinessContact from "@/components/Navbar/DropDownMenu/UdemyBusinessContact/UdemyBusinessContact";
 import { createContext, useState } from "react";
 import { FilterDataProps } from "@/types/types";
+import AccountSecurity from "@/components/Navbar/DropDownMenu/ProfilePage/AccountSecurity/AccountSecurity";
+import ApiClients from "@/components/Navbar/DropDownMenu/ProfilePage/ApiClients/ApiClients";
+import Photo from "@/components/Navbar/DropDownMenu/ProfilePage/Photo/Photo";
+import NotificationPreferences from "@/components/Navbar/DropDownMenu/ProfilePage/NotificationPrefrences/NotificationPreferences";
+import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privacy";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
@@ -67,7 +72,8 @@ const AppRoutes: React.FC = () => {
                   path="/dashboard/credit-history"
                   element={<UdemyCredits />}
                 />
-                <Route path="/edit-profile" element={<ProfileMain />} />
+                <Route path="/user/edit-profile" element={<ProfileMain />} />
+                <Route path="/user/edit-privacy" element={<Privacy />} />
                 <Route
                   path="/dashboard/purchase-history/"
                   element={<PurchaseHistory />}
@@ -82,12 +88,22 @@ const AppRoutes: React.FC = () => {
                   path="/user/public-profile"
                   element={<PublicProfile />}
                 />
+                <Route
+                  path="/user/edit-account"
+                  element={<AccountSecurity />}
+                />
+                <Route path="/user/photo" element={<Photo />} />
+                <Route path="/user/edit-api-clients" element={<ApiClients />} />
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route
                   path="/loader"
                   element={<Loader useSmallLoading={false} hSize="" />}
                 />
                 <Route path="/Signup" element={<SignUp />} />
+                <Route
+                  path="/user/edit-notifications/"
+                  element={<NotificationPreferences />}
+                />
                 <Route
                   path="/user/edit-payment-methods/"
                   element={<PaymentMethods />}
