@@ -20,16 +20,21 @@ const SideBarProfile = () => {
 
   return (
     <div className="w-64 bg-white border-l border-b border-t border-gray-300">
+      
       <div className="p-6 ">
-        <div className="flex items-center space-x-4">
+        <div className="flex flex-col items-center space-y-4">
+          <div className="flex items-center justify-center w-24 h-24 rounded-full bg-[#1D1E27] text-white text-2xl font-bold">
           <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
+          </div>
           <div>
-            <h2 className="font-bold text-lg text-gray-800">{fullName}</h2>
+            <h2 className="text-lg font-bold text-gray-800">{fullName}</h2>
           </div>
         </div>
       </div>
+      
+      
       <nav className="mt-6">
-        <ul className="space-y-2">
+        <ul className="space-y-2">  
           <li>
             <Link
               to="/user/public-profile"
