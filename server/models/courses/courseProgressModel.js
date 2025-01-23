@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const { v4: uuidv4 } = require("uuid");
+
 
 const lessonProgressSchema = new mongoose.Schema({
   lessonId: {
@@ -20,6 +22,7 @@ const sectionProgressSchema = new mongoose.Schema({
 });
 
 const courseProgressSchema = new mongoose.Schema(
+  
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -35,7 +38,7 @@ const courseProgressSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-courseProgressSchema.index({ userId: 1, courseId: 1 });
+courseProgressSchema.index({ userId: 1, courseId: 1 }, { unique: true });
 
 const CourseProgress = mongoose.model("CourseProgress", courseProgressSchema);
 module.exports = CourseProgress;

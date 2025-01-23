@@ -13,19 +13,6 @@ const getAllCourses = catchAsync(async (req, res, next) => {
     .limitFields()
     .paginate();
 
-  if (req.cookies.cookie) {
-    const decoded = verifyToken(req.cookies.cookie);
-    const userId = decoded.id;
-    const user = await User.findById({ userId });
-
-    for (const [key, value] of Object.entries(req.query)) {
-      user.recentSearches.push(value);
-      console.log(`${value}`);
-    }
-    await user.save();
-    
-  }
-
   const courses = await features.query;
 
   if (!courses || courses.length === 0) {

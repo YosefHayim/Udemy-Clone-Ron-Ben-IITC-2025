@@ -50,7 +50,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         onNavigate(nextLesson._id); // Navigate to the next lesson
       }
       setLoading(false); // Hide loader after navigation
-    }, 1000); // Adjust the delay as needed
+    }, 5000); // Adjust the delay as needed
   };
 
 

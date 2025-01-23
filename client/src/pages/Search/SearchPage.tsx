@@ -27,7 +27,6 @@ const SearchPage: React.FC = () => {
 
   // Update URL dynamically when filterData or page changes
   useEffect(() => {
-    console.log("Filter Data Price:", filterData.price); // Debugging
     const params: Record<string, string> = {
       q: searchTerm || "",
       page: currentPage.toString(),
@@ -51,15 +50,15 @@ const SearchPage: React.FC = () => {
       params.certificateOnly = "true";
     }
 
-    if (filterData.price) {
-      params.price = filterData.price; // Include price filter
-    }
+    // if (filterData.price) {
+    //   params.price = filterData.price; // Include price filter
+    // }
+    console.log(params);
 
-    console.log("Updated Params:", params); // Debugging
     setSearchParams(params);
   }, [filterData, currentPage, searchTerm, setSearchParams]);
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error, isPending } = useQuery({
     queryKey: [
       "courses",
       searchTerm.toLowerCase(),
@@ -80,13 +79,13 @@ const SearchPage: React.FC = () => {
     enabled: !!searchTerm,
   });
 
-  if (isLoading) {
+  if (isLoading || isPending) {
     return <Loader hSize="" useSmallLoading={false} />;
   }
 
-  if (error) {
-    navigate("/error-not-found");
-  }
+  // if (error) {
+  //   navigate("/error-not-found");
+  // }
 
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">

@@ -10,7 +10,7 @@ router.post(
   "/initialize/:id",
   grantedAccess,
   progressController.initializeProgress
-);
+);  
 
 // Update progress for a specific lesson
 router.patch(
