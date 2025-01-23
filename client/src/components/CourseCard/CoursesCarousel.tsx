@@ -3,7 +3,7 @@ import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseHoverCard from "./CourseHoverCard";
 import { Course } from "@/types/types";
 import { MdOutlineStarHalf } from "react-icons/md";
-import { IoIosStar, IoIosStarOutline } from "react-icons/io";
+import { IoIosStar, IoIosStarOutline, IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
 const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
@@ -85,7 +85,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
 
   return (
     <div className="relative w-full max-w-[80rem] mx-auto py-6">
-      <h2 className="text-2xl font-bold mb-4 text-[#303141]">
+      <h2 className="text-2xl font-bold mb-4 pl-2 text-[#303141]">
         Because you viewed{" "}
         <span className="text-purple-600 font-bold underline">
           {searchTerm}
@@ -181,17 +181,17 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
 
       <button
         onClick={handlePrev}
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full z-10 shadow-md hover:bg-gray-600"
+        className="absolute left-[-1rem] top-[9.2rem] w-[3.2rem] h-[3.2rem] transform -translate-y-1/2 bg-white text-[#303141] p-3 rounded-full z-10 shadow-md hover:bg-[#E9EAF2]"
         aria-label="Scroll Left"
       >
-        &#9664;
+        <IoIosArrowBack className="text-[1.4rem]" />
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-3 rounded-full z-10 shadow-md hover:bg-gray-600"
+        className="absolute right-[-1rem] top-[9.2rem] w-[3.2rem] h-[3.2rem] transform -translate-y-1/2 bg-white text-[#303141] p-3 rounded-full z-10 shadow-md hover:bg-[#E9EAF2]"
         aria-label="Scroll Right"
       >
-        &#9654;
+        <IoIosArrowForward className="text-[1.4rem]" />
       </button>
     </div>
   );
