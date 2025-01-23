@@ -132,11 +132,11 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                     <h3 className="font-bold text-[1rem] text-[#303141] line-clamp-2 pt-[0.3rem] leading-5">
                       {course.courseName}
                     </h3>
-                    <p className="text-xs text-gray-600 truncate py-[0.2rem]">
+                    <p className="text-xs text-[#595C73] truncate py-[0.2rem]">
                       {course.courseInstructor.fullName}
                     </p>
                     <div className="flex items-center text-sm text-[#8B4309] font-bold">
-                      <span className="mr-1">
+                      <span className="mr-1 text-[#8B4309]">
                         {course.averageRating.toFixed(1)}
                       </span>
                       <div className="flex">
