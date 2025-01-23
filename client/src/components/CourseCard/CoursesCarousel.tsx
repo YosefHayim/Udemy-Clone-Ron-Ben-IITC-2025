@@ -84,7 +84,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
   };
 
   return (
-    <div className="relative w-full max-w-[80rem] mx-auto py-6">
+    <div className="relative w-full max-w-[80rem] mx-auto py-6 overflow-visible">
       <h2 className="text-2xl font-bold mb-4 pl-2 text-[#303141]">
         Because you viewed{" "}
         <span className="text-[#6d28d2] font-bold underline hover:text-[#521e9f]">
@@ -93,9 +93,9 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
       </h2>
 
       {courses.length > 0 && (
-        <div className="overflow-hidden relative">
+        <div className="overflow-x-hidden overflow-y-visible relative">
           <div
-            className="flex transition-transform duration-300"
+            className="flex transition-transform duration-300 overflow-y-visible"
             style={{
               transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`,
               width: `${courses.length * (100 / visibleItems)}%`,
@@ -104,7 +104,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
             {courses.map((course) => (
               <div
                 key={course._id}
-                className="w-[calc(100%/5)] px-[0.5rem] box-border relative"
+                className="w-[calc(100%/5)] px-[0.5rem] box-border relative overflow-visible"
                 onMouseEnter={() => setHoveredCourse(course)}
                 onMouseLeave={(e) => {
                   const relatedTarget = e.relatedTarget as Node;
@@ -119,7 +119,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
               >
                 <div
                   onClick={() => handleCardClick(course._id)}
-                  className="cursor-pointer shadow-sm overflow-hidden bg-white flex flex-col maxh-[18rem]"
+                  className="cursor-pointer shadow-sm bg-white flex flex-col maxh-[18rem]"
                 >
                   <div className="h-36 w-full">
                     <img
@@ -167,7 +167,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                 {hoveredCourse?._id === course._id && (
                   <div
                     ref={hoverCardRef}
-                    className="absolute top-0 left-full ml-2"
+                    className="absolute top-0 left-full ml-2 overflow-visible"
                     onMouseLeave={() => setHoveredCourse(null)}
                   >
                     <CourseHoverCard course={hoveredCourse} />
