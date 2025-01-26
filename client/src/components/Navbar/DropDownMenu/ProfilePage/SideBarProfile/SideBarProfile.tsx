@@ -34,7 +34,7 @@ const SideBarProfile = () => {
         </div>
       </div>
       {/* Profile Nav_Side_Bar */}
-      <nav className="mt-6">
+      <nav className="mt-6 ">
         <ul className="space-y-2">
           <li>
             <Link
