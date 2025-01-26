@@ -361,3 +361,42 @@ export interface GoogleAuthResponse {
     email: string;
   };
 }
+
+//progress
+
+
+// Define the type for a lesson
+export interface Lesson {
+  lessonId: {
+    _id: string;
+    title: string;
+    duration: number; // Duration in minutes
+  };
+  completed: boolean;
+  lastWatched: number; // Timestamp for when the lesson was last watched
+}
+
+// Define the type for a section containing lessons
+export interface Section {
+  sectionId: {
+    _id: string;
+    title: string;
+  };
+  lessons: Lesson[];
+}
+
+// Define the type for the course progress response
+export interface CourseProgressResponse {
+  progress: {
+    sections: Section[];
+    totalLessons: number;
+    completedLessons: number;
+    percentageCompleted: number;
+  };
+}
+
+// Optional: Define the type for the mutation payload
+export interface LessonProgressPayload {
+  completed?: boolean;
+  lastWatched?: number;
+}

@@ -9,30 +9,11 @@ import {
   CollapsibleTrigger,
   CollapsibleContent,
 } from "@/components/ui/collapsible";
-import { fetchCourseProgress, updateLessonProgress } from "../../../services/ProgressService";
-
-// Define TypeScript interfaces
-interface Lesson {
-  lessonId: {
-    _id: string;
-    title: string;
-    duration: number;
-  };
-  completed: boolean;
-  lastWatched: number;
-}
-
-interface Section {
-  sectionId: {
-    _id: string;
-    title: string;
-  };
-  lessons: Lesson[];
-}
-
-interface CourseProgressResponse {
-  sections: Section[];
-}
+import {
+  fetchCourseProgress,
+  updateLessonProgress,
+} from "../../../services/ProgressService";
+import { CourseProgressResponse, LessonProgressPayload } from "@/types";
 
 const CourseContent: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -42,24 +23,64 @@ const CourseContent: React.FC = () => {
   const sanitizedCourseId = courseId?.trim();
 
   // React Query: Fetch course progress
-  const { data, isLoading, isError, error } = useQuery<CourseProgressResponse, Error>({
-    queryKey: ["courseProgress", sanitizedCourseId],
-    queryFn: () => fetchCourseProgress(sanitizedCourseId!),
-    enabled: !!sanitizedCourseId, // Only fetch when courseId is valid
+  const { data, isLoading, isError, error } = useQuery<CourseProgressResponse>({
+    queryKey: ["courseProgress", courseId],
+    queryFn: () => fetchCourseProgress(courseId),
+    enabled: !!courseId,
   });
 
-  // Mutation for updating lesson progress
+  // Mutation with optimistic updates
   const mutation = useMutation({
-    mutationFn: ({ lessonId, payload }: { lessonId: string; payload: { completed?: boolean } }) =>
-      updateLessonProgress(sanitizedCourseId!, lessonId, payload),
-    onSuccess: () => {
-      if (sanitizedCourseId) {
-        queryClient.invalidateQueries(["courseProgress", sanitizedCourseId]);
+    mutationFn: ({
+      lessonId,
+      payload,
+    }: {
+      lessonId: string;
+      payload: LessonProgressPayload;
+    }) => updateLessonProgress(sanitizedCourseId!, lessonId, payload),
+    onMutate: async ({ lessonId, payload }) => {
+      await queryClient.cancelQueries(["courseProgress", sanitizedCourseId]);
+
+      const previousData = queryClient.getQueryData<CourseProgressResponse>([
+        "courseProgress",
+        sanitizedCourseId,
+      ]);
+
+      if (previousData) {
+        queryClient.setQueryData<CourseProgressResponse>(
+          ["courseProgress", sanitizedCourseId],
+          {
+            ...previousData,
+            progress: {
+              ...previousData.progress,
+              sections: previousData.progress.sections.map((section) => ({
+                ...section,
+                lessons: section.lessons.map((lesson) =>
+                  lesson.lessonId._id === lessonId
+                    ? { ...lesson, completed: payload.completed }
+                    : lesson
+                ),
+              })),
+            },
+          }
+        );
       }
+
+      return { previousData };
+    },
+    onError: (err, variables, context) => {
+      if (context?.previousData) {
+        queryClient.setQueryData<CourseProgressResponse>(
+          ["courseProgress", sanitizedCourseId],
+          context.previousData
+        );
+      }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries(["courseProgress", sanitizedCourseId]);
     },
   });
 
-  // Handle checkbox toggle for lesson completion
   const toggleLessonCompletion = (lessonId: string, currentState: boolean) => {
     mutation.mutate({
       lessonId,
@@ -68,14 +89,15 @@ const CourseContent: React.FC = () => {
   };
 
   if (isLoading) return <div>Loading course content...</div>;
-  if (isError) return <div>Error: {error.message}</div>;
+  if (isError && error instanceof Error)
+    return <div>Error: {error.message}</div>;
 
   let lessonCounter = 0;
 
   return (
     <div className="flex justify-center py-10 min-h-screen">
       <div>
-        {data?.sections.map((section, idx) => (
+        {data?.progress.sections.map((section, idx) => (
           <Collapsible
             key={section.sectionId._id}
             defaultOpen
@@ -107,7 +129,7 @@ const CourseContent: React.FC = () => {
                       key={lesson.lessonId._id}
                       className={`flex items-center gap-3 mb-2 p-2 ${
                         isCurrentLesson
-                          ? "bg-slate-400 text-white"
+                          ? "bg-slate-400 "
                           : "hover:bg-slate-400"
                       }`}
                     >
