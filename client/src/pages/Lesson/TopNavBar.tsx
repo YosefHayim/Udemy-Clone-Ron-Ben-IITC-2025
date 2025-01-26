@@ -35,7 +35,7 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
   const percentageCompleted = data?.percentageCompleted || 0;
 
   return (
-    <nav className="border-b border-gray-700 absolute top-0 left-0 w-full bg-[#1D1E27] text-white z-10">
+    <nav className="border-b z-50 border-gray-700 absolute top-0 left-0 w-full bg-[#1D1E27] text-white z-10">
       <div className="mx-auto px-4 py-3 flex justify-between items-center">
         {/* Left-aligned logo and title */}
         <Link to="/">
@@ -84,9 +84,9 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
               <IoIosArrowDown className="text-sm" />
             </button>
             {showTooltip && (
-              <div className="absolute top-[2.8rem] left-1/2 transform -translate-x-1/2 w-[250px] p-4 bg-white text-black rounded-lg shadow-lg border border-gray-200">
+              <div className="absolute  top-[2.8rem] left-1/2 transform -translate-x-1/2 w-[250px] p-4 bg-white text-black rounded-lg shadow-lg border border-gray-200">
                 {/* Tooltip pointer */}
-                <div className="absolute -top-[0.4rem] left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-gray-200"></div>
+                <div className="absolute  -top-[0.4rem] left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-gray-200"></div>
                 {isLoading ? (
                   <p className="text-sm font-semibold">Loading...</p>
                 ) : isError ? (

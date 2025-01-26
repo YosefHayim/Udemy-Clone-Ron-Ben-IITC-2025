@@ -36,7 +36,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   controls = true,
   playing = true,
   width = "100%",
-  height = "820px",
+  height = "780px",
 }) => {
   const { open, toggleSidebar } = useSidebar();
   const [isHovered, setIsHovered] = useState(false);
@@ -209,7 +209,7 @@ console.log(isCanceledRef);
 
       {/* Centered Custom Trigger */}
       {!open && window.innerWidth > 1000 && (
-        <div className="absolute inset-0 flex justify-start pb-80 items-center">
+        <div className="absolute inset-0 flex justify-end  pb-80 items-center">
           <CustomTrigger open={open} toggleSidebar={toggleSidebar} position="centered" />
         </div>
       )}

@@ -53,9 +53,6 @@ const LessonPage: React.FC = () => {
 
   return (
     <Layout>
-      <TopNavBar
-       courseName={courseData.courseName}
-       courseId={courseId} />
       <VideoPlayer
         courseId={courseId}
         currentLesson={currentLesson}
