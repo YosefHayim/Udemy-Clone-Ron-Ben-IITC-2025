@@ -58,22 +58,43 @@ const ProfileMain = () => {
               </p>
             </div>
 
-            {/* Bio */}
             <div>
-              <textarea
-                id="bio"
-                placeholder="A brief bio about yourself"
-                rows={4}
-                className="rounded-[0.2rem] border border-gray-500 w-full"
-              ></textarea>
+              {/* Botões de Estilo e Textarea */}
+              <div className="flex flex-col">
+              <div className="flex items-center space-x-2 border border-gray-500 rounded-t-[0.2rem] bg-gray-100 p-2">
+  {/* Button "B" */}
+  <button
+    type="button"
+    className="text-[1.2rem] text-opacity-80 flex items-center justify-center w-8 h-8 rounded-[0.2rem] font-bold text-black hover:bg-gray-300"
+  >
+    B
+  </button>
+  {/* Button "I" */}
+  <button
+    type="button"
+    className="text-[1.2rem] text-opacity-80 flex items-center justify-center w-8 h-8 rounded-[0.2rem] font-bold italic text-black hover:bg-gray-300"
+  >
+    I
+  </button>
+</div>
+
+                <textarea
+                  id="bio"
+                  rows={4}
+                  className="border border-gray-500 border-t-0 rounded-b-[0.2rem] w-full bg-white p-2"
+                ></textarea>
+              </div>
+
+              {/* Informação adicional */}
               <p className="text-[0.8em] text-gray-600 mb-[1em]">
                 Links and coupon codes are not permitted in this section.
               </p>
-              {/* Language */}
+
+              {/* Seleção de Idioma */}
               <div>
                 <select
                   id="language"
-                  className="rounded-[0.2rem] border border-gray-500 mb-[1em] w-full"
+                  className="rounded-[0.2rem] border border-gray-500 mb-[1em] w-full bg-white p-2"
                 >
                   <option value="en">English (US)</option>
                   <option value="es">Spanish</option>
@@ -83,6 +104,7 @@ const ProfileMain = () => {
               </div>
               <hr />
             </div>
+
 
             {/* Links */}
             <div>
