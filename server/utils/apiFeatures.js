@@ -24,6 +24,7 @@ class APIFeatures {
       this.query = this.query.find({
         $or: [
           { courseName: { $regex: searchQuery, $options: "i" } },
+          { category: { $regex: searchQuery, $options: "i" } },
           { description: { $regex: searchQuery, $options: "i" } },
         ],
       });
