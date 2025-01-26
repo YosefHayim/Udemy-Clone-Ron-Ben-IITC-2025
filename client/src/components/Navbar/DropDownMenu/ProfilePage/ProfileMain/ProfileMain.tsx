@@ -13,7 +13,7 @@ const ProfileMain = () => {
       <SideBarProfile />
 
       {/* Main Content */}
-      <main className="flex-1  border border-gray-300 ">
+      <main className="flex-1 border border-gray-300">
         <div className="bg-white">
           <div className="border-b border-gray-300 min-w-full text-center p-4">
             <h2 className="text-2xl font-bold text-gray-800">Public Profile</h2>
@@ -64,7 +64,7 @@ const ProfileMain = () => {
                 id="bio"
                 placeholder="A brief bio about yourself"
                 rows={4}
-                className="rounded-[0.2rem]-[0.2rem] border border-gray-500"
+                className="rounded-[0.2rem] border border-gray-500 w-full"
               ></textarea>
               <p className="text-[0.8em] text-gray-600 mb-[1em]">
                 Links and coupon codes are not permitted in this section.
@@ -73,7 +73,7 @@ const ProfileMain = () => {
               <div>
                 <select
                   id="language"
-                  className="rounded-[0.2rem] border border-gray-500 mb-[1em]"
+                  className="rounded-[0.2rem] border border-gray-500 mb-[1em] w-full"
                 >
                   <option value="en">English (US)</option>
                   <option value="es">Spanish</option>
@@ -88,31 +88,37 @@ const ProfileMain = () => {
             <div>
               <label className="block text-sm font-medium">Links:</label>
               <div className="space-y-4 mt-2">
+                {/* Website */}
                 <div>
-                  {/* Website */}
                   <Input
                     type="url"
                     placeholder="Website (http://...)"
-                    className="rounded-[0.2rem] border-black"
+                    className="rounded-[0.2rem] border border-gray-500 w-full"
                   />
                 </div>
+
+                {/* Twitter */}
                 <div className="flex flex-col items-start justify-start w-full">
-                  <div className="flex flex-row items-center justify-center w-full border-b border-gray-600">
-                    <label htmlFor="twitter" className="bg-gray-100 p-[0.7em]">
+                  <div className="flex flex-row items-center w-full border border-gray-400 bg-white h-[50px] rounded-[0.2rem]">
+                    <label
+                      htmlFor="twitter"
+                      className="px-[0.7em] text-black font-normal text-base bg-gray-100 h-full flex items-center border-r border-gray-400 rounded-l-[0.2rem]"
+                    >
                       http://twitter.com/
                     </label>
                     <Input
                       type="url"
                       name="twitter"
                       placeholder="Twitter Profile"
-                      className="rounded-[0.2rem] border-t border-l border-gray-600 border-b-0 placeholder:text-[#9194AC]"
+                      className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
-                  <p className="text-[0.8em] text-gray-600 mb-[1em]">
-                    Add your twitter username (e.g. johnsmith)
+                  <p className="text-[0.8em] text-gray-600 my-[1em]">
+                    Add your Twitter username (e.g. johnsmith)
                   </p>
                 </div>
 
+                {/* Facebook */}
                 <div className="flex flex-col items-start justify-start w-full">
                   <div className="flex flex-row items-center w-full border border-gray-400 bg-white h-[50px] rounded-[0.2rem]">
                     <label
@@ -133,36 +139,45 @@ const ProfileMain = () => {
                   </p>
                 </div>
 
+                {/* Linkedin */}
                 <div className="flex flex-col items-start justify-start w-full">
-                  <div className="flex flex-row items-center justify-center w-full border-b border-gray-600">
-                    <label htmlFor="linkedin" className="bg-gray-100 p-[0.7em]">
-                      http://www.Linkedin.com/
+                  <div className="flex flex-row items-center w-full border border-gray-400 bg-white h-[50px] rounded-[0.2rem]">
+                    <label
+                      htmlFor="linkedin"
+                      className="px-[0.7em] text-black font-normal text-base bg-gray-100 h-full flex items-center border-r border-gray-400 rounded-l-[0.2rem]"
+                    >
+                      http://www.linkedin.com/
                     </label>
                     <Input
                       type="url"
                       name="linkedin"
                       placeholder="Linkedin Profile"
-                      className="rounded-[0.2rem] border-t border-l border-gray-600 border-b-0 placeholder:text-[#9194AC]"
+                      className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
-                  <p className="text-[0.8em] text-gray-600 mb-[1em]">
-                    input your linkedin username (e.g. johnsmith)
+                  <p className="text-[0.8em] text-gray-600 my-[1em]">
+                    Input your Linkedin username (e.g. johnsmith)
                   </p>
                 </div>
+
+                {/* YouTube */}
                 <div className="flex flex-col items-start justify-start w-full">
-                  <div className="flex flex-row items-center justify-center w-full border-b border-gray-600">
-                    <label htmlFor="youtube" className="bg-gray-100 p-[0.7em]">
+                  <div className="flex flex-row items-center w-full border border-gray-400 bg-white h-[50px] rounded-[0.2rem]">
+                    <label
+                      htmlFor="youtube"
+                      className="px-[0.7em] text-black font-normal text-base bg-gray-100 h-full flex items-center border-r border-gray-400 rounded-l-[0.2rem]"
+                    >
                       http://www.youtube.com/
                     </label>
                     <Input
                       type="url"
                       name="youtube"
-                      placeholder="Youtube Profile"
-                      className="rounded-[0.2rem] border-t border-l border-gray-600 border-b-0 placeholder:text-[#9194AC]"
+                      placeholder="YouTube Profile"
+                      className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
-                  <p className="text-[0.8em] text-gray-600 mb-[1em]">
-                    input your Youtube username (e.g. johnsmith)
+                  <p className="text-[0.8em] text-gray-600 my-[1em]">
+                    Input your YouTube username (e.g. johnsmith)
                   </p>
                 </div>
               </div>
