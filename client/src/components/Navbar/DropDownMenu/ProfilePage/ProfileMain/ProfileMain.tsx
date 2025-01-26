@@ -17,10 +17,10 @@ const ProfileMain = () => {
         <div className="bg-white">
           <div className="border-b border-gray-300 min-w-full text-center p-4">
             <h2 className="text-2xl font-bold text-gray-800">Public Profile</h2>
-            <p className="text-gray-600">Add information about yourself</p>
+            <p className="text-[#303141] text-[1rem]">Add information about yourself</p>
           </div>
 
-          <form className="space-y-6 px-8">
+          <form className="space-y-6 px-[9rem]">
             {/* First Name */}
             <div>
               <p className="font-sans font-bold text-[1rem] pb-2 pt-8">
@@ -30,7 +30,7 @@ const ProfileMain = () => {
                 id="firstName"
                 type="text"
                 placeholder={fullName || "First Name"}
-                className="rounded-[0em] border border-gray-400"
+                className="border border-gray-500 rounded-[0.2rem]"
               />
             </div>
 
@@ -40,7 +40,7 @@ const ProfileMain = () => {
                 id="lastName"
                 type="text"
                 placeholder="Last Name"
-                className="rounded-[0em] border border-gray-400"
+                className="rounded-[0.2rem] border border-gray-500"
               />
             </div>
 
@@ -50,7 +50,7 @@ const ProfileMain = () => {
                 id="headline"
                 type="text"
                 placeholder="Headline"
-                className="rounded-[0em] border border-gray-400"
+                className="rounded-[0.2rem] border border-gray-500"
               />
               <p className="text-[0.8em] text-gray-600">
                 Add a professional headline like "instructor at udemy" or
@@ -64,7 +64,7 @@ const ProfileMain = () => {
                 id="bio"
                 placeholder="A brief bio about yourself"
                 rows={4}
-                className="rounded-[0em] border border-gray-400"
+                className="rounded-[0.2rem]-[0.2rem] border border-gray-500"
               ></textarea>
               <p className="text-[0.8em] text-gray-600 mb-[1em]">
                 Links and coupon codes are not permitted in this section.
@@ -73,7 +73,7 @@ const ProfileMain = () => {
               <div>
                 <select
                   id="language"
-                  className="rounded-[0em] border border-gray-400 mb-[1em]"
+                  className="rounded-[0.2rem] border border-gray-500 mb-[1em]"
                 >
                   <option value="en">English (US)</option>
                   <option value="es">Spanish</option>
@@ -93,7 +93,7 @@ const ProfileMain = () => {
                   <Input
                     type="url"
                     placeholder="Website (http://...)"
-                    className="rounded-[0em] border-black"
+                    className="rounded-[0.2rem] border-black"
                   />
                 </div>
                 <div className="flex flex-col items-start justify-start w-full">
@@ -105,7 +105,7 @@ const ProfileMain = () => {
                       type="url"
                       name="twitter"
                       placeholder="Twitter Profile"
-                      className="rounded-[0em] border-t border-l border-gray-600 border-b-0 placeholder:text-[#9194AC]"
+                      className="rounded-[0.2rem] border-t border-l border-gray-600 border-b-0 placeholder:text-[#9194AC]"
                     />
                   </div>
                   <p className="text-[0.8em] text-gray-600 mb-[1em]">
@@ -113,15 +113,15 @@ const ProfileMain = () => {
                   </p>
                 </div>
                 <div className="flex flex-col items-start justify-start w-full">
-                  <div className="flex flex-row items-center justify-center w-full border-b border-gray-600">
-                    <label htmlFor="facebook" className="bg-gray-100 p-[0.7em]">
+                  <div className="flex flex-row items-center justify-center w-full border rounded-sm border-gray-600 bg-gray-100 h-[50px]">
+                    <label htmlFor="facebook" className="px-[0.7em] py-[0.6rem] text-black font-normal text-base">
                       http://www.facebook.com/
                     </label>
                     <Input
                       type="url"
                       name="facebook"
                       placeholder="Facebook Profile"
-                      className="rounded-[0em] border-t border-l border-gray-600 border-b-0 placeholder:text-[#9194AC]"
+                      className="border-l-gray-500 rounded-l-none h-full rounded-[0.2rem] bg-white placeholder:text-base border-t-none border-b-none border-r-none placeholder:text-gray-800 placeholder:font-normal"
                     />
                   </div>
                   <p className="text-[0.8em] text-gray-600 mb-[1em]">
@@ -137,7 +137,7 @@ const ProfileMain = () => {
                       type="url"
                       name="linkedin"
                       placeholder="Linkedin Profile"
-                      className="rounded-[0em] border-t border-l border-gray-600 border-b-0 placeholder:text-[#9194AC]"
+                      className="rounded-[0.2rem] border-t border-l border-gray-600 border-b-0 placeholder:text-[#9194AC]"
                     />
                   </div>
                   <p className="text-[0.8em] text-gray-600 mb-[1em]">
@@ -153,7 +153,7 @@ const ProfileMain = () => {
                       type="url"
                       name="youtube"
                       placeholder="Youtube Profile"
-                      className="rounded-[0em] border-t border-l border-gray-600 border-b-0 placeholder:text-[#9194AC]"
+                      className="rounded-[0.2rem] border-t border-l border-gray-600 border-b-0 placeholder:text-[#9194AC]"
                     />
                   </div>
                   <p className="text-[0.8em] text-gray-600 mb-[1em]">
