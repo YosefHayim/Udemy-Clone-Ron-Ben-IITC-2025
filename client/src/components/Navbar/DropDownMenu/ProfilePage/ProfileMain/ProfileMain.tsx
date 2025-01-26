@@ -112,22 +112,27 @@ const ProfileMain = () => {
                     Add your twitter username (e.g. johnsmith)
                   </p>
                 </div>
+
                 <div className="flex flex-col items-start justify-start w-full">
-                  <div className="flex flex-row items-center justify-center w-full border rounded-sm border-gray-600 bg-gray-100 h-[50px]">
-                    <label htmlFor="facebook" className="px-[0.7em] py-[0.6rem] text-black font-normal text-base">
+                  <div className="flex flex-row items-center w-full border border-gray-400 bg-white h-[50px] rounded-[0.2rem]">
+                    <label
+                      htmlFor="facebook"
+                      className="px-[0.7em] text-black font-normal text-base bg-gray-100 h-full flex items-center border-r border-gray-400 rounded-l-[0.2rem]"
+                    >
                       http://www.facebook.com/
                     </label>
                     <Input
                       type="url"
                       name="facebook"
                       placeholder="Facebook Profile"
-                      className="border-l-gray-500 rounded-l-none h-full rounded-[0.2rem] bg-white placeholder:text-base border-t-none border-b-none border-r-none placeholder:text-gray-800 placeholder:font-normal"
+                      className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
-                  <p className="text-[0.8em] text-gray-600 mb-[1em]">
-                    input your Facebook username (e.g. johnsmith)
+                  <p className="text-[0.8em] text-gray-600 my-[1em]">
+                    Input your Facebook username (e.g. johnsmith)
                   </p>
                 </div>
+
                 <div className="flex flex-col items-start justify-start w-full">
                   <div className="flex flex-row items-center justify-center w-full border-b border-gray-600">
                     <label htmlFor="linkedin" className="bg-gray-100 p-[0.7em]">
