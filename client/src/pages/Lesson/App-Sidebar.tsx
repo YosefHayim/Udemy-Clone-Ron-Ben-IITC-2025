@@ -67,7 +67,6 @@ export const AppSidebar: React.FC = () => {
           <SidebarGroup className="p-0">
             <SidebarGroupContent>
               <CourseSidebarMenu
-                sections={courseData.sections}
                 courseId={courseId || ""}
               />
             </SidebarGroupContent>
