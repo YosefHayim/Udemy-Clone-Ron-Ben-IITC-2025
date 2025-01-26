@@ -61,22 +61,22 @@ const ProfileMain = () => {
             <div>
               {/* Botões de Estilo e Textarea */}
               <div className="flex flex-col">
-              <div className="flex items-center space-x-2 border border-gray-500 rounded-t-[0.2rem] bg-gray-100 p-2">
-  {/* Button "B" */}
-  <button
-    type="button"
-    className="text-[1.2rem] text-opacity-80 flex items-center justify-center w-8 h-8 rounded-[0.2rem] font-bold text-black hover:bg-gray-300"
-  >
-    B
-  </button>
-  {/* Button "I" */}
-  <button
-    type="button"
-    className="text-[1.2rem] text-opacity-80 flex items-center justify-center w-8 h-8 rounded-[0.2rem] font-bold italic text-black hover:bg-gray-300"
-  >
-    I
-  </button>
-</div>
+                <div className="flex items-center space-x-2 border border-gray-500 rounded-t-[0.2rem] bg-white p-2">
+                  {/* Button "B" */}
+                  <button
+                    type="button"
+                    className="text-[1.1rem]  font-seriftext-opacity-80 flex items-center justify-center w-8 h-8 rounded-[0.2rem] font-bold text-black hover:bg-gray-300"
+                  >
+                    B
+                  </button>
+                  {/* Button "I" */}
+                  <button
+                    type="button"
+                    className="text-[1.1rem] font-serif text-opacity-80 flex items-center justify-center w-8 h-8 rounded-[0.2rem] font-bold italic text-black hover:bg-gray-300"
+                  >
+                    I
+                  </button>
+                </div>
 
                 <textarea
                   id="bio"
