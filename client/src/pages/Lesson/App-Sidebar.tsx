@@ -10,7 +10,7 @@ import fetchCourseById from "@/services/courseService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export const AppSidebar: React.FC = () => {
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [courseData, setCourseData] = useState<any>(null);
   const [isSmallScreen, setIsSmallScreen] = useState<boolean | null>(false);
   const { toggleSidebar, open } = useSidebar();
@@ -60,12 +60,12 @@ export const AppSidebar: React.FC = () => {
   return (
     <>
       <Sidebar
-        className="absolute min-h-full pt-[60px] px-0 bg-white"
-        side="left"
+        className="absolute min-h-full top-[4rem] px-0 bg-white"
+        side="right"
       >
-        <SidebarContent>
-          <SidebarGroup className="p-0">
-            <SidebarGroupContent>
+        <SidebarContent >
+          <SidebarGroup className="p-0 gap-0">
+            <SidebarGroupContent className="gap-0">
               <CourseSidebarMenu
                 courseId={courseId || ""}
               />
