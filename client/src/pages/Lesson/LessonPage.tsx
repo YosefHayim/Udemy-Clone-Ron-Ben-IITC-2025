@@ -4,16 +4,16 @@ import Layout from "./Layout";
 import LessonRoutes from "../../routes/LessonRoutes";
 import VideoPlayer from "./VideoPlayer";
 import Footer from "../../pages/Home/Footer/Footer";
-import fetchCourseById from "@/services/courseService";
-import TopNavBar from "./TopNavBar";
+import { fetchCourseProgress } from "@/services/ProgressService";
+import { CourseProgressResponse } from "@/types";
 
 const LessonPage: React.FC = () => {
   const { courseId, id } = useParams<{ courseId: string; id: string }>();
   const navigate = useNavigate();
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["course", courseId],
-    queryFn: () => fetchCourseById(courseId || ""),
+  const { data, isLoading, error } = useQuery<CourseProgressResponse>({
+    queryKey: ["courseProgress", courseId],
+    queryFn: () => fetchCourseProgress(courseId || ""),
     enabled: !!courseId,
   });
 
@@ -30,17 +30,24 @@ const LessonPage: React.FC = () => {
       <Layout>
         <div>
           <h1>Error</h1>
-          <p>Failed to load course data.</p>
+          <p>Failed to load course progress data.</p>
         </div>
       </Layout>
     );
   }
 
-  const courseData = data;
-  const lessons = courseData.sections.flatMap(
-    (section: any) => section.lessons
+  const courseProgress = data.progress;
+  console.log(courseProgress);
+  
+  const lessons = courseProgress.sections.flatMap((section) =>
+    section.lessons.map((lesson) => ({
+      ...lesson,
+      ...lesson.lessonId,
+      completed: lesson.completed,
+    }))
   );
-  const lessonIndex = lessons.findIndex((lesson: any) => lesson._id === id);
+  
+  const lessonIndex = lessons.findIndex((lesson) => lesson._id === id);
 
   if (lessonIndex === -1) {
     navigate(`/course/${courseId}/lesson/${lessons[0]._id}/overview`);
@@ -48,6 +55,8 @@ const LessonPage: React.FC = () => {
   }
 
   const currentLesson = lessons[lessonIndex];
+  console.log("current lesosn" ,currentLesson);
+  
   const nextLesson = lessons[lessonIndex + 1] || null;
   const prevLesson = lessons[lessonIndex - 1] || null;
 

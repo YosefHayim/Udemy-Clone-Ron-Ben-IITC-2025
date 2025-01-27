@@ -51,9 +51,19 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const [updateTimer, setUpdateTimer] = useState<NodeJS.Timeout | null>(null);
   const [progress, setProgress] = useState(0)
   const isCanceledRef = useRef(false); // Use ref to track isCanceled
+  const playerRef = useRef<ReactPlayer>(null);
   const queryClient = useQueryClient(); // Access queryClient
 
-
+  // Seek to the last watched time when the video URL changes or lastWatched updates
+  useEffect(() => {
+    console.log("currentlesson lastwatched",currentLesson.lastWatched);
+    
+    if (playerRef.current && currentLesson?.lastWatched > 0) {
+      playerRef.current.seekTo(currentLesson.lastWatched, "seconds");
+      setPaused(true); // Set paused state to true
+    }
+  }, [videoUrl, currentLesson._id]);
+  
   // Mutation to update lesson progress
   const mutation = useMutation({
     mutationFn: ({
@@ -71,6 +81,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const handleProgress = (progress: { playedSeconds: number }) => {
     const currentSeconds = Math.floor(progress.playedSeconds);
     setLastWatched(currentSeconds);
+   console.log(currentLesson.lastWatched);
     
 
     if (!updateTimer) {
@@ -81,11 +92,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         });
         setUpdateTimer(null);
         
-      }, 5000); // Update every 5 seconds
+      }, 2000); // Update every 5 seconds
       setUpdateTimer(timer);
     }
   };
-console.log(isCanceledRef);
 
   // Mark lesson as completed when the video ends
   const handleVideoEnd = () => {
@@ -216,6 +226,7 @@ console.log(isCanceledRef);
 
       {/* React Player */}
       <ReactPlayer
+        ref={playerRef} // Attach the ref here
         url={videoUrl}
         controls={isHovered}
         playing={!paused}
