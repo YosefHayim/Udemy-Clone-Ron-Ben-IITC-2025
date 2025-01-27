@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select"
 import ReactQuill from "react-quill";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { addNote, fetchAllNotes  } from "@/services/NoteService";
+import { addNote, deleteNote, fetchAllNotes  } from "@/services/NoteService";
 import "react-quill/dist/quill.snow.css";
 import { FaCirclePlus } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa6";
@@ -44,9 +44,29 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
     queryFn: () => fetchAllNotes(courseId), // Pass the function to fetch notes
     enabled: !!courseId, // Ensures the query only runs if `courseId` is valid
   });
-  console.log('notes', notes);
   
 
+  const deleteMutation = useMutation({
+    
+    mutationFn: ({ courseId, lessonId, noteId }: { courseId: string; lessonId: string; noteId: string }) =>
+      deleteNote(courseId, lessonId, noteId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["notes", courseId]);
+    },
+    onError: (error: any) => {
+      console.error("Failed to delete note:", error.message);
+    },
+  });
+  
+  const handleDeleteNote = (courseId: string, lessonId: string, noteId: string) => {
+
+    const confirmed = window.confirm("Are you sure you want to delete this note?");
+    if (confirmed) {
+      deleteMutation.mutate({ courseId, lessonId, noteId });
+    }
+  };
+  
+  
 
   const mutation = useMutation({
     mutationFn: (payload: { seconds: number; text: string }) =>
@@ -171,7 +191,7 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
           <div>
             
             {notes.map((note: any, index: number) => (
-             <div className="flex min-w-full px-12  "> 
+             <div className="flex min-w-full px-12  " > 
             <span className="relative self-start px-2  mr-2 rounded-3xl text-white bg-black text-sm">
              {formatTime(note.seconds)}
             </span>
@@ -185,9 +205,12 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
             <span className="text-gray-500 text-xs relative pb-0 mb-0 ml-4">{note.lessonIndex+1}. {note.lessonTitle}</span>
             </span>
             <span className="flex gap-2">
-            <FaPen className="mr-2 text-[#303141]"/>
-            <FaTrash className="mr-2 text-[#303141]" />
-            </span>
+            <FaPen className="mr-2 text-[#303141] text-xl p-1 rounded-md hover:bg-[#E6E6E8]"/>
+            <FaTrash
+  className="mr-2 text-[#303141] cursor-pointer text-xl p-1 rounded-md hover:bg-[#E6E6E8]"
+  onClick={() => handleDeleteNote(courseId, lessonId, note.noteId)}
+/>
+          </span>
             </div>
                 <div className="flex bg-[#F6F7F9]  border  min-w-full p-6 my-3">
                 <div
