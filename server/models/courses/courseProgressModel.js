@@ -3,15 +3,22 @@ const { v4: uuidv4 } = require("uuid");
 
 
 const lessonProgressSchema = new mongoose.Schema({
-  lessonId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Lesson",
-    required: true,
-  },
-  completed: { type: Boolean, default: false },
-  lastWatched: { type: Number, default: 0 }, // Last second viewed
-});
-
+    lessonId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Lesson",
+      required: true,
+    },
+    completed: { type: Boolean, default: false },
+    lastWatched: { type: Number, default: 0 }, // Last second viewed
+    notes: [
+      {
+        _id: { type: String, default: uuidv4 }, // Unique ID for the note
+        seconds: { type: Number, required: true }, // Timestamp of the note
+        text: { type: String, required: true }, // Content of the note
+      },
+    ],
+  });
+  
 const sectionProgressSchema = new mongoose.Schema({
   sectionId: {
     type: mongoose.Schema.Types.ObjectId,

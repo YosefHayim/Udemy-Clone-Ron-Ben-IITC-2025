@@ -2,6 +2,7 @@ const User = require("../../models/users/userModel"); // Update the path to matc
 const Course = require("../../models/courses/courseModel");
 const CourseProgress = require("././../../models/courses/courseProgressModel");
 const mongoose = require("mongoose");
+const { v4: uuidv4 } = require("uuid");
 
 
 /**
@@ -74,11 +75,6 @@ exports.initializeProgress = async (req, res) => {
       .json({ error: "Failed to initialize progress", details: err.message });
   }
 };
-
-
-
-
-
 /**
  * Update progress for a specific lesson.
  */
@@ -192,3 +188,144 @@ exports.getCourseProgress = async (req, res) => {
   }
 };
 
+
+
+
+exports.addNote = async (req, res) => {
+  const { courseId, lessonId } = req.params;
+  const userId = req.user._id;
+  const { seconds, text } = req.body;
+
+  try {
+    const progress = await CourseProgress.findOne({ userId, courseId });
+
+    if (!progress) {
+      return res.status(404).json({ message: "Progress not found" });
+    }
+
+    const section = progress.sections.find((sec) =>
+      sec.lessons.some((lesson) => lesson.lessonId.toString() === lessonId)
+    );
+
+    if (!section) {
+      return res.status(404).json({ message: "Lesson not found" });
+    }
+
+    const lesson = section.lessons.find(
+      (lesson) => lesson.lessonId.toString() === lessonId
+    );
+
+    if (!lesson) {
+      return res.status(404).json({ message: "Lesson not found in section" });
+    }
+
+    const newNote = {
+      _id: uuidv4(),
+      seconds,
+      text,
+    };
+
+    lesson.notes.push(newNote);
+    await progress.save();
+
+    res.status(201).json({ message: "Note added successfully", note: newNote });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to add note", details: err.message });
+  }
+};
+
+exports.deleteNote = async (req, res) => {
+  const { courseId, lessonId, noteId } = req.params;
+  const userId = req.user._id;
+
+  try {
+    const progress = await CourseProgress.findOne({ userId, courseId });
+
+    if (!progress) {
+      return res.status(404).json({ message: "Progress not found" });
+    }
+
+    const section = progress.sections.find((sec) =>
+      sec.lessons.some((lesson) => lesson.lessonId.toString() === lessonId)
+    );
+
+    if (!section) {
+      return res.status(404).json({ message: "Lesson not found" });
+    }
+
+    const lesson = section.lessons.find(
+      (lesson) => lesson.lessonId.toString() === lessonId
+    );
+
+    if (!lesson) {
+      return res.status(404).json({ message: "Lesson not found in section" });
+    }
+
+    const noteIndex = lesson.notes.findIndex((note) => note._id === noteId);
+
+    if (noteIndex === -1) {
+      return res.status(404).json({ message: "Note not found" });
+    }
+
+    lesson.notes.splice(noteIndex, 1);
+    await progress.save();
+
+    res.status(200).json({ message: "Note deleted successfully" });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ error: "Failed to delete note", details: err.message });
+  }
+};
+
+exports.getAllNotes = async (req, res) => {
+  const { courseId } = req.params;
+  const userId = req.user._id;
+
+  try {
+    // Find progress with populated lesson and section data
+    const progress = await CourseProgress.findOne({ userId, courseId })
+      .populate({
+        path: "sections.sectionId", // Populate section details
+        select: "title", // Include section title
+      })
+      .populate({
+        path: "sections.lessons.lessonId", // Populate lesson details
+        select: "title", // Include lesson title
+      });
+
+    if (!progress) {
+      return res.status(404).json({ message: "Progress not found" });
+    }
+
+    // Flatten all lessons across sections and calculate lessonIndex
+    const flattenedLessons = progress.sections.flatMap((section, sectionIndex) =>
+      section.lessons.map((lesson, lessonIndex) => ({
+        lesson,
+        lessonIndex,
+        sectionIndex,
+        sectionTitle: section.sectionId.title,
+        lessonTitle: lesson.lessonId.title,
+      }))
+    );
+
+    // Collect all notes with additional details
+    const notes = flattenedLessons.flatMap(({ lesson, lessonIndex, sectionIndex, sectionTitle, lessonTitle }) =>
+      lesson.notes.map((note) => ({
+        noteId: note._id,
+        seconds: note.seconds,
+        text: note.text,
+        lessonId: lesson.lessonId._id,
+        lessonTitle,
+        lessonIndex,
+        sectionIndex,
+        sectionTitle,
+      }))
+    );
+
+    res.status(200).json({ notes });
+  } catch (err) {
+    console.error("Error retrieving notes:", err.message);
+    res.status(500).json({ error: "Failed to retrieve notes", details: err.message });
+  }
+};

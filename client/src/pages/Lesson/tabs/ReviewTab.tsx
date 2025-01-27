@@ -76,12 +76,15 @@ const ReviewsTab = ({ avgRating = 1 }) => {
                       className="h-2 bg-[#9194AC] "
                       style={{ width: `${percentage}%` }}
                     ></div>
-                  </div>
-                  <span className="text-sm font-semibold text-gray-700">
+                  </div >
+                  <div className="flex items-center gap-3 flex-row-reverse ">
+                  <span className="text-sm font-semibold underline text-[#6D28D2]">
                     {percentage}%
                   </span>
-                  <div className="flex items-center">{renderStars(stars)}</div>
+                  <div className="">{renderStars(stars)}</div>
+                  </div>
                 </div>
+
               );
             })}
           </div>
