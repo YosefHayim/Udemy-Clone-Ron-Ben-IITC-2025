@@ -17,6 +17,9 @@ import {
 } from "@/redux/slices/userSlice";
 import { DecodedTokenProps, FormErrors } from "@/types/types";
 import googleRedirectUrl from "@/api/users/googleRedirectUrl";
+import { FcGoogle } from "react-icons/fc";
+import { FaApple } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -101,12 +104,12 @@ const Login = () => {
         <img
           src="/images/loginImg.png"
           alt="Login Illustration"
-          className="w-[100%] h-auto max-w-[700px] max-h-[100%] object-contain p-12"
+          className="w-[100%] h-auto max-w-[620px] max-h-[100%] object-contain p-12 mt-[8rem]"
         />
 
         {/* Right Side (Form) */}
 
-        <div className="w-full max-w-md p-6 bg-white shadow-md rounded-lg">
+        <div className="w-full max-w-md p-6 bg-white shadow-md rounded-lg ml-[4rem] mr-[6rem]">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">
             Log in to continue your learning journey
           </h2>
@@ -167,38 +170,26 @@ const Login = () => {
 
           {/* Social Login Options */}
           <div className="flex justify-center space-x-4">
-            <button className="p-2 border border-gray-300 rounded-md hover:bg-gray-100">
-              <img
-                src="/images/google-logo.png" // Substitua pelo caminho real
-                alt="Google"
-                className="w-6 h-6"
-              />
+            <button className="p-2 border border-[#6D28D2] rounded-sm hover:bg-gray-100">
+              <FcGoogle className="w-7 h-7" />
             </button>
-            <button className="p-2 border border-gray-300 rounded-md hover:bg-gray-100">
-              <img
-                src="/images/facebook-logo.png" // Substitua pelo caminho real
-                alt="Facebook"
-                className="w-6 h-6"
-              />
+            <button className="p-2 border border-[#6D28D2] rounded-sm hover:bg-gray-100">
+              <FaFacebook className="w-7 h-7 text-blue-600" />
             </button>
-            <button className="p-2 border border-gray-300 rounded-md hover:bg-gray-100">
-              <img
-                src="/images/apple-logo.png" // Substitua pelo caminho real
-                alt="Apple"
-                className="w-6 h-6"
-              />
+            <button className="p-2 border border-[#6D28D2] rounded-sm hover:bg-gray-100">
+              <FaApple className="w-7 h-7 opacity-85" />
             </button>
           </div>
 
           {/* Additional Links */}
-          <div className="mt-6 space-y-3 text-center text-sm text-gray-600">
-            <div>
+          <div className="mt-16 space-y-3 text-center text-base bold text-gray-900 bg-gray-100">
+            <div className="border-b-2 py-3">
               Don’t have an account?{" "}
-              <a href="/signup" className="text-purple-600 hover:underline font-medium">
+              <a href="/signup" className="text-purple-700 underline font-medium underline-offset-[5px]">
                 Sign up
               </a>
             </div>
-            <button className="text-purple-600 hover:underline font-medium">
+            <button className="text-purple-700 underline font-medium underline-offset-[5px] pb-5 pt-0">
               Log in with your organization
             </button>
           </div>
