@@ -38,6 +38,10 @@ const AddToCart: React.FC<{
     }, 1000);
   };
 
+  if (discountPrice || fullPriceCourse === 0) {
+    textBtn = "Enroll Now";
+  }
+
   return (
     <Button
       onClick={() => handleClick(courseId)}

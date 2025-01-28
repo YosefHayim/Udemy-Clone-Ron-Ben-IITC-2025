@@ -7,16 +7,22 @@ const CoursePrice: React.FC<CoursePriceProps> = ({
   discountPriceSize = "",
   showFullPrice = true,
 }) => {
+  const isFree = discountPrice === 0 || fullPrice === 0;
+
   return (
     <div className={`${chooseFlex} gap-[0.5em]`}>
       <div>
-        <b className={`text-[${discountPriceSize}]`}>{`₪` + discountPrice}</b>
+        <b className={`text-[${discountPriceSize}]`}>
+          {isFree ? "Free" : `₪${discountPrice}`}
+        </b>
       </div>
-      <div className={showFullPrice ? "block" : "hidden"}>
-        <p className="line-through text-gray-500 text-[0.9em]">
-          {`₪` + fullPrice}
-        </p>
-      </div>
+      {showFullPrice && !isFree && (
+        <div>
+          <p className="line-through text-gray-500 text-[0.9em]">
+            ₪{fullPrice}
+          </p>
+        </div>
+      )}
     </div>
   );
 };

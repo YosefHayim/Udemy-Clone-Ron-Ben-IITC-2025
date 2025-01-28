@@ -39,7 +39,7 @@ const createUsers = async () => {
   existingUsers.forEach((user) => generatedEmails.add(user.email));
 
   // Generate new users
-  for (let i = 0; i < 300; i++) {
+  for (let i = 0; i < 2000; i++) {
     let email;
 
     // Ensure the email is unique (not in existing or newly generated emails)
@@ -84,7 +84,7 @@ const createCourses = async () => {
     throw new Error("No students found for enrollment.");
   }
 
-  const amountOfCourses = 300;
+  const amountOfCourses = 3000;
   const courses = [];
 
   for (let i = 0; i < amountOfCourses; i++) {
@@ -113,8 +113,8 @@ const createCourses = async () => {
       }),
       courseRecapInfo: faker.lorem.words(10),
       courseDescription: faker.lorem.paragraph(),
-      courseFullPrice: 0,
-      courseDiscountPrice: 0,
+      courseFullPrice: faker.commerce.price(500, 1000),
+      courseDiscountPrice: faker.commerce.price(50, 300),
       whoThisCourseIsFor: faker.lorem.sentence(),
       courseInstructorDescription: faker.lorem.paragraphs(10),
       whatYouWillLearn: Array.from({ length: 8 }, () => faker.lorem.sentence()),

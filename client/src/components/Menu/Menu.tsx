@@ -1,8 +1,10 @@
 import { categories } from "@/utils/categoriesOfCoursesNavbarHover";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Menu: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   const handleMouseEnter = (index: number): void => {
     setActiveCategory(index);
@@ -22,6 +24,11 @@ const Menu: React.FC = () => {
     return 0;
   };
 
+  const handleNavigate = (category: string) => {
+    navigate(
+      `/courses/search?src=ukw&q=${encodeURIComponent(category.toLowerCase())}`
+    );
+  };
   return (
     <div>
       {/* White Menu */}
@@ -36,7 +43,10 @@ const Menu: React.FC = () => {
               className="relative group"
               onMouseEnter={() => handleMouseEnter(index)}
             >
-              <button className="menu-button text-gray-800 font-medium hover:text-purple-600">
+              <button
+                className="menu-button text-gray-800 font-medium hover:text-purple-600"
+                onClick={() => handleNavigate(category.title)}
+              >
                 {category.title}
               </button>
             </div>
@@ -60,8 +70,12 @@ const Menu: React.FC = () => {
             {/* Submenu Items */}
             <div className="w-full max-w-screen-xl mx-auto flex justify-center space-x-8">
               {categories[activeCategory]?.subcategories.map(
-                (subcategory, idx) => (
-                  <div key={idx} className="hover:underline cursor-pointer">
+                (subcategory, index) => (
+                  <div
+                    key={index}
+                    className="hover:underline cursor-pointer"
+                    onClick={() => handleNavigate(subcategory)}
+                  >
                     {subcategory}
                   </div>
                 )

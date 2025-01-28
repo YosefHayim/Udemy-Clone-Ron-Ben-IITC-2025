@@ -138,6 +138,3 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
 };
 
 export default CourseHoverCard;
-
-
-
