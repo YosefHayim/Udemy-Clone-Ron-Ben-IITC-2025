@@ -3,7 +3,12 @@ import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseHoverCard from "./CourseHoverCard";
 import { Course } from "@/types/types";
 import { MdOutlineStarHalf } from "react-icons/md";
-import { IoIosStar, IoIosStarOutline, IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import {
+  IoIosStar,
+  IoIosStarOutline,
+  IoIosArrowBack,
+  IoIosArrowForward,
+} from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
 const CoursesCarousel: React.FC<{ searchTerm: string }> = ({

@@ -30,6 +30,7 @@ import Photo from "@/components/Navbar/DropDownMenu/ProfilePage/Photo/Photo";
 import NotificationPreferences from "@/components/Navbar/DropDownMenu/ProfilePage/NotificationPrefrences/NotificationPreferences";
 import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privacy";
 import CloseAccount from "@/components/Navbar/DropDownMenu/ProfilePage/CloseAccount/CloseAccount";
+import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
@@ -94,6 +95,10 @@ const AppRoutes: React.FC = () => {
                   element={<AccountSecurity />}
                 />
                 <Route path="/user/close-account" element={<CloseAccount />} />
+                <Route
+                  path="/cart/subscribe/course/:courseId"
+                  element={<EnrollFreeCourse />}
+                />
                 <Route path="/user/photo" element={<Photo />} />
                 <Route path="/user/edit-api-clients" element={<ApiClients />} />
                 <Route path="/wishlist" element={<Wishlist />} />

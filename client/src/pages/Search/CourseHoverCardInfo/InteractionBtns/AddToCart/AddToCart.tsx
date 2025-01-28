@@ -10,6 +10,7 @@ import {
 } from "@/redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
 import Loader from "@/components/Loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const AddToCart: React.FC<{
   textBtn?: string;
@@ -24,18 +25,24 @@ const AddToCart: React.FC<{
 }) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleClick = (courseId: string) => {
-    setIsLoading(true);
-    setTimeout(() => {
-      dispatch(setAmountOfCourses()); // Increment the amount of courses
-      dispatch(setTotalCourseDiscountPrices(Number(discountPrice)));
-      dispatch(setTotalOriginalCoursePrices(Number(fullPriceCourse)));
-      dispatch(calculateTotalSavings());
-      dispatch(calculateDiscountPercentage());
-      dispatch(setAddCourseToCart(courseId)); // Add course to the cart
-      setIsLoading(false); // Stop loading indicator
-    }, 1000);
+    if (textBtn === "Add to cart") {
+      setIsLoading(true);
+      setTimeout(() => {
+        dispatch(setAmountOfCourses()); // Increment the amount of courses
+        dispatch(setTotalCourseDiscountPrices(Number(discountPrice)));
+        dispatch(setTotalOriginalCoursePrices(Number(fullPriceCourse)));
+        dispatch(calculateTotalSavings());
+        dispatch(calculateDiscountPercentage());
+        dispatch(setAddCourseToCart(courseId)); // Add course to the cart
+        setIsLoading(false); // Stop loading indicator
+      }, 1000);
+    } else if (textBtn === "Enroll Now") {
+      // if course is free and we pressed Enroll now
+      navigate(`/cart/subscribe/course/:${courseId}`);
+    }
   };
 
   if (discountPrice || fullPriceCourse === 0) {
