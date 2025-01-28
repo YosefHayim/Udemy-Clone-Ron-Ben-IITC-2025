@@ -16,6 +16,7 @@ import { RootState } from "@/redux";
 import Cookies from "js-cookie";
 import { setCookie } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
+import SaleCommercial from "./SaleCommercial/SaleCommercial";
 
 const Navbar = () => {
   const cookie = useSelector((state: RootState) => state.user.cookie) || "";
@@ -28,37 +29,9 @@ const Navbar = () => {
     }
   }, [cookie, dispatch]);
 
-  const [timeLeft, setTimeLeft] = useState("");
-
-  useEffect(() => {
-    const endTime = new Date().getTime() + 14 * 60 * 60 * 1000 + 7 * 60 * 1000;
-
-    const interval = setInterval(() => {
-      let now = new Date().getTime();
-      let remaining = endTime - now;
-
-      if (remaining > 0) {
-        let hours = Math.floor(remaining / (1000 * 60 * 60));
-        let minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-        setTimeLeft(`${hours}h ${minutes}m`);
-      } else {
-        setTimeLeft("Time's up!");
-        clearInterval(interval);
-      }
-    }, 1000);
-
-    return () => clearInterval(interval); // Cleanup the interval on unmount
-  }, []);
-
   return (
     <div>
-      <div className="bg-[#c2e9eb] flex flex-col items-center justify-center w-full p-[1em]">
-        <p className="text-[1.1em]">
-          <b className="text-[1.2em]">Sale ending</b> | Invest in yourself with
-          learning. Courses from ₪59.90.
-        </p>
-        <b className="text-[1.3em]">Ends in {timeLeft}</b>
-      </div>
+      <SaleCommercial />
       <div className="flex items-center bg-white w-screen z-[1000] relative shadow-md justify-between px-[1.55rem] py-[0.75rem] font-medium text-[1.4rem]">
         <Link to="/">
           <Logo />
