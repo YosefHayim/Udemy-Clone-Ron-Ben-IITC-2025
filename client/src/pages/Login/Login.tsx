@@ -94,25 +94,31 @@ const Login = () => {
   };
 
   return (
-    <div className="flex h-screen">
-      <img
-        src="/images/login.png"
-        alt="Login Illustration"
-        className="h-[90%] w-auto object-contain flex items-center justify-center bg-transparent mt-[9em]"
-      />
+    <div className="flex h-screen w-screen">
 
-      <div className="w-1/2 h-full flex items-center justify-center bg-white">
-        <div className="w-3/4 max-w-sm">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">
+      {/* Left Side (Image) */}
+      <div className="flex-1 flex items-center justify-center">
+        <img
+          src="/images/loginImg.png"
+          alt="Login Illustration"
+          className="w-[100%] h-auto max-w-[700px] max-h-[100%] object-contain p-12"
+        />
+
+        {/* Right Side (Form) */}
+
+        <div className="w-full max-w-md p-6 bg-white shadow-md rounded-lg">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">
             Log in to continue your learning journey
           </h2>
+
+          {/* Email Form */}
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
-            <div className="relative mb-4">
+            <div className="relative">
               <label
                 htmlFor="email"
-                className="absolute top-0 left-4 text-sm text-gray-600 transform -translate-y-1/2 bg-blue-50 px-1"
+                className="absolute -top-3 left-4 text-sm text-gray-600 bg-white px-1"
               >
-                E-mail
+                Email
               </label>
               <input
                 type="email"
@@ -121,66 +127,88 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="ben.kilinski@gmail.com"
-                className={`w-full px-4 py-3 border rounded-md bg-blue-50 focus:outline-none ${
-                  formErrors.email ? "border-red-500" : "border-gray-300"
-                }`}
+                className={`w-full px-4 py-3 border rounded-md bg-gray-50 focus:outline-none ${formErrors.email ? "border-red-500" : "border-gray-300"
+                  }`}
               />
               {formErrors.email && (
                 <p className="text-red-500 text-sm">{formErrors.email}</p>
               )}
             </div>
 
-            <div className="relative mb-4">
-              <label
-                htmlFor="password"
-                className="absolute top-0 left-4 text-sm text-gray-600 transform -translate-y-1/2 bg-blue-50 px-1"
-              >
-                Password
-              </label>
-              <input
-                name="password"
-                type="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
-                className={`w-full px-4 py-3 border rounded-md bg-blue-50 focus:outline-none ${
-                  formErrors.password ? "border-red-500" : "border-gray-300"
-                }`}
-              />
-              {formErrors.password && (
-                <p className="text-red-500 text-sm">{formErrors.password}</p>
-              )}
-            </div>
-
-            {/* Botão de Enviar */}
+            {/* Submit Button */}
             <button
               type="submit"
-              className={`w-full py-2 rounded-md ${
-                mutation.isPending
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-purple-600 hover:bg-purple-700"
-              } text-white transition`}
-              disabled={mutation.isPending}
+              className="w-full py-3 rounded-md bg-purple-600 hover:bg-purple-700 text-white font-medium flex items-center justify-center space-x-2"
             >
-              {mutation.isPending ? (
-                <span className="spinner" />
-              ) : (
-                "Continue with email"
-              )}
-            </button>
-            <div className="">
-              <button
-                className="bg-pink-400 p-[1em] hover:bg-purple-200"
-                onClick={handleGoogle}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="w-5 h-5"
               >
-                Login with google
-              </button>
-            </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
+                />
+              </svg>
+              <span>Continue with email</span>
+            </button>
           </form>
+
+          {/* Divider */}
+          <div className="flex items-center my-6">
+            <hr className="flex-grow border-gray-300" />
+            <span className="mx-4 text-sm text-gray-500">Other log in options</span>
+            <hr className="flex-grow border-gray-300" />
+          </div>
+
+          {/* Social Login Options */}
+          <div className="flex justify-center space-x-4">
+            <button className="p-2 border border-gray-300 rounded-md hover:bg-gray-100">
+              <img
+                src="/images/google-logo.png" // Substitua pelo caminho real
+                alt="Google"
+                className="w-6 h-6"
+              />
+            </button>
+            <button className="p-2 border border-gray-300 rounded-md hover:bg-gray-100">
+              <img
+                src="/images/facebook-logo.png" // Substitua pelo caminho real
+                alt="Facebook"
+                className="w-6 h-6"
+              />
+            </button>
+            <button className="p-2 border border-gray-300 rounded-md hover:bg-gray-100">
+              <img
+                src="/images/apple-logo.png" // Substitua pelo caminho real
+                alt="Apple"
+                className="w-6 h-6"
+              />
+            </button>
+          </div>
+
+          {/* Additional Links */}
+          <div className="mt-6 space-y-3 text-center text-sm text-gray-600">
+            <div>
+              Don’t have an account?{" "}
+              <a href="/signup" className="text-purple-600 hover:underline font-medium">
+                Sign up
+              </a>
+            </div>
+            <button className="text-purple-600 hover:underline font-medium">
+              Log in with your organization
+            </button>
+          </div>
         </div>
+
       </div>
+
     </div>
+
+
   );
 };
 
