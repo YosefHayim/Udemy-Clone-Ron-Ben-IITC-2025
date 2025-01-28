@@ -6,9 +6,14 @@ import VideoPlayer from "./VideoPlayer";
 import Footer from "../../pages/Home/Footer/Footer";
 import { fetchCourseProgress } from "@/services/ProgressService";
 import { CourseProgressResponse } from "@/types";
+import { useState } from "react";
 
 const LessonPage: React.FC = () => {
+  const [currentSec, setCurrentSec] = useState(0); // Shared state for last watched time
+
   const { courseId, id } = useParams<{ courseId: string; id: string }>();
+  console.log(id);
+  
   const navigate = useNavigate();
 
   const { data, isLoading, error } = useQuery<CourseProgressResponse>({
@@ -55,14 +60,18 @@ const LessonPage: React.FC = () => {
   }
 
   const currentLesson = lessons[lessonIndex];
-  console.log("current lesosn" ,currentLesson);
+  console.log("lesson index",lessonIndex);
+  
+  console.log("CURRENT SEC" , currentSec);
   
   const nextLesson = lessons[lessonIndex + 1] || null;
   const prevLesson = lessons[lessonIndex - 1] || null;
+  const isNotesRoute = location.pathname.endsWith("/notes");
 
   return (
     <Layout>
       <VideoPlayer
+        setCurrentSec={setCurrentSec} 
         courseId={courseId}
         currentLesson={currentLesson}
         lessonIndex={lessonIndex + 1}
@@ -74,7 +83,7 @@ const LessonPage: React.FC = () => {
         }
       />
       <div className="px-0">
-        <LessonRoutes />
+      <LessonRoutes currentSec={currentSec} />
       </div>
       <Footer />
     </Layout>

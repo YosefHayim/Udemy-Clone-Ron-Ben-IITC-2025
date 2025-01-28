@@ -134,7 +134,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
           className="">
             <CollapsibleTrigger
               asChild
-              className="focus:outline-none gap-0 pl-0 focus-visible:outline-none rounded-none"
+              className=" gap-0 pl-0 focus:outline-none focus-visible:outline-none rounded-none"
             >
               <SidebarMenuButton className="p-0  flex overflow-visible focus:outline-none  items-center justify-between pl-2 focus-visible:outline-none rounded-none">
                 <div className=" flex w-full flex-col ">

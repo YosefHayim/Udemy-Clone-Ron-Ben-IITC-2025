@@ -39,7 +39,7 @@ const createUsers = async () => {
   existingUsers.forEach((user) => generatedEmails.add(user.email));
 
   // Generate new users
-  for (let i = 0; i < 300; i++) {
+  for (let i = 0; i < 2000; i++) {
     let email;
 
     // Ensure the email is unique (not in existing or newly generated emails)
@@ -58,7 +58,7 @@ const createUsers = async () => {
       bio: faker.lorem.sentence(1),
       udemyCredits: faker.number.int({ min: 5000, max: 10000 }),
       country: faker.helpers.arrayElement(supportedCountries),
-      recentSearches: faker.helpers.arrayElements([algoSearch]),
+      recentSearches: faker.helpers.arrayElements(algoSearch),
     });
   }
 
@@ -84,7 +84,7 @@ const createCourses = async () => {
     throw new Error("No students found for enrollment.");
   }
 
-  const amountOfCourses = 300;
+  const amountOfCourses = 3000;
   const courses = [];
 
   for (let i = 0; i < amountOfCourses; i++) {
@@ -113,8 +113,8 @@ const createCourses = async () => {
       }),
       courseRecapInfo: faker.lorem.words(10),
       courseDescription: faker.lorem.paragraph(),
-      courseFullPrice: 0,
-      courseDiscountPrice: 0,
+      courseFullPrice: faker.commerce.price(500, 1000),
+      courseDiscountPrice: faker.commerce.price(50, 300),
       whoThisCourseIsFor: faker.lorem.sentence(),
       courseInstructorDescription: faker.lorem.paragraphs(10),
       whatYouWillLearn: Array.from({ length: 8 }, () => faker.lorem.sentence()),
@@ -598,8 +598,9 @@ const addCoursesToWishlistOfUsers = async () => {
 const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
-    // console.log("Database connection established.");
+    console.log("Database connection established.");
     // await clearCollections();
+    // console.log("Deleted all db.");
 
     console.log("Seeding users...");
     const users = await createUsers();

@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ["Inter", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -13,6 +13,8 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        "green-mix":
+          "color-mix(in sRGB, var(--color-green-300) 12%, transparent)",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
