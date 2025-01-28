@@ -5,11 +5,14 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import getCourseById from "@/api/courses/getCourseById";
 import { Loader } from "lucide-react";
+import { useState } from "react";
+import SharePopup from "./SharePopup/SharePopup";
 
 const EnrollFreeCourse = () => {
   const { courseId } = useParams<{ courseId: string; id: string }>(); // Get courseId and lessonId from route params
-
   const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
+
+  const [isClicked, setClicked] = useState(false);
 
   const { data, error, isPending } = useQuery({
     queryKey: ["course", sanitizedCourseId],
@@ -36,13 +39,17 @@ const EnrollFreeCourse = () => {
 
   return (
     <div>
-      <NotificationJoinFreeCourse />
+      <NotificationJoinFreeCourse
+        isClicked={isClicked}
+        setClicked={setClicked}
+      />
       <CourseJumpRightIn
         courseImg={data?.courseImg}
         instructor={data?.courseInstructor?.fullName}
         sanitizedCourseId={data?._id}
       />
       <CoursesCarousel searchTerm={data?.category || ""} />
+      <SharePopup isClicked={isClicked} setClicked={setClicked} />
     </div>
   );
 };
