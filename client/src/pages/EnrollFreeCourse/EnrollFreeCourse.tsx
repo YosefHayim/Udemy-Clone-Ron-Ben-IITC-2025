@@ -48,7 +48,7 @@ const EnrollFreeCourse = () => {
         instructor={data?.courseInstructor?.fullName}
         sanitizedCourseId={data?._id}
       />
-      <CoursesCarousel searchTerm={data?.category || ""} />
+      <CoursesCarousel searchTerm={data?.category} />
       <SharePopup isClicked={isClicked} setClicked={setClicked} />
     </div>
   );

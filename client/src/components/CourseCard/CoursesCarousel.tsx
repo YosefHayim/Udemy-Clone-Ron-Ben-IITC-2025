@@ -32,6 +32,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
           isNew: course.totalRatings < 10,
           isBestseller: course.totalRatings > 50,
         }));
+
         setCourses(updatedCourses);
       } else {
         console.error("Error fetching courses:", data);
