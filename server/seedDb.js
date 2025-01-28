@@ -58,7 +58,7 @@ const createUsers = async () => {
       bio: faker.lorem.sentence(1),
       udemyCredits: faker.number.int({ min: 5000, max: 10000 }),
       country: faker.helpers.arrayElement(supportedCountries),
-      recentSearches: faker.helpers.arrayElements([algoSearch]),
+      recentSearches: faker.helpers.arrayElements(algoSearch),
     });
   }
 
@@ -598,8 +598,9 @@ const addCoursesToWishlistOfUsers = async () => {
 const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
-    // console.log("Database connection established.");
+    console.log("Database connection established.");
     // await clearCollections();
+    // console.log("Deleted all db.");
 
     console.log("Seeding users...");
     const users = await createUsers();
