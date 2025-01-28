@@ -4,16 +4,21 @@ import Layout from "./Layout";
 import LessonRoutes from "../../routes/LessonRoutes";
 import VideoPlayer from "./VideoPlayer";
 import Footer from "../../pages/Home/Footer/Footer";
-import fetchCourseById from "@/services/courseService";
-import TopNavBar from "./TopNavBar";
+import { fetchCourseProgress } from "@/services/ProgressService";
+import { CourseProgressResponse } from "@/types";
+import { useState } from "react";
 
 const LessonPage: React.FC = () => {
+  const [currentSec, setCurrentSec] = useState(0); // Shared state for last watched time
+
   const { courseId, id } = useParams<{ courseId: string; id: string }>();
+  console.log(id);
+  
   const navigate = useNavigate();
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["course", courseId],
-    queryFn: () => fetchCourseById(courseId || ""),
+  const { data, isLoading, error } = useQuery<CourseProgressResponse>({
+    queryKey: ["courseProgress", courseId],
+    queryFn: () => fetchCourseProgress(courseId || ""),
     enabled: !!courseId,
   });
 
@@ -30,17 +35,24 @@ const LessonPage: React.FC = () => {
       <Layout>
         <div>
           <h1>Error</h1>
-          <p>Failed to load course data.</p>
+          <p>Failed to load course progress data.</p>
         </div>
       </Layout>
     );
   }
 
-  const courseData = data;
-  const lessons = courseData.sections.flatMap(
-    (section: any) => section.lessons
+  const courseProgress = data.progress;
+  console.log(courseProgress);
+  
+  const lessons = courseProgress.sections.flatMap((section) =>
+    section.lessons.map((lesson) => ({
+      ...lesson,
+      ...lesson.lessonId,
+      completed: lesson.completed,
+    }))
   );
-  const lessonIndex = lessons.findIndex((lesson: any) => lesson._id === id);
+  
+  const lessonIndex = lessons.findIndex((lesson) => lesson._id === id);
 
   if (lessonIndex === -1) {
     navigate(`/course/${courseId}/lesson/${lessons[0]._id}/overview`);
@@ -48,15 +60,18 @@ const LessonPage: React.FC = () => {
   }
 
   const currentLesson = lessons[lessonIndex];
+  console.log("lesson index",lessonIndex);
+  
+  console.log("CURRENT SEC" , currentSec);
+  
   const nextLesson = lessons[lessonIndex + 1] || null;
   const prevLesson = lessons[lessonIndex - 1] || null;
+  const isNotesRoute = location.pathname.endsWith("/notes");
 
   return (
     <Layout>
-      <TopNavBar
-       courseName={courseData.courseName}
-       courseId={courseId} />
       <VideoPlayer
+        setCurrentSec={setCurrentSec} 
         courseId={courseId}
         currentLesson={currentLesson}
         lessonIndex={lessonIndex + 1}
@@ -68,7 +83,7 @@ const LessonPage: React.FC = () => {
         }
       />
       <div className="px-0">
-        <LessonRoutes />
+      <LessonRoutes currentSec={currentSec} />
       </div>
       <Footer />
     </Layout>

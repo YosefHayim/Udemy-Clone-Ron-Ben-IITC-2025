@@ -22,4 +22,20 @@ router.patch(
 // Get progress for a course
 router.get("/:courseId", grantedAccess, progressController.getCourseProgress);
 
+router.post(
+  "/:courseId/lessons/:lessonId/notes",
+  grantedAccess,
+  progressController.addNote
+);
+
+// Delete a specific note
+router.delete(
+  "/:courseId/lessons/:lessonId/notes/:noteId",
+  grantedAccess,
+  progressController.deleteNote
+);
+
+// Get all notes for a specific course
+router.get("/:courseId/notes", grantedAccess, progressController.getAllNotes);
+
 module.exports = router;

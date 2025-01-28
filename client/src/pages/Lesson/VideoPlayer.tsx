@@ -23,6 +23,7 @@ interface VideoPlayerProps {
   playing?: boolean;
   width?: string;
   height?: string;
+  setCurrentSec: (seconds: number) => void; // New prop for updating lastWatched
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
@@ -33,10 +34,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   prevLesson,
   onNavigate,
   courseId,
+  setCurrentSec,
   controls = true,
   playing = true,
   width = "100%",
-  height = "820px",
+  height = "780px",
 }) => {
   const { open, toggleSidebar } = useSidebar();
   const [isHovered, setIsHovered] = useState(false);
@@ -51,9 +53,19 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const [updateTimer, setUpdateTimer] = useState<NodeJS.Timeout | null>(null);
   const [progress, setProgress] = useState(0)
   const isCanceledRef = useRef(false); // Use ref to track isCanceled
+  const playerRef = useRef<ReactPlayer>(null);
   const queryClient = useQueryClient(); // Access queryClient
 
-
+  // Seek to the last watched time when the video URL changes or lastWatched updates
+  useEffect(() => {
+    console.log("currentlesson lastwatched",currentLesson.lastWatched);
+    
+    if (playerRef.current && currentLesson?.lastWatched > 0) {
+      playerRef.current.seekTo(currentLesson.lastWatched, "seconds");
+      setPaused(true); // Set paused state to true
+    }
+  }, [videoUrl, currentLesson._id]);
+  
   // Mutation to update lesson progress
   const mutation = useMutation({
     mutationFn: ({
@@ -71,6 +83,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const handleProgress = (progress: { playedSeconds: number }) => {
     const currentSeconds = Math.floor(progress.playedSeconds);
     setLastWatched(currentSeconds);
+    setCurrentSec(currentSeconds)
+
+   console.log("last watched",lastWatched);
     
 
     if (!updateTimer) {
@@ -81,11 +96,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         });
         setUpdateTimer(null);
         
-      }, 5000); // Update every 5 seconds
+      }, 2000); // Update every 5 seconds
       setUpdateTimer(timer);
     }
   };
-console.log(isCanceledRef);
 
   // Mark lesson as completed when the video ends
   const handleVideoEnd = () => {
@@ -141,7 +155,7 @@ console.log(isCanceledRef);
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Current Lesson Title */}
-      <div className="absolute top-[65px] w-full text-start text-xl pl-10 text-white py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-black/75 to-transparent">
+      <div className="absolute top-[65px] w-full text-start text-lg pl-10 text-white py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-black/75 to-transparent">
         {lessonIndex}. {currentLesson.title}
       </div>
 
@@ -209,13 +223,14 @@ console.log(isCanceledRef);
 
       {/* Centered Custom Trigger */}
       {!open && window.innerWidth > 1000 && (
-        <div className="absolute inset-0 flex justify-start pb-80 items-center">
+        <div className="absolute inset-0 flex justify-end  pb-80 items-center">
           <CustomTrigger open={open} toggleSidebar={toggleSidebar} position="centered" />
         </div>
       )}
 
       {/* React Player */}
       <ReactPlayer
+        ref={playerRef} // Attach the ref here
         url={videoUrl}
         controls={isHovered}
         playing={!paused}
@@ -232,28 +247,33 @@ console.log(isCanceledRef);
 
       {/* Navigation Buttons */}
       {!open && (
-        <div className="absolute h-20 top-1/2 transform -translate-y-1/2 flex justify-between w-full z-[1000]">
-          <button
-            className={`text-white bg-gradient-to-r bg-purple-500 bg-opacity-60 hover:bg-[#892DE1] p-1 ${
-              prevLesson ? "" : "invisible"
-            }`}
-            onClick={prevLesson ? () => onNavigate(prevLesson._id) : undefined}
-            title={prevLesson ? `Previous: ${prevLesson.title}` : ""}
-          >
-            <MdArrowBackIos size={24} />
-          </button>
+  <div
+    className={`absolute h-20 top-1/2 transform -translate-y-1/2 flex justify-between w-full z-[1000] transition-opacity duration-500 ${
+      isHovered ? "opacity-100" : "opacity-0 pointer-events-none"
+    }`}
+  >
+    <button
+      className={`text-white bg-gradient-to-r bg-purple-500 bg-opacity-60 hover:bg-[#892DE1] p-1 ${
+        prevLesson ? "opacity-100" : "invisible"
+      }`}
+      onClick={prevLesson ? () => onNavigate(prevLesson._id) : undefined}
+      title={prevLesson ? `Previous: ${prevLesson.title}` : ""}
+    >
+      <MdArrowBackIos size={24} />
+    </button>
 
-          <button
-            className={`text-white bg-gradient-to-r bg-purple-500 bg-opacity-60 hover:bg-[#892DE1] p-1 ${
-              nextLesson ? "" : "invisible"
-            }`}
-            onClick={nextLesson ? () => onNavigate(nextLesson._id) : undefined}
-            title={nextLesson ? `Next: ${nextLesson.title}` : ""}
-          >
-            <MdArrowForwardIos size={24} />
-          </button>
-        </div>
-      )}
+    <button
+      className={`text-white bg-gradient-to-r bg-purple-500 bg-opacity-60 hover:bg-[#892DE1] p-1 ${
+        nextLesson ? "opacity-100" : "invisible"
+      }`}
+      onClick={nextLesson ? () => onNavigate(nextLesson._id) : undefined}
+      title={nextLesson ? `Next: ${nextLesson.title}` : ""}
+    >
+      <MdArrowForwardIos size={24} />
+    </button>
+  </div>
+)}
+
     </div>
   );
 };

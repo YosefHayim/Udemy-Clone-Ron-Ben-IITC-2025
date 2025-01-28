@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link, useLocation } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
@@ -26,6 +26,7 @@ import { CourseProgressResponse, LessonProgressPayload } from "@/types";
 import CustomTrigger from "../Lesson/CustomTrigger";
 
 export function CourseSidebarMenu({ courseId }: { courseId: string }) {
+  const [hover, setHover] = useState("gray-600")
   const { toggleSidebar, open } = useSidebar();
   const location = useLocation();
   const queryClient = useQueryClient();
@@ -36,6 +37,8 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
     queryFn: () => fetchCourseProgress(courseId),
     enabled: !!courseId,
   });
+  console.log(data);
+  
 
   // Mutation for updating lesson progress with optimistic updates
   const mutation = useMutation({
@@ -109,8 +112,8 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
   let lessonCounter = 0;
 
   return (
-    <SidebarMenu className="gap-0 overflow-hidden">
-      <div className="flex p-4 items-center justify-between border-b font-semibold">
+    <SidebarMenu className=" ">
+      <div className="flex p-4  items-center justify-between border-b-2 font-semibold">
         <span className="text-lg">Course content</span>
         {open && (
           <div className="pl-6 size">
@@ -122,46 +125,47 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
           </div>
         )}
       </div>
-      {data?.progress.sections.map((section) => (
+      {data?.progress.sections.map((section, index) => (
         <Collapsible
           key={section.sectionId._id}
-          className="group/collapsible py-4 border-b flex w-full"
+          className="group/collapsible  group-open:pb-0 pt-10  group-data-[state=open]/collapsible:pb-0 border-2 bg-[#F6F7F9] border-t-0   w-full"
         >
-          <SidebarMenuItem>
+          <SidebarMenuItem
+          className="">
             <CollapsibleTrigger
               asChild
-              className="overflow-visible font-bold focus:outline-none gap-0 pl-0 focus-visible:outline-none rounded-none"
+              className=" gap-0 pl-0 focus:outline-none focus-visible:outline-none rounded-none"
             >
-              <SidebarMenuButton className="overflow-visible focus:outline-none flex items-start justify-between pl-2 focus-visible:outline-none rounded-none">
-                <div className="flex-1">
-                  <span className="whitespace-normal pr-4 break-words text-sm">
-                    {section.sectionId.title}
-                  </span>
+              <SidebarMenuButton className="p-0  flex overflow-visible focus:outline-none  items-center justify-between pl-2 focus-visible:outline-none rounded-none">
+                <div className=" flex w-full flex-col ">
+                <div className="flex  items-center font-bold break-words text-[#303141] text-lg">
+  <span>Section {index + 1}: {section.sectionId.title}</span>
+  <FaChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+</div>
+                  <p className="text-xs mb-10 font-semibold text-[#303141]">{section.completedLessonsInSection}/ {section.totalLessonsInSection} |    42min</p>
                 </div>
-                <FaChevronDown className="absolute ml-56 self-end transition-transform group-data-[state=open]/collapsible:rotate-180" />
               </SidebarMenuButton>
             </CollapsibleTrigger>
 
-            <CollapsibleContent>
-              <SidebarMenuSub className="m-0 p-0 mt-5 border-l-0 w-full">
+            <CollapsibleContent className="">
+              <SidebarMenuSub className="m-0 p-0 mt-4 bg-white border-l-0 w-full">
                 {section.lessons.map((lesson) => {
                   lessonCounter += 1;
                   const isCurrentLesson =
-                    location.pathname ===
-                    `/course/${courseId}/lesson/${lesson.lessonId._id}/overview`;
+                    location.pathname.startsWith(`/course/${courseId}/lesson/${lesson.lessonId._id}`);
 
                   return (
                     <SidebarMenuSubItem
                       className={
                         isCurrentLesson
                           ? "bg-slate-400 h-full w-full"
-                          : "hover:bg-slate-400 h-full w-full"
+                          : "hover:bg-slate-400  h-full w-full"
                       }
                       key={lesson.lessonId._id}
                     >
-                      <div className="flex items-center justify-between group w-full">
-                        <SidebarMenuSubButton asChild>
-                          <div className="flex items-center h-full">
+                      <div className="  p-4 overflow-visible  group w-full">
+                        <SidebarMenuSubButton className="overflow-visible" >
+                          <div className="flex  items-center h-full">
                             <Checkbox
                               checked={lesson.completed}
                               onCheckedChange={() =>
@@ -170,20 +174,20 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
                                   lesson.completed
                                 )
                               }
-                              className="focus:outline-none focus-visible:outline-none hover:border-black border-2 self-start mt-1 rounded-none"
+                              className=" focus:outline-none focus-visible:outline-none hover:border-purple-500 border-2 self-start mt-0 rounded-none"
                             />
-                            <div className="flex flex-col">
+                            <div className="ml-2  flex flex-col ">
                               <Link
                                 to={`/course/${courseId}/lesson/${lesson.lessonId._id}`}
-                                className="flex-col ml-2"
+                                className="  w-full"
                               >
                                 <span className="">
                                   {lessonCounter}. {lesson.lessonId.title}
                                 </span>
-                                <span className="flex text-xs text-black items-center hover:text-black">
-                                  <MdOndemandVideo className="text" />
-                                  <span className="text-sm">
-                                    {lesson.lessonId.duration} min
+                                <span className="flex text-xs  overflow-visible text-black items-center hover:text-black">
+                                  <MdOndemandVideo className=" text-gray-600" />
+                                  <span className="text-xs text-gray-600  relative">
+                                    {lesson.lessonId.duration}min
                                   </span>
                                 </span>
                               </Link>

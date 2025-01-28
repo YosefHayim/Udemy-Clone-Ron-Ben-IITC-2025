@@ -12,7 +12,11 @@ import SearchTab from "../pages/Lesson/tabs/SearchTab";
 import CourseContent from "../pages/Lesson/tabs/CourseContent";
 import fetchCourseById from "@/services/courseService";
 
-const LessonRoutes: React.FC = () => {
+interface LessonRoutesProps {
+  currentSec: number; // Prop to pass the last watched time
+}
+
+const LessonRoutes: React.FC<LessonRoutesProps> = ({ currentSec }) => {
   const { id, courseId } = useParams<{ id: string; courseId: string }>();
 
   // Validate presence of courseId and id
@@ -42,8 +46,6 @@ const LessonRoutes: React.FC = () => {
   }
 
   const courseData = data;
-  // console.log(courseData);
-
   const sections = data.sections;
 
   // Construct the default route
@@ -53,7 +55,7 @@ const LessonRoutes: React.FC = () => {
     <>
       {/* Render NavBar with course name */}
       <NavBar />
-      <div className=" px-20 flex justify-center items-center">
+      <div className="px-20 flex justify-center items-center">
         <Routes>
           {/* Redirect to overview tab by default */}
           <Route index element={<Navigate to={defaultRoute} replace />} />
@@ -65,7 +67,11 @@ const LessonRoutes: React.FC = () => {
             element={<CourseContent sections={sections} />}
           />
           <Route path="qna" element={<QnATab />} />
-          <Route path="notes" element={<NotesTab />} />
+          {/* Pass currentSec to NotesTab */}
+          <Route path="notes" element={<NotesTab currentSec={currentSec}
+          courseId={courseId}
+          lessonId={id}
+          />} />
           <Route path="announcements" element={<AnnouncementsTab />} />
           <Route
             path="reviews"
