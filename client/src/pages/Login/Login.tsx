@@ -117,26 +117,21 @@ const Login = () => {
           {/* Email Form */}
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
             <div className="relative">
-              <label
-                htmlFor="email"
-                className="absolute -top-3 left-4 text-sm text-gray-600 bg-white px-1"
-              >
-                Email
-              </label>
               <input
                 type="email"
                 name="email"
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="ben.kilinski@gmail.com"
-                className={`w-full px-4 py-3 border rounded-md bg-gray-50 focus:outline-none ${formErrors.email ? "border-red-500" : "border-gray-300"
+                placeholder="Email"
+                className={`w-full px-4 py-3 border rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 ${formErrors.email ? "border-red-500" : "border-gray-300"
                   }`}
               />
               {formErrors.email && (
-                <p className="text-red-500 text-sm">{formErrors.email}</p>
+                <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
               )}
             </div>
+
 
             {/* Submit Button */}
             <button
@@ -169,7 +164,7 @@ const Login = () => {
           </div>
 
           {/* Social Login Options */}
-          <div className="flex justify-center space-x-4">
+          <div className="flex justify-center space-x-5">
             <button className="p-2 border border-[#6D28D2] rounded-sm hover:bg-gray-100">
               <FcGoogle className="w-7 h-7" />
             </button>
