@@ -31,6 +31,7 @@ import NotificationPreferences from "@/components/Navbar/DropDownMenu/ProfilePag
 import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privacy";
 import CloseAccount from "@/components/Navbar/DropDownMenu/ProfilePage/CloseAccount/CloseAccount";
 import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
+import VerifyCode from "../pages/Login/VerifyCode";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
@@ -131,6 +132,7 @@ const AppRoutes: React.FC = () => {
                   path="/course-view/:courseId"
                   element={<ViewCoursePageInfo />}
                 />
+                <Route path="/verify-code" element={<VerifyCode />} />
               </Routes>
               <Footer />
             </>
