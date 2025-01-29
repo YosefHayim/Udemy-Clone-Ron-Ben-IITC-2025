@@ -118,7 +118,7 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
             <span className="relative  self-start  mr-4 rounded-3xl text-white bg-black text-lg">
               {formatTime(currentSec)}
             </span>
-            <div className="border min-w-full rounded-sm p-4 mb-4">
+            <div className=" min-w-full rounded-sm p-4 mb-4">
               <ReactQuill
                 value={content}
                 onChange={setContent}
@@ -133,17 +133,18 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
                 }}
                 placeholder="Write something amazing..."
                 theme="snow"
-              />
+                className="custom-quill"
+                />
               <div className="flex justify-end gap-4  mt-4">
                 <button
                   onClick={handleCancel}
-                  className="px-6 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition duration-300"
+                  className="px-6 py-2  text-gray-700 rounded hover:bg-gray-400 transition duration-300"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleAddNote}
-                  className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+                  className="px-6 py-2 bg-[#6D28D2] text-white rounded hover:bg-[#892DE1] transition duration-300"
                   disabled={mutation.isLoading}
                 >
                   {mutation.isLoading ? "Saving..." : "Save Note"}

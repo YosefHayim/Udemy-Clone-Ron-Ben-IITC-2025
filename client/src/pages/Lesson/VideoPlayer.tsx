@@ -213,7 +213,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         setLoading(false);
         setProgress(0);
       }}
-      className="relative mt-6 px-6 py-2 text-white bg-red-500 rounded hover:bg-red-600 transition duration-300 z-10"
+      className="relative mt-6 px-6 py-2 text-white rounded hover:bg-slate-600 transition duration-300 z-10"
     >
       Cancel
     </button>
@@ -248,12 +248,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       {/* Navigation Buttons */}
       {!open && (
   <div
-    className={`absolute h-20 top-1/2 transform -translate-y-1/2 flex justify-between w-full z-[1000] transition-opacity duration-500 ${
+    className={`absolute h-14 top-1/2 transform -translate-y-1/2 flex justify-between w-full z-[1000] transition-opacity duration-500 ${
       isHovered ? "opacity-100" : "opacity-0 pointer-events-none"
     }`}
   >
     <button
-      className={`text-white bg-gradient-to-r bg-purple-500 bg-opacity-60 hover:bg-[#892DE1] p-1 ${
+      className={`text-white bg-gradient-to-r border bg-purple-500 bg-opacity-60 hover:bg-[#892DE1] pl-2 ${
         prevLesson ? "opacity-100" : "invisible"
       }`}
       onClick={prevLesson ? () => onNavigate(prevLesson._id) : undefined}
@@ -263,7 +263,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     </button>
 
     <button
-      className={`text-white bg-gradient-to-r bg-purple-500 bg-opacity-60 hover:bg-[#892DE1] p-1 ${
+      className={`text-white bg-gradient-to-r border bg-purple-500 bg-opacity-60 hover:bg-[#892DE1] px-1  ${
         nextLesson ? "opacity-100" : "invisible"
       }`}
       onClick={nextLesson ? () => onNavigate(nextLesson._id) : undefined}

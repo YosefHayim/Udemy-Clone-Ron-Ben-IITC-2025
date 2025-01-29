@@ -57,7 +57,7 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
           onChange={(e) => setSearchQuery(e.target.value)}
           className="bg-white min-w-[744px] min-h-[48px] focus:outline-none px-4 border border-black rounded-sm text-lg"
         />
-        <IoIosSearch className="bg-[#1D1E27] text-white rounded-[4px] p-3 ml-2 size-[48px]" />
+        <IoIosSearch className="bg-[#6D28D2] text-white rounded-[4px] p-3 ml-2 size-[48px]" />
       </div>
 
       {/* Filtered Results */}
