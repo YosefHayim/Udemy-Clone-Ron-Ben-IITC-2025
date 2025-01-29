@@ -9,6 +9,7 @@ const {
   generateToken,
   verifyToken,
 } = require("../authorization/authController");
+const randomize = require("randomatic");
 
 const getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query)
@@ -108,15 +109,25 @@ const signUp = catchAsync(async (req, res, next) => {
 const login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
-  if (!email || !password) {
-    return next(createError("Email or password is missing.", 400));
+  if (!email) {
+    return next(createError("Email is missing.", 400));
   }
 
   const isFoundUser = await User.findOne({ email });
 
-  if (!isFoundUser || isFoundUser.password !== password) {
+  if (!isFoundUser) {
     return next(createError("Invalid email or password.", 401));
   }
+
+  const loginCode = randomize("0", 6);
+
+  sendEmail({
+    to: req.user.email,
+    subject: "Udemy Login: Here's the 6-digit verification code you requested",
+    html: `Hi ${req.user.fullName}, \n Use the code below to log in to your Udemy account. \n ${loginCode} \n This code will expires in 15 mintues. \n Didn't request this code? Contact us. \n 
+    Delivered by Udemy 600 Harrison Street, 3rd Floor, San Francisco, CA 94107.
+`,
+  });
 
   const token = generateToken({
     id: isFoundUser._id,
