@@ -32,28 +32,13 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const errors = validateForm();
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    }
-    setFormErrors({});
-    mutation.mutate({ email, password });
+    
+    navigate('/verify-code')
   };
 
-  const mutation = useMutation<any, Error, { email: string; password: string }>({
-    mutationFn: loginUser,
-    onSuccess: () => {
-      // Redirecionar para VerifyCode.tsx após sucesso
-      navigate("/verify-code", { state: { email } });
-    },
-    onError: (error) => {
-      console.error(error);
-    },
-  });
 
   const validateForm = () => {
     const errors = {};
@@ -75,7 +60,7 @@ const Login = () => {
       dispatch(setUdemyCredits(decoded.udemyCredits));
     }
   }, [cookie]);
-  
+
   const handleFocus = () => {
     if (!email && defaultEmail) {
       setEmail(defaultEmail); // Preenche o campo com o email do cookie

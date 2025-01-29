@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { MdLockOutline } from "react-icons/md";
 import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import loginUser from "@/api/users/loginUser";
 
 const VerifyCode = ({ email }) => {
   const [code, setCode] = useState("");
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
