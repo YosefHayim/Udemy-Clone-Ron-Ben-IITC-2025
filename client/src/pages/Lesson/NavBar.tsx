@@ -29,7 +29,7 @@ const NavBar: React.FC = () => {
 
   return (
     <div className="max-w-full px-40">
-      <nav className="flex flex-wrap pb-2 bg-white text-gray-500  border-b">
+      <nav className="flex flex-wrap bg-white text-gray-500  border-b">
         {tabs.map((tab) => (
           <Link
             key={tab.path}

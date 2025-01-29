@@ -38,4 +38,10 @@ router.delete(
 // Get all notes for a specific course
 router.get("/:courseId/notes", grantedAccess, progressController.getAllNotes);
 
+router.put(
+  "/:courseId/lessons/:lessonId/notes/:noteId",
+  grantedAccess,
+  progressController.editNote
+);
+
 module.exports = router;

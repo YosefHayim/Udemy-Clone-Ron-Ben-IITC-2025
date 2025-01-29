@@ -329,3 +329,50 @@ exports.getAllNotes = async (req, res) => {
     res.status(500).json({ error: "Failed to retrieve notes", details: err.message });
   }
 };
+
+
+exports.editNote = async (req, res) => {
+  const { courseId, lessonId, noteId } = req.params;
+  const userId = req.user._id;
+  const { text, seconds } = req.body;
+
+  try {
+    const progress = await CourseProgress.findOne({ userId, courseId });
+
+    if (!progress) {
+      return res.status(404).json({ message: "Progress not found" });
+    }
+
+    const section = progress.sections.find((sec) =>
+      sec.lessons.some((lesson) => lesson.lessonId.toString() === lessonId)
+    );
+
+    if (!section) {
+      return res.status(404).json({ message: "Lesson not found" });
+    }
+
+    const lesson = section.lessons.find(
+      (lesson) => lesson.lessonId.toString() === lessonId
+    );
+
+    if (!lesson) {
+      return res.status(404).json({ message: "Lesson not found in section" });
+    }
+
+    const note = lesson.notes.find((note) => note._id === noteId);
+
+    if (!note) {
+      return res.status(404).json({ message: "Note not found" });
+    }
+
+    // Update note fields
+    if (text !== undefined) note.text = text;
+    if (seconds !== undefined) note.seconds = seconds;
+
+    await progress.save();
+
+    res.status(200).json({ message: "Note updated successfully", note });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update note", details: err.message });
+  }
+};

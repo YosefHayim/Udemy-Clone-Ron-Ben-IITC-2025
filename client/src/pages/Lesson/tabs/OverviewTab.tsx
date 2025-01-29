@@ -36,42 +36,42 @@ const OverviewTab: React.FC = () => {
 
   return (
     <div id="overview" className="p-20 pt-5">
+    <div className="ml-4">
       <h2 className="text-2xl mb-4">
         {course.courseDescription || "No Description"}
       </h2>
-      <div className="flex items-start gap-10 text-xl py-4">
+      <div className="flex items-start gap-10 text-xl py-1">
         <div className="flex flex-col">
           <div className="flex items-center">
-            <span className="text-[#4d3105] text-lg font-bold mr-2">
+            <span className="text-[#4d3105] text-base font-bold mr-2">
               {course.averageRating.toFixed(1) || "0.0"}
             </span>
-            <span className="text-[#b4690e] text-xl font-bold">
+            <span className="text-[#b4690e] text-base font-bold">
               <FaStar />
             </span>
           </div>
-          <span className="text-gray-500 text-sm">
+          <span className="text-gray-500 text-xs">
             {course.totalRatings || 0} ratings
           </span>
         </div>
         <div className="flex flex-col">
           <div className="flex items-center">
-            <span className="text-[#000000] text-lg font-bold mr-2">
+            <span className="text-[#000000] text-base font-bold mr-2">
               {course.totalStudentsEnrolled.count || "0.0"}
             </span>
           </div>
-          <span className="text-gray-500 text-sm">students</span>
+          <span className="text-gray-500 text-xs">students</span>
         </div>
         <div className="flex flex-col">
           <div className="flex items-center">
-            <span className="text-[#000000] text-lg font-bold mr-2">
+            <span className="text-[#000000] text-base font-bold mr-2">
               {course.totalCourseDuration || "0.0"} hours
             </span>
           </div>
-          <span className="text-gray-500 text-sm">Total</span>
+          <span className="text-gray-500 text-xs">Total</span>
         </div>
       </div>
-
-      <div className="flex flex-col">
+      <div className="flex flex-col ">
         <span>
           <div className="inline-flex flex-row items-center text-sm pt-3 gap-2">
             <BsPatchExclamationFill className="" />
@@ -82,6 +82,8 @@ const OverviewTab: React.FC = () => {
             })}
           </div>
         </span>
+        </div>
+
         <span>
           <div className="inline-flex flex-row items-center text-sm pt-3 gap-2">
             <MdOutlineLanguage />
