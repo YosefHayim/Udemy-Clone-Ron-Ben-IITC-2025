@@ -25,3 +25,4 @@ const loginUser: fn = async (credentials) => {
 };
 
 export default loginUser;
+

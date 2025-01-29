@@ -22,39 +22,17 @@ import { FaApple } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const cookie = Cookies.get("cookie")?.toString();
   const defaultEmail = Cookies.get("email");
-  const [formErrors, setFormErrors] = useState<FormErrors>({
-    email: "",
-    password: "",
-  });
+  const [formErrors, setFormErrors] = useState<FormErrors>({ email: "", password: "", });
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const mutation = useMutation<any, Error, { email: string; password: string }>(
-    {
-      mutationFn: loginUser,
-      onSuccess: () => {
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
-      },
-      onError: (error) => {
-        console.error(error);
-      },
-    }
-  );
-
-  const validateForm = () => {
-    const errors = {};
-    if (!email) console.error("E-mail is mandatory.");
-    if (!password) console.error("Password is mandatory.");
-    return errors;
-  };
-
+  
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const errors = validateForm();
@@ -64,6 +42,24 @@ const Login = () => {
     }
     setFormErrors({});
     mutation.mutate({ email, password });
+  };
+
+  const mutation = useMutation<any, Error, { email: string; password: string }>({
+    mutationFn: loginUser,
+    onSuccess: () => {
+      // Redirecionar para VerifyCode.tsx após sucesso
+      navigate("/verify-code", { state: { email } });
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
+  const validateForm = () => {
+    const errors = {};
+    if (!email) console.error("E-mail is mandatory.");
+    if (!password) console.error("Password is mandatory.");
+    return errors;
   };
 
   useEffect(() => {
@@ -79,31 +75,30 @@ const Login = () => {
       dispatch(setUdemyCredits(decoded.udemyCredits));
     }
   }, [cookie]);
-
-  const googleMutation = useMutation({
-    mutationFn: googleRedirectUrl,
-    onSuccess: (redirectUrl) => {
-      if (redirectUrl) {
-        window.location.href = redirectUrl;
-      } else {
-        console.error("Redirect URL not found.");
-      }
-    },
-    onError: (error) => {
-      console.error("Error during Google Redirect:", error);
-    },
-  });
-
-  const handleGoogle = () => {
-    googleMutation.mutate();
-  };
-
+  
   const handleFocus = () => {
     if (!email && defaultEmail) {
       setEmail(defaultEmail); // Preenche o campo com o email do cookie
     }
   };
 
+  // const googleMutation = useMutation({
+  //   mutationFn: googleRedirectUrl,
+  //   onSuccess: (redirectUrl) => {
+  //     if (redirectUrl) {
+  //       window.location.href = redirectUrl;
+  //     } else {
+  //       console.error("Redirect URL not found.");
+  //     }
+  //   },
+  //   onError: (error) => {
+  //     console.error("Error during Google Redirect:", error);
+  //   },
+  // });
+
+  // const handleGoogle = () => {
+  //   googleMutation.mutate();
+  // };
 
   return (
     <div className="flex h-screen w-screen">
@@ -126,21 +121,20 @@ const Login = () => {
           {/* Email Form */}
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
             <div className="relative">
-            <input
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onFocus={handleFocus} // Chama handleFocus no clique
-            placeholder="Email"
-            className={`w-full px-5 py-[20px] border rounded-sm bg-white text-gray-800 text-[15px] bold placeholder:text-black placeholder:font-semibold focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all duration-200 ${
-              formErrors.email ? "border-red-500" : "border-gray-500"
-            }`}
-          />
-          {formErrors.email && (
-            <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
-          )}
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onFocus={handleFocus} // Chama handleFocus no clique
+                placeholder="Email"
+                className={`w-full px-5 py-[20px] border rounded-sm bg-white text-gray-800 text-[15px] bold placeholder:text-black placeholder:font-semibold focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all duration-200 ${formErrors.email ? "border-red-500" : "border-gray-500"
+                  }`}
+              />
+              {formErrors.email && (
+                <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
+              )}
             </div>
 
             {/* Submit Button */}
