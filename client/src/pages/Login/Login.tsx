@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
@@ -21,30 +21,28 @@ import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-
+import { emailContext } from "@/routes/AppRoutes";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const cookie = Cookies.get("cookie")?.toString();
   const defaultEmail = Cookies.get("email");
-  const [formErrors, setFormErrors] = useState<FormErrors>({ email: "", password: "", });
+  const [formErrors, setFormErrors] = useState<FormErrors>({
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [emailUser, setEmailUser] = useContext(emailContext);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    navigate('/verify-code')
-  };
-
-
-  const validateForm = () => {
-    const errors = {};
-    if (!email) console.error("E-mail is mandatory.");
-    if (!password) console.error("Password is mandatory.");
-    return errors;
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+    setEmailUser(email);
+    navigate("/verify-code");
   };
 
   useEffect(() => {
@@ -87,7 +85,6 @@ const Login = () => {
 
   return (
     <div className="flex h-screen w-screen">
-
       {/* Left Side (Image) */}
       <div className="flex-1 flex items-center justify-center">
         <img
@@ -114,8 +111,9 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 onFocus={handleFocus} // Chama handleFocus no clique
                 placeholder="Email"
-                className={`w-full px-5 py-[20px] border rounded-sm bg-white text-gray-800 text-[15px] bold placeholder:text-black placeholder:font-semibold focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all duration-200 ${formErrors.email ? "border-red-500" : "border-gray-500"
-                  }`}
+                className={`w-full px-5 py-[20px] border rounded-sm bg-white text-gray-800 text-[15px] bold placeholder:text-black placeholder:font-semibold focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all duration-200 ${
+                  formErrors.email ? "border-red-500" : "border-gray-500"
+                }`}
               />
               {formErrors.email && (
                 <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
@@ -141,7 +139,9 @@ const Login = () => {
           {/* Divider */}
           <div className="flex items-center my-6">
             <hr className="flex-grow border-gray-300" />
-            <span className="mx-4 text-sm text-gray-500">Other log in options</span>
+            <span className="mx-4 text-sm text-gray-500">
+              Other log in options
+            </span>
             <hr className="flex-grow border-gray-300" />
           </div>
 
@@ -162,7 +162,10 @@ const Login = () => {
           <div className="mt-16 space-y-3 text-center text-base bold text-gray-900 bg-gray-100">
             <div className="border-b-2 py-3">
               Don’t have an account?{" "}
-              <a href="/signup" className="text-purple-700 underline font-medium underline-offset-[5px]">
+              <a
+                href="/signup"
+                className="text-purple-700 underline font-medium underline-offset-[5px]"
+              >
                 Sign up
               </a>
             </div>
@@ -171,12 +174,8 @@ const Login = () => {
             </button>
           </div>
         </div>
-
       </div>
-
     </div>
-
-
   );
 };
 

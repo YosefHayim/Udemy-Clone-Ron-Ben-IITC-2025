@@ -1,13 +1,14 @@
-import { useState } from "react";
-import { MdLockOutline } from "react-icons/md";
+import { useContext, useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import loginUser from "@/api/users/loginUser";
 import { IoMdLock } from "react-icons/io";
+import { emailContext } from "@/routes/AppRoutes";
 
-const VerifyCode = ({ email }) => {
+const VerifyCode = () => {
   const [code, setCode] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [emailUser, setEmailUser] = useContext(emailContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,13 +42,12 @@ const VerifyCode = ({ email }) => {
 
   return (
     <div className="flex-1 flex items-start w-[100rem] min-width-[61.3125rem] px-[10rem] py-[6.8rem]">
-      
       <img
         src="/images/Login_Password_Page.png"
         alt="Login Illustration"
         className="w-[100%] h-auto max-w-[620px] mt-[-2rem] max-h-[100%] object-contain p-12"
       />
-      
+
       <div className="flex flex-col items-center justify-center w-full bg-white">
         {/* Título */}
         <h2 className="text-3xl font-bold text-gray-800 mb-2 text-center">
@@ -56,8 +56,9 @@ const VerifyCode = ({ email }) => {
 
         {/* Subtítulo */}
         <p className="text-gray-600 text-center max-w-[25rem] mt-8 mb-7 text-[1rem]">
-          Enter the 6-digit code we sent to<br/>
-          <span className="font-bold text-gray-800"> baba@gmail.com </span> 
+          Enter the 6-digit code we sent to
+          <br />
+          <span className="font-bold text-gray-800"> {emailUser} </span>
           to finish your login.
         </p>
 
@@ -68,7 +69,7 @@ const VerifyCode = ({ email }) => {
         >
           {/* Campo do código */}
           <div className="relative w-full">
-          <IoMdLock className="absolute left-3 w-4 h-4 top-1/2 transform -translate-y-1/2 text-[#303141]" />
+            <IoMdLock className="absolute left-3 w-4 h-4 top-1/2 transform -translate-y-1/2 text-[#303141]" />
             <input
               type="text"
               value={code}
@@ -111,4 +112,3 @@ const VerifyCode = ({ email }) => {
 };
 
 export default VerifyCode;
-

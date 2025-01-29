@@ -46,6 +46,10 @@ export const filterContext = createContext<FilterDataProps>({
   certificateOnly: false,
 });
 
+export const emailContext = createContext({
+  email: "",
+});
+
 const AppRoutes: React.FC = () => {
   const [filterData, setFilterData] = useState({
     sortBy: "",
@@ -58,6 +62,10 @@ const AppRoutes: React.FC = () => {
     topics: new Set(),
     videosDurations: new Set(),
     certificateOnly: false,
+  });
+
+  const [emailUser, setEmailUser] = useState({
+    email: "",
   });
 
   return (
@@ -117,7 +125,24 @@ const AppRoutes: React.FC = () => {
                   element={<PaymentMethods />}
                 />
                 <Route path="/logout" element={<Logout />} />
-                <Route path="/login" element={<Login />} />
+
+                <Route
+                  path="/login"
+                  element={
+                    <emailContext.Provider value={[emailUser, setEmailUser]}>
+                      <Login />
+                    </emailContext.Provider>
+                  }
+                />
+                <Route
+                  path="/verify-code"
+                  element={
+                    <emailContext.Provider value={[emailUser, setEmailUser]}>
+                      <VerifyCode />
+                    </emailContext.Provider>
+                  }
+                />
+
                 <Route
                   path="/courses/search"
                   element={
@@ -132,7 +157,6 @@ const AppRoutes: React.FC = () => {
                   path="/course-view/:courseId"
                   element={<ViewCoursePageInfo />}
                 />
-                <Route path="/verify-code" element={<VerifyCode />} />
               </Routes>
               <Footer />
             </>
