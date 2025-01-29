@@ -20,6 +20,7 @@ import googleRedirectUrl from "@/api/users/googleRedirectUrl";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -104,13 +105,13 @@ const Login = () => {
         <img
           src="/images/loginImg.png"
           alt="Login Illustration"
-          className="w-[100%] h-auto max-w-[620px] max-h-[100%] object-contain p-12 mt-[8rem]"
+          className="w-[100%] h-auto max-w-[620px] max-h-[100%] object-contain p-12 mt-[8rem] mr-[2.7rem]"
         />
 
         {/* Right Side (Form) */}
 
-        <div className="w-full max-w-md p-6 bg-white shadow-md rounded-lg ml-[4rem] mr-[6rem]">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">
+        <div className="w-full max-w-[29rem] p-6 bg-white  rounded-lg ml-[3rem] mr-[5rem]">
+          <h2 className="text-3xl md:text-3xl font-bold text-gray-800 mb-10 text-center">
             Log in to continue your learning journey
           </h2>
 
@@ -124,35 +125,29 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
-                className={`w-full px-4 py-3 border rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 ${formErrors.email ? "border-red-500" : "border-gray-300"
+                className={`w-full px-5 py-[20px] border rounded-sm bg-white text-gray-800 text-[15px] bold placeholder:text-black placeholder:font-semibold focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all duration-200 ${formErrors.email ? "border-red-500" : "border-gray-500"
                   }`}
+                onBlur={(e) => e.target.classList.replace("focus:ring-2", "focus:ring-1")}
+                onFocus={(e) => e.target.classList.replace("focus:ring-1", "focus:ring-2")}
               />
               {formErrors.email && (
                 <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
               )}
             </div>
 
-
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full py-3 rounded-md bg-purple-600 hover:bg-purple-700 text-white font-medium flex items-center justify-center space-x-2"
+              className="w-full py-3 rounded-md bg-[#6d28d2] hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
-                />
-              </svg>
-              <span>Continue with email</span>
+              <MdEmail className="w-5 h-5" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
+              />
+
+              <span className="text-[1rem] font-bold">Continue with email</span>
             </button>
           </form>
 
