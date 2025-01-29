@@ -26,6 +26,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const cookie = Cookies.get("cookie")?.toString();
+  const defaultEmail = Cookies.get("email");
   const [formErrors, setFormErrors] = useState<FormErrors>({
     email: "",
     password: "",
@@ -97,6 +98,13 @@ const Login = () => {
     googleMutation.mutate();
   };
 
+  const handleFocus = () => {
+    if (!email && defaultEmail) {
+      setEmail(defaultEmail); // Preenche o campo com o email do cookie
+    }
+  };
+
+
   return (
     <div className="flex h-screen w-screen">
 
@@ -118,21 +126,21 @@ const Login = () => {
           {/* Email Form */}
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
             <div className="relative">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-                className={`w-full px-5 py-[20px] border rounded-sm bg-white text-gray-800 text-[15px] bold placeholder:text-black placeholder:font-semibold focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all duration-200 ${formErrors.email ? "border-red-500" : "border-gray-500"
-                  }`}
-                onBlur={(e) => e.target.classList.replace("focus:ring-2", "focus:ring-1")}
-                onFocus={(e) => e.target.classList.replace("focus:ring-1", "focus:ring-2")}
-              />
-              {formErrors.email && (
-                <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
-              )}
+            <input
+            type="email"
+            name="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onFocus={handleFocus} // Chama handleFocus no clique
+            placeholder="Email"
+            className={`w-full px-5 py-[20px] border rounded-sm bg-white text-gray-800 text-[15px] bold placeholder:text-black placeholder:font-semibold focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all duration-200 ${
+              formErrors.email ? "border-red-500" : "border-gray-500"
+            }`}
+          />
+          {formErrors.email && (
+            <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
+          )}
             </div>
 
             {/* Submit Button */}
