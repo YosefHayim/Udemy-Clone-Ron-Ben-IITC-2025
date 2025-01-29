@@ -102,8 +102,8 @@ export interface CourseInstructorProps {
 }
 
 export interface CoursePriceProps {
-  discountPrice?: number;
-  fullPrice?: number;
+  discountPrice?: number | string;
+  fullPrice?: number | string;
   chooseFlex?: string;
   discountPriceSize?: string;
   showFullPrice?: boolean;
@@ -363,7 +363,6 @@ export interface GoogleAuthResponse {
 }
 
 //progress
-
 
 // Define the type for a lesson
 export interface Lesson {

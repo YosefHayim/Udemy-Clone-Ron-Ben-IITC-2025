@@ -8,7 +8,7 @@ import SignupBtn from "../SignupBtn/SignupBtn";
 import Language from "../Language/Language";
 import { useDispatch } from "react-redux";
 
-const Profile: React.FC = ({ cookie }) => {
+const Profile: React.FC<{ cookie: string }> = ({ cookie }) => {
   const dispatch = useDispatch();
   const fullName = useSelector((state: RootState) => state.user.fullName);
   const profilePic = useSelector((state: RootState) => state.user.profilePic);
