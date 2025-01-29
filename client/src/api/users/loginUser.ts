@@ -15,7 +15,7 @@ const loginUser: fn = async (credentials) => {
     );
 
     if (response) {
-      // console.log(response);
+      console.log(response);
       return response.data;
     }
   } catch (error) {
@@ -25,4 +25,3 @@ const loginUser: fn = async (credentials) => {
 };
 
 export default loginUser;
-

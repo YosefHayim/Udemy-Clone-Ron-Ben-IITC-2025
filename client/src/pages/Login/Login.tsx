@@ -16,7 +16,6 @@ import {
   setUdemyCredits,
 } from "@/redux/slices/userSlice";
 import { DecodedTokenProps, FormErrors } from "@/types/types";
-import googleRedirectUrl from "@/api/users/googleRedirectUrl";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
@@ -35,53 +34,49 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [emailUser, setEmailUser] = useContext(emailContext);
+  const loginMutation = useMutation({
+    mutationFn: loginUser,
+    onError: (error) => {
+      console.error("Error during Google Redirect:", error);
+    },
+  });
+
+  const emailCtx = useContext(emailContext);
+  if (!emailCtx) throw new Error("emailContext is not provided");
+  const [emailUser, setEmailUser] = emailCtx;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email") as string;
     setEmailUser(email);
+    loginMutation.mutate(email);
     navigate("/verify-code");
   };
 
   useEffect(() => {
     if (cookie) {
-      const decoded = jwtDecode<DecodedTokenProps>(cookie);
-      dispatch(setCookie(cookie));
-      dispatch(setFullName(decoded.fullName));
-      dispatch(setProfilePic(decoded.profilePic));
-      dispatch(setEmailAddress(decoded.email));
-      dispatch(setBio(decoded.bio));
-      dispatch(setRole(decoded.role));
-      dispatch(setCoursesBought(decoded.coursesBought));
-      dispatch(setUdemyCredits(decoded.udemyCredits));
+      try {
+        const decoded = jwtDecode<DecodedTokenProps>(cookie);
+        dispatch(setCookie(cookie));
+        dispatch(setFullName(decoded.fullName));
+        dispatch(setProfilePic(decoded.profilePic));
+        dispatch(setEmailAddress(decoded.email));
+        dispatch(setBio(decoded.bio));
+        dispatch(setRole(decoded.role));
+        dispatch(setCoursesBought(decoded.coursesBought));
+        dispatch(setUdemyCredits(decoded.udemyCredits));
+      } catch (error) {
+        console.error("Invalid JWT token", error);
+      }
     }
-  }, [cookie]);
+  }, [cookie, dispatch]);
 
   const handleFocus = () => {
     if (!email && defaultEmail) {
       setEmail(defaultEmail); // Preenche o campo com o email do cookie
     }
   };
-
-  // const googleMutation = useMutation({
-  //   mutationFn: googleRedirectUrl,
-  //   onSuccess: (redirectUrl) => {
-  //     if (redirectUrl) {
-  //       window.location.href = redirectUrl;
-  //     } else {
-  //       console.error("Redirect URL not found.");
-  //     }
-  //   },
-  //   onError: (error) => {
-  //     console.error("Error during Google Redirect:", error);
-  //   },
-  // });
-
-  // const handleGoogle = () => {
-  //   googleMutation.mutate();
-  // };
 
   return (
     <div className="flex h-screen w-screen">

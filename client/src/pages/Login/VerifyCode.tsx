@@ -10,6 +10,8 @@ const VerifyCode = () => {
   const navigate = useNavigate();
   const [emailUser, setEmailUser] = useContext(emailContext);
 
+  console.log(emailUser);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Code submitted:", code);
@@ -58,7 +60,7 @@ const VerifyCode = () => {
         <p className="text-gray-600 text-center max-w-[25rem] mt-8 mb-7 text-[1rem]">
           Enter the 6-digit code we sent to
           <br />
-          <span className="font-bold text-gray-800"> {emailUser} </span>
+          <span className="font-bold text-gray-800"></span>
           to finish your login.
         </p>
 
