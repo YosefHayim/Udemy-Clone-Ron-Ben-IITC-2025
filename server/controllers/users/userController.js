@@ -107,7 +107,7 @@ const signUp = catchAsync(async (req, res, next) => {
 });
 
 const login = catchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
+  const email = req.body.email;
 
   if (!email) {
     return next(createError("Email is missing.", 400));
