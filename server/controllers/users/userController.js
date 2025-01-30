@@ -85,25 +85,6 @@ const signUp = catchAsync(async (req, res, next) => {
     html: signUpCodeTemplate(newUser.fullName, signUpCode),
   });
 
-  const token = generateToken({
-    id: newUser._id,
-    fullName: newUser.fullName,
-    email: newUser.email,
-    profilePic: newUser.profilePic,
-    bio: newUser.bio,
-    role: newUser.role,
-    coursesBought: newUser.coursesBought,
-    udemyCredits: newUser.udemyCredits,
-  });
-
-  res.cookie("cookie", token, {
-    maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-    secure: process.env.NODE_ENV === "production", // Only HTTPS in production
-    httpOnly: false, // Restrict JavaScript access for security
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
-    path: "/", // Ensure the cookie is available across the entire site
-  });
-
   res.status(200).json({
     status: "success",
     message: "User created successfully. Please confirm your email to log in.",
@@ -182,10 +163,29 @@ const verifyCode = catchAsync(async (req, res, next) => {
     user.emailVerified = true;
     await user.save();
   }
-  
+
   user.temporaryCode = null;
   user.codeExpiresAt = null;
   await user.save();
+
+  const token = generateToken({
+    id: user._id,
+    fullName: user.fullName,
+    email: user.email,
+    profilePic: user.profilePic,
+    bio: user.bio,
+    role: user.role,
+    coursesBought: user.coursesBought,
+    udemyCredits: user.udemyCredits,
+  });
+
+  res.cookie("cookie", token, {
+    maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
+    secure: process.env.NODE_ENV === "production", // Only HTTPS in production
+    httpOnly: false, // Restrict JavaScript access for security
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
+    path: "/", // Ensure the cookie is available across the entire site
+  });
 
   res.status(200).json({
     status: "success",

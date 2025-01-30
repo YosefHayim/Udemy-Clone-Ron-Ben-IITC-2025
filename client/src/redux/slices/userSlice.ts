@@ -57,7 +57,6 @@ const userSlice = createSlice({
   },
 });
 
-// Export actions to use in the app
 export const {
   setFullName,
   setProfilePic,
@@ -70,5 +69,4 @@ export const {
   setCookie,
 } = userSlice.actions;
 
-// Export the reducer to add it to the store
 export default userSlice.reducer;

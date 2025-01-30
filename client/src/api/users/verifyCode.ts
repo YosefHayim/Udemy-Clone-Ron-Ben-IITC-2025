@@ -1,16 +1,11 @@
 import { axiosClient, localhostUrl } from "../configuration";
 
-type email = {
-  email: string;
-};
+type fn = (code: string) => Promise<any>;
 
-type fn = (email: email) => Promise<any>;
-
-const loginUser: fn = async (email) => {
+const verifyCode: fn = async (code) => {
   try {
     const response = await axiosClient.post(
-      `${localhostUrl}/api/user/auth/login`,
-      { email }
+      `${localhostUrl}/api/user/verify/${code}`
     );
 
     if (response) {
@@ -23,4 +18,4 @@ const loginUser: fn = async (email) => {
   }
 };
 
-export default loginUser;
+export default verifyCode;

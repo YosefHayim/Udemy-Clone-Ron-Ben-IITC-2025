@@ -1,45 +1,57 @@
-import { useContext, useEffect, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import loginUser from "@/api/users/loginUser";
 import { IoMdLock } from "react-icons/io";
-import { emailContext } from "@/routes/AppRoutes";
+import { useMutation } from "@tanstack/react-query";
+import verifyCode from "@/api/users/verifyCode";
+import { jwtDecode } from "jwt-decode";
+import {
+  setBio,
+  setCookie,
+  setCoursesBought,
+  setEmailAddress,
+  setFullName,
+  setProfilePic,
+  setRole,
+  setUdemyCredits,
+} from "@/redux/slices/userSlice";
+import { DecodedTokenProps } from "@/types/types";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
 
 const VerifyCode = () => {
-  const [code, setCode] = useState("");
   const navigate = useNavigate();
-  const [emailUser, setEmailUser] = useContext(emailContext);
+  const dispatch = useDispatch();
 
-  console.log(emailUser);
+  const verifyCodeMutation = useMutation({
+    mutationFn: verifyCode,
+    onError: (error) => {
+      console.error("Error during login process:", error);
+    },
+  });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Code submitted:", code);
-    // Adicione a lógica de validação do código aqui
+    const formData = new FormData(e.currentTarget);
+    const code = formData.get("code") as string;
+    verifyCodeMutation.mutate(code);
+    const cookie = Cookies.get("cookie");
+    const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
+    dispatch(setCookie(cookie || ""));
+    dispatch(setFullName(decoded.fullName));
+    dispatch(setProfilePic(decoded.profilePic));
+    dispatch(setEmailAddress(decoded.email));
+    dispatch(setBio(decoded.bio));
+    dispatch(setRole(decoded.role));
+    dispatch(setCoursesBought(decoded.coursesBought));
+    dispatch(setUdemyCredits(decoded.udemyCredits));
+    navigate("/");
   };
-
-  const mutation = useMutation<any, Error, { email: string; password: string }>(
-    {
-      mutationFn: loginUser,
-      onSuccess: () => {
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
-      },
-      onError: (error) => {
-        console.error(error);
-      },
-    }
-  );
 
   const handleResendCode = () => {
     console.log("Resend code clicked");
-    // Adicione a lógica para reenviar o código aqui
   };
 
   const handleDifferentAccount = () => {
     console.log("Login to a different account clicked");
-    // Adicione a lógica para redirecionar para login de outra conta
   };
 
   return (
@@ -51,12 +63,10 @@ const VerifyCode = () => {
       />
 
       <div className="flex flex-col items-center justify-center w-full bg-white">
-        {/* Título */}
         <h2 className="text-3xl font-bold text-gray-800 mb-2 text-center">
           Check your inbox
         </h2>
 
-        {/* Subtítulo */}
         <p className="text-gray-600 text-center max-w-[25rem] mt-8 mb-7 text-[1rem]">
           Enter the 6-digit code we sent to
           <br />
@@ -64,25 +74,22 @@ const VerifyCode = () => {
           to finish your login.
         </p>
 
-        {/* Formulário */}
         <form
           onSubmit={handleSubmit}
           className="w-full max-w-[27rem] flex flex-col items-center space-y-4"
         >
-          {/* Campo do código */}
           <div className="relative w-full">
             <IoMdLock className="absolute left-3 w-4 h-4 top-1/2 transform -translate-y-1/2 text-[#303141]" />
             <input
               type="text"
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
+              name="code"
+              id="code"
               placeholder="6-digit code"
               className="w-full pl-10 pr-4 py-3 border border-gray-600 rounded-sm bg-white text-[#595C73] placeholder:text-[#595C73] ]
               placeholder:font-semibold placeholder:opacity-95 text-[1.1rem] focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
 
-          {/* Botão de envio */}
           <button
             type="submit"
             className="w-full py-3 rounded-sm bg-[#6D28D2] hover:bg-purple-700 text-white font-medium transition"
@@ -91,7 +98,6 @@ const VerifyCode = () => {
           </button>
         </form>
 
-        {/* Link para reenviar código */}
         <button
           onClick={handleResendCode}
           className="mt-4 text-[#6D28D2] font-bold underline text-sm hover:text-purple-800"
@@ -99,7 +105,6 @@ const VerifyCode = () => {
           Resend code
         </button>
 
-        {/* Link para outra conta */}
         <div className="mt-14 w-full max-w-sm">
           <button
             onClick={handleDifferentAccount}
