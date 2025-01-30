@@ -28,8 +28,6 @@ const Login = () => {
   if (!emailCtx) throw new Error("emailContext is not provided");
   const [emailUser, setEmailUser] = emailCtx;
 
-  console.log(emailUser);
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);

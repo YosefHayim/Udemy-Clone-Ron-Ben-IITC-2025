@@ -1,13 +1,12 @@
-
-import BG from "../../../public/images/businessBG.jpg"; // Imagem de fundo
-import Logo from "../../../public/images/BusinessLogo.png"; // Logo Udemy Business
+import BG from "/images/businessBG.jpg";
+import Logo from "/public/images/BusinessLogo.png";
 
 const LoginBusiness = () => {
   return (
     <div
       className="h-screen flex items-center justify-center bg-cover bg-center"
       style={{
-        backgroundImage: `url(${BG})`
+        backgroundImage: `url(${BG})`,
       }}
     >
       {/* Componente central */}
@@ -15,7 +14,7 @@ const LoginBusiness = () => {
         {/* Logo */}
         <div className="mb-[1.8rem] text-center">
           <img
-            src={Logo} 
+            src={Logo}
             alt="Udemy Business Logo"
             className="h-[2.35rem] mx-auto"
           />
@@ -45,10 +44,7 @@ const LoginBusiness = () => {
 
         {/* Links auxiliares */}
         <div className="text-center mt-6">
-          <a
-            href="#"
-            className="text-sm text-[#6d28d2] hover:bg-[#892de1]"
-          >
+          <a href="#" className="text-sm text-[#6d28d2] hover:bg-[#892de1]">
             Need help with logging in or signing up?
           </a>
           <p className="text-xs text-[#595C73] mt-7">

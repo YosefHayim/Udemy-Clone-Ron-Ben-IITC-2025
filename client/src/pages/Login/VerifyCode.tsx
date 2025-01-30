@@ -34,6 +34,9 @@ const VerifyCode = () => {
 
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
+    onSuccess: () => {
+      navigate("/");
+    },
     onError: (error) => {
       console.error("Error during login process:", error);
     },
@@ -56,7 +59,6 @@ const VerifyCode = () => {
     dispatch(setRole(decoded.role));
     dispatch(setCoursesBought(decoded.coursesBought));
     dispatch(setUdemyCredits(decoded.udemyCredits));
-    navigate("/");
   };
 
   const handleResendCode = () => {
