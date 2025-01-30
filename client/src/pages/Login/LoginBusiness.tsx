@@ -1,5 +1,5 @@
 import BG from "/images/businessBG.jpg";
-import Logo from "/public/images/BusinessLogo.png";
+import Logo from "/images/BusinessLogo.png";
 
 const LoginBusiness = () => {
   return (

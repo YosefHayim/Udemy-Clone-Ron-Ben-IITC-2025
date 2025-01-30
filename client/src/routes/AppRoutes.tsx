@@ -31,7 +31,6 @@ import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privac
 import CloseAccount from "@/components/Navbar/DropDownMenu/ProfilePage/CloseAccount/CloseAccount";
 import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
 import VerifyCode from "../pages/Login/VerifyCode";
-import LoginBusiness from "../pages/Login/LoginBusiness";
 import LoginBusniness from "../pages/Login/LoginBusiness";
 
 export const filterContext = createContext<FilterDataProps>({

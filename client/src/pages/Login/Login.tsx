@@ -8,6 +8,7 @@ import { FaFacebook } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { emailContext } from "@/routes/AppRoutes";
 import { BiSolidErrorAlt } from "react-icons/bi";
+import { useGoogleLogin } from "@react-oauth/google";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -37,9 +38,17 @@ const Login = () => {
     loginMutation.mutate({ email });
   };
 
-  const Navigate_Business = () => {
+  const navigateBusiness = () => {
     navigate("/Login-Business");
   };
+
+  const handleGoogle = useGoogleLogin({
+    onSuccess: (credentialResponse) => {
+      console.log(credentialResponse);
+    },
+    flow: "auth-code",
+    redirect_uri: "http://localhost:5137",
+  });
 
   return (
     <div className="h-screen bg-cover bg-center">
@@ -111,7 +120,10 @@ const Login = () => {
           </div>
 
           <div className="flex justify-center space-x-5">
-            <button className="p-2 border border-[#6D28D2] rounded-sm hover:bg-gray-100">
+            <button
+              onClick={handleGoogle}
+              className="p-2 border border-[#6D28D2] rounded-sm hover:bg-gray-100"
+            >
               <FcGoogle className="w-7 h-7" />
             </button>
             <button className="p-2 border border-[#6D28D2] rounded-sm hover:bg-gray-100">
@@ -133,7 +145,7 @@ const Login = () => {
               </a>
             </div>
             <button
-              onClick={Navigate_Business}
+              onClick={navigateBusiness}
               className="text-purple-700 underline font-medium underline-offset-[5px] pb-5 pt-0"
             >
               Log in with your organization

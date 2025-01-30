@@ -64,7 +64,10 @@ const signUp = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email });
 
   if (user) {
-    return next(createError("You have already signed up.", 400));
+    res.status(200).json({
+      status: "success",
+      data: "The email you entered is already in use. Please try logging in.",
+    });
   }
 
   // Create user with email token and expiration
