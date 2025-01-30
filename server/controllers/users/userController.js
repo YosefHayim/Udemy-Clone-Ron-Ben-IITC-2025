@@ -1,5 +1,6 @@
 const Course = require("../../models/courses/courseModel");
 const courseProgress = require("../../models/courses/courseProgressModel");
+const mongoose = require("mongoose");
 const User = require("../../models/users/userModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const sendEmail = require("../../utils/email");
@@ -376,7 +377,7 @@ const joinCourseById = catchAsync(async (req, res, next) => {
     );
   }
 
-  const course = await Course.findOne(courseId);
+  const course = await Course.findOne({ _id: courseId });
 
   if (!course) {
     return next(createError(`No course exists with this ID: ${courseId}`, 404));
