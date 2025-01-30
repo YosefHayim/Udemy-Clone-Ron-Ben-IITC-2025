@@ -40,9 +40,11 @@ const VerifyCode = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const code = formData.get("code") as string;
-    verifyCodeMutation.mutate(code, emailUser);
+    verifyCodeMutation.mutate({ code, email: emailUser });
 
     const cookie = Cookies.get("cookie");
+    console.log(cookie);
+
     const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
     dispatch(setCookie(cookie || ""));
     dispatch(setFullName(decoded.fullName));
@@ -52,7 +54,7 @@ const VerifyCode = () => {
     dispatch(setRole(decoded.role));
     dispatch(setCoursesBought(decoded.coursesBought));
     dispatch(setUdemyCredits(decoded.udemyCredits));
-    navigate("/");
+    // navigate("/");
   };
 
   const handleResendCode = () => {
