@@ -13,7 +13,6 @@ import Login from "@/pages/Login/Login";
 import Wishlist from "@/pages/Wishlist/Wishlist";
 import Logout from "@/pages/Logout/Logout";
 import Payment from "@/pages/Payment/Payment";
-import OAuthCallback from "@/pages/Login/OAuthCallback";
 import ProfileMain from "@/components/Navbar/DropDownMenu/ProfilePage/ProfileMain/ProfileMain";
 import UdemyCredits from "@/components/Navbar/DropDownMenu/UdemyCredits/UdemyCredits";
 import PurchaseHistory from "@/components/Navbar/DropDownMenu/PurchaseHistory/PurchaseHistory";
@@ -31,7 +30,7 @@ import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privac
 import CloseAccount from "@/components/Navbar/DropDownMenu/ProfilePage/CloseAccount/CloseAccount";
 import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
 import VerifyCode from "../pages/Login/VerifyCode";
-import LoginBusniness from "../pages/Login/LoginBusiness";
+import LoginBusiness from "../pages/Login/LoginBusiness";
 import PrivacyStatement from "@/pages/Privacy/Privacy_Statement";
 
 export const filterContext = createContext<FilterDataProps>({
@@ -88,7 +87,6 @@ const AppRoutes: React.FC = () => {
                   path="/dashboard/purchase-history/"
                   element={<PurchaseHistory />}
                 />
-                <Route path="/" element={<OAuthCallback />} />
                 <Route
                   path="/user/manage-subscriptions/"
                   element={<Subscription />}
@@ -186,7 +184,7 @@ const AppRoutes: React.FC = () => {
           path="/Login-Business"
           element={
             <emailContext.Provider value={[emailUser, setEmailUser]}>
-              <LoginBusniness />
+              <LoginBusiness />
             </emailContext.Provider>
           }
         />

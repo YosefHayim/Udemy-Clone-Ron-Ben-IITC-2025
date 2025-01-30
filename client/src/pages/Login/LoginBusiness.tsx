@@ -2,12 +2,10 @@ import BG from "/images/businessBG.jpg";
 import Logo from "/images/BusinessLogo.png";
 import { useNavigate } from "react-router-dom";
 
-const navigate = useNavigate()
+const navigate = useNavigate();
 const navigatePrivacy = () => {
   navigate("/terms/ub-privacy/");
 };
-
-
 
 const LoginBusiness = () => {
   return (
