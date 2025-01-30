@@ -1,11 +1,13 @@
 const nodemailer = require("nodemailer");
+const dotenv = require("dotenv").config();
 
 const transporter = nodemailer.createTransport({
-  host: "sandbox.smtp.mailtrap.io",
-  port: 2525,
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
-    user: "b4fb1a7169d84c",
-    pass: "ddf82f46b04ad3",
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_KEY,
   },
 });
 
@@ -20,3 +22,7 @@ const sendEmail = (mailOptions) => {
 };
 
 module.exports = sendEmail;
+
+// email
+// udemy.clone.project@gmail.com
+// pw Karin1234#%
