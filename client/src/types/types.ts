@@ -81,10 +81,8 @@ export interface ReportUserReviewPayload {
 }
 
 export interface RegisterUserPayload {
-  fullName?: string;
-  email?: string;
-  password?: string;
-  [key: string]: any;
+  fullName: string;
+  email: string;
 }
 
 export type AtagBtnProps = {

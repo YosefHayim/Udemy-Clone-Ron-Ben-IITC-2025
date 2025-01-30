@@ -25,11 +25,10 @@ const SignUp: React.FC = () => {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const fullName = formData.get("fullName") as string | undefined;
-    const email = formData.get("email") as string | undefined;
-    const password = formData.get("password") as string | undefined;
+    const fullName = formData.get("fullName") as string;
+    const email = formData.get("email") as string;
 
-    mutation.mutate({ fullName, email, password });
+    mutation.mutate({ fullName, email });
   };
 
   return (
@@ -47,7 +46,7 @@ const SignUp: React.FC = () => {
             Sign up with email
           </h2>
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
-            <div className="flex items-baseline w-[300px]">
+            <div className="flex items-baseline w-[300px] gap-[0.5em]">
               <input
                 type="checkbox"
                 id="offers"

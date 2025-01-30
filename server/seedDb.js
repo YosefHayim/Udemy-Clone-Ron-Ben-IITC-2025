@@ -53,12 +53,14 @@ const createUsers = async () => {
       fullName: faker.person.fullName(),
       profilePic: faker.image.avatar(),
       email, // Use the unique email
-      password: faker.internet.password(10),
       role: faker.helpers.arrayElement(["student", "instructor", "student"]),
       bio: faker.lorem.sentence(1),
       udemyCredits: faker.number.int({ min: 5000, max: 10000 }),
       country: faker.helpers.arrayElement(supportedCountries),
-      recentSearches: faker.helpers.arrayElements(algoSearch),
+      recentSearches: faker.helpers.arrayElements(algoSearch, {
+        min: 3,
+        max: 6,
+      }),
     });
   }
 
@@ -600,9 +602,9 @@ const addCoursesToWishlistOfUsers = async () => {
 const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
-    // console.log("Database connection established.");
-    // await clearCollections();
-    // console.log("Deleted all db.");
+    console.log("Database connection established.");
+    await clearCollections();
+    console.log("Deleted all db.");
 
     console.log("Seeding users...");
     const users = await createUsers();
