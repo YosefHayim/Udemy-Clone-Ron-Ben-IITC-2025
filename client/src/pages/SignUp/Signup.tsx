@@ -5,15 +5,21 @@ import { useMutation } from "@tanstack/react-query";
 import { RegisterUserPayload } from "@/types/types";
 import { MdEmail } from "react-icons/md";
 import { Checkbox } from "@radix-ui/react-checkbox";
+import { emailContext } from "@/routes/AppRoutes";
+import { useContext } from "react";
 
 const SignUp: React.FC = () => {
   document.title = "Sign Up and Start Learning | Udemy";
   const navigate = useNavigate();
 
+  const emailCtx = useContext(emailContext);
+  if (!emailCtx) throw new Error("emailContext is not provided");
+  const [emailUser, setEmailUser] = emailCtx;
+
   const mutation = useMutation<unknown, Error, RegisterUserPayload>({
     mutationFn: registerUser,
     onSuccess: () => {
-      navigate("/");
+      navigate("/verify-code");
     },
     onError: (error) => {
       console.error(error);
@@ -27,7 +33,7 @@ const SignUp: React.FC = () => {
     const formData = new FormData(form);
     const fullName = formData.get("fullName") as string;
     const email = formData.get("email") as string;
-
+    setEmailUser(email);
     mutation.mutate({ fullName, email });
   };
 

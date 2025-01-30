@@ -54,10 +54,10 @@ const getUserById = catchAsync(async (req, res, next) => {
 });
 
 const signUp = catchAsync(async (req, res, next) => {
-  const { fullName, email, password } = req.body;
+  const { fullName, email } = req.body;
 
   // If one of the fields is missing
-  if (!fullName || !email || !password) {
+  if (!fullName || !email) {
     return next(createError("One of the required fields is missing.", 400));
   }
 
@@ -65,7 +65,6 @@ const signUp = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
     fullName,
     email,
-    password,
   });
 
   if (!newUser) {
