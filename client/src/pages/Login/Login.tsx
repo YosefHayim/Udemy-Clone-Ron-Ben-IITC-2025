@@ -2,25 +2,25 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import loginUser from "@/api/users/loginUser";
-import { FormErrors } from "@/types/types";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { emailContext } from "@/routes/AppRoutes";
-import Login_Busniness_image from "/images/login.png";
+import { BiSolidErrorAlt } from "react-icons/bi";
 
 const Login = () => {
-  const [formErrors, setFormErrors] = useState<FormErrors>({
-    email: "",
-    password: "",
-  });
   const navigate = useNavigate();
+  const [isError, setShowIsError] = useState(false);
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
+    onSuccess: () => {
+      navigate("/verify-code");
+    },
     onError: (error) => {
       console.error("Error during login process:", error);
+      setShowIsError(true);
     },
   });
 
@@ -37,7 +37,6 @@ const Login = () => {
 
     setEmailUser(email);
     loginMutation.mutate({ email });
-    navigate("/verify-code");
   };
 
   const Navigate_Business = () => {
@@ -45,22 +44,34 @@ const Login = () => {
   };
 
   return (
-    <div
-      className="h-screen bg-cover bg-center"
-      style={{ backgroundImage: `${Login_Busniness_image}` }}
-    >
+    <div className="h-screen bg-cover bg-center">
       <div className="flex-1 flex items-center justify-center">
         <img
           src="/images/loginImg.png"
           alt="Login Illustration"
           className="w-[100%] h-auto max-w-[620px] max-h-[100%] object-contain p-12 mt-[8rem] mr-[2.7rem]"
         />
-
         <div className="w-full max-w-[29rem] p-6 bg-white  rounded-lg ml-[3rem] mr-[5rem]">
           <h2 className="text-3xl md:text-3xl font-bold text-gray-800 mb-10 text-center">
             Log in to continue your learning journey
           </h2>
-
+          <div
+            className={
+              isError
+                ? `gap-[1em] w-full border border-red-700 p-[1em] py-[1.5em] font-bold rounded-[1.5em] mb-[1em] flex flex-row items-start justify-center`
+                : "hidden"
+            }
+          >
+            <div>
+              <BiSolidErrorAlt className="text-[2.5em] text-red-600" />
+            </div>
+            <div>
+              <p className="text-[1.8em]">
+                There was a problem logging in. Check your email or create an
+                account.
+              </p>
+            </div>
+          </div>
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
             <div className="relative">
               <input
@@ -68,13 +79,14 @@ const Login = () => {
                 name="email"
                 id="email"
                 placeholder="Email"
-                className={`w-full px-5 py-[20px] border rounded-sm bg-white text-gray-800 text-[15px] bold placeholder:text-black placeholder:font-semibold focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all duration-200 ${
-                  formErrors.email ? "border-red-500" : "border-gray-500"
-                }`}
+                className="w-full p-[1em] bg-white text-black focus:bg-white focus:text-black focus:outline-none border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-[#303141] focus:border-purple-800"
               />
-              {formErrors.email && (
-                <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
-              )}
+              <div className={isError ? "block" : "hidden"}>
+                <span className="text-red-600 absolute font-bold top-[10%] right-[87%]">
+                  Email
+                </span>
+                <BiSolidErrorAlt className="text-[1.5em] text-red-600 absolute top-[10%] right-[82%]" />
+              </div>
             </div>
 
             <button

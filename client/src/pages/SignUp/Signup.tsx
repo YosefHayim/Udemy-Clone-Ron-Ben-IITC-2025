@@ -63,14 +63,14 @@ const SignUp: React.FC = () => {
               id="fullName"
               name="fullName"
               placeholder="Full name"
-              className="w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-[#303141]"
+              className="w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-[#303141] focus:border-purple-800"
             />
             <input
               type="email"
               name="email"
               id="email"
               placeholder="E-mail"
-              className="w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-[#303141]"
+              className="w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-[#303141] focus:border-purple-800"
             />
 
             <button
