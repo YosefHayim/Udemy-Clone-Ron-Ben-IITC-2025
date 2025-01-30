@@ -142,14 +142,6 @@ const AppRoutes: React.FC = () => {
                     </emailContext.Provider>
                   }
                 />
-                <Route
-                  path="/Login-Business"
-                  element={
-                    <emailContext.Provider value={[emailUser, setEmailUser]}>
-                      <LoginBusniness />
-                    </emailContext.Provider>
-                  }
-                />
 
                 <Route
                   path="/courses/search"
@@ -179,6 +171,14 @@ const AppRoutes: React.FC = () => {
             <>
               <LessonPage />
             </>
+          }
+        />
+        <Route
+          path="/Login-Business"
+          element={
+            <emailContext.Provider value={[emailUser, setEmailUser]}>
+              <LoginBusniness />
+            </emailContext.Provider>
           }
         />
       </Routes>
