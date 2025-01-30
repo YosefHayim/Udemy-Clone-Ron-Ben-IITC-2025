@@ -16,10 +16,13 @@ import {
 import { DecodedTokenProps } from "@/types/types";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { emailContext } from "@/routes/AppRoutes";
 
 const VerifyCode = () => {
+  const [countdown, setCountdown] = useState(30);
+  const [isSentCodeAgain, setIsSentCodeAgain] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -43,7 +46,6 @@ const VerifyCode = () => {
     verifyCodeMutation.mutate({ code, email: emailUser });
 
     const cookie = Cookies.get("cookie");
-    console.log(cookie);
 
     const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
     dispatch(setCookie(cookie || ""));
@@ -58,12 +60,33 @@ const VerifyCode = () => {
   };
 
   const handleResendCode = () => {
-    console.log("Resend code clicked");
+    setIsSentCodeAgain(true);
+    setCountdown(30);
+
+    // Start the countdown only when Resend Code is clicked
+    const interval = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev > 1) return prev - 1;
+        clearInterval(interval);
+        setIsSentCodeAgain(false); // Enable resend button when countdown ends
+        return 30;
+      });
+    }, 1000);
+
+    // Reactivate mutation to resend code
+    verifyCodeMutation.mutate({ email: emailUser });
   };
 
   const handleDifferentAccount = () => {
     console.log("Login to a different account clicked");
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCountdown((prev) => (prev > 0 ? prev - 1 : 30));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="flex-1 flex items-start w-[100rem] min-width-[61.3125rem] px-[10rem] py-[6.8rem]">
@@ -109,12 +132,19 @@ const VerifyCode = () => {
           </button>
         </form>
 
-        <button
-          onClick={handleResendCode}
-          className="mt-4 text-[#6D28D2] font-bold underline text-sm hover:text-purple-800"
-        >
-          Resend code
-        </button>
+        {!isSentCodeAgain ? (
+          <button
+            onClick={handleResendCode}
+            className="mt-4 text-[#6D28D2] font-extrabold underline text-sm hover:text-purple-800"
+          >
+            Resend Code
+          </button>
+        ) : (
+          <button disabled className="text-black cursor-not-allowed">
+            Didn't receive the code?{" "}
+            <span className="font-bold">Resend code in {countdown} sec</span>
+          </button>
+        )}
 
         <div className="mt-14 w-full max-w-sm">
           <button

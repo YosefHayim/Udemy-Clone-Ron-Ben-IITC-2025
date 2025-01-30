@@ -1,22 +1,26 @@
 const nodemailer = require("nodemailer");
+const dotenv = require("dotenv").config();
 
 const transporter = nodemailer.createTransport({
-  host: "sandbox.smtp.mailtrap.io",
-  port: 2525,
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
-    user: "b4fb1a7169d84c",
-    pass: "ddf82f46b04ad3",
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_KEY,
   },
 });
 
 const sendEmail = (mailOptions) => {
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
-      // console.log(error);
+      console.log(error);
     } else {
-      // console.log("Email sent");
+      console.log("Email sent");
     }
   });
 };
 
 module.exports = sendEmail;
+
+
