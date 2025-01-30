@@ -1,11 +1,12 @@
 import { axiosClient, localhostUrl } from "../configuration";
 
-type fn = (code: string) => Promise<any>;
+type fn = (code: string, email: string) => Promise<any>;
 
-const verifyCode: fn = async (code) => {
+const verifyCode: fn = async (code, email) => {
   try {
     const response = await axiosClient.post(
-      `${localhostUrl}/api/user/verify/${code}`
+      `${localhostUrl}/api/user/verify/${code}`,
+      { email }
     );
 
     if (response) {

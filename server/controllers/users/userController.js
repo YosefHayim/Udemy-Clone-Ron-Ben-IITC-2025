@@ -151,7 +151,7 @@ const login = catchAsync(async (req, res, next) => {
 
 const verifyCode = catchAsync(async (req, res, next) => {
   const code = req.params.code;
-  const email = req.user.email;
+  const email = req.body.email;
 
   if (!code) return next(createError("code are required.", 400));
 

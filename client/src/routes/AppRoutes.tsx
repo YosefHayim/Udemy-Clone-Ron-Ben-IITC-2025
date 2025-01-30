@@ -66,9 +66,7 @@ const AppRoutes: React.FC = () => {
     certificateOnly: false,
   });
 
-  const [emailUser, setEmailUser] = useState({
-    email: "",
-  });
+  const [emailUser, setEmailUser] = useState("");
 
   return (
     <Router>
