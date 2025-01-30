@@ -43,7 +43,7 @@ router.get("/:id", getUserById);
 router.post("/add/courses", grantedAccess, joinCoursesByIds);
 
 // Verify user code either for login or for sign up.
-router.post("/verify/:code", verifyCode);
+router.post("/verify", verifyCode);
 
 // join course by course id
 router.post("/add/course/:id", grantedAccess, joinCourseById);

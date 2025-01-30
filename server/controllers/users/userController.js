@@ -150,18 +150,22 @@ const login = catchAsync(async (req, res, next) => {
 });
 
 const verifyCode = catchAsync(async (req, res, next) => {
-  const code = req.params.code;
-  const email = req.body.email;
+  const { code, email } = req.body;
 
   if (!code) return next(createError("code are required.", 400));
 
   const user = await User.findOne({ email });
-  if (!user || user.loginCode !== code)
+
+  if (!user || user.temporaryCode !== Number(code))
     return next(createError("Invalid or expired code.", 401));
 
   if (user.emailVerified === false) {
     user.emailVerified = true;
     await user.save();
+  }
+
+  if (user.temporaryCodeExpiresAt < Date.now()) {
+    return next(createError("Verification code expired.", 401));
   }
 
   user.temporaryCode = null;
