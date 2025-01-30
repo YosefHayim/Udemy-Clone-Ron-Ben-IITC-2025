@@ -4,11 +4,14 @@ const User = require("../../models/users/userModel");
 const APIFeatures = require("../../utils/apiFeatures");
 const sendEmail = require("../../utils/email");
 const createError = require("../../utils/errorFn");
+const loginEmailTemplateLiteral = require("../../utils/loginEmailTemplateLiteral");
+const signUpCodeTemplate = require("../../utils/signUpEmailTemplateLiteral");
 const { catchAsync } = require("../../utils/wrapperFn");
 const {
   generateToken,
   verifyToken,
 } = require("../authorization/authController");
+const randomize = require("randomatic");
 
 const getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query)
@@ -69,34 +72,17 @@ const signUp = catchAsync(async (req, res, next) => {
     return next(createError("Error occurred during user creation.", 500));
   }
 
-  // // Send confirmation email
-  // const mailOptions = {
-  //   from: "robustBackend@gmail.com",
-  //   to: email,
-  //   subject: `Hi ${fName} ${lName}, welcome aboard`,
-  //   html: `<h1>Welcome to the robust backend website, ${fName}!</h1>
-  //   <p>Verify your email address by providing this code: http://localhost:3000/api/user/?token=${newUser.emailVerificationToken}</p>`,
-  // };
+  const signUpCode = randomize("0", 6);
 
-  // await sendEmail(mailOptions);
+  newUser.temporaryCode = signUpCode;
+  newUser.temporaryCodeExpiresAt = new Date(Date.now() + 15 * 60 * 1000);
+  await newUser.save();
 
-  const token = generateToken({
-    id: newUser._id,
-    fullName: newUser.fullName,
-    email: newUser.email,
-    profilePic: newUser.profilePic,
-    bio: newUser.bio,
-    role: newUser.role,
-    coursesBought: newUser.coursesBought,
-    udemyCredits: newUser.udemyCredits,
-  });
-
-  res.cookie("cookie", token, {
-    maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-    secure: process.env.NODE_ENV === "production", // Only HTTPS in production
-    httpOnly: false, // Restrict JavaScript access for security
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
-    path: "/", // Ensure the cookie is available across the entire site
+  // Send confirmation email
+  sendEmail({
+    to: newUser.email,
+    subject: "Udemy Signup: Here's the 6-digit verification code you requested",
+    html: signUpCodeTemplate(newUser.fullName, signUpCode),
   });
 
   res.status(200).json({
@@ -106,17 +92,29 @@ const signUp = catchAsync(async (req, res, next) => {
 });
 
 const login = catchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
+  const email = req.body.email;
 
-  if (!email || !password) {
-    return next(createError("Email or password is missing.", 400));
+  if (!email) {
+    return next(createError("Email is missing.", 400));
   }
 
   const isFoundUser = await User.findOne({ email });
 
-  if (!isFoundUser || isFoundUser.password !== password) {
+  if (!isFoundUser) {
     return next(createError("Invalid email or password.", 401));
   }
+
+  const loginCode = randomize("0", 6);
+
+  isFoundUser.temporaryCode = loginCode;
+  isFoundUser.temporaryCodeExpiresAt = new Date(Date.now() + 15 * 60 * 1000);
+  await isFoundUser.save();
+
+  sendEmail({
+    to: isFoundUser.email,
+    subject: "Udemy Login: Here's the 6-digit verification code you requested",
+    html: loginEmailTemplateLiteral(isFoundUser.fullName, loginCode),
+  });
 
   const token = generateToken({
     id: isFoundUser._id,
@@ -148,6 +146,50 @@ const login = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     message: "Login successful.",
+  });
+});
+
+const verifyCode = catchAsync(async (req, res, next) => {
+  const code = req.params.code;
+  const email = req.user.email;
+
+  if (!code) return next(createError("code are required.", 400));
+
+  const user = await User.findOne({ email });
+  if (!user || user.loginCode !== code)
+    return next(createError("Invalid or expired code.", 401));
+
+  if (user.emailVerified === false) {
+    user.emailVerified = true;
+    await user.save();
+  }
+
+  user.temporaryCode = null;
+  user.codeExpiresAt = null;
+  await user.save();
+
+  const token = generateToken({
+    id: user._id,
+    fullName: user.fullName,
+    email: user.email,
+    profilePic: user.profilePic,
+    bio: user.bio,
+    role: user.role,
+    coursesBought: user.coursesBought,
+    udemyCredits: user.udemyCredits,
+  });
+
+  res.cookie("cookie", token, {
+    maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
+    secure: process.env.NODE_ENV === "production", // Only HTTPS in production
+    httpOnly: false, // Restrict JavaScript access for security
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
+    path: "/", // Ensure the cookie is available across the entire site
+  });
+
+  res.status(200).json({
+    status: "success",
+    message: "Code verified successfully. You are now logged in.",
   });
 });
 
@@ -607,4 +649,5 @@ module.exports = {
   confirmEmailAddress,
   resendEmailVerificationToken,
   updateUserInfo,
+  verifyCode,
 };

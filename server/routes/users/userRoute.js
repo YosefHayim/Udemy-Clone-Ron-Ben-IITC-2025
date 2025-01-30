@@ -16,6 +16,7 @@ const {
   updateProfilePic,
   toggleCourseWishlist,
   joinCoursesByIds,
+  verifyCode,
 } = require("../../controllers/users/userController");
 const {
   grantedAccess,
@@ -40,6 +41,9 @@ router.get("/:id", getUserById);
 
 // join courses by array of courses ids
 router.post("/add/courses", grantedAccess, joinCoursesByIds);
+
+// Verify user code either for login or for sign up.
+router.post("/verify/:code", grantedAccess, verifyCode);
 
 // join course by course id
 router.post("/add/course/:id", grantedAccess, joinCourseById);

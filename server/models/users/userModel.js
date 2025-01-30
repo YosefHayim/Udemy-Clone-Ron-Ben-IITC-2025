@@ -69,6 +69,10 @@ const userSchema = new mongoose.Schema(
       required: [true, "Please provide a password"],
       minlength: 8,
     },
+    temporaryCode: {
+      type: Number,
+    },
+    temporaryCodeExpiresAt: { type: Date, index: { expires: "15m" } },
     passwordChangedAt: Date,
     passwordResetToken: String,
     passwordResetExpires: Date,
