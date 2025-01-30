@@ -29,7 +29,7 @@ const LoginBusiness = () => {
               type="email"
               id="email"
               placeholder="Enter your work email address"
-              className="w-full  h-[3.8rem] px-4 py-2 border border-gray-400 rounded-sm bg-white placeholder:text-black placeholder:text-[0.9rem] placeholder:font-bold placeholder:text-opacity-80 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+              className="w-full  h-[3.8rem] px-4 py-2 border border-gray-400 rounded-sm bg-white placeholder:text-black placeholder:text-[0.9rem] placeholder:font-bold placeholder:text-opacity-80 focus:outline-none focus:bg-[#E8F0FE] focus:border-[#6d28d2]"
               required
             />
           </div>
