@@ -36,6 +36,9 @@ router.param("id", (req, res, next, val) => {
 // get all users
 router.get("/", getAllUsers);
 
+// join course by course id
+router.post("/add/course/:id", grantedAccess, joinCourseById);
+
 // get user by is id
 router.get("/:id", getUserById);
 
@@ -44,9 +47,6 @@ router.post("/add/courses", grantedAccess, joinCoursesByIds);
 
 // Verify user code either for login or for sign up.
 router.post("/verify", verifyCode);
-
-// join course by course id
-router.post("/add/course/:id", grantedAccess, joinCourseById);
 
 // Add or remove courses to wishlist
 router.post("/course/wishlist/:id", grantedAccess, toggleCourseWishlist);

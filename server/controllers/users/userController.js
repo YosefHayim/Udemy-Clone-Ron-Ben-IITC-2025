@@ -376,7 +376,7 @@ const joinCourseById = catchAsync(async (req, res, next) => {
     );
   }
 
-  const course = await Course.findById(courseId);
+  const course = await Course.findOne(courseId);
 
   if (!course) {
     return next(createError(`No course exists with this ID: ${courseId}`, 404));
