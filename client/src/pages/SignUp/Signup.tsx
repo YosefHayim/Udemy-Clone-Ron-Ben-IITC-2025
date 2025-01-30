@@ -33,7 +33,7 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex mt-[5em] mb-[30em]">
       <div className="w-1/2 h-full flex items-center justify-center bg-white">
         <img
           src={signup}
@@ -43,11 +43,11 @@ const SignUp: React.FC = () => {
       </div>
       <div className="w-1/2 h-full flex items-center justify-center bg-white">
         <div className="w-3/4 max-w-sm">
-          <h2 className="text-3xl font-bold text-[#303141] mb-6">
+          <h2 className="text-2xl font-bold text-[#303141] mb-6 w-full text-center">
             Sign up with email
           </h2>
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
-            <div className="flex items-center space-x-3 w-full">
+            <div className="flex items-baseline w-[300px]">
               <input
                 type="checkbox"
                 id="offers"
