@@ -1,5 +1,13 @@
 import BG from "/images/businessBG.jpg";
 import Logo from "/images/BusinessLogo.png";
+import { useNavigate } from "react-router-dom";
+
+const navigate = useNavigate()
+const navigatePrivacy = () => {
+  navigate("/terms/ub-privacy/");
+};
+
+
 
 const LoginBusiness = () => {
   return (
@@ -48,9 +56,9 @@ const LoginBusiness = () => {
             Need help with logging in or signing up?
           </a>
           <p className="text-xs text-[#595C73] mt-7">
-            <a href="#" className="">
+            <button onClick={navigatePrivacy} className="">
               Read our Privacy Statement
-            </a>
+            </button>
           </p>
         </div>
       </div>
