@@ -64,18 +64,10 @@ const userSchema = new mongoose.Schema(
       enum: ["student", "instructor"],
       default: "student",
     },
-    password: {
-      type: String,
-      required: [true, "Please provide a password"],
-      minlength: 8,
-    },
     temporaryCode: {
       type: Number,
     },
     temporaryCodeExpiresAt: { type: Date, index: { expires: "15m" } },
-    passwordChangedAt: Date,
-    passwordResetToken: String,
-    passwordResetExpires: Date,
     active: {
       type: Boolean,
       default: true,
@@ -150,23 +142,6 @@ userSchema.pre("save", function (next) {
   next();
 });
 
-userSchema.pre("save", async function (next) {
-  // Only hash the password if it is new or has been modified
-  if (!this.isNew && !this.isModified("password")) return next();
-
-  try {
-    this.password = await bcrypt.hash(
-      this.password + process.env.BCRYPT_PW,
-      10
-    );
-
-    next();
-  } catch (err) {
-    console.error(`Error occurred during hashing password:`, err);
-    next(err);
-  }
-});
-
 // If email is new it will generate a verification token to user
 userSchema.pre("save", function (next) {
   if (this.isNew || this.isModified("email")) {
@@ -174,31 +149,6 @@ userSchema.pre("save", function (next) {
   }
   next();
 });
-
-// method to update password
-userSchema.methods.updatePassword = async function (
-  currentPassword,
-  newPassword,
-  confirmNewPassword
-) {
-  // Verify current password
-  const isPasswordCorrect = await bcrypt.compare(
-    currentPassword,
-    this.password
-  );
-  if (!isPasswordCorrect) {
-    throw new Error("Current password is incorrect.");
-  }
-
-  // Check if new passwords match
-  if (newPassword !== confirmNewPassword) {
-    throw new Error("New passwords do not match.");
-  }
-
-  // Update the password
-  this.password = newPassword;
-  await this.save();
-};
 
 // generate email verification token
 userSchema.methods.generateEmailVerificationToken = function () {
