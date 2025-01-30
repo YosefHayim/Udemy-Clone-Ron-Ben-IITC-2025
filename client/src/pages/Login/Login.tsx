@@ -10,7 +10,6 @@ import { MdEmail } from "react-icons/md";
 import { emailContext } from "@/routes/AppRoutes";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
   const [formErrors, setFormErrors] = useState<FormErrors>({
     email: "",
     password: "",
@@ -28,12 +27,15 @@ const Login = () => {
   if (!emailCtx) throw new Error("emailContext is not provided");
   const [emailUser, setEmailUser] = emailCtx;
 
+  console.log(emailUser);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email") as string;
+
     setEmailUser(email);
-    loginMutation.mutate(email);
+    loginMutation.mutate({ email });
     navigate("/verify-code");
   };
 
@@ -57,8 +59,6 @@ const Login = () => {
                 type="email"
                 name="email"
                 id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 className={`w-full px-5 py-[20px] border rounded-sm bg-white text-gray-800 text-[15px] bold placeholder:text-black placeholder:font-semibold focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all duration-200 ${
                   formErrors.email ? "border-red-500" : "border-gray-500"

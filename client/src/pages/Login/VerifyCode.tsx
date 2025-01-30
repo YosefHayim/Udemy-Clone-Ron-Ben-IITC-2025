@@ -16,10 +16,18 @@ import {
 import { DecodedTokenProps } from "@/types/types";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
+import { useContext, useEffect } from "react";
+import { emailContext } from "@/routes/AppRoutes";
 
 const VerifyCode = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const emailCtx = useContext(emailContext);
+  if (!emailCtx) throw new Error("emailContext is not provided");
+  const [emailUser, setEmailUser] = emailCtx;
+
+  useEffect(() => {}, [emailUser]);
 
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
@@ -32,7 +40,8 @@ const VerifyCode = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const code = formData.get("code") as string;
-    verifyCodeMutation.mutate(code);
+    verifyCodeMutation.mutate(code, emailUser);
+
     const cookie = Cookies.get("cookie");
     const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
     dispatch(setCookie(cookie || ""));
@@ -68,10 +77,10 @@ const VerifyCode = () => {
         </h2>
 
         <p className="text-gray-600 text-center max-w-[25rem] mt-8 mb-7 text-[1rem]">
-          Enter the 6-digit code we sent to
-          <br />
-          <span className="font-bold text-gray-800"></span>
-          to finish your login.
+          Enter the 6-digit code we sent to{" "}
+          <span className="font-bold">{emailUser || "your email"}</span>
+          <span className="font-bold text-gray-800"></span> to finish your
+          login.
         </p>
 
         <form
