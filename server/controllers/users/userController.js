@@ -61,6 +61,12 @@ const signUp = catchAsync(async (req, res, next) => {
     return next(createError("One of the required fields is missing.", 400));
   }
 
+  const user = await User.findOne({ email });
+
+  if (user) {
+    return next(createError("You have already signed up.", 400));
+  }
+
   // Create user with email token and expiration
   const newUser = await User.create({
     fullName,

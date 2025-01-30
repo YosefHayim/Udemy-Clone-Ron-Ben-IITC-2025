@@ -13,7 +13,6 @@ import Login from "@/pages/Login/Login";
 import Wishlist from "@/pages/Wishlist/Wishlist";
 import Logout from "@/pages/Logout/Logout";
 import Payment from "@/pages/Payment/Payment";
-import EditProfile from "@/pages/EditProfile/EditProfile";
 import OAuthCallback from "@/pages/Login/OAuthCallback";
 import ProfileMain from "@/components/Navbar/DropDownMenu/ProfilePage/ProfileMain/ProfileMain";
 import UdemyCredits from "@/components/Navbar/DropDownMenu/UdemyCredits/UdemyCredits";
@@ -32,7 +31,7 @@ import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privac
 import CloseAccount from "@/components/Navbar/DropDownMenu/ProfilePage/CloseAccount/CloseAccount";
 import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
 import VerifyCode from "../pages/Login/VerifyCode";
-import LoginBusiness from "../pages/Login/LoginBusiness"
+import LoginBusiness from "../pages/Login/LoginBusiness";
 import LoginBusniness from "../pages/Login/LoginBusiness";
 
 export const filterContext = createContext<FilterDataProps>({
@@ -115,7 +114,6 @@ const AppRoutes: React.FC = () => {
                   path="/loader"
                   element={<Loader useSmallLoading={false} hSize="" />}
                 />
-                <Route path="/Signup" element={<SignUp />} />
                 <Route
                   path="/user/edit-notifications/"
                   element={<NotificationPreferences />}
@@ -125,7 +123,14 @@ const AppRoutes: React.FC = () => {
                   element={<PaymentMethods />}
                 />
                 <Route path="/logout" element={<Logout />} />
-
+                <Route
+                  path="/Signup"
+                  element={
+                    <emailContext.Provider value={[emailUser, setEmailUser]}>
+                      <SignUp />
+                    </emailContext.Provider>
+                  }
+                />
                 <Route
                   path="/login"
                   element={
