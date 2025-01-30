@@ -9,6 +9,7 @@ const byCourseByCourseId: fn = async (courseId: string) => {
   }
 
   const sanitizedCourseId = courseId.trim();
+  console.log(courseId);
   const url = `${localhostUrl}/api/user/add/course/${sanitizedCourseId}`;
   console.log(url);
 
