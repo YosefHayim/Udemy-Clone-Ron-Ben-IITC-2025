@@ -15,7 +15,6 @@ const verifyCode: fn = async (verificationCredentials) => {
     );
 
     if (response) {
-      console.log(response);
       return response.data;
     }
   } catch (error) {

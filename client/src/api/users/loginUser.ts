@@ -14,7 +14,6 @@ const loginUser: fn = async (email) => {
     );
 
     if (response) {
-      console.log(response);
       return response.data;
     }
   } catch (error) {

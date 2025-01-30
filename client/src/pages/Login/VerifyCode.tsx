@@ -54,7 +54,7 @@ const VerifyCode = () => {
     dispatch(setRole(decoded.role));
     dispatch(setCoursesBought(decoded.coursesBought));
     dispatch(setUdemyCredits(decoded.udemyCredits));
-    // navigate("/");
+    navigate("/");
   };
 
   const handleResendCode = () => {
