@@ -8,6 +8,7 @@ import { FaApple } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { emailContext } from "@/routes/AppRoutes";
+import Login_Busniness_image from "../../../public/images/login.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -37,8 +38,15 @@ const Login = () => {
     navigate("/verify-code");
   };
 
+  const Navigate_Business = ()=> {
+    navigate("/Login-Business")
+  }
+
   return (
-    <div className="flex h-screen w-screen">
+    <div
+      className="h-screen bg-cover bg-center"
+      style={{ backgroundImage: `${Login_Busniness_image}` }}
+    >
       <div className="flex-1 flex items-center justify-center">
         <img
           src="/images/loginImg.png"
@@ -60,9 +68,8 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
-                className={`w-full px-5 py-[20px] border rounded-sm bg-white text-gray-800 text-[15px] bold placeholder:text-black placeholder:font-semibold focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all duration-200 ${
-                  formErrors.email ? "border-red-500" : "border-gray-500"
-                }`}
+                className={`w-full px-5 py-[20px] border rounded-sm bg-white text-gray-800 text-[15px] bold placeholder:text-black placeholder:font-semibold focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all duration-200 ${formErrors.email ? "border-red-500" : "border-gray-500"
+                  }`}
               />
               {formErrors.email && (
                 <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
@@ -114,12 +121,13 @@ const Login = () => {
                 Sign up
               </a>
             </div>
-            <button className="text-purple-700 underline font-medium underline-offset-[5px] pb-5 pt-0">
+            <button onClick={Navigate_Business} className="text-purple-700 underline font-medium underline-offset-[5px] pb-5 pt-0">
               Log in with your organization
             </button>
           </div>
         </div>
       </div>
+
     </div>
   );
 };

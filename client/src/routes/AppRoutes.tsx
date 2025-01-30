@@ -32,6 +32,8 @@ import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privac
 import CloseAccount from "@/components/Navbar/DropDownMenu/ProfilePage/CloseAccount/CloseAccount";
 import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
 import VerifyCode from "../pages/Login/VerifyCode";
+import LoginBusiness from "../pages/Login/LoginBusiness"
+import LoginBusniness from "../pages/Login/LoginBusiness";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
@@ -139,6 +141,14 @@ const AppRoutes: React.FC = () => {
                   element={
                     <emailContext.Provider value={[emailUser, setEmailUser]}>
                       <VerifyCode />
+                    </emailContext.Provider>
+                  }
+                />
+                <Route
+                  path="/Login-Business"
+                  element={
+                    <emailContext.Provider value={[emailUser, setEmailUser]}>
+                      <LoginBusniness />
                     </emailContext.Provider>
                   }
                 />
