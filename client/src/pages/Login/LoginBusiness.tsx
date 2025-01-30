@@ -1,52 +1,35 @@
-import React, { useState } from "react";
+
+import BG from "../../../public/images/businessBG.jpg"; // Imagem de fundo
+import Logo from "../../../public/images/BusinessLogo.png"; // Logo Udemy Business
 
 const LoginBusiness = () => {
-  const [email, setEmail] = useState("");
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Email submitted:", email);
-  };
-
   return (
     <div
       className="h-screen flex items-center justify-center bg-cover bg-center"
       style={{
-        backgroundImage: "url('/path-to-your-background-image.jpg')", // Substitua pelo caminho da sua imagem de fundo
+        backgroundImage: `url(${BG})`
       }}
     >
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+      {/* Componente central */}
+      <div className="w-full max-w-md bg-white p-6 shadow-lg mb-[15.7rem]">
         {/* Logo */}
-        <div className="mb-6 text-center">
+        <div className="mb-[1.8rem] text-center">
           <img
-            src="/path-to-your-logo.png" // Substitua pelo caminho do seu logo
+            src={Logo} 
             alt="Udemy Business Logo"
-            className="h-10 mx-auto"
+            className="h-[2.35rem] mx-auto"
           />
         </div>
 
-        {/* Título */}
-        <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">
-          Log in to continue your learning journey
-        </h2>
-
         {/* Formulário */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form className="space-y-4">
           {/* Input do email */}
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Enter your work email address
-            </label>
             <input
               type="email"
               id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+              placeholder="Enter your work email address"
+              className="w-full  h-[3.8rem] px-4 py-2 border border-gray-400 rounded-sm bg-white placeholder:text-black placeholder:text-[0.9rem] placeholder:font-bold placeholder:text-opacity-80 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
               required
             />
           </div>
@@ -54,7 +37,7 @@ const LoginBusiness = () => {
           {/* Botão de envio */}
           <button
             type="submit"
-            className="w-full py-2 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition"
+            className="w-full h-12 py-2 bg-[#6d28d2] hover:bg-[#892de1] text-white text-[1rem] font-bold rounded-sm transition"
           >
             Continue
           </button>
@@ -64,19 +47,19 @@ const LoginBusiness = () => {
         <div className="text-center mt-6">
           <a
             href="#"
-            className="text-sm text-purple-600 hover:text-purple-800 underline"
+            className="text-sm text-[#6d28d2] hover:bg-[#892de1]"
           >
             Need help with logging in or signing up?
           </a>
-          <p className="text-sm text-gray-500 mt-2">
-            <a href="#" className="hover:underline">
+          <p className="text-xs text-[#595C73] mt-7">
+            <a href="#" className="">
               Read our Privacy Statement
             </a>
           </p>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginBusiness
+export default LoginBusiness;
