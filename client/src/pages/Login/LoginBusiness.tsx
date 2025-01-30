@@ -44,7 +44,7 @@ const LoginBusiness = () => {
 
         {/* Links auxiliares */}
         <div className="text-center mt-6">
-          <a href="#" className="text-sm text-[#6d28d2] hover:bg-[#892de1]">
+          <a href="#" className="text-sm text-[#6d28d2] hover:text-[#521E9F]">
             Need help with logging in or signing up?
           </a>
           <p className="text-xs text-[#595C73] mt-7">
