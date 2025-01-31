@@ -14,6 +14,14 @@ type AddNotePayload = {
   text: string;
 };
 
+type EditNoteFn = (
+  courseId: string,
+  lessonId: string,
+  noteId: string,
+  payload: AddNotePayload
+) => Promise<Note>;
+
+
 type FetchNotesFn = (courseId: string) => Promise<Note[]>;
 type AddNoteFn = (
   courseId: string,
@@ -116,9 +124,33 @@ const deleteNote: DeleteNoteFn = async (courseId, lessonId, noteId) => {
   }
 };
 
+const editNote: EditNoteFn = async (courseId, lessonId, noteId, payload) => {
+  if (!courseId || !lessonId || !noteId || !payload.text) {
+    console.error("Invalid parameters provided for editing note.");
+    throw new Error("All parameters are required.");
+  }
+
+  const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId}/notes/${noteId}`;
+
+  try {
+    const response = await axiosClient.put<Note>(url, payload);
+
+    if (response?.data) {
+      return response.data;
+    }
+
+    console.warn("Unexpected response structure:", response?.data);
+    throw new Error("Invalid response format.");
+  } catch (error: any) {
+    console.error(`Error editing note for course ID ${courseId}:`, error);
+    throw new Error("Error editing note.");
+  }
+};
+
 // Export all methods as named exports
 export {
   fetchAllNotes,
   addNote,
   deleteNote,
+  editNote
 };

@@ -46,17 +46,33 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
   });
   
 
-  const deleteMutation = useMutation({
-    
-    mutationFn: ({ courseId, lessonId, noteId }: { courseId: string; lessonId: string; noteId: string }) =>
-      deleteNote(courseId, lessonId, noteId),
+  const noteMutation = useMutation({
+    mutationFn: async (params: 
+      { action: "add"; text: string; seconds: number } |
+      { action: "edit"; text: string; noteId?: string } |
+      { action: "delete"; noteId?: string }
+    ) => {
+      if (params.action === "add") {
+        return await addNote(courseId, lessonId, { seconds: params.seconds, text: params.text });
+      } else if (params.action === "edit") {
+        if (!params.noteId) throw new Error("Missing noteId for edit action");
+        return await editNote(courseId, lessonId, params.noteId, { text: params.text });
+      } else if (params.action === "delete") {
+        if (!params.noteId) throw new Error("Missing noteId for delete action");
+        return await deleteNote(courseId, lessonId, params.noteId);
+      }
+      throw new Error("Invalid action");
+    },
     onSuccess: () => {
       queryClient.invalidateQueries(["notes", courseId]);
+      setShowEditor(false);
+      setContent(""); // Reset content after successful mutation
     },
     onError: (error: any) => {
-      console.error("Failed to delete note:", error.message);
+      console.error("Failed to process note:", error.message);
     },
   });
+  
   
   const handleDeleteNote = (courseId: string, lessonId: string, noteId: string) => {
 
@@ -68,32 +84,25 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
   
   
 
-  const mutation = useMutation({
-    mutationFn: (payload: { seconds: number; text: string }) =>
-      addNote(courseId, lessonId, payload),
-    onSuccess: () => {
-      queryClient.invalidateQueries(["notes", courseId, lessonId]);
-    },
-    onError: (error: any) => {
-      console.error("Failed to add note:", error.message);
-    },
-  });
+
 
   const handleAddNote = () => {
     if (!content.trim()) {
       alert("Please enter some content for the note.");
       return;
     }
-
-    mutation.mutate({
-      seconds: currentSec,
-      text: content,
-    });
-
+  noteMutation.mutate({
+    action: "add",
+    text: content,
+    seconds: currentSec,
+  });
     setContent("");
     setShowEditor(false); // Hide the editor after saving
   };
 
+
+
+  
   const handleCancel = () => {
     setShowEditor(false); // Hide the editor
     setContent(""); // Clear content
@@ -192,7 +201,7 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
           <div>
             
             {notes.map((note: any, index: number) => (
-             <div className="flex min-w-full px-12  " > 
+             <div key={note.noteId} className="flex min-w-full px-12  " > 
             <span className="relative self-start px-2  mr-2 rounded-3xl text-white bg-black text-sm">
              {formatTime(note.seconds)}
             </span>
@@ -208,9 +217,8 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
             <span className="flex gap-2">
             <FaPen className="mr-2 text-[#303141] text-xl p-1 rounded-md hover:bg-[#E6E6E8]"/>
             <FaTrash
-  className="mr-2 text-[#303141] cursor-pointer text-xl p-1 rounded-md hover:bg-[#E6E6E8]"
-  onClick={() => handleDeleteNote(courseId, lessonId, note.noteId)}
-/>
+              className="mr-2 text-[#303141] cursor-pointer text-xl p-1 rounded-md hover:bg-[#E6E6E8]"
+              onClick={() => handleDeleteNote(courseId, lessonId, note.noteId)}/>
           </span>
             </div>
                 <div className="flex bg-[#F6F7F9]  border  min-w-full p-6 my-3">
