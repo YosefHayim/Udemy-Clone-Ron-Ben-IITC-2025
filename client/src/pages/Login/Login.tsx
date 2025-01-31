@@ -1,128 +1,101 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
-import Cookies from "js-cookie";
 import loginUser from "@/api/users/loginUser";
-import { jwtDecode } from "jwt-decode";
-import {
-  setBio,
-  setCookie,
-  setCoursesBought,
-  setEmailAddress,
-  setFullName,
-  setProfilePic,
-  setRole,
-  setUdemyCredits,
-} from "@/redux/slices/userSlice";
-import { DecodedTokenProps, FormErrors } from "@/types/types";
-import googleRedirectUrl from "@/api/users/googleRedirectUrl";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-
+import { emailContext } from "@/routes/AppRoutes";
+import { BiSolidErrorAlt } from "react-icons/bi";
+import { useGoogleLogin } from "@react-oauth/google";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const cookie = Cookies.get("cookie")?.toString();
-  const defaultEmail = Cookies.get("email");
-  const [formErrors, setFormErrors] = useState<FormErrors>({ email: "", password: "", });
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [isError, setShowIsError] = useState(false);
 
+  const loginMutation = useMutation({
+    mutationFn: loginUser,
+    onSuccess: () => {
+      navigate("/verify-code");
+    },
+    onError: (error) => {
+      console.error("Error during login process:", error);
+      setShowIsError(true);
+    },
+  });
+
+  const emailCtx = useContext(emailContext);
+  if (!emailCtx) throw new Error("emailContext is not provided");
+  const [emailUser, setEmailUser] = emailCtx;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    navigate('/verify-code')
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email") as string;
+
+    setEmailUser(email);
+    loginMutation.mutate({ email });
   };
 
-
-  const validateForm = () => {
-    const errors = {};
-    if (!email) console.error("E-mail is mandatory.");
-    if (!password) console.error("Password is mandatory.");
-    return errors;
+  const navigateBusiness = () => {
+    navigate("/Login-Business");
   };
 
-  useEffect(() => {
-    if (cookie) {
-      const decoded = jwtDecode<DecodedTokenProps>(cookie);
-      dispatch(setCookie(cookie));
-      dispatch(setFullName(decoded.fullName));
-      dispatch(setProfilePic(decoded.profilePic));
-      dispatch(setEmailAddress(decoded.email));
-      dispatch(setBio(decoded.bio));
-      dispatch(setRole(decoded.role));
-      dispatch(setCoursesBought(decoded.coursesBought));
-      dispatch(setUdemyCredits(decoded.udemyCredits));
-    }
-  }, [cookie]);
-
-  const handleFocus = () => {
-    if (!email && defaultEmail) {
-      setEmail(defaultEmail); // Preenche o campo com o email do cookie
-    }
-  };
-
-  // const googleMutation = useMutation({
-  //   mutationFn: googleRedirectUrl,
-  //   onSuccess: (redirectUrl) => {
-  //     if (redirectUrl) {
-  //       window.location.href = redirectUrl;
-  //     } else {
-  //       console.error("Redirect URL not found.");
-  //     }
-  //   },
-  //   onError: (error) => {
-  //     console.error("Error during Google Redirect:", error);
-  //   },
-  // });
-
-  // const handleGoogle = () => {
-  //   googleMutation.mutate();
-  // };
+  const handleGoogle = useGoogleLogin({
+    onSuccess: (credentialResponse) => {
+      console.log(credentialResponse);
+    },
+    flow: "auth-code",
+    redirect_uri: "http://localhost:5137",
+  });
 
   return (
-    <div className="flex h-screen w-screen">
-
-      {/* Left Side (Image) */}
+    <div className="h-screen bg-cover bg-center">
       <div className="flex-1 flex items-center justify-center">
         <img
           src="/images/loginImg.png"
           alt="Login Illustration"
           className="w-[100%] h-auto max-w-[620px] max-h-[100%] object-contain p-12 mt-[8rem] mr-[2.7rem]"
         />
-
-        {/* Right Side (Form) */}
-
         <div className="w-full max-w-[29rem] p-6 bg-white  rounded-lg ml-[3rem] mr-[5rem]">
           <h2 className="text-3xl md:text-3xl font-bold text-gray-800 mb-10 text-center">
             Log in to continue your learning journey
           </h2>
-
-          {/* Email Form */}
+          <div
+            className={
+              isError
+                ? `gap-[1em] w-full border border-red-700 p-[1em] py-[1.5em] font-bold rounded-[1.5em] mb-[1em] flex flex-row items-start justify-center`
+                : "hidden"
+            }
+          >
+            <div>
+              <BiSolidErrorAlt className="text-[2.5em] text-red-600" />
+            </div>
+            <div>
+              <p className="text-[1.8em]">
+                There was a problem logging in. Check your email or create an
+                account.
+              </p>
+            </div>
+          </div>
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
             <div className="relative">
               <input
                 type="email"
                 name="email"
                 id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onFocus={handleFocus} // Chama handleFocus no clique
                 placeholder="Email"
-                className={`w-full px-5 py-[20px] border rounded-sm bg-white text-gray-800 text-[15px] bold placeholder:text-black placeholder:font-semibold focus:outline-none focus:ring-1 focus:ring-purple-500 transition-all duration-200 ${formErrors.email ? "border-red-500" : "border-gray-500"
-                  }`}
+                className="w-full p-[1em] bg-white text-black focus:bg-white focus:text-black focus:outline-none border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-[#303141] focus:border-purple-800"
               />
-              {formErrors.email && (
-                <p className="text-red-500 text-sm mt-1">{formErrors.email}</p>
-              )}
+              <div className={isError ? "block" : "hidden"}>
+                <span className="text-red-600 absolute font-bold top-[10%] right-[87%]">
+                  Email
+                </span>
+                <BiSolidErrorAlt className="text-[1.5em] text-red-600 absolute top-[10%] right-[82%]" />
+              </div>
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               className="w-full py-3 rounded-md bg-[#6d28d2] hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0"
@@ -138,16 +111,19 @@ const Login = () => {
             </button>
           </form>
 
-          {/* Divider */}
           <div className="flex items-center my-6">
             <hr className="flex-grow border-gray-300" />
-            <span className="mx-4 text-sm text-gray-500">Other log in options</span>
+            <span className="mx-4 text-sm text-gray-500">
+              Other log in options
+            </span>
             <hr className="flex-grow border-gray-300" />
           </div>
 
-          {/* Social Login Options */}
           <div className="flex justify-center space-x-5">
-            <button className="p-2 border border-[#6D28D2] rounded-sm hover:bg-gray-100">
+            <button
+              onClick={handleGoogle}
+              className="p-2 border border-[#6D28D2] rounded-sm hover:bg-gray-100"
+            >
               <FcGoogle className="w-7 h-7" />
             </button>
             <button className="p-2 border border-[#6D28D2] rounded-sm hover:bg-gray-100">
@@ -158,25 +134,26 @@ const Login = () => {
             </button>
           </div>
 
-          {/* Additional Links */}
           <div className="mt-16 space-y-3 text-center text-base bold text-gray-900 bg-gray-100">
             <div className="border-b-2 py-3">
               Don’t have an account?{" "}
-              <a href="/signup" className="text-purple-700 underline font-medium underline-offset-[5px]">
+              <a
+                href="/signup"
+                className="text-purple-700 underline font-medium underline-offset-[5px]"
+              >
                 Sign up
               </a>
             </div>
-            <button className="text-purple-700 underline font-medium underline-offset-[5px] pb-5 pt-0">
+            <button
+              onClick={navigateBusiness}
+              className="text-purple-700 underline font-medium underline-offset-[5px] pb-5 pt-0"
+            >
               Log in with your organization
             </button>
           </div>
         </div>
-
       </div>
-
     </div>
-
-
   );
 };
 

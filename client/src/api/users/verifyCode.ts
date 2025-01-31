@@ -1,16 +1,17 @@
 import { axiosClient, localhostUrl } from "../configuration";
 
-type email = {
+type fn = (verificationCredentials: {
+  code: string;
   email: string;
-};
+}) => Promise<any>;
 
-type fn = (email: email) => Promise<any>;
+const verifyCode: fn = async (verificationCredentials) => {
+  console.log(verificationCredentials);
 
-const loginUser: fn = async (email) => {
   try {
     const response = await axiosClient.post(
-      `${localhostUrl}/api/user/auth/login`,
-      email
+      `${localhostUrl}/api/user/verify`,
+      verificationCredentials
     );
 
     if (response) {
@@ -22,4 +23,4 @@ const loginUser: fn = async (email) => {
   }
 };
 
-export default loginUser;
+export default verifyCode;

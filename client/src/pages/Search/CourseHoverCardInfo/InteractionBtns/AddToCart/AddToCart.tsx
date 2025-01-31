@@ -11,6 +11,8 @@ import {
 import { useDispatch } from "react-redux";
 import Loader from "@/components/Loader/Loader";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import byCourseByCourseId from "@/api/users/buyCourseByCourseId";
 
 const AddToCart: React.FC<{
   textBtn?: string;
@@ -27,6 +29,20 @@ const AddToCart: React.FC<{
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  const buyCourseMutation = useMutation({
+    mutationFn: byCourseByCourseId,
+    onSuccess: () => {
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+      navigate(`/cart/subscribe/course/:${courseId}`);
+    },
+    onError: (error) => {
+      console.error("Error during buying course:", error);
+    },
+  });
+
   const handleClick = (courseId: string) => {
     if (textBtn === "Add to cart") {
       setIsLoading(true);
@@ -38,14 +54,14 @@ const AddToCart: React.FC<{
         dispatch(calculateDiscountPercentage());
         dispatch(setAddCourseToCart(courseId)); // Add course to the cart
         setIsLoading(false); // Stop loading indicator
-      }, 1000);
+      }, 2000);
     } else if (textBtn === "Enroll Now") {
       // if course is free and we pressed Enroll now
-      navigate(`/cart/subscribe/course/:${courseId}`);
+      buyCourseMutation.mutate(courseId);
     }
   };
 
-  if (discountPrice || fullPriceCourse === 0) {
+  if (discountPrice === 0 || fullPriceCourse === 0) {
     textBtn = "Enroll Now";
   }
 

@@ -1,4 +1,4 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import { axiosClient, localhostUrl } from "../configuration";
 import { RegisterUserPayload } from "@/types/types";
 
 type fn = (data: RegisterUserPayload) => Promise<any>;
@@ -10,7 +10,6 @@ const registerUser: fn = async (data: RegisterUserPayload): Promise<any> => {
       data
     );
     if (response) {
-      // console.log(response);
       return response.data;
     }
   } catch (error) {

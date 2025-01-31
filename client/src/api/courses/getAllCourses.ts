@@ -58,13 +58,10 @@ const getAllCourses: fn = async (
     (sortBy ? `&sort=${sortBy}` : "") +
     `&page=${page}&limit=${limit}`;
 
-  console.log(url);
-
   try {
     const { data } = await axiosClient.get(url);
 
     if (data) {
-      console.log(data);
       return data;
     }
     return null;

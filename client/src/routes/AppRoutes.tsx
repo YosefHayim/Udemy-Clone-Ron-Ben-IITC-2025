@@ -13,8 +13,6 @@ import Login from "@/pages/Login/Login";
 import Wishlist from "@/pages/Wishlist/Wishlist";
 import Logout from "@/pages/Logout/Logout";
 import Payment from "@/pages/Payment/Payment";
-import EditProfile from "@/pages/EditProfile/EditProfile";
-import OAuthCallback from "@/pages/Login/OAuthCallback";
 import ProfileMain from "@/components/Navbar/DropDownMenu/ProfilePage/ProfileMain/ProfileMain";
 import UdemyCredits from "@/components/Navbar/DropDownMenu/UdemyCredits/UdemyCredits";
 import PurchaseHistory from "@/components/Navbar/DropDownMenu/PurchaseHistory/PurchaseHistory";
@@ -32,6 +30,9 @@ import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privac
 import CloseAccount from "@/components/Navbar/DropDownMenu/ProfilePage/CloseAccount/CloseAccount";
 import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
 import VerifyCode from "../pages/Login/VerifyCode";
+import LoginBusiness from "../pages/Login/LoginBusiness";
+import PrivacyStatement from "@/pages/Privacy/Privacy_Statement";
+import InstructorProfile from "@/pages/InstructorProfile/InstructorProfile";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
@@ -44,6 +45,10 @@ export const filterContext = createContext<FilterDataProps>({
   topics: new Set(),
   videosDurations: new Set(),
   certificateOnly: false,
+});
+
+export const emailContext = createContext({
+  email: "",
 });
 
 const AppRoutes: React.FC = () => {
@@ -59,6 +64,8 @@ const AppRoutes: React.FC = () => {
     videosDurations: new Set(),
     certificateOnly: false,
   });
+
+  const [emailUser, setEmailUser] = useState("");
 
   return (
     <Router>
@@ -81,7 +88,6 @@ const AppRoutes: React.FC = () => {
                   path="/dashboard/purchase-history/"
                   element={<PurchaseHistory />}
                 />
-                <Route path="/" element={<OAuthCallback />} />
                 <Route
                   path="/user/manage-subscriptions/"
                   element={<Subscription />}
@@ -107,7 +113,6 @@ const AppRoutes: React.FC = () => {
                   path="/loader"
                   element={<Loader useSmallLoading={false} hSize="" />}
                 />
-                <Route path="/Signup" element={<SignUp />} />
                 <Route
                   path="/user/edit-notifications/"
                   element={<NotificationPreferences />}
@@ -116,8 +121,36 @@ const AppRoutes: React.FC = () => {
                   path="/user/edit-payment-methods/"
                   element={<PaymentMethods />}
                 />
+                <Route
+                  path="/user/instructor/"
+                  element={<InstructorProfile />}
+                />
                 <Route path="/logout" element={<Logout />} />
-                <Route path="/login" element={<Login />} />
+                <Route
+                  path="/Signup"
+                  element={
+                    <emailContext.Provider value={[emailUser, setEmailUser]}>
+                      <SignUp />
+                    </emailContext.Provider>
+                  }
+                />
+                <Route
+                  path="/login"
+                  element={
+                    <emailContext.Provider value={[emailUser, setEmailUser]}>
+                      <Login />
+                    </emailContext.Provider>
+                  }
+                />
+                <Route
+                  path="/verify-code"
+                  element={
+                    <emailContext.Provider value={[emailUser, setEmailUser]}>
+                      <VerifyCode />
+                    </emailContext.Provider>
+                  }
+                />
+
                 <Route
                   path="/courses/search"
                   element={
@@ -132,7 +165,10 @@ const AppRoutes: React.FC = () => {
                   path="/course-view/:courseId"
                   element={<ViewCoursePageInfo />}
                 />
-                <Route path="/verify-code" element={<VerifyCode />} />
+                <Route
+                  path="/terms/ub-privacy/"
+                  element={<PrivacyStatement />}
+                />
               </Routes>
               <Footer />
             </>
@@ -149,6 +185,14 @@ const AppRoutes: React.FC = () => {
             </>
           }
         />
+        {/* <Route
+          path="/Login-Business"
+          element={
+            <emailContext.Provider value={[emailUser, setEmailUser]}>
+              <LoginBusiness />
+            </emailContext.Provider>
+          }
+        /> */}
       </Routes>
     </Router>
   );
