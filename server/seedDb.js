@@ -113,10 +113,10 @@ const createCourses = async () => {
         height: 480,
         category: "education",
       }),
-      courseRecapInfo: faker.lorem.words(10),
-      courseDescription: faker.lorem.paragraph(),
-      // courseFullPrice: faker.commerce.price(500, 1000),
-      // courseDiscountPrice: faker.commerce.price(50, 300),
+      // courseRecapInfo: faker.lorem.words(10),
+      // courseDescription: faker.lorem.paragraph(),
+      courseFullPrice: faker.commerce.price(500, 1000),
+      courseDiscountPrice: faker.commerce.price(50, 300),
       courseFullPrice: 0,
       courseDiscountPrice: 0,
       whoThisCourseIsFor: faker.lorem.sentence(),
@@ -614,9 +614,9 @@ const generateUpdatedDummyData = async () => {
     // const courses = await createCourses();
     // console.log(`${courses.length} courses created.`);
 
-    console.log("Seeding sections...");
-    const sections = await createSections();
-    console.log(`${sections.length} sections created.`);
+    // console.log("Seeding sections...");
+    // const sections = await createSections();
+    // console.log(`${sections.length} sections created.`);
 
     console.log("Seeding lessons...");
     const lessons = await createLessons();

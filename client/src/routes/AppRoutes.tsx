@@ -180,14 +180,14 @@ const AppRoutes: React.FC = () => {
             </>
           }
         />
-        <Route
+        {/* <Route
           path="/Login-Business"
           element={
             <emailContext.Provider value={[emailUser, setEmailUser]}>
               <LoginBusiness />
             </emailContext.Provider>
           }
-        />
+        /> */}
       </Routes>
     </Router>
   );
