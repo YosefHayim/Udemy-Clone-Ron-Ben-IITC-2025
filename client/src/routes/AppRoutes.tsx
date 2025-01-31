@@ -32,6 +32,7 @@ import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
 import VerifyCode from "../pages/Login/VerifyCode";
 import LoginBusiness from "../pages/Login/LoginBusiness";
 import PrivacyStatement from "@/pages/Privacy/Privacy_Statement";
+import InstructorProfile from "@/pages/InstructorProfile/InstructorProfile";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
@@ -119,6 +120,10 @@ const AppRoutes: React.FC = () => {
                 <Route
                   path="/user/edit-payment-methods/"
                   element={<PaymentMethods />}
+                />
+                <Route
+                  path="/user/instructor/"
+                  element={<InstructorProfile />}
                 />
                 <Route path="/logout" element={<Logout />} />
                 <Route
