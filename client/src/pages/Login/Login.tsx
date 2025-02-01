@@ -56,7 +56,7 @@ const Login = () => {
         <img
           src="/images/loginImg.png"
           alt="Login Illustration"
-          className="w-[100%] h-auto max-w-[620px] max-h-[100%] object-contain p-12 mt-[8rem] mr-[2.7rem]"
+          className="w-[100%] h-auto max-w-[620px] max-h-[100%] object-contain p-12 mr-[2.7rem]"
         />
         <div className="w-full max-w-[29rem] p-6 bg-white  rounded-lg ml-[3rem] mr-[5rem]">
           <h2 className="text-3xl md:text-3xl font-bold text-gray-800 mb-10 text-center">
@@ -113,7 +113,7 @@ const Login = () => {
 
           <div className="flex items-center my-6">
             <hr className="flex-grow border-gray-300" />
-            <span className="mx-4 text-sm text-gray-500">
+            <span className="mx-4 text-sm text-[#595C73]">
               Other log in options
             </span>
             <hr className="flex-grow border-gray-300" />
@@ -134,19 +134,19 @@ const Login = () => {
             </button>
           </div>
 
-          <div className="mt-16 space-y-3 text-center text-base bold text-gray-900 bg-gray-100">
+          <div className="mt-16 space-y-3 text-center text-base font-medium text-[#303141] bg-gray-100">
             <div className="border-b-2 py-3">
               Don’t have an account?
               <a
                 href="/signup"
-                className="text-purple-700 underline font-medium underline-offset-[5px]"
+                className="text-[#6d28d2] underline ml-1 font-bold underline-offset-[5px]"
               >
-                Sign up
+              Sign up
               </a>
             </div>
             <button
               onClick={navigateBusiness}
-              className="text-purple-700 underline font-medium underline-offset-[5px] pb-5 pt-0"
+              className="text-[#6d28d2] underline font-bold underline-offset-[5px] pb-5 pt-0"
             >
               Log in with your organization
             </button>
