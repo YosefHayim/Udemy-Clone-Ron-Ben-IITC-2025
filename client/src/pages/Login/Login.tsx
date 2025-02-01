@@ -95,7 +95,6 @@ const Login = () => {
                 <BiSolidErrorAlt className="text-[1.5em] text-red-600 absolute top-[10%] right-[82%]" />
               </div>
             </div>
-
             <button
               type="submit"
               className="w-full py-3 rounded-md bg-[#6d28d2] hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0"
