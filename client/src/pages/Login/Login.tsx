@@ -113,7 +113,7 @@ const Login = () => {
 
           <div className="flex items-center my-6">
             <hr className="flex-grow border-gray-300" />
-            <span className="mx-4 text-sm text-gray-500">
+            <span className="mx-4 text-sm text-[#595C73]">
               Other log in options
             </span>
             <hr className="flex-grow border-gray-300" />
@@ -134,19 +134,19 @@ const Login = () => {
             </button>
           </div>
 
-          <div className="mt-16 space-y-3 text-center text-base bold text-gray-900 bg-gray-100">
+          <div className="mt-16 space-y-3 text-center text-base font-medium text-[#303141] bg-gray-100">
             <div className="border-b-2 py-3">
               Don’t have an account?
               <a
                 href="/signup"
-                className="text-purple-700 underline font-medium underline-offset-[5px]"
+                className="text-[#6d28d2] underline ml-1 font-bold underline-offset-[5px]"
               >
-                Sign up
+              Sign up
               </a>
             </div>
             <button
               onClick={navigateBusiness}
-              className="text-purple-700 underline font-medium underline-offset-[5px] pb-5 pt-0"
+              className="text-[#6d28d2] underline font-bold underline-offset-[5px] pb-5 pt-0"
             >
               Log in with your organization
             </button>
