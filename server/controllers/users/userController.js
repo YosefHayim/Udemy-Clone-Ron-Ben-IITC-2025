@@ -67,8 +67,8 @@ const signUp = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email });
 
   if (user) {
-    res.status(400).json({
-      status: "success",
+    return res.status(400).json({
+      status: "error",
       data: "The email you entered is already in use. Please try logging in.",
     });
   }

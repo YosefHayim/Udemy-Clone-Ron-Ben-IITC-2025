@@ -148,7 +148,11 @@ const DropdownMenu: React.FC = () => {
               onClick={handleClick}
             >
               <span className="text-sm">
-                <ChangeLanguage isClicked={isClicked} setClicked={setClicked} />
+                <ChangeLanguage
+                  isClicked={isClicked}
+                  setClicked={setClicked}
+                  showIcon={true}
+                />
               </span>
               <span className="ml-auto mr-2 text-sm">English</span>
               <MdLanguage className="text-lg" />

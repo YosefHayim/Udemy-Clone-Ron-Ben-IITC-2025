@@ -39,7 +39,7 @@ const createUsers = async () => {
   existingUsers.forEach((user) => generatedEmails.add(user.email));
 
   // Generate new users
-  for (let i = 0; i < 2000; i++) {
+  for (let i = 0; i < 1; i++) {
     let email;
 
     // Ensure the email is unique (not in existing or newly generated emails)
@@ -53,6 +53,7 @@ const createUsers = async () => {
       fullName: faker.person.fullName(),
       profilePic: faker.image.avatar(),
       email, // Use the unique email
+      fieldLearning: faker.helpers.arrayElements(Object.keys(courseCategories)),
       role: faker.helpers.arrayElement(["student", "instructor", "student"]),
       bio: faker.lorem.sentence(1),
       headline: faker.person.jobTitle(),
@@ -63,6 +64,7 @@ const createUsers = async () => {
         max: 6,
       }),
     });
+    console.log(users);
   }
 
   // Insert the new users into the database
@@ -607,9 +609,9 @@ const generateUpdatedDummyData = async () => {
     // await clearCollections();
     // console.log("Deleted all db.");
 
-    // console.log("Seeding users...");
-    // const users = await createUsers();
-    // console.log(`${users.length} users created.`);
+    console.log("Seeding users...");
+    const users = await createUsers();
+    console.log(`${users.length} users created.`);
 
     // console.log("Seeding courses...");
     // const courses = await createCourses();
@@ -619,25 +621,25 @@ const generateUpdatedDummyData = async () => {
     // const sections = await createSections();
     // console.log(`${sections.length} sections created.`);
 
-    console.log("Seeding lessons...");
-    const lessons = await createLessons();
-    console.log(`${lessons.length} lessons created.`);
+    // console.log("Seeding lessons...");
+    // const lessons = await createLessons();
+    // console.log(`${lessons.length} lessons created.`);
 
-    await simulateCoursePurchases();
-    console.log("Simulate courses purchases completed");
+    // await simulateCoursePurchases();
+    // console.log("Simulate courses purchases completed");
 
-    console.log("Seeding reviews...");
-    const reviews = await createReviews();
-    console.log(`${reviews.length} reviews created.`);
+    // console.log("Seeding reviews...");
+    // const reviews = await createReviews();
+    // console.log(`${reviews.length} reviews created.`);
 
-    console.log("Seeding reported reviews...");
-    await createReportedReviews();
+    // console.log("Seeding reported reviews...");
+    // await createReportedReviews();
 
-    await addCoursesToWishlistOfUsers();
-    console.log("Simulate courses wishlists completed");
+    // await addCoursesToWishlistOfUsers();
+    // console.log("Simulate courses wishlists completed");
 
-    console.log("All dummy data seeded successfully!");
-    process.exit();
+    // console.log("All dummy data seeded successfully!");
+    // process.exit();
   } catch (err) {
     console.error("Error generating dummy data:", err.message);
     process.exit(1);

@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const bcrypt = require("bcrypt");
 const supportedCountries = require("../../utils/supportedCountries");
 const languagesToChoose = require("../../utils/languagesToChoose");
+const courseCategories = require("../../utils/courseCategories");
 
 const userSchema = new mongoose.Schema(
   {
@@ -117,6 +117,19 @@ const userSchema = new mongoose.Schema(
         type: String,
       },
     ],
+    fieldLearning: {
+      type: [String], // Change to an array of strings
+      enum: Object.keys(courseCategories),
+      validate: {
+        validator: function (values) {
+          return values.every((val) =>
+            Object.keys(courseCategories).includes(val)
+          );
+        },
+        message: (props) =>
+          `${props.value} is not a valid fieldLearning category`,
+      },
+    },
     coursesCreated: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     orders: [{ type: mongoose.Schema.ObjectId, ref: "Order" }],
     payments: [{ type: mongoose.Schema.ObjectId, ref: "Payment" }],
