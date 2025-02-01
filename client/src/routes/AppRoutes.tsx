@@ -52,6 +52,11 @@ export const emailContext = createContext({
   fullName: "",
 });
 
+export const personalizeContent = createContext({
+  fieldLearning: "",
+  managePeople: false,
+});
+
 const AppRoutes: React.FC = () => {
   const [filterData, setFilterData] = useState({
     sortBy: "",
