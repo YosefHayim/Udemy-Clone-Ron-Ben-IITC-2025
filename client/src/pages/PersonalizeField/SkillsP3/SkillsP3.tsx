@@ -7,6 +7,7 @@ import axios from "axios";
 import { useState } from "react";
 
 const SkillsP3 = () => {
+  document.title = "Select Skills | Udemy";
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
@@ -48,7 +49,7 @@ const SkillsP3 = () => {
         </p>
         <div className="hover:bg-gray-100 w-[600px] flex flex-row items-center flex-wrap gap-[0.5em] border border-gray-400 rounded-[0.3em] p-[1em] mb-[0.5em]">
           <Skill skillName="Next.js" />
-          {/* <Skill skillName="JavaScript" />
+          <Skill skillName="JavaScript" />
           <Skill skillName="React JS" />
           <Skill skillName="HTML" />
           <Skill skillName="MongoDB" />
@@ -56,7 +57,7 @@ const SkillsP3 = () => {
           <Skill skillName="Front End Web Development" />
           <Skill skillName="CSS" />
           <Skill skillName="Node.Js" />
-          <Skill skillName="Web Development" /> */}
+          <Skill skillName="Web Development" />
           <form className="w-full flex flex-row items-center justify-start text-[1.2em] gap-[0.2em]">
             <div className="hover:bg-purpleHoverBtn p-[0.5em] rounded-[0.2em]">
               <IoMdSearch className="text-[1.5em]" />

@@ -19,7 +19,12 @@ const FooterPersonalized = () => {
       setPersonalizeData((prev: any) => ({
         ...prev,
         currentPage: prev.currentPage - 1,
-        progressBar: (prev.progressBar = 25),
+      }));
+    }
+    if (personalizeData.progressBar > 25) {
+      setPersonalizeData((prev: any) => ({
+        ...prev,
+        progressBar: (prev.progressBar -= 25),
       }));
     }
   };
@@ -30,7 +35,7 @@ const FooterPersonalized = () => {
     <div
       className={`${
         personalizeData.currentPage === 3 ? "relative" : "absolute"
-      } bottom-0 p-[1em] w-full bg-white shadow-personalizedFooterShadow flex flex-row items-center justify-between z-[100]`}
+      } bottom-0 p-[1em] w-full bg-white shadow-personalizedFooterShadow flex flex-row items-center justify-between z-[1]`}
     >
       {personalizeData.currentPage > 1 ? (
         <div>

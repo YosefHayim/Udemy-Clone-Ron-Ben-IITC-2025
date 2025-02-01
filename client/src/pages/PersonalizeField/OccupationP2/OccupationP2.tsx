@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { personalizeContent } from "@/routes/AppRoutes";
 
 const OccupationP2 = () => {
+  document.title = "Select Occupation | Udemy";
   const [isClicked, setClicked] = useState(false);
 
   const handleClick = () => {
