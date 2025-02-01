@@ -136,7 +136,7 @@ const Login = () => {
 
           <div className="mt-16 space-y-3 text-center text-base bold text-gray-900 bg-gray-100">
             <div className="border-b-2 py-3">
-              Don’t have an account?{" "}
+              Don’t have an account?
               <a
                 href="/signup"
                 className="text-purple-700 underline font-medium underline-offset-[5px]"

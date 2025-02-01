@@ -33,6 +33,7 @@ import VerifyCode from "../pages/Login/VerifyCode";
 import PrivacyStatement from "@/pages/Privacy/Privacy_Statement";
 import InstructorProfile from "@/pages/InstructorProfile/InstructorProfile";
 import PersonalizeField from "@/pages/PersonalizeField/PersonalizeField";
+import LoginBusiness from "@/pages/Login/LoginBusiness";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
@@ -215,7 +216,9 @@ const AppRoutes: React.FC = () => {
         {/* <Route
           path="/Login-Business"
           element={
-            <emailContext.Provider value={[emailUser, setEmailUser]}>
+            <emailContext.Provider
+              value={[emailUser, setEmailUser, userFullName, setUserFullName]}
+            >
               <LoginBusiness />
             </emailContext.Provider>
           }
