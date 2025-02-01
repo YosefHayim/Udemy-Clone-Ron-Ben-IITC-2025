@@ -32,26 +32,29 @@ const SignUp: React.FC = () => {
           </h2>
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
             {/* Custom Checkbox */}
-            <div className="flex items-center gap-2 cursor-pointer">
+            <div className="flex items-start gap-2 cursor-pointer">
+              {/* Checkbox */}
               <div
                 onClick={handleCheckboxChange}
-                className={`w-6 h-6 border-2 rounded-md flex items-center justify-center cursor-pointer transition ${
-                  isChecked
-                    ? "bg-purple-600 border-purple-600"
-                    : "bg-white border-gray-400"
-                }`}
+                className={`w-5 h-5 border-2 rounded-[2px] flex items-center justify-center cursor-pointer transition-all ${isChecked
+                    ? "bg-[#6d28d2] border-[#6d28d2]"
+                    : "bg-white border-[#303141]"
+                  }`}
+                style={{ minWidth: "1.25rem", minHeight: "1.25rem" }} // Fixando o tamanho
               >
-                {isChecked && <IoIosCheckmark className="text-white w-5 h-5" />}
+                {isChecked && <IoIosCheckmark className="text-white w-4 h-4" />}
               </div>
+
+              {/* Label */}
               <label
                 htmlFor="offers"
-                className="text-sm cursor-pointer"
+                className="text-sm cursor-pointer leading-5"
                 onClick={handleCheckboxChange}
               >
-                Send me special offers, personalized recommendations, and
-                learning tips.
+                Send me special offers, personalized recommendations, and learning tips.
               </label>
             </div>
+
 
             {/* Full Name Input */}
             <input
