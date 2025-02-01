@@ -56,6 +56,8 @@ export const emailContext = createContext({
 export const personalizeContent = createContext({
   fieldLearning: "",
   managePeople: false,
+  occupation: "",
+  progressBar: 25,
 });
 
 const AppRoutes: React.FC = () => {
@@ -74,6 +76,13 @@ const AppRoutes: React.FC = () => {
 
   const [userFullName, setUserFullName] = useState("");
   const [emailUser, setEmailUser] = useState("");
+  const [personalizeData, setPersonalizeData] = useState({
+    currentPage: 1,
+    fieldLearning: "",
+    managePeople: false,
+    occupation: "",
+    progressBar: 25,
+  });
 
   return (
     <Router>
@@ -223,7 +232,16 @@ const AppRoutes: React.FC = () => {
             </emailContext.Provider>
           }
         /> */}
-        <Route path="/personalize/field" element={<PersonalizeField />} />
+        <Route
+          path="/personalize/field/"
+          element={
+            <personalizeContent.Provider
+              value={[personalizeData, setPersonalizeData]}
+            >
+              <PersonalizeField />
+            </personalizeContent.Provider>
+          }
+        />
       </Routes>
     </Router>
   );
