@@ -166,9 +166,25 @@ const login = catchAsync(async (req, res, next) => {
 const verifyCode = catchAsync(async (req, res, next) => {
   const { code, email } = req.body;
 
-  if (!code) return next(createError("code are required.", 400));
-
   const user = await User.findOne({ email });
+
+  if (!code) {
+    // Generate sign up token
+    const regenerateCode = randomize("0", 6);
+
+    // Set token and expire within 15 min.
+    user.temporaryCode = regenerateCode;
+    user.temporaryCodeExpiresAt = new Date(Date.now() + 15 * 60 * 1000);
+    await user.save();
+
+    // Send email with 6 PIN DIGITS.
+    sendEmail({
+      to: user.email,
+      subject:
+        "Udemy Signup: Here's the 6-digit verification code you requested",
+      html: signUpCodeTemplate(user.fullName, regenerateCode),
+    });
+  }
 
   if (!user) {
     return next(createError("Invalid email or code, please try again.", 404));
@@ -378,7 +394,12 @@ const resendEmailVerificationToken = catchAsync(async (req, res, next) => {
 
 const joinCourseById = catchAsync(async (req, res, next) => {
   const courseId = req.params.id;
+
   const user = req.user;
+
+  if (!user) {
+    return next(createError("User authentication required", 401));
+  }
 
   if (!mongoose.Types.ObjectId.isValid(courseId)) {
     return next(
@@ -388,8 +409,14 @@ const joinCourseById = catchAsync(async (req, res, next) => {
 
   const course = await Course.findOne({ _id: courseId });
 
+  console.log("Course fetched:", course);
+
   if (!course) {
     return next(createError(`No course exists with this ID: ${courseId}`, 404));
+  }
+
+  if (!user.coursesBought) {
+    user.coursesBought = [];
   }
 
   if (user.coursesCreated.includes(courseId)) {

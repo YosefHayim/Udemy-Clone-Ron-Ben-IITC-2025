@@ -1,8 +1,10 @@
 import { axiosClient, localhostUrl } from "../configuration";
 
-const buyCourseById = async (course: string | string) => {
+const buyCourseById = async (courseId: string | string) => {
+  console.log(`This is from the axios: `, courseId);
+
   try {
-    const url = `${localhostUrl}/api/user/add/course/${course}`;
+    const url = `${localhostUrl}/api/user/add/course/${courseId}`;
 
     const response = await axiosClient.post(url);
     if (response) {

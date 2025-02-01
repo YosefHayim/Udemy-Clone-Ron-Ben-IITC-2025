@@ -14,7 +14,7 @@ const SignUp: React.FC = () => {
 
   const emailCtx = useContext(emailContext);
   if (!emailCtx) throw new Error("emailContext is not provided");
-  const [emailUser, setEmailUser] = emailCtx;
+  const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
 
   const mutation = useMutation<unknown, Error, RegisterUserPayload>({
     mutationFn: registerUser,
@@ -34,6 +34,7 @@ const SignUp: React.FC = () => {
     const fullName = formData.get("fullName") as string;
     const email = formData.get("email") as string;
     setEmailUser(email);
+    setUserFullName(fullName);
     mutation.mutate({ fullName, email });
   };
 

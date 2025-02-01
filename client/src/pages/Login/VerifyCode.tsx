@@ -22,15 +22,16 @@ import { emailContext } from "@/routes/AppRoutes";
 const VerifyCode = () => {
   const [countdown, setCountdown] = useState(30);
   const [isSentCodeAgain, setIsSentCodeAgain] = useState(false);
+  const [code, setCode] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const emailCtx = useContext(emailContext);
   if (!emailCtx) throw new Error("emailContext is not provided");
-  const [emailUser, setEmailUser] = emailCtx;
+  const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
 
-  useEffect(() => {}, [emailUser]);
+  useEffect(() => {}, [emailUser, userFullName, code]);
 
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
@@ -46,6 +47,7 @@ const VerifyCode = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const code = formData.get("code") as string;
+    setCode(code);
     verifyCodeMutation.mutate({ code, email: emailUser });
 
     const cookie = Cookies.get("cookie");
@@ -76,7 +78,11 @@ const VerifyCode = () => {
     }, 1000);
 
     // Reactivate mutation to resend code
-    verifyCodeMutation.mutate({ email: emailUser });
+    verifyCodeMutation.mutate({
+      email: emailUser,
+      fullName: userFullName,
+      code,
+    });
   };
 
   const handleDifferentAccount = () => {

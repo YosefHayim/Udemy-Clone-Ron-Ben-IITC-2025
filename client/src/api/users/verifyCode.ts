@@ -1,6 +1,7 @@
 import { axiosClient, localhostUrl } from "../configuration";
 
 type fn = (verificationCredentials: {
+  fullName?: string;
   code: string;
   email: string;
 }) => Promise<any>;

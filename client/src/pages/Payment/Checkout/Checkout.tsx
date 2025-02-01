@@ -35,7 +35,7 @@ const Checkout: React.FC = () => {
     mutationFn: buyCourseById,
     onSuccess: () => {
       setTimeout(() => {
-        dispatch(setClearAll());
+        // dispatch(setClearAll());
         navigate(`/course-view/${coursesIds[0]}`);
       }, 2000);
     },
@@ -43,6 +43,7 @@ const Checkout: React.FC = () => {
 
   const handleClick = () => {
     const courseId = coursesIds[0];
+    console.log(`course that has been added`, courseId);
 
     checkOutMutation.mutate(courseId);
   };

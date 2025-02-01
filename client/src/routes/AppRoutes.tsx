@@ -30,7 +30,6 @@ import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privac
 import CloseAccount from "@/components/Navbar/DropDownMenu/ProfilePage/CloseAccount/CloseAccount";
 import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
 import VerifyCode from "../pages/Login/VerifyCode";
-import LoginBusiness from "../pages/Login/LoginBusiness";
 import PrivacyStatement from "@/pages/Privacy/Privacy_Statement";
 import InstructorProfile from "@/pages/InstructorProfile/InstructorProfile";
 
@@ -49,6 +48,7 @@ export const filterContext = createContext<FilterDataProps>({
 
 export const emailContext = createContext({
   email: "",
+  fullName: "",
 });
 
 const AppRoutes: React.FC = () => {
@@ -65,6 +65,7 @@ const AppRoutes: React.FC = () => {
     certificateOnly: false,
   });
 
+  const [userFullName, setUserFullName] = useState("");
   const [emailUser, setEmailUser] = useState("");
 
   return (
@@ -129,7 +130,14 @@ const AppRoutes: React.FC = () => {
                 <Route
                   path="/Signup"
                   element={
-                    <emailContext.Provider value={[emailUser, setEmailUser]}>
+                    <emailContext.Provider
+                      value={[
+                        emailUser,
+                        setEmailUser,
+                        userFullName,
+                        setUserFullName,
+                      ]}
+                    >
                       <SignUp />
                     </emailContext.Provider>
                   }
@@ -137,7 +145,14 @@ const AppRoutes: React.FC = () => {
                 <Route
                   path="/login"
                   element={
-                    <emailContext.Provider value={[emailUser, setEmailUser]}>
+                    <emailContext.Provider
+                      value={[
+                        emailUser,
+                        setEmailUser,
+                        userFullName,
+                        setUserFullName,
+                      ]}
+                    >
                       <Login />
                     </emailContext.Provider>
                   }
@@ -145,7 +160,14 @@ const AppRoutes: React.FC = () => {
                 <Route
                   path="/verify-code"
                   element={
-                    <emailContext.Provider value={[emailUser, setEmailUser]}>
+                    <emailContext.Provider
+                      value={[
+                        emailUser,
+                        setEmailUser,
+                        userFullName,
+                        setUserFullName,
+                      ]}
+                    >
                       <VerifyCode />
                     </emailContext.Provider>
                   }
