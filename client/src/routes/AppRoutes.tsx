@@ -214,7 +214,7 @@ const AppRoutes: React.FC = () => {
           }
         />
         {/* <Route
-          path="/Login-Business"
+          path="/login-Business"
           element={
             <emailContext.Provider
               value={[emailUser, setEmailUser, userFullName, setUserFullName]}

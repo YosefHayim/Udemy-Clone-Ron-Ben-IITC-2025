@@ -39,7 +39,7 @@ const Login = () => {
   };
 
   const navigateBusiness = () => {
-    navigate("/Login-Business");
+    navigate("/login-Business");
   };
 
   const handleGoogle = useGoogleLogin({
@@ -47,7 +47,7 @@ const Login = () => {
       console.log(credentialResponse);
     },
     flow: "auth-code",
-    redirect_uri: "http://localhost:5137",
+    redirect_uri: "http://localhost:5137/",
   });
 
   return (
