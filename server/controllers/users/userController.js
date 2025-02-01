@@ -437,6 +437,7 @@ const joinCourseById = catchAsync(async (req, res, next) => {
 
 const joinCoursesByIds = catchAsync(async (req, res, next) => {
   let courseIds = req.body.courses;
+
   const user = req.user;
 
   if (!courseIds || !Array.isArray(courseIds)) {

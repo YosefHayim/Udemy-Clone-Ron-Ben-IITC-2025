@@ -6,6 +6,7 @@ import { DecodedTokenProps } from "@/types/types";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { useEffect } from "react";
+import { FaArrowRight } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -75,15 +76,20 @@ const CheckoutContainer: React.FC = () => {
         </p>
         <p className="text-gray-600">{totalDiscountPercent}% off</p>
         <Button
-          className="w-full rounded-[0.3em] bg-btnColor hover:bg-btnHoverColor"
+          className="w-full rounded-[0.3em] bg-btnColor hover:bg-btnHoverColor py-[1.7em] font-bold"
           onClick={handleCheckout}
         >
-          Checkout
+          Proceed to Checkout
+          <FaArrowRight />
         </Button>
+        <p className="text-[#595c73] my-[0.5em]">You wont be charged yet</p>
       </div>
       <hr className="border border-gray-100 w-full" />
       <b>Promotions</b>
-      <CouponArea btnBgDesign={"bg-btnColor hover:bg-btnHoverColor"} />
+      <CouponArea
+        btnBgDesign={"bg-btnColor hover:bg-btnHoverColor"}
+        couponText="KEEPLEARNING"
+      />
     </div>
   );
 };

@@ -53,7 +53,6 @@ const SearchPage: React.FC = () => {
     // if (filterData.price) {
     //   params.price = filterData.price; // Include price filter
     // }
-    console.log(params);
 
     setSearchParams(params);
   }, [filterData, currentPage, searchTerm, setSearchParams]);

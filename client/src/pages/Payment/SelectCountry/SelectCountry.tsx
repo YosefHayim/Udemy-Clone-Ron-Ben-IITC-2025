@@ -18,6 +18,7 @@ const SelectCountry = () => {
         </label>
         <select
           id="country-select"
+          required={true}
           value={selectedCountry}
           onChange={handleChange}
           className="bg-white text-black p-[1em] rounded-[0.2em] border border-black"

@@ -2,8 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { IoMdClose } from "react-icons/io";
 
-const CouponArea: React.FC<{ btnBgDesign?: string }> = ({
+const CouponArea: React.FC<{ btnBgDesign?: string; couponText?: string }> = ({
   btnBgDesign = "",
+  couponText = "NEWYEARCAREER",
 }) => {
   return (
     <div className="">
@@ -12,7 +13,7 @@ const CouponArea: React.FC<{ btnBgDesign?: string }> = ({
           <div className="relative w-full flex flex-col items-start gap-[0.2em]">
             <div className="flex flex-row gap-[0.2em] w-full">
               <div className="flex flex-row gap-[0.2em] w-full">
-                <b className="text-[#6a6f73]">NEWYEARCAREER</b>
+                <b className="text-[#6a6f73]">{couponText}</b>
                 <p>is applied</p>
               </div>
               <div>

@@ -14,6 +14,16 @@ const cartSlice = createSlice({
   },
 
   reducers: {
+    setClearAll: (state) => {
+      state.isShowCart = false;
+      state.amountOfCourses = 0;
+      state.coursesAddedToCart = [];
+      state.coursesAddedToWishList = [];
+      state.totalCourseDiscountPrices = 0;
+      state.totalCoursesOriginalPrices = 0;
+      state.totalSavings = 0;
+      state.totalDiscountPercentage = 0;
+    },
     setShowCart: (state, action: PayloadAction<boolean>) => {
       state.isShowCart = action.payload;
     },
@@ -26,7 +36,7 @@ const cartSlice = createSlice({
         new Set([...state.coursesAddedToCart, action.payload])
       );
     },
-    SetCoursesAddedToWishList: (state, action: PayloadAction<string>) => {
+    setCoursesAddedToWishList: (state, action: PayloadAction<string>) => {
       // Prevent duplicate course additions
       state.coursesAddedToWishList = Array.from(
         new Set([...state.coursesAddedToWishList, action.payload])
@@ -123,6 +133,7 @@ const cartSlice = createSlice({
 });
 
 export const {
+  setClearAll,
   setShowCart,
   calculateTotalSavings,
   calculateDiscountPercentage,
@@ -131,7 +142,7 @@ export const {
   setTotalOriginalCoursePrices,
   setTotalCourseDiscountPrices,
   removeCourseFromCart,
-  SetCoursesAddedToWishList,
+  setCoursesAddedToWishList,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
