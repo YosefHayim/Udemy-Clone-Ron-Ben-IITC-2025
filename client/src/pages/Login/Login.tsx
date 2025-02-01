@@ -56,7 +56,7 @@ const Login = () => {
         <img
           src="/images/loginImg.png"
           alt="Login Illustration"
-          className="w-[100%] h-auto max-w-[620px] max-h-[100%] object-contain p-12 mt-[8rem] mr-[2.7rem]"
+          className="w-[100%] h-auto max-w-[620px] max-h-[100%] object-contain p-12 mr-[2.7rem]"
         />
         <div className="w-full max-w-[29rem] p-6 bg-white  rounded-lg ml-[3rem] mr-[5rem]">
           <h2 className="text-3xl md:text-3xl font-bold text-gray-800 mb-10 text-center">
