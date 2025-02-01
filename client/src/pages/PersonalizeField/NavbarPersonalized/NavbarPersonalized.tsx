@@ -18,9 +18,11 @@ const NavbarPersonalized = () => {
           </Link>
         </div>
         <div className="flex flex-row items-center justify-center gap-[0.5em] text-[#6d28d2]">
-          <button className="font-bold hover:bg-purpleHoverBtn py-[1em] px-[0.2em] rounded-[0.2em]">
-            Save & Exit
-          </button>
+          <Link to="/">
+            <button className="font-bold hover:bg-purpleHoverBtn py-[1em] px-[0.2em] rounded-[0.2em]">
+              Save & Exit
+            </button>
+          </Link>
           <ChangeLanguage showIcon={false} />
         </div>
       </div>

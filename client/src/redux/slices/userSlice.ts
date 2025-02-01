@@ -6,6 +6,7 @@ const initialState: UserState = {
   fullName: "",
   profilePic: "",
   email: "",
+  headline: "",
   bio: "",
   role: "",
   coursesBought: [],
@@ -31,6 +32,9 @@ const userSlice = createSlice({
     },
     setEmailAddress: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
+    },
+    setHeadline: (state, action: PayloadAction<string>) => {
+      state.headline = action.payload;
     },
     setCoursesBought: (state, action: PayloadAction<string | string[]>) => {
       if (Array.isArray(action.payload)) {
@@ -59,6 +63,7 @@ const userSlice = createSlice({
 
 export const {
   setFullName,
+  setHeadline,
   setProfilePic,
   setRole,
   setBio,

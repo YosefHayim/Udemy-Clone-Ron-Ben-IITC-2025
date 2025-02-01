@@ -9,6 +9,7 @@ import {
   setCoursesBought,
   setEmailAddress,
   setFullName,
+  setHeadline,
   setProfilePic,
   setRole,
   setUdemyCredits,
@@ -55,6 +56,7 @@ const VerifyCode = () => {
     const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
     dispatch(setCookie(cookie || ""));
     dispatch(setFullName(decoded.fullName));
+    dispatch(setHeadline(decoded.headline));
     dispatch(setProfilePic(decoded.profilePic));
     dispatch(setEmailAddress(decoded.email));
     dispatch(setBio(decoded.bio));
@@ -145,10 +147,13 @@ const VerifyCode = () => {
             onClick={handleResendCode}
             className="mt-5 text-[#6D28D2] font-bold underline text-[1rem] hover:text-purple-800"
           >
-            Resend Code 
+            Resend Code
           </button>
         ) : (
-          <button disabled className="text-black cursor-not-allowed mt-5 text-[1rem]">
+          <button
+            disabled
+            className="text-black cursor-not-allowed mt-5 text-[1rem]"
+          >
             Didn't receive the code?{" "}
             <span className="font-bold">Resend code in {countdown} sec</span>
           </button>

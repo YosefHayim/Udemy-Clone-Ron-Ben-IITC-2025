@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Welcome = () => {
   const fullName = useSelector((state: RootState) => state.user.fullName) || "";
   const profilePic = useSelector((state: RootState) => state.user.profilePic);
-  const bio = useSelector((state: RootState) => state.user.bio);
+  const headline = useSelector((state: RootState) => state.user.headline);
   const cookie = useSelector((state: RootState) => state.user.cookie) || "";
 
   if (!cookie) {
@@ -23,7 +23,7 @@ const Welcome = () => {
       <div>
         <h2 className="text-2xl font-bold">Welcome back, {fullName}</h2>
         <div className="flex flex-row items-start justify-start gap-[0.5em]">
-          <p>{bio}</p>
+          <p>{headline}</p>
           <Link
             to="/personalize/field"
             className="hover:bg-purpleHoverBtn text-purple-600 underline font-bold p-[0.3em] rounded-[0.3em]"

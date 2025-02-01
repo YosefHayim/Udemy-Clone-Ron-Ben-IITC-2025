@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import registerUser from "@/api/users/registerUser";
+import { emailContext } from "@/routes/AppRoutes";
+import { RegisterUserPayload } from "@/types/types";
+import { useMutation } from "@tanstack/react-query";
+import React, { useContext, useState } from "react";
 import { IoIosCheckmark } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const SignUp: React.FC = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -9,9 +14,32 @@ const SignUp: React.FC = () => {
     setIsChecked(!isChecked);
   };
 
+  document.title = "Sign Up and Start Learning | Udemy";
+  const navigate = useNavigate();
+
+  const emailCtx = useContext(emailContext);
+  if (!emailCtx) throw new Error("emailContext is not provided");
+  const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
+
+  const mutation = useMutation<unknown, Error, RegisterUserPayload>({
+    mutationFn: registerUser,
+    onSuccess: () => {
+      navigate("/verify-code");
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted!");
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const fullName = formData.get("fullName") as string;
+    const email = formData.get("email") as string;
+    setEmailUser(email);
+    setUserFullName(fullName);
+    mutation.mutate({ fullName, email });
   };
 
   return (
@@ -32,16 +60,16 @@ const SignUp: React.FC = () => {
             Sign up with email
           </h2>
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
-
             {/* Custom Checkbox */}
             <div className="flex items-start gap-2 cursor-pointer">
               {/* Checkbox */}
               <div
                 onClick={handleCheckboxChange}
-                className={`w-4 h-4 border-2 mt-1 rounded-[2px] flex items-center justify-center cursor-pointer transition-all ${isChecked
-                  ? "bg-[#6d28d2] border-[#6d28d2]"
-                  : "bg-white border-[#303141]"
-                  }`}
+                className={`w-4 h-4 border-2 mt-1 rounded-[2px] flex items-center justify-center cursor-pointer transition-all ${
+                  isChecked
+                    ? "bg-[#6d28d2] border-[#6d28d2]"
+                    : "bg-white border-[#303141]"
+                }`}
                 style={{ minWidth: "1rem", minHeight: "1rem" }} // Fixando o tamanho
               >
                 {isChecked && <IoIosCheckmark className="text-white w-4 h-4" />}
@@ -53,10 +81,10 @@ const SignUp: React.FC = () => {
                 className="text-sm cursor-pointer leading-5 mb-[1.6rem]"
                 onClick={handleCheckboxChange}
               >
-                Send me special offers, personalized recommendations, and learning tips.
+                Send me special offers, personalized recommendations, and
+                learning tips.
               </label>
             </div>
-
 
             {/* Full Name Input */}
             <input

@@ -26,6 +26,7 @@ export interface LoginPayload {
 
 export interface UserState {
   fullName: string;
+  headline: string;
   profilePic: string;
   email: string;
   bio: string;
@@ -192,6 +193,7 @@ export interface ExploreCategory {
 
 export interface DecodedTokenProps {
   fullName: string;
+  headline: string;
   profilePic: string;
   email: string;
   bio: string;

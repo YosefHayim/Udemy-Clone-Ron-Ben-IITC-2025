@@ -8,6 +8,7 @@ import {
   setCoursesBought,
   setEmailAddress,
   setFullName,
+  setHeadline,
   setProfilePic,
   setRole,
   setUdemyCredits,
@@ -41,6 +42,7 @@ const Homepage = () => {
       dispatch(setCookie(cookie));
       dispatch(setFullName(decoded.fullName));
       dispatch(setProfilePic(decoded.profilePic));
+      dispatch(setHeadline(decoded.headline));
       dispatch(setEmailAddress(decoded.email));
       dispatch(setBio(decoded.bio));
       dispatch(setRole(decoded.role));

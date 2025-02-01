@@ -141,7 +141,7 @@ const Login = () => {
                 href="/signup"
                 className="text-[#6d28d2] underline ml-1 font-bold underline-offset-[5px]"
               >
-              Sign up
+                Sign up
               </a>
             </div>
             <button
