@@ -103,6 +103,7 @@ const signUp = catchAsync(async (req, res, next) => {
     role: newUser.role,
     coursesBought: newUser.coursesBought,
     udemyCredits: newUser.udemyCredits,
+    language: newUser.preferredLanguage,
   });
 
   res.cookie("cookie", token, {
