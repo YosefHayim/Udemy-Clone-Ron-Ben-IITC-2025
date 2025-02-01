@@ -27,7 +27,11 @@ const FooterPersonalized = () => {
   useEffect(() => {}, [personalizeData]);
 
   return (
-    <div className="absolute bottom-0 p-[1em] w-full bg-white shadow-personalizedFooterShadow flex flex-row items-center justify-between">
+    <div
+      className={`${
+        personalizeData.currentPage === 3 ? "relative" : "absolute"
+      } bottom-0 p-[1em] w-full bg-white shadow-personalizedFooterShadow flex flex-row items-center justify-between z-[100]`}
+    >
       {personalizeData.currentPage > 1 ? (
         <div>
           <button
