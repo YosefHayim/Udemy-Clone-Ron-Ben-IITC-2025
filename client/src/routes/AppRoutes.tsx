@@ -32,6 +32,7 @@ import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
 import VerifyCode from "../pages/Login/VerifyCode";
 import PrivacyStatement from "@/pages/Privacy/Privacy_Statement";
 import InstructorProfile from "@/pages/InstructorProfile/InstructorProfile";
+import PersonalizeField from "@/pages/PersonalizeField/PersonalizeField";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
@@ -182,7 +183,6 @@ const AppRoutes: React.FC = () => {
                   }
                 />
                 <Route path="*" element={<NotFound />} />
-                <Route path="/error-not-found" element={<NotFound />} />
                 <Route
                   path="/course-view/:courseId"
                   element={<ViewCoursePageInfo />}
@@ -215,6 +215,7 @@ const AppRoutes: React.FC = () => {
             </emailContext.Provider>
           }
         /> */}
+        <Route path="/personalize/field" element={<PersonalizeField />} />
       </Routes>
     </Router>
   );
