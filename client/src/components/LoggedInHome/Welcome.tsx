@@ -24,7 +24,10 @@ const Welcome = () => {
         <h2 className="text-2xl font-bold">Welcome back, {fullName}</h2>
         <div className="flex flex-row items-start justify-start gap-[0.5em]">
           <p>{bio}</p>
-          <Link to="#" className="text-purple-600 underline font-bold">
+          <Link
+            to="/personalize/field"
+            className="text-purple-600 underline font-bold"
+          >
             Edit occupation and interests
           </Link>
         </div>

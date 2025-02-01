@@ -10,8 +10,8 @@ import {
 import { btnLanguages } from "@/utils/languages";
 
 const ChangeLanguage: React.FC<{
-  isClicked: boolean;
-  setClicked: (value: boolean) => void;
+  isClicked?: boolean;
+  setClicked?: (value: boolean) => void;
 }> = ({ isClicked, setClicked }) => {
   return (
     <div>
