@@ -67,10 +67,12 @@ const signUp = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email });
 
   if (user) {
-    return res.status(400).json({
-      status: "error",
-      data: "The email you entered is already in use. Please try logging in.",
-    });
+    return next(
+      createError(
+        "The email you entered is already in use. Please try logging in.",
+        400
+      )
+    );
   }
 
   // Create user if it is not exist.
