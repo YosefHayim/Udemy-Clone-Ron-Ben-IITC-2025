@@ -55,6 +55,7 @@ const createUsers = async () => {
       email, // Use the unique email
       role: faker.helpers.arrayElement(["student", "instructor", "student"]),
       bio: faker.lorem.sentence(1),
+      headline: faker.person.jobTitle(),
       udemyCredits: faker.number.int({ min: 5000, max: 10000 }),
       country: faker.helpers.arrayElement(supportedCountries),
       recentSearches: faker.helpers.arrayElements(algoSearch, {

@@ -26,7 +26,7 @@ const Welcome = () => {
           <p>{bio}</p>
           <Link
             to="/personalize/field"
-            className="text-purple-600 underline font-bold"
+            className="hover:bg-purpleHoverBtn text-purple-600 underline font-bold p-[0.3em] rounded-[0.3em]"
           >
             Edit occupation and interests
           </Link>

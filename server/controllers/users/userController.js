@@ -104,6 +104,7 @@ const signUp = catchAsync(async (req, res, next) => {
     coursesBought: newUser.coursesBought,
     udemyCredits: newUser.udemyCredits,
     language: newUser.preferredLanguage,
+    headline: newUser.headline,
   });
 
   res.cookie("cookie", token, {
@@ -208,14 +209,16 @@ const verifyCode = catchAsync(async (req, res, next) => {
   await user.save();
 
   const token = generateToken({
-    id: user._id,
-    fullName: user.fullName,
-    email: user.email,
-    profilePic: user.profilePic,
-    bio: user.bio,
-    role: user.role,
-    coursesBought: user.coursesBought,
-    udemyCredits: user.udemyCredits,
+    id: newUser._id,
+    fullName: newUser.fullName,
+    email: newUser.email,
+    profilePic: newUser.profilePic,
+    bio: newUser.bio,
+    role: newUser.role,
+    coursesBought: newUser.coursesBought,
+    udemyCredits: newUser.udemyCredits,
+    language: newUser.preferredLanguage,
+    headline: newUser.headline,
   });
 
   res.cookie("cookie", token, {
