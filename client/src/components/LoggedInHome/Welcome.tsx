@@ -22,7 +22,7 @@ const Welcome = () => {
       <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
       <div>
         <h2 className="text-2xl font-bold">Welcome back, {fullName}</h2>
-        <div className="flex flex-row items-start justify-start gap-[0.5em]">
+        <div className="flex flex-row items-center justify-start gap-[0.5em]">
           <p>{headline}</p>
           <Link
             to="/personalize/field"
