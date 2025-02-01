@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IoIosCheckmark } from "react-icons/io";
+import { MdEmail } from "react-icons/md";
 
 const SignUp: React.FC = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -31,14 +32,15 @@ const SignUp: React.FC = () => {
             Sign up with email
           </h2>
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
+
             {/* Custom Checkbox */}
             <div className="flex items-start gap-2 cursor-pointer">
               {/* Checkbox */}
               <div
                 onClick={handleCheckboxChange}
-                className={`w-5 h-5 border-2 rounded-[2px] flex items-center justify-center cursor-pointer transition-all ${isChecked
-                    ? "bg-[#6d28d2] border-[#6d28d2]"
-                    : "bg-white border-[#303141]"
+                className={`w-5 h-5 border-2 mt-1 rounded-[2px] flex items-center justify-center cursor-pointer transition-all ${isChecked
+                  ? "bg-[#6d28d2] border-[#6d28d2]"
+                  : "bg-white border-[#303141]"
                   }`}
                 style={{ minWidth: "1.25rem", minHeight: "1.25rem" }} // Fixando o tamanho
               >
@@ -81,6 +83,13 @@ const SignUp: React.FC = () => {
               type="submit"
               className="w-full py-3 rounded-md bg-[#6d28d2] hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0"
             >
+              <MdEmail className="w-5 h-5" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
+              />
+
               <span className="text-[1rem] font-bold">Continue with email</span>
             </button>
 
