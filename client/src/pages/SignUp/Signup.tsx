@@ -56,6 +56,7 @@ const SignUp: React.FC = () => {
               <input
                 type="checkbox"
                 id="offers"
+                required={true}
                 className="border border-[#892de1] rounded focus:ring-2 focus:ring-gray-600 bg-white text-gray-900 checked:border-black"
               />
               <Checkbox id="offers" name="offers" />
@@ -68,10 +69,12 @@ const SignUp: React.FC = () => {
               type="text"
               id="fullName"
               name="fullName"
+              required={true}
               placeholder="Full name"
               className="w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-[#303141] focus:border-purple-800"
             />
             <input
+              required={true}
               type="email"
               name="email"
               id="email"

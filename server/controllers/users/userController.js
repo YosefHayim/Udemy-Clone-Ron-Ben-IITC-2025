@@ -55,6 +55,7 @@ const getUserById = catchAsync(async (req, res, next) => {
 });
 
 const signUp = catchAsync(async (req, res, next) => {
+  // Get full name and email
   const { fullName, email } = req.body;
 
   // If one of the fields is missing
@@ -62,36 +63,54 @@ const signUp = catchAsync(async (req, res, next) => {
     return next(createError("One of the required fields is missing.", 400));
   }
 
+  // Locating the user if it is already exist in db
   const user = await User.findOne({ email });
 
   if (user) {
-    res.status(200).json({
+    res.status(400).json({
       status: "success",
       data: "The email you entered is already in use. Please try logging in.",
     });
   }
 
-  // Create user with email token and expiration
+  // Create user if it is not exist.
   const newUser = await User.create({
     fullName,
     email,
   });
 
-  if (!newUser) {
-    return next(createError("Error occurred during user creation.", 500));
-  }
-
+  // Generate sign up token
   const signUpCode = randomize("0", 6);
 
+  // Set token and expire within 15 min.
   newUser.temporaryCode = signUpCode;
   newUser.temporaryCodeExpiresAt = new Date(Date.now() + 15 * 60 * 1000);
   await newUser.save();
 
-  // Send confirmation email
+  // Send email with 6 PIN DIGITS.
   sendEmail({
     to: newUser.email,
     subject: "Udemy Signup: Here's the 6-digit verification code you requested",
     html: signUpCodeTemplate(newUser.fullName, signUpCode),
+  });
+
+  const token = generateToken({
+    id: newUser._id,
+    fullName: newUser.fullName,
+    email: newUser.email,
+    profilePic: newUser.profilePic,
+    bio: newUser.bio,
+    role: newUser.role,
+    coursesBought: newUser.coursesBought,
+    udemyCredits: newUser.udemyCredits,
+  });
+
+  res.cookie("cookie", token, {
+    maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
+    secure: process.env.NODE_ENV === "production", // Only HTTPS in production
+    httpOnly: false, // Restrict JavaScript access for security
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
+    path: "/", // Ensure the cookie is available across the entire site
   });
 
   res.status(200).json({
@@ -110,7 +129,12 @@ const login = catchAsync(async (req, res, next) => {
   const isFoundUser = await User.findOne({ email });
 
   if (!isFoundUser) {
-    return next(createError("Invalid email or password.", 401));
+    return next(
+      createError(
+        "There was a problem logging in. Check your email or create an account.",
+        401
+      )
+    );
   }
 
   const loginCode = randomize("0", 6);
@@ -123,25 +147,6 @@ const login = catchAsync(async (req, res, next) => {
     to: isFoundUser.email,
     subject: "Udemy Login: Here's the 6-digit verification code you requested",
     html: loginEmailTemplateLiteral(isFoundUser.fullName, loginCode),
-  });
-
-  const token = generateToken({
-    id: isFoundUser._id,
-    fullName: isFoundUser.fullName,
-    email: isFoundUser.email,
-    profilePic: isFoundUser.profilePic,
-    role: isFoundUser.role,
-    bio: isFoundUser.bio,
-    coursesBought: isFoundUser.coursesBought,
-    udemyCredits: isFoundUser.udemyCredits,
-  });
-
-  res.cookie("cookie", token, {
-    maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-    secure: process.env.NODE_ENV === "production", // Only HTTPS in production
-    httpOnly: false, // Restrict JavaScript access for security
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
-    path: "/", // Ensure the cookie is available across the entire site
   });
 
   if (!isFoundUser.emailVerified) {
@@ -165,7 +170,11 @@ const verifyCode = catchAsync(async (req, res, next) => {
 
   const user = await User.findOne({ email });
 
-  if (!user || user.temporaryCode !== Number(code))
+  if (!user) {
+    return next(createError("Invalid email or code, please try again.", 404));
+  }
+
+  if (user.temporaryCode !== Number(code))
     return next(createError("Invalid or expired code.", 401));
 
   if (user.emailVerified === false) {

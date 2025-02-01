@@ -133,7 +133,7 @@ const courseSchema = new mongoose.Schema(
     },
     courseTag: {
       type: String,
-      enum: ["Bestseller", "Highest Rated", "Hot and New", "New"],
+      enum: ["Bestseller", "Highest Rated", "Hot and New", "New", ""],
       default: "New",
     },
     sections: [

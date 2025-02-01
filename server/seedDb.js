@@ -113,12 +113,10 @@ const createCourses = async () => {
         height: 480,
         category: "education",
       }),
-      // courseRecapInfo: faker.lorem.words(10),
-      // courseDescription: faker.lorem.paragraph(),
-      courseFullPrice: faker.commerce.price(500, 1000),
-      courseDiscountPrice: faker.commerce.price(50, 300),
-      courseFullPrice: 0,
-      courseDiscountPrice: 0,
+      courseRecapInfo: faker.lorem.words(10),
+      courseDescription: faker.lorem.paragraph(),
+      courseFullPrice: Number(faker.commerce.price(500, 1000, 0)),
+      courseDiscountPrice: Number(faker.commerce.price(100, 200, 0)),
       whoThisCourseIsFor: faker.lorem.sentence(),
       courseInstructorDescription: faker.lorem.paragraphs(10),
       whatYouWillLearn: Array.from({ length: 8 }, () => faker.lorem.sentence()),
@@ -144,6 +142,7 @@ const createCourses = async () => {
         "Highest Rated",
         "Hot and New",
         "New",
+        "",
       ]),
       courseInstructor: instructor._id,
       courseTrailer: faker.helpers.arrayElement(videosToDisplay),
@@ -170,6 +169,7 @@ const createCourses = async () => {
     }
 
     courses.push(course);
+    console.log(course.courseDiscountPrice, course.courseFullPrice);
     console.log(`Course ${i + 1} created: ${course.courseName}`);
   }
 
@@ -610,13 +610,13 @@ const generateUpdatedDummyData = async () => {
     // const users = await createUsers();
     // console.log(`${users.length} users created.`);
 
-    // console.log("Seeding courses...");
-    // const courses = await createCourses();
-    // console.log(`${courses.length} courses created.`);
+    console.log("Seeding courses...");
+    const courses = await createCourses();
+    console.log(`${courses.length} courses created.`);
 
-    // console.log("Seeding sections...");
-    // const sections = await createSections();
-    // console.log(`${sections.length} sections created.`);
+    console.log("Seeding sections...");
+    const sections = await createSections();
+    console.log(`${sections.length} sections created.`);
 
     console.log("Seeding lessons...");
     const lessons = await createLessons();
