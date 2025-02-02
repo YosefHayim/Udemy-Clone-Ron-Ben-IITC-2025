@@ -23,12 +23,9 @@ const HotFreshCourses = () => {
         Hot and Fresh Courses
       </h2>
       <div
-        className="overflow-x-auto flex flex-row items-start justify-start pb-[1.5em] gap-[1em]"
+        className="w-full overflow-x-auto flex flex-row items-center justify-center pb-[1.5em] gap-[1em]"
         ref={carouselRef}
       >
-        <HotCourseCard />
-        <HotCourseCard />
-        <HotCourseCard />
         <HotCourseCard />
         <HotCourseCard />
         <HotCourseCard />
@@ -36,13 +33,13 @@ const HotFreshCourses = () => {
       </div>
       <button
         onClick={scrollLeft}
-        className="absolute left-0 top-[50%] transform -translate-y-1/2 bg-white text-white p-3 rounded-full shadow-carouselShadowBtn hover:brightness-125 transition duration-200"
+        className="hover:bg-[#e9eaf2] absolute left-0 top-[50%] transform -translate-y-1/2 bg-white text-white p-3 rounded-full shadow-carouselShadowBtn hover:brightness-125 transition duration-200"
       >
         <MdKeyboardArrowLeft size={24} className="text-black" />
       </button>
       <button
         onClick={scrollRight}
-        className="absolute right-0 top-[50%] transform -translate-y-1/2 bg-white text-white p-3 rounded-full shadow-carouselShadowBtn hover:brightness-125 transition duration-200"
+        className="hover:bg-[#e9eaf2] absolute right-0 top-[50%] transform -translate-y-1/2 bg-white text-white p-3 rounded-full shadow-carouselShadowBtn hover:brightness-125 transition duration-200"
       >
         <MdKeyboardArrowRight size={24} className="text-black" />
       </button>
