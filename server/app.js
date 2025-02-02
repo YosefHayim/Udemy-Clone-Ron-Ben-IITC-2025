@@ -33,6 +33,7 @@ app.use(loggerInfo);
 const allowedOrigins = [
   "http://localhost:5173", // Frontend in development
   "https://udemy-clone-ron-and-ben-front.onrender.com", // Frontend in production
+  "http://127.0.0.1:5173", // IP of localhost 
 ];
 app.use(
   cors({

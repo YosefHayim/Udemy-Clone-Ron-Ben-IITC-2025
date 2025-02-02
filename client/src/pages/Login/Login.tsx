@@ -9,6 +9,7 @@ import { MdEmail } from "react-icons/md";
 import { emailContext } from "@/routes/AppRoutes";
 import { BiSolidErrorAlt } from "react-icons/bi";
 import { useGoogleLogin } from "@react-oauth/google";
+import googleLogin from "@/api/users/googleLogin";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,6 +23,17 @@ const Login = () => {
     },
     onError: (error) => {
       console.error("Error during login process:", error);
+      setShowIsError(true);
+    },
+  });
+
+  const googleMutationLogin = useMutation({
+    mutationFn: googleLogin,
+    onSuccess: () => {
+      navigate("/");
+    },
+    onError: (error) => {
+      console.error("Error during google login process:", error);
       setShowIsError(true);
     },
   });
@@ -45,9 +57,8 @@ const Login = () => {
 
   const handleGoogle = useGoogleLogin({
     onSuccess: (credentialResponse) => {
-      console.log(credentialResponse);
       setGoogleCode(credentialResponse?.code);
-      console.log(googleCode);
+      googleMutationLogin.mutate(googleCode);
     },
     onError: (error) => {
       console.log(`Error occurred durning login via google: `, error);
