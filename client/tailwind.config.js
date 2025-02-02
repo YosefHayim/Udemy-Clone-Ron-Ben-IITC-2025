@@ -87,7 +87,7 @@ export default {
           DEFAULT: "#1739531f",
         },
         btnColor: {
-          DEFAULT: "#a435f0",
+          DEFAULT: "#6d28d2",
         },
         btnHoverColor: {
           DEFAULT: "#8710d8",

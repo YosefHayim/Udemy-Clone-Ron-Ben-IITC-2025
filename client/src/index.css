@@ -24,6 +24,16 @@
   src: url("../public/fonts/aksara/Fontspring-DEMO-aksara-light.otf");
 }
 
+@font-face {
+  font-family: "Armin Grotesk";
+  src: url("../public/fonts/armin-grotesk/Fontspring-DEMO-armingrotesk-black.otf");
+}
+
+@font-face {
+  font-family: "Narin Black";
+  src: url("../public/fonts/Narin/NarinBlack.otf");
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -62,21 +72,12 @@ body {
   min-height: 100vh;
   font-size: 0.8em;
   overflow-x: hidden;
+  color: #303141;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  color: #303141;
 }
 
 button {
