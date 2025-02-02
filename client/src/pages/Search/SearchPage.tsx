@@ -13,6 +13,8 @@ import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 import { CourseTypeProps } from "@/types/types";
 import { filterContext } from "@/routes/AppRoutes";
 import { useEffect } from "react";
+import ReleatedSearches from "./RelatedSearches/RelatedSearches";
+import RelatedSearches from "./RelatedSearches/RelatedSearches";
 
 const SearchPage: React.FC = () => {
   const [filterData, setFilterData] = useContext(filterContext);
@@ -128,6 +130,7 @@ const SearchPage: React.FC = () => {
           </div>
         </div>
       </div>
+      <RelatedSearches />
       <Pagination
         totalPages={data?.totalPages}
         currentPage={currentPage || 1}
