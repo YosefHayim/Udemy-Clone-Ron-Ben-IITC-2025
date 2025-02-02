@@ -30,7 +30,7 @@ import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privac
 import CloseAccount from "@/components/Navbar/DropDownMenu/ProfilePage/CloseAccount/CloseAccount";
 import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
 import VerifyCode from "../pages/Login/VerifyCode";
-import PrivacyStatement from "@/pages/Privacy/Privacy_Statement";
+import PrivacyStatement from "@/pages/UdemyBusinessPrivacy/PrivacyStatement";
 import InstructorProfile from "@/pages/InstructorProfile/InstructorProfile";
 import PersonalizeField from "@/pages/PersonalizeField/PersonalizeField";
 import LoginBusiness from "@/pages/Login/LoginBusiness";

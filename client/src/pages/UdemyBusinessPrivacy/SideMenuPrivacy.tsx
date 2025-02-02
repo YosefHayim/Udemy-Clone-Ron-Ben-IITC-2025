@@ -1,7 +1,9 @@
 import { useState } from "react";
 
-const Side_Menu_Privacy = () => {
-  const [activeItem, setActiveItem] = useState("Udemy Business Privacy Statement"); // Item ativo
+const SideMenuPrivacy = () => {
+  const [activeItem, setActiveItem] = useState(
+    "Udemy Business Privacy Statement"
+  ); // Item ativo
 
   const menuItems = [
     "Terms of Use",
@@ -57,4 +59,4 @@ const Side_Menu_Privacy = () => {
   );
 };
 
-export default Side_Menu_Privacy;
+export default SideMenuPrivacy;
