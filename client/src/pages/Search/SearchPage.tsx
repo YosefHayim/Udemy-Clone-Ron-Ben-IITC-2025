@@ -18,7 +18,6 @@ const SearchPage: React.FC = () => {
   const [filterData, setFilterData] = useContext(filterContext);
 
   document.title = "Search results | Udemy";
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchTerm: string | null = searchParams.get("q")?.toLowerCase() || "";
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -50,9 +49,9 @@ const SearchPage: React.FC = () => {
       params.certificateOnly = "true";
     }
 
-    // if (filterData.price) {
-    //   params.price = filterData.price; // Include price filter
-    // }
+    if (filterData.price) {
+      params.price = filterData.price; // Include price filter
+    }
 
     setSearchParams(params);
   }, [filterData, currentPage, searchTerm, setSearchParams]);
@@ -81,6 +80,8 @@ const SearchPage: React.FC = () => {
   if (isLoading || isPending) {
     return <Loader hSize="" useSmallLoading={false} />;
   }
+
+  console.log(data);
 
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
