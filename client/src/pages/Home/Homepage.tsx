@@ -30,6 +30,7 @@ import Welcome from "@/components/LoggedInHome/Welcome";
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 import TeamAccess from "./TeamAccess/TeamAccess";
 import { useEffect } from "react";
+import styles from "./Homepage.module.css";
 
 const Homepage = () => {
   document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
@@ -51,7 +52,7 @@ const Homepage = () => {
     }
   }, [cookie]);
   return (
-    <div>
+    <div className={styles.homepage}>
       {!cookie ? (
         <>
           <div className="container mx-auto px-[5.7rem]">

@@ -15,7 +15,9 @@ const SkillsP3 = () => {
     if (input.length > 1) {
       try {
         const response = await axios.get(
-          `https://api.datamuse.com/sug?s=${input}`
+          `https://api.datamuse.com/words?rel_trg=${encodeURIComponent(
+            input
+          )}&max=30`
         );
 
         setSuggestions(response.data.map((item: any) => item.word));

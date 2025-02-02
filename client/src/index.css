@@ -4,6 +4,36 @@
 
 /* ... */
 
+@font-face {
+  font-family: "lifeLtstd";
+  src: url("../public/fonts/lifeltstd-bold.otf");
+}
+
+@font-face {
+  font-family: "Aksara";
+  src: url("../public/fonts/aksara/Fontspring-DEMO-aksara-regular.otf");
+}
+
+@font-face {
+  font-family: "Aksara bold";
+  src: url("../public/fonts/aksara/Fontspring-DEMO-aksara-bold.otf");
+}
+
+@font-face {
+  font-family: "Aksara light";
+  src: url("../public/fonts/aksara/Fontspring-DEMO-aksara-light.otf");
+}
+
+@font-face {
+  font-family: "Armin Grotesk";
+  src: url("../public/fonts/armin-grotesk/Fontspring-DEMO-armingrotesk-black.otf");
+}
+
+@font-face {
+  font-family: "Narin Black";
+  src: url("../public/fonts/Narin/NarinBlack.otf");
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -42,6 +72,7 @@ body {
   min-height: 100vh;
   font-size: 0.8em;
   overflow-x: hidden;
+  color: #303141;
 }
 
 h1 {

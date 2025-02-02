@@ -24,6 +24,7 @@ const VerifyCode = () => {
   const [countdown, setCountdown] = useState(30);
   const [isSentCodeAgain, setIsSentCodeAgain] = useState(false);
   const [code, setCode] = useState("");
+  const cookie = Cookies.get("cookie");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const VerifyCode = () => {
   if (!emailCtx) throw new Error("emailContext is not provided");
   const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
 
-  useEffect(() => {}, [emailUser, userFullName, code]);
+  useEffect(() => {}, [emailUser, userFullName, code, cookie]);
 
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
@@ -50,10 +51,12 @@ const VerifyCode = () => {
     const code = formData.get("code") as string;
     setCode(code);
     verifyCodeMutation.mutate({ code, email: emailUser });
-
-    const cookie = Cookies.get("cookie");
-
+    if (!cookie) {
+      console.error("No token found in cookies");
+      return;
+    }
     const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
+    console.log(decoded);
     dispatch(setCookie(cookie || ""));
     dispatch(setFullName(decoded.fullName));
     dispatch(setHeadline(decoded.headline));

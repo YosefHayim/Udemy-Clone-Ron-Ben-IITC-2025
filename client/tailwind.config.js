@@ -87,7 +87,7 @@ export default {
           DEFAULT: "#1739531f",
         },
         btnColor: {
-          DEFAULT: "#a435f0",
+          DEFAULT: "#6d28d2",
         },
         btnHoverColor: {
           DEFAULT: "#8710d8",
@@ -112,6 +112,10 @@ export default {
           "0 -2px 4px rgba(6, 17, 118, 0.08), 0 -4px 12px rgba(6, 17, 118, 0.08)",
         skillsShadow:
           "0 2px 4px rgba(6, 17, 118, 0.08), 0 4px 12px rgba(6, 17, 118, 0.16)",
+        carouselShadowBtn:
+          "0 2px 4px rgba(6, 17, 118, 0.08), 0 4px 12px rgba(6, 17, 118, 0.08)",
+        alertAlgoInfo:
+          "0 0 0 1px #d1d2e0, 0 2px 4px rgba(6, 17, 118, 0.08), 0 4px 12px rgba(6, 17, 118, 0.08)",
       },
     },
   },

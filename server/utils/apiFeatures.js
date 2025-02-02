@@ -51,12 +51,16 @@ class APIFeatures {
     return this;
   }
 
-  paginate() {
-    const page = this.queryString.page * 1 || 1; // Current page number
-    const limit = this.queryString.limit * 1 || 100; // Results per page
-    const skip = (page - 1) * limit;
+  paginate(totalCourses) {
+    const page = this.queryString.page * 1 || 1;
+    const limit = this.queryString.limit * 1 || 20;
+    const totalPassed = (page - 1) * limit;
+    const totalLeft = Math.max(totalCourses - totalPassed, 0);
 
-    this.query = this.query.skip(skip).limit(limit);
+    // Adjust limit to fetch only the remaining courses if they are less than the requested limit
+    const actualLimit = totalLeft < limit ? totalLeft : limit;
+
+    this.query = this.query.skip(totalPassed).limit(actualLimit);
     return this;
   }
 }

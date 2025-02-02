@@ -9,7 +9,7 @@ const CourseInstructor: React.FC<CourseInstructorProps> = ({
       ? `${instructor.slice(0, 20)}...`
       : instructor;
 
-  return <p className="text-gray-500 text-[0.7em]">By {truncatedInstructor}</p>;
+  return <p className="text-gray-500 text-[0.7em]">{truncatedInstructor}</p>;
 };
 
 export default CourseInstructor;

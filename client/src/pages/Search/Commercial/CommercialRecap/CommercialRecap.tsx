@@ -1,12 +1,15 @@
+import InteractionBtn from "../InteractionBtn/InteractionBtn";
+
 const CommercialRecap = () => {
   return (
-    <div className="flex flex-row items-center">
+    <div className="flex flex-row items-center justify-start">
       <div className="flex flex-col p-[1em]">
         <span className="font-bold text-[1em]">Get Udemy at work</span>
-        <p>
+        <p className="w-[500px]">
           Udemy Business is an all-in-one learning platform perfect for
           companies of all sizes.
         </p>
+        <InteractionBtn />
       </div>
     </div>
   );

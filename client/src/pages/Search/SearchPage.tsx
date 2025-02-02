@@ -13,6 +13,8 @@ import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 import { CourseTypeProps } from "@/types/types";
 import { filterContext } from "@/routes/AppRoutes";
 import { useEffect } from "react";
+import ReleatedSearches from "./RelatedSearches/RelatedSearches";
+import RelatedSearches from "./RelatedSearches/RelatedSearches";
 
 const SearchPage: React.FC = () => {
   const [filterData, setFilterData] = useContext(filterContext);
@@ -23,7 +25,7 @@ const SearchPage: React.FC = () => {
   const searchTerm: string | null = searchParams.get("q")?.toLowerCase() || "";
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
-  const limit = 100;
+  const limit = 20;
 
   // Update URL dynamically when filterData or page changes
   useEffect(() => {
@@ -50,9 +52,9 @@ const SearchPage: React.FC = () => {
       params.certificateOnly = "true";
     }
 
-    // if (filterData.price) {
-    //   params.price = filterData.price; // Include price filter
-    // }
+    if (filterData.price) {
+      params.price = filterData.price; // Include price filter
+    }
 
     setSearchParams(params);
   }, [filterData, currentPage, searchTerm, setSearchParams]);
@@ -80,6 +82,10 @@ const SearchPage: React.FC = () => {
 
   if (isLoading || isPending) {
     return <Loader hSize="" useSmallLoading={false} />;
+  }
+
+  if (error || !data) {
+    navigate(`/not/search/not/found`);
   }
 
   return (
@@ -120,9 +126,11 @@ const SearchPage: React.FC = () => {
                 </div>
               ))}
           </div>
+          <RelatedSearches />
         </div>
       </div>
       <Pagination
+        totalPages={data?.totalPages}
         currentPage={currentPage || 1}
         setCurrentPage={setCurrentPage}
       />

@@ -199,6 +199,10 @@ const AppRoutes: React.FC = () => {
                 />
                 <Route path="*" element={<NotFound />} />
                 <Route
+                  path="/not/search/not/found/"
+                  element={<SearchNotFound />}
+                />
+                <Route
                   path="/course-view/:courseId"
                   element={<ViewCoursePageInfo />}
                 />

@@ -7,10 +7,9 @@ const CourseImg: React.FC<CourseImgProps> = ({
 }) => {
   return (
     <div>
-      <img src={courseImg} alt="" className={`w-[${widthChosen}]`} />
+      <img src={courseImg} alt="" className={`w-[${widthChosen}] h-[135px]`} />
     </div>
   );
 };
 
 export default CourseImg;
-

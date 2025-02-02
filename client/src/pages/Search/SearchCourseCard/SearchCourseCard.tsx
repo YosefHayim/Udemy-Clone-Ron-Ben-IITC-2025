@@ -27,22 +27,24 @@ const SearchCourseCard: React.FC<{ course: CourseTypeProps }> = ({
 
   return (
     <div id={course._id} onClick={() => handleCardClick(course._id)}>
-      <div className="flex justify-start items-start pb-[1.6em] w-full gap-[1em] cursor-pointer pt-[1.6em]">
-        <CourseImg courseImg={course.courseImg} widthChosen="260px" />
-        <div className="flex flex-col items-start justify-start gap-[0.3em]">
-          <CourseTitle title={course.courseName} />
-          <CourseRecap recapInfo={course.courseRecapInfo} />
-          <CourseInstructor instructor={course.courseInstructor.fullName} />
-          <CourseRatings
-            totalRatings={course.totalRatings}
-            avgRatings={course.averageRating}
-          />
-          <CourseLength
-            courseLevel={course.courseLevel}
-            totalMinutes={course.totalCourseDuration}
-            totalLectures={course.totalCourseLessons}
-          />
-          <CourseTag />
+      <div className="flex justify-between items-start pb-[1.6em] w-full gap-[1em] cursor-pointer pt-[1.6em]">
+        <div className="flex flex-row items-start justify-start gap-[0.5em]">
+          <CourseImg courseImg={course.courseImg} widthChosen="240px" />
+          <div className="flex flex-col items-start justify-start gap-[0.5em]">
+            <CourseTitle title={course.courseName} />
+            <CourseRecap recapInfo={course.courseRecapInfo} />
+            <CourseInstructor instructor={course.courseInstructor.fullName} />
+            <CourseRatings
+              totalRatings={course.totalRatings}
+              avgRatings={course.averageRating}
+            />
+            <CourseLength
+              courseLevel={course.courseLevel}
+              totalMinutes={course.totalCourseDuration}
+              totalLectures={course.totalCourseLessons}
+            />
+            <CourseTag />
+          </div>
         </div>
         <CoursePrice
           fullPrice={course.courseFullPrice}

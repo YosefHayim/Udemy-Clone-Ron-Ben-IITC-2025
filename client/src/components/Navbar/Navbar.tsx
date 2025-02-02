@@ -32,7 +32,7 @@ const Navbar = () => {
   return (
     <div>
       <SaleCommercial />
-      <div className="flex items-center bg-white w-screen z-[1000] relative shadow-md justify-between px-[1.55rem] py-[0.75rem] font-medium text-[1.4rem]">
+      <div className="w-full flex items-center bg-white z-[1000] relative shadow-md justify-between px-[1.55rem] py-[0.75rem] font-medium text-[1.4rem]">
         <Link to="/">
           <Logo />
         </Link>

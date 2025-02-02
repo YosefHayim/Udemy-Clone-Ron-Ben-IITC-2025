@@ -8,7 +8,7 @@ import hotFreshOne from "/images/hot-fresh-course-1.png";
 
 const HotCourseCard = () => {
   return (
-    <div className="flex flex-row items-center justify-center gap-[2em] w-[200px]">
+    <div className="flex flex-row items-center justify-center gap-[2em] w-[200px] cursor-pointer">
       <div>
         <CourseImg courseImg={hotFreshOne} widthChosen="" />
         <div className="flex flex-col items-start justify-start gap-[0.3em]">
@@ -18,11 +18,7 @@ const HotCourseCard = () => {
             }
           />
           <CourseInstructor instructor={"Manas Roy | GenAI Instructor"} />
-          <CourseRatings
-            avgRatings={4}
-            stars={"★★★★☆"}
-            totalRatings={1}
-          />
+          <CourseRatings avgRatings={4} stars={"★★★★☆"} totalRatings={1} />
           <CoursePrice
             discountPrice={39.9}
             fullPrice={79.9}

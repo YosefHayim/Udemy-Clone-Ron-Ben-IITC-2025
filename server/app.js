@@ -33,6 +33,7 @@ app.use(loggerInfo);
 const allowedOrigins = [
   "http://localhost:5173", // Frontend in development
   "https://udemy-clone-ron-and-ben-front.onrender.com", // Frontend in production
+  "http://127.0.0.1:5173",
 ];
 app.use(
   cors({
@@ -69,5 +70,5 @@ app.all("*", undefinedRoute);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  // console.log(`Server is running on port: ${PORT}`);
+  console.log(`Server is running on port: ${PORT}`);
 });

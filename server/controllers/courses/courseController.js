@@ -6,23 +6,40 @@ const { catchAsync } = require("../../utils/wrapperFn");
 const { verifyToken } = require("../authorization/authController");
 
 const getAllCourses = catchAsync(async (req, res, next) => {
+  // Apply filters and search but do not paginate for counting total matching courses
+  const countQuery = new APIFeatures(Course.find(), req.query)
+    .filter()
+    .search();
+  const totalCourses = await countQuery.query.countDocuments();
+
+  // Apply full pipeline including pagination, passing totalCourses to adjust limit dynamically
   const features = new APIFeatures(Course.find(), req.query)
     .filter()
     .search()
     .sort()
     .limitFields()
-    .paginate();
+    .paginate(totalCourses);
 
   const courses = await features.query;
 
-  if (!courses || courses.length === 0) {
+  if (!courses.length) {
     return next(createError("No Course documents found in the database", 404));
   }
 
+  // Get pagination info
+  const currentPage = req.query.page * 1 || 1;
+  const resultsPerPage = req.query.limit * 1 || 20;
+  const totalPassed = (currentPage - 1) * resultsPerPage;
+  const totalLeftCourses = Math.max(totalCourses - totalPassed, 0); // Ensure it doesn’t go below 0
+  const totalPages = Math.floor(totalCourses / 20);
+
   res.status(200).json({
     status: "Success",
-    totalCourses: courses.length,
-    currentPage: req.query.page || 1,
+    totalCourses, // Total matching courses
+    totalLeftCourses, // Courses left after pagination
+    currentPage,
+    totalPages,
+    currentPageCoursesAmount: courses.length, // Dynamically adjust to return actual number of items
     response: courses,
   });
 });

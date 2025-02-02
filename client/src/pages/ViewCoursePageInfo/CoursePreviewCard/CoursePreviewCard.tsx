@@ -104,7 +104,7 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
           </div>
         ) : (
           <div>
-            <TimeLeftBuyCourse />
+            <TimeLeftBuyCourse coursePrice={coursePrice} />
             <AddCartNBuyBtn
               courseId={courseId}
               discountPrice={coursePrice}

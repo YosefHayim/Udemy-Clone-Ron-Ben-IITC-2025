@@ -13,6 +13,7 @@ import Loader from "@/components/Loader/Loader";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import byCourseByCourseId from "@/api/users/buyCourseByCourseId";
+import styles from "./AddToCart.module.css";
 
 const AddToCart: React.FC<{
   textBtn?: string;
@@ -67,6 +68,7 @@ const AddToCart: React.FC<{
 
   return (
     <Button
+      styles={styles.addToCart}
       onClick={() => handleClick(courseId)}
       id={`btn-${courseId || "unknown"}`} // Add prefix for clarity
       disabled={isLoading}
