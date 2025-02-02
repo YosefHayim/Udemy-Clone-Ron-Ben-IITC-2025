@@ -56,8 +56,6 @@ const Login = () => {
 
   const handleGoogle = useGoogleLogin({
     onSuccess: (credentialResponse) => {
-      console.log(credentialResponse.code);
-
       googleMutationLogin.mutate(credentialResponse.code);
     },
     onError: (error) => {
