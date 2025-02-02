@@ -723,11 +723,9 @@ const googleLogin = catchAsync(async (req, res, next) => {
     );
 
     const { email, name, picture } = userResponse.data;
-    console.log(userResponse.data);
 
     // Check if user exists in the database
     let user = await User.findOne({ email });
-    console.log(`user found ? : `, user);
 
     if (!user) {
       // Create a new user if not found
@@ -739,14 +737,13 @@ const googleLogin = catchAsync(async (req, res, next) => {
       });
       await user.save();
     }
-    console.log(`user either created or found: `.user);
 
     // Generate a JWT token for authentication
     const token = generateToken({
       id: user._id,
-      fullName: user.fullName,
+      fullName: name,
       email: user.email,
-      profilePic: user.profilePic,
+      profilePic: picture,
       bio: user.bio,
       role: user.role,
       coursesBought: user.coursesBought,
