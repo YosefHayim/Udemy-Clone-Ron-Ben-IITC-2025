@@ -88,8 +88,6 @@ const SearchPage: React.FC = () => {
     navigate(`/not/search/not/found`);
   }
 
-  console.log(data);
-
   return (
     <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
