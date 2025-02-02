@@ -36,15 +36,15 @@ const HotFreshCourses = () => {
       </div>
       <button
         onClick={scrollLeft}
-        className="absolute left-0 top-[50%] transform -translate-y-1/2 bg-black text-white p-3 rounded-full shadow-md hover:brightness-125 transition duration-200"
+        className="absolute left-0 top-[50%] transform -translate-y-1/2 bg-white text-white p-3 rounded-full shadow-carouselShadowBtn hover:brightness-125 transition duration-200"
       >
-        <MdKeyboardArrowLeft size={24} />
+        <MdKeyboardArrowLeft size={24} className="text-black" />
       </button>
       <button
         onClick={scrollRight}
-        className="absolute right-0 top-[50%] transform -translate-y-1/2 bg-black text-white p-3 rounded-full shadow-md hover:brightness-125 transition duration-200"
+        className="absolute right-0 top-[50%] transform -translate-y-1/2 bg-white text-white p-3 rounded-full shadow-carouselShadowBtn hover:brightness-125 transition duration-200"
       >
-        <MdKeyboardArrowRight size={24} />
+        <MdKeyboardArrowRight size={24} className="text-black" />
       </button>
     </div>
   );
