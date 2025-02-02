@@ -4,6 +4,26 @@
 
 /* ... */
 
+@font-face {
+  font-family: "lifeLtstd";
+  src: url("../public/fonts/lifeltstd-bold.otf");
+}
+
+@font-face {
+  font-family: "Aksara";
+  src: url("../public/fonts/Aksara/Fontspring-DEMO-aksara-regular.otf");
+}
+
+@font-face {
+  font-family: "Aksara bold";
+  src: url("../public/fonts/Aksara/Fontspring-DEMO-aksara-bold.otf");
+}
+
+@font-face {
+  font-family: "Aksara light";
+  src: url("../public/fonts/Aksara/Fontspring-DEMO-aksara-light.otf");
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
