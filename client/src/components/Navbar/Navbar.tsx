@@ -22,8 +22,6 @@ const Navbar = () => {
   const cookie = useSelector((state: RootState) => state.user.cookie) || "";
   const dispatch = useDispatch();
 
-  console.log(`cookie is: `, cookie);
-
   useEffect(() => {
     const currentCookie = Cookies.get("cookie");
     if (currentCookie && currentCookie !== cookie) {
