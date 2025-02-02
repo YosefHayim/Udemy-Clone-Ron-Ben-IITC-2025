@@ -1,9 +1,8 @@
 import { IoIosInformationCircle } from "react-icons/io";
 import RelatedSearchAlgoBtn from "./RelatedSearchAlgoBtn/RelatedSearchAlgoBtn";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
@@ -15,14 +14,15 @@ const RelatedSearches = () => {
   const [searchParams] = useSearchParams();
   const urlSearchTerm: string = searchParams.get("q")?.toLowerCase() || "";
 
-  const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
   const fetchSuggestions = useCallback(async () => {
     if (urlSearchTerm.length > 1) {
       try {
         const response = await axios.get(
-          `https://api.datamuse.com/sug?s=${urlSearchTerm}`
+          `https://api.datamuse.com/words?rel_trg=${encodeURIComponent(
+            urlSearchTerm
+          )}&max=10`
         );
         setSuggestions(response.data.map((item: any) => item.word));
       } catch (error) {
