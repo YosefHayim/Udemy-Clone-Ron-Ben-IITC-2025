@@ -30,10 +30,10 @@ import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privac
 import CloseAccount from "@/components/Navbar/DropDownMenu/ProfilePage/CloseAccount/CloseAccount";
 import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
 import VerifyCode from "../pages/Login/VerifyCode";
-import PrivacyStatement from "@/pages/Privacy/Privacy_Statement";
 import InstructorProfile from "@/pages/InstructorProfile/InstructorProfile";
 import PersonalizeField from "@/pages/PersonalizeField/PersonalizeField";
 import LoginBusiness from "@/pages/Login/LoginBusiness";
+import Terms from "../pages/Terms/Terms";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
@@ -203,8 +203,8 @@ const AppRoutes: React.FC = () => {
                   element={<ViewCoursePageInfo />}
                 />
                 <Route
-                  path="/terms/ub-privacy/"
-                  element={<PrivacyStatement />}
+                  path="/Terms-of-Use"
+                  element={<Terms />} 
                 />
               </Routes>
               <Footer />
