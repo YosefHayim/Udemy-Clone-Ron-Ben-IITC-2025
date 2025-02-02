@@ -96,7 +96,7 @@ const ExploreMenu = () => {
         {/* Menu one */}
         {hoveredMenu && (
           <div
-            className="absolute left-0 mt-2 w-64 bg-white border rounded-md shadow-lg z-10"
+            className="absolute left-0 mt-2 w-64 bg-white border text-sm rounded-l-lg shadow-lg z-10 min-h-[40rem]"
             onMouseEnter={() => handleMenuEnter("main")}
             onMouseLeave={handleMenuLeave}
           >
@@ -130,7 +130,7 @@ const ExploreMenu = () => {
             {/* Submenu */}
             {hoveredMenu && hoveredMenu !== "main" && (
               <div
-                className="absolute top-0 left-64 mt-0 w-64 bg-white border rounded-md shadow-lg z-20"
+                className="absolute top-0 left-64 mt-0 w-64 bg-white border-y-red-700 shadow-lg z-20 min-h-[40rem]"
                 onMouseEnter={() => handleSubMenuEnter(hoveredMenu)}
                 onMouseLeave={handleSubMenuLeave}
               >
@@ -163,13 +163,13 @@ const ExploreMenu = () => {
                     </div>
                   )
                 )}
-              </div>
+              </div>  
             )}
 
             {/* Second Submenu */}
             {hoveredSubMenu && hoveredMenu && (
               <div
-                className="absolute top-0 left-full ml-64 mt-0 w-64 bg-white border rounded-md shadow-lg z-30"
+                className="absolute top-0 left-full ml-64 mt-0 w-64 bg-white border-md border-gray-800 rounded-r-lg shadow-lg z-30 min-h-[40rem]"
                 onMouseEnter={handleSecondSubMenuEnter}
                 onMouseLeave={handleSecondSubMenuLeave}
               >
