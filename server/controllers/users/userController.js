@@ -14,6 +14,8 @@ const {
 } = require("../authorization/authController");
 const randomize = require("randomatic");
 const axios = require("axios");
+const dotenv = require('dotenv')
+dotenv.config()
 
 const getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query)
@@ -706,13 +708,14 @@ const googleLogin = catchAsync(async (req, res, next) => {
       {
         client_id: process.env.GOOGLE_CLIENT_ID,
         client_secret: process.env.GOOGLE_CLIENT_SECRET,
-        redirect_uri: "http://127.0.0.1:5173", // Must match the frontend's redirect URI
+        redirect_uri: "http://localhost:5137/login", // Must match the frontend's redirect URI
         grant_type: "authorization_code",
         code,
       }
     );
 
     const { access_token, id_token } = tokenResponse.data;
+    console.log(tokenResponse.data);
 
     // Fetch user details from Google
     const userResponse = await axios.get(
@@ -723,6 +726,7 @@ const googleLogin = catchAsync(async (req, res, next) => {
     );
 
     const { email, name, picture } = userResponse.data;
+    console.log(userResponse.data);
 
     // Check if user exists in the database
     let user = await User.findOne({ email });
@@ -755,10 +759,10 @@ const googleLogin = catchAsync(async (req, res, next) => {
 
     res.cookie("cookie", token, {
       maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-      secure: process.env.NODE_ENV === "production", // Only HTTPS in production
-      httpOnly: false, // Restrict JavaScript access for security
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
-      path: "/", // Ensure the cookie is available across the entire site
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: false, // Allow JavaScript access for frontend
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Ensure cross-origin compatibility
+      path: "/",
     });
 
     // Send success response

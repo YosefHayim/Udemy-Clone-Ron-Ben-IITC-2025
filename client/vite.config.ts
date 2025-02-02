@@ -11,8 +11,8 @@ export default defineConfig({
   },
   server: {
     headers: {
-      "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
-      "Cross-Origin-Embedder-Policy": "credentialless",
+      "Cross-Origin-Opener-Policy": "unsafe-none", // Disable COOP
+      "Cross-Origin-Embedder-Policy": "credentialless", // Allow embedded content
     },
   },
   build: {

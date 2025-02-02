@@ -56,6 +56,8 @@ const Login = () => {
 
   const handleGoogle = useGoogleLogin({
     onSuccess: (credentialResponse) => {
+      console.log(credentialResponse.code);
+
       googleMutationLogin.mutate(credentialResponse.code);
     },
     onError: (error) => {
@@ -66,7 +68,7 @@ const Login = () => {
     },
     flow: "auth-code",
     ux_mode: "popup",
-    redirect_uri: "http://localhost:5137",
+    redirect_uri: "http:localhost:5173/login",
   });
 
   return (

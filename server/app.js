@@ -31,10 +31,12 @@ app.use(loggerInfo);
 // app.use(limiter);
 
 const allowedOrigins = [
-  "http://localhost:5173", // Frontend in development
-  "https://udemy-clone-ron-and-ben-front.onrender.com", // Frontend in production
-  "http://127.0.0.1:5173", // IP of localhost  frontend in development
+  "http://localhost:5173/", // Frontend in development
+  "http://127.0.0.1:5173/", // IP for local frontend
+  "http://localhost:3000/", // Another possible frontend
+  "https://udemy-clone-ron-and-ben-front.onrender.com", // Production
 ];
+
 app.use(
   cors({
     origin: (origin, callback) => {
