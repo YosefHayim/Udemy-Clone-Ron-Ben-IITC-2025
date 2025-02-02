@@ -13,6 +13,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 const Login = () => {
   const navigate = useNavigate();
   const [isError, setShowIsError] = useState(false);
+  const [googleCode, setGoogleCode] = useState("");
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
@@ -44,10 +45,18 @@ const Login = () => {
 
   const handleGoogle = useGoogleLogin({
     onSuccess: (credentialResponse) => {
-      console.log(credentialResponse);
+      setGoogleCode(credentialResponse.code);
+      console.log(googleCode);
+    },
+    onError: (error) => {
+      console.log(`Error occurred durning login via google: `, error);
+    },
+    onNonOAuthError: (nonAuthError) => {
+      console.log(nonAuthError);
     },
     flow: "auth-code",
-    redirect_uri: "http://localhost:5137/",
+    ux_mode: "popup",
+    redirect_uri: "http://localhost:5137",
   });
 
   return (

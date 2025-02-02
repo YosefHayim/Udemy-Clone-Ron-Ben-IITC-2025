@@ -13,6 +13,7 @@ const {
   verifyToken,
 } = require("../authorization/authController");
 const randomize = require("randomatic");
+const axios = require("axios");
 
 const getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query)
@@ -107,6 +108,7 @@ const signUp = catchAsync(async (req, res, next) => {
     udemyCredits: newUser.udemyCredits,
     language: newUser.preferredLanguage,
     headline: newUser.headline,
+    fieldLearning: newUser.fieldLearning,
   });
 
   res.cookie("cookie", token, {
@@ -221,6 +223,7 @@ const verifyCode = catchAsync(async (req, res, next) => {
     udemyCredits: user.udemyCredits,
     language: user.preferredLanguage,
     headline: user.headline,
+    fieldLearning: user.fieldLearning,
   });
 
   res.cookie("cookie", token, {
@@ -459,6 +462,7 @@ const joinCourseById = catchAsync(async (req, res, next) => {
     courseId: courseId,
   });
 
+  user.udemyCredits -= course.courseDiscountPrice;
   await user.save();
 
   res.status(201).json({
@@ -688,6 +692,86 @@ const toggleCourseWishlist = catchAsync(async (req, res, next) => {
   }
 });
 
+const googleLogin = catchAsync(async (req, res, next) => {
+  const { code } = req.body; // Get authorization code from frontend
+
+  if (!code) {
+    return next(createError("Authorization code is required", 400));
+  }
+
+  try {
+    // Exchange code for access token
+    const tokenResponse = await axios.post(
+      "https://oauth2.googleapis.com/token",
+      {
+        client_id: process.env.GOOGLE_CLIENT_ID,
+        client_secret: process.env.GOOGLE_CLIENT_SECRET,
+        redirect_uri: "http://127.0.0.1:5173", // Must match the frontend's redirect URI
+        grant_type: "authorization_code",
+        code,
+      }
+    );
+
+    const { access_token, id_token } = tokenResponse.data;
+
+    // Fetch user details from Google
+    const userResponse = await axios.get(
+      "https://www.googleapis.com/oauth2/v2/userinfo",
+      {
+        headers: { Authorization: `Bearer ${access_token}` },
+      }
+    );
+
+    const { email, name, picture } = userResponse.data;
+    console.log(userResponse.data);
+
+    // Check if user exists in the database
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      // Create a new user if not found
+      user = new User({
+        fullName: name,
+        email,
+        profilePic: picture,
+        authProvider: "google",
+      });
+      await user.save();
+    }
+
+    // Generate a JWT token for authentication
+    const token = generateToken({
+      id: user._id,
+      fullName: user.fullName,
+      email: user.email,
+      profilePic: user.profilePic,
+      bio: user.bio,
+      role: user.role,
+      coursesBought: user.coursesBought,
+      udemyCredits: user.udemyCredits,
+      language: user.preferredLanguage,
+      headline: user.headline,
+      fieldLearning: user.fieldLearning,
+    });
+
+    res.cookie("cookie", token, {
+      maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
+      secure: process.env.NODE_ENV === "production", // Only HTTPS in production
+      httpOnly: false, // Restrict JavaScript access for security
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
+      path: "/", // Ensure the cookie is available across the entire site
+    });
+
+    // Send success response
+    res.status(200).json({
+      status: "success",
+    });
+  } catch (error) {
+    console.error("Google login error:", error.response?.data || error.message);
+    return next(createError("Authentication failed", 500));
+  }
+});
+
 module.exports = {
   joinCoursesByIds,
   toggleCourseWishlist,
@@ -696,6 +780,7 @@ module.exports = {
   leaveCourseById,
   logout,
   login,
+  googleLogin,
   signUp,
   getAllUsers,
   updatePassword,

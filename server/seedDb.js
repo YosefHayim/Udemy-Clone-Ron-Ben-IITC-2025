@@ -39,7 +39,7 @@ const createUsers = async () => {
   existingUsers.forEach((user) => generatedEmails.add(user.email));
 
   // Generate new users
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 1000; i++) {
     let email;
 
     // Ensure the email is unique (not in existing or newly generated emails)
@@ -89,7 +89,7 @@ const createCourses = async () => {
     throw new Error("No students found for enrollment.");
   }
 
-  const amountOfCourses = 3000;
+  const amountOfCourses = 1000;
   const courses = [];
 
   for (let i = 0; i < amountOfCourses; i++) {
@@ -118,8 +118,10 @@ const createCourses = async () => {
       }),
       courseRecapInfo: faker.lorem.words(10),
       courseDescription: faker.lorem.paragraph(),
-      courseFullPrice: faker.number.int({ min: 500, max: 1000 }),
-      courseDiscountPrice: faker.number.int({ min: 50, max: 300 }),
+      // courseFullPrice: faker.number.int({ min: 500, max: 1000 }),
+      // courseDiscountPrice: faker.number.int({ min: 50, max: 300 }),
+      courseFullPrice: 0,
+      courseDiscountPrice: 0,
       whoThisCourseIsFor: faker.lorem.sentence(),
       courseInstructorDescription: faker.lorem.paragraphs(10),
       whatYouWillLearn: Array.from({ length: 8 }, () => faker.lorem.sentence()),
@@ -191,7 +193,7 @@ const createSections = async () => {
   const sections = [];
 
   for (const course of courses) {
-    const numSections = faker.number.int({ min: 5, max: 7 }); // Random number of sections per course
+    const numSections = faker.number.int({ min: 2, max: 3 }); // Random number of sections per course
     const createdSections = [];
 
     for (let i = 0; i < numSections; i++) {
@@ -256,7 +258,7 @@ const createLessons = async () => {
 
     console.log(`Creating lessons for section: ${section.title}...`);
 
-    const totalLessonsPerSection = faker.number.int({ min: 2, max: 5 }); // Randomize number of lessons
+    const totalLessonsPerSection = faker.number.int({ min: 2, max: 4 }); // Randomize number of lessons
     const createdLessons = [];
     let totalDurationForSection = 0;
 
@@ -613,33 +615,33 @@ const generateUpdatedDummyData = async () => {
     const users = await createUsers();
     console.log(`${users.length} users created.`);
 
-    // console.log("Seeding courses...");
-    // const courses = await createCourses();
-    // console.log(`${courses.length} courses created.`);
+    console.log("Seeding courses...");
+    const courses = await createCourses();
+    console.log(`${courses.length} courses created.`);
 
-    // console.log("Seeding sections...");
-    // const sections = await createSections();
-    // console.log(`${sections.length} sections created.`);
+    console.log("Seeding sections...");
+    const sections = await createSections();
+    console.log(`${sections.length} sections created.`);
 
-    // console.log("Seeding lessons...");
-    // const lessons = await createLessons();
-    // console.log(`${lessons.length} lessons created.`);
+    console.log("Seeding lessons...");
+    const lessons = await createLessons();
+    console.log(`${lessons.length} lessons created.`);
 
-    // await simulateCoursePurchases();
-    // console.log("Simulate courses purchases completed");
+    await simulateCoursePurchases();
+    console.log("Simulate courses purchases completed");
 
-    // console.log("Seeding reviews...");
-    // const reviews = await createReviews();
-    // console.log(`${reviews.length} reviews created.`);
+    console.log("Seeding reviews...");
+    const reviews = await createReviews();
+    console.log(`${reviews.length} reviews created.`);
 
-    // console.log("Seeding reported reviews...");
-    // await createReportedReviews();
+    console.log("Seeding reported reviews...");
+    await createReportedReviews();
 
-    // await addCoursesToWishlistOfUsers();
-    // console.log("Simulate courses wishlists completed");
+    await addCoursesToWishlistOfUsers();
+    console.log("Simulate courses wishlists completed");
 
-    // console.log("All dummy data seeded successfully!");
-    // process.exit();
+    console.log("All dummy data seeded successfully!");
+    process.exit();
   } catch (err) {
     console.error("Error generating dummy data:", err.message);
     process.exit(1);

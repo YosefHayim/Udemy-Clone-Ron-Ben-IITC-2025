@@ -17,6 +17,7 @@ const {
   toggleCourseWishlist,
   joinCoursesByIds,
   verifyCode,
+  googleLogin,
 } = require("../../controllers/users/userController");
 const {
   grantedAccess,
@@ -66,6 +67,9 @@ router.post(
   grantedAccess,
   resendEmailVerificationToken
 );
+
+// Google OAuth Callback Route
+router.post("/google/auth/login", googleLogin);
 
 // login regular
 router.post("/auth/login", login);
