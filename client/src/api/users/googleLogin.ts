@@ -1,11 +1,11 @@
 import { axiosClient, localhostUrl } from "../configuration";
 
 const googleLogin = async (googleCode: string) => {
-  console.log(googleCode);
+  const code = googleCode;
 
   try {
     const url = `${localhostUrl}/api/user/google/auth/login`;
-    const res = await axiosClient.post(url, { code: googleCode });
+    const res = await axiosClient.post(url, { code });
     if (res) {
       console.log(res);
     }

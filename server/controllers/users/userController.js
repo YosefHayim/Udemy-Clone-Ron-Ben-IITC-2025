@@ -693,7 +693,7 @@ const toggleCourseWishlist = catchAsync(async (req, res, next) => {
 });
 
 const googleLogin = catchAsync(async (req, res, next) => {
-  const { code } = req.body; // Get authorization code from frontend
+  const code = req.body.code;
 
   if (!code) {
     return next(createError("Authorization code is required", 400));

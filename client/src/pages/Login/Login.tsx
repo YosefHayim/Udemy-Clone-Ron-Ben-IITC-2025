@@ -14,7 +14,6 @@ import googleLogin from "@/api/users/googleLogin";
 const Login = () => {
   const navigate = useNavigate();
   const [isError, setShowIsError] = useState(false);
-  const [googleCode, setGoogleCode] = useState("");
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
@@ -57,8 +56,7 @@ const Login = () => {
 
   const handleGoogle = useGoogleLogin({
     onSuccess: (credentialResponse) => {
-      setGoogleCode(credentialResponse?.code);
-      googleMutationLogin.mutate(googleCode);
+      googleMutationLogin.mutate(credentialResponse.code);
     },
     onError: (error) => {
       console.log(`Error occurred durning login via google: `, error);
