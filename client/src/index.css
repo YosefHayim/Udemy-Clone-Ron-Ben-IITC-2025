@@ -11,17 +11,17 @@
 
 @font-face {
   font-family: "Aksara";
-  src: url("../public/fonts/Aksara/Fontspring-DEMO-aksara-regular.otf");
+  src: url("../public/fonts/aksara/Fontspring-DEMO-aksara-regular.otf");
 }
 
 @font-face {
   font-family: "Aksara bold";
-  src: url("../public/fonts/Aksara/Fontspring-DEMO-aksara-bold.otf");
+  src: url("../public/fonts/aksara/Fontspring-DEMO-aksara-bold.otf");
 }
 
 @font-face {
   font-family: "Aksara light";
-  src: url("../public/fonts/Aksara/Fontspring-DEMO-aksara-light.otf");
+  src: url("../public/fonts/aksara/Fontspring-DEMO-aksara-light.otf");
 }
 
 :root {
@@ -67,6 +67,16 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: #303141;
 }
 
 button {
