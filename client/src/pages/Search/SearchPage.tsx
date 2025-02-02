@@ -128,9 +128,9 @@ const SearchPage: React.FC = () => {
                 </div>
               ))}
           </div>
+          <RelatedSearches />
         </div>
       </div>
-      <RelatedSearches />
       <Pagination
         totalPages={data?.totalPages}
         currentPage={currentPage || 1}
