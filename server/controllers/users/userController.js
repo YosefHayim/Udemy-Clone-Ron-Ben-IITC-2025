@@ -765,6 +765,7 @@ const googleLogin = catchAsync(async (req, res, next) => {
     // Send success response
     res.status(200).json({
       status: "success",
+      response: "Successfully login or sign up via google.",
     });
   } catch (error) {
     console.error("Google login error:", error.response?.data || error.message);

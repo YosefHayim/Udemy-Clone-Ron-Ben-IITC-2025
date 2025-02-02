@@ -45,7 +45,8 @@ const Login = () => {
 
   const handleGoogle = useGoogleLogin({
     onSuccess: (credentialResponse) => {
-      setGoogleCode(credentialResponse.code);
+      console.log(credentialResponse);
+      setGoogleCode(credentialResponse?.code);
       console.log(googleCode);
     },
     onError: (error) => {
