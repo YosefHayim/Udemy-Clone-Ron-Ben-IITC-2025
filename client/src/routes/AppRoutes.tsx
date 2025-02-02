@@ -34,6 +34,7 @@ import PrivacyStatement from "@/pages/UdemyBusinessPrivacy/PrivacyStatement";
 import InstructorProfile from "@/pages/InstructorProfile/InstructorProfile";
 import PersonalizeField from "@/pages/PersonalizeField/PersonalizeField";
 import LoginBusiness from "@/pages/Login/LoginBusiness";
+import SearchNotFound from "@/pages/Search/SearchNotFound/SearchNotFound";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
@@ -198,6 +199,10 @@ const AppRoutes: React.FC = () => {
                   }
                 />
                 <Route path="*" element={<NotFound />} />
+                <Route
+                  path="/not/search/not/found/"
+                  element={<SearchNotFound />}
+                />
                 <Route
                   path="/course-view/:courseId"
                   element={<ViewCoursePageInfo />}

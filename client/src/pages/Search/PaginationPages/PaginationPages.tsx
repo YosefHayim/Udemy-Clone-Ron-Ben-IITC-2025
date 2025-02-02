@@ -3,7 +3,8 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 const PaginationPages: React.FC<{
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-}> = ({ currentPage, setCurrentPage }) => {
+  totalPages: number;
+}> = ({ currentPage, setCurrentPage, totalPages }) => {
   if (!currentPage && !setCurrentPage) {
     return <div></div>;
   }
@@ -37,7 +38,7 @@ const PaginationPages: React.FC<{
           3
         </b>
         <b className="text-black">...</b>
-        <b className="text-black">500</b>
+        <b className="text-black">{totalPages}</b>
       </div>
 
       {/* Next Page Button */}

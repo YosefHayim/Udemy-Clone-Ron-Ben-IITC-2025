@@ -72,7 +72,7 @@ const SearchInput = () => {
       <form onSubmit={handleSubmit} className="w-full">
         <input
           type="text"
-          value={searchTerm} 
+          value={searchTerm}
           placeholder="Search for anything"
           className="pb-[0.6rem] flex-1 bg-transparent text-gray-700 focus:outline-none text-sm ml-3 placeholder-gray-600 placeholder:text-sm placeholder:font-Sans placeholder:font-normal bg-gray-50"
           onChange={handleOnChange}

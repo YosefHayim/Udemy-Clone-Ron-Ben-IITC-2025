@@ -240,6 +240,7 @@ export interface Review {
 
 export interface FilterDataProps {
   sortBy: "";
+  searchTerm: string;
   certificateOnly: boolean;
   handsOnPractice: Set<string>;
   language: Set<string>;
