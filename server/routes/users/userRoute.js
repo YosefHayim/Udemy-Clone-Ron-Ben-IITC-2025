@@ -58,6 +58,9 @@ router.post("/leave/course/:id", grantedAccess, leaveCourseById);
 // verify email address of user auth
 router.get("/email/verification", confirmEmailAddress);
 
+// Google OAuth Callback Route
+router.post("/google/auth/login", googleLogin);
+
 // sign up
 router.post("/auth/signup", signUp);
 
@@ -67,9 +70,6 @@ router.post(
   grantedAccess,
   resendEmailVerificationToken
 );
-
-// Google OAuth Callback Route
-router.post("/google/auth/login", googleLogin);
 
 // login regular
 router.post("/auth/login", login);

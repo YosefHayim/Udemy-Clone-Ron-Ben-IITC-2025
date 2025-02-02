@@ -68,7 +68,7 @@ const Login = () => {
     },
     flow: "auth-code",
     ux_mode: "popup",
-    redirect_uri: "http:localhost:5173/login",
+    redirect_uri: "http://127.0.0.1:5137",
   });
 
   return (

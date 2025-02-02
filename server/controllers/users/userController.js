@@ -14,8 +14,8 @@ const {
 } = require("../authorization/authController");
 const randomize = require("randomatic");
 const axios = require("axios");
-const dotenv = require('dotenv')
-dotenv.config()
+const dotenv = require("dotenv");
+dotenv.config();
 
 const getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query)
@@ -695,7 +695,7 @@ const toggleCourseWishlist = catchAsync(async (req, res, next) => {
 });
 
 const googleLogin = catchAsync(async (req, res, next) => {
-  const code = req.body.code;
+  const { code } = req.body; // Get authorization code from frontend
 
   if (!code) {
     return next(createError("Authorization code is required", 400));
@@ -708,14 +708,14 @@ const googleLogin = catchAsync(async (req, res, next) => {
       {
         client_id: process.env.GOOGLE_CLIENT_ID,
         client_secret: process.env.GOOGLE_CLIENT_SECRET,
-        redirect_uri: "http://localhost:5137/login", // Must match the frontend's redirect URI
+        // redirect_uri: "http://127.0.0.1:5173", // Must match the frontend's redirect URI
+        redirect_uri: "http://localhost:5173", // Must match the frontend's redirect URI
         grant_type: "authorization_code",
         code,
       }
     );
 
     const { access_token, id_token } = tokenResponse.data;
-    console.log(tokenResponse.data);
 
     // Fetch user details from Google
     const userResponse = await axios.get(
@@ -745,9 +745,9 @@ const googleLogin = catchAsync(async (req, res, next) => {
     // Generate a JWT token for authentication
     const token = generateToken({
       id: user._id,
-      fullName: name,
+      fullName: user.fullName,
       email: user.email,
-      profilePic: picture,
+      profilePic: user.profilePic,
       bio: user.bio,
       role: user.role,
       coursesBought: user.coursesBought,
@@ -759,16 +759,15 @@ const googleLogin = catchAsync(async (req, res, next) => {
 
     res.cookie("cookie", token, {
       maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-      secure: process.env.NODE_ENV === "production",
-      httpOnly: false, // Allow JavaScript access for frontend
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Ensure cross-origin compatibility
-      path: "/",
+      secure: process.env.NODE_ENV === "production", // Only HTTPS in production
+      httpOnly: false, // Restrict JavaScript access for security
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
+      path: "/", // Ensure the cookie is available across the entire site
     });
 
     // Send success response
     res.status(200).json({
       status: "success",
-      response: "Successfully login or sign up via google.",
     });
   } catch (error) {
     console.error("Google login error:", error.response?.data || error.message);
