@@ -55,7 +55,6 @@ const Checkout: React.FC = () => {
     mutationFn: refreshMe,
     onSuccess: () => {
       const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
-      console.log(decoded);
       dispatch(setCookie(cookie || ""));
       dispatch(setCoursesBought(decoded.coursesBought));
       dispatch(setUdemyCredits(decoded.udemyCredits));
@@ -67,8 +66,8 @@ const Checkout: React.FC = () => {
 
   const handleClick = () => {
     const courseId = coursesIds[0];
-    console.log(`course that has been added`, courseId);
     checkOutMutation.mutate(courseId);
+    refreshUserDataMutation.mutate();
   };
 
   return (
@@ -89,7 +88,7 @@ const Checkout: React.FC = () => {
             <b>₪{totalToPay?.toFixed(2) || 0}</b>
           </div>
         </div>
-        <div className="mb-[1em]">
+        <div className="mb-[1em] w-[350px]">
           <p>
             By completing your purchase you agree to these{" "}
             <span className="text-[#6d28d2]">Terms of Service.</span>
@@ -98,10 +97,10 @@ const Checkout: React.FC = () => {
         <div className="mb-[2em] w-full">
           <Button
             onClick={handleClick}
-            className="w-full rounded-[0.2em] bg-[#a435f0] hover:bg-[#8710d8] font-bold text-white p-[1.5em]"
+            className="w-full rounded-[0.2em] bg-[#6d28d2] hover:bg-[#892de1] font-bold text-white p-[1.5em] py-[2em]"
           >
             <IoMdLock />
-            Complete Checkout
+            Pay ₪{totalToPay?.toFixed(2) || 0}
           </Button>
         </div>
         <div className="w-[300px] flex flex-col items-center justify-center mb-[3em] gap-[1em]">
@@ -109,16 +108,6 @@ const Checkout: React.FC = () => {
           <p className="text-center">
             Not satisfied? Get a full refund within 30 days. Simple and
             straightforward!
-          </p>
-        </div>
-        <div className="bg-white rounded-[0.3em] p-[1em] flex flex-col items-center justify-center gap-[1em] border border-[#d1d7dc]">
-          <div className="flex flex-row items-center justify-center gap-[0.5em]">
-            <BsFire />
-            <b>Tap into Success Now</b>
-          </div>
-          <p>
-            Join 5 people in your country who've recently enrolled in this
-            course within last 24 hours.
           </p>
         </div>
       </div>

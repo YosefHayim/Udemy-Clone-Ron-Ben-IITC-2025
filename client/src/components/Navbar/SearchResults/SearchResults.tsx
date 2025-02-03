@@ -6,8 +6,6 @@ import { useEffect } from "react";
 
 const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
   if (!data) {
-    console.log(`No data provided`);
-
     return;
   }
 

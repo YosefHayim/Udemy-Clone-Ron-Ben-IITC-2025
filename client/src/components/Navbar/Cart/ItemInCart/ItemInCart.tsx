@@ -26,6 +26,8 @@ const ItemInCart = ({
   showInstructor = true,
   showFullPrice = true,
   isColCourseBox = false,
+  textSize = "",
+  gapPrice = "gap-[1em]",
 }) => {
   if (!courseId) return null;
 
@@ -55,6 +57,10 @@ const ItemInCart = ({
     );
   }
 
+  const handleCourseView = (courseId: string): void => {
+    navigate(`/course-view/${courseId}`);
+  };
+
   const handleRemove = () => {
     dispatch(
       removeCourseFromCart({
@@ -65,28 +71,30 @@ const ItemInCart = ({
     );
   };
 
-  const handleCourseView = (e: React.MouseEvent<HTMLDivElement>): void => {
-    navigate(`/course-view/${courseId}`);
-  };
-
   return (
-    <div className="p-[1em] w-full" onClick={handleCourseView}>
+    <div
+      id={courseId}
+      className={`p-[1em] w-full ${textSize}`}
+      onClick={() => handleCourseView(courseId)}
+    >
       <div
+        id={courseId}
         className={`${
           isColCourseBox
-            ? "flex flex-col items-start justify-start gap-[1em] cursor-pointer"
-            : "flex flex-row items-start justify-start gap-[1em] cursor-pointer"
+            ? "flex flex-col items-start justify-start gap-[1em] cursor-pointer w-full"
+            : "flex flex-row items-start justify-start gap-[1em] cursor-pointer w-full"
         }`}
       >
         <div>
           <img
+            id={courseId}
             src={data?.courseImg}
             alt={`${data.courseName} image`}
             className={`${courseImgSize}`}
           />
         </div>
         <div
-          className={`${chooseFlex} flex flex-row items-${itemsPosition} justify-center gap-[1em]`}
+          className={`${chooseFlex} flex flex-row items-${itemsPosition} justify-center ${gapPrice}`}
         >
           <div className="flex flex-col items-start gap-[0.5em] w-[220px]">
             <CourseTitle
@@ -164,7 +172,7 @@ const ItemInCart = ({
           </div>
         </div>
       </div>
-      <div className="mb-[1em] mt-[0.5em]">
+      <div className="mb-[-1em] mt-[0.5em]">
         <hr className={`${showHR ? "block" : "hidden"} relative w-full`} />
       </div>
     </div>

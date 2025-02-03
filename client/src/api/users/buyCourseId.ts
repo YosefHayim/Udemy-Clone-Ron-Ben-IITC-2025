@@ -1,14 +1,11 @@
 import { axiosClient, localhostUrl } from "../configuration";
 
 const buyCourseById = async (courseId: string | string) => {
-  console.log(`This is from the axios: `, courseId);
-
   try {
     const url = `${localhostUrl}/api/user/add/course/${courseId}`;
 
     const response = await axiosClient.post(url);
     if (response) {
-      console.log(response);
     }
   } catch (error) {
     console.error("Error occurred during buying courses for user: ", error);
