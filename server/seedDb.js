@@ -729,26 +729,26 @@ const generateUpdatedDummyData = async () => {
     // const courses = await createCourses();
     // console.log(`${courses.length} courses created.`);
 
-    console.log("Seeding sections...");
-    const sections = await createSections();
-    console.log(`${sections.length} sections created.`);
+    // console.log("Seeding sections...");
+    // const sections = await createSections();
+    // console.log(`${sections.length} sections created.`);
 
-    console.log("Seeding lessons...");
-    const lessons = await createLessons();
-    console.log(`${lessons.length} lessons created.`);
+    // console.log("Seeding lessons...");
+    // const lessons = await createLessons();
+    // console.log(`${lessons.length} lessons created.`);
 
-    await simulateCoursePurchases();
-    console.log("Simulate courses purchases completed");
+    // await simulateCoursePurchases();
+    // console.log("Simulate courses purchases completed");
 
-    console.log("Seeding reviews...");
-    const reviews = await createReviews();
-    console.log(`${reviews.length} reviews created.`);
+    // console.log("Seeding reviews...");
+    // const reviews = await createReviews();
+    // console.log(`${reviews.length} reviews created.`);
 
-    console.log("Seeding reported reviews...");
-    await createReportedReviews();
+    // console.log("Seeding reported reviews...");
+    // await createReportedReviews();
 
-    await addCoursesToWishlistOfUsers();
-    console.log("Simulate courses wishlists completed");
+    // await addCoursesToWishlistOfUsers();
+    // console.log("Simulate courses wishlists completed");
 
     await createInstructorProfiles();
     console.log("create instructor profiles completed.");
