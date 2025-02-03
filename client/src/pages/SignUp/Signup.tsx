@@ -127,8 +127,8 @@ const SignUp: React.FC = () => {
                 By signing up, you agree to our{" "}
                 <span className="inline">
                   <a
-                    href="/terms"
-                    className="text-purple-600 underline mr-[0.3rem]"
+                    className="text-purple-600 underline mr-[0.3rem] cursor-pointer"
+                    onClick={() => navigate("/terms-of-use")}
                   >
                     Terms of Use
                   </a>
