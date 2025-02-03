@@ -16,7 +16,7 @@ const DescriptionOfInstructor = () => {
     <div>
       <div
         style={{
-          maxHeight: isExpanded ? "none" : "100px",
+          maxHeight: isExpanded ? "none" : "310px",
           WebkitMaskImage: isExpanded
             ? "none"
             : "linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))",
@@ -70,7 +70,7 @@ const DescriptionOfInstructor = () => {
           <MdOutlineKeyboardArrowDown />
         )}
       </div>
-      <div>
+      <div className="mt-[1em]">
         <InstructorCourses />
       </div>
     </div>
