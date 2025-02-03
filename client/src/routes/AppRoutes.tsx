@@ -35,6 +35,7 @@ import PersonalizeField from "@/pages/PersonalizeField/PersonalizeField";
 // import LoginBusiness from "@/pages/Login/LoginBusiness";
 import Terms from "../pages/Terms/Terms";
 import SearchNotFound from "@/pages/Search/SearchNotFound/SearchNotFound";
+import ReceiptCart from "@/components/Navbar/DropDownMenu/PurchaseHistory/ReceiptCart/ReceiptCart";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
@@ -111,6 +112,10 @@ const AppRoutes: React.FC = () => {
                   element={<Subscription />}
                 />
                 <Route path="/cart" element={<ShoppingCart />} />
+                <Route
+                  path="/dashboard/cart-receipt/"
+                  element={<ReceiptCart />}
+                />
                 <Route
                   path="/user/public-profile"
                   element={<PublicProfile />}
@@ -207,11 +212,8 @@ const AppRoutes: React.FC = () => {
                   path="/course-view/:courseId"
                   element={<ViewCoursePageInfo />}
                 />
-                <Route
-                  path="/Terms-of-Use"
-                  element={<Terms />} 
-                />
-              </Routes>       
+                <Route path="/Terms-of-Use" element={<Terms />} />
+              </Routes>
               <Footer />
             </>
           }
