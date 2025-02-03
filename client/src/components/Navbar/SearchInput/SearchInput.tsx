@@ -25,7 +25,7 @@ const SearchInput = () => {
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedTerm(searchTerm);
-    }, 300); // Adjust debounce delay as needed
+    }, 100); // Adjust debounce delay as needed
     return () => clearTimeout(handler);
   }, [searchTerm]);
 
@@ -57,7 +57,7 @@ const SearchInput = () => {
       if (!debouncedTerm) {
         throw new Error("Search term is undefined");
       }
-      return getAllCourses(debouncedTerm, (limit = 13), (page = 1));
+      return getAllCourses(debouncedTerm);
     },
     enabled: !!debouncedTerm,
   });
