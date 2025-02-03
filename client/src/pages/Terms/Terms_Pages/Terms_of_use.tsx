@@ -2,7 +2,7 @@ const Terms_of_use = () => {
     return (
         <>
             <div className="px-[15rem]">
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h1 className="text-3xl font-bold mb-4">Terms of Use</h1>
                     <p className="text-sm text-gray-500 mb-4">
                         These Terms of Use ("Terms") were last updated on November 12, 2024.
@@ -65,7 +65,7 @@ const Terms_of_use = () => {
                     </p>
                 </div>
 
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h2 className="text-2xl font-bold mb-4">Table of Contents</h2>
                     <ul className="list-disc list-inside space-y-2 text-blue-600">
                         <li><a href="#" className="hover:underline">1. Accounts</a></li>
@@ -84,7 +84,7 @@ const Terms_of_use = () => {
                     </ul>
                 </div>
 
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h3 className="text-2xl font-bold mb-4">1. Accounts</h3>
                     <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
                         <p className="text-base text-gray-700">
@@ -157,7 +157,7 @@ const Terms_of_use = () => {
                     </p>
                 </div>
 
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h3 className="text-2xl font-bold mb-4">2. Content Enrollment and Lifetime Access</h3>
                     <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
                         <p className="text-base text-gray-700">
@@ -220,7 +220,7 @@ const Terms_of_use = () => {
                     </p>
                 </div>
 
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h3 className="text-2xl font-bold mb-4">3. Payments, Credits, and Refunds</h3>
                     <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
                         <p className="text-base text-gray-700">
@@ -348,7 +348,7 @@ const Terms_of_use = () => {
                     </p>
                 </div>
 
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h3 className="text-2xl font-bold mb-4">4. Content and Behavior Rules</h3>
                     <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
                         <p className="text-base text-gray-700">
@@ -444,7 +444,7 @@ const Terms_of_use = () => {
                     </p>
                 </div>
 
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h3 className="text-2xl font-bold mb-4">5. Udemy’s Rights to Content You Post</h3>
                     <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
                         <p className="text-base text-gray-700">
@@ -489,7 +489,7 @@ const Terms_of_use = () => {
                     </p>
                 </div>
 
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h3 className="text-2xl font-bold mb-4">6. Using Udemy at Your Own Risk</h3>
                     <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
                         <p className="text-base text-gray-700">
@@ -542,7 +542,7 @@ const Terms_of_use = () => {
                     </p>
                 </div>
 
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h3 className="text-2xl font-bold mb-4">7. Udemy’s Rights</h3>
                     <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
                         <p className="text-base text-gray-700">
@@ -606,7 +606,7 @@ const Terms_of_use = () => {
                     </ul>
                 </div>
 
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h3 className="text-2xl font-bold mb-4">8. Subscription Terms</h3>
                     <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
                         <p className="text-base text-gray-700">
@@ -741,7 +741,7 @@ const Terms_of_use = () => {
                     </p>
                 </div>
 
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h3 className="text-2xl font-bold mb-4">9. Generative AI Terms</h3>
                     <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
                         <p className="text-base text-gray-700">
@@ -835,7 +835,7 @@ const Terms_of_use = () => {
                     </p>
                 </div>
 
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h3 className="text-2xl font-bold mb-4">10. Miscellaneous Legal Terms</h3>
                     <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
                         <p className="text-base text-gray-700">
@@ -940,7 +940,7 @@ const Terms_of_use = () => {
                     </p>
                 </div>
 
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h3 className="text-2xl font-bold mb-4">10. Miscellaneous Legal Terms</h3>
                     <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
                         <p className="text-base text-gray-700">
@@ -1045,7 +1045,7 @@ const Terms_of_use = () => {
                     </p>
                 </div>
 
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h3 className="text-2xl font-bold mb-4">11. Dispute Resolution</h3>
                     <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
                         <p className="text-base text-gray-700">
@@ -1147,7 +1147,7 @@ const Terms_of_use = () => {
                     </p>
                 </div>
 
-                <div className="p-6 bg-white rounded-lg shadow-lg">
+                <div className="p-6 bg-white rounded-lg ">
                     <h3 className="text-2xl font-bold mb-4">12. Updating These Terms</h3>
                     <p className="text-base text-gray-700 mb-4">
                         From time to time, we may update these Terms to clarify our practices or to
