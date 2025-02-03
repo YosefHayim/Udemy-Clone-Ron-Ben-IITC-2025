@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const instructorSchema = new mongoose.Schema({
+  _id: false,
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -10,6 +11,7 @@ const instructorSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Course",
+      required: [true, "Must have a relationship to a courseId"],
     },
   ],
   backgroundOfInstructor: {
@@ -38,12 +40,16 @@ instructorSchema.pre("save", function (next) {
   this.totalCourses = this.coursesRelatedIds.length;
   next();
 });
-
 instructorSchema.pre(/^find/, function (next) {
   this.populate({
     path: "userId",
-    select: "_id profilePic links bio headline",
+    select: "profilePic links bio headline",
+  }).populate({
+    path: "coursesRelatedIds",
+    select:
+      "courseName courseInstructor courseDiscountPrice courseFullPrice totalRatings totalCourseDuration courseTag",
   });
+
   next();
 });
 

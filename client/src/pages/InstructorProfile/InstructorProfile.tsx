@@ -3,6 +3,10 @@ import SocialLinks from "./SocialLinks/SocialLinks";
 import instructorImgPlaceholder from "/images/instructor-img-placeholder.png";
 
 const InstructorProfile = () => {
+  document.title = `
+    Hussein Nasser | Software Engineer, Author
+| Udemy`;
+
   return (
     <div className="p-[3em] pl-[10em] w-[1000px]">
       <div className="flex flex-row items-start justify-between w-full">
