@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import ItemInCart from "../ItemInCart/ItemInCart";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loader from "@/components/Loader/Loader";
 
 const HoverCart = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   const totalToPay = useSelector(
     (state: any) => state.cart.totalCourseDiscountPrices
@@ -32,47 +33,52 @@ const HoverCart = () => {
   }
 
   return (
-    <Link to="/cart" className="cursor-pointer">
-      <div>
-        <div className="flex flex-col justify-center items-start rounded-[0.5em] border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-previewCourseCardShadow cursor-pointer">
-          <div className="w-full">
-            {coursesIdAdded.length > 0 ? (
-              coursesIdAdded.map((courseId: string) => (
-                <ItemInCart
-                  key={courseId}
-                  courseId={courseId}
-                  hide={false}
-                  showDisPrice={true}
-                  showFullPrice={false}
-                  shortCutInstructor={true}
-                  shortcutTitle={true}
-                  chooseFlex={"flex flex-col"}
-                  itemsPosition="start"
-                  textColor="text-bg-black"
-                />
-              ))
-            ) : (
-              <div className="flex flex-col items-center justify-center w-full text-center mt-[1em]">
-                <p className="text-gray-300 font-light">Your cart is empty.</p>
-                <b className="text-purpleStatic hover:text-purpleHover cursor-pointer">
-                  <Link to="/">Keep shopping</Link>
-                </b>
-              </div>
-            )}
-          </div>
-          <div className="w-full p-[1em] flex flex-col gap-[0.5em]">
-            {totalToPay && coursesIdAdded ? (
-              <div>
-                <b>Total: ₪{totalToPay ? totalToPay.toFixed(2) : "0.00"}</b>
-                <Button className="rounded-[0.2em] font-bold w-full">
+    <div>
+      <div className="rounded-t-lg text-[0.5em] flex flex-col justify-center items-start border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-previewCourseCardShadow cursor-pointer">
+        <div className="w-full">
+          {coursesIdAdded.length > 0 ? (
+            coursesIdAdded.map((courseId: string) => (
+              <ItemInCart
+                key={courseId}
+                courseImgSize={`h-[5em] w-[5em] rounded-[0.5em]`}
+                courseId={courseId}
+                hide={false}
+                showDisPrice={true}
+                showFullPrice={false}
+                shortCutInstructor={true}
+                shortcutTitle={true}
+                chooseFlex={"flex flex-col"}
+                itemsPosition="start"
+                textColor="text-bg-black"
+                textSize="text-[1em]"
+                gapPrice="gap-[0em]"
+              />
+            ))
+          ) : (
+            <div className="flex flex-col items-center justify-center w-full text-center mt-[1em]">
+              <p className="text-gray-300 font-light">Your cart is empty.</p>
+              <b className="text-purpleStatic hover:text-purpleHover cursor-pointer">
+                <Link to="/">Keep shopping</Link>
+              </b>
+            </div>
+          )}
+        </div>
+        <div className="w-full p-[1em] flex flex-col">
+          {totalToPay && coursesIdAdded ? (
+            <div>
+              <b className="text-[1.5em]">
+                Total: ₪{totalToPay ? totalToPay.toFixed(2) : "0.00"}
+              </b>
+              <Button className="mt-[1em] w-full rounded-[0.3em] bg-btnColor hover:bg-btnHoverColor py-[1.7em] font-bold">
+                <Link to="/cart" className="cursor-pointer">
                   Go to cart
-                </Button>
-              </div>
-            ) : null}
-          </div>
+                </Link>
+              </Button>
+            </div>
+          ) : null}
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

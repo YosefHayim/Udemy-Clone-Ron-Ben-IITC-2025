@@ -70,7 +70,9 @@ const ViewCoursePageInfo: React.FC = () => {
     );
   }
 
-  if (error) return <div>Error loading course data</div>;
+  if (error) {
+    return navigate("/not/found");
+  }
 
   // console.log(data);
 

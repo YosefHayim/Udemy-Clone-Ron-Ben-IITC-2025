@@ -1,7 +1,7 @@
 const FaqInstructName: React.FC = () => {
   return (
     <div>
-      <p>Sumanta kumar Pal</p>;
+      <p>Sumanta kumar Pal</p>
     </div>
   );
 };

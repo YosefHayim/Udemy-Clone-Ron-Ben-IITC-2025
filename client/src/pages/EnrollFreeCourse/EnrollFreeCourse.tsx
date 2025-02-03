@@ -1,7 +1,7 @@
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 import CourseJumpRightIn from "./CourseJumpRightIn/CourseJumpRightIn";
 import NotificationJoinFreeCourse from "./NotificationJoinFreeCourse/NotificationJoinFreeCourse";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import getCourseById from "@/api/courses/getCourseById";
 import { Loader } from "lucide-react";
@@ -9,6 +9,7 @@ import { useState } from "react";
 import SharePopup from "./SharePopup/SharePopup";
 
 const EnrollFreeCourse = () => {
+  const navigate = useNavigate();
   const { courseId } = useParams<{ courseId: string; id: string }>(); // Get courseId and lessonId from route params
   const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
 
@@ -26,7 +27,7 @@ const EnrollFreeCourse = () => {
   });
 
   if (error) {
-    return <div>Error loading course data</div>;
+    return navigate("/not/found");
   }
 
   if (isPending) {

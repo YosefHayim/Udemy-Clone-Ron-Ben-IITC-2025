@@ -60,7 +60,7 @@ const DialogReportReview: React.FC<{
         open={isOpenReportDrawer}
         onOpenChange={(isOpen) => setReportDrawer(isOpen)}
       >
-        <DialogContent className="w-max-none w-[600px]">
+        <DialogContent className="w-max-none w-[600px] z-[2000]">
           <DialogHeader>
             <DialogTitle className="mb-[1em] font-bold">
               Report abuse

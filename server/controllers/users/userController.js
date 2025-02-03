@@ -122,6 +122,7 @@ const signUp = catchAsync(async (req, res, next) => {
   });
 
   res.status(200).json({
+    codeVerification: signUpCode,
     status: "success",
     message: "User created successfully. Please confirm your email to log in.",
   });
@@ -159,6 +160,7 @@ const login = catchAsync(async (req, res, next) => {
 
   if (!isFoundUser.emailVerified) {
     res.status(200).json({
+      codeVerification: loginCode,
       status: "success",
       message: "Login successful. Please verify your email address.",
     });
@@ -166,6 +168,7 @@ const login = catchAsync(async (req, res, next) => {
   }
 
   res.status(200).json({
+    codeVerification: loginCode,
     status: "success",
     message: "Login successful.",
   });
@@ -406,6 +409,8 @@ const resendEmailVerificationToken = catchAsync(async (req, res, next) => {
 const joinCourseById = catchAsync(async (req, res, next) => {
   const courseId = req.params.id;
 
+  console.log(courseId);
+
   const user = req.user;
 
   if (!user) {
@@ -420,7 +425,7 @@ const joinCourseById = catchAsync(async (req, res, next) => {
 
   const course = await Course.findOne({ _id: courseId });
 
-  console.log("Course fetched:", course);
+  console.log(course);
 
   if (!course) {
     return next(createError(`No course exists with this ID: ${courseId}`, 404));
@@ -445,6 +450,8 @@ const joinCourseById = catchAsync(async (req, res, next) => {
     courseId: courseId,
   });
 
+  console.log(existingProgress);
+
   if (existingProgress) {
     return next(createError("You already have progress for this course.", 400));
   }
@@ -459,10 +466,14 @@ const joinCourseById = catchAsync(async (req, res, next) => {
     boughtAt: new Date(),
   });
 
+  console.log(user.coursesBought);
+
   const initCourseProgress = await courseProgress.create({
     userId: user._id,
     courseId: courseId,
   });
+
+  console.log(initCourseProgress);
 
   user.udemyCredits -= course.courseDiscountPrice;
   await user.save();
@@ -775,7 +786,39 @@ const googleLogin = catchAsync(async (req, res, next) => {
   }
 });
 
+const me = catchAsync(async (req, res, next) => {
+  const user = req.user;
+
+  const token = generateToken({
+    id: user._id,
+    fullName: user.fullName,
+    email: user.email,
+    profilePic: user.profilePic,
+    bio: user.bio,
+    role: user.role,
+    coursesBought: user.coursesBought,
+    udemyCredits: user.udemyCredits,
+    language: user.preferredLanguage,
+    headline: user.headline,
+    fieldLearning: user.fieldLearning,
+  });
+
+  res.cookie("cookie", token, {
+    maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
+    secure: process.env.NODE_ENV === "production", // Only HTTPS in production
+    httpOnly: false, // Restrict JavaScript access for security
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
+    path: "/", // Ensure the cookie is available across the entire site
+  });
+
+  res.status(200).json({
+    status: "success",
+    response: "cookie has been updated",
+  });
+});
+
 module.exports = {
+  me,
   joinCoursesByIds,
   toggleCourseWishlist,
   updateProfilePic,

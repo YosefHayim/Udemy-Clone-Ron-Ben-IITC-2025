@@ -4,13 +4,13 @@ type fn = (
   searchTerm: string,
   limit: number,
   page: number,
-  filterData: {}
+  filterData?: {}
 ) => Promise<any>;
 
 const getAllCourses: fn = async (
   searchTerm = "",
   filterData = {},
-  limit = 1,
+  limit = 13,
   page = 1
 ) => {
   if (!searchTerm) {

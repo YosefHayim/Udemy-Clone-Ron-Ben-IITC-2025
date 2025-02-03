@@ -53,7 +53,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/wishlist"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               My learning
             </Link>
@@ -61,7 +61,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/cart"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer flex justify-between items-center"
+              className="px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex justify-between items-center"
             >
               My cart
               <CartCoursesNumber />
@@ -70,7 +70,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/wishlist"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               Wishlist
             </Link>
@@ -78,7 +78,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/wishlist"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               Teach on Udemy
             </Link>
@@ -87,7 +87,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/wishlist"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               Notifications
             </Link>
@@ -95,7 +95,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/wishlist"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               Messages
             </Link>
@@ -104,7 +104,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/wishlist"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               Account settings
             </Link>
@@ -112,7 +112,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/user/edit-payment-methods/"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               Payment methods
             </Link>
@@ -120,7 +120,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/user/manage-subscriptions/"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               Subscriptions
             </Link>
@@ -128,7 +128,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/dashboard/credit-history"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               Udemy credits
             </Link>
@@ -136,7 +136,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/dashboard/purchase-history"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               Purchase history
             </Link>
@@ -144,7 +144,7 @@ const DropdownMenu: React.FC = () => {
           <hr />
           <li>
             <div
-              className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="flex items-center px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
               onClick={handleClick}
             >
               <span className="text-sm">
@@ -161,7 +161,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/user/public-profile"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               Public profile
             </Link>
@@ -169,7 +169,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/user/edit-profile"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               Edit profile
             </Link>
@@ -177,7 +177,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/user/edit-profile"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               Help and support
             </Link>
@@ -185,7 +185,7 @@ const DropdownMenu: React.FC = () => {
           <li onClick={handleLogout}>
             <Link
               to="/"
-              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               Logout
             </Link>
@@ -194,7 +194,7 @@ const DropdownMenu: React.FC = () => {
           <li>
             <Link
               to="/demo-business"
-              className="px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
             >
               <div className="flex items-center justify-between">
                 <span>Udemy Business</span>

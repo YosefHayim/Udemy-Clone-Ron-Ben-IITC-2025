@@ -18,6 +18,7 @@ const userRoute = require("./routes/users/userRoute");
 const commentRoute = require("./routes/reviews/commentRoute");
 const reviewRoute = require("./routes/reviews/reviewRoute");
 const reportReviewRoute = require("./routes/reviews/reportReviewRoute");
+const instructorRoute = require("./routes/users/instructorRoute");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -64,6 +65,7 @@ app.use("/api/lesson", lessonRoute);
 app.use("/api/review", reviewRoute);
 app.use("/api/report/review", reportReviewRoute);
 app.use("/api/comment", commentRoute);
+app.use("/api/instructor", instructorRoute);
 app.use("/api/course-progress", courseProgressRoutes);
 
 app.all("*", undefinedRoute);

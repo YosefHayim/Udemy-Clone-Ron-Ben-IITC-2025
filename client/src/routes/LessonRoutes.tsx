@@ -68,10 +68,16 @@ const LessonRoutes: React.FC<LessonRoutesProps> = ({ currentSec }) => {
           />
           <Route path="qna" element={<QnATab />} />
           {/* Pass currentSec to NotesTab */}
-          <Route path="notes" element={<NotesTab currentSec={currentSec}
-          courseId={courseId}
-          lessonId={id}
-          />} />
+          <Route
+            path="notes"
+            element={
+              <NotesTab
+                currentSec={currentSec}
+                courseId={courseId}
+                lessonId={id}
+              />
+            }
+          />
           <Route path="announcements" element={<AnnouncementsTab />} />
           <Route
             path="reviews"

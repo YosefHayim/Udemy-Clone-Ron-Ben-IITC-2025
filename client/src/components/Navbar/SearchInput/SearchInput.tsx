@@ -25,7 +25,7 @@ const SearchInput = () => {
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedTerm(searchTerm);
-    }, 300); // Adjust debounce delay as needed
+    }, 100); // Adjust debounce delay as needed
     return () => clearTimeout(handler);
   }, [searchTerm]);
 
@@ -48,16 +48,16 @@ const SearchInput = () => {
     setIsTyping(false);
   }, [location.pathname]);
 
-  const limit = null;
-  const page = null;
+  let page = null;
+  let limit = null;
 
-  const { data, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ["courses", debouncedTerm, page],
     queryFn: () => {
       if (!debouncedTerm) {
         throw new Error("Search term is undefined");
       }
-      return getAllCourses(debouncedTerm, limit, page);
+      return getAllCourses(debouncedTerm);
     },
     enabled: !!debouncedTerm,
   });

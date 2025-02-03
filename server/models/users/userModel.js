@@ -110,14 +110,18 @@ const userSchema = new mongoose.Schema(
     wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     coursesBought: [
       {
-        course: { type: mongoose.Schema.ObjectId, ref: "Course" },
+        _id: false,
+        courseName: {
+          type: String,
+          required: [true, "Course must have a related name."],
+        },
+        courseId: {
+          type: mongoose.Schema.ObjectId,
+          ref: "Course",
+          required: [true, "Course ID is required"],
+        },
         boughtAt: { type: Date, default: Date.now },
         coursePrice: { type: Number, default: 0 },
-      },
-    ],
-    recentSearches: [
-      {
-        type: String,
       },
     ],
     fieldLearning: {
@@ -134,7 +138,6 @@ const userSchema = new mongoose.Schema(
       },
     },
     coursesCreated: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
-    orders: [{ type: mongoose.Schema.ObjectId, ref: "Order" }],
     payments: [{ type: mongoose.Schema.ObjectId, ref: "Payment" }],
     certificatesEarned: [
       { type: mongoose.Schema.ObjectId, ref: "Certificate" },
