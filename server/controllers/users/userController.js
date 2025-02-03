@@ -787,9 +787,33 @@ const googleLogin = catchAsync(async (req, res, next) => {
 });
 
 const me = catchAsync(async (req, res, next) => {
+  const user = req.user;
+
+  const token = generateToken({
+    id: user._id,
+    fullName: user.fullName,
+    email: user.email,
+    profilePic: user.profilePic,
+    bio: user.bio,
+    role: user.role,
+    coursesBought: user.coursesBought,
+    udemyCredits: user.udemyCredits,
+    language: user.preferredLanguage,
+    headline: user.headline,
+    fieldLearning: user.fieldLearning,
+  });
+
+  res.cookie("cookie", token, {
+    maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
+    secure: process.env.NODE_ENV === "production", // Only HTTPS in production
+    httpOnly: false, // Restrict JavaScript access for security
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
+    path: "/", // Ensure the cookie is available across the entire site
+  });
+
   res.status(200).json({
     status: "success",
-    data: req.user,
+    response: "cookie has been updated",
   });
 });
 

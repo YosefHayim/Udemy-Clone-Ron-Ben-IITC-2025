@@ -48,16 +48,16 @@ const SearchInput = () => {
     setIsTyping(false);
   }, [location.pathname]);
 
-  const limit = null;
-  const page = null;
+  let page = null;
+  let limit = null;
 
-  const { data, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ["courses", debouncedTerm, page],
     queryFn: () => {
       if (!debouncedTerm) {
         throw new Error("Search term is undefined");
       }
-      return getAllCourses(debouncedTerm, limit, page);
+      return getAllCourses(debouncedTerm, (limit = 13), (page = 1));
     },
     enabled: !!debouncedTerm,
   });

@@ -29,13 +29,15 @@ dotenv.config();
 const router = express.Router();
 
 router.param("id", (req, res, next, val) => {
-  // console.log(`ID is: ${val}`);
+  console.log(`ID is: ${val}`);
   next();
 });
 
 // get all users
 router.get("/", getAllUsers);
-router.get("/me", grantedAccess, me);
+
+// refresh cookie data
+router.post("/me", grantedAccess, me);
 
 // join course by course id
 router.post("/add/course/:id", grantedAccess, joinCourseById);
