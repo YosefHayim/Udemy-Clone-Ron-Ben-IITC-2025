@@ -44,7 +44,7 @@ const ItemInCart = ({
   });
 
   if (error) {
-    return <div>Error loading course data</div>;
+    return navigate("/not/found");
   }
 
   if (isPending) {
