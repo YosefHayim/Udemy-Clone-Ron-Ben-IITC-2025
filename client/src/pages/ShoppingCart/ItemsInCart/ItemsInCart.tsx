@@ -22,7 +22,11 @@ const ItemsInCart: React.FC = () => {
       <hr className="w-full" />
       {coursesIdAdded && coursesIdAdded.length > 0 ? (
         coursesIdAdded.map((courseId) => (
-          <ItemInCart key={courseId} courseId={courseId} />
+          <ItemInCart
+            key={courseId}
+            courseId={courseId}
+            courseImgSize={`h-[5em] w-[8em]`}
+          />
         ))
       ) : (
         <p>Your cart is empty.</p>

@@ -55,7 +55,6 @@ const Checkout: React.FC = () => {
     mutationFn: refreshMe,
     onSuccess: () => {
       const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
-      console.log(decoded);
       dispatch(setCookie(cookie || ""));
       dispatch(setCoursesBought(decoded.coursesBought));
       dispatch(setUdemyCredits(decoded.udemyCredits));
@@ -67,8 +66,8 @@ const Checkout: React.FC = () => {
 
   const handleClick = () => {
     const courseId = coursesIds[0];
-    console.log(`course that has been added`, courseId);
     checkOutMutation.mutate(courseId);
+    refreshUserDataMutation.mutate();
   };
 
   return (
