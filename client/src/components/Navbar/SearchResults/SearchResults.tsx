@@ -6,6 +6,8 @@ import { useEffect } from "react";
 
 const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
   if (!data) {
+    console.log(`No data provided`);
+
     return;
   }
 
@@ -21,12 +23,14 @@ const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
     }
   }, [data]);
 
+  console.log(data);
+
   return (
     <div
       onClick={handleClick}
       className={`${
         isTyping ? "block" : "hidden"
-      } absolute top-[8%] left-[13%] z-[1000] w-[700px] border border-gray-100 bg-white `}
+      } absolute top-[80%] left-[13%] z-[1000] w-[640px] border border-gray-100 bg-white text-[0.6em]`}
     >
       {data.response?.slice(0, 13).map((result, index: number) => (
         <div key={result._id}>

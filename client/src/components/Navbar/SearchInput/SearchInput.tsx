@@ -57,7 +57,7 @@ const SearchInput = () => {
       if (!debouncedTerm) {
         throw new Error("Search term is undefined");
       }
-      return getAllCourses(debouncedTerm, limit, page);
+      return getAllCourses(debouncedTerm);
     },
     enabled: !!debouncedTerm,
   });

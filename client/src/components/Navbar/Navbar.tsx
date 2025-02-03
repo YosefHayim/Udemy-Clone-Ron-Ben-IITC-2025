@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import SearchInput from "./SearchInput/SearchInput";
 import LoginBtn from "./LoginBtn/LoginBtn";
