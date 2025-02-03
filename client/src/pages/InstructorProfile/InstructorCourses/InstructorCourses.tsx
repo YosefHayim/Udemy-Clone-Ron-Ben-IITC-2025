@@ -1,7 +1,9 @@
-import React from "react";
-
 const InstructorCourses = () => {
-  return <div>InstructorCourses</div>;
+  return (
+    <div className="w-full">
+      <b>My courses(10)</b>
+    </div>
+  );
 };
 
 export default InstructorCourses;

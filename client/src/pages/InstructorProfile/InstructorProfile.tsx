@@ -1,15 +1,9 @@
-import DescriptionOfInstructor from "./DescriptionOfInstructor/DescriptionOfInstructor";
 import Header from "./Header/Header";
-import InstructorCourses from "./InstructorCourses/InstructorCourses";
-import SocialLinks from "./SocialLinks/SocialLinks";
 
 const InstructorProfile = () => {
   return (
-    <div>
+    <div className="p-[3em] pl-[10em] w-[1000px]">
       <Header />
-      <DescriptionOfInstructor />
-      <SocialLinks />
-      <InstructorCourses />
     </div>
   );
 };
