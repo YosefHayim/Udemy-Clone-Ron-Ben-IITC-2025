@@ -48,7 +48,7 @@ const LearningGoals = () => {
         {features.map((feature, index) => (
           <div
             key={index}
-            className={`flex items-center p-6 border rounded-lg shadow-md ${
+            className={`hover:bg-gray-100 flex items-center p-6 border rounded-lg shadow-md ${
               index === 0 ? "border-purple-500" : "border-gray-200"
             }`}
           >

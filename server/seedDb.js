@@ -17,15 +17,18 @@ const videosToDisplay = require("./utils/videosToDisplay");
 const supportedCountries = require("./utils/supportedCountries");
 const algoSearch = require("./utils/algoSearch");
 const Instructor = require("./models/users/instructorModel");
+const CourseProgress = require("./models/courses/courseProgressModel");
 
 const clearCollections = async () => {
   await Promise.all([
     User.deleteMany(),
+    // CourseProgress.deletMany(),
     Course.deleteMany(),
     Section.deleteMany(),
     Lesson.deleteMany(),
     courseReviews.deleteMany(),
     ReportReview.deleteMany(),
+    Instructor.deleteMany(),
     InstructorComment.deleteMany(),
   ]);
   console.log("Cleared all collections.");
@@ -40,7 +43,7 @@ const createUsers = async () => {
   existingUsers.forEach((user) => generatedEmails.add(user.email));
 
   // Generate new users
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 5000; i++) {
     let email;
 
     // Ensure the email is unique (not in existing or newly generated emails)
@@ -101,7 +104,7 @@ const createCourses = async () => {
   const courses = [];
 
   for (const instructor of instructors) {
-    const numCourses = faker.number.int({ min: 6, max: 10 });
+    const numCourses = faker.number.int({ min: 2, max: 10 });
     console.log(
       `Assigning ${numCourses} courses to instructor: ${instructor.fullName}`
     );
@@ -308,7 +311,7 @@ const createLessons = async () => {
 
     console.log(`Creating lessons for section: ${section.title}...`);
 
-    const totalLessonsPerSection = faker.number.int({ min: 1, max: 1 }); // Randomize number of lessons
+    const totalLessonsPerSection = faker.number.int({ min: 1, max: 3 }); // Randomize number of lessons
     const createdLessons = [];
     let totalDurationForSection = 0;
 
@@ -455,7 +458,6 @@ const createReviews = async () => {
     }
 
     console.log("All reviews processed successfully.");
-    console.log(`total reviews created: ${students.length}.`);
   } catch (err) {
     console.error("Error during review creation:", err.message);
     throw err;
@@ -494,7 +496,7 @@ const createReportedReviews = async () => {
     throw new Error("No students found for reporting.");
   }
 
-  const totalReports = 1;
+  const totalReports = 100;
 
   for (let i = 0; i < totalReports; i++) {
     console.log(`Creating report ${i + 1}/${totalReports}...`);
@@ -714,27 +716,27 @@ const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
     console.log("Database connection established.");
-    // await clearCollections();
-    // console.log("Deleted all db.");
+    await clearCollections();
+    console.log("Deleted all db.");
 
-    // console.log("Seeding users...");
-    // const users = await createUsers();
-    // console.log(`${users.length} users created.`);
+    console.log("Seeding users...");
+    const users = await createUsers();
+    console.log(`${users.length} users created.`);
 
-    // console.log("Seeding courses...");
-    // const courses = await createCourses();
-    // console.log(`${courses.length} courses created.`);
+    console.log("Seeding courses...");
+    const courses = await createCourses();
+    console.log(`${courses.length} courses created.`);
 
-    // console.log("Seeding sections...");
-    // const sections = await createSections();
-    // console.log(`${sections.length} sections created.`);
+    console.log("Seeding sections...");
+    const sections = await createSections();
+    console.log(`${sections.length} sections created.`);
 
-    // console.log("Seeding lessons...");
-    // const lessons = await createLessons();
-    // console.log(`${lessons.length} lessons created.`);
+    console.log("Seeding lessons...");
+    const lessons = await createLessons();
+    console.log(`${lessons.length} lessons created.`);
 
-    // await simulateCoursePurchases();
-    // console.log("Simulate courses purchases completed");
+    await simulateCoursePurchases();
+    console.log("Simulate courses purchases completed");
 
     console.log("Seeding reviews...");
     const reviews = await createReviews();
