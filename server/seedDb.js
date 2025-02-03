@@ -39,7 +39,7 @@ const createUsers = async () => {
   existingUsers.forEach((user) => generatedEmails.add(user.email));
 
   // Generate new users
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 2000; i++) {
     let email;
 
     // Ensure the email is unique (not in existing or newly generated emails)
@@ -64,7 +64,6 @@ const createUsers = async () => {
         max: 6,
       }),
     });
-    console.log(users);
   }
 
   // Insert the new users into the database
@@ -79,106 +78,143 @@ const createUsers = async () => {
 };
 
 const createCourses = async () => {
+  console.log("Fetching instructors and students for course creation...");
+
   const instructors = await User.find({ role: "instructor" });
-  if (instructors.length === 0) {
+  if (!instructors.length) {
     throw new Error("No instructors found for course creation.");
   }
 
   const users = await User.find({ role: "student" });
-  if (users.length === 0) {
+  if (!users.length) {
     throw new Error("No students found for enrollment.");
   }
 
-  const amountOfCourses = 1000;
   const courses = [];
 
-  for (let i = 0; i < amountOfCourses; i++) {
-    console.log(`Creating course ${i + 1}/${amountOfCourses}...`);
-
-    const instructor = faker.helpers.arrayElement(instructors);
-    const parentCategory = faker.helpers.arrayElement(
-      Object.keys(courseCategories)
-    );
-    const subCategories = courseCategories[parentCategory].subCategories;
-    const subCategory = faker.helpers.arrayElement(Object.keys(subCategories));
-    const topic = faker.helpers.arrayElement(subCategories[subCategory]);
-
-    // Randomly select students to enroll in this course
-    const enrolledStudents = faker.helpers.arrayElements(
-      users,
-      faker.number.int({ min: 7, max: 15 })
+  for (const instructor of instructors) {
+    const numCourses = faker.number.int({ min: 6, max: 10 });
+    console.log(
+      `Assigning ${numCourses} courses to instructor: ${instructor.fullName}`
     );
 
-    const course = await Course.create({
-      courseName: faker.helpers.arrayElement(courseNames),
-      courseImg: faker.image.urlPicsumPhotos({
-        width: 640,
-        height: 480,
-        category: "education",
-      }),
-      courseRecapInfo: faker.lorem.words(10),
-      courseDescription: faker.lorem.paragraph(),
-      // courseFullPrice: faker.number.int({ min: 500, max: 1000 }),
-      // courseDiscountPrice: faker.number.int({ min: 50, max: 300 }),
-      courseFullPrice: 0,
-      courseDiscountPrice: 0,
-      whoThisCourseIsFor: faker.lorem.sentence(),
-      courseInstructorDescription: faker.lorem.paragraphs(10),
-      whatYouWillLearn: Array.from({ length: 8 }, () => faker.lorem.sentence()),
-      courseRequirements: Array.from({ length: 5 }, () =>
-        faker.lorem.sentence()
-      ),
-      category: parentCategory,
-      subCategory: subCategory,
-      courseTopic: topic,
-      courseLevel: faker.helpers.arrayElement([
-        "Beginner",
-        "Intermediate",
-        "Advanced",
-      ]),
-      courseLanguages: faker.helpers.arrayElement([
-        "English",
-        "Spanish",
-        "French",
-        "German",
-      ]),
-      courseTag: faker.helpers.arrayElement([
-        "Bestseller",
-        "Highest Rated",
-        "Hot and New",
-        "New",
-        "",
-      ]),
-      courseInstructor: instructor._id,
-      courseTrailer: faker.helpers.arrayElement(videosToDisplay),
-      moneyBackGuarantee: faker.date.soon(30),
-      averageRating: 0,
-      totalRatings: 0,
-      totalStudentsEnrolled: {
-        students: enrolledStudents.map((student) => student._id),
-        count: enrolledStudents.length,
-      },
-      certificateOnly: faker.datatype.boolean(),
-      isActive: true,
-      totalCourseDuration: 0,
-      totalCourseLessons: 0,
-      sections: [],
-      lessons: [],
-      reviews: [],
-    });
+    for (let i = 0; i < numCourses; i++) {
+      console.log(
+        `Creating course ${i + 1}/${numCourses} for instructor ${
+          instructor.fullName
+        }...`
+      );
 
-    // Update each user's `coursesBought` field with the created course
-    for (const student of enrolledStudents) {
-      student.coursesBought.push(course._id);
-      await student.save();
+      const parentCategory = faker.helpers.arrayElement(
+        Object.keys(courseCategories)
+      );
+      const subCategories = courseCategories[parentCategory].subCategories;
+      const subCategory = faker.helpers.arrayElement(
+        Object.keys(subCategories)
+      );
+      const topic = faker.helpers.arrayElement(subCategories[subCategory]);
+
+      const enrolledStudents = faker.helpers.arrayElements(
+        users,
+        faker.number.int({ min: 7, max: 15 })
+      );
+
+      const course = await Course.create({
+        courseName: faker.helpers.arrayElement(courseNames),
+        courseImg: faker.image.urlPicsumPhotos({
+          width: 640,
+          height: 480,
+          category: "education",
+        }),
+        courseRecapInfo: faker.lorem.words(10),
+        courseDescription: faker.lorem.paragraph(),
+        courseFullPrice: 0,
+        courseDiscountPrice: 0,
+        whoThisCourseIsFor: faker.lorem.sentence(),
+        courseInstructorDescription: faker.lorem.paragraphs(10),
+        whatYouWillLearn: Array.from({ length: 8 }, () =>
+          faker.lorem.sentence()
+        ),
+        courseRequirements: Array.from({ length: 5 }, () =>
+          faker.lorem.sentence()
+        ),
+        category: parentCategory,
+        subCategory: subCategory,
+        courseTopic: topic,
+        courseLevel: faker.helpers.arrayElement([
+          "Beginner",
+          "Intermediate",
+          "Advanced",
+        ]),
+        courseLanguages: faker.helpers.arrayElement([
+          "English",
+          "Spanish",
+          "French",
+          "German",
+        ]),
+        courseTag: faker.helpers.arrayElement([
+          "Bestseller",
+          "Highest Rated",
+          "Hot and New",
+          "New",
+          "",
+        ]),
+        courseInstructor: instructor._id,
+        courseTrailer: faker.helpers.arrayElement(videosToDisplay),
+        moneyBackGuarantee: faker.date.soon(30),
+        averageRating: 0,
+        totalRatings: 0,
+        totalStudentsEnrolled: {
+          students: enrolledStudents.map((student) => student._id),
+          count: enrolledStudents.length,
+        },
+        certificateOnly: faker.datatype.boolean(),
+        isActive: true,
+        totalCourseDuration: 0,
+        totalCourseLessons: 0,
+        sections: [],
+        lessons: [],
+        reviews: [],
+      });
+
+      if (!course || !course._id || !course.courseName) {
+        console.error(
+          "Course creation failed or returned incomplete data:",
+          course
+        );
+        return;
+      }
+
+      for (const student of enrolledStudents) {
+        if (!Array.isArray(student.coursesBought)) {
+          student.coursesBought = [];
+        }
+
+        student.coursesBought.push({
+          courseName: course.courseName,
+          courseId: course._id,
+          boughtAt: Date.now(),
+          coursePrice: course.courseDiscountPrice,
+        });
+
+        try {
+          await student.save();
+        } catch (error) {
+          console.error(
+            `Failed to update student ${student._id}:`,
+            error.message
+          );
+        }
+      }
+
+      courses.push(course);
+      console.log(`Course created: ${course.courseName}`);
     }
-
-    courses.push(course);
-    console.log(course.courseDiscountPrice, course.courseFullPrice);
-    console.log(`Course ${i + 1} created: ${course.courseName}`);
   }
 
-  console.log("Courses created successfully.");
+  console.log(
+    `Courses created successfully. Total courses assigned: ${courses.length}`
+  );
   return courses;
 };
 
@@ -193,7 +229,7 @@ const createSections = async () => {
   const sections = [];
 
   for (const course of courses) {
-    const numSections = faker.number.int({ min: 2, max: 3 }); // Random number of sections per course
+    const numSections = faker.number.int({ min: 1, max: 3 }); // Random number of sections per course
     const createdSections = [];
 
     for (let i = 0; i < numSections; i++) {
@@ -258,7 +294,7 @@ const createLessons = async () => {
 
     console.log(`Creating lessons for section: ${section.title}...`);
 
-    const totalLessonsPerSection = faker.number.int({ min: 2, max: 4 }); // Randomize number of lessons
+    const totalLessonsPerSection = faker.number.int({ min: 1, max: 4 }); // Randomize number of lessons
     const createdLessons = [];
     let totalDurationForSection = 0;
 
@@ -610,8 +646,8 @@ const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
     console.log("Database connection established.");
-    // await clearCollections();
-    // console.log("Deleted all db.");
+    await clearCollections();
+    console.log("Deleted all db.");
 
     console.log("Seeding users...");
     const users = await createUsers();
