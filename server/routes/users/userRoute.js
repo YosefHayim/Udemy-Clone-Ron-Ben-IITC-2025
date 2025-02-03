@@ -37,7 +37,7 @@ router.param("id", (req, res, next, val) => {
 router.get("/", getAllUsers);
 
 // refresh cookie data
-router.post("/me", me);
+router.post("/me", grantedAccess, me);
 
 // join course by course id
 router.post("/add/course/:id", grantedAccess, joinCourseById);
