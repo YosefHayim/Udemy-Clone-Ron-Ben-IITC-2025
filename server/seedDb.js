@@ -139,8 +139,10 @@ const createCourses = async () => {
         }),
         courseRecapInfo: faker.lorem.words(10),
         courseDescription: faker.lorem.paragraph(),
-        courseFullPrice: 0,
-        courseDiscountPrice: 0,
+        // courseFullPrice: 0,
+        // courseDiscountPrice: 0,
+        courseFullPrice: faker.number.int({ min: 500, max: 800 }),
+        courseDiscountPrice: faker.number.int({ min: 100, max: 300 }),
         whoThisCourseIsFor: faker.lorem.sentence(),
         courseInstructorDescription: faker.lorem.paragraphs(10),
         whatYouWillLearn: Array.from({ length: 8 }, () =>
@@ -716,16 +718,16 @@ const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
     console.log("Database connection established.");
-    await clearCollections();
-    console.log("Deleted all db.");
+    // await clearCollections();
+    // console.log("Deleted all db.");
 
-    console.log("Seeding users...");
-    const users = await createUsers();
-    console.log(`${users.length} users created.`);
+    // console.log("Seeding users...");
+    // const users = await createUsers();
+    // console.log(`${users.length} users created.`);
 
-    console.log("Seeding courses...");
-    const courses = await createCourses();
-    console.log(`${courses.length} courses created.`);
+    // console.log("Seeding courses...");
+    // const courses = await createCourses();
+    // console.log(`${courses.length} courses created.`);
 
     console.log("Seeding sections...");
     const sections = await createSections();
