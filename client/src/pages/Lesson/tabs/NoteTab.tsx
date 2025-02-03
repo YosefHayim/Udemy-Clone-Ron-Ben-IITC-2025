@@ -14,6 +14,9 @@ import "react-quill/dist/quill.snow.css";
 import { FaCirclePlus } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa6";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { DeleteNoteDialog } from "../comp/dialog";
+
 
 interface NotesTabProps {
   currentSec: number;
@@ -32,7 +35,9 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
   const [showEditor, setShowEditor] = useState(false); // State to toggle editor visibility
   const [editingNoteId, setEditingNoteId] = useState<string | null>(null); // Track which note is being edited
   const [editingContent, setEditingContent] = useState<string>(""); // Track the content being edited  
+  const [noteToDelete, setNoteToDelete] = useState<string | null>(null);
   const queryClient = useQueryClient();
+
 
   const { data: notes, isLoading, isError } = useQuery({
     queryKey: ["notes", courseId],
@@ -83,11 +88,9 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
 
   // Function to handle deleting a note
   const handleDeleteNote = (noteId: string) => {
-    const confirmed = window.confirm("Are you sure you want to delete this note?");
-    if (confirmed) {
-      noteMutation.mutate({ action: "delete", noteId });
-    }
+    setNoteToDelete(noteId);
   };
+
 
     const startEditing = (noteId: string, text: string) => {
     setEditingNoteId(noteId);
@@ -107,10 +110,7 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
     setEditingNoteId(null); // Close editor after saving
   };
 
-  const cancelEditing = () => {
-    setEditingNoteId(null);
-    setEditingContent("");
-  };
+
 
 
   return (
@@ -127,7 +127,7 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
         ) : (
           <div className="flex items-center justify-center">
                   <span className="relative self-start px-2 mr-2 rounded-3xl text-white bg-black text-sm">
-                  {formatTime(currentSec)}
+              {formatTime(currentSec)}
             </span>
             <div className="min-w-full rounded-sm p-4 mb-4">
             <ReactQuill value={content} onChange={setContent} placeholder="Write something..." theme="snow" />
@@ -177,10 +177,22 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
                           className="mr-2 text-[#303141] text-xl p-1 rounded-md hover:bg-[#E6E6E8]"
                           onClick={() => startEditing(note.noteId, note.text)}
                         />
-                        <FaTrash
-                          className="mr-2 text-[#303141] cursor-pointer text-xl p-1 rounded-md hover:bg-[#E6E6E8]"
-                          onClick={() => handleDeleteNote(note.noteId)}
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <FaTrash
+                            className="mr-2 text-[#303141] cursor-pointer text-xl p-1 rounded-md hover:bg-[#E6E6E8]"
+                            onClick={() => setNoteToDelete(note.noteId)}
+                          />
+                        </DialogTrigger>
+                        <DeleteNoteDialog
+                          onConfirm={() => {
+                            if (noteToDelete) {
+                              noteMutation.mutate({ action: "delete", noteId: noteToDelete });
+                              setNoteToDelete(null);
+                            }
+                          }}
                         />
+                      </Dialog>
                       </span>
                     </div>
 {/* Show ReactQuill editor if this note is being edited */}

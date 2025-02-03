@@ -1,6 +1,4 @@
-import { Copy } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -9,48 +7,28 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/dialog";
 
-export function DialogCloseButton() {
+export function DeleteNoteDialog({ onConfirm }: { onConfirm: () => void }) {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">Share</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Share link</DialogTitle>
-          <DialogDescription>
-            Anyone who has this link will be able to view this.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="flex items-center space-x-2">
-          <div className="grid flex-1 gap-2">
-            <Label htmlFor="link" className="sr-only">
-              Link
-            </Label>
-            <Input
-              id="link"
-              defaultValue="https://ui.shadcn.com/docs/installation"
-              readOnly
-            />
-          </div>
-          <Button type="submit" size="sm" className="px-3">
-            <span className="sr-only">Copy</span>
-            <Copy />
-          </Button>
-        </div>
-        <DialogFooter className="sm:justify-start">
-          <DialogClose asChild>
-            <Button type="button" variant="secondary">
-              Close
-            </Button>
-          </DialogClose>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  )
+    <DialogContent className="sm:max-w-md p-6 rounded-lg shadow-lg">
+      <DialogHeader>
+        <DialogTitle className="text-lg font-semibold">Please confirm</DialogTitle>
+      </DialogHeader>
+      <DialogDescription className="text-gray-600 text-sm">
+        Are you sure you want to delete your note?
+      </DialogDescription>
+      <DialogFooter className="flex justify-end gap-4 mt-4">
+        <DialogClose asChild>
+          <Button variant="outline" className="text-gray-700">Cancel</Button>
+        </DialogClose>
+        <Button
+          onClick={onConfirm}
+          className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
+        >
+          OK
+        </Button>
+      </DialogFooter>
+    </DialogContent>
+  );
 }
