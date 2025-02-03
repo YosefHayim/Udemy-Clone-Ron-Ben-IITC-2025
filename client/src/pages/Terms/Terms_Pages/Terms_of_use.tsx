@@ -1,7 +1,6 @@
 const Terms_of_use = () => {
     return (
         <>
-            <div className="px-[12rem]">
                 <div className="p-6 bg-white rounded-lg ">
                     <h1 className="text-3xl font-bold mb-4">Terms of Use</h1>
                     <p className="text-base text-gray-800 font-semibold italic mb-4">
@@ -1178,7 +1177,6 @@ const Terms_of_use = () => {
                         Thanks for teaching and learning with us!
                     </p>
                 </div>
-            </div>
 
         </>
     )

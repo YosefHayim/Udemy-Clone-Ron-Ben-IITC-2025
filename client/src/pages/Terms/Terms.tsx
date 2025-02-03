@@ -10,7 +10,7 @@ import Promotions from "./Terms_Pages/Promotions";
 import Api_agreement from "./Terms_Pages/Api_agreement";
 import Business_statment from "./Terms_Pages/Business_statment";
 import Affiliate from "./Terms_Pages/Affiliate";
-import Privacy_policy from "./Terms_Pages/Privacy_policy";
+import Privacy_policy2 from "./Terms_Pages/Privacy_policy2";
 import Master from "./Terms_Pages/Master";
 
 // Adicione os outros componentes conforme necessário
@@ -23,7 +23,7 @@ const Terms = () => {
             case "Terms of Use":
                 return <Terms_of_use />;
             case "Privacy Policy":
-                return <Privacy_policy />;
+                return <Privacy_policy2 />;
             case "Intellectual Property Policy":
                 return <Intellectual />;
             case "Udemy API Agreement":
@@ -58,7 +58,7 @@ const Terms = () => {
 
             {/* Área de Conteúdo */}
             <div
-                className="flex-1 h-screen overflow-y-scroll custom-scrollbar"
+                className="flex-1 h-screen overflow-y-scroll custom-scrollbar px-[12rem]"
                 style={{
                     scrollbarWidth: "none", // Firefox
                     msOverflowStyle: "none", // IE e Edge
