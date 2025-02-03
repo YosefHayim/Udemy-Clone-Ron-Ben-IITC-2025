@@ -30,6 +30,8 @@ const formatTime = (seconds: number): string => {
 const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) => {
   const [content, setContent] = useState(""); // State for notes content
   const [showEditor, setShowEditor] = useState(false); // State to toggle editor visibility
+  const [editingNoteId, setEditingNoteId] = useState<string | null>(null); // Track which note is being edited
+  const [editingContent, setEditingContent] = useState<string>(""); // Track the content being edited  
   const queryClient = useQueryClient();
 
   const { data: notes, isLoading, isError } = useQuery({
@@ -57,7 +59,9 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
     onSuccess: () => {
       queryClient.invalidateQueries(["notes", courseId]);
       setShowEditor(false);
-      setContent(""); // Reset content after successful mutation
+      setContent("");
+      setEditingNoteId(null);
+      // Reset content after successful mutation
     },
     onError: (error: any) => {
       console.error("Failed to process note:", error.message);
@@ -85,18 +89,29 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
     }
   };
 
-  // Function to handle editing a note
-  const handleEditNote = (noteId: string, updatedText: string) => {
-    if (!updatedText.trim()) {
+    const startEditing = (noteId: string, text: string) => {
+    setEditingNoteId(noteId);
+    setEditingContent(text);
+  };
+
+  const saveEditedNote = (noteId: string) => {
+    if (!editingContent.trim()) {
       alert("Cannot save an empty note.");
       return;
     }
     noteMutation.mutate({
       action: "edit",
       noteId,
-      text: updatedText,
+      text: editingContent,
     });
+    setEditingNoteId(null); // Close editor after saving
   };
+
+  const cancelEditing = () => {
+    setEditingNoteId(null);
+    setEditingContent("");
+  };
+
 
   return (
     <div id="notes" className="min-w-full px-80">
@@ -115,32 +130,17 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
               {formatTime(currentSec)}
             </span>
             <div className="min-w-full rounded-sm p-4 mb-4">
-              <ReactQuill
-                value={content}
-                onChange={setContent}
-                modules={{
-                  toolbar: [
-                    [{ header: [1, 2, 3, false] }],
-                    ["bold", "italic", "underline", "strike"],
-                    [{ list: "ordered" }, { list: "bullet" }],
-                    ["code-block"],
-                    ["clean"],
-                  ],
-                }}
-                placeholder="Write something amazing..."
-                theme="snow"
-                className="custom-quill"
-              />
+            <ReactQuill value={content} onChange={setContent} placeholder="Write something..." theme="snow" />
               <div className="flex justify-end gap-4 mt-4">
                 <button
                   onClick={() => setShowEditor(false)}
-                  className="px-6 py-2 text-gray-700 rounded hover:bg-gray-400 transition duration-300"
+                  className="px-6 py-2 text-gray-700 rounded font-extrabold hover:bg-gray-400 transition duration-300"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleAddNote}
-                  className="px-6 py-2 bg-[#6D28D2] text-white rounded hover:bg-[#892DE1] transition duration-300"
+                  className="px-6 py-2 bg-[#6D28D2] text-white font-extrabold rounded hover:bg-[#892DE1] transition duration-300"
                   disabled={noteMutation.isLoading}
                 >
                   {noteMutation.isLoading ? "Saving..." : "Save Note"}
@@ -175,7 +175,7 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
                       <span className="flex gap-2">
                         <FaPen
                           className="mr-2 text-[#303141] text-xl p-1 rounded-md hover:bg-[#E6E6E8]"
-                          onClick={() => handleEditNote(note.noteId, note.text)}
+                          onClick={() => startEditing(note.noteId, note.text)}
                         />
                         <FaTrash
                           className="mr-2 text-[#303141] cursor-pointer text-xl p-1 rounded-md hover:bg-[#E6E6E8]"
@@ -183,12 +183,50 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
                         />
                       </span>
                     </div>
-                    <div className="flex bg-[#F6F7F9] border min-w-full p-6 my-3">
-                      <div dangerouslySetInnerHTML={{ __html: note.text }} className="text-gray-800" />
-                    </div>
-                  </div>
-                </div>
-              ))}
+{/* Show ReactQuill editor if this note is being edited */}
+{editingNoteId === note.noteId ? (
+        <div className="flex flex-col bg-[#F6F7F9] border min-w-full p-6 my-3">
+          <ReactQuill
+            value={editingContent}
+            onChange={setEditingContent}
+            modules={{
+              toolbar: [
+                [{ header: [1, 2, 3, false] }],
+                ["bold", "italic", "underline", "strike"],
+                [{ list: "ordered" }, { list: "bullet" }],
+                ["code-block"],
+                ["clean"],
+              ],
+            }}
+            placeholder="Edit your note..."
+            theme="snow"
+            className="custom-quill"
+          />
+          <div className="flex justify-end gap-4 mt-4">
+            <button
+              onClick={() => setEditingNoteId(null)}
+              className="px-6 py-2 text-gray-700 rounded hover:bg-gray-400 transition duration-300"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => saveEditedNote(note.noteId)}
+              className="px-6 py-2 bg-[#6D28D2] text-white rounded hover:bg-[#892DE1] transition duration-300"
+              disabled={noteMutation.isLoading}
+            >
+              {noteMutation.isLoading ? "Saving..." : "Save"}
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="flex bg-[#F6F7F9] border min-w-full p-6 my-3">
+          <div dangerouslySetInnerHTML={{ __html: note.text }} className="text-gray-800" />
+        </div>
+      )}
+    </div>
+  </div>
+))}
+
             </div>
           ) : (
             <p>Click the "Create a new note" box to make your first note.</p>
