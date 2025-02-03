@@ -13,13 +13,14 @@ import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { useEffect } from "react";
-import { BsFire } from "react-icons/bs";
 import { IoMdLock } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Checkout: React.FC = () => {
+const Checkout: React.FC = ({ isPaypal }) => {
+  console.log(isPaypal);
+
   const cookie = Cookies.get("cookie");
 
   const dispatch = useDispatch();
@@ -65,9 +66,9 @@ const Checkout: React.FC = () => {
   });
 
   const handleClick = () => {
-    const courseId = coursesIds[0];
-    checkOutMutation.mutate(courseId);
-    refreshUserDataMutation.mutate();
+    // const courseId = coursesIds[0];
+    // checkOutMutation.mutate(courseId);
+    // refreshUserDataMutation.mutate();
   };
 
   return (
@@ -85,7 +86,7 @@ const Checkout: React.FC = () => {
               <b>Total</b>
               <p>({totalCourses} course)</p>
             </div>
-            <b>₪{totalToPay?.toFixed(2) || 0}</b>
+            {isPaypal ? <b>Proceed</b> : <b>₪{totalToPay?.toFixed(2) || 0}</b>}
           </div>
         </div>
         <div className="mb-[1em] w-[350px]">
