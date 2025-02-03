@@ -409,6 +409,8 @@ const resendEmailVerificationToken = catchAsync(async (req, res, next) => {
 const joinCourseById = catchAsync(async (req, res, next) => {
   const courseId = req.params.id;
 
+  console.log(courseId);
+
   const user = req.user;
 
   if (!user) {
@@ -422,6 +424,8 @@ const joinCourseById = catchAsync(async (req, res, next) => {
   }
 
   const course = await Course.findOne({ _id: courseId });
+
+  console.log(course);
 
   if (!course) {
     return next(createError(`No course exists with this ID: ${courseId}`, 404));
@@ -446,6 +450,8 @@ const joinCourseById = catchAsync(async (req, res, next) => {
     courseId: courseId,
   });
 
+  console.log(existingProgress);
+
   if (existingProgress) {
     return next(createError("You already have progress for this course.", 400));
   }
@@ -460,10 +466,14 @@ const joinCourseById = catchAsync(async (req, res, next) => {
     boughtAt: new Date(),
   });
 
+  console.log(user.coursesBought);
+
   const initCourseProgress = await courseProgress.create({
     userId: user._id,
     courseId: courseId,
   });
+
+  console.log(initCourseProgress);
 
   user.udemyCredits -= course.courseDiscountPrice;
   await user.save();
