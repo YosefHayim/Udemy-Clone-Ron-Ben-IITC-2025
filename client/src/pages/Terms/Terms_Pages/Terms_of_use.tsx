@@ -1,26 +1,26 @@
 const Terms_of_use = () => {
     return (
         <>
-            <div className="px-[15rem]">
+            <div className="px-[12rem]">
                 <div className="p-6 bg-white rounded-lg ">
                     <h1 className="text-3xl font-bold mb-4">Terms of Use</h1>
-                    <p className="text-sm text-gray-500 mb-4">
-                        These Terms of Use ("Terms") were last updated on November 12, 2024.
+                    <p className="text-base text-gray-800 font-semibold italic mb-4">
+                        These Terms of Use (<span className="font-bold">"Terms"</span>) were last updated on November 12, 2024.
                     </p>
-                    <p className="text-lg font-semibold mb-4">
+                    <p className="text-base font-bold mb-4">
                         Please review these Terms carefully as they serve as an enforceable
                         contract between us and contain important information about your legal
                         rights, remedies, and obligations.
                     </p>
-                    <div className="bg-gray-100 p-4 rounded-lg mb-4">
-                        <p className="text-sm text-gray-700">
-                            IF YOU LIVE IN THE UNITED STATES OR CANADA, BY AGREEING TO THESE TERMS,
-                            YOU AGREE TO RESOLVE ALL DISPUTES WITH UDEMY IN SMALL CLAIMS COURT OR
-                            THROUGH BINDING INDIVIDUAL ARBITRATION ONLY, AND YOU WAIVE THE RIGHT TO
-                            PARTICIPATE IN ANY CLASS ACTIONS AND TO HAVE CLAIMS DECIDED BY A JURY,
-                            AS EXPLAINED IN THE DISPUTE RESOLUTION SECTION.
-                        </p>
-                    </div>
+
+                    <p className="text-base font-bold text-[#303141] mb-4">
+                        IF YOU LIVE IN THE UNITED STATES OR CANADA, BY AGREEING TO THESE TERMS,
+                        YOU AGREE TO RESOLVE ALL DISPUTES WITH UDEMY IN SMALL CLAIMS COURT OR
+                        THROUGH BINDING INDIVIDUAL ARBITRATION ONLY, AND YOU WAIVE THE RIGHT TO
+                        PARTICIPATE IN ANY CLASS ACTIONS AND TO HAVE CLAIMS DECIDED BY A JURY,
+                        AS EXPLAINED IN THE DISPUTE RESOLUTION SECTION.
+                    </p>
+
                     <p className="text-base text-gray-700 mb-4">
                         Udemy’s mission is to improve lives through learning. We enable anyone
                         anywhere to create and share educational content (instructors) and to
