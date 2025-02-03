@@ -47,7 +47,6 @@ const Checkout: React.FC = () => {
     onSuccess: () => {
       setTimeout(() => {
         dispatch(setClearAll());
-        refreshUserDataMutation.mutate();
       }, 2000);
     },
   });
