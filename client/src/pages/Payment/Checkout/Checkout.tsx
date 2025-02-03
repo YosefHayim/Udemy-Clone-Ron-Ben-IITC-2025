@@ -45,15 +45,16 @@ const Checkout: React.FC = () => {
   const checkOutMutation = useMutation({
     mutationFn: buyCourseById,
     onSuccess: () => {
-      dispatch(setClearAll());
-      refreshUserDataMutation.mutate();
+      setTimeout(() => {
+        dispatch(setClearAll());
+        refreshUserDataMutation.mutate();
+      }, 2000);
     },
   });
 
   const refreshUserDataMutation = useMutation({
     mutationFn: refreshMe,
     onSuccess: () => {
-      console.log(`successfully refreshed data`);
       const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
       console.log(decoded);
       dispatch(setCookie(cookie || ""));
@@ -68,7 +69,6 @@ const Checkout: React.FC = () => {
   const handleClick = () => {
     const courseId = coursesIds[0];
     console.log(`course that has been added`, courseId);
-
     checkOutMutation.mutate(courseId);
   };
 

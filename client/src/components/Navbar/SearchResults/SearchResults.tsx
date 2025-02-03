@@ -25,8 +25,6 @@ const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
     }
   }, [data]);
 
-  console.log(data);
-
   return (
     <div
       onClick={handleClick}

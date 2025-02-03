@@ -44,9 +44,10 @@ const grantedAccess = catchAsync(async (req, res, next) => {
 
   // Verify token
   const decoded = verifyToken(token);
+  console.log(`decoded data: `, decoded.id);
 
   // Check if the user still exists
-  const currentUser = await User.findById(decoded.id);
+  const currentUser = await User.findOne({ _id: decoded.id });
 
   if (!currentUser) {
     return next(
