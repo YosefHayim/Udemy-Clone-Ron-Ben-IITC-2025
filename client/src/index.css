@@ -6,32 +6,32 @@
 
 @font-face {
   font-family: "lifeLtstd";
-  src: url("../public/fonts/lifeltstd-bold.otf");
+  src: url("/fonts/ifeltstd-bold.otf");
 }
 
 @font-face {
   font-family: "Aksara";
-  src: url("../public/fonts/aksara/Fontspring-DEMO-aksara-regular.otf");
+  src: url("/fonts/aksara/Fontspring-DEMO-aksara-regular.otf");
 }
 
 @font-face {
   font-family: "Aksara bold";
-  src: url("../public/fonts/aksara/Fontspring-DEMO-aksara-bold.otf");
+  src: url("/fonts/aksara/Fontspring-DEMO-aksara-bold.otf");
 }
 
 @font-face {
   font-family: "Aksara light";
-  src: url("../public/fonts/aksara/Fontspring-DEMO-aksara-light.otf");
+  src: url("/fonts/aksara/Fontspring-DEMO-aksara-light.otf");
 }
 
 @font-face {
   font-family: "Armin Grotesk";
-  src: url("../public/fonts/armin-grotesk/Fontspring-DEMO-armingrotesk-black.otf");
+  src: url("/fonts/armin-grotesk/Fontspring-DEMO-armingrotesk-black.otf");
 }
 
 @font-face {
   font-family: "Narin Black";
-  src: url("../public/fonts/Narin/NarinBlack.otf");
+  src: url("/fonts/fonts/Narin/NarinBlack.otf");
 }
 
 :root {

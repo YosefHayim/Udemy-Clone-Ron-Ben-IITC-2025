@@ -420,8 +420,6 @@ const joinCourseById = catchAsync(async (req, res, next) => {
 
   const course = await Course.findOne({ _id: courseId });
 
-  console.log("Course fetched:", course);
-
   if (!course) {
     return next(createError(`No course exists with this ID: ${courseId}`, 404));
   }

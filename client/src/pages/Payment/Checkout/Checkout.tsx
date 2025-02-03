@@ -2,6 +2,7 @@ import buyCourseById from "@/api/users/buyCourseId";
 import { Button } from "@/components/ui/button";
 import { RootState } from "@/redux";
 import { setClearAll } from "@/redux/slices/cartSlice";
+import { setCoursesBought } from "@/redux/slices/userSlice";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { BsFire } from "react-icons/bs";
@@ -35,7 +36,8 @@ const Checkout: React.FC = () => {
     mutationFn: buyCourseById,
     onSuccess: () => {
       setTimeout(() => {
-        // dispatch(setClearAll());
+        dispatch(setClearAll());
+        dispatch(setCoursesBought(coursesIds));
         navigate(`/course-view/${coursesIds[0]}`);
       }, 2000);
     },
