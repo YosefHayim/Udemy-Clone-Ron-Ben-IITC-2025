@@ -32,8 +32,9 @@ import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
 import VerifyCode from "../pages/Login/VerifyCode";
 import InstructorProfile from "@/pages/InstructorProfile/InstructorProfile";
 import PersonalizeField from "@/pages/PersonalizeField/PersonalizeField";
-import LoginBusiness from "@/pages/Login/LoginBusiness";
+// import LoginBusiness from "@/pages/Login/LoginBusiness";
 import Terms from "../pages/Terms/Terms";
+import SearchNotFound from "@/pages/Search/SearchNotFound/SearchNotFound";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
@@ -210,7 +211,7 @@ const AppRoutes: React.FC = () => {
                   path="/Terms-of-Use"
                   element={<Terms />} 
                 />
-              </Routes>
+              </Routes>       
               <Footer />
             </>
           }
