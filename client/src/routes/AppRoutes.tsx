@@ -209,9 +209,9 @@ const AppRoutes: React.FC = () => {
                 />
                 <Route
                   path="/Terms-of-Use"
-                  element={<Terms />} 
+                  element={<Terms />}
                 />
-              </Routes>       
+              </Routes>
               <Footer />
             </>
           }
