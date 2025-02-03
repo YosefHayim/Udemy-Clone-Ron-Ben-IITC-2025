@@ -13,9 +13,11 @@ const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
 
   const navigate = useNavigate();
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const courseId = (e.target as HTMLElement).closest("div")?.id;
-    navigate(`/course-view/${courseId}`);
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as HTMLElement;
+    const courseId = target.id || target.closest("div")?.id;
+
+    if (courseId) navigate(`/course-view/${courseId}`);
   };
 
   useEffect(() => {
