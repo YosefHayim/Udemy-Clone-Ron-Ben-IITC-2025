@@ -148,10 +148,6 @@ const userSchema = new mongoose.Schema(
 
 module.exports = mongoose.model("User", userSchema);
 
-userSchema.pre(/^find/, function (next) {
-  this.populate("cou");
-});
-
 // Pre-save hook to remove duplicate course entries
 userSchema.pre("save", function (next) {
   // Create a set to ensure uniqueness based on the `course` field
