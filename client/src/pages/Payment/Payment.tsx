@@ -6,16 +6,18 @@ import PaymentOptionsRadio from "./PaymentOptionsRadio/PaymentOptionsRadio";
 import OrderDetails from "./OrderDetails/OrderDetails";
 import { useEffect, useState } from "react";
 import Loader from "@/components/Loader/Loader";
+import { usePayPalScriptReducer } from "@paypal/react-paypal-js";
 
 const Payment: React.FC = () => {
   document.title = "Checkout | Udemy";
   const [loading, setLoading] = useState(true);
+  const [{ options }] = usePayPalScriptReducer();
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 1000);
-  });
+  }, [options?.isPaypal]);
 
   return (
     <div>
@@ -38,7 +40,7 @@ const Payment: React.FC = () => {
               </div>
             </div>
             <div className="w-[45%] bg-[#f6f7f9]">
-              <Checkout />
+              <Checkout isPaypal={options?.isPaypal} />
             </div>
           </div>
         </div>

@@ -3,12 +3,25 @@ import { AiFillCreditCard } from "react-icons/ai";
 import PaymentOption from "../PaymentOption/PaymentOption";
 import GPayIcon from "../GPayIcon/GPayIcon";
 import PayPalIcon from "../PayPalIcon/PayPalIcon";
+import { usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { useDispatch } from "react-redux";
 
 const PaymentOptionsRadio: React.FC = () => {
+  const dispatch = useDispatch();
   const [activeOption, setActiveOption] = useState<string | null>(null); // Tracks the active option
+  const [{ options }] = usePayPalScriptReducer();
 
   const handleToggle = (option: string | null): void => {
     setActiveOption((prev) => (prev === option ? null : option)); // Toggle open/close
+
+    const newIsPaypal = option === "paypal" ? !options.isPaypal : false; // Toggle PayPal
+
+    dispatch({
+      type: "resetOptions",
+      value: { ...options, isPaypal: newIsPaypal },
+    });
+
+    console.log("PayPal toggled:", newIsPaypal);
   };
 
   return (

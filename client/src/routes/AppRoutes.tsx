@@ -32,10 +32,11 @@ import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
 import VerifyCode from "../pages/Login/VerifyCode";
 import InstructorProfile from "@/pages/InstructorProfile/InstructorProfile";
 import PersonalizeField from "@/pages/PersonalizeField/PersonalizeField";
-// import LoginBusiness from "@/pages/Login/LoginBusiness";
 import Terms from "../pages/Terms/Terms";
 import SearchNotFound from "@/pages/Search/SearchNotFound/SearchNotFound";
 import ReceiptCart from "@/components/Navbar/DropDownMenu/PurchaseHistory/ReceiptCart/ReceiptCart";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+// import LoginBusiness from "@/pages/Login/LoginBusiness";
 
 export const filterContext = createContext<FilterDataProps>({
   sortBy: "",
@@ -61,6 +62,13 @@ export const personalizeContent = createContext({
   occupation: "",
   progressBar: 25,
 });
+
+const initialOptions = {
+  clientId: `AWBvZAvKH5izd24F1JfMsToGlmQP5hvDtnAPLWOP8TJ0qif2nRpYrnKesjNZaDl8IfuJ_QibFfai0ahB`,
+  currency: "USD",
+  intent: "capture",
+  isPaypal: false,
+};
 
 const AppRoutes: React.FC = () => {
   const [filterData, setFilterData] = useState({
@@ -221,7 +229,14 @@ const AppRoutes: React.FC = () => {
         />
         {/* Route where navbar is hidden */}
         <Route path="/demo-business" element={<UdemyBusinessContact />} />
-        <Route path="/payment/checkout/" element={<Payment />} />
+        <Route
+          path="/payment/checkout/"
+          element={
+            <PayPalScriptProvider options={initialOptions}>
+              <Payment />
+            </PayPalScriptProvider>
+          }
+        />
         <Route
           path="/course/:courseId/lesson/:id/*"
           element={
