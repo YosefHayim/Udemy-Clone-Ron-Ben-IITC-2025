@@ -126,8 +126,8 @@ const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) =
           </div>
         ) : (
           <div className="flex items-center justify-center">
-            <span className="relative self-start mr-4 rounded-3xl text-white bg-black text-lg">
-              {formatTime(currentSec)}
+                  <span className="relative self-start px-2 mr-2 rounded-3xl text-white bg-black text-sm">
+                  {formatTime(currentSec)}
             </span>
             <div className="min-w-full rounded-sm p-4 mb-4">
             <ReactQuill value={content} onChange={setContent} placeholder="Write something..." theme="snow" />
