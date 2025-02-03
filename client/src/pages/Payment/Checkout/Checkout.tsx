@@ -1,9 +1,17 @@
 import buyCourseById from "@/api/users/buyCourseId";
+import refreshMe from "@/api/users/refreshMe";
 import { Button } from "@/components/ui/button";
 import { RootState } from "@/redux";
 import { setClearAll } from "@/redux/slices/cartSlice";
-import { setCoursesBought } from "@/redux/slices/userSlice";
+import {
+  setCookie,
+  setCoursesBought,
+  setUdemyCredits,
+} from "@/redux/slices/userSlice";
+import { DecodedTokenProps } from "@/types/types";
 import { useMutation } from "@tanstack/react-query";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 import { useEffect } from "react";
 import { BsFire } from "react-icons/bs";
 import { IoMdLock } from "react-icons/io";
@@ -12,6 +20,8 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Checkout: React.FC = () => {
+  const cookie = Cookies.get("cookie");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const totalToPay = useSelector(
@@ -35,9 +45,21 @@ const Checkout: React.FC = () => {
   const checkOutMutation = useMutation({
     mutationFn: buyCourseById,
     onSuccess: () => {
+      dispatch(setClearAll());
+      refreshUserDataMutation.mutate();
+    },
+  });
+
+  const refreshUserDataMutation = useMutation({
+    mutationFn: refreshMe,
+    onSuccess: () => {
+      console.log(`successfully refreshed data`);
+      const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
+      console.log(decoded);
+      dispatch(setCookie(cookie || ""));
+      dispatch(setCoursesBought(decoded.coursesBought));
+      dispatch(setUdemyCredits(decoded.udemyCredits));
       setTimeout(() => {
-        dispatch(setClearAll());
-        
         navigate(`/course-view/${coursesIds[0]}`);
       }, 5000);
     },
