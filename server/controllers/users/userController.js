@@ -122,6 +122,7 @@ const signUp = catchAsync(async (req, res, next) => {
   });
 
   res.status(200).json({
+    codeVerification: signUpCode,
     status: "success",
     message: "User created successfully. Please confirm your email to log in.",
   });
@@ -159,6 +160,7 @@ const login = catchAsync(async (req, res, next) => {
 
   if (!isFoundUser.emailVerified) {
     res.status(200).json({
+      codeVerification: loginCode,
       status: "success",
       message: "Login successful. Please verify your email address.",
     });
@@ -166,6 +168,7 @@ const login = catchAsync(async (req, res, next) => {
   }
 
   res.status(200).json({
+    codeVerification: loginCode,
     status: "success",
     message: "Login successful.",
   });
@@ -773,7 +776,15 @@ const googleLogin = catchAsync(async (req, res, next) => {
   }
 });
 
+const me = catchAsync(async (req, res, next) => {
+  res.status(200).json({
+    status: "success",
+    data: req.user,
+  });
+});
+
 module.exports = {
+  me,
   joinCoursesByIds,
   toggleCourseWishlist,
   updateProfilePic,

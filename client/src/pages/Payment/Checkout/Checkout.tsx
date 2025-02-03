@@ -37,9 +37,9 @@ const Checkout: React.FC = () => {
     onSuccess: () => {
       setTimeout(() => {
         dispatch(setClearAll());
-        dispatch(setCoursesBought(coursesIds));
+        
         navigate(`/course-view/${coursesIds[0]}`);
-      }, 2000);
+      }, 5000);
     },
   });
 

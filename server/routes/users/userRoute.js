@@ -18,12 +18,11 @@ const {
   joinCoursesByIds,
   verifyCode,
   googleLogin,
+  me,
 } = require("../../controllers/users/userController");
 const {
   grantedAccess,
 } = require("../../controllers/authorization/authController");
-const { OAuth2Client } = require("google-auth-library");
-const getUserData = require("../../utils/loginViaGoogle");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -36,6 +35,7 @@ router.param("id", (req, res, next, val) => {
 
 // get all users
 router.get("/", getAllUsers);
+router.get("/me", grantedAccess, me);
 
 // join course by course id
 router.post("/add/course/:id", grantedAccess, joinCourseById);

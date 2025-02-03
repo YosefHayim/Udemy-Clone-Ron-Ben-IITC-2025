@@ -110,7 +110,15 @@ const userSchema = new mongoose.Schema(
     wishlistCourses: [{ type: mongoose.Schema.ObjectId, ref: "Course" }],
     coursesBought: [
       {
-        course: { type: mongoose.Schema.ObjectId, ref: "Course" },
+        courseName: {
+          type: String,
+          required: [true, "Course must have a related name."],
+        },
+        courseId: {
+          type: mongoose.Schema.ObjectId,
+          ref: "Course",
+          required: [true, "Course ID is required"],
+        },
         boughtAt: { type: Date, default: Date.now },
         coursePrice: { type: Number, default: 0 },
       },
@@ -144,6 +152,10 @@ const userSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("User", userSchema);
+
+userSchema.pre(/^find/, function (next) {
+  this.populate("cou");
+});
 
 // Pre-save hook to remove duplicate course entries
 userSchema.pre("save", function (next) {

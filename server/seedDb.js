@@ -544,8 +544,10 @@ const simulateCoursePurchases = async () => {
           const discountPrice = parseFloat(course.courseDiscountPrice);
           if (user.udemyCredits >= discountPrice) {
             user.coursesBought.push({
-              course: course._id,
+              courseName: course.courseName,
+              courseId: course._id,
               boughtAt: new Date(),
+              coursePrice: course.courseDiscountPrice,
             });
             user.udemyCredits -= discountPrice;
 
