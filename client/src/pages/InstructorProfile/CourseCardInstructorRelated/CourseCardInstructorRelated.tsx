@@ -7,7 +7,7 @@ import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 const CourseCardInstructorRelated = () => {
   return (
     <div>
-      <div className=" flex flex-col items-start justify-start gap-[0.2em]">
+      <div className=" flex flex-col items-start justify-start gap-[0.2em] cursor-pointer">
         <img src={courseInstructorImgPlaceholder} alt="" />
         <b className="w-[200px]">Fundamentals of Backend Engineering</b>
         <p>Hussein Nasser</p>
