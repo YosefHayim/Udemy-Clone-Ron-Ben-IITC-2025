@@ -15,8 +15,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [isSmallScreen, setIsSmallScreen] = useState<boolean | null>(false);
   const { toggleSidebar, open } = useSidebar();
   let { courseId } = useParams<{ courseId: string | undefined }>(); // Retrieve courseId from the URL
-  // console.log(courseId);
-  // console.log(isSmallScreen);
 
   // Handle screen size changes
   useEffect(() => {

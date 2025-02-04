@@ -9,15 +9,12 @@ const byCourseByCourseId: fn = async (courseId: string) => {
   }
 
   const sanitizedCourseId = courseId.trim();
-  console.log(courseId);
   const url = `${localhostUrl}/api/user/add/course/${sanitizedCourseId}`;
-  console.log(url);
 
   try {
     const response = await axiosClient.post(url);
 
     if (response?.data?.data) {
-      console.log(response);
 
       return response.data.data;
     }

@@ -37,7 +37,6 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
     queryFn: () => fetchCourseProgress(courseId),
     enabled: !!courseId,
   });
-  console.log(data);
   
 
   // Mutation for updating lesson progress with optimistic updates

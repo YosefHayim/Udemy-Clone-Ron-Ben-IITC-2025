@@ -56,7 +56,6 @@ const VerifyCode = () => {
       return;
     }
     const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
-    console.log(decoded);
     dispatch(setCookie(cookie || ""));
     dispatch(setFullName(decoded.fullName));
     dispatch(setHeadline(decoded.headline));

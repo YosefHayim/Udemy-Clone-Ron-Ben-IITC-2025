@@ -29,7 +29,6 @@ const Filter: React.FC<FilterProps> = ({
         filterData.language.add(name); // Add if it doesn't exist
       }
       setFilterData({ ...filterData });
-      console.log(`Updated language set:`, Array.from(filterData.language));
     }
 
     if (filterTitle === "Hands-on Practice") {
@@ -39,10 +38,7 @@ const Filter: React.FC<FilterProps> = ({
         filterData.handsOnPractice.add(name);
       }
       setFilterData({ ...filterData });
-      console.log(
-        `Updated hands-on practice set:`,
-        Array.from(filterData.handsOnPractice)
-      );
+
     }
 
     if (filterTitle === "Video Duration") {
@@ -52,10 +48,7 @@ const Filter: React.FC<FilterProps> = ({
         filterData.videosDurations.add(name);
       }
       setFilterData({ ...filterData });
-      console.log(
-        `Updated video duration set:`,
-        Array.from(filterData.videosDurations)
-      );
+
     }
 
     if (filterTitle === "Topics") {
@@ -65,7 +58,6 @@ const Filter: React.FC<FilterProps> = ({
         filterData.topics.add(name);
       }
       setFilterData({ ...filterData });
-      console.log(`Updated topics set:`, Array.from(filterData.topics));
     }
 
     if (filterTitle === "Level") {
@@ -75,7 +67,6 @@ const Filter: React.FC<FilterProps> = ({
         filterData.levels.add(name);
       }
       setFilterData({ ...filterData });
-      console.log(`Updated levels set:`, Array.from(filterData.levels));
     }
 
     if (filterTitle === "Subtitles") {
@@ -85,7 +76,6 @@ const Filter: React.FC<FilterProps> = ({
         filterData.subtitles.add(name);
       }
       setFilterData({ ...filterData });
-      console.log(`Updated subtitles set:`, Array.from(filterData.subtitles));
     }
 
     if (filterTitle === "Price") {
@@ -96,7 +86,6 @@ const Filter: React.FC<FilterProps> = ({
       }
 
       setFilterData({ ...filterData });
-      console.log(`Updated price:`, filterData.price || "None");
     }
   };
 

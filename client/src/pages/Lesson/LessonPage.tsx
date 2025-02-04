@@ -12,7 +12,6 @@ const LessonPage: React.FC = () => {
   const [currentSec, setCurrentSec] = useState(0); // Shared state for last watched time
 
   const { courseId, id } = useParams<{ courseId: string; id: string }>();
-  console.log(id);
   
   const navigate = useNavigate();
 
@@ -42,7 +41,6 @@ const LessonPage: React.FC = () => {
   }
 
   const courseProgress = data.progress;
-  console.log(courseProgress);
   
   const lessons = courseProgress.sections.flatMap((section) =>
     section.lessons.map((lesson) => ({
@@ -60,9 +58,7 @@ const LessonPage: React.FC = () => {
   }
 
   const currentLesson = lessons[lessonIndex];
-  console.log("lesson index",lessonIndex);
   
-  console.log("CURRENT SEC" , currentSec);
   
   const nextLesson = lessons[lessonIndex + 1] || null;
   const prevLesson = lessons[lessonIndex - 1] || null;
