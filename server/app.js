@@ -24,7 +24,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 connectDb();
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/imgs", express.static("public/imgs"));
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());

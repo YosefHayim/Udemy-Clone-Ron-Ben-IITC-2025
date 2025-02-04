@@ -15,7 +15,32 @@ const {
 const randomize = require("randomatic");
 const axios = require("axios");
 const dotenv = require("dotenv");
+const multer = require("multer");
 dotenv.config();
+
+// for updating user profile
+const multerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/imgs/users");
+  },
+  filename: (req, file, cb) => {
+    const ext = file.mimetype.split("/")[1];
+    cb(null, `user-${req.user._id}-${Date.now()}.${ext}`);
+  },
+});
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith("image")) {
+    cb(null, true);
+  } else {
+    cb(new createError(`Please upload only images`, 400), false);
+  }
+};
+
+// multer instance should be initialized after defining storage and filter
+const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
+
+const uploadUserPhoto = upload.single("photo");
 
 const getAllUsers = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(User.find(), req.query)
@@ -216,6 +241,8 @@ const verifyCode = catchAsync(async (req, res, next) => {
   user.temporaryCode = null;
   user.codeExpiresAt = null;
   await user.save();
+
+  console.log(user.profilePic);
 
   const token = generateToken({
     id: user._id,
@@ -640,16 +667,12 @@ const updateUserInfo = catchAsync(async (req, res, next) => {
 });
 
 const updateProfilePic = catchAsync(async (req, res, next) => {
-  const { profilePic } = req.body;
-
-  if (!profilePic) {
-    return next(
-      createError(
-        "Please provide a URL of the profile picture in the body.",
-        400
-      )
-    );
+  if (!req.file) {
+    return next(createError("Please upload an image.", 400));
   }
+
+  // Construct image path
+  const profilePic = `/imgs/users/${req.file.filename}`;
 
   const updatedUser = await User.findByIdAndUpdate(
     req.user._id,
@@ -663,12 +686,9 @@ const updateProfilePic = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
-    data: {
-      user: updatedUser,
-    },
+    data: { user: updatedUser },
   });
 });
-
 const toggleCourseWishlist = catchAsync(async (req, res, next) => {
   const courseId = req.params.id;
 
@@ -705,7 +725,7 @@ const toggleCourseWishlist = catchAsync(async (req, res, next) => {
   }
 });
 
-const googleLogin = catchAsync(async (req, res, next) => {
+const googleLoginOrSignUp = catchAsync(async (req, res, next) => {
   const { code } = req.body; // Get authorization code from frontend
 
   if (!code) {
@@ -826,13 +846,14 @@ module.exports = {
   leaveCourseById,
   logout,
   login,
-  googleLogin,
+  googleLoginOrSignUp,
   signUp,
   getAllUsers,
   updatePassword,
   deactivateUser,
   reactiveUser,
   getUserById,
+  uploadUserPhoto,
   confirmEmailAddress,
   resendEmailVerificationToken,
   updateUserInfo,

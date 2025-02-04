@@ -17,15 +17,13 @@ const {
   toggleCourseWishlist,
   joinCoursesByIds,
   verifyCode,
-  googleLogin,
+  googleLoginOrSignUp,
   me,
+  uploadUserPhoto,
 } = require("../../controllers/users/userController");
 const {
   grantedAccess,
 } = require("../../controllers/authorization/authController");
-const dotenv = require("dotenv");
-dotenv.config();
-
 const router = express.Router();
 
 router.param("id", (req, res, next, val) => {
@@ -61,7 +59,7 @@ router.post("/leave/course/:id", grantedAccess, leaveCourseById);
 router.get("/email/verification", confirmEmailAddress);
 
 // Google OAuth Callback Route
-router.post("/google/auth/login", googleLogin);
+router.post("/google/auth/login", googleLoginOrSignUp);
 
 // sign up
 router.post("/auth/signup", signUp);
@@ -89,7 +87,12 @@ router.patch("/update/password", grantedAccess, updatePassword);
 router.put("/", grantedAccess, updateUserInfo);
 
 // update user profile picture
-router.patch("/profile/picture", grantedAccess, updateProfilePic);
+router.patch(
+  "/profile/picture",
+  grantedAccess,
+  uploadUserPhoto,
+  updateProfilePic
+);
 
 // "delete" user account
 router.delete("/", grantedAccess, deactivateUser);
