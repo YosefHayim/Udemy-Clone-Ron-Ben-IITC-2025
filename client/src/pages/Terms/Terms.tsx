@@ -15,7 +15,7 @@ import API_agreement from "./Terms_Pages/Api_agreement";
 
 // Adicione os outros componentes conforme necessário
 const Terms = () => {
-    const [selectedPage, setSelectedPage] = useState("Terms of Use"); // Estado inicial
+  const [selectedPage, setSelectedPage] = useState("Terms of Use"); // Estado inicial
 
     // Função que retorna o componente correspondente
     const renderComponent = () => {
@@ -27,7 +27,7 @@ const Terms = () => {
             case "Intellectual Property Policy":
                 return <Intellectual />;
             case "Udemy API Agreement":
-                return <API_agreement />;
+                return <Api_agreement />;
             case "Master Services Agreement":
                 return <Master />;
             case "Udemy Business Privacy Statement":
@@ -49,25 +49,28 @@ const Terms = () => {
         }
     };
 
-    return (
-        <div className="flex h-screen">
-            {/* Sidebar */}
-            <div className="w-64">
-                <Side_bar_terms setSelectedPage={setSelectedPage} selectedPage={selectedPage} />
-            </div>
+  return (
+    <div className="flex h-screen">
+      {/* Sidebar */}
+      <div className="w-64">
+        <SideBarTerms
+          setSelectedPage={setSelectedPage}
+          selectedPage={selectedPage}
+        />
+      </div>
 
-            {/* Área de Conteúdo */}
-            <div
-                className="flex-1 h-screen overflow-y-scroll custom-scrollbar px-[12rem]"
-                style={{
-                    scrollbarWidth: "none", // Firefox
-                    msOverflowStyle: "none", // IE e Edge
-                }}
-            >
-                {renderComponent()}
-            </div>
-        </div>
-    );
+      {/* Área de Conteúdo */}
+      <div
+        className="flex-1 h-screen overflow-y-scroll custom-scrollbar px-[12rem]"
+        style={{
+          scrollbarWidth: "none", // Firefox
+          msOverflowStyle: "none", // IE e Edge
+        }}
+      >
+        {renderComponent()}
+      </div>
+    </div>
+  );
 };
 
 export default Terms;
