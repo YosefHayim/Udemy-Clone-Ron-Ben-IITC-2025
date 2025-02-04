@@ -57,7 +57,7 @@ const userSchema = new mongoose.Schema(
     },
     profilePic: {
       type: String,
-      default: "/default-user-profile.svg",
+      default: "default-user-profile.svg",
     },
     authProvider: {
       type: String,
