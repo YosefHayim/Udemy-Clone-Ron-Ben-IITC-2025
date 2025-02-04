@@ -1,7 +1,8 @@
+
 const Side_bar_terms = ({ setSelectedPage, selectedPage }) => {
     const menuItems = [
         "Terms of Use",
-        "Privacy policy",
+        "Privacy Policy",
         "Intellectual Property Policy",
         "Udemy API Agreement",
         "Master Services Agreement",
