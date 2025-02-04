@@ -7,11 +7,11 @@ import Leadership from "./Terms_Pages/Leadership";
 import Pro_terms from "./Terms_Pages/Pro_terms";
 import Launch from "./Terms_Pages/Launch";
 import Promotions from "./Terms_Pages/Promotions";
-import Api_agreement from "./Terms_Pages/Api_agreement";
 import Business_statment from "./Terms_Pages/Business_statment";
 import Affiliate from "./Terms_Pages/Affiliate";
 import Privacy_policy2 from "./Terms_Pages/Privacy_policy2";
 import Master from "./Terms_Pages/Master";
+import API_agreement from "./Terms_Pages/Api_agreement";
 
 // Adicione os outros componentes conforme necessário
 const Terms = () => {
@@ -27,7 +27,7 @@ const Terms = () => {
             case "Intellectual Property Policy":
                 return <Intellectual />;
             case "Udemy API Agreement":
-                return <Api_agreement />;
+                return <API_agreement />;
             case "Master Services Agreement":
                 return <Master />;
             case "Udemy Business Privacy Statement":
