@@ -1,5 +1,4 @@
-
-const Side_bar_terms = ({ setSelectedPage, selectedPage }) => {
+const SideBarTerms = ({ setSelectedPage, selectedPage }) => {
   const menuItems = [
     "Terms of Use",
     "Privacy Policy",
@@ -39,4 +38,4 @@ const Side_bar_terms = ({ setSelectedPage, selectedPage }) => {
   );
 };
 
-export default Side_bar_terms;
+export default SideBarTerms;
