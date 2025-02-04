@@ -1,3 +1,4 @@
+
 const Side_bar_terms = ({ setSelectedPage, selectedPage }) => {
   const menuItems = [
     "Terms of Use",
