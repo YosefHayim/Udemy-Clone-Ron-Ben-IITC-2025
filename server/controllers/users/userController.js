@@ -16,18 +16,21 @@ const randomize = require("randomatic");
 const axios = require("axios");
 const dotenv = require("dotenv");
 const multer = require("multer");
+const sharp = require("sharp");
 dotenv.config();
 
 // for updating user profile
-const multerStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/imgs/users");
-  },
-  filename: (req, file, cb) => {
-    const ext = file.mimetype.split("/")[1];
-    cb(null, `user-${req.user._id}-${Date.now()}.${ext}`);
-  },
-});
+// const multerStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "public/imgs/users");
+//   },
+//   filename: (req, file, cb) => {
+//     const ext = file.mimetype.split("/")[1];
+//     cb(null, `user-${req.user._id}-${Date.now()}.${ext}`);
+//   },
+// });
+
+const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith("image")) {
@@ -654,6 +657,18 @@ const updateUserInfo = catchAsync(async (req, res, next) => {
   });
 });
 
+const resizeUserPhoto = (req, res, next) => {
+  if (!req.file) return next();
+
+  req.file.filename = `user-${req.user._id}-${Date.now()}.jpeg`;
+  sharp(req.file.buffer)
+    .resize(500, 500)
+    .toFormat("jpeg")
+    .jpeg({ quality: 90 })
+    .toFile(`public/imgs/users/${req.file.filename}`);
+  next();
+};
+
 const updateProfilePic = catchAsync(async (req, res, next) => {
   if (!req.file) {
     return next(createError("Please upload an image.", 400));
@@ -677,6 +692,7 @@ const updateProfilePic = catchAsync(async (req, res, next) => {
     data: { user: updatedUser },
   });
 });
+
 const toggleCourseWishlist = catchAsync(async (req, res, next) => {
   const courseId = req.params.id;
 
@@ -839,6 +855,7 @@ module.exports = {
   updatePassword,
   deactivateUser,
   reactiveUser,
+  resizeUserPhoto,
   getUserById,
   uploadUserPhoto,
   confirmEmailAddress,

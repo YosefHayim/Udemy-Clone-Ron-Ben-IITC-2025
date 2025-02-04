@@ -20,6 +20,7 @@ const {
   googleLoginOrSignUp,
   me,
   uploadUserPhoto,
+  resizeUserPhoto,
 } = require("../../controllers/users/userController");
 const {
   grantedAccess,
@@ -91,6 +92,7 @@ router.patch(
   "/profile/picture",
   grantedAccess,
   uploadUserPhoto,
+  resizeUserPhoto,
   updateProfilePic
 );
 
