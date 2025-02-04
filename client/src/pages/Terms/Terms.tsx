@@ -1,17 +1,17 @@
 import { useState } from "react";
-import Side_bar_terms from "./Side_bar_terms";
-import Terms_of_use from "./Terms_Pages/Terms_of_use";
-import Instructor from "./Terms_Pages/Instructor";
-import Intellectual from "./Terms_Pages/Intellectual";
-import Leadership from "./Terms_Pages/Leadership";
-import Pro_terms from "./Terms_Pages/Pro_terms";
-import Launch from "./Terms_Pages/Launch";
-import Promotions from "./Terms_Pages/Promotions";
-import Business_statment from "./Terms_Pages/Business_statment";
-import Affiliate from "./Terms_Pages/Affiliate";
-import Privacy_policy2 from "./Terms_Pages/Privacy_policy2";
-import Master from "./Terms_Pages/Master";
-import API_agreement from "./Terms_Pages/Api_agreement";
+import SideBarTerms from "./SideBarTerms";
+import Terms_of_use from "./TermsPages/TermsOfUse";
+import Instructor from "./TermsPages/Instructor";
+import Intellectual from "./TermsPages/Intellectual";
+import Leadership from "./TermsPages/Leadership";
+import Pro_terms from "./TermsPages/ProTerms";
+import Launch from "./TermsPages/Launch";
+import Promotions from "./TermsPages/Promotions";
+import Business_statment from "./TermsPages/BusinessStatement";
+import Affiliate from "./TermsPages/Affiliate";
+import Privacy_policy2 from "./TermsPages/PrivacyPolicy2";
+import Master from "./TermsPages/Master";
+import ApiAgreement from "./TermsPages/ApiAgreement";
 
 // Adicione os outros componentes conforme necessário
 const Terms = () => {
@@ -27,7 +27,7 @@ const Terms = () => {
             case "Intellectual Property Policy":
                 return <Intellectual />;
             case "Udemy API Agreement":
-                return <Api_agreement />;
+                return <ApiAgreement />;
             case "Master Services Agreement":
                 return <Master />;
             case "Udemy Business Privacy Statement":

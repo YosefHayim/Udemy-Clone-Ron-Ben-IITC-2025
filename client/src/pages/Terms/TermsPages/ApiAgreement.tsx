@@ -1,4 +1,4 @@
-const API_agreement = () => {
+const ApiAgreement = () => {
     return (
         <>
 
@@ -403,4 +403,4 @@ const API_agreement = () => {
     )
 }
 
-export default API_agreement
+export default ApiAgreement
