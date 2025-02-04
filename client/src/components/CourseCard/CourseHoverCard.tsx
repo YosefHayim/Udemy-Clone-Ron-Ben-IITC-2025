@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 interface CourseHoverCardProps {
   course: {
@@ -17,47 +18,48 @@ const truncateText = (text: string, maxLength: number) => {
 };
 
 const truncateList = (list: string[], maxItems: number) => {
-  if (list.length > maxItems) {
-    return [...list.slice(0, maxItems), "..."];
-  }
-  return list;
+  return list.length > maxItems ? [...list.slice(0, maxItems), "..."] : list;
 };
 
 const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
   const hoverCardRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState<{
-    left: string;
-    top: string;
-    transform: string;
-  }>({
-    left: "100%",
-    top: "50%",
-    transform: "translateY(-50%)",
+  const [position, setPosition] = useState<{ left: number; top: number }>({
+    left: 0,
+    top: 0,
   });
 
   useEffect(() => {
-    const calculatePosition = () => {
+    const calculatePosition = (event: MouseEvent) => {
       if (hoverCardRef.current) {
-        const hoverCardRect = hoverCardRef.current.getBoundingClientRect();
+        const hoverCard = hoverCardRef.current;
+        const cardWidth = hoverCard.offsetWidth;
+        const cardHeight = hoverCard.offsetHeight;
         const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
 
-        let leftPosition = "100%"; // Default to the right
-        if (hoverCardRect.right > windowWidth) {
-          leftPosition = "-340px"; // Adjust to the left if it overflows
+        let left = event.clientX + 20;
+        let top = event.clientY - cardHeight / 2;
+
+        // Evita ultrapassar as bordas da tela
+        if (left + cardWidth > windowWidth) {
+          left = event.clientX - cardWidth - 20;
         }
 
-        setPosition({
-          left: leftPosition,
-          top: "50%",
-          transform: "translateY(-50%)",
-        });
+        if (top < 10) {
+          top = 10;
+        }
+
+        if (top + cardHeight > windowHeight) {
+          top = windowHeight - cardHeight - 10;
+        }
+
+        setPosition({ left, top });
       }
     };
 
-    calculatePosition();
-    window.addEventListener("resize", calculatePosition);
+    document.addEventListener("mousemove", calculatePosition);
 
-    return () => window.removeEventListener("resize", calculatePosition);
+    return () => document.removeEventListener("mousemove", calculatePosition);
   }, []);
 
   const formattedDate = new Date(course.updatedAt || "").toLocaleDateString(
@@ -68,28 +70,19 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
     }
   );
 
-  return (
+  return createPortal(
     <div
       ref={hoverCardRef}
-      className="absolute bg-white shadow-lg rounded-lg p-4 border z-[1000] overflow-visible"
+      className="fixed bg-white shadow-lg rounded-lg p-4 border z-[99999] overflow-visible pointer-events-auto"
       style={{
-        left: position.left,
-        top: position.top,
-        transform: position.transform,
-        width: "320px",
+        left: `${position.left}px`,
+        top: `${position.top}px`,
+        width: "350px",
+        maxHeight: "none",
       }}
+      onMouseEnter={() => console.log("Entrou no hover card")}
+      onMouseLeave={() => console.log("Saiu do hover card")}
     >
-      {/* Arrow to connect with the course card */}
-      <div
-        className="absolute w-4 h-4 bg-white transform rotate-45 shadow-md"
-        style={{
-          left: position.left === "100%" ? "-8px" : "calc(100% - 8px)",
-          top: "50%",
-          transform: "translateY(-50%) rotate(45deg)",
-        }}
-      ></div>
-
-      {/* Hover Card Content */}
       <h3 className="font-bold text-lg">
         {truncateText(course.courseName || "", 50)}
       </h3>
@@ -104,10 +97,10 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
         {course.courseLevel}
       </p>
       <p className="text-xs text-gray-600 mt-2">
-        {truncateText(course.courseDescription || "", 100)}
+        {truncateText(course.courseDescription || "", 500)}
       </p>
       <ul className="list-disc list-inside text-sm text-gray-700 mt-2">
-        {truncateList(course.whatYouWillLearn || [""], 3).map((item, index) => (
+        {truncateList(course.whatYouWillLearn || [""], 10).map((item, index) => (
           <li key={index}>{item}</li>
         ))}
       </ul>
@@ -115,7 +108,6 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
         <button className="w-[80%] bg-purple-500 text-white py-2 rounded-lg hover:bg-purple-600">
           Add to cart
         </button>
-        {/* Heart Icon */}
         <div className="w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full hover:border-red-500 cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +125,8 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
           </svg>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body // Renderiza no body para evitar limitações de div pai
   );
 };
 

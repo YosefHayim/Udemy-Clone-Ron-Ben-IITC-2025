@@ -173,7 +173,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                 {hoveredCourse?._id === course._id && (
                   <div
                     ref={hoverCardRef}
-                    className="absolute top-0 left-full ml-2 overflow-visible"
+                    className="absolute top-0 left-full ml-2 "
                     onMouseLeave={() => setHoveredCourse(null)}
                   >
                     <CourseHoverCard course={hoveredCourse} />

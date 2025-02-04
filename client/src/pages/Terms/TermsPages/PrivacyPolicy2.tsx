@@ -357,7 +357,7 @@ const Privacy_policy2 = () => {
                 </div>
             </div>
 
-            <div className="bg-white p-6 rounded-2xl text-gray-900 max-w-5xl mx-auto">
+            <div className="bg-white p-6 rounded-2xl text-gray-900 max-w-5xl mx-auto">""
                 <h2 className="text-xl font-bold mb-6">1.2 Data We Collect through Automated Means</h2>
                 <p className="mb-4">
                     When you access the Services (including browsing content), we collect certain data by
