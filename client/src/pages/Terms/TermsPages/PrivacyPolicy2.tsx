@@ -1367,10 +1367,6 @@ const Privacy_policy2 = () => {
                 </p>
             </div>
 
-
-
-
-
         </>
     )
 }

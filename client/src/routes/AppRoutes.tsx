@@ -36,6 +36,7 @@ import Terms from "../pages/Terms/Terms";
 import SearchNotFound from "@/pages/Search/SearchNotFound/SearchNotFound";
 import ReceiptCart from "@/components/Navbar/DropDownMenu/PurchaseHistory/ReceiptCart/ReceiptCart";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import Promotions from "../pages/Terms/TermsPages/Promotions";
 // import LoginBusiness from "@/pages/Login/LoginBusiness";
 
 export const filterContext = createContext<FilterDataProps>({
@@ -265,6 +266,8 @@ const AppRoutes: React.FC = () => {
             </personalizeContent.Provider>
           }
         />
+
+        <Route path="/terms/promotions" element={<Promotions />} />
       </Routes>
     </Router>
   );
