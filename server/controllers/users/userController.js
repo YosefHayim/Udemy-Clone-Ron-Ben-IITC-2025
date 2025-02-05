@@ -677,7 +677,7 @@ const updateProfilePic = catchAsync(async (req, res, next) => {
   // Construct image path
   const profilePic = `/imgs/users/${req.file.filename}`;
 
-  const updatedUser = await User.findByIdAndUpdate(
+  const updatedUser = await User.findOne(
     req.user._id,
     { profilePic },
     { new: true, runValidators: true }
@@ -689,7 +689,7 @@ const updateProfilePic = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
-    data: { user: updatedUser },
+    response: "Successfully updated profile picture",
   });
 });
 
