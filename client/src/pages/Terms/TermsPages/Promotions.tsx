@@ -2,7 +2,11 @@ const Promotions = () => {
     return (
         <>
             <nav>nav bar</nav>
-            <header>header</header>
+            <header>
+                <nav>subnavbar</nav>
+                <div>search</div>
+                <h1>title</h1>
+            </header>
             <div>
                 <main>main</main>
                 <section>sidebar section</section>
