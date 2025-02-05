@@ -7,7 +7,7 @@ const Promotions = () => {
                 <main>main</main>
                 <section>sidebar section</section>
             </div>
-            <footer></footer>
+            <footer>footer</footer>
         </>
     )
 }
