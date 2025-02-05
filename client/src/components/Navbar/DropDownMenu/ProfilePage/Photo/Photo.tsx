@@ -1,11 +1,12 @@
 import { useState } from "react";
-import SideBarProfile from "../SideBarProfile/SideBarProfile"; // Importando o componente da Sidebar
+import SideBarProfile from "../SideBarProfile/SideBarProfile";
+import { useMutation } from "@tanstack/react-query";
+import updateProfilePic from "@/api/users/updateProfilePic";
 
 const Photo = () => {
-  const [selectedFile, setSelectedFile] = useState(null); // Estado para armazenar o arquivo selecionado
-  const [preview, setPreview] = useState(null); // Estado para a pré-visualização da imagem
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [preview, setPreview] = useState(null);
 
-  // Função para lidar com a seleção de arquivos
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
@@ -13,16 +14,21 @@ const Photo = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPreview(reader.result); // Atualiza a pré-visualização
+        setPreview(reader.result);
       };
       reader.readAsDataURL(file);
     }
   };
 
-  // Função para enviar o arquivo (simulação)
+  const uploadPhotoMutation = useMutation({
+    mutationFn: updateProfilePic,
+    onSuccess: () => {
+      // location.reload();
+    },
+  });
   const handleUpload = () => {
     if (selectedFile) {
-      alert("Image uploaded successfully!");
+      uploadPhotoMutation.mutate(selectedFile);
     } else {
       alert("Please select an image first.");
     }
@@ -30,10 +36,8 @@ const Photo = () => {
 
   return (
     <div className="flex min-h-screen bg-gray-100">
-      {/* Sidebar */}
       <SideBarProfile />
 
-      {/* Main Content */}
       <main className="flex-1 p-8">
         <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Photo</h2>
@@ -41,7 +45,6 @@ const Photo = () => {
             Add a nice photo of yourself for your profile.
           </p>
 
-          {/* Image Preview */}
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Image preview
@@ -83,12 +86,14 @@ const Photo = () => {
             <div className="flex space-x-4 items-center">
               <input
                 type="file"
+                id="photo"
+                name="photo"
                 accept="image/*"
                 onChange={handleFileChange}
                 className="flex-1 text-sm text-gray-700 border rounded-md px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500"
               />
               <button
-                type="button"
+                type="submit"
                 onClick={handleUpload}
                 className="px-4 py-2 bg-purple-600 text-white rounded-md shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
               >
