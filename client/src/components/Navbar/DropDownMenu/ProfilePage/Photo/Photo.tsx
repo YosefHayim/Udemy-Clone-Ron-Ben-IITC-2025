@@ -2,12 +2,20 @@ import { useState } from "react";
 import SideBarProfile from "../SideBarProfile/SideBarProfile";
 import { useMutation } from "@tanstack/react-query";
 import updateProfilePic from "@/api/users/updateProfilePic";
+import refreshMe from "@/api/users/refreshMe";
+import { jwtDecode } from "jwt-decode";
+import { DecodedTokenProps } from "@/types/types";
+import { setProfilePic } from "@/redux/slices/userSlice";
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 
 const Photo = () => {
+  const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
+  const cookie = Cookies.get("cookie");
 
-  const handleFileChange = (event) => {
+  const handleFileChange = (event: any) => {
     const file = event.target.files[0];
     setSelectedFile(file);
 
@@ -22,13 +30,25 @@ const Photo = () => {
 
   const uploadPhotoMutation = useMutation({
     mutationFn: updateProfilePic,
+  });
+
+  const refreshUserDataMutation = useMutation({
+    mutationFn: refreshMe,
     onSuccess: () => {
-      // location.reload();
+      const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
+      setTimeout(() => {
+        dispatch(setProfilePic(decoded.profilePic));
+        location.reload();
+      }, 1500);
     },
   });
+
   const handleUpload = () => {
     if (selectedFile) {
       uploadPhotoMutation.mutate(selectedFile);
+      setTimeout(() => {
+        refreshUserDataMutation.mutate();
+      }, 2000);
     } else {
       alert("Please select an image first.");
     }

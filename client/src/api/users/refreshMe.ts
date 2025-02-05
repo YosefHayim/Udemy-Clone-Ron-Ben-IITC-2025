@@ -5,6 +5,7 @@ const refreshMe = async () => {
     const res = await axiosClient.post(`${localhostUrl}/api/user/me`);
 
     if (res) {
+      console.log(res);
       return res;
     }
   } catch (error) {

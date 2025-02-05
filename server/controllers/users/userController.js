@@ -809,7 +809,7 @@ const googleLoginOrSignUp = catchAsync(async (req, res, next) => {
   }
 });
 
-const me = catchAsync(async (req, res, next) => {
+const updateMe = catchAsync(async (req, res, next) => {
   const user = req.user;
 
   const token = generateToken({
@@ -841,7 +841,7 @@ const me = catchAsync(async (req, res, next) => {
 });
 
 module.exports = {
-  me,
+  updateMe,
   joinCoursesByIds,
   toggleCourseWishlist,
   updateProfilePic,

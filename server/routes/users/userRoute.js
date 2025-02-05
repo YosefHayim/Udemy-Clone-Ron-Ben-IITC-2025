@@ -18,7 +18,7 @@ const {
   joinCoursesByIds,
   verifyCode,
   googleLoginOrSignUp,
-  me,
+  updateMe,
   uploadUserPhoto,
   resizeUserPhoto,
 } = require("../../controllers/users/userController");
@@ -36,7 +36,7 @@ router.param("id", (req, res, next, val) => {
 router.get("/", getAllUsers);
 
 // refresh cookie data
-router.post("/me", grantedAccess, me);
+router.post("/me", grantedAccess, updateMe);
 
 // join course by course id
 router.post("/add/course/:id", grantedAccess, joinCourseById);

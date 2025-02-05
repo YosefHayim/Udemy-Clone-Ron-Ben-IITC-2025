@@ -47,7 +47,7 @@ const Checkout: React.FC = ({ isPaypal }) => {
     mutationFn: buyCourseById,
     onSuccess: () => {
       setTimeout(() => {
-        dispatch(setClearAll());
+        refreshUserDataMutation.mutate();
       }, 2000);
     },
   });
@@ -66,9 +66,8 @@ const Checkout: React.FC = ({ isPaypal }) => {
   });
 
   const handleClick = () => {
-    // const courseId = coursesIds[0];
-    // checkOutMutation.mutate(courseId);
-    // refreshUserDataMutation.mutate();
+    const courseId = coursesIds[0];
+    checkOutMutation.mutate(courseId);
   };
 
   return (
