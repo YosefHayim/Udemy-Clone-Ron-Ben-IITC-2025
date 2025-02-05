@@ -1078,8 +1078,294 @@ const Privacy_policy2 = () => {
                 </p>
             </div>
 
+            <div className="p-6 bg-white rounded-lg shadow-md max-w-4xl mx-auto">
+                <h2 className="text-2xl font-bold mb-4">7. Jurisdiction-Specific Rules</h2>
+                <p className="mb-4">
+                    If you live in California, you have certain rights related to accessing and deleting your
+                    data, as well as learning who we share your data with. If you live in Australia, you have
+                    the right to make a formal complaint with the appropriate government agency. Users outside
+                    of the United States should note that we transfer data to the US and other areas outside of
+                    the European Economic Area.
+                </p>
+                <h3 className="text-xl font-bold mb-4">7.1 Users in California</h3>
+                <p className="mb-4">
+                    Users who are California residents have certain rights under the California Consumer Privacy
+                    Act, ("CCPA"). If you are an eligible California user, included in these rights are:
+                </p>
+                <ul className="list-disc list-inside mb-4 space-y-2">
+                    <li>
+                        <strong>“Right to Know”</strong> — You have the right to request to know more about the
+                        categories and specific pieces of personal information that we have collected about you
+                        and access a copy of your personal information.
+                    </li>
+                    <li>
+                        <strong>“Right to Correction”</strong> — You have the right to have inaccurate personal
+                        information about you corrected.
+                    </li>
+                    <li>
+                        <strong>“Right to Deletion”</strong> — You have the right to request deletion of personal
+                        information that we have collected about you.
+                    </li>
+                    <li>
+                        <strong>“Right to Non-Discrimination”</strong> — If you choose to exercise any of your
+                        rights under CCPA, Udemy will treat you like all other users. In other words, there is no
+                        penalty for exercising your rights under CCPA.
+                    </li>
+                    <li>
+                        <strong>“Right to Opt-Out”</strong> — You have the right to opt out of the sale or sharing
+                        of your personal information.
+                    </li>
+                </ul>
+                <p className="mb-4">
+                    CCPA has a specific definition of a “sale” and “sharing” and while Udemy does not, in the
+                    traditional sense, sell your personal information or the personal information of any of our
+                    users, we do use cookies that make non-personally identifiable information available to
+                    select third-parties, including for cross-context advertising. To opt out of such a “sale”
+                    and “sharing,” click on the “Do Not Sell or Share My Personal Information” link at the
+                    bottom of this page.
+                </p>
+                <p className="mb-4">
+                    To exercise any of these rights under CCPA, please email{" "}
+                    <a href="mailto:privacy@udemy.com" className="text-blue-500 underline">
+                        privacy@udemy.com
+                    </a>{" "}
+                    or write to us at Udemy, Attn: Privacy/Legal Team, 600 Harrison Street, 3rd floor, San
+                    Francisco CA 94107. CCPA allows you to designate an authorized agent to make these requests
+                    on your behalf. For your protection, we may require that the request be sent through the
+                    email address associated with your account, and we may need to verify you and/or your
+                    agent’s identity before fulfilling your request.
+                </p>
+                <p className="mb-4">
+                    Additionally, for more information about the personal information we collect and how we
+                    collect it, please see the sections above entitled “What Data We Get” and “How We Get Data
+                    About You.”
+                </p>
+                <p className="mb-4">
+                    To learn about the business and commercial purposes for which your personal information is
+                    collected and the categories of service providers who have access to your personal
+                    information, please see the sections above entitled “What We Use Your Data For” and “Who We
+                    Share Your Data With.”
+                </p>
+                <p className="mb-4">
+                    As a California resident, you also have the right to request certain details about what
+                    personal information we share with third parties for those third parties’ direct marketing
+                    purposes. To submit your request, send an email to{" "}
+                    <a href="mailto:privacy@udemy.com" className="text-blue-500 underline">
+                        privacy@udemy.com
+                    </a>{" "}
+                    with the phrase “California Shine the Light” and include your mailing address, state of
+                    residence, and email address.
+                </p>
+                <p className="mb-4">
+                    Since there is no widely accepted standard for the browser-initiated Do Not Track signal, we
+                    do not currently recognize or respond to Do Not Track signals.
+                </p>
+            </div>
 
+            <div className="p-6 bg-white rounded-lg shadow-md max-w-4xl mx-auto">
+                <h3 className="text-xl font-bold mb-4">7.2 Users in Nevada</h3>
+                <p className="mb-4">
+                    <strong>Udemy does not sell its users’ personal information or personal data.</strong>{" "}
+                    Nonetheless, Nevada residents have the right to submit a request that we do not sell your
+                    covered personal information, which you can do by emailing{" "}
+                    <a href="mailto:privacy@udemy.com" className="text-blue-500 underline">
+                        privacy@udemy.com
+                    </a>{" "}
+                    or writing to us at Udemy, Attn: Privacy/Legal Team, 600 Harrison Street, 3rd floor, San
+                    Francisco CA 94107.
+                </p>
 
+                <h3 className="text-xl font-bold mb-4">7.3 Users in Australia</h3>
+                <p className="mb-4">
+                    If you are an Australia resident and you have a complaint, you may refer it to the office of
+                    the Australian Information Commissioner (“OAIC”). You can contact OAIC by visiting{" "}
+                    <a href="https://www.oaic.gov.au" className="text-blue-500 underline">
+                        www.oaic.gov.au
+                    </a>
+                    ; forwarding an email to{" "}
+                    <a href="mailto:enquiries@oaic.gov.au" className="text-blue-500 underline">
+                        enquiries@oaic.gov.au
+                    </a>
+                    ; telephoning 1300 363 992; or writing to OAIC at GPO Box 5218, Sydney NSW 2001. You may
+                    contact our privacy team at{" "}
+                    <a href="mailto:privacy@udemy.com" className="text-blue-500 underline">
+                        privacy@udemy.com
+                    </a>{" "}
+                    to make a complaint about a breach of the Australian Privacy Principles which will be
+                    responded to within 30 days.
+                </p>
+
+                <h3 className="text-xl font-bold mb-4">
+                    7.4 Users in the European Economic Area (“EEA”) and United Kingdom (“UK”)
+                </h3>
+                <p className="mb-4">
+                    If you are located in the EEA or UK, you have the right to request access to your data in a
+                    portable format and to request the rectification, erasure, restriction of processing, or
+                    objection to processing of your personal data. You may use the information in Section 6.2 to
+                    submit your request. Additionally, if you are located in the EEA, UK, or Switzerland, you
+                    also have the right to lodge a complaint with your supervisory authority.
+                </p>
+                <p className="mb-4">
+                    Personal data is also processed outside of the UK, Switzerland, and the EEA by our Udemy
+                    group companies, or our service providers, including to process transactions, facilitate
+                    payments, and provide support services as described in Section 4. We use the
+                    Controller-to-Processor Standard Contractual Clauses adopted by the European Commission to
+                    facilitate transfers of personal data from the EEA to third countries and have entered into
+                    data processing agreements with our service providers and Udemy group companies to restrict
+                    and regulate their processing of your data. By submitting your data or using our Services,
+                    you consent to this transfer, storage, and processing by Udemy and its processors.
+                </p>
+            </div>
+
+            <div className="p-6 bg-white rounded-lg shadow-md max-w-4xl mx-auto">
+                <h3 className="text-xl font-bold mb-4">
+                    7.5 Data Privacy Framework (for EU/EEA, UK, and Swiss data subjects)
+                </h3>
+                <p className="mb-4">
+                    Udemy, Inc. complies with the EU-U.S. Data Privacy Framework (EU-U.S. DPF), the UK Extension
+                    to the EU-U.S. DPF, and the Swiss-U.S. Data Privacy Framework (Swiss-U.S. DPF) as set forth
+                    by the U.S. Department of Commerce. Udemy, Inc. has certified to the U.S. Department of
+                    Commerce that it adheres to the EU-U.S. Data Privacy Framework Principles (EU-U.S. DPF
+                    Principles) with regard to the processing of personal data received from the European Union
+                    in reliance on the EU-U.S. DPF and from the United Kingdom (and Gibraltar) in reliance on
+                    the UK Extension to the EU-U.S. DPF. Udemy, Inc. has certified to the U.S. Department of
+                    Commerce that it adheres to the Swiss-U.S. Data Privacy Framework Principles (Swiss-U.S. DPF
+                    Principles) with regard to the processing of personal data received from Switzerland in
+                    reliance on the Swiss-U.S. DPF. If there is any conflict between the terms in this Privacy
+                    Policy and the EU-U.S. DPF Principles and/or the Swiss-U.S. DPF Principles, the DPF
+                    Principles shall govern. To learn more about the Data Privacy Framework (DPF) program, and
+                    to view our certification, please visit{" "}
+                    <a
+                        href="https://www.dataprivacyframework.gov/"
+                        className="text-blue-500 underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://www.dataprivacyframework.gov/
+                    </a>
+                    .
+                </p>
+                <p className="mb-4">
+                    The Federal Trade Commission has jurisdiction over Udemy Inc.’s compliance with the EU-U.S.
+                    Data Privacy Framework (EU-U.S. DPF), the UK Extension to the EU-U.S. DPF, and the
+                    Swiss-U.S. Data Privacy Framework (Swiss-U.S. DPF).
+                </p>
+                <p className="mb-4">
+                    We are committed to subject to the DPF Principles all personal data received from the
+                    European Union, UK and Gibraltar, and Switzerland. The types of personal data collected are
+                    described in Section 1 of this Privacy Policy. The purposes for which we collect and use
+                    personal data are described in Section 3 of this Privacy Policy. The type of third parties
+                    to whom we disclose personal data are described in Section 4 of this Privacy Policy. We
+                    remain responsible for any of your personal data that is shared under the Onward Transfer
+                    Principle with third parties to further processing on our behalf. Additionally, we may be
+                    required to disclose personal data in response to lawful requests by public authorities,
+                    including to meet national security or law enforcement requirements. Udemy, Inc. shall
+                    remain liable under the DPF Principles if its agent processes personal data in a manner
+                    inconsistent with the DPF Principles, unless Udemy, Inc. proves that it is not responsible
+                    for the event giving rise to the damage.
+                </p>
+                <p className="mb-4">
+                    Individuals have the right to access their personal data, and instructions on doing so are
+                    provided in Section 6.2 of this Privacy Policy. Individuals may also limit the use and
+                    disclosure of their personal data as described in Section 6.1.
+                </p>
+                <p className="mb-4">
+                    In compliance with the EU-U.S. DPF, the UK Extension to the EU-U.S. DPF, and the Swiss-U.S.
+                    DPF, Udemy, Inc. commits to resolve DPF Principles-related complaints about our collection
+                    and use of your personal information. EU, UK and Swiss individuals with inquiries or
+                    complaints regarding our handling of personal data received in reliance on EU-U.S. DPF, the
+                    UK Extension to the EU-U.S. DPF, and the Swiss-U.S. DPF, should first contact Udemy at{" "}
+                    <a href="mailto:privacy@udemy.com" className="text-blue-500 underline">
+                        privacy@udemy.com
+                    </a>
+                    .
+                </p>
+                <p className="mb-4">
+                    In compliance with the EU-U.S. DPF, the UK Extension to the EU-U.S. DPF, and the Swiss-U.S.
+                    DPF, Udemy, Inc. commits to refer unresolved complaints concerning our handling of personal
+                    data received in reliance on EU-U.S. DPF, the UK Extension to the EU-U.S. DPF, and the
+                    Swiss-U.S. DPF, to the International Centre for Dispute Resolution/American Arbitration
+                    Association (ICDR-AAA), an alternative dispute resolution provider based in the United
+                    States. If you do not receive timely acknowledgment of your DPF Principles-related complaint
+                    from us, or if we have not addressed your DPF Principles-related complaint to your
+                    satisfaction, please visit{" "}
+                    <a
+                        href="https://go.adr.org/dpf.html"
+                        className="text-blue-500 underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://go.adr.org/dpf.html
+                    </a>{" "}
+                    for more information or to file a complaint. The services of ICDR-AAA are provided at no
+                    cost to you. Under certain conditions, you may invoke binding arbitration for complaints
+                    regarding DPF compliance not resolved by any of the other DPF mechanisms as more
+                    particularly detailed here:{" "}
+                    <a
+                        href="https://www.dataprivacyframework.gov/s/article/ANNEX-I-introduction-dpf?tabset-35584=2"
+                        className="text-blue-500 underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        https://www.dataprivacyframework.gov/s/article/ANNEX-I-introduction-dpf?tabset-35584=2
+                    </a>
+                    .
+                </p>
+
+                <h3 className="text-xl font-bold mb-4">7.6 Users Outside of the U.S.</h3>
+                <p className="mb-4">
+                    In order to provide the Services to you, we must transfer your data to the United States and
+                    process it there. If you are using the Services from outside the United States, you consent
+                    to the transfer, storage, and processing of your data in the United States or other
+                    countries as stated in this Privacy Policy.
+                </p>
+            </div>
+
+            <div className="p-6 bg-white rounded-lg shadow-md max-w-4xl mx-auto">
+                <h2 className="text-2xl font-bold mb-4">8. Updates & Contact Info</h2>
+                <p className="mb-4">
+                    When we make a material change to this policy, we’ll notify users via email, in-product
+                    notice, or another mechanism required by law. Changes become effective the day they’re
+                    posted. Please contact us via email or postal mail with any questions, concerns, or
+                    disputes.
+                </p>
+
+                <h3 className="text-xl font-bold mb-4">8.1 Modifications to This Privacy Policy</h3>
+                <p className="mb-4">
+                    From time to time, we may update this Privacy Policy. If we make any material change to it,
+                    we will notify you via email, through a notification posted on the Services, or as required
+                    by applicable law. We will also include a summary of the key changes. Unless stated
+                    otherwise, modifications will become effective on the day they are posted.
+                </p>
+                <p className="mb-4">
+                    As permitted by applicable law, if you continue to use the Services after the effective date
+                    of any change, then your access and/or use will be deemed an acceptance of (and agreement to
+                    follow and be bound by) the revised Privacy Policy. The revised Privacy Policy supersedes
+                    all previous Privacy Policies.
+                </p>
+
+                <h3 className="text-xl font-bold mb-4">8.2 Interpretation</h3>
+                <p className="mb-4">
+                    Any capitalized terms not defined in this policy are defined as specified in Udemy’s{" "}
+                    <a href="#" className="text-blue-500 underline">
+                        Terms of Use
+                    </a>
+                    . Any version of this Privacy Policy in a language other than English is provided for
+                    convenience. If there is any conflict with a non-English version, you agree that the
+                    English language version will control.
+                </p>
+
+                <h3 className="text-xl font-bold mb-4">8.3 Questions</h3>
+                <p className="mb-4">
+                    If you have any questions, concerns, or disputes regarding our Privacy Policy, please feel
+                    free to contact our privacy team (including our Data Protection Officer) at{" "}
+                    <a href="mailto:privacy@udemy.com" className="text-blue-500 underline">
+                        privacy@udemy.com
+                    </a>
+                    . You can also send postal mail to us at Udemy, Attn: Legal, 600 Harrison Street, 3rd Floor,
+                    San Francisco, CA 94107.
+                </p>
+            </div>
 
 
 
