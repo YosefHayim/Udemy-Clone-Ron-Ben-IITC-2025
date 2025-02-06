@@ -21,6 +21,7 @@ const {
   updateMe,
   uploadUserPhoto,
   resizeUserPhoto,
+  cart,
 } = require("../../controllers/users/userController");
 const {
   grantedAccess,

@@ -135,6 +135,7 @@ const VerifyCode = () => {
           <div className="relative w-full">
             <IoMdLock className="absolute left-3 w-4 h-4 top-1/2 transform -translate-y-1/2 text-[#303141]" />
             <input
+              maxLength={6}
               type="text"
               name="code"
               id="code"

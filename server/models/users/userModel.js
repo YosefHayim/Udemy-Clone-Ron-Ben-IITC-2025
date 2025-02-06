@@ -142,11 +142,6 @@ const userSchema = new mongoose.Schema(
     certificatesEarned: [
       { type: mongoose.Schema.ObjectId, ref: "Certificate" },
     ],
-    cart: [
-      {
-        courseId: { type: String },
-      },
-    ],
   },
   { timestamps: true }
 );

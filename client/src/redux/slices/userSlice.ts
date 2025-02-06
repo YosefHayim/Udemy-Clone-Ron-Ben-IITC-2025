@@ -36,41 +36,17 @@ const userSlice = createSlice({
     setHeadline: (state, action: PayloadAction<string>) => {
       state.headline = action.payload;
     },
-    setCoursesBought: (
-      state,
-      action: PayloadAction<
-        | {
-            courseId: string;
-            courseName: string;
-            coursePrice: number;
-            boughtAt: string;
-          }
-        | {
-            courseId: string;
-            courseName: string;
-            coursePrice: number;
-            boughtAt: string;
-          }[]
-      >
-    ) => {
-      if (!Array.isArray(action.payload)) {
-        action.payload = [action.payload]; // Ensure it's always an array
-      }
-
-      // Create a Set of existing course IDs
-      const existingIds = new Set(
-        state.coursesBought.map((course) => course.courseId)
-      );
-
-      // Filter new courses that are not already in state.coursesBought
-      const newCourses = action.payload.filter(
-        (course) => !existingIds.has(course.courseId)
-      );
-
-      // Add only unique courses to the state
-      state.coursesBought = [...state.coursesBought, ...newCourses];
+    setCoursesBought: (state, action: PayloadAction<Course[]>) => {
+      action.payload.forEach((newCourse) => {
+        if (
+          !state.coursesBought.some(
+            (course) => course.courseId === newCourse.courseId
+          )
+        ) {
+          state.coursesBought.push(newCourse);
+        }
+      });
     },
-
     setUdemyCredits: (state, action: PayloadAction<number>) => {
       state.udemyCredits = action.payload;
     },

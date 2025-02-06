@@ -3,6 +3,7 @@ import refreshMe from "@/api/users/refreshMe";
 import Loader from "@/components/Loader/Loader";
 import { Button } from "@/components/ui/button";
 import { RootState } from "@/redux";
+import { setClearAll } from "@/redux/slices/cartSlice";
 import {
   setCookie,
   setCoursesBought,
@@ -64,7 +65,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
       dispatch(setUdemyCredits(decoded.udemyCredits));
       setTimeout(() => {
         navigate(`/course-view/${coursesIds[0]}`);
-      }, 1500);
+      }, 5000);
     },
   });
 
@@ -82,7 +83,6 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
       console.error("Invalid courseId received.");
       return;
     }
-
     checkOutMutation.mutate(courseId);
   };
 

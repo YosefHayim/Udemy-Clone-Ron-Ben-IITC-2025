@@ -50,11 +50,7 @@ const ItemInCart = ({
   }
 
   if (isPending) {
-    return (
-      <div>
-        <Loader hSize="" useSmallLoading={false} />
-      </div>
-    );
+    return <div></div>;
   }
 
   const handleCourseView = (courseId: string): void => {

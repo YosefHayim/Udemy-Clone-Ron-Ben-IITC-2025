@@ -64,7 +64,9 @@ const DropdownMenu: React.FC = () => {
               className="px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex justify-between items-center"
             >
               My cart
-              <CartCoursesNumber />
+              <div className="absolute right-[80%] top-[19%] text-center text-[1.2em] font-bold">
+                <CartCoursesNumber />
+              </div>
             </Link>
           </li>
           <li>
