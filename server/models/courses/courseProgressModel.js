@@ -43,7 +43,7 @@ const courseProgressSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-courseProgressSchema.index({ userId: 1, courseId: 1 }, { unique: true });
+// courseProgressSchema.index({ userId: 1, courseId: 1 }, { unique: true });
 
 const CourseProgress = mongoose.model("CourseProgress", courseProgressSchema);
 module.exports = CourseProgress;

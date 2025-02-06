@@ -25,7 +25,7 @@ import { FilterDataProps } from "@/types/types";
 import AccountSecurity from "@/components/Navbar/DropDownMenu/ProfilePage/AccountSecurity/AccountSecurity";
 import ApiClients from "@/components/Navbar/DropDownMenu/ProfilePage/ApiClients/ApiClients";
 import Photo from "@/components/Navbar/DropDownMenu/ProfilePage/Photo/Photo";
-import NotificationPreferences from "@/components/Navbar/DropDownMenu/ProfilePage/NotificationPrefrences/NotificationPreferences";
+import NotificationPreferences from "@/components/Navbar/DropDownMenu/ProfilePage/NotificationPreferences/NotificationPreferences";
 import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privacy";
 import CloseAccount from "@/components/Navbar/DropDownMenu/ProfilePage/CloseAccount/CloseAccount";
 import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";

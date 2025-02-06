@@ -9,7 +9,9 @@ import getCourseCartInfoByCourseId from "@/api/courses/getCourseCartInfoByCourse
 import { useDispatch } from "react-redux";
 import { removeCourseFromCart } from "@/redux/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
-import Loader from "@/components/Loader/Loader";
+import { FaCirclePlay } from "react-icons/fa6";
+
+import OptionsMyLearning from "./OptionsMyLearning/OptionsMyLearning";
 
 const ItemInCart = ({
   rowPrices = true,
@@ -28,6 +30,8 @@ const ItemInCart = ({
   isColCourseBox = false,
   textSize = "",
   gapPrice = "gap-[1em]",
+  width = "w-full",
+  isMyLearning = false,
 }) => {
   if (!courseId) return null;
 
@@ -50,11 +54,7 @@ const ItemInCart = ({
   }
 
   if (isPending) {
-    return (
-      <div>
-        <Loader hSize="" useSmallLoading={false} />
-      </div>
-    );
+    return <div></div>;
   }
 
   const handleCourseView = (courseId: string): void => {
@@ -72,12 +72,9 @@ const ItemInCart = ({
   };
 
   return (
-    <div
-      id={courseId}
-      className={`p-[1em] w-full ${textSize}`}
-      onClick={() => handleCourseView(courseId)}
-    >
+    <div id={courseId} className={`p-[1em] ${width} ${textSize}`}>
       <div
+        onClick={() => handleCourseView(courseId)}
         id={courseId}
         className={`${
           isColCourseBox
@@ -86,12 +83,32 @@ const ItemInCart = ({
         }`}
       >
         <div>
-          <img
-            id={courseId}
-            src={data?.courseImg}
-            alt={`${data.courseName} image`}
-            className={`${courseImgSize}`}
-          />
+          <div className="relative">
+            <img
+              id={courseId}
+              src={data?.courseImg}
+              alt={`${data.courseName} image`}
+              className={`${courseImgSize}`}
+            />
+            <div
+              className={
+                isMyLearning
+                  ? ``
+                  : `hover:bg-black absolute top-0 w-full h-full opacity-[80%]`
+              }
+            >
+              <FaCirclePlay className="text:none hover:text-white text-[3em] absolute left-[38%] top-[35%]" />
+              <div
+                className={
+                  isMyLearning
+                    ? ``
+                    : `bg-white absolute right-[5%] top-[5%] p-[0.5em] flex items-center rounded-[0.2em] h-[2em] hover:bg-gray-100`
+                }
+              >
+                <OptionsMyLearning />
+              </div>
+            </div>
+          </div>
         </div>
         <div
           className={`${chooseFlex} flex flex-row items-${itemsPosition} justify-center ${gapPrice}`}

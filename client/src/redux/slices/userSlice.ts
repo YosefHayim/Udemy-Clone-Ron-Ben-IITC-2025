@@ -36,12 +36,16 @@ const userSlice = createSlice({
     setHeadline: (state, action: PayloadAction<string>) => {
       state.headline = action.payload;
     },
-    setCoursesBought: (state, action: PayloadAction<string | string[]>) => {
-      if (Array.isArray(action.payload)) {
-        state.coursesBought.push(...action.payload);
-      } else {
-        state.coursesBought.push(action.payload);
-      }
+    setCoursesBought: (state, action: PayloadAction<Course[]>) => {
+      action.payload.forEach((newCourse) => {
+        if (
+          !state.coursesBought.some(
+            (course) => course.courseId === newCourse.courseId
+          )
+        ) {
+          state.coursesBought.push(newCourse);
+        }
+      });
     },
     setUdemyCredits: (state, action: PayloadAction<number>) => {
       state.udemyCredits = action.payload;
