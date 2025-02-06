@@ -52,7 +52,7 @@ const Wishlist: React.FC = () => {
                   <ItemInCart
                     showInstructor={false}
                     rowPrices={false}
-                    showHR={false}
+                    showHR={true}
                     courseImgSize="w-full"
                     courseId={courseBought.courseId}
                     showFullPrice={false}

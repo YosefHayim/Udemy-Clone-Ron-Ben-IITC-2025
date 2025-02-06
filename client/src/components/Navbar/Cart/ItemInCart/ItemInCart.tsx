@@ -1,6 +1,6 @@
 import CourseInstructor from "@/components/CourseCard/CourseInstructor/CourseInstructor";
 import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
-import { BsFillTagFill } from "react-icons/bs";
+import { BsFillTagFill, BsThreeDotsVertical } from "react-icons/bs";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseLength from "@/pages/ViewCoursePageInfo/MoreCoursesByInstructor/CourseLength/CourseLength";
 import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
@@ -9,7 +9,15 @@ import getCourseCartInfoByCourseId from "@/api/courses/getCourseCartInfoByCourse
 import { useDispatch } from "react-redux";
 import { removeCourseFromCart } from "@/redux/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
-import Loader from "@/components/Loader/Loader";
+import { FaCirclePlay } from "react-icons/fa6";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const ItemInCart = ({
   rowPrices = true,
@@ -28,6 +36,8 @@ const ItemInCart = ({
   isColCourseBox = false,
   textSize = "",
   gapPrice = "gap-[1em]",
+  width = "w-full",
+  isMyLearning = false,
 }) => {
   if (!courseId) return null;
 
@@ -68,7 +78,7 @@ const ItemInCart = ({
   };
 
   return (
-    <div id={courseId} className={`p-[1em] w-full ${textSize}`}>
+    <div id={courseId} className={`p-[1em] ${width} ${textSize}`}>
       <div
         onClick={() => handleCourseView(courseId)}
         id={courseId}
@@ -79,12 +89,38 @@ const ItemInCart = ({
         }`}
       >
         <div>
-          <img
-            id={courseId}
-            src={data?.courseImg}
-            alt={`${data.courseName} image`}
-            className={`${courseImgSize}`}
-          />
+          <div className="relative">
+            <img
+              id={courseId}
+              src={data?.courseImg}
+              alt={`${data.courseName} image`}
+              className={`${courseImgSize}`}
+            />
+            <div
+              className={
+                isMyLearning
+                  ? ``
+                  : `bg-black absolute top-0 w-full h-full opacity-[80%]`
+              }
+            >
+              <FaCirclePlay className="text-white text-[3em] absolute left-[38%] top-[35%]" />
+              <div className="bg-white absolute right-[5%] top-[5%] p-[0.5em] flex items-center rounded-[0.2em] h-[2em] hover:bg-gray-100">
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <BsThreeDotsVertical />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuLabel>Lists</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Share</DropdownMenuItem>
+                    <DropdownMenuItem>Create new List</DropdownMenuItem>
+                    <DropdownMenuItem>Favorite</DropdownMenuItem>
+                    <DropdownMenuItem>Achieve</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            </div>
+          </div>
         </div>
         <div
           className={`${chooseFlex} flex flex-row items-${itemsPosition} justify-center ${gapPrice}`}
