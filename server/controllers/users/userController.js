@@ -743,7 +743,6 @@ const googleLoginOrSignUp = catchAsync(async (req, res, next) => {
       {
         client_id: process.env.GOOGLE_CLIENT_ID,
         client_secret: process.env.GOOGLE_CLIENT_SECRET,
-        // redirect_uri: "http://127.0.0.1:5173", // Must match the frontend's redirect URI
         redirect_uri: "http://localhost:5173", // Must match the frontend's redirect URI
         grant_type: "authorization_code",
         code,
