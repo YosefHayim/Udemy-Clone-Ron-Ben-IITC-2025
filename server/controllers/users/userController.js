@@ -455,7 +455,7 @@ const joinCourseById = catchAsync(async (req, res, next) => {
     return next(createError(`No course exists with this ID: ${courseId}`, 404));
   }
 
-  if (!user.coursesBought) {
+  if (!Array.isArray(user.coursesBought)) {
     user.coursesBought = [];
   }
 
@@ -836,11 +836,17 @@ const updateMe = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     response: "cookie has been updated",
+    user,
   });
+});
+
+const cart = catchAsync(async (req, res, next) => {
+  
 });
 
 module.exports = {
   updateMe,
+  cart,
   joinCoursesByIds,
   toggleCourseWishlist,
   updateProfilePic,

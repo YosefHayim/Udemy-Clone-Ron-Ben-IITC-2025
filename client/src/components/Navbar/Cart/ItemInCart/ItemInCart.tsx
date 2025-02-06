@@ -72,12 +72,9 @@ const ItemInCart = ({
   };
 
   return (
-    <div
-      id={courseId}
-      className={`p-[1em] w-full ${textSize}`}
-      onClick={() => handleCourseView(courseId)}
-    >
+    <div id={courseId} className={`p-[1em] w-full ${textSize}`}>
       <div
+        onClick={() => handleCourseView(courseId)}
         id={courseId}
         className={`${
           isColCourseBox

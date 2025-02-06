@@ -19,10 +19,13 @@ import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { useContext, useEffect, useState } from "react";
 import { emailContext } from "@/routes/AppRoutes";
+import Loader from "@/components/Loader/Loader";
 
 const VerifyCode = () => {
   const [countdown, setCountdown] = useState(30);
   const [isSentCodeAgain, setIsSentCodeAgain] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+
   const [code, setCode] = useState("");
   const cookie = Cookies.get("cookie");
 
@@ -49,12 +52,17 @@ const VerifyCode = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const code = formData.get("code") as string;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
     setCode(code);
     verifyCodeMutation.mutate({ code, email: emailUser });
     if (!cookie) {
       console.error("No token found in cookies");
       return;
     }
+
     const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
     dispatch(setCookie(cookie || ""));
     dispatch(setFullName(decoded.fullName));
@@ -138,9 +146,15 @@ const VerifyCode = () => {
 
           <button
             type="submit"
-            className="w-full py-3 rounded-sm bg-[#6D28D2] hover:bg-purple-700 text-white font-medium transition"
+            className="w-full py-3 rounded-md bg-[#6d28d2] hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
           >
-            Log in
+            {isLoading ? (
+              <Loader useSmallLoading={true} hSize="" />
+            ) : (
+              <div className="flex flex-row">
+                <span className="text-[1rem] font-bold">Log in</span>
+              </div>
+            )}
           </button>
         </form>
 
