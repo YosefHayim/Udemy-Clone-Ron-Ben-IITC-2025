@@ -1,6 +1,6 @@
 import CourseInstructor from "@/components/CourseCard/CourseInstructor/CourseInstructor";
 import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
-import { BsFillTagFill, BsThreeDotsVertical } from "react-icons/bs";
+import { BsFillTagFill } from "react-icons/bs";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseLength from "@/pages/ViewCoursePageInfo/MoreCoursesByInstructor/CourseLength/CourseLength";
 import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
@@ -10,14 +10,8 @@ import { useDispatch } from "react-redux";
 import { removeCourseFromCart } from "@/redux/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { FaCirclePlay } from "react-icons/fa6";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
+import OptionsMyLearning from "./OptionsMyLearning/OptionsMyLearning";
 
 const ItemInCart = ({
   rowPrices = true,
@@ -100,24 +94,18 @@ const ItemInCart = ({
               className={
                 isMyLearning
                   ? ``
-                  : `bg-black absolute top-0 w-full h-full opacity-[80%]`
+                  : `hover:bg-black absolute top-0 w-full h-full opacity-[80%]`
               }
             >
-              <FaCirclePlay className="text-white text-[3em] absolute left-[38%] top-[35%]" />
-              <div className="bg-white absolute right-[5%] top-[5%] p-[0.5em] flex items-center rounded-[0.2em] h-[2em] hover:bg-gray-100">
-                <DropdownMenu>
-                  <DropdownMenuTrigger>
-                    <BsThreeDotsVertical />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>Lists</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>Share</DropdownMenuItem>
-                    <DropdownMenuItem>Create new List</DropdownMenuItem>
-                    <DropdownMenuItem>Favorite</DropdownMenuItem>
-                    <DropdownMenuItem>Achieve</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+              <FaCirclePlay className="text:none hover:text-white text-[3em] absolute left-[38%] top-[35%]" />
+              <div
+                className={
+                  isMyLearning
+                    ? ``
+                    : `bg-white absolute right-[5%] top-[5%] p-[0.5em] flex items-center rounded-[0.2em] h-[2em] hover:bg-gray-100`
+                }
+              >
+                <OptionsMyLearning />
               </div>
             </div>
           </div>
