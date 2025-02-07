@@ -1,0 +1,48 @@
+2025-02-07 22:00:41,674 - INFO - Starting Automation Test... \u2705
+2025-02-07 22:00:43,841 - INFO - Opened website: https://atid.store/
+2025-02-07 22:00:44,462 - INFO - Screenshot taken: screenshots_2025-02-07_22-00-41\shoes_item_page_22-00-44.png
+2025-02-07 22:00:44,463 - INFO - 
+    ==============================
+    Test Case ID: TC_101
+    Test Scenario: User navigates to Shoes Page
+    Steps: Click on shoes item link
+    Expected Result: Shoes product page should open
+    Actual Result: Shoes product page opened successfully
+    Status: Pass
+    ==============================
+    
+2025-02-07 22:00:45,041 - INFO - Screenshot taken: screenshots_2025-02-07_22-00-41\add_to_cart_22-00-44.png
+2025-02-07 22:00:45,041 - INFO - 
+    ==============================
+    Test Case ID: TC_102
+    Test Scenario: User adds a product to cart
+    Steps: Click 'Add to Cart' button
+    Expected Result: Product should be added to cart
+    Actual Result: Product added to cart successfully
+    Status: Pass
+    ==============================
+    
+2025-02-07 22:00:45,670 - INFO - Screenshot taken: screenshots_2025-02-07_22-00-41\cart_page_22-00-45.png
+2025-02-07 22:00:45,670 - INFO - 
+    ==============================
+    Test Case ID: TC_103
+    Test Scenario: User navigates to Cart Page
+    Steps: Click 'Go to Cart' button
+    Expected Result: Cart page should open
+    Actual Result: Cart page opened successfully
+    Status: Pass
+    ==============================
+    
+2025-02-07 22:00:46,268 - INFO - Screenshot taken: screenshots_2025-02-07_22-00-41\checkout_page_22-00-46.png
+2025-02-07 22:00:46,268 - INFO - 
+    ==============================
+    Test Case ID: TC_104
+    Test Scenario: User proceeds to checkout
+    Steps: Click 'Checkout' button
+    Expected Result: Checkout page should open
+    Actual Result: Checkout page opened successfully
+    Status: Pass
+    ==============================
+    
+2025-02-07 22:00:46,268 - INFO - Add to Cart Test completed successfully
+2025-02-07 22:00:53,373 - INFO - Closed WebDriver
