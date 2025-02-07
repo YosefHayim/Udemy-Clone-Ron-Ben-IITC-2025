@@ -69,8 +69,9 @@ const userSchema = new mongoose.Schema(
     },
     temporaryCode: {
       type: Number,
+      maxLength: [6, "Temporary code can only be 6 digits."],
     },
-    temporaryCodeExpiresAt: { type: Date, index: { expires: "15m" } },
+    temporaryCodeExpiresAt: { type: Date },
     active: {
       type: Boolean,
       default: true,
