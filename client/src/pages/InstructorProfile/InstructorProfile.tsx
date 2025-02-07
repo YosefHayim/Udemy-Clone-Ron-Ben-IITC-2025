@@ -1,20 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import DescriptionOfInstructor from "./DescriptionOfInstructor/DescriptionOfInstructor";
 import SocialLinks from "./SocialLinks/SocialLinks";
-import instructorImgPlaceholder from "/images/instructor-img-placeholder.png";
 import getInstructorById from "@/api/users/getInstructorById";
 import Loader from "@/components/Loader/Loader";
+import { useParams } from "react-router-dom";
 
 const InstructorProfile = () => {
-  document.title = `
-    Hussein Nasser | Software Engineer, Author
-| Udemy`;
-
-  const instructorId = "67a0e8228059ec7c5a5f6aa4";
+  const params = useParams();
+  const instructorId = params.instructorId;
 
   const { isPending, error, data } = useQuery({
     queryKey: ["instructorInfo", instructorId],
-    queryFn: () => getInstructorById(instructorId),
+    queryFn: () => getInstructorById(instructorId || ""),
     enabled: !!instructorId,
   });
 
@@ -28,7 +25,8 @@ const InstructorProfile = () => {
 
   if (error) return "An error has occurred: " + error.message;
 
-  console.log(data);
+  document.title = `
+    ${data.userId.fullName} | ${data.userId.headline}| Udemy`;
 
   return (
     <div className="p-[3em] pl-[10em] w-[1000px]">
