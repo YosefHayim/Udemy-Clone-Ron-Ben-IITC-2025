@@ -43,11 +43,11 @@ instructorSchema.pre("save", function (next) {
 instructorSchema.pre(/^find/, function (next) {
   this.populate({
     path: "userId",
-    select: "profilePic links bio headline",
+    select: "fullName profilePic links bio headline",
   }).populate({
     path: "coursesRelatedIds",
     select:
-      "courseName courseInstructor courseDiscountPrice courseFullPrice totalRatings totalCourseDuration courseTag",
+      "courseName courseInstructor courseDiscountPrice courseFullPrice totalRatings totalCourseDuration courseTag courseImg",
   });
 
   next();

@@ -52,20 +52,21 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
     onSuccess: () => {
       setTimeout(() => {
         refreshUserDataMutation.mutate();
-      }, 2000);
+      }, 500);
     },
   });
 
   const refreshUserDataMutation = useMutation({
     mutationFn: refreshMe,
     onSuccess: () => {
-      const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
-      dispatch(setCookie(cookie || ""));
-      dispatch(setCoursesBought(decoded.coursesBought));
-      dispatch(setUdemyCredits(decoded.udemyCredits));
       setTimeout(() => {
+        const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
+        dispatch(setCookie(cookie || ""));
+        dispatch(setCoursesBought(decoded.coursesBought));
+        dispatch(setUdemyCredits(decoded.udemyCredits));
         navigate(`/course-view/${coursesIds[0]}`);
-      }, 5000);
+        dispatch(setClearAll());
+      }, 2000);
     },
   });
 

@@ -25,6 +25,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Wishlist: React.FC = () => {
   document.title = "My learning | Udemy";
@@ -67,80 +68,107 @@ const Wishlist: React.FC = () => {
         >
           {coursesBought && coursesBought.length > 0 ? (
             <div className="w-full flex flex-col items-start justify-start">
-              <p>Sort by</p>
-
-              <div className="flex flex-row items-center justify-center gap-[1em] w-full">
-                <AlertDialog>
-                  <AlertDialogTrigger className="hover:bg-purpleHoverBtn font-bold text-[#6d28d2] w-[200px] border border-[#6d28d2] rounded-[0.2em] p-[0.7em]">
-                    Refine
-                  </AlertDialogTrigger>
-                  <AlertDialogContent className="rounded-[1em] h-[250px]">
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>Filters</AlertDialogTitle>
-                      <AlertDialogDescription className="flex flex-col items-center">
-                        <DropdownMenu>
-                          <DropdownMenuTrigger className="w-full font-bold hover:bg-purpleHoverBtn text-[#6d28d2] border border-[#6d28d2] rounded-[0.2em] p-[0.7em]">
-                            Categories
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent className="w-[460px]">
-                            <DropdownMenuLabel className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
-                              Favorites
-                            </DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
-                              All Categories
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
-                              Design
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
-                              Development
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
-                              IT & Software
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
-                              Archived
-                            </DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-
-                        <DropdownMenu>
-                          <DropdownMenuTrigger className="w-full font-bold hover:bg-purpleHoverBtn  text-[#6d28d2] border border-[#6d28d2] rounded-[0.2em] p-[0.7em]">
-                            Progress
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent className="w-[460px]">
-                            <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
-                              Not Started
-                            </DropdownMenuItem>
-                            <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
-                              In Progress
-                            </DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel className="text-[#6d28d2] font-bold border-none hover:bg-none rounded-[0.2em] py-[1.5em] shadow-none">
-                        Reset
-                      </AlertDialogCancel>
-                      <AlertDialogAction className="bg-[#6d28d2] text-white font-bold hover:bg-[#892de1] rounded-[0.2em] py-[1.5em]">
-                        Apply
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-                <form className="flex flex-row items-center justify-center gap-[0.5em]">
-                  <input
-                    type="text"
-                    placeholder="Search my courses"
-                    className="bg-white border border-gray-400 p-[0.7em] rounded-[0.2em] placeholder:text-gray-600"
-                  />
-                  <button className="bg-[#6d28d2] p-[0.7em] rounded-[0.2em]">
-                    <IoMdSearch className="text-white text-[1.5em]" />
+              <div className="flex flex-row items-center justify-between gap-[1em] w-full px-[3em] mt-[1em]">
+                <div className="flex flex-row items-center justify-center gap-[1em] w-full">
+                  <div className="flex flex-col items-start justify-start gap-[0.5em]">
+                    <p>Sort by</p>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="flex flex-row items-center gap-[0.5em]  font-bold hover:bg-purpleHoverBtn text-[#6d28d2] border border-[#6d28d2] rounded-[0.2em] p-[0.7em]">
+                        Recently Accessed
+                        <RiArrowDropDownLine className="text-[1.5em]" />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent>
+                        <DropdownMenuLabel className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                          Recently Enrolled
+                        </DropdownMenuLabel>
+                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                          Title: A-to-Z
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                          Title: Z-to-A
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                          Development
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  <div className="flex flex-col items-start justify-start gap-[0.5em]">
+                    <p>Filter by</p>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="flex flex-row items-center gap-[0.5em] w-min font-bold hover:bg-purpleHoverBtn text-[#6d28d2] border border-[#6d28d2] rounded-[0.2em] p-[0.7em]">
+                        Categories
+                        <RiArrowDropDownLine className="text-[1.5em]" />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-[250px]">
+                        <DropdownMenuLabel className="font-normal w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                          Favorites
+                        </DropdownMenuLabel>
+                        <DropdownMenuSeparator className="text-gray-800" />
+                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                          All Categories
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                          Design
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                          Development
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                          IT & Software
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator className="text-gray-800" />
+                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                          Archived
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="mt-[2em] flex flex-row items-center gap-[0.5em] w-min font-bold hover:bg-purpleHoverBtn  text-[#6d28d2] border border-[#6d28d2] rounded-[0.2em] p-[0.7em]">
+                      Progress
+                      <RiArrowDropDownLine className="text-[1.5em]" />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                        Not Started
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                        In Progress
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="mt-[2em] flex flex-row items-center gap-[0.5em] w-min font-bold hover:bg-purpleHoverBtn  text-[#6d28d2] border border-[#6d28d2] rounded-[0.2em] p-[0.7em]">
+                      Instructor
+                      <RiArrowDropDownLine className="text-[1.5em]" />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-[250px] h-[300px] overflow-y-auto">
+                      <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                        Not Started
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                        In Progress
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                  <button className=" mt-[2em] font-bold text-gray-400 cursor-not-allowed border-none">
+                    Reset
                   </button>
-                </form>
+                </div>
+
+                <div className="flex flex-row items-center justify-center gap-[0.5em]">
+                  <form className="flex flex-row items-center justify-center gap-[0.5em]">
+                    <input
+                      type="text"
+                      placeholder="Search my courses"
+                      className="bg-white border border-gray-400 p-[0.7em] rounded-[0.2em] placeholder:text-gray-600"
+                    />
+                    <button className="hover:bg-[#892de1] bg-[#6d28d2] p-[0.7em] rounded-[0.2em]">
+                      <IoMdSearch className="text-white text-[1.5em]" />
+                    </button>
+                  </form>
+                </div>
               </div>
               <div className="grid grid-cols-4 gap-4 w-full text-center p-[5em]">
                 {coursesBought.map((courseBought) => (
