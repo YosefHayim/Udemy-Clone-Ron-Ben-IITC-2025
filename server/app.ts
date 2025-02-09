@@ -13,7 +13,7 @@ import loggerInfo from "./middlewares/logger.ts";
 import courseRoute from "./routes/course/courseRoute.ts";
 import lessonRoute from "./routes/course/lessonRoute.ts";
 import sectionRoute from "./routes/course/sectionRoute.ts";
-// import courseProgressRoutes from "./routes/course/courseProgressRoutes.ts";
+import courseProgressRoutes from "./routes/course/courseProgressRoutes.ts";
 import userRoute from "./routes/users/userRoute.ts";
 import commentRoute from "./routes/reviews/commentRoute.ts";
 import reviewRoute from "./routes/reviews/reviewRoute.ts";
@@ -81,13 +81,13 @@ app.use("/api/review", reviewRoute);
 app.use("/api/report/review", reportReviewRoute);
 app.use("/api/comment", commentRoute);
 app.use("/api/instructor", instructorRoute);
-// app.use("/api/course-progress", courseProgressRoutes);
+app.use("/api/course-progress", courseProgressRoutes);
 
 // Handle undefined routes
 app.all("*", undefinedRoute);
 
 // Error handling middleware
-// app.use(errorHandler);
+app.use(errorHandler);
 
 // Start server
 app.listen(PORT, () => {
