@@ -5,7 +5,7 @@ import {
   createLesson,
   updateLessonById,
   deleteLessonById,
-} from "../../controllers/courses/lessonController";
+} from "../../controllers/courses/lessonController.ts";
 
 const router = express.Router();
 

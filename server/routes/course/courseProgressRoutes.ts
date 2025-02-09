@@ -7,8 +7,8 @@ import {
   getCourseProgress,
   initializeProgress,
   updateLessonProgress,
-} from "../../controllers/courses/progressController";
-import { grantedAccess } from "../../controllers/authorization/authController";
+} from "../../controllers/courses/progressController.ts";
+import { grantedAccess } from "../../controllers/authorization/authController.ts";
 
 const router = express.Router();
 // Initialize progress for a course

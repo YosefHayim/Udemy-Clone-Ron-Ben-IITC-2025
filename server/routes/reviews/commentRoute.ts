@@ -1,5 +1,5 @@
 import express, { NextFunction } from "express";
-import { grantedAccess } from "../../controllers/authorization/authController";
+import { grantedAccess } from "../../controllers/authorization/authController.ts";
 import {
   getAllComments,
   addCommentByReviewId,
@@ -7,7 +7,7 @@ import {
   updateCommentById,
   deleteCommentById,
   getCommentById,
-} from "../../controllers/reviews/commentController";
+} from "../../controllers/reviews/commentController.ts";
 
 const router = express.Router();
 

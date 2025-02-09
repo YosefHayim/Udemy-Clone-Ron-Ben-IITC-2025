@@ -6,7 +6,7 @@ import {
   deleteSectionById,
   updateSectionById,
   getSectionsByCourseId,
-} from "../../controllers/courses/sectionController";
+} from "../../controllers/courses/sectionController.ts";
 
 const router = express.Router();
 

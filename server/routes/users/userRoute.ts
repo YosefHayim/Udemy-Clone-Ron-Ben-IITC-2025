@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { grantedAccess } from "../../controllers/authorization/authController";
+import { grantedAccess } from "../../controllers/authorization/authController.ts";
 import {
   getAllUsers,
   signUp,
@@ -21,7 +21,7 @@ import {
   updateMe,
   uploadUserPhoto,
   resizeUserPhoto,
-} from "../../controllers/users/userController";
+} from "../../controllers/users/userController.ts";
 const router = express.Router();
 
 router.param("id", (req: Request, res: Response, next, val) => {

@@ -10,8 +10,8 @@ import {
   getCourseInfoForCart,
   viewCourseById,
   updateCourseProgressById,
-} from "../../controllers/courses/courseController";
-import { grantedAccess } from "../../controllers/authorization/authController";
+} from "../../controllers/courses/courseController.ts";
+import { grantedAccess } from "../../controllers/authorization/authController.ts";
 
 const router = express.Router();
 

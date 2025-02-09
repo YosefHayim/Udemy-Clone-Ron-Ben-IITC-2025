@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
-import { grantedAccess } from "../../controllers/authorization/authController";
+import { grantedAccess } from "../../controllers/authorization/authController.ts";
 import {
   getAllReviews,
   addReviewByCourseId,
@@ -11,7 +11,7 @@ import {
   toggleLikeByReviewId,
   toggleDislikeReaction,
   getAllReviewsCountOfAllCourses,
-} from "../../controllers/reviews/reviewController";
+} from "../../controllers/reviews/reviewController.ts";
 
 const router = express.Router();
 

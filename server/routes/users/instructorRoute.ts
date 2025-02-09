@@ -1,5 +1,5 @@
 import express from "express";
-import { getInstructorById } from "../../controllers/users/instructorController";
+import { getInstructorById } from "../../controllers/users/instructorController.ts";
 
 const router = express.Router();
 
