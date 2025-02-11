@@ -30,9 +30,9 @@ const ExploreMenu = () => {
 
     return subCategoryName
       ? category.subcategory.find(
-          (subCat) =>
-            subCat.title === subCategoryName || subCat.name === subCategoryName
-        ) || null
+        (subCat) =>
+          subCat.title === subCategoryName || subCat.name === subCategoryName
+      ) || null
       : null;
   };
 
@@ -82,7 +82,7 @@ const ExploreMenu = () => {
   };
 
   return (
-    <div className="relative inline-block text-left w-auto z-50">
+    <div className="relative inline-block text-left w-auto z-50 text-gray-600 font-medium">
       {/* Botão Explore com hover para mostrar menu */}
       <div
         className="inline-block"
@@ -96,7 +96,7 @@ const ExploreMenu = () => {
         {/* Menu one */}
         {hoveredMenu && (
           <div
-            className="absolute left-0 mt-2 w-64 bg-white border text-sm rounded-l-lg shadow-lg z-10 min-h-[40rem]"
+            className="absolute left-0 mt-[1.6rem] w-64 bg-white border border-gray-300 text-sm rounded-l-lg z-10 min-h-[40rem]"
             onMouseEnter={() => handleMenuEnter("main")}
             onMouseLeave={handleMenuLeave}
           >
@@ -104,7 +104,7 @@ const ExploreMenu = () => {
             <div className="px-4 py-2 font-bold text-gray-700">
               Browse Certifications
             </div>
-
+            {/* menu */}
             {exploreData.map((category, index: number) => (
               <>
                 <div
@@ -127,15 +127,27 @@ const ExploreMenu = () => {
               </>
             ))}
 
-            {/* Submenu */}
+            {/* First Submenu */}
             {hoveredMenu && hoveredMenu !== "main" && (
               <div
-                className="absolute top-0 left-64 mt-0 w-64 bg-white border-y-red-700 shadow-lg z-20 min-h-[40rem]"
+                className="absolute top-[-0.05rem] left-[15.9rem] mt-0 w-64 bg-white border border-y-gray-300 z-20 min-h-[40rem]"
                 onMouseEnter={() => handleSubMenuEnter(hoveredMenu)}
                 onMouseLeave={handleSubMenuLeave}
               >
-                {getCategoryData(hoveredMenu)?.subcategory.map(
-                  (subCategory, index) => (
+                {getCategoryData(hoveredMenu)?.subcategory.map((subCategory, index) => (
+                  <div key={index}>
+                    {/* Adiciona o título "Popular Issuers" antes de "Amazon Web Services (AWS) Certifications" */}
+                    {subCategory.title === "Amazon Web Services (AWS) Certifications" && (
+                      <div className="px-4 py-2 font-bold text-gray-700">Popular Issuers</div>
+                    )}
+
+                    {/* Adiciona "Popular Subjects" com linha em cima antes de "Cloud Certification" */}
+                    {subCategory.title === "Cloud Certification" && (
+                      <div className="px-4 pb-2  pt-4 mt-4 font-bold text-gray-700 border-t border-gray-300">
+                        Popular Subjects
+                      </div>
+                    )}
+
                     <div
                       onClick={() =>
                         handleNavigate(
@@ -144,7 +156,6 @@ const ExploreMenu = () => {
                             : subCategory?.topics[0]
                         )
                       }
-                      key={index}
                       className="hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center"
                       onMouseEnter={() =>
                         handleSubMenuEnter(
@@ -161,18 +172,20 @@ const ExploreMenu = () => {
                         <IoIosArrowForward />
                       </span>
                     </div>
-                  )
-                )}
-              </div>  
+                  </div>
+                ))}
+              </div>
             )}
+
 
             {/* Second Submenu */}
             {hoveredSubMenu && hoveredMenu && (
               <div
-                className="absolute top-0 left-full ml-64 mt-0 w-64 bg-white border-md border-gray-800 rounded-r-lg shadow-lg z-30 min-h-[40rem]"
+                className="absolute top-[0.05rem]  left-[15.8rem] ml-64 mt-[-0.1rem] w-64 bg-white border border-gray-300 rounded-r-lg z-30 min-h-[40rem]"
                 onMouseEnter={handleSecondSubMenuEnter}
                 onMouseLeave={handleSecondSubMenuLeave}
               >
+                <div className="px-4 py-2 font-bold text-gray-700">Popular topics</div>
                 {getSubCategoryData(hoveredMenu, hoveredSubMenu)?.topics?.map(
                   (topic: any, index: number) => (
                     <div
