@@ -1,13 +1,8 @@
 import { axiosClient, localhostUrl } from "../api/configuration";
+import { Note } from "../types/types";
 
 // Define response types
-type Note = {
-  _id: string;
-  seconds: number;
-  text: string;
-  lessonIndex: number;
-  lessonId: string;
-};
+
 
 type AddNotePayload = {
   seconds: number;

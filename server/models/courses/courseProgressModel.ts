@@ -4,7 +4,7 @@ import {
   LessonProgressDocument,
   SectionProgressDocument,
 } from "../../types/types.ts";
-import uuidv4 from "uuidv4";
+import { v4 as uuidv4 } from "uuid"; // ✅ Correct import for ESM
 
 const lessonProgressSchema = new mongoose.Schema<LessonProgressDocument>({
   lessonId: {
@@ -16,7 +16,7 @@ const lessonProgressSchema = new mongoose.Schema<LessonProgressDocument>({
   lastWatched: { type: Number, default: 0 }, // Last second viewed
   notes: [
     {
-      _id: { type: String, default: uuidv4 }, // Unique ID for the note
+      _id: { type: String, default: () => uuidv4() }, // ✅ Correct, // ✅ Correct fix applied
       seconds: { type: Number, required: true }, // Timestamp of the note
       text: { type: String, required: true }, // Content of the note
     },
