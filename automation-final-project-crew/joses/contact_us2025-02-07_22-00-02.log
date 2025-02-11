@@ -1,0 +1,30 @@
+2025-02-07 22:00:02,459 - INFO - Starting Automation Test... \u2705
+2025-02-07 22:00:04,849 - INFO - Opened website: https://atid.store/
+2025-02-07 22:00:06,257 - INFO - Screenshot taken: screenshots_2025-02-07_22-00-02\contact_us_button_22-00-05.png
+2025-02-07 22:00:06,257 - INFO - 
+    ==============================
+    Test Case ID: TC_001
+    Test Scenario: User navigates to Contact Us page
+    Steps: Click on 'Contact Us' button
+    Expected Result: Contact Us page should open
+    Actual Result: Contact Us page opened successfully
+    Status: Pass
+    ==============================
+    
+2025-02-07 22:00:06,621 - INFO - Screenshot taken: screenshots_2025-02-07_22-00-02\name_input_22-00-06.png
+2025-02-07 22:00:06,981 - INFO - Screenshot taken: screenshots_2025-02-07_22-00-02\subject_input_22-00-06.png
+2025-02-07 22:00:07,339 - INFO - Screenshot taken: screenshots_2025-02-07_22-00-02\email_input_22-00-07.png
+2025-02-07 22:00:07,672 - INFO - Screenshot taken: screenshots_2025-02-07_22-00-02\message_input_22-00-07.png
+2025-02-07 22:00:09,123 - INFO - Screenshot taken: screenshots_2025-02-07_22-00-02\submit_button_22-00-08.png
+2025-02-07 22:00:09,124 - INFO - 
+    ==============================
+    Test Case ID: TC_002
+    Test Scenario: User fills out the Contact Us form
+    Steps: Enter name, subject, email, and message. Click Submit.
+    Expected Result: Form should be submitted successfully
+    Actual Result: Form submitted successfully
+    Status: Pass
+    ==============================
+    
+2025-02-07 22:00:09,124 - INFO - Test completed successfully
+2025-02-07 22:00:17,761 - INFO - Closed WebDriver

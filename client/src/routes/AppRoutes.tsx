@@ -154,7 +154,7 @@ const AppRoutes: React.FC = () => {
                   element={<PaymentMethods />}
                 />
                 <Route
-                  path="/user/instructor/"
+                  path="/user/instructor/:instructorId"
                   element={<InstructorProfile />}
                 />
                 <Route path="/logout" element={<Logout />} />

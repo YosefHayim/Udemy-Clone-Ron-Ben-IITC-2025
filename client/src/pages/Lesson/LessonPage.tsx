@@ -12,7 +12,7 @@ const LessonPage: React.FC = () => {
   const [currentSec, setCurrentSec] = useState(0); // Shared state for last watched time
 
   const { courseId, id } = useParams<{ courseId: string; id: string }>();
-  
+
   const navigate = useNavigate();
 
   const { data, isLoading, error } = useQuery<CourseProgressResponse>({
@@ -41,7 +41,7 @@ const LessonPage: React.FC = () => {
   }
 
   const courseProgress = data.progress;
-  
+
   const lessons = courseProgress.sections.flatMap((section) =>
     section.lessons.map((lesson) => ({
       ...lesson,
@@ -49,7 +49,7 @@ const LessonPage: React.FC = () => {
       completed: lesson.completed,
     }))
   );
-  
+
   const lessonIndex = lessons.findIndex((lesson) => lesson._id === id);
 
   if (lessonIndex === -1) {
@@ -58,8 +58,7 @@ const LessonPage: React.FC = () => {
   }
 
   const currentLesson = lessons[lessonIndex];
-  
-  
+
   const nextLesson = lessons[lessonIndex + 1] || null;
   const prevLesson = lessons[lessonIndex - 1] || null;
   const isNotesRoute = location.pathname.endsWith("/notes");
@@ -67,7 +66,7 @@ const LessonPage: React.FC = () => {
   return (
     <Layout>
       <VideoPlayer
-        setCurrentSec={setCurrentSec} 
+        setCurrentSec={setCurrentSec}
         courseId={courseId}
         currentLesson={currentLesson}
         lessonIndex={lessonIndex + 1}
@@ -79,7 +78,7 @@ const LessonPage: React.FC = () => {
         }
       />
       <div className="px-0">
-      <LessonRoutes currentSec={currentSec} />
+        <LessonRoutes currentSec={currentSec} />
       </div>
       <Footer />
     </Layout>
