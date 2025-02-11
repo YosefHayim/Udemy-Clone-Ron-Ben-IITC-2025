@@ -17,6 +17,7 @@ import { FaPen } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa6";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { DeleteNoteDialog } from "../comp/dialog";
+import { Note } from "../../../types/types";
 
 
 interface NotesTabProps {
@@ -42,12 +43,13 @@ const formatTime = (seconds: number): string => {
 
 
 
-  const { data: notes, isLoading, isError } = useQuery({
+  const { data: notes, isLoading, isError } = useQuery<Note[]>({
     queryKey: ["notes", courseId],
     queryFn: () => fetchAllNotes(courseId),
     enabled: !!courseId,
   });
 
+  
   // Single useMutation for add, edit, and delete operations
   const noteMutation = useMutation({
     mutationFn: async (params: 
