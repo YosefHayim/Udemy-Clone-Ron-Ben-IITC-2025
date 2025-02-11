@@ -1,4 +1,5 @@
 import registerUser from "@/api/users/registerUser";
+import Loader from "@/components/Loader/Loader";
 import { emailContext } from "@/routes/AppRoutes";
 import { RegisterUserPayload } from "@/types/types";
 import { useMutation } from "@tanstack/react-query";
@@ -9,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const SignUp: React.FC = () => {
   const [isChecked, setIsChecked] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -33,6 +35,10 @@ const SignUp: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
     const form = e.currentTarget;
     const formData = new FormData(form);
     const fullName = formData.get("fullName") as string;
@@ -109,16 +115,24 @@ const SignUp: React.FC = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full py-3 rounded-md bg-[#6d28d2] hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0"
+              className="w-full py-3 rounded-md bg-[#6d28d2] hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
             >
-              <MdEmail className="w-5 h-5" />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
-              />
+              {isLoading ? (
+                <Loader useSmallLoading={true} hSize="" />
+              ) : (
+                <div className="flex flex-row">
+                  <MdEmail className="w-5 h-5" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
+                  />
 
-              <span className="text-[1rem] font-bold">Continue with email</span>
+                  <span className="text-[1rem] font-bold">
+                    Continue with email
+                  </span>
+                </div>
+              )}
             </button>
 
             {/* Terms and Privacy */}

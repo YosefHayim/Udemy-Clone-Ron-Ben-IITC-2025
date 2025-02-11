@@ -38,7 +38,7 @@ const DropdownMenu: React.FC = () => {
 
   return (
     <div>
-      <div className="absolute right-0 mt-[1em] w-72 bg-white border border-gray-300 shadow-md rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto z-[1000]">
+      <div className="absolute right-0 mt-[1em] w-72 bg-white border border-gray-300 shadow-md rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none group-hover:pointer-events-auto z-[1600]">
         <div className="flex items-center p-4 border-b">
           <Link to="/user/edit-profile">
             <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
@@ -64,7 +64,9 @@ const DropdownMenu: React.FC = () => {
               className="px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex justify-between items-center"
             >
               My cart
-              <CartCoursesNumber />
+              <div className="absolute right-[80%] top-[19%] text-center text-[1.2em] font-bold">
+                <CartCoursesNumber />
+              </div>
             </Link>
           </li>
           <li>

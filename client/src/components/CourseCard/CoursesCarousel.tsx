@@ -1,30 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+
+
+import React, { useState, useEffect } from "react";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseHoverCard from "./CourseHoverCard";
 import { Course } from "@/types/types";
 import { MdOutlineStarHalf } from "react-icons/md";
-import {
-  IoIosStar,
-  IoIosStarOutline,
-  IoIosArrowBack,
-  IoIosArrowForward,
-} from "react-icons/io";
+import { IoIosStar, IoIosStarOutline, IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
-  searchTerm = "",
-}) => {
+const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = "" }) => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [hoveredCourse, setHoveredCourse] = useState<Course | null>(null);
+  const [hoverCardPosition, setHoverCardPosition] = useState({ top: 0, left: 0 });
   const [currentIndex, setCurrentIndex] = useState(0);
-  const hoverCardRef = useRef<HTMLDivElement | null>(null); // Reference for the hover card
-  const visibleItems = 5; // Number of visible items
+  const visibleItems = 5; // Número de itens visíveis no carrossel
 
+  // Função para buscar cursos
   const fetchCourses = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/course/?search=${encodeURI(searchTerm)}`
-      );
+      const response = await fetch(`http://localhost:3000/api/course/?search=${encodeURI(searchTerm)}`);
       const data = await response.json();
       if (data.status === "Success") {
         const updatedCourses = data.response.map((course: any) => ({
@@ -35,10 +29,10 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
 
         setCourses(updatedCourses);
       } else {
-        console.error("Error fetching courses:", data);
+        console.error("Erro ao buscar cursos:", data);
       }
     } catch (error) {
-      console.error("Error loading courses:", error);
+      console.error("Erro ao carregar cursos:", error);
     }
   };
 
@@ -46,6 +40,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
     fetchCourses();
   }, []);
 
+  // Função para ir ao próximo conjunto de cursos no carrossel
   const handleNext = () => {
     const nextIndex = currentIndex + 1;
     if (nextIndex < Math.ceil(courses.length / visibleItems)) {
@@ -53,6 +48,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
     }
   };
 
+  // Função para voltar ao conjunto anterior no carrossel
   const handlePrev = () => {
     const prevIndex = currentIndex - 1;
     if (prevIndex >= 0) {
@@ -60,9 +56,25 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
     }
   };
 
+  // Função ao passar o mouse sobre um curso
+  const handleMouseEnter = (course: Course, event: React.MouseEvent<HTMLDivElement>) => {
+    const courseRect = event.currentTarget.getBoundingClientRect();
+
+    setHoverCardPosition({
+      top: courseRect.height / 2, // Centraliza verticalmente
+      left: courseRect.width + 10, // Adiciona 10px à direita
+    });
+
+    setHoveredCourse(course);
+  };
+
+  // Função para remover o hover
+  const handleMouseLeave = () => {
+    // setHoveredCourse(null);
+  };
+
   const navigate = useNavigate();
   const handleCardClick = (courseId: string) => {
-    // console.log(`Navigating to course: ${courseId}`);
     navigate(`/course-view/${courseId}`);
   };
 
@@ -76,13 +88,9 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
           if (i < fullStars) {
             return <IoIosStar key={i} className="text-[#c4710d] ml-[1px]" />;
           } else if (i === fullStars && hasHalfStar) {
-            return (
-              <MdOutlineStarHalf key={i} className="text-[#c4710d] ml-[1px]" />
-            );
+            return <MdOutlineStarHalf key={i} className="text-[#c4710d] ml-[1px]" />;
           } else {
-            return (
-              <IoIosStarOutline key={i} className="text-[#c4710d] ml-[1px]" />
-            );
+            return <IoIosStarOutline key={i} className="text-[#c4710d] ml-[1px]" />;
           }
         })}
       </div>
@@ -90,16 +98,14 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
   };
 
   return (
-    <div className="relative w-full max-w-[80rem] mx-auto py-6 overflow-visible">
-      <h2 className="text-2xl font-bold mb-4 pl-2 text-[#303141]">
+    <div className="relative w-full mx-auto py-6 overflow-visible">
+      <h2 className="text-2xl font-bold mb-4 pl-2 text-[#303141] overflow-visible">
         Because you viewed{" "}
-        <span className="text-[#6d28d2] font-bold underline hover:text-[#521e9f]">
-          {searchTerm}
-        </span>
+        <span className="text-[#6d28d2] font-bold underline hover:text-[#521e9f]">{searchTerm}</span>
       </h2>
 
       {courses.length > 0 && (
-        <div className="overflow-x-hidden overflow-y-visible relative">
+        <div className="overflow-y-visible relative">
           <div
             className="flex transition-transform duration-300 overflow-y-visible"
             style={{
@@ -110,22 +116,13 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
             {courses.map((course) => (
               <div
                 key={course._id}
-                className="w-[calc(100%/5)] px-[0.5rem] box-border relative overflow-visible"
-                onMouseEnter={() => setHoveredCourse(course)}
-                onMouseLeave={(e) => {
-                  const relatedTarget = e.relatedTarget as Node;
-                  if (
-                    hoverCardRef.current &&
-                    hoverCardRef.current.contains(relatedTarget)
-                  ) {
-                    return; // Don't clear hover state if moving to hover card
-                  }
-                  setHoveredCourse(null);
-                }}
+                className="w-[calc(100%/5)] px-[0.5rem] box-border relative overflow-visible "
+                onMouseEnter={(e) => handleMouseEnter(course, e)}
+                onMouseLeave={handleMouseLeave}
               >
                 <div
                   onClick={() => handleCardClick(course._id)}
-                  className="cursor-pointer shadow-sm bg-white flex flex-col maxh-[18rem]"
+                  className="cursor-pointer shadow-sm bg-white flex flex-col maxh-[18rem] overflow-visible"
                 >
                   <div className="h-36 w-full">
                     <img
@@ -145,24 +142,20 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                       <span className="mr-1 text-[#8B4309]">
                         {course.averageRating.toFixed(1)}
                       </span>
-                      <div className="flex">
-                        {renderStars(course.averageRating)}
-                      </div>
+                      <div className="flex">{renderStars(course.averageRating)}</div>
                       <span className="ml-2 text-gray-500 text-xs">
                         ({course.totalRatings.toLocaleString()})
                       </span>
                     </div>
                     <div className="flex items-baseline justify-between py-[0.15rem]">
-                      <div>
-                        <span className="font-[700] text-[#303141] text-[1rem]">
-                          ₪{course.courseDiscountPrice.toFixed(2)}
+                      <span className="font-[700] text-[#303141] text-[1rem]">
+                        ₪{course.courseDiscountPrice.toFixed(2)}
+                      </span>
+                      {course.courseFullPrice && (
+                        <span className="line-through text-gray-500 text-xs ml-2">
+                          ₪{course.courseFullPrice.toFixed(2)}
                         </span>
-                        {course.courseFullPrice && (
-                          <span className="line-through text-gray-500 text-xs ml-2">
-                            ₪{course.courseFullPrice.toFixed(2)}
-                          </span>
-                        )}
-                      </div>
+                      )}
                     </div>
                     <span className="inline-block pt-[0.3rem]">
                       <CourseTag tagName={course.courseTag} />
@@ -172,9 +165,12 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
 
                 {hoveredCourse?._id === course._id && (
                   <div
-                    ref={hoverCardRef}
-                    className="absolute top-0 left-full ml-2 "
-                    onMouseLeave={() => setHoveredCourse(null)}
+                    className="absolute !z-[9999] overflow-visible"
+                    style={{
+                      top: `${hoverCardPosition.top}px`,
+                      left: `${hoverCardPosition.left}px`,
+                      transform: "translateY(-50%)", // Centraliza verticalmente
+                    }}
                   >
                     <CourseHoverCard course={hoveredCourse} />
                   </div>

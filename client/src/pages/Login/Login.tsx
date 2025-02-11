@@ -10,10 +10,12 @@ import { emailContext } from "@/routes/AppRoutes";
 import { BiSolidErrorAlt } from "react-icons/bi";
 import { useGoogleLogin } from "@react-oauth/google";
 import googleLogin from "@/api/users/googleLogin";
+import Loader from "@/components/Loader/Loader";
 
 const Login = () => {
   const navigate = useNavigate();
   const [isError, setShowIsError] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
@@ -43,9 +45,12 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email") as string;
-
     setEmailUser(email);
     loginMutation.mutate({ email });
   };
@@ -116,16 +121,24 @@ const Login = () => {
             </div>
             <button
               type="submit"
-              className="w-full py-3 rounded-md bg-[#6d28d2] hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0"
+              className="w-full py-3 rounded-md bg-[#6d28d2] hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
             >
-              <MdEmail className="w-5 h-5" />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
-              />
+              {isLoading ? (
+                <Loader useSmallLoading={true} hSize="" />
+              ) : (
+                <div className="flex flex-row">
+                  <MdEmail className="w-5 h-5" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
+                  />
 
-              <span className="text-[1rem] font-bold">Continue with email</span>
+                  <span className="text-[1rem] font-bold">
+                    Continue with email
+                  </span>
+                </div>
+              )}
             </button>
           </form>
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SideBarTerms from "./SideBarTerms";
 import Terms_of_use from "./TermsPages/TermsOfUse";
 import Instructor from "./TermsPages/Instructor";
@@ -6,16 +6,24 @@ import Intellectual from "./TermsPages/Intellectual";
 import Leadership from "./TermsPages/Leadership";
 import Pro_terms from "./TermsPages/ProTerms";
 import Launch from "./TermsPages/Launch";
-import Promotions from "./TermsPages/Promotions";
 import Business_statment from "./TermsPages/BusinessStatement";
 import Affiliate from "./TermsPages/Affiliate";
 import Privacy_policy2 from "./TermsPages/PrivacyPolicy2";
 import Master from "./TermsPages/Master";
 import ApiAgreement from "./TermsPages/ApiAgreement";
+import { useNavigate } from "react-router-dom";
+
 
 // Adicione os outros componentes conforme necessário
 const Terms = () => {
   const [selectedPage, setSelectedPage] = useState("Terms of Use"); // Estado inicial
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (selectedPage === "Pricing and Promotions Policy") {
+      navigate("/terms/promotions", { replace: true });
+    }
+  }, [selectedPage, navigate]);
 
     // Função que retorna o componente correspondente
     const renderComponent = () => {
@@ -42,8 +50,6 @@ const Terms = () => {
                 return <Pro_terms />;
             case "Launch Services":
                 return <Launch />;
-            case "Pricing and Promotions Policy":
-                return <Promotions />;
             default:
                 return <Terms_of_use />;
         }

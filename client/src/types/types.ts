@@ -393,6 +393,15 @@ export interface CourseProgressResponse {
     completedLessons: number;
     percentageCompleted: number;
   };
+  totalLessons: number;
+  completedLessons: number;
+  percentageCompleted: number;
+}
+export interface CourseProgress {
+  sections: Section[];
+  totalLessons: number;
+  completedLessons: number;
+  percentageCompleted: number;
 }
 
 // Optional: Define the type for the mutation payload

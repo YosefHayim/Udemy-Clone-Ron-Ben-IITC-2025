@@ -1,5 +1,6 @@
 import buyCourseById from "@/api/users/buyCourseId";
 import refreshMe from "@/api/users/refreshMe";
+import Loader from "@/components/Loader/Loader";
 import { Button } from "@/components/ui/button";
 import { RootState } from "@/redux";
 import { setClearAll } from "@/redux/slices/cartSlice";
@@ -9,22 +10,25 @@ import {
   setUdemyCredits,
 } from "@/redux/slices/userSlice";
 import { DecodedTokenProps } from "@/types/types";
+import { ReactPayPalScriptOptions } from "@paypal/react-paypal-js";
 import { useMutation } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { IoMdLock } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Checkout: React.FC = ({ isPaypal }) => {
-  console.log(isPaypal);
-
+const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
+  isPaypal,
+}) => {
   const cookie = Cookies.get("cookie");
+  const [isLoading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const totalToPay = useSelector(
     (state: RootState) => state.cart.totalCourseDiscountPrices
   );
@@ -48,25 +52,38 @@ const Checkout: React.FC = ({ isPaypal }) => {
     onSuccess: () => {
       setTimeout(() => {
         refreshUserDataMutation.mutate();
-      }, 2000);
+      }, 500);
     },
   });
 
   const refreshUserDataMutation = useMutation({
     mutationFn: refreshMe,
     onSuccess: () => {
-      const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
-      dispatch(setCookie(cookie || ""));
-      dispatch(setCoursesBought(decoded.coursesBought));
-      dispatch(setUdemyCredits(decoded.udemyCredits));
       setTimeout(() => {
+        const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
+        dispatch(setCookie(cookie || ""));
+        dispatch(setCoursesBought(decoded.coursesBought));
+        dispatch(setUdemyCredits(decoded.udemyCredits));
         navigate(`/course-view/${coursesIds[0]}`);
-      }, 5000);
+        dispatch(setClearAll());
+      }, 2000);
     },
   });
 
   const handleClick = () => {
-    const courseId = coursesIds[0];
+    if (!coursesIds.length) {
+      console.error("No courses available for checkout.");
+      return;
+    }
+
+    setLoading(true);
+    setTimeout(() => setLoading(false), 2000);
+
+    const courseId = coursesIds[coursesIds.length - 1];
+    if (!courseId) {
+      console.error("Invalid courseId received.");
+      return;
+    }
     checkOutMutation.mutate(courseId);
   };
 
@@ -97,10 +114,18 @@ const Checkout: React.FC = ({ isPaypal }) => {
         <div className="mb-[2em] w-full">
           <Button
             onClick={handleClick}
-            className="w-full rounded-[0.2em] bg-[#6d28d2] hover:bg-[#892de1] font-bold text-white p-[1.5em] py-[2em]"
+            className="w-[400px] rounded-[0.2em] bg-[#6d28d2] hover:bg-[#892de1] font-bold text-white p-[1.5em] py-[2em]"
           >
-            <IoMdLock />
-            Pay ₪{totalToPay?.toFixed(2) || 0}
+            {isLoading ? (
+              <div>
+                <Loader useSmallLoading={true} hSize="" />
+              </div>
+            ) : (
+              <div className="flex flex-row items-center">
+                <IoMdLock />
+                Pay ₪{totalToPay?.toFixed(2) || 0}
+              </div>
+            )}
           </Button>
         </div>
         <div className="w-[300px] flex flex-col items-center justify-center mb-[3em] gap-[1em]">

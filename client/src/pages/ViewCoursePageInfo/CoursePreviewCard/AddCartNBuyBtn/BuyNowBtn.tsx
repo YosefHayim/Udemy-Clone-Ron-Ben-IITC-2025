@@ -18,23 +18,26 @@ const BuyNowBtn: React.FC<{
 }> = ({ courseId, discountPrice, fullPrice }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const cookie = document.cookie;
 
   const handleClick = (courseId: string) => {
-    setTimeout(() => {
-      dispatch(setAmountOfCourses());
-
-      if (!discountPrice || isNaN(discountPrice)) {
-        console.error("Invalid discountPrice:", discountPrice);
-        return;
-      }
-      dispatch(setTotalCourseDiscountPrices(Number(discountPrice)));
-      dispatch(setTotalOriginalCoursePrices(Number(fullPrice)));
-      // console.log(`Dispatching fullPrice:${fullPrice} and discount price: ${discountPrice}`);
-      dispatch(calculateTotalSavings());
-      dispatch(calculateDiscountPercentage());
-      dispatch(setAddCourseToCart(courseId));
-    }, 1000);
-    navigate("/payment/checkout/");
+    if (cookie) {
+      setTimeout(() => {
+        dispatch(setAmountOfCourses());
+        if (!discountPrice || isNaN(discountPrice)) {
+          console.error("Invalid discountPrice:", discountPrice);
+          return;
+        }
+        dispatch(setTotalCourseDiscountPrices(Number(discountPrice)));
+        dispatch(setTotalOriginalCoursePrices(Number(fullPrice)));
+        dispatch(calculateTotalSavings());
+        dispatch(calculateDiscountPercentage());
+        dispatch(setAddCourseToCart(courseId));
+        navigate("/payment/checkout/");
+      }, 1000);
+    } else {
+      navigate("/login");
+    }
   };
   return (
     <Button
