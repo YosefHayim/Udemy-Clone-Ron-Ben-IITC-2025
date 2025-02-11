@@ -1,5 +1,5 @@
 import mongoose, { Schema, Model, Query } from "mongoose";
-import { InstructorDocument } from "../../../types/types.ts";
+import { InstructorDocument } from "../../types/types.ts";
 
 // Define Mongoose Schema
 const instructorSchema = new Schema<InstructorDocument>(

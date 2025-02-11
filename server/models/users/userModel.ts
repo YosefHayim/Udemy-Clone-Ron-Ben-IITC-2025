@@ -3,7 +3,7 @@ import validator from "validator";
 import supportedCountries from "../../utils/supportedCountries.ts";
 import languagesToChoose from "../../utils/languagesToChoose.ts";
 import courseCategories from "../../utils/courseCategories.ts";
-import { UserDocument } from "../../../types/types.ts";
+import { UserDocument } from "../../types/types.ts";
 
 // Define Mongoose Schema
 const userSchema = new Schema<UserDocument>(

@@ -1,6 +1,6 @@
 import mongoose, { Model } from "mongoose";
 import allowedIssueTypes from "../../utils/reportSubjects.ts";
-import { ReportReviewDocument } from "../../../types/types.ts";
+import { ReportReviewDocument } from "../../types/types.ts";
 
 const reportReviewSchema = new mongoose.Schema<ReportReviewDocument>({
   user: {

@@ -1,5 +1,5 @@
 import mongoose, { CallbackError, Model, Query } from "mongoose";
-import { LessonDocument } from "../../../types/types.ts";
+import { LessonDocument } from "../../types/types.ts";
 
 const urlRegex = /^(http|https):\/\/[^ "]+$/;
 

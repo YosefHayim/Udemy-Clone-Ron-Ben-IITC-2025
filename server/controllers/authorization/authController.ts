@@ -4,7 +4,7 @@ import crypto from "crypto";
 import createError from "../../utils/errorFn.ts";
 import { NextFunction, Request, Response } from "express";
 import User from "../../models/users/userModel.ts";
-import { Payload, Token } from "../../../types/types.ts";
+import { Payload, Token } from "../../types/types.ts";
 
 const jwtKey = process.env.JWT_SECRET || "";
 

@@ -3,7 +3,7 @@ import {
   CourseProgressDocument,
   LessonProgressDocument,
   SectionProgressDocument,
-} from "../../../types/types.ts";
+} from "../../types/types.ts";
 import uuidv4 from "uuidv4";
 
 const lessonProgressSchema = new mongoose.Schema<LessonProgressDocument>({

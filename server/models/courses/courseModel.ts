@@ -4,7 +4,7 @@ import mongoose, {
   Query,
 } from "mongoose";
 import courseCategories from "../../utils/courseCategories.ts";
-import { CourseDocument, LessonDocument } from "../../../types/types.ts";
+import { CourseDocument, LessonDocument } from "../../types/types.ts";
 
 const courseSchema = new mongoose.Schema<CourseDocument>(
   {

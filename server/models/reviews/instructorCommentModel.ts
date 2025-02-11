@@ -1,5 +1,5 @@
 import mongoose, { Model } from "mongoose";
-import { CommentDocument } from "../../../types/types.ts";
+import { CommentDocument } from "../../types/types.ts";
 
 const commentSchema = new mongoose.Schema<CommentDocument>(
   {

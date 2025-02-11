@@ -1,6 +1,6 @@
 import mongoose, { CallbackError, Model, Query } from "mongoose";
 import Course from "../courses/courseModel.ts";
-import { CourseReviewDocument } from "../../../types/types.ts";
+import { CourseReviewDocument } from "../../types/types.ts";
 
 const courseReviewsSchema = new mongoose.Schema<CourseReviewDocument>(
   {
