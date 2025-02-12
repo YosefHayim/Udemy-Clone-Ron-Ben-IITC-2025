@@ -4,6 +4,7 @@ import CourseProgress from "././../../models/courses/courseProgressModel.ts";
 import { Request, Response } from "express";
 import mongoose from "mongoose";
 import { v4 as uuidv4 } from "uuid";
+import { log } from "winston";
 
 /**
  * Initialize progress for a user when they start a course.
@@ -95,20 +96,25 @@ const updateLessonProgress = async (req: Request, res: Response) => {
   const { courseId, lessonId } = req.params;
   const userId = req.user._id;
   const { completed, lastWatched } = req.body;
+  console.log("Updating progress for:", { userId, courseId, lessonId, completed, lastWatched });
 
   try {
-    const progress = await CourseProgress.findOne({ userId, courseId });
-
+    const progress = await CourseProgress.findOne({ userId, courseId: new mongoose.Types.ObjectId(courseId)  });
+    
     if (!progress) {
+      console.log("Progress not found in DB!");
       return res.status(404).json({ message: "Progress not found" });
     }
-
+    console.log('found');
+    
     let lessonUpdated = false;
 
     // Update the progress for the specific lesson
     for (const section of progress.sections) {
       for (const lesson of section.lessons) {
-        if (lesson.lessonId.toString() === lessonId) {
+        console.log("Checking lesson:", lessonId);
+        if (lesson.lessonId.toString() === lessonId.toString()) {
+          console.log("Lesson match found! Updating...");
           if (completed !== undefined) lesson.completed = completed;
           if (lastWatched !== undefined) lesson.lastWatched = lastWatched;
           lessonUpdated = true;

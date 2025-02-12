@@ -385,6 +385,14 @@ export interface Section {
   lessons: Lesson[];
 }
 
+export type Note = {
+  _id: string;
+  seconds: number;
+  text: string;
+  lessonIndex: number;
+  lessonId: string;
+};
+
 // Define the type for the course progress response
 export interface CourseProgressResponse {
   progress: {
