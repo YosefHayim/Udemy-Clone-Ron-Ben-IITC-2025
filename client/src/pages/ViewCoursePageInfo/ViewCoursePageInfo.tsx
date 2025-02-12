@@ -152,6 +152,7 @@ const ViewCoursePageInfo: React.FC = () => {
 
         {/* Instructor Section */}
         <InstructorSection
+          instructorHeadline={courseData.courseInstructor.headline}
           instructorId={courseData.courseInstructor._id}
           instructorImg={courseData.courseInstructor.profilePic}
           instructorName={courseData.courseInstructor.fullName}

@@ -58,7 +58,7 @@ const DialogOfAllReviews: React.FC<{
                 </div>
               )}
               {data && (
-                <div className="flex flex-row items-start justify-between w-full">
+                <div className="flex flex-row items-start justify-between w-full gap-[1em]">
                   <div>
                     {/* Star progress bars */}
                     {/* Add your star progress bar implementation here */}

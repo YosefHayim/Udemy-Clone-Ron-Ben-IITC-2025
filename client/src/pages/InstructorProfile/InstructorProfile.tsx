@@ -28,6 +28,8 @@ const InstructorProfile = () => {
   document.title = `
     ${data.userId.fullName} | ${data.userId.headline}| Udemy`;
 
+  console.log(data);
+
   return (
     <div className="p-[3em] pl-[10em] w-[1000px]">
       <div className="flex flex-row items-start justify-between w-full">

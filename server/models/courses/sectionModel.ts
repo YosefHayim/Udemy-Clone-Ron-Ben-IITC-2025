@@ -1,5 +1,5 @@
 import mongoose, { Model, Query } from "mongoose";
-import Lesson from "./lessonModel";
+import Lesson from "./lessonModel.ts";
 import { LessonDocument, SectionDocument } from "../../types/types.ts";
 
 const sectionSchema = new mongoose.Schema<SectionDocument>(
