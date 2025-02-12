@@ -1,26 +1,26 @@
-2025-02-11 15:44:56 - INFO - Successfully opened website: https://atid.store
-2025-02-11 15:44:56 - INFO - Screenshot saved: screenshots\01_site_opened.png
-2025-02-11 15:44:56 - INFO - Search icon found
-2025-02-11 15:44:56 - INFO - Search icon clicked
-2025-02-11 15:44:56 - INFO - Screenshot saved: screenshots\02_search_icon_clicked.png
-2025-02-11 15:44:56 - INFO - Search box found
-2025-02-11 15:44:57 - INFO - Product name inserted
-2025-02-11 15:44:57 - INFO - Enter key pressed to search
-2025-02-11 15:44:57 - INFO - Screenshot saved: screenshots\03_product_search.png
-2025-02-11 15:44:57 - INFO - Product found in search results
-2025-02-11 15:44:57 - INFO - Screenshot saved: screenshots\04_search_results.png
-2025-02-11 15:44:57 - INFO - Product found
-2025-02-11 15:44:58 - INFO - Product clicked
-2025-02-11 15:44:58 - INFO - Screenshot saved: screenshots\05_product_clicked.png
-2025-02-11 15:44:58 - INFO - Successfully accessed the product page
-2025-02-11 15:44:58 - INFO - Screenshot saved: screenshots\06_product_page.png
-2025-02-11 15:44:58 - INFO - Product name found in title
-2025-02-11 15:44:58 - INFO - Product image found
-2025-02-11 15:44:58 - INFO - Product description found
-2025-02-11 15:44:58 - INFO - Product price found
-2025-02-11 15:44:58 - INFO - Screenshot saved: screenshots\07_product_validation.png
-2025-02-11 15:44:58 - INFO - Additional information tab found
-2025-02-11 15:44:58 - INFO - Successfully clicked on additional information tab
-2025-02-11 15:44:58 - INFO - Additional information table found
-2025-02-11 15:44:58 - INFO - Screenshot saved: screenshots\08_additional_info.png
-2025-02-11 15:45:01 - INFO - Test execution completed
+2025-02-12 17:23:29 - INFO - Successfully opened website: https://atid.store
+2025-02-12 17:23:30 - INFO - Screenshot saved: screenshots\01_site_opened.png
+2025-02-12 17:23:30 - INFO - Search icon found
+2025-02-12 17:23:30 - INFO - Search icon clicked
+2025-02-12 17:23:30 - INFO - Screenshot saved: screenshots\02_search_icon_clicked.png
+2025-02-12 17:23:30 - INFO - Search box found
+2025-02-12 17:23:30 - INFO - Product name inserted
+2025-02-12 17:23:31 - INFO - Enter key pressed to search
+2025-02-12 17:23:31 - INFO - Screenshot saved: screenshots\03_product_search.png
+2025-02-12 17:23:31 - INFO - Product found in search results
+2025-02-12 17:23:31 - INFO - Screenshot saved: screenshots\04_search_results.png
+2025-02-12 17:23:31 - INFO - Product found
+2025-02-12 17:23:32 - INFO - Product clicked
+2025-02-12 17:23:33 - INFO - Screenshot saved: screenshots\05_product_clicked.png
+2025-02-12 17:23:33 - INFO - Successfully accessed the product page
+2025-02-12 17:23:33 - INFO - Screenshot saved: screenshots\06_product_page.png
+2025-02-12 17:23:33 - INFO - Product name found in title
+2025-02-12 17:23:33 - INFO - Product image found
+2025-02-12 17:23:33 - INFO - Product description found
+2025-02-12 17:23:33 - INFO - Product price found
+2025-02-12 17:23:33 - INFO - Screenshot saved: screenshots\07_product_validation.png
+2025-02-12 17:23:33 - INFO - Additional information tab found
+2025-02-12 17:23:33 - INFO - Successfully clicked on additional information tab
+2025-02-12 17:23:33 - INFO - Additional information table found
+2025-02-12 17:23:33 - INFO - Screenshot saved: screenshots\08_additional_info.png
+2025-02-12 17:23:36 - INFO - Test execution completed
