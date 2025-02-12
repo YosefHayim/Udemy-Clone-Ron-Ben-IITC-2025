@@ -42,7 +42,11 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsFixed(window.scrollY > 350);
+      if (window.scrollY > 350 && window.scrollY < 2000) {
+        setIsFixed(true);
+      } else {
+        setIsFixed(false);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);

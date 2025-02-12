@@ -1,20 +1,20 @@
-import Course from "../../models/courses/courseModel";
-import courseProgress from "../../models/courses/courseProgressModel";
+import Course from "../../models/courses/courseModel.ts";
+import courseProgress from "../../models/courses/courseProgressModel.ts";
 import mongoose from "mongoose";
-import User from "../../models/users/userModel";
-import APIFeatures from "../../utils/apiFeatures";
-import sendEmail from "../../utils/email";
-import createError from "../../utils/errorFn";
-import loginEmailTemplateLiteral from "../../utils/loginEmailTemplateLiteral";
-import signUpCodeTemplate from "../../utils/signUpEmailTemplateLiteral";
-import catchAsync from "../../utils/wrapperFn";
+import User from "../../models/users/userModel.ts";
+import APIFeatures from "../../utils/apiFeatures.ts";
+import sendEmail from "../../utils/email.ts";
+import createError from "../../utils/errorFn.ts";
+import loginEmailTemplateLiteral from "../../utils/loginEmailTemplateLiteral.ts";
+import signUpCodeTemplate from "../../utils/signUpEmailTemplateLiteral.ts";
+import catchAsync from "../../utils/wrapperFn.ts";
 import randomize from "randomatic";
 import axios from "axios";
 import dotenv from "dotenv";
 import multer from "multer";
 import sharp from "sharp";
 import { NextFunction, Request, Response } from "express";
-import { generateToken } from "../authorization/authController";
+import { generateToken } from "../authorization/authController.ts";
 dotenv.config();
 
 // for updating user profile

@@ -1,6 +1,6 @@
-import catchAsync from "../../utils/wrapperFn";
-import Instructor from "../../models/users/instructorModel";
-import createError from "../../utils/errorFn";
+import catchAsync from "../../utils/wrapperFn.ts";
+import Instructor from "../../models/users/instructorModel.ts";
+import createError from "../../utils/errorFn.ts";
 import { NextFunction, Request, Response } from "express";
 
 const getInstructorById = catchAsync(
@@ -26,4 +26,10 @@ const getInstructorById = catchAsync(
   }
 );
 
-export { getInstructorById };
+const getThreeCoursesOfInstructor = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const instructorId = req.params.id;
+  }
+);
+
+export { getInstructorById, getThreeCoursesOfInstructor };

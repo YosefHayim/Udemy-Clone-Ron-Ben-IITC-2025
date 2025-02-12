@@ -1,23 +1,23 @@
 import { faker } from "@faker-js/faker";
-import connectDb from "./config/connectDb";
-import User from "./models/users/userModel";
-import Course from "./models/courses/courseModel";
-import Lesson from "./models/courses/lessonModel";
-import Section from "./models/courses/sectionModel";
-import InstructorComment from "./models/reviews/instructorCommentModel";
-import courseReviews from "./models/reviews/courseReviewModel";
-import ReportReview from "./models/reviews/reportReviewModel";
-import courseCategories from "./utils/courseCategories";
-import allowedIssueTypes from "./utils/reportSubjects";
-import courseNames from "./utils/courseNames";
-import sectionNames from "./utils/sectionNames";
-import lessonsNames from "./utils/lessonNames";
-import videosToDisplay from "./utils/videosToDisplay";
-import supportedCountries from "./utils/supportedCountries";
-import algoSearch from "./utils/algoSearch";
-import Instructor from "./models/users/instructorModel";
-import CourseProgress from "./models/courses/courseProgressModel";
-import { InstructorDocument, LessonDocument } from "../types/types";
+import connectDb from "./config/connectDb.ts";
+import User from "./models/users/userModel.ts";
+import Course from "./models/courses/courseModel.ts";
+import Lesson from "./models/courses/lessonModel.ts";
+import Section from "./models/courses/sectionModel.ts";
+import InstructorComment from "./models/reviews/instructorCommentModel.ts";
+import courseReviews from "./models/reviews/courseReviewModel.ts";
+import ReportReview from "./models/reviews/reportReviewModel.ts";
+import courseCategories from "./utils/courseCategories.ts";
+import allowedIssueTypes from "./utils/reportSubjects.ts";
+import courseNames from "./utils/courseNames.ts";
+import sectionNames from "./utils/sectionNames.ts";
+import lessonsNames from "./utils/lessonNames.ts";
+import videosToDisplay from "./utils/videosToDisplay.ts";
+import supportedCountries from "./utils/supportedCountries.ts";
+import algoSearch from "./utils/algoSearch.ts";
+import Instructor from "./models/users/instructorModel.ts";
+import CourseProgress from "./models/courses/courseProgressModel.ts";
+import { InstructorDocument, LessonDocument } from "./types/types.ts";
 
 const clearCollections = async () => {
   await Promise.all([
@@ -733,22 +733,22 @@ const generateUpdatedDummyData = async () => {
     // const sections = await createSections();
     // console.log(`${sections.length} sections created.`);
 
-    // console.log("Seeding lessons...");
-    // const lessons = await createLessons();
-    // console.log(`${lessons.length} lessons created.`);
+    console.log("Seeding lessons...");
+    const lessons = await createLessons();
+    console.log(`${lessons.length} lessons created.`);
 
-    // await simulateCoursePurchases();
-    // console.log("Simulate courses purchases completed");
+    await simulateCoursePurchases();
+    console.log("Simulate courses purchases completed");
 
-    // console.log("Seeding reviews...");
-    // const reviews = await createReviews();
-    // console.log(`${reviews.length} reviews created.`);
+    console.log("Seeding reviews...");
+    const reviews = await createReviews();
+    console.log(`reviews created.`);
 
-    // console.log("Seeding reported reviews...");
-    // await createReportedReviews();
+    console.log("Seeding reported reviews...");
+    await createReportedReviews();
 
-    // await addCoursesToWishlistOfUsers();
-    // console.log("Simulate courses wishlists completed");
+    await addCoursesToWishlistOfUsers();
+    console.log("Simulate courses wishlists completed");
 
     await createInstructorProfiles();
     console.log("create instructor profiles completed.");

@@ -45,7 +45,7 @@ const courseSchema = new mongoose.Schema<CourseDocument>(
       },
     },
     courseRequirements: {
-      type: String,
+      type: [String],
       required: [true, "Course must have requirements for the students."],
     },
     courseRecapInfo: {
@@ -179,7 +179,7 @@ courseSchema.pre(
     this.populate("reviews")
       .populate({
         path: "courseInstructor",
-        select: "fullName profilePic bio",
+        select: "fullName profilePic bio headline",
       })
       .populate("sections");
     next();

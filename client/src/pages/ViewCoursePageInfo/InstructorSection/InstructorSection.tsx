@@ -9,7 +9,9 @@ const InstructorSection: React.FC<{
   instructorName: string;
   descriptionInstructor: string;
   instructorId: string;
+  instructorHeadline: string;
 }> = ({
+  instructorHeadline,
   instructorImg,
   instructorName,
   descriptionInstructor,
@@ -25,7 +27,7 @@ const InstructorSection: React.FC<{
             instructorId={instructorId}
           />
         </Link>
-        <InstructorProfession />
+        <InstructorProfession instructorHeadline={instructorHeadline} />
       </div>
       <InstructorProfileImg
         instructorImg={instructorImg}

@@ -1,7 +1,9 @@
-const InstructorProfession: React.FC = () => {
+const InstructorProfession: React.FC<{ instructorHeadline: string }> = ({
+  instructorHeadline,
+}) => {
   return (
     <div>
-      <p>Electronics Engineer, Electronics at its best</p>
+      <p>{instructorHeadline}</p>
     </div>
   );
 };
