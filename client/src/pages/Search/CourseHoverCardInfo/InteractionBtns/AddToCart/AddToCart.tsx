@@ -16,6 +16,7 @@ import byCourseByCourseId from "@/api/users/buyCourseByCourseId";
 import styles from "./AddToCart.module.css";
 
 const AddToCart: React.FC<{
+  discountSum?: number;
   textBtn?: string;
   courseId?: string;
   discountPrice?: number;
@@ -25,6 +26,7 @@ const AddToCart: React.FC<{
   courseId = "",
   discountPrice = 0,
   fullPriceCourse = 0,
+  discountSum = 0,
 }) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +47,12 @@ const AddToCart: React.FC<{
   });
 
   const handleClick = (courseId: string) => {
-    if (textBtn === "Add to cart") {
+    if (
+      textBtn === "Add to cart" &&
+      courseId &&
+      discountPrice > 0 &&
+      fullPriceCourse > 0
+    ) {
       setIsLoading(true);
       setTimeout(() => {
         dispatch(setAmountOfCourses()); // Increment the amount of courses
@@ -56,14 +63,20 @@ const AddToCart: React.FC<{
         dispatch(setAddCourseToCart(courseId)); // Add course to the cart
         setIsLoading(false); // Stop loading indicator
       }, 2000);
-    } else if (textBtn === "Enroll Now") {
+    } else if (textBtn === "Enroll Now" && courseId) {
       // if course is free and we pressed Enroll now
       buyCourseMutation.mutate(courseId);
+    } else if (textBtn === "Add all to cart") {
+      console.log(`works waiting to implement the logic`);
     }
   };
 
   if (discountPrice === 0 || fullPriceCourse === 0) {
     textBtn = "Enroll Now";
+  }
+
+  if (discountSum > 0) {
+    textBtn = "Add all to cart";
   }
 
   return (

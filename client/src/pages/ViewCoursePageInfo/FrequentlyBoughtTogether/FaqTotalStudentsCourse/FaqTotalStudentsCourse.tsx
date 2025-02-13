@@ -1,7 +1,9 @@
-const FaqTotalStudentsCourse: React.FC = () => {
+const FaqTotalStudentsCourse: React.FC<{ totalRatings: number }> = ({
+  totalRatings,
+}) => {
   return (
     <div>
-      <p>(106)</p>
+      <p>({totalRatings})</p>
     </div>
   );
 };

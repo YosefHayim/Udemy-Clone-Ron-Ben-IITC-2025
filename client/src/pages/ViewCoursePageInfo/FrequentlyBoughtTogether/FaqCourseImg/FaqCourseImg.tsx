@@ -1,10 +1,8 @@
-import frequentlyBoughtImg from "/images/frequently-bought-course.png";
-
-const FaqCourseImg: React.FC = () => {
+const FaqCourseImg: React.FC<{ courseImg: string }> = ({ courseImg }) => {
   return (
     <div>
       <img
-        src={frequentlyBoughtImg}
+        src={courseImg}
         alt=""
         className="h-[8em] border border-b-gray-300"
       />
