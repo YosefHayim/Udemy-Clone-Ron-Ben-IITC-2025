@@ -30,24 +30,71 @@ def take_screenshot(driver, name):
 driver = webdriver.Chrome()
 driver.maximize_window()
 
-# Open the website
-try:
-    driver.get("https://atid.store/")
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
-    logging.info("✅Successfully opened website: https://atid.store")
-    take_screenshot(driver, "01_site_opened")
-except Exception as e:
-    logging.error(f"Error accessing the site: {e}")
-    driver.quit()    
+def click_navbar_element(driver, xpath, xpath_2, page_name, screenshot_name):
+    try:
+        driver.get("https://atid.store/")
+        
+        # Wait the navbar element to be clickable
+        navbar_element = WebDriverWait(driver, 5).until(
+            EC.element_to_be_clickable((By.XPATH, xpath))
+        )
+        logging.info(f"{page_name} link found ✅")
+        
+        # Click the navbar element
+        navbar_element.click()
+        logging.info(f"{page_name} link clicked ✅")
+        
+        # Check if the page was successfully opened
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, xpath_2))
+        )
+        logging.info(f"Successfully opened {page_name} page ✅")
+        
+        # Take a screenshot
+        take_screenshot(driver, screenshot_name)
+        
+    except TimeoutException:
+        logging.error(f"Error finding or clicking {page_name} link ❌")
 
-# Check Home element in navbar
-try:
-    home_link = WebDriverWait(driver, 5).until(
-        EC.element_to_be_clickable((By.XPATH, "//li[@id='menu-item-381']//a[@class='menu-link'][normalize-space()='Home']"))
-    )
-    logging.info("Home link found ✅")
-    home_link.click()
-    logging.info("Home link clicked ✅")
-    take_screenshot(driver, "02_home_clicked")
-except TimeoutException:
-    logging.error("Error finding or clicking Home link ❌")
+# Using the function with all navbar elements 
+click_navbar_element(driver, 
+                     "//li[@id='menu-item-381']//a[@class='menu-link'][normalize-space()='Home']",
+                     "//h1[normalize-space()='ATID Demo Store']", 
+                     "Home", 
+                     "02_Home_clicked")
+
+click_navbar_element(driver, 
+                     "//li[@id='menu-item-45']//a[@class='menu-link'][normalize-space()='Store']",
+                     "//p[@class='woocommerce-result-count']", 
+                     "Store", 
+                     "02_Store_clicked")
+
+click_navbar_element(driver, 
+                     "//li[@id='menu-item-266']//a[@class='menu-link'][normalize-space()='Men']",
+                     "//h1[normalize-space()='Men']", 
+                     "Men", 
+                     "02_Men_clicked")
+
+click_navbar_element(driver, 
+                     "//li[@id='menu-item-267']//a[@class='menu-link'][normalize-space()='Women']",
+                     "//h1[normalize-space()='Women']", 
+                     "Women", 
+                     "02_Women_clicked")
+
+click_navbar_element(driver, 
+                     "//li[@id='menu-item-671']//a[@class='menu-link'][normalize-space()='Accessories']",
+                     "//h1[normalize-space()='Accessories']", 
+                     "Accessories", 
+                     "02_Acessories_clicked")
+
+click_navbar_element(driver, 
+                     "//li[@id='menu-item-828']//a[@class='menu-link'][normalize-space()='About']",
+                     "//h1[normalize-space()='About Us']", 
+                     "About Us", 
+                     "02_About_Us_clicked")
+
+click_navbar_element(driver, 
+                     "//li[@id='menu-item-829']//a[@class='menu-link'][normalize-space()='Contact Us']",
+                     "//h1[normalize-space()='Contact Us']", 
+                     "Contact Us", 
+                     "02_Contact_Us_clicked")
