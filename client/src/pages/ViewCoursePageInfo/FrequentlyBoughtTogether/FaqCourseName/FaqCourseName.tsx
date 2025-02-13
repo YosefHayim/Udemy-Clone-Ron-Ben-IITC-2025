@@ -1,7 +1,7 @@
-const FaqCourseName: React.FC = () => {
+const FaqCourseName: React.FC<{ courseName: string }> = ({ courseName }) => {
   return (
-    <div>
-      <b>Electronics : Semiconductor - A thorough understanding</b>
+    <div className="flex w-full flex-row">
+      <b>{courseName}</b>
     </div>
   );
 };

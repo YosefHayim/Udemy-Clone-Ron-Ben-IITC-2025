@@ -5,21 +5,44 @@ import FaqCourseName from "../FaqCourseName/FaqCourseName";
 import FaqInstructName from "../FaqInstructName/FaqInstructName";
 import FaqTotalStudentsCourse from "../FaqTotalStudentsCourse/FaqTotalStudentsCourse";
 
-const FrequentlyCourseCard: React.FC = () => {
+const FrequentlyCourseCard: React.FC<{
+  courseImg: string;
+  courseName: string;
+  instructorName: string;
+  courseFullPrice: number;
+  courseDiscountPrice: number;
+  courseId: string;
+  totalRatings?: number;
+}> = ({
+  courseImg,
+  courseName,
+  instructorName,
+  courseFullPrice,
+  courseDiscountPrice,
+  totalRatings,
+  courseId,
+}) => {
   return (
-    <div className="flex flex-col p-[1em]">
-      <div className="flex flex-row gap-[1em]">
-        <FaqCourseImg />
+    <div className="flex flex-col p-[1em]" id={courseId}>
+      <div className="flex flex-row gap-[1em] justify-around">
+        <FaqCourseImg courseImg={courseImg} />
         <div>
-          <FaqCourseName />
-          <FaqInstructName />
+          <FaqCourseName courseName={courseName} />
+          <FaqInstructName instructorName={instructorName} />
           <div className="flex flex-row items-center gap-[0.5em]">
-            <CourseRating colorRating="text-black" amountOfStars={4} />
-            <FaqTotalStudentsCourse />
+            <CourseRating
+              colorRating="text-black"
+              amountOfStars={4}
+              courseRating={totalRatings}
+            />
+            <FaqTotalStudentsCourse totalRatings={totalRatings} />
           </div>
         </div>
         <div>
-          <CoursePrice />
+          <CoursePrice
+            courseFullPrice={courseFullPrice}
+            courseDiscountPrice={courseDiscountPrice}
+          />
         </div>
       </div>
     </div>
