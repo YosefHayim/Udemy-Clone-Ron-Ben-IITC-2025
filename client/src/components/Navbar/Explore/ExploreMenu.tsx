@@ -39,6 +39,7 @@ const ExploreMenu = () => {
   const handleMenuEnter = (menu: string | null) => {
     if (menuTimeout.current) clearTimeout(menuTimeout.current);
     setHoveredMenu(menu);
+    setIsExploring(true);
   };
 
   const handleMenuLeave = () => {
@@ -46,6 +47,7 @@ const ExploreMenu = () => {
       setHoveredMenu(null);
       setHoveredSubMenu(null);
       setHoveredSecondSubMenu(false);
+      setIsExploring(false);
     }, 300); // Atraso de 300ms para esconder o menu
   };
 
@@ -53,12 +55,14 @@ const ExploreMenu = () => {
     if (subMenuTimeout.current) clearTimeout(subMenuTimeout.current);
     setHoveredSubMenu(subMenu);
     setHoveredSecondSubMenu(false);
+    setIsExploring(true);
   };
 
   const handleSubMenuLeave = () => {
     subMenuTimeout.current = setTimeout(() => {
       setHoveredSubMenu(null);
       setHoveredSecondSubMenu(false);
+      setIsExploring(false);
     }, 300); // Atraso de 300ms para esconder o submenu
   };
 
@@ -81,6 +85,8 @@ const ExploreMenu = () => {
     );
   };
 
+  const [isExploring, setIsExploring] = useState(false);
+
   return (
     <div className="relative inline-block text-left w-auto z-50 text-gray-600 font-medium">
       {/* Botão Explore com hover para mostrar menu */}
@@ -89,9 +95,12 @@ const ExploreMenu = () => {
         onMouseEnter={() => handleMenuEnter("main")}
         onMouseLeave={handleMenuLeave}
       >
-        <button className="text-[#020202] text-sm  mb-3 font-[400] text-[0.9rem] rounded-md hover:bg-purple-100 hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300">
+        <button
+          className={`text-[#020202] text-sm mb-3 font-[400] text-[0.9rem] rounded-md hover:bg-purple-100 hover:text-purple-700 focus:outline-none focus:ring-2
+                   focus:ring-purple-300 ${isExploring ? "text-red-600" : "text-black"}`}>
           Explore
         </button>
+
 
         {/* Menu one */}
         {hoveredMenu && (

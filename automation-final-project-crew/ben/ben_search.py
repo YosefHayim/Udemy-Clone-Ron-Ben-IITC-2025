@@ -8,6 +8,8 @@
 
 # # Access the website
 # driver = webdriver.Chrome()
+
+
 # try:
 #     driver.get("https://atid.store/")
 #     time.sleep(2)
@@ -103,7 +105,7 @@ import logging
 import os
 
 # Configure logging to save in a file
-log_filename = "test_execution.log"
+log_filename = "test_search.log"
 logging.basicConfig(
     filename=log_filename,
     level=logging.INFO,
@@ -112,7 +114,7 @@ logging.basicConfig(
 )
 
 # Create a folder for screenshots
-screenshot_folder = "screenshots"
+screenshot_folder = "screenshots_search"
 os.makedirs(screenshot_folder, exist_ok=True)
 
 def take_screenshot(driver, name):
