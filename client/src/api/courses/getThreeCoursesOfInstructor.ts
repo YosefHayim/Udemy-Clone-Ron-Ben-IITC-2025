@@ -1,4 +1,4 @@
-import { axiosClient } from "../configuration";
+import { axiosClient, localhostUrl } from "../configuration";
 
 const getThreeCoursesOfInstructor = async (instructorId: string) => {
   if (!instructorId) {
@@ -6,7 +6,7 @@ const getThreeCoursesOfInstructor = async (instructorId: string) => {
   }
 
   try {
-    const url = `http://localhost:3000/api/instructor/${instructorId}/three/courses`;
+    const url = `${localhostUrl}/api/instructor/${instructorId}/three/courses`;
     const res = await axiosClient.get(url);
 
     if (res) {

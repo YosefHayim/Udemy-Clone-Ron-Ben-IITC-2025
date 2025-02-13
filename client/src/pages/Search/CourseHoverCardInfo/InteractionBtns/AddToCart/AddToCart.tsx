@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import Loader from "@/components/Loader/Loader";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import byCourseByCourseId from "@/api/users/buyCourseByCourseId";
+import buyCourseByCourseId from "@/api/users/buyCourseByCourseId";
 import styles from "./AddToCart.module.css";
 
 const AddToCart: React.FC<{
@@ -21,19 +21,21 @@ const AddToCart: React.FC<{
   courseId?: string;
   discountPrice?: number;
   fullPriceCourse?: number;
+  courseIds?: string[];
 }> = ({
   textBtn = "Add to cart",
   courseId = "",
   discountPrice = 0,
   fullPriceCourse = 0,
   discountSum = 0,
+  courseIds = [],
 }) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const buyCourseMutation = useMutation({
-    mutationFn: byCourseByCourseId,
+    mutationFn: buyCourseByCourseId,
     onSuccess: () => {
       setIsLoading(true);
       setTimeout(() => {
@@ -61,13 +63,17 @@ const AddToCart: React.FC<{
         dispatch(calculateTotalSavings());
         dispatch(calculateDiscountPercentage());
         dispatch(setAddCourseToCart(courseId)); // Add course to the cart
-        setIsLoading(false); // Stop loading indicator
+        setIsLoading(false);
       }, 2000);
     } else if (textBtn === "Enroll Now" && courseId) {
       // if course is free and we pressed Enroll now
       buyCourseMutation.mutate(courseId);
-    } else if (textBtn === "Add all to cart") {
+    } else if (textBtn === "Add all to cart" && Array.isArray(courseIds)) {
       console.log(`works waiting to implement the logic`);
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
     }
   };
 
@@ -83,13 +89,13 @@ const AddToCart: React.FC<{
     <Button
       styles={styles.addToCart}
       onClick={() => handleClick(courseId)}
-      id={`btn-${courseId || "unknown"}`} // Add prefix for clarity
+      id={`btn-${courseId || "unknown"}`}
       disabled={isLoading}
       className={`font-bold ${
         isLoading
-          ? "bg-gray-400 cursor-not-allowed"
+          ? "bg-gray-400 cursor-not-allowed "
           : "bg-btnColor hover:bg-btnHoverColor"
-      } rounded-[0.2em] w-full py-[1.5em] text-[1em]`}
+      } rounded-[0.2em] w-[120px] py-[1.5em] text-[1em]`}
     >
       {isLoading ? <Loader useSmallLoading={true} hSize="" /> : textBtn}
     </Button>

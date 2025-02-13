@@ -2,7 +2,7 @@ import { axiosClient, localhostUrl } from "../configuration";
 
 type fn = (courseId: string) => Promise<any>;
 
-const byCourseByCourseId: fn = async (courseId: string) => {
+const buyCourseByCourseId: fn = async (courseId: string) => {
   if (!courseId || typeof courseId !== "string") {
     console.error("Invalid course ID provided.");
     return null;
@@ -27,4 +27,4 @@ const byCourseByCourseId: fn = async (courseId: string) => {
   }
 };
 
-export default byCourseByCourseId;
+export default buyCourseByCourseId;

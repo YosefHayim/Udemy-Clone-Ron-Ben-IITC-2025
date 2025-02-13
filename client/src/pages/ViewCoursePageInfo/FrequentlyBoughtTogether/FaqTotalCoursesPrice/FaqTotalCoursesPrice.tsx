@@ -1,9 +1,10 @@
 import AddToCart from "@/pages/Search/CourseHoverCardInfo/InteractionBtns/AddToCart/AddToCart";
 
-const FaqTotalCoursesPrice: React.FC<{ sum: number; discountSum: number }> = ({
-  sum,
-  discountSum,
-}) => {
+const FaqTotalCoursesPrice: React.FC<{
+  sum: number;
+  discountSum: number;
+  courseIds: string[];
+}> = ({ sum, discountSum, courseIds }) => {
   return (
     <div className="flex flex-row ml-[0.7em] justify-between items-center">
       <div className="flex flex-row">
@@ -14,7 +15,11 @@ const FaqTotalCoursesPrice: React.FC<{ sum: number; discountSum: number }> = ({
         <p className="line-through ml-[0.5em]">₪{sum}</p>
       </div>
       <div>
-        <AddToCart textBtn={"Add all to cart"} discountSum={discountSum} />
+        <AddToCart
+          textBtn={"Add all to cart"}
+          discountSum={discountSum}
+          courseIds={courseIds}
+        />
       </div>
     </div>
   );
