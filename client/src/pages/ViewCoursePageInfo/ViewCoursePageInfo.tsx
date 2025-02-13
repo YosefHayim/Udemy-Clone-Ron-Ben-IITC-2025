@@ -148,7 +148,9 @@ const ViewCoursePageInfo: React.FC = () => {
 
         {/* Recommended Courses */}
         <StudentsAlsoBought />
-        <FrequentlyBoughtTogether />
+        <FrequentlyBoughtTogether
+          instructorId={courseData.courseInstructor._id}
+        />
 
         {/* Instructor Section */}
         <InstructorSection
