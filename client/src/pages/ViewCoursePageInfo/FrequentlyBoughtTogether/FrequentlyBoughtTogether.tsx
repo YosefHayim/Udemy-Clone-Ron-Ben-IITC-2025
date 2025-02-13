@@ -54,7 +54,11 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
             totalRatings={course.totalRatings}
           />
         ))}
-        <FaqTotalCoursesPrice sum={sum} discountSum={discountSum} />
+        <FaqTotalCoursesPrice
+          sum={sum}
+          discountSum={discountSum}
+          courseIds={data}
+        />
       </div>
     </div>
   );
