@@ -1,0 +1,162 @@
+2025-02-13 10:50:55,490 - INFO - Starting Automation Test... \u2705
+2025-02-13 10:50:59,093 - INFO - Opened website: https://atid.store/
+2025-02-13 10:51:00,552 - INFO - Screenshot taken: screenshots_2025-02-13_10-50-55\contact_us_button_10-50-59.png
+2025-02-13 10:51:00,552 - INFO - 
+    ==============================
+    Test Case ID: TC_001
+    Test Scenario: User navigates to Contact Us page
+    Steps: Click on 'Contact Us' button
+    Expected Result: Contact Us page should open
+    Actual Result: Contact Us page opened successfully
+    Status: Pass
+    ==============================
+    
+2025-02-13 10:51:01,506 - INFO - Screenshot taken: screenshots_2025-02-13_10-50-55\name_input_10-51-00.png
+2025-02-13 10:51:02,080 - INFO - Screenshot taken: screenshots_2025-02-13_10-50-55\subject_input_10-51-01.png
+2025-02-13 10:51:02,782 - INFO - Screenshot taken: screenshots_2025-02-13_10-50-55\email_input_10-51-02.png
+2025-02-13 10:51:03,351 - INFO - Screenshot taken: screenshots_2025-02-13_10-50-55\message_input_10-51-02.png
+2025-02-13 10:51:05,130 - INFO - Screenshot taken: screenshots_2025-02-13_10-50-55\submit_button_10-51-04.png
+2025-02-13 10:51:05,130 - INFO - 
+    ==============================
+    Test Case ID: TC_002
+    Test Scenario: User fills out the Contact Us form
+    Steps: Enter name, subject, email, and message. Click Submit.
+    Expected Result: Form should be submitted successfully
+    Actual Result: Form submitted successfully
+    Status: Pass
+    ==============================
+    
+2025-02-13 10:51:09,271 - INFO - 
+    ==============================
+    Test Case ID: TC_101
+    Test Scenario: User navigates to Shoes Page
+    Steps: Click on shoes item link
+    Expected Result: Shoes product page should open
+    Actual Result: Failed to open Shoes product page - Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=132.0.6834.196)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7566702F5+28725]
+	(No symbol) [0x00007FF7565D2AE0]
+	(No symbol) [0x00007FF75646510A]
+	(No symbol) [0x00007FF75643EEA5]
+	(No symbol) [0x00007FF7564E6F87]
+	(No symbol) [0x00007FF7564FFA52]
+	(No symbol) [0x00007FF7564DFD53]
+	(No symbol) [0x00007FF7564AA0E3]
+	(No symbol) [0x00007FF7564AB471]
+	GetHandleVerifier [0x00007FF75699F30D+3366989]
+	GetHandleVerifier [0x00007FF7569B12F0+3440688]
+	GetHandleVerifier [0x00007FF7569A78FD+3401277]
+	GetHandleVerifier [0x00007FF75673AAAB+858091]
+	(No symbol) [0x00007FF7565DE74F]
+	(No symbol) [0x00007FF7565DA304]
+	(No symbol) [0x00007FF7565DA49D]
+	(No symbol) [0x00007FF7565C8B69]
+	BaseThreadInitThunk [0x00007FFBF164259D+29]
+	RtlUserThreadStart [0x00007FFBF2F2AF38+40]
+
+    Status: Fail
+    ==============================
+    
+2025-02-13 10:51:09,274 - INFO - 
+    ==============================
+    Test Case ID: TC_102
+    Test Scenario: User adds a product to cart
+    Steps: Click 'Add to Cart' button
+    Expected Result: Product should be added to cart
+    Actual Result: Failed to add product to cart - Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=132.0.6834.196)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7566702F5+28725]
+	(No symbol) [0x00007FF7565D2AE0]
+	(No symbol) [0x00007FF75646510A]
+	(No symbol) [0x00007FF75643EEA5]
+	(No symbol) [0x00007FF7564E6F87]
+	(No symbol) [0x00007FF7564FFA52]
+	(No symbol) [0x00007FF7564DFD53]
+	(No symbol) [0x00007FF7564AA0E3]
+	(No symbol) [0x00007FF7564AB471]
+	GetHandleVerifier [0x00007FF75699F30D+3366989]
+	GetHandleVerifier [0x00007FF7569B12F0+3440688]
+	GetHandleVerifier [0x00007FF7569A78FD+3401277]
+	GetHandleVerifier [0x00007FF75673AAAB+858091]
+	(No symbol) [0x00007FF7565DE74F]
+	(No symbol) [0x00007FF7565DA304]
+	(No symbol) [0x00007FF7565DA49D]
+	(No symbol) [0x00007FF7565C8B69]
+	BaseThreadInitThunk [0x00007FFBF164259D+29]
+	RtlUserThreadStart [0x00007FFBF2F2AF38+40]
+
+    Status: Fail
+    ==============================
+    
+2025-02-13 10:51:09,277 - INFO - 
+    ==============================
+    Test Case ID: TC_103
+    Test Scenario: User navigates to Cart Page
+    Steps: Click 'Go to Cart' button
+    Expected Result: Cart page should open
+    Actual Result: Failed to open cart page - Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=132.0.6834.196)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7566702F5+28725]
+	(No symbol) [0x00007FF7565D2AE0]
+	(No symbol) [0x00007FF75646510A]
+	(No symbol) [0x00007FF75643EEA5]
+	(No symbol) [0x00007FF7564E6F87]
+	(No symbol) [0x00007FF7564FFA52]
+	(No symbol) [0x00007FF7564DFD53]
+	(No symbol) [0x00007FF7564AA0E3]
+	(No symbol) [0x00007FF7564AB471]
+	GetHandleVerifier [0x00007FF75699F30D+3366989]
+	GetHandleVerifier [0x00007FF7569B12F0+3440688]
+	GetHandleVerifier [0x00007FF7569A78FD+3401277]
+	GetHandleVerifier [0x00007FF75673AAAB+858091]
+	(No symbol) [0x00007FF7565DE74F]
+	(No symbol) [0x00007FF7565DA304]
+	(No symbol) [0x00007FF7565DA49D]
+	(No symbol) [0x00007FF7565C8B69]
+	BaseThreadInitThunk [0x00007FFBF164259D+29]
+	RtlUserThreadStart [0x00007FFBF2F2AF38+40]
+
+    Status: Fail
+    ==============================
+    
+2025-02-13 10:51:09,281 - INFO - 
+    ==============================
+    Test Case ID: TC_104
+    Test Scenario: User proceeds to checkout
+    Steps: Click 'Checkout' button
+    Expected Result: Checkout page should open
+    Actual Result: Failed to open checkout page - Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=132.0.6834.196)
+Stacktrace:
+	GetHandleVerifier [0x00007FF7566702F5+28725]
+	(No symbol) [0x00007FF7565D2AE0]
+	(No symbol) [0x00007FF75646510A]
+	(No symbol) [0x00007FF75643EEA5]
+	(No symbol) [0x00007FF7564E6F87]
+	(No symbol) [0x00007FF7564FFA52]
+	(No symbol) [0x00007FF7564DFD53]
+	(No symbol) [0x00007FF7564AA0E3]
+	(No symbol) [0x00007FF7564AB471]
+	GetHandleVerifier [0x00007FF75699F30D+3366989]
+	GetHandleVerifier [0x00007FF7569B12F0+3440688]
+	GetHandleVerifier [0x00007FF7569A78FD+3401277]
+	GetHandleVerifier [0x00007FF75673AAAB+858091]
+	(No symbol) [0x00007FF7565DE74F]
+	(No symbol) [0x00007FF7565DA304]
+	(No symbol) [0x00007FF7565DA49D]
+	(No symbol) [0x00007FF7565C8B69]
+	BaseThreadInitThunk [0x00007FFBF164259D+29]
+	RtlUserThreadStart [0x00007FFBF2F2AF38+40]
+
+    Status: Fail
+    ==============================
+    
+2025-02-13 10:51:09,282 - INFO - Contact Us test completed successfully
+2025-02-13 10:51:16,451 - INFO - Closed WebDriver

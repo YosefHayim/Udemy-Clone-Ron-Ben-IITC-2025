@@ -1,0 +1,26 @@
+2025-02-13 10:46:52 - INFO - Successfully opened website: https://atid.store
+2025-02-13 10:46:53 - INFO - Screenshot saved: screenshots_search\01_site_opened.png
+2025-02-13 10:46:53 - INFO - Search icon found
+2025-02-13 10:46:53 - INFO - Search icon clicked
+2025-02-13 10:46:53 - INFO - Screenshot saved: screenshots_search\02_search_icon_clicked.png
+2025-02-13 10:46:54 - INFO - Search box found
+2025-02-13 10:46:54 - INFO - Product name inserted
+2025-02-13 10:46:54 - INFO - Enter key pressed to search
+2025-02-13 10:46:54 - INFO - Screenshot saved: screenshots_search\03_product_search.png
+2025-02-13 10:46:54 - INFO - Product found in search results
+2025-02-13 10:46:55 - INFO - Screenshot saved: screenshots_search\04_search_results.png
+2025-02-13 10:46:55 - INFO - Product found
+2025-02-13 10:46:55 - INFO - Product clicked
+2025-02-13 10:46:55 - INFO - Screenshot saved: screenshots_search\05_product_clicked.png
+2025-02-13 10:46:55 - INFO - Successfully accessed the product page
+2025-02-13 10:46:56 - INFO - Screenshot saved: screenshots_search\06_product_page.png
+2025-02-13 10:46:56 - INFO - Product name found in title
+2025-02-13 10:46:56 - INFO - Product image found
+2025-02-13 10:46:56 - INFO - Product description found
+2025-02-13 10:46:56 - INFO - Product price found
+2025-02-13 10:46:56 - INFO - Screenshot saved: screenshots_search\07_product_validation.png
+2025-02-13 10:46:56 - INFO - Additional information tab found
+2025-02-13 10:46:56 - INFO - Successfully clicked on additional information tab
+2025-02-13 10:46:56 - INFO - Additional information table found
+2025-02-13 10:46:56 - INFO - Screenshot saved: screenshots_search\08_additional_info.png
+2025-02-13 10:46:58 - INFO - Test execution completed

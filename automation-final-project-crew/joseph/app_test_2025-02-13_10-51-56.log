@@ -1,0 +1,69 @@
+2025-02-13 10:51:56,961 - INFO - Starting Automation Test... \u2705
+2025-02-13 10:52:00,555 - INFO - Opened website: https://atid.store/
+2025-02-13 10:52:01,705 - INFO - Screenshot taken: screenshots_2025-02-13_10-51-56\shoes_item_page_10-52-01.png
+2025-02-13 10:52:01,706 - INFO - 
+    ==============================
+    Test Case ID: TC_101
+    Test Scenario: User navigates to Shoes Page
+    Steps: Click on shoes item link
+    Expected Result: Shoes product page should open
+    Actual Result: Shoes product page opened successfully
+    Status: Pass
+    ==============================
+    
+2025-02-13 10:52:03,082 - INFO - Screenshot taken: screenshots_2025-02-13_10-51-56\contact_us_button_10-52-02.png
+2025-02-13 10:52:03,082 - INFO - 
+    ==============================
+    Test Case ID: TC_001
+    Test Scenario: User navigates to Contact Us page
+    Steps: Click on 'Contact Us' button
+    Expected Result: Contact Us page should open
+    Actual Result: Contact Us page opened successfully
+    Status: Pass
+    ==============================
+    
+2025-02-13 10:52:04,159 - INFO - Screenshot taken: screenshots_2025-02-13_10-51-56\contact_us_button_10-52-03.png
+2025-02-13 10:52:04,159 - INFO - 
+    ==============================
+    Test Case ID: TC_001
+    Test Scenario: User navigates to Contact Us page
+    Steps: Click on 'Contact Us' button
+    Expected Result: Contact Us page should open
+    Actual Result: Contact Us page opened successfully
+    Status: Pass
+    ==============================
+    
+2025-02-13 10:52:05,188 - INFO - Screenshot taken: screenshots_2025-02-13_10-51-56\contact_us_button_10-52-04.png
+2025-02-13 10:52:05,189 - INFO - 
+    ==============================
+    Test Case ID: TC_001
+    Test Scenario: User navigates to Contact Us page
+    Steps: Click on 'Contact Us' button
+    Expected Result: Contact Us page should open
+    Actual Result: Contact Us page opened successfully
+    Status: Pass
+    ==============================
+    
+2025-02-13 10:52:06,329 - INFO - Screenshot taken: screenshots_2025-02-13_10-51-56\contact_us_button_10-52-05.png
+2025-02-13 10:52:06,329 - INFO - 
+    ==============================
+    Test Case ID: TC_001
+    Test Scenario: User navigates to Contact Us page
+    Steps: Click on 'Contact Us' button
+    Expected Result: Contact Us page should open
+    Actual Result: Contact Us page opened successfully
+    Status: Pass
+    ==============================
+    
+2025-02-13 10:52:07,491 - INFO - Screenshot taken: screenshots_2025-02-13_10-51-56\contact_us_button_10-52-06.png
+2025-02-13 10:52:07,492 - INFO - 
+    ==============================
+    Test Case ID: TC_001
+    Test Scenario: User navigates to Contact Us page
+    Steps: Click on 'Contact Us' button
+    Expected Result: Contact Us page should open
+    Actual Result: Contact Us page opened successfully
+    Status: Pass
+    ==============================
+    
+2025-02-13 10:52:07,952 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, 'Foi forçado o cancelamento de uma conexão existente pelo host remoto', None, 10054, None)': /session/15a6629f9cfe40ad3c493917a76524a4/screenshot
