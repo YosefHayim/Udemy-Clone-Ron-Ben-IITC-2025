@@ -605,7 +605,7 @@ const leaveCourseById = catchAsync(
 
     // Remove course from user's purchased courses
     user.coursesBought = user.coursesBought.filter(
-      (id) => id.toString() !== courseId.toString()
+      (id: string) => id.toString() !== courseId.toString()
     );
     await user.save();
 
@@ -618,6 +618,8 @@ const leaveCourseById = catchAsync(
 
 const updateUserInfo = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
+    console.log(req.body);
+
     const {
       fullName,
       headline,

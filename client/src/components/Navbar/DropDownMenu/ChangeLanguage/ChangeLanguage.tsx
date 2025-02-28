@@ -1,3 +1,4 @@
+import updateUserLanguage from "@/api/users/updateUserLanguage";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -8,6 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { btnLanguages } from "@/utils/languages";
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { TbWorld } from "react-icons/tb";
 
@@ -18,8 +20,13 @@ const ChangeLanguage: React.FC<{
 }> = ({ isClicked, setClicked, showIcon = false }) => {
   const [chosenLanguage, setChosenLanguage] = useState("English");
 
+  const postUserLanguage = useMutation({
+    mutationFn: updateUserLanguage,
+  });
+
   const handleChosenLanguage = (language: string) => {
     setChosenLanguage(language);
+    postUserLanguage.mutate;
   };
 
   return (
