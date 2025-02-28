@@ -26,7 +26,7 @@ const ChangeLanguage: React.FC<{
 
   const handleChosenLanguage = (language: string) => {
     setChosenLanguage(language);
-    postUserLanguage.mutate;
+    postUserLanguage.mutate(language);
   };
 
   return (
