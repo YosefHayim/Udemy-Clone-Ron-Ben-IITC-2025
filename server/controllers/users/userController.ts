@@ -859,7 +859,32 @@ const updateMe = catchAsync(
   }
 );
 
+const updatePersonalizeInfo = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const user = req.user;
+
+    const personalizeField = req.body.personalizeField;
+
+    if (!personalizeField) {
+      return next(
+        createError("Please provide personalizeField in the body", 400)
+      );
+    }
+
+    user.personalizeField = personalizeField;
+
+    await user.save();
+
+    res.status(200).json({
+      status: "success",
+      response: "User information has been updated",
+      user,
+    });
+  }
+);
+
 export {
+  updatePersonalizeInfo,
   updateMe,
   joinCoursesByIds,
   toggleCourseWishlist,

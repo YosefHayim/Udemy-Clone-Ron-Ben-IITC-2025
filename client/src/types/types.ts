@@ -24,6 +24,16 @@ export interface LoginPayload {
   password: string;
 }
 
+export interface personalizeFieldPayload {
+  personalizeField: {
+    whatFieldYouLearningFor: string;
+    doYouManagePeople: string;
+    whatOccupation: string;
+    iCantFindMyOccupation: string;
+    whatSkillsAreYouInterestedIn: string[];
+  };
+}
+
 export interface UserState {
   fullName: string;
   headline: string;

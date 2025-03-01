@@ -1,4 +1,6 @@
+import updatePersonalizeUserField from "@/api/users/updatePersonalizeField";
 import { personalizeContent } from "@/routes/AppRoutes";
+import { useMutation } from "@tanstack/react-query";
 import { useContext, useEffect } from "react";
 
 const FooterPersonalized = () => {
@@ -31,6 +33,14 @@ const FooterPersonalized = () => {
 
   useEffect(() => {}, [personalizeData]);
 
+  const mutatePersonalizeData = useMutation({
+    mutationFn: updatePersonalizeUserField,
+  });
+
+  const handleSubmit = () => {
+    mutatePersonalizeData.mutate(personalizeData);
+  };
+
   return (
     <div
       className={`${
@@ -50,12 +60,21 @@ const FooterPersonalized = () => {
         ""
       )}
       <div className="text-end w-full">
-        <button
-          onClick={handleForward}
-          className="font-bold px-6 py-[1em] bg-purple-600 text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 mr-4"
-        >
-          Next
-        </button>
+        {personalizeData.currentPage === 4 ? (
+          <button
+            onClick={handleForward}
+            className="font-bold px-6 py-[1em] bg-purple-600 text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 mr-4"
+          >
+            Submit
+          </button>
+        ) : (
+          <button
+            onClick={handleSubmit}
+            className="font-bold px-6 py-[1em] bg-purple-600 text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 mr-4"
+          >
+            Next
+          </button>
+        )}
       </div>
     </div>
   );

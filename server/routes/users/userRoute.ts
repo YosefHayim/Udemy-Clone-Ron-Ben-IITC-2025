@@ -21,6 +21,7 @@ import {
   updateMe,
   uploadUserPhoto,
   resizeUserPhoto,
+  updatePersonalizeInfo,
 } from "../../controllers/users/userController.ts";
 const router = express.Router();
 
@@ -77,6 +78,9 @@ router.post("/logout", grantedAccess, logout);
 
 // reactivate "delete" account
 router.post("/reactivate", reactiveUser);
+
+// Personalize field update of user
+router.post("/updatePersonalizeField", grantedAccess, updatePersonalizeInfo);
 
 // update user information
 router.put("/", grantedAccess, updateUserInfo);

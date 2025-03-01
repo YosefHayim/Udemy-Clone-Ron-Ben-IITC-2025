@@ -162,6 +162,13 @@ export interface UserDocument {
   bio: string;
   country: string;
   preferredLanguage: string;
+  personalizeField: {
+    whatFieldYouLearningFor: string;
+    doYouManagePeople: string;
+    whatOccupation: string;
+    iCantFindMyOccupation: string;
+    whatSkillsAreYouInterestedIn: string[];
+  };
   links: {
     website: string;
     xPlatform: string;

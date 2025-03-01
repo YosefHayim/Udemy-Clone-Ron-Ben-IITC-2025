@@ -4,6 +4,8 @@ import supportedCountries from "../../utils/supportedCountries.ts";
 import languagesToChoose from "../../utils/languagesToChoose.ts";
 import courseCategories from "../../utils/courseCategories.ts";
 import { UserDocument } from "../../types/types.ts";
+import fieldLearningFor from "../../utils/fieldsUserLearnings.ts";
+import occupationLearningFor from "../../utils/OccupationLearningFor.ts";
 
 // Define Mongoose Schema
 const userSchema = new Schema<UserDocument>(
@@ -27,6 +29,32 @@ const userSchema = new Schema<UserDocument>(
       enum: languagesToChoose,
       default: "English",
     },
+    personalizeField: [
+      {
+        whatFieldYouLearningFor: {
+          type: String,
+          enum: Object.keys(fieldLearningFor),
+        },
+        doYouManagePeople: {
+          type: String,
+          default: "No",
+          enum: ["Yes", "No"],
+        },
+        whatOccupation: {
+          type: String,
+          enum: Object.keys(occupationLearningFor),
+        },
+        iCantFindMyOccupation: {
+          type: String,
+          maxLength: [50, "Occupation cannot exceed 50 characters."],
+        },
+        whatSkillsAreYouInterestedIn: [
+          {
+            type: String,
+          },
+        ],
+      },
+    ],
     links: {
       website: { type: String },
       xPlatform: { type: String },

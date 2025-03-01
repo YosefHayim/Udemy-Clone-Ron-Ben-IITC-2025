@@ -74,6 +74,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = "" }) 
   };
 
   const navigate = useNavigate();
+  
   const handleCardClick = (courseId: string) => {
     navigate(`/course-view/${courseId}`);
   };
