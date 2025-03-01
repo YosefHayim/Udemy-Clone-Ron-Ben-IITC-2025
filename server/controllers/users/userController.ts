@@ -15,6 +15,7 @@ import multer from "multer";
 import sharp from "sharp";
 import { NextFunction, Request, Response } from "express";
 import { generateToken } from "../authorization/authController.ts";
+import { courseBought } from "../../types/types.ts";
 dotenv.config();
 
 // for updating user profile
@@ -34,7 +35,7 @@ const multerFilter = (req: Request, file: any, cb: any) => {
   if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else {
-    cb(new createError(`Please upload only images`, 400), false);
+    cb(createError(`Please upload only images`, 400), false);
   }
 };
 
@@ -248,7 +249,10 @@ const verifyCode = catchAsync(
       await user.save();
     }
 
-    if (user.temporaryCodeExpiresAt < Date.now()) {
+    if (
+      user.temporaryCodeExpiresAt &&
+      user.temporaryCodeExpiresAt.getTime() < Date.now()
+    ) {
       return next(createError("Verification code expired.", 401));
     }
 
@@ -445,7 +449,7 @@ const joinCourseById = catchAsync(
         return next(createError("You cannot join your own course.", 403));
 
       if (
-        user.coursesBought.some((bought) =>
+        user.coursesBought.some((bought: courseBought) =>
           bought.courseId ? bought.courseId.toString() === courseId : false
         )
       ) {
@@ -462,6 +466,9 @@ const joinCourseById = catchAsync(
           createError("You already have progress for this course.", 400)
         );
 
+      if (!course.totalStudentsEnrolled) {
+        course.totalStudentsEnrolled = { students: [], count: 0 };
+      }
       if (!Array.isArray(course.totalStudentsEnrolled.students)) {
         course.totalStudentsEnrolled.students = [];
       }
@@ -598,9 +605,12 @@ const leaveCourseById = catchAsync(
     }
 
     // Remove user from course enrollment
+    if (!course.totalStudentsEnrolled) {
+      course.totalStudentsEnrolled = { students: [], count: 0 };
+    }
     course.totalStudentsEnrolled.students =
       course.totalStudentsEnrolled.students.filter(
-        (id) => id.toString() !== user._id.toString()
+        (id: mongoose.Types.ObjectId) => id.toString() !== user._id.toString()
       );
     await course.save(); // `post('save')` will update the count automatically
 
@@ -667,7 +677,7 @@ const updateUserInfo = catchAsync(
   }
 );
 
-const resizeUserPhoto = (req, res, next) => {
+const resizeUserPhoto = (req: Request, res: Response, next: NextFunction) => {
   if (!req.file) return next();
 
   req.file.filename = `user-${req.user._id}-${Date.now()}.jpeg`;
@@ -723,7 +733,7 @@ const toggleCourseWishlist = catchAsync(
 
     if (isInWishlist) {
       req.user.wishlistCourses = req.user.wishlistCourses.filter(
-        (wishlistId) => wishlistId.toString() !== courseId
+        (wishlistId: string) => wishlistId.toString() !== courseId
       );
       await req.user.save();
       res.status(200).json({

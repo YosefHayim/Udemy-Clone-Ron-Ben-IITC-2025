@@ -38,6 +38,9 @@ const courseReviewsSchema = new mongoose.Schema<CourseReviewDocument>(
       entries: [{ type: mongoose.Schema.Types.ObjectId, ref: "ReportReview" }],
       count: { type: Number, default: 0 },
     },
+    isActive: {
+      type: Boolean,
+    },
   },
   { timestamps: true }
 );

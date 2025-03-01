@@ -272,6 +272,7 @@ export interface CourseReviewDocument {
     entries: mongoose.Types.ObjectId[];
     count: number;
   };
+  isActive: boolean;
 }
 
 export interface SectionDocument {
@@ -333,6 +334,14 @@ export interface CourseProgressDocument {
   userId: mongoose.Types.ObjectId;
   courseId: mongoose.Types.ObjectId;
   sections: SectionProgressDocument[];
+}
+
+export interface courseBought {
+  _id?: ObjectId;
+  courseName: string;
+  courseId: string;
+  boughtAt: Date;
+  coursePrice: number;
 }
 
 export interface CourseDocument {
@@ -398,7 +407,6 @@ declare module "express" {
 export interface Payload {
   id: Object;
   fullName: string;
-  data: any;
   email: string;
   profilePic: string;
   bio: string;

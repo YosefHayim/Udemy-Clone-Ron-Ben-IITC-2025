@@ -83,9 +83,7 @@ const updateLessonById = catchAsync(
 
     const updatedLesson = await Lesson.findByIdAndUpdate(
       lessonId,
-      title,
-      content,
-      section,
+      { title, content, section },
       {
         new: true,
         runValidators: true,

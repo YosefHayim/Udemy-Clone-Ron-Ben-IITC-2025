@@ -4,7 +4,7 @@ import CourseProgress from "././../../models/courses/courseProgressModel.ts";
 import { Request, Response } from "express";
 import mongoose from "mongoose";
 import { v4 as uuidv4 } from "uuid";
-import { log } from "winston";
+import { LessonProgressDocument } from "../../types/types.ts";
 
 /**
  * Initialize progress for a user when they start a course.
@@ -67,7 +67,7 @@ const initializeProgress = async (req: Request, res: Response) => {
     const sections = courseExists.sections.map((section) => ({
       sectionId: section._id,
       lessons: section.lessons.map((lesson) => ({
-        lessonId: lesson._id,
+        lessonId: lesson,
         completed: false,
         lastWatched: 0,
       })),
@@ -96,17 +96,26 @@ const updateLessonProgress = async (req: Request, res: Response) => {
   const { courseId, lessonId } = req.params;
   const userId = req.user._id;
   const { completed, lastWatched } = req.body;
-  console.log("Updating progress for:", { userId, courseId, lessonId, completed, lastWatched });
+  console.log("Updating progress for:", {
+    userId,
+    courseId,
+    lessonId,
+    completed,
+    lastWatched,
+  });
 
   try {
-    const progress = await CourseProgress.findOne({ userId, courseId: new mongoose.Types.ObjectId(courseId)  });
-    
+    const progress = await CourseProgress.findOne({
+      userId,
+      courseId: new mongoose.Types.ObjectId(courseId),
+    });
+
     if (!progress) {
       console.log("Progress not found in DB!");
       return res.status(404).json({ message: "Progress not found" });
     }
-    console.log('found');
-    
+    console.log("found");
+
     let lessonUpdated = false;
 
     // Update the progress for the specific lesson
@@ -131,9 +140,10 @@ const updateLessonProgress = async (req: Request, res: Response) => {
     await progress.save();
     res.status(200).json({ message: "Lesson progress updated", progress });
   } catch (err) {
-    res
-      .status(500)
-      .json({ error: "Failed to update progress", details: err.message });
+    res.status(500).json({
+      error: "Failed to update progress",
+      details: (err as Error).message,
+    });
   }
 };
 
@@ -147,6 +157,7 @@ const getCourseProgress = async (req: Request, res: Response) => {
   try {
     // Find progress for the user and course
     const progress = await CourseProgress.findOne({ userId, courseId })
+      .lean()
       .populate({
         path: "sections.sectionId", // Populate section information
         select: "title course totalSectionDuration totalSectionLessons", // Select required fields
@@ -166,12 +177,12 @@ const getCourseProgress = async (req: Request, res: Response) => {
     let completedLessons = 0;
 
     // Add stats for each section
-    const sectionsWithStats = progress.sections.map((section) => {
+    const sectionsWithStats = progress.sections.map((section: any) => {
       let sectionTotalLessons = 0;
       let sectionCompletedLessons = 0;
 
       // Calculate lessons for each section
-      section.lessons.forEach((lesson) => {
+      section.lessons.forEach((lesson: LessonProgressDocument) => {
         sectionTotalLessons++; // Count all lessons in the section
         if (lesson.completed) {
           sectionCompletedLessons++; // Count completed lessons in the section
@@ -202,10 +213,11 @@ const getCourseProgress = async (req: Request, res: Response) => {
       percentageCompleted, // Returns as a float (e.g., 0.25 for 25%)
     });
   } catch (err) {
-    console.error("Error retrieving course progress:", err.message);
-    res
-      .status(500)
-      .json({ error: "Failed to retrieve progress", details: err.message });
+    console.error("Error retrieving course progress:", (err as Error).message);
+    res.status(500).json({
+      error: "Failed to retrieve progress",
+      details: (err as Error).message,
+    });
   }
 };
 
@@ -248,7 +260,9 @@ const addNote = async (req: Request, res: Response) => {
 
     res.status(201).json({ message: "Note added successfully", note: newNote });
   } catch (err) {
-    res.status(500).json({ error: "Failed to add note", details: err.message });
+    res
+      .status(500)
+      .json({ error: "Failed to add note", details: (err as Error).message });
   }
 };
 
@@ -290,9 +304,10 @@ const deleteNote = async (req: Request, res: Response) => {
 
     res.status(200).json({ message: "Note deleted successfully" });
   } catch (err) {
-    res
-      .status(500)
-      .json({ error: "Failed to delete note", details: err.message });
+    res.status(500).json({
+      error: "Failed to delete note",
+      details: (err as Error).message,
+    });
   }
 };
 
@@ -323,8 +338,8 @@ const getAllNotes = async (req: Request, res: Response) => {
           lesson,
           lessonIndex,
           sectionIndex,
-          sectionTitle: section.sectionId.title,
-          lessonTitle: lesson.lessonId.title,
+          sectionTitle: (section.sectionId as any).title,
+          lessonTitle: (lesson.lessonId as any).title,
         }))
     );
 
@@ -345,10 +360,11 @@ const getAllNotes = async (req: Request, res: Response) => {
 
     res.status(200).json({ notes });
   } catch (err) {
-    console.error("Error retrieving notes:", err.message);
-    res
-      .status(500)
-      .json({ error: "Failed to retrieve notes", details: err.message });
+    console.error("Error retrieving notes:", (err as Error).message);
+    res.status(500).json({
+      error: "Failed to retrieve notes",
+      details: (err as Error).message,
+    });
   }
 };
 
@@ -396,7 +412,10 @@ const editNote = async (req: Request, res: Response) => {
   } catch (err) {
     res
       .status(500)
-      .json({ error: "Failed to update note", details: err.message });
+      .json({
+        error: "Failed to update note",
+        details: (err as Error).message,
+      });
   }
 };
 

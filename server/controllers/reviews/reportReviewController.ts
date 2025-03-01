@@ -77,7 +77,7 @@ const getReportsByReviewId = catchAsync(
     res.status(200).json({
       message: "success",
       response: "All the reports of this review below",
-      totalReports: review.reports.length,
+      totalReports: review.reports.entries.length,
       data: reportsReviews,
     });
   }
