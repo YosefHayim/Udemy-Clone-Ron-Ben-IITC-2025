@@ -98,6 +98,12 @@ export default {
         bgCommercial: {
           DEFAULT: "#f7f9fa",
         },
+        grayNavbarTxt: {
+          DEFAULT: "#595c73",
+        },
+        courseNameColorTxt: {
+          DEFAULT: "#303141",
+        },
       },
       fontSize: {
         searchTitle: {

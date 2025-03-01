@@ -29,7 +29,7 @@ const PersonalizeFieldP1 = () => {
     >
       <div className="bg-[#fff6e5] text-start p-[2em] ml-[8em] my-[2em] rounded-[1em] flex flex-row items-center justify-start gap-[0.5em]">
         <FaUserEdit className="text-[2em] text-[#c4710d]" />
-        <p className="text-[#303141]">
+        <p className="text-courseNameColorTxt">
           Answer a few questions to improve your content recommendations
         </p>
       </div>

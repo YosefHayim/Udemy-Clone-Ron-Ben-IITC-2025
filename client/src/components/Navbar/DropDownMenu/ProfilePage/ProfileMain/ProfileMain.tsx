@@ -23,7 +23,7 @@ const ProfileMain = () => {
         <div className="bg-white">
           <div className="border-b border-gray-300 min-w-full text-center p-4">
             <h2 className="text-2xl font-bold text-gray-800">Public Profile</h2>
-            <p className="text-[#303141] text-[1rem]">
+            <p className="text-courseNameColorTxt text-[1rem]">
               Add information about yourself
             </p>
           </div>

@@ -19,7 +19,7 @@ const OptionsMyLearning = () => {
           <BsThreeDotsVertical />
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-[9em] mt-[0.5em] w-[250px] rounded-[0.5em] border border-gray-200 ">
-          <DropdownMenuLabel className="text-[#595c73]">
+          <DropdownMenuLabel className="text-grayNavbarTxt">
             Lists
           </DropdownMenuLabel>
           <DropdownMenuSeparator />

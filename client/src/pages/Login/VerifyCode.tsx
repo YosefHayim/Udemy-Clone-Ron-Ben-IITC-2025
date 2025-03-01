@@ -137,14 +137,14 @@ const VerifyCode = () => {
           className="w-full max-w-[27rem] flex flex-col items-center space-y-4"
         >
           <div className="relative w-full">
-            <IoMdLock className="absolute left-3 w-4 h-4 top-1/2 transform -translate-y-1/2 text-[#303141]" />
+            <IoMdLock className="absolute left-3 w-4 h-4 top-1/2 transform -translate-y-1/2 text-courseNameColorTxt" />
             <input
               maxLength={6}
               type="text"
               name="code"
               id="code"
               placeholder="6-digit code"
-              className="w-full pl-10 pr-4 py-3 border border-gray-600 rounded-sm bg-white text-[#595C73] placeholder:text-[#595C73] ]
+              className="w-full pl-10 pr-4 py-3 border border-gray-600 rounded-sm bg-white text-grayNavbarTxt placeholder:text-grayNavbarTxt ]
               placeholder:font-semibold placeholder:opacity-95 text-[1.1rem] focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>

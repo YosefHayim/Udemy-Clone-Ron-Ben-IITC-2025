@@ -39,7 +39,7 @@ const SelectCountry = () => {
           </p>
         )}
       </div>
-      <p className="text-[#595c73] w-[400px]">
+      <p className="text-grayNavbarTxt w-[400px]">
         Udemy is required by law to collect applicable transaction taxes for
         purchases made in certain tax jurisdictions.
       </p>

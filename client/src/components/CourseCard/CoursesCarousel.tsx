@@ -1,24 +1,34 @@
-
-
 import React, { useState, useEffect } from "react";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseHoverCard from "./CourseHoverCard";
 import { Course } from "@/types/types";
 import { MdOutlineStarHalf } from "react-icons/md";
-import { IoIosStar, IoIosStarOutline, IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import {
+  IoIosStar,
+  IoIosStarOutline,
+  IoIosArrowBack,
+  IoIosArrowForward,
+} from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = "" }) => {
+const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
+  searchTerm = "",
+}) => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [hoveredCourse, setHoveredCourse] = useState<Course | null>(null);
-  const [hoverCardPosition, setHoverCardPosition] = useState({ top: 0, left: 0 });
+  const [hoverCardPosition, setHoverCardPosition] = useState({
+    top: 0,
+    left: 0,
+  });
   const [currentIndex, setCurrentIndex] = useState(0);
   const visibleItems = 5; // Número de itens visíveis no carrossel
 
   // Função para buscar cursos
   const fetchCourses = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/course/?search=${encodeURI(searchTerm)}`);
+      const response = await fetch(
+        `http://localhost:3000/api/course/?search=${encodeURI(searchTerm)}`
+      );
       const data = await response.json();
       if (data.status === "Success") {
         const updatedCourses = data.response.map((course: any) => ({
@@ -57,7 +67,10 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = "" }) 
   };
 
   // Função ao passar o mouse sobre um curso
-  const handleMouseEnter = (course: Course, event: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseEnter = (
+    course: Course,
+    event: React.MouseEvent<HTMLDivElement>
+  ) => {
     const courseRect = event.currentTarget.getBoundingClientRect();
 
     setHoverCardPosition({
@@ -74,7 +87,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = "" }) 
   };
 
   const navigate = useNavigate();
-  
+
   const handleCardClick = (courseId: string) => {
     navigate(`/course-view/${courseId}`);
   };
@@ -89,9 +102,13 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = "" }) 
           if (i < fullStars) {
             return <IoIosStar key={i} className="text-[#c4710d] ml-[1px]" />;
           } else if (i === fullStars && hasHalfStar) {
-            return <MdOutlineStarHalf key={i} className="text-[#c4710d] ml-[1px]" />;
+            return (
+              <MdOutlineStarHalf key={i} className="text-[#c4710d] ml-[1px]" />
+            );
           } else {
-            return <IoIosStarOutline key={i} className="text-[#c4710d] ml-[1px]" />;
+            return (
+              <IoIosStarOutline key={i} className="text-[#c4710d] ml-[1px]" />
+            );
           }
         })}
       </div>
@@ -100,9 +117,11 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = "" }) 
 
   return (
     <div className="relative w-full mx-auto py-6 overflow-visible">
-      <h2 className="text-2xl font-bold mb-4 pl-2 text-[#303141] overflow-visible">
+      <h2 className="text-2xl font-bold mb-4 pl-2 text-courseNameColorTxt overflow-visible">
         Because you viewed{" "}
-        <span className="text-[#6d28d2] font-bold underline hover:text-[#521e9f]">{searchTerm}</span>
+        <span className="text-[#6d28d2] font-bold underline hover:text-[#521e9f]">
+          {searchTerm}
+        </span>
       </h2>
 
       {courses.length > 0 && (
@@ -133,23 +152,25 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = "" }) 
                     />
                   </div>
                   <div className="flex flex-col justify-between flex-grow">
-                    <h3 className="font-bold text-[1rem] text-[#303141] line-clamp-2 pt-[0.3rem] leading-5">
+                    <h3 className="font-bold text-[1rem] text-courseNameColorTxt line-clamp-2 pt-[0.3rem] leading-5">
                       {course.courseName}
                     </h3>
-                    <p className="text-xs text-[#595C73] truncate py-[0.2rem]">
+                    <p className="text-xs text-grayNavbarTxt truncate py-[0.2rem]">
                       {course.courseInstructor.fullName}
                     </p>
                     <div className="flex items-center text-sm text-[#8B4309] font-bold">
                       <span className="mr-1 text-[#8B4309]">
                         {course.averageRating.toFixed(1)}
                       </span>
-                      <div className="flex">{renderStars(course.averageRating)}</div>
+                      <div className="flex">
+                        {renderStars(course.averageRating)}
+                      </div>
                       <span className="ml-2 text-gray-500 text-xs">
                         ({course.totalRatings.toLocaleString()})
                       </span>
                     </div>
                     <div className="flex items-baseline justify-between py-[0.15rem]">
-                      <span className="font-[700] text-[#303141] text-[1rem]">
+                      <span className="font-[700] text-courseNameColorTxt text-[1rem]">
                         ₪{course.courseDiscountPrice.toFixed(2)}
                       </span>
                       {course.courseFullPrice && (
@@ -184,14 +205,14 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = "" }) 
 
       <button
         onClick={handlePrev}
-        className="absolute left-[-1rem] top-[9.2rem] w-[3.2rem] h-[3.2rem] transform -translate-y-1/2 bg-white text-[#303141] p-3 rounded-full z-10 shadow-md hover:bg-[#E9EAF2]"
+        className="absolute left-[-1rem] top-[9.2rem] w-[3.2rem] h-[3.2rem] transform -translate-y-1/2 bg-white text-courseNameColorTxt p-3 rounded-full z-10 shadow-md hover:bg-[#E9EAF2]"
         aria-label="Scroll Left"
       >
         <IoIosArrowBack className="text-[1.4rem]" />
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-[-1rem] top-[9.2rem] w-[3.2rem] h-[3.2rem] transform -translate-y-1/2 bg-white text-[#303141] p-3 rounded-full z-10 shadow-md hover:bg-[#E9EAF2]"
+        className="absolute right-[-1rem] top-[9.2rem] w-[3.2rem] h-[3.2rem] transform -translate-y-1/2 bg-white text-courseNameColorTxt p-3 rounded-full z-10 shadow-md hover:bg-[#E9EAF2]"
         aria-label="Scroll Right"
       >
         <IoIosArrowForward className="text-[1.4rem]" />

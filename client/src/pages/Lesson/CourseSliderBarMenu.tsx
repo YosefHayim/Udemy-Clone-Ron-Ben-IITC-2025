@@ -26,7 +26,7 @@ import { CourseProgressResponse, LessonProgressPayload } from "@/types";
 import CustomTrigger from "../Lesson/CustomTrigger";
 
 export function CourseSidebarMenu({ courseId }: { courseId: string }) {
-  const [hover, setHover] = useState("gray-600")
+  const [hover, setHover] = useState("gray-600");
   const { toggleSidebar, open } = useSidebar();
   const location = useLocation();
   const queryClient = useQueryClient();
@@ -37,7 +37,6 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
     queryFn: () => fetchCourseProgress(courseId),
     enabled: !!courseId,
   });
-  
 
   // Mutation for updating lesson progress with optimistic updates
   const mutation = useMutation({
@@ -129,19 +128,23 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
           key={section.sectionId._id}
           className="group/collapsible  group-open:pb-0 pt-10  group-data-[state=open]/collapsible:pb-0 border-2 bg-[#F6F7F9] border-t-0   w-full"
         >
-          <SidebarMenuItem
-          className="">
+          <SidebarMenuItem className="">
             <CollapsibleTrigger
               asChild
               className=" gap-0 pl-0 focus:outline-none focus-visible:outline-none rounded-none"
             >
               <SidebarMenuButton className="p-0  flex overflow-visible focus:outline-none  items-center justify-between pl-2 focus-visible:outline-none rounded-none">
                 <div className=" flex w-full flex-col ">
-                <div className="flex  items-center font-bold break-words text-[#303141] text-lg">
-  <span>Section {index + 1}: {section.sectionId.title}</span>
-  <FaChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-</div>
-                  <p className="text-xs mb-10 font-semibold text-[#303141]">{section.completedLessonsInSection}/ {section.totalLessonsInSection} |    42min</p>
+                  <div className="flex  items-center font-bold break-words text-courseNameColorTxt text-lg">
+                    <span>
+                      Section {index + 1}: {section.sectionId.title}
+                    </span>
+                    <FaChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                  </div>
+                  <p className="text-xs mb-10 font-semibold text-courseNameColorTxt">
+                    {section.completedLessonsInSection}/{" "}
+                    {section.totalLessonsInSection} | 42min
+                  </p>
                 </div>
               </SidebarMenuButton>
             </CollapsibleTrigger>
@@ -150,8 +153,9 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
               <SidebarMenuSub className="m-0 p-0 mt-4 bg-white border-l-0 w-full">
                 {section.lessons.map((lesson) => {
                   lessonCounter += 1;
-                  const isCurrentLesson =
-                    location.pathname.startsWith(`/course/${courseId}/lesson/${lesson.lessonId._id}`);
+                  const isCurrentLesson = location.pathname.startsWith(
+                    `/course/${courseId}/lesson/${lesson.lessonId._id}`
+                  );
 
                   return (
                     <SidebarMenuSubItem
@@ -163,7 +167,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
                       key={lesson.lessonId._id}
                     >
                       <div className="  p-4 overflow-visible  group w-full">
-                        <SidebarMenuSubButton className="overflow-visible" >
+                        <SidebarMenuSubButton className="overflow-visible">
                           <div className="flex  items-center h-full">
                             <Checkbox
                               checked={lesson.completed}

@@ -110,7 +110,7 @@ const Login = () => {
                 name="email"
                 id="email"
                 placeholder="Email"
-                className="w-full p-[1em] bg-white text-black focus:bg-white focus:text-black focus:outline-none border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-[#303141] focus:border-purple-800"
+                className="w-full p-[1em] bg-white text-black focus:bg-white focus:text-black focus:outline-none border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800"
               />
               <div className={isError ? "block" : "hidden"}>
                 <span className="text-red-600 absolute font-bold top-[10%] right-[87%]">
@@ -144,7 +144,7 @@ const Login = () => {
 
           <div className="flex items-center my-6">
             <hr className="flex-grow border-gray-300" />
-            <span className="mx-4 text-sm text-[#595C73]">
+            <span className="mx-4 text-sm text-grayNavbarTxt">
               Other log in options
             </span>
             <hr className="flex-grow border-gray-300" />
@@ -165,7 +165,7 @@ const Login = () => {
             </button>
           </div>
 
-          <div className="mt-16 space-y-3 text-center text-base font-medium text-[#303141] bg-gray-100">
+          <div className="mt-16 space-y-3 text-center text-base font-medium text-courseNameColorTxt bg-gray-100">
             <div className="border-b-2 py-3">
               Don’t have an account?
               <a

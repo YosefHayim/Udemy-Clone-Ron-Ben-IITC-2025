@@ -62,7 +62,7 @@ const SignUp: React.FC = () => {
       {/* Right Section with Form */}
       <div className="w-1/2 h-full flex items-center justify-center bg-white">
         <div className="w-3/4 max-w-[27rem]">
-          <h2 className="text-[2rem] font-bold text-[#303141] mb-6 w-full text-center">
+          <h2 className="text-[2rem] font-bold text-courseNameColorTxt mb-6 w-full text-center">
             Sign up with email
           </h2>
           <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
@@ -74,7 +74,7 @@ const SignUp: React.FC = () => {
                 className={`w-4 h-4 border-2 mt-1 rounded-[2px] flex items-center justify-center cursor-pointer transition-all ${
                   isChecked
                     ? "bg-[#6d28d2] border-[#6d28d2]"
-                    : "bg-white border-[#303141]"
+                    : "bg-white border-courseNameColorTxt"
                 }`}
                 style={{ minWidth: "1rem", minHeight: "1rem" }} // Fixando o tamanho
               >
@@ -99,7 +99,7 @@ const SignUp: React.FC = () => {
               name="fullName"
               required={true}
               placeholder="Full name"
-              className="w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-[#303141] focus:border-purple-800"
+              className="w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800"
             />
 
             {/* Email Input */}
@@ -109,7 +109,7 @@ const SignUp: React.FC = () => {
               name="email"
               id="email"
               placeholder="E-mail"
-              className="w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-[#303141] focus:border-purple-800"
+              className="w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800"
             />
 
             {/* Submit Button */}
@@ -137,7 +137,7 @@ const SignUp: React.FC = () => {
 
             {/* Terms and Privacy */}
             <div className="flex justify-center px-0">
-              <p className="text-[0.8rem] text-[#303141] mt-2">
+              <p className="text-[0.8rem] text-courseNameColorTxt mt-2">
                 By signing up, you agree to our{" "}
                 <span className="inline">
                   <a
@@ -158,7 +158,7 @@ const SignUp: React.FC = () => {
 
           {/* Login Redirect */}
           <div className="bg-[#f6f7f9] mt-6 text-center w-full py-[1.5em] text-white font-medium flex items-center justify-center space-x-0">
-            <a href="/login" className="text-[#303141] text-[1rem]">
+            <a href="/login" className="text-courseNameColorTxt text-[1rem]">
               Already have an account?{" "}
               <span className="text-[#6d28d2] underline">Log in</span>
             </a>

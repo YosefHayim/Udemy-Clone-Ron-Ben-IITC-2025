@@ -27,7 +27,6 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
     queryFn: () => fetchCourseProgress(courseId), // Query function
     enabled: !!courseId, // Fetch only if courseId exists
   });
-  
 
   // Extract progress data
   const totalLessons = data?.totalLessons || 0;
@@ -75,7 +74,7 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
                   }}
                 >
                   <AiOutlineTrophy
-                    className="text-[#595C73]"
+                    className="text-grayNavbarTxt"
                     style={{ fontSize: "18px" }}
                   />
                 </div>
@@ -90,7 +89,9 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
                 {isLoading ? (
                   <p className="text-sm font-semibold">Loading...</p>
                 ) : isError ? (
-                  <p className="text-sm text-red-500">Failed to load progress.</p>
+                  <p className="text-sm text-red-500">
+                    Failed to load progress.
+                  </p>
                 ) : (
                   <div>
                     <p className="text-sm font-semibold">

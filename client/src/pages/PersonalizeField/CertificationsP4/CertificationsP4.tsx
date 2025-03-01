@@ -11,7 +11,7 @@ const CertificationsP4 = () => {
         <input
           type="text"
           placeholder="Search for a certification"
-          className="w-full p-[0.8em] bg-white text-black focus:bg-white focus:text-black focus:outline-none placeholder:font-bold placeholder:text-[#303141] focus:border-purple-800 border-none"
+          className="w-full p-[0.8em] bg-white text-black focus:bg-white focus:text-black focus:outline-none placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800 border-none"
         />
       </div>
       <div className="mt-[1em]">

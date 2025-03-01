@@ -82,7 +82,7 @@ const CheckoutContainer: React.FC = () => {
           Proceed to Checkout
           <FaArrowRight />
         </Button>
-        <p className="text-[#595c73] my-[0.5em]">You wont be charged yet</p>
+        <p className="text-grayNavbarTxt my-[0.5em]">You wont be charged yet</p>
       </div>
       <hr className="border border-gray-100 w-full" />
       <b>Promotions</b>

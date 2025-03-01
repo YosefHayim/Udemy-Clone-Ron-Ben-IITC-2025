@@ -53,7 +53,7 @@ const LoginBusiness = () => {
           <a href="#" className="text-sm text-[#6d28d2] hover:text-[#521E9F]">
             Need help with logging in or signing up?
           </a>
-          <p className="text-xs text-[#595C73] mt-7">
+          <p className="text-xs text-grayNavbarTxt mt-7">
             <button onClick={navigatePrivacy} className="">
               Read our Privacy Statement
             </button>
