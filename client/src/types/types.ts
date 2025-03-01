@@ -200,6 +200,7 @@ export interface DecodedTokenProps {
   role: string;
   coursesBought: string[];
   udemyCredits: number;
+  preferredLanguage: string;
 }
 
 export type FormErrors = {

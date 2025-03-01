@@ -217,9 +217,9 @@ const verifyCode = catchAsync(
 
     const user = await User.findOne({ email });
 
-    if (!code) {
+    if (!code && user) {
       // Generate sign up token
-      const regenerateCode = randomize("0", 6);
+      const regenerateCode = +randomize("0", 6);
 
       // Set token and expire within 15 min.
       user.temporaryCode = regenerateCode;
@@ -262,6 +262,7 @@ const verifyCode = catchAsync(
       profilePic: user.profilePic,
       bio: user.bio,
       role: user.role,
+      preferredLanguage: user.preferredLanguage,
       coursesBought: user.coursesBought,
       udemyCredits: user.udemyCredits,
       language: user.preferredLanguage,

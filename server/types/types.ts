@@ -357,7 +357,23 @@ export interface QueryString {
 }
 
 export interface Payload {
+  id: Object;
+  fullName: string;
   data: any;
+  email: string;
+  profilePic: string;
+  bio: string;
+  role: string;
+  preferredLanguage: string;
+  coursesBought: {
+    courseName: string;
+    courseId: string;
+    boughtAt: Date;
+    coursePrice: number;
+  };
+  udemyCredits: number;
+  headline: string;
+  fieldLearning: string[];
 }
 
 export interface Token {

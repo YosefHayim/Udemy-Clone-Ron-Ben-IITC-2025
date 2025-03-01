@@ -57,7 +57,7 @@ class APIFeatures<T> {
     return this;
   }
 
-  paginate(totalCourses: number): this {
+  paginate(totalCourses: number = 20): this {
     const page = Number(this.queryString.page) || 1;
     const limit = Number(this.queryString.limit) || 20;
     const totalPassed = (page - 1) * limit;
