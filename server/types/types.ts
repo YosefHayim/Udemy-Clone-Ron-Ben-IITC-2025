@@ -183,8 +183,8 @@ export interface UserDocument {
   profilePic: string;
   authProvider: string;
   role: "student" | "instructor";
-  temporaryCode?: number;
-  temporaryCodeExpiresAt?: Date;
+  temporaryCode?: number | undefined;
+  temporaryCodeExpiresAt?: Date | undefined;
   active: boolean;
   udemyCredits: number;
   subscriptionPlan: {
@@ -363,6 +363,12 @@ export interface QueryString {
   [key: string]: any; // Allow additional properties
 }
 
+declare module "express" {
+  export interface Request {
+    user?: any;
+  }
+}
+
 export interface Payload {
   id: Object;
   fullName: string;
@@ -371,11 +377,18 @@ export interface Payload {
   profilePic: string;
   bio: string;
   role: string;
-  preferredLanguage: string;
+  language: string;
   coursesBought: any;
   udemyCredits: number;
   headline: string;
   fieldLearning: string[];
+  userLinks: {
+    website: string;
+    xPlatform: string;
+    facebook: string;
+    linkedin: string;
+    youtube: string;
+  };
 }
 
 export interface Token {

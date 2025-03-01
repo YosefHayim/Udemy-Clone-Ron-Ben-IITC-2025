@@ -14,6 +14,7 @@ import {
   setProfilePic,
   setRole,
   setUdemyCredits,
+  setUserLinks,
 } from "@/redux/slices/userSlice";
 import { DecodedTokenProps } from "@/types/types";
 import Cookies from "js-cookie";
@@ -69,6 +70,7 @@ const VerifyCode = () => {
     dispatch(setFullName(decoded.fullName));
     dispatch(setHeadline(decoded.headline));
     dispatch(setLanguage(decoded.language));
+    dispatch(setUserLinks(decoded.userLinks));
     dispatch(setProfilePic(decoded.profilePic));
     dispatch(setEmailAddress(decoded.email));
     dispatch(setBio(decoded.bio));

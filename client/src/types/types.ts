@@ -45,6 +45,13 @@ export interface UserState {
   udemyCredits: number;
   cookie: string;
   language: string;
+  userLinks: {
+    website: string;
+    xPlatform: string;
+    facebook: string;
+    linkedin: string;
+    youtube: string;
+  };
 }
 
 export interface searchResultCourseImgProps {
@@ -212,6 +219,12 @@ export interface DecodedTokenProps {
   coursesBought: string[];
   udemyCredits: number;
   language: string;
+  userLinks: {
+    linkedin: string;
+    twitter: string;
+    facebook: string;
+    instagram: string;
+  };
 }
 
 export type FormErrors = {

@@ -10,6 +10,13 @@ const initialState: UserState = {
   bio: "",
   role: "",
   language: "english",
+  userLinks: {
+    linkedin: "",
+    xPlatform: "",
+    facebook: "",
+    youtube: "",
+    website: "",
+  },
   coursesBought: [],
   udemyCredits: 0,
   cookie: Cookies.get("cookie") || "",
@@ -25,6 +32,13 @@ const userSlice = createSlice({
     setProfilePic: (state, action: PayloadAction<string>) => {
       state.profilePic = action.payload;
     },
+    setUserLinks: (
+      state,
+      action: PayloadAction<Partial<UserState["userLinks"]>>
+    ) => {
+      state.userLinks = { ...state.userLinks, ...action.payload };
+    },
+
     setRole: (state, action: PayloadAction<string>) => {
       state.role = action.payload;
     },
@@ -70,6 +84,7 @@ const userSlice = createSlice({
 });
 
 export const {
+  setUserLinks,
   setLanguage,
   setFullName,
   setHeadline,

@@ -140,6 +140,7 @@ const signUp = catchAsync(
       role: newUser.role,
       coursesBought: newUser.coursesBought,
       udemyCredits: newUser.udemyCredits,
+      userLinks: newUser.links,
       language: newUser.preferredLanguage,
       headline: newUser.headline,
       fieldLearning: newUser.fieldLearning,
@@ -251,8 +252,8 @@ const verifyCode = catchAsync(
       return next(createError("Verification code expired.", 401));
     }
 
-    user.temporaryCode = null;
-    user.codeExpiresAt = null;
+    user.temporaryCode = undefined;
+    user.temporaryCodeExpiresAt = undefined;
     await user.save();
 
     const token = generateToken({
@@ -264,6 +265,7 @@ const verifyCode = catchAsync(
       role: user.role,
       coursesBought: user.coursesBought,
       udemyCredits: user.udemyCredits,
+      userLinks: user.links,
       language: user.preferredLanguage,
       headline: user.headline,
       fieldLearning: user.fieldLearning,
@@ -798,6 +800,7 @@ const googleLoginOrSignUp = catchAsync(
         role: user.role,
         coursesBought: user.coursesBought,
         udemyCredits: user.udemyCredits,
+        userLinks: user.links,
         language: user.preferredLanguage,
         headline: user.headline,
         fieldLearning: user.fieldLearning,
@@ -818,7 +821,7 @@ const googleLoginOrSignUp = catchAsync(
     } catch (error) {
       console.error(
         "Google login error:",
-        error.response?.data || error.message
+        (error as any).response?.data || (error as any).message
       );
       return next(createError("Authentication failed", 500));
     }
@@ -838,6 +841,7 @@ const updateMe = catchAsync(
       role: user.role,
       coursesBought: user.coursesBought,
       udemyCredits: user.udemyCredits,
+      userLinks: user.links,
       language: user.preferredLanguage,
       headline: user.headline,
       fieldLearning: user.fieldLearning,

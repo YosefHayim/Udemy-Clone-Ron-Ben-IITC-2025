@@ -2,10 +2,16 @@ import { Input } from "@/components/ui/input";
 import SideBarProfile from "../SideBarProfile/SideBarProfile";
 import { Button } from "@/components/ui/button";
 import { useSelector } from "react-redux";
+import { RootState } from "@/redux";
 
 const ProfileMain = () => {
   document.title = "Udemy | Edit profile";
-  const fullName = useSelector((state) => state.user.fullName);
+  const fullName = useSelector((state: RootState) => state.user.fullName);
+  const headline = useSelector((state: RootState) => state.user.headline);
+  const userLinks = useSelector((state: RootState) => state.user.userLinks);
+  console.log(userLinks);
+
+  const bio = useSelector((state: RootState) => state.user.bio);
 
   return (
     <div className="flex min-h-screen bg-gray-100 mx-[12rem] mt-[1.5rem] mb-[3rem]">
@@ -17,7 +23,9 @@ const ProfileMain = () => {
         <div className="bg-white">
           <div className="border-b border-gray-300 min-w-full text-center p-4">
             <h2 className="text-2xl font-bold text-gray-800">Public Profile</h2>
-            <p className="text-[#303141] text-[1rem]">Add information about yourself</p>
+            <p className="text-[#303141] text-[1rem]">
+              Add information about yourself
+            </p>
           </div>
 
           <form className="space-y-6 px-[9rem]">
@@ -29,7 +37,7 @@ const ProfileMain = () => {
               <Input
                 id="firstName"
                 type="text"
-                placeholder={fullName || "First Name"}
+                placeholder={fullName}
                 className="border border-gray-500 rounded-[0.2rem]"
               />
             </div>
@@ -49,7 +57,7 @@ const ProfileMain = () => {
               <Input
                 id="headline"
                 type="text"
-                placeholder="Headline"
+                placeholder={headline}
                 className="rounded-[0.2rem] border border-gray-500"
               />
               <p className="text-[0.8em] text-gray-600">
@@ -80,6 +88,7 @@ const ProfileMain = () => {
 
                 <textarea
                   id="bio"
+                  placeholder={bio}
                   rows={4}
                   className="border border-gray-500 border-t-0 rounded-b-[0.2rem] w-full bg-white p-2"
                 ></textarea>
@@ -104,7 +113,6 @@ const ProfileMain = () => {
               </div>
               <hr />
             </div>
-
 
             {/* Links */}
             <div>
