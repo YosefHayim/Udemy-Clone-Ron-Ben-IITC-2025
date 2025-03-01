@@ -75,7 +75,7 @@ const OccupationP2 = () => {
           </form>
           <div className="mt-[1.5em] cursor-pointer">
             <button
-              className="underline text-[#6d28d2] bg-none border-none"
+              className="underline text-btnColor bg-none border-none"
               onClick={handleClick}
             >
               I cant find my occupation

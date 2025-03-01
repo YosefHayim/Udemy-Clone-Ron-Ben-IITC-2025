@@ -17,7 +17,7 @@ const NavbarPersonalized = () => {
             <Logo />
           </Link>
         </div>
-        <div className="flex flex-row items-center justify-center gap-[0.5em] text-[#6d28d2]">
+        <div className="flex flex-row items-center justify-center gap-[0.5em] text-btnColor">
           <Link to="/">
             <button className="font-bold hover:bg-purpleHoverBtn py-[1em] px-[0.2em] rounded-[0.2em]">
               Save & Exit
@@ -28,7 +28,7 @@ const NavbarPersonalized = () => {
       </div>
       <div className="relative w-full h-[0.3em] bg-gray-300 overflow-hidden">
         <div
-          className="absolute top-0 left-0 h-full bg-[#6d28d2] transition-all duration-300"
+          className="absolute top-0 left-0 h-full bg-btnColor transition-all duration-300"
           style={{ width: `${personalizeData.progressBar}%` }}
         ></div>
       </div>

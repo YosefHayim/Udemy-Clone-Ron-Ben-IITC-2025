@@ -121,7 +121,7 @@ const Login = () => {
             </div>
             <button
               type="submit"
-              className="w-full py-3 rounded-md bg-[#6d28d2] hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
+              className="w-full py-3 rounded-md bg-btnColor hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
             >
               {isLoading ? (
                 <Loader useSmallLoading={true} hSize="" />
@@ -153,14 +153,14 @@ const Login = () => {
           <div className="flex justify-center space-x-5">
             <button
               onClick={handleGoogle}
-              className="p-2 border border-[#6D28D2] rounded-sm hover:bg-gray-100"
+              className="p-2 border border-btnColor rounded-sm hover:bg-gray-100"
             >
               <FcGoogle className="w-7 h-7" />
             </button>
-            <button className="p-2 border border-[#6D28D2] rounded-sm hover:bg-gray-100">
+            <button className="p-2 border border-btnColor rounded-sm hover:bg-gray-100">
               <FaFacebook className="w-7 h-7 text-blue-600" />
             </button>
-            <button className="p-2 border border-[#6D28D2] rounded-sm hover:bg-gray-100">
+            <button className="p-2 border border-btnColor rounded-sm hover:bg-gray-100">
               <FaApple className="w-7 h-7 opacity-85" />
             </button>
           </div>
@@ -170,14 +170,14 @@ const Login = () => {
               Don’t have an account?
               <a
                 href="/signup"
-                className="text-[#6d28d2] underline ml-1 font-bold underline-offset-[5px]"
+                className="text-btnColor underline ml-1 font-bold underline-offset-[5px]"
               >
                 Sign up
               </a>
             </div>
             <button
               onClick={navigateBusiness}
-              className="text-[#6d28d2] underline font-bold underline-offset-[5px] pb-5 pt-0"
+              className="text-btnColor underline font-bold underline-offset-[5px] pb-5 pt-0"
             >
               Log in with your organization
             </button>

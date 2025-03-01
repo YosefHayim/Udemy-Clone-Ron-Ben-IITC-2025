@@ -19,7 +19,7 @@ const ReviewsTab = ({ avgRating = 1 }) => {
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["reviews", courseId],
-    queryFn: () => getAllReviewsByCourseId((courseId || "")),
+    queryFn: () => getAllReviewsByCourseId(courseId || ""),
   });
 
   const renderStars = (rating) => {
@@ -76,15 +76,14 @@ const ReviewsTab = ({ avgRating = 1 }) => {
                       className="h-2 bg-[#9194AC] "
                       style={{ width: `${percentage}%` }}
                     ></div>
-                  </div >
+                  </div>
                   <div className="flex items-center gap-3 flex-row-reverse ">
-                  <span className="text-sm font-semibold underline text-[#6D28D2]">
-                    {percentage}%
-                  </span>
-                  <div className="">{renderStars(stars)}</div>
+                    <span className="text-sm font-semibold underline text-btnColor">
+                      {percentage}%
+                    </span>
+                    <div className="">{renderStars(stars)}</div>
                   </div>
                 </div>
-
               );
             })}
           </div>
@@ -101,7 +100,7 @@ const ReviewsTab = ({ avgRating = 1 }) => {
         />
 
         {/* Search Button */}
-        <Button className="bg-[#6D28D2] hover:bg-[#7551a7] px-4 min-h-[48px] ">
+        <Button className="bg-btnColor hover:bg-[#7551a7] px-4 min-h-[48px] ">
           <MdSearch className="text-black" />
         </Button>
 

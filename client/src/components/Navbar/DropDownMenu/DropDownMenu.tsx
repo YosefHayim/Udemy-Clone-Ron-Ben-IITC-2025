@@ -44,7 +44,9 @@ const DropdownMenu: React.FC = () => {
             <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
           </Link>
           <div className="ml-3">
-            <div className="font-bold text-gray-800">{fullName}</div>
+            <div className="font-bold text-gray-800 hover:text-btnColor">
+              {fullName}
+            </div>
             <div className="text-sm text-gray-500">{email}</div>
           </div>
         </div>

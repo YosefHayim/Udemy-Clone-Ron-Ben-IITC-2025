@@ -39,7 +39,7 @@ const CantFindMyOccupation = ({
         />
         <button
           type="button" // Prevents form submission
-          className="underline text-[#6d28d2] font-bold"
+          className="underline text-btnColor font-bold"
           onClick={handlePrevious}
         >
           Back to list of occupations

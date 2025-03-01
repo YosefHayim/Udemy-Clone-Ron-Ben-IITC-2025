@@ -44,10 +44,10 @@ const Subscription = () => {
               </ul>
               <div className="flex flex-col items-start justify-start gap-[1em]">
                 <div className="flex flex-row items-start justify-start gap-[1em]">
-                  <Button className="text-white font-bold bg-[#6d28d2] rounded-[0.2em] hover:bg-[#892de1] h-[3em]">
+                  <Button className="text-white font-bold bg-btnColor rounded-[0.2em] hover:bg-[#892de1] h-[3em]">
                     Subscribe
                   </Button>
-                  <Button className="font-bold text-[#6d28d2] bg-white hover:bg-white shadow-none hover:hover-color-mix rounded-[0.2em] h-[3em]">
+                  <Button className="font-bold text-btnColor bg-white hover:bg-white shadow-none hover:hover-color-mix rounded-[0.2em] h-[3em]">
                     Learn more
                   </Button>
                 </div>

@@ -8,7 +8,7 @@ import { Loader } from "lucide-react";
 import { useState } from "react";
 import SharePopup from "./SharePopup/SharePopup";
 
-const EnrollFreeCourse = () => {
+const EnrollFreeCourse: React.FC = () => {
   const navigate = useNavigate();
   const { courseId } = useParams<{ courseId: string; id: string }>(); // Get courseId and lessonId from route params
   const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
@@ -27,7 +27,8 @@ const EnrollFreeCourse = () => {
   });
 
   if (error) {
-    return navigate("/not/found");
+    navigate("/not/found");
+    return null;
   }
 
   if (isPending) {

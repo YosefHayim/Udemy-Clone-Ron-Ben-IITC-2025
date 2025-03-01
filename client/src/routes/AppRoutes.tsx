@@ -37,6 +37,7 @@ import SearchNotFound from "@/pages/Search/SearchNotFound/SearchNotFound";
 import ReceiptCart from "@/components/Navbar/DropDownMenu/PurchaseHistory/ReceiptCart/ReceiptCart";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Promotions from "../pages/Terms/TermsPages/Promotions";
+import Messages from "@/pages/Messages/Messages";
 // import LoginBusiness from "@/pages/Login/LoginBusiness";
 
 export const filterContext = createContext<FilterDataProps>({
@@ -50,6 +51,7 @@ export const filterContext = createContext<FilterDataProps>({
   topics: new Set(),
   videosDurations: new Set(),
   certificateOnly: false,
+  searchTerm: "",
 });
 
 export const emailContext = createContext({
@@ -141,6 +143,7 @@ const AppRoutes: React.FC = () => {
                 <Route path="/user/photo" element={<Photo />} />
                 <Route path="/user/edit-api-clients" element={<ApiClients />} />
                 <Route path="/wishlist" element={<Wishlist />} />
+                <Route path="/messages" element={<Messages />} />
                 <Route
                   path="/loader"
                   element={<Loader useSmallLoading={false} hSize="" />}

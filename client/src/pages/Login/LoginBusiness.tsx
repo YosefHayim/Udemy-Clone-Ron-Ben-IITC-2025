@@ -34,7 +34,7 @@ const LoginBusiness = () => {
               type="email"
               id="email"
               placeholder="Enter your work email address"
-              className="w-full  h-[3.8rem] px-4 py-2 border border-gray-400 rounded-sm bg-white placeholder:text-black placeholder:text-[0.9rem] placeholder:font-bold placeholder:text-opacity-80 focus:outline-none focus:bg-[#E8F0FE] focus:border-[#6d28d2]"
+              className="w-full  h-[3.8rem] px-4 py-2 border border-gray-400 rounded-sm bg-white placeholder:text-black placeholder:text-[0.9rem] placeholder:font-bold placeholder:text-opacity-80 focus:outline-none focus:bg-[#E8F0FE] focus:border-btnColor"
               required
             />
           </div>
@@ -42,7 +42,7 @@ const LoginBusiness = () => {
           {/* Botão de envio */}
           <button
             type="submit"
-            className="w-full h-12 py-2 bg-[#6d28d2] hover:bg-[#892de1] text-white text-[1rem] font-bold rounded-sm transition"
+            className="w-full h-12 py-2 bg-btnColor hover:bg-[#892de1] text-white text-[1rem] font-bold rounded-sm transition"
           >
             Continue
           </button>
@@ -50,7 +50,7 @@ const LoginBusiness = () => {
 
         {/* Links auxiliares */}
         <div className="text-center mt-6">
-          <a href="#" className="text-sm text-[#6d28d2] hover:text-[#521E9F]">
+          <a href="#" className="text-sm text-btnColor hover:text-[#521E9F]">
             Need help with logging in or signing up?
           </a>
           <p className="text-xs text-grayNavbarTxt mt-7">

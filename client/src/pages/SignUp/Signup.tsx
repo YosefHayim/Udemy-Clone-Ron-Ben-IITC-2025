@@ -73,7 +73,7 @@ const SignUp: React.FC = () => {
                 onClick={handleCheckboxChange}
                 className={`w-4 h-4 border-2 mt-1 rounded-[2px] flex items-center justify-center cursor-pointer transition-all ${
                   isChecked
-                    ? "bg-[#6d28d2] border-[#6d28d2]"
+                    ? "bg-btnColor border-btnColor"
                     : "bg-white border-courseNameColorTxt"
                 }`}
                 style={{ minWidth: "1rem", minHeight: "1rem" }} // Fixando o tamanho
@@ -115,7 +115,7 @@ const SignUp: React.FC = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full py-3 rounded-md bg-[#6d28d2] hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
+              className="w-full py-3 rounded-md bg-btnColor hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
             >
               {isLoading ? (
                 <Loader useSmallLoading={true} hSize="" />
@@ -160,7 +160,7 @@ const SignUp: React.FC = () => {
           <div className="bg-[#f6f7f9] mt-6 text-center w-full py-[1.5em] text-white font-medium flex items-center justify-center space-x-0">
             <a href="/login" className="text-courseNameColorTxt text-[1rem]">
               Already have an account?{" "}
-              <span className="text-[#6d28d2] underline">Log in</span>
+              <span className="text-btnColor underline">Log in</span>
             </a>
           </div>
         </div>

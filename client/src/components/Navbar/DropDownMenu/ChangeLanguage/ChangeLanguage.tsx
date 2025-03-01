@@ -49,7 +49,7 @@ const ChangeLanguage: React.FC<{
               <p>Language</p>
             </div>
           ) : (
-            <div className="flex flex-row items-center gap-[0.2em] border border-[#6d28d2] py-[0.2em] px-[0.5em] rounded-[0.2em] pr-[2em] hover:bg-purpleHoverBtn">
+            <div className="flex flex-row items-center gap-[0.2em] border border-btnColor py-[0.2em] px-[0.5em] rounded-[0.2em] pr-[2em] hover:bg-purpleHoverBtn">
               <TbWorld />
               {chosenLanguage}
             </div>
@@ -66,7 +66,7 @@ const ChangeLanguage: React.FC<{
                   (language: { code: string; name: string }) => (
                     <div
                       onClick={() => handleChosenLanguage(language.name)}
-                      className="hover:text-[#6d28d2] hover:bg-white w-full"
+                      className="hover:text-btnColor hover:bg-white w-full"
                       key={language.code}
                     >
                       <Button className=" bg-white shadow-none hover:hover-color-mix rounded-[0.2em] h-[3em] text-black w-full">

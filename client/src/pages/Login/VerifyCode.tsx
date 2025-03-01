@@ -151,7 +151,7 @@ const VerifyCode = () => {
 
           <button
             type="submit"
-            className="w-full py-3 rounded-md bg-[#6d28d2] hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
+            className="w-full py-3 rounded-md bg-btnColor hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
           >
             {isLoading ? (
               <Loader useSmallLoading={true} hSize="" />
@@ -166,7 +166,7 @@ const VerifyCode = () => {
         {!isSentCodeAgain ? (
           <button
             onClick={handleResendCode}
-            className="mt-5 text-[#6D28D2] font-bold underline text-[1rem] hover:text-purple-800"
+            className="mt-5 text-btnColor font-bold underline text-[1rem] hover:text-purple-800"
           >
             Resend Code
           </button>
@@ -183,7 +183,7 @@ const VerifyCode = () => {
         <div className="mt-14 w-full max-w-sm">
           <button
             onClick={handleDifferentAccount}
-            className="w-full py-4 rounded-md font-bold text-[#6D28D2] underline text-sm bg-[#F6F7F9] hover:bg-gray-200"
+            className="w-full py-4 rounded-md font-bold text-btnColor underline text-sm bg-[#F6F7F9] hover:bg-gray-200"
           >
             Log in to a different account
           </button>

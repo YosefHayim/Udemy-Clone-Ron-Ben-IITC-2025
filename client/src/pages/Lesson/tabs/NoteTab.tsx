@@ -167,7 +167,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
                 </button>
                 <button
                   onClick={handleAddNote}
-                  className="px-6 py-2 bg-[#6D28D2] text-white font-extrabold rounded hover:bg-[#892DE1] transition duration-300"
+                  className="px-6 py-2 bg-btnColor text-white font-extrabold rounded hover:bg-[#892DE1] transition duration-300"
                   disabled={noteMutation.isLoading}
                 >
                   {noteMutation.isLoading ? "Saving..." : "Save Note"}
@@ -178,7 +178,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
         )}
         <div className="flex space-x-4">
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center  gap-2 border rounded-sm text-[#6D28D2] text-base font-bold p-2 border-[#6D28D2] hover:bg-[#EDE5F9] hover:border-[#6D28D2] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
+            <DropdownMenuTrigger className="flex items-center  gap-2 border rounded-sm text-btnColor text-base font-bold p-2 border-btnColor hover:bg-[#EDE5F9] hover:border-btnColor focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
               {all} <IoIosArrowDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-white ">
@@ -198,7 +198,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
           </DropdownMenu>
 
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 border rounded-sm text-[#6D28D2] text-base font-bold p-2 border-[#6D28D2] hover:bg-[#EDE5F9] hover:border-[#6D28D2] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
+            <DropdownMenuTrigger className="flex items-center gap-1 border rounded-sm text-btnColor text-base font-bold p-2 border-btnColor hover:bg-[#EDE5F9] hover:border-btnColor focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
               {timeSort} <IoIosArrowDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-white ">
@@ -295,7 +295,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
                             </button>
                             <button
                               onClick={() => saveEditedNote(note.noteId)}
-                              className="px-6 py-2 bg-[#6D28D2] text-white rounded hover:bg-[#892DE1] transition duration-300"
+                              className="px-6 py-2 bg-btnColor text-white rounded hover:bg-[#892DE1] transition duration-300"
                               disabled={noteMutation.isLoading}
                             >
                               {noteMutation.isLoading ? "Saving..." : "Save"}

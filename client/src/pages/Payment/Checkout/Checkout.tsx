@@ -108,13 +108,13 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
         <div className="mb-[1em] w-[350px]">
           <p>
             By completing your purchase you agree to these{" "}
-            <span className="text-[#6d28d2]">Terms of Service.</span>
+            <span className="text-btnColor">Terms of Service.</span>
           </p>
         </div>
         <div className="mb-[2em] w-full">
           <Button
             onClick={handleClick}
-            className="w-[400px] rounded-[0.2em] bg-[#6d28d2] hover:bg-[#892de1] font-bold text-white p-[1.5em] py-[2em]"
+            className="w-[400px] rounded-[0.2em] bg-btnColor hover:bg-[#892de1] font-bold text-white p-[1.5em] py-[2em]"
           >
             {isLoading ? (
               <div>

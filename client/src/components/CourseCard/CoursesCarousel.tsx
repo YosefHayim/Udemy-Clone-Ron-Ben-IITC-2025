@@ -119,7 +119,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
     <div className="relative w-full mx-auto py-6 overflow-visible">
       <h2 className="text-2xl font-bold mb-4 pl-2 text-courseNameColorTxt overflow-visible">
         Because you viewed{" "}
-        <span className="text-[#6d28d2] font-bold underline hover:text-[#521e9f]">
+        <span className="text-btnColor font-bold underline hover:text-[#521e9f]">
           {searchTerm}
         </span>
       </h2>
