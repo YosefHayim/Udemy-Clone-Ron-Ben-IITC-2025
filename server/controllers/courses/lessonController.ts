@@ -13,7 +13,7 @@ const getAllLessons = catchAsync(
       .limitFields()
       .paginate();
 
-    const lessons = await features.query;
+    const lessons = await features.getQuery();
 
     if (!lessons || lessons.length === 0) {
       return next(

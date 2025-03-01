@@ -1,8 +1,24 @@
-import mongoose from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 
 export enum SubscriptionPlan {
   Monthly = "monthly",
   Yearly = "yearly",
+}
+
+export enum CourseLanguages {
+  English = "English",
+  Spanish = "Spanish",
+  French = "French",
+  German = "German",
+  Other = "Other",
+}
+
+export enum CourseTags {
+  Bestseller = "Bestseller",
+  HighestRated = "Highest Rated",
+  HotAndNew = "Hot and New",
+  New = "New",
+  None = "",
 }
 
 export enum IssueTypes {
@@ -329,7 +345,7 @@ export interface CourseDocument {
   lessons: LessonDocument[];
   reviews: CourseReviewDocument[];
   totalStudentsEnrolled: {
-    students: [{ type: mongoose.Types.ObjectId }];
+    students: [];
     count: number;
   };
   courseLevel: {
@@ -337,13 +353,23 @@ export interface CourseDocument {
   };
   totalCourseDuration: number;
   totalCourseLessons: number;
+  courseLanguages: CourseLanguages;
+  courseInstructorDescription: string;
+  moneyBackGuarantee: Date;
+  averageRating: number;
+  courseTag: CourseTags;
+  totalRatings: number;
+  totalCourseSections: number;
+  certificateOnly: boolean;
   whoThisCourseIsFor: string;
   whatYouWillLearn: string[];
-  courseRequirements: string;
+  courseRequirements: [string];
   courseRecapInfo: string;
   courseFullPrice: number;
   courseDiscountPrice: number;
   category: CourseCategory;
+  isActive: boolean;
+  courseInstructor: ObjectId;
   subCategory: CourseSubCategory;
   courseTopic: CourseTopic;
 }

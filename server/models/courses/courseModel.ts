@@ -4,7 +4,11 @@ import mongoose, {
   Query,
 } from "mongoose";
 import courseCategories from "../../utils/courseCategories.ts";
-import { CourseDocument, LessonDocument } from "../../types/types.ts";
+import {
+  CourseDocument,
+  LessonDocument,
+  CourseTags,
+} from "../../types/types.ts";
 
 const courseSchema = new mongoose.Schema<CourseDocument>(
   {
@@ -85,9 +89,12 @@ const courseSchema = new mongoose.Schema<CourseDocument>(
       validate: {
         validator: function (value) {
           return (
-            courseCategories[this.category]?.subCategories[
-              this.subCategory
-            ]?.includes(value) || false
+            (
+              courseCategories[this.category]?.subCategories as Record<
+                string,
+                string[]
+              >
+            )[this.subCategory]?.includes(value) || false
           );
         },
         message: "Invalid topic for the selected subcategory",
@@ -138,8 +145,8 @@ const courseSchema = new mongoose.Schema<CourseDocument>(
     },
     courseTag: {
       type: String,
-      enum: ["Bestseller", "Highest Rated", "Hot and New", "New", ""],
-      default: "New",
+      enum: Object.values(CourseTags),
+      default: CourseTags.New,
     },
     sections: [
       {

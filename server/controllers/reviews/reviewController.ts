@@ -14,7 +14,7 @@ const getAllReviews = catchAsync(
       .limitFields()
       .paginate();
 
-    const reviews = await features.query;
+    const reviews = await features.getQuery();
     const courses = await Course.find();
 
     if (!reviews || reviews.length === 0) {
@@ -140,7 +140,7 @@ const getAllReviewsByCourseId = catchAsync(
     }
 
     const defaultLimit = 13;
-    req.query.limit = req.query.limit || defaultLimit;
+    req.query.limit = req.query.limit || defaultLimit.toString();
 
     // Get total count of reviews for the course (ignoring pagination)
     const totalReviews = await courseReviews.countDocuments({
@@ -157,7 +157,7 @@ const getAllReviewsByCourseId = catchAsync(
       .paginate();
 
     // Execute the paginated query
-    const allReviewsOfCourseId = await features.query;
+    const allReviewsOfCourseId = await features.getQuery();
 
     res.status(200).json({
       success: "Success",

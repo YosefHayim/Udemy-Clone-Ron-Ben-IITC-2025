@@ -14,7 +14,7 @@ const getAllComments = catchAsync(
       .limitFields()
       .paginate();
 
-    const comments = await features.query;
+    const comments = await features.getQuery();
 
     if (!comments || comments.length === 0) {
       return next(

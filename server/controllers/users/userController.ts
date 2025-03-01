@@ -52,7 +52,7 @@ const getAllUsers = catchAsync(
       .limitFields()
       .paginate();
 
-    const users = await features.query;
+    const users = await features.getQuery();
 
     if (!users || users.length === 0) {
       return next(createError("No users documents found in the database", 404));

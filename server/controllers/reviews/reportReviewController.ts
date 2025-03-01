@@ -14,7 +14,7 @@ const getAllReports = catchAsync(
       .search()
       .paginate();
 
-    const reports = await features.query;
+    const reports = await features.getQuery();
 
     if (!reports || reports.length === 0) {
       return next(

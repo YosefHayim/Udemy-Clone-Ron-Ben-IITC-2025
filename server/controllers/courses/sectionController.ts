@@ -13,7 +13,7 @@ const getAllSections = catchAsync(
       .limitFields()
       .paginate();
 
-    const sections = await features.query;
+    const sections = await features.getQuery();
 
     if (!sections || sections.length === 0) {
       return next(

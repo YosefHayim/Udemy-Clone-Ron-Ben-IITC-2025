@@ -11,7 +11,7 @@ const getAllCourses = catchAsync(
     const countQuery = new APIFeatures(Course.find(), req.query)
       .filter()
       .search();
-    const totalCourses = await countQuery.query.countDocuments();
+    const totalCourses = await countQuery.getQuery().countDocuments();
 
     // Apply full pipeline including pagination, passing totalCourses to adjust limit dynamically
     const features = new APIFeatures(Course.find(), req.query)
@@ -21,7 +21,7 @@ const getAllCourses = catchAsync(
       .limitFields()
       .paginate(totalCourses);
 
-    const courses = await features.query;
+    const courses = await features.getQuery();
 
     if (!courses.length) {
       return next(
@@ -30,8 +30,12 @@ const getAllCourses = catchAsync(
     }
 
     // Get pagination info
-    const currentPage = req.query.page * 1 || 1;
-    const resultsPerPage = req.query.limit * 1 || 20;
+    const currentPage = req.query.page
+      ? parseInt(req.query.page as string, 10)
+      : 1;
+    const resultsPerPage = req.query.limit
+      ? parseInt(req.query.limit as string, 10)
+      : 20;
     const totalPassed = (currentPage - 1) * resultsPerPage;
     const totalLeftCourses = Math.max(totalCourses - totalPassed, 0); // Ensure it doesn’t go below 0
     const totalPages = Math.floor(totalCourses / 20);
@@ -181,7 +185,7 @@ const deleteCourse = catchAsync(
     await Promise.all(
       students.map(async (student) => {
         student.coursesBought = student.coursesBought.filter(
-          (boughtCourseId) => !boughtCourseId.equals(courseId)
+          (boughtCourseId) => boughtCourseId.courseId !== courseId
         );
         await student.save();
       })
@@ -223,7 +227,7 @@ const reactivateCourseById = catchAsync(
       );
     }
 
-    if (!course.courseInstructor.equals(user)) {
+    if (course.courseInstructor.toString() !== user.toString()) {
       return next(
         createError("You can't re-activate a course you didn't create.", 403)
       );
@@ -336,7 +340,7 @@ const updateCourseProgressById = catchAsync(
     // Convert courseId to string and check if the user has bought the course
     if (
       !req.user.coursesBought.some(
-        (course) => course.course.toString() === courseId
+        (course: any) => course.courseId.toString() === courseId
       )
     ) {
       return next(
@@ -349,7 +353,7 @@ const updateCourseProgressById = catchAsync(
 
     // Find the course progress for the specified courseId
     const courseProgress = req.user.coursesProgress.find(
-      (progress) => progress.course.toString() === courseId
+      (progress: any) => progress.course.toString() === courseId
     );
 
     if (!courseProgress) {
@@ -360,7 +364,7 @@ const updateCourseProgressById = catchAsync(
 
     // Find the lesson progress for the specified lessonId
     const lessonProgress = courseProgress.lessons.find(
-      (lesson) => lesson.lesson.toString() === lessonId
+      (lesson: any) => lesson.lesson.toString() === lessonId
     );
 
     if (!lessonProgress) {
