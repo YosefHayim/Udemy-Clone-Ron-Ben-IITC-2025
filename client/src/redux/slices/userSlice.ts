@@ -1,4 +1,4 @@
-import { UserState } from "@/types/types";
+import { Course, UserState } from "@/types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 
@@ -9,6 +9,7 @@ const initialState: UserState = {
   headline: "",
   bio: "",
   role: "",
+  language: "english",
   coursesBought: [],
   udemyCredits: 0,
   cookie: Cookies.get("cookie") || "",
@@ -35,6 +36,9 @@ const userSlice = createSlice({
     },
     setHeadline: (state, action: PayloadAction<string>) => {
       state.headline = action.payload;
+    },
+    setLanguage: (state, action: PayloadAction<string>) => {
+      state.language = action.payload;
     },
     setCoursesBought: (state, action: PayloadAction<Course[]>) => {
       action.payload.forEach((newCourse) => {
@@ -66,6 +70,7 @@ const userSlice = createSlice({
 });
 
 export const {
+  setLanguage,
   setFullName,
   setHeadline,
   setProfilePic,

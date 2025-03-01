@@ -8,23 +8,34 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { RootState } from "@/redux";
+import { setLanguage } from "@/redux/slices/userSlice";
 import { btnLanguages } from "@/utils/languages";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { TbWorld } from "react-icons/tb";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const ChangeLanguage: React.FC<{
   isClicked?: boolean;
   setClicked?: (value: boolean) => void;
   showIcon: boolean;
 }> = ({ isClicked, setClicked, showIcon = false }) => {
-  const [chosenLanguage, setChosenLanguage] = useState("English");
+  const dispatch = useDispatch();
+
+  const defaultLanguage = useSelector(
+    (state: RootState) => state.user.language
+  );
+
+  const [chosenLanguage, setChosenLanguage] = useState(defaultLanguage);
 
   const postUserLanguage = useMutation({
     mutationFn: updateUserLanguage,
   });
 
   const handleChosenLanguage = (language: string) => {
+    dispatch(setLanguage(language));
     setChosenLanguage(language);
     postUserLanguage.mutate(language);
   };

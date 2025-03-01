@@ -365,12 +365,7 @@ export interface Payload {
   bio: string;
   role: string;
   preferredLanguage: string;
-  coursesBought: {
-    courseName: string;
-    courseId: string;
-    boughtAt: Date;
-    coursePrice: number;
-  };
+  coursesBought: any;
   udemyCredits: number;
   headline: string;
   fieldLearning: string[];

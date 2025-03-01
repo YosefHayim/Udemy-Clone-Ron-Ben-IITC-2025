@@ -116,7 +116,7 @@ const signUp = catchAsync(
     });
 
     // Generate sign up token
-    const signUpCode = randomize("0", 6);
+    const signUpCode = +randomize("0", 6);
 
     // Set token and expire within 15 min.
     newUser.temporaryCode = signUpCode;
@@ -181,7 +181,7 @@ const login = catchAsync(
       );
     }
 
-    const loginCode = randomize("0", 6);
+    const loginCode = +randomize("0", 6);
 
     isFoundUser.temporaryCode = loginCode;
     isFoundUser.temporaryCodeExpiresAt = new Date(Date.now() + 15 * 60 * 1000);
@@ -262,7 +262,6 @@ const verifyCode = catchAsync(
       profilePic: user.profilePic,
       bio: user.bio,
       role: user.role,
-      preferredLanguage: user.preferredLanguage,
       coursesBought: user.coursesBought,
       udemyCredits: user.udemyCredits,
       language: user.preferredLanguage,
@@ -407,7 +406,6 @@ const resendEmailVerificationToken = catchAsync(
       return next(createError("Email is already verified.", 400));
     }
 
-    findUser.generateEmailVerificationToken();
     await findUser.save();
 
     sendEmail({
@@ -539,9 +537,9 @@ const joinCoursesByIds = catchAsync(
     const purchasedCourses = newCourseIds.map((courseId) => {
       const course = courses.find((c) => c._id.toString() === courseId);
       return {
-        courseName: course.courseName,
+        courseName: course?.courseName,
         courseId: courseId,
-        coursePrice: course.courseDiscountPrice,
+        coursePrice: course?.courseDiscountPrice,
         boughtAt: new Date(),
       };
     });

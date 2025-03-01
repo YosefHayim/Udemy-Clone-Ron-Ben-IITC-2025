@@ -25,7 +25,7 @@ const userSchema = new Schema<UserDocument>(
     preferredLanguage: {
       type: String,
       enum: languagesToChoose,
-      default: "english",
+      default: "English",
     },
     links: {
       website: { type: String },

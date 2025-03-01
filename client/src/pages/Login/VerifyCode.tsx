@@ -10,6 +10,7 @@ import {
   setEmailAddress,
   setFullName,
   setHeadline,
+  setLanguage,
   setProfilePic,
   setRole,
   setUdemyCredits,
@@ -67,7 +68,7 @@ const VerifyCode = () => {
     dispatch(setCookie(cookie || ""));
     dispatch(setFullName(decoded.fullName));
     dispatch(setHeadline(decoded.headline));
-    dispatch(setHeadline(decoded.preferredLanguage));
+    dispatch(setLanguage(decoded.language));
     dispatch(setProfilePic(decoded.profilePic));
     dispatch(setEmailAddress(decoded.email));
     dispatch(setBio(decoded.bio));
