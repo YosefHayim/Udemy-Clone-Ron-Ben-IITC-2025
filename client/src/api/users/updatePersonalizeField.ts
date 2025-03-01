@@ -8,6 +8,8 @@ const updatePersonalizeUserField = async (
     return undefined;
   }
 
+  console.log("personalizeField", personalizeField);
+
   try {
     const url = `${localhostUrl}/api/user/updatePersonalizeField`;
     const r = await axiosClient.put(url, personalizeField);

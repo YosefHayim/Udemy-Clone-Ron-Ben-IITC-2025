@@ -62,14 +62,14 @@ const FooterPersonalized = () => {
       <div className="text-end w-full">
         {personalizeData.currentPage === 4 ? (
           <button
-            onClick={handleForward}
+            onClick={handleSubmit}
             className="font-bold px-6 py-[1em] bg-purple-600 text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 mr-4"
           >
             Submit
           </button>
         ) : (
           <button
-            onClick={handleSubmit}
+            onClick={handleForward}
             className="font-bold px-6 py-[1em] bg-purple-600 text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 mr-4"
           >
             Next

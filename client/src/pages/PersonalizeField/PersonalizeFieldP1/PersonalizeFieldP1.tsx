@@ -1,9 +1,32 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { personalizeContent } from "@/routes/AppRoutes";
+import { useContext } from "react";
 import { FaUserEdit } from "react-icons/fa";
 
 const PersonalizeFieldP1 = () => {
+  const personalizeTracking = useContext(personalizeContent);
+  if (!personalizeTracking) throw new Error("No personalize tracking provided");
+  const [personalizeData, setPersonalizeData] = personalizeTracking;
+
+  const handleChosenOccupation = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    const chosenInput = (e.target as HTMLElement).closest("input");
+    if (chosenInput) {
+      const chosenValue = chosenInput.value;
+      setPersonalizeData((prevData: any) => ({
+        ...structuredClone(prevData),
+        occupation: chosenValue,
+      }));
+      console.log(chosenInput.value);
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center justify-start w-full">
+    <div
+      className="flex flex-col items-center justify-start w-full"
+      onClick={handleChosenOccupation}
+    >
       <div className="bg-[#fff6e5] text-start p-[2em] ml-[8em] my-[2em] rounded-[1em] flex flex-row items-center justify-start gap-[0.5em]">
         <FaUserEdit className="text-[2em] text-[#c4710d]" />
         <p className="text-[#303141]">
@@ -14,6 +37,7 @@ const PersonalizeFieldP1 = () => {
         <label htmlFor="field-learning" className="text-[1.5em]">
           What field are you learning for?
         </label>
+
         <RadioGroup
           defaultValue="software-development"
           className="flex flex-row gap-[10em] mb-[2em]"
