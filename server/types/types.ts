@@ -424,7 +424,3 @@ export interface Payload {
     youtube: string;
   };
 }
-
-export interface Token {
-  data: any;
-}

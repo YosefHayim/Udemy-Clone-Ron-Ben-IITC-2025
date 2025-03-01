@@ -410,12 +410,10 @@ const editNote = async (req: Request, res: Response) => {
 
     res.status(200).json({ message: "Note updated successfully", note });
   } catch (err) {
-    res
-      .status(500)
-      .json({
-        error: "Failed to update note",
-        details: (err as Error).message,
-      });
+    res.status(500).json({
+      error: "Failed to update note",
+      details: (err as Error).message,
+    });
   }
 };
 

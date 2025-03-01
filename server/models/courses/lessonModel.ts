@@ -35,7 +35,9 @@ const lessonSchema = new mongoose.Schema<LessonDocument>(
       min: [1, "Order must start from 1."],
       validate: {
         validator: async function (value) {
-          const lessonCount = await this.constructor.countDocuments({
+          const lessonCount = await (
+            this.constructor as Model<LessonDocument>
+          ).countDocuments({
             section: this.section,
             order: value,
           });
