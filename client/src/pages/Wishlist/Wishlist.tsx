@@ -7,17 +7,6 @@ import { IoMdSearch } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -30,10 +19,22 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 const Wishlist: React.FC = () => {
   document.title = "My learning | Udemy";
   const [isLoading, setLoading] = useState(false);
+  const [displayWhiteLine, setWhiteLine] = useState(false);
 
   const coursesBought = useSelector(
-    (state: RootState) => state.user.coursesBought
+    (state: RootState) =>
+      state.user.coursesBought as Array<{ courseId: string; boughtAt: string }>
   );
+
+  const handleClickedCategory = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+
+    const btn = target.closest("button");
+
+    if (btn) {
+      console.log(`button clicked:`, btn);
+    }
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -44,14 +45,32 @@ const Wishlist: React.FC = () => {
 
   return (
     <div className="flex flex-col items-start justify-start p-[1em] bg-[#1d1e27] text-white">
-      <div className="px-[15em]">
-        <h1 className="my-[1.5em] mb-[1em] ">My learning</h1>
-        <div className="flex flex-row items-start justify-start gap-[1em]">
-          <b>All courses</b>
-          <b>My Lists</b>
-          <b>Wishlist</b>
-          <b>Archived</b>
-          <b>Learning tools</b>
+      <div>
+        <h1 className=" ml-[1em] my-[1.5em] mb-[1em] ">My learning</h1>
+        <div
+          className="flex flex-row items-start justify-start gap-[1em]"
+          onClick={handleClickedCategory}
+        >
+          <div className="flex flex-col gap-[0.5em]">
+            <button>All courses</button>
+            <hr className={`w-full border-white border-[3px]`} />
+          </div>
+          <div className="flex flex-col gap-[0.5em]">
+            <button>My Lists</button>
+            <hr className={`w-full border-white border-[3px]`} />
+          </div>
+          <div className="flex flex-col gap-[0.5em]">
+            <button>Wishlist</button>
+            <hr className={`w-full border-white border-[3px]`} />
+          </div>
+          <div className="flex flex-col gap-[0.5em]">
+            <button>Archived</button>
+            <hr className={`w-full border-white border-[3px]`} />
+          </div>
+          <div className="flex flex-col gap-[0.5em]">
+            <button>Learning tools</button>
+            <hr className={`w-full border-white border-[3px]`} />
+          </div>
         </div>
       </div>
       {isLoading ? (
@@ -171,26 +190,32 @@ const Wishlist: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-4 gap-4 w-full text-center p-[5em]">
-                {coursesBought.map((courseBought) => (
-                  <div key={courseBought}>
-                    <ItemInCart
-                      showInstructor={false}
-                      rowPrices={false}
-                      showHR={true}
-                      courseImgSize="w-full"
-                      courseId={courseBought.courseId}
-                      showFullPrice={false}
-                      isColCourseBox={true}
-                      hide={false}
-                      showDisPrice={false}
-                      shortCutInstructor={true}
-                      shortcutTitle={false}
-                      chooseFlex={"flex flex-row"}
-                      itemsPosition="start"
-                      textColor="text-black"
-                    />
-                  </div>
-                ))}
+                {[...coursesBought]
+                  .sort(
+                    (a, b) =>
+                      new Date((b as { boughtAt: string }).boughtAt).getTime() -
+                      new Date(a.boughtAt).getTime()
+                  )
+                  .map((courseBought) => (
+                    <div key={courseBought.courseId}>
+                      <ItemInCart
+                        showInstructor={false}
+                        rowPrices={false}
+                        showHR={true}
+                        courseImgSize="w-full"
+                        courseId={courseBought.courseId}
+                        showFullPrice={false}
+                        isColCourseBox={true}
+                        hide={false}
+                        showDisPrice={false}
+                        shortCutInstructor={true}
+                        shortcutTitle={false}
+                        chooseFlex={"flex flex-row"}
+                        itemsPosition="start"
+                        textColor="text-black"
+                      />
+                    </div>
+                  ))}
               </div>
             </div>
           ) : (

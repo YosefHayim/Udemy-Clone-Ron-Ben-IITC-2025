@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 import { removeCourseFromCart } from "@/redux/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { FaCirclePlay } from "react-icons/fa6";
-
 import OptionsMyLearning from "./OptionsMyLearning/OptionsMyLearning";
 
 const ItemInCart = ({
@@ -50,11 +49,11 @@ const ItemInCart = ({
   });
 
   if (error) {
-    return navigate("/not/found");
+    navigate("/not/found");
   }
 
   if (isPending) {
-    return <div></div>;
+    <div></div>;
   }
 
   const handleCourseView = (courseId: string): void => {
