@@ -15,7 +15,7 @@ const updateUserLanguage = async (preferredLanguage: string) => {
       return undefined;
     }
   } catch (error) {
-    return undefined;
+    console.log(error);
   }
 };
 

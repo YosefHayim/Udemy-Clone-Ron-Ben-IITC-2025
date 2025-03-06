@@ -15,7 +15,7 @@ const buyCourseByCourseId: fn = async (courseId: string) => {
     const response = await axiosClient.post(url);
 
     if (response?.data?.data) {
-
+      console.log(response);
       return response.data.data;
     }
 
