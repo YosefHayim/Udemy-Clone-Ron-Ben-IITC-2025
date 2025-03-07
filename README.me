@@ -1,103 +1,132 @@
-bugs / missing designs / logic to add:
+**Bugs / Missing Designs / Logic to Add**
 
-General:
-1. Clicking on the udemy business text to navigate to the form of "Get your demo"
+---
 
-SearchInput Component needs to have:
-1.longer input field
-2. when focus change to purple
-3. when hover on course results should have gray color
-4. little down space based from original
+## General:
+1. Clicking on the Udemy Business text should navigate to the form of "Get your demo".
 
-CourseHoverCardInfo Component needs to have:
-1. fade in effect when hovering
-2. gray border
-3. rectangle at bottom or top based on index that is higher than 0
-4. heart icon right to it
-5. hovering is activating a 0.95 opacity on the div course that is being hovered.
+---
 
-Search page pagination buttons:
-1. hover color to be the same
-2. horizontal line to be more bold and spaced
+## SearchInput Component:
+1. Longer input field.
+2. When focused, change color to purple.
+3. When hovering on course results, they should have a gray background.
+4. Add a little extra spacing below the input field compared to the original.
 
-Search page needs to have:
-1. the results should be align with the prices of each courses.
-2. prices of courses should have a loading effect as well 0.3sec
-3. Clicking filter closes the sidebar with fade in to the left.
+---
 
-Search page Related searches down:
-1. When hovering should appear in the right side + appear right away.
+## CourseHoverCardInfo Component:
+1. Fade-in effect when hovering.
+2. Gray border.
+3. A rectangle at the bottom or top (based on index if higher than 0).
+4. Heart icon positioned to the right.
+5. Hovering activates a 0.95 opacity on the div course that is being hovered.
 
-Search page filter bar side:
-1. The checkbox should be with slight more border
-2. the ratings stars should be orange
-3. the radio buttons should be black
-4. the stars should have half stars as well
-5. Change "Topics" names of filter to "Topic"
-6. When open specific filter tab it should have Show more with low opacity effect on the lower part
+---
 
-Search page Hot and fresh courses algo rendering:
-1. represent relevant courses based on the topic and button right when on max left and vice versa of the carousel
+## Search Page:
+### Pagination Buttons:
+1. Hover color should be the same.
+2. Horizontal line should be bolder and more spaced.
 
-Show more button:
-1. needs to have have hover bg purple
-2. padding, px and py bold text with arrow down or up based on click
+### Main Search Results:
+1. Course results should be aligned with their respective prices.
+2. Prices should have a loading effect (0.3 sec).
+3. Clicking the filter closes the sidebar with a fade-in effect to the left.
 
-Navbar:
-1. Make sure that there is less spacing between components when not logged in
-2. Modify explore to make sure it is with padding and hovering purple effect.
-3. the components needs to have one row text not two rows
-4. Make hover icon on heart to be design the same
-5. when logged in should have hover on my learning to show progress of each courses / course.
-6. user profile name should be with f and l names e.g. "YS" and not "Y"
-7. Make notification component hover.
+### Related Searches Section:
+1. When hovering, it should appear on the right side and display immediately.
 
-Login page:
-1. if there is already token of google in localstorage, make sure to render differently the login component.
+### Filter Bar:
+1. Checkboxes should have a slightly more defined border.
+2. Ratings stars should be orange.
+3. Radio buttons should be black.
+4. Stars should support half-star ratings.
+5. Change "Topics" filter name to "Topic".
+6. When opening a specific filter tab, it should display "Show more" with a low-opacity effect at the bottom.
 
-Welcome page:
-1. Fix the size of the profile picture to be bigger.
-2. On welcome page modify the search input to look differently
-3. Change the "explore" word to "categories" word
+### Hot & Fresh Courses Algorithm Rendering:
+1. Courses should be relevant to the topic.
+2. Add navigation buttons when at max left or right of the carousel.
 
-Adding to cart:
-1. Offer FBT of two more courses of instructor
-2. related topics component
+---
 
-Cart page:
-1. Have section of you might also like algo which shows courses of the same instructor
-2. fix Promotions component to design the same.
-3. Make sure that if coupon code not exist display error message below.
+## Show More Button:
+1. Hover background should be purple.
+2. Adjust padding, px, and py with bold text.
+3. Include an arrow (up/down) based on click action.
 
-My learning page:
-1. Courses only courses on my learning will have the play button of course or the extra options.
+---
 
-Checkout page:
-1. set localstorage last radio payment so it loads and use the default via redux.
-2. Add paypal api integration with the button.
-3. Option to add cards to user personal info.
-4. options to purchase with google pay
-5. regular payment with credit card the lock icon should be smaller
-6. Show encryption text hovering on the lock icon
-7. Cancel button to have hover purple.
-8. Terms of use text to have cursor-pointer css and navigate to the terms page.
-9. Add more cards to the cards div of visa, mastercard, amx , jcb and diners club.
+## Navbar:
+1. Reduce spacing between components when not logged in.
+2. Modify "Explore" to include padding and a purple hover effect.
+3. Ensure components maintain a single-line text layout.
+4. Make the hover effect on the heart icon consistent.
+5. When logged in, hovering over "My Learning" should show the progress of each course.
+6. User profile name should show both first and last initials (e.g., "YS" instead of "Y").
+7. Enable hover effects on the notification component.
 
-View Notifications page:
-1. add to it with a route of /user/view-notifications/
-2. design and add websocket.
+---
 
-My learning page Schedule learning time component:
-1. add component that shown of schedule learning time
-2. if click dismiss disappear
-3. if click get started btn than dialog open
-4. on step 2 of 3, if no frequency selected display error message.
-4. on step 2 of 3, if choose frequency, than choose day to be happening can choose all days.
-5. than add to calendar optional of google , apple , outlook.
+## Login Page:
+1. If a Google token exists in localStorage, render the login component differently.
 
-My learning page:
-1. if course hast been started than initialize start course progress below with text
-2. add certifications component with route home/my-courses/certifications/
-3. change route to be home/my-courses/learning/
-4. on each selected category change url
-5. add loading effect to each one
+---
+
+## Welcome Page:
+1. Increase the size of the profile picture.
+2. Modify the search input styling to differentiate it from the main search.
+3. Change "Explore" text to "Categories".
+
+---
+
+## Adding to Cart:
+1. Offer "Frequently Bought Together" (FBT) suggestions for two more courses from the same instructor.
+2. Add a "Related Topics" component.
+
+---
+
+## Cart Page:
+1. Add a "You might also like" section displaying courses from the same instructor.
+2. Fix the design of the "Promotions" component to match the intended style.
+3. If a coupon code does not exist, display an error message below the input field.
+
+---
+
+## My Learning Page:
+1. Courses in "My Learning" should have a play button or additional options.
+2. If a course has not been started, initialize course progress below with text.
+3. Add a certifications component with a new route: `home/my-courses/certifications/`.
+4. Change the main route to `home/my-courses/learning/`.
+5. Update the URL when selecting different categories.
+6. Add a loading effect to each section.
+
+---
+
+## Checkout Page:
+1. Store the last selected radio payment option in localStorage and load it via Redux.
+2. Integrate PayPal API with a button.
+3. Allow users to add cards to their personal info.
+4. Provide an option to purchase via Google Pay.
+5. Reduce the size of the lock icon in regular credit card payments.
+6. Show encryption text when hovering over the lock icon.
+7. Cancel button should have a purple hover effect.
+8. "Terms of Use" text should have a pointer cursor and navigate to the terms page.
+9. Add more payment method icons (Visa, MasterCard, AMEX, JCB, Diners Club).
+
+---
+
+## View Notifications Page:
+1. Create a new route: `/user/view-notifications/`.
+2. Design and implement WebSocket integration.
+
+---
+
+## My Learning Page - Schedule Learning Time Component:
+1. Add a "Schedule Learning Time" component.
+2. Clicking "Dismiss" should remove the component.
+3. Clicking "Get Started" should open a dialog.
+4. In step 2 of 3, if no frequency is selected, display an error message.
+5. In step 2 of 3, selecting a frequency should allow choosing one or all days.
+6. Provide an optional "Add to Calendar" feature for Google, Apple, and Outlook calendars.
