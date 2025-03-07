@@ -4,7 +4,7 @@
 
 ## General:
 
-1. Clicking on the Udemy Business text should navigate to the form of "Get your demo".
+1. Clicking on the Udemy Business text should navigate to the form of "Get your demo". ✅
 
 ---
 

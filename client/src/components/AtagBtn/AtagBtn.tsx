@@ -9,17 +9,13 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {/* Botão Principal */}
-
       <p
         className="text-[#020202] font-normal text-sm font-Sans rounded-md px-3
-        py-4 hover:bg-purple-100 hover:text-purple-700 focus:outline-none cursor-pointer
+        py-3 hover:bg-purple-100 hover:text-purple-700 focus:outline-none cursor-pointer
         focus:ring-2 focus:ring-purple-300"
       >
         {aTagName}
       </p>
-
-      {/* Card de Hover */}
       {isHovering && (
         <div className="absolute top-[3.5rem] right-0 w-[290px] bg-white shadow-lg rounded-lg p-4 text-center z-50">
           <p className="text-lg font-bold leading-tight text-gray-800">

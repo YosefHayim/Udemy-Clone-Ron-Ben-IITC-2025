@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-const ExploreMenu = () => {
+const CategoriesMenu = () => {
   const navigate = useNavigate();
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [hoveredSubMenu, setHoveredSubMenu] = useState<string | null>(null);
@@ -101,7 +101,7 @@ const ExploreMenu = () => {
                     isExploring ? "text-red-600" : "text-black"
                   }`}
         >
-          Explore
+          Categories
         </button>
 
         {/* Menu one */}
@@ -236,4 +236,4 @@ const ExploreMenu = () => {
   );
 };
 
-export default ExploreMenu;
+export default CategoriesMenu;

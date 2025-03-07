@@ -63,20 +63,34 @@ const SearchInput = () => {
   });
 
   return (
-    <div className="px-2 flex items-center border border-gray-400 rounded-full overflow-hidden w-1/2 h-[3rem] hover:bg-gray-50 z-[1800]">
-      <MdOutlineSearch
-        className={`w-6 h-6 ${
-          isTyping ? "text-gray-900" : "text-gray-400 opacity-200"
-        }`}
-      />
-      <form onSubmit={handleSubmit} className="w-full">
+    <div className="flex items-center rounded-full w-5/6 z-[1800] mb-[0.7em]">
+      <div className={location.pathname === "/" ? "hidden" : "block"}>
+        <MdOutlineSearch
+          className={`w-6 h-6 ${
+            isTyping ? "text-gray-900" : "text-gray-400 opacity-200"
+          }`}
+        />
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        className="flex items-center w-full border border-gray-400 rounded-full overflow-hidden bg-gray-50 focus-within:border-[#6d28d2] focus-within:ring-1 focus-within:ring-[#6d28d2]"
+      >
         <input
           type="text"
           value={searchTerm}
           placeholder="Search for anything"
-          className="pb-[0.7rem] flex-1 bg-transparent text-gray-700 focus:outline-none text-sm ml-3 placeholder-gray-600 placeholder:text-sm placeholder:font-Sans placeholder:font-normal bg-gray-50"
+          className="w-full hover:bg-gray-100 hover:border-[#9194ac] p-[1.2em] placeholder:pl-[1em] flex-grow bg-transparent text-gray-700 focus:outline-none text-sm placeholder-gray-600 placeholder:text-sm placeholder:font-light focus:bg-white"
           onChange={handleOnChange}
         />
+        <button
+          type="submit"
+          className={`bg-purple-600 rounded-full p-[0.5em] transition-opacity mr-[0.2em] ${
+            searchTerm ? "opacity-100" : "opacity-50 cursor-not-allowed"
+          }`}
+          disabled={!searchTerm}
+        >
+          <MdOutlineSearch className="w-6 h-6 text-white" />
+        </button>
       </form>
       <SearchResults isTyping={isTyping} data={data} />
     </div>
