@@ -52,7 +52,7 @@ const ChangeLanguage: React.FC<{
             className={
               !showIcon
                 ? "flex items-center justify-center border border-purple-800 p-[0.33em] rounded-[0.2em] hover:bg-purpleHoverBtn"
-                : "flex flex-row items-center gap-[0.2em] border border-btnColor py-[0.2em] px-[0.5em] rounded-[0.2em] pr-[2em] hover:bg-purpleHoverBtn"
+                : "flex items-center gap-[0.2em] border border-btnColor py-[0.2em] px-[0.5em] rounded-[0.2em] pr-[2em] hover:bg-purpleHoverBtn"
             }
           >
             <TbWorld />

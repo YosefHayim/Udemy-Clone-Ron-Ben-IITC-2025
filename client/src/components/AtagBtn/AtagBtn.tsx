@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "../ui/button";
 
 const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -18,17 +19,19 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
       </p>
 
       {isHovering && aTagName !== "Categories" && (
-        <div className="absolute top-[3.5rem] right-0 w-[290px] bg-white shadow-lg rounded-lg p-4 text-center z-50">
-          <p className="text-lg font-bold leading-tight text-gray-800">
-            {aTagName === "Udemy Business"
-              ? "Get your team access to over 27,000 top Udemy courses, anytime, anywhere."
-              : "Turn what you know into an opportunity and reach millions around the world."}
-          </p>
-          <button className="focus:outline-none bg-purple-700 text-base text-white font-bold rounded-md mt-5 px-4 py-3 w-full hover:bg-purple-800">
-            {aTagName === "Udemy Business"
-              ? "Try Udemy Business"
-              : "Learn more"}
-          </button>
+        <div>
+          <div className="flex flex-col items-center justify-center gap-[0.5em] shadow-alertAlgoInfo border border-gray-300 absolute top-[4.3rem] right-0 w-[290px] bg-white rounded-lg p-4 text-center z-50">
+            <p className="text-[0.8em] font-bold leading-tight text-gray-800">
+              {aTagName === "Udemy Business"
+                ? "Get your team access to over 27,000 top Udemy courses, anytime, anywhere."
+                : "Turn what you know into an opportunity and reach millions around the world."}
+            </p>
+            <Button className="font-bold transition duration-150 text-sm font-Sans py-[1.2rem] bg-btnColor hover:bg-[#892DE1] text-white rounded-[0.2rem] px-14 focus:outline-none">
+              {aTagName === "Udemy Business"
+                ? "Try Udemy Business"
+                : "Learn more"}
+            </Button>
+          </div>
         </div>
       )}
     </div>

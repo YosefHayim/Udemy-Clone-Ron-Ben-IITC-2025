@@ -161,15 +161,15 @@ const Login = () => {
             <button
               onClick={handleGoogle}
               className={`${
-                isLoggedPreviouslyWithGoogle ? "" : ""
-              } p-2 border border-btnColor rounded-sm hover:bg-gray-100`}
+                isLoggedPreviouslyWithGoogle && ""
+              } p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn`}
             >
               <FcGoogle className="w-7 h-7" />
             </button>
-            <button className="p-2 border border-btnColor rounded-sm hover:bg-gray-100">
+            <button className="p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
               <FaFacebook className="w-7 h-7 text-blue-600" />
             </button>
-            <button className="p-2 border border-btnColor rounded-sm hover:bg-gray-100">
+            <button className="p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
               <FaApple className="w-7 h-7 opacity-85" />
             </button>
           </div>
