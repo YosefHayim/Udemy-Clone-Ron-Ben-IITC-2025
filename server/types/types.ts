@@ -198,6 +198,7 @@ export interface UserDocument {
   emailVerificationExpires?: Date;
   profilePic: string;
   authProvider: string;
+  isLoggedPreviouslyWithGoogle: boolean;
   role: "student" | "instructor";
   temporaryCode?: number | undefined;
   temporaryCodeExpiresAt?: Date | undefined;

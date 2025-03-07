@@ -145,6 +145,7 @@ const signUp = catchAsync(
       language: newUser.preferredLanguage,
       headline: newUser.headline,
       fieldLearning: newUser.fieldLearning,
+      isLoggedPreviouslyWithGoogle: newUser.isLoggedPreviouslyWithGoogle,
     });
 
     res.cookie("cookie", token, {
@@ -273,6 +274,7 @@ const verifyCode = catchAsync(
       language: user.preferredLanguage,
       headline: user.headline,
       fieldLearning: user.fieldLearning,
+      isLoggedPreviouslyWithGoogle: user.isLoggedPreviouslyWithGoogle,
     });
 
     res.cookie("cookie", token, {
@@ -786,17 +788,19 @@ const googleLoginOrSignUp = catchAsync(
 
       const { email, name, picture } = userResponse.data;
 
-      // Check if user exists in the database
       let user = await User.findOne({ email });
 
       if (!user) {
-        // Create a new user if not found
         user = new User({
           fullName: name,
           email,
           profilePic: picture,
           authProvider: "google",
+          isLoggedPreviouslyWithGoogle: true,
         });
+        await user.save();
+      } else {
+        user.isLoggedPreviouslyWithGoogle = true;
         await user.save();
       }
 
@@ -814,7 +818,7 @@ const googleLoginOrSignUp = catchAsync(
         language: user.preferredLanguage,
         headline: user.headline,
         fieldLearning: user.fieldLearning,
-        isLoggedPreviouslyWithGoogle: true,
+        isLoggedPreviouslyWithGoogle: user.isLoggedPreviouslyWithGoogle,
       });
 
       res.cookie("cookie", token, {
@@ -856,6 +860,7 @@ const updateMe = catchAsync(
       language: user.preferredLanguage,
       headline: user.headline,
       fieldLearning: user.fieldLearning,
+      isLoggedPreviouslyWithGoogle: user.isLoggedPreviouslyWithGoogle,
     });
 
     res.cookie("cookie", token, {

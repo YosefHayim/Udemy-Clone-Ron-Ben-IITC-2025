@@ -11,8 +11,6 @@ import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
-import Cookies from "js-cookie";
-import { setCookie } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import SaleCommercial from "./SaleCommercial/SaleCommercial";
 import CategoriesMenu from "./Categories/CategoriesMenu";
@@ -27,12 +25,7 @@ const Navbar = () => {
     (state: RootState) => state.user.isLoggedPreviouslyWithGoogle
   );
 
-  useEffect(() => {
-    const currentCookie = Cookies.get("cookie");
-    if (currentCookie && currentCookie !== cookie) {
-      dispatch(setCookie(currentCookie));
-    }
-  }, [cookie, dispatch, isRootPathOnly, isLoggedWithGoog]);
+  useEffect(() => {}, [cookie, dispatch, isRootPathOnly, isLoggedWithGoog]);
 
   return (
     <div>

@@ -66,7 +66,6 @@ const Login = () => {
 
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email") as string;
-
     setEmailUser(email);
     loginMutation.mutate({ email });
   };
@@ -137,7 +136,7 @@ const Login = () => {
               </div>
               <button
                 type="submit"
-                className="w-full py-3 rounded-[0.4em] bg-btnColor hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
+                className="focus:outline-none w-full py-3 rounded-[0.4em] bg-btnColor hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
               >
                 {isLoading ? (
                   <Loader useSmallLoading={true} hSize="" />
@@ -149,9 +148,9 @@ const Login = () => {
                       strokeLinejoin="round"
                       d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
                     />
-                    <span className="text-[1rem] font-bold">
+                    <button className="focus:outline-none text-[1rem] font-bold">
                       Continue with email
-                    </span>
+                    </button>
                   </div>
                 )}
               </button>

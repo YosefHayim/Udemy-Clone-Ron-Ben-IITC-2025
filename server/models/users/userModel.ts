@@ -75,6 +75,10 @@ const userSchema = new Schema<UserDocument>(
     },
     profilePic: { type: String, default: "default-user-profile.svg" },
     authProvider: { type: String },
+    isLoggedPreviouslyWithGoogle: {
+      type: Boolean,
+      default: false,
+    },
     role: {
       type: String,
       enum: ["student", "instructor"],

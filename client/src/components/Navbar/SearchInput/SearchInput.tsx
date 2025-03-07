@@ -66,15 +66,17 @@ const SearchInput = () => {
   return (
     <div
       className={`flex items-center rounded-full
-      ${isRootPathOnly() ? "pl-[3.5em] w-[95%]" : "w-full"}
+      ${isRootPathOnly() ? "pl-[3.5em] w-[82%]" : "w-full"}
       `}
     >
       <form
         onSubmit={handleSubmit}
-        className="flex items-center w-full border border-gray-400 rounded-full overflow-hidden bg-gray-50 focus-within:border-[#6d28d2] focus-within:ring-1 focus-within:ring-[#6d28d2]"
+        className={`${
+          isRootPathOnly() ? "my-[0.2em]" : ""
+        } flex items-center w-full border border-gray-400 rounded-full overflow-hidden bg-gray-50 focus-within:border-[#6d28d2] focus-within:ring-1 focus-within:ring-[#6d28d2]`}
       >
         <button>
-          <MdOutlineSearch className="w-6 h-6 text-gray ml-[0.2em]" />
+          <MdOutlineSearch className="w-6 h-6 text-gray ml-[0.2em] bg-gray-100" />
         </button>
         <input
           type="text"
@@ -92,7 +94,7 @@ const SearchInput = () => {
           ${searchTerm ? "opacity-100" : "opacity-50 cursor-not-allowed"}`}
           disabled={!searchTerm}
         >
-          <MdOutlineSearch className="w-6 h-6 text-white" />
+          <MdOutlineSearch className="w-6 h-6 text-white " />
         </button>
       </form>
       <SearchResults isTyping={isTyping} data={data} />

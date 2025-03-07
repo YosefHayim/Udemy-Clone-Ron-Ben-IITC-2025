@@ -61,12 +61,11 @@ const VerifyCode = () => {
     }, 2000);
     setCode(code);
     verifyCodeMutation.mutate({ code, email: emailUser });
-    if (!cookie) {
-      console.log("No token found in cookies");
-      return;
-    }
 
-    const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
+    if (!cookie) throw new Error("Cookie is undefined");
+
+    const decoded = jwtDecode<DecodedTokenProps>(cookie);
+    console.log(`decoded data is:`, decoded);
     dispatch(setCookie(cookie || ""));
     dispatch(setFullName(decoded.fullName));
     dispatch(setHeadline(decoded.headline));
@@ -78,7 +77,7 @@ const VerifyCode = () => {
     dispatch(setRole(decoded.role));
     dispatch(setCoursesBought(decoded.coursesBought));
     dispatch(setUdemyCredits(decoded.udemyCredits));
-    dispatch(setIsLoggedWithGoogle(decoded.isLoggedPreviouslyWithGoogle));
+    dispatch(setIsLoggedWithGoogle(true));
   };
 
   const handleResendCode = () => {
@@ -159,7 +158,9 @@ const VerifyCode = () => {
               <Loader useSmallLoading={true} hSize="" />
             ) : (
               <div className="flex flex-row">
-                <span className="text-[1rem] font-bold">Log in</span>
+                <button className="focus:outline-none text-[1rem] font-bold">
+                  Log in
+                </button>
               </div>
             )}
           </button>

@@ -10,12 +10,30 @@ import { FaApple, FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { MdEmail } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
+import googleLogin from "@/api/users/googleLogin";
+import { BiSolidErrorAlt } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { setIsLoggedWithGoogle } from "@/redux/slices/userSlice";
 
 const SignUp: React.FC = () => {
   document.title = "Sign Up and Start Learning | Udemy";
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setLoading] = useState(false);
+  const [isError, setShowIsError] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const googleMutationLogin = useMutation({
+    mutationFn: googleLogin,
+    onSuccess: () => {
+      dispatch(setIsLoggedWithGoogle(true));
+      navigate("/");
+    },
+    onError: (error) => {
+      console.log("Error during google login process:", error);
+      setShowIsError(true);
+    },
+  });
 
   const handleGoogle = useGoogleLogin({
     onSuccess: (credentialResponse) => {
@@ -59,7 +77,6 @@ const SignUp: React.FC = () => {
     const email = formData.get("email") as string;
     setEmailUser(email);
     setUserFullName(fullName);
-
     mutation.mutate({ fullName, email });
   };
 
@@ -77,6 +94,23 @@ const SignUp: React.FC = () => {
           <h2 className="text-[2rem] font-bold text-courseNameColorTxt mb-6 w-full text-center">
             Sign up with email
           </h2>
+          <div
+            className={
+              isError
+                ? `gap-[1em] w-full border border-red-700 p-[1em] py-[1.5em] font-bold rounded-[1.5em] mb-[1em] flex flex-row items-start justify-center`
+                : "hidden"
+            }
+          >
+            <div>
+              <BiSolidErrorAlt className="text-[2.5em] text-red-600" />
+            </div>
+            <div>
+              <p className="text-[1.8em]">
+                There was a problem logging in. Check your email or create an
+                account.
+              </p>
+            </div>
+          </div>
           <form
             className="flex flex-col items-center justify-start space-y-4"
             onSubmit={handleSubmit}
