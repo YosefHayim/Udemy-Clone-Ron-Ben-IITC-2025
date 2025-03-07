@@ -8,13 +8,15 @@ import LogoutMessage from "../Home/LogoutMessage/LogoutMessage";
 const Logout: React.FC = () => {
   document.title = "udemy.com/logout/";
   return (
-    <div className="container mx-auto px-[9.6rem]">
-      <DropdownMenu />
+    <div className="px-[2em]">
       <LogoutMessage />
-      <Banner />
-      <Sections />
-      <TrustedBySection />
-      <LearnersAreViewing />
+      <div className="container mx-auto px-[9.6rem]">
+        <DropdownMenu />
+        <Banner />
+        <Sections />
+        <TrustedBySection />
+        <LearnersAreViewing />
+      </div>
     </div>
   );
 };
