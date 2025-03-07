@@ -32,7 +32,8 @@ const ShoppingCart: React.FC = () => {
                 <EmptyCart />
               ) : (
                 <div className="flex flex-row-reverse items-start justify-between gap-[2em]">
-                  <CheckoutContainer /> <ItemsInCart />
+                  <CheckoutContainer />
+                  <ItemsInCart />
                   <p></p>
                 </div>
               )}

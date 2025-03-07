@@ -92,6 +92,7 @@ const userSlice = createSlice({
       };
       state.coursesBought = [];
       state.udemyCredits = 0;
+      state.cookie = "";
     },
   },
 });

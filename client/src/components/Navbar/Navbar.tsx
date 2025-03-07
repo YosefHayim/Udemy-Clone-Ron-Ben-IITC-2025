@@ -38,7 +38,7 @@ const Navbar = () => {
   return (
     <div>
       <SaleCommercial />
-      <div className="w-full flex items-center bg-white relative shadow-md justify-between px-[1.55rem] font-medium text-[1.4rem] mb-[1em]">
+      <div className="pt-[0.5em] w-full flex items-center bg-white relative shadow-md justify-between px-[1.55rem] font-medium text-[1.4rem] mb-[1em]">
         <div className="flex flex-col w-full">
           <div className="w-full flex items-center">
             <div className="flex flex-row items-center gap-[0.5em]">

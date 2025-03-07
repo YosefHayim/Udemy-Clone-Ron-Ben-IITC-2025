@@ -32,10 +32,13 @@ const ItemInCart = ({
   width = "w-full",
   isMyLearning = false,
 }) => {
-  if (!courseId) return null;
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  if (!courseId) {
+    console.log("There is no course Id provided");
+    return;
+  }
 
   const { data, error, isPending } = useQuery({
     queryKey: ["course", courseId],
@@ -47,14 +50,6 @@ const ItemInCart = ({
     },
     staleTime: 5 * 60 * 1000,
   });
-
-  if (error && !data) {
-    navigate("/not/found");
-  }
-
-  if (isPending) {
-    <div></div>;
-  }
 
   const handleCourseView = (courseId: string): void => {
     navigate(`/course-view/${courseId}`);
@@ -70,8 +65,37 @@ const ItemInCart = ({
     );
   };
 
+  const handlePreformOperation = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === "BUTTON" && target.textContent === "Remove") {
+      handleRemove();
+    } else if (
+      target.tagName === "P" &&
+      target.textContent === "Save for Later"
+    ) {
+      console.log("Save for Later clicked");
+    } else if (
+      target.tagName === "P" &&
+      target.textContent === "Move to Wishlist"
+    ) {
+      console.log("Move to Wishlist clicked");
+    }
+  };
+
+  if (error && !data) {
+    navigate("/not/found");
+  }
+
+  if (isPending) {
+    <div></div>;
+  }
+
   return (
-    <div id={courseId} className={`p-[1em] ${width} ${textSize}`}>
+    <div
+      id={courseId}
+      className={`p-[1em] ${width} ${textSize}`}
+      onClick={handlePreformOperation}
+    >
       <div
         onClick={() => handleCourseView(courseId)}
         id={courseId}
@@ -145,10 +169,7 @@ const ItemInCart = ({
           </div>
           <div className={hide ? "block" : "hidden"}>
             <div className="text-[0.8em] text-[#5022c3] hover:text-[#3b198f]">
-              <button
-                className="focus:outline-none cursor-pointer"
-                onClick={handleRemove}
-              >
+              <button className="focus:outline-none cursor-pointer">
                 Remove
               </button>
               <p className="cursor-pointer">Save for Later</p>
