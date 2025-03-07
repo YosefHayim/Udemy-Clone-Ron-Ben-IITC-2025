@@ -64,7 +64,7 @@ const SearchInput = () => {
   return (
     <div
       className={
-        isRootPathOnly
+        isRootPathOnly()
           ? "flex items-center rounded-full w-5/6 z-[1800] mb-[0.7em]"
           : ""
       }
@@ -85,8 +85,8 @@ const SearchInput = () => {
         />
         <button
           type="submit"
-          className={`w-full bg-purple-600 rounded-full p-[0.5em] transition-opacity mr-[0.2em] 
-          ${!isRootPathOnly ? "hidden" : "block"} 
+          className={`bg-purple-600 rounded-full p-[0.5em] transition-opacity mr-[0.2em] 
+          ${!isRootPathOnly() ? "hidden" : "block"} 
           ${searchTerm ? "opacity-100" : "opacity-50 cursor-not-allowed"}`}
           disabled={!searchTerm}
         >

@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/dialog";
 import { RootState } from "@/redux";
 import { setLanguage } from "@/redux/slices/userSlice";
-import { isRootPathOnly } from "@/utils/extraGenerals";
 import { btnLanguages } from "@/utils/languages";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";

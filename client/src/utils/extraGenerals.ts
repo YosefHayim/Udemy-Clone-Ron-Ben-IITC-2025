@@ -1,1 +1,5 @@
-export const isRootPathOnly = window.location.pathname === "/";
+export const isRootPathOnly = () => {
+  const { pathname, search, hash } = window.location;
+
+  return pathname === "/" && !search && !hash;
+};
