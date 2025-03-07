@@ -143,7 +143,7 @@ const AppRoutes: React.FC = () => {
                 <Route path="/user/photo" element={<Photo />} />
                 <Route path="/user/edit-api-clients" element={<ApiClients />} />
                 <Route path="/wishlist" element={<Wishlist />} />
-                <Route path="/messages" element={<Messages />} />
+                <Route path="/message" element={<Messages />} />
                 <Route
                   path="/loader"
                   element={<Loader useSmallLoading={false} hSize="" />}

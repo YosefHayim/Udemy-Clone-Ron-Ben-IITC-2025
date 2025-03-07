@@ -1,4 +1,7 @@
-bugs found:
+bugs / missing designs / logic to add:
+
+General:
+1. Clicking on the udemy business text to navigate to the form of "Get your demo"
 
 SearchInput Component needs to have:
 1.longer input field
@@ -47,6 +50,7 @@ Navbar:
 4. Make hover icon on heart to be design the same
 5. when logged in should have hover on my learning to show progress of each courses / course.
 6. user profile name should be with f and l names e.g. "YS" and not "Y"
+7. Make notification component hover.
 
 Login page:
 1. if there is already token of google in localstorage, make sure to render differently the login component.
@@ -54,7 +58,7 @@ Login page:
 Welcome page:
 1. Fix the size of the profile picture to be bigger.
 2. On welcome page modify the search input to look differently
-3. Change explore to categories
+3. Change the "explore" word to "categories" word
 
 Adding to cart:
 1. Offer FBT of two more courses of instructor
@@ -63,3 +67,37 @@ Adding to cart:
 Cart page:
 1. Have section of you might also like algo which shows courses of the same instructor
 2. fix Promotions component to design the same.
+3. Make sure that if coupon code not exist display error message below.
+
+My learning page:
+1. Courses only courses on my learning will have the play button of course or the extra options.
+
+Checkout page:
+1. set localstorage last radio payment so it loads and use the default via redux.
+2. Add paypal api integration with the button.
+3. Option to add cards to user personal info.
+4. options to purchase with google pay
+5. regular payment with credit card the lock icon should be smaller
+6. Show encryption text hovering on the lock icon
+7. Cancel button to have hover purple.
+8. Terms of use text to have cursor-pointer css and navigate to the terms page.
+9. Add more cards to the cards div of visa, mastercard, amx , jcb and diners club.
+
+View Notifications page:
+1. add to it with a route of /user/view-notifications/
+2. design and add websocket.
+
+My learning page Schedule learning time component:
+1. add component that shown of schedule learning time
+2. if click dismiss disappear
+3. if click get started btn than dialog open
+4. on step 2 of 3, if no frequency selected display error message.
+4. on step 2 of 3, if choose frequency, than choose day to be happening can choose all days.
+5. than add to calendar optional of google , apple , outlook.
+
+My learning page:
+1. if course hast been started than initialize start course progress below with text
+2. add certifications component with route home/my-courses/certifications/
+3. change route to be home/my-courses/learning/
+4. on each selected category change url
+5. add loading effect to each one
