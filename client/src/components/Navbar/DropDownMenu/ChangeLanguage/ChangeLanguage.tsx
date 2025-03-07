@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { RootState } from "@/redux";
 import { setLanguage } from "@/redux/slices/userSlice";
+import { isRootPathOnly } from "@/utils/extraGenerals";
 import { btnLanguages } from "@/utils/languages";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
@@ -27,7 +28,6 @@ const ChangeLanguage: React.FC<{
   const defaultLanguage = useSelector(
     (state: RootState) => state.user.language
   );
-
   const [chosenLanguage, setChosenLanguage] = useState(defaultLanguage);
 
   const postUserLanguage = useMutation({
@@ -44,32 +44,43 @@ const ChangeLanguage: React.FC<{
     <div>
       <Dialog open={isClicked} onOpenChange={setClicked}>
         <DialogTrigger open={isClicked} onOpenChange={setClicked}>
-          {showIcon ? (
+          {showIcon && (
             <div>
               <p>Language</p>
             </div>
-          ) : (
-            <div className="flex flex-row items-center gap-[0.2em] border border-btnColor py-[0.2em] px-[0.5em] rounded-[0.2em] pr-[2em] hover:bg-purpleHoverBtn">
-              <TbWorld />
-              {chosenLanguage}
-            </div>
           )}
+          <div
+            className={
+              !showIcon
+                ? "flex items-center justify-center border border-purple-800 p-[0.33em] rounded-[0.2em] hover:bg-purpleHoverBtn"
+                : "flex flex-row items-center gap-[0.2em] border border-btnColor py-[0.2em] px-[0.5em] rounded-[0.2em] pr-[2em] hover:bg-purpleHoverBtn"
+            }
+          >
+            <TbWorld />
+            {!showIcon && <p className="hidden">{chosenLanguage}</p>}
+          </div>
         </DialogTrigger>
-        <DialogContent className="w-[600px]">
+        <DialogContent className="">
           <DialogHeader>
             <DialogTitle className="mb-[0.5em] font-bold">
               Choose a language
             </DialogTitle>
-            <DialogDescription>
-              <div className="grid grid-cols-3 grid-rows-3 gap-4 p-[1em] w-full">
+            <DialogDescription className="">
+              <div className="grid grid-cols-3 grid-rows-3 gap-1 flex-wrap">
                 {btnLanguages.map(
                   (language: { code: string; name: string }) => (
                     <div
                       onClick={() => handleChosenLanguage(language.name)}
-                      className="hover:text-btnColor hover:bg-white w-full"
+                      className="hover:bg-white w-full"
                       key={language.code}
                     >
-                      <Button className=" bg-white shadow-none hover:hover-color-mix rounded-[0.2em] h-[3em] text-black w-full">
+                      <Button
+                        className={`flex justify-start hover:text-btnColor bg-white shadow-none hover:hover-color-mix rounded-[0.2em] h-[3em] text-black w-full
+                          ${
+                            chosenLanguage === language.name &&
+                            "border border-gray-500"
+                          } `}
+                      >
                         {language.name}
                       </Button>
                     </div>

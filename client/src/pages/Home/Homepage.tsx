@@ -54,7 +54,7 @@ const Homepage = () => {
   return (
     <div className={styles.homepage}>
       {!cookie ? (
-        <>
+        <div>
           <div className="container mx-auto px-[5.7rem]">
             <DropdownMenu />
             <Banner />
@@ -69,7 +69,7 @@ const Homepage = () => {
             <TrendingNow />
             <Carousel />
           </div>
-        </>
+        </div>
       ) : (
         <div>
           <DropdownMenu />

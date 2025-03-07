@@ -5,7 +5,7 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
 
   return (
     <div
-      className="relative inline-block"
+      className="relative inline-block mx-[0.2em]"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SearchInput from "./SearchInput/SearchInput";
 import LoginBtn from "./LoginBtn/LoginBtn";
@@ -18,10 +18,12 @@ import { useDispatch } from "react-redux";
 import SaleCommercial from "./SaleCommercial/SaleCommercial";
 import CategoriesMenu from "./Categories/CategoriesMenu";
 import { isRootPathOnly } from "@/utils/extraGenerals";
+import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
 
 const Navbar = () => {
   const location = useLocation();
   const cookie = useSelector((state: RootState) => state.user.cookie) || "";
+  const [isClicked, setClicked] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,58 +37,52 @@ const Navbar = () => {
     <div>
       <SaleCommercial />
       <div className="w-full flex items-center bg-white relative shadow-md justify-between px-[1.55rem] py-[0rem] font-medium text-[1.4rem]">
-        {cookie.length > 1 ? (
-          <div className="flex flex-col w-full">
-            <div className="w-full flex items-center">
-              <div className="flex flex-row items-center gap-[0.5em]">
-                <Link to="/">
-                  <Logo />
-                </Link>
-                <CategoriesMenu />
+        <div className="flex flex-col w-full">
+          <div className="w-full flex items-center">
+            <div className="flex flex-row items-center gap-[0.5em]">
+              <Link to="/">
+                <Logo />
+              </Link>
+              <CategoriesMenu />
+            </div>
+            <div
+              className={
+                isRootPathOnly
+                  ? "w-full flex items-center justify-end"
+                  : "w-full flex items-center justify-center"
+              }
+            >
+              <div className={isRootPathOnly ? "hidden" : "flex-grow"}>
+                <SearchInput />
               </div>
-              <div
-                className={
-                  isRootPathOnly
-                    ? "w-full flex items-center justify-end"
-                    : "w-full flex items-center justify-center"
-                }
-              >
-                <div className={isRootPathOnly ? "hidden" : "flex-grow"}>
-                  <SearchInput />
-                </div>
-                <AtagBtn aTagName={"Udemy Business"} />
-                <AtagBtn aTagName={"Teach on Udemy"} />
-                <Link to="/wishlist">
-                  <AtagBtn aTagName={"My learning"} />
-                </Link>
-                <Heart />
-                <Link to="/cart">
-                  <Cart />
-                </Link>
+              <AtagBtn aTagName={"Udemy Business"} />
+              <AtagBtn aTagName={"Teach on Udemy"} />
+              <Link to="/wishlist">
+                <AtagBtn aTagName={"My learning"} />
+              </Link>
+              <Heart />
+              <Link to="/cart">
+                <Cart />
+              </Link>
+              <div className="flex items-center gap-[0.3em]">
                 <Notifications />
-                <Link to="/user/edit-profile">
-                  <Profile cookie={cookie} />
-                </Link>
+                <LoginBtn />
+                <SignupBtn />
+                <ChangeLanguage
+                  isClicked={isClicked}
+                  setClicked={setClicked}
+                  showIcon={false}
+                />
               </div>
-            </div>
-            <div className={isRootPathOnly ? "block" : "hidden"}>
-              <SearchInput />
+              <Link to="/user/edit-profile">
+                <Profile cookie={cookie} />
+              </Link>
             </div>
           </div>
-        ) : (
-          <div className="flex items-center gap-[0.5em]">
-            <Link to="/cart">
-              <Cart />
-            </Link>
-            <Link to="/login">
-              <LoginBtn />
-            </Link>
-            <Link to="/signup">
-              <SignupBtn />
-            </Link>
-            <Language />
+          <div className={isRootPathOnly ? "block" : "hidden"}>
+            <SearchInput />
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
