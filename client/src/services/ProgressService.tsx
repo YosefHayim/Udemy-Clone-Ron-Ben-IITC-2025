@@ -108,7 +108,10 @@ const initializeCourseProgress: InitializeProgressFn = async (courseId) => {
       throw new Error("Failed to initialize course progress.");
     }
   } catch (error: any) {
-    console.error(`Error initializing progress for course ID ${courseId}:`, error);
+    console.error(
+      `Error initializing progress for course ID ${courseId}:`,
+      error
+    );
     throw new Error(
       error.response?.data?.message ||
         `Failed to initialize progress for course ID ${courseId}`

@@ -7,6 +7,8 @@ const googleLogin = async (googleCode: string) => {
     const url = `${localhostUrl}/api/user/google/auth/login`;
     const res = await axiosClient.post(url, { code });
     if (res) {
+      console.log(res);
+
       return res;
     }
   } catch (error) {

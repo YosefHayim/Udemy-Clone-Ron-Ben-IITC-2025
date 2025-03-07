@@ -4,7 +4,7 @@ type fn = (verificationCredentials: {
   fullName?: string;
   code: string;
   email: string;
-}) => Promise<any>;
+}) => Promise<number>;
 
 const verifyCode: fn = async (verificationCredentials) => {
   try {

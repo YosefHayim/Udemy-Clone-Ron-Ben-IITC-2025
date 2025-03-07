@@ -9,9 +9,21 @@ const ProfileMain = () => {
   const fullName = useSelector((state: RootState) => state.user.fullName);
   const headline = useSelector((state: RootState) => state.user.headline);
   const userLinks = useSelector((state: RootState) => state.user.userLinks);
-  console.log(userLinks);
-
   const bio = useSelector((state: RootState) => state.user.bio);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const fName = formData.get("fname");
+    const lName = formData.get("lname");
+    const headline = formData.get("headline");
+    const xPlatform = formData.get("xplatform");
+    const linkedin = formData.get("linkedin");
+    const youtube = formData.get("youtube");
+    const facebook = formData.get("facebook");
+    const website = formData.get("website");
+    const bio = formData.get("bio");
+  };
 
   return (
     <div className="flex min-h-screen bg-gray-100 mx-[12rem] mt-[1.5rem] mb-[3rem]">
@@ -27,36 +39,36 @@ const ProfileMain = () => {
               Add information about yourself
             </p>
           </div>
-
-          <form className="space-y-6 px-[9rem]">
+          <form className="space-y-6 px-[9rem]" onSubmit={handleSubmit}>
             {/* First Name */}
             <div>
               <p className="font-sans font-bold text-[1rem] pb-2 pt-8">
                 Basics:
               </p>
               <Input
-                id="firstName"
+                id="fname"
+                name="fname"
                 type="text"
                 placeholder={fullName}
                 className="border border-gray-500 rounded-[0.2rem]"
               />
             </div>
-
             {/* Last Name */}
             <div>
               <Input
-                id="lastName"
+                id="lname"
+                name="lname"
                 type="text"
                 placeholder="Last Name"
                 className="rounded-[0.2rem] border border-gray-500"
               />
             </div>
-
             {/* Headline */}
             <div>
               <Input
                 id="headline"
                 type="text"
+                name=""
                 placeholder={headline}
                 className="rounded-[0.2rem] border border-gray-500"
               />
@@ -65,7 +77,6 @@ const ProfileMain = () => {
                 "Architect"
               </p>
             </div>
-
             <div>
               {/* Botões de Estilo e Textarea */}
               <div className="flex flex-col">
@@ -85,7 +96,6 @@ const ProfileMain = () => {
                     I
                   </button>
                 </div>
-
                 <textarea
                   id="bio"
                   placeholder={bio}
@@ -93,40 +103,49 @@ const ProfileMain = () => {
                   className="border border-gray-500 border-t-0 rounded-b-[0.2rem] w-full bg-white p-2"
                 ></textarea>
               </div>
-
               {/* Informação adicional */}
               <p className="text-[0.8em] text-gray-600 mb-[1em]">
                 Links and coupon codes are not permitted in this section.
               </p>
-
               {/* Seleção de Idioma */}
               <div>
                 <select
                   id="language"
+                  name="language"
                   className="rounded-[0.2rem] border border-gray-500 mb-[1em] w-full bg-white p-2"
                 >
-                  <option value="en">English (US)</option>
-                  <option value="es">Spanish</option>
-                  <option value="fr">French</option>
-                  <option value="pt">Portuguese</option>
+                  <option value="en" id="en">
+                    English (US)
+                  </option>
+                  <option value="es" id="es">
+                    Spanish
+                  </option>
+                  <option value="fr" id="fr">
+                    French
+                  </option>
+                  <option value="pt" id="pt">
+                    Portuguese
+                  </option>
                 </select>
               </div>
               <hr />
             </div>
-
             {/* Links */}
             <div>
-              <label className="block text-sm font-medium">Links:</label>
+              <label className="block text-sm font-medium">Website:</label>
               <div className="space-y-4 mt-2">
                 {/* Website */}
                 <div>
                   <Input
-                    type="url"
-                    placeholder="Website (http://...)"
+                    type="text"
+                    name="website"
+                    id="website"
+                    placeholder={
+                      userLinks.website.length > 1 ? userLinks.website : "Url"
+                    }
                     className="rounded-[0.2rem] border border-gray-500 w-full"
                   />
                 </div>
-
                 {/* Twitter */}
                 <div className="flex flex-col items-start justify-start w-full">
                   <div className="flex flex-row items-center w-full border border-gray-400 bg-white h-[50px] rounded-[0.2rem]">
@@ -137,9 +156,14 @@ const ProfileMain = () => {
                       http://twitter.com/
                     </label>
                     <Input
-                      type="url"
-                      name="twitter"
-                      placeholder="Twitter Profile"
+                      type="text"
+                      name="xplatform"
+                      id="xplatform"
+                      placeholder={
+                        userLinks.xPlatform.length > 1
+                          ? userLinks.xPlatform
+                          : "Username"
+                      }
                       className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
@@ -147,7 +171,6 @@ const ProfileMain = () => {
                     Add your Twitter username (e.g. johnsmith)
                   </p>
                 </div>
-
                 {/* Facebook */}
                 <div className="flex flex-col items-start justify-start w-full">
                   <div className="flex flex-row items-center w-full border border-gray-400 bg-white h-[50px] rounded-[0.2rem]">
@@ -158,9 +181,14 @@ const ProfileMain = () => {
                       http://www.facebook.com/
                     </label>
                     <Input
-                      type="url"
+                      type="text"
                       name="facebook"
-                      placeholder="Facebook Profile"
+                      id="facebook"
+                      placeholder={
+                        userLinks.facebook.length > 1
+                          ? userLinks.facebook
+                          : "Username"
+                      }
                       className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
@@ -168,7 +196,6 @@ const ProfileMain = () => {
                     Input your Facebook username (e.g. johnsmith)
                   </p>
                 </div>
-
                 {/* Linkedin */}
                 <div className="flex flex-col items-start justify-start w-full">
                   <div className="flex flex-row items-center w-full border border-gray-400 bg-white h-[50px] rounded-[0.2rem]">
@@ -179,9 +206,14 @@ const ProfileMain = () => {
                       http://www.linkedin.com/
                     </label>
                     <Input
-                      type="url"
+                      type="text"
                       name="linkedin"
-                      placeholder="Linkedin Profile"
+                      id="linkedin"
+                      placeholder={
+                        userLinks.linkedin.length > 1
+                          ? userLinks.linkedin
+                          : "Username"
+                      }
                       className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
@@ -189,7 +221,6 @@ const ProfileMain = () => {
                     Input your Linkedin username (e.g. johnsmith)
                   </p>
                 </div>
-
                 {/* YouTube */}
                 <div className="flex flex-col items-start justify-start w-full">
                   <div className="flex flex-row items-center w-full border border-gray-400 bg-white h-[50px] rounded-[0.2rem]">
@@ -200,9 +231,14 @@ const ProfileMain = () => {
                       http://www.youtube.com/
                     </label>
                     <Input
-                      type="url"
+                      type="text"
+                      id="youtube"
                       name="youtube"
-                      placeholder="YouTube Profile"
+                      placeholder={
+                        userLinks.youtube.length > 1
+                          ? userLinks.youtube
+                          : "Username"
+                      }
                       className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
@@ -212,7 +248,6 @@ const ProfileMain = () => {
                 </div>
               </div>
             </div>
-
             {/* Save Button */}
             <div className="flex justify-start w-full">
               <Button

@@ -15,6 +15,7 @@ const updatePersonalizeUserField = async (
     const r = await axiosClient.put(url, personalizeField);
 
     if (r) {
+      console.log(r);
       return r.data;
     }
   } catch (error) {

@@ -10,6 +10,8 @@ const registerUser: fn = async (data: RegisterUserPayload): Promise<any> => {
       data
     );
     if (response) {
+      console.log(response);
+
       return response.data;
     }
   } catch (error) {
