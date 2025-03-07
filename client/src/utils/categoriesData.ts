@@ -1,11 +1,10 @@
 import { ExploreCategory } from "@/types/types";
 
-export const exploreData: (ExploreCategory | undefined)[] = [
+export const categoriesData: (ExploreCategory | undefined)[] = [
   {
     category: "Certification Preparation",
     subcategory: [
       {
-
         title: "Amazon Web Services (AWS) Certifications",
         topics: [
           "AWS Certified Solutions Architect - Associate",
@@ -120,7 +119,6 @@ export const exploreData: (ExploreCategory | undefined)[] = [
         ],
       },
       {
-
         title: "Cloud Certification",
         topics: [
           "AWS Certified Solutions Architect - Associate",

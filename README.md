@@ -89,8 +89,8 @@
 ## Welcome Page:
 
 1. Increase the size of the profile picture.
-2. Modify the search input styling to differentiate it from the main search.
-3. Change "Explore" text to "Categories".
+2. Modify the search input styling to differentiate it from the main search.  ✅
+3. Change "Explore" text to "Categories".  ✅
 
 ---
 

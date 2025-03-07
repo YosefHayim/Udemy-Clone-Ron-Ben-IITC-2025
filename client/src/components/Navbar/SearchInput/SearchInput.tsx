@@ -4,17 +4,16 @@ import { useEffect, useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import SearchResults from "../SearchResults/SearchResults";
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
+import { isRootPathOnly } from "@/utils/extraGenerals";
 
 const SearchInput = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isTyping, setIsTyping] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [debouncedTerm, setDebouncedTerm] = useState<string>("");
-
   const [searchParams] = useSearchParams();
   const urlSearchTerm: string = searchParams.get("q")?.toLowerCase() || "";
-
-  const navigate = useNavigate();
-  const location = useLocation();
 
   // Sync URL query with `searchTerm` on page load or navigation
   useEffect(() => {
@@ -63,18 +62,20 @@ const SearchInput = () => {
   });
 
   return (
-    <div className="flex items-center rounded-full w-5/6 z-[1800] mb-[0.7em]">
-      <div className={location.pathname === "/" ? "hidden" : "block"}>
-        <MdOutlineSearch
-          className={`w-6 h-6 ${
-            isTyping ? "text-gray-900" : "text-gray-400 opacity-200"
-          }`}
-        />
-      </div>
+    <div
+      className={
+        isRootPathOnly
+          ? "flex items-center rounded-full w-5/6 z-[1800] mb-[0.7em]"
+          : ""
+      }
+    >
       <form
         onSubmit={handleSubmit}
         className="flex items-center w-full border border-gray-400 rounded-full overflow-hidden bg-gray-50 focus-within:border-[#6d28d2] focus-within:ring-1 focus-within:ring-[#6d28d2]"
       >
+        <button>
+          <MdOutlineSearch className="w-6 h-6 text-gray ml-[0.2em]" />
+        </button>
         <input
           type="text"
           value={searchTerm}
@@ -84,9 +85,9 @@ const SearchInput = () => {
         />
         <button
           type="submit"
-          className={`bg-purple-600 rounded-full p-[0.5em] transition-opacity mr-[0.2em] ${
-            searchTerm ? "opacity-100" : "opacity-50 cursor-not-allowed"
-          }`}
+          className={`w-full bg-purple-600 rounded-full p-[0.5em] transition-opacity mr-[0.2em] 
+          ${!isRootPathOnly ? "hidden" : "block"} 
+          ${searchTerm ? "opacity-100" : "opacity-50 cursor-not-allowed"}`}
           disabled={!searchTerm}
         >
           <MdOutlineSearch className="w-6 h-6 text-white" />

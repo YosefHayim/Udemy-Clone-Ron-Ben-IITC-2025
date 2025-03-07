@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SearchInput from "./SearchInput/SearchInput";
 import LoginBtn from "./LoginBtn/LoginBtn";
 import SignupBtn from "./SignupBtn/SignupBtn";
@@ -16,9 +16,11 @@ import Cookies from "js-cookie";
 import { setCookie } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import SaleCommercial from "./SaleCommercial/SaleCommercial";
-import CategoriesMenu from "./Explore/ExploreMenu";
+import CategoriesMenu from "./Categories/CategoriesMenu";
+import { isRootPathOnly } from "@/utils/extraGenerals";
 
 const Navbar = () => {
+  const location = useLocation();
   const cookie = useSelector((state: RootState) => state.user.cookie) || "";
   const dispatch = useDispatch();
 
@@ -32,7 +34,7 @@ const Navbar = () => {
   return (
     <div>
       <SaleCommercial />
-      <div className="w-full flex items-center bg-white z-[1000] relative shadow-md justify-between px-[1.55rem] py-[0rem] font-medium text-[1.4rem]">
+      <div className="w-full flex items-center bg-white relative shadow-md justify-between px-[1.55rem] py-[0rem] font-medium text-[1.4rem]">
         {cookie.length > 1 ? (
           <div className="flex flex-col w-full">
             <div className="w-full flex items-center">
@@ -42,10 +44,19 @@ const Navbar = () => {
                 </Link>
                 <CategoriesMenu />
               </div>
-              <div className="w-full flex items-center justify-end">
+              <div
+                className={
+                  isRootPathOnly
+                    ? "w-full flex items-center justify-end"
+                    : "w-full flex items-center justify-center"
+                }
+              >
+                <div className={isRootPathOnly ? "hidden" : "w-full block"}>
+                  <SearchInput />
+                </div>
+                <AtagBtn aTagName={"Udemy Business"} />
+                <AtagBtn aTagName={"Teach on Udemy"} />
                 <Link to="/wishlist">
-                  <AtagBtn aTagName={"Udemy Business"} />
-                  <AtagBtn aTagName={"Teach on Udemy"} />
                   <AtagBtn aTagName={"My learning"} />
                 </Link>
                 <Heart />
@@ -58,7 +69,7 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
-            <div className="w-full flex justify-center">
+            <div className={isRootPathOnly ? "block" : "hidden"}>
               <SearchInput />
             </div>
           </div>

@@ -1,23 +1,23 @@
+import AtagBtn from "@/components/AtagBtn/AtagBtn";
 import { Category, Subcategory } from "@/types/types";
-import { exploreData } from "@/utils/exploreData";
+import { categoriesData } from "@/utils/categoriesData";
 import { useState, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
 const CategoriesMenu = () => {
   const navigate = useNavigate();
+  const [isExploring, setIsExploring] = useState(false);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [hoveredSubMenu, setHoveredSubMenu] = useState<string | null>(null);
-  const [hoveredSecondSubMenu, setHoveredSecondSubMenu] = useState<
-    boolean | null
-  >(false);
+  const [hoveredSecondSubMenu, setHoveredSecondSubMenu] = useState<boolean | null>(false);
 
   const menuTimeout = useRef<NodeJS.Timeout | null>(null);
   const subMenuTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const getCategoryData = (categoryName: string | null): Category | null => {
     return categoryName
-      ? exploreData.find((cat) => cat?.category === categoryName) || null
+      ? categoriesData.find((cat) => cat?.category === categoryName) || null
       : null;
   };
 
@@ -85,25 +85,15 @@ const CategoriesMenu = () => {
     );
   };
 
-  const [isExploring, setIsExploring] = useState(false);
-
   return (
-    <div className="relative inline-block text-left w-auto z-50 text-gray-600 font-medium">
+    <div className="relative inline-block text-left w-auto text-gray-600 font-medium z-50">
       {/* Botão Explore com hover para mostrar menu */}
       <div
         className="inline-block"
         onMouseEnter={() => handleMenuEnter("main")}
         onMouseLeave={handleMenuLeave}
       >
-        <button
-          className={`text-[#020202] text-sm mb-3 font-[400] text-[0.9rem] rounded-md hover:bg-purple-100 hover:text-purple-700 focus:outline-none focus:ring-2
-                  focus:ring-purple-300 ${
-                    isExploring ? "text-red-600" : "text-black"
-                  }`}
-        >
-          Categories
-        </button>
-
+        <AtagBtn aTagName="Categories" />
         {/* Menu one */}
         {hoveredMenu && (
           <div
@@ -116,7 +106,7 @@ const CategoriesMenu = () => {
               Browse Certifications
             </div>
             {/* menu */}
-            {exploreData.map((category, index: number) => (
+            {categoriesData.map((category, index: number) => (
               <>
                 <div
                   onClick={() => handleNavigate(category?.category || "")}
@@ -172,7 +162,7 @@ const CategoriesMenu = () => {
                           handleNavigate(
                             subCategory?.title
                               ? subCategory.title
-                              : subCategory.topics[0]
+                              : categoriesData.topics[0]
                           )
                         }
                         className={`hover:bg-gray-100 px-4 py-2 cursor-pointer flex justify-between items-center ${

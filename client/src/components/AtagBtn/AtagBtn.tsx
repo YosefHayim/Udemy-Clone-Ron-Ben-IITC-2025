@@ -16,7 +16,7 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
       >
         {aTagName}
       </p>
-      {isHovering && (
+      {isHovering && aTagName !== "Categories" && (
         <div className="absolute top-[3.5rem] right-0 w-[290px] bg-white shadow-lg rounded-lg p-4 text-center z-50">
           <p className="text-lg font-bold leading-tight text-gray-800">
             {aTagName === "Udemy Business"
