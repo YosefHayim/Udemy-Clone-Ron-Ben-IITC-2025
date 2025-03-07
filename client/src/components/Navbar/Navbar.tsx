@@ -60,12 +60,20 @@ const Navbar = () => {
               <Link to="/wishlist">
                 <AtagBtn aTagName={"My learning"} />
               </Link>
-              <Heart />
+              {cookie.trim().length > 1 && (
+                <div className="flex items-center">
+                  <Heart />
+                </div>
+              )}
               <Link to="/cart">
                 <Cart />
               </Link>
-              <div className="flex items-center gap-[0.3em]">
-                <Notifications />
+              <div className="flex items-center justify-around gap-[0.3em]">
+                {cookie.trim().length > 1 && (
+                  <div className="flex items-center">
+                    <Notifications />
+                  </div>
+                )}
                 <LoginBtn />
                 <SignupBtn />
                 <ChangeLanguage

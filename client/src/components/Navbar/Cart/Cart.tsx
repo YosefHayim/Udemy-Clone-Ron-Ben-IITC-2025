@@ -11,12 +11,12 @@ const Cart = () => {
 
   return (
     <div
-      className="relative"
+      className="relative mr-[0.3em]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div className="font-bold hover:text-purple-800 hover:bg-purple-100 py-[0.6rem] px-[0.6rem] rounded-md">
-        <MdOutlineShoppingCart className="w-6 h-6" />
+        <MdOutlineShoppingCart className="w-5 h-5" />
         <CartCoursesNumber />
       </div>
       {showCartHover && (
