@@ -80,7 +80,7 @@ const SearchInput = () => {
           type="text"
           value={searchTerm}
           placeholder="Search for anything"
-          className="w-full hover:bg-gray-100 hover:border-[#9194ac] p-[1.2em] placeholder:pl-[1em] flex-grow bg-transparent text-gray-700 focus:outline-none text-sm placeholder-gray-600 placeholder:text-sm placeholder:font-light focus:bg-white"
+          className="hover:bg-gray-100 hover:border-[#9194ac] p-[1.2em] placeholder:pl-[1em] flex-grow bg-transparent text-gray-700 focus:outline-none text-sm placeholder-gray-600 placeholder:text-sm placeholder:font-light focus:bg-white"
           onChange={handleOnChange}
         />
         <button

@@ -51,7 +51,7 @@ const Navbar = () => {
                     : "w-full flex items-center justify-center"
                 }
               >
-                <div className={isRootPathOnly ? "hidden" : "w-full block"}>
+                <div className={isRootPathOnly ? "hidden" : "flex-grow"}>
                   <SearchInput />
                 </div>
                 <AtagBtn aTagName={"Udemy Business"} />
