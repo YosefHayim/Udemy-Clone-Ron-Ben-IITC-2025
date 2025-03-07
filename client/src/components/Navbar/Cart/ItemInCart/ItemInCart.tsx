@@ -48,7 +48,7 @@ const ItemInCart = ({
     staleTime: 5 * 60 * 1000,
   });
 
-  if (error) {
+  if (error && !data) {
     navigate("/not/found");
   }
 
@@ -64,8 +64,8 @@ const ItemInCart = ({
     dispatch(
       removeCourseFromCart({
         courseId,
-        originalPrice: data.courseFullPrice || 0,
-        discountPrice: data.courseDiscountPrice || 0,
+        originalPrice: data?.courseFullPrice || 0,
+        discountPrice: data?.courseDiscountPrice || 0,
       })
     );
   };
@@ -86,7 +86,7 @@ const ItemInCart = ({
             <img
               id={courseId}
               src={data?.courseImg}
-              alt={`${data.courseName} image`}
+              // alt={`${data?.courseName} image`}
               className={`${courseImgSize}`}
             />
             <div
@@ -114,32 +114,32 @@ const ItemInCart = ({
         >
           <div className="flex flex-col items-start gap-[0.5em] w-[220px]">
             <CourseTitle
-              title={data.courseName}
+              title={data?.courseName}
               shortcutTitle={shortcutTitle}
             />
             <div className={`${showInstructor ? "block" : "hidden"}`}>
               <CourseInstructor
-                instructor={data.courseInstructor.fullName}
+                instructor={data?.courseInstructor.fullName}
                 shortCutInstructor={shortCutInstructor}
               />
             </div>
             <div className="flex flex-row items-start justify-start gap-[1em]">
               <div className={hide ? "block" : "hidden"}>
-                <CourseTag tagName={data.courseTag} />
+                <CourseTag tagName={data?.courseTag} />
               </div>
               <div className={hide ? "block" : "hidden"}>
                 <CourseRatings
                   stars=""
-                  avgRatings={data.averageRating}
-                  totalRatings={data.totalRatings}
+                  avgRatings={data?.averageRating}
+                  totalRatings={data?.totalRatings}
                 />
               </div>
             </div>
             <div className={hide ? "block" : "hidden"}>
               <CourseLength
-                courseLevel={data.courseLevel}
-                totalLectures={data.totalCourseLessons}
-                totalMinutes={data.totalCourseDuration}
+                courseLevel={data?.courseLevel}
+                totalLectures={data?.totalCourseLessons}
+                totalMinutes={data?.totalCourseDuration}
               />
             </div>
           </div>
@@ -162,7 +162,7 @@ const ItemInCart = ({
                     hide ? "flex flex-row items-center gap-[0.2em]" : "hidden"
                   }
                 >
-                  <b className="">₪{data.courseDiscountPrice}</b>
+                  <b className="">₪{data?.courseDiscountPrice}</b>
                   <BsFillTagFill />
                 </div>
                 <div
@@ -173,14 +173,16 @@ const ItemInCart = ({
                   }  items-start gap-[0.2em]`}
                 >
                   <p>
-                    {data && showDisPrice ? `₪${data.courseDiscountPrice}` : ""}
+                    {data && showDisPrice
+                      ? `₪${data?.courseDiscountPrice}`
+                      : ""}
                   </p>
                   <p
                     className={
                       showFullPrice ? "text-gray-600 line-through" : "hidden"
                     }
                   >
-                    ₪{data.courseFullPrice}
+                    ₪{data?.courseFullPrice}
                   </p>
                 </div>
               </div>
