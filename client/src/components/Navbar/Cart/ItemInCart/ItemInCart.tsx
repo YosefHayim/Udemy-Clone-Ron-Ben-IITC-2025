@@ -145,7 +145,10 @@ const ItemInCart = ({
           </div>
           <div className={hide ? "block" : "hidden"}>
             <div className="text-[0.8em] text-[#5022c3] hover:text-[#3b198f]">
-              <button className="cursor-pointer" onClick={handleRemove}>
+              <button
+                className="focus:outline-none cursor-pointer"
+                onClick={handleRemove}
+              >
                 Remove
               </button>
               <p className="cursor-pointer">Save for Later</p>

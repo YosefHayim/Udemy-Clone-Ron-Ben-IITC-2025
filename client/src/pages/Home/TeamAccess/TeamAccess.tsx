@@ -6,10 +6,10 @@ const TeamAccess = () => {
         access to Udemy's 27,000+ top-rated courses
       </p>
       <div className="flex gap-2">
-        <button className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md text-sm">
+        <button className="focus:outline-none bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md text-sm">
           Get Udemy Business
         </button>
-        <button className="bg-gray-200 hover:bg-gray-300 text-black py-2 px-4 rounded-md text-sm">
+        <button className="focus:outline-none bg-gray-200 hover:bg-gray-300 text-black py-2 px-4 rounded-md text-sm">
           Discard
         </button>
       </div>

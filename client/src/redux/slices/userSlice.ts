@@ -20,12 +20,16 @@ const initialState: UserState = {
   coursesBought: [],
   udemyCredits: 0,
   cookie: Cookies.get("cookie") || "",
+  isLoggedPreviouslyWithGoogle: false,
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    setIsLoggedWithGoogle: (state, action: PayloadAction<boolean>) => {
+      state.isLoggedPreviouslyWithGoogle = action.payload;
+    },
     setFullName: (state, action: PayloadAction<string>) => {
       state.fullName = action.payload;
     },
@@ -75,10 +79,19 @@ const userSlice = createSlice({
       state.fullName = "";
       state.profilePic = "";
       state.email = "";
+      state.headline = "";
       state.bio = "";
       state.role = "";
+      state.language = "english";
+      state.userLinks = {
+        linkedin: "",
+        xPlatform: "",
+        facebook: "",
+        youtube: "",
+        website: "",
+      };
       state.coursesBought = [];
-      state.cookie = "";
+      state.udemyCredits = 0;
     },
   },
 });
@@ -96,6 +109,7 @@ export const {
   clearUser,
   setUdemyCredits,
   setCookie,
+  setIsLoggedWithGoogle,
 } = userSlice.actions;
 
 export default userSlice.reducer;

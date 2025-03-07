@@ -61,13 +61,13 @@ const SearchInput = () => {
     enabled: !!debouncedTerm,
   });
 
+  useEffect(() => {}, [isRootPathOnly]);
+
   return (
     <div
-      className={
-        isRootPathOnly()
-          ? "flex items-center rounded-full w-5/6 z-[1800] mb-[0.7em]"
-          : ""
-      }
+      className={`flex items-center rounded-full
+      ${isRootPathOnly() ? "w-5/6" : "w-full"}
+      `}
     >
       <form
         onSubmit={handleSubmit}

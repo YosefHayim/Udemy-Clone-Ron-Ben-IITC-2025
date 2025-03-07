@@ -28,7 +28,7 @@ const PaymentMethods = () => {
             </div>
           </div>
           <div>
-            <Button className="hover:text-btnColor hover:bg-white bg-white shadow-none hover:hover-color-mix rounded-[0.2em] h-[3em] text-black w-full">
+            <Button className="focus:outline-none hover:text-btnColor hover:bg-white bg-white shadow-none hover:hover-color-mix rounded-[0.2em] h-[3em] text-black w-full">
               Remove
             </Button>
           </div>

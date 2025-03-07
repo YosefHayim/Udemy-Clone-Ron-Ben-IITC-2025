@@ -36,52 +36,52 @@ const OverviewTab: React.FC = () => {
 
   return (
     <div id="overview" className="p-20 pt-5">
-    <div className="ml-4">
-      <h2 className="text-2xl mb-4">
-        {course.courseDescription || "No Description"}
-      </h2>
-      <div className="flex items-start gap-10 text-xl py-1">
-        <div className="flex flex-col">
-          <div className="flex items-center">
-            <span className="text-[#4d3105] text-base font-bold mr-2">
-              {course.averageRating.toFixed(1) || "0.0"}
-            </span>
-            <span className="text-[#b4690e] text-base font-bold">
-              <FaStar />
+      <div className="ml-4">
+        <h2 className="text-2xl mb-4">
+          {course.courseDescription || "No Description"}
+        </h2>
+        <div className="flex items-start gap-10 text-xl py-1">
+          <div className="flex flex-col">
+            <div className="flex items-center">
+              <span className="text-[#4d3105] text-base font-bold mr-2">
+                {course.averageRating.toFixed(1) || "0.0"}
+              </span>
+              <span className="text-[#b4690e] text-base font-bold">
+                <FaStar />
+              </span>
+            </div>
+            <span className="text-gray-500 text-xs">
+              {course.totalRatings || 0} ratings
             </span>
           </div>
-          <span className="text-gray-500 text-xs">
-            {course.totalRatings || 0} ratings
+          <div className="flex flex-col">
+            <div className="flex items-center">
+              <span className="text-[#000000] text-base font-bold mr-2">
+                {course.totalStudentsEnrolled.count || "0.0"}
+              </span>
+            </div>
+            <span className="text-gray-500 text-xs">students</span>
+          </div>
+          <div className="flex flex-col">
+            <div className="flex items-center">
+              <span className="text-[#000000] text-base font-bold mr-2">
+                {course.totalCourseDuration || "0.0"} hours
+              </span>
+            </div>
+            <span className="text-gray-500 text-xs">Total</span>
+          </div>
+        </div>
+        <div className="flex flex-col ">
+          <span>
+            <div className="inline-flex flex-row items-center text-sm pt-3 gap-2">
+              <BsPatchExclamationFill className="" />
+              Last update{" "}
+              {new Date(course.updatedAt).toLocaleString("en-US", {
+                month: "long",
+                year: "numeric",
+              })}
+            </div>
           </span>
-        </div>
-        <div className="flex flex-col">
-          <div className="flex items-center">
-            <span className="text-[#000000] text-base font-bold mr-2">
-              {course.totalStudentsEnrolled.count || "0.0"}
-            </span>
-          </div>
-          <span className="text-gray-500 text-xs">students</span>
-        </div>
-        <div className="flex flex-col">
-          <div className="flex items-center">
-            <span className="text-[#000000] text-base font-bold mr-2">
-              {course.totalCourseDuration || "0.0"} hours
-            </span>
-          </div>
-          <span className="text-gray-500 text-xs">Total</span>
-        </div>
-      </div>
-      <div className="flex flex-col ">
-        <span>
-          <div className="inline-flex flex-row items-center text-sm pt-3 gap-2">
-            <BsPatchExclamationFill className="" />
-            Last update{" "}
-            {new Date(course.updatedAt).toLocaleString("en-US", {
-              month: "long",
-              year: "numeric",
-            })}
-          </div>
-        </span>
         </div>
 
         <span>
@@ -102,10 +102,10 @@ const OverviewTab: React.FC = () => {
           aside to learn and get reminders using your learning scheduler.
         </p>
         <div className="flex flex-row gap-2">
-          <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-600">
+          <button className="focus:outline-none bg-black text-white px-4 py-2 rounded hover:bg-gray-600">
             Get started
           </button>
-          <button className="px-4 py-2 text-black  border-gray-300 rounded hover:border-white ">
+          <button className="focus:outline-none px-4 py-2 text-black  border-gray-300 rounded hover:border-white ">
             Dismiss
           </button>
         </div>

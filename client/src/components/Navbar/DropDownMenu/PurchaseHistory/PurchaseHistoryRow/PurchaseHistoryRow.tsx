@@ -37,7 +37,7 @@ const PurchaseHistoryRow = () => {
           >
             Receipt
           </Button>
-          <Button className="rounded-[0.2em] border border-black px-[0.8em] bg-white text-black hover:bg-gray-100">
+          <Button className="focus:outline-none rounded-[0.2em] border border-black px-[0.8em] bg-white text-black hover:bg-gray-100">
             Invoice
           </Button>
         </div>

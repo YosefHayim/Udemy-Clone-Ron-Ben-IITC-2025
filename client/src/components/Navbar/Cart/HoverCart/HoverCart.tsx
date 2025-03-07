@@ -71,7 +71,7 @@ const HoverCart = () => {
               <b className="text-[1.5em]">
                 Total: ₪{totalToPay ? totalToPay.toFixed(2) : "0.00"}
               </b>
-              <Button className="mt-[1em] w-full rounded-[0.3em] bg-btnColor hover:bg-btnHoverColor py-[1.7em] font-bold">
+              <Button className="focus:outline-none mt-[1em] w-full rounded-[0.3em] bg-btnColor hover:bg-btnHoverColor py-[1.7em] font-bold">
                 <Link to="/cart" className="cursor-pointer">
                   Go to cart
                 </Link>

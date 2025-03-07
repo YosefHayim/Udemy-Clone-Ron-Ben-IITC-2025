@@ -112,7 +112,7 @@ const Carousel = () => {
             </div>
           ))}
         </div>
-        <button className="px-6 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-900 transition duration-300">
+        <button className="focus:outline-none px-6 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-900 transition duration-300">
           {slides[currentSlide].buttonText}
         </button>
       </div>

@@ -141,7 +141,7 @@ const Section = () => {
 
         {/* Botão Mostrar Mais */}
         <div className="mt-6 text-left">
-          <button className="px-6 py-3 bg-white border border-black rounded-lg font-bold text-black hover:bg-gray-100">
+          <button className="focus:outline-none px-6 py-3 bg-white border border-black rounded-lg font-bold text-black hover:bg-gray-100">
             Show all {activeCategory} courses
           </button>
         </div>

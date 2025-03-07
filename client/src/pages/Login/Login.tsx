@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import loginUser from "@/api/users/loginUser";
 import { FcGoogle } from "react-icons/fc";
@@ -11,11 +11,22 @@ import { BiSolidErrorAlt } from "react-icons/bi";
 import { useGoogleLogin } from "@react-oauth/google";
 import googleLogin from "@/api/users/googleLogin";
 import Loader from "@/components/Loader/Loader";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux";
 
 const Login = () => {
   const navigate = useNavigate();
   const [isError, setShowIsError] = useState(false);
+  const [regLogin, setRegLogin] = useState(false);
   const [isLoading, setLoading] = useState(false);
+  const isLoggedPreviouslyWithGoogle = useSelector(
+    (state: RootState) => state.user.isLoggedPreviouslyWithGoogle
+  );
+
+  const handleRegularLogin = () => {
+    setRegLogin((prev) => !prev);
+    console.log(regLogin);
+  };
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
@@ -45,18 +56,17 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
     }, 2000);
+
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email") as string;
+
     setEmailUser(email);
     loginMutation.mutate({ email });
-  };
-
-  const navigateBusiness = () => {
-    navigate("/login-Business");
   };
 
   const handleGoogle = useGoogleLogin({
@@ -126,14 +136,13 @@ const Login = () => {
               {isLoading ? (
                 <Loader useSmallLoading={true} hSize="" />
               ) : (
-                <div className="flex flex-row">
+                <div className="flex items-center">
                   <MdEmail className="w-5 h-5" />
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
                   />
-
                   <span className="text-[1rem] font-bold">
                     Continue with email
                   </span>
@@ -141,7 +150,6 @@ const Login = () => {
               )}
             </button>
           </form>
-
           <div className="flex items-center my-6">
             <hr className="flex-grow border-gray-300" />
             <span className="mx-4 text-sm text-grayNavbarTxt">
@@ -149,11 +157,12 @@ const Login = () => {
             </span>
             <hr className="flex-grow border-gray-300" />
           </div>
-
           <div className="flex justify-center space-x-5">
             <button
               onClick={handleGoogle}
-              className="p-2 border border-btnColor rounded-sm hover:bg-gray-100"
+              className={`${
+                isLoggedPreviouslyWithGoogle ? "" : ""
+              } p-2 border border-btnColor rounded-sm hover:bg-gray-100`}
             >
               <FcGoogle className="w-7 h-7" />
             </button>
@@ -164,23 +173,32 @@ const Login = () => {
               <FaApple className="w-7 h-7 opacity-85" />
             </button>
           </div>
-
-          <div className="mt-16 space-y-3 text-center text-base font-medium text-courseNameColorTxt bg-gray-100">
-            <div className="border-b-2 py-3">
-              Don’t have an account?
-              <a
-                href="/signup"
-                className="text-btnColor underline ml-1 font-bold underline-offset-[5px]"
-              >
-                Sign up
-              </a>
-            </div>
-            <button
-              onClick={navigateBusiness}
-              className="text-btnColor underline font-bold underline-offset-[5px] pb-5 pt-0"
+          <div className="mt-16 space-y-3 text-center text-base font-medium text-courseNameColorTxt bg-gray-100 p-[0.7em]">
+            <div
+              onClick={handleRegularLogin}
+              className={`${regLogin ? "hidden" : "block"}`}
             >
-              Log in with your organization
-            </button>
+              <button
+                className={`focus:outline-none hover:text-purple-800 text-btnColor underline font-bold underline-offset-[5px] p-[0.7em]`}
+              >
+                Log in with different account
+              </button>
+              <hr />
+            </div>
+            <Link to="/signup">
+              <button className="underline-offset-[5px] p-[0.7em]">
+                Don't have an account?{" "}
+                <span className=" text-btnColor font-bold underline">
+                  Sign up
+                </span>
+              </button>
+            </Link>
+            <hr />
+            <Link to="/login-Business">
+              <button className="text-btnColor underline font-bold underline-offset-[5px] p-[0.7em]">
+                Log in with your organization
+              </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@ import {
   setEmailAddress,
   setFullName,
   setHeadline,
+  setIsLoggedWithGoogle,
   setLanguage,
   setProfilePic,
   setRole,
@@ -77,6 +78,7 @@ const VerifyCode = () => {
     dispatch(setRole(decoded.role));
     dispatch(setCoursesBought(decoded.coursesBought));
     dispatch(setUdemyCredits(decoded.udemyCredits));
+    dispatch(setIsLoggedWithGoogle(decoded.isLoggedPreviouslyWithGoogle));
   };
 
   const handleResendCode = () => {

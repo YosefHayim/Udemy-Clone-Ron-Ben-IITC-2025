@@ -12,7 +12,7 @@ const TrendsReport = () => {
           Our 2025 Global Learning & Skills Trends Report is out now! Find out
           how to build the skills to keep pace with change.
         </p>
-        <button className="mt-8 px-6 py-3 border border-gray-900 text-gray-900 font-bold rounded-lg hover:bg-gray-100 transition duration-200">
+        <button className="focus:outline-none mt-8 px-6 py-3 border border-gray-900 text-gray-900 font-bold rounded-lg hover:bg-gray-100 transition duration-200">
           Get the report →
         </button>
       </div>

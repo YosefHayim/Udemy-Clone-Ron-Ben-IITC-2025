@@ -105,7 +105,7 @@ const CourseContent: React.FC = () => {
           >
             <div className="flex items-center justify-between p-4 bg-[#F7F9FA]">
               <CollapsibleTrigger asChild>
-                <button className="flex items-center w-full text-left focus:outline-none focus-visible:outline-none">
+                <button className="focus:outline-none flex items-center w-full text-left focus:outline-none focus-visible:outline-none">
                   <span className="text-lg font-medium">
                     Section {idx + 1}: {section.sectionId.title}
                   </span>
@@ -128,9 +128,7 @@ const CourseContent: React.FC = () => {
                     <li
                       key={lesson.lessonId._id}
                       className={`flex items-center gap-3 mb-2 p-2 ${
-                        isCurrentLesson
-                          ? "bg-slate-400 "
-                          : "hover:bg-slate-400"
+                        isCurrentLesson ? "bg-slate-400 " : "hover:bg-slate-400"
                       }`}
                     >
                       <Checkbox

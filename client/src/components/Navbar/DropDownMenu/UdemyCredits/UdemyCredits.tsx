@@ -32,7 +32,7 @@ const UdemyCredits = () => {
                 placeholder="Enter credit code"
                 className="rounded-[0.1em] border border-black"
               ></Input>
-              <Button className="font-bold rounded-[0.1em]">Redeem</Button>
+              <Button className="focus:outline-none font-bold rounded-[0.1em]">Redeem</Button>
             </form>
           </div>
         </div>

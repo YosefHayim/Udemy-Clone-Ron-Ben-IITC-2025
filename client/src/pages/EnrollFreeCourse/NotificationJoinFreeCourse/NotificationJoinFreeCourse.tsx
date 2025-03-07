@@ -19,7 +19,7 @@ const NotificationJoinFreeCourse = ({ setClicked, isClicked }) => {
             <b>Great choice, {fullName}!</b>
           </div>
           <div className="ml-[1em]">
-            <button className="border border-[#206241] rounded-[0.2em] p-[0.4em] text-[#206241] flex flex-row items-center gap-[0.2em]">
+            <button className="focus:outline-none border border-[#206241] rounded-[0.2em] p-[0.4em] text-[#206241] flex flex-row items-center gap-[0.2em]">
               <b onClick={handleShareCourse}>Share this course</b>
               <IoMdShareAlt />
             </button>

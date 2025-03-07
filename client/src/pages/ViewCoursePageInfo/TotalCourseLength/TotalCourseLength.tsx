@@ -11,7 +11,7 @@ const TotalCourseLength: React.FC<{
           <p>{totalCourseLessons} lectures</p>
           <p>{totalCourseDuration}h total length</p>
         </div>
-        <button className="border-none font-bold text-[#5022c3]">
+        <button className="focus:outline-none border-none font-bold text-[#5022c3]">
           Expand all sections
         </button>
       </div>

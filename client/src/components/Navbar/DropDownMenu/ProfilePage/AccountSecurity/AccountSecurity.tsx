@@ -22,7 +22,7 @@ const AccountSecurity = () => {
             </label>
             <div className="flex items-center justify-between border rounded-md px-4 py-2 bg-gray-50">
               <span className="text-gray-700">ben.klinski@gmail.com</span>
-              <button className="text-purple-600 hover:text-purple-800">
+              <button className="focus:outline-none text-purple-600 hover:text-purple-800">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

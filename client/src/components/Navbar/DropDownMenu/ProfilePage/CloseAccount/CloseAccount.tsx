@@ -24,7 +24,7 @@ const CloseAccount = () => {
             request.
           </p>
           <div className="mt-[1em]">
-            <Button className="px-[1em] py-[1.5em] bg-btnColor text-white rounded-[0.2em] shadow-md hover:bg-[#892de1] focus:outline-none focus:ring-2 focus:ring-purple-500 mr-4 font-bold">
+            <Button className="focus:outline-none px-[1em] py-[1.5em] bg-btnColor text-white rounded-[0.2em] shadow-md hover:bg-[#892de1] focus:outline-none focus:ring-2 focus:ring-purple-500 mr-4 font-bold">
               Close account
             </Button>
           </div>

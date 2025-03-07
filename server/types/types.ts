@@ -423,4 +423,5 @@ export interface Payload {
     linkedin: string;
     youtube: string;
   };
+  isLoggedPreviouslyWithGoogle: boolean;
 }

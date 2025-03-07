@@ -14,7 +14,7 @@ const FooterLogin: React.FC = () => {
 
       {/* Botão */}
       <div>
-        <button className="px-4 py-2 text-sm font-bold text-white border border-white rounded hover:bg-gray-700">
+        <button className="focus:outline-none px-4 py-2 text-sm font-bold text-white border border-white rounded hover:bg-gray-700">
           Teach on Udemy
         </button>
       </div>

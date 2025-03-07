@@ -82,7 +82,7 @@ const PlansSection = () => {
             {plan.details && (
               <p className="text-sm text-gray-600 mt-1">{plan.details}</p>
             )}
-            <button className="mt-4 w-full bg-black text-white py-2 rounded font-bold hover:bg-gray-800">
+            <button className="focus:outline-none mt-4 w-full bg-black text-white py-2 rounded font-bold hover:bg-gray-800">
               {plan.buttonText}
             </button>
             <ul className="mt-4 space-y-2 text-sm text-gray-600">

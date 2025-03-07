@@ -19,7 +19,7 @@ const TrendingNow = () => {
             See ChatGPT courses →
           </Link>
           <p className="text-gray-600 text-sm mt-1">3,957,244 learners</p>
-          <button className="mt-6 px-6 py-3 border border-gray-900 text-gray-900 font-bold rounded-lg hover:bg-gray-100 transition duration-200 flex items-center space-x-2">
+          <button className="focus:outline-none mt-6 px-6 py-3 border border-gray-900 text-gray-900 font-bold rounded-lg hover:bg-gray-100 transition duration-200 flex items-center space-x-2">
             Show all trending skills
             <span className="text-lg">↗</span>
           </button>

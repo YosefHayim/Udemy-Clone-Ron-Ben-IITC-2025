@@ -68,7 +68,7 @@ const DialogOfAllReviews: React.FC<{
                         type="text"
                         className="border border-black focus:outline-none"
                       />
-                      <Button className="border border-black hover:bg-[#1739531f] py-[0.5em] px-[0.7em] bg-white">
+                      <Button className="focus:outline-none border border-black hover:bg-[#1739531f] py-[0.5em] px-[0.7em] bg-white">
                         <MdSearch className="text-black" />
                       </Button>
                     </form>

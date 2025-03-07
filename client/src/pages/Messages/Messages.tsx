@@ -27,7 +27,7 @@ const Messages = () => {
       <div className="w-full flex flex-row items-start justify-start">
         <div className="ml-[0.5em] flex flex-col items-start justify-start w-1/3 flex-wrap gap-[0.5em] bg-[#F6F7F9] h-[50vh] p-[0.5em]">
           <div className="w-full flex flex-row items-center justify-start gap-[0.5em]">
-            <button className="text-btnColor border border-btnColor p-[0.5em] rounded-[0.2em] font-bold hover:bg-purpleHoverBtn">
+            <button className="focus:outline-none text-btnColor border border-btnColor p-[0.5em] rounded-[0.2em] font-bold hover:bg-purpleHoverBtn">
               Compose
             </button>
             <select
@@ -49,7 +49,7 @@ const Messages = () => {
               placeholder="Search"
               className="hover:bg-gray-100 w-full bg-white border border-gray-400 p-[0.5em] rounded-[0.2em] placeholder:text-gray-600"
             />
-            <button className="hover:bg-[#892de1] bg-btnColor p-[0.5em] rounded-[0.2em]">
+            <button className="focus:outline-none hover:bg-[#892de1] bg-btnColor p-[0.5em] rounded-[0.2em]">
               <IoMdSearch className="text-white text-[1.5em]" />
             </button>
           </div>

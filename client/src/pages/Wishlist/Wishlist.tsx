@@ -171,7 +171,7 @@ const Wishlist: React.FC = () => {
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
-                  <button className=" mt-[2em] font-bold text-gray-400 cursor-not-allowed border-none">
+                  <button className="focus:outline-none  mt-[2em] font-bold text-gray-400 cursor-not-allowed border-none">
                     Reset
                   </button>
                 </div>
@@ -183,7 +183,7 @@ const Wishlist: React.FC = () => {
                       placeholder="Search my courses"
                       className="bg-white border border-gray-400 p-[0.7em] rounded-[0.2em] placeholder:text-gray-600"
                     />
-                    <button className="hover:bg-[#892de1] bg-btnColor p-[0.7em] rounded-[0.2em]">
+                    <button className="focus:outline-none hover:bg-[#892de1] bg-btnColor p-[0.7em] rounded-[0.2em]">
                       <IoMdSearch className="text-white text-[1.5em]" />
                     </button>
                   </form>
@@ -219,7 +219,7 @@ const Wishlist: React.FC = () => {
               </div>
             </div>
           ) : (
-            <Button className="font-bold rounded-[0.2em] mt-[10em]">
+            <Button className="focus:outline-none font-bold rounded-[0.2em] mt-[10em]">
               <Link to="/">Browse all courses</Link>
             </Button>
           )}

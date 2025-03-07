@@ -64,6 +64,7 @@ export interface UserState {
     linkedin: string;
     youtube: string;
   };
+  isLoggedPreviouslyWithGoogle: boolean;
 }
 
 export interface searchResultCourseImgProps {
@@ -237,6 +238,7 @@ export interface DecodedTokenProps {
     facebook: string;
     instagram: string;
   };
+  isLoggedPreviouslyWithGoogle: boolean;
 }
 
 export type FormErrors = {

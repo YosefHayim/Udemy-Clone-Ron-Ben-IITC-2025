@@ -29,7 +29,7 @@ const Navbar = () => {
     if (currentCookie && currentCookie !== cookie) {
       dispatch(setCookie(currentCookie));
     }
-  }, [cookie, dispatch]);
+  }, [cookie, dispatch, isRootPathOnly]);
 
   return (
     <div>

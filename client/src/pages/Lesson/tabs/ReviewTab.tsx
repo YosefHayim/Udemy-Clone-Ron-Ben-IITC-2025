@@ -100,7 +100,7 @@ const ReviewsTab = ({ avgRating = 1 }) => {
         />
 
         {/* Search Button */}
-        <Button className="bg-btnColor hover:bg-[#7551a7] px-4 min-h-[48px] ">
+        <Button className="focus:outline-none bg-btnColor hover:bg-[#7551a7] px-4 min-h-[48px] ">
           <MdSearch className="text-black" />
         </Button>
 

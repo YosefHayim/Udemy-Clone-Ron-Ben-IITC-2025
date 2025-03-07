@@ -23,7 +23,9 @@ interface CollapsibleSectionsProps {
   sections: Section[];
 }
 
-const CollapsibleSections: React.FC<CollapsibleSectionsProps> = ({ sections }) => {
+const CollapsibleSections: React.FC<CollapsibleSectionsProps> = ({
+  sections,
+}) => {
   return (
     <div>
       {sections.map((section, idx) => (
@@ -34,7 +36,7 @@ const CollapsibleSections: React.FC<CollapsibleSectionsProps> = ({ sections }) =
         >
           <div className="flex items-center justify-between p-4 bg-[#F7F9FA]">
             <CollapsibleTrigger asChild>
-              <button className="flex items-center w-full text-left focus:outline-none">
+              <button className="focus:outline-none flex items-center w-full text-left focus:outline-none">
                 <span className="text-lg font-medium">
                   Section {idx + 1}: {section.title}
                 </span>

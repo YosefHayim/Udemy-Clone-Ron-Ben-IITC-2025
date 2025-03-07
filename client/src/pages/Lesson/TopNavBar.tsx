@@ -106,12 +106,12 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
             )}
           </div>
           <div>
-            <button className="border px-3 h-[2rem] flex p-4 justify-between items-center hover:border-white py-1 rounded-sm text-sm hover:bg-gray-600">
+            <button className="focus:outline-none border px-3 h-[2rem] flex p-4 justify-between items-center hover:border-white py-1 rounded-sm text-sm hover:bg-gray-600">
               Share
               <IoMdShareAlt className="ml-2" />
             </button>
           </div>
-          <button className="hover:bg-gray-300 border-white rounded-sm">
+          <button className="focus:outline-none hover:bg-gray-300 border-white rounded-sm">
             <HiDotsVertical className="border size-8 p-2 rounded-sm" />
           </button>
         </div>

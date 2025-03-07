@@ -814,6 +814,7 @@ const googleLoginOrSignUp = catchAsync(
         language: user.preferredLanguage,
         headline: user.headline,
         fieldLearning: user.fieldLearning,
+        isLoggedPreviouslyWithGoogle: true,
       });
 
       res.cookie("cookie", token, {
