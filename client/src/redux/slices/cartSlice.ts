@@ -44,7 +44,7 @@ const cartSlice = createSlice({
     },
     setTotalOriginalCoursePrices: (state, action: PayloadAction<number>) => {
       if (!action.payload || isNaN(action.payload)) {
-        console.error("Invalid fullPrice payload:", action.payload);
+        console.log("Invalid fullPrice payload:", action.payload);
         return;
       }
       state.totalCoursesOriginalPrices += action.payload; // Add original price
@@ -52,7 +52,7 @@ const cartSlice = createSlice({
 
     setTotalCourseDiscountPrices: (state, action: PayloadAction<number>) => {
       if (!action.payload || isNaN(action.payload)) {
-        console.error("Invalid discountPrice payload:", action.payload);
+        console.log("Invalid discountPrice payload:", action.payload);
         return;
       }
       state.totalCourseDiscountPrices += action.payload; // Add discounted price
@@ -85,7 +85,7 @@ const cartSlice = createSlice({
       const { courseId, originalPrice = 0, discountPrice = 0 } = action.payload;
 
       if (!courseId) {
-        console.error("Invalid courseId:", courseId);
+        console.log("Invalid courseId:", courseId);
         return;
       }
 

@@ -9,13 +9,13 @@ const registerUser: fn = async (data: RegisterUserPayload): Promise<any> => {
       `${localhostUrl}/api/user/auth/signup`,
       data
     );
-    if (response) {
-      console.log(response);
-
-      return response.data;
+    if (response.status !== 200) {
+      throw new Error("Registration failed");
     }
+    console.log(response);
+    return response.data;
   } catch (error) {
-    console.error(`Error occurred during the signup: `, error);
+    console.log(`Error occurred during the signup: `, error);
     return undefined;
   }
 };

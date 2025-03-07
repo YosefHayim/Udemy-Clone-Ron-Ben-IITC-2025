@@ -3,7 +3,6 @@ import { Note } from "../types/types";
 
 // Define response types
 
-
 type AddNotePayload = {
   seconds: number;
   text: string;
@@ -15,7 +14,6 @@ type EditNoteFn = (
   noteId: string,
   payload: AddNotePayload
 ) => Promise<Note>;
-
 
 type FetchNotesFn = (courseId: string) => Promise<Note[]>;
 type AddNoteFn = (
@@ -34,7 +32,7 @@ type DeleteNoteFn = (
  */
 const fetchAllNotes: FetchNotesFn = async (courseId) => {
   if (!courseId) {
-    console.error("Invalid course ID provided.");
+    console.log("Invalid course ID provided.");
     throw new Error("Course ID is required.");
   }
 
@@ -50,7 +48,7 @@ const fetchAllNotes: FetchNotesFn = async (courseId) => {
     console.warn("Unexpected response structure:", response?.data);
     throw new Error("Invalid response format.");
   } catch (error: any) {
-    console.error(`Error fetching notes for course ID ${courseId}:`, error);
+    console.log(`Error fetching notes for course ID ${courseId}:`, error);
     throw new Error(
       error.response?.data?.message ||
         `Failed to fetch notes for course ID ${courseId}`
@@ -63,7 +61,7 @@ const fetchAllNotes: FetchNotesFn = async (courseId) => {
  */
 const addNote: AddNoteFn = async (courseId, lessonId, payload) => {
   if (!courseId || !lessonId) {
-    console.error("Invalid course ID or lesson ID provided.");
+    console.log("Invalid course ID or lesson ID provided.");
     throw new Error("Course ID and Lesson ID are required.");
   }
 
@@ -79,7 +77,7 @@ const addNote: AddNoteFn = async (courseId, lessonId, payload) => {
     console.warn("Unexpected response structure:", response?.data);
     throw new Error("Failed to add note.");
   } catch (error: any) {
-    console.error(
+    console.log(
       `Error adding note for course ${courseId} and lesson ${lessonId}:`,
       error
     );
@@ -95,7 +93,7 @@ const addNote: AddNoteFn = async (courseId, lessonId, payload) => {
  */
 const deleteNote: DeleteNoteFn = async (courseId, lessonId, noteId) => {
   if (!courseId || !lessonId || !noteId) {
-    console.error("Invalid course ID, lesson ID, or note ID provided.");
+    console.log("Invalid course ID, lesson ID, or note ID provided.");
     throw new Error("Course ID, Lesson ID, and Note ID are required.");
   }
 
@@ -108,7 +106,7 @@ const deleteNote: DeleteNoteFn = async (courseId, lessonId, noteId) => {
       console.warn("No data returned from deleting the note.");
     }
   } catch (error: any) {
-    console.error(
+    console.log(
       `Error deleting note for course ${courseId}, lesson ${lessonId}, and note ${noteId}:`,
       error
     );
@@ -121,7 +119,7 @@ const deleteNote: DeleteNoteFn = async (courseId, lessonId, noteId) => {
 
 const editNote: EditNoteFn = async (courseId, lessonId, noteId, payload) => {
   if (!courseId || !lessonId || !noteId || !payload.text) {
-    console.error("Invalid parameters provided for editing note.");
+    console.log("Invalid parameters provided for editing note.");
     throw new Error("All parameters are required.");
   }
 
@@ -137,15 +135,10 @@ const editNote: EditNoteFn = async (courseId, lessonId, noteId, payload) => {
     console.warn("Unexpected response structure:", response?.data);
     throw new Error("Invalid response format.");
   } catch (error: any) {
-    console.error(`Error editing note for course ID ${courseId}:`, error);
+    console.log(`Error editing note for course ID ${courseId}:`, error);
     throw new Error("Error editing note.");
   }
 };
 
 // Export all methods as named exports
-export {
-  fetchAllNotes,
-  addNote,
-  deleteNote,
-  editNote
-};
+export { fetchAllNotes, addNote, deleteNote, editNote };

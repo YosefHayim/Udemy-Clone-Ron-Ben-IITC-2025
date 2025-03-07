@@ -44,7 +44,7 @@ const DialogReportReview: React.FC<{
       setIsClicked(true);
     },
     onError: (error) => {
-      console.error("Error reporting review:", error);
+      console.log("Error reporting review:", error);
     },
   });
 

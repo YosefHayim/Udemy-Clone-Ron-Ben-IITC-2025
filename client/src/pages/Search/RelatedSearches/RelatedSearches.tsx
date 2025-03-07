@@ -26,7 +26,7 @@ const RelatedSearches = () => {
         );
         setSuggestions(response.data.map((item: any) => item.word));
       } catch (error) {
-        console.error("Error fetching autocomplete suggestions:", error);
+        console.log("Error fetching autocomplete suggestions:", error);
       }
     } else {
       setSuggestions([]);

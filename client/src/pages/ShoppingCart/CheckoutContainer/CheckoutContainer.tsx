@@ -43,14 +43,14 @@ const CheckoutContainer: React.FC = () => {
       try {
         decoded = jwtDecode<DecodedTokenProps>(cookie);
       } catch (err: any) {
-        console.error("Failed to decode cookie:", err.message);
+        console.log("Failed to decode cookie:", err.message);
         navigate("/login");
         return;
       }
 
       const isLogged = dispatch(setRole(decoded?.role));
       if (!isLogged) {
-        console.error("User role dispatch failed. Redirecting to login.");
+        console.log("User role dispatch failed. Redirecting to login.");
         navigate("/login");
         return;
       }

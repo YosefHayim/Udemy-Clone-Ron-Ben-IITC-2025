@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import loginUser from "@/api/users/loginUser";
@@ -13,6 +13,7 @@ import googleLogin from "@/api/users/googleLogin";
 import Loader from "@/components/Loader/Loader";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
+import { Button } from "@/components/ui/button";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -34,8 +35,9 @@ const Login = () => {
       navigate("/verify-code");
     },
     onError: (error) => {
-      console.error("Error during login process:", error);
+      console.log("Error during login process:", error);
       setShowIsError(true);
+      return;
     },
   });
 
@@ -45,7 +47,7 @@ const Login = () => {
       navigate("/");
     },
     onError: (error) => {
-      console.error("Error during google login process:", error);
+      console.log("Error during google login process:", error);
       setShowIsError(true);
     },
   });
@@ -84,6 +86,8 @@ const Login = () => {
     redirect_uri: "http://127.0.0.1:5137",
   });
 
+  useEffect(() => {}, [isLoggedPreviouslyWithGoogle]);
+
   return (
     <div className="h-screen bg-cover bg-center">
       <div className="flex-1 flex items-center justify-center">
@@ -113,67 +117,77 @@ const Login = () => {
               </p>
             </div>
           </div>
-          <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
-            <div className="relative">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email"
-                className="w-full p-[1em] bg-white text-black focus:bg-white focus:text-black focus:outline-none border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800"
-              />
-              <div className={isError ? "block" : "hidden"}>
-                <span className="text-red-600 absolute font-bold top-[10%] right-[87%]">
-                  Email
-                </span>
-                <BiSolidErrorAlt className="text-[1.5em] text-red-600 absolute top-[10%] right-[82%]" />
-              </div>
-            </div>
-            <button
-              type="submit"
-              className="w-full py-3 rounded-md bg-btnColor hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
-            >
-              {isLoading ? (
-                <Loader useSmallLoading={true} hSize="" />
-              ) : (
-                <div className="flex items-center">
-                  <MdEmail className="w-5 h-5" />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
-                  />
-                  <span className="text-[1rem] font-bold">
-                    Continue with email
+          {!isLoggedPreviouslyWithGoogle && (
+            <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
+              <div className="relative">
+                <input
+                  required={true}
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  className="w-full p-[1em] bg-white text-black focus:bg-white focus:text-black focus:outline-none border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800"
+                />
+                <div className={isError ? "block" : "hidden"}>
+                  <span className="text-red-600 absolute font-bold top-[10%] right-[87%]">
+                    Email
                   </span>
+                  <BiSolidErrorAlt className="text-[1.5em] text-red-600 absolute top-[10%] right-[82%]" />
                 </div>
-              )}
-            </button>
-          </form>
-          <div className="flex items-center my-6">
-            <hr className="flex-grow border-gray-300" />
-            <span className="mx-4 text-sm text-grayNavbarTxt">
-              Other log in options
-            </span>
-            <hr className="flex-grow border-gray-300" />
-          </div>
-          <div className="flex justify-center space-x-5">
-            <button
-              onClick={handleGoogle}
-              className={`${
-                isLoggedPreviouslyWithGoogle && ""
-              } p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn`}
-            >
-              <FcGoogle className="w-7 h-7" />
-            </button>
-            <button className="p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
-              <FaFacebook className="w-7 h-7 text-blue-600" />
-            </button>
-            <button className="p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
-              <FaApple className="w-7 h-7 opacity-85" />
-            </button>
-          </div>
-          <div className="mt-16 space-y-3 text-center text-base font-medium text-courseNameColorTxt bg-gray-100 p-[0.7em]">
+              </div>
+              <button
+                type="submit"
+                className="w-full py-3 rounded-[0.4em] bg-btnColor hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
+              >
+                {isLoading ? (
+                  <Loader useSmallLoading={true} hSize="" />
+                ) : (
+                  <div className="flex items-center">
+                    <MdEmail size={25} />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
+                    />
+                    <span className="text-[1rem] font-bold">
+                      Continue with email
+                    </span>
+                  </div>
+                )}
+              </button>
+            </form>
+          )}
+          {!isLoggedPreviouslyWithGoogle && (
+            <div className="w-full flex items-center my-6">
+              <hr className="flex-grow border-gray-300" />
+              <span className="mx-4 text-sm text-grayNavbarTxt">
+                Other log in options
+              </span>
+              <hr className="flex-grow border-gray-300" />
+            </div>
+          )}
+          {!isLoggedPreviouslyWithGoogle && (
+            <div className="flex justify-center space-x-5 mb-[5em]">
+              <button
+                onClick={handleGoogle}
+                className={`p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn`}
+              >
+                <FcGoogle className="w-7 h-7" />
+              </button>
+              <button className="p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
+                <FaFacebook className="w-7 h-7 text-blue-600" />
+              </button>
+              <button className="p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
+                <FaApple className="w-7 h-7 opacity-85" />
+              </button>
+            </div>
+          )}
+          {isLoggedPreviouslyWithGoogle && (
+            <Button className="h-[3em] hover:bg-purpleHoverBtn mb-[0.5em] w-full rounded-[0.2em] font-bold bg-white text-purple-700 flex items-center border border-purple-600 justify-start px-[0.5em]">
+              <FcGoogle size={20} /> Continue with Google
+            </Button>
+          )}
+          <div className="space-y-3 text-center text-base font-medium text-courseNameColorTxt bg-gray-100 p-[0.7em]">
             <div
               onClick={handleRegularLogin}
               className={`${regLogin ? "hidden" : "block"}`}

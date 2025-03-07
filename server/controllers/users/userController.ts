@@ -500,7 +500,7 @@ const joinCourseById = catchAsync(
         courseProgress: initCourseProgress,
       });
     } catch (error) {
-      console.error("Error in joinCourseById:", error);
+      console.log("Error in joinCourseById:", error);
       return next(createError("An unexpected error occurred.", 500));
     }
   }
@@ -830,7 +830,7 @@ const googleLoginOrSignUp = catchAsync(
         status: "success",
       });
     } catch (error) {
-      console.error(
+      console.log(
         "Google login error:",
         (error as any).response?.data || (error as any).message
       );

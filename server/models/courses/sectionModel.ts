@@ -57,10 +57,10 @@ sectionSchema.post("save", async function () {
         totalSectionLessons: section.lessons.length,
       });
     } else {
-      console.error("Lessons is not an array during post-save operation.");
+      console.log("Lessons is not an array during post-save operation.");
     }
   } catch (err) {
-    console.error("Error in post-save middleware for Section:", err);
+    console.log("Error in post-save middleware for Section:", err);
   }
 });
 

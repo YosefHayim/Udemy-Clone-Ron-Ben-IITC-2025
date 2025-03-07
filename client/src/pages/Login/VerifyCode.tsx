@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMdLock } from "react-icons/io";
 import { useMutation } from "@tanstack/react-query";
 import verifyCode from "@/api/users/verifyCode";
@@ -47,7 +47,7 @@ const VerifyCode = () => {
       navigate("/");
     },
     onError: (error) => {
-      console.error("Error during login process:", error);
+      console.log("Error during login process:", error);
     },
   });
 
@@ -62,7 +62,7 @@ const VerifyCode = () => {
     setCode(code);
     verifyCodeMutation.mutate({ code, email: emailUser });
     if (!cookie) {
-      console.error("No token found in cookies");
+      console.log("No token found in cookies");
       return;
     }
 
@@ -139,15 +139,15 @@ const VerifyCode = () => {
           className="w-full max-w-[27rem] flex flex-col items-center space-y-4"
         >
           <div className="relative w-full">
-            <IoMdLock className="absolute left-3 w-4 h-4 top-1/2 transform -translate-y-1/2 text-courseNameColorTxt" />
+            <IoMdLock className="absolute left-3 w-5 h-5 top-1/2 transform -translate-y-1/2 text-courseNameColorTxt" />
             <input
+              required={true}
               maxLength={6}
               type="text"
               name="code"
               id="code"
               placeholder="6-digit code"
-              className="w-full pl-10 pr-4 py-3 border border-gray-600 rounded-sm bg-white text-grayNavbarTxt placeholder:text-grayNavbarTxt ]
-              placeholder:font-semibold placeholder:opacity-95 text-[1.1rem] focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="hover:bg-gray-100 w-full pl-10 pr-4 py-3 border border-gray-600 rounded-sm bg-white text-grayNavbarTxt placeholder:text-grayNavbarTxt ]placeholder:opacity-95 text-[1.1rem] focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
 
@@ -183,12 +183,14 @@ const VerifyCode = () => {
         )}
 
         <div className="mt-14 w-full max-w-sm">
-          <button
-            onClick={handleDifferentAccount}
-            className="w-full py-4 rounded-md font-bold text-btnColor underline text-sm bg-[#F6F7F9] hover:bg-gray-200"
-          >
-            Log in to a different account
-          </button>
+          <Link to="/login">
+            <button
+              onClick={handleDifferentAccount}
+              className="focus:outline-none w-full py-4 rounded-md font-bold text-btnColor underline text-sm bg-[#F6F7F9] hover:bg-gray-200"
+            >
+              Log in to a different account
+            </button>
+          </Link>
         </div>
       </div>
     </div>

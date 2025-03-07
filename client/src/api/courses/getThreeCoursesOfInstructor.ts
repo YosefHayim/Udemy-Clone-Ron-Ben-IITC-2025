@@ -13,7 +13,7 @@ const getThreeCoursesOfInstructor = async (instructorId: string) => {
       return res.data.data;
     }
   } catch (error) {
-    console.error("Error for getting 3 courses: ", error);
+    console.log("Error for getting 3 courses: ", error);
   }
 };
 

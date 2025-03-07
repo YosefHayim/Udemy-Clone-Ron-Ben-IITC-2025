@@ -14,7 +14,7 @@ const getAllCourses: fn = async (
   page = 1
 ) => {
   if (!searchTerm) {
-    console.error("Search term is required");
+    console.log("Search term is required");
     return "";
   }
 
@@ -66,7 +66,7 @@ const getAllCourses: fn = async (
     }
     return null;
   } catch (error) {
-    console.error("Error fetching courses:", error);
+    console.log("Error fetching courses:", error);
     throw error;
   }
 };

@@ -66,9 +66,7 @@ const SearchInput = () => {
   return (
     <div
       className={`flex items-center rounded-full
-      ${
-        isRootPathOnly() ? "pl-[3.5em] w-[95%] pb-[0.8em]" : "w-full pb-[0.5em]"
-      }
+      ${isRootPathOnly() ? "pl-[3.5em] w-[95%]" : "w-full"}
       `}
     >
       <form
@@ -82,7 +80,9 @@ const SearchInput = () => {
           type="text"
           value={searchTerm}
           placeholder="Search for anything"
-          className="hover:bg-gray-100 hover:border-[#9194ac] p-[1.2em] placeholder:pl-[1em] flex-grow bg-transparent text-gray-700 focus:outline-none text-sm placeholder:text-sm placeholder:font-light focus:bg-white"
+          className={`${
+            isRootPathOnly() ? "p-[1.2em]" : "p-[1em]"
+          } hover:bg-gray-100 hover:border-[#9194ac] placeholder:pl-[1em] flex-grow bg-transparent text-gray-700 focus:outline-none text-sm placeholder:text-sm placeholder:font-light focus:bg-white`}
           onChange={handleOnChange}
         />
         <button

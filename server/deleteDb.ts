@@ -23,7 +23,7 @@ const deleteDb = async () => {
     // console.log("Cleared all collections");
     process.exit();
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 

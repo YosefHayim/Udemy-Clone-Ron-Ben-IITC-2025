@@ -44,7 +44,7 @@ const AddToCart: React.FC<{
       navigate(`/cart/subscribe/course/:${courseId}`);
     },
     onError: (error) => {
-      console.error("Error during buying course:", error);
+      console.log("Error during buying course:", error);
     },
   });
 

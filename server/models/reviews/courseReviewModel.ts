@@ -81,7 +81,7 @@ courseReviewsSchema.post("save", async function () {
       }
     );
   } catch (err) {
-    console.error("Error updating course reviews:", err);
+    console.log("Error updating course reviews:", err);
   }
 });
 
@@ -106,7 +106,7 @@ courseReviewsSchema.post<CourseReviewDocument>("save", async function () {
       averageRating: average,
     });
   } catch (err) {
-    console.error("Error updating course average rating:", err);
+    console.log("Error updating course average rating:", err);
   }
 });
 

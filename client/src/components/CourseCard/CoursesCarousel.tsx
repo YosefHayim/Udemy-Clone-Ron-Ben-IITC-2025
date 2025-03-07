@@ -39,10 +39,10 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
 
         setCourses(updatedCourses);
       } else {
-        console.error("Erro ao buscar cursos:", data);
+        console.log("Erro ao buscar cursos:", data);
       }
     } catch (error) {
-      console.error("Erro ao carregar cursos:", error);
+      console.log("Erro ao carregar cursos:", error);
     }
   };
 

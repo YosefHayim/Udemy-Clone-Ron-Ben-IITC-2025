@@ -89,7 +89,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
       // Reset content after successful mutation
     },
     onError: (error: any) => {
-      console.error("Failed to process note:", error.message);
+      console.log("Failed to process note:", error.message);
     },
   });
 

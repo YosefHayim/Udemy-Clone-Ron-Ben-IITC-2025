@@ -4,7 +4,7 @@ type fn = (idOfReview: string) => Promise<any>;
 
 export const dislikeReviewById: fn = async (idOfReview: string) => {
   if (!idOfReview || typeof idOfReview !== "string") {
-    console.error(`Invalid reviewId: ${idOfReview}`);
+    console.log(`Invalid reviewId: ${idOfReview}`);
     return;
   }
   const sanitizedReviewId = idOfReview.trim();
@@ -16,6 +16,6 @@ export const dislikeReviewById: fn = async (idOfReview: string) => {
       return res;
     }
   } catch (error) {
-    console.error(`Error occurred during like a review: `, error);
+    console.log(`Error occurred during like a review: `, error);
   }
 };

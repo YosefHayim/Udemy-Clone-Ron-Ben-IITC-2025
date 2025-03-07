@@ -20,13 +20,12 @@ import { isRootPathOnly } from "@/utils/extraGenerals";
 import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
 
 const Navbar = () => {
+  const [isClicked, setClicked] = useState(false);
   const cookie = useSelector((state: RootState) => state.user.cookie) || "";
   const dispatch = useDispatch();
   const isLoggedWithGoog = useSelector(
     (state: RootState) => state.user.isLoggedPreviouslyWithGoogle
   );
-
-  const [isClicked, setClicked] = useState(false);
 
   useEffect(() => {
     const currentCookie = Cookies.get("cookie");
@@ -38,7 +37,7 @@ const Navbar = () => {
   return (
     <div>
       <SaleCommercial />
-      <div className="pt-[0.5em] w-full flex items-center bg-white relative shadow-md justify-between px-[1.55rem] font-medium text-[1.4rem] mb-[1em]">
+      <div className="py-[0.2em] w-full flex items-center bg-white relative shadow-md justify-between px-[1.55rem] font-medium text-[1.4rem]">
         <div className="flex flex-col w-full">
           <div className="w-full flex items-center">
             <div className="flex flex-row items-center gap-[0.5em]">
@@ -51,7 +50,7 @@ const Navbar = () => {
               className={
                 isRootPathOnly()
                   ? "w-full flex items-center justify-end"
-                  : "w-full flex items-center justify-center"
+                  : "w-full flex items-center justify-center p-[0.3em]"
               }
             >
               <div className={isRootPathOnly() ? "hidden" : "flex-grow"}>

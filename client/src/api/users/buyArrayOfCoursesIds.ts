@@ -10,7 +10,7 @@ const buyArrayOfCoursesIds = async () => {
       return res;
     }
   } catch (error) {
-    console.error(`Error has been occurred durning buying courses: `, error);
+    console.log(`Error has been occurred durning buying courses: `, error);
   }
 };
 

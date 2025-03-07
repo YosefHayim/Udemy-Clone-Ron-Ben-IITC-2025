@@ -31,7 +31,7 @@ const reportUserReviewByReviewId: fn = async ({
     console.warn("No review data found in the response.");
     return null;
   } catch (error: any) {
-    console.error(
+    console.log(
       `Error reporting review with ID ${sanitizedReviewId}:`,
       error.message
     );

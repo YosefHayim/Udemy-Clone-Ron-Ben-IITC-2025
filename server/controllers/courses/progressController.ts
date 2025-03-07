@@ -83,7 +83,7 @@ const initializeProgress = async (req: Request, res: Response) => {
     await progress.save();
     res.status(201).json(progress);
   } catch (err) {
-    console.error("Error initializing progress:", err);
+    console.log("Error initializing progress:", err);
     res
       .status(500)
       .json({ error: "Failed to initialize progress", details: err });
@@ -213,7 +213,7 @@ const getCourseProgress = async (req: Request, res: Response) => {
       percentageCompleted, // Returns as a float (e.g., 0.25 for 25%)
     });
   } catch (err) {
-    console.error("Error retrieving course progress:", (err as Error).message);
+    console.log("Error retrieving course progress:", (err as Error).message);
     res.status(500).json({
       error: "Failed to retrieve progress",
       details: (err as Error).message,
@@ -360,7 +360,7 @@ const getAllNotes = async (req: Request, res: Response) => {
 
     res.status(200).json({ notes });
   } catch (err) {
-    console.error("Error retrieving notes:", (err as Error).message);
+    console.log("Error retrieving notes:", (err as Error).message);
     res.status(500).json({
       error: "Failed to retrieve notes",
       details: (err as Error).message,

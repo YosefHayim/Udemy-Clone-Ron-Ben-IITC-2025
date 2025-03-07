@@ -17,7 +17,7 @@ const updateProfilePic = async (photo: File) => {
       return res;
     }
   } catch (error) {
-    console.error("Error occurred during profile picture update:", error);
+    console.log("Error occurred during profile picture update:", error);
   }
 };
 

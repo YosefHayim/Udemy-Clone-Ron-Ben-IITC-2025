@@ -10,7 +10,7 @@ const connectDb = async () => {
       // console.log(`Connected successfully to database`);
     }
   } catch (error) {
-    console.error(`Error occurred durning login to database: `, error);
+    console.log(`Error occurred durning login to database: `, error);
   }
 };
 

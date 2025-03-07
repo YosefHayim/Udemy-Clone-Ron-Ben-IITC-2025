@@ -9,7 +9,7 @@ const buyCourseById = async (courseId: string | string) => {
       console.log(response);
     }
   } catch (error) {
-    console.error("Error occurred during buying courses for user: ", error);
+    console.log("Error occurred during buying courses for user: ", error);
   }
 };
 

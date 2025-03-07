@@ -72,7 +72,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
 
   const handleClick = () => {
     if (!coursesIds.length) {
-      console.error("No courses available for checkout.");
+      console.log("No courses available for checkout.");
       return;
     }
 
@@ -81,7 +81,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
 
     const courseId = coursesIds[coursesIds.length - 1];
     if (!courseId) {
-      console.error("Invalid courseId received.");
+      console.log("Invalid courseId received.");
       return;
     }
     checkOutMutation.mutate(courseId);

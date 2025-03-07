@@ -30,14 +30,14 @@ const HelpfulContainer: React.FC<{ idOfReview: string }> = ({ idOfReview }) => {
   const likeMutation = useMutation({
     mutationFn: likeReviewById,
     onError: (error) => {
-      console.error("Error liking review:", error);
+      console.log("Error liking review:", error);
     },
   });
 
   const disLikeMutation = useMutation({
     mutationFn: dislikeReviewById,
     onError: (error) => {
-      console.error("Error disliking review:", error);
+      console.log("Error disliking review:", error);
     },
   });
 

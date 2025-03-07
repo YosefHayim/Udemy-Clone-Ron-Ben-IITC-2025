@@ -25,7 +25,7 @@ const BuyNowBtn: React.FC<{
       setTimeout(() => {
         dispatch(setAmountOfCourses());
         if (!discountPrice || isNaN(discountPrice)) {
-          console.error("Invalid discountPrice:", discountPrice);
+          console.log("Invalid discountPrice:", discountPrice);
           return;
         }
         dispatch(setTotalCourseDiscountPrices(Number(discountPrice)));

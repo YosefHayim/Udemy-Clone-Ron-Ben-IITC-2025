@@ -18,7 +18,7 @@ const loginUser: fn = async (email) => {
       return response.data;
     }
   } catch (error) {
-    console.error(`Error occurred during the login of user: `, error);
+    console.log(`Error occurred during the login of user: `, error);
     throw error;
   }
 };

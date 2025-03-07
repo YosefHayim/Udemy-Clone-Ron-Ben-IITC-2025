@@ -83,7 +83,7 @@ const createUsers = async () => {
     console.log("Users created successfully:", createdUsers.length);
     return createdUsers;
   } catch (error) {
-    console.error("Error inserting users:", error);
+    console.log("Error inserting users:", error);
     throw error;
   }
 };
@@ -197,7 +197,7 @@ const createCourses = async () => {
       await instructor.save();
 
       if (!course || !course._id || !course.courseName) {
-        console.error(
+        console.log(
           "Course creation failed or returned incomplete data:",
           course
         );
@@ -219,7 +219,7 @@ const createCourses = async () => {
         try {
           await student.save();
         } catch (error) {
-          console.error(
+          console.log(
             `Failed to update student ${student._id}:`,
             error.message
           );
@@ -271,7 +271,7 @@ const createSections = async () => {
         createdSections.push(section._id);
         sections.push(section);
       } catch (err) {
-        console.error(
+        console.log(
           `Error creating section ${i + 1} for ${course.courseName}:`,
           err
         );
@@ -339,7 +339,7 @@ const createLessons = async () => {
           }, Duration: ${duration} mins`
         );
       } catch (err) {
-        console.error(`Error creating lesson: ${err}`);
+        console.log(`Error creating lesson: ${err}`);
       }
     }
 
@@ -362,7 +362,7 @@ const createLessons = async () => {
         );
       }
     } catch (err) {
-      console.error(
+      console.log(
         `Error updating course for section "${section.title}": ${err}`
       );
     }
@@ -392,7 +392,7 @@ const createReviews = async () => {
     console.log(`Total students found: ${students.length}`);
 
     if (!students.length) {
-      console.error("No students with enrolled courses found.");
+      console.log("No students with enrolled courses found.");
       return;
     }
 
@@ -408,7 +408,7 @@ const createReviews = async () => {
         const course = courseEntry.courseId; // Fix: Access the populated course object
 
         if (!course || !course._id) {
-          console.error(
+          console.log(
             `Invalid course reference for student "${student.email}". Skipping...`
           );
           continue;
@@ -424,9 +424,7 @@ const createReviews = async () => {
         try {
           const review = await courseReviews.create(reviewPayload);
           if (!review) {
-            console.error(
-              `Review creation failed for course ID: ${course._id}`
-            );
+            console.log(`Review creation failed for course ID: ${course._id}`);
             continue;
           }
 
@@ -443,7 +441,7 @@ const createReviews = async () => {
           );
 
           if (!updatedCourse) {
-            console.error(
+            console.log(
               `Course with ID ${course._id} not found while updating.`
             );
           } else {
@@ -452,7 +450,7 @@ const createReviews = async () => {
             );
           }
         } catch (err) {
-          console.error(
+          console.log(
             `Error creating or updating review for course "${course.courseName}": ${err.message}`
           );
         }
@@ -461,7 +459,7 @@ const createReviews = async () => {
 
     console.log("All reviews processed successfully.");
   } catch (err) {
-    console.error("Error during review creation:", err.message);
+    console.log("Error during review creation:", err.message);
     throw err;
   }
 };
@@ -473,7 +471,7 @@ const calculateAverageRating = async (courseId: string) => {
     if (!allRatings.length) return 0;
     return allRatings.reduce((sum, r) => sum + r.rating, 0) / allRatings.length;
   } catch (err) {
-    console.error(
+    console.log(
       `Error calculating average rating for course ${courseId}: ${err}`
     );
     return 0;
@@ -513,13 +511,13 @@ const createReportedReviews = async () => {
     );
 
     if (eligibleReviews.length === 0) {
-      console.error("No eligible reviews found for reporting.");
+      console.log("No eligible reviews found for reporting.");
       continue;
     }
 
     const randomReview = faker.helpers.arrayElement(eligibleReviews);
     if (!randomReview || !randomReview.courseReview) {
-      console.error("Invalid review or course reference in review.");
+      console.log("Invalid review or course reference in review.");
       continue;
     }
 
@@ -530,7 +528,7 @@ const createReportedReviews = async () => {
     );
 
     if (!randomStudent) {
-      console.error(
+      console.log(
         `No student found who bought the course "${randomReview.courseReview.courseName}".`
       );
       continue;
@@ -560,7 +558,7 @@ const createReportedReviews = async () => {
         randomIssueType
       );
     } catch (err) {
-      console.error(`Error creating report ${i + 1}:`, err);
+      console.log(`Error creating report ${i + 1}:`, err);
     }
   }
 
@@ -622,9 +620,7 @@ const simulateCoursePurchases = async () => {
 
       await user.save();
     } catch (err) {
-      console.error(
-        `Error processing purchases for user ${user.email}: ${err}`
-      );
+      console.log(`Error processing purchases for user ${user.email}: ${err}`);
     }
   }
 
@@ -668,7 +664,7 @@ const createInstructorProfiles = async () => {
   const instructors = await User.find({ role: "instructor" });
 
   if (!instructors.length) {
-    console.error("No instructors found.");
+    console.log("No instructors found.");
     return;
   }
 
@@ -756,7 +752,7 @@ const generateUpdatedDummyData = async () => {
     console.log("All dummy data seeded successfully!");
     process.exit();
   } catch (err) {
-    console.error("Error generating dummy data:", err);
+    console.log("Error generating dummy data:", err);
     process.exit(1);
   }
 };

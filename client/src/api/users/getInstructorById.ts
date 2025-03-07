@@ -18,7 +18,7 @@ const getInstructorById = async (instructorId: string) => {
       return res.data.data;
     }
   } catch (error) {
-    console.error(
+    console.log(
       `Error has been occurred durning getting instructor information: `,
       error
     );

@@ -21,7 +21,7 @@ const LessonRoutes: React.FC<LessonRoutesProps> = ({ currentSec }) => {
 
   // Validate presence of courseId and id
   if (!courseId || !id) {
-    console.error("Missing required parameters: courseId or id.");
+    console.log("Missing required parameters: courseId or id.");
     return <div>Error: Missing required parameters.</div>;
   }
 

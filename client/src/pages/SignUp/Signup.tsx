@@ -2,6 +2,7 @@ import registerUser from "@/api/users/registerUser";
 import Loader from "@/components/Loader/Loader";
 import { emailContext } from "@/routes/AppRoutes";
 import { RegisterUserPayload } from "@/types/types";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useMutation } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
@@ -41,7 +42,7 @@ const SignUp: React.FC = () => {
       navigate("/verify-code");
     },
     onError: (error) => {
-      console.error(error);
+      console.log(error);
     },
   });
 
@@ -51,6 +52,7 @@ const SignUp: React.FC = () => {
     setTimeout(() => {
       setLoading(false);
     }, 2000);
+
     const form = e.currentTarget;
     const formData = new FormData(form);
     const fullName = formData.get("fullName") as string;
@@ -75,15 +77,22 @@ const SignUp: React.FC = () => {
           <h2 className="text-[2rem] font-bold text-courseNameColorTxt mb-6 w-full text-center">
             Sign up with email
           </h2>
-          <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
-            <div className="flex items-start gap-2 cursor-pointer">
-              <label
-                htmlFor="offers"
-                className="text-sm cursor-pointer leading-5 mb-[1.6rem]"
-              >
-                Send me special offers, personalized recommendations, and
-                learning tips.
-              </label>
+          <form
+            className="flex flex-col items-center justify-start space-y-4"
+            onSubmit={handleSubmit}
+          >
+            <div className="flex items-center justify-center gap-[0.5em] cursor-pointer">
+              <div className="w-full flex-col flex-wrap justify-center items-center">
+                <Checkbox
+                  id="offers"
+                  required={true}
+                  className="relative h-4 w-4 mr-[0.5em] rounded-[0.2em] border-2 border-black focus:outline-none ring-0 focus:ring-0"
+                />
+                <label htmlFor="offers" className="mr-[0.5em]">
+                  Send me special offers, personalized recommendations, and
+                  learning tips.
+                </label>
+              </div>
             </div>
             <input
               type="text"
@@ -91,25 +100,25 @@ const SignUp: React.FC = () => {
               name="fullName"
               required={true}
               placeholder="Full name"
-              className="w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800"
+              className="hover:bg-gray-100 w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800"
             />
             <input
               required={true}
               type="email"
               name="email"
               id="email"
-              placeholder="E-mail"
-              className="w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800"
+              placeholder="Email"
+              className="hover:bg-gray-100 w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800"
             />
             <button
               type="submit"
-              className="w-full py-3 rounded-md bg-btnColor hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
+              className="w-full py-3 rounded-[0.4em] bg-btnColor hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
             >
               {isLoading ? (
                 <Loader useSmallLoading={true} hSize="" />
               ) : (
-                <div className="flex flex-row">
-                  <MdEmail className="w-5 h-5" />
+                <div className="flex items-center">
+                  <MdEmail size={25} />
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -121,43 +130,50 @@ const SignUp: React.FC = () => {
                 </div>
               )}
             </button>
-            <div className="flex justify-center space-x-5">
-              <button
-                onClick={handleGoogle}
-                className={` p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn`}
-              >
-                <FcGoogle className="w-7 h-7" />
-              </button>
-              <button className="p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
-                <FaFacebook className="w-7 h-7 text-blue-600" />
-              </button>
-              <button className="p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
-                <FaApple className="w-7 h-7 opacity-85" />
-              </button>
-            </div>
-            <div className="flex justify-center px-0">
-              <p className="text-[0.8rem] text-courseNameColorTxt mt-2">
-                By signing up, you agree to our{" "}
-                <span className="inline">
-                  <a
-                    className="text-purple-600 underline mr-[0.3rem] cursor-pointer"
-                    onClick={() => navigate("/terms-of-use")}
-                  >
-                    Terms of Use
-                  </a>
-                  and{" "}
-                  <a href="/privacy" className="text-purple-600 underline">
-                    Privacy Policy
-                  </a>
-                </span>
-                .
-              </p>
-            </div>
           </form>
+          <div className="w-full flex items-center my-6">
+            <hr className="flex-grow border-gray-300" />
+            <span className="mx-4 text-sm text-grayNavbarTxt">
+              Other sign up options
+            </span>
+            <hr className="flex-grow border-gray-300" />
+          </div>
+          <div className="flex justify-center space-x-5">
+            <button
+              onClick={handleGoogle}
+              className={` p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn`}
+            >
+              <FcGoogle className="w-7 h-7" />
+            </button>
+            <button className="p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
+              <FaFacebook className="w-7 h-7 text-blue-600" />
+            </button>
+            <button className="p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
+              <FaApple className="w-7 h-7 opacity-85" />
+            </button>
+          </div>
+          <div className="flex justify-center px-0">
+            <p className="text-[0.8rem] text-courseNameColorTxt mt-2">
+              By signing up, you agree to our{" "}
+              <span className="inline">
+                <a
+                  className="text-purple-600 underline mr-[0.3rem] cursor-pointer"
+                  onClick={() => navigate("/terms-of-use")}
+                >
+                  Terms of Use
+                </a>
+                and{" "}
+                <a href="/privacy" className="text-purple-600 underline">
+                  Privacy Policy
+                </a>
+              </span>
+              .
+            </p>
+          </div>
           <div className="bg-[#f6f7f9] mt-6 text-center w-full py-[1.5em] text-white font-medium flex items-center justify-center space-x-0">
             <Link to="/login" className="text-courseNameColorTxt text-[1rem]">
               Already have an account?{" "}
-              <span className="text-btnColor underline">Log in</span>
+              <span className="text-btnColor underline font-bold">Log in</span>
             </Link>
           </div>
         </div>

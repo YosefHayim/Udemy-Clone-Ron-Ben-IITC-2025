@@ -4,7 +4,7 @@ type fn = (courseId: string | null) => Promise<any>;
 
 const getAllReviewsByCourseId: fn = async (courseId = "") => {
   if (!courseId || typeof courseId !== "string") {
-    console.error("Invalid course ID provided.");
+    console.log("Invalid course ID provided.");
     return null;
   }
 
@@ -21,7 +21,7 @@ const getAllReviewsByCourseId: fn = async (courseId = "") => {
     console.warn("No course data found in the response.");
     return null;
   } catch (error) {
-    console.error(`Error fetching course with ID ${sanitizedCourseId}:`, error);
+    console.log(`Error fetching course with ID ${sanitizedCourseId}:`, error);
     throw error;
   }
 };

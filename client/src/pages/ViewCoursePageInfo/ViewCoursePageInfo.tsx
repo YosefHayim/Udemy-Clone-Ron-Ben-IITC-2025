@@ -53,7 +53,7 @@ const ViewCoursePageInfo: React.FC = () => {
         setData(response);
       } catch (err) {
         setError("Failed to fetch course data.");
-        console.error(err);
+        console.log(err);
       } finally {
         setIsLoading(false);
       }
@@ -82,7 +82,7 @@ const ViewCoursePageInfo: React.FC = () => {
     if (firstLessonId) {
       navigate(`/course/${sanitizedCourseId}/lesson/${firstLessonId}/overview`);
     } else {
-      console.error("No lessons found in the course.");
+      console.log("No lessons found in the course.");
     }
   };
 

@@ -38,14 +38,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const fetchData = async () => {
       try {
         if (!courseId) {
-          console.error("Missing courseId in the route.");
+          console.log("Missing courseId in the route.");
           return;
         }
 
         const data = await fetchCourseById(courseId);
         setCourseData(data);
       } catch (error) {
-        console.error("Failed to fetch course data.", error);
+        console.log("Failed to fetch course data.", error);
       }
     };
     fetchData();
@@ -61,12 +61,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         className="absolute min-h-full top-[4rem] px-0 bg-white"
         side="right"
       >
-        <SidebarContent >
+        <SidebarContent>
           <SidebarGroup className="p-0 gap-0">
             <SidebarGroupContent className="gap-0">
-              <CourseSidebarMenu
-                courseId={courseId || ""}
-              />
+              <CourseSidebarMenu courseId={courseId || ""} />
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
@@ -75,4 +73,4 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       {/* Centered Trigger */}
     </>
   );
-};
+}
