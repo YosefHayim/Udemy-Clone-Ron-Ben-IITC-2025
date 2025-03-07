@@ -38,6 +38,7 @@ import ReceiptCart from "@/components/Navbar/DropDownMenu/PurchaseHistory/Receip
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Promotions from "../pages/Terms/TermsPages/Promotions";
 import Messages from "@/pages/Messages/Messages";
+import Support from "@/pages/Support/Support";
 // import LoginBusiness from "@/pages/Login/LoginBusiness";
 
 export const filterContext = createContext<FilterDataProps>({
@@ -160,6 +161,7 @@ const AppRoutes: React.FC = () => {
                   path="/user/instructor/:instructorId"
                   element={<InstructorProfile />}
                 />
+                <Route path="/logout" element={<Support />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route
                   path="/Signup"
