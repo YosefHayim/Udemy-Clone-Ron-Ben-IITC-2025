@@ -31,7 +31,7 @@ const Menu: React.FC = () => {
   };
   return (
     <div>
-      {/* White Menu */}
+      <hr />
       <div
         className="bg-white shadow-md z-20 relative"
         onMouseLeave={handleMouseLeave}

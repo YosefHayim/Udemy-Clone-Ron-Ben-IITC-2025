@@ -76,7 +76,13 @@ const SearchInput = () => {
         } flex items-center w-full border border-gray-400 rounded-full overflow-hidden bg-gray-50 focus-within:border-[#6d28d2] focus-within:ring-1 focus-within:ring-[#6d28d2]`}
       >
         <button>
-          <MdOutlineSearch className="w-6 h-6 text-gray ml-[0.2em] bg-gray-100" />
+          <MdOutlineSearch
+            className={`${
+              isRootPathOnly()
+                ? "hidden"
+                : "w-6 h-6 text-gray ml-[0.2em] bg-gray-100"
+            }`}
+          />
         </button>
         <input
           type="text"
@@ -89,7 +95,7 @@ const SearchInput = () => {
         />
         <button
           type="submit"
-          className={`bg-purple-600 rounded-full p-[0.5em] transition-opacity mr-[0.2em] 
+          className={`bg-purple-600 rounded-full p-[0.85em] transition-opacity mr-[0.2em] 
           ${!isRootPathOnly() ? "hidden" : "block"} 
           ${searchTerm ? "opacity-100" : "opacity-50 cursor-not-allowed"}`}
           disabled={!searchTerm}

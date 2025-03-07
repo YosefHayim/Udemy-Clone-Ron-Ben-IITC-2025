@@ -1,13 +1,12 @@
 import { Button } from "@/components/ui/button";
 import ItemInCart from "../ItemInCart/ItemInCart";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loader from "@/components/Loader/Loader";
 
 const HoverCart = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
 
   const totalToPay = useSelector(
     (state: any) => state.cart.totalCourseDiscountPrices
@@ -55,7 +54,7 @@ const HoverCart = () => {
               />
             ))
           ) : (
-            <div className="flex flex-col items-center justify-center w-full text-center mt-[1em]">
+            <div className="text-[2em] flex flex-col items-center justify-center w-full text-center mt-[1em]">
               <p className="text-grayNavbarTxt font-light mb-[1em]">
                 Your cart is empty.
               </p>

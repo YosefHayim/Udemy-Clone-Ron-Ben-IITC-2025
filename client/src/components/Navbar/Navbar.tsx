@@ -30,7 +30,7 @@ const Navbar = () => {
   return (
     <div>
       <SaleCommercial />
-      <div className="py-[0.2em] w-full flex items-center bg-white relative shadow-md justify-between px-[1.55rem] font-medium text-[1.4rem]">
+      <div className="pb-[0.9em] pt-[0.2em] w-full flex items-center bg-white relative shadow-md justify-between px-[1.55rem]">
         <div className="flex flex-col w-full">
           <div className="w-full flex items-center">
             <div className="flex flex-row items-center gap-[0.5em]">
