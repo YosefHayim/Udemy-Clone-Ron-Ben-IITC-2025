@@ -82,7 +82,7 @@
 
 ## Login Page:
 
-1. If a Google token exists in localStorage, render the login component differently.
+1. If a Google token exists in localStorage, render the login component differently. ✅
 
 ---
 
