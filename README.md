@@ -10,10 +10,10 @@
 
 ## SearchInput Component:
 
-1. Longer input field.
-2. When focused, change color to purple.
-3. When hovering on course results, they should have a gray background.
-4. Add a little extra spacing below the input field compared to the original.
+1. Longer input field. ✅
+2. When focused, change color to purple. ✅
+3. When hovering on course results, they should have a gray background. ✅
+4. Add a little extra spacing below the input field compared to the original. ✅
 
 ---
 
@@ -21,7 +21,7 @@
 
 1. Fade-in effect when hovering.
 2. Gray border.
-3. A rectangle at the bottom or top (based on index if higher than 0).
+3. A rectangle at the bottom or top (based on index if higher than 0). ✅
 4. Heart icon positioned to the right.
 5. Hovering activates a 0.95 opacity on the div course that is being hovered.
 
@@ -36,7 +36,7 @@
 
 ### Main Search Results:
 
-1. Course results should be aligned with their respective prices.
+1. Course results should be aligned with their respective prices. ✅
 2. Prices should have a loading effect (0.3 sec).
 3. Clicking the filter closes the sidebar with a fade-in effect to the left.
 
@@ -89,8 +89,8 @@
 ## Welcome Page:
 
 1. Increase the size of the profile picture.
-2. Modify the search input styling to differentiate it from the main search.  ✅
-3. Change "Explore" text to "Categories".  ✅
+2. Modify the search input styling to differentiate it from the main search. ✅
+3. Change "Explore" text to "Categories". ✅
 
 ---
 

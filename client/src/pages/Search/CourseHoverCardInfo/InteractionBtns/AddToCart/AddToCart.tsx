@@ -86,19 +86,21 @@ const AddToCart: React.FC<{
   }
 
   return (
-    <Button
-      styles={styles.addToCart}
-      onClick={() => handleClick(courseId)}
-      id={`btn-${courseId || "unknown"}`}
-      disabled={isLoading}
-      className={`font-bold ${
-        isLoading
-          ? "bg-gray-400 cursor-not-allowed "
-          : "bg-btnColor hover:bg-btnHoverColor"
-      } rounded-[0.2em] w-[120px] py-[1.5em] text-[1em]`}
-    >
-      {isLoading ? <Loader useSmallLoading={true} hSize="" /> : textBtn}
-    </Button>
+    <div>
+      <Button
+        styles={styles.addToCart}
+        onClick={() => handleClick(courseId)}
+        id={`btn-${courseId || "unknown"}`}
+        disabled={isLoading}
+        className={`font-bold ${
+          isLoading
+            ? "focus:outline-none bg-gray-400 cursor-not-allowed "
+            : "focus:outline-none bg-btnColor hover:bg-btnHoverColor"
+        } rounded-[0.2em] w-[120px] py-[1.5em] text-[1em]`}
+      >
+        {isLoading ? <Loader useSmallLoading={true} hSize="" /> : textBtn}
+      </Button>
+    </div>
   );
 };
 

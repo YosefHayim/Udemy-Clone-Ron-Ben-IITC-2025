@@ -93,8 +93,9 @@ const SearchPage: React.FC = () => {
       <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
         {data?.totalCourses || 0} results for "{searchTerm}"
       </h1>
+
       <FilterNSort totalResults={data?.totalCourses || 0} />
-      <div className="flex flex-row justify-start w-full gap-[1.5em]">
+      <div className="flex flex-row justify-between w-full gap-[1.5em]">
         <div>
           <SidebarFilter />
         </div>
@@ -112,8 +113,12 @@ const SearchPage: React.FC = () => {
                 >
                   <SearchCourseCard course={course} />
                   {hoveredCourse === course._id && (
-                    <div className="absolute top-full left-0 z-[1000] p-[2em]">
+                    <div
+                      className={` w-1/2 absolute z-[1000] right-[60%] translate-x-1/2 
+            ${index === 0 ? "top-[90%]" : "bottom-[110%]"}`}
+                    >
                       <CourseHoverCardInfo
+                        index={index}
                         whatYouWillLearn={course.whatYouWillLearn}
                         courseId={course._id}
                         fullPriceCourse={course.courseFullPrice}

@@ -76,16 +76,6 @@ const ViewCoursePageInfo: React.FC = () => {
 
   // console.log(data);
 
-  // Navigate to the first lesson
-  const handleNavigateToFirstLesson = () => {
-    const firstLessonId = courseData.sections?.[0]?.lessons?.[0]?._id;
-    if (firstLessonId) {
-      navigate(`/course/${sanitizedCourseId}/lesson/${firstLessonId}/overview`);
-    } else {
-      console.log("No lessons found in the course.");
-    }
-  };
-
   return (
     <div className="flex flex-row p-[3em] items-start justify-start w-full gap-[3em]">
       <div className="flex flex-col items-start justify-start gap-[1em]">

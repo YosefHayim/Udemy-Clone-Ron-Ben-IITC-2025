@@ -23,19 +23,16 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-6 border z-[999] w-[350px]">
-      {/* Título do curso */}
       <h3 className="font-bold text-xl text-courseNameColorTxt">
         {truncateText(course.courseName || "", 70)}
       </h3>
 
-      {/* Badge de "New" */}
       {course.isNew && (
         <span className="text-xs text-white bg-green-500 px-2 py-1 rounded-full mt-2 inline-block">
           New
         </span>
       )}
 
-      {/* Detalhes do curso */}
       <p className="text-xs text-gray-500 mt-2">
         Updated{" "}
         <span className="text-green-600 font-medium">
@@ -50,12 +47,10 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
         {course.courseLevel || "All Levels"}
       </p>
 
-      {/* Descrição do curso */}
       <p className="text-sm text-gray-700 mt-4 leading-relaxed">
         {truncateText(course.courseDescription || "", 150)}
       </p>
 
-      {/* Lista do que você aprenderá */}
       <ul className="list-inside list-disc text-sm text-gray-700 mt-4">
         {truncateList(course.whatYouWillLearn || [""], 3).map((item, index) => (
           <li key={index} className="flex items-start gap-2">
@@ -65,14 +60,11 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
         ))}
       </ul>
 
-      {/* Botões */}
       <div className="flex items-center justify-between mt-6">
-        {/* Botão de adicionar ao carrinho */}
         <button className="focus:outline-none w-[80%] bg-purple-600 text-white py-2 rounded-lg font-medium hover:bg-purple-700 transition">
           Add to cart
         </button>
 
-        {/* Ícone de favorito */}
         <div className="w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full hover:border-purple-600 cursor-pointer transition">
           <svg
             xmlns="http://www.w3.org/2000/svg"
