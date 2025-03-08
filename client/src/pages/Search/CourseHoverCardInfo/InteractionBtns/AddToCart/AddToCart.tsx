@@ -13,7 +13,6 @@ import Loader from "@/components/Loader/Loader";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import buyCourseByCourseId from "@/api/users/buyCourseByCourseId";
-import styles from "./AddToCart.module.css";
 
 const AddToCart: React.FC<{
   discountSum?: number;
@@ -86,19 +85,24 @@ const AddToCart: React.FC<{
   }
 
   return (
-    <div>
+    <div className="w-full">
       <Button
-        styles={styles.addToCart}
         onClick={() => handleClick(courseId)}
         id={`btn-${courseId || "unknown"}`}
         disabled={isLoading}
-        className={`font-bold ${
+        className={`font-bold w-full rounded-[0.2em] py-[1.5em] text-[1em] ${
           isLoading
-            ? "focus:outline-none bg-gray-400 cursor-not-allowed "
+            ? "focus:outline-none bg-gray-400 cursor-not-allowed"
             : "focus:outline-none bg-btnColor hover:bg-btnHoverColor"
-        } rounded-[0.2em] w-[120px] py-[1.5em] text-[1em]`}
+        }`}
       >
-        {isLoading ? <Loader useSmallLoading={true} hSize="" /> : textBtn}
+        {isLoading ? (
+          <div className="absolute">
+            <Loader useSmallLoading={true} hSize="" />
+          </div>
+        ) : (
+          textBtn
+        )}
       </Button>
     </div>
   );

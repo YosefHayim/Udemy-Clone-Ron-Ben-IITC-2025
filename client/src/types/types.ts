@@ -176,6 +176,8 @@ export interface CourseProps {
 export interface LoaderProps {
   hSize: string;
   useSmallLoading: boolean;
+  paddingSetTo?: string;
+  usePurpleLoading?: boolean;
 }
 // explore data ts
 export interface Topic {

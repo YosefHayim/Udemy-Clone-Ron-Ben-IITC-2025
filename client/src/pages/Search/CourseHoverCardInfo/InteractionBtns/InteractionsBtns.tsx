@@ -17,7 +17,7 @@ const InteractionsBtns: React.FC<{
         discountPrice={coursePrice}
         fullPriceCourse={fullPriceCourse}
       />
-      <HeartBtn iconSize={"2em"} courseId={courseId} />
+      <HeartBtn iconSize={"2em"} courseId={courseId} showHeart={true} />
     </div>
   );
 };
