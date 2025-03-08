@@ -3,7 +3,9 @@ import { HiOutlineXMark } from "react-icons/hi2";
 
 const SaleCommercial = () => {
   const [timeLeft, setTimeLeft] = useState("");
-  const [hiddenCommercial, setHiddenCommercial] = useState(true);
+  const [hiddenCommercial, setHiddenCommercial] = useState(
+    localStorage.getItem("hiddenCommercial") === "true"
+  );
 
   useEffect(() => {
     const endTime = new Date().getTime() + 14 * 60 * 60 * 1000 + 7 * 60 * 1000;
@@ -22,15 +24,18 @@ const SaleCommercial = () => {
       }
     }, 1000);
 
-    return () => clearInterval(interval); // Cleanup the interval on unmount
+    return () => clearInterval(interval);
   }, []);
 
   const handleCommercial = () => {
-    setHiddenCommercial(false);
+    setHiddenCommercial(true);
+    localStorage.setItem("hiddenCommercial", "true");
   };
 
   return (
-    <div className={`${hiddenCommercial ? "block" : "hidden"}`}>
+    <div
+      className={`${hiddenCommercial ? "hidden" : "flex flex-wrap flex-grow"}`}
+    >
       <div className="bg-[#c2e9eb] flex flex-col items-center justify-center w-full p-[1em]">
         <div className="flex flex-row w-full justify-between items-center">
           <div className="flex flex-row items-center justify-center w-full">
@@ -46,7 +51,7 @@ const SaleCommercial = () => {
           </div>
           <div>
             <button
-              className="hover:bg-[#4a4c64] p-[1em] rounded-[0.2em] cursor-pointer border-none bg-none"
+              className="hover:bg-purpleHoverBtn p-[1em] rounded-[0.2em] cursor-pointer border-none bg-none"
               onClick={handleCommercial}
             >
               <HiOutlineXMark className="text-[1.5em]" />
