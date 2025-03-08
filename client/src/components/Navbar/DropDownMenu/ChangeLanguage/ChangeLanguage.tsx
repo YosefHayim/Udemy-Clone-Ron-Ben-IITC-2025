@@ -55,7 +55,7 @@ const ChangeLanguage: React.FC<{
                 : "flex items-center gap-[0.2em] border border-btnColor py-[0.2em] px-[0.5em] rounded-[0.2em] pr-[2em] hover:bg-purpleHoverBtn"
             }
           >
-            <TbWorld />
+            <TbWorld size={26} />
             {!showIcon && <p className="hidden">{chosenLanguage}</p>}
           </div>
         </DialogTrigger>

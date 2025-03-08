@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SearchInput from "./SearchInput/SearchInput";
 import LoginBtn from "./LoginBtn/LoginBtn";
 import SignupBtn from "./SignupBtn/SignupBtn";
@@ -11,7 +11,6 @@ import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
-import { useDispatch } from "react-redux";
 import SaleCommercial from "./SaleCommercial/SaleCommercial";
 import CategoriesMenu from "./Categories/CategoriesMenu";
 import { isRootPathOnly } from "@/utils/extraGenerals";
@@ -20,12 +19,11 @@ import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
 const Navbar = () => {
   const [isClicked, setClicked] = useState(false);
   const cookie = useSelector((state: RootState) => state.user.cookie) || "";
-  const dispatch = useDispatch();
   const isLoggedWithGoog = useSelector(
     (state: RootState) => state.user.isLoggedPreviouslyWithGoogle
   );
 
-  useEffect(() => {}, [cookie, dispatch, isRootPathOnly, isLoggedWithGoog]);
+  useEffect(() => {}, [cookie, isLoggedWithGoog]);
 
   return (
     <div>

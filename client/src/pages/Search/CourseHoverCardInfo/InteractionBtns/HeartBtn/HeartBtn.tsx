@@ -1,22 +1,36 @@
 import Loader from "@/components/Loader/Loader";
-import { useEffect, useState } from "react";
+import { RootState } from "@/redux";
+import { setCoursesAddedToWishList } from "@/redux/slices/cartSlice";
+import { useState } from "react";
 import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
+import { useSelector, useDispatch } from "react-redux";
 
 const HeartBtn: React.FC<{
   iconSize?: string;
   courseId?: string;
   showHeart?: boolean;
 }> = ({ iconSize = "2em", courseId, showHeart = false }) => {
-  if (!courseId) return null;
+  const dispatch = useDispatch();
 
-  const [isClickedFav, setClickedFav] = useState(false);
+  // Get wishlist courses from Redux
+  const coursesInWishlist = useSelector(
+    (state: RootState) => state.cart.coursesAddedToWishList
+  );
+
+  // Check if course is in wishlist
+  const isFavorite = courseId ? coursesInWishlist.includes(courseId) : false;
+
   const [isLoading, setLoading] = useState(false);
+
+  if (!courseId) return null;
 
   const handleClick = () => {
     if (isLoading) return;
 
     setLoading(true);
-    setClickedFav((prev) => !prev);
+
+    dispatch(setCoursesAddedToWishList(courseId));
+
     setTimeout(() => {
       setLoading(false);
     }, 500);
@@ -25,14 +39,14 @@ const HeartBtn: React.FC<{
   return (
     <div
       onClick={handleClick}
-      id={`heart-btn-${courseId || "unknown"}`}
+      id={courseId}
       className={`${
         showHeart ? "block" : "hidden"
       } p-[1em] flex items-center justify-center rounded-full border border-purple-700 cursor-pointer hover:bg-purpleHoverBtn transition-all duration-300`}
     >
       {isLoading ? (
         <Loader useSmallLoading={true} hSize="0em" paddingSetTo="0em" />
-      ) : isClickedFav ? (
+      ) : isFavorite ? (
         <IoHeartSharp
           size={24}
           className={`text-${iconSize} text-purple-700`}

@@ -4,15 +4,16 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loader from "@/components/Loader/Loader";
+import { RootState } from "@/redux";
 
 const HoverCart = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const totalToPay = useSelector(
-    (state: any) => state.cart.totalCourseDiscountPrices
+    (state: RootState) => state.cart.totalCourseDiscountPrices
   );
   const coursesIdAdded = useSelector(
-    (state: any) => state.cart.coursesAddedToCart
+    (state: RootState) => state.cart.coursesAddedToCart
   );
 
   useEffect(() => {
@@ -23,17 +24,9 @@ const HoverCart = () => {
     return () => clearTimeout(timer);
   }, [totalToPay, coursesIdAdded]);
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center w-full h-full">
-        <Loader hSize="1000px" useSmallLoading={false} />
-      </div>
-    );
-  }
-
   return (
     <div>
-      <div className="rounded-[1em] text-[0.5em] flex flex-col justify-center items-start border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-previewCourseCardShadow cursor-pointer">
+      <div className="rounded-[1em] text-[0.5em] flex flex-col justify-center items-start border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-alertAlgoInfo cursor-pointer">
         <div className="w-full">
           {coursesIdAdded.length > 0 ? (
             coursesIdAdded.map((courseId: string) => (

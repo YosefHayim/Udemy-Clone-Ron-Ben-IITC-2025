@@ -37,11 +37,19 @@ const cartSlice = createSlice({
       );
     },
     setCoursesAddedToWishList: (state, action: PayloadAction<string>) => {
-      // Prevent duplicate course additions
-      state.coursesAddedToWishList = Array.from(
-        new Set([...state.coursesAddedToWishList, action.payload])
-      );
+      const courseId = action.payload;
+
+      if (state.coursesAddedToWishList.includes(courseId)) {
+        // Remove course from wishlist
+        state.coursesAddedToWishList = state.coursesAddedToWishList.filter(
+          (id) => id !== courseId
+        );
+      } else {
+        // Add course to wishlist
+        state.coursesAddedToWishList.push(courseId);
+      }
     },
+
     setTotalOriginalCoursePrices: (state, action: PayloadAction<number>) => {
       if (!action.payload || isNaN(action.payload)) {
         console.log("Invalid fullPrice payload:", action.payload);

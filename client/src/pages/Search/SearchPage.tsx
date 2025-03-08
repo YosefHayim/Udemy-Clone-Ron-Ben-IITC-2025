@@ -106,7 +106,7 @@ const SearchPage: React.FC = () => {
               .map((course: CourseTypeProps, index: number) => (
                 <div
                   key={course._id}
-                  id={`course-card-${course._id}`}
+                  id={course._id}
                   className="relative"
                   onMouseEnter={() => setHoveredCourse(course._id)}
                   onMouseLeave={() => setHoveredCourse(null)}
