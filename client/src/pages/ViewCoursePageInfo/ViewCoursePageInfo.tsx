@@ -20,6 +20,7 @@ import StudentsAlsoBought from "./StudentsAlsoBought/StudentsAlsoBought";
 import TopicPathMenu from "./TopicPathMenu/TopicPathMenu";
 import WhatYouLearn from "./WhatYouLearn/WhatYouLearn";
 import CoursePreviewCard from "./CoursePreviewCard/CoursePreviewCard";
+import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 
 const ViewCoursePageInfo: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -74,6 +75,8 @@ const ViewCoursePageInfo: React.FC = () => {
     return navigate("/not/found");
   }
 
+  console.log(courseData);
+
   return (
     <div className="w-full flex">
       <div className="flex flex-row p-[3em] items-start justify-start w-2/5 gap-[3em]">
@@ -96,7 +99,8 @@ const ViewCoursePageInfo: React.FC = () => {
           {/* Course Details */}
           <CourseBigTitle courseTitle={courseData?.courseName} />
           <CourseRecap recapInfo={courseData?.courseRecapInfo} />
-          <div className="w-full flex flex-row items-start justify-start gap-[0.5em]">
+          <div className="w-full flex flex-row items-center justify-start gap-[0.5em]">
+            <CourseTag tagName={courseData?.courseTag} />
             <CourseRating amountOfStars={courseData?.averageRating} />
             <CourseStudentRatings
               totalRated={courseData?.totalRatings}

@@ -22,7 +22,6 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
   courseId,
   firstLessonId,
 }) => {
-  const [isFixed, setIsFixed] = useState(false);
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const navigate = useNavigate();
 
@@ -46,7 +45,7 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
 
   return (
     <div
-      className={`shadow-previewCourseCardShadow w-[320px] z-[1500] bg-white border border-b-gray-100`}
+      className={`fixed right-[25%] top-[12%] shadow-previewCourseCardShadow w-1/5 z-[1500] bg-white border border-b-gray-100`}
     >
       <div className="relative" onClick={navigateCourseLesson}>
         <img

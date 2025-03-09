@@ -25,7 +25,7 @@ const TopicPathMenu: React.FC<{
       >
         {category}
       </b>
-      <MdOutlineKeyboardArrowRight />
+      <MdOutlineKeyboardArrowRight className="text-white" />
       <b
         className="cursor-pointer"
         onClick={() => handleNavigate(subcategory)}
@@ -33,7 +33,7 @@ const TopicPathMenu: React.FC<{
       >
         {subcategory}
       </b>
-      <MdOutlineKeyboardArrowRight />
+      <MdOutlineKeyboardArrowRight className="text-white" />
       <b
         className="cursor-pointer"
         onClick={() => handleNavigate(topic)}
