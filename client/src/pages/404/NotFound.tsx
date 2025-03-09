@@ -8,7 +8,7 @@ const NotFound: React.FC = () => {
       <div>
         <img src={notFoundImg} alt="Not found image" className="h-[30em]" />
       </div>
-      <div className="text-center text-[0.8em]">
+      <div className="text-center ">
         <h1>We can’t find the page you’re</h1>
         <h1>looking for</h1>
       </div>

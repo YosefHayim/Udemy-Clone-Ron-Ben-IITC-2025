@@ -23,7 +23,7 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
   return (
     <div className="border">
       <div
-        className="flex flex-col items-start justify-start p-[1em] w-[700px] text-[0.9em] mt-[10em]"
+        className="flex flex-col items-start justify-start p-[1em] w-[700px] mt-[10em]"
         style={{
           maxHeight: isExpanded ? "none" : "280px",
           WebkitMaskImage: isExpanded

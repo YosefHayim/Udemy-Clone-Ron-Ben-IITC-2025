@@ -1,6 +1,6 @@
 const CourseRecap = ({ recapInfo }: { recapInfo: string }) => {
   return (
-    <p className="text-[0.7em] w-[500px]">
+    <p className=" w-[500px]">
       {recapInfo || (
         <>
           Dive in and learn <b>React</b>.js from scratch! Learn <b>React</b>,

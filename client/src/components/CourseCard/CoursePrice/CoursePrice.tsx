@@ -22,9 +22,7 @@ const CoursePrice: React.FC<CoursePriceProps> = ({
         <div>
           {showFullPrice && !isFree && (
             <div>
-              <p className="line-through text-gray-500 text-[0.9em]">
-                ₪{fullPrice}
-              </p>
+              <p className="line-through text-gray-500">₪{fullPrice}</p>
             </div>
           )}
         </div>

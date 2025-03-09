@@ -20,8 +20,8 @@ const SearchResultsCourseImg: React.FC<searchResultCourseImgProps> = ({
       <div className="flex flex-col">
         <p id={courseId}>{courseName}</p>
         <div className="flex flex-row gap-[1em]">
-          <b className="text-grayResults text-[0.7em]">Course</b>
-          <p className="text-grayResults font-normal text-[0.7em]">
+          <b className="text-grayResults ">Course</b>
+          <p className="text-grayResults font-normal ">
             {instructorName}
           </p>
         </div>

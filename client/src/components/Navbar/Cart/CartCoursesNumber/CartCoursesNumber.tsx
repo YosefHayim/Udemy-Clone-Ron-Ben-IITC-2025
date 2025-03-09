@@ -25,7 +25,7 @@ const CartCoursesNumber = () => {
 
   return (
     <div className="bg-purple-500 rounded-full p-[0.5em] text-white absolute top-[0.01em] left-[0.9em] right-[9.3%] text-center">
-      <p className="text-[0.5em] absolute left-[0.7em] top-[0.2em]">
+      <p className=" absolute left-[0.7em] top-[0.2em]">
         {countOfCourses}
       </p>
     </div>

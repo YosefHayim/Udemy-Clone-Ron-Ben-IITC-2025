@@ -39,7 +39,7 @@ const SortDropDown = () => {
   return (
     <div className="flex flex-col items-center w-full">
       <div className="relative w-full">
-        <b className="absolute text-[0.7em] left-[10%] top-[12%] cursor-pointer">
+        <b className="absolute  left-[10%] top-[12%] cursor-pointer">
           Sort by
         </b>
         <select

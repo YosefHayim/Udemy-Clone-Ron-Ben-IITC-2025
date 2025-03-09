@@ -72,7 +72,7 @@ const ProfileMain = () => {
                 placeholder={headline}
                 className="rounded-[0.2rem] border border-gray-500"
               />
-              <p className="text-[0.8em] text-gray-600">
+              <p className=" text-gray-600">
                 Add a professional headline like "instructor at udemy" or
                 "Architect"
               </p>
@@ -104,7 +104,7 @@ const ProfileMain = () => {
                 ></textarea>
               </div>
               {/* Informação adicional */}
-              <p className="text-[0.8em] text-gray-600 mb-[1em]">
+              <p className=" text-gray-600 mb-[1em]">
                 Links and coupon codes are not permitted in this section.
               </p>
               {/* Seleção de Idioma */}
@@ -167,7 +167,7 @@ const ProfileMain = () => {
                       className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
-                  <p className="text-[0.8em] text-gray-600 my-[1em]">
+                  <p className=" text-gray-600 my-[1em]">
                     Add your Twitter username (e.g. johnsmith)
                   </p>
                 </div>
@@ -192,7 +192,7 @@ const ProfileMain = () => {
                       className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
-                  <p className="text-[0.8em] text-gray-600 my-[1em]">
+                  <p className=" text-gray-600 my-[1em]">
                     Input your Facebook username (e.g. johnsmith)
                   </p>
                 </div>
@@ -217,7 +217,7 @@ const ProfileMain = () => {
                       className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
-                  <p className="text-[0.8em] text-gray-600 my-[1em]">
+                  <p className=" text-gray-600 my-[1em]">
                     Input your Linkedin username (e.g. johnsmith)
                   </p>
                 </div>
@@ -242,7 +242,7 @@ const ProfileMain = () => {
                       className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
-                  <p className="text-[0.8em] text-gray-600 my-[1em]">
+                  <p className=" text-gray-600 my-[1em]">
                     Input your YouTube username (e.g. johnsmith)
                   </p>
                 </div>

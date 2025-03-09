@@ -168,7 +168,7 @@ const ItemInCart = ({
             </div>
           </div>
           <div className={hide ? "block" : "hidden"}>
-            <div className="text-[0.8em] text-[#5022c3] hover:text-[#3b198f]">
+            <div className=" text-[#5022c3] hover:text-[#3b198f]">
               <button className="focus:outline-none cursor-pointer">
                 Remove
               </button>
