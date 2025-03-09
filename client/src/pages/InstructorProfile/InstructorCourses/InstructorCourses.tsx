@@ -1,3 +1,4 @@
+import { Course } from "@/types/types";
 import CourseCardInstructorRelated from "../CourseCardInstructorRelated/CourseCardInstructorRelated";
 import { useNavigate } from "react-router-dom";
 
@@ -6,10 +7,11 @@ const InstructorCourses: React.FC<{ coursesRelatedIds: string[] }> = ({
 }) => {
   const navigate = useNavigate();
 
-  const handleNavigate = (e) => {
-    const courseDiv = e.target.closest("div[id]");
-    console.log(courseDiv.id);
-    const courseId = courseDiv.id;
+  const handleNavigate = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.currentTarget;
+    const courseDiv = target.closest("div[id]");
+    console.log(courseDiv?.id);
+    const courseId = courseDiv?.id;
     // navigate(`/course-view/${courseId}`);
   };
 
@@ -23,7 +25,7 @@ const InstructorCourses: React.FC<{ coursesRelatedIds: string[] }> = ({
         {coursesRelatedIds.map((course) => (
           <CourseCardInstructorRelated
             key={course._id}
-            id={course._id}
+            courseId={course._id}
             totalCourseDuration={course.totalCourseDuration}
             courseImg={course.courseImg}
             courseDiscountPrice={course.courseDiscountPrice}

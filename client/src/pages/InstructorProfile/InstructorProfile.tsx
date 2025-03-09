@@ -18,7 +18,7 @@ const InstructorProfile = () => {
   if (isPending) {
     return (
       <div>
-        <Loader hSize="" useSmallLoading={false} />
+        <Loader hSize="1000px" useSmallLoading={false} />
       </div>
     );
   }
@@ -31,8 +31,8 @@ const InstructorProfile = () => {
   console.log(data);
 
   return (
-    <div className="p-[3em] pl-[10em] w-[1000px]">
-      <div className="flex flex-row items-start justify-between w-full">
+    <div className="flex flex-row items-center justify-center p-[3em] pl-[10em] w-full">
+      <div className="flex flex-row items-start justify-around w-max gap-[3em]">
         <div>
           <h2 className="font-bold">INSTRUCTOR</h2>
           <h1 className="font-bold font-[lifeLtstd]">{data.userId.fullName}</h1>
@@ -54,7 +54,7 @@ const InstructorProfile = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col items-center justify-start gap-[2em]">
+        <div className="flex flex-col items-center justify-center gap-[2em]">
           <img
             src={data.userId.profilePic}
             alt=""

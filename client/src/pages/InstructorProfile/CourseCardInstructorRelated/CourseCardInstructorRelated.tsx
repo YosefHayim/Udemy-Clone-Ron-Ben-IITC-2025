@@ -5,14 +5,15 @@ import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import React from "react";
 
 const CourseCardInstructorRelated: React.FC<{
-  courseDiscountPrice: Number;
-  courseFullPrice: Number;
-  totalRatings: Number;
+  courseId: string;
+  courseDiscountPrice: number;
+  courseFullPrice: number;
+  totalRatings: number;
   courseName: string;
   courseTag: string;
   courseInstructorName: string;
   courseImg: string;
-  totalCourseDuration: Number;
+  totalCourseDuration: number;
 }> = ({
   courseDiscountPrice,
   courseInstructorName,
