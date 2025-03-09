@@ -103,7 +103,9 @@ const SearchInput = () => {
           <MdOutlineSearch className="w-6 h-6 text-white " />
         </button>
       </form>
-      <SearchResults isTyping={isTyping} data={data} />
+      <div className="w-max">
+        <SearchResults isTyping={isTyping} data={data} />
+      </div>
     </div>
   );
 };

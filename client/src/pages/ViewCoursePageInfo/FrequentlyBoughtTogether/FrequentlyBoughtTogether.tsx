@@ -4,6 +4,7 @@ import FaqTotalCoursesPrice from "./FaqTotalCoursesPrice/FaqTotalCoursesPrice";
 import getThreeCoursesOfInstructor from "@/api/courses/getThreeCoursesOfInstructor";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Course } from "@/types/types";
 
 const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
   instructorId,
@@ -16,33 +17,35 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
     queryFn: () => getThreeCoursesOfInstructor(instructorId),
   });
 
-  if (isPending) return "Loading...";
-
-  if (error) return "An error has occurred: " + error.message;
-
   useEffect(() => {
     if (data) {
       // Calculate total full price
       const fullPriceTotal = data.reduce(
-        (accumulator, course) => accumulator + course.courseFullPrice,
+        (accumulator: number, course: Course) =>
+          accumulator + course.courseFullPrice,
         0
       );
       setSumFullPrice(fullPriceTotal);
 
       // Calculate total discount price
       const discountPriceTotal = data.reduce(
-        (accumulator, course) => accumulator + course.courseDiscountPrice,
+        (accumulator: number, course: Course) =>
+          accumulator + course.courseDiscountPrice,
         0
       );
       setDiscountSum(discountPriceTotal);
     }
   }, [data]);
 
+  if (!instructorId) {
+    return undefined;
+  }
+
   return (
     <div>
       <div className="flex flex-col border border-[#d1d7dc] w-[515px] p-[1em]">
         <h2 className="font-bold text-[1.5em]">Frequently Bought Together</h2>
-        {data.map((course) => (
+        {data.map((course: Course) => (
           <FrequentlyCourseCard
             key={course._id}
             courseId={course._id}

@@ -81,7 +81,7 @@ const SearchPage: React.FC = () => {
   });
 
   if (isLoading || isPending) {
-    return <Loader hSize="" useSmallLoading={false} />;
+    return <Loader hSize="1000px" useSmallLoading={false} />;
   }
 
   if (error || !data) {
