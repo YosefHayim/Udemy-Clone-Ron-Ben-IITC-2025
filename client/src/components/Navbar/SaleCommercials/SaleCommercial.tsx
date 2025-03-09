@@ -11,12 +11,14 @@ const SaleCommercial = () => {
     const endTime = new Date().getTime() + 14 * 60 * 60 * 1000 + 7 * 60 * 1000;
 
     const interval = setInterval(() => {
-      let now = new Date().getTime();
-      let remaining = endTime - now;
+      const now = new Date().getTime();
+      const remaining = endTime - now;
 
       if (remaining > 0) {
-        let hours = Math.floor(remaining / (1000 * 60 * 60));
-        let minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+        const hours = Math.floor(remaining / (1000 * 60 * 60));
+        const minutes = Math.floor(
+          (remaining % (1000 * 60 * 60)) / (1000 * 60)
+        );
         setTimeLeft(`${hours}h ${minutes}m`);
       } else {
         setTimeLeft("Time's up!");

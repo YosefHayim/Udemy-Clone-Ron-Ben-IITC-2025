@@ -11,10 +11,11 @@ import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
-import SaleCommercial from "./SaleCommercial/SaleCommercial";
+import SaleCommercial from "./SaleCommercials/SaleCommercial";
 import CategoriesMenu from "./Categories/CategoriesMenu";
 import { isRootPathOnly } from "@/utils/extraGenerals";
 import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
+import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercialTwo";
 
 const Navbar = () => {
   const [isClicked, setClicked] = useState(false);
@@ -27,7 +28,8 @@ const Navbar = () => {
 
   return (
     <div>
-      <SaleCommercial />
+      {/* <SaleCommercial /> */}
+      <SaleCommercialTwo />
       <div className="pb-[0.9em] pt-[0.2em] w-full flex items-center bg-white relative shadow-md justify-between px-[1.55rem]">
         <div className="flex flex-col w-full">
           <div className="w-full flex items-center">
