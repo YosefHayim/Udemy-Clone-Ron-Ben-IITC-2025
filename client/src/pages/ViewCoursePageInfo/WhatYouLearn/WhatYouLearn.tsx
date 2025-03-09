@@ -21,9 +21,9 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
   const secondColumn = prosCourse.slice(half);
 
   return (
-    <div>
+    <div className="border">
       <div
-        className="flex flex-col items-start justify-start border p-[1em] w-[700px] text-[0.9em] mt-[10em]"
+        className="flex flex-col items-start justify-start p-[1em] w-[700px] text-[0.9em] mt-[10em]"
         style={{
           maxHeight: isExpanded ? "none" : "280px",
           WebkitMaskImage: isExpanded
@@ -61,19 +61,19 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
             </ul>
           </div>
         </div>
-        <div
-          className="pl-[0.5em] py-[0.5em] rounded-[0.2em] flex gap-[1em] items-center cursor-pointer hover:bg-purpleHoverBtn w-[100px]"
-          onClick={handleToggle}
-        >
-          <span className="text-purpleStatic hover:text-purpleHover font-bold ">
-            {isExpanded ? "Show less" : "Show more"}
-          </span>
-          {isExpanded ? (
-            <MdOutlineKeyboardArrowUp />
-          ) : (
-            <MdOutlineKeyboardArrowDown />
-          )}
-        </div>
+      </div>
+      <div
+        className="ml-4 mb-4 pl-[0.2em] py-[0.3em] rounded-[0.2em] flex gap-[1em] items-center cursor-pointer hover:bg-purpleHoverBtn w-[115px]"
+        onClick={handleToggle}
+      >
+        <span className="m-[0.5em] text-purpleStatic hover:text-purpleHover font-bold ">
+          {isExpanded ? "Show less" : "Show more"}
+        </span>
+        {isExpanded ? (
+          <MdOutlineKeyboardArrowUp />
+        ) : (
+          <MdOutlineKeyboardArrowDown />
+        )}
       </div>
     </div>
   );

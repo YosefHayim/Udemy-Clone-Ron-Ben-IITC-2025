@@ -35,7 +35,7 @@ const DescriptionOfInstructor: React.FC<{
         <p>{backgroundOfInstructor}</p>
       </div>
       <div
-        className="pl-[0.5em] py-[0.5em] rounded-[0.2em] flex gap-[1em] items-center cursor-pointer hover:bg-purpleHoverBtn w-[110px]"
+        className="pl-[0.5em] py-[0.5em] rounded-[0.2em] flex gap-[1em] items-center cursor-pointer hover:bg-purpleHoverBtn w-[115px]"
         onClick={handleToggle}
       >
         <span className="text-purpleStatic hover:text-purpleHover font-bold ">
