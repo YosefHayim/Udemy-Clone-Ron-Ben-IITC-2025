@@ -1,6 +1,8 @@
 import { LuAlarmClock } from "react-icons/lu";
 
-const TimeLeftBuyCourse: React.FC = ({ coursePrice }) => {
+const TimeLeftBuyCourse: React.FC<{ coursePrice: number }> = ({
+  coursePrice = 0,
+}) => {
   return (
     <div
       className={`${

@@ -40,32 +40,13 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
     }
   }, [coursesBought, courseId]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 350 && window.scrollY < 2000) {
-        setIsFixed(true);
-      } else {
-        setIsFixed(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const navigateCourseLesson = () => {
     navigate(`/course/${courseId}/lesson/${firstLessonId}/overview`);
   };
 
   return (
     <div
-      className={`shadow-previewCourseCardShadow w-[320px] z-[1500] bg-white border border-b-gray-100 ${
-        isFixed ? "fixed right-[20%] top-[2%]" : "static"
-      } transition-all duration-300 ease-in-out`}
-      style={{
-        opacity: isFixed ? 1 : 1,
-        transform: isFixed ? "translateY(0)" : "translateY(10px)",
-      }}
+      className={`shadow-previewCourseCardShadow w-[320px] z-[1500] bg-white border border-b-gray-100`}
     >
       <div className="relative" onClick={navigateCourseLesson}>
         <img

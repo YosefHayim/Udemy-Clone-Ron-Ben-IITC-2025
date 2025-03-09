@@ -74,96 +74,85 @@ const ViewCoursePageInfo: React.FC = () => {
     return navigate("/not/found");
   }
 
-  // console.log(data);
-
   return (
-    <div className="flex flex-row p-[3em] items-start justify-start w-full gap-[3em]">
-      <div className="flex flex-col items-start justify-start gap-[1em]">
-        {/* Background Section */}
-        <div className="bg-[#1c1d1f] h-[350px] absolute w-full left-0 top-[9%]"></div>
-
-        {/* Sticky Navbar */}
-        <StickyCourseNavbar
-          courseName={courseData?.courseName}
-          totalStudents={courseData?.totalStudentsEnrolled.count}
-          avgRating={courseData?.averageRating}
-          totalRatings={courseData?.totalRatings}
-        />
-
-        {/* Topic Path */}
-        <TopicPathMenu
-          category={courseData?.category}
-          subcategory={courseData?.subCategory}
-          topic={courseData?.courseTopic}
-        />
-
-        {/* Course Details */}
-        <CourseBigTitle courseTitle={courseData?.courseName} />
-        <CourseRecap recapInfo={courseData?.courseRecapInfo} />
-
-        <div className="flex flex-row items-start justify-start gap-[0.5em]">
-          <CourseRating amountOfStars={courseData?.averageRating} />
-          <CourseStudentRatings
-            totalRated={courseData?.totalRatings}
-            totalStudents={courseData?.totalStudentsEnrolled?.count}
+    <div className="w-full flex">
+      <div className="flex flex-row p-[3em] items-start justify-start w-2/5 gap-[3em]">
+        <div className="w-full flex flex-col items-start justify-start gap-[1em]">
+          {/* Background Section */}
+          <div className="bg-[#1c1d1f] h-[350px] absolute w-full left-0 top-[9%]"></div>
+          {/* Sticky Navbar */}
+          <StickyCourseNavbar
+            courseName={courseData?.courseName}
+            totalStudents={courseData?.totalStudentsEnrolled.count}
+            avgRating={courseData?.averageRating}
+            totalRatings={courseData?.totalRatings}
           />
+          {/* Topic Path */}
+          <TopicPathMenu
+            category={courseData?.category}
+            subcategory={courseData?.subCategory}
+            topic={courseData?.courseTopic}
+          />
+          {/* Course Details */}
+          <CourseBigTitle courseTitle={courseData?.courseName} />
+          <CourseRecap recapInfo={courseData?.courseRecapInfo} />
+          <div className="w-full flex flex-row items-start justify-start gap-[0.5em]">
+            <CourseRating amountOfStars={courseData?.averageRating} />
+            <CourseStudentRatings
+              totalRated={courseData?.totalRatings}
+              totalStudents={courseData?.totalStudentsEnrolled?.count}
+            />
+          </div>
+          {/* Additional Info */}
+          <CourseCreatedBy
+            instructorName={courseData?.courseInstructor?.fullName}
+            instructorId={courseData?.courseInstructor?._id}
+          />
+          <CourseBasicInfo
+            lastUpdated={courseData?.updatedAt}
+            courseLanguage={courseData?.courseLanguages}
+          />
+          <WhatYouLearn prosCourse={courseData?.whatYouWillLearn} />
+          <ExploreTopics
+            category={courseData?.category}
+            subCategory={courseData?.subCategory}
+            topic={courseData?.courseTopic}
+          />
+          {/* Course Content */}
+          <CourseContent
+            sectionsOfCourse={courseData?.sections}
+            totalCourseSections={courseData?.sections.length}
+            totalCourseDuration={courseData?.totalCourseDuration}
+            totalCourseLessons={courseData?.totalCourseLessons}
+            requirements={courseData?.courseRequirements}
+            description={courseData?.courseDescription}
+            whoThisFor={courseData?.whoThisCourseIsFor}
+          />
+          {/* Recommended Courses */}
+          <StudentsAlsoBought />
+          <FrequentlyBoughtTogether
+            instructorId={courseData?.courseInstructor._id}
+          />
+          {/* Instructor Section */}
+          <InstructorSection
+            instructorHeadline={courseData?.courseInstructor?.headline}
+            instructorId={courseData?.courseInstructor?._id}
+            instructorImg={courseData?.courseInstructor?.profilePic}
+            instructorName={courseData?.courseInstructor?.fullName}
+            descriptionInstructor={courseData?.courseInstructorDescription}
+          />
+          {/* Reviews Section */}
+          <ReviewsSection
+            reviewsToRender={courseData?.reviews}
+            avgRating={courseData?.averageRating}
+          />
+          {/* Additional Features */}
+          <MoreCoursesByInstructor
+            instructorName={courseData?.courseInstructor.fullName}
+          />
+          <ReportAbuse />
         </div>
-
-        {/* Additional Info */}
-        <CourseCreatedBy
-          instructorName={courseData?.courseInstructor?.fullName}
-          instructorId={courseData?.courseInstructor?._id}
-        />
-        <CourseBasicInfo
-          lastUpdated={courseData?.updatedAt}
-          courseLanguage={courseData?.courseLanguages}
-        />
-        <WhatYouLearn prosCourse={courseData?.whatYouWillLearn} />
-        <ExploreTopics
-          category={courseData?.category}
-          subCategory={courseData?.subCategory}
-          topic={courseData?.courseTopic}
-        />
-
-        {/* Course Content */}
-        <CourseContent
-          sectionsOfCourse={courseData?.sections}
-          totalCourseSections={courseData?.sections.length}
-          totalCourseDuration={courseData?.totalCourseDuration}
-          totalCourseLessons={courseData?.totalCourseLessons}
-          requirements={courseData?.courseRequirements}
-          description={courseData?.courseDescription}
-          whoThisFor={courseData?.whoThisCourseIsFor}
-        />
-
-        {/* Recommended Courses */}
-        <StudentsAlsoBought />
-        <FrequentlyBoughtTogether
-          instructorId={courseData?.courseInstructor._id}
-        />
-
-        {/* Instructor Section */}
-        <InstructorSection
-          instructorHeadline={courseData?.courseInstructor?.headline}
-          instructorId={courseData?.courseInstructor?._id}
-          instructorImg={courseData?.courseInstructor?.profilePic}
-          instructorName={courseData?.courseInstructor?.fullName}
-          descriptionInstructor={courseData?.courseInstructorDescription}
-        />
-
-        {/* Reviews Section */}
-        <ReviewsSection
-          reviewsToRender={courseData?.reviews}
-          avgRating={courseData?.averageRating}
-        />
-
-        {/* Additional Features */}
-        <MoreCoursesByInstructor
-          instructorName={courseData?.courseInstructor.fullName}
-        />
-        <ReportAbuse />
       </div>
-
       {/* Preview Card */}
       <CoursePreviewCard
         firstLessonId={courseData?.sections?.[0]?.lessons?.[0]?._id}

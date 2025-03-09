@@ -29,14 +29,14 @@ const StickyCourseNavbar: React.FC<{
 
   return (
     <div
-      className={`fixed left-0 ${
+      className={`w-full fixed left-0 ${
         isVisible ? "top-[0] opacity-100" : "top-[3%] opacity-0"
       } ${
         isHighPriority ? "z-[1000]" : "z-[10]"
       } bg-[#1c1d1f] px-[1em] py-[1em] w-full text-white`}
     >
       <h2 className="font-bold">{courseName}</h2>
-      <div className="flex flex-row items-start justify-start gap-[0.5em]">
+      <div className="w-full flex flex-row items-start justify-start gap-[0.5em]">
         <CourseRating courseRating={avgRating} />
         <CourseStudentRatings
           totalStudents={totalStudents}

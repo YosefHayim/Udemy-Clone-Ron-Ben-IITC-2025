@@ -3,8 +3,8 @@ import ShowMore from "./ShowMore/ShowMore";
 
 const StudentsAlsoBought: React.FC = () => {
   return (
-    <div>
-      <h2 className="font-bold py-[0.5em]">Students also bought</h2>
+    <div className="w-full">
+      <h2 className="w-full font-bold py-[0.5em]">Students also bought</h2>
       <CourseCard />
       <CourseCard />
       <CourseCard />

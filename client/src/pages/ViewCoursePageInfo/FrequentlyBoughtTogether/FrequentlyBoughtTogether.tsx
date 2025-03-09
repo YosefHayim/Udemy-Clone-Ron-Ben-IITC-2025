@@ -5,6 +5,7 @@ import getThreeCoursesOfInstructor from "@/api/courses/getThreeCoursesOfInstruct
 import { useState } from "react";
 import { useEffect } from "react";
 import { Course } from "@/types/types";
+import { AiOutlinePlus } from "react-icons/ai";
 
 const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
   instructorId,
@@ -12,7 +13,7 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
   const [sum, setSumFullPrice] = useState(0);
   const [discountSum, setDiscountSum] = useState(0);
 
-  const { isPending, error, data } = useQuery({
+  const { data } = useQuery({
     queryKey: ["instructorThreeCourse"],
     queryFn: () => getThreeCoursesOfInstructor(instructorId),
   });
@@ -22,7 +23,7 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
       // Calculate total full price
       const fullPriceTotal = data.reduce(
         (accumulator: number, course: Course) =>
-          accumulator + course.courseFullPrice,
+          accumulator + course?.courseFullPrice,
         0
       );
       setSumFullPrice(fullPriceTotal);
@@ -30,7 +31,7 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
       // Calculate total discount price
       const discountPriceTotal = data.reduce(
         (accumulator: number, course: Course) =>
-          accumulator + course.courseDiscountPrice,
+          accumulator + course?.courseDiscountPrice,
         0
       );
       setDiscountSum(discountPriceTotal);
@@ -42,20 +43,30 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
   }
 
   return (
-    <div>
-      <div className="flex flex-col border border-[#d1d7dc] w-[515px] p-[1em]">
-        <h2 className="font-bold text-[1.5em]">Frequently Bought Together</h2>
-        {data.map((course: Course) => (
-          <FrequentlyCourseCard
-            key={course._id}
-            courseId={course._id}
-            courseImg={course.courseImg}
-            courseName={course.courseName}
-            instructorName={course.courseInstructor.fullName}
-            courseFullPrice={course.courseFullPrice}
-            courseDiscountPrice={course.courseDiscountPrice}
-            totalRatings={course.totalRatings}
-          />
+    <div className="w-full">
+      <div className="flex flex-col border border-[#d1d7dc] w-full p-[1em]">
+        <h2 className="font-bold">Frequently Bought Together</h2>
+        {data?.map((course: Course, index: number) => (
+          <div key={course?._id} className="relative w-full">
+            <FrequentlyCourseCard
+              courseId={course?._id}
+              courseImg={course?.courseImg}
+              courseName={course?.courseName}
+              instructorName={course?.courseInstructor.fullName}
+              courseFullPrice={course?.courseFullPrice}
+              courseDiscountPrice={course?.courseDiscountPrice}
+              totalRatings={course?.totalRatings}
+            />
+            {(index === 1 || index === 2) && (
+              <AiOutlinePlus
+                size={35}
+                style={{
+                  background: "white",
+                }}
+                className="p-[0.4em] absolute top-[-17.5%] left-[50%] right-2 text-xl shadow-alertAlgoInfo rounded-[100em]"
+              />
+            )}
+          </div>
         ))}
         <FaqTotalCoursesPrice
           sum={sum}
