@@ -207,7 +207,7 @@ const Login = () => {
               </button>
             </Link>
             <hr />
-            <Link to="/login-Business">
+            <Link to="/organization/global-login/email">
               <button className="focus:outline-none text-btnColor underline font-bold underline-offset-[5px] p-[0.7em]">
                 Log in with your organization
               </button>
