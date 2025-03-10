@@ -39,6 +39,7 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Promotions from "../pages/Terms/TermsPages/Promotions";
 import Messages from "@/pages/Messages/Messages";
 import Support from "@/pages/Support/Support";
+import OrganizationLogin from "@/pages/Login/OrganizationLogin";
 // import LoginBusiness from "@/pages/Login/LoginBusiness";
 
 export const filterContext = createContext<FilterDataProps>({
@@ -208,7 +209,21 @@ const AppRoutes: React.FC = () => {
                     </emailContext.Provider>
                   }
                 />
-
+                <Route
+                  path="/organization/global-login/email"
+                  element={
+                    <emailContext.Provider
+                      value={[
+                        emailUser,
+                        setEmailUser,
+                        userFullName,
+                        setUserFullName,
+                      ]}
+                    >
+                      <OrganizationLogin />
+                    </emailContext.Provider>
+                  }
+                />
                 <Route
                   path="/courses/search"
                   element={
