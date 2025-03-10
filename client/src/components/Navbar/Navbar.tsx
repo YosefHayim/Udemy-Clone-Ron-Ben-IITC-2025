@@ -16,11 +16,6 @@ import { isRootPathOnly } from "@/utils/extraGenerals";
 import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
 import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercialTwo";
 
-
-// const userState = useSelector((state: RootState) => state.user);
-// console.log("Dados completos do usuário:", userState);
-
-
 const Navbar = () => {
   const [isClicked, setClicked] = useState(false);
   const cookie = useSelector((state: RootState) => state.user.cookie) || "";
@@ -28,11 +23,7 @@ const Navbar = () => {
     (state: RootState) => state.user.isLoggedPreviouslyWithGoogle
   );
 
-  useEffect(() => {
-    console.log("Cookie:", cookie);
-    console.log("is user loged?", cookie.trim().length > 1);
-    console.log("Loged with google?", isLoggedWithGoog);
-  }, [cookie, isLoggedWithGoog]);
+  useEffect(() => {}, [cookie]);
 
   return (
     <div>

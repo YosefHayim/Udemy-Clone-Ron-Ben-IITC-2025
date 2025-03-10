@@ -169,14 +169,14 @@ const Login = () => {
             <div className="flex justify-center space-x-5 mb-[5em]">
               <button
                 onClick={handleGoogle}
-                className={`p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn`}
+                className={`focus:outline-none p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn`}
               >
                 <FcGoogle className="w-7 h-7" />
               </button>
-              <button className="p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
+              <button className="focus:outline-none p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
                 <FaFacebook className="w-7 h-7 text-blue-600" />
               </button>
-              <button className="p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
+              <button className="focus:outline-none p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
                 <FaApple className="w-7 h-7 opacity-85" />
               </button>
             </div>
@@ -199,7 +199,7 @@ const Login = () => {
               <hr />
             </div>
             <Link to="/signup">
-              <button className="underline-offset-[5px] p-[0.7em]">
+              <button className="focus:outline-none underline-offset-[5px] p-[0.7em]">
                 Don't have an account?{" "}
                 <span className=" text-btnColor font-bold underline">
                   Sign up
@@ -208,7 +208,7 @@ const Login = () => {
             </Link>
             <hr />
             <Link to="/login-Business">
-              <button className="text-btnColor underline font-bold underline-offset-[5px] p-[0.7em]">
+              <button className="focus:outline-none text-btnColor underline font-bold underline-offset-[5px] p-[0.7em]">
                 Log in with your organization
               </button>
             </Link>

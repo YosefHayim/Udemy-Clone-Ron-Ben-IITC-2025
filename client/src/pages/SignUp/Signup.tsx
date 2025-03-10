@@ -146,7 +146,7 @@ const SignUp: React.FC = () => {
             />
             <button
               type="submit"
-              className="w-full py-3 rounded-[0.4em] bg-btnColor hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
+              className="focus:outline-none w-full py-3 rounded-[0.4em] bg-btnColor hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
             >
               {isLoading ? (
                 <Loader useSmallLoading={true} hSize="" />
@@ -175,14 +175,14 @@ const SignUp: React.FC = () => {
           <div className="flex justify-center space-x-5">
             <button
               onClick={handleGoogle}
-              className={` p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn`}
+              className={`focus:outline-none p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn`}
             >
               <FcGoogle className="w-7 h-7" />
             </button>
-            <button className="p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
+            <button className="focus:outline-none p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
               <FaFacebook className="w-7 h-7 text-blue-600" />
             </button>
-            <button className="p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
+            <button className="focus:outline-none p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
               <FaApple className="w-7 h-7 opacity-85" />
             </button>
           </div>

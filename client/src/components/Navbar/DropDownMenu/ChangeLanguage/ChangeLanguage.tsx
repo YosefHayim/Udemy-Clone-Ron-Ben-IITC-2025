@@ -49,19 +49,19 @@ const ChangeLanguage: React.FC<{
             </div>
           )}
           <div
-            className={
+            className={`${
               !showIcon
-                ? "flex items-center justify-center border border-purple-800 p-[0.33em] rounded-[0.2em] hover:bg-purpleHoverBtn"
-                : "flex items-center gap-[0.2em] border border-btnColor py-[0.2em] px-[0.5em] rounded-[0.2em] pr-[2em] hover:bg-purpleHoverBtn"
-            }
+                ? " justify-center border border-purple-800 p-[0.33em]"
+                : " gap-[0.2em] border border-btnColor py-[0.2em] px-[0.5em] pr-[2em] hover:bg-purpleHoverBtn"
+            } focus:outline-none flex items-center rounded-[0.2em] hover:bg-purpleHoverBtn`}
           >
-            <TbWorld size={26} />
+            <TbWorld size={26} className="focus:outline-none" />
             {!showIcon && <p className="hidden">{chosenLanguage}</p>}
           </div>
         </DialogTrigger>
         <DialogContent className="">
           <DialogHeader>
-            <DialogTitle className="mb-[0.5em] font-bold">
+            <DialogTitle className="focus:outline-none mb-[0.5em] font-bold">
               Choose a language
             </DialogTitle>
             <DialogDescription className="">
@@ -74,7 +74,7 @@ const ChangeLanguage: React.FC<{
                       key={language.code}
                     >
                       <Button
-                        className={`flex justify-start hover:text-btnColor bg-white shadow-none hover:hover-color-mix rounded-[0.2em] h-[3em] text-black w-full
+                        className={`focus:outline-none flex justify-start hover:text-btnColor bg-white shadow-none hover:hover-color-mix rounded-[0.2em] h-[3em] text-black w-full
                           ${
                             chosenLanguage === language.name &&
                             "border border-gray-500"
