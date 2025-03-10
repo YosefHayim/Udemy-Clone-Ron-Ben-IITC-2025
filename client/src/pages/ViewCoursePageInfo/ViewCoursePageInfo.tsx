@@ -21,15 +21,16 @@ import TopicPathMenu from "./TopicPathMenu/TopicPathMenu";
 import WhatYouLearn from "./WhatYouLearn/WhatYouLearn";
 import CoursePreviewCard from "./CoursePreviewCard/CoursePreviewCard";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
+import { Course } from "@/types/types";
 
-const ViewCoursePageInfo: React.FC = () => {
+const ViewCoursePageInfo = () => {
   const { courseId } = useParams<{ courseId: string }>();
   const navigate = useNavigate();
 
   // Sanitize courseId
   const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
 
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const courseData = data;
@@ -66,7 +67,7 @@ const ViewCoursePageInfo: React.FC = () => {
   if (isLoading) {
     return (
       <div>
-        <Loader hSize="2000px" useSmallLoading={false} />
+        <Loader hSize="1000px" useSmallLoading={false} />
       </div>
     );
   }
@@ -82,7 +83,7 @@ const ViewCoursePageInfo: React.FC = () => {
       <div className="flex flex-row p-[3em] items-start justify-start w-2/5 gap-[3em]">
         <div className="w-full flex flex-col items-start justify-start gap-[1em]">
           {/* Background Section */}
-          <div className="bg-[#1c1d1f] h-[350px] absolute w-full left-0 top-[9%]"></div>
+          <div className="bg-[#1c1d1f] h-[350px] absolute w-full left-0 top-[13%]"></div>
           {/* Sticky Navbar */}
           <StickyCourseNavbar
             courseName={courseData?.courseName}
