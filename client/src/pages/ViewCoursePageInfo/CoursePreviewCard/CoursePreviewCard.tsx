@@ -45,7 +45,7 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
 
   return (
     <div
-      className={`fixed right-[25%] top-[12%] shadow-previewCourseCardShadow w-1/5 z-[1500] bg-white border border-b-gray-100`}
+      className={`fixed right-[25%] top-[14.5%] shadow-previewCourseCardShadow w-1/5 z-[1500] bg-white border border-b-gray-100`}
     >
       <div className="relative" onClick={navigateCourseLesson}>
         <img
