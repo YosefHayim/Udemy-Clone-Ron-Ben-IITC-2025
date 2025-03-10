@@ -21,8 +21,8 @@ import TopicPathMenu from "./TopicPathMenu/TopicPathMenu";
 import WhatYouLearn from "./WhatYouLearn/WhatYouLearn";
 import CoursePreviewCard from "./CoursePreviewCard/CoursePreviewCard";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
-import { Course } from "@/types/types";
 
+// replace this to useQuery tanstack
 const ViewCoursePageInfo = () => {
   const { courseId } = useParams<{ courseId: string }>();
   const navigate = useNavigate();
@@ -83,7 +83,7 @@ const ViewCoursePageInfo = () => {
       <div className="flex flex-row p-[3em] items-start justify-start w-2/5 gap-[3em]">
         <div className="w-full flex flex-col items-start justify-start gap-[1em]">
           {/* Background Section */}
-          <div className="bg-[#1c1d1f] h-[350px] absolute w-full left-0 top-[13%]"></div>
+          <div className="bg-[#1c1d1f] h-[350px] absolute w-full left-0 top-[14%]"></div>
           {/* Sticky Navbar */}
           <StickyCourseNavbar
             courseName={courseData?.courseName}
