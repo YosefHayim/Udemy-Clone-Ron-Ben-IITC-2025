@@ -11,7 +11,6 @@ import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
-import SaleCommercial from "./SaleCommercials/SaleCommercial";
 import CategoriesMenu from "./Categories/CategoriesMenu";
 import { isRootPathOnly } from "@/utils/extraGenerals";
 import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
@@ -91,7 +90,7 @@ const Navbar = () => {
               )}
             </div>
           </div>
-          <div className={isRootPathOnly() ? "block" : "hidden"}>
+          <div className={isRootPathOnly() ? "flex mt-[0.5em]" : "hidden"}>
             <SearchInput />
           </div>
         </div>

@@ -35,11 +35,6 @@ const ItemInCart = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  if (!courseId) {
-    console.log("There is no course Id provided");
-    return;
-  }
-
   const { data, error, isPending } = useQuery({
     queryKey: ["course", courseId],
     queryFn: () => {
@@ -50,6 +45,11 @@ const ItemInCart = ({
     },
     staleTime: 5 * 60 * 1000,
   });
+
+  if (!courseId) {
+    console.log("There is no course Id provided");
+    return;
+  }
 
   const handleCourseView = (courseId: string): void => {
     navigate(`/course-view/${courseId}`);
@@ -99,11 +99,9 @@ const ItemInCart = ({
       <div
         onClick={() => handleCourseView(courseId)}
         id={courseId}
-        className={`${
-          isColCourseBox
-            ? "flex flex-col items-start justify-start gap-[1em] cursor-pointer w-full"
-            : "flex flex-row items-start justify-start gap-[1em] cursor-pointer w-full"
-        }`}
+        className={`flex ${
+          isColCourseBox ? "flex-col" : "flex-row"
+        } items-start justify-start gap-[1em] cursor-pointer w-full`}
       >
         <div>
           <div className="relative">
@@ -116,16 +114,22 @@ const ItemInCart = ({
             <div
               className={
                 isMyLearning
-                  ? ``
-                  : `hover:bg-black absolute top-0 w-full h-full opacity-[80%]`
+                  ? `hover:bg-black absolute top-0 w-full h-full opacity-[80%]`
+                  : `hidden`
               }
             >
-              <FaCirclePlay className="text:none hover:text-white text-[3em] absolute left-[38%] top-[35%]" />
+              <FaCirclePlay
+                className={`${
+                  isMyLearning
+                    ? "text:none hover:text-white text-[3em] absolute left-[38%] top-[35%]"
+                    : "hidden"
+                }`}
+              />
               <div
                 className={
                   isMyLearning
-                    ? ``
-                    : `bg-white absolute right-[5%] top-[5%] p-[0.5em] flex items-center rounded-[0.2em] h-[2em] hover:bg-gray-100`
+                    ? `bg-white absolute right-[5%] top-[5%] p-[0.5em] flex items-center rounded-[0.2em] h-[2em] hover:bg-gray-100`
+                    : `hidden`
                 }
               >
                 <OptionsMyLearning />

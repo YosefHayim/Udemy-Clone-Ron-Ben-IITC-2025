@@ -17,10 +17,10 @@ const HoverCart = () => {
   );
 
   useEffect(() => {
-    // Simulate a loading delay to mimic data fetching
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 500); // Adjust delay as needed
+    }, 500);
+
     return () => clearTimeout(timer);
   }, [totalToPay, coursesIdAdded]);
 
@@ -35,6 +35,7 @@ const HoverCart = () => {
                 courseImgSize={`h-[5em] w-[5em] rounded-[0.5em]`}
                 courseId={courseId}
                 hide={false}
+                isMyLearning={false}
                 showDisPrice={true}
                 showFullPrice={false}
                 shortCutInstructor={true}

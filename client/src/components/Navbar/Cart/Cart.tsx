@@ -11,7 +11,7 @@ const Cart = () => {
 
   return (
     <div
-      className="relative mr-[0.3em]"
+      className="relative mr-[0.8em]"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

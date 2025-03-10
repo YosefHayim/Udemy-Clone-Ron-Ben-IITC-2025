@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import { setShowCart } from "@/redux/slices/cartSlice";
-import React from "react";
+import React, { useEffect } from "react";
+import { RootState } from "@/redux";
 
 const CartCoursesNumber = () => {
   const dispatch = useDispatch();
   const countOfCourses = useSelector(
-    (state: any) => state.cart.amountOfCourses
+    (state: RootState) => state.cart.amountOfCourses
   );
 
-  // Use useEffect to manage cart visibility
-  React.useEffect(() => {
+  useEffect(() => {
     if (countOfCourses >= 1) {
       dispatch(setShowCart(true)); // Show the cart when at least 1 course is added
     } else {
@@ -24,10 +24,8 @@ const CartCoursesNumber = () => {
   }
 
   return (
-    <div className="bg-purple-500 rounded-full p-[0.5em] text-white absolute top-[0.01em] left-[0.9em] right-[9.3%] text-center">
-      <p className=" absolute left-[0.7em] top-[0.2em]">
-        {countOfCourses}
-      </p>
+    <div className="bg-purple-500 rounded-full p-[1em] text-white absolute top-[-11%] left-[50%] right-[9.3%] text-center">
+      <p className=" absolute left-[0.7em] top-[0.2em]">{countOfCourses}</p>
     </div>
   );
 };
