@@ -35,7 +35,7 @@ const Logout: React.FC = () => {
             tech courses.
           </p>
           <div className="mt-[1em]">
-            <button className="focus:outline-none font-bold transition duration-150 text-sm font-Sans py-[0.7em] bg-btnColor hover:bg-[#892DE1] text-white rounded-[0.2rem] px-[0.5em] focus:outline-none">
+            <button className="font-bold transition duration-150 text-sm font-Sans py-[0.7em] bg-btnColor hover:bg-[#892DE1] text-white rounded-[0.2rem] px-[0.5em] focus:outline-none">
               Learn More
             </button>
           </div>

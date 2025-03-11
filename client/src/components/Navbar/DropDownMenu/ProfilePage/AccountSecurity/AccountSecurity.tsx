@@ -2,9 +2,22 @@ import { useSelector } from "react-redux";
 import SideBarProfile from "../SideBarProfile/SideBarProfile";
 import { RootState } from "@/redux";
 import { MdOutlineModeEditOutline } from "react-icons/md";
+import { useState } from "react";
+import DialogChangeEmail from "./DialogChangeEmail/DialogchangeEmail";
+import DialogMultiFactorAuth from "./DialogMultiFactorAuth/DialogMultiFactorAuth";
 
 const AccountSecurity = () => {
   const email = useSelector((state: RootState) => state.user.email);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isAuthOpen, setAuthOpen] = useState(false);
+
+  const handleChangeEmail = () => {
+    setIsDialogOpen((prev) => !prev);
+  };
+
+  const handleAuth = () => {
+    setAuthOpen((prev) => !prev);
+  };
 
   return (
     <div className="flex p-[4.5em]">
@@ -22,17 +35,16 @@ const AccountSecurity = () => {
                 Email:
               </label>
               <div className="flex items-center justify-center gap-[0.6em] w-full">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="mt-[0.5em] border w-full p-[1.1em] bg-white text-black focus:bg-white focus:text-black border-gray-400 placeholder:text-courseNameColorTxt"
-                  placeholder={`Your email address is`}
-                />
-                <span className="absolute font-bold right-[37.3%] top-[25.8%]">
-                  {email}
-                </span>
-                <div className="hover:bg-purpleHoverBtn cursor-pointer border p-[0.8em] pb-[1.1em] mt-[0.5em] border-purple-700 rounded-[0.3em]">
+                <div className="mt-[0.5em] border w-full p-[1.1em] bg-white text-black focus:bg-white focus:text-black border-gray-400 placeholder:text-courseNameColorTxt">
+                  <p>
+                    Your email address is{" "}
+                    <span className="font-bold">{email}</span>
+                  </p>
+                </div>
+                <div
+                  onClick={handleChangeEmail}
+                  className="hover:bg-purpleHoverBtn cursor-pointer border px-[1em] p-[0.9em] mt-[0.5em] border-purple-700 rounded-[0.3em]"
+                >
                   <MdOutlineModeEditOutline
                     size={24}
                     style={{ color: "border-purple-700" }}
@@ -43,17 +55,19 @@ const AccountSecurity = () => {
             <hr className="w-full" />
             <div className="flex flex-col items-start w-[450px] py-[1.5em] gap-[1.3em]">
               <input
+                required
                 type="text"
                 id="new-password"
                 name="new-password"
-                className="rounded-[0.3em] border w-full p-[0.5em] bg-white text-black focus:bg-white focus:text-black border-gray-400 placeholder:text-courseNameColorTxt"
+                className="hover:bg-gray-100 border border-gray-400 rounded-[0.3em] p-[0.5em] w-full overflow-hidden bg-white focus-within:border-[#6d28d2] focus-within:ring-1 focus-within:ring-[#6d28d2]"
                 placeholder={"Enter new password"}
               />
               <input
+                required
                 type="text"
                 id="re-type-password"
                 name="re-type-password"
-                className="rounded-[0.3em] border w-full p-[0.5em] bg-white text-black focus:bg-white focus:text-black border-gray-400 placeholder:text-courseNameColorTxt"
+                className="hover:bg-gray-100 border border-gray-400 rounded-[0.3em] p-[0.5em] w-full overflow-hidden bg-white focus-within:border-[#6d28d2] focus-within:ring-1 focus-within:ring-[#6d28d2]"
                 placeholder={"Re-type new password"}
               />
               <button
@@ -77,7 +91,10 @@ const AccountSecurity = () => {
                   Help Center article.
                 </span>
               </p>
-              <button className="font-bold p-[0.8em] rounded-[0.3em] bg-btnColor hover:bg-purple-600 text-white">
+              <button
+                onClick={handleAuth}
+                className="font-bold p-[0.8em] rounded-[0.3em] bg-btnColor hover:bg-purple-600 text-white"
+              >
                 Enable
               </button>
             </div>
@@ -85,6 +102,14 @@ const AccountSecurity = () => {
         </div>
         <hr />
       </form>
+      <DialogChangeEmail
+        isDialogOpen={isDialogOpen}
+        setIsDialogOpen={setIsDialogOpen}
+      />
+      <DialogMultiFactorAuth
+        isAuthOpen={isAuthOpen}
+        setAuthOpen={setAuthOpen}
+      />
     </div>
   );
 };
