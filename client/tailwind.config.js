@@ -13,6 +13,9 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        borderGrayColor: {
+          DEFAULT: "#d1d2e0",
+        },
         purpleHoverBtn: "color-mix(in sRGB, #6d28d2 12%, transparent)",
         "green-mix":
           "color-mix(in sRGB, var(--color-green-300) 12%, transparent)",

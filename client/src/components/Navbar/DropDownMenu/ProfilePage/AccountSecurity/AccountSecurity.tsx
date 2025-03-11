@@ -1,94 +1,39 @@
-import { Link } from "react-router-dom";
-import SideBarProfile from "../SideBarProfile/SideBarProfile"; // Importando o componente da Sidebar
+import { useSelector } from "react-redux";
+import SideBarProfile from "../SideBarProfile/SideBarProfile";
+import { RootState } from "@/redux";
+import { MdOutlineModeEditOutline } from "react-icons/md";
 
 const AccountSecurity = () => {
-  return (
-    <div className="flex min-h-screen bg-gray-100">
-      {/* Sidebar */}
-      <SideBarProfile />
+  const email = useSelector((state: RootState) => state.user.email);
 
-      {/* Main Content */}
-      <main className="flex-1 p-8">
-        <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Account</h2>
-          <p className="text-gray-600 mb-4">
+  return (
+    <div className="flex p-[4.5em]">
+      <SideBarProfile />
+      <div className="py-[1em] flex items-start justify-center w-full border border-borderGrayColor">
+        <div className="w-full flex flex-col items-center">
+          <h2 className="font-bold">Account</h2>
+          <p className="mb-[1em]">
             Edit your account settings and change your password here.
           </p>
-
-          {/* Email Section */}
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+          <hr className="w-full" />
+          <div className="w-[450px] flex-col py-[1.5em]">
+            <label htmlFor="email" className="font-bold">
               Email:
             </label>
-            <div className="flex items-center justify-between border rounded-md px-4 py-2 bg-gray-50">
-              <span className="text-gray-700">ben.klinski@gmail.com</span>
-              <button className="focus:outline-none text-purple-600 hover:text-purple-800">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16.862 4.487l2.651 2.651m-2.651-2.651a2.248 2.248 0 113.182 3.182l-9.193 9.192a4.5 4.5 0 01-1.939 1.131l-3.24.926.926-3.24a4.5 4.5 0 011.13-1.94l9.194-9.192zm0 0L19.5 7.125"
-                  />
-                </svg>
+            <div className="flex items-center justify-center gap-[0.5em] w-full">
+              <input
+                type="email"
+                className="w-full p-[0.7em] bg-white text-black focus:bg-white focus:text-black borderGrayColorborder border-gray-400 placeholder:text-courseNameColorTxt focus:border-purple-800"
+                placeholder={`Your email address is ${email}`}
+              />
+              <button className="focus:outline-none">
+                <MdOutlineModeEditOutline size={24} />
               </button>
             </div>
           </div>
-
-          {/* Change Password Section */}
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Change Password:
-            </label>
-            <form className="space-y-4">
-              <input
-                type="password"
-                placeholder="Enter new password"
-                className="w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300"
-              />
-              <input
-                type="password"
-                placeholder="Re-type new password"
-                className="w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300"
-              />
-              <button
-                type="submit"
-                className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              >
-                Change password
-              </button>
-            </form>
-          </div>
-
-          {/* Multi-Factor Authentication Section */}
-          <div className="mb-6 bg-gray-50 border rounded-lg p-4">
-            <h3 className="text-lg font-bold text-gray-800 mb-2">
-              Multi-factor Authentication
-            </h3>
-            <p className="text-sm text-gray-600 mb-4">
-              Increase your account security by requiring that a code emailed to
-              you be entered when you log in. For more information on how
-              multi-factor authentication works, refer to our{" "}
-              <Link to="#" className="text-purple-600 hover:text-purple-800">
-                Help Center article
-              </Link>
-              .
-            </p>
-            <button
-              type="button"
-              className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            >
-              Enable
-            </button>
-          </div>
+          <hr className="w-full" />
         </div>
-      </main>
+      </div>
     </div>
   );
 };
