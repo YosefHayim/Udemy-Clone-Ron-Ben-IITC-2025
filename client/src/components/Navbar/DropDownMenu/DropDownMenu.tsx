@@ -68,18 +68,23 @@ const DropdownMenu: React.FC = () => {
 
   return (
     <div className="cursor-pointer absolute right-0 top-[100%] mt-[2.6em] w-72 bg-white border shadow-alertAlgoInfo rounded-lg z-[1600]">
-      <div className="flex items-center p-4 border-b">
+      <div className="flex items-center p-1 my-2 border-b">
         <Link to="/user/edit-profile">
-          <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
+          <ProfilePic
+            isHover={false}
+            shortcutName={shortcutName}
+            profilePic={profilePic}
+            isBig={true}
+          />
         </Link>
-        <div className="ml-3">
+        <div>
           <div className="font-bold text-gray-800 hover:text-btnColor">
             {fullName}
           </div>
-          <div className="text-sm text-gray-500">{email}</div>
+          <div className=" text-gray-500">{email}</div>
         </div>
       </div>
-      <ul className="py-2 text-sm">
+      <ul>
         {menuItems.map(
           ({ label, to, extra, separator, type, component }, index) =>
             type === "custom" ? (

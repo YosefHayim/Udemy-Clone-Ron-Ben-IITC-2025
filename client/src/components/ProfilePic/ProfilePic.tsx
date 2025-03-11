@@ -1,21 +1,36 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const ProfilePic: React.FC<{ shortcutName: string; profilePic: string }> = ({
+const ProfilePic: React.FC<{
+  shortcutName: string;
+  profilePic: string;
+  isBig: boolean;
+  isHover: boolean;
+  size: string;
+  customTextSize: string;
+}> = ({
   shortcutName,
   profilePic,
+  isBig = false,
+  isHover = true,
+  size = "h-[5em] w-[5em]",
+  customTextSize = "",
 }) => {
   return (
     <div
-      className="text-[#020202] font-normal text-sm font-Sans
-    hover:bg-purple-100 hover:text-purple-700 focus:outline-none cursor-pointer
-    focus:ring-2 focus:ring-purple-300 px-[0.6em] py-[0.2em] rounded-[0.4em]"
+      className={`${
+        isHover ? "hover:bg-purple-100" : ""
+      } p-[1em] text-[#020202] font-normal font-Sans hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300 px-[0.6em] py-[0.2em] rounded-[0.4em]`}
     >
-      <Avatar>
+      <Avatar className={`${isBig ? `${size}` : ""}`}>
         <AvatarImage
           src={`http://localhost:3000${profilePic}`}
           className="rounded-[100em]"
         />
-        <AvatarFallback className="bg-[#1D1E27] text-white font-bold ">
+        <AvatarFallback
+          className={`${
+            isBig ? "text-2xl" : "text-1xl"
+          } bg-black text-white font-bold ${customTextSize}`}
+        >
           {shortcutName.toUpperCase()}
         </AvatarFallback>
       </Avatar>

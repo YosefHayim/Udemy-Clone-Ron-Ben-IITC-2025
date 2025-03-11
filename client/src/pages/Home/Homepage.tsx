@@ -45,9 +45,9 @@ const Homepage = () => {
       ) : (
         <div>
           <Menu />
+          <Welcome />
+          <Banner />
           <div className="container mx-auto px-[5.7rem]">
-            <Welcome />
-            <Banner />
             <TeamAccess />
             <CoursesCarousel searchTerm={"JavaScript"} />
             <CoursesCarousel searchTerm={"Python"} />

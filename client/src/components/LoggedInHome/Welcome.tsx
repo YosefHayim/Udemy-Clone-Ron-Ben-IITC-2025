@@ -18,8 +18,13 @@ const Welcome = () => {
   const shortcutName = (firstWord?.[0] || "") + (secondWord?.[0] || "");
 
   return (
-    <div className="flex items-center space-x-4 bg-white p-6">
-      <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
+    <div className="flex items-center space-x-4 bg-white p-5">
+      <ProfilePic
+        isHover={false}
+        shortcutName={shortcutName}
+        profilePic={profilePic}
+        isBig={true}
+      />
       <div>
         <h2 className="text-2xl font-bold">Welcome back, {fullName}</h2>
         <div className="flex flex-row items-center justify-start gap-[0.5em]">

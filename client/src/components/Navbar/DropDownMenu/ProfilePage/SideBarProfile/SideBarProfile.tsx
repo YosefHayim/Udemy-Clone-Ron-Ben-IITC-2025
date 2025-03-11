@@ -24,8 +24,15 @@ const SideBarProfile = () => {
       {/* Picture & Name */}
       <div className="p-6 ">
         <div className="flex flex-col items-center space-y-4">
-          <div className="flex items-center justify-center w-[8rem] h-[8rem] rounded-full bg-[#1D1E27] text-white text-4xl font-bold">
-            <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
+          <div className="flex items-center justify-center w-[8rem] h-[8rem] rounded-full text-white text-4xl font-bold">
+            <ProfilePic
+              customTextSize={`text-4xl`}
+              size={`w-[3em] h-[3em]`}
+              shortcutName={shortcutName}
+              profilePic={profilePic}
+              isBig={true}
+              isHover={false}
+            />
           </div>
           <div>
             <h2 className="text-lg font-bold text-gray-800">{fullName}</h2>

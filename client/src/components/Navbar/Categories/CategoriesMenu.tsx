@@ -10,7 +10,9 @@ const CategoriesMenu = () => {
   const [isExploring, setIsExploring] = useState(false);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [hoveredSubMenu, setHoveredSubMenu] = useState<string | null>(null);
-  const [hoveredSecondSubMenu, setHoveredSecondSubMenu] = useState<boolean | null>(false);
+  const [hoveredSecondSubMenu, setHoveredSecondSubMenu] = useState<
+    boolean | null
+  >(false);
 
   const menuTimeout = useRef<NodeJS.Timeout | null>(null);
   const subMenuTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -97,7 +99,7 @@ const CategoriesMenu = () => {
         {/* Menu one */}
         {hoveredMenu && (
           <div
-            className="absolute left-0 mt-[1.6rem] w-64 bg-white border border-gray-300 text-sm rounded-l-lg z-10 min-h-[40rem]"
+            className="absolute left-0 top-[130%] w-64 bg-white border border-gray-300 text-sm rounded-l-lg z-10 min-h-[40rem]"
             onMouseEnter={() => handleMenuEnter("main")}
             onMouseLeave={handleMenuLeave}
           >

@@ -77,7 +77,6 @@ const Photo = () => {
                   <img
                     src={preview || placeholderPhotoImg}
                     alt="Default user photo image"
-                    className=""
                   />
                 </div>
               </div>
