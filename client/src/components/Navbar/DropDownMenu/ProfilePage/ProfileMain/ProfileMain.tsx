@@ -96,7 +96,6 @@ const ProfileMain = () => {
             </p>
           </div>
           <form className="space-y-6 px-[9rem]" onSubmit={handleSubmit}>
-            {/* First Name */}
             <div>
               <p className="font-sans font-bold pb-2 pt-8">Basics:</p>
               <Input
@@ -107,7 +106,6 @@ const ProfileMain = () => {
                 className="hover:bg-gray-100 rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500"
               />
             </div>
-            {/* Last Name */}
             <div>
               <Input
                 id="lname"
@@ -117,7 +115,6 @@ const ProfileMain = () => {
                 className="hover:bg-gray-100 rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500"
               />
             </div>
-            {/* Headline */}
             <div>
               <Input
                 id="headline"
@@ -128,7 +125,7 @@ const ProfileMain = () => {
                 placeholder={"Headline"}
                 className="hover:bg-gray-100 rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500"
               />
-              <span className="absolute right-[26%] top-[38.5%] font-medium text-gray-500">
+              <span className="absolute right-[26%] top-[37.5%] font-medium text-gray-500">
                 {charsLeft}
               </span>
               <p className=" text-gray-600 my-[0.4em]">

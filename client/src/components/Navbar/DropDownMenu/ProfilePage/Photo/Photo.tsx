@@ -7,13 +7,16 @@ import { jwtDecode } from "jwt-decode";
 import { DecodedTokenProps } from "@/types/types";
 import { setProfilePic } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
-import Cookies from "js-cookie";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux";
+import placeholderPhotoImg from "/images/placeholder-default-image-user-photo.png";
+import { Input } from "@/components/ui/input";
 
 const Photo = () => {
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
-  const cookie = Cookies.get("cookie");
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   const handleFileChange = (event: any) => {
     const file = event.target.files[0];
@@ -55,84 +58,50 @@ const Photo = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="w-full flex p-[4.5em]">
       <SideBarProfile />
-
-      <main className="flex-1 p-8">
-        <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Photo</h2>
-          <p className="text-gray-600 mb-4">
-            Add a nice photo of yourself for your profile.
-          </p>
-
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Image preview
-            </label>
-            <div className="w-full h-64 border rounded-lg flex items-center justify-center bg-gray-50">
-              {preview ? (
-                <img
-                  src={preview}
-                  alt="Preview"
-                  className="object-cover w-full h-full rounded-lg"
-                />
-              ) : (
-                <div className="text-gray-400 text-sm">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-16 h-16 mx-auto mb-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 4.5v15m7.5-7.5h-15"
-                    />
-                  </svg>
-                  No image selected
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* File Upload */}
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Add / Change Image
-            </label>
-            <div className="flex space-x-4 items-center">
-              <input
-                type="file"
-                id="photo"
-                name="photo"
-                accept="image/*"
-                onChange={handleFileChange}
-                className="flex-1 text-sm text-gray-700 border rounded-md px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500"
-              />
-              <button
-                type="submit"
-                onClick={handleUpload}
-                className="px-4 py-2 bg-purple-600 text-white rounded-md shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              >
-                Upload image
-              </button>
-            </div>
-          </div>
-
-          {/* Save Button */}
-          <div className="flex justify-end">
-            <button
-              type="button"
-              className="px-6 py-2 bg-purple-600 text-white rounded-md shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            >
-              Save
-            </button>
+      <div className="w-full">
+        <div className="w-full flex flex-row items-center justify-center gap-4">
+          <div className="p-[2em] border border-gray-300 flex flex-col w-full items-center justify-center">
+            <h2 className="font-bold">Photo</h2>
+            <p>Add a nice photo of yourself for your profile.</p>
           </div>
         </div>
-      </main>
+        <hr className="w-full" />
+        <div className="flex flex-col items-center justify-center gap-4 w-full">
+          <div className="w-[650px] bg-white flex flex-col items-start justify-start gap-4">
+            <b className="pt-[1em]">Image preview</b>
+            <div className="border border-gray-400 w-full p-[1em]">
+              <div className="w-full bg-white flex items-center justify-center">
+                <div className="bg-gray-100 p-[1em] w-full flex items-center justify-center">
+                  <img
+                    src={placeholderPhotoImg}
+                    alt="Default user photo image"
+                    className=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="w-full items-start justify-start">
+              <b>Add / Change Image</b>
+              <form className="w-full flex flex-col items-start justify-start gap-6">
+                <div className="w-full flex flex-row items-start justify-start gap-4">
+                  <Input
+                    type="file"
+                    className="bw-min-max g-white text-black rounded-[0.2em] border border-gray-500"
+                  />
+                  <button className="w-min-max hover:bg-purpleHoverBtn cursor-pointer border border-purple-700 rounded-[0.3em]">
+                    Upload image
+                  </button>
+                </div>
+                <button className="font-bold p-[0.8em] px-[1.5em] rounded-[0.3em] bg-btnColor hover:bg-purple-600 text-white">
+                  Save
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
