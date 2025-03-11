@@ -71,11 +71,7 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-              {cookie.trim() && (
-                <Link to="/user/edit-profile">
-                  <Profile cookie={cookie} />
-                </Link>
-              )}
+              {cookie.trim() && <Profile cookie={cookie} />}
               {!cookie.trim() && (
                 <div className="ml-[0.3em]">
                   <ChangeLanguage

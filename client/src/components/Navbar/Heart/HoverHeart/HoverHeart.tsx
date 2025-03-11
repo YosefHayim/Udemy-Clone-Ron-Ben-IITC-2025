@@ -17,7 +17,7 @@ const HoverHeart = () => {
 
   return (
     <div>
-      <div className="mt-[1em] rounded-t-lg flex flex-col justify-center items-start border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-alertAlgoInfo cursor-pointer">
+      <div className="rounded-t-lg flex flex-col justify-center items-start border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-alertAlgoInfo cursor-pointer">
         {totalCourses.length > 0 ? (
           totalCourses.map((courseId: string) => (
             <div>

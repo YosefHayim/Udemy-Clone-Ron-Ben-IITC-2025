@@ -20,7 +20,7 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
 
       {isHovering && aTagName !== "Categories" && (
         <div>
-          <div className="flex flex-col items-center justify-center gap-[0.5em] shadow-alertAlgoInfo border border-gray-300 absolute top-[4.3rem] right-0 w-[290px] bg-white rounded-lg p-4 text-center z-50">
+          <div className="flex flex-col items-center justify-center gap-[0.5em] shadow-alertAlgoInfo border border-gray-300 absolute top-[3.1em] right-0 w-[290px] bg-white rounded-lg p-4 text-center z-50">
             <p className="font-bold leading-tight text-gray-800">
               {aTagName === "Udemy Business"
                 ? "Get your team access to over 27,000 top Udemy courses, anytime, anywhere."
