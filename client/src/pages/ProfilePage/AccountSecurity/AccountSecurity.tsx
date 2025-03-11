@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
-import SideBarProfile from "../SideBarProfile/SideBarProfile"; // Importando o componente da Sidebar
+import SideBarProfile from "../SideBarProfile/SideBarProfile";
 
 const AccountSecurity = () => {
   return (
     <div className="flex min-h-screen bg-gray-100">
-      {/* Sidebar */}
       <SideBarProfile />
 
-      {/* Main Content */}
       <main className="flex-1 p-8">
         <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Account</h2>
@@ -15,7 +13,6 @@ const AccountSecurity = () => {
             Edit your account settings and change your password here.
           </p>
 
-          {/* Email Section */}
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Email:
@@ -41,7 +38,6 @@ const AccountSecurity = () => {
             </div>
           </div>
 
-          {/* Change Password Section */}
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Change Password:
@@ -66,7 +62,6 @@ const AccountSecurity = () => {
             </form>
           </div>
 
-          {/* Multi-Factor Authentication Section */}
           <div className="mb-6 bg-gray-50 border rounded-lg p-4">
             <h3 className="text-lg font-bold text-gray-800 mb-2">
               Multi-factor Authentication
