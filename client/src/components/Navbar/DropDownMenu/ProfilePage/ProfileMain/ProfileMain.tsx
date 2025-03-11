@@ -15,7 +15,9 @@ const ProfileMain = () => {
   const MAX_LENGTH = 60;
 
   const fullName = useSelector((state: RootState) => state.user.fullName);
-  const headlineFromStore = useSelector((state: RootState) => state.user.headline);
+  const headlineFromStore = useSelector(
+    (state: RootState) => state.user.headline
+  );
   const userLinks = useSelector((state: RootState) => state.user.userLinks);
   const bio = useSelector((state: RootState) => state.user.bio);
 
@@ -48,6 +50,7 @@ const ProfileMain = () => {
   };
 
   const [headline, setHeadline] = useState(headlineFromStore || "");
+  const [isBoldText, setBoldText] = useState(false);
   const [charsLeft, setCharsLeft] = useState(
     MAX_LENGTH - (headlineFromStore?.length || 0)
   );
@@ -138,13 +141,14 @@ const ProfileMain = () => {
                 <div className="flex items-center space-x-2 border border-gray-500 rounded-t-[0.2rem] bg-white p-2">
                   <button
                     type="button"
-                    className="font-serif text-opacity-80 flex items-center justify-center w-8 h-8 rounded-[0.2rem] font-bold text-black hover:bg-gray-300"
+                    onClick={() => setBoldText((prev) => !prev)}
+                    className={`focus:outline-none text-opacity-80 flex items-center justify-center w-8 h-8 rounded-[0.2rem] text-black hover:bg-gray-300`}
                   >
                     B
                   </button>
                   <button
                     type="button"
-                    className="font-serif text-opacity-80 flex items-center justify-center w-8 h-8 rounded-[0.2rem] font-bold italic text-black hover:bg-gray-300"
+                    className="focus:outline-none font-serif text-opacity-80 flex items-center justify-center w-8 h-8 rounded-[0.2rem] font-bold italic text-black hover:bg-gray-300"
                   >
                     I
                   </button>
@@ -154,7 +158,9 @@ const ProfileMain = () => {
                   name="bio"
                   placeholder={bio}
                   rows={4}
-                  className="hover:bg-gray-100 border border-gray-500 border-t-0 rounded-b-[0.2rem] w-full bg-white p-2"
+                  className={`${
+                    isBoldText ? "font-bold" : "font-normal"
+                  } hover:bg-gray-100 border border-gray-500 border-t-0 w-full bg-white`}
                 ></textarea>
               </div>
               <p className=" text-gray-600 my-[0.5em]">
@@ -164,14 +170,13 @@ const ProfileMain = () => {
                 <select
                   id="language"
                   name="language"
-                  className=" cursor-pointer hover:bg-gray-100 rounded-[0.2rem] border border-gray-500 mb-[1em] w-full bg-white p-2"
+                  value={chosenLanguage}
+                  onChange={(e) => handleChosenLanguage(e.target.value)}
+                  className="cursor-pointer hover:bg-gray-100 rounded-[0.2rem] border border-gray-500 mb-[1em] w-full bg-white p-2"
                 >
                   {btnLanguages.map(
                     (language: { code: string; name: string }) => (
-                      <option
-                        onClick={() => handleChosenLanguage(language.name)}
-                        key={language.code}
-                      >
+                      <option key={language.code} value={language.name}>
                         {language.name}
                       </option>
                     )
@@ -213,7 +218,7 @@ const ProfileMain = () => {
                           ? userLinks.xPlatform
                           : "Twitter Profile"
                       }
-                      className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
+                      className="h-full w-full bg-white   placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
                   <p className=" text-gray-600 my-[1em]">
@@ -237,7 +242,7 @@ const ProfileMain = () => {
                           ? userLinks.facebook
                           : "Username"
                       }
-                      className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
+                      className="h-full w-full bg-white   placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
                   <p className=" text-gray-600 my-[1em]">
@@ -261,7 +266,7 @@ const ProfileMain = () => {
                           ? userLinks.linkedin
                           : "Username"
                       }
-                      className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
+                      className="h-full w-full bg-white   placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
                   <p className=" text-gray-600 my-[1em]">
@@ -285,7 +290,7 @@ const ProfileMain = () => {
                           ? userLinks.youtube
                           : "Username"
                       }
-                      className="h-full w-full bg-white placeholder:text-base placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
+                      className="h-full w-full bg-white   placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
                     />
                   </div>
                   <p className=" text-gray-600 mt-[0.5em]">
