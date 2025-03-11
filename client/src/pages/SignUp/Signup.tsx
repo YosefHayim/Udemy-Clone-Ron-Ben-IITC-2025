@@ -187,7 +187,7 @@ const SignUp: React.FC = () => {
             </button>
           </div>
           <div className="flex justify-center px-0">
-            <p className="text-[0.8rem] text-courseNameColorTxt mt-2">
+            <p className="text-courseNameColorTxt mt-2">
               By signing up, you agree to our{" "}
               <span className="inline">
                 <a

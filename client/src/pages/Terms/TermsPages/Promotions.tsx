@@ -460,7 +460,7 @@ const Promotions = () => {
 
           {/* Sidebar */}
           <section className="w-full lg:w-1/5">
-            <div className="space-y-8 text-[0.9rem] font-medium">
+            <div className="space-y-8 font-medium">
               {/* Related Articles Section */}
               <div>
                 <h3 className="text-lg font-bold text-gray-900 mb-4">
@@ -601,7 +601,7 @@ const Promotions = () => {
             alt="Udemy Logo"
             className="h-9 w-auto"
           />
-          <p className="text-white text-[0.8rem]">© 2025 Udemy, Inc.</p>
+          <p className="text-white">© 2025 Udemy, Inc.</p>
         </div>
       </footer>
     </>

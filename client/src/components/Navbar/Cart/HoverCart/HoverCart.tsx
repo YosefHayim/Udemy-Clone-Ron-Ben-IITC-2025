@@ -43,12 +43,11 @@ const HoverCart = () => {
                 chooseFlex={"flex flex-col"}
                 itemsPosition="start"
                 textColor="text-bg-black"
-                textSize="text-[1em]"
                 gapPrice="gap-[0em]"
               />
             ))
           ) : (
-            <div className="text-[2em] flex flex-col items-center justify-center w-full text-center mt-[1em]">
+            <div className="flex flex-col items-center justify-center w-full text-center mt-[1em]">
               <p className="text-grayNavbarTxt font-light mb-[1em]">
                 Your cart is empty.
               </p>

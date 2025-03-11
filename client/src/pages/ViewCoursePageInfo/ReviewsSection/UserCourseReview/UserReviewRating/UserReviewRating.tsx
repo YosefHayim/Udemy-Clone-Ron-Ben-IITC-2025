@@ -17,7 +17,7 @@ const UserReviewRating: React.FC<{
           amountOfStars={reviewRating}
           courseRating={reviewRating}
         />
-        <p className="font-bold text-gray-400 text-[0.8em]">
+        <p className="font-bold text-gray-400">
           {calculateTimeDifference(createCommentAt)}
         </p>
       </div>

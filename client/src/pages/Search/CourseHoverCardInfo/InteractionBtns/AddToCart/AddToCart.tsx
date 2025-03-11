@@ -16,12 +16,16 @@ import buyCourseByCourseId from "@/api/users/buyCourseByCourseId";
 
 const AddToCart: React.FC<{
   discountSum?: number;
+  isWhite?: boolean;
   textBtn?: string;
   courseId?: string;
   discountPrice?: number;
   fullPriceCourse?: number;
   courseIds?: string[];
+  extraCustomCss?: string;
 }> = ({
+  isWhite = false,
+  extraCustomCss = "",
   textBtn = "Add to cart",
   courseId = "",
   discountPrice = 0,
@@ -90,11 +94,11 @@ const AddToCart: React.FC<{
         onClick={() => handleClick(courseId)}
         id={`btn-${courseId || "unknown"}`}
         disabled={isLoading}
-        className={`font-bold w-full rounded-[0.2em] py-[1.5em] text-[1em] ${
+        className={`${extraCustomCss} font-bold w-full rounded-[0.2em] py-[1.5em]${
           isLoading
             ? "focus:outline-none bg-gray-400 cursor-not-allowed"
             : "focus:outline-none bg-btnColor hover:bg-btnHoverColor"
-        }`}
+        } ${isWhite && "bg-white text-purple-800 border border-purple-800"}`}
       >
         {isLoading ? (
           <div className="absolute">

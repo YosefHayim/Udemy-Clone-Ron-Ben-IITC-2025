@@ -13,6 +13,7 @@ import { FaCirclePlay } from "react-icons/fa6";
 import OptionsMyLearning from "./OptionsMyLearning/OptionsMyLearning";
 
 const ItemInCart = ({
+  isFontThick = false,
   rowPrices = true,
   courseId = "",
   courseImgSize = "h-[5em] rounded-[0.3em]",
@@ -198,7 +199,7 @@ const ItemInCart = ({
                     rowPrices
                       ? "flex flex-row font-bold"
                       : "flex flex-col font-light text-black"
-                  }  items-start gap-[0.2em]`}
+                  }  items-start gap-[0.4em]`}
                 >
                   <p>
                     {data && showDisPrice
@@ -207,7 +208,11 @@ const ItemInCart = ({
                   </p>
                   <p
                     className={
-                      showFullPrice ? "text-gray-600 line-through" : "hidden"
+                      showFullPrice
+                        ? `${
+                            isFontThick && "font-light"
+                          } text-gray-600 line-through`
+                        : `hidden`
                     }
                   >
                     ₪{data?.courseFullPrice}
