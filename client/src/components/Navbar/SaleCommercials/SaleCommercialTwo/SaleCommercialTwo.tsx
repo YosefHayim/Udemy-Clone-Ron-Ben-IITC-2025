@@ -14,22 +14,29 @@ const SaleCommercialTwo = () => {
   return (
     <div
       className={`${
-        hiddenCommercial ? "hidden" : "flex flex-wrap flex-grow"
+        hiddenCommercial
+          ? "hidden"
+          : "flex items-center justify-between w-full flex-wrap flex-grow"
       } p-[1em] text-center text-white bg-[#5022C2]`}
     >
-      <p>
-        <span className="font-bold">Future-ready skills on your schedule</span>{" "}
-        |{" "}
-        <span className="font-light underline">
-          Learn on iOS, Android, and more.
-        </span>
-      </p>
-      <button
-        className="hover:bg-purpleHoverBtn p-[1em] rounded-[0.2em] cursor-pointer border-none bg-none"
-        onClick={handleCommercial}
-      >
-        <HiOutlineXMark className="text-[1.5em]" />
-      </button>
+      <div className="flex items-center  justify-center w-full text-center gap-4">
+        <p>
+          <span className="font-bold">
+            Future-ready skills on your schedule
+          </span>{" "}
+          |{" "}
+          <span className="font-light underline">
+            Learn on iOS, Android, and more.
+          </span>
+        </p>
+        <button
+          className="focus:outline-none hover:bg-purple-300 p-[1em] rounded-[0.2em] cursor-pointer border-none bg-none"
+          onClick={handleCommercial}
+        >
+          <HiOutlineXMark className="text-[1.5em]" />
+        </button>
+      </div>
+      <div></div>
     </div>
   );
 };

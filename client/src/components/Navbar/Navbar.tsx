@@ -18,7 +18,7 @@ import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercia
 
 const Navbar = () => {
   const [isClicked, setClicked] = useState(false);
-  const cookie = useSelector((state: RootState) => state.user.cookie) || "";
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   useEffect(() => {}, [cookie]);
 

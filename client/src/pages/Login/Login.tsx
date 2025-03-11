@@ -182,7 +182,10 @@ const Login = () => {
             </div>
           )}
           {isLoggedPreviouslyWithGoogle && (
-            <Button className="h-[3em] hover:bg-purpleHoverBtn mb-[0.5em] w-full rounded-[0.2em] font-bold bg-white text-purple-700 flex items-center border border-purple-600 justify-start px-[0.5em]">
+            <Button
+              onClick={handleGoogle}
+              className="h-[3em] hover:bg-purpleHoverBtn mb-[0.5em] w-full rounded-[0.2em] font-bold bg-white text-purple-700 flex items-center border border-purple-600 justify-start px-[0.5em]"
+            >
               <FcGoogle size={20} /> Continue with Google
             </Button>
           )}
