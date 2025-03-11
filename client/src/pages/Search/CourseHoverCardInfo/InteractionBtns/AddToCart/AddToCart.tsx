@@ -97,8 +97,11 @@ const AddToCart: React.FC<{
         className={`${extraCustomCss} font-bold w-full rounded-[0.2em] py-[1.5em]${
           isLoading
             ? "focus:outline-none bg-gray-400 cursor-not-allowed"
-            : "focus:outline-none bg-btnColor hover:bg-btnHoverColor"
-        } ${isWhite && "bg-white text-purple-800 border border-purple-800"}`}
+            : "focus:outline-none bg-btnColor hover:bg-purpleStatic"
+        } ${
+          isWhite &&
+          "bg-white text-purple-800 border border-purple-800 hover:bg-purple-100"
+        }`}
       >
         {isLoading ? (
           <div className="absolute">
