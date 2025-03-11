@@ -1,4 +1,4 @@
-import logo from "/images/logo-udemy-nav.svg";
+import logo from "/images/logo-udemy.svg";
 
 const Logo = () => {
   return (
@@ -7,7 +7,7 @@ const Logo = () => {
         <img
           src={logo}
           alt="Udemy Logo"
-          style={{ height: "2.15rem" }}
+          style={{ height: "4em" }}
           className="w-auto max-w-full align-middle"
         />
       </div>

@@ -7,7 +7,7 @@ import Box from "/images/box-light.svg";
 import Netapp from "/images/netapp-light.svg";
 import Eventbrite from "/images/eventbrite-light.svg";
 import { MdOutlineLanguage } from "react-icons/md";
-import FooterLogin from "@/components/FooterLogin.tsx/FooterLogin";
+import FooterLogin from "@/components/FooterLogin/FooterLogin";
 import { bottomSections, sections } from "@/utils/footerCategories";
 
 const Footer: React.FC = () => {

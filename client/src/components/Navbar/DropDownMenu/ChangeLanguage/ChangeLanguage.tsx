@@ -41,7 +41,7 @@ const ChangeLanguage: React.FC<{
 
   return (
     <div>
-      <Dialog open={isClicked} onOpenChange={setClicked}>
+      <Dialog>
         <DialogTrigger open={isClicked} onOpenChange={setClicked}>
           {showIcon && (
             <div>

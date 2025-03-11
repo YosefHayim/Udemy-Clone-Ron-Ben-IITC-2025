@@ -51,15 +51,11 @@ const DropdownMenu: React.FC = () => {
       type: "custom",
       component: (
         <li
-          className="flex items-center px-4 py-5 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
+          className="my-[0.5em] flex items-center px-3 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
           onClick={() => setClicked((prev) => !prev)}
         >
-          <ChangeLanguage
-            isClicked={isClicked}
-            setClicked={setClicked}
-            showIcon={true}
-          />
-          <span className="ml-auto mr-2 text-sm">English</span>
+          <ChangeLanguage showIcon={true} />
+          <span className="ml-auto mr-2">English</span>
           <MdLanguage className="text-lg" />
         </li>
       ),
@@ -95,7 +91,7 @@ const DropdownMenu: React.FC = () => {
               <li key={index}>
                 <Link
                   to={to}
-                  className=" my-[0.3em] px-4 py-[0.5em] text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex justify-between"
+                  className="my-[0.3em] px-4 py-[0.5em] text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex justify-between"
                 >
                   {label}{" "}
                   {extra && (
