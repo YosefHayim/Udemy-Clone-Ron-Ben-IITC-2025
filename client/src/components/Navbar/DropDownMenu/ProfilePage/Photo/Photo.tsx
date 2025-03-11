@@ -75,7 +75,7 @@ const Photo = () => {
               <div className="w-full bg-white flex items-center justify-center">
                 <div className="bg-gray-100 p-[1em] w-full flex items-center justify-center">
                   <img
-                    src={placeholderPhotoImg}
+                    src={preview || placeholderPhotoImg}
                     alt="Default user photo image"
                     className=""
                   />
@@ -89,12 +89,21 @@ const Photo = () => {
                   <Input
                     type="file"
                     className="bw-min-max g-white text-black rounded-[0.2em] border border-gray-500"
+                    onChange={handleFileChange}
                   />
-                  <button className="w-min-max hover:bg-purpleHoverBtn cursor-pointer border border-purple-700 rounded-[0.3em]">
+                  <button
+                    type="button"
+                    className="w-min-max hover:bg-purpleHoverBtn cursor-pointer border border-purple-700 rounded-[0.3em]"
+                    onClick={handleUpload}
+                  >
                     Upload image
                   </button>
                 </div>
-                <button className="font-bold p-[0.8em] px-[1.5em] rounded-[0.3em] bg-btnColor hover:bg-purple-600 text-white">
+                <button
+                  type="button"
+                  className="font-bold p-[0.8em] px-[1.5em] rounded-[0.3em] bg-btnColor hover:bg-purple-600 text-white"
+                  onClick={handleUpload}
+                >
                   Save
                 </button>
               </form>
