@@ -128,7 +128,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
           key={section.sectionId._id}
           className="group/collapsible  group-open:pb-0 pt-10  group-data-[state=open]/collapsible:pb-0 border-2 bg-[#F6F7F9] border-t-0   w-full"
         >
-          <SidebarMenuItem className="">
+          <SidebarMenuItem>
             <CollapsibleTrigger
               asChild
               className=" gap-0 pl-0 focus:outline-none focus-visible:outline-none rounded-none"
@@ -149,7 +149,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
               </SidebarMenuButton>
             </CollapsibleTrigger>
 
-            <CollapsibleContent className="">
+            <CollapsibleContent>
               <SidebarMenuSub className="m-0 p-0 mt-4 bg-white border-l-0 w-full">
                 {section.lessons.map((lesson) => {
                   lessonCounter += 1;
@@ -184,7 +184,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
                                 to={`/course/${courseId}/lesson/${lesson.lessonId._id}`}
                                 className="  w-full"
                               >
-                                <span className="">
+                                <span>
                                   {lessonCounter}. {lesson.lessonId.title}
                                 </span>
                                 <span className="flex text-xs  overflow-visible text-black items-center hover:text-black">

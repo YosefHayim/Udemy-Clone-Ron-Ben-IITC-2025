@@ -81,7 +81,7 @@ const ReviewsTab = ({ avgRating = 1 }) => {
                     <span className="text-sm font-semibold underline text-btnColor">
                       {percentage}%
                     </span>
-                    <div className="">{renderStars(stars)}</div>
+                    <div>{renderStars(stars)}</div>
                   </div>
                 </div>
               );

@@ -51,20 +51,20 @@ const ChangeLanguage: React.FC<{
           <div
             className={`${
               !showIcon
-                ? " justify-center border border-purple-800 p-[0.33em]"
-                : " gap-[0.2em] border border-btnColor py-[0.2em] px-[0.5em] pr-[2em] hover:bg-purpleHoverBtn"
-            } focus:outline-none flex items-center rounded-[0.2em] hover:bg-purpleHoverBtn`}
+                ? "justify-center border border-purple-800 p-[0.45em]"
+                : ""
+            } focus:outline-none flex items-center hover:bg-purpleHoverBtn rounded-[0.2em]`}
           >
-            <TbWorld size={26} className="focus:outline-none" />
+            {!showIcon && <TbWorld size={26} className="focus:outline-none" />}
             {!showIcon && <p className="hidden">{chosenLanguage}</p>}
           </div>
         </DialogTrigger>
-        <DialogContent className="">
+        <DialogContent>
           <DialogHeader>
             <DialogTitle className="focus:outline-none mb-[0.5em] font-bold">
               Choose a language
             </DialogTitle>
-            <DialogDescription className="">
+            <DialogDescription>
               <div className="grid grid-cols-3 grid-rows-3 gap-1 flex-wrap">
                 {btnLanguages.map(
                   (language: { code: string; name: string }) => (

@@ -74,7 +74,7 @@ const OverviewTab: React.FC = () => {
         <div className="flex flex-col ">
           <span>
             <div className="inline-flex flex-row items-center text-sm pt-3 gap-2">
-              <BsPatchExclamationFill className="" />
+              <BsPatchExclamationFill />
               Last update{" "}
               {new Date(course.updatedAt).toLocaleString("en-US", {
                 month: "long",

@@ -19,9 +19,6 @@ import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercia
 const Navbar = () => {
   const [isClicked, setClicked] = useState(false);
   const cookie = useSelector((state: RootState) => state.user.cookie) || "";
-  const isLoggedWithGoog = useSelector(
-    (state: RootState) => state.user.isLoggedPreviouslyWithGoogle
-  );
 
   useEffect(() => {}, [cookie]);
 

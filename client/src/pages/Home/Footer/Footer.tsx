@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
   const user = useSelector((state: RootState) => state.user);
 
   return (
-    <div className="">
+    <div>
       {user && (
         <>
           <FooterLogin />

@@ -54,7 +54,7 @@ const LoginBusiness = () => {
             Need help with logging in or signing up?
           </a>
           <p className="text-xs text-grayNavbarTxt mt-7">
-            <button onClick={navigatePrivacy} className="">
+            <button onClick={navigatePrivacy}>
               Read our Privacy Statement
             </button>
           </p>

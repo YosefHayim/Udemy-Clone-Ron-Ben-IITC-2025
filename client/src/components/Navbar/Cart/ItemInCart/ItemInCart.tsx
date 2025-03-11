@@ -191,7 +191,7 @@ const ItemInCart = ({
                     hide ? "flex flex-row items-center gap-[0.2em]" : "hidden"
                   }
                 >
-                  <b className="">₪{data?.courseDiscountPrice}</b>
+                  <b>₪{data?.courseDiscountPrice}</b>
                   <BsFillTagFill />
                 </div>
                 <div

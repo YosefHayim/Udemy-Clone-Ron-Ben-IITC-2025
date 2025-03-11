@@ -7,7 +7,7 @@ const CouponArea: React.FC<{ btnBgDesign?: string; couponText?: string }> = ({
   couponText = "NEWYEARCAREER",
 }) => {
   return (
-    <div className="">
+    <div>
       <div className="flex flex-row border-dashed border border-gray-500 p-[1em] mb-[1em]">
         <div className="flex flex-row items-center justify-between mb-[0.5em] w-full">
           <div className="relative w-full flex flex-col items-start gap-[0.2em]">

@@ -18,10 +18,10 @@ const Profile: React.FC<{ cookie: string }> = ({ cookie }) => {
     <div>
       {cookie.length > 1 && (
         <div className="relative group">
-          <div className="pt-[1em]">
+          <div>
             <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
           </div>
-          <div className="pb-[1em]">
+          <div>
             <DropdownMenu />
           </div>
         </div>

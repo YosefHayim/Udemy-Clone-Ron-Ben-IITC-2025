@@ -35,7 +35,10 @@ const CustomTrigger: React.FC<CustomTriggerProps> = ({
       const currentPath = location.pathname;
       if (!currentPath.endsWith("/overview")) {
         // Replace the current URL with the '/overview' route
-        const newPath = `${currentPath.split("/").slice(0, -1).join("/")}/overview`;
+        const newPath = `${currentPath
+          .split("/")
+          .slice(0, -1)
+          .join("/")}/overview`;
         navigate(newPath);
       }
     }
@@ -44,7 +47,7 @@ const CustomTrigger: React.FC<CustomTriggerProps> = ({
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger  asChild>
+        <TooltipTrigger asChild>
           <button
             onClick={handleSidebarToggle}
             className={`z-40 ${
@@ -59,12 +62,12 @@ const CustomTrigger: React.FC<CustomTriggerProps> = ({
               isInsideSidebar ? (
                 <IoClose className=" " />
               ) : (
-                <FaTimes className="" />
+                <FaTimes />
               )
             ) : (
               <>
                 <span className="text-white transition-all duration-300 rotate-180 group-hover:left-4">
-                  <FaArrowRight className="size-5"/>
+                  <FaArrowRight className="size-5" />
                 </span>
                 <span className="pl-5 whitespace-nowrap opacity-0 group-hover:opacity-100 group-hover:relative group-hover:ml-0 text-lg transition-opacity duration-400">
                   Ai Assistant & Course Content

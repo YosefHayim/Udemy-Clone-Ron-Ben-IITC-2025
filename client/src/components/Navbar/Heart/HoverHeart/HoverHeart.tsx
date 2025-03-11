@@ -7,15 +7,17 @@ import AddToCart from "@/pages/Search/CourseHoverCardInfo/InteractionBtns/AddToC
 import { Button } from "@/components/ui/button";
 
 const HoverHeart = () => {
-  const totalCourses = useSelector(
-    (state: RootState) => state.cart.coursesAddedToWishList
-  );
+  // const totalCourses = useSelector(
+  //   (state: RootState) => state.cart.coursesAddedToWishList
+  // );
+
+  const totalCourses = [`67a11f338059ec7c5a61507a`];
 
   useEffect(() => {}, [totalCourses]);
 
   return (
     <div>
-      <div className="rounded-t-lg flex flex-col justify-center items-start border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-alertAlgoInfo cursor-pointer">
+      <div className="mt-[1em] rounded-t-lg flex flex-col justify-center items-start border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-alertAlgoInfo cursor-pointer">
         {totalCourses.length > 0 ? (
           totalCourses.map((courseId: string) => (
             <div>

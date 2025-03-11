@@ -51,12 +51,12 @@ const Homepage = () => {
       dispatch(setUdemyCredits(decoded.udemyCredits));
     }
   }, [cookie]);
+
   return (
     <div className={styles.homepage}>
       {!cookie ? (
         <div>
           <div className="container mx-auto px-[5.7rem]">
-            <DropdownMenu />
             <Banner />
             <Sections />
             <TrustedBySection />
@@ -72,7 +72,6 @@ const Homepage = () => {
         </div>
       ) : (
         <div>
-          <DropdownMenu />
           <Menu />
           <div className="container mx-auto px-[5.7rem]">
             <Welcome />

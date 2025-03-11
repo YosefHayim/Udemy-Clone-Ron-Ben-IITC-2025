@@ -11,7 +11,7 @@ const CoursePros: React.FC<{
         <li key={index}>
           <div className="flex items-start gap-[1em]">
             <IoMdCheckmark className="text-[1.5em]" />
-            <p className="">{pro}</p>
+            <p>{pro}</p>
           </div>
         </li>
       ))}
