@@ -3,8 +3,8 @@ import SideBarProfile from "../SideBarProfile/SideBarProfile";
 import { RootState } from "@/redux";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { useState } from "react";
-import DialogChangeEmail from "./DialogChangeEmail/DialogChangeEmail";
 import DialogMultiFactorAuth from "./DialogMultiFactorAuth/DialogMultiFactorAuth";
+import DialogChangeEmail from "./DialogChangeEmail/DialogChangeEmail";
 
 const AccountSecurity = () => {
   const email = useSelector((state: RootState) => state.user.email);
