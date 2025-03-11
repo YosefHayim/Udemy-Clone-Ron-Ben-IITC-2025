@@ -65,6 +65,7 @@ export interface UserState {
     youtube: string;
   };
   isLoggedPreviouslyWithGoogle: boolean;
+  isAuthActivated: boolean;
 }
 
 export interface searchResultCourseImgProps {

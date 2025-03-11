@@ -9,7 +9,15 @@ import {
 } from "@/components/ui/alert-dialog";
 import { IoClose } from "react-icons/io5";
 
-const DialogChangeEmail = ({ isDialogOpen, setIsDialogOpen }) => {
+interface DialogChangeEmailProps {
+  isDialogOpen: boolean;
+  setIsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const DialogChangeEmail: React.FC<DialogChangeEmailProps> = ({
+  isDialogOpen,
+  setIsDialogOpen,
+}) => {
   return (
     <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <AlertDialogTrigger asChild></AlertDialogTrigger>

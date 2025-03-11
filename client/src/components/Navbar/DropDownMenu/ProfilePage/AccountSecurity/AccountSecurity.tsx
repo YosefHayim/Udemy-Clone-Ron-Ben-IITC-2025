@@ -3,11 +3,15 @@ import SideBarProfile from "../SideBarProfile/SideBarProfile";
 import { RootState } from "@/redux";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { useState } from "react";
-import DialogChangeEmail from "./DialogChangeEmail/DialogchangeEmail";
+import DialogChangeEmail from "./DialogChangeEmail/DialogChangeEmail";
 import DialogMultiFactorAuth from "./DialogMultiFactorAuth/DialogMultiFactorAuth";
 
 const AccountSecurity = () => {
   const email = useSelector((state: RootState) => state.user.email);
+  const isAuthEnabled = useSelector(
+    (state: RootState) => state.user.isAuthActivated
+  );
+
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isAuthOpen, setAuthOpen] = useState(false);
 
@@ -95,7 +99,7 @@ const AccountSecurity = () => {
                 onClick={handleAuth}
                 className="font-bold p-[0.8em] rounded-[0.3em] bg-btnColor hover:bg-purple-600 text-white"
               >
-                Enable
+                {isAuthEnabled ? "Disable" : "Enable"}
               </button>
             </div>
           </div>

@@ -5,12 +5,18 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-const DialogMultiFactorAuth = ({ isAuthOpen, setAuthOpen }) => {
+interface DialogMultiFactorAuthProps {
+  isAuthOpen: boolean;
+  setAuthOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const DialogMultiFactorAuth: React.FC<DialogMultiFactorAuthProps> = ({
+  isAuthOpen,
+  setAuthOpen,
+}) => {
   return (
     <AlertDialog open={isAuthOpen} onOpenChange={setAuthOpen}>
       <AlertDialogContent>

@@ -21,6 +21,7 @@ const initialState: UserState = {
   udemyCredits: 0,
   cookie: Cookies.get("cookie") || "",
   isLoggedPreviouslyWithGoogle: false,
+  isAuthActivated: false,
 };
 
 const userSlice = createSlice({
@@ -75,6 +76,9 @@ const userSlice = createSlice({
     setCookie: (state, action: PayloadAction<string>) => {
       state.cookie = action.payload;
     },
+    setAuth: (state, action: PayloadAction<boolean>) => {
+      state.isAuthActivated = action.payload;
+    },
     clearUser: (state) => {
       state.fullName = "";
       state.profilePic = "";
@@ -111,6 +115,7 @@ export const {
   setUdemyCredits,
   setCookie,
   setIsLoggedWithGoogle,
+  setAuth,
 } = userSlice.actions;
 
 export default userSlice.reducer;

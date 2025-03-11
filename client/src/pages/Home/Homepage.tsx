@@ -1,20 +1,4 @@
 import Menu from "@/components/Menu/Menu";
-import DropdownMenu from "@/components/Navbar/DropDownMenu/DropDownMenu";
-import Cookies from "js-cookie";
-import { jwtDecode } from "jwt-decode";
-import {
-  setBio,
-  setCookie,
-  setCoursesBought,
-  setEmailAddress,
-  setFullName,
-  setHeadline,
-  setProfilePic,
-  setRole,
-  setUdemyCredits,
-} from "@/redux/slices/userSlice";
-import { useDispatch } from "react-redux";
-import { DecodedTokenProps } from "@/types/types";
 import Banner from "./Banner/Banner";
 import TrustedBySection from "./TrustedBySection/TrustedBySection";
 import LearnersAreViewing from "./LearnersAreViewing/LearnersAreViewing";
@@ -31,26 +15,14 @@ import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 import TeamAccess from "./TeamAccess/TeamAccess";
 import { useEffect } from "react";
 import styles from "./Homepage.module.css";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux";
 
 const Homepage = () => {
   document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
-  const dispatch = useDispatch();
-  const cookie = Cookies.get("cookie");
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
-  useEffect(() => {
-    if (cookie) {
-      const decoded = jwtDecode<DecodedTokenProps>(cookie);
-      dispatch(setCookie(cookie));
-      dispatch(setFullName(decoded.fullName));
-      dispatch(setProfilePic(decoded.profilePic));
-      dispatch(setHeadline(decoded.headline));
-      dispatch(setEmailAddress(decoded.email));
-      dispatch(setBio(decoded.bio));
-      dispatch(setRole(decoded.role));
-      dispatch(setCoursesBought(decoded.coursesBought));
-      dispatch(setUdemyCredits(decoded.udemyCredits));
-    }
-  }, [cookie]);
+  useEffect(() => {}, [cookie]);
 
   return (
     <div className={styles.homepage}>
