@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/index"; // Importa o RootState do Redux
 import LogoFooter from "/images/logo-udemy-inverted.svg";
 import Nasdaq from "/images/nasdaq-light.svg";
 import Wolkswagen from "/images/volkswagen-light (1).svg";
@@ -9,10 +8,11 @@ import Eventbrite from "/images/eventbrite-light.svg";
 import { MdOutlineLanguage } from "react-icons/md";
 import FooterLogin from "@/components/FooterLogin/FooterLogin";
 import { bottomSections, sections } from "@/utils/footerCategories";
+import { RootState } from "@/redux";
 
 const Footer: React.FC = () => {
   // Obtemos o user do estado global
-  const user = useSelector((state: RootState) =>  state?.user?);
+  const user = useSelector((state: RootState) => state?.user);
 
   return (
     <div>

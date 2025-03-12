@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 const SideBarProfile = () => {
-  const fullName = useSelector((state: RootState) => state?.user?.fullName);
-  const profilePic = useSelector((state: RootState) => state?.user?.profilePic);
-  const bio = useSelector((state: RootState) => state?.user?.bio);
+  const fullName = useSelector((state: RootState) => state?.user.fullName);
+  const profilePic = useSelector((state: RootState) => state?.user.profilePic);
+  const bio = useSelector((state: RootState) => state?.user.bio);
   const cookie: string | any = Cookies.get("cookie");
   const location = useLocation();
 

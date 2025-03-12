@@ -23,7 +23,7 @@ const Wishlist: React.FC = () => {
 
   const coursesBought = useSelector(
     (state: RootState) =>
-      state?.user?.coursesBought as Array<{
+      state?.user.coursesBought as Array<{
         courseId: string;
         boughtAt: string;
       }>

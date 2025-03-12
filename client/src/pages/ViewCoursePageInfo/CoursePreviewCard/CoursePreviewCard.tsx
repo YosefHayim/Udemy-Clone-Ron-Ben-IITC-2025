@@ -26,7 +26,7 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
   const navigate = useNavigate();
 
   const coursesBought = useSelector(
-    (state: RootState) => state?.user?.coursesBought
+    (state: RootState) => state?.user.coursesBought
   );
 
   useEffect(() => {

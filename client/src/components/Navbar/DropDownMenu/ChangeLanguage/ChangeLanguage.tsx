@@ -25,7 +25,7 @@ const ChangeLanguage: React.FC<{
   const dispatch = useDispatch();
 
   const defaultLanguage = useSelector(
-    (state: RootState) => state?.user?.language
+    (state: RootState) => state?.user.language
   );
   const [chosenLanguage, setChosenLanguage] = useState(defaultLanguage);
 

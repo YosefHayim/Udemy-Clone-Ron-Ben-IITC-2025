@@ -7,7 +7,7 @@ import CoursePurchaseRow from "./CoursePurchaseRow/CoursePurchaseRow";
 
 const UdemyCredits = () => {
   const userCredits = useSelector(
-    (state: RootState) => state?.user?.udemyCredits
+    (state: RootState) => state?.user.udemyCredits
   );
 
   useEffect(() => {}, [userCredits]);

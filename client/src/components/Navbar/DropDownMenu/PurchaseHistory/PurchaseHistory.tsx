@@ -5,7 +5,7 @@ import PurchaseHistoryRow from "./PurchaseHistoryRow/PurchaseHistoryRow";
 
 const PurchaseHistory = () => {
   const userCredits = useSelector(
-    (state: RootState) =>  state?.user?.udemyCredits
+    (state: RootState) => state?.user.udemyCredits
   );
 
   useEffect(() => {}, [userCredits]);
