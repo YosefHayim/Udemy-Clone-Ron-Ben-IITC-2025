@@ -242,7 +242,7 @@ const AppRoutes: React.FC = () => {
                   path="/course-view/:courseId"
                   element={<ViewCoursePageInfo />}
                 />
-                <Route path="/Terms-of-Use" element={<Terms />} />
+                <Route path="/terms-of-use" element={<Terms />} />
               </Routes>
               <Footer />
             </>
