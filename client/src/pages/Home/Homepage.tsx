@@ -45,7 +45,7 @@ const Homepage = () => {
       ) : (
         <div>
           <Menu />
-          <div className="container mx-auto px-[1.7rem]">
+          <div className="container mx-auto px-0 xl:px-[1.7rem]">
             <Welcome />
             <Banner />
             <TeamAccess />
