@@ -29,7 +29,7 @@ import NotificationPreferences from "@/components/Navbar/DropDownMenu/ProfilePag
 import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privacy";
 import CloseAccount from "@/components/Navbar/DropDownMenu/ProfilePage/CloseAccount/CloseAccount";
 import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
-import VerifyCode from "../pages/Login/VerifyCode";
+import VerifyCode from "../pages/VerifyCode/VerifyCode";
 import InstructorProfile from "@/pages/InstructorProfile/InstructorProfile";
 import PersonalizeField from "@/pages/PersonalizeField/PersonalizeField";
 import Terms from "../pages/Terms/Terms";
@@ -39,7 +39,8 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Promotions from "../pages/Terms/TermsPages/Promotions";
 import Messages from "@/pages/Messages/Messages";
 import Support from "@/pages/Support/Support";
-import OrganizationLogin from "@/pages/Login/OrganizationLogin";
+import OrganizationLogin from "@/pages/OrganizationLogin/OrganizationLogin";
+import SignUpOrganization from "@/pages/SignUpOrganization/SignUpOrganization";
 // import LoginBusiness from "@/pages/Login/LoginBusiness";
 
 export const filterContext = createContext<FilterDataProps>({
@@ -209,21 +210,7 @@ const AppRoutes: React.FC = () => {
                     </emailContext.Provider>
                   }
                 />
-                <Route
-                  path="/organization/global-login/email"
-                  element={
-                    <emailContext.Provider
-                      value={[
-                        emailUser,
-                        setEmailUser,
-                        userFullName,
-                        setUserFullName,
-                      ]}
-                    >
-                      <OrganizationLogin />
-                    </emailContext.Provider>
-                  }
-                />
+
                 <Route
                   path="/courses/search"
                   element={
@@ -278,6 +265,20 @@ const AppRoutes: React.FC = () => {
         />
 
         <Route path="/terms/promotions" element={<Promotions />} />
+        <Route
+          path="/organization/global-login/email"
+          element={
+            <emailContext.Provider
+              value={[emailUser, setEmailUser, userFullName, setUserFullName]}
+            >
+              <OrganizationLogin />
+            </emailContext.Provider>
+          }
+        />
+        <Route
+          path="hc/en-us/requests/new/ticket_form_id"
+          element={<SignUpOrganization />}
+        />
       </Routes>
     </Router>
   );
