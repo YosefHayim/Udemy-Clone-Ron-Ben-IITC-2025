@@ -171,6 +171,38 @@ export enum resourceTypes {
   Link = "Link",
 }
 
+export interface CouponDocument {
+  _id?: mongoose.Types.ObjectId;
+  courseId: mongoose.Types.ObjectId;
+  couponCode: string | number;
+  discountPrice: number;
+  discountPercentage: number;
+  couponType: "percentage" | "fixed";
+  isActive: boolean;
+
+  validFrom: Date;
+  expirationDate: Date;
+
+  maxUses: number;
+  usedCount: number;
+
+  createdBy: mongoose.Types.ObjectId;
+  description?: string;
+  minimumPurchaseAmount?: number;
+
+  restrictions: {
+    oneTimePerUser: boolean;
+    newStudentsOnly: boolean;
+    specificCategories?: string[];
+  };
+
+  appliedTo: {
+    courses?: string[];
+    categories?: string[];
+    bundleOnly?: boolean;
+  };
+}
+
 export interface UserDocument {
   _id?: mongoose.Types.ObjectId;
   fullName: string;
