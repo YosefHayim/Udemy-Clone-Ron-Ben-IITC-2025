@@ -22,13 +22,13 @@ const Homepage = () => {
   document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
   const cookie = useSelector((state: RootState) => state.user.cookie);
 
-  useEffect(() => {}, [cookie]);
+  useEffect(() => { }, [cookie]);
 
   return (
     <div className={styles.homepage}>
       {!cookie ? (
         <div>
-          <div className="container mx-auto px-[5.7rem]">
+          <div className="container mx-auto px-[1.7rem]">
             <Banner />
             <Sections />
             <TrustedBySection />
@@ -45,9 +45,9 @@ const Homepage = () => {
       ) : (
         <div>
           <Menu />
-          <Welcome />
-          <Banner />
-          <div className="container mx-auto px-[5.7rem]">
+          <div className="container mx-auto px-[1.7rem]">
+            <Welcome />
+            <Banner />
             <TeamAccess />
             <CoursesCarousel searchTerm={"JavaScript"} />
             <CoursesCarousel searchTerm={"Python"} />
