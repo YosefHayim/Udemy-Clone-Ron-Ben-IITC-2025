@@ -18,7 +18,7 @@ import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercia
 
 const Navbar = () => {
   const [isClicked, setClicked] = useState(false);
-  const cookie = useSelector((state: RootState) => state.user.cookie);
+  const cookie = useSelector((state: RootState) => state?.user?.cookie);
 
   useEffect(() => {}, [cookie]);
 
@@ -50,7 +50,7 @@ const Navbar = () => {
               <Link to="/wishlist">
                 <AtagBtn aTagName={"My learning"} />
               </Link>
-              {cookie.trim().length > 1 && (
+              {cookie.length > 1 && (
                 <div className="flex items-center">
                   <Heart />
                 </div>
@@ -59,20 +59,20 @@ const Navbar = () => {
                 <Cart />
               </Link>
               <div className="flex items-center justify-around gap-[0.3em]">
-                {cookie.trim().length > 1 && (
+                {cookie.length > 1 && (
                   <div className="flex items-center">
                     <Notifications />
                   </div>
                 )}
-                {!cookie.trim() && (
+                {!cookie && (
                   <div className="flex flex-row gap-[0.3em]">
                     <LoginBtn />
                     <SignupBtn />
                   </div>
                 )}
               </div>
-              {cookie.trim() && <Profile cookie={cookie} />}
-              {!cookie.trim() && (
+              {cookie && <Profile cookie={cookie} />}
+              {!cookie && (
                 <div className="ml-[0.3em]">
                   <ChangeLanguage
                     isClicked={isClicked}

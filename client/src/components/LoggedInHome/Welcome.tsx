@@ -4,10 +4,10 @@ import { RootState } from "@/redux";
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
-  const fullName = useSelector((state: RootState) => state.user.fullName);
-  const profilePic = useSelector((state: RootState) => state.user.profilePic);
-  const headline = useSelector((state: RootState) => state.user.headline);
-  const cookie = useSelector((state: RootState) => state.user.cookie);
+  const fullName = useSelector((state: RootState) => state?.user?.fullName);
+  const profilePic = useSelector((state: RootState) => state?.user?.profilePic);
+  const headline = useSelector((state: RootState) => state?.user?.headline);
+  const cookie = useSelector((state: RootState) => state?.user?.cookie);
 
   if (!cookie) {
     return <div></div>;

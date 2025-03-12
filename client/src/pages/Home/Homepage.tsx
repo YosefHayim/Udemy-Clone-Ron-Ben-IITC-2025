@@ -20,9 +20,9 @@ import { RootState } from "@/redux";
 
 const Homepage = () => {
   document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
-  const cookie = useSelector((state: RootState) => state.user.cookie);
+  const cookie = useSelector((state: RootState) => state?.user?.cookie);
 
-  useEffect(() => { }, [cookie]);
+  useEffect(() => {}, [cookie]);
 
   return (
     <div className={styles.homepage}>

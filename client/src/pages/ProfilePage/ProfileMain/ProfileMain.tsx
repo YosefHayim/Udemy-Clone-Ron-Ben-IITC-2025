@@ -6,10 +6,10 @@ import { RootState } from "@/redux";
 
 const ProfileMain = () => {
   document.title = "Udemy | Edit profile";
-  const fullName = useSelector((state: RootState) => state.user.fullName);
-  const headline = useSelector((state: RootState) => state.user.headline);
-  const userLinks = useSelector((state: RootState) => state.user.userLinks);
-  const bio = useSelector((state: RootState) => state.user.bio);
+  const fullName = useSelector((state: RootState) => state?.user?.fullName);
+  const headline = useSelector((state: RootState) => state?.user?.headline);
+  const userLinks = useSelector((state: RootState) => state?.user?.userLinks);
+  const bio = useSelector((state: RootState) => state?.user?.bio);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

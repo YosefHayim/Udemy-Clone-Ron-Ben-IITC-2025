@@ -20,7 +20,7 @@ const DropdownMenu: React.FC = () => {
     fullName = "",
     profilePic,
     email,
-  } = useSelector((state: RootState) => state.user);
+  } = useSelector((state: RootState) => state?.user);
   const shortcutName = fullName
     .split(" ")
     .map((word) => word[0]?.toUpperCase())

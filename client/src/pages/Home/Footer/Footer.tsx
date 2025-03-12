@@ -12,7 +12,7 @@ import { bottomSections, sections } from "@/utils/footerCategories";
 
 const Footer: React.FC = () => {
   // Obtemos o user do estado global
-  const user = useSelector((state: RootState) => state.user);
+  const user = useSelector((state: RootState) =>  state?.user?);
 
   return (
     <div>
