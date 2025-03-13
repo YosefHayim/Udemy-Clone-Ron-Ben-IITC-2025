@@ -27,8 +27,6 @@ const DropdownMenu: React.FC = () => {
     .join("");
 
   const handleLogout = () => {
-    Cookies.remove("cookie");
-    dispatch(clearUser());
     navigate("/logout");
   };
 
@@ -111,7 +109,7 @@ const DropdownMenu: React.FC = () => {
         )}
         <li onClick={handleLogout}>
           <Link
-            to="/"
+            to="/logout"
             className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
           >
             Logout

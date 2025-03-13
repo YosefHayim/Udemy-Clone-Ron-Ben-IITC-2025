@@ -155,8 +155,8 @@ const Login = () => {
               </button>
             </form>
           )}
-          {!isLoggedPreviouslyWithGoogle ||
-            (showRegularLogin && (
+          {showRegularLogin ||
+            (!isLoggedPreviouslyWithGoogle && (
               <>
                 <div className="w-full flex items-center my-6">
                   <hr className="flex-grow border-gray-300" />

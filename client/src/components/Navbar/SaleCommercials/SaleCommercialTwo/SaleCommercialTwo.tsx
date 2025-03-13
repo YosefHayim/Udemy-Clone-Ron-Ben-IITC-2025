@@ -19,7 +19,7 @@ const SaleCommercialTwo = () => {
           : "flex items-center justify-between w-full flex-wrap flex-grow"
       } p-[1em] text-center text-white bg-[#5022C2]`}
     >
-      <div className="flex items-center  justify-center w-full text-center gap-4">
+      <div className="flex items-center justify-center text-center gap-4 flex-grow">
         <p>
           <span className="font-bold">
             Future-ready skills on your schedule
@@ -29,6 +29,8 @@ const SaleCommercialTwo = () => {
             Learn on iOS, Android, and more.
           </span>
         </p>
+      </div>
+      <div className="">
         <button
           className="focus:outline-none hover:bg-purple-300 p-[1em] rounded-[0.2em] cursor-pointer border-none bg-none"
           onClick={handleCommercial}
@@ -36,7 +38,6 @@ const SaleCommercialTwo = () => {
           <HiOutlineXMark className="text-[1.5em]" />
         </button>
       </div>
-      <div></div>
     </div>
   );
 };
