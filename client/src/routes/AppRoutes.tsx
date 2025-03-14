@@ -163,7 +163,6 @@ const AppRoutes: React.FC = () => {
                   path="/user/instructor/:instructorId"
                   element={<InstructorProfile />}
                 />
-                <Route path="/logout" element={<Support />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route
                   path="/Signup"

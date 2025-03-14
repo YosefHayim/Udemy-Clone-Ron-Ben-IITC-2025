@@ -3,12 +3,12 @@ import { MdLanguage } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import Cookies from "js-cookie";
 import ProfilePic from "../../ProfilePic/ProfilePic";
 import CartCoursesNumber from "../Cart/CartCoursesNumber/CartCoursesNumber";
 import ChangeLanguage from "./ChangeLanguage/ChangeLanguage";
 import { clearUser } from "@/redux/slices/userSlice";
 import { RootState } from "@/redux";
+import { setClearAll } from "@/redux/slices/cartSlice";
 
 const DropdownMenu: React.FC = () => {
   const [isClicked, setClicked] = useState(false);
@@ -27,6 +27,8 @@ const DropdownMenu: React.FC = () => {
     .join("");
 
   const handleLogout = () => {
+    dispatch(setClearAll());
+    dispatch(clearUser());
     navigate("/logout");
   };
 

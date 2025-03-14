@@ -20,20 +20,16 @@ import reviewRoute from "./routes/reviews/reviewRoute.ts";
 import reportReviewRoute from "./routes/reviews/reportReviewRoute.ts";
 import instructorRoute from "./routes/users/instructorRoute.ts";
 
-// Load environment variables
 dotenv.config();
 
-// Initialize Express app
 const app: Application = express();
 const PORT: number = Number(process.env.PORT) || 3000;
 
-// Connect to Database
 connectDb();
 
 // Serve static images
 app.use("/imgs", express.static("public/imgs"));
 
-// Security middleware
 app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
@@ -87,10 +83,8 @@ app.use("/api/coupon", couponRoute);
 // Handle undefined routes
 app.all("*", undefinedRoute);
 
-// Error handling middleware
 app.use(errorHandler);
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });

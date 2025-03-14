@@ -20,8 +20,9 @@ import { useSelector } from "react-redux";
 const ChangeLanguage: React.FC<{
   isClicked?: boolean;
   setClicked?: (value: boolean) => void;
+  size?: number;
   showIcon: boolean;
-}> = ({ isClicked, setClicked, showIcon = false }) => {
+}> = ({ isClicked, setClicked, showIcon = false, size = 26 }) => {
   const dispatch = useDispatch();
 
   const defaultLanguage = useSelector(
@@ -51,11 +52,13 @@ const ChangeLanguage: React.FC<{
           <div
             className={`${
               !showIcon
-                ? "justify-center border border-purple-800 p-[0.45em]"
+                ? "justify-center border border-purple-800 p-[0.66em]"
                 : ""
             } focus:outline-none flex items-center hover:bg-purpleHoverBtn rounded-[0.2em]`}
           >
-            {!showIcon && <TbWorld size={26} className="focus:outline-none" />}
+            {!showIcon && (
+              <TbWorld size={size} className="focus:outline-none" />
+            )}
             {!showIcon && <p className="hidden">{chosenLanguage}</p>}
           </div>
         </DialogTrigger>

@@ -45,11 +45,13 @@ const Navbar = () => {
               <div className={isRootPathOnly() ? "hidden" : "flex-grow"}>
                 <SearchInput />
               </div>
-              <AtagBtn aTagName={"Udemy Business"} />
+              {cookie && <AtagBtn aTagName={"Udemy Business"} />}
               <AtagBtn aTagName={"Teach on Udemy"} />
-              <Link to="/wishlist">
-                <AtagBtn aTagName={"My learning"} />
-              </Link>
+              {cookie && (
+                <Link to="/wishlist">
+                  <AtagBtn aTagName={"My learning"} />
+                </Link>
+              )}
               {cookie.length > 1 && (
                 <div className="flex items-center">
                   <Heart />
@@ -75,6 +77,7 @@ const Navbar = () => {
               {!cookie && (
                 <div className="ml-[0.3em]">
                   <ChangeLanguage
+                    size={20}
                     isClicked={isClicked}
                     setClicked={setClicked}
                     showIcon={false}
