@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import { grantedAccess } from "../../controllers/authorization/authController.ts";
 import {
   getAllReports,
@@ -9,6 +9,11 @@ import {
 } from "../../controllers/reviews/reportReviewController.ts";
 
 const router = express.Router();
+
+router.param("id", (req: Request, res: Response, next: NextFunction, val) => {
+  console.log(`ID is: ${val}`);
+  next();
+});
 
 router.get("/", getAllReports);
 router.get("/:id", getReportById);

@@ -9,8 +9,8 @@ import errorHandler from "./middlewares/errorHandler.ts";
 import undefinedRoute from "./middlewares/undefinedRoutes.ts";
 import connectDb from "./config/connectDb.ts";
 import loggerInfo from "./middlewares/logger.ts";
-
 import courseRoute from "./routes/course/courseRoute.ts";
+import couponRoute from "./routes/course/couponRoute.ts";
 import lessonRoute from "./routes/course/lessonRoute.ts";
 import sectionRoute from "./routes/course/sectionRoute.ts";
 import courseProgressRoutes from "./routes/course/courseProgressRoutes.ts";
@@ -82,6 +82,7 @@ app.use("/api/report/review", reportReviewRoute);
 app.use("/api/comment", commentRoute);
 app.use("/api/instructor", instructorRoute);
 app.use("/api/course-progress", courseProgressRoutes);
+app.use("/api/coupon", courseProgressRoutes);
 
 // Handle undefined routes
 app.all("*", undefinedRoute);

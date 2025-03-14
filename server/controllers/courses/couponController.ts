@@ -4,7 +4,6 @@ import createError from "../../utils/errorFn.ts";
 import Course from "../../models/courses/courseModel.ts";
 import Coupon from "../../models/courses/couponModel.ts";
 
-// Create new coupon
 const createCoupon = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const {
@@ -38,20 +37,17 @@ const createCoupon = catchAsync(
       return next(createError("Fixed discount amount is required", 400));
     }
 
-    // Check if course exists
     const course = await Course.findById(courseId);
     if (!course) {
       return next(createError("Course not found", 404));
     }
 
-    // Check if instructor owns the course
     if (course.courseInstructor.toString() !== req.user._id.toString()) {
       return next(
         createError("You can only create coupons for your own courses", 403)
       );
     }
 
-    // Check if coupon code already exists
     const existingCoupon = await Coupon.findOne({ couponCode });
     if (existingCoupon) {
       return next(createError("Coupon code already exists", 400));
@@ -82,150 +78,12 @@ const createCoupon = catchAsync(
   }
 );
 
-// Validate coupon with enhanced course checks
-const validateCoupon = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
-    const { couponCode, courseId } = req.body;
-
-    if (!couponCode || !courseId) {
-      return next(createError("Coupon code and course ID are required", 400));
-    }
-
-    // Find active coupon with expanded checks
-    const coupon = await Coupon.findOne({
-      couponCode,
-      courseId,
-      isActive: true,
-      expirationDate: { $gt: new Date() },
-    });
-
-    if (!coupon) {
-      return next(createError("Invalid or expired coupon", 400));
-    }
-
-    // Get course with essential details
-    const course = await Course.findOne({
-      _id: courseId,
-      isActive: true, // Only allow coupons for active courses
-    }).select(
-      "courseName courseFullPrice courseDiscountPrice category subCategory courseTopic courseLevel totalStudentsEnrolled"
-    );
-
-    if (!course) {
-      return next(createError("Course not found or inactive", 404));
-    }
-
-    // Enhanced validation checks
-    if (coupon.restrictions) {
-      // Check category restrictions
-      if (
-        coupon.restrictions.specificCategories?.length > 0 &&
-        !coupon.restrictions.specificCategories.includes(course.category)
-      ) {
-        return next(
-          createError("Coupon not valid for this course category", 400)
-        );
-      }
-
-      // Check new student restriction
-      if (coupon.restrictions.newStudentsOnly) {
-        const isEnrolled = course.totalStudentsEnrolled.students.includes(
-          req.user._id
-        );
-        if (isEnrolled) {
-          return next(createError("This coupon is for new students only", 400));
-        }
-      }
-
-      // Check one-time-per-user restriction
-      if (coupon.restrictions.oneTimePerUser) {
-        const hasUsedCoupon = await Coupon.findOne({
-          couponCode,
-          usedBy: req.user._id,
-        });
-        if (hasUsedCoupon) {
-          return next(createError("You have already used this coupon", 400));
-        }
-      }
-    }
-
-    // Check applied to restrictions
-    if (coupon.appliedTo) {
-      // Check if coupon is for specific courses only
-      if (
-        coupon.appliedTo.courses?.length > 0 &&
-        !coupon.appliedTo.courses.includes(courseId)
-      ) {
-        return next(createError("Coupon not valid for this course", 400));
-      }
-
-      // Check if coupon is for specific categories only
-      if (
-        coupon.appliedTo.categories?.length > 0 &&
-        !coupon.appliedTo.categories.includes(course.category)
-      ) {
-        return next(
-          createError("Coupon not valid for this course category", 400)
-        );
-      }
-    }
-
-    // Calculate final price with proper price checks
-    let finalPrice: number;
-    const basePrice = course.courseDiscountPrice || course.courseFullPrice;
-
-    if (coupon.couponType === "percentage") {
-      finalPrice = basePrice * (1 - coupon.discountPercentage / 100);
-    } else {
-      finalPrice = basePrice - coupon.discountPrice;
-    }
-
-    // Ensure minimum price threshold
-    finalPrice = Math.max(finalPrice, 0);
-
-    // Check minimum purchase amount if specified
-    if (
-      coupon.minimumPurchaseAmount &&
-      basePrice < coupon.minimumPurchaseAmount
-    ) {
-      return next(
-        createError(
-          `Course price must be at least ₪${coupon.minimumPurchaseAmount} to use this coupon`,
-          400
-        )
-      );
-    }
-
-    res.status(200).json({
-      status: "success",
-      data: {
-        coupon,
-        courseDetails: {
-          name: course.courseName,
-          category: course.category,
-          level: course.courseLevel,
-        },
-        pricing: {
-          originalPrice: course.courseFullPrice,
-          currentPrice: basePrice,
-          finalPrice,
-          totalDiscount: basePrice - finalPrice,
-          percentageOff: Math.round(
-            ((basePrice - finalPrice) / basePrice) * 100
-          ),
-        },
-        validUntil: coupon.expirationDate,
-        usesLeft: coupon.maxUses - coupon.usedCount,
-      },
-    });
-  }
-);
-
-// Get all coupons for instructor
 const getInstructorCoupons = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
+    const instructorName = req.body.createdBy;
+
     const coupons = await Coupon.find({
-      createdBy: req.user._id,
+      createdBy: instructorName,
     }).populate("courseId", "courseName coursePrice");
 
     res.status(200).json({
@@ -236,7 +94,6 @@ const getInstructorCoupons = catchAsync(
   }
 );
 
-// Update coupon
 const updateCoupon = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
@@ -270,8 +127,7 @@ const updateCoupon = catchAsync(
   }
 );
 
-// Deactivate coupon
-const deactivateCoupon = catchAsync(
+const deactivateCouponById = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
 
@@ -296,56 +152,35 @@ const deactivateCoupon = catchAsync(
   }
 );
 
-// Apply coupon with enhanced tracking
-const applyCoupon = catchAsync(
+const getCouponByCode = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const { couponCode, courseId } = req.body;
+    const { code } = req.params;
+
+    if (!code) {
+      return next(createError("Coupon code is required", 400));
+    }
 
     const coupon = await Coupon.findOne({
-      couponCode,
-      courseId,
+      couponCode: code,
       isActive: true,
+      expirationDate: { $gt: new Date() },
     });
 
     if (!coupon) {
-      return next(createError("Invalid coupon", 400));
+      return res.status(200).json({
+        status: "success",
+        exists: false,
+        message: "Coupon not found or expired",
+      });
     }
-
-    // Check if course is still active
-    const course = await Course.findOne({
-      _id: courseId,
-      isActive: true,
-    });
-
-    if (!course) {
-      return next(createError("Course is no longer available", 400));
-    }
-
-    // Track usage
-    coupon.usedCount += 1;
-    if (!coupon.usedBy) coupon.usedBy = [];
-    coupon.usedBy.push(req.user._id);
-
-    // Deactivate if max uses reached
-    if (coupon.usedCount >= coupon.maxUses) {
-      coupon.isActive = false;
-    }
-
-    // Add usage metadata
-    coupon.metadata = {
-      ...coupon.metadata,
-      lastUsedAt: new Date(),
-    };
-
-    await coupon.save();
 
     res.status(200).json({
       status: "success",
-      message: "Coupon applied successfully",
+      exists: true,
       data: {
-        coupon,
-        appliedAt: new Date(),
-        remainingUses: Math.max(0, coupon.maxUses - coupon.usedCount),
+        couponCode: coupon.couponCode,
+        isActive: coupon.isActive,
+        expirationDate: coupon.expirationDate,
       },
     });
   }
@@ -353,9 +188,8 @@ const applyCoupon = catchAsync(
 
 export {
   createCoupon,
-  validateCoupon,
   getInstructorCoupons,
   updateCoupon,
-  deactivateCoupon,
-  applyCoupon,
+  deactivateCouponById,
+  getCouponByCode,
 };
