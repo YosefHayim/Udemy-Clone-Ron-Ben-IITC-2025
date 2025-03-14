@@ -109,14 +109,17 @@ couponSchema.pre("save", function (next) {
   next();
 });
 
-// Pre-find middleware to populate courseId, courseName and coursePrice.
+// Pre-find middleware to populate only essential course fields
 couponSchema.pre(
   /^find/,
   function (
     this: Query<any, CouponDocument>,
     next: CallbackWithoutResultAndOptionalError
   ) {
-    this.populate("courseId", "courseName coursePrice");
+    this.populate({
+      path: "courseId",
+      select: "courseName courseInstructor _id",
+    });
     next();
   }
 );

@@ -21,9 +21,10 @@ const CouponArea: React.FC<{ btnBgDesign?: string; couponText?: string }> = ({
   };
 
   const handleChange = (v: string) => {
-    console.log(v);
     if (v === "KEEPLEARNING") {
       setCursorClickOff(true);
+    } else {
+      setCursorClickOff(false);
     }
   };
 
