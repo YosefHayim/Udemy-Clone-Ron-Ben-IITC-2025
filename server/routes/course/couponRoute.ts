@@ -4,7 +4,7 @@ import {
   createCoupon,
   deactivateCouponById,
   getAllCoupons,
-  getCouponByCode,
+  getCouponByCouponCode,
   getInstructorCoupons,
   updateCoupon,
 } from "../../controllers/courses/couponController.ts";
@@ -18,9 +18,9 @@ router.param("id", (req: Request, res: Response, next: NextFunction, val) => {
 
 router.get("/all", getAllCoupons);
 
-router.get("/", getCouponByCode);
+router.get("/:code", getCouponByCouponCode);
 
-router.get("/instructor", getInstructorCoupons);
+router.get("/instructor/:createdBy", getInstructorCoupons);
 
 router.post("/create", grantedAccess, createCoupon);
 

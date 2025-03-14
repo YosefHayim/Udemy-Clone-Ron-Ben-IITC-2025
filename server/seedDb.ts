@@ -460,8 +460,8 @@ const createReviews = async () => {
     }
 
     console.log("All reviews processed successfully.");
-  } catch (err) {
-    console.log("Error during review creation:", err.message);
+  } catch (err: unknown) {
+    console.log("Error during review creation:", (err as Error).message);
     throw err;
   }
 };
@@ -506,8 +506,8 @@ const createReportedReviews = async () => {
     // Filter reviews where the student has purchased the course
     const eligibleReviews = reviews.filter((review) =>
       students.some((student) =>
-        student.coursesBought.some((courseId) =>
-          courseId.equals(review.courseReview._id)
+        student.coursesBought.some(
+          (course) => course.courseId === review.courseReview._id.toString()
         )
       )
     );
@@ -524,8 +524,8 @@ const createReportedReviews = async () => {
     }
 
     const randomStudent = students.find((student) =>
-      student.coursesBought.some((courseId) =>
-        courseId.equals(randomReview.courseReview._id)
+      student.coursesBought.some(
+        (course) => course.courseId === randomReview.courseReview._id.toString()
       )
     );
 
@@ -699,7 +699,6 @@ const createInstructorProfiles = async () => {
       avgRatingInstructor: faker.number.float({
         min: 3,
         max: 5,
-        precision: 0.1,
       }),
       totalStudents: totalStudents,
       totalCourses: courses.length,
@@ -717,9 +716,12 @@ const generateCouponsForCourses = async () => {
 
   try {
     // Get all active courses with their instructors
-    const courses = await Course.find({ isActive: true }).populate(
-      "courseInstructor"
-    );
+    const courses = await Course.find({ isActive: true }).populate({
+      path: "courseInstructor",
+      select: "_id fullName", // Select specific fields
+    });
+
+    console.log("First course:", courses[0]); // See if courseInstructor is populated
 
     if (!courses.length) {
       console.log("No active courses found for coupon generation.");
@@ -729,10 +731,18 @@ const generateCouponsForCourses = async () => {
     const coupons = [];
 
     for (const course of courses) {
-      // Generate 2-4 coupons per course
+      if (!course.courseInstructor || !course.courseInstructor._id) {
+        console.warn(
+          `Skipping course ${course.courseName} because it has no instructor.`
+        );
+        continue;
+      }
+
       const numCoupons = faker.number.int({ min: 2, max: 4 });
 
       for (let i = 0; i < numCoupons; i++) {
+        console.log(course.courseInstructor._id);
+
         const isPercentage = faker.datatype.boolean();
         const discountPercentage = isPercentage
           ? faker.number.int({ min: 10, max: 75 })
@@ -754,7 +764,7 @@ const generateCouponsForCourses = async () => {
           expirationDate: faker.date.future({ years: 1 }),
           maxUses: faker.number.int({ min: 50, max: 200 }),
           usedCount: 0,
-          createdBy: course.courseInstructor,
+          createdBy: course.courseInstructor._id, // Ensure it's an ObjectId
           description: faker.lorem.sentence(),
           minimumPurchaseAmount: faker.number.int({ min: 100, max: 300 }),
           restrictions: {
@@ -768,8 +778,6 @@ const generateCouponsForCourses = async () => {
             bundleOnly: false,
           },
         };
-
-        console.log(`generating coupon number: $${i}`);
         coupons.push(coupon);
       }
     }

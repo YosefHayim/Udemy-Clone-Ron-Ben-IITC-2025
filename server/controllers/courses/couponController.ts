@@ -106,10 +106,10 @@ const createCoupon = catchAsync(
 
 const getInstructorCoupons = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const instructorName = req.body.createdBy;
+    const { createdBy } = req.params;
 
     const coupons = await Coupon.find({
-      createdBy: instructorName,
+      createdBy,
     });
 
     res.status(200).json({
@@ -178,7 +178,7 @@ const deactivateCouponById = catchAsync(
   }
 );
 
-const getCouponByCode = catchAsync(
+const getCouponByCouponCode = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { code } = req.params;
 
@@ -218,5 +218,5 @@ export {
   getInstructorCoupons,
   updateCoupon,
   deactivateCouponById,
-  getCouponByCode,
+  getCouponByCouponCode,
 };

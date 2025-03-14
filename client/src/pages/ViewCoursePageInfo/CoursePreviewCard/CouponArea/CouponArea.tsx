@@ -1,22 +1,39 @@
+import getCouponByCouponCode from "@/api/courses/getCouponByCouponCode";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
 import { HiOutlineXMark } from "react-icons/hi2";
 
 const CouponArea: React.FC<{ btnBgDesign?: string; couponText?: string }> = ({
   btnBgDesign = "",
   couponText = "NEWYEARCAREER",
 }) => {
+  const [isError, setError] = useState(false);
+  const [isCursorOff, setCursorClickOff] = useState(false);
+
   const handleCouponSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const couponCode = formData.get("coupon-code");
-    console.log(couponCode);
-
+    const couponCode = formData.get("coupon-code") as string;
+    if (couponCode === "KEEPLEARNING") return undefined;
     couponMutation.mutate(couponCode);
   };
 
+  const handleChange = (v: string) => {
+    console.log(v);
+    if (v === "KEEPLEARNING") {
+      setCursorClickOff(true);
+    }
+  };
+
   const couponMutation = useMutation({
-    mutationFn: activateCouponCode,
+    mutationFn: getCouponByCouponCode,
+    onSuccess: (data) => {
+      if (data === false) {
+        setError(true);
+      }
+    },
   });
 
   return (
@@ -48,14 +65,24 @@ const CouponArea: React.FC<{ btnBgDesign?: string; couponText?: string }> = ({
           placeholder="Enter Coupon"
           id="coupon-code"
           name="coupon-code"
+          onChange={(e) => handleChange(e.target.value)}
         ></Input>
         <Button
           type="submit"
-          className={`${btnBgDesign} rounded-[0.2em] font-bold`}
+          className={`${btnBgDesign} ${
+            isCursorOff ? "cursor-not-allowed opacity-10" : ""
+          } rounded-[0.2em] font-bold`}
         >
           Apply
         </Button>
       </form>
+      <div>
+        {isError && (
+          <p className="text-red-600">
+            The coupon code entered is not valid for this course.
+          </p>
+        )}
+      </div>
     </div>
   );
 };

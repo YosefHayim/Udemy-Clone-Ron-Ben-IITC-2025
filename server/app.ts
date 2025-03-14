@@ -82,7 +82,7 @@ app.use("/api/report/review", reportReviewRoute);
 app.use("/api/comment", commentRoute);
 app.use("/api/instructor", instructorRoute);
 app.use("/api/course-progress", courseProgressRoutes);
-app.use("/api/coupon", courseProgressRoutes);
+app.use("/api/coupon", couponRoute);
 
 // Handle undefined routes
 app.all("*", undefinedRoute);
