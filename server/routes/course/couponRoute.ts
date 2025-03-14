@@ -3,6 +3,7 @@ import { grantedAccess } from "../../controllers/authorization/authController.ts
 import {
   createCoupon,
   deactivateCouponById,
+  getAllCoupons,
   getCouponByCode,
   getInstructorCoupons,
   updateCoupon,
@@ -14,6 +15,8 @@ router.param("id", (req: Request, res: Response, next: NextFunction, val) => {
   console.log(`ID is: ${val}`);
   next();
 });
+
+router.get("/all", getAllCoupons);
 
 router.get("/", getCouponByCode);
 

@@ -3,6 +3,32 @@ import catchAsync from "../../utils/wrapperFn.ts";
 import createError from "../../utils/errorFn.ts";
 import Course from "../../models/courses/courseModel.ts";
 import Coupon from "../../models/courses/couponModel.ts";
+import APIFeatures from "../../utils/apiFeatures.ts";
+
+const getAllCoupons = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const features = new APIFeatures(Coupon.find(), req.query)
+      .filter()
+      .search()
+      .sort()
+      .limitFields()
+      .paginate();
+
+    const coupons = await features.getQuery();
+
+    if (!coupons || coupons.length === 0) {
+      return next(
+        createError("No coupons documents found in the database", 404)
+      );
+    }
+
+    res.status(200).json({
+      status: "Success",
+      totalCoupons: coupons.length,
+      response: coupons,
+    });
+  }
+);
 
 const createCoupon = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -187,6 +213,7 @@ const getCouponByCode = catchAsync(
 );
 
 export {
+  getAllCoupons,
   createCoupon,
   getInstructorCoupons,
   updateCoupon,

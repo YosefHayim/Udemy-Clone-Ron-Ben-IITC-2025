@@ -754,7 +754,7 @@ const generateCouponsForCourses = async () => {
           expirationDate: faker.date.future({ years: 1 }),
           maxUses: faker.number.int({ min: 50, max: 200 }),
           usedCount: 0,
-          createdBy: course.courseInstructor._id,
+          createdBy: course.courseInstructor,
           description: faker.lorem.sentence(),
           minimumPurchaseAmount: faker.number.int({ min: 100, max: 300 }),
           restrictions: {
@@ -769,6 +769,7 @@ const generateCouponsForCourses = async () => {
           },
         };
 
+        console.log(`generating coupon number: $${i}`);
         coupons.push(coupon);
       }
     }
@@ -802,30 +803,30 @@ const generateUpdatedDummyData = async () => {
     // const sections = await createSections();
     // console.log(`${sections.length} sections created.`);
 
-    console.log("Seeding lessons...");
-    const lessons = await createLessons();
-    console.log(`${lessons.length} lessons created.`);
+    // console.log("Seeding lessons...");
+    // const lessons = await createLessons();
+    // console.log(`${lessons.length} lessons created.`);
 
-    await simulateCoursePurchases();
-    console.log("Simulate courses purchases completed");
+    // await simulateCoursePurchases();
+    // console.log("Simulate courses purchases completed");
 
-    console.log("Seeding reviews...");
-    const reviews = await createReviews();
-    console.log(`reviews created.`);
+    // console.log("Seeding reviews...");
+    // const reviews = await createReviews();
+    // console.log(`reviews created.`);
 
-    console.log("Seeding reported reviews...");
-    await createReportedReviews();
+    // console.log("Seeding reported reviews...");
+    // await createReportedReviews();
 
-    await addCoursesToWishlistOfUsers();
-    console.log("Simulate courses wishlists completed");
+    // await addCoursesToWishlistOfUsers();
+    // console.log("Simulate courses wishlists completed");
 
-    await createInstructorProfiles();
-    console.log("create instructor profiles completed.");
+    // await createInstructorProfiles();
+    // console.log("create instructor profiles completed.");
 
     await generateCouponsForCourses();
     console.log("Coupon generation completed.");
 
-    console.log("All dummy data seeded successfully!");
+    // console.log("All dummy data seeded successfully!");
     process.exit();
   } catch (err) {
     console.log("Error generating dummy data:", err);
