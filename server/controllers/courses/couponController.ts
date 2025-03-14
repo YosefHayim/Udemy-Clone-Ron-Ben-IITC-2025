@@ -84,7 +84,7 @@ const getInstructorCoupons = catchAsync(
 
     const coupons = await Coupon.find({
       createdBy: instructorName,
-    }).populate("courseId", "courseName coursePrice");
+    });
 
     res.status(200).json({
       status: "success",

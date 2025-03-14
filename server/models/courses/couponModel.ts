@@ -1,4 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, {
+  CallbackWithoutResultAndOptionalError,
+  Query,
+} from "mongoose";
 import { CouponDocument } from "../../types/types.ts";
 
 const couponSchema = new mongoose.Schema<CouponDocument>(
@@ -98,12 +101,25 @@ const couponSchema = new mongoose.Schema<CouponDocument>(
   }
 );
 
+// Pre-save middleware to check if the dates are valid.
 couponSchema.pre("save", function (next) {
   if (this.validFrom >= this.expirationDate) {
     next(new Error("Valid from date must be before expiration date"));
   }
   next();
 });
+
+// Pre-find middleware to populate courseId, courseName and coursePrice.
+couponSchema.pre(
+  /^find/,
+  function (
+    this: Query<any, CouponDocument>,
+    next: CallbackWithoutResultAndOptionalError
+  ) {
+    this.populate("courseId", "courseName coursePrice");
+    next();
+  }
+);
 
 const Coupon = mongoose.model<CouponDocument>("Coupon", couponSchema);
 

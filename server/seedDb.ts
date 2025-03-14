@@ -18,6 +18,7 @@ import algoSearch from "./utils/algoSearch.ts";
 import Instructor from "./models/users/instructorModel.ts";
 import CourseProgress from "./models/courses/courseProgressModel.ts";
 import { InstructorDocument, LessonDocument } from "./types/types.ts";
+import Coupon from "./models/courses/couponModel.ts";
 
 const clearCollections = async () => {
   await Promise.all([
@@ -30,6 +31,7 @@ const clearCollections = async () => {
     ReportReview.deleteMany(),
     Instructor.deleteMany(),
     InstructorComment.deleteMany(),
+    Coupon.deleteMany(),
   ]);
   console.log("Cleared all collections.");
 };
@@ -710,6 +712,77 @@ const createInstructorProfiles = async () => {
   console.log("All instructor profiles created successfully.");
 };
 
+const generateCouponsForCourses = async () => {
+  console.log("Generating coupons for existing courses...");
+
+  try {
+    // Get all active courses with their instructors
+    const courses = await Course.find({ isActive: true }).populate(
+      "courseInstructor"
+    );
+
+    if (!courses.length) {
+      console.log("No active courses found for coupon generation.");
+      return;
+    }
+
+    const coupons = [];
+
+    for (const course of courses) {
+      // Generate 2-4 coupons per course
+      const numCoupons = faker.number.int({ min: 2, max: 4 });
+
+      for (let i = 0; i < numCoupons; i++) {
+        const isPercentage = faker.datatype.boolean();
+        const discountPercentage = isPercentage
+          ? faker.number.int({ min: 10, max: 75 })
+          : 0;
+        const discountPrice = !isPercentage
+          ? faker.number.int({ min: 50, max: 200 })
+          : 0;
+
+        const coupon = {
+          courseId: course._id,
+          couponCode: `${course.courseName
+            .substring(0, 3)
+            .toUpperCase()}${faker.string.alphanumeric(5).toUpperCase()}`,
+          discountPrice,
+          discountPercentage,
+          couponType: isPercentage ? "percentage" : "fixed",
+          isActive: true,
+          validFrom: new Date(),
+          expirationDate: faker.date.future({ years: 1 }),
+          maxUses: faker.number.int({ min: 50, max: 200 }),
+          usedCount: 0,
+          createdBy: course.courseInstructor._id,
+          description: faker.lorem.sentence(),
+          minimumPurchaseAmount: faker.number.int({ min: 100, max: 300 }),
+          restrictions: {
+            oneTimePerUser: faker.datatype.boolean(),
+            newStudentsOnly: faker.datatype.boolean(),
+            specificCategories: [course.category],
+          },
+          appliedTo: {
+            courses: [course._id],
+            categories: [course.category],
+            bundleOnly: false,
+          },
+        };
+
+        coupons.push(coupon);
+      }
+    }
+
+    // Insert all coupons
+    const createdCoupons = await Coupon.insertMany(coupons);
+    console.log(
+      `Successfully created ${createdCoupons.length} coupons for ${courses.length} courses.`
+    );
+  } catch (error) {
+    console.error("Error generating coupons:", error);
+  }
+};
+
 const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
@@ -748,6 +821,9 @@ const generateUpdatedDummyData = async () => {
 
     await createInstructorProfiles();
     console.log("create instructor profiles completed.");
+
+    await generateCouponsForCourses();
+    console.log("Coupon generation completed.");
 
     console.log("All dummy data seeded successfully!");
     process.exit();
