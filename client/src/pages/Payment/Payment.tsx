@@ -22,7 +22,7 @@ const Payment: React.FC = () => {
   return (
     <div>
       {loading ? (
-        <Loader hSize="" useSmallLoading={false} />
+        <Loader hSize="1000px" useSmallLoading={false} />
       ) : (
         <div>
           <div className="p-[1em] flex flex-col items-start justify-between w-full mb-[2em] shadow-md">
