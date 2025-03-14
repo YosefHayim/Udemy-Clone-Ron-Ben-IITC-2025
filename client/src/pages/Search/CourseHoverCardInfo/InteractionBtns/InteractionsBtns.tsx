@@ -1,12 +1,17 @@
+import { useSelector } from "react-redux";
 import AddToCart from "./AddToCart/AddToCart";
 import HeartBtn from "./HeartBtn/HeartBtn";
+import { RootState } from "@/redux";
 
 const InteractionsBtns: React.FC<{
   courseId: string;
   coursePrice: number;
   fullPriceCourse: number;
 }> = ({ courseId, coursePrice, fullPriceCourse }) => {
+  const cookie = useSelector((state: RootState) => state.user.cookie);
+
   if (!courseId && !coursePrice) {
+    console.log("No courseId or coursePrice provided.");
     return;
   }
 
@@ -17,7 +22,9 @@ const InteractionsBtns: React.FC<{
         discountPrice={coursePrice}
         fullPriceCourse={fullPriceCourse}
       />
-      <HeartBtn iconSize={"2em"} courseId={courseId} showHeart={true} />
+      {cookie && (
+        <HeartBtn iconSize={"1.5em"} courseId={courseId} showHeart={true} />
+      )}
     </div>
   );
 };

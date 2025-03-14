@@ -15,6 +15,7 @@ import { filterContext } from "@/routes/AppRoutes";
 import { useEffect } from "react";
 import ReleatedSearches from "./RelatedSearches/RelatedSearches";
 import RelatedSearches from "./RelatedSearches/RelatedSearches";
+import DialogFrequentlyBoughtTogether from "./CourseHoverCardInfo/InteractionBtns/DialogFrequentlyBoughtTogether/DialogFrequentlyBoughtTogether";
 
 const SearchPage: React.FC = () => {
   const [filterData, setFilterData] = useContext(filterContext);
@@ -130,6 +131,9 @@ const SearchPage: React.FC = () => {
                   {index === 6 && <HotFreshCourses key="hotfreshcourses" />}
                 </div>
               ))}
+          </div>
+          <div>
+            <DialogFrequentlyBoughtTogether />
           </div>
           <RelatedSearches />
         </div>

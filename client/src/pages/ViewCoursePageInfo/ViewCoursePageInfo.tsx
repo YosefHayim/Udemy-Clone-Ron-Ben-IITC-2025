@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "@/components/Loader/Loader";
 import getCourseById from "@/api/courses/getCourseById";
