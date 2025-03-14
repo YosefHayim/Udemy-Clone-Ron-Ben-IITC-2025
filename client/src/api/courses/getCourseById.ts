@@ -1,6 +1,7 @@
+import { CourseData } from "@/types/types";
 import { axiosClient, localhostUrl } from "../configuration";
 
-type fn = (courseId: string) => Promise<any>;
+type fn = (courseId: string) => Promise<CourseData>;
 
 const getCourseById: fn = async (courseId: string) => {
   if (!courseId || typeof courseId !== "string") {

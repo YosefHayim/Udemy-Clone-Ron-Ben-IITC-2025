@@ -174,6 +174,38 @@ export interface CourseProps {
   courseDiscountPrice: number;
 }
 
+export interface CourseData {
+  _id: string;
+  courseName: string;
+  category: string;
+  subCategory: string;
+  courseTopic: string;
+  courseRecapInfo: string;
+  courseTag: string;
+  averageRating: number;
+  totalRatings: number;
+  totalStudentsEnrolled: { count: number };
+  courseInstructor: {
+    _id: string;
+    fullName: string;
+    headline: string;
+    profilePic: string;
+  };
+  updatedAt: string;
+  courseLanguages: string[];
+  whatYouWillLearn: string[];
+  sections: { lessons: { _id: string }[] }[];
+  totalCourseDuration: string;
+  totalCourseLessons: number;
+  courseRequirements: string[];
+  courseDescription: string;
+  whoThisCourseIsFor: string[];
+  courseImg: string;
+  courseDiscountPrice: number;
+  courseFullPrice: number;
+  reviews: any[];
+}
+
 export interface LoaderProps {
   hSize: string;
   useSmallLoading: boolean;

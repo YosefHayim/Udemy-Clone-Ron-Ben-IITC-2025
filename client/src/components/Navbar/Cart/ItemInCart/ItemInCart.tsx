@@ -109,7 +109,7 @@ const ItemInCart = ({
             <img
               id={courseId}
               src={data?.courseImg}
-              // alt={`${data?.courseName} image`}
+              alt={`${data?.courseName} image`}
               className={`${courseImgSize}`}
             />
             <div

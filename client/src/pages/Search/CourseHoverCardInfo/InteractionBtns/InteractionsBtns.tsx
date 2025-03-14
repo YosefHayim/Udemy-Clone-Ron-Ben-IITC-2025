@@ -2,16 +2,19 @@ import { useSelector } from "react-redux";
 import AddToCart from "./AddToCart/AddToCart";
 import HeartBtn from "./HeartBtn/HeartBtn";
 import { RootState } from "@/redux";
+import DialogFrequentlyBoughtTogether from "./DialogFrequentlyBoughtTogether/DialogFrequentlyBoughtTogether";
 
 const InteractionsBtns: React.FC<{
   courseId: string;
   coursePrice: number;
   fullPriceCourse: number;
-}> = ({ courseId, coursePrice, fullPriceCourse }) => {
+  courseName: string;
+  instructorId: string;
+}> = ({ courseId, coursePrice, fullPriceCourse, courseName, instructorId }) => {
   const cookie = useSelector((state: RootState) => state.user.cookie);
 
-  if (!courseId && !coursePrice) {
-    console.log("No courseId or coursePrice provided.");
+  if (!courseId && !coursePrice && courseName) {
+    console.log("No courseId, coursePrice and courseName provided.");
     return;
   }
 
@@ -25,6 +28,13 @@ const InteractionsBtns: React.FC<{
       {cookie && (
         <HeartBtn iconSize={"1.5em"} courseId={courseId} showHeart={true} />
       )}
+      <div>
+        <DialogFrequentlyBoughtTogether
+          instructorId={instructorId}
+          courseName={courseName}
+          courseId={courseId}
+        />
+      </div>
     </div>
   );
 };

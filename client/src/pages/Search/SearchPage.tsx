@@ -13,9 +13,7 @@ import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 import { CourseTypeProps } from "@/types/types";
 import { filterContext } from "@/routes/AppRoutes";
 import { useEffect } from "react";
-import ReleatedSearches from "./RelatedSearches/RelatedSearches";
 import RelatedSearches from "./RelatedSearches/RelatedSearches";
-import DialogFrequentlyBoughtTogether from "./CourseHoverCardInfo/InteractionBtns/DialogFrequentlyBoughtTogether/DialogFrequentlyBoughtTogether";
 
 const SearchPage: React.FC = () => {
   const [filterData, setFilterData] = useContext(filterContext);
@@ -119,11 +117,13 @@ const SearchPage: React.FC = () => {
             ${index === 0 ? "top-[90%]" : "bottom-[110%]"}`}
                     >
                       <CourseHoverCardInfo
+                        instructorId={course?.courseInstructor?._id}
+                        courseName={course?.courseName}
                         index={index}
-                        whatYouWillLearn={course.whatYouWillLearn}
-                        courseId={course._id}
-                        fullPriceCourse={course.courseFullPrice}
-                        coursePrice={course.courseDiscountPrice}
+                        whatYouWillLearn={course?.whatYouWillLearn}
+                        courseId={course?._id}
+                        fullPriceCourse={course?.courseFullPrice}
+                        coursePrice={course?.courseDiscountPrice}
                       />
                     </div>
                   )}
@@ -131,9 +131,6 @@ const SearchPage: React.FC = () => {
                   {index === 6 && <HotFreshCourses key="hotfreshcourses" />}
                 </div>
               ))}
-          </div>
-          <div>
-            <DialogFrequentlyBoughtTogether />
           </div>
           <RelatedSearches />
         </div>
