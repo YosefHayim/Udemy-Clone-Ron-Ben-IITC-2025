@@ -16,12 +16,19 @@ import { IoMdCheckmarkCircle } from "react-icons/io";
 import { useCallback, useEffect, useState } from "react";
 import TopicSearch from "./TopicSearch/TopicSearch";
 import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
+import { IoClose } from "react-icons/io5";
 
 const DialogFrequentlyBoughtTogether: React.FC<{
   courseName: string;
   courseId: string;
   instructorId: string;
-}> = ({ courseName, courseId, instructorId }) => {
+}> = ({
+  courseName,
+  courseId,
+  instructorId,
+  showDialogOfFbt,
+  setShowDialogOfFbt,
+}) => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
   // Extract first 1-2 words from courseName
@@ -58,18 +65,21 @@ const DialogFrequentlyBoughtTogether: React.FC<{
 
   return (
     <div>
-      <AlertDialog>
-        <AlertDialogTrigger asChild>
-          <Button variant="outline">Added to cart</Button>
-        </AlertDialogTrigger>
+      <AlertDialog open={showDialogOfFbt} onOpenChange={setShowDialogOfFbt}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>
               <div className="flex items-center justify-between w-full">
                 <div>
-                  <b>Added to cart</b>
+                  <p className="font-semibold">Added to cart</p>
                 </div>
-                <div></div>
+                <div
+                  onClick={() => setShowDialogOfFbt(false)}
+                  className="cursor-pointer p-[0.5em] text-gray-500
+              hover:bg-purpleHoverBtn rounded-[0.2em]"
+                >
+                  <IoClose size={20} />
+                </div>
               </div>
             </AlertDialogTitle>
             <AlertDialogDescription>
@@ -94,7 +104,7 @@ const DialogFrequentlyBoughtTogether: React.FC<{
                 <FrequentlyBoughtTogether instructorId={instructorId} />
               </div>
               <div className="flex flex-col items-start w-full justify-start">
-                <h2 className="font-bold my-3">Related topics</h2>
+                <h2 className="font-bold my-3 text-black">Related topics</h2>
                 <div className="flex flex-wrap items-center justify-start gap-[0.5em]">
                   <TopicSearch text={"Java script"} />
                   <TopicSearch text={"CSS"} />

@@ -1,89 +1,119 @@
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import SideBarProfile from "../SideBarProfile/SideBarProfile";
+import { RootState } from "@/redux";
+import { MdOutlineModeEditOutline } from "react-icons/md";
+import { useState } from "react";
+import DialogMultiFactorAuth from "./DialogMultiFactorAuth/DialogMultiFactorAuth";
+import DialogChangeEmail from "./DialogChangeEmail/DialogChangeEmail";
 
 const AccountSecurity = () => {
+  const email = useSelector((state: RootState) => state?.user.email);
+  const isAuthEnabled = useSelector(
+    (state: RootState) => state?.user.isAuthActivated
+  );
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isAuthOpen, setAuthOpen] = useState(false);
+
+  const handleChangeEmail = () => {
+    setIsDialogOpen((prev) => !prev);
+  };
+
+  const handleAuth = () => {
+    setAuthOpen((prev) => !prev);
+  };
+
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex p-[4.5em]">
       <SideBarProfile />
-
-      <main className="flex-1 p-8">
-        <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Account</h2>
-          <p className="text-gray-600 mb-4">
-            Edit your account settings and change your password here.
-          </p>
-
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Email:
-            </label>
-            <div className="flex items-center justify-between border rounded-md px-4 py-2 bg-gray-50">
-              <span className="text-gray-700">ben.klinski@gmail.com</span>
-              <button className="focus:outline-none text-purple-600 hover:text-purple-800">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-5 h-5"
+      <form className="w-full">
+        <div className="py-[1em] flex items-start justify-center w-full border border-borderGrayColor">
+          <div className="w-full flex flex-col items-center">
+            <h2 className="font-bold">Account</h2>
+            <p className="mb-[1em]">
+              Edit your account settings and change your password here.
+            </p>
+            <hr className="w-full" />
+            <div className="w-[450px] flex-col py-[1.5em]">
+              <label htmlFor="email" className="font-bold">
+                Email:
+              </label>
+              <div className="flex items-center justify-center gap-[0.6em] w-full">
+                <div className="mt-[0.5em] border w-full p-[1.1em] bg-white text-black focus:bg-white focus:text-black border-gray-400 placeholder:text-courseNameColorTxt">
+                  <p>
+                    Your email address is{" "}
+                    <span className="font-bold">{email}</span>
+                  </p>
+                </div>
+                <div
+                  onClick={handleChangeEmail}
+                  className="hover:bg-purpleHoverBtn cursor-pointer border px-[1em] p-[0.9em] mt-[0.5em] border-purple-700 rounded-[0.3em]"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16.862 4.487l2.651 2.651m-2.651-2.651a2.248 2.248 0 113.182 3.182l-9.193 9.192a4.5 4.5 0 01-1.939 1.131l-3.24.926.926-3.24a4.5 4.5 0 011.13-1.94l9.194-9.192zm0 0L19.5 7.125"
+                  <MdOutlineModeEditOutline
+                    size={24}
+                    style={{ color: "border-purple-700" }}
                   />
-                </svg>
-              </button>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Change Password:
-            </label>
-            <form className="space-y-4">
+            <hr className="w-full" />
+            <div className="flex flex-col items-start w-[450px] py-[1.5em] gap-[1.3em]">
               <input
-                type="password"
-                placeholder="Enter new password"
-                className="w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300"
+                required
+                type="text"
+                id="new-password"
+                name="new-password"
+                className="hover:bg-gray-100 border border-gray-400 rounded-[0.3em] p-[0.5em] w-full overflow-hidden bg-white focus-within:border-[#6d28d2] focus-within:ring-1 focus-within:ring-[#6d28d2]"
+                placeholder={"Enter new password"}
               />
               <input
-                type="password"
-                placeholder="Re-type new password"
-                className="w-full px-4 py-2 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300"
+                required
+                type="text"
+                id="re-type-password"
+                name="re-type-password"
+                className="hover:bg-gray-100 border border-gray-400 rounded-[0.3em] p-[0.5em] w-full overflow-hidden bg-white focus-within:border-[#6d28d2] focus-within:ring-1 focus-within:ring-[#6d28d2]"
+                placeholder={"Re-type new password"}
               />
               <button
+                className="font-bold p-[0.8em] rounded-[0.3em] bg-btnColor hover:bg-purple-600 text-white"
                 type="submit"
-                className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
               >
                 Change password
               </button>
-            </form>
-          </div>
-
-          <div className="mb-6 bg-gray-50 border rounded-lg p-4">
-            <h3 className="text-lg font-bold text-gray-800 mb-2">
-              Multi-factor Authentication
-            </h3>
-            <p className="text-sm text-gray-600 mb-4">
-              Increase your account security by requiring that a code emailed to
-              you be entered when you log in. For more information on how
-              multi-factor authentication works, refer to our{" "}
-              <Link to="#" className="text-purple-600 hover:text-purple-800">
-                Help Center article
-              </Link>
-              .
-            </p>
-            <button
-              type="button"
-              className="w-full bg-purple-600 text-white py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
-            >
-              Enable
-            </button>
+            </div>
           </div>
         </div>
-      </main>
+        <div className="h-[320px] border-r w-full flex items-start justify-center p-[1em]">
+          <div className="flex w-[450px] items-start justify-start py-[1em]">
+            <div className="gap-[0.5em] flex flex-col items-start justify-start border-gray-600 shadow-alertAlgoInfo p-[1em]">
+              <b>Multi-factor Authentication</b>
+              <p>
+                Increase your account security by requiring that a code emailed
+                to you be entered when you log in. For more information on how
+                multi-factor authentication works, refer to our{" "}
+                <span className="underline text-purple-900 font-medium">
+                  Help Center article.
+                </span>
+              </p>
+              <button
+                onClick={handleAuth}
+                className="font-bold p-[0.8em] rounded-[0.3em] bg-btnColor hover:bg-purple-600 text-white"
+              >
+                {isAuthEnabled ? "Disable" : "Enable"}
+              </button>
+            </div>
+          </div>
+        </div>
+        <hr />
+      </form>
+      <DialogChangeEmail
+        isDialogOpen={isDialogOpen}
+        setIsDialogOpen={setIsDialogOpen}
+      />
+      <DialogMultiFactorAuth
+        isAuthOpen={isAuthOpen}
+        setAuthOpen={setAuthOpen}
+      />
     </div>
   );
 };

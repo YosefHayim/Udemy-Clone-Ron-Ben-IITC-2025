@@ -23,6 +23,7 @@ const AddToCart: React.FC<{
   fullPriceCourse?: number;
   courseIds?: string[];
   extraCustomCss?: string;
+  onAddToCartSuccess: () => void;
 }> = ({
   isWhite = false,
   extraCustomCss = "",
@@ -32,6 +33,7 @@ const AddToCart: React.FC<{
   fullPriceCourse = 0,
   discountSum = 0,
   courseIds = [],
+  onAddToCartSuccess,
 }) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
@@ -43,6 +45,7 @@ const AddToCart: React.FC<{
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
+        onAddToCartSuccess();
       }, 2000);
       navigate(`/cart/subscribe/course/:${courseId}`);
     },
@@ -67,6 +70,7 @@ const AddToCart: React.FC<{
         dispatch(calculateDiscountPercentage());
         dispatch(setAddCourseToCart(courseId)); // Add course to the cart
         setIsLoading(false);
+        onAddToCartSuccess();
       }, 2000);
     } else if (textBtn === "Enroll Now" && courseId) {
       // if course is free and we pressed Enroll now

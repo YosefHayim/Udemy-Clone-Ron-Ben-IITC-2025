@@ -3,6 +3,7 @@ import AddToCart from "./AddToCart/AddToCart";
 import HeartBtn from "./HeartBtn/HeartBtn";
 import { RootState } from "@/redux";
 import DialogFrequentlyBoughtTogether from "./DialogFrequentlyBoughtTogether/DialogFrequentlyBoughtTogether";
+import { useState } from "react";
 
 const InteractionsBtns: React.FC<{
   courseId: string;
@@ -11,7 +12,14 @@ const InteractionsBtns: React.FC<{
   courseName: string;
   instructorId: string;
 }> = ({ courseId, coursePrice, fullPriceCourse, courseName, instructorId }) => {
+  const [showDialogOfFbt, setShowDialogOfFbt] = useState(false);
   const cookie = useSelector((state: RootState) => state.user.cookie);
+
+  const handleCartSuccess = () => {
+    setTimeout(() => {
+      setShowDialogOfFbt(true);
+    }, 500);
+  };
 
   if (!courseId && !coursePrice && courseName) {
     console.log("No courseId, coursePrice and courseName provided.");
@@ -19,22 +27,29 @@ const InteractionsBtns: React.FC<{
   }
 
   return (
-    <div className="flex items-center justify-start w-full gap-[0.5em] mt-[1em]">
-      <AddToCart
-        courseId={courseId}
-        discountPrice={coursePrice}
-        fullPriceCourse={fullPriceCourse}
-      />
-      {cookie && (
-        <HeartBtn iconSize={"1.5em"} courseId={courseId} showHeart={true} />
-      )}
-      <div>
-        <DialogFrequentlyBoughtTogether
-          instructorId={instructorId}
-          courseName={courseName}
+    <div>
+      <div className="flex items-center justify-start w-full gap-[0.5em] mt-[1em]">
+        <AddToCart
           courseId={courseId}
+          discountPrice={coursePrice}
+          fullPriceCourse={fullPriceCourse}
+          onAddToCartSuccess={handleCartSuccess}
         />
+        {cookie && (
+          <HeartBtn iconSize={"1.5em"} courseId={courseId} showHeart={true} />
+        )}
       </div>
+      {showDialogOfFbt && (
+        <div>
+          <DialogFrequentlyBoughtTogether
+            showDialogOfFbt={showDialogOfFbt}
+            setShowDialogOfFbt={setShowDialogOfFbt}
+            instructorId={instructorId}
+            courseName={courseName}
+            courseId={courseId}
+          />
+        </div>
+      )}
     </div>
   );
 };
