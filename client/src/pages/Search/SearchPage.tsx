@@ -113,12 +113,12 @@ const SearchPage: React.FC = () => {
                   <SearchCourseCard course={course} />
                   {hoveredCourse === course._id && (
                     <div
-                      className={` w-1/2 absolute z-[1000] right-[60%] translate-x-1/2 
+                      className={` w-1/2 absolute right-[60%] translate-x-1/2 z-10 
             ${index === 0 ? "top-[90%]" : "bottom-[110%]"}`}
                     >
                       <CourseHoverCardInfo
                         instructorId={course?.courseInstructor?._id}
-                        courseName={course?.courseName}
+                        courseTopic={course?.courseTopic}
                         index={index}
                         whatYouWillLearn={course?.whatYouWillLearn}
                         courseId={course?._id}

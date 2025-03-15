@@ -9,9 +9,9 @@ const InteractionsBtns: React.FC<{
   courseId: string;
   coursePrice: number;
   fullPriceCourse: number;
-  courseName: string;
+  courseTopic: string;
   instructorId: string;
-}> = ({ courseId, coursePrice, fullPriceCourse, courseName, instructorId }) => {
+}> = ({ courseId, coursePrice, fullPriceCourse, courseTopic, instructorId }) => {
   const [showDialogOfFbt, setShowDialogOfFbt] = useState(false);
   const cookie = useSelector((state: RootState) => state.user.cookie);
 
@@ -21,8 +21,8 @@ const InteractionsBtns: React.FC<{
     }, 500);
   };
 
-  if (!courseId && !coursePrice && courseName) {
-    console.log("No courseId, coursePrice and courseName provided.");
+  if (!courseId && !coursePrice && courseTopic) {
+    console.log("No courseId, coursePrice and courseTopic provided.");
     return;
   }
 
@@ -45,7 +45,7 @@ const InteractionsBtns: React.FC<{
             showDialogOfFbt={showDialogOfFbt}
             setShowDialogOfFbt={setShowDialogOfFbt}
             instructorId={instructorId}
-            courseName={courseName}
+            courseTopic={courseTopic}
             courseId={courseId}
           />
         </div>

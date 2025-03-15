@@ -8,7 +8,7 @@ const CourseHoverCardInfo: React.FC<{
   coursePrice: number;
   fullPriceCourse: number;
   index: number;
-  courseName: string;
+  courseTopic: string;
   instructorId: string;
 }> = ({
   whatYouWillLearn,
@@ -16,7 +16,7 @@ const CourseHoverCardInfo: React.FC<{
   coursePrice,
   fullPriceCourse,
   index,
-  courseName,
+  courseTopic,
   instructorId,
 }) => {
   return (
@@ -30,7 +30,7 @@ const CourseHoverCardInfo: React.FC<{
           <CoursePros whatYouWillLearn={whatYouWillLearn} />
           <InteractionsBtns
             instructorId={instructorId}
-            courseName={courseName}
+            courseTopic={courseTopic}
             courseId={courseId}
             coursePrice={coursePrice}
             fullPriceCourse={fullPriceCourse}

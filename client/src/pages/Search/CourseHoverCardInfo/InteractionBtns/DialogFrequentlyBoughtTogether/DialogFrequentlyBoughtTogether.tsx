@@ -1,13 +1,9 @@
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import FrequentlyBoughtTogether from "@/pages/ViewCoursePageInfo/FrequentlyBoughtTogether/FrequentlyBoughtTogether";
@@ -17,13 +13,16 @@ import { useCallback, useEffect, useState } from "react";
 import TopicSearch from "./TopicSearch/TopicSearch";
 import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
 import { IoClose } from "react-icons/io5";
+import { ResponseSuggestions } from "@/types/types";
 
 const DialogFrequentlyBoughtTogether: React.FC<{
-  courseName: string;
+  courseTopic: string;
   courseId: string;
   instructorId: string;
+  showDialogOfFbt: boolean;
+  setShowDialogOfFbt: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({
-  courseName,
+  courseTopic,
   courseId,
   instructorId,
   showDialogOfFbt,
@@ -39,29 +38,37 @@ const DialogFrequentlyBoughtTogether: React.FC<{
   };
 
   const fetchSuggestions = useCallback(async () => {
-    const query = getShortenedCourseName(courseName);
+    const query = getShortenedCourseName(courseTopic);
+    console.log(`first word chosen: `, query);
 
     if (query.length > 1) {
       try {
         const response = await axios.get(
           `https://api.datamuse.com/words?rel_trg=${encodeURIComponent(
-            query[0]
+            query
           )}&max=10`
         );
-        console.log(response);
-
-        setSuggestions(response.data.map((item: any) => item.word));
+        setSuggestions(
+          response.data.map((item: ResponseSuggestions) => {
+            console.log(item.word);
+          })
+        );
       } catch (error) {
         console.log("Error fetching autocomplete suggestions:", error);
       }
     } else {
       setSuggestions([]);
     }
-  }, [courseName]);
+  }, [courseTopic]);
 
   useEffect(() => {
     fetchSuggestions();
   }, [fetchSuggestions]);
+
+  if (!courseTopic) {
+    console.log(`There is no course topic provided`);
+    return;
+  }
 
   return (
     <div>
@@ -106,12 +113,9 @@ const DialogFrequentlyBoughtTogether: React.FC<{
               <div className="flex flex-col items-start w-full justify-start">
                 <h2 className="font-bold my-3 text-black">Related topics</h2>
                 <div className="flex flex-wrap items-center justify-start gap-[0.5em]">
-                  <TopicSearch text={"Java script"} />
-                  <TopicSearch text={"CSS"} />
-                  <TopicSearch text={"Web"} />
-                  <TopicSearch text={"Java"} />
-                  <TopicSearch text={"Python"} />
-                  <TopicSearch text={"Java script"} />
+                  {suggestions.map((suggestion) => (
+                    <TopicSearch key={suggestion} text={suggestion} />
+                  ))}
                 </div>
               </div>
             </AlertDialogDescription>

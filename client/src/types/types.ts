@@ -174,6 +174,11 @@ export interface CourseProps {
   courseDiscountPrice: number;
 }
 
+export interface ResponseSuggestions {
+  word: string;
+  score: number;
+}
+
 export interface CourseData {
   _id: string;
   courseName: string;
