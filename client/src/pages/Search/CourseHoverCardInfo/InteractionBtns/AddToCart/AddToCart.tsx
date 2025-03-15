@@ -23,7 +23,7 @@ const AddToCart: React.FC<{
   fullPriceCourse?: number;
   courseIds?: string[];
   extraCustomCss?: string;
-  onAddToCartSuccess: () => void;
+  onAddToCartSuccess?: () => void;
 }> = ({
   isWhite = false,
   extraCustomCss = "",

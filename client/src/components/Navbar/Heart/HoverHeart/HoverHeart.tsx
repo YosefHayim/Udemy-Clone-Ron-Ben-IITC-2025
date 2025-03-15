@@ -5,15 +5,36 @@ import { Link } from "react-router-dom";
 import ItemInCart from "../../Cart/ItemInCart/ItemInCart";
 import AddToCart from "@/pages/Search/CourseHoverCardInfo/InteractionBtns/AddToCart/AddToCart";
 import { Button } from "@/components/ui/button";
+import {
+  calculateDiscountPercentage,
+  calculateTotalSavings,
+  setAddCourseToCart,
+  setAmountOfCourses,
+  setTotalCourseDiscountPrices,
+  setTotalOriginalCoursePrices,
+} from "@/redux/slices/cartSlice";
+import { useDispatch } from "react-redux";
 
 const HoverHeart = () => {
-  // const totalCourses = useSelector(
-  //   (state: RootState) => state.cart.coursesAddedToWishList
-  // );
-
-  const totalCourses = [`67a11f338059ec7c5a61507a`];
+  const dispatch = useDispatch();
+  const totalCourses = useSelector(
+    (state: RootState) => state.cart.coursesAddedToWishList
+  );
 
   useEffect(() => {}, [totalCourses]);
+
+  const discountPrice = 0;
+  const fullPriceCourse = 0;
+  const courseId = ``;
+
+  const handleWishlistCart = () => {
+    dispatch(setAmountOfCourses()); // Increment the amount of courses
+    dispatch(setTotalCourseDiscountPrices(Number(discountPrice)));
+    dispatch(setTotalOriginalCoursePrices(Number(fullPriceCourse)));
+    dispatch(calculateTotalSavings());
+    dispatch(calculateDiscountPercentage());
+    dispatch(setAddCourseToCart(courseId)); // Add course to the cart
+  };
 
   return (
     <div>
@@ -37,7 +58,7 @@ const HoverHeart = () => {
                 textColor="text-bg-black"
                 gapPrice="gap-[0em]"
               />
-              <div className="w-full p-[1em]">
+              <div className="w-full p-[1em]" onClick={handleWishlistCart}>
                 <AddToCart
                   extraCustomCss="p-[1.5em]"
                   isWhite={true}
