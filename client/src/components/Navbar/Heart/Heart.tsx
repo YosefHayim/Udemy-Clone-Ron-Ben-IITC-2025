@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IoMdHeartEmpty } from "react-icons/io";
 import HoverHeart from "./HoverHeart/HoverHeart";
+import { btnStyleNHover } from "@/utils/stylesStorage";
 
 const Heart = () => {
   const [showHeartHover, setShowHeartHover] = useState(false);
@@ -14,7 +15,7 @@ const Heart = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="cursor-pointer text-black font-bold hover:text-purple-800 hover:bg-purple-100 py-[0.6rem] px-[0.6rem] rounded-md">
+      <div className={`${btnStyleNHover}`}>
         <IoMdHeartEmpty className="w-6 h-6" />
       </div>
       {showHeartHover && (

@@ -2,6 +2,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import CartCoursesNumber from "./CartCoursesNumber/CartCoursesNumber";
 import { useState } from "react";
 import HoverCart from "./HoverCart/HoverCart";
+import { btnStyleNHover } from "@/utils/stylesStorage";
 
 const Cart = () => {
   const [showCartHover, setShowCartHover] = useState(false);
@@ -15,7 +16,7 @@ const Cart = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="font-bold hover:text-purple-800 hover:bg-purple-100 py-[0.6rem] px-[0.6rem] rounded-md">
+      <div className={`${btnStyleNHover}`}>
         <MdOutlineShoppingCart className="w-5 h-5" />
         <CartCoursesNumber />
       </div>

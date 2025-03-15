@@ -44,12 +44,12 @@ const CouponArea: React.FC<{ btnBgDesign?: string; couponText?: string }> = ({
           <div className="relative w-full flex flex-col items-start gap-[0.2em]">
             <div className="flex flex-row w-full">
               <div className="flex flex-row gap-[0.2em] w-full">
-                <b className="text-[#6a6f73]">{couponText}</b>
+                <b className="text-weakGray">{couponText}</b>
                 <p>is applied</p>
               </div>
             </div>
             <div>
-              <p className="text-[#6a6f73]">Udemy coupon</p>
+              <p className="text-weakGray">Udemy coupon</p>
             </div>
           </div>
           <button className="focus:outline-none hover:bg-purple-200 p-[1em] rounded-[0.2em] cursor-pointer border-none bg-none">

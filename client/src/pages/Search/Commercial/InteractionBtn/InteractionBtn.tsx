@@ -1,11 +1,10 @@
 import { Button } from "@/components/ui/button";
+import { BtnStyleNHoverTypeTwo } from "@/utils/stylesStorage";
 
 const InteractionBtn = () => {
   return (
     <div className="py-[1em] w-min absolute bottom-0">
-      <Button className="focus:outline-none font-bold bg-btnColor rounded-[0.3em] hover:bg-btnHoverColor w-full py-[1.5em]">
-        Learn more
-      </Button>
+      <Button className={`${BtnStyleNHoverTypeTwo}`}>Learn more</Button>
     </div>
   );
 };

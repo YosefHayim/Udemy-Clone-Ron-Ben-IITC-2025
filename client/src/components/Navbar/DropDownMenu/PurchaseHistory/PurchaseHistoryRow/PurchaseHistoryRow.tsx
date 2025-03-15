@@ -14,10 +14,10 @@ const PurchaseHistoryRow = () => {
       <div className="flex flex-row items-start justify-start gap-[0.5em]">
         <MdOutlineShoppingCart className="w-6 h-6" />
         <div className="flex flex-col items-start justify-start gap-[0.2em]">
-          <p className="text-[#5022c3]">
+          <p className="text-purpleStatic">
             React Native - The Practical Guide [2025]
           </p>
-          <b className="font-bold text-[#5022c3]">Request a refund</b>
+          <b className="font-bold text-purpleStatic">Request a refund</b>
         </div>
       </div>
       <div className="w-[50px]">

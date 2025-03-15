@@ -17,7 +17,7 @@ const CourseLength: React.FC<{
       : `total ${totalMinutes} minutes`;
 
   return (
-    <div className="flex flex-row items-center justify-start text-[#6a6f73] w-full">
+    <div className="flex flex-row items-center justify-start text-weakGray w-full">
       <p className="w-full">{totalHours}</p>
       <LuDot />
       <p className="w-full">{totalLectures} lectures</p>

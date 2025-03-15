@@ -38,7 +38,6 @@ const Filter: React.FC<FilterProps> = ({
         filterData.handsOnPractice.add(name);
       }
       setFilterData({ ...filterData });
-
     }
 
     if (filterTitle === "Video Duration") {
@@ -48,7 +47,6 @@ const Filter: React.FC<FilterProps> = ({
         filterData.videosDurations.add(name);
       }
       setFilterData({ ...filterData });
-
     }
 
     if (filterTitle === "Topics") {
@@ -90,7 +88,7 @@ const Filter: React.FC<FilterProps> = ({
   };
 
   return (
-    <div className={useForSection ? "bg-[#f7f9fa]" : ""}>
+    <div className={useForSection ? "bg-bgCommercial" : ""}>
       <hr className={showLine ? "block" : "hidden"} />
       <div
         className={`transition-all overflow-hidden ${

@@ -65,7 +65,7 @@ const CheckoutContainer: React.FC = () => {
   return (
     <div className="flex flex-col items-start justify-start gap-[1em]">
       <div className="text-start w-full mb-[0.5em]">
-        <h3 className="text-[#6a6f73] text-[1.2em] font-bold">Total:</h3>
+        <h3 className="text-weakGray text-[1.2em] font-bold">Total:</h3>
         <h2 className="font-bold text-[2em]">₪{totalToPay?.toFixed(2) || 0}</h2>
         <p className="line-through text-gray-600">
           {totalSavings?.toFixed(2) || 0}

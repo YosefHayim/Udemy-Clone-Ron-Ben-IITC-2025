@@ -63,7 +63,7 @@ const AccountSecurity = () => {
                 type="text"
                 id="new-password"
                 name="new-password"
-                className="hover:bg-gray-100 border border-gray-400 rounded-[0.3em] p-[0.5em] w-full overflow-hidden bg-white focus-within:border-[#6d28d2] focus-within:ring-1 focus-within:ring-[#6d28d2]"
+                className="hover:bg-gray-100 border border-gray-400 rounded-[0.3em] p-[0.5em] w-full overflow-hidden bg-white focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor"
                 placeholder={"Enter new password"}
               />
               <input
@@ -71,7 +71,7 @@ const AccountSecurity = () => {
                 type="text"
                 id="re-type-password"
                 name="re-type-password"
-                className="hover:bg-gray-100 border border-gray-400 rounded-[0.3em] p-[0.5em] w-full overflow-hidden bg-white focus-within:border-[#6d28d2] focus-within:ring-1 focus-within:ring-[#6d28d2]"
+                className="hover:bg-gray-100 border border-gray-400 rounded-[0.3em] p-[0.5em] w-full overflow-hidden bg-white focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor"
                 placeholder={"Re-type new password"}
               />
               <button

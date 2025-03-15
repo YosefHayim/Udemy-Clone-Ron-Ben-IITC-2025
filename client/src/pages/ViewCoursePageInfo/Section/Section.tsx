@@ -21,7 +21,7 @@ const Section: React.FC<{
     <div>
       <div
         onClick={() => setClicked(!isClicked)}
-        className="cursor-pointer flex flex-row bg-[#f7f9fa] w-[550px] text-[#2d2f31] items-center justify-around p-[0.8em] border border-[#d1d7dc]"
+        className="cursor-pointer flex flex-row bg-bgCommercial w-[550px] text-languageText items-center justify-around p-[0.8em] border border-borderCommercial"
       >
         <div
           className={`transition-transform duration-300 ease-in-out ${

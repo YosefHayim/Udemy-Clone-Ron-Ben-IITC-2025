@@ -46,7 +46,7 @@ const SideBarProfile = () => {
               className={`block py-2 px-6 font-medium cursor ${
                 location.pathname === "/user/public-profile"
                   ? "bg-gray-300 text-gray-900"
-                  : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
               }`}
             >
               View public Profile
@@ -58,7 +58,7 @@ const SideBarProfile = () => {
               className={`block py-2 px-6 font-medium cursor ${
                 location.pathname === "/user/edit-profile"
                   ? "bg-gray-300 text-gray-900"
-                  : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
               }`}
             >
               Profile
@@ -69,8 +69,8 @@ const SideBarProfile = () => {
               to="/user/photo"
               className={`block py-2 px-6 font-medium cursor ${
                 location.pathname === "/user/photo"
-                  ? "bg-[#9194AC] text-white"
-                  : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
+                  ? "bg-gray-400 text-white"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
               }`}
             >
               Photo
@@ -82,7 +82,7 @@ const SideBarProfile = () => {
               className={`block py-2 px-6 font-medium cursor ${
                 location.pathname === "/user/edit-account"
                   ? "bg-gray-300 text-gray-900"
-                  : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
               }`}
             >
               Account Security
@@ -94,7 +94,7 @@ const SideBarProfile = () => {
               className={`block py-2 px-6 font-medium cursor ${
                 location.pathname === "/user/manage-subscriptions"
                   ? "bg-gray-300 text-gray-900"
-                  : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
               }`}
             >
               Subscriptions
@@ -106,7 +106,7 @@ const SideBarProfile = () => {
               className={`block py-2 px-6 font-medium cursor ${
                 location.pathname === "/user/edit-payment-methods/"
                   ? "bg-gray-300 text-gray-900"
-                  : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
               }`}
             >
               Payment methods
@@ -118,7 +118,7 @@ const SideBarProfile = () => {
               className={`block py-2 px-6 font-medium cursor ${
                 location.pathname === "/user/edit-privacy"
                   ? "bg-gray-300 text-gray-900"
-                  : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
               }`}
             >
               Privacy
@@ -130,7 +130,7 @@ const SideBarProfile = () => {
               className={`block py-2 px-6 font-medium cursor ${
                 location.pathname === "/user/edit-notifications/"
                   ? "bg-gray-300 text-gray-900"
-                  : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
               }`}
             >
               Notification Preferences
@@ -142,7 +142,7 @@ const SideBarProfile = () => {
               className={`block py-2 px-6 font-medium cursor ${
                 location.pathname === "/user/edit-api-clients/"
                   ? "bg-gray-300 text-gray-900"
-                  : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
               }`}
             >
               API clients
@@ -154,7 +154,7 @@ const SideBarProfile = () => {
               className={`block py-2 px-6 font-medium cursor ${
                 location.pathname === "/user/close-account"
                   ? "bg-gray-300 text-gray-900"
-                  : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
               }`}
             >
               Close account

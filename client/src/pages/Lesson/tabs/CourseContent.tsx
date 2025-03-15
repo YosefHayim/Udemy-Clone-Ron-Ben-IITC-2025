@@ -103,7 +103,7 @@ const CourseContent: React.FC = () => {
             defaultOpen
             className="min-w-[800px] border-y group/collapsible"
           >
-            <div className="flex items-center justify-between p-4 bg-[#F7F9FA]">
+            <div className="flex items-center justify-between p-4 bg-bgCommercial">
               <CollapsibleTrigger asChild>
                 <button className="focus:outline-none flex items-center w-full text-left focus:outline-none focus-visible:outline-none">
                   <span className="text-lg font-medium">

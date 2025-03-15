@@ -51,7 +51,7 @@ const DialogChangeEmail: React.FC<DialogChangeEmailProps> = ({
                 type="text"
                 id="new-password"
                 name="new-password"
-                className="hover:bg-gray-100 border border-gray-500 rounded-[0.3em] p-[0.5em] w-full overflow-hidden bg-white focus-within:border-[#6d28d2] focus-within:ring-1 focus-within:ring-[#6d28d2]"
+                className="hover:bg-gray-100 border border-gray-500 rounded-[0.3em] p-[0.5em] w-full overflow-hidden bg-white focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor"
                 placeholder={"Enter the new email address"}
               />
               <p>

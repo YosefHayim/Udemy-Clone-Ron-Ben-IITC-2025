@@ -4,7 +4,7 @@ const TriangleShape: React.FC<{ index: number }> = ({ index = 0 }) => {
       className={`${
         index > 1 &&
         "rotate-180 bottom-[-5%] absolute left-1/2 transform -translate-x-1/2"
-      } flex items-center justify-center z-10 pt-[0.05em]`}
+      } flex items-center justify-center z-10`}
     >
       <div className="w-[50px] flex items-center justify-center">
         {/* Wrapper triangle with thick gray border and white fill */}
