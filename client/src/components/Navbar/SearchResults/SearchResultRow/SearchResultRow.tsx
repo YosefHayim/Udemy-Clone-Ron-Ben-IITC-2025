@@ -8,9 +8,9 @@ const SearchResultRow: React.FC<SearchResultProps> = ({
   return (
     <div
       id={courseId}
-      className="p-[0.5em] flex flex-row items-start justify-start gap-[1em] font-bold hover:bg-purpleHoverBtn cursor-pointer"
+      className="p-[1em] flex flex-row items-center justify-start gap-[1em] font-bold hover:bg-gray-100 cursor-pointer"
     >
-      <MdOutlineSearch className="w-6 h-6 text-black opacity-200" />
+      <MdOutlineSearch className="w-6 h-6 text-gray-600 opacity-200" />
       <p id={courseId}>{algoWord}</p>
     </div>
   );
