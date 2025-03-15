@@ -1,4 +1,4 @@
-export const btnStyleNHover = `cursor-pointer font-bold hover:text-purple-800 hover:bg-purple-100 py-[0.6rem] px-[0.6rem] rounded-md`;
+export const btnStyleNHover = `focus:outline-none cursor-pointer font-bold hover:text-purple-800 hover:bg-purple-100 py-[0.6rem] px-[0.6rem] rounded-md`;
 export const BtnStyleNHoverTypeTwo = `focus:outline-none font-bold bg-btnColor rounded-[0.3em] hover:bg-btnHoverColor w-full py-[1.5em]`;
 export const loginWithEmailBtn = `focus:outline-none w-full py-3 rounded-[0.4em] bg-btnColor hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]`;
 export const loginThirdPartyBtn = `focus:outline-none p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn`;
