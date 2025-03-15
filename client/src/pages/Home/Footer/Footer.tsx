@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
           <FooterLogin />
           <footer className="text-white">
             {/* Top Section */}
-            <div className="bg-[#1c1d1f]">
+            <div className="bg-blackUdemy">
               <div className="flex items-center justify-between font-bold  border-y-[0.5px] border-y-[#9DA3A7] py-6 px-12">
                 <p className="text-[18px]">
                   Welcome back! Explore{" "}
@@ -124,7 +124,7 @@ const Footer: React.FC = () => {
       {!user && (
         <footer className="text-white">
           {/* Conteúdo de visitante */}
-          <div className="bg-[#1c1d1f]">
+          <div className="bg-blackUdemy">
             {/* Todo conteúdo de guest (manter o mesmo original, se necessário) */}
           </div>
         </footer>

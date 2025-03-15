@@ -110,6 +110,9 @@ export default {
         ratings: {
           DEFAULT: "#8b4309",
         },
+        blackUdemy: {
+          DEFAULT: "#1c1d1f",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

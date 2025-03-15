@@ -58,10 +58,10 @@ const ViewCoursePageInfo = () => {
   }
 
   return (
-    <div className="w-full flex">
+    <div>
       <div className="flex flex-row p-[3em] items-start justify-start w-2/5 gap-[3em]">
         <div className="w-full flex flex-col items-start justify-start gap-[1em]">
-          <div className="bg-[#1c1d1f] h-[350px] absolute w-full left-0 top-[14%]"></div>
+          <div className="bg-blackUdemy h-[350px] absolute w-full left-0 top-[8%]"></div>
           <StickyCourseNavbar
             courseName={data?.courseName}
             totalStudents={data?.totalStudentsEnrolled.count}

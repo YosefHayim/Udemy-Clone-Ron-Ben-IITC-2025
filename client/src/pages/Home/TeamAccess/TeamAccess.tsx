@@ -1,6 +1,6 @@
 const TeamAccess = () => {
   return (
-    <div className="bg-[#1c1d1f] text-white p-4 rounded-md flex justify-between items-center mt-24 mb-20 mx-10">
+    <div className="bg-blackUdemy text-white p-4 rounded-md flex justify-between items-center mt-24 mb-20 mx-10">
       <p className="text-sm md:text-base">
         <strong>Are you going to train 2 or more people?</strong> Give your team
         access to Udemy's 27,000+ top-rated courses

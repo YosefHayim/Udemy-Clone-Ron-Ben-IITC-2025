@@ -66,7 +66,7 @@ const Promotions = () => {
               <p className="text-base italic font-semibold text-gray-600 mb-4">
                 This Promotions Policy was last updated on 22nd December 2023.
               </p>
-              <p className="text-base text-[#1C1D1F] font-semibold opacity-90 mb-4">
+              <p className="text-base text-blackUdemy font-semibold opacity-90 mb-4">
                 This Promotions Policy (
                 <span className="font-semibold text-black">“Policy”</span>)
                 includes information about methods that Udemy instructors can
@@ -83,7 +83,7 @@ const Promotions = () => {
                 . Any capitalized terms that aren’t defined in this Policy are
                 defined as specified in the Terms of Use or Instructor Terms.
               </p>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 You can find translated versions of this Policy by following our{" "}
                 <a href="#" className="text-[#5624D0] underline">
                   Help Center language instructions
@@ -92,7 +92,7 @@ const Promotions = () => {
                 not supported by the Help Center:
               </p>
               {/* List of Languages */}
-              <ul className="list-disc list-inside text-base text-[#1C1D1F] mb-6">
+              <ul className="list-disc list-inside text-base text-blackUdemy mb-6">
                 <li>
                   Chinese - Traditional (
                   <a href="#" className="text-[#5624D0] underline">
@@ -150,7 +150,7 @@ const Promotions = () => {
                   )
                 </li>
               </ul>
-              <p className="text-base text-[#1C1D1F] mb-6">
+              <p className="text-base text-blackUdemy mb-6">
                 Any version of this Policy in a language other than English is
                 provided for convenience and you understand and agree that the
                 English language will control if there is any conflict.
@@ -159,7 +159,7 @@ const Promotions = () => {
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 1. How the Promotional Programs Work
               </h2>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 Udemy offers premium instructors the opportunity to participate
                 in Promotional Programs, which you can opt into through the{" "}
                 <a href="#" className="text-[#5624D0] underline">
@@ -170,7 +170,7 @@ const Promotions = () => {
                 detailed below. The specific programs offered may change from
                 time to time.
               </p>
-              <p className="text-base text-[#1C1D1F]">
+              <p className="text-base text-blackUdemy">
                 Not all deals or programs will be available in all geographic
                 territories or for all Udemy content. Udemy has sole discretion
                 to determine which content to offer as part of the Promotional
@@ -181,7 +181,7 @@ const Promotions = () => {
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 2. Udemy Deals Program
               </h2>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 The Udemy Deals Program helps increase your revenue potential by
                 enabling Udemy to offer your content at a compelling discount as
                 part of targeted promotions, as well as to optimize your list
@@ -199,18 +199,18 @@ const Promotions = () => {
                 . We reserve the right to update this table and change base
                 price tier options from time to time.
               </p>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 Where a sale to a Udemy reseller or distributor results in a
                 sale price for your content that is lower than permitted by this
                 Policy, Udemy will calculate your revenue share based on a Gross
                 Amount permitted by this Policy.
               </p>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 Deals Program deals may be promoted through the Services, user
                 communications, or third-party platforms, and the duration of
                 the deals may vary.
               </p>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 You can opt out of the Deals Program at any time. However, your
                 content will remain subject to any applicable sales, campaigns,
                 or promotions that are already active at the time you opt out,
@@ -221,7 +221,7 @@ const Promotions = () => {
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 3. Udemy Business Program
               </h2>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 Premium instructors may also participate in our subscription
                 program (
                 <span className="font-semibold">“Udemy Business Program”</span>
@@ -234,7 +234,7 @@ const Promotions = () => {
                 ), featuring a select group of Udemy’s top content for
                 professional and personal development skills.
               </p>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 By opting into the Udemy Business Program, you agree to make all
                 of your content eligible for inclusion in Udemy’s
                 subscription-based content collections. We may elect whether to
@@ -242,30 +242,30 @@ const Promotions = () => {
                 any add-on, variation, or subset of that collection, and may
                 change the selection from time to time at our sole discretion.
               </p>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 Because the collections are subscription-based, we may select
                 sale prices and offer free trials at our discretion. While your
                 content is included in a collection, you may not unpublish that
                 content or make it private.
               </p>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 If you’ve agreed to provide any Assessment Questions (as defined
                 below), you are also subject to the additional terms in Section
                 4 (Assessments).
               </p>
-              <p className="text-base text-[#1C1D1F]">
+              <p className="text-base text-blackUdemy">
                 Instructors who have previously opted into the “Udemy
                 Subscription Program” are subject to the terms of this section.
               </p>
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 3.1 Revenue Share
               </h2>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 By participating in the Udemy Business Program, you agree that
                 for each collection, your revenue share will be calculated as
                 follows:
               </p>
-              <ol className="list-decimal list-inside text-base text-[#1C1D1F] mb-6 space-y-2">
+              <ol className="list-decimal list-inside text-base text-blackUdemy mb-6 space-y-2">
                 <li>
                   Each month, Udemy will calculate the total monthly
                   subscription fees paid to Udemy on behalf of all current
@@ -306,7 +306,7 @@ const Promotions = () => {
                   then multiply that per-minute amount by Your Content Minutes.
                 </li>
               </ol>
-              <p className="text-base text-[#1C1D1F] mb-6">
+              <p className="text-base text-blackUdemy mb-6">
                 As Udemy makes additional types of content (such as assessments
                 and labs) available through the collections, we may update
                 subsection (3) above to specify additional types of content that
@@ -318,7 +318,7 @@ const Promotions = () => {
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 3.2 Exclusivity
               </h2>
-              <p className="text-base text-[#1C1D1F] mb-6">
+              <p className="text-base text-blackUdemy mb-6">
                 Except as otherwise provided for Assessment Questions below,
                 once your content is included in a collection, you agree that
                 you will not begin to offer any on-demand content, such as
@@ -335,7 +335,7 @@ const Promotions = () => {
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 3.3 Termination
               </h2>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 You can choose to terminate your participation in the Udemy
                 Business Program at any time by emailing{" "}
                 <a
@@ -349,7 +349,7 @@ const Promotions = () => {
                 based on the then-current rates until your content is removed
                 from the relevant collection.
               </p>
-              <p className="text-base text-[#1C1D1F]">
+              <p className="text-base text-blackUdemy">
                 Once your content is removed for any reason from a collection,
                 Subscription Customers will no longer be able to enroll in your
                 content and you will no longer earn revenue share from that
@@ -361,7 +361,7 @@ const Promotions = () => {
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 4. Assessments
               </h2>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 Udemy’s assessments (
                 <span className="font-semibold">“Assessments”</span>) consist of
                 question and answer pairs with explanations (each, an{" "}
@@ -372,12 +372,12 @@ const Promotions = () => {
                 clarity, practice tests, quizzes, coding exercises, and labs are
                 not considered Assessments or Assessment Questions.
               </p>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 By providing an Assessment Question, as mutually agreed between
                 us in writing (including by email), you agree to the terms in
                 this section.
               </p>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 We may elect whether to select your Assessment Question for
                 inclusion on Udemy.com or in the Udemy Business Program, and may
                 change that selection from time to time and at our sole
@@ -385,13 +385,13 @@ const Promotions = () => {
                 Business Program, then you will be subject to the terms relevant
                 to that program above.
               </p>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 You agree that your Assessment Questions will comply with all
                 criteria as may be agreed in writing (including by email) by you
                 and Udemy, such as the topic, format, domain, difficulty level,
                 and quantity.
               </p>
-              <p className="text-base text-[#1C1D1F] mb-4">
+              <p className="text-base text-blackUdemy mb-4">
                 By providing your Assessment Question, you grant Udemy an
                 exclusive license to use, copy, reproduce, distribute, display,
                 publish, and prepare derivative works of your Assessment
@@ -399,7 +399,7 @@ const Promotions = () => {
                 Question available to others (including through your own site or
                 platform) or license or permit any third party to do so.
               </p>
-              <p className="text-base text-[#1C1D1F] mb-6">
+              <p className="text-base text-blackUdemy mb-6">
                 You may choose to terminate your license of an Assessment
                 Question at any time by emailing{" "}
                 <a
@@ -419,7 +419,7 @@ const Promotions = () => {
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 5. Modifications
               </h2>
-              <p className="text-base text-[#1C1D1F] mb-6">
+              <p className="text-base text-blackUdemy mb-6">
                 We may update this Policy from time to time to clarify our
                 practices or to reflect new or different practices. If we make
                 any material change, we will notify you using prominent means
@@ -433,7 +433,7 @@ const Promotions = () => {
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 6. How to Contact Us
               </h2>
-              <p className="text-base text-[#1C1D1F] mb-6">
+              <p className="text-base text-blackUdemy mb-6">
                 If you have any questions about this Policy, please contact our{" "}
                 <a href="/support" className="text-[#5624D0] underline">
                   support team
@@ -443,14 +443,14 @@ const Promotions = () => {
 
               {/* Feedback Section */}
               <div className="mt-6">
-                <p className="text-base text-[#1C1D1F] font-semibold mb-4">
+                <p className="text-base text-blackUdemy font-semibold mb-4">
                   Was this article helpful?
                 </p>
                 <div className="flex space-x-4">
-                  <button className="focus:outline-none bg-gray-100 text-[#1C1D1F] px-4 py-2 rounded-md border hover:bg-gray-200">
+                  <button className="focus:outline-none bg-gray-100 text-blackUdemy px-4 py-2 rounded-md border hover:bg-gray-200">
                     👍
                   </button>
-                  <button className="focus:outline-none bg-gray-100 text-[#1C1D1F] px-4 py-2 rounded-md border hover:bg-gray-200">
+                  <button className="focus:outline-none bg-gray-100 text-blackUdemy px-4 py-2 rounded-md border hover:bg-gray-200">
                     👎
                   </button>
                 </div>
@@ -556,7 +556,7 @@ const Promotions = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-[#1C1D1F] text-white px-14 py-8 text-sm">
+      <footer className="bg-blackUdemy text-white px-14 py-8 text-sm">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {/* Coluna 1 */}
           <div>
