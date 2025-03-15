@@ -216,6 +216,7 @@ export interface LoaderProps {
   useSmallLoading: boolean;
   paddingSetTo?: string;
   usePurpleLoading?: boolean;
+  useSmallBlackLoading?: boolean;
 }
 // explore data ts
 export interface Topic {

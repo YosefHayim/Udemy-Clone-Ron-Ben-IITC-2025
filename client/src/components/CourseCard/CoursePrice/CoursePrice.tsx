@@ -9,23 +9,53 @@ const CoursePrice: React.FC<CoursePriceProps> = ({
   discountPriceSize = "",
   showFullPrice = true,
 }) => {
+  const [loading, setLoading] = useState(false);
   const isFree = discountPrice === 0 || fullPrice === 0;
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
 
   return (
     <div>
       <div className={`${chooseFlex} gap-[0.5em]`}>
         <div>
-          <b className={`text-[${discountPriceSize}]`}>
-            {isFree ? "Free" : `₪${discountPrice}`}
-          </b>
-        </div>
-        <div>
-          {showFullPrice && !isFree && (
-            <div>
-              <p className="line-through text-gray-500">₪{fullPrice}</p>
+          {loading ? (
+            <div className="my-2">
+              <Loader
+                hSize=""
+                paddingSetTo="0em"
+                useSmallLoading={true}
+                useSmallBlackLoading={true}
+              />
             </div>
+          ) : (
+            <b className={`text-[${discountPriceSize}]`}>
+              {isFree ? "Free" : `₪${discountPrice}`}
+            </b>
           )}
         </div>
+        {loading ? (
+          <div className="my-2">
+            <Loader
+              hSize=""
+              paddingSetTo="0em"
+              useSmallLoading={true}
+              useSmallBlackLoading={true}
+            />
+          </div>
+        ) : (
+          <div>
+            {showFullPrice && !isFree && (
+              <div>
+                <p className="line-through text-gray-500">₪{fullPrice}</p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -18,11 +18,11 @@ const CourseLength: React.FC<{
 
   return (
     <div className="flex flex-row items-center justify-start text-weakGray w-full">
-      <p className="w-full">{totalHours}</p>
+      <p className="w-min-max">{totalHours}</p>
       <LuDot />
-      <p className="w-full">{totalLectures} lectures</p>
+      <p className="w-min-max">{totalLectures} lectures</p>
       <LuDot />
-      <p className="w-full">{courseLevel}</p>
+      <p className="w-min-max">{courseLevel}</p>
     </div>
   );
 };

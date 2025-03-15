@@ -107,6 +107,9 @@ export default {
         courseNameColorTxt: {
           DEFAULT: "#303141",
         },
+        ratings: {
+          DEFAULT: "#8b4309",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
