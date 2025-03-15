@@ -7,12 +7,12 @@ const SelectCountry = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCountry(e.target.value);
-    // console.log("Selected Country:", e.target.value);
+    console.log("Selected Country:", e.target.value);
   };
 
   return (
     <div>
-      <div className="flex flex-col w-[200px] gap-[0.5em] mb-[0.5em]">
+      <div className="flex flex-col gap-[0.5em] mb-[0.5em]">
         <label htmlFor="country-select" className="font-bold">
           Country
         </label>
@@ -33,13 +33,8 @@ const SelectCountry = () => {
             </option>
           ))}
         </select>
-        {selectedCountry && (
-          <p className="mt-2 text-sm text-gray-600">
-            You have selected: <strong>{selectedCountry}</strong>
-          </p>
-        )}
       </div>
-      <p className="text-grayNavbarTxt w-[400px]">
+      <p className="text-grayNavbarTxt w-full">
         Udemy is required by law to collect applicable transaction taxes for
         purchases made in certain tax jurisdictions.
       </p>

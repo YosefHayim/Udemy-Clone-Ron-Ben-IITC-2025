@@ -12,7 +12,6 @@ import {
 import { DecodedTokenProps } from "@/types/types";
 import { ReactPayPalScriptOptions } from "@paypal/react-paypal-js";
 import { useMutation } from "@tanstack/react-query";
-import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import { IoMdLock } from "react-icons/io";
@@ -23,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
   isPaypal,
 }) => {
-  const cookie = Cookies.get("cookie");
+  const cookie = useSelector((state: RootState) => state.user.cookie);
   const [isLoading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -45,7 +44,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
     (state: RootState) => state.cart.coursesAddedToCart
   );
 
-  useEffect(() => {}, [originalPrice, totalCourses, totalToPay]);
+  useEffect(() => {}, [originalPrice, totalCourses, totalToPay, cookie]);
 
   const checkOutMutation = useMutation({
     mutationFn: buyCourseById,
@@ -88,10 +87,12 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
   };
 
   return (
-    <div className="flex flex-col items-start justify-start p-[3em] w-[340px]">
-      <div className="flex flex-col items-start justify-start">
-        <h2 className="font-bold mb-[1em] text-[1.5em]">Summary</h2>
-        <div className="flex flex-col items-start justify-start gap-[0.5em] w-full">
+    <div className="flex flex-col items-start justify-start p-[3em] w-min-max">
+      <div className="flex flex-col items-start justify-start w-full">
+        <h2 className="font-bold mb-[1em] text-[1.5em] w-full">
+          Order Summary
+        </h2>
+        <div className="flex flex-col items-start justify-start gap-[0.5em] w-[75%]">
           <div className="flex flex-row items-start justify-between w-full gap-[5em]">
             <p>Original price:</p>
             <p>₪{originalPrice || 0}</p>
@@ -105,16 +106,16 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
             {isPaypal ? <b>Proceed</b> : <b>₪{totalToPay?.toFixed(2) || 0}</b>}
           </div>
         </div>
-        <div className="mb-[1em] w-[350px]">
+        <div className="mb-[1em] w-[75%]">
           <p>
             By completing your purchase you agree to these{" "}
             <span className="text-btnColor">Terms of Service.</span>
           </p>
         </div>
-        <div className="mb-[2em] w-full">
+        <div className="mb-[2em] w-[75%]">
           <Button
             onClick={handleClick}
-            className="w-[400px] rounded-[0.2em] bg-btnColor hover:bg-[#892de1] font-bold text-white p-[1.5em] py-[2em]"
+            className="w-full rounded-[0.2em] bg-btnColor hover:bg-[#892de1] font-bold text-white p-[1.7em]"
           >
             {isLoading ? (
               <div>
@@ -128,7 +129,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
             )}
           </Button>
         </div>
-        <div className="w-[300px] flex flex-col items-center justify-center mb-[3em] gap-[1em]">
+        <div className="w-[75%] flex flex-col items-center justify-center mb-[3em] gap-[1em]">
           <b>30-Day Money-Back Guarantee</b>
           <p className="text-center">
             Not satisfied? Get a full refund within 30 days. Simple and

@@ -25,12 +25,12 @@ const Payment: React.FC = () => {
         <Loader hSize="1000px" useSmallLoading={false} />
       ) : (
         <div>
-          <div className="p-[1em] flex flex-col items-start justify-between w-full mb-[2em] shadow-md">
+          <div className="p-[1em] flex flex-col items-start justify-between w-full shadow-alertAlgoInfo">
             <PaymentNavbar />
           </div>
-          <div className="flex flex-row justify-around">
-            <div className="p-[10em] pt-[2em]">
-              <div className=" flex flex-col items-start justify-start gap-[1em]">
+          <div className="w-full flex flex-row justify-around items-start h-full">
+            <div className="w-3/5 p-[10em] pt-[2em]">
+              <div className=" w-full flex flex-col items-start justify-start gap-[1em]">
                 <h2 className="font-bold text-[1.5em]">Checkout</h2>
                 <h2 className="font-bold">Billing address</h2>
                 <SelectCountry />
@@ -39,7 +39,7 @@ const Payment: React.FC = () => {
                 <OrderDetails />
               </div>
             </div>
-            <div className="w-[45%] bg-[#f6f7f9]">
+            <div className="w-2/5 bg-[#f6f7f9] h-[100vh]">
               <Checkout isPaypal={options?.isPaypal} />
             </div>
           </div>

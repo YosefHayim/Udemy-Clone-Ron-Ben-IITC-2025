@@ -100,7 +100,7 @@ const DropdownMenu: React.FC = () => {
                 >
                   {label}{" "}
                   {extra && (
-                    <span className="text-[1.8em] absolute right-[20%] top-[17.1%] font-bold">
+                    <span className="absolute right-[15%] top-[18.1%] font-bold">
                       {extra}
                     </span>
                   )}

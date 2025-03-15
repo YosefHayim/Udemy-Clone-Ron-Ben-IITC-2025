@@ -22,7 +22,7 @@ const PaymentOption: React.FC<PaymentOptionProps> = ({
   onToggle,
 }) => {
   return (
-    <div className="bg-[#f6f7f9] border border-gray-100 rounded-[0.2em] w-[400px]">
+    <div className="bg-[#f6f7f9] border border-gray-100 rounded-[0.2em] w-full">
       <div
         className="flex items-center justify-between gap-[1em] border-borderCommercial border-[1px] cursor-pointer"
         onClick={onToggle} // Trigger toggle when clicked
