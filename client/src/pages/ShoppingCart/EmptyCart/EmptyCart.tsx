@@ -11,6 +11,7 @@ const EmptyCart: React.FC = () => {
 
   return (
     <div className="w-full">
+      <h1 className="font-bold mb-4">Shopping Cart</h1>
       <h2 className="font-bold">{totalCoursesInCart} Courses in Cart</h2>
       <div className="flex flex-col items-center justify-center border border-b-gray-100 p-[2em] w-full">
         <div>

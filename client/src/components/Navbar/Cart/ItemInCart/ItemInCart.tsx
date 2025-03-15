@@ -98,7 +98,6 @@ const ItemInCart = ({
       onClick={handlePreformOperation}
     >
       <div
-        onClick={() => handleCourseView(courseId)}
         id={courseId}
         className={`flex ${
           isColCourseBox ? "flex-col" : "flex-row"
@@ -173,12 +172,16 @@ const ItemInCart = ({
             </div>
           </div>
           <div className={hide ? "block" : "hidden"}>
-            <div className=" text-[#5022c3] hover:text-[#3b198f]">
-              <button className="focus:outline-none cursor-pointer">
+            <div className="flex flex-col items-start text-purpleStatic">
+              <button className=" focus:outline-none rounded-[0.3em] hover:bg-purple-200 p-[0.3em]">
                 Remove
               </button>
-              <p className="cursor-pointer">Save for Later</p>
-              <p className="cursor-pointer">Move to Wishlist</p>
+              <button className=" focus:outline-none rounded-[0.3em] hover:bg-purple-200 p-[0.3em]">
+                Save for Later
+              </button>
+              <button className=" focus:outline-none rounded-[0.3em] hover:bg-purple-200 p-[0.3em]">
+                Move to Wishlist
+              </button>
             </div>
           </div>
           <div>
