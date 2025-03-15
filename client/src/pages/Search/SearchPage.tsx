@@ -14,9 +14,27 @@ import { CourseTypeProps } from "@/types/types";
 import { filterContext } from "@/routes/AppRoutes";
 import { useEffect } from "react";
 import RelatedSearches from "./RelatedSearches/RelatedSearches";
+import { getTopValue } from "@/utils/geTopValues";
 
 const SearchPage: React.FC = () => {
   const [filterData, setFilterData] = useContext(filterContext);
+
+  const calculateTop = (index) => {
+    if (index === 0) return "top-[102%]";
+    if (index >= 8) return "top-[-140%]";
+
+    const topValues = {
+      1: -125,
+      2: -70,
+      3: -105,
+      4: -115,
+      5: -115,
+      6: -42,
+      7: -115,
+    };
+
+    return `top-[${topValues[index]}%]` || "top-[-140%]";
+  };
 
   document.title = "Search results | Udemy";
   const navigate = useNavigate();
@@ -114,7 +132,7 @@ const SearchPage: React.FC = () => {
                   {hoveredCourse === course._id && (
                     <div
                       className={` w-1/2 absolute right-[60%] translate-x-1/2 z-10 
-            ${index === 0 ? "top-[90%]" : "bottom-[110%]"}`}
+            ${getTopValue(index)}`}
                     >
                       <CourseHoverCardInfo
                         instructorId={course?.courseInstructor?._id}
