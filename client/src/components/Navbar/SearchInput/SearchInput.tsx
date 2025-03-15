@@ -66,7 +66,7 @@ const SearchInput = () => {
   return (
     <div
       className={`flex items-center rounded-full
-      ${isRootPathOnly() ? "pl-[3.5em] w-full px-[10em]" : "w-full"}
+      ${isRootPathOnly() ? " w-full" : "w-full"}
       `}
     >
       <form

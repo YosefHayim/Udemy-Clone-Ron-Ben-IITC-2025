@@ -16,7 +16,7 @@ import { isRootPathOnly } from "@/utils/extraGenerals";
 import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
 import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercialTwo";
 import { useMediaQuery } from "react-responsive";
-import { GiHamburgerMenu } from "react-icons/gi";
+import MobileNavbar from "./MobileNavbar/MobileNavbar";
 
 const Navbar = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
@@ -98,20 +98,8 @@ const Navbar = () => {
         </div>
       )}
       {isMobile && (
-        <div className="pb-[0.9em] pt-[0.2em] w-full flex items-center bg-white relative shadow-carouselShadowBtn justify-between px-[1.55rem]">
-          <div>
-            <button className="focus:outline-none">
-              <GiHamburgerMenu size={20} />
-            </button>
-          </div>
-          <div>
-            <Logo CustomCssSize="h-[2.5em]" />
-          </div>
-          <div>
-            <Link to="/cart">
-              <Cart />
-            </Link>
-          </div>
+        <div>
+          <MobileNavbar />
         </div>
       )}
     </div>

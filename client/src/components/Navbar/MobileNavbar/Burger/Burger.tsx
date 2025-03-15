@@ -3,7 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 const Burger = () => {
   return (
     <div>
-      <GiHamburgerMenu />
+      <GiHamburgerMenu size={18} />
     </div>
   );
 };
