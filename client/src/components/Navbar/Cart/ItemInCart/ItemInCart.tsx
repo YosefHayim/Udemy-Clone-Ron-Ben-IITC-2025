@@ -68,18 +68,15 @@ const ItemInCart = ({
 
   const handlePreformOperation = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
-    if (target.tagName === "BUTTON" && target.textContent === "Remove") {
+    const btnType = target.tagName === "BUTTON";
+    if (btnType && target.textContent === "Remove") {
       handleRemove();
-    } else if (
-      target.tagName === "P" &&
-      target.textContent === "Save for Later"
-    ) {
+    } else if (btnType && target.textContent === "Save for Later") {
       console.log("Save for Later clicked");
-    } else if (
-      target.tagName === "P" &&
-      target.textContent === "Move to Wishlist"
-    ) {
+    } else if (btnType && target.textContent === "Move to Wishlist") {
       console.log("Move to Wishlist clicked");
+    } else if (!btnType) {
+      navigate(`/course-view/${courseId}`);
     }
   };
 
