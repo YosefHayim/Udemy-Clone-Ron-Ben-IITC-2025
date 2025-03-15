@@ -11,7 +11,13 @@ const InteractionsBtns: React.FC<{
   fullPriceCourse: number;
   courseTopic: string;
   instructorId: string;
-}> = ({ courseId, coursePrice, fullPriceCourse, courseTopic, instructorId }) => {
+}> = ({
+  courseId,
+  coursePrice,
+  fullPriceCourse,
+  courseTopic,
+  instructorId,
+}) => {
   const [showDialogOfFbt, setShowDialogOfFbt] = useState(false);
   const cookie = useSelector((state: RootState) => state.user.cookie);
 

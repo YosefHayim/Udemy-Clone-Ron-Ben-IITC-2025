@@ -14,6 +14,7 @@ import TopicSearch from "./TopicSearch/TopicSearch";
 import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
 import { IoClose } from "react-icons/io5";
 import { ResponseSuggestions } from "@/types/types";
+import { Link } from "react-router-dom";
 
 const DialogFrequentlyBoughtTogether: React.FC<{
   courseTopic: string;
@@ -32,9 +33,7 @@ const DialogFrequentlyBoughtTogether: React.FC<{
 
   // Extract first 1-2 words from courseName
   const getShortenedCourseName = (name: string): string => {
-    const words = name.split(" ").slice(0, 2); // Take only the first two words
-    console.log(words);
-    return words.join(" ");
+    return name.split(" ")[0]; // Take only the first word before space
   };
 
   const fetchSuggestions = useCallback(async () => {
@@ -48,10 +47,12 @@ const DialogFrequentlyBoughtTogether: React.FC<{
             query
           )}&max=10`
         );
+        if (response) {
+          console.log(response);
+        }
+
         setSuggestions(
-          response.data.map((item: ResponseSuggestions) => {
-            console.log(item.word);
-          })
+          response.data.map((item: ResponseSuggestions) => item.word)
         );
       } catch (error) {
         console.log("Error fetching autocomplete suggestions:", error);
@@ -114,7 +115,13 @@ const DialogFrequentlyBoughtTogether: React.FC<{
                 <h2 className="font-bold my-3 text-black">Related topics</h2>
                 <div className="flex flex-wrap items-center justify-start gap-[0.5em]">
                   {suggestions.map((suggestion) => (
-                    <TopicSearch key={suggestion} text={suggestion} />
+                    <Link
+                      to={`/courses/search?src=ukw&q=${encodeURIComponent(
+                        suggestion.toLowerCase()
+                      )}`}
+                    >
+                      <TopicSearch key={suggestion} text={suggestion} />
+                    </Link>
                   ))}
                 </div>
               </div>

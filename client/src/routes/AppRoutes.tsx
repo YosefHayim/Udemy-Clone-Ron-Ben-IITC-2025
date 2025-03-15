@@ -218,12 +218,11 @@ const AppRoutes: React.FC = () => {
                     </filterContext.Provider>
                   }
                 />
-                <Route path="*" element={<NotFound />} />
-                <Route path="/not/found" element={<NotFound />} />
                 <Route
-                  path="/not/search/not/found/"
+                  path="/not/search/not/found/:searchTerm"
                   element={<SearchNotFound />}
                 />
+                <Route path="*" element={<NotFound />} />
                 <Route
                   path="/course-view/:courseId"
                   element={<ViewCoursePageInfo />}

@@ -44,7 +44,6 @@ const Homepage = () => {
         </div>
       ) : (
         <div>
-          // Keep it as it is like the original welcome page on Udemy.
           <Menu />
           <Welcome />
           <Banner />

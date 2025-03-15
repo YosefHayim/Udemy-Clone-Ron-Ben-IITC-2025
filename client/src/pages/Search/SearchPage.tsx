@@ -84,7 +84,7 @@ const SearchPage: React.FC = () => {
   }
 
   if (error || !data) {
-    navigate(`/not/search/not/found`);
+    navigate(`/not/search/not/found:${searchTerm.toLowerCase()}`);
   }
 
   return (
