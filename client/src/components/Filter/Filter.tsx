@@ -1,8 +1,9 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { filterContext } from "@/routes/AppRoutes";
 import { DummyData, FilterProps } from "@/types/types";
+import { btnStyleNHover } from "@/utils/stylesStorage";
 import { useContext, useState } from "react";
-import { MdKeyboardArrowUp } from "react-icons/md";
+import { MdKeyboardArrowUp, MdOutlineKeyboardArrowUp } from "react-icons/md";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 const Filter: React.FC<FilterProps> = ({
@@ -108,7 +109,19 @@ const Filter: React.FC<FilterProps> = ({
             />
           )}
         </div>
-        <div>
+        <div
+          style={{
+            maxHeight: display ? "none" : "280px",
+            WebkitMaskImage: display
+              ? "none"
+              : "linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))",
+            maskImage: display
+              ? "none"
+              : "linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))",
+            WebkitMaskSize: "100% 100%",
+            maskSize: "100% 100%",
+          }}
+        >
           {filterItems?.map((item: DummyData) => (
             <label
               key={item.name}
@@ -145,18 +158,24 @@ const Filter: React.FC<FilterProps> = ({
         </div>
         {isClicked && (
           <div
-            className="flex items-center gap-[0.5em] cursor-pointer"
+            className="flex items-center gap-[0.5em] text-purple-600 "
             onClick={handleClick}
           >
-            <p
-              className={
-                display
-                  ? "text-purpleStatic hover:text-purpleHover font-bold "
-                  : "hidden"
-              }
-            >
-              Show Less
-            </p>
+            {display ? (
+              <div
+                className={`${btnStyleNHover} flex flex-row items-center justify-center gap-2`}
+              >
+                <button className="focus:outline-none">Show less</button>
+                <MdOutlineKeyboardArrowDown />
+              </div>
+            ) : (
+              <div
+                className={`${btnStyleNHover} flex flex-row items-center justify-center gap-2`}
+              >
+                <button className="focus:outline-none">Show less</button>
+                <MdOutlineKeyboardArrowUp />
+              </div>
+            )}
           </div>
         )}
       </div>
