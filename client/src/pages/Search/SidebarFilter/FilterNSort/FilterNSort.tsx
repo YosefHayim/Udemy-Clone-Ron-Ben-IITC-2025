@@ -3,9 +3,7 @@ import SortDropDown from "./SortDropDown/SortDropDown";
 import { useContext } from "react";
 import { filterContext } from "@/routes/AppRoutes";
 
-const FilterNSort: React.FC<{
-  totalResults: number;
-}> = ({ totalResults }) => {
+const FilterNSort = () => {
   const [filterData, setFilterData] = useContext(filterContext);
   const handleClick = () => {
     const resetState = {
@@ -26,7 +24,7 @@ const FilterNSort: React.FC<{
 
   return (
     <div className="flex w-full items-center justify-between mb-[2.4em]">
-      <div className="flex flex-row items-center gap-[0.5em]">
+      <div className="flex items-center gap-[0.5em]">
         <div>
           <FilterBtn />
         </div>
@@ -38,11 +36,6 @@ const FilterNSort: React.FC<{
           onClick={handleClick}
         >
           Clear filters
-        </span>
-      </div>
-      <div>
-        <span className="font-bold text-grayResults">
-          {totalResults} results
         </span>
       </div>
     </div>

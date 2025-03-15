@@ -106,18 +106,22 @@ const SearchPage: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
-      <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
-        {data?.totalCourses || 0} results for "{searchTerm}"
-      </h1>
-
-      <FilterNSort totalResults={data?.totalCourses || 0} />
-      <div className="flex flex-row justify-between w-full gap-[1.5em]">
-        <div>
+    <div className="flex flex-col w-full gap-[1em] px-6 py-[3em] items-center justify-center">
+      <div className="flex flex-row justify-center items-start w-full gap-[1.5em]">
+        <div className="flex flex-col items-start justify-center">
+          <div>
+            <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
+              {data?.totalCourses || 0} results for "{searchTerm}"
+            </h1>
+          </div>
+          <FilterNSort />
           <SidebarFilter />
         </div>
-        <div>
-          <div>
+        <div className="w-full flex flex-col items-center justify-center">
+          <div className="w-full flex-col items-center justify-center mt-[6em]">
+            <h2 className="font-bold w-full text-end">
+              {data?.totalCourses || 0} results
+            </h2>
             {data?.response
               ?.slice(0, 18)
               .map((course: CourseTypeProps, index: number) => (
