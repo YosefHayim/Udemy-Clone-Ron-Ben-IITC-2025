@@ -11,11 +11,10 @@ import { bottomSections, sections } from "@/utils/footerCategories";
 import { RootState } from "@/redux";
 
 const Footer: React.FC = () => {
-  // Obtemos o user do estado global
   const user = useSelector((state: RootState) => state?.user);
 
   return (
-    <div>
+    <div className="relative">
       {user && (
         <>
           <FooterLogin />
