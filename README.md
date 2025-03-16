@@ -19,8 +19,8 @@
 
 ## CourseHoverCardInfo Component:
 
-1. Fade-in effect when hovering.
-2. Gray border.
+1. Fade-in effect when hovering.✅
+2. Gray border.✅
 3. A rectangle at the bottom or top (based on index if higher than 0). ✅
 4. Heart icon positioned to the right. ✅
 5. Hovering activates a 0.95 opacity on the div course that is being hovered. ✅
@@ -31,8 +31,8 @@
 
 ### Pagination Buttons:
 
-1. Hover color should be the same.
-2. Horizontal line should be bolder and more spaced.
+1. Hover color should be the same.✅
+2. Horizontal line should be bolder and more spaced.✅
 
 ### Main Search Results:
 

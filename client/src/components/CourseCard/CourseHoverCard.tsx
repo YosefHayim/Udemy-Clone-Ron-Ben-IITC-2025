@@ -22,7 +22,7 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 border z-[999] w-[350px]">
+    <div className="bg-white shadow-lg rounded-lg p-6 border-[0.01rem] border-gray-300 border-lg z-[999] w-[350px]">
       <h3 className="font-bold text-xl text-courseNameColorTxt">
         {truncateText(course.courseName || "", 70)}
       </h3>
