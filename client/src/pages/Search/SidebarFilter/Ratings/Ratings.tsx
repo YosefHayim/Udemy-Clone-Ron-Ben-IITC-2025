@@ -29,6 +29,7 @@ const RatingsFilter = () => {
     setClicked((prev) => !prev);
   };
 
+  // modify ratings to be based on the result received from the backend
   const ratings = [
     { rating: "★★★★½", value: 4.5, count: "4,394" },
     { rating: "★★★★☆", value: 4.0, count: "8,757" },
