@@ -66,11 +66,14 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
     }
   };
 
+  const [hoveredCourseId, setHoveredCourseId] = useState<string | null>(null);
+
   // Função ao passar o mouse sobre um curso
   const handleMouseEnter = (
     course: Course,
     event: React.MouseEvent<HTMLDivElement>
   ) => {
+    setHoveredCourseId(course._id); // Define o curso em hover
     const courseRect = event.currentTarget.getBoundingClientRect();
 
     setHoverCardPosition({
@@ -83,7 +86,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
 
   // Função para remover o hover
   const handleMouseLeave = () => {
-    // setHoveredCourse(null);
+    setHoveredCourseId(null); // Reseta o estado ao sair do hover
   };
 
   const navigate = useNavigate();
@@ -148,7 +151,9 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                     <img
                       src={course.courseImg}
                       alt={course.courseName}
-                      className="border border-gray-300 w-full h-full object-cover"
+                      className={`border border-gray-300 w-full h-full object-cover transition-all duration-300 ${
+                        hoveredCourseId === course._id ? "brightness-90" : ""
+                      }`}
                     />
                   </div>
                   <div className="flex flex-col justify-between flex-grow">
