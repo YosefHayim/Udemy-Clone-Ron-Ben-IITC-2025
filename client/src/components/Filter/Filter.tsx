@@ -102,9 +102,13 @@ const Filter: React.FC<FilterProps> = ({
         >
           <p className="font-bold text-lg pb-[1em] py-[0.5em]">{filterTitle}</p>
           {isClicked ? (
-            <MdKeyboardArrowUp className={hideIcons ? "hidden" : "block"} />
+            <MdKeyboardArrowUp
+              size={17}
+              className={hideIcons ? "hidden" : "block"}
+            />
           ) : (
             <MdOutlineKeyboardArrowDown
+              size={17}
               className={hideIcons ? "hidden" : "block"}
             />
           )}
@@ -128,7 +132,7 @@ const Filter: React.FC<FilterProps> = ({
               className="flex gap-[0.5em] text-languageText py-[0.5em] cursor-pointer"
             >
               <Checkbox
-                className="rounded-none"
+                className="border-black border-2 rounded-[0.1em]"
                 onClick={() => handleClickValue(item.name!)}
                 checked={
                   filterTitle === "Language" &&
@@ -157,23 +161,20 @@ const Filter: React.FC<FilterProps> = ({
           ))}
         </div>
         {isClicked && (
-          <div
-            className="flex items-center gap-[0.5em] text-purple-600 "
-            onClick={handleClick}
-          >
+          <div className="flex items-center gap-[0.5em] " onClick={handleClick}>
             {display ? (
               <div
                 className={`${btnStyleNHover} flex flex-row items-center justify-center gap-2`}
               >
                 <button className="focus:outline-none">Show less</button>
-                <MdOutlineKeyboardArrowDown />
+                <MdOutlineKeyboardArrowDown size={17} />
               </div>
             ) : (
               <div
                 className={`${btnStyleNHover} flex flex-row items-center justify-center gap-2`}
               >
                 <button className="focus:outline-none">Show less</button>
-                <MdOutlineKeyboardArrowUp />
+                <MdOutlineKeyboardArrowUp size={17} />
               </div>
             )}
           </div>

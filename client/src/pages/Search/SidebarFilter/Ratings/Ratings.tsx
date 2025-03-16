@@ -49,7 +49,11 @@ const RatingsFilter = () => {
           onClick={handleClick}
         >
           <p className="font-bold text-lg py-[0.5em]">Ratings</p>
-          {isClicked ? <MdKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
+          {isClicked ? (
+            <MdKeyboardArrowUp size={17} />
+          ) : (
+            <MdOutlineKeyboardArrowDown size={17} />
+          )}
         </div>
         <div className={`${isClicked ? "block" : "hidden"}`}>
           {ratings.map(({ rating, value, count }) => (
