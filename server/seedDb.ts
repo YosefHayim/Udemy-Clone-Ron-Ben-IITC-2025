@@ -18,6 +18,7 @@ import algoSearch from "./utils/algoSearch.ts";
 import Instructor from "./models/users/instructorModel.ts";
 import CourseProgress from "./models/courses/courseProgressModel.ts";
 import { InstructorDocument, LessonDocument } from "./types/types.ts";
+import Coupon from "./models/courses/couponModel.ts";
 
 const clearCollections = async () => {
   await Promise.all([
@@ -30,6 +31,7 @@ const clearCollections = async () => {
     ReportReview.deleteMany(),
     Instructor.deleteMany(),
     InstructorComment.deleteMany(),
+    Coupon.deleteMany(),
   ]);
   console.log("Cleared all collections.");
 };
@@ -458,8 +460,8 @@ const createReviews = async () => {
     }
 
     console.log("All reviews processed successfully.");
-  } catch (err) {
-    console.log("Error during review creation:", err.message);
+  } catch (err: unknown) {
+    console.log("Error during review creation:", (err as Error).message);
     throw err;
   }
 };
@@ -504,8 +506,8 @@ const createReportedReviews = async () => {
     // Filter reviews where the student has purchased the course
     const eligibleReviews = reviews.filter((review) =>
       students.some((student) =>
-        student.coursesBought.some((courseId) =>
-          courseId.equals(review.courseReview._id)
+        student.coursesBought.some(
+          (course) => course.courseId === review.courseReview._id.toString()
         )
       )
     );
@@ -522,8 +524,8 @@ const createReportedReviews = async () => {
     }
 
     const randomStudent = students.find((student) =>
-      student.coursesBought.some((courseId) =>
-        courseId.equals(randomReview.courseReview._id)
+      student.coursesBought.some(
+        (course) => course.courseId === randomReview.courseReview._id.toString()
       )
     );
 
@@ -697,7 +699,6 @@ const createInstructorProfiles = async () => {
       avgRatingInstructor: faker.number.float({
         min: 3,
         max: 5,
-        precision: 0.1,
       }),
       totalStudents: totalStudents,
       totalCourses: courses.length,
@@ -708,6 +709,87 @@ const createInstructorProfiles = async () => {
   }
 
   console.log("All instructor profiles created successfully.");
+};
+
+const generateCouponsForCourses = async () => {
+  console.log("Generating coupons for existing courses...");
+
+  try {
+    // Get all active courses with their instructors
+    const courses = await Course.find({ isActive: true }).populate({
+      path: "courseInstructor",
+      select: "_id fullName", // Select specific fields
+    });
+
+    console.log("First course:", courses[0]); // See if courseInstructor is populated
+
+    if (!courses.length) {
+      console.log("No active courses found for coupon generation.");
+      return;
+    }
+
+    const coupons = [];
+
+    for (const course of courses) {
+      if (!course.courseInstructor || !course.courseInstructor._id) {
+        console.warn(
+          `Skipping course ${course.courseName} because it has no instructor.`
+        );
+        continue;
+      }
+
+      const numCoupons = faker.number.int({ min: 2, max: 4 });
+
+      for (let i = 0; i < numCoupons; i++) {
+        console.log(course.courseInstructor._id);
+
+        const isPercentage = faker.datatype.boolean();
+        const discountPercentage = isPercentage
+          ? faker.number.int({ min: 10, max: 75 })
+          : 0;
+        const discountPrice = !isPercentage
+          ? faker.number.int({ min: 50, max: 200 })
+          : 0;
+
+        const coupon = {
+          courseId: course._id,
+          couponCode: `${course.courseName
+            .substring(0, 3)
+            .toUpperCase()}${faker.string.alphanumeric(5).toUpperCase()}`,
+          discountPrice,
+          discountPercentage,
+          couponType: isPercentage ? "percentage" : "fixed",
+          isActive: true,
+          validFrom: new Date(),
+          expirationDate: faker.date.future({ years: 1 }),
+          maxUses: faker.number.int({ min: 50, max: 200 }),
+          usedCount: 0,
+          createdBy: course.courseInstructor._id, // Ensure it's an ObjectId
+          description: faker.lorem.sentence(),
+          minimumPurchaseAmount: faker.number.int({ min: 100, max: 300 }),
+          restrictions: {
+            oneTimePerUser: faker.datatype.boolean(),
+            newStudentsOnly: faker.datatype.boolean(),
+            specificCategories: [course.category],
+          },
+          appliedTo: {
+            courses: [course._id],
+            categories: [course.category],
+            bundleOnly: false,
+          },
+        };
+        coupons.push(coupon);
+      }
+    }
+
+    // Insert all coupons
+    const createdCoupons = await Coupon.insertMany(coupons);
+    console.log(
+      `Successfully created ${createdCoupons.length} coupons for ${courses.length} courses.`
+    );
+  } catch (error) {
+    console.error("Error generating coupons:", error);
+  }
 };
 
 const generateUpdatedDummyData = async () => {
@@ -729,27 +811,30 @@ const generateUpdatedDummyData = async () => {
     // const sections = await createSections();
     // console.log(`${sections.length} sections created.`);
 
-    console.log("Seeding lessons...");
-    const lessons = await createLessons();
-    console.log(`${lessons.length} lessons created.`);
+    // console.log("Seeding lessons...");
+    // const lessons = await createLessons();
+    // console.log(`${lessons.length} lessons created.`);
 
-    await simulateCoursePurchases();
-    console.log("Simulate courses purchases completed");
+    // await simulateCoursePurchases();
+    // console.log("Simulate courses purchases completed");
 
-    console.log("Seeding reviews...");
-    const reviews = await createReviews();
-    console.log(`reviews created.`);
+    // console.log("Seeding reviews...");
+    // const reviews = await createReviews();
+    // console.log(`reviews created.`);
 
-    console.log("Seeding reported reviews...");
-    await createReportedReviews();
+    // console.log("Seeding reported reviews...");
+    // await createReportedReviews();
 
-    await addCoursesToWishlistOfUsers();
-    console.log("Simulate courses wishlists completed");
+    // await addCoursesToWishlistOfUsers();
+    // console.log("Simulate courses wishlists completed");
 
-    await createInstructorProfiles();
-    console.log("create instructor profiles completed.");
+    // await createInstructorProfiles();
+    // console.log("create instructor profiles completed.");
 
-    console.log("All dummy data seeded successfully!");
+    await generateCouponsForCourses();
+    console.log("Coupon generation completed.");
+
+    // console.log("All dummy data seeded successfully!");
     process.exit();
   } catch (err) {
     console.log("Error generating dummy data:", err);

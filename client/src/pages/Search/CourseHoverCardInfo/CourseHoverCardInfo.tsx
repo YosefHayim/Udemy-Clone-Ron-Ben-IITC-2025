@@ -8,7 +8,17 @@ const CourseHoverCardInfo: React.FC<{
   coursePrice: number;
   fullPriceCourse: number;
   index: number;
-}> = ({ whatYouWillLearn, courseId, coursePrice, fullPriceCourse, index }) => {
+  courseTopic: string;
+  instructorId: string;
+}> = ({
+  whatYouWillLearn,
+  courseId,
+  coursePrice,
+  fullPriceCourse,
+  index,
+  courseTopic,
+  instructorId,
+}) => {
   return (
     <div
       className="w-full flex flex-col items-center justify-center"
@@ -19,6 +29,8 @@ const CourseHoverCardInfo: React.FC<{
         <div className="w-[400px] rounded-[0.5em] bg-white p-[1.5em] shadow-alertAlgoInfo">
           <CoursePros whatYouWillLearn={whatYouWillLearn} />
           <InteractionsBtns
+            instructorId={instructorId}
+            courseTopic={courseTopic}
             courseId={courseId}
             coursePrice={coursePrice}
             fullPriceCourse={fullPriceCourse}

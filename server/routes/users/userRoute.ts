@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import { grantedAccess } from "../../controllers/authorization/authController.ts";
 import {
   getAllUsers,
@@ -25,7 +25,7 @@ import {
 } from "../../controllers/users/userController.ts";
 const router = express.Router();
 
-router.param("id", (req: Request, res: Response, next, val) => {
+router.param("id", (req: Request, res: Response, next: NextFunction, val) => {
   console.log(`ID is: ${val}`);
   next();
 });

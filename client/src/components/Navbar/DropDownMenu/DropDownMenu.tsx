@@ -3,12 +3,12 @@ import { MdLanguage } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import Cookies from "js-cookie";
 import ProfilePic from "../../ProfilePic/ProfilePic";
 import CartCoursesNumber from "../Cart/CartCoursesNumber/CartCoursesNumber";
 import ChangeLanguage from "./ChangeLanguage/ChangeLanguage";
 import { clearUser } from "@/redux/slices/userSlice";
 import { RootState } from "@/redux";
+import { setClearAll } from "@/redux/slices/cartSlice";
 
 const DropdownMenu: React.FC = () => {
   const [isClicked, setClicked] = useState(false);
@@ -20,14 +20,14 @@ const DropdownMenu: React.FC = () => {
     fullName = "",
     profilePic,
     email,
-  } = useSelector((state: RootState) => state.user);
+  } = useSelector((state: RootState) => state?.user);
   const shortcutName = fullName
     .split(" ")
     .map((word) => word[0]?.toUpperCase())
     .join("");
 
   const handleLogout = () => {
-    Cookies.remove("cookie");
+    dispatch(setClearAll());
     dispatch(clearUser());
     navigate("/logout");
   };
@@ -100,7 +100,7 @@ const DropdownMenu: React.FC = () => {
                 >
                   {label}{" "}
                   {extra && (
-                    <span className="text-[1.8em] absolute right-[20%] top-[17.1%] font-bold">
+                    <span className="absolute right-[15%] top-[18.1%] font-bold">
                       {extra}
                     </span>
                   )}
@@ -111,7 +111,7 @@ const DropdownMenu: React.FC = () => {
         )}
         <li onClick={handleLogout}>
           <Link
-            to="/"
+            to="/logout"
             className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
           >
             Logout

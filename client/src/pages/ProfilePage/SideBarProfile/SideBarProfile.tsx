@@ -1,14 +1,13 @@
 import ProfilePic from "@/components/ProfilePic/ProfilePic";
 import { RootState } from "@/redux";
-import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 const SideBarProfile = () => {
-  const fullName = useSelector((state: RootState) => state.user.fullName);
-  const profilePic = useSelector((state: RootState) => state.user.profilePic);
-  const bio = useSelector((state: RootState) => state.user.bio);
-  const cookie: string | any = Cookies.get("cookie");
+  const fullName = useSelector((state: RootState) => state?.user.fullName);
+  const profilePic = useSelector((state: RootState) => state?.user.profilePic);
+  const cookie = useSelector((state: RootState) => state?.user.cookie);
+
   const location = useLocation();
 
   if (cookie && cookie.length < 20) {
@@ -16,17 +15,22 @@ const SideBarProfile = () => {
   }
 
   const [firstWord, secondWord] = fullName.split(" ");
-
   const shortcutName = (firstWord?.[0] || "") + (secondWord?.[0] || "");
 
   return (
-    <div className="w-56 bg-white border-l border-b border-t border-gray-300">
-
+    <div className="w-56 bg-white border-l border-b border-t border-r border-borderGrayColor">
       {/* Picture & Name */}
       <div className="p-6 ">
         <div className="flex flex-col items-center space-y-4">
-          <div className="flex items-center justify-center w-[8rem] h-[8rem] rounded-full bg-[#1D1E27] text-white text-4xl font-bold">
-            <ProfilePic shortcutName={shortcutName} profilePic={profilePic} />
+          <div className="flex items-center justify-center w-[8rem] h-[8rem] rounded-full text-white text-4xl font-bold">
+            <ProfilePic
+              customTextSize={`text-4xl`}
+              size={`w-[3em] h-[3em]`}
+              shortcutName={shortcutName}
+              profilePic={profilePic}
+              isBig={true}
+              isHover={false}
+            />
           </div>
           <div>
             <h2 className="text-lg font-bold text-gray-800">{fullName}</h2>
@@ -39,10 +43,11 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/public-profile"
-              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/public-profile"
-                ? "bg-gray-300 text-gray-900"
-                : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-                }`}
+              className={`block py-2 px-6 font-medium cursor ${
+                location.pathname === "/user/public-profile"
+                  ? "bg-gray-300 text-gray-900"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
+              }`}
             >
               View public Profile
             </Link>
@@ -50,10 +55,11 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/edit-profile"
-              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/edit-profile"
-                ? "bg-gray-300 text-gray-900"
-                : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-                }`}
+              className={`block py-2 px-6 font-medium cursor ${
+                location.pathname === "/user/edit-profile"
+                  ? "bg-gray-300 text-gray-900"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
+              }`}
             >
               Profile
             </Link>
@@ -61,10 +67,11 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/photo"
-              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/photo"
-                ? "bg-[#9194AC] text-[#FFFFFF]"
-                : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-                }`}
+              className={`block py-2 px-6 font-medium cursor ${
+                location.pathname === "/user/photo"
+                  ? "bg-gray-400 text-white"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
+              }`}
             >
               Photo
             </Link>
@@ -72,10 +79,11 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/edit-account"
-              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/edit-account"
-                ? "bg-gray-300 text-gray-900"
-                : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-                }`}
+              className={`block py-2 px-6 font-medium cursor ${
+                location.pathname === "/user/edit-account"
+                  ? "bg-gray-300 text-gray-900"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
+              }`}
             >
               Account Security
             </Link>
@@ -83,10 +91,11 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/manage-subscriptions"
-              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/manage-subscriptions"
-                ? "bg-gray-300 text-gray-900"
-                : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-                }`}
+              className={`block py-2 px-6 font-medium cursor ${
+                location.pathname === "/user/manage-subscriptions"
+                  ? "bg-gray-300 text-gray-900"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
+              }`}
             >
               Subscriptions
             </Link>
@@ -94,10 +103,11 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/edit-payment-methods/"
-              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/edit-payment-methods/"
-                ? "bg-gray-300 text-gray-900"
-                : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-                }`}
+              className={`block py-2 px-6 font-medium cursor ${
+                location.pathname === "/user/edit-payment-methods/"
+                  ? "bg-gray-300 text-gray-900"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
+              }`}
             >
               Payment methods
             </Link>
@@ -105,10 +115,11 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/edit-privacy"
-              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/edit-privacy"
-                ? "bg-gray-300 text-gray-900"
-                : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-                }`}
+              className={`block py-2 px-6 font-medium cursor ${
+                location.pathname === "/user/edit-privacy"
+                  ? "bg-gray-300 text-gray-900"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
+              }`}
             >
               Privacy
             </Link>
@@ -116,10 +127,11 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/edit-notifications/"
-              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/edit-notifications/"
-                ? "bg-gray-300 text-gray-900"
-                : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-                }`}
+              className={`block py-2 px-6 font-medium cursor ${
+                location.pathname === "/user/edit-notifications/"
+                  ? "bg-gray-300 text-gray-900"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
+              }`}
             >
               Notification Preferences
             </Link>
@@ -127,10 +139,11 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/edit-api-clients/"
-              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/edit-api-clients/"
-                ? "bg-gray-300 text-gray-900"
-                : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-                }`}
+              className={`block py-2 px-6 font-medium cursor ${
+                location.pathname === "/user/edit-api-clients/"
+                  ? "bg-gray-300 text-gray-900"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
+              }`}
             >
               API clients
             </Link>
@@ -138,17 +151,17 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/close-account"
-              className={`block py-2 px-6 font-medium cursor ${location.pathname === "/user/close-account"
-                ? "bg-gray-300 text-gray-900"
-                : "text-gray-700 hover:bg-[#9194ac] hover:text-white"
-                }`}
+              className={`block py-2 px-6 font-medium cursor ${
+                location.pathname === "/user/close-account"
+                  ? "bg-gray-300 text-gray-900"
+                  : "text-gray-700 hover:bg-gray-400 hover:text-white"
+              }`}
             >
               Close account
             </Link>
           </li>
         </ul>
       </nav>
-
     </div>
   );
 };

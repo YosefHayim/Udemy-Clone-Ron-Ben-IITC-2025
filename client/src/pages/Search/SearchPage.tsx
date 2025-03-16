@@ -13,11 +13,28 @@ import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 import { CourseTypeProps } from "@/types/types";
 import { filterContext } from "@/routes/AppRoutes";
 import { useEffect } from "react";
-import ReleatedSearches from "./RelatedSearches/RelatedSearches";
 import RelatedSearches from "./RelatedSearches/RelatedSearches";
+import { getTopValue } from "@/utils/geTopValues";
 
 const SearchPage: React.FC = () => {
   const [filterData, setFilterData] = useContext(filterContext);
+
+  const calculateTop = (index) => {
+    if (index === 0) return "top-[102%]";
+    if (index >= 8) return "top-[-140%]";
+
+    const topValues = {
+      1: -125,
+      2: -70,
+      3: -105,
+      4: -115,
+      5: -115,
+      6: -42,
+      7: -115,
+    };
+
+    return `top-[${topValues[index]}%]` || "top-[-140%]";
+  };
 
   document.title = "Search results | Udemy";
   const navigate = useNavigate();
@@ -85,22 +102,26 @@ const SearchPage: React.FC = () => {
   }
 
   if (error || !data) {
-    navigate(`/not/search/not/found`);
+    navigate(`/not/search/not/found:${searchTerm.toLowerCase()}`);
   }
 
   return (
-    <div className="flex flex-col w-full gap-[1em] px-6 py-[3em]">
-      <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
-        {data?.totalCourses || 0} results for "{searchTerm}"
-      </h1>
-
-      <FilterNSort totalResults={data?.totalCourses || 0} />
-      <div className="flex flex-row justify-between w-full gap-[1.5em]">
-        <div>
+    <div className="flex flex-col w-full gap-[1em] px-6 py-[3em] items-center justify-center">
+      <div className="flex flex-row justify-center items-start w-full gap-[1.5em]">
+        <div className="flex flex-col items-start justify-center">
+          <div>
+            <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
+              {data?.totalCourses || 0} results for "{searchTerm}"
+            </h1>
+          </div>
+          <FilterNSort />
           <SidebarFilter />
         </div>
-        <div>
-          <div>
+        <div className="w-full flex flex-col items-center justify-center">
+          <div className="w-full flex-col items-center justify-center mt-[6em]">
+            <h2 className="font-bold w-full text-end">
+              {data?.totalCourses || 0} results
+            </h2>
             {data?.response
               ?.slice(0, 18)
               .map((course: CourseTypeProps, index: number) => (
@@ -114,15 +135,17 @@ const SearchPage: React.FC = () => {
                   <SearchCourseCard course={course} />
                   {hoveredCourse === course._id && (
                     <div
-                      className={` w-1/2 absolute z-[1000] right-[60%] translate-x-1/2 
-            ${index === 0 ? "top-[90%]" : "bottom-[110%]"}`}
+                      className={` w-1/2 absolute right-[60%] translate-x-1/2 z-10 
+            ${getTopValue(index)}`}
                     >
                       <CourseHoverCardInfo
+                        instructorId={course?.courseInstructor?._id}
+                        courseTopic={course?.courseTopic}
                         index={index}
-                        whatYouWillLearn={course.whatYouWillLearn}
-                        courseId={course._id}
-                        fullPriceCourse={course.courseFullPrice}
-                        coursePrice={course.courseDiscountPrice}
+                        whatYouWillLearn={course?.whatYouWillLearn}
+                        courseId={course?._id}
+                        fullPriceCourse={course?.courseFullPrice}
+                        coursePrice={course?.courseDiscountPrice}
                       />
                     </div>
                   )}

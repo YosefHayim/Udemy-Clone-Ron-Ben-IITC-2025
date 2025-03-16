@@ -23,7 +23,10 @@ const Wishlist: React.FC = () => {
 
   const coursesBought = useSelector(
     (state: RootState) =>
-      state.user.coursesBought as Array<{ courseId: string; boughtAt: string }>
+      state?.user.coursesBought as Array<{
+        courseId: string;
+        boughtAt: string;
+      }>
   );
 
   const handleClickedCategory = (e: React.MouseEvent<HTMLDivElement>) => {

@@ -68,18 +68,15 @@ const ItemInCart = ({
 
   const handlePreformOperation = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
-    if (target.tagName === "BUTTON" && target.textContent === "Remove") {
+    const btnType = target.tagName === "BUTTON";
+    if (btnType && target.textContent === "Remove") {
       handleRemove();
-    } else if (
-      target.tagName === "P" &&
-      target.textContent === "Save for Later"
-    ) {
+    } else if (btnType && target.textContent === "Save for Later") {
       console.log("Save for Later clicked");
-    } else if (
-      target.tagName === "P" &&
-      target.textContent === "Move to Wishlist"
-    ) {
+    } else if (btnType && target.textContent === "Move to Wishlist") {
       console.log("Move to Wishlist clicked");
+    } else if (!btnType) {
+      navigate(`/course-view/${courseId}`);
     }
   };
 
@@ -98,7 +95,6 @@ const ItemInCart = ({
       onClick={handlePreformOperation}
     >
       <div
-        onClick={() => handleCourseView(courseId)}
         id={courseId}
         className={`flex ${
           isColCourseBox ? "flex-col" : "flex-row"
@@ -109,7 +105,7 @@ const ItemInCart = ({
             <img
               id={courseId}
               src={data?.courseImg}
-              // alt={`${data?.courseName} image`}
+              alt={`${data?.courseName} image`}
               className={`${courseImgSize}`}
             />
             <div
@@ -173,12 +169,16 @@ const ItemInCart = ({
             </div>
           </div>
           <div className={hide ? "block" : "hidden"}>
-            <div className=" text-[#5022c3] hover:text-[#3b198f]">
-              <button className="focus:outline-none cursor-pointer">
+            <div className="flex flex-col items-start text-purpleStatic">
+              <button className=" focus:outline-none rounded-[0.3em] hover:bg-purple-200 p-[0.3em]">
                 Remove
               </button>
-              <p className="cursor-pointer">Save for Later</p>
-              <p className="cursor-pointer">Move to Wishlist</p>
+              <button className=" focus:outline-none rounded-[0.3em] hover:bg-purple-200 p-[0.3em]">
+                Save for Later
+              </button>
+              <button className=" focus:outline-none rounded-[0.3em] hover:bg-purple-200 p-[0.3em]">
+                Move to Wishlist
+              </button>
             </div>
           </div>
           <div>

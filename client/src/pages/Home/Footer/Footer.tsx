@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/index"; // Importa o RootState do Redux
 import LogoFooter from "/images/logo-udemy-inverted.svg";
 import Nasdaq from "/images/nasdaq-light.svg";
 import Wolkswagen from "/images/volkswagen-light (1).svg";
@@ -9,19 +8,19 @@ import Eventbrite from "/images/eventbrite-light.svg";
 import { MdOutlineLanguage } from "react-icons/md";
 import FooterLogin from "@/components/FooterLogin/FooterLogin";
 import { bottomSections, sections } from "@/utils/footerCategories";
+import { RootState } from "@/redux";
 
 const Footer: React.FC = () => {
-  // Obtemos o user do estado global
-  const user = useSelector((state: RootState) => state.user);
+  const user = useSelector((state: RootState) => state?.user);
 
   return (
-    <div>
+    <div className="relative">
       {user && (
         <>
           <FooterLogin />
           <footer className="text-white">
             {/* Top Section */}
-            <div className="bg-[#1c1d1f]">
+            <div className="bg-blackUdemy">
               <div className="flex items-center justify-between font-bold  border-y-[0.5px] border-y-[#9DA3A7] py-6 px-12">
                 <p className="text-[18px]">
                   Welcome back! Explore{" "}
@@ -125,7 +124,7 @@ const Footer: React.FC = () => {
       {!user && (
         <footer className="text-white">
           {/* Conteúdo de visitante */}
-          <div className="bg-[#1c1d1f]">
+          <div className="bg-blackUdemy">
             {/* Todo conteúdo de guest (manter o mesmo original, se necessário) */}
           </div>
         </footer>

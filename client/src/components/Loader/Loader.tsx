@@ -1,11 +1,13 @@
 import { LoaderProps } from "@/types/types";
 import styles from "./Loader.module.css";
 import smallStyles from "./SmallLoader.module.css";
+import blackSmallStyle from "./SmallLoaderBlack.module.css";
 
 const Loader: React.FC<LoaderProps> = ({
   hSize = "1000px",
   useSmallLoading = false,
   paddingSetTo = "25em",
+  useSmallBlackLoading = false,
 }) => {
   return (
     <div
@@ -14,6 +16,7 @@ const Loader: React.FC<LoaderProps> = ({
       <div
         className={useSmallLoading ? smallStyles.loader : styles.loader}
       ></div>
+      <div className={useSmallBlackLoading ? blackSmallStyle.loader : ""}></div>
     </div>
   );
 };

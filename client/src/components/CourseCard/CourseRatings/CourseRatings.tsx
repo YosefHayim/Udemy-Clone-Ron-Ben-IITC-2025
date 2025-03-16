@@ -7,9 +7,9 @@ const CourseRatings: React.FC<CourseRatingsProps> = ({
 }) => {
   return (
     <div className="flex flex-row text-gray-500  items-center gap-[0.2em]">
-      <b className="text-[1.2em] text-black">{avgRatings}</b>
+      <b className="text-[1.2em] text-ratings">{avgRatings}</b>
       <p className="text-[1.2em] text-star">{stars}</p>
-      <p>({totalRatings} ratings)</p>
+      <p>({totalRatings})</p>
     </div>
   );
 };

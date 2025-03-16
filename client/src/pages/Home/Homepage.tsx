@@ -17,12 +17,15 @@ import { useEffect } from "react";
 import styles from "./Homepage.module.css";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
+import { useMediaQuery } from "react-responsive";
 
 const Homepage = () => {
-  document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
-  const cookie = useSelector((state: RootState) => state.user.cookie);
+  const isMobile = useMediaQuery({ maxWidth: 800 });
 
-  useEffect(() => { }, [cookie]);
+  document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
+  const cookie = useSelector((state: RootState) => state?.user.cookie);
+
+  useEffect(() => {}, [cookie]);
 
   return (
     <div className={styles.homepage}>
@@ -44,10 +47,10 @@ const Homepage = () => {
         </div>
       ) : (
         <div>
-          <Menu />
+          {!isMobile && <Menu />}
+          <Welcome />
+          <Banner />
           <div className="container mx-auto px-0 xl:px-[1.7rem]">
-            <Welcome />
-            <Banner />
             <TeamAccess />
             <CoursesCarousel searchTerm={"JavaScript"} />
             <CoursesCarousel searchTerm={"Python"} />

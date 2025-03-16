@@ -23,18 +23,22 @@ const ShoppingCart: React.FC = () => {
   return (
     <div>
       {loading ? (
-        <Loader hSize="200px" useSmallLoading={false} />
+        <Loader hSize="1000px" useSmallLoading={false} />
       ) : (
-        <div className="p-[1em] flex flex-row items-center justify-center">
-          <div className="w-[1200px] flex flex-row items-start justify-start">
+        <div className="p-[1em] flex flex-row items-center justify-center w-full">
+          <div className="flex flex-row items-start justify-start w-full">
             <div className="flex flex-row items-baseline justify-center gap-[2em] w-full">
               {countOfCourses === 0 ? (
                 <EmptyCart />
               ) : (
-                <div className="flex flex-row-reverse items-start justify-between gap-[2em]">
-                  <CheckoutContainer />
-                  <ItemsInCart />
-                  <p></p>
+                <div className="flex flex-row-reverse items-start justify-center w-full">
+                  <div className="flex flex-col">
+                    <h1 className="font-bold mb-4">Shopping Cart</h1>
+                    <div className="flex flex-row-reverse gap-10">
+                      <CheckoutContainer />
+                      <ItemsInCart />
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

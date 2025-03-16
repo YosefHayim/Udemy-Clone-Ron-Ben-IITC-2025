@@ -52,7 +52,7 @@ const OrganizationLogin = () => {
           </form>
           <Link
             to="/hc/en-us/requests/new/ticket_form_id"
-            className="text-[#6d28d2] hover:text-[#892de1] transition-colors duration-200 underline focus:outline-none"
+            className="text-btnColor hover:text-[#892de1] transition-colors duration-200 underline focus:outline-none"
           >
             Need help with logging in or signing up?
           </Link>

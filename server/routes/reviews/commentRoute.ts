@@ -1,4 +1,4 @@
-import express, { NextFunction } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import { grantedAccess } from "../../controllers/authorization/authController.ts";
 import {
   getAllComments,
@@ -11,8 +11,8 @@ import {
 
 const router = express.Router();
 
-router.param("id", (req, res, next: NextFunction, val) => {
-  // console.log(`ID is: ${val}`);
+router.param("id", (req: Request, res: Response, next: NextFunction, val) => {
+  console.log(`ID is: ${val}`);
   next();
 });
 

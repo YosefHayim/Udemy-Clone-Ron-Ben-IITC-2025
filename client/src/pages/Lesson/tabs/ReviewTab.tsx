@@ -73,7 +73,7 @@ const ReviewsTab = ({ avgRating = 1 }) => {
                 <div key={stars} className="flex  items-center">
                   <div className="min-w-[720px]  bg-gray-200  mx-2 relative">
                     <div
-                      className="h-2 bg-[#9194AC] "
+                      className="h-2 bg-gray-600 "
                       style={{ width: `${percentage}%` }}
                     ></div>
                   </div>

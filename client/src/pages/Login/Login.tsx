@@ -14,19 +14,28 @@ import Loader from "@/components/Loader/Loader";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux";
 import { Button } from "@/components/ui/button";
+import {
+  continueWGoogleBtn,
+  diffLoginOptionBtn,
+  divDiffOptionsLogin,
+  iconSize,
+  inputLoginWEmail,
+  loginThirdPartyBtn,
+  loginWDiffAccBtn,
+  loginWithEmailBtn,
+} from "@/utils/stylesStorage";
 
 const Login = () => {
   const navigate = useNavigate();
   const [isError, setShowIsError] = useState(false);
-  const [regLogin, setRegLogin] = useState(false);
+  const [showRegularLogin, setShowRegularLogin] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const isLoggedPreviouslyWithGoogle = useSelector(
-    (state: RootState) => state.user.isLoggedPreviouslyWithGoogle
+    (state: RootState) => state?.user.isLoggedPreviouslyWithGoogle
   );
 
   const handleRegularLogin = () => {
-    setRegLogin((prev) => !prev);
-    console.log(regLogin);
+    setShowRegularLogin(true);
   };
 
   const loginMutation = useMutation({
@@ -96,7 +105,7 @@ const Login = () => {
           className="w-[100%] h-auto max-w-[620px] max-h-[100%] object-contain p-12 mr-[2.7rem]"
         />
         <div className="w-full max-w-[29rem] p-6 bg-white  rounded-lg ml-[3rem] mr-[5rem]">
-          <h2 className="text-3xl md:text-3xl font-bold text-gray-800 mb-10 text-center">
+          <h2 className="text-3xl font-bold text-gray-800 mb-10 text-center">
             Log in to continue your learning journey
           </h2>
           <div
@@ -116,7 +125,7 @@ const Login = () => {
               </p>
             </div>
           </div>
-          {!isLoggedPreviouslyWithGoogle && (
+          {(!isLoggedPreviouslyWithGoogle || showRegularLogin) && (
             <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
               <div className="relative">
                 <input
@@ -125,7 +134,7 @@ const Login = () => {
                   name="email"
                   id="email"
                   placeholder="Email"
-                  className="w-full p-[1em] bg-white text-black focus:bg-white focus:text-black focus:outline-none border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800"
+                  className={`${inputLoginWEmail}`}
                 />
                 <div className={isError ? "block" : "hidden"}>
                   <span className="text-red-600 absolute font-bold top-[10%] right-[87%]">
@@ -134,10 +143,7 @@ const Login = () => {
                   <BiSolidErrorAlt className="text-[1.5em] text-red-600 absolute top-[10%] right-[82%]" />
                 </div>
               </div>
-              <button
-                type="submit"
-                className="focus:outline-none w-full py-3 rounded-[0.4em] bg-btnColor hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
-              >
+              <button type="submit" className={`${loginWithEmailBtn}`}>
                 {isLoading ? (
                   <Loader useSmallLoading={true} hSize="" />
                 ) : (
@@ -156,62 +162,60 @@ const Login = () => {
               </button>
             </form>
           )}
-          {!isLoggedPreviouslyWithGoogle && (
-            <div className="w-full flex items-center my-6">
-              <hr className="flex-grow border-gray-300" />
-              <span className="mx-4 text-sm text-grayNavbarTxt">
-                Other log in options
-              </span>
-              <hr className="flex-grow border-gray-300" />
-            </div>
-          )}
-          {!isLoggedPreviouslyWithGoogle && (
-            <div className="flex justify-center space-x-5 mb-[5em]">
-              <button
-                onClick={handleGoogle}
-                className={`focus:outline-none p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn`}
-              >
-                <FcGoogle className="w-7 h-7" />
-              </button>
-              <button className="focus:outline-none p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
-                <FaFacebook className="w-7 h-7 text-blue-600" />
-              </button>
-              <button className="focus:outline-none p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
-                <FaApple className="w-7 h-7 opacity-85" />
-              </button>
-            </div>
-          )}
-          {isLoggedPreviouslyWithGoogle && (
-            <Button
-              onClick={handleGoogle}
-              className="h-[3em] hover:bg-purpleHoverBtn mb-[0.5em] w-full rounded-[0.2em] font-bold bg-white text-purple-700 flex items-center border border-purple-600 justify-start px-[0.5em]"
-            >
+          {showRegularLogin ||
+            (!isLoggedPreviouslyWithGoogle && (
+              <>
+                <div className="w-full flex items-center my-6">
+                  <hr className="flex-grow border-gray-300" />
+                  <span className="mx-4 text-sm text-grayNavbarTxt">
+                    Other log in options
+                  </span>
+                  <hr className="flex-grow border-gray-300" />
+                </div>
+                <div className="flex justify-center space-x-5 mb-[5em]">
+                  <button
+                    onClick={handleGoogle}
+                    className={`${loginThirdPartyBtn}`}
+                  >
+                    <FcGoogle className={`${iconSize}`} />
+                  </button>
+                  <button className={`${loginThirdPartyBtn}`}>
+                    <FaFacebook className={`${iconSize} text-blue-600`} />
+                  </button>
+                  <button className={`${loginThirdPartyBtn}`}>
+                    <FaApple className={`${iconSize}`} />
+                  </button>
+                </div>
+              </>
+            ))}
+          {isLoggedPreviouslyWithGoogle && !showRegularLogin && (
+            <Button onClick={handleGoogle} className={`${continueWGoogleBtn}`}>
               <FcGoogle size={20} /> Continue with Google
             </Button>
           )}
-          <div className="space-y-3 text-center text-base font-medium text-courseNameColorTxt bg-gray-100 p-[0.7em]">
-            <div
-              onClick={handleRegularLogin}
-              className={`${regLogin ? "hidden" : "block"}`}
-            >
-              <button
-                className={`focus:outline-none hover:text-purple-800 text-btnColor underline font-bold underline-offset-[5px] p-[0.7em]`}
-              >
-                Log in with different account
-              </button>
-              <hr />
-            </div>
+          <div className={`${divDiffOptionsLogin}`}>
+            {isLoggedPreviouslyWithGoogle && !showRegularLogin && (
+              <div>
+                <button
+                  onClick={handleRegularLogin}
+                  className={`${loginWDiffAccBtn}`}
+                >
+                  Log in with different account
+                </button>
+                <hr />
+              </div>
+            )}
             <Link to="/signup">
               <button className="focus:outline-none underline-offset-[5px] p-[0.7em]">
                 Don't have an account?{" "}
-                <span className=" text-btnColor font-bold underline">
+                <span className="text-btnColor font-bold underline">
                   Sign up
                 </span>
               </button>
             </Link>
             <hr />
             <Link to="/organization/global-login/email">
-              <button className="focus:outline-none text-btnColor underline font-bold underline-offset-[5px] p-[0.7em]">
+              <button className={`${diffLoginOptionBtn}`}>
                 Log in with your organization
               </button>
             </Link>

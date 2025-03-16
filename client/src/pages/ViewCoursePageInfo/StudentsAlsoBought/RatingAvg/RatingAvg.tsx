@@ -12,7 +12,7 @@ const RatingAvg: React.FC<{
   return (
     <div className={`text-[${textSize}] ${flexChosen} gap-[0.1em]`}>
       <b>{avgRating}</b>
-      <MdOutlineStarPurple500 className="text-[1.3em] text-[#b4690e]" />
+      <MdOutlineStarPurple500 className="text-[1.3em] text-star" />
     </div>
   );
 };

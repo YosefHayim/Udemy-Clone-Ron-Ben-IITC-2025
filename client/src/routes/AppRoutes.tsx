@@ -13,7 +13,7 @@ import Login from "@/pages/Login/Login";
 import Wishlist from "@/pages/Wishlist/Wishlist";
 import Logout from "@/pages/Logout/Logout";
 import Payment from "@/pages/Payment/Payment";
-import ProfileMain from "@/components/Navbar/DropDownMenu/ProfilePage/ProfileMain/ProfileMain";
+import ProfileMain from "@/pages/ProfilePage/ProfileMain/ProfileMain";
 import UdemyCredits from "@/components/Navbar/DropDownMenu/UdemyCredits/UdemyCredits";
 import PurchaseHistory from "@/components/Navbar/DropDownMenu/PurchaseHistory/PurchaseHistory";
 import Subscription from "@/components/Navbar/DropDownMenu/Subscription/Subscription";
@@ -22,12 +22,12 @@ import PaymentMethods from "@/components/Navbar/DropDownMenu/PaymentMethods/Paym
 import UdemyBusinessContact from "@/components/Navbar/DropDownMenu/UdemyBusinessContact/UdemyBusinessContact";
 import { createContext, useState } from "react";
 import { FilterDataProps } from "@/types/types";
-import AccountSecurity from "@/components/Navbar/DropDownMenu/ProfilePage/AccountSecurity/AccountSecurity";
-import ApiClients from "@/components/Navbar/DropDownMenu/ProfilePage/ApiClients/ApiClients";
-import Photo from "@/components/Navbar/DropDownMenu/ProfilePage/Photo/Photo";
-import NotificationPreferences from "@/components/Navbar/DropDownMenu/ProfilePage/NotificationPreferences/NotificationPreferences";
-import Privacy from "@/components/Navbar/DropDownMenu/ProfilePage/Privacy/Privacy";
-import CloseAccount from "@/components/Navbar/DropDownMenu/ProfilePage/CloseAccount/CloseAccount";
+import AccountSecurity from "@/pages/ProfilePage/AccountSecurity/AccountSecurity";
+import ApiClients from "@/pages/ProfilePage/ApiClients/ApiClients";
+import Photo from "@/pages/ProfilePage/Photo/Photo";
+import NotificationPreferences from "@/pages/ProfilePage/NotificationPreferences/NotificationPreferences";
+import Privacy from "@/pages/ProfilePage/Privacy/Privacy";
+import CloseAccount from "@/pages/ProfilePage/CloseAccount/CloseAccount";
 import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
 import VerifyCode from "../pages/VerifyCode/VerifyCode";
 import InstructorProfile from "@/pages/InstructorProfile/InstructorProfile";
@@ -163,7 +163,6 @@ const AppRoutes: React.FC = () => {
                   path="/user/instructor/:instructorId"
                   element={<InstructorProfile />}
                 />
-                <Route path="/logout" element={<Support />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route
                   path="/Signup"
@@ -219,12 +218,11 @@ const AppRoutes: React.FC = () => {
                     </filterContext.Provider>
                   }
                 />
-                <Route path="*" element={<NotFound />} />
-                <Route path="/not/found" element={<NotFound />} />
                 <Route
-                  path="/not/search/not/found/"
+                  path="/not/search/not/found/:searchTerm"
                   element={<SearchNotFound />}
                 />
+                <Route path="*" element={<NotFound />} />
                 <Route
                   path="/course-view/:courseId"
                   element={<ViewCoursePageInfo />}

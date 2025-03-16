@@ -66,14 +66,14 @@ const SearchInput = () => {
   return (
     <div
       className={`flex items-center rounded-full
-      ${isRootPathOnly() ? "pl-[3.5em] w-full px-[10em]" : "w-full"}
+      ${isRootPathOnly() ? " w-full" : "w-full"}
       `}
     >
       <form
         onSubmit={handleSubmit}
         className={`${
           isRootPathOnly() ? "my-[0.2em]" : ""
-        } flex items-center w-full border border-gray-400 rounded-full overflow-hidden bg-gray-50 focus-within:border-[#6d28d2] focus-within:ring-1 focus-within:ring-[#6d28d2]`}
+        } flex items-center w-full border border-gray-400 rounded-full overflow-hidden bg-gray-50 focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor`}
       >
         <button>
           <MdOutlineSearch
@@ -90,7 +90,7 @@ const SearchInput = () => {
           placeholder="Search for anything"
           className={`${
             isRootPathOnly() ? "p-[1.2em]" : "p-[1em]"
-          } hover:bg-gray-100 hover:border-[#9194ac] placeholder:pl-[1em] flex-grow bg-transparent text-gray-700 focus:outline-none text-sm placeholder:text-sm placeholder:font-light focus:bg-white`}
+          } hover:bg-gray-100 placeholder:pl-[1em] flex-grow bg-transparent text-gray-700 focus:outline-none text-sm placeholder:text-sm placeholder:font-light focus:bg-white`}
           onChange={handleOnChange}
         />
         <button

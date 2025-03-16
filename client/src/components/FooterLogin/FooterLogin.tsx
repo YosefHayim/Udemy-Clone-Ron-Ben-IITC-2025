@@ -1,6 +1,6 @@
 const FooterLogin: React.FC = () => {
   return (
-    <div className="flex items-center justify-between font-medium bg-[#1c1d1f] text-white  border-t border-gray-700 border-y-[#9DA3A7] pb-4 pt-2 px-12">
+    <div className="flex items-center justify-between font-medium bg-blackUdemy text-white  border-t border-gray-700 border-y-[#9DA3A7] pb-4 pt-2 px-12">
       <div>
         <h3 className="text-lg font-bold" style={{ lineHeight: "2.2" }}>
           Teach the world online

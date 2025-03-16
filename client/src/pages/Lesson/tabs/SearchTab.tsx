@@ -65,7 +65,7 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
         filteredSections.length > 0 ? (
           filteredSections.map((section, idx) => (
             <div key={section._id} className="min-w-[800px] border-y group">
-              <div className="flex items-center justify-between p-4 bg-[#F7F9FA]">
+              <div className="flex items-center justify-between p-4 bg-bgCommercial">
                 <span className="text-lg font-medium">
                   Section {idx + 1}: {section.title}
                 </span>

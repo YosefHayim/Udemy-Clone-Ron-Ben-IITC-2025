@@ -5,7 +5,7 @@ const InstructorName: React.FC<{
   return (
     <div>
       <b
-        className="text-[1.2em] underline text-[#5022c3] cursor-pointer"
+        className="text-[1.2em] underline text-purpleStatic cursor-pointer"
         id={instructorId}
       >
         {instructorName}

@@ -22,8 +22,8 @@
 1. Fade-in effect when hovering.
 2. Gray border.
 3. A rectangle at the bottom or top (based on index if higher than 0). ✅
-4. Heart icon positioned to the right.
-5. Hovering activates a 0.95 opacity on the div course that is being hovered.
+4. Heart icon positioned to the right. ✅
+5. Hovering activates a 0.95 opacity on the div course that is being hovered. ✅
 
 ---
 
@@ -37,12 +37,12 @@
 ### Main Search Results:
 
 1. Course results should be aligned with their respective prices. ✅
-2. Prices should have a loading effect (0.3 sec).
+2. Prices should have a loading effect (0.3 sec). ✅
 3. Clicking the filter closes the sidebar with a fade-in effect to the left.
 
 ### Related Searches Section:
 
-1. When hovering, it should appear on the right side and display immediately.
+1. When hovering, it should appear on the right side and display immediately. ✅
 
 ### Filter Bar:
 
@@ -62,21 +62,21 @@
 
 ## Show More Button:
 
-1. Hover background should be purple.
-2. Adjust padding, px, and py with bold text.
-3. Include an arrow (up/down) based on click action.
+1. Hover background should be purple. ✅
+2. Adjust padding, px, and py with bold text. ✅
+3. Include an arrow (up/down) based on click action. ✅
 
 ---
 
 ## Navbar:
 
-1. Reduce spacing between components when not logged in.
-2. Modify "Explore" to include padding and a purple hover effect.
-3. Ensure components maintain a single-line text layout.
-4. Make the hover effect on the heart icon consistent.
+1. Reduce spacing between components when not logged in.✅
+2. Modify "Explore" to include padding and a purple hover effect.✅
+3. Ensure components maintain a single-line text layout.✅
+4. Make the hover effect on the heart icon consistent. ✅
 5. When logged in, hovering over "My Learning" should show the progress of each course.
-6. User profile name should show both first and last initials (e.g., "YS" instead of "Y").
-7. Enable hover effects on the notification component.
+6. User profile name should show both first and last initials (e.g., "YS" instead of "Y"). ✅
+7. Enable hover effects on the notification component. ✅
 
 ---
 
@@ -96,16 +96,16 @@
 
 ## Adding to Cart:
 
-1. Offer "Frequently Bought Together" (FBT) suggestions for two more courses from the same instructor.
-2. Add a "Related Topics" component.
+1. Offer "Frequently Bought Together" (FBT) suggestions for two more courses from the same instructor. ✅
+2. Add a "Related Topics" component. ✅
 
 ---
 
 ## Cart Page:
 
-1. Add a "You might also like" section displaying courses from the same instructor.
-2. Fix the design of the "Promotions" component to match the intended style.
-3. If a coupon code does not exist, display an error message below the input field.
+1. Add a "You might also like" section displaying courses from the same instructor. ✅
+2. Fix the design of the "Promotions" component to match the intended style. ✅
+3. If a coupon code does not exist, display an error message below the input field. ✅
 
 ---
 

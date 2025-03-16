@@ -46,7 +46,7 @@ const OverviewTab: React.FC = () => {
               <span className="text-[#4d3105] text-base font-bold mr-2">
                 {course.averageRating.toFixed(1) || "0.0"}
               </span>
-              <span className="text-[#b4690e] text-base font-bold">
+              <span className="text-star text-base font-bold">
                 <FaStar />
               </span>
             </div>

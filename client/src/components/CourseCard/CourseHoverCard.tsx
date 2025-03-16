@@ -61,7 +61,7 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
       </ul>
 
       <div className="flex items-center justify-between mt-6">
-        <button className="focus:outline-none w-[80%] bg-purple-600 text-white py-2 rounded-lg font-medium hover:bg-purple-700 transition">
+        <button className="focus:outline-none w-full bg-purple-600 text-white py-2 rounded-lg font-medium hover:bg-purple-700 transition">
           Add to cart
         </button>
 

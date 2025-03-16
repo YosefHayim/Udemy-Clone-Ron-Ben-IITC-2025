@@ -20,16 +20,15 @@ const SearchCourseCard: React.FC<{ course: CourseTypeProps }> = ({
   const navigate = useNavigate();
 
   const handleCardClick = (courseId: string) => {
-    // console.log(`Navigating to course: ${courseId}`);
     navigate(`/course-view/${courseId}`);
   };
 
   return (
     <div id={course._id} onClick={() => handleCardClick(course._id)}>
-      <div className="flex-wrap flex justify-between items-start pb-[1.6em] w-full gap-[1em] cursor-pointer pt-[1.6em]">
-        <div className="flex flex-row items-start justify-start gap-[0.5em]">
-          <CourseImg courseImg={course.courseImg} widthChosen="240px" />
-          <div className="flex flex-col items-start justify-start gap-[0.5em]">
+      <div className="flex-wrap flex justify-between items-start pb-[1.6em] w-full cursor-pointer pt-[1.6em]">
+        <div className="flex items-start justify-center gap-[0.3em]">
+          <CourseImg courseImg={course.courseImg} widthChosen="200px" />
+          <div className="w-full flex flex-col items-start justify-start gap-[0.2em]">
             <CourseTitle title={course.courseName} />
             <CourseRecap recapInfo={course.courseRecapInfo} />
             <CourseInstructor instructor={course.courseInstructor.fullName} />

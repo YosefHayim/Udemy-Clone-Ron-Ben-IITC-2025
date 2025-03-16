@@ -15,79 +15,93 @@ import CategoriesMenu from "./Categories/CategoriesMenu";
 import { isRootPathOnly } from "@/utils/extraGenerals";
 import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
 import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercialTwo";
+import { useMediaQuery } from "react-responsive";
+import MobileNavbar from "./MobileNavbar/MobileNavbar";
 
 const Navbar = () => {
+  const isMobile = useMediaQuery({ maxWidth: 800 });
+
   const [isClicked, setClicked] = useState(false);
-  const cookie = useSelector((state: RootState) => state.user.cookie);
+  const cookie = useSelector((state: RootState) => state?.user.cookie);
 
   useEffect(() => {}, [cookie]);
 
   return (
     <div>
-      {/* <SaleCommercial /> */}
+      {/* <SaleCommercial />dasdsa */}
       <SaleCommercialTwo />
-      <div className="pb-[0.9em] pt-[0.2em] w-full flex items-center bg-white relative shadow-carouselShadowBtn justify-between px-[1.55rem]">
-        <div className="flex flex-col w-full">
-          <div className="w-full flex items-center">
-            <div className="flex flex-row items-center gap-[0.5em]">
-              <Link to="/">
-                <Logo />
-              </Link>
-              <CategoriesMenu />
-            </div>
-            <div
-              className={
-                isRootPathOnly()
-                  ? "w-full flex items-center justify-end"
-                  : "w-full flex items-center justify-center p-[0.3em]"
-              }
-            >
-              <div className={isRootPathOnly() ? "hidden" : "flex-grow"}>
-                <SearchInput />
+      {!isMobile && (
+        <div className="pb-[0.9em] pt-[0.2em] w-full flex items-center bg-white relative shadow-carouselShadowBtn justify-between px-[1.55rem] z-[9999]">
+          <div className="flex flex-col w-full">
+            <div className="w-full flex items-center">
+              <div className="flex flex-row items-center gap-[0.5em]">
+                <Link to="/">
+                  <Logo />
+                </Link>
+                <CategoriesMenu />
               </div>
-              <AtagBtn aTagName={"Udemy Business"} />
-              <AtagBtn aTagName={"Teach on Udemy"} />
-              <Link to="/wishlist">
-                <AtagBtn aTagName={"My learning"} />
-              </Link>
-              {cookie.trim().length > 1 && (
-                <div className="flex items-center">
-                  <Heart />
+              <div
+                className={
+                  isRootPathOnly()
+                    ? "w-full flex items-center justify-end"
+                    : "w-full flex items-center justify-center p-[0.3em]"
+                }
+              >
+                <div className={isRootPathOnly() ? "hidden" : "flex-grow"}>
+                  <SearchInput />
                 </div>
-              )}
-              <Link to="/cart">
-                <Cart />
-              </Link>
-              <div className="flex items-center justify-around gap-[0.3em]">
-                {cookie.trim().length > 1 && (
+                {cookie && <AtagBtn aTagName={"Udemy Business"} />}
+                <AtagBtn aTagName={"Teach on Udemy"} />
+                {cookie && (
+                  <Link to="/wishlist">
+                    <AtagBtn aTagName={"My learning"} />
+                  </Link>
+                )}
+                {cookie.length > 1 && (
                   <div className="flex items-center">
-                    <Notifications />
+                    <Heart />
                   </div>
                 )}
-                {!cookie.trim() && (
-                  <div className="flex flex-row gap-[0.3em]">
-                    <LoginBtn />
-                    <SignupBtn />
+                <Link to="/cart">
+                  <Cart />
+                </Link>
+                <div className="flex items-center justify-around gap-[0.3em]">
+                  {cookie.length > 1 && (
+                    <div className="flex items-center">
+                      <Notifications />
+                    </div>
+                  )}
+                  {!cookie && (
+                    <div className="flex flex-row gap-[0.3em]">
+                      <LoginBtn />
+                      <SignupBtn />
+                    </div>
+                  )}
+                </div>
+                {cookie && <Profile cookie={cookie} />}
+                {!cookie && (
+                  <div className="ml-[0.3em]">
+                    <ChangeLanguage
+                      size={20}
+                      isClicked={isClicked}
+                      setClicked={setClicked}
+                      showIcon={false}
+                    />
                   </div>
                 )}
               </div>
-              {cookie.trim() && <Profile cookie={cookie} />}
-              {!cookie.trim() && (
-                <div className="ml-[0.3em]">
-                  <ChangeLanguage
-                    isClicked={isClicked}
-                    setClicked={setClicked}
-                    showIcon={false}
-                  />
-                </div>
-              )}
             </div>
-          </div>
-          <div className={isRootPathOnly() ? "flex mt-[0.5em]" : "hidden"}>
-            <SearchInput />
+            <div className={isRootPathOnly() ? "flex mt-[0.5em]" : "hidden"}>
+              <SearchInput />
+            </div>
           </div>
         </div>
-      </div>
+      )}
+      {isMobile && (
+        <div>
+          <MobileNavbar />
+        </div>
+      )}
     </div>
   );
 };

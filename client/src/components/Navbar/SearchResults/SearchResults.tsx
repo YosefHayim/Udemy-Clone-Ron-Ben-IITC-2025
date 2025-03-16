@@ -21,7 +21,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
     <div
       onClick={handleClick}
       className={`${
-        isTyping ? `flex-col` : `hidden`
+        isTyping ? `flex-col py-[0.5em]` : `hidden`
       } absolute top-[90%] w-[76%] left-[5%] z-[1000] border border-gray-100 bg-white`}
     >
       {data.response?.slice(0, 13).map((result, index: number) => (
