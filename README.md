@@ -31,8 +31,8 @@
 
 ### Pagination Buttons:
 
-1. Hover color should be the same.
-2. Horizontal line should be bolder and more spaced.
+1. Hover color should be the same.✅
+2. Horizontal line should be bolder and more spaced.✅
 
 ### Main Search Results:
 
