@@ -1,3 +1,4 @@
+import { baseUrl } from "@/api/configuration";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const ProfilePic: React.FC<{
@@ -23,7 +24,7 @@ const ProfilePic: React.FC<{
     >
       <Avatar className={`${isBig ? `${size}` : ""}`}>
         <AvatarImage
-          src={`http://localhost:3000${profilePic}`}
+          src={`${baseUrl}${profilePic}`}
           className="rounded-[100em]"
         />
         <AvatarFallback
