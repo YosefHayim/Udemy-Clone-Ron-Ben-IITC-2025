@@ -153,6 +153,7 @@ const signUp = catchAsync(
       secure: process.env.NODE_ENV === "production" ? true : false,
       httpOnly: process.env.NODE_ENV === "production" ? true : false,
       sameSite: "none",
+      maxAge: +90 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
@@ -226,6 +227,7 @@ const login = catchAsync(
       secure: process.env.NODE_ENV === "production" ? true : false,
       httpOnly: process.env.NODE_ENV === "production" ? true : false,
       sameSite: "none",
+      maxAge: +90 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
@@ -305,6 +307,7 @@ const verifyCode = catchAsync(
       secure: process.env.NODE_ENV === "production" ? true : false,
       httpOnly: process.env.NODE_ENV === "production" ? true : false,
       sameSite: "none",
+      maxAge: +90 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
@@ -359,6 +362,7 @@ const logout = catchAsync(
       secure: process.env.NODE_ENV === "production" ? true : false,
       httpOnly: process.env.NODE_ENV === "production" ? true : false,
       sameSite: "none",
+      maxAge: +90 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
@@ -851,6 +855,7 @@ const googleLoginOrSignUp = catchAsync(
         secure: process.env.NODE_ENV === "production" ? true : false,
         httpOnly: process.env.NODE_ENV === "production" ? true : false,
         sameSite: "none",
+        maxAge: +90 * 24 * 60 * 60 * 1000,
       });
 
       // Send success response
@@ -893,6 +898,7 @@ const updateMe = catchAsync(
       secure: process.env.NODE_ENV === "production" ? true : false,
       httpOnly: process.env.NODE_ENV === "production" ? true : false,
       sameSite: "none",
+      maxAge: +90 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
