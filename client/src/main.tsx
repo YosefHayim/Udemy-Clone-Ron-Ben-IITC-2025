@@ -1,8 +1,8 @@
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"; // Importação da TanStack Query
-import store from "./redux/index.tsx";
-import App from "./App.tsx";
+import store from "./redux/index";
+import App from "./App";
 import "./index.css";
 
 // Criação do QueryClient
