@@ -1,4 +1,4 @@
-import { LoaderProps } from "../../types/types";
+import { LoaderProps } from "@/types/types";
 import styles from "./Loader.module.css";
 import smallStyles from "./SmallLoader.module.css";
 import blackSmallStyle from "./SmallLoaderBlack.module.css";

@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import CouponArea from "@/pages/ViewCoursePageInfo/CoursePreviewCard/CouponArea/CouponArea";
 import { RootState } from "@/redux";
 import { setRole } from "@/redux/slices/userSlice";
-import { DecodedTokenProps } from "../../types/types";
+import { DecodedTokenProps } from "@/types/types";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { useEffect } from "react";

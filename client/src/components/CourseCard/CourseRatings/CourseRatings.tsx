@@ -1,4 +1,4 @@
-import { CourseRatingsProps } from "../../types/types";
+import { CourseRatingsProps } from "@/types/types";
 
 const CourseRatings: React.FC<CourseRatingsProps> = ({
   avgRatings = 0,

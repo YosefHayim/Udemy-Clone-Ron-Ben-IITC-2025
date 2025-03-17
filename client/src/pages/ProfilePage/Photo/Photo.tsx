@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import updateProfilePic from "@/api/users/updateProfilePic";
 import refreshMe from "@/api/users/refreshMe";
 import { jwtDecode } from "jwt-decode";
-import { DecodedTokenProps } from "../../types/types";
+import { DecodedTokenProps } from "@/types/types";
 import { setProfilePic } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";

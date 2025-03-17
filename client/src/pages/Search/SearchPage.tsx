@@ -10,7 +10,7 @@ import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
 import React, { useContext, useState } from "react";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
-import { CourseTypeProps } from "../../types/types";
+import { CourseTypeProps } from "@/types/types";
 import { filterContext } from "@/routes/AppRoutes";
 import { useEffect } from "react";
 import RelatedSearches from "./RelatedSearches/RelatedSearches";

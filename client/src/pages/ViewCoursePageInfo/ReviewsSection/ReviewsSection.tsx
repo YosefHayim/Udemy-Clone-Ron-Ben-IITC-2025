@@ -3,7 +3,7 @@ import ReviewSectionTitle from "./ReviewSectionTitle/ReviewSectionTitle";
 import UserCourseReview from "./UserCourseReview/UserCourseReview";
 import { useState } from "react";
 import DialogOfAllReviews from "./UserCourseReview/DialogOfAllReviews/DialogOfAllReviews";
-import { Review } from "../../types/types";
+import { Review } from "@/types/types";
 
 const ReviewsSection: React.FC<{
   totalRated?: number;

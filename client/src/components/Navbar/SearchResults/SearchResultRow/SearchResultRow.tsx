@@ -1,4 +1,4 @@
-import { SearchResultProps } from "../../types/types";
+import { SearchResultProps } from "@/types/types";
 import { MdOutlineSearch } from "react-icons/md";
 
 const SearchResultRow: React.FC<SearchResultProps> = ({

@@ -1,6 +1,6 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import { filterContext } from "@/routes/AppRoutes";
-import { DummyData, FilterProps } from "../../types/types";
+import { DummyData, FilterProps } from "@/types/types";
 import { btnStyleNHover } from "@/utils/stylesStorage";
 import { useContext, useState } from "react";
 import { MdKeyboardArrowUp, MdOutlineKeyboardArrowUp } from "react-icons/md";

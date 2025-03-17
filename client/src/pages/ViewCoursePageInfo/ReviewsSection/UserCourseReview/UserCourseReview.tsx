@@ -5,7 +5,7 @@ import UserReviewRating from "./UserReviewRating/UserReviewRating";
 import UserProfile from "./UserProfile/UserProfile";
 import { useState } from "react";
 import DialogReportReview from "../DialogReportReview/DialogReportReview";
-import { Review } from "../../types/types";
+import { Review } from "@/types/types";
 
 const UserCourseReview: React.FC<{
   review?: Review;

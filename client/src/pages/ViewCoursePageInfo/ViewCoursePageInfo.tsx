@@ -21,7 +21,7 @@ import TopicPathMenu from "./TopicPathMenu/TopicPathMenu";
 import WhatYouLearn from "./WhatYouLearn/WhatYouLearn";
 import CoursePreviewCard from "./CoursePreviewCard/CoursePreviewCard";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
-import { CourseData } from "../../types/types";
+import { CourseData } from "@/types/types";
 
 const ViewCoursePageInfo = () => {
   const { courseId } = useParams<{ courseId: string }>();

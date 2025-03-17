@@ -4,7 +4,7 @@ import FaqTotalCoursesPrice from "./FaqTotalCoursesPrice/FaqTotalCoursesPrice";
 import getThreeCoursesOfInstructor from "@/api/courses/getThreeCoursesOfInstructor";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Course } from "../../types/types";
+import { Course } from "@/types/types";
 import { AiOutlinePlus } from "react-icons/ai";
 
 const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({

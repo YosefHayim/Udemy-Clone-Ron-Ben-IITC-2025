@@ -3,7 +3,7 @@ import AddCardInfo from "../AddCardInfo/AddCardInfo";
 import DefaultVisa from "../DefaultVisa/DefaultVisa";
 import GooglePay from "../GooglePay/GooglePay";
 import PayPal from "../PayPal/PayPal";
-import { PaymentOptionProps } from "../../types/types";
+import { PaymentOptionProps } from "@/types/types";
 import masterCardSvg from "/svgs/card-mastercard.svg";
 import amexCardSvg from "/svgs/card-amex.svg";
 import jcbCardSvg from "/svgs/card-jcb.svg";

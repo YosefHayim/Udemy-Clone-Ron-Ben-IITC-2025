@@ -3,7 +3,7 @@ import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 import SectionName from "./SectionName/SectionName";
 import SectionDuration from "./SectionDuration/SectionDuration";
 import Lesson from "../Lesson/Lesson";
-import { LessonProps } from "../../types/types";
+import { LessonProps } from "@/types/types";
 
 const Section: React.FC<{
   lessonsOfSection: LessonProps[];

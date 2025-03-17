@@ -13,7 +13,7 @@ import { useCallback, useEffect, useState } from "react";
 import TopicSearch from "./TopicSearch/TopicSearch";
 import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
 import { IoClose } from "react-icons/io5";
-import { ResponseSuggestions } from "../../types/types";
+import { ResponseSuggestions } from "@/types/types";
 import { Link } from "react-router-dom";
 
 const DialogFrequentlyBoughtTogether: React.FC<{

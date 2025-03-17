@@ -1,7 +1,7 @@
 import registerUser from "@/api/users/registerUser";
 import Loader from "@/components/Loader/Loader";
 import { emailContext } from "@/routes/AppRoutes";
-import { RegisterUserPayload } from "../../types/types";
+import { RegisterUserPayload } from "@/types/types";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useMutation } from "@tanstack/react-query";

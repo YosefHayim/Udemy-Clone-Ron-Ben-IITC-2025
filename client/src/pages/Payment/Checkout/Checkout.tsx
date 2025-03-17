@@ -9,7 +9,7 @@ import {
   setCoursesBought,
   setUdemyCredits,
 } from "@/redux/slices/userSlice";
-import { DecodedTokenProps } from "../../types/types";
+import { DecodedTokenProps } from "@/types/types";
 import { ReactPayPalScriptOptions } from "@paypal/react-paypal-js";
 import { useMutation } from "@tanstack/react-query";
 import { jwtDecode } from "jwt-decode";

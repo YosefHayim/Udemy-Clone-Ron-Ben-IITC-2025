@@ -27,6 +27,7 @@ const DropdownMenu: React.FC = () => {
     .join("");
 
   const handleLogout = () => {
+    localStorage.removeItem("cookie");
     dispatch(setClearAll());
     dispatch(clearUser());
     navigate("/logout");
