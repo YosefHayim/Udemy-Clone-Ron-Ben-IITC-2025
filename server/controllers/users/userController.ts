@@ -151,7 +151,7 @@ const signUp = catchAsync(
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: false,
-      httpOnly: process.env.NODE_ENV === "production" ? true : false,
+      httpOnly: false,
       sameSite: "none",
       maxAge: +90 * 24 * 60 * 60 * 1000,
     });
@@ -225,7 +225,7 @@ const login = catchAsync(
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: false,
-      httpOnly: process.env.NODE_ENV === "production" ? true : false,
+      httpOnly: false,
       sameSite: "none",
       maxAge: +90 * 24 * 60 * 60 * 1000,
     });
@@ -305,7 +305,7 @@ const verifyCode = catchAsync(
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: false,
-      httpOnly: process.env.NODE_ENV === "production" ? true : false,
+      httpOnly: false,
       sameSite: "none",
       maxAge: +90 * 24 * 60 * 60 * 1000,
     });
@@ -360,7 +360,7 @@ const logout = catchAsync(
     res.cookie("cookie", "", {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: false,
-      httpOnly: process.env.NODE_ENV === "production" ? true : false,
+      httpOnly: false,
       sameSite: "none",
       maxAge: +90 * 24 * 60 * 60 * 1000,
     });
@@ -853,7 +853,7 @@ const googleLoginOrSignUp = catchAsync(
       res.cookie("cookie", token, {
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         secure: false,
-        httpOnly: process.env.NODE_ENV === "production" ? true : false,
+        httpOnly: false,
         sameSite: "none",
         maxAge: +90 * 24 * 60 * 60 * 1000,
       });
@@ -896,7 +896,7 @@ const updateMe = catchAsync(
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: false,
-      httpOnly: process.env.NODE_ENV === "production" ? true : false,
+      httpOnly: false,
       sameSite: "none",
       maxAge: +90 * 24 * 60 * 60 * 1000,
     });
