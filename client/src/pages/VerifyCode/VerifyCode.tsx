@@ -66,21 +66,6 @@ const VerifyCode = () => {
     verifyCodeMutation.mutate({ code, email: emailUser });
 
     if (!cookie) throw new Error("Cookie is undefined");
-
-    const decoded = jwtDecode<DecodedTokenProps>(cookie);
-    console.log(`decoded data is:`, decoded);
-    dispatch(setCookie(cookie || localStorage.getItem("cookie") || ""));
-    dispatch(setFullName(decoded.fullName));
-    dispatch(setHeadline(decoded.headline));
-    dispatch(setLanguage(decoded.language));
-    dispatch(setUserLinks(decoded.userLinks));
-    dispatch(setProfilePic(decoded.profilePic));
-    dispatch(setEmailAddress(decoded.email));
-    dispatch(setBio(decoded.bio));
-    dispatch(setRole(decoded.role));
-    dispatch(setCoursesBought(decoded.coursesBought));
-    dispatch(setUdemyCredits(decoded.udemyCredits));
-    dispatch(setIsLoggedWithGoogle(true));
   };
 
   const handleResendCode = () => {
@@ -114,6 +99,23 @@ const VerifyCode = () => {
       setCountdown((prev) => (prev > 0 ? prev - 1 : 30));
     }, 1000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    dispatch(setCookie(cookie));
+    const decoded = jwtDecode<DecodedTokenProps>(cookie);
+    console.log(`decoded data is:`, decoded);
+    dispatch(setFullName(decoded.fullName));
+    dispatch(setHeadline(decoded.headline));
+    dispatch(setLanguage(decoded.language));
+    dispatch(setUserLinks(decoded.userLinks));
+    dispatch(setProfilePic(decoded.profilePic));
+    dispatch(setEmailAddress(decoded.email));
+    dispatch(setBio(decoded.bio));
+    dispatch(setRole(decoded.role));
+    dispatch(setCoursesBought(decoded.coursesBought));
+    dispatch(setUdemyCredits(decoded.udemyCredits));
+    dispatch(setIsLoggedWithGoogle(true));
   }, []);
 
   return (
