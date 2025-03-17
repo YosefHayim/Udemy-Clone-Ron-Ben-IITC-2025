@@ -150,9 +150,10 @@ const signUp = catchAsync(
 
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: true, // Required for HTTPS
-      httpOnly: true, // Prevents client-side access
-      sameSite: "none", // Required for cross-origin requests
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: "none",
+      domain: ".onrender.com", // If both front/back on subdomains of onrender.com
     });
 
     res.status(200).json({
@@ -223,11 +224,11 @@ const login = catchAsync(
 
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: true, // Required for HTTPS
-      httpOnly: true, // Prevents client-side access
-      sameSite: "none", // Required for cross-origin requests
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: "none",
+      domain: ".onrender.com", // If both front/back on subdomains of onrender.com
     });
-
     res.status(200).json({
       codeVerification: loginCode,
       status: "success",
@@ -302,9 +303,10 @@ const verifyCode = catchAsync(
 
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: true, // Required for HTTPS
-      httpOnly: true, // Prevents client-side access
-      sameSite: "none", // Required for cross-origin requests
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: "none",
+      domain: ".onrender.com", // If both front/back on subdomains of onrender.com
     });
 
     res.status(200).json({
@@ -356,9 +358,10 @@ const logout = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     res.cookie("cookie", "", {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: true, // Required for HTTPS
-      httpOnly: true, // Prevents client-side access
-      sameSite: "none", // Required for cross-origin requests
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: "none",
+      domain: ".onrender.com", // If both front/back on subdomains of onrender.com
     });
 
     res.status(200).json({
@@ -848,9 +851,10 @@ const googleLoginOrSignUp = catchAsync(
 
       res.cookie("cookie", token, {
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-        secure: true, // Required for HTTPS
-        httpOnly: true, // Prevents client-side access
-        sameSite: "none", // Required for cross-origin requests
+        secure: process.env.NODE_ENV === "production",
+        httpOnly: true,
+        sameSite: "none",
+        domain: ".onrender.com", // If both front/back on subdomains of onrender.com
       });
 
       // Send success response
@@ -890,9 +894,10 @@ const updateMe = catchAsync(
 
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: true, // Required for HTTPS
-      httpOnly: true, // Prevents client-side access
-      sameSite: "none", // Required for cross-origin requests
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      sameSite: "none",
+      domain: ".onrender.com", // If both front/back on subdomains of onrender.com
     });
 
     res.status(200).json({
