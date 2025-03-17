@@ -150,10 +150,11 @@ const signUp = catchAsync(
 
     res.cookie("cookie", token, {
       maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-      secure: true, // Must be true for cross-origin cookies
-      httpOnly: true, // Prevent JS access for security
-      sameSite: "none", // Required for cross-origin cookies
-      path: "/", // Ensure it's available everywhere
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      secure: true, // Required for HTTPS
+      httpOnly: true, // Prevents client-side access
+      sameSite: "none", // Required for cross-origin requests
+      path: "/", // Ensures it's available across all routes
     });
 
     res.status(200).json({
@@ -279,10 +280,11 @@ const verifyCode = catchAsync(
 
     res.cookie("cookie", token, {
       maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-      secure: true, // Must be true for cross-origin cookies
-      httpOnly: true, // Prevent JS access for security
-      sameSite: "none", // Required for cross-origin cookies
-      path: "/", // Ensure it's available everywhere
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      secure: true, // Required for HTTPS
+      httpOnly: true, // Prevents client-side access
+      sameSite: "none", // Required for cross-origin requests
+      path: "/", // Ensures it's available across all routes
     });
 
     res.status(200).json({
@@ -332,11 +334,13 @@ const logout = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     res.cookie("cookie", "clear", {
       maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-      secure: true, // Must be true for cross-origin cookies
-      httpOnly: true, // Prevent JS access for security
-      sameSite: "none", // Required for cross-origin cookies
-      path: "/", // Ensure it's available everywhere
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      secure: true, // Required for HTTPS
+      httpOnly: true, // Prevents client-side access
+      sameSite: "none", // Required for cross-origin requests
+      path: "/", // Ensures it's available across all routes
     });
+
     res.status(200).json({
       status: "success",
       message: "User logged out successfully.",
@@ -824,10 +828,11 @@ const googleLoginOrSignUp = catchAsync(
 
       res.cookie("cookie", token, {
         maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-        secure: true, // Must be true for cross-origin cookies
-        httpOnly: true, // Prevent JS access for security
-        sameSite: "none", // Required for cross-origin cookies
-        path: "/", // Ensure it's available everywhere
+        expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+        secure: true, // Required for HTTPS
+        httpOnly: true, // Prevents client-side access
+        sameSite: "none", // Required for cross-origin requests
+        path: "/", // Ensures it's available across all routes
       });
 
       // Send success response
@@ -866,10 +871,11 @@ const updateMe = catchAsync(
 
     res.cookie("cookie", token, {
       maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-      secure: true, // Must be true for cross-origin cookies
-      httpOnly: true, // Prevent JS access for security
-      sameSite: "none", // Required for cross-origin cookies
-      path: "/", // Ensure it's available everywhere
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      secure: true, // Required for HTTPS
+      httpOnly: true, // Prevents client-side access
+      sameSite: "none", // Required for cross-origin requests
+      path: "/", // Ensures it's available across all routes
     });
 
     res.status(200).json({
