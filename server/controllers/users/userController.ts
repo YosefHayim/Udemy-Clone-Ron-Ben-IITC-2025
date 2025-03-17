@@ -153,7 +153,7 @@ const signUp = catchAsync(
       secure: true, // Required for HTTPS
       httpOnly: true, // Prevents client-side access
       sameSite: "none", // Required for cross-origin requests
-      path: "/", // Ensures it's available across all routes
+      signed: true,
     });
 
     res.status(200).json({
@@ -207,10 +207,35 @@ const login = catchAsync(
       return;
     }
 
+    const token = generateToken({
+      id: isFoundUser._id,
+      fullName: isFoundUser.fullName,
+      email: isFoundUser.email,
+      profilePic: isFoundUser.profilePic,
+      bio: isFoundUser.bio,
+      role: isFoundUser.role,
+      coursesBought: isFoundUser.coursesBought,
+      udemyCredits: isFoundUser.udemyCredits,
+      userLinks: isFoundUser.links,
+      language: isFoundUser.preferredLanguage,
+      headline: isFoundUser.headline,
+      fieldLearning: isFoundUser.fieldLearning,
+      isLoggedPreviouslyWithGoogle: isFoundUser.isLoggedPreviouslyWithGoogle,
+    });
+
+    res.cookie("cookie", token, {
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      secure: true, // Required for HTTPS
+      httpOnly: true, // Prevents client-side access
+      sameSite: "none", // Required for cross-origin requests
+      signed: true,
+    });
+
     res.status(200).json({
       codeVerification: loginCode,
       status: "success",
       message: "Login successful.",
+      token,
     });
   }
 );
@@ -283,7 +308,7 @@ const verifyCode = catchAsync(
       secure: true, // Required for HTTPS
       httpOnly: true, // Prevents client-side access
       sameSite: "none", // Required for cross-origin requests
-      path: "/", // Ensures it's available across all routes
+      signed: true,
     });
 
     res.status(200).json({
@@ -333,12 +358,12 @@ const confirmEmailAddress = catchAsync(
 
 const logout = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    res.cookie("cookie", "clear", {
+    res.cookie("cookie", "", {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: true, // Required for HTTPS
       httpOnly: true, // Prevents client-side access
       sameSite: "none", // Required for cross-origin requests
-      path: "/", // Ensures it's available across all routes
+      signed: true,
     });
 
     res.status(200).json({
@@ -831,7 +856,7 @@ const googleLoginOrSignUp = catchAsync(
         secure: true, // Required for HTTPS
         httpOnly: true, // Prevents client-side access
         sameSite: "none", // Required for cross-origin requests
-        path: "/", // Ensures it's available across all routes
+        signed: true,
       });
 
       // Send success response
@@ -874,7 +899,7 @@ const updateMe = catchAsync(
       secure: true, // Required for HTTPS
       httpOnly: true, // Prevents client-side access
       sameSite: "none", // Required for cross-origin requests
-      path: "/", // Ensures it's available across all routes
+      signed: true,
     });
 
     res.status(200).json({
