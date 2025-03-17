@@ -14,6 +14,7 @@ const verifyCode: fn = async (verificationCredentials) => {
     );
 
     if (response) {
+      localStorage.setItem("cookie", response.data.token);
       return response.data;
     }
   } catch (error) {

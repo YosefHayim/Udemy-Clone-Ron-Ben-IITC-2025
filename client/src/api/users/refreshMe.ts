@@ -6,6 +6,7 @@ const refreshMe = async () => {
 
     if (res) {
       console.log(res);
+      localStorage.setItem("cookie", res.data.token);
       return res;
     }
   } catch (error) {

@@ -8,7 +8,7 @@ const googleLogin = async (googleCode: string) => {
     const res = await axiosClient.post(url, { code });
     if (res) {
       console.log(res);
-
+      localStorage.setItem("cookie", res.data.token);
       return res;
     }
   } catch (error) {
