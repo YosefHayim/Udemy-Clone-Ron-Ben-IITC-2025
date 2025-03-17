@@ -13,7 +13,7 @@ import {
   fetchCourseProgress,
   updateLessonProgress,
 } from "../../../services/ProgressService";
-import { CourseProgressResponse, LessonProgressPayload } from "@/types";
+import { CourseProgressResponse, LessonProgressPayload } from "@/types/types";
 
 const CourseContent: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -23,7 +23,9 @@ const CourseContent: React.FC = () => {
   const sanitizedCourseId = courseId?.trim();
 
   // React Query: Fetch course progress
-  const { data, isLoading, isError, error } = useQuery<CourseProgressResponse>({
+  const { data, isLoading, isError, error } = useQuery<
+    CourseProgressResponse | undefined
+  >({
     queryKey: ["courseProgress", courseId],
     queryFn: () => fetchCourseProgress(courseId),
     enabled: !!courseId,

@@ -19,12 +19,6 @@ interface LessonRoutesProps {
 const LessonRoutes: React.FC<LessonRoutesProps> = ({ currentSec }) => {
   const { id, courseId } = useParams<{ id: string; courseId: string }>();
 
-  // Validate presence of courseId and id
-  if (!courseId || !id) {
-    console.log("Missing required parameters: courseId or id.");
-    return <div>Error: Missing required parameters.</div>;
-  }
-
   // Fetch course data dynamically using courseId
   const { data, isLoading, error } = useQuery({
     queryKey: ["course", courseId],
@@ -36,6 +30,12 @@ const LessonRoutes: React.FC<LessonRoutesProps> = ({ currentSec }) => {
     },
     enabled: !!courseId,
   });
+
+  // Validate presence of courseId and id
+  if (!courseId || !id) {
+    console.log("Missing required parameters: courseId or id.");
+    return <div>Error: Missing required parameters.</div>;
+  }
 
   if (isLoading) {
     return <div>Loading...</div>;
