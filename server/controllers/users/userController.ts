@@ -150,10 +150,10 @@ const signUp = catchAsync(
 
     res.cookie("cookie", token, {
       maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-      secure: process.env.NODE_ENV === "production", // Only HTTPS in production
-      httpOnly: false, // Restrict JavaScript access for security
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
-      path: "/", // Ensure the cookie is available across the entire site
+      secure: true, // Must be true for cross-origin cookies
+      httpOnly: true, // Prevent JS access for security
+      sameSite: "none", // Required for cross-origin cookies
+      path: "/", // Ensure it's available everywhere
     });
 
     res.status(200).json({
@@ -279,10 +279,10 @@ const verifyCode = catchAsync(
 
     res.cookie("cookie", token, {
       maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-      secure: process.env.NODE_ENV === "production", // Only HTTPS in production
-      httpOnly: false, // Restrict JavaScript access for security
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
-      path: "/", // Ensure the cookie is available across the entire site
+      secure: true, // Must be true for cross-origin cookies
+      httpOnly: true, // Prevent JS access for security
+      sameSite: "none", // Required for cross-origin cookies
+      path: "/", // Ensure it's available everywhere
     });
 
     res.status(200).json({
@@ -331,10 +331,11 @@ const confirmEmailAddress = catchAsync(
 const logout = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     res.cookie("cookie", "clear", {
-      maxAge: 900 * 1000, // 15 minutes
-      secure: process.env.NODE_ENV === "production", // Secure in production
-      httpOnly: false, // Allow JavaScript access
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
+      maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
+      secure: true, // Must be true for cross-origin cookies
+      httpOnly: true, // Prevent JS access for security
+      sameSite: "none", // Required for cross-origin cookies
+      path: "/", // Ensure it's available everywhere
     });
     res.status(200).json({
       status: "success",
@@ -823,10 +824,10 @@ const googleLoginOrSignUp = catchAsync(
 
       res.cookie("cookie", token, {
         maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-        secure: process.env.NODE_ENV === "production", // Only HTTPS in production
-        httpOnly: false, // Restrict JavaScript access for security
-        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
-        path: "/", // Ensure the cookie is available across the entire site
+        secure: true, // Must be true for cross-origin cookies
+        httpOnly: true, // Prevent JS access for security
+        sameSite: "none", // Required for cross-origin cookies
+        path: "/", // Ensure it's available everywhere
       });
 
       // Send success response
@@ -865,10 +866,10 @@ const updateMe = catchAsync(
 
     res.cookie("cookie", token, {
       maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-      secure: process.env.NODE_ENV === "production", // Only HTTPS in production
-      httpOnly: process.env.NODE_ENV === "production", // Restrict JavaScript access for security
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
-      path: "/", // Ensure the cookie is available across the entire site
+      secure: true, // Must be true for cross-origin cookies
+      httpOnly: true, // Prevent JS access for security
+      sameSite: "none", // Required for cross-origin cookies
+      path: "/", // Ensure it's available everywhere
     });
 
     res.status(200).json({
