@@ -6,7 +6,7 @@ interface Course {
   instructor: string;
 }
 
-interface CourseState {
+export interface CourseState {
   courses: Course[];
 }
 
