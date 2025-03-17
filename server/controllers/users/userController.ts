@@ -153,7 +153,6 @@ const signUp = catchAsync(
       secure: true, // Required for HTTPS
       httpOnly: true, // Prevents client-side access
       sameSite: "none", // Required for cross-origin requests
-      signed: true,
     });
 
     res.status(200).json({
@@ -186,7 +185,6 @@ const login = catchAsync(
     }
 
     const loginCode = +randomize("0", 6);
-
     isFoundUser.temporaryCode = loginCode;
     isFoundUser.temporaryCodeExpiresAt = new Date(Date.now() + 15 * 60 * 1000);
     await isFoundUser.save();
@@ -228,7 +226,6 @@ const login = catchAsync(
       secure: true, // Required for HTTPS
       httpOnly: true, // Prevents client-side access
       sameSite: "none", // Required for cross-origin requests
-      signed: true,
     });
 
     res.status(200).json({
@@ -308,7 +305,6 @@ const verifyCode = catchAsync(
       secure: true, // Required for HTTPS
       httpOnly: true, // Prevents client-side access
       sameSite: "none", // Required for cross-origin requests
-      signed: true,
     });
 
     res.status(200).json({
@@ -363,7 +359,6 @@ const logout = catchAsync(
       secure: true, // Required for HTTPS
       httpOnly: true, // Prevents client-side access
       sameSite: "none", // Required for cross-origin requests
-      signed: true,
     });
 
     res.status(200).json({
@@ -856,7 +851,6 @@ const googleLoginOrSignUp = catchAsync(
         secure: true, // Required for HTTPS
         httpOnly: true, // Prevents client-side access
         sameSite: "none", // Required for cross-origin requests
-        signed: true,
       });
 
       // Send success response
@@ -899,7 +893,6 @@ const updateMe = catchAsync(
       secure: true, // Required for HTTPS
       httpOnly: true, // Prevents client-side access
       sameSite: "none", // Required for cross-origin requests
-      signed: true,
     });
 
     res.status(200).json({
