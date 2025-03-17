@@ -1,4 +1,4 @@
-import { CourseInstructorProps } from "@/types/types";
+import { CourseInstructorProps } from "../../types/types";
 
 const CourseInstructor: React.FC<CourseInstructorProps> = ({
   instructor = "Academind by Maximilian Schwarzmüller, Maximilian Schwarzmüller",

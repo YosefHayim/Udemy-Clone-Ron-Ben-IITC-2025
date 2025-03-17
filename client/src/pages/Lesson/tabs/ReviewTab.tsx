@@ -7,7 +7,7 @@ import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 import Loader from "@/components/Loader/Loader";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Review } from "@/types/types";
+import { Review } from "../../types/types";
 
 const ReviewsTab = ({ avgRating = 1 }) => {
   if (!avgRating) {

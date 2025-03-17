@@ -1,5 +1,5 @@
 import Loader from "@/components/Loader/Loader";
-import { CoursePriceProps } from "@/types/types";
+import { CoursePriceProps } from "../../types/types";
 import { useEffect, useState } from "react";
 
 const CoursePrice: React.FC<CoursePriceProps> = ({

@@ -1,4 +1,4 @@
-import { personalizeFieldPayload } from "@/types/types";
+import { personalizeFieldPayload } from "../../types/types";
 import { axiosClient, localhostUrl } from "../configuration";
 
 const updatePersonalizeUserField = async (

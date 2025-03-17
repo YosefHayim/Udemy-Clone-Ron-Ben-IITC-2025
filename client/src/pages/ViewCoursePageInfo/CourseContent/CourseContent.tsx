@@ -1,4 +1,4 @@
-import { CourseContentProps } from "@/types/types";
+import { CourseContentProps } from "../../types/types";
 import Description from "../Description/Description";
 import Requirements from "../Requirements/Requirements";
 import Section from "../Section/Section";

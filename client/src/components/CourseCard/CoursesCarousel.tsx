@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseHoverCard from "./CourseHoverCard";
-import { Course } from "@/types/types";
+import { Course } from "../../types/types";
 import { MdOutlineStarHalf } from "react-icons/md";
 import {
   IoIosStar,

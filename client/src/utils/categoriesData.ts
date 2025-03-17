@@ -1,4 +1,4 @@
-import { ExploreCategory } from "@/types/types";
+import { ExploreCategory } from "../../types/types";
 
 export const categoriesData: (ExploreCategory | undefined)[] = [
   {

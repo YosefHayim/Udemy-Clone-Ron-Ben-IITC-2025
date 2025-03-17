@@ -1,4 +1,4 @@
-import { DataOfUser } from "@/types/types";
+import { DataOfUser } from "../../types/types";
 import { axiosClient, localhostUrl } from "../configuration";
 
 const updatePersonalInfo = async (dataOfUser: DataOfUser) => {

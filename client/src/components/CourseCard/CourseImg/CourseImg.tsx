@@ -1,4 +1,4 @@
-import { CourseImgProps } from "@/types/types";
+import { CourseImgProps } from "../../types/types";
 import courseImgPlaceholder from "/images/image.png";
 
 const CourseImg: React.FC<CourseImgProps> = ({

@@ -1,4 +1,4 @@
-import { CourseTagProps } from "@/types/types";
+import { CourseTagProps } from "../../types/types";
 
 const CourseTag: React.FC<CourseTagProps> = ({ tagName = "Bestseller" }) => {
   // Mapping tag names to specific styles

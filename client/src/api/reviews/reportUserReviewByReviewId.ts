@@ -1,4 +1,4 @@
-import { ReportUserReviewPayload } from "@/types/types";
+import { ReportUserReviewPayload } from "../../types/types";
 import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 type fn = (payload: ReportUserReviewPayload) => Promise<any>;

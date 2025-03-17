@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
 import { AiFillInfoCircle } from "react-icons/ai";
 import { RootState } from "@/redux";
-import { CoursePreviewCardProps } from "@/types/types";
+import { CoursePreviewCardProps } from "../../types/types";
 import { IoPlayCircleSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 

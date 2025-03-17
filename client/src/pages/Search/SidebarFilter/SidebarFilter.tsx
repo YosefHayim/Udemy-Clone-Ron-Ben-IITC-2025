@@ -7,7 +7,7 @@ import Levels from "./Levels/Levels";
 import Subtitles from "./Subtitles/Subtitles";
 import Price from "./Price/Price";
 import ViewCertificatesOnly from "./ViewCertificatesOnly/ViewCertificatesOnly";
-import { SidebarFilterProps } from "@/types/types";
+import { SidebarFilterProps } from "../../types/types";
 
 const SidebarFilter: React.FC<SidebarFilterProps> = () => {
   return (

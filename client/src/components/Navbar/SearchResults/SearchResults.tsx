@@ -1,4 +1,4 @@
-import { SearchResultsProps } from "@/types/types";
+import { SearchResultsProps } from "../../types/types";
 import SearchResultRow from "./SearchResultRow/SearchResultRow";
 import SearchResultsCourseImg from "./SearchResultsCourseImg/SearchResultsCourseImg";
 import { useNavigate } from "react-router-dom";

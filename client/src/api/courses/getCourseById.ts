@@ -1,4 +1,4 @@
-import { CourseData } from "@/types/types";
+import { CourseData } from "../../types/types";
 import { axiosClient, localhostUrl } from "../configuration";
 
 type fn = (courseId: string) => Promise<CourseData>;

@@ -13,7 +13,10 @@ import {
   fetchCourseProgress,
   updateLessonProgress,
 } from "../../../services/ProgressService";
-import { CourseProgressResponse, LessonProgressPayload } from "@/types/types";
+import {
+  CourseProgressResponse,
+  LessonProgressPayload,
+} from "../../types/types";
 
 const CourseContent: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();

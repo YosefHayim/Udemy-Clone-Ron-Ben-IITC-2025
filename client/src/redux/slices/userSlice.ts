@@ -1,6 +1,6 @@
-import { Course, UserState } from "@/types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
+import { UserState } from "../../types/types";
 
 const initialState: UserState = {
   fullName: "",

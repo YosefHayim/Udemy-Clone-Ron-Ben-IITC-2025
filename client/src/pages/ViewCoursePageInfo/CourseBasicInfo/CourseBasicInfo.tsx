@@ -1,4 +1,4 @@
-import { CourseBasicInfoProps } from "@/types/types";
+import { CourseBasicInfoProps } from "../../types/types";
 import { TbInfoHexagonFilled } from "react-icons/tb";
 import { TbWorld } from "react-icons/tb";
 

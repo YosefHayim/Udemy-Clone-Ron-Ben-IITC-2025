@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useContext } from "react";
 import { filterContext } from "@/routes/AppRoutes";
-import { FilterDataProps } from "@/types/types";
+import { FilterDataProps } from "../../types/types";
 import { useEffect } from "react";
 
 const RatingsFilter = () => {

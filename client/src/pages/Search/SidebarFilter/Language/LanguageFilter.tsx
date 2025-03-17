@@ -1,5 +1,5 @@
 import Filter from "@/components/Filter/Filter";
-import { SidebarFilterProps } from "@/types/types";
+import { SidebarFilterProps } from "../../types/types";
 import { languages } from "@/utils/languages";
 import { useState } from "react";
 import { useContext } from "react";

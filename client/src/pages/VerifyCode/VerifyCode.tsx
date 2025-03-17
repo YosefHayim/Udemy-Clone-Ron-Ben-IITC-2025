@@ -17,7 +17,7 @@ import {
   setUdemyCredits,
   setUserLinks,
 } from "@/redux/slices/userSlice";
-import { DecodedTokenProps } from "@/types/types";
+import { DecodedTokenProps } from "../../types/types";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { useContext, useEffect, useState } from "react";

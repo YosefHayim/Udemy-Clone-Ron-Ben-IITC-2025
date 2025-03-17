@@ -1,5 +1,5 @@
 import { axiosClient, localhostUrl } from "../configuration";
-import { RegisterUserPayload } from "@/types/types";
+import { RegisterUserPayload } from "../../types/types";
 
 type fn = (data: RegisterUserPayload) => Promise<any>;
 

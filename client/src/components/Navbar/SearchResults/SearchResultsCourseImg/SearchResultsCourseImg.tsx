@@ -1,4 +1,4 @@
-import { searchResultCourseImgProps } from "@/types/types";
+import { searchResultCourseImgProps } from "../../types/types";
 
 const SearchResultsCourseImg: React.FC<searchResultCourseImgProps> = ({
   courseName,
