@@ -14,7 +14,7 @@ const initialState: CourseState = {
   courses: [],
 };
 
-const courseSlice = createSlice({
+export const courseSlice = createSlice({
   name: "course",
   initialState,
   reducers: {
@@ -30,4 +30,3 @@ const courseSlice = createSlice({
 });
 
 export const { addCourse, removeCourse } = courseSlice.actions;
-export default courseSlice.reducer;
