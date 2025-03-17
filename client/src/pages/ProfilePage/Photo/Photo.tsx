@@ -16,7 +16,9 @@ const Photo = () => {
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
-  const cookie = useSelector((state: RootState) => state?.user.cookie);
+  const cookie =
+    localStorage.getItem("cookie") ||
+    useSelector((state: RootState) => state.user.cookie);
 
   const handleFileChange = (event: any) => {
     const file = event.target.files[0];

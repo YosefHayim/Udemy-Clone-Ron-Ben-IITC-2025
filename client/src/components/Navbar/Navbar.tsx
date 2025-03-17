@@ -22,7 +22,9 @@ const Navbar = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
 
   const [isClicked, setClicked] = useState(false);
-  const cookie = useSelector((state: RootState) => state?.user.cookie);
+  const cookie =
+    localStorage.getItem("cookie") ||
+    useSelector((state: RootState) => state.user.cookie);
 
   useEffect(() => {}, [cookie]);
 

@@ -23,7 +23,9 @@ const Homepage = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
 
   document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
-  const cookie = useSelector((state: RootState) => state?.user.cookie);
+  const cookie =
+    localStorage.getItem("cookie") ||
+    useSelector((state: RootState) => state.user.cookie);
 
   useEffect(() => {}, [cookie]);
 

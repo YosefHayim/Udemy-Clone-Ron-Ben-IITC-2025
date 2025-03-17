@@ -19,7 +19,9 @@ const InteractionsBtns: React.FC<{
   instructorId,
 }) => {
   const [showDialogOfFbt, setShowDialogOfFbt] = useState(false);
-  const cookie = useSelector((state: RootState) => state.user.cookie);
+  const cookie =
+    localStorage.getItem("cookie") ||
+    useSelector((state: RootState) => state.user.cookie);
 
   const handleCartSuccess = () => {
     setTimeout(() => {

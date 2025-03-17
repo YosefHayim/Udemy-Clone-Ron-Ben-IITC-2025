@@ -18,7 +18,6 @@ import {
   setUserLinks,
 } from "@/redux/slices/userSlice";
 import { DecodedTokenProps } from "@/types/types";
-import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { useContext, useEffect, useState } from "react";
 import { emailContext } from "@/routes/AppRoutes";
@@ -32,7 +31,9 @@ const VerifyCode = () => {
   const [isLoading, setLoading] = useState(false);
 
   const [code, setCode] = useState("");
-  const cookie = useSelector((state: RootState) => state.user.cookie);
+  const cookie =
+    localStorage.getItem("cookie") ||
+    useSelector((state: RootState) => state.user.cookie);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

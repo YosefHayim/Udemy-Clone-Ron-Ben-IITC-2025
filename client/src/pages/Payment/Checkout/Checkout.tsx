@@ -22,7 +22,9 @@ import { useNavigate } from "react-router-dom";
 const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
   isPaypal,
 }) => {
-  const cookie = useSelector((state: RootState) => state.user.cookie);
+  const cookie =
+    localStorage.getItem("cookie") ||
+    useSelector((state: RootState) => state.user.cookie);
   const [isLoading, setLoading] = useState(false);
 
   const dispatch = useDispatch();

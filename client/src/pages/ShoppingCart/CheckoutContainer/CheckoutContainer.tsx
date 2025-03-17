@@ -3,7 +3,6 @@ import CouponArea from "@/pages/ViewCoursePageInfo/CoursePreviewCard/CouponArea/
 import { RootState } from "@/redux";
 import { setRole } from "@/redux/slices/userSlice";
 import { DecodedTokenProps } from "@/types/types";
-import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { useEffect } from "react";
 import { FaArrowRight } from "react-icons/fa";
@@ -31,7 +30,9 @@ const CheckoutContainer: React.FC = () => {
 
   const handleCheckout = () => {
     try {
-      const cookie = Cookies.get("cookie")?.toString();
+      const cookie =
+        localStorage.getItem("cookie") ||
+        useSelector((state: RootState) => state.user.cookie);
 
       if (!cookie || cookie.length < 20) {
         console.log("Invalid or missing cookie. Redirecting to login.");
