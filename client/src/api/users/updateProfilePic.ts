@@ -1,8 +1,8 @@
-import { axiosClient, localhostUrl } from "../configuration";
+import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 const updateProfilePic = async (photo: File) => {
   try {
-    const url = `${localhostUrl}/api/user/profile/picture`;
+    const url = `${baseUrl}/api/user/profile/picture`;
     const formData = new FormData();
     formData.append("photo", photo); // Ensure the key matches the backend expectation
 

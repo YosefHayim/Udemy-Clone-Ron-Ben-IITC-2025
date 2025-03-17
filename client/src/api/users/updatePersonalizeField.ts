@@ -1,5 +1,5 @@
 import { personalizeFieldPayload } from "../../types/types";
-import { axiosClient, localhostUrl } from "../configuration";
+import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 const updatePersonalizeUserField = async (
   personalizeField: personalizeFieldPayload
@@ -11,7 +11,7 @@ const updatePersonalizeUserField = async (
   console.log("personalizeField", personalizeField);
 
   try {
-    const url = `${localhostUrl}/api/user/updatePersonalizeField`;
+    const url = `${baseUrl}/api/user/updatePersonalizeField`;
     const r = await axiosClient.put(url, personalizeField);
 
     if (r) {

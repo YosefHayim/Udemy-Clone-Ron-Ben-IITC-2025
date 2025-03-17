@@ -1,5 +1,5 @@
 import { CourseData } from "../../types/types";
-import { axiosClient, localhostUrl } from "../configuration";
+import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 type fn = (courseId: string) => Promise<CourseData>;
 
@@ -10,7 +10,7 @@ const getCourseById: fn = async (courseId: string) => {
   }
 
   const sanitizedCourseId = courseId.trim();
-  const url = `${localhostUrl}/api/course/${sanitizedCourseId}`;
+  const url = `${baseUrl}/api/course/${sanitizedCourseId}`;
 
   try {
     const response = await axiosClient.get(url);

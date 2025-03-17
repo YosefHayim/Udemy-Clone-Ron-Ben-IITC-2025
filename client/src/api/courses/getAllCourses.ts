@@ -44,7 +44,7 @@ const getAllCourses: fn = async (
 
   // Construct query string, including only valid parameters
   const url =
-    `${localhostUrl}/api/course/?search=${encodedSearchTerm}` +
+    `${baseUrl}/api/course/?search=${encodedSearchTerm}` +
     (price === "Free" ? `&courseDiscountPrice=0` : "") + // Fix for free courses
     (price === "Paid" ? `&courseDiscountPrice[gte]=0.01` : "") + // Fix for paid courses
     (ratings ? `&averageRating[gte]=${ratings}` : "") +

@@ -9,7 +9,7 @@ const getAllReviewsByCourseId: fn = async (courseId = "") => {
   }
 
   const sanitizedCourseId = courseId.trim();
-  const url = `${localhostUrl}/api/review/course/${sanitizedCourseId}`;
+  const url = `${baseUrl}/api/review/course/${sanitizedCourseId}`;
 
   try {
     const response = await axiosClient.get(url);

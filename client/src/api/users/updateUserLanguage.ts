@@ -1,11 +1,11 @@
-import { axiosClient, localhostUrl } from "../configuration";
+import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 const updateUserLanguage = async (preferredLanguage: string) => {
   if (!preferredLanguage) {
     return undefined;
   }
 
-  const url = `${localhostUrl}/api/user`;
+  const url = `${baseUrl}/api/user`;
   try {
     const response = await axiosClient.put(url, preferredLanguage);
 

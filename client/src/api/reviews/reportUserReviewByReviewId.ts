@@ -18,7 +18,7 @@ const reportUserReviewByReviewId: fn = async ({
     throw new Error("Invalid review ID provided after sanitization.");
   }
 
-  const url = `${localhostUrl}/api/report/review/${sanitizedReviewId}`;
+  const url = `${baseUrl}/api/report/review/${sanitizedReviewId}`;
 
   try {
     const payload = { issueType, issueDetails, userId };

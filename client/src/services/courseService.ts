@@ -9,7 +9,7 @@ const fetchCourseById: fn = async (courseId: string) => {
   }
 
   const sanitizedCourseId = courseId.trim();
-  const url = `${localhostUrl}/api/course/${sanitizedCourseId}`;
+  const url = `${baseUrl}/api/course/${sanitizedCourseId}`;
 
   try {
     const response = await axiosClient.get(url);

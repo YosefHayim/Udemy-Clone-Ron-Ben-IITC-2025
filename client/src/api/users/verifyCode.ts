@@ -1,4 +1,4 @@
-import { axiosClient, localhostUrl } from "../configuration";
+import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 type fn = (verificationCredentials: {
   fullName?: string;
@@ -9,7 +9,7 @@ type fn = (verificationCredentials: {
 const verifyCode: fn = async (verificationCredentials) => {
   try {
     const response = await axiosClient.post(
-      `${localhostUrl}/api/user/verify`,
+      `${baseUrl}/api/user/verify`,
       verificationCredentials
     );
 

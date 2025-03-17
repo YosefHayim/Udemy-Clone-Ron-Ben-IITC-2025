@@ -1,4 +1,4 @@
-import { axiosClient, localhostUrl } from "../configuration";
+import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 const getInstructorById = async (instructorId: string) => {
   console.log(instructorId);
@@ -8,7 +8,7 @@ const getInstructorById = async (instructorId: string) => {
   }
 
   try {
-    const url = `${localhostUrl}/api/instructor/${instructorId}`;
+    const url = `${baseUrl}/api/instructor/${instructorId}`;
 
     const res = await axiosClient.get(url);
 
