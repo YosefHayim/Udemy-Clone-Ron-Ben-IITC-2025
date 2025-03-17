@@ -31,7 +31,7 @@ const Login = () => {
   const [showRegularLogin, setShowRegularLogin] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const isLoggedPreviouslyWithGoogle = useSelector(
-    (state: RootState) => state?.user.isLoggedPreviouslyWithGoogle
+    (state: RootState) => state?.user?.isLoggedPreviouslyWithGoogle
   );
 
   const handleRegularLogin = () => {

@@ -57,7 +57,7 @@ const Navbar = () => {
                     <AtagBtn aTagName={"My learning"} />
                   </Link>
                 )}
-                {cookie.length > 1 && (
+                {cookie && (
                   <div className="flex items-center">
                     <Heart />
                   </div>
@@ -66,7 +66,7 @@ const Navbar = () => {
                   <Cart />
                 </Link>
                 <div className="flex items-center justify-around gap-[0.3em]">
-                  {cookie.length > 1 && (
+                  {cookie && (
                     <div className="flex items-center">
                       <Notifications />
                     </div>
