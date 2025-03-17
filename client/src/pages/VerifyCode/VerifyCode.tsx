@@ -23,6 +23,8 @@ import { useDispatch } from "react-redux";
 import { useContext, useEffect, useState } from "react";
 import { emailContext } from "@/routes/AppRoutes";
 import Loader from "@/components/Loader/Loader";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux";
 
 const VerifyCode = () => {
   const [countdown, setCountdown] = useState(30);
@@ -30,7 +32,7 @@ const VerifyCode = () => {
   const [isLoading, setLoading] = useState(false);
 
   const [code, setCode] = useState("");
-  const cookie = Cookies.get("cookie");
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -66,7 +68,7 @@ const VerifyCode = () => {
 
     const decoded = jwtDecode<DecodedTokenProps>(cookie);
     console.log(`decoded data is:`, decoded);
-    dispatch(setCookie(cookie || ""));
+    dispatch(setCookie(cookie || localStorage.getItem("cookie") || ""));
     dispatch(setFullName(decoded.fullName));
     dispatch(setHeadline(decoded.headline));
     dispatch(setLanguage(decoded.language));
