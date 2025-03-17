@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loader from "@/components/Loader/Loader";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 
 const HoverCart = () => {
   const [isLoading, setIsLoading] = useState(true);

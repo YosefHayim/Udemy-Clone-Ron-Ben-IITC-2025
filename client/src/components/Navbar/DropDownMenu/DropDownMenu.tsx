@@ -7,7 +7,7 @@ import ProfilePic from "../../ProfilePic/ProfilePic";
 import CartCoursesNumber from "../Cart/CartCoursesNumber/CartCoursesNumber";
 import ChangeLanguage from "./ChangeLanguage/ChangeLanguage";
 import { clearUser } from "@/redux/slices/userSlice";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { setClearAll } from "@/redux/slices/cartSlice";
 
 const DropdownMenu: React.FC = () => {

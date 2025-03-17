@@ -10,7 +10,7 @@ import Heart from "./Heart/Heart";
 import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import CategoriesMenu from "./Categories/CategoriesMenu";
 import { isRootPathOnly } from "@/utils/extraGenerals";
 import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
@@ -22,9 +22,7 @@ const Navbar = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
 
   const [isClicked, setClicked] = useState(false);
-  const cookie =
-    localStorage.getItem("cookie") ||
-    useSelector((state: RootState) => state.user.cookie);
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   useEffect(() => {}, [cookie]);
 

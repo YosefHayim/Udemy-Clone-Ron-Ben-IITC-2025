@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import {
   calculateDiscountPercentage,
   calculateTotalSavings,
@@ -20,9 +20,7 @@ const BuyNowBtn: React.FC<{
 }> = ({ courseId, discountPrice, fullPrice }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const cookie =
-    localStorage.getItem("cookie") ||
-    useSelector((state: RootState) => state.user.cookie);
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   const handleClick = (courseId: string) => {
     if (cookie) {

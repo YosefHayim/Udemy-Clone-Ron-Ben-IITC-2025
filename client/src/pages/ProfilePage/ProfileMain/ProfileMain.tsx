@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import SideBarProfile from "../SideBarProfile/SideBarProfile";
 import { Button } from "@/components/ui/button";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { useState } from "react";
 import { btnLanguages } from "@/utils/languages";
 import { useDispatch } from "react-redux";

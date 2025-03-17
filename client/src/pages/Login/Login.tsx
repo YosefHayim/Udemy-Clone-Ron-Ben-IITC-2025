@@ -12,7 +12,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import googleLogin from "@/api/users/googleLogin";
 import Loader from "@/components/Loader/Loader";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { Button } from "@/components/ui/button";
 import {
   continueWGoogleBtn,

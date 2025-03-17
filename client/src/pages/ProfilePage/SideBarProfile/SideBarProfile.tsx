@@ -1,18 +1,16 @@
 import ProfilePic from "@/components/ProfilePic/ProfilePic";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 const SideBarProfile = () => {
   const fullName = useSelector((state: RootState) => state?.user.fullName);
   const profilePic = useSelector((state: RootState) => state?.user.profilePic);
-  const cookie =
-    localStorage.getItem("cookie") ||
-    useSelector((state: RootState) => state.user.cookie);
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   const location = useLocation();
 
-  if (cookie && cookie.length < 20) {
+  if (!cookie) {
     return <div></div>;
   }
 

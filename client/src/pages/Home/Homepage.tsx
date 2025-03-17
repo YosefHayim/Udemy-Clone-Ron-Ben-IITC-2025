@@ -16,16 +16,14 @@ import TeamAccess from "./TeamAccess/TeamAccess";
 import { useEffect } from "react";
 import styles from "./Homepage.module.css";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { useMediaQuery } from "react-responsive";
 
 const Homepage = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
 
   document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
-  const cookie =
-    localStorage.getItem("cookie") ||
-    useSelector((state: RootState) => state.user.cookie);
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   useEffect(() => {}, [cookie]);
 

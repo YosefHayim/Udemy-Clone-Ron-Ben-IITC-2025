@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import AddToCart from "./AddToCart/AddToCart";
 import HeartBtn from "./HeartBtn/HeartBtn";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import DialogFrequentlyBoughtTogether from "./DialogFrequentlyBoughtTogether/DialogFrequentlyBoughtTogether";
 import { useState } from "react";
 
@@ -19,9 +19,7 @@ const InteractionsBtns: React.FC<{
   instructorId,
 }) => {
   const [showDialogOfFbt, setShowDialogOfFbt] = useState(false);
-  const cookie =
-    localStorage.getItem("cookie") ||
-    useSelector((state: RootState) => state.user.cookie);
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   const handleCartSuccess = () => {
     setTimeout(() => {

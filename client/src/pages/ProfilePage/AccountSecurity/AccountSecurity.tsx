@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import SideBarProfile from "../SideBarProfile/SideBarProfile";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { useState } from "react";
 import DialogMultiFactorAuth from "./DialogMultiFactorAuth/DialogMultiFactorAuth";

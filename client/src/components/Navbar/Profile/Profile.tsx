@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/index";
+import { RootState } from "../../../redux/store";
 import DropdownMenu from "../DropDownMenu/DropDownMenu";
 import ProfilePic from "@/components/ProfilePic/ProfilePic";
 import { useEffect, useState } from "react";

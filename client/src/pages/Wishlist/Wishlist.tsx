@@ -1,7 +1,7 @@
 import Loader from "@/components/Loader/Loader";
 import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
 import { Button } from "@/components/ui/button";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { useEffect, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { useSelector } from "react-redux";

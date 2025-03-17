@@ -1,5 +1,5 @@
 import Loader from "@/components/Loader/Loader";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { setCoursesAddedToWishList } from "@/redux/slices/cartSlice";
 import { useState } from "react";
 import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";

@@ -1,15 +1,13 @@
 import { useSelector } from "react-redux";
 import ProfilePic from "../ProfilePic/ProfilePic";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
   const fullName = useSelector((state: RootState) => state?.user.fullName);
   const profilePic = useSelector((state: RootState) => state?.user.profilePic);
   const headline = useSelector((state: RootState) => state?.user.headline);
-  const cookie =
-    localStorage.getItem("cookie") ||
-    useSelector((state: RootState) => state.user.cookie);
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   if (!cookie) {
     return <div></div>;

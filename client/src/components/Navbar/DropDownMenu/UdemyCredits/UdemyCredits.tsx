@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import CoursePurchaseRow from "./CoursePurchaseRow/CoursePurchaseRow";

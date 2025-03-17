@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import CheckoutContainer from "./CheckoutContainer/CheckoutContainer";
 import EmptyCart from "./EmptyCart/EmptyCart";
 import ItemsInCart from "./ItemsInCart/ItemsInCart";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { useEffect, useState } from "react";
 import Loader from "@/components/Loader/Loader";
 

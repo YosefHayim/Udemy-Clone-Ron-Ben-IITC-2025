@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import CouponArea from "@/pages/ViewCoursePageInfo/CoursePreviewCard/CouponArea/CouponArea";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { setRole } from "@/redux/slices/userSlice";
 import { DecodedTokenProps } from "@/types/types";
 import { jwtDecode } from "jwt-decode";
@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 const CheckoutContainer: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   const totalToPay = useSelector(
     (state: RootState) => state.cart.totalCourseDiscountPrices
@@ -30,11 +32,7 @@ const CheckoutContainer: React.FC = () => {
 
   const handleCheckout = () => {
     try {
-      const cookie =
-        localStorage.getItem("cookie") ||
-        useSelector((state: RootState) => state.user.cookie);
-
-      if (!cookie || cookie.length < 20) {
+      if (!cookie) {
         console.log("Invalid or missing cookie. Redirecting to login.");
         navigate("/login");
         return;

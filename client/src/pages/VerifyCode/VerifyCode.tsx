@@ -23,7 +23,7 @@ import { useContext, useEffect, useState } from "react";
 import { emailContext } from "@/routes/AppRoutes";
 import Loader from "@/components/Loader/Loader";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 
 const VerifyCode = () => {
   const [countdown, setCountdown] = useState(30);
@@ -31,9 +31,7 @@ const VerifyCode = () => {
   const [isLoading, setLoading] = useState(false);
 
   const [code, setCode] = useState("");
-  const cookie =
-    localStorage.getItem("cookie") ||
-    useSelector((state: RootState) => state.user.cookie);
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

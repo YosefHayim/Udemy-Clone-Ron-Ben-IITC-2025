@@ -2,7 +2,7 @@ import buyCourseById from "@/api/users/buyCourseId";
 import refreshMe from "@/api/users/refreshMe";
 import Loader from "@/components/Loader/Loader";
 import { Button } from "@/components/ui/button";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { setClearAll } from "@/redux/slices/cartSlice";
 import {
   setCookie,
@@ -22,9 +22,8 @@ import { useNavigate } from "react-router-dom";
 const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
   isPaypal,
 }) => {
-  const cookie =
-    localStorage.getItem("cookie") ||
-    useSelector((state: RootState) => state.user.cookie);
+  const cookie = useSelector((state: RootState) => state.user.cookie);
+
   const [isLoading, setLoading] = useState(false);
 
   const dispatch = useDispatch();

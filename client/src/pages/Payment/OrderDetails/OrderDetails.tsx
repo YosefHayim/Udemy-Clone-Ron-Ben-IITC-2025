@@ -1,5 +1,5 @@
 import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 
 const OrderDetails: React.FC = () => {

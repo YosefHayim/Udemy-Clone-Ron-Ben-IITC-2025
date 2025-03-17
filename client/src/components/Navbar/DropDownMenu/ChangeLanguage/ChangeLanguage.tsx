@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { setLanguage } from "@/redux/slices/userSlice";
 import { btnLanguages } from "@/utils/languages";
 import { useMutation } from "@tanstack/react-query";
