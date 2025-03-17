@@ -149,7 +149,6 @@ const signUp = catchAsync(
     });
 
     res.cookie("cookie", token, {
-      maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: true, // Required for HTTPS
       httpOnly: true, // Prevents client-side access
@@ -280,7 +279,6 @@ const verifyCode = catchAsync(
     });
 
     res.cookie("cookie", token, {
-      maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: true, // Required for HTTPS
       httpOnly: true, // Prevents client-side access
@@ -336,7 +334,6 @@ const confirmEmailAddress = catchAsync(
 const logout = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     res.cookie("cookie", "clear", {
-      maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: true, // Required for HTTPS
       httpOnly: true, // Prevents client-side access
@@ -830,7 +827,6 @@ const googleLoginOrSignUp = catchAsync(
       });
 
       res.cookie("cookie", token, {
-        maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         secure: true, // Required for HTTPS
         httpOnly: true, // Prevents client-side access
@@ -874,7 +870,6 @@ const updateMe = catchAsync(
     });
 
     res.cookie("cookie", token, {
-      maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: true, // Required for HTTPS
       httpOnly: true, // Prevents client-side access
