@@ -2,7 +2,7 @@ import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 const buyArrayOfCoursesIds = async () => {
   try {
-    const url = `${baseUrl}/api/user/add/course/`;
+    const url = `${localhostUrl}/api/user/add/course/`;
     const res = axiosClient.post(url);
 
     if (res) {

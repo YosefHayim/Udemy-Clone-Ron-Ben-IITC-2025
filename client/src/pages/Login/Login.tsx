@@ -24,9 +24,12 @@ import {
   loginWDiffAccBtn,
   loginWithEmailBtn,
 } from "@/utils/stylesStorage";
+import { baseUrl, localhostUrl } from "@/api/configuration";
 
 const Login = () => {
   const navigate = useNavigate();
+  // Change this to true when using in production.
+  const [isDeployed, setDeployed] = useState(false);
   const [isError, setShowIsError] = useState(false);
   const [showRegularLogin, setShowRegularLogin] = useState(false);
   const [isLoading, setLoading] = useState(false);
@@ -91,7 +94,7 @@ const Login = () => {
     },
     flow: "auth-code",
     ux_mode: "popup",
-    redirect_uri: "http://127.0.0.1:5137",
+    redirect_uri: isDeployed ? `${baseUrl}` : `${localhostUrl}`,
   });
 
   useEffect(() => {}, [isLoggedPreviouslyWithGoogle]);

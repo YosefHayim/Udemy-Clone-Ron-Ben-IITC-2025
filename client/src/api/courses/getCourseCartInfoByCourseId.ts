@@ -9,7 +9,7 @@ const getCourseCartInfoByCourseId: fn = async (courseId: string) => {
   }
 
   const sanitizedCourseId = courseId.trim();
-  const url = `${baseUrl}/api/course/cartInfo/${sanitizedCourseId}`;
+  const url = `${localhostUrl}/api/course/cartInfo/${sanitizedCourseId}`;
 
   try {
     const response = await axiosClient.get(url);

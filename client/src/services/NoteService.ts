@@ -36,7 +36,7 @@ const fetchAllNotes: FetchNotesFn = async (courseId) => {
     throw new Error("Course ID is required.");
   }
 
-  const url = `${baseUrl}/api/course-progress/${courseId.trim()}/notes`;
+  const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/notes`;
 
   try {
     const response = await axiosClient.get<{ notes: Note[] }>(url);
@@ -65,7 +65,7 @@ const addNote: AddNoteFn = async (courseId, lessonId, payload) => {
     throw new Error("Course ID and Lesson ID are required.");
   }
 
-  const url = `${baseUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}/notes`;
+  const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}/notes`;
 
   try {
     const response = await axiosClient.post<{ note: Note }>(url, payload);
@@ -97,7 +97,7 @@ const deleteNote: DeleteNoteFn = async (courseId, lessonId, noteId) => {
     throw new Error("Course ID, Lesson ID, and Note ID are required.");
   }
 
-  const url = `${baseUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}/notes/${noteId.trim()}`;
+  const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}/notes/${noteId.trim()}`;
 
   try {
     const response = await axiosClient.delete(url);
@@ -123,7 +123,7 @@ const editNote: EditNoteFn = async (courseId, lessonId, noteId, payload) => {
     throw new Error("All parameters are required.");
   }
 
-  const url = `${baseUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId}/notes/${noteId}`;
+  const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId}/notes/${noteId}`;
 
   try {
     const response = await axiosClient.put<Note>(url, payload);

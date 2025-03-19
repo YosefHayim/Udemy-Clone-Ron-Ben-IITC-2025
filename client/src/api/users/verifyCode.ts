@@ -9,7 +9,7 @@ type fn = (verificationCredentials: {
 const verifyCode: fn = async (verificationCredentials) => {
   try {
     const response = await axiosClient.post(
-      `${baseUrl}/api/user/verify`,
+      `${localhostUrl}/api/user/verify`,
       verificationCredentials
     );
 

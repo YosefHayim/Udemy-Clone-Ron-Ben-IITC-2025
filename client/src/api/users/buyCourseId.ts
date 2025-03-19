@@ -2,7 +2,7 @@ import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 const buyCourseById = async (courseId: string | string) => {
   try {
-    const url = `${baseUrl}/api/user/add/course/${courseId}`;
+    const url = `${localhostUrl}/api/user/add/course/${courseId}`;
 
     const response = await axiosClient.post(url);
     if (response) {

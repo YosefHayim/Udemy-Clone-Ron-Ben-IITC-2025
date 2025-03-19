@@ -4,7 +4,7 @@ const googleLogin = async (googleCode: string) => {
   const code = googleCode;
 
   try {
-    const url = `${baseUrl}/api/user/google/auth/login`;
+    const url = `${localhostUrl}/api/user/google/auth/login`;
     const res = await axiosClient.post(url, { code });
     if (res) {
       console.log(res);

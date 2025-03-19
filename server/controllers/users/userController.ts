@@ -304,8 +304,8 @@ const verifyCode = catchAsync(
 
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: false,
-      httpOnly: false,
+      secure: process.env.NODE_ENV === "production" ? true : false,
+      httpOnly: process.env.NODE_ENV === "production" ? true : false,
       sameSite: "none",
       maxAge: +90 * 24 * 60 * 60 * 1000,
     });
@@ -799,7 +799,11 @@ const googleLoginOrSignUp = catchAsync(
         {
           client_id: process.env.GOOGLE_CLIENT_ID,
           client_secret: process.env.GOOGLE_CLIENT_SECRET,
-          redirect_uri: "http://localhost:5173", // Must match the frontend's redirect URI
+          redirect_uri: `${
+            process.env.NODE_ENV === `production`
+              ? "https://udemy-clone-ron-and-ben-front.onrender.com"
+              : "http://localhost:5173"
+          }`, // Must match the frontend's redirect URI
           grant_type: "authorization_code",
           code,
         }
@@ -816,6 +820,7 @@ const googleLoginOrSignUp = catchAsync(
       );
 
       const { email, name, picture } = userResponse.data;
+      console.log(userResponse.data);
 
       let user = await User.findOne({ email });
 
