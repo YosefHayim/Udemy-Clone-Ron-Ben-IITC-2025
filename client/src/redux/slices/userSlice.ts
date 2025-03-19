@@ -80,9 +80,7 @@ const userSlice = createSlice({
       state.isAuthActivated = action.payload;
     },
     clearUser: (state) => {
-      state.fullName = "";
       state.profilePic = "";
-      state.email = "";
       state.headline = "";
       state.bio = "";
       state.role = "";
