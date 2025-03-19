@@ -13,7 +13,7 @@ const getInstructorById = async (instructorId: string) => {
     const res = await axiosClient.get(url);
 
     if (res) {
-      console.log(res);
+      console.log(res.data.data);
 
       return res.data.data;
     }

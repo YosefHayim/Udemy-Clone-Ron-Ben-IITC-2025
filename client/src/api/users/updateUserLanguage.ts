@@ -10,6 +10,7 @@ const updateUserLanguage = async (preferredLanguage: string) => {
     const response = await axiosClient.put(url, preferredLanguage);
 
     if (response.status === 200) {
+      console.log(response.data);
       return response.data;
     } else {
       return undefined;

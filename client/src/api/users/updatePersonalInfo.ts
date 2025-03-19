@@ -11,6 +11,7 @@ const updatePersonalInfo = async (dataOfUser: DataOfUser) => {
 
     if (r) {
       console.log(r);
+      return r;
     }
   } catch (error) {
     console.log(error);

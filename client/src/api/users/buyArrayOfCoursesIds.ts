@@ -6,8 +6,8 @@ const buyArrayOfCoursesIds = async () => {
     const res = axiosClient.post(url);
 
     if (res) {
-      console.log(res);
-      return res;
+      console.log(res.data);
+      return res.data;
     }
   } catch (error) {
     console.log(`Error has been occurred durning buying courses: `, error);

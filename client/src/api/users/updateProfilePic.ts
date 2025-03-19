@@ -13,7 +13,7 @@ const updateProfilePic = async (photo: File) => {
     });
 
     if (res) {
-      console.log(res);
+      console.log(res.data);
       return res;
     }
   } catch (error) {

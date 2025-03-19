@@ -14,7 +14,7 @@ const loginUser: fn = async (email) => {
     );
 
     if (response) {
-      console.log(response);
+      console.log(response.data);
       localStorage.setItem("cookie", response.data.token);
       return response.data;
     }

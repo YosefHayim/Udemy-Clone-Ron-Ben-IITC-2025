@@ -1,3 +1,4 @@
+import log from "video.js/dist/types/utils/log";
 import { ReportUserReviewPayload } from "../../types/types";
 import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
@@ -25,6 +26,7 @@ const reportUserReviewByReviewId: fn = async ({
     const response = await axiosClient.post(url, payload);
 
     if (response) {
+      log(response);
       return response;
     }
 
