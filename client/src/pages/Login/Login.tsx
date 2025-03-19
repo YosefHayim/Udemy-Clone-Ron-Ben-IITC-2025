@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import loginUser from "@/api/users/loginUser";
 import { FcGoogle } from "react-icons/fc";
-import { FaApple } from "react-icons/fa";
+import { FaApple, FaRegUser } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { emailContext } from "@/routes/AppRoutes";
@@ -25,20 +25,27 @@ import {
   loginWithEmailBtn,
 } from "@/utils/stylesStorage";
 import { baseUrl, localhostUrl } from "@/api/configuration";
+import { AiOutlineMail } from "react-icons/ai";
 
 const Login = () => {
   const navigate = useNavigate();
   // Change this to true when using in production.
   const [isDeployed, setDeployed] = useState(false);
   const [isError, setShowIsError] = useState(false);
-  const [showRegularLogin, setShowRegularLogin] = useState(false);
+  const [showRegularLogin, setShowRegularLogin] = useState(true);
   const [isLoading, setLoading] = useState(false);
   const isLoggedPreviouslyWithGoogle = useSelector(
     (state: RootState) => state?.user?.isLoggedPreviouslyWithGoogle
   );
+  const fullname = useSelector((state: RootState) => state?.user?.fullName);
+  const email = useSelector((state: RootState) => state?.user?.email);
+  const userProfileImage = useSelector(
+    (state: RootState) => state?.user?.profilePic
+  );
 
   const handleRegularLogin = () => {
     setShowRegularLogin(true);
+    loginMutation.mutate({ email });
   };
 
   const loginMutation = useMutation({
@@ -101,7 +108,7 @@ const Login = () => {
 
   return (
     <div className="h-screen bg-cover bg-center">
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex-1 flex items-center justify-center w-full">
         <img
           src="/images/loginImg.png"
           alt="Login Illustration"
@@ -128,42 +135,55 @@ const Login = () => {
               </p>
             </div>
           </div>
-          {(!isLoggedPreviouslyWithGoogle || showRegularLogin) && (
-            <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
-              <div className="relative">
-                <input
-                  required={true}
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                  className={`${inputLoginWEmail}`}
-                />
-                <div className={isError ? "block" : "hidden"}>
-                  <span className="text-red-600 absolute font-bold top-[10%] right-[87%]">
-                    Email
-                  </span>
-                  <BiSolidErrorAlt className="text-[1.5em] text-red-600 absolute top-[10%] right-[82%]" />
-                </div>
-              </div>
-              <button type="submit" className={`${loginWithEmailBtn}`}>
-                {isLoading ? (
-                  <Loader useSmallLoading={true} hSize="" />
-                ) : (
-                  <div className="flex items-center">
-                    <MdEmail size={25} />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
+          {showRegularLogin && (
+            <div className="w-full">
+              <div className="flex flex-col items-center justify-center w-full text-center">
+                <div>
+                  {userProfileImage.length > 1 ? (
+                    <img
+                      src={userProfileImage}
+                      alt="user profile image"
+                      className="rounded-[100em] bg-black w-[6em] h-[5rem]"
                     />
-                    <button className="focus:outline-none text-[1rem] font-bold">
-                      Continue with email
-                    </button>
+                  ) : (
+                    <div>
+                      <FaRegUser />
+                    </div>
+                  )}
+                </div>
+                <b>Welcome back, {fullname}</b>
+                <p>
+                  We’ll email {email} a code for a secure passwordless log-in.
+                </p>
+              </div>
+              <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
+                <div className="relative">
+                  <div className={isError ? "block" : "hidden"}>
+                    <span className="text-red-600 absolute font-bold top-[10%] right-[87%]">
+                      Email
+                    </span>
+                    <BiSolidErrorAlt className="text-[1.5em] text-red-600 absolute top-[10%] right-[82%]" />
                   </div>
-                )}
-              </button>
-            </form>
+                </div>
+                <button type="submit" className={`${loginWithEmailBtn}`}>
+                  {isLoading ? (
+                    <Loader useSmallLoading={true} hSize="" />
+                  ) : (
+                    <div className="flex items-center">
+                      <AiOutlineMail size={20} />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
+                      />
+                      <button className="focus:outline-none text-[1rem] font-bold">
+                        Continue with email
+                      </button>
+                    </div>
+                  )}
+                </button>
+              </form>
+            </div>
           )}
           {showRegularLogin ||
             (!isLoggedPreviouslyWithGoogle && (
