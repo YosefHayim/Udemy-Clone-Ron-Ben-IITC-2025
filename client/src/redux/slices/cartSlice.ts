@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export const cartSlice = createSlice({
+const cartSlice = createSlice({
   name: "cart",
   initialState: {
     isShowCart: false,
@@ -152,3 +152,4 @@ export const {
   removeCourseFromCart,
   setCoursesAddedToWishList,
 } = cartSlice.actions;
+export default cartSlice.reducer;

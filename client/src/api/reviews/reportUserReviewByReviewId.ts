@@ -1,4 +1,3 @@
-import log from "video.js/dist/types/utils/log";
 import { ReportUserReviewPayload } from "../../types/types";
 import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 

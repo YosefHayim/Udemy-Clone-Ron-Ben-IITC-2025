@@ -9,6 +9,7 @@ import ChangeLanguage from "./ChangeLanguage/ChangeLanguage";
 import { clearUser } from "@/redux/slices/userSlice";
 import { RootState } from "@/redux/store";
 import { setClearAll } from "@/redux/slices/cartSlice";
+import Cookies from "js-cookie";
 
 const DropdownMenu: React.FC = () => {
   const [isClicked, setClicked] = useState(false);
@@ -27,10 +28,9 @@ const DropdownMenu: React.FC = () => {
     .join("");
 
   const handleLogout = () => {
-    localStorage.removeItem("cookie");
-    dispatch(setClearAll());
     dispatch(clearUser());
-    navigate("/logout");
+    localStorage.removeItem("persist:root");
+    Cookies.remove("cookie");
   };
 
   const menuItems = [

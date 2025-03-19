@@ -24,6 +24,7 @@ import { emailContext } from "@/routes/AppRoutes";
 import Loader from "@/components/Loader/Loader";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import Cookies from "js-cookie";
 
 const VerifyCode = () => {
   const [countdown, setCountdown] = useState(30);
@@ -44,11 +45,35 @@ const VerifyCode = () => {
 
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
-    onSuccess: () => {
-      navigate("/");
+    onSuccess: (response) => {
+      const token = response.token; // Get token from API response
+      if (!token) throw new Error("No token received");
+
+      // Store token in localStorage and Redux state
+      Cookies.set("cookie", token);
+      localStorage.setItem("cookie", token);
+      dispatch(setCookie(token));
+
+      // Decode and update Redux state
+      const decoded = jwtDecode<DecodedTokenProps>(token);
+      console.log("Decoded Token Data:", decoded);
+
+      dispatch(setFullName(decoded.fullName));
+      dispatch(setHeadline(decoded.headline));
+      dispatch(setLanguage(decoded.language));
+      dispatch(setUserLinks(decoded.userLinks));
+      dispatch(setProfilePic(decoded.profilePic));
+      dispatch(setEmailAddress(decoded.email));
+      dispatch(setBio(decoded.bio));
+      dispatch(setRole(decoded.role));
+      dispatch(setCoursesBought(decoded.coursesBought));
+      dispatch(setUdemyCredits(decoded.udemyCredits));
+      dispatch(setIsLoggedWithGoogle(true));
+
+      navigate("/"); // Redirect after success
     },
     onError: (error) => {
-      console.log("Error during login process:", error);
+      console.error("Error during login process:", error);
     },
   });
 
@@ -62,22 +87,6 @@ const VerifyCode = () => {
     }, 2000);
     setCode(code);
     verifyCodeMutation.mutate({ code, email: emailUser });
-
-    if (!cookie) throw new Error("Cookie is undefined");
-    const decoded = jwtDecode<DecodedTokenProps>(cookie);
-    dispatch(setCookie(cookie));
-    console.log(`decoded data is:`, decoded);
-    dispatch(setFullName(decoded.fullName));
-    dispatch(setHeadline(decoded.headline));
-    dispatch(setLanguage(decoded.language));
-    dispatch(setUserLinks(decoded.userLinks));
-    dispatch(setProfilePic(decoded.profilePic));
-    dispatch(setEmailAddress(decoded.email));
-    dispatch(setBio(decoded.bio));
-    dispatch(setRole(decoded.role));
-    dispatch(setCoursesBought(decoded.coursesBought));
-    dispatch(setUdemyCredits(decoded.udemyCredits));
-    dispatch(setIsLoggedWithGoogle(true));
   };
 
   const handleResendCode = () => {

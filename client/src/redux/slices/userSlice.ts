@@ -24,7 +24,7 @@ const initialState: UserState = {
   isAuthActivated: false,
 };
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
@@ -117,3 +117,5 @@ export const {
   setIsLoggedWithGoogle,
   setAuth,
 } = userSlice.actions;
+
+export default userSlice.reducer;
