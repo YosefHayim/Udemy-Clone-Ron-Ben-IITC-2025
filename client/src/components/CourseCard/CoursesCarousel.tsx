@@ -132,7 +132,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
       </h2>
 
       {courses.length > 0 && (
-        <div className="overflow-y-visible relative">
+        <div className="overflow-y-visible overflow-x-clip relative">
           <div
             className="flex transition-transform duration-300 overflow-y-visible"
             style={{
