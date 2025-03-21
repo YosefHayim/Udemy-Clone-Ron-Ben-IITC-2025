@@ -1,57 +1,12 @@
 import { btnStyleNHover } from "@/utils/stylesStorage";
-import divIMG1 from "/images/sectionIMG1.jpg";
-import divIMG2 from "/images/sectionIMG2.jpg";
-import divIMG3 from "/images/sectionIMG3.jpg";
-import divIMG4 from "/images/sectionIMG4.jpg";
 import { useEffect, useState } from "react";
 import { categoriesData } from "@/utils/categoriesData";
 import { navbarCategories } from "@/utils/navbarCategories";
 import { getRandomLearnersAmount } from "@/utils/randomLearnersAmount";
-import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import { topics } from "@/utils/topics";
-
-const courses = [
-  {
-    title: "ChatGPT Complete Guide: Learn Generative AI, ChatGPT & More",
-    instructor: "Julian Melanson, Benza Maman",
-    rating: 4.5,
-    reviews: 42512,
-    price: "₪49.90",
-    oldPrice: "₪369.90",
-    bestSeller: true,
-    image: divIMG1,
-  },
-  {
-    title: "The Complete AI-Powered Copywriting Course & ChatGPT",
-    instructor: "Ing. Tomas Moravek",
-    rating: 4.5,
-    reviews: 1706,
-    price: "₪39.90",
-    oldPrice: "₪269.90",
-    bestSeller: false,
-    image: divIMG2,
-  },
-  {
-    title: "ChatGPT & MidJourney & Gemini: Digital Marketing Assistants",
-    instructor: "Anton Voroniuk",
-    rating: 4.5,
-    reviews: 446,
-    price: "₪49.90",
-    oldPrice: "₪199.90",
-    bestSeller: false,
-    image: divIMG3,
-  },
-  {
-    title: "ChatGPT Master: Complete OpenAI ChatGPT Course",
-    instructor: "Faisal Zamir",
-    rating: 4.3,
-    reviews: 413,
-    price: "₪49.90",
-    oldPrice: "₪89.90",
-    bestSeller: false,
-    image: divIMG4,
-  },
-];
+import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
+import { useQuery } from "@tanstack/react-query";
+import getAllCourses from "@/api/courses/getAllCourses";
 
 const Sections = () => {
   const [navbarCategory, setNavbarCategory] = useState("Data Science");
@@ -87,11 +42,17 @@ const Sections = () => {
     return null;
   };
 
-  const [clicked, setClicked] = useState(getDefaultTopic());
+  const [choseTopic, setChooseTopic] = useState(getDefaultTopic());
+
+  const { data, isLoading, error, isPending } = useQuery({
+    queryKey: ["courses", choseTopic],
+    queryFn: () => getAllCourses(choseTopic),
+    enabled: !!choseTopic,
+  });
 
   useEffect(() => {
     const newDefault = getDefaultTopic();
-    if (newDefault) setClicked(newDefault);
+    if (newDefault) setChooseTopic(newDefault);
   }, [navbarCategory]);
 
   return (
@@ -126,22 +87,15 @@ const Sections = () => {
       </div>
       <div className="flex w-full flex-col items-center justify-center gap-10 bg-gray-100 p-5">
         <div className="flex w-full">
-          <div className="absolute left-[1%] top-[67%] z-10 rounded-full bg-white shadow-alertAlgoInfo">
-            <button
-              className={`${countClick > 0 ? "block" : "hidden"} rounded-full p-2 hover:bg-gray-200 focus:outline-none`}
-              onClick={handlePrev}
-            >
-              <RiArrowLeftSLine size={24} />
-            </button>
-          </div>
-          <div className="absolute right-[2%] top-[67%] z-10 rounded-full bg-white shadow-alertAlgoInfo">
-            <button
-              className={`${countClick === 0 ? "block" : "hidden"} rounded-full p-2 hover:bg-gray-200 focus:outline-none`}
-              onClick={handleNext}
-            >
-              <RiArrowRightSLine size={24} />
-            </button>
-          </div>
+          <ButtonsCarousel
+            handleFnNext={handleNext}
+            handleFnPrev={handlePrev}
+            state={countClick}
+            useCustom={true}
+            topPosition="67%"
+            leftPosition="1%"
+            rightPosition="2%"
+          />
           <div className="mt-3 flex w-full">
             {categoriesData.map((category, i) => {
               const match = category?.subcategory.find(
@@ -159,9 +113,9 @@ const Sections = () => {
                   {match?.topics?.map((topic, idx) => (
                     <div
                       key={idx}
-                      onClick={() => setClicked(topic)}
+                      onClick={() => setChooseTopic(topic)}
                       className={`${
-                        clicked === topic
+                        choseTopic === topic
                           ? "w-full bg-[#303141] text-white hover:bg-[#595c73]"
                           : ""
                       } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
@@ -179,39 +133,41 @@ const Sections = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {courses.map((course, index) => (
+          {data?.map((course) => (
             <div
-              key={index}
+              key={course._id}
               className="overflow-hidden rounded-lg border bg-white shadow-sm"
             >
               <img
-                src={course.image}
-                alt={course.title}
+                src={course.courseImg}
+                alt={course.courseName}
                 className="h-40 w-full object-cover"
               />
               <div className="p-4">
                 <h3 className="truncate text-lg font-bold text-gray-900">
-                  {course.title}
+                  {course.courseName}
                 </h3>
                 <p className="truncate text-sm text-gray-600">
-                  {course.instructor}
+                  {course.courseInstructor.fullName}
                 </p>
                 <div className="mt-2 flex items-center text-sm text-yellow-500">
-                  <span>{course.rating}</span>
-                  <span className="ml-1 text-gray-500">({course.reviews})</span>
+                  <span>{course.averageRating}</span>
+                  <span className="ml-1 text-gray-500">
+                    ({course.totalRatings})
+                  </span>
                 </div>
                 <div className="mt-2 flex items-baseline justify-between">
                   <div>
                     <span className="font-bold text-gray-900">
-                      {course.price}
+                      ₪{course.courseDiscountPrice}
                     </span>
-                    {course.oldPrice && (
+                    {course.courseFullPrice && (
                       <span className="ml-2 text-sm text-gray-500 line-through">
-                        {course.oldPrice}
+                        ₪{course.courseFullPrice}
                       </span>
                     )}
                   </div>
-                  {course.bestSeller && (
+                  {course.courseTag === "Bestseller" && (
                     <span className="rounded-full bg-yellow-200 px-2 py-1 text-sm text-yellow-800">
                       Bestseller
                     </span>
