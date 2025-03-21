@@ -20,7 +20,6 @@ const baseBanners = [
 ];
 
 const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
-  const durationAmount = 1000;
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -28,14 +27,14 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
     if (isAnimating || currentIndex === 0) return;
     setIsAnimating(true);
     setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
-    setTimeout(() => setIsAnimating(false), durationAmount);
+    setTimeout(() => setIsAnimating(false), 2000);
   };
 
   const handleNext = () => {
     if (isAnimating) return;
     setIsAnimating(true);
     setCurrentIndex((prevIndex) => prevIndex + 1);
-    setTimeout(() => setIsAnimating(false), durationAmount);
+    setTimeout(() => setIsAnimating(false), 2000);
   };
 
   // This one is creating infinite banners to scroll from the banners base which we just add to it and thats it.
@@ -46,12 +45,12 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
     },
   );
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     handleNext();
-  //   }, 10000);
-  //   return () => clearInterval(interval);
-  // }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 15000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="w-full overflow-hidden relative">
@@ -91,7 +90,7 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
       ) : (
         <div className="w-full relative h-full overflow-hidden">
           <div
-            className={`flex transition-transform duration-${durationAmount} ease-in-out`}
+            className={`flex transition-transform duration-1000 ease-in-out`}
             style={{
               transform: `translateX(-${currentIndex * 100}%)`,
             }}

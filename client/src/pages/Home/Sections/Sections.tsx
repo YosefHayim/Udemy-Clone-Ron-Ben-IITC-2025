@@ -3,10 +3,12 @@ import divIMG1 from "/images/sectionIMG1.jpg";
 import divIMG2 from "/images/sectionIMG2.jpg";
 import divIMG3 from "/images/sectionIMG3.jpg";
 import divIMG4 from "/images/sectionIMG4.jpg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { categoriesData } from "@/utils/categoriesData";
 import { navbarCategories } from "@/utils/navbarCategories";
 import { getRandomLearnersAmount } from "@/utils/randomLearnersAmount";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import { topics } from "@/utils/topics";
 
 const courses = [
   {
@@ -51,10 +53,46 @@ const courses = [
   },
 ];
 
-const div = () => {
-  const [activeCategory, setActiveCategory] = useState("ChatGPT");
+const Sections = () => {
   const [navbarCategory, setNavbarCategory] = useState("Data Science");
-  const [clicked, setClicked] = useState(navbarCategories[0]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [countClick, setCountClick] = useState(0);
+
+  const handlePrev = () => {
+    if (isAnimating || currentIndex === 0) return;
+    setIsAnimating(true);
+    setCountClick((prevCount) => prevCount - 1);
+    setCurrentIndex((prevIndex) => prevIndex - 1);
+    setTimeout(() => setIsAnimating(false), 500);
+  };
+
+  const handleNext = () => {
+    if (isAnimating) return;
+    setCountClick((prevCount) => prevCount + 1);
+    setIsAnimating(true);
+    setCurrentIndex((prevIndex) => prevIndex + 1);
+    setTimeout(() => setIsAnimating(false), 500);
+  };
+
+  const getDefaultTopic = () => {
+    for (let category of categoriesData) {
+      const match = category?.subcategory?.find((sub) => {
+        sub?.title || sub?.name === navbarCategory;
+      });
+      if (match) {
+        return match.topics?.[0] || null;
+      }
+    }
+    return null;
+  };
+
+  const [clicked, setClicked] = useState(getDefaultTopic());
+
+  useEffect(() => {
+    const newDefault = getDefaultTopic();
+    if (newDefault) setClicked(newDefault);
+  }, [navbarCategory]);
 
   return (
     <div className="w-full flex flex-col items-start justify-start">
@@ -86,9 +124,25 @@ const div = () => {
         </div>
         <hr className="w-full" />
       </div>
-      <div className="w-full flex flex-col items-center justify-center gap-8 bg-gray-100">
-        <div className="mt-10 w-full flex">
-          <div className="w-full flex">
+      <div className="w-full flex flex-col items-center justify-center gap-10 bg-gray-100 p-5">
+        <div className="w-full flex">
+          <div className="absolute shadow-alertAlgoInfo z-10 bg-white rounded-full left-[1%] top-[67%]">
+            <button
+              className={`${countClick > 0 ? "block" : "hidden"} focus:outline-none p-2 hover:bg-gray-200 rounded-full`}
+              onClick={handlePrev}
+            >
+              <RiArrowLeftSLine size={24} />
+            </button>
+          </div>
+          <div className="absolute shadow-alertAlgoInfo z-10 bg-white rounded-full right-[2%] top-[67%]">
+            <button
+              className={`${countClick === 0 ? "block" : "hidden"} focus:outline-none p-2 hover:bg-gray-200 rounded-full`}
+              onClick={handleNext}
+            >
+              <RiArrowRightSLine size={24} />
+            </button>
+          </div>
+          <div className="mt-3 w-full flex">
             {categoriesData.map((category, i) => {
               const match = category?.subcategory.find(
                 (sub) => sub?.title === navbarCategory,
@@ -97,7 +151,10 @@ const div = () => {
               return (
                 <div
                   key={i}
-                  className="w-max flex gap-2 items-center justify-center"
+                  className={`w-max flex gap-2 items-center justify-center transition-transform duration-900 ease-in-out`}
+                  style={{
+                    transform: `translateX(-${currentIndex * 18}%)`,
+                  }}
                 >
                   {match?.topics?.map((topic, idx) => (
                     <div
@@ -110,7 +167,10 @@ const div = () => {
                       } cursor-pointer hover:bg-grayUdemy text-blackUdemy flex flex-col items-start justify-start bg-[#e9eaf2] p-5 rounded-full w-max`}
                     >
                       <b className="w-max text-base">{topic}</b>
-                      <p>{getRandomLearnersAmount()}</p>
+
+                      {idx < topics.length - 1 ? (
+                        <p>{getRandomLearnersAmount()}</p>
+                      ) : null}
                     </div>
                   ))}
                 </div>
@@ -173,4 +233,4 @@ const div = () => {
   );
 };
 
-export default div;
+export default Sections;

@@ -262,6 +262,7 @@ export const categoriesData: (ExploreCategory | undefined)[] = [
           "Artificial Intelligence (AI)",
           "Statistics",
           "Natural Language Processing (NLP)",
+          "",
         ],
       },
       {
@@ -747,7 +748,7 @@ export const categoriesData: (ExploreCategory | undefined)[] = [
     category: "IT & Software",
     subcategory: [
       {
-        title: "IT Certifications",
+        title: "IT Certification",
         topics: [
           "AWS Certified Cloud Practitioner",
           "AWS Certified Solutions Architect - Associate",
