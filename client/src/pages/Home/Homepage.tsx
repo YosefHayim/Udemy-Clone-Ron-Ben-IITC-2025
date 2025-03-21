@@ -12,7 +12,6 @@ import Carousel from "./Carousel/Carousel";
 import Sections from "./Sections/Sections";
 import Welcome from "@/components/LoggedInHome/Welcome";
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
-import TeamAccess from "./TeamAccess/TeamAccess";
 import { useEffect } from "react";
 import styles from "./Homepage.module.css";
 import { useSelector } from "react-redux";

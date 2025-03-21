@@ -95,7 +95,7 @@ const Sections = () => {
     event: React.MouseEvent<HTMLDivElement>,
   ) => {
     const rect = event.currentTarget.getBoundingClientRect();
-    setHoverPosition({ top: rect.top - 250, left: rect.right }); // right side of the card + 10px spacing
+    setHoverPosition({ top: rect.top - 220, left: rect.right }); // right side of the card + 10px spacing
     setHoveredCourse(id);
   };
 
@@ -198,7 +198,7 @@ const Sections = () => {
             />
           )}
           <div
-            className={`flex ${data && data.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"}  gap-4 transition-transform duration-1000 ease-in-out`}
+            className={`flex ${data && data.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
             style={{
               transform: `translateX(-${courseIndex * 30.5}%)`,
             }}
@@ -239,7 +239,7 @@ const Sections = () => {
                       </div>
                       {hoveredCourse === courseCard._id && (
                         <div
-                          className="z-1000 fixed"
+                          className="z-1000 absolute"
                           style={{
                             top: `${hoverPosition.top}px`,
                             left: `${hoverPosition.left}px`,
