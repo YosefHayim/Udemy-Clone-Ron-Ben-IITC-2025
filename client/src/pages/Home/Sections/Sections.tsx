@@ -15,7 +15,8 @@ import Loader from "@/components/Loader/Loader";
 import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
 import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
 import CourseInstructor from "@/components/CourseCard/CourseInstructor/CourseInstructor";
-import CourseImg from "@/components/CourseCard/CourseImg/CourseImg";
+import { getTopValue } from "@/utils/geTopValues";
+import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
 
 const Sections = () => {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const Sections = () => {
   const [countClick, setCountClick] = useState(0);
   const [countCourseClick, setCourseClick] = useState(0);
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
+  const [hoverPosition, setHoverPosition] = useState({ top: 0, left: 0 });
 
   const handlePrev = () => {
     if (isAnimating || currentIndex === 0) return;
@@ -88,10 +90,23 @@ const Sections = () => {
     enabled: !!choseTopic,
   });
 
+  const handleMouseEnter = (
+    id: string,
+    event: React.MouseEvent<HTMLDivElement>,
+  ) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    setHoverPosition({ top: rect.top - 250, left: rect.right }); // right side of the card + 10px spacing
+    setHoveredCourse(id);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredCourse(null);
+  };
+
   useEffect(() => {
     const newDefault = getDefaultTopic();
     if (newDefault) setChooseTopic(newDefault);
-  }, [navbarCategory, data]);
+  }, [navbarCategory]);
 
   return (
     <div className="flex w-full flex-col items-start justify-start">
@@ -131,7 +146,7 @@ const Sections = () => {
             state={countClick}
             useCustom={true}
             showDirectionalButtonsOnlyOnEdge={true}
-            topPosition="67%"
+            topPosition="44%"
             leftPosition="2%"
             rightPosition="2%"
           />
@@ -176,51 +191,89 @@ const Sections = () => {
               handleFnPrev={handlePrevCourse}
               state={countCourseClick}
               useCustom={true}
-              showDirectionalButtonsOnlyOnEdge={true}
+              showDirectionalButtonsOnlyOnEdge={false}
               topPosition="40%"
               leftPosition="1%"
               rightPosition="2%"
             />
           )}
           <div
-            className={`flex ${data && data.length > 7 ? "w-max" : "w-full"} items-center justify-center gap-4 transition-transform duration-1000 ease-in-out`}
+            className={`flex ${data && data.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"}  gap-4 transition-transform duration-1000 ease-in-out`}
             style={{
               transform: `translateX(-${courseIndex * 30.5}%)`,
             }}
           >
             {data && data.length > 1 ? (
-              data.map((courseCard: CourseTypeProps, index: number) => (
-                <div
-                  onClick={() => handleCardClick(courseCard._id)}
-                  onMouseEnter={() => setHoveredCourse(courseCard._id)}
-                  onMouseLeave={() => setHoveredCourse(courseCard._id)}
-                  key={courseCard?._id}
-                  id={courseCard?._id}
-                  className="w-[300px] cursor-pointer flex-col items-start overflow-hidden rounded-lg border border-borderGrayColor bg-white shadow-sm"
-                >
-                  <img
-                    src={courseCard?.courseImg}
-                    alt={courseCard?.courseName}
-                    className="h-40 w-full object-cover"
-                  />
-                  <hr className="h-[0.1em] w-full bg-gray-300" />
-                  <div className="flex flex-col items-start justify-start gap-4 p-4">
-                    <CourseTitle title={courseCard.courseName} />
-                    <CourseInstructor
-                      instructor={courseCard?.courseInstructor?.fullName}
-                    />
-                    <CourseRatings
-                      totalRatings={courseCard?.totalRatings}
-                      avgRatings={courseCard?.averageRating}
-                    />
-                    <CoursePrice
-                      discountPrice={courseCard.courseDiscountPrice}
-                      fullPrice={courseCard.courseFullPrice}
-                    />
-                    <CourseTag tagName={courseCard?.courseTag} />
-                  </div>
-                </div>
-              ))
+              data.map(
+                (courseCard: CourseTypeProps, index: number) => (
+                  console.log(courseCard),
+                  (
+                    <div
+                      onClick={() => handleCardClick(courseCard._id)}
+                      onMouseEnter={(e) => handleMouseEnter(courseCard._id, e)}
+                      // onMouseLeave={handleMouseLeave}
+                      key={courseCard?._id}
+                      id={courseCard?._id}
+                      className="w-[300px] cursor-pointer flex-col items-start overflow-hidden rounded-lg border border-borderGrayColor bg-white shadow-sm"
+                    >
+                      <img
+                        src={courseCard?.courseImg}
+                        alt={courseCard?.courseName}
+                        className="h-40 w-full object-cover"
+                      />
+                      <hr className="h-[0.1em] w-full bg-gray-300" />
+                      <div className="flex flex-col items-start justify-start gap-1 p-4">
+                        <CourseTitle title={courseCard.courseName} />
+                        <CourseInstructor
+                          instructor={courseCard?.courseInstructor?.fullName}
+                        />
+                        <CourseRatings
+                          totalRatings={courseCard?.totalRatings}
+                          avgRatings={courseCard?.averageRating}
+                        />
+                        <CoursePrice
+                          discountPrice={courseCard.courseDiscountPrice}
+                          fullPrice={courseCard.courseFullPrice}
+                        />
+                        <CourseTag tagName={courseCard?.courseTag} />
+                      </div>
+                      {hoveredCourse === courseCard._id && (
+                        <div
+                          className="z-1000 fixed"
+                          style={{
+                            top: `${hoverPosition.top}px`,
+                            left: `${hoverPosition.left}px`,
+                          }}
+                        >
+                          <CourseHoverCardInfo
+                            courseName={courseCard?.courseName}
+                            courseLanguages={courseCard?.courseLanguages}
+                            courseTag={courseCard?.courseTag}
+                            showCourseLength={true}
+                            totalCourseLessons={courseCard?.totalCourseLessons}
+                            totalCourseDuration={
+                              courseCard?.totalCourseDuration
+                            }
+                            courseLevel={courseCard?.courseLevel}
+                            courseUpdatedAt={courseCard?.updatedAt}
+                            courseRecapInfo={courseCard?.courseRecapInfo}
+                            positionedRight={true}
+                            width="330px"
+                            instructorId={courseCard?.courseInstructor?._id}
+                            courseTopic={courseCard?.courseTopic}
+                            index={index}
+                            displayWhatYouLearn={false}
+                            whatYouWillLearn={courseCard?.whatYouWillLearn}
+                            courseId={courseCard?._id}
+                            fullPriceCourse={courseCard?.courseFullPrice}
+                            coursePrice={courseCard?.courseDiscountPrice}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )
+                ),
+              )
             ) : (
               <Loader useSmallLoading={false} hSize="" />
             )}

@@ -1,20 +1,26 @@
-import { IoMdCheckmark } from "react-icons/io";
+import { GrCheckmark } from "react-icons/gr";
 
 const CoursePros: React.FC<{
   whatYouWillLearn: string[];
-}> = ({ whatYouWillLearn }) => {
+  displayWhatYouLearn: boolean;
+}> = ({ whatYouWillLearn, displayWhatYouLearn }) => {
   return (
-    <ul className="flex flex-col items-start justify-start gap-[0.5em]">
-      <span className="font-bold">What you’ll learn</span>
-
-      {whatYouWillLearn.slice(0, 3).map((pro, index) => (
-        <li key={index}>
-          <div className="flex items-start gap-[1em]">
-            <IoMdCheckmark className="text-[1.5em]" />
-            <p>{pro}</p>
-          </div>
-        </li>
-      ))}
+    <ul className="flex w-full flex-col items-center justify-start">
+      {displayWhatYouLearn && (
+        <div>
+          <span className="font-bold">What you’ll learn</span>
+        </div>
+      )}
+      <div className="mt-1">
+        {whatYouWillLearn.slice(0, 3).map((pro, index) => (
+          <li key={index}>
+            <div className="my-2 flex w-full items-start justify-start gap-2">
+              <GrCheckmark size={12} className="mt-1 min-w-[12px]" />
+              <p>{pro}</p>
+            </div>
+          </li>
+        ))}
+      </div>
     </ul>
   );
 };

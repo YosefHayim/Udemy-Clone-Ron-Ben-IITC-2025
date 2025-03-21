@@ -24,15 +24,17 @@ const ButtonsCarousel = ({
   bottomPosition = "0%",
   rightPosition = "0%",
 }) => {
-  const showLeft =
-    useCustom &&
-    ((showDirectionalButtonsOnlyOnEdge && state > 0) ||
-      (!showDirectionalButtonsOnlyOnEdge && state >= 0));
+  const showLeft = useCustom
+    ? showDirectionalButtonsOnlyOnEdge
+      ? state > 0
+      : state >= 0
+    : true;
 
-  const showRight =
-    useCustom &&
-    ((showDirectionalButtonsOnlyOnEdge && state === 0) ||
-      (!showDirectionalButtonsOnlyOnEdge && state === 0));
+  const showRight = useCustom
+    ? showDirectionalButtonsOnlyOnEdge
+      ? state === 0
+      : state >= 0
+    : true;
 
   return (
     <div>
@@ -44,7 +46,7 @@ const ButtonsCarousel = ({
             className="rounded-full p-2 hover:bg-gray-200 focus:outline-none"
             onClick={handleFnPrev}
           >
-            <RiArrowLeftSLine size={24} />
+            <RiArrowLeftSLine size={30} />
           </button>
         </div>
       )}
@@ -57,7 +59,7 @@ const ButtonsCarousel = ({
             className="rounded-full p-2 hover:bg-gray-200 focus:outline-none"
             onClick={handleFnNext}
           >
-            <RiArrowRightSLine size={24} />
+            <RiArrowRightSLine size={30} />
           </button>
         </div>
       )}

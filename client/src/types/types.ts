@@ -361,7 +361,7 @@ export interface CourseTypeProps {
   courseTopic: string;
   courseTrailer: string;
   createdAt: string;
-  updatedAt: string;
+  updatedAt: Date;
   isActive: boolean;
   moneyBackGuarantee: string;
   reviews: Array<string>;

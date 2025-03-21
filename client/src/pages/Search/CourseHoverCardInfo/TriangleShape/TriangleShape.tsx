@@ -6,14 +6,14 @@ const TriangleShape: React.FC<{
   return (
     <div>
       {/* // This is when hovering left */}
-      {index === 0 && positionedLeft && (
+      {index >= 0 && positionedLeft && (
         <div
-          className={`-translate-x-1/2" z-10flex absolute right-[93.5%] top-[45%] -rotate-90 transform items-center justify-center bg-green-500`}
+          className={`-translate-x-1/2" absolute right-[94.1%] top-[45%] z-10 flex -rotate-90 transform items-center justify-center`}
         >
           <div className="flex w-[50px] items-center justify-center ">
             {/* Wrapper triangle with thick gray border and white fill */}
             <div className="relative flex items-center justify-center">
-              <div className="h-0 w-full border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-gray-500 border-l-transparent border-r-transparent"></div>
+              <div className="h-0 w-full border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-gray-100 border-l-transparent border-r-transparent"></div>
               <div className="w- absolute h-0 border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-white border-l-transparent border-r-transparent"></div>
             </div>
           </div>
@@ -21,14 +21,54 @@ const TriangleShape: React.FC<{
       )}
 
       {/* // This is when hovering right */}
-      {index === 0 && positionedRight && (
+      {index >= 0 && positionedRight && (
         <div
-          className={`-translate-x-1/2"  absolute left-[93.5%] top-[45%] z-10 flex rotate-90 transform items-center justify-center bg-red-500`}
+          className={`-translate-x-1/2" absolute left-[93.5%] top-[45%] z-10 flex rotate-90 transform items-center justify-center`}
         >
           <div className="flex w-[50px] items-center justify-center ">
             {/* Wrapper triangle with thick gray border and white fill */}
             <div className="relative flex items-center justify-center">
-              <div className="h-0 w-full border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-gray-500 border-l-transparent border-r-transparent"></div>
+              <div className="h-0 w-full border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-gray-100 border-l-transparent border-r-transparent"></div>
+              <div className="w- absolute h-0 border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-white border-l-transparent border-r-transparent"></div>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* // This is when hovering top or from bottom */}
+      {index === 0 && !positionedRight && !positionedLeft && (
+        <div
+          className={` -translate-x-1/2" z-10flex absolute left-[45%] top-[-5%] transform items-center justify-center`}
+        >
+          <div className="flex w-[50px] items-center justify-center">
+            {/* Wrapper triangle with thick gray border and white fill */}
+            <div className="relative flex items-center justify-center">
+              <div className="h-0 w-full border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-gray-100 border-l-transparent border-r-transparent"></div>
+              <div className="w- absolute h-0 border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-white border-l-transparent border-r-transparent"></div>
+            </div>
+          </div>
+        </div>
+      )}
+      {index === 1 && !positionedRight && !positionedLeft && (
+        <div
+          className={`-translate-x-1/2" absolute bottom-[-4.4%] left-[45%] z-10 flex rotate-180 transform items-center justify-center`}
+        >
+          <div className="flex w-[50px] items-center justify-center">
+            {/* Wrapper triangle with thick gray border and white fill */}
+            <div className="relative flex items-center justify-center">
+              <div className="h-0 w-full border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-gray-100 border-l-transparent border-r-transparent"></div>
+              <div className="w- absolute h-0 border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-white border-l-transparent border-r-transparent"></div>
+            </div>
+          </div>
+        </div>
+      )}
+      {index > 1 && (
+        <div
+          className={`-translate-x-1/2" absolute bottom-[-4.6%] left-[45%] z-10 flex rotate-180 transform items-center justify-center`}
+        >
+          <div className="flex w-[50px] items-center justify-center">
+            {/* Wrapper triangle with thick gray border and white fill */}
+            <div className="relative flex items-center justify-center">
+              <div className="h-0 w-full border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-gray-100 border-l-transparent border-r-transparent"></div>
               <div className="w- absolute h-0 border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-white border-l-transparent border-r-transparent"></div>
             </div>
           </div>
@@ -39,46 +79,3 @@ const TriangleShape: React.FC<{
 };
 
 export default TriangleShape;
-
-{
-  /* // This is when hovering top or from bottom */
-}
-// {index === 0 && (
-//   <div
-//     className={` -translate-x-1/2" z-10flex absolute left-[45%] top-[-5%] transform items-center justify-center`}
-//   >
-//     <div className="flex w-[50px] items-center justify-center">
-//       {/* Wrapper triangle with thick gray border and white fill */}
-//       <div className="relative flex items-center justify-center">
-//         <div className="h-0 w-full border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-gray-500 border-l-transparent border-r-transparent"></div>
-//         <div className="w- absolute h-0 border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-white border-l-transparent border-r-transparent"></div>
-//       </div>
-//     </div>
-//   </div>
-// )}
-// {index === 1 && (
-//   <div
-//     className={`-translate-x-1/2" absolute bottom-[-4.4%] left-[45%] z-10 flex rotate-180 transform items-center justify-center`}
-//   >
-//     <div className="flex w-[50px] items-center justify-center">
-//       {/* Wrapper triangle with thick gray border and white fill */}
-//       <div className="relative flex items-center justify-center">
-//         <div className="h-0 w-full border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-gray-500 border-l-transparent border-r-transparent"></div>
-//         <div className="w- absolute h-0 border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-white border-l-transparent border-r-transparent"></div>
-//       </div>
-//     </div>
-//   </div>
-// )}
-// {index > 1 && (
-//   <div
-//     className={`-translate-x-1/2" absolute bottom-[-4.6%] left-[45%] z-10 flex rotate-180 transform items-center justify-center`}
-//   >
-//     <div className="flex w-[50px] items-center justify-center">
-//       {/* Wrapper triangle with thick gray border and white fill */}
-//       <div className="relative flex items-center justify-center">
-//         <div className="h-0 w-full border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-gray-500 border-l-transparent border-r-transparent"></div>
-//         <div className="w- absolute h-0 border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-white border-l-transparent border-r-transparent"></div>
-//       </div>
-//     </div>
-//   </div>
-// )}
