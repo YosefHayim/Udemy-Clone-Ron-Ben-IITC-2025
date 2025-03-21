@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { btnStyleNHover, loginWithEmailBtn } from "@/utils/stylesStorage";
 import LearningGetsYouBanner from "/images/banner3.jpg";
 import skillsDriveYouBanner from "/images/banner4.jpg";
-import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
-import ButtonsCarousel from "./ButtonsCarousel";
+import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 
 const baseBanners = [
   {

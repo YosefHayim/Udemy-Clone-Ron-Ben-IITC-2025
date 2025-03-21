@@ -95,20 +95,20 @@ const Sections = () => {
   }, [navbarCategory]);
 
   return (
-    <div className="w-full flex flex-col items-start justify-start">
-      <div className="w-full flex flex-col items-start justify-start  px-5">
-        <h1 className="w-full mt-12 text-3xl font-bold text-gray-900">
+    <div className="flex w-full flex-col items-start justify-start">
+      <div className="flex w-full flex-col items-start justify-start  px-5">
+        <h1 className="mt-12 w-full text-3xl font-bold text-gray-900">
           All the skills you need in one place
         </h1>
-        <p className="w-full mt-2 mb-6 text-base text-gray-600">
+        <p className="mb-6 mt-2 w-full text-base text-gray-600">
           From critical skills to technical topics, Udemy supports your
           professional development.
         </p>
-        <div className="w-full flex items-center justify-start gap-5 ">
+        <div className="flex w-full items-center justify-start gap-5 ">
           {navbarCategories.map((category, index) => (
             <div
               onClick={() => setNavbarCategory(category)}
-              className="cursor-pointer w-min-max flex-col items-center justify-center text-base"
+              className="w-min-max cursor-pointer flex-col items-center justify-center text-base"
               key={index}
             >
               <b
@@ -117,32 +117,32 @@ const Sections = () => {
                 {category}
               </b>
               <hr
-                className={`${category === navbarCategory ? "w-min-max bg-black h-[0.1em]" : "hidden"}`}
+                className={`${category === navbarCategory ? "w-min-max h-[0.1em] bg-black" : "hidden"}`}
               />
             </div>
           ))}
         </div>
         <hr className="w-full" />
       </div>
-      <div className="w-full flex flex-col items-center justify-center gap-10 bg-gray-100 p-5">
-        <div className="w-full flex">
-          <div className="absolute shadow-alertAlgoInfo z-10 bg-white rounded-full left-[1%] top-[67%]">
+      <div className="flex w-full flex-col items-center justify-center gap-10 bg-gray-100 p-5">
+        <div className="flex w-full">
+          <div className="absolute left-[1%] top-[67%] z-10 rounded-full bg-white shadow-alertAlgoInfo">
             <button
-              className={`${countClick > 0 ? "block" : "hidden"} focus:outline-none p-2 hover:bg-gray-200 rounded-full`}
+              className={`${countClick > 0 ? "block" : "hidden"} rounded-full p-2 hover:bg-gray-200 focus:outline-none`}
               onClick={handlePrev}
             >
               <RiArrowLeftSLine size={24} />
             </button>
           </div>
-          <div className="absolute shadow-alertAlgoInfo z-10 bg-white rounded-full right-[2%] top-[67%]">
+          <div className="absolute right-[2%] top-[67%] z-10 rounded-full bg-white shadow-alertAlgoInfo">
             <button
-              className={`${countClick === 0 ? "block" : "hidden"} focus:outline-none p-2 hover:bg-gray-200 rounded-full`}
+              className={`${countClick === 0 ? "block" : "hidden"} rounded-full p-2 hover:bg-gray-200 focus:outline-none`}
               onClick={handleNext}
             >
               <RiArrowRightSLine size={24} />
             </button>
           </div>
-          <div className="mt-3 w-full flex">
+          <div className="mt-3 flex w-full">
             {categoriesData.map((category, i) => {
               const match = category?.subcategory.find(
                 (sub) => sub?.title === navbarCategory,
@@ -151,7 +151,7 @@ const Sections = () => {
               return (
                 <div
                   key={i}
-                  className={`w-max flex gap-2 items-center justify-center transition-transform duration-1000 ease-in-out`}
+                  className={`flex w-max items-center justify-center gap-2 transition-transform duration-1000 ease-in-out`}
                   style={{
                     transform: `translateX(-${currentIndex * 18}%)`,
                   }}
@@ -162,9 +162,9 @@ const Sections = () => {
                       onClick={() => setClicked(topic)}
                       className={`${
                         clicked === topic
-                          ? "text-white bg-[#303141] hover:bg-[#595c73] w-full"
+                          ? "w-full bg-[#303141] text-white hover:bg-[#595c73]"
                           : ""
-                      } cursor-pointer hover:bg-grayUdemy text-blackUdemy flex flex-col items-start justify-start bg-[#e9eaf2] p-5 rounded-full w-max`}
+                      } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
                     >
                       <b className="w-max text-base">{topic}</b>
 
@@ -221,9 +221,9 @@ const Sections = () => {
             </div>
           ))}
         </div>
-        <div className="w-full my-8">
+        <div className="my-8 w-full">
           <button
-            className={`${btnStyleNHover} font-bold text-purple-800 border-purple-800 border`}
+            className={`${btnStyleNHover} border border-purple-800 font-bold text-purple-800`}
           >
             Show all {navbarCategory} courses
           </button>
