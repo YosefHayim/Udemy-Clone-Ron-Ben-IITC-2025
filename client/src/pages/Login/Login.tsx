@@ -174,47 +174,48 @@ const Login = () => {
               </form>
             </div>
           )}
-          {differentAccount && (
-            <>
-              <div className="flex flex-col items-center gap-4">
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                  className={`${inputLoginWEmail}`}
-                />
-                <button
-                  className={`${loginWithEmailBtn} focus:outline-none text-[1rem] font-bold flex items-center`}
-                  type="submit"
-                >
-                  <AiOutlineMail size={20} />
-                  Continue with email
-                </button>
-              </div>
-              <div className="w-full flex items-center my-6">
-                <hr className="flex-grow border-gray-300" />
-                <span className="mx-4 text-sm text-grayNavbarTxt">
-                  Other log in options
-                </span>
-                <hr className="flex-grow border-gray-300" />
-              </div>
-              <div className="flex justify-center space-x-5 mb-[2em]">
-                <button
-                  onClick={handleGoogle}
-                  className={`${loginThirdPartyBtn}`}
-                >
-                  <FcGoogle className={`${iconSize}`} />
-                </button>
-                <button className={`${loginThirdPartyBtn}`}>
-                  <FaFacebook className={`${iconSize} text-blue-600`} />
-                </button>
-                <button className={`${loginThirdPartyBtn}`}>
-                  <FaApple className={`${iconSize}`} />
-                </button>
-              </div>
-            </>
-          )}
+          {differentAccount ||
+            (!isLoggedPreviouslyWithGoogle && (
+              <>
+                <div className="flex flex-col items-center gap-4">
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                    className={`${inputLoginWEmail}`}
+                  />
+                  <button
+                    className={`${loginWithEmailBtn} focus:outline-none text-[1rem] font-bold flex items-center`}
+                    type="submit"
+                  >
+                    <AiOutlineMail size={20} />
+                    Continue with email
+                  </button>
+                </div>
+                <div className="w-full flex items-center my-6">
+                  <hr className="flex-grow border-gray-300" />
+                  <span className="mx-4 text-sm text-grayNavbarTxt">
+                    Other log in options
+                  </span>
+                  <hr className="flex-grow border-gray-300" />
+                </div>
+                <div className="flex justify-center space-x-5 mb-[2em]">
+                  <button
+                    onClick={handleGoogle}
+                    className={`${loginThirdPartyBtn}`}
+                  >
+                    <FcGoogle className={`${iconSize}`} />
+                  </button>
+                  <button className={`${loginThirdPartyBtn}`}>
+                    <FaFacebook className={`${iconSize} text-blue-600`} />
+                  </button>
+                  <button className={`${loginThirdPartyBtn}`}>
+                    <FaApple className={`${iconSize}`} />
+                  </button>
+                </div>
+              </>
+            ))}
           {isLoggedPreviouslyWithGoogle && !showRegularLogin && (
             <Button onClick={handleGoogle} className={`${continueWGoogleBtn}`}>
               <FcGoogle size={20} /> Continue with Google
