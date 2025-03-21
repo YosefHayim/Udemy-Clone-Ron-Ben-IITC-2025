@@ -146,7 +146,7 @@ const Sections = () => {
             state={countClick}
             useCustom={true}
             showDirectionalButtonsOnlyOnEdge={true}
-            topPosition="44%"
+            topPosition="70%"
             leftPosition="2%"
             rightPosition="2%"
           />
@@ -159,9 +159,9 @@ const Sections = () => {
               return (
                 <div
                   key={i}
-                  className={`flex w-max items-center justify-center gap-2 transition-transform duration-1000 ease-in-out`}
+                  className={`flex w-max items-center justify-center gap-2 transition-transform duration-1000`}
                   style={{
-                    transform: `translateX(-${currentIndex * 5}%)`,
+                    transform: `translateX(-${currentIndex * 8}%)`,
                   }}
                 >
                   {match?.topics?.map((topic, idx) => (

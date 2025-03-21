@@ -13,37 +13,36 @@ import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
  * @param {string} bottomPosition - Bottom position CSS value.
  * @param {string} rightPosition - Right position CSS value.
  */
+
 const ButtonsCarousel = ({
   handleFnPrev,
   handleFnNext,
   state,
-  useCustom,
+  useCustom = false,
   showDirectionalButtonsOnlyOnEdge = false,
   topPosition = "67%",
   leftPosition = "1%",
   bottomPosition = "0%",
   rightPosition = "0%",
 }) => {
-  const showLeft = useCustom
-    ? showDirectionalButtonsOnlyOnEdge
-      ? state > 0
-      : state >= 0
-    : true;
-
-  const showRight = useCustom
-    ? showDirectionalButtonsOnlyOnEdge
-      ? state === 0
-      : state >= 0
-    : true;
+  const showLeft =
+    !useCustom || (showDirectionalButtonsOnlyOnEdge ? state > 0 : state >= 0);
+  const showRight =
+    !useCustom || (showDirectionalButtonsOnlyOnEdge ? state === 0 : state >= 0);
 
   return (
     <div>
       {showLeft && (
         <div
-          className={`absolute z-10 rounded-full bg-white shadow-alertAlgoInfo left-[${leftPosition}] top-[${topPosition}] bottom-[${bottomPosition}]`}
+          className="absolute z-10 h-min rounded-full bg-white shadow-alertAlgoInfo"
+          style={{
+            left: leftPosition,
+            top: topPosition,
+            bottom: bottomPosition,
+          }}
         >
           <button
-            className="rounded-full p-2 hover:bg-gray-200 focus:outline-none"
+            className="z-10 h-min rounded-full p-2 hover:bg-gray-200 focus:outline-none"
             onClick={handleFnPrev}
           >
             <RiArrowLeftSLine size={30} />
@@ -53,10 +52,15 @@ const ButtonsCarousel = ({
 
       {showRight && (
         <div
-          className={`absolute z-10 rounded-full bg-white shadow-alertAlgoInfo right-[${rightPosition}] top-[${topPosition}] bottom-[${bottomPosition}]`}
+          className="absolute z-10 h-min rounded-full bg-white shadow-alertAlgoInfo"
+          style={{
+            right: rightPosition,
+            top: topPosition,
+            bottom: bottomPosition,
+          }}
         >
           <button
-            className="rounded-full p-2 hover:bg-gray-200 focus:outline-none"
+            className="h-min rounded-full p-2 hover:bg-gray-200 focus:outline-none"
             onClick={handleFnNext}
           >
             <RiArrowRightSLine size={30} />
