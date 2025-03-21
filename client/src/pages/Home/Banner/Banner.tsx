@@ -3,6 +3,7 @@ import { btnStyleNHover, loginWithEmailBtn } from "@/utils/stylesStorage";
 import LearningGetsYouBanner from "/images/banner3.jpg";
 import skillsDriveYouBanner from "/images/banner4.jpg";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import ButtonsCarousel from "./ButtonsCarousel";
 
 const baseBanners = [
   {
@@ -53,42 +54,34 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
   }, []);
 
   return (
-    <div className="w-full overflow-hidden relative">
-      <div className="absolute shadow-alertAlgoInfo z-10 bg-white rounded-full left-[1%] top-[43%]">
-        <button
-          className="focus:outline-none p-2 hover:bg-gray-200 rounded-full"
-          onClick={handlePrev}
-        >
-          <RiArrowLeftSLine size={24} />
-        </button>
-      </div>
-      <div className="absolute shadow-alertAlgoInfo z-10 bg-white rounded-full right-[2%] top-[43%]">
-        <button
-          className="focus:outline-none p-2 hover:bg-gray-200 rounded-full"
-          onClick={handleNext}
-        >
-          <RiArrowRightSLine size={24} />
-        </button>
-      </div>
-
+    <div className="relative w-full overflow-hidden">
+      <ButtonsCarousel
+        state={currentIndex}
+        leftPosition="1%"
+        topPosition="43%"
+        rightPosition="2%"
+        useCustom={false}
+        handleFnNext={handleNext}
+        handleFnPrev={handlePrev}
+      />
       {isLogin ? (
         <div className="p-2">
-          <div className="w-full relative">
+          <div className="relative w-full">
             <img
               src={LearningGetsYouBanner}
               alt="banner udemy welcome"
-              className="w-full relative"
+              className="relative w-full"
             />
-            <div className="flex flex-col items-start gap-2 w-[400px] shadow-alertAlgoInfo px-5 py-7 absolute left-16 top-16 bg-white text-black rounded-sm border-gray-100">
+            <div className="absolute left-16 top-16 flex w-[400px] flex-col items-start gap-2 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
               <h1 className="font-bold">Learning that gets you</h1>
-              <p className="text-lg pr-2">
+              <p className="pr-2 text-lg">
                 Skills for your present (and your future). Get started with us.
               </p>
             </div>
           </div>
         </div>
       ) : (
-        <div className="w-full relative h-full overflow-hidden">
+        <div className="relative h-full w-full overflow-hidden">
           <div
             className={`flex transition-transform duration-1000 ease-in-out`}
             style={{
@@ -96,30 +89,30 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
             }}
           >
             {generatedBanners.map((banner, index) => (
-              <div key={index} className={`w-full flex-shrink-0 relative`}>
+              <div key={index} className={`relative w-full flex-shrink-0`}>
                 <img
                   src={banner.src}
                   alt={`banner-${index}`}
                   className="w-full"
                 />
                 <div
-                  className={`${banner.title === "Skills that drive you forward" ? "w-[450px] gap-[0.5em] p-[2em]" : "w-min-max pr-14"} flex flex-col items-start shadow-alertAlgoInfo px-5 py-7 absolute left-16 top-16 bg-white text-black rounded-sm border-gray-100"`}
+                  className={`${banner.title === "Skills that drive you forward" ? "w-[450px] gap-[0.5em] p-[2em]" : "w-min-max pr-14"} border-gray-100" absolute left-16 top-16 flex flex-col items-start rounded-sm bg-white px-5 py-7 text-black shadow-alertAlgoInfo`}
                 >
                   <h1 className="font-bold">{banner.title}</h1>
                   <p
-                    className={`${banner.title === "Skills that drive you forward" ? "" : "w-[380px]"} text-sm pr-2`}
+                    className={`${banner.title === "Skills that drive you forward" ? "" : "w-[380px]"} pr-2 text-sm`}
                   >
                     {banner.description}
                   </p>
                   {banner.title === `Skills that drive you forward` && (
-                    <div className="w-full gap-2 flex items-center justify-center">
+                    <div className="flex w-full items-center justify-center gap-2">
                       <button
-                        className={`${loginWithEmailBtn} font-extrabold w-full h-[40px]`}
+                        className={`${loginWithEmailBtn} h-[40px] w-full font-extrabold`}
                       >
                         Plan for individuals
                       </button>
                       <button
-                        className={`${btnStyleNHover} font-extrabold text-purple-800 border-purple-800 border w-full h-[40px]`}
+                        className={`${btnStyleNHover} h-[40px] w-full border border-purple-800 font-extrabold text-purple-800`}
                       >
                         Plan for organizations
                       </button>

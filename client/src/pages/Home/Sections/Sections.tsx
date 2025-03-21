@@ -151,7 +151,7 @@ const Sections = () => {
               return (
                 <div
                   key={i}
-                  className={`w-max flex gap-2 items-center justify-center transition-transform duration-900 ease-in-out`}
+                  className={`w-max flex gap-2 items-center justify-center transition-transform duration-1000 ease-in-out`}
                   style={{
                     transform: `translateX(-${currentIndex * 18}%)`,
                   }}

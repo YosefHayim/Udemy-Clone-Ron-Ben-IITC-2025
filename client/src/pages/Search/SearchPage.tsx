@@ -19,23 +19,6 @@ import { getTopValue } from "@/utils/geTopValues";
 const SearchPage: React.FC = () => {
   const [filterData, setFilterData] = useContext(filterContext);
 
-  const calculateTop = (index) => {
-    if (index === 0) return "top-[102%]";
-    if (index >= 8) return "top-[-140%]";
-
-    const topValues = {
-      1: -125,
-      2: -70,
-      3: -105,
-      4: -115,
-      5: -115,
-      6: -42,
-      7: -115,
-    };
-
-    return `top-[${topValues[index]}%]` || "top-[-140%]";
-  };
-
   document.title = "Search results | Udemy";
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
