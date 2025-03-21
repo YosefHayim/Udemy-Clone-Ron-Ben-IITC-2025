@@ -9,12 +9,18 @@ import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
+import { CourseTypeProps } from "@/types/types";
+import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
+import CourseImg from "@/components/CourseCard/CourseImg/CourseImg";
 
 const Sections = () => {
   const [navbarCategory, setNavbarCategory] = useState("Data Science");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [courseIndex, setCourseIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isCourseAnimating, setCourseAnimating] = useState(false);
   const [countClick, setCountClick] = useState(0);
+  const [countCourseClick, setCourseClick] = useState(0);
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
 
   const handlePrev = () => {
@@ -27,10 +33,26 @@ const Sections = () => {
 
   const handleNext = () => {
     if (isAnimating) return;
-    setCountClick((prevCount) => prevCount + 1);
     setIsAnimating(true);
+    setCountClick((prevCount) => prevCount + 1);
     setCurrentIndex((prevIndex) => prevIndex + 1);
     setTimeout(() => setIsAnimating(false), 500);
+  };
+
+  const handlePrevCourse = () => {
+    if (isCourseAnimating || courseIndex === 0) return;
+    setCourseAnimating(true);
+    setCourseClick((prevCount) => prevCount - 1);
+    setCourseIndex((prevIndex) => prevIndex - 1);
+    setTimeout(() => setCourseAnimating(false), 500);
+  };
+
+  const handleNextCourse = () => {
+    if (isCourseAnimating) return;
+    setCourseClick((prevCount) => prevCount + 1);
+    setCourseAnimating(true);
+    setCourseIndex((prevIndex) => prevIndex + 1);
+    setTimeout(() => setCourseAnimating(false), 500);
   };
 
   const getDefaultTopic = () => {
@@ -95,8 +117,9 @@ const Sections = () => {
             handleFnPrev={handlePrev}
             state={countClick}
             useCustom={true}
-            topPosition="67%"
-            leftPosition="1%"
+            showDirectionalButtonsOnlyOnEdge={true}
+            topPosition="30%"
+            leftPosition="2%"
             rightPosition="2%"
           />
           <div className="mt-3 flex w-full">
@@ -118,9 +141,8 @@ const Sections = () => {
                       key={idx}
                       onClick={() => setChooseTopic(topic)}
                       className={`${
-                        choseTopic === topic
-                          ? "w-full bg-[#303141] text-white hover:bg-[#595c73]"
-                          : ""
+                        choseTopic === topic &&
+                        "w-full bg-[#303141] text-white hover:bg-[#595c73]"
                       } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
                     >
                       <b className="w-max text-base">{topic}</b>
@@ -134,74 +156,71 @@ const Sections = () => {
             })}
           </div>
         </div>
-        <div
-          className={`flex w-max items-center justify-center gap-2 transition-transform duration-1000 ease-in-out`}
-        >
-          {data ? (
-            data.map((courseCard, index) => (
-              <div
-                onMouseEnter={() => setHoveredCourse(courseCard._id)}
-                onMouseLeave={() => setHoveredCourse(null)}
-                key={courseCard?._id}
-                id={courseCard?._id}
-                className="w-full overflow-hidden rounded-lg border bg-white shadow-sm"
-              >
-                <img
-                  src={courseCard?.courseImg}
-                  alt={courseCard?.courseName}
-                  className="h-40 w-full object-cover"
-                />
-                <div className="p-4">
-                  <h3 className="truncate text-lg font-bold text-gray-900">
-                    {courseCard?.courseName}
-                  </h3>
-                  <p className="truncate text-sm text-gray-600">
-                    {courseCard?.courseInstructor?.fullName}
-                  </p>
-                  <div className="mt-2 flex items-center text-sm text-yellow-500">
-                    <span>{courseCard?.averageRating}</span>
-                    <span className="ml-1 text-gray-500">
-                      ({courseCard?.totalRatings})
-                    </span>
-                  </div>
-                  <div className="mt-2 flex items-baseline justify-between">
-                    <div>
-                      <span className="font-bold text-gray-900">
-                        ₪{courseCard?.courseDiscountPrice}
+        <div className="relative w-full overflow-hidden">
+          {data && data.length > 7 && (
+            <ButtonsCarousel
+              handleFnNext={handleNextCourse}
+              handleFnPrev={handlePrevCourse}
+              state={countCourseClick}
+              useCustom={true}
+              showDirectionalButtonsOnlyOnEdge={true}
+              topPosition="40%"
+              leftPosition="1%"
+              rightPosition="2%"
+            />
+          )}
+          <div
+            className={`flex ${data && data.length > 7 ? "w-max" : "w-full"} items-center justify-center gap-4 transition-transform duration-1000 ease-in-out`}
+            style={{
+              transform: `translateX(-${courseIndex * 30}%)`,
+            }}
+          >
+            {data &&
+              data.length > 1 &&
+              data.map((courseCard: CourseTypeProps, index: number) => (
+                <div
+                  onMouseEnter={() => setHoveredCourse(courseCard._id)}
+                  onMouseLeave={() => setHoveredCourse(courseCard._id)}
+                  key={courseCard?._id}
+                  id={courseCard?._id}
+                  className="w-[300px] flex-col items-start overflow-hidden rounded-lg border bg-white shadow-sm"
+                >
+                  <img
+                    src={courseCard?.courseImg}
+                    alt={courseCard?.courseName}
+                    className="h-40 w-full object-cover"
+                  />
+                  <hr className="h-[0.1em] w-full bg-gray-300" />
+                  <div className="flex flex-col items-start justify-start gap-4 p-4">
+                    <CourseTitle title={courseCard.courseName} />
+                    <p className="truncate text-sm text-gray-600">
+                      {courseCard?.courseInstructor?.fullName}
+                    </p>
+                    <div className="flex items-center text-sm text-yellow-500">
+                      <span>{courseCard?.averageRating}</span>
+                      <span className="ml-1 text-gray-500">
+                        ({courseCard?.totalRatings})
                       </span>
-                      {courseCard.courseFullPrice && (
+                    </div>
+                    <div className="flex items-baseline justify-between">
+                      <div>
+                        <span className="font-bold text-gray-900">
+                          ₪{courseCard?.courseDiscountPrice}
+                        </span>
                         <span className="ml-2 text-sm text-gray-500 line-through">
                           ₪{courseCard?.courseFullPrice}
                         </span>
-                      )}
+                      </div>
                     </div>
-                    <CourseTag tagName={courseCard?.courseTag} />
+                    <div>
+                      <CourseTag tagName={courseCard?.courseTag} />
+                    </div>
                   </div>
                 </div>
-                <div className="absolute">
-                  {hoveredCourse === courseCard._id && (
-                    <div
-                      className={` absolute right-[60%] z-10 w-1/2 translate-x-1/2 `}
-                    >
-                      <CourseHoverCardInfo
-                        instructorId={courseCard?.courseInstructor?._id}
-                        courseTopic={courseCard?.courseTopic}
-                        index={index}
-                        whatYouWillLearn={courseCard?.whatYouWillLearn}
-                        courseId={courseCard?._id}
-                        fullPriceCourse={courseCard?.courseFullPrice}
-                        coursePrice={courseCard?.courseDiscountPrice}
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))
-          ) : (
-            <p>No courses available</p>
-          )}
+              ))}
+          </div>
         </div>
-        <div className="my-8 w-full">
+        <div className="my-2 w-full">
           <button
             className={`${btnStyleNHover} border border-purple-800 font-bold text-purple-800`}
           >

@@ -10,6 +10,9 @@ const CourseHoverCardInfo: React.FC<{
   index: number;
   courseTopic: string;
   instructorId: string;
+  width?: string;
+  positionedLeft?: boolean;
+  positionedRight?: boolean;
 }> = ({
   whatYouWillLearn,
   courseId,
@@ -18,6 +21,9 @@ const CourseHoverCardInfo: React.FC<{
   index,
   courseTopic,
   instructorId,
+  width = "400px",
+  positionedLeft = false,
+  positionedRight = false,
 }) => {
   return (
     <div
@@ -25,8 +31,14 @@ const CourseHoverCardInfo: React.FC<{
       id={courseId}
     >
       <div id={courseId} className={courseId}>
-        <TriangleShape index={index} />
-        <div className="w-[400px] rounded-[0.5em] bg-white p-[1.5em] shadow-alertAlgoInfo">
+        <TriangleShape
+          index={index}
+          positionedRight={positionedRight}
+          positionedLeft={positionedLeft}
+        />
+        <div
+          className={`w-[${width}] rounded-[0.5em] bg-white p-[1.5em] shadow-alertAlgoInfo`}
+        >
           <CoursePros whatYouWillLearn={whatYouWillLearn} />
           <InteractionsBtns
             instructorId={instructorId}

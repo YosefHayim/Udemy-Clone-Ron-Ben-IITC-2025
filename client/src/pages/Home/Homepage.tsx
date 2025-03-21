@@ -32,7 +32,7 @@ const Homepage = () => {
       {!cookie ? (
         <div className="w-full">
           <Banner />
-          <div className="">
+          <div>
             <Sections />
             <TrustedBySection />
             <LearnersAreViewing />
