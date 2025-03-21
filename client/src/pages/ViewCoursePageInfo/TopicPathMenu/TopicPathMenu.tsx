@@ -1,3 +1,4 @@
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
@@ -14,6 +15,7 @@ const TopicPathMenu: React.FC<{
         searchTerm.toLowerCase(),
       )}`,
     );
+    searchAlgoLocalStorage(searchTerm.toLowerCase());
   };
 
   return (

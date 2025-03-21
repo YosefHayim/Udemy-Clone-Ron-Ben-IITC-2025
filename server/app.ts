@@ -58,7 +58,7 @@ app.use(
 );
 
 // Logging middleware
-app.use(morgan("tiny"));
+app.use(morgan("dev"));
 
 // Root route
 app.get("/", (req: Request, res: Response) => {

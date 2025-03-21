@@ -70,7 +70,7 @@ const VerifyCode = () => {
       dispatch(setUdemyCredits(decoded.udemyCredits));
       dispatch(setIsLoggedWithGoogle(true));
 
-      navigate("/"); // Redirect after success
+      navigate("/");
     },
     onError: (error) => {
       console.error("Error during login process:", error);

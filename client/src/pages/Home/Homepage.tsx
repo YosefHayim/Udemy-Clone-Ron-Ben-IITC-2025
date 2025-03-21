@@ -13,7 +13,6 @@ import Sections from "./Sections/Sections";
 import Welcome from "@/components/LoggedInHome/Welcome";
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 import { useEffect } from "react";
-import styles from "./Homepage.module.css";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useMediaQuery } from "react-responsive";
@@ -27,7 +26,7 @@ const Homepage = () => {
   useEffect(() => {}, [cookie]);
 
   return (
-    <div className={styles.homepage}>
+    <div className="font-sans">
       {!cookie ? (
         <div className="w-full">
           <Banner />

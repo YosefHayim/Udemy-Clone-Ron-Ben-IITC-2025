@@ -1,6 +1,7 @@
 import AtagBtn from "@/components/AtagBtn/AtagBtn";
 import { Category, Subcategory } from "@/types/types";
 import { categoriesData } from "@/utils/categoriesData";
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import { useState, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
@@ -85,6 +86,7 @@ const CategoriesMenu = () => {
         searchTerm.toLowerCase(),
       )}`,
     );
+    searchAlgoLocalStorage(searchTerm.toLowerCase());
   };
 
   return (

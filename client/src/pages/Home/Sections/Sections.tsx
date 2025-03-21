@@ -17,6 +17,7 @@ import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
 import CourseInstructor from "@/components/CourseCard/CourseInstructor/CourseInstructor";
 import { getTopValue } from "@/utils/geTopValues";
 import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 
 const Sections = () => {
   const navigate = useNavigate();
@@ -64,6 +65,7 @@ const Sections = () => {
 
   const handleNavigation = () => {
     navigate(`/courses/search?src=ukw&q=${encodeURIComponent(navbarCategory)}`);
+    searchAlgoLocalStorage(navbarCategory);
   };
 
   const handleCardClick = (courseId: string) => {

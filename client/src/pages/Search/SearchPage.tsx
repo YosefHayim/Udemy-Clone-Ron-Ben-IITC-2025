@@ -15,6 +15,7 @@ import { filterContext } from "@/routes/AppRoutes";
 import { useEffect } from "react";
 import RelatedSearches from "./RelatedSearches/RelatedSearches";
 import { getTopValue } from "@/utils/geTopValues";
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 
 const SearchPage: React.FC = () => {
   const [filterData, setFilterData] = useContext(filterContext);
@@ -70,6 +71,7 @@ const SearchPage: React.FC = () => {
       if (!searchTerm && !currentPage && !limit) {
         throw new Error("Course ID is undefined");
       }
+      searchAlgoLocalStorage(searchTerm);
       return getAllCourses(
         searchTerm || "",
         filterData || {},
@@ -109,14 +111,14 @@ const SearchPage: React.FC = () => {
               ?.slice(0, 18)
               .map((course: CourseTypeProps, index: number) => (
                 <div
-                  key={course._id}
-                  id={course._id}
+                  key={course?._id}
+                  id={course?._id}
                   className="relative"
-                  onMouseEnter={() => setHoveredCourse(course._id)}
+                  onMouseEnter={() => setHoveredCourse(course?._id)}
                   onMouseLeave={() => setHoveredCourse(null)}
                 >
                   <SearchCourseCard course={course} />
-                  {hoveredCourse === course._id && (
+                  {hoveredCourse === course?._id && (
                     <div
                       className={` absolute right-[60%] z-10 w-1/2 translate-x-1/2 
             ${getTopValue(index)}`}

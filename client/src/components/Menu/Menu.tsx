@@ -1,4 +1,5 @@
 import { categories } from "@/utils/categoriesOfCoursesNavbarHover";
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -28,6 +29,7 @@ const Menu: React.FC = () => {
     navigate(
       `/courses/search?src=ukw&q=${encodeURIComponent(category.toLowerCase())}`,
     );
+    searchAlgoLocalStorage(category.toLowerCase());
   };
   return (
     <div>

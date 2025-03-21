@@ -1,3 +1,4 @@
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import { useNavigate } from "react-router-dom";
 
 const RelatedSearchAlgoBtn = ({
@@ -6,6 +7,7 @@ const RelatedSearchAlgoBtn = ({
   const navigate = useNavigate();
   const handleNavigateSearchTerm = () => {
     navigate(`/courses/search?src=ukw&q=${encodeURIComponent(algoSearch)}`);
+    searchAlgoLocalStorage(algoSearch);
   };
   return (
     <div

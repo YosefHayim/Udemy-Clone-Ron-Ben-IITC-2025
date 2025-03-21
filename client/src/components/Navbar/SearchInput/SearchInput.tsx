@@ -5,6 +5,7 @@ import { MdOutlineSearch } from "react-icons/md";
 import SearchResults from "../SearchResults/SearchResults";
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { isRootPathOnly } from "@/utils/isRootPathOnly";
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 
 const SearchInput = () => {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ const SearchInput = () => {
     e.preventDefault();
     if (searchTerm.trim().length > 0) {
       navigate(`/courses/search?src=ukw&q=${encodeURIComponent(searchTerm)}`);
+      searchAlgoLocalStorage(searchTerm);
       setIsTyping(false);
     }
   };
