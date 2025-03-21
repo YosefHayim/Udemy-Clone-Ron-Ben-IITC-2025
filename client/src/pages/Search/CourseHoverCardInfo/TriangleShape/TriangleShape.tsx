@@ -34,6 +34,7 @@ const TriangleShape: React.FC<{
           </div>
         </div>
       )}
+
       {/* // This is when hovering top or from bottom */}
       {index === 0 && !positionedRight && !positionedLeft && (
         <div
@@ -48,6 +49,7 @@ const TriangleShape: React.FC<{
           </div>
         </div>
       )}
+
       {index === 1 && !positionedRight && !positionedLeft && (
         <div
           className={`-translate-x-1/2" absolute bottom-[-4.4%] left-[45%] z-10 flex rotate-180 transform items-center justify-center`}
@@ -61,6 +63,7 @@ const TriangleShape: React.FC<{
           </div>
         </div>
       )}
+
       {index > 1 && (
         <div
           className={`-translate-x-1/2" absolute bottom-[-4.6%] left-[45%] z-10 flex rotate-180 transform items-center justify-center`}

@@ -4,14 +4,17 @@ import { setCoursesAddedToWishList } from "@/redux/slices/cartSlice";
 import { useState } from "react";
 import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const HeartBtn: React.FC<{
   iconSize?: string;
   courseId?: string;
   showHeart?: boolean;
 }> = ({ iconSize = "2em", courseId, showHeart = false }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const cookie = useSelector((state: RootState) => state.user.cookie);
   // Get wishlist courses from Redux
   const coursesInWishlist = useSelector(
     (state: RootState) => state.cart.coursesAddedToWishList,
@@ -25,10 +28,13 @@ const HeartBtn: React.FC<{
   if (!courseId) return null;
 
   const handleClick = () => {
+    if (!cookie) {
+      navigate("/signup");
+      return;
+    }
+
     if (isLoading) return;
-
     setLoading(true);
-
     dispatch(setCoursesAddedToWishList(courseId));
 
     setTimeout(() => {

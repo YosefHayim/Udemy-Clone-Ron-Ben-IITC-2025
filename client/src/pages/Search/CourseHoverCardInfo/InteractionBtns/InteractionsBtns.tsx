@@ -19,7 +19,6 @@ const InteractionsBtns: React.FC<{
   instructorId,
 }) => {
   const [showDialogOfFbt, setShowDialogOfFbt] = useState(false);
-  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   const handleCartSuccess = () => {
     setTimeout(() => {
@@ -41,9 +40,7 @@ const InteractionsBtns: React.FC<{
           fullPriceCourse={fullPriceCourse}
           onAddToCartSuccess={handleCartSuccess}
         />
-        {cookie && (
-          <HeartBtn iconSize={"1.5em"} courseId={courseId} showHeart={true} />
-        )}
+        <HeartBtn iconSize={"1.5em"} courseId={courseId} showHeart={true} />
       </div>
       {showDialogOfFbt && (
         <div>
