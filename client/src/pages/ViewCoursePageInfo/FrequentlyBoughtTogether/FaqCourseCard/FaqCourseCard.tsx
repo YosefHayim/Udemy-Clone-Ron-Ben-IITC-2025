@@ -24,7 +24,7 @@ const FrequentlyCourseCard: React.FC<{
 }) => {
   return (
     <div className="flex flex-col p-[1em]" id={courseId}>
-      <div className="flex flex-row gap-[1em] justify-around">
+      <div className="flex flex-row justify-around gap-[1em]">
         <FaqCourseImg courseImg={courseImg} />
         <div>
           <FaqCourseName courseName={courseName} />

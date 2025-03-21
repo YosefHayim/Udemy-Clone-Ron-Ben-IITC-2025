@@ -21,7 +21,7 @@ const CourseHoverCardInfo: React.FC<{
 }) => {
   return (
     <div
-      className="w-full flex flex-col items-center justify-center"
+      className="flex w-full flex-col items-center justify-center"
       id={courseId}
     >
       <div id={courseId} className={courseId}>

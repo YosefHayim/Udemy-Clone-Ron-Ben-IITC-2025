@@ -58,7 +58,7 @@ const DialogOfAllReviews: React.FC<{
                 </div>
               )}
               {data && (
-                <div className="flex flex-row items-start justify-between w-full gap-[1em]">
+                <div className="flex w-full flex-row items-start justify-between gap-[1em]">
                   <div>
                     {/* Star progress bars */}
                     {/* Add your star progress bar implementation here */}
@@ -68,12 +68,12 @@ const DialogOfAllReviews: React.FC<{
                         type="text"
                         className="border border-black focus:outline-none"
                       />
-                      <Button className="focus:outline-none border border-black hover:bg-hoverDivGray py-[0.5em] px-[0.7em] bg-white">
+                      <Button className="border border-black bg-white px-[0.7em] py-[0.5em] hover:bg-hoverDivGray focus:outline-none">
                         <MdSearch className="text-black" />
                       </Button>
                     </form>
                   </div>
-                  <div className="overflow-y-auto h-[650px] w-2/3">
+                  <div className="h-[650px] w-2/3 overflow-y-auto">
                     {data.map((review: Review) => (
                       <UserCourseReview
                         review={review}
@@ -81,11 +81,11 @@ const DialogOfAllReviews: React.FC<{
                         widthOfReview={`w-full`}
                       />
                     ))}
-                    <div className="w-full mt-[2em]">
+                    <div className="mt-[2em] w-full">
                       <Button
                         className={`${
                           data.length < 13 ? "hidden" : "block"
-                        } bg-white text-black rounded-[0.2em] border border-black font-bold w-full`}
+                        } w-full rounded-[0.2em] border border-black bg-white font-bold text-black`}
                       >
                         Show more reviews
                       </Button>

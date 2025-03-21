@@ -52,9 +52,9 @@ const Banner = () => {
   }, [currentIndex]);
 
   return (
-    <div className="relative w-full h-[30rem] overflow-hidden">
+    <div className="relative h-[30rem] w-full overflow-hidden">
       <div
-        className={`flex w-full h-full ${
+        className={`flex h-full w-full ${
           isTransitioning ? "transition-transform duration-500 ease-in-out" : ""
         }`}
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -64,30 +64,30 @@ const Banner = () => {
             key={index}
             src={slide.img}
             alt={slide.title}
-            className="w-full h-full object-cover flex-shrink-0"
+            className="h-full w-full flex-shrink-0 object-cover"
           />
         ))}
       </div>
 
       {/* Slide Content */}
-      <div className="absolute left-10 top-1/4 bg-white p-6 rounded-lg shadow-lg max-w-lg">
-        <h1 className="text-4xl font-bold text-gray-900 leading-tight">
+      <div className="absolute left-10 top-1/4 max-w-lg rounded-lg bg-white p-6 shadow-lg">
+        <h1 className="text-4xl font-bold leading-tight text-gray-900">
           {slides[(currentIndex - 1) % slides.length].title}
         </h1>
-        <p className="text-lg text-gray-600 mt-4">
+        <p className="mt-4 text-lg text-gray-600">
           {slides[(currentIndex - 1) % slides.length].description}
         </p>
       </div>
 
       {/* Navigation Buttons */}
       <button
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow hover:bg-gray-200 transition"
+        className="absolute left-4 top-1/2 -translate-y-1/2 transform rounded-full bg-white p-3 shadow transition hover:bg-gray-200"
         onClick={handlePrev}
       >
         <MdKeyboardArrowLeft size={24} className="text-black" />
       </button>
       <button
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow hover:bg-gray-200 transition"
+        className="absolute right-4 top-1/2 -translate-y-1/2 transform rounded-full bg-white p-3 shadow transition hover:bg-gray-200"
         onClick={handleNext}
       >
         <MdKeyboardArrowRight size={24} className="text-black" />

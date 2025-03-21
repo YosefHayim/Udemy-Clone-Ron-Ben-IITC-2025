@@ -12,19 +12,19 @@ type EditNoteFn = (
   courseId: string,
   lessonId: string,
   noteId: string,
-  payload: AddNotePayload
+  payload: AddNotePayload,
 ) => Promise<Note>;
 
 type FetchNotesFn = (courseId: string) => Promise<Note[]>;
 type AddNoteFn = (
   courseId: string,
   lessonId: string,
-  payload: AddNotePayload
+  payload: AddNotePayload,
 ) => Promise<Note>;
 type DeleteNoteFn = (
   courseId: string,
   lessonId: string,
-  noteId: string
+  noteId: string,
 ) => Promise<void>;
 
 /**
@@ -51,7 +51,7 @@ const fetchAllNotes: FetchNotesFn = async (courseId) => {
     console.log(`Error fetching notes for course ID ${courseId}:`, error);
     throw new Error(
       error.response?.data?.message ||
-        `Failed to fetch notes for course ID ${courseId}`
+        `Failed to fetch notes for course ID ${courseId}`,
     );
   }
 };
@@ -79,11 +79,11 @@ const addNote: AddNoteFn = async (courseId, lessonId, payload) => {
   } catch (error: any) {
     console.log(
       `Error adding note for course ${courseId} and lesson ${lessonId}:`,
-      error
+      error,
     );
     throw new Error(
       error.response?.data?.message ||
-        `Failed to add note for course ID ${courseId} and lesson ID ${lessonId}`
+        `Failed to add note for course ID ${courseId} and lesson ID ${lessonId}`,
     );
   }
 };
@@ -108,11 +108,11 @@ const deleteNote: DeleteNoteFn = async (courseId, lessonId, noteId) => {
   } catch (error: any) {
     console.log(
       `Error deleting note for course ${courseId}, lesson ${lessonId}, and note ${noteId}:`,
-      error
+      error,
     );
     throw new Error(
       error.response?.data?.message ||
-        `Failed to delete note for course ID ${courseId}, lesson ID ${lessonId}, and note ID ${noteId}`
+        `Failed to delete note for course ID ${courseId}, lesson ID ${lessonId}, and note ID ${noteId}`,
     );
   }
 };

@@ -16,7 +16,7 @@ const ProfileMain = () => {
 
   const fullName = useSelector((state: RootState) => state?.user.fullName);
   const headlineFromStore = useSelector(
-    (state: RootState) => state?.user.headline
+    (state: RootState) => state?.user.headline,
   );
   const userLinks = useSelector((state: RootState) => state?.user.userLinks);
   const bio = useSelector((state: RootState) => state?.user.bio);
@@ -45,14 +45,14 @@ const ProfileMain = () => {
       `YouTube: ${youtube}`,
       `Facebook: ${facebook}`,
       `Bio: ${bio}`,
-      `Website: ${website}`
+      `Website: ${website}`,
     );
   };
 
   const [headline, setHeadline] = useState(headlineFromStore || "");
   const [isBoldText, setBoldText] = useState(false);
   const [charsLeft, setCharsLeft] = useState(
-    MAX_LENGTH - (headlineFromStore?.length || 0)
+    MAX_LENGTH - (headlineFromStore?.length || 0),
   );
 
   const handleHeadlineChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,7 +67,7 @@ const ProfileMain = () => {
   const dispatch = useDispatch();
 
   const defaultLanguage = useSelector(
-    (state: RootState) => state?.user.language
+    (state: RootState) => state?.user.language,
   );
   const [chosenLanguage, setChosenLanguage] = useState(defaultLanguage);
 
@@ -82,14 +82,14 @@ const ProfileMain = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-100 mx-[12rem] mt-[1.5rem] mb-[3rem]">
+    <div className="mx-[12rem] mb-[3rem] mt-[1.5rem] flex min-h-screen bg-gray-100">
       {/* Sidebar */}
       <SideBarProfile />
 
       {/* Main Content */}
       <main className="flex-1 border border-gray-300">
         <div className="bg-white">
-          <div className="border-b border-gray-300 min-w-full text-center p-4">
+          <div className="min-w-full border-b border-gray-300 p-4 text-center">
             <h2 className="text-2xl font-bold text-gray-800">Public Profile</h2>
             <p className="text-courseNameColorTxt">
               Add information about yourself
@@ -97,13 +97,13 @@ const ProfileMain = () => {
           </div>
           <form className="space-y-6 px-[9rem]" onSubmit={handleSubmit}>
             <div>
-              <p className="font-sans font-bold pb-2 pt-8">Basics:</p>
+              <p className="pb-2 pt-8 font-sans font-bold">Basics:</p>
               <Input
                 id="fname"
                 name="fname"
                 type="text"
                 placeholder={fullName}
-                className="hover:bg-gray-100 rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500"
+                className="rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500 hover:bg-gray-100"
               />
             </div>
             <div>
@@ -112,7 +112,7 @@ const ProfileMain = () => {
                 name="lname"
                 type="text"
                 placeholder="Last Name"
-                className="hover:bg-gray-100 rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500"
+                className="rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500 hover:bg-gray-100"
               />
             </div>
             <div>
@@ -123,29 +123,29 @@ const ProfileMain = () => {
                 onChange={handleHeadlineChange}
                 value={headline}
                 placeholder={"Headline"}
-                className="hover:bg-gray-100 rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500"
+                className="rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500 hover:bg-gray-100"
               />
               <span className="absolute right-[26%] top-[37.5%] font-medium text-gray-500">
                 {charsLeft}
               </span>
-              <p className=" text-gray-600 my-[0.4em]">
+              <p className=" my-[0.4em] text-gray-600">
                 Add a professional headline like "instructor at udemy" or
                 "Architect"
               </p>
             </div>
             <div>
               <div className="flex flex-col">
-                <div className="flex items-center space-x-2 border border-gray-500 rounded-t-[0.2rem] bg-white p-2">
+                <div className="flex items-center space-x-2 rounded-t-[0.2rem] border border-gray-500 bg-white p-2">
                   <button
                     type="button"
                     onClick={() => setBoldText((prev) => !prev)}
-                    className={`focus:outline-none text-opacity-80 flex items-center justify-center w-8 h-8 rounded-[0.2rem] text-black hover:bg-gray-300`}
+                    className={`flex h-8 w-8 items-center justify-center rounded-[0.2rem] text-black text-opacity-80 hover:bg-gray-300 focus:outline-none`}
                   >
                     B
                   </button>
                   <button
                     type="button"
-                    className="focus:outline-none font-serif text-opacity-80 flex items-center justify-center w-8 h-8 rounded-[0.2rem] font-bold italic text-black hover:bg-gray-300"
+                    className="flex h-8 w-8 items-center justify-center rounded-[0.2rem] font-serif font-bold italic text-black text-opacity-80 hover:bg-gray-300 focus:outline-none"
                   >
                     I
                   </button>
@@ -157,10 +157,10 @@ const ProfileMain = () => {
                   rows={4}
                   className={`${
                     isBoldText ? "font-bold" : "font-normal"
-                  } hover:bg-gray-100 border border-gray-500 border-t-0 w-full bg-white`}
+                  } w-full border border-t-0 border-gray-500 bg-white hover:bg-gray-100`}
                 ></textarea>
               </div>
-              <p className=" text-gray-600 my-[0.5em]">
+              <p className=" my-[0.5em] text-gray-600">
                 Links and coupon codes are not permitted in this section.
               </p>
               <div>
@@ -169,14 +169,14 @@ const ProfileMain = () => {
                   name="language"
                   value={chosenLanguage}
                   onChange={(e) => handleChosenLanguage(e.target.value)}
-                  className="cursor-pointer hover:bg-gray-100 rounded-[0.2rem] border border-gray-500 mb-[1em] w-full bg-white p-2"
+                  className="mb-[1em] w-full cursor-pointer rounded-[0.2rem] border border-gray-500 bg-white p-2 hover:bg-gray-100"
                 >
                   {btnLanguages.map(
                     (language: { code: string; name: string }) => (
                       <option key={language.code} value={language.name}>
                         {language.name}
                       </option>
-                    )
+                    ),
                   )}
                 </select>
               </div>
@@ -184,7 +184,7 @@ const ProfileMain = () => {
             </div>
             <div>
               <b>Links:</b>
-              <div className="space-y-4 mt-2">
+              <div className="mt-2 space-y-4">
                 <div>
                   <Input
                     type="text"
@@ -195,14 +195,14 @@ const ProfileMain = () => {
                         ? userLinks.website
                         : "Website (http(s)://..)"
                     }
-                    className="rounded-[0.2rem] border border-gray-500 w-full"
+                    className="w-full rounded-[0.2rem] border border-gray-500"
                   />
                 </div>
-                <div className="flex flex-col items-start justify-start w-full">
-                  <div className="flex flex-row items-center w-full border border-gray-400 bg-white h-[35px] rounded-[0.2rem]">
+                <div className="flex w-full flex-col items-start justify-start">
+                  <div className="flex h-[35px] w-full flex-row items-center rounded-[0.2rem] border border-gray-400 bg-white">
                     <label
                       htmlFor="twitter"
-                      className="px-[0.7em] text-black font-normal text-base bg-gray-100 h-full flex items-center border-r border-gray-400 rounded-l-[0.2rem]"
+                      className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
                     >
                       http://twitter.com/
                     </label>
@@ -215,18 +215,18 @@ const ProfileMain = () => {
                           ? userLinks.xPlatform
                           : "Twitter Profile"
                       }
-                      className="h-full w-full bg-white   placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
+                      className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
                     />
                   </div>
-                  <p className=" text-gray-600 my-[1em]">
+                  <p className=" my-[1em] text-gray-600">
                     Add your Twitter username (e.g. johnsmith)
                   </p>
                 </div>
-                <div className="flex flex-col items-start justify-start w-full">
-                  <div className="flex flex-row items-center w-full border border-gray-400 bg-white h-[35px] rounded-[0.2rem]">
+                <div className="flex w-full flex-col items-start justify-start">
+                  <div className="flex h-[35px] w-full flex-row items-center rounded-[0.2rem] border border-gray-400 bg-white">
                     <label
                       htmlFor="facebook"
-                      className="px-[0.7em] text-black font-normal text-base bg-gray-100 h-full flex items-center border-r border-gray-400 rounded-l-[0.2rem]"
+                      className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
                     >
                       http://www.facebook.com/
                     </label>
@@ -239,18 +239,18 @@ const ProfileMain = () => {
                           ? userLinks.facebook
                           : "Username"
                       }
-                      className="h-full w-full bg-white   placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
+                      className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
                     />
                   </div>
-                  <p className=" text-gray-600 my-[1em]">
+                  <p className=" my-[1em] text-gray-600">
                     Input your Facebook username (e.g. johnsmith)
                   </p>
                 </div>
-                <div className="flex flex-col items-start justify-start w-full">
-                  <div className="flex flex-row items-center w-full border border-gray-400 bg-white h-[35px] rounded-[0.2rem]">
+                <div className="flex w-full flex-col items-start justify-start">
+                  <div className="flex h-[35px] w-full flex-row items-center rounded-[0.2rem] border border-gray-400 bg-white">
                     <label
                       htmlFor="linkedin"
-                      className="px-[0.7em] text-black font-normal text-base bg-gray-100 h-full flex items-center border-r border-gray-400 rounded-l-[0.2rem]"
+                      className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
                     >
                       http://www.linkedin.com/
                     </label>
@@ -263,18 +263,18 @@ const ProfileMain = () => {
                           ? userLinks.linkedin
                           : "Username"
                       }
-                      className="h-full w-full bg-white   placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
+                      className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
                     />
                   </div>
-                  <p className=" text-gray-600 my-[1em]">
+                  <p className=" my-[1em] text-gray-600">
                     Input your Linkedin username (e.g. johnsmith)
                   </p>
                 </div>
-                <div className="flex flex-col items-start justify-start w-full">
-                  <div className="flex flex-row items-center w-full border border-gray-400 bg-white h-[35px] rounded-[0.2rem]">
+                <div className="flex w-full flex-col items-start justify-start">
+                  <div className="flex h-[35px] w-full flex-row items-center rounded-[0.2rem] border border-gray-400 bg-white">
                     <label
                       htmlFor="youtube"
-                      className="px-[0.7em] text-black font-normal text-base bg-gray-100 h-full flex items-center border-r border-gray-400 rounded-l-[0.2rem]"
+                      className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
                     >
                       http://www.youtube.com/
                     </label>
@@ -287,19 +287,19 @@ const ProfileMain = () => {
                           ? userLinks.youtube
                           : "Username"
                       }
-                      className="h-full w-full bg-white   placeholder:text-gray-500 placeholder:font-medium outline-none rounded-l-none rounded-r-[0.2rem]"
+                      className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
                     />
                   </div>
-                  <p className=" text-gray-600 mt-[0.5em]">
+                  <p className=" mt-[0.5em] text-gray-600">
                     Input your YouTube username (e.g. johnsmith)
                   </p>
                 </div>
               </div>
             </div>
-            <div className="flex justify-start w-full">
+            <div className="flex w-full justify-start">
               <Button
                 type="submit"
-                className="mb-[1em] font-bold transition duration-150 text-sm font-Sans bg-btnColor hover:bg-[#892DE1] text-white rounded-[0.2rem] px-4 focus:outline-none"
+                className="font-Sans mb-[1em] rounded-[0.2rem] bg-btnColor px-4 text-sm font-bold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none"
               >
                 Save
               </Button>

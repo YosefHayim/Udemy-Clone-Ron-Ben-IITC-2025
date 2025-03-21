@@ -39,7 +39,7 @@ const userSlice = createSlice({
     },
     setUserLinks: (
       state,
-      action: PayloadAction<Partial<UserState["userLinks"]>>
+      action: PayloadAction<Partial<UserState["userLinks"]>>,
     ) => {
       state.userLinks = { ...state.userLinks, ...action.payload };
     },
@@ -63,7 +63,7 @@ const userSlice = createSlice({
       action.payload.forEach((newCourse) => {
         if (
           !state.coursesBought.some(
-            (course) => course.courseId === newCourse.courseId
+            (course) => course.courseId === newCourse.courseId,
           )
         ) {
           state.coursesBought.push(newCourse);

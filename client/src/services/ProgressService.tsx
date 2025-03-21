@@ -16,7 +16,7 @@ type FetchProgressFn = (courseId: string) => Promise<CourseProgressResponse>;
 type UpdateLessonProgressFn = (
   courseId: string,
   lessonId: string,
-  payload: LessonProgressPayload
+  payload: LessonProgressPayload,
 ) => Promise<void>;
 type InitializeProgressFn = (courseId: string) => Promise<void>;
 
@@ -50,7 +50,7 @@ const fetchCourseProgress: FetchProgressFn = async (courseId) => {
     console.log(`Error fetching progress for course ID ${courseId}:`, error);
     throw new Error(
       error.response?.data?.message ||
-        `Failed to fetch progress for course ID ${courseId}`
+        `Failed to fetch progress for course ID ${courseId}`,
     );
   }
 };
@@ -61,7 +61,7 @@ const fetchCourseProgress: FetchProgressFn = async (courseId) => {
 const updateLessonProgress: UpdateLessonProgressFn = async (
   courseId,
   lessonId,
-  payload
+  payload,
 ) => {
   if (!courseId || !lessonId) {
     console.log("Invalid course ID or lesson ID provided.");
@@ -80,11 +80,11 @@ const updateLessonProgress: UpdateLessonProgressFn = async (
   } catch (error: any) {
     console.log(
       `Error updating lesson progress for course ${courseId} and lesson ${lessonId}:`,
-      error
+      error,
     );
     throw new Error(
       error.response?.data?.message ||
-        `Failed to update progress for course ID ${courseId} and lesson ID ${lessonId}`
+        `Failed to update progress for course ID ${courseId} and lesson ID ${lessonId}`,
     );
   }
 };
@@ -110,11 +110,11 @@ const initializeCourseProgress: InitializeProgressFn = async (courseId) => {
   } catch (error: any) {
     console.log(
       `Error initializing progress for course ID ${courseId}:`,
-      error
+      error,
     );
     throw new Error(
       error.response?.data?.message ||
-        `Failed to initialize progress for course ID ${courseId}`
+        `Failed to initialize progress for course ID ${courseId}`,
     );
   }
 };

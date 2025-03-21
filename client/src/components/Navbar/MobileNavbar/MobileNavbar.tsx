@@ -8,8 +8,8 @@ import { isRootPathOnly } from "@/utils/extraGenerals";
 
 const MobileNavbar = () => {
   return (
-    <div className="z-50 fixed bg-white shadow-carouselShadowBtn flex flex-col items-center justify-center w-full px-2">
-      <div className="w-full flex items-center justify-between">
+    <div className="fixed z-50 flex w-full flex-col items-center justify-center bg-white px-2 shadow-carouselShadowBtn">
+      <div className="flex w-full items-center justify-between">
         <div className={`${btnStyleNHover}`}>
           <Burger />
         </div>
@@ -23,7 +23,7 @@ const MobileNavbar = () => {
         </div>
       </div>
       <div
-        className={isRootPathOnly() ? "flex my-[0.5em] w-full px-5" : "hidden"}
+        className={isRootPathOnly() ? "my-[0.5em] flex w-full px-5" : "hidden"}
       >
         <SearchInput />
       </div>

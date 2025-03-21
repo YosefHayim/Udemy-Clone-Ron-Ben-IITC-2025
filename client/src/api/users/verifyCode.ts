@@ -10,7 +10,7 @@ const verifyCode: fn = async (verificationCredentials) => {
   try {
     const response = await axiosClient.post(
       `${localhostUrl}/api/user/verify`,
-      verificationCredentials
+      verificationCredentials,
     );
 
     if (response) {

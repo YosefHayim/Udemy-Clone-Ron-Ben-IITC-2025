@@ -7,7 +7,7 @@ const AddCartNBuyBtn: React.FC<{
   fullPrice: number;
 }> = ({ courseId = "", discountPrice = 0, fullPrice = 0 }) => {
   return (
-    <div className="w-full flex flex-col gap-[0.5em] mb-[0.5em]">
+    <div className="mb-[0.5em] flex w-full flex-col gap-[0.5em]">
       <AddToCart
         courseId={courseId}
         discountPrice={discountPrice}

@@ -45,28 +45,28 @@ const NotificationPreferences = () => {
 
       {/* Main Content */}
       <main className="flex-1 p-8">
-        <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">
+        <div className="mx-auto max-w-4xl rounded-lg bg-white p-8 shadow-lg">
+          <h2 className="mb-6 text-2xl font-bold text-gray-800">
             Notification preferences
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="mb-6 text-gray-600">
             Manage the types of communications you receive.
           </p>
 
           {/* Updates and Offerings */}
           <div className="mb-10">
-            <div className="flex items-center justify-between mb-4">
+            <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-semibold text-gray-800">
                 Updates and offerings
               </h3>
               <button
                 onClick={() => toggleCategory("updates")}
-                className={`w-12 h-6 flex items-center rounded-full p-1 ${
+                className={`flex h-6 w-12 items-center rounded-full p-1 ${
                   updatesEnabled ? "bg-purple-600" : "bg-gray-300"
                 }`}
               >
                 <div
-                  className={`w-4 h-4 bg-white rounded-full shadow-md transform ${
+                  className={`h-4 w-4 transform rounded-full bg-white shadow-md ${
                     updatesEnabled ? "translate-x-6" : "translate-x-0"
                   }`}
                 ></div>
@@ -80,11 +80,11 @@ const NotificationPreferences = () => {
                     id="productLaunches"
                     checked={preferences.productLaunches}
                     onChange={() => togglePreference("productLaunches")}
-                    className="h-5 w-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                    className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
                   <label
                     htmlFor="productLaunches"
-                    className="ml-3 text-gray-700 text-sm"
+                    className="ml-3 text-sm text-gray-700"
                   >
                     Product launches and announcements
                   </label>
@@ -95,11 +95,11 @@ const NotificationPreferences = () => {
                     id="offersPromotions"
                     checked={preferences.offersPromotions}
                     onChange={() => togglePreference("offersPromotions")}
-                    className="h-5 w-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                    className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
                   <label
                     htmlFor="offersPromotions"
-                    className="ml-3 text-gray-700 text-sm"
+                    className="ml-3 text-sm text-gray-700"
                   >
                     Offers and promotions
                   </label>
@@ -110,18 +110,18 @@ const NotificationPreferences = () => {
 
           {/* Your Learning */}
           <div className="mb-10">
-            <div className="flex items-center justify-between mb-4">
+            <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-semibold text-gray-800">
                 Your learning
               </h3>
               <button
                 onClick={() => toggleCategory("learning")}
-                className={`w-12 h-6 flex items-center rounded-full p-1 ${
+                className={`flex h-6 w-12 items-center rounded-full p-1 ${
                   learningEnabled ? "bg-purple-600" : "bg-gray-300"
                 }`}
               >
                 <div
-                  className={`w-4 h-4 bg-white rounded-full shadow-md transform ${
+                  className={`h-4 w-4 transform rounded-full bg-white shadow-md ${
                     learningEnabled ? "translate-x-6" : "translate-x-0"
                   }`}
                 ></div>
@@ -135,11 +135,11 @@ const NotificationPreferences = () => {
                     id="learningStats"
                     checked={preferences.learningStats}
                     onChange={() => togglePreference("learningStats")}
-                    className="h-5 w-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                    className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
                   <label
                     htmlFor="learningStats"
-                    className="ml-3 text-gray-700 text-sm"
+                    className="ml-3 text-sm text-gray-700"
                   >
                     Learning stats
                   </label>
@@ -150,11 +150,11 @@ const NotificationPreferences = () => {
                     id="inspiration"
                     checked={preferences.inspiration}
                     onChange={() => togglePreference("inspiration")}
-                    className="h-5 w-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                    className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
                   <label
                     htmlFor="inspiration"
-                    className="ml-3 text-gray-700 text-sm"
+                    className="ml-3 text-sm text-gray-700"
                   >
                     Inspiration (tips, stories, etc.)
                   </label>
@@ -165,11 +165,11 @@ const NotificationPreferences = () => {
                     id="courseRecommendations"
                     checked={preferences.courseRecommendations}
                     onChange={() => togglePreference("courseRecommendations")}
-                    className="h-5 w-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                    className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
                   <label
                     htmlFor="courseRecommendations"
-                    className="ml-3 text-gray-700 text-sm"
+                    className="ml-3 text-sm text-gray-700"
                   >
                     Course recommendations
                   </label>
@@ -182,11 +182,11 @@ const NotificationPreferences = () => {
                     onChange={() =>
                       togglePreference("notificationsFromInstructors")
                     }
-                    className="h-5 w-5 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+                    className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
                   <label
                     htmlFor="notificationsFromInstructors"
-                    className="ml-3 text-gray-700 text-sm"
+                    className="ml-3 text-sm text-gray-700"
                   >
                     Notifications from instructors
                   </label>
@@ -196,7 +196,7 @@ const NotificationPreferences = () => {
           </div>
 
           {/* Note */}
-          <p className="text-sm text-gray-500 mb-6">
+          <p className="mb-6 text-sm text-gray-500">
             Note: It may take a few hours for changes to be reflected in your
             preferences. You’ll still receive transactional emails related to
             your account and purchases if you unsubscribe.
@@ -207,7 +207,7 @@ const NotificationPreferences = () => {
             <button
               type="button"
               onClick={handleSave}
-              className="px-6 py-2 bg-purple-600 text-white rounded-md shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="rounded-md bg-purple-600 px-6 py-2 text-white shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
             >
               Save
             </button>

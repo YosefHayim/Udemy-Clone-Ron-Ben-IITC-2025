@@ -20,7 +20,7 @@ const ProfilePic: React.FC<{
     <div
       className={`${
         isHover ? "hover:bg-purple-100" : ""
-      } p-[1em] text-[#020202] font-normal font-Sans hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300 px-[0.6em] py-[0.2em] rounded-[0.4em]`}
+      } font-Sans rounded-[0.4em] p-[1em] px-[0.6em] py-[0.2em] font-normal text-[#020202] hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300`}
     >
       <Avatar className={`${isBig ? `${size}` : ""}`}>
         <AvatarImage
@@ -30,7 +30,7 @@ const ProfilePic: React.FC<{
         <AvatarFallback
           className={`${
             isBig ? "text-2xl" : "text-1xl"
-          } bg-black text-white font-bold ${customTextSize}`}
+          } bg-black font-bold text-white ${customTextSize}`}
         >
           {shortcutName.toUpperCase()}
         </AvatarFallback>

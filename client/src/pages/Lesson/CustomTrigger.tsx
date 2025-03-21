@@ -52,8 +52,8 @@ const CustomTrigger: React.FC<CustomTriggerProps> = ({
             onClick={handleSidebarToggle}
             className={`z-40 ${
               isInsideSidebar
-                ? "text-gray-700 bg-transparent flex text-xl items-center font-semibold"
-                : "bg-purple-500 border   bg-opacity-60 text-2xl py-3 pl-2 top-40 hover:bg-[##892DE1] text-white rounded-ts group flex items-center w-10 overflow-hidden transition-all duration-300 hover:w-80 hover:border-0"
+                ? "flex items-center bg-transparent text-xl font-semibold text-gray-700"
+                : "rounded-ts group   top-40 flex w-10 items-center overflow-hidden border bg-purple-500 bg-opacity-60 py-3 pl-2 text-2xl text-white transition-all duration-300 hover:w-80 hover:border-0 hover:bg-[##892DE1]"
             } transform transition-all duration-300 ${
               isInsideSidebar ? "" : "absolute"
             }`}
@@ -66,10 +66,10 @@ const CustomTrigger: React.FC<CustomTriggerProps> = ({
               )
             ) : (
               <>
-                <span className="text-white transition-all duration-300 rotate-180 group-hover:left-4">
+                <span className="rotate-180 text-white transition-all duration-300 group-hover:left-4">
                   <FaArrowRight className="size-5" />
                 </span>
-                <span className="pl-5 whitespace-nowrap opacity-0 group-hover:opacity-100 group-hover:relative group-hover:ml-0 text-lg transition-opacity duration-400">
+                <span className="duration-400 whitespace-nowrap pl-5 text-lg opacity-0 transition-opacity group-hover:relative group-hover:ml-0 group-hover:opacity-100">
                   Ai Assistant & Course Content
                 </span>
               </>

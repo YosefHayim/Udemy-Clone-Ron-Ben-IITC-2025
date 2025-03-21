@@ -9,17 +9,17 @@ const CourseCard: React.FC<CourseCardProps> = ({
   tag,
 }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden">
-      <img src={image} alt={title} className="w-full h-32 object-cover" />
+    <div className="overflow-hidden rounded-lg bg-white shadow-md">
+      <img src={image} alt={title} className="h-32 w-full object-cover" />
       <div className="p-4">
-        <h3 className="font-bold text-lg">{title}</h3>
-        <p className="text-gray-600 text-sm">{description}</p>
+        <h3 className="text-lg font-bold">{title}</h3>
+        <p className="text-sm text-gray-600">{description}</p>
         <div className="mt-2">
-          <span className="text-red-500 font-bold">${discountPrice}</span>
-          <span className="text-gray-500 line-through ml-2">${fullPrice}</span>
+          <span className="font-bold text-red-500">${discountPrice}</span>
+          <span className="ml-2 text-gray-500 line-through">${fullPrice}</span>
         </div>
         {tag && (
-          <span className="text-xs text-white bg-yellow-500 px-2 py-1 rounded mt-2 inline-block">
+          <span className="mt-2 inline-block rounded bg-yellow-500 px-2 py-1 text-xs text-white">
             {tag}
           </span>
         )}

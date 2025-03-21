@@ -6,7 +6,7 @@ const PaymentMethods = () => {
   return (
     <div className="p-[5em]">
       <h1 className="mb-[1em] font-bold">Payment methods</h1>
-      <div className="flex flex-row items-center justify-start w-full gap-[0.5em] bg-[#f6f7f9] p-[2em] shadow-sm">
+      <div className="flex w-full flex-row items-center justify-start gap-[0.5em] bg-[#f6f7f9] p-[2em] shadow-sm">
         <Checkbox className="rounded-[0em]" name="save-payments" />
         <label
           htmlFor="save-payments"
@@ -15,11 +15,11 @@ const PaymentMethods = () => {
           Show my saved payment methods on the checkout step.
         </label>
       </div>
-      <h2 className="font-bold text-[1.5em] my-[1em]">
+      <h2 className="my-[1em] text-[1.5em] font-bold">
         Your saved payment methods
       </h2>
-      <div className="my-[1.5em] border flex flex-row items-start justify-normal w-full p-[1em]">
-        <div className="flex flex-row items-center justify-between w-full">
+      <div className="my-[1.5em] flex w-full flex-row items-start justify-normal border p-[1em]">
+        <div className="flex w-full flex-row items-center justify-between">
           <div className="flex flex-row items-center justify-start gap-[1em]">
             <img src={visaIcon} alt="" className="h-[4em]" />
             <div className="flex flex-row items-start gap-[1em]">
@@ -28,7 +28,7 @@ const PaymentMethods = () => {
             </div>
           </div>
           <div>
-            <Button className="focus:outline-none hover:text-btnColor hover:bg-white bg-white shadow-none hover:hover-color-mix rounded-[0.2em] h-[3em] text-black w-full">
+            <Button className="hover:hover-color-mix h-[3em] w-full rounded-[0.2em] bg-white text-black shadow-none hover:bg-white hover:text-btnColor focus:outline-none">
               Remove
             </Button>
           </div>

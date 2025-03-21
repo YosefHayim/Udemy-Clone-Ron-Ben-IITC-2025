@@ -16,10 +16,10 @@ const Heart = () => {
       onMouseLeave={handleMouseLeave}
     >
       <div className={`${btnStyleNHover}`}>
-        <IoMdHeartEmpty className="w-6 h-6" />
+        <IoMdHeartEmpty className="h-6 w-6" />
       </div>
       {showHeartHover && (
-        <div className="absolute top-full left-0 z-[5000] p-[2em]">
+        <div className="absolute left-0 top-full z-[5000] p-[2em]">
           <HoverHeart />
         </div>
       )}

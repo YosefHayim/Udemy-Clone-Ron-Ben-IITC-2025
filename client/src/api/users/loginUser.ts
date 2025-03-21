@@ -10,7 +10,7 @@ const loginUser: fn = async (email) => {
   try {
     const response = await axiosClient.post(
       `${localhostUrl}/api/user/auth/login`,
-      email
+      email,
     );
 
     if (response) {

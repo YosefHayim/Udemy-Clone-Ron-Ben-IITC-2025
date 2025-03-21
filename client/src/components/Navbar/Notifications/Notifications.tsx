@@ -17,7 +17,7 @@ const Notifications = () => {
         onMouseLeave={handleMouseLeave}
       >
         <button className={`${btnStyleNHover}`}>
-          <IoMdNotificationsOutline className="w-6 h-6" />
+          <IoMdNotificationsOutline className="h-6 w-6" />
         </button>
       </div>
       {showNotificationHover && (

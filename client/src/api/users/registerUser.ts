@@ -7,7 +7,7 @@ const registerUser: fn = async (data: RegisterUserPayload): Promise<any> => {
   try {
     const response = await axiosClient.post(
       `${localhostUrl}/api/user/auth/signup`,
-      data
+      data,
     );
     if (response.status !== 200) {
       throw new Error("Registration failed");

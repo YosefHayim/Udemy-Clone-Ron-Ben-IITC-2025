@@ -9,8 +9,6 @@ import { PlayIcon } from "lucide-react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Navigate, useNavigate } from "react-router-dom";
 
-
-
 interface VideoPlayerProps {
   videoUrl: string;
   currentLesson: any;
@@ -47,32 +45,33 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const [isEnded, setIsEnded] = useState(false);
   const navigate = useNavigate(); // Initialize the navigate function
 
-
   // Track the last watched position
   const [lastWatched, setLastWatched] = useState(0);
   const [updateTimer, setUpdateTimer] = useState<NodeJS.Timeout | null>(null);
-  const [progress, setProgress] = useState(0)
+  const [progress, setProgress] = useState(0);
   const isCanceledRef = useRef(false); // Use ref to track isCanceled
   const playerRef = useRef<ReactPlayer>(null);
   const queryClient = useQueryClient(); // Access queryClient
 
   // Seek to the last watched time when the video URL changes or lastWatched updates
   useEffect(() => {
-    console.log("currentlesson lastwatched",currentLesson.lastWatched);
-    
+    console.log("currentlesson lastwatched", currentLesson.lastWatched);
+
     if (playerRef.current && currentLesson?.lastWatched > 0) {
       playerRef.current.seekTo(currentLesson.lastWatched, "seconds");
       setPaused(true); // Set paused state to true
     }
   }, [videoUrl, currentLesson._id]);
-  
+
   // Mutation to update lesson progress
   const mutation = useMutation({
     mutationFn: ({
       lessonId,
       payload,
-    }: { lessonId: string; payload: { lastWatched?: number; completed?: boolean } }) =>
-      updateLessonProgress(courseId, lessonId, payload),
+    }: {
+      lessonId: string;
+      payload: { lastWatched?: number; completed?: boolean };
+    }) => updateLessonProgress(courseId, lessonId, payload),
     onSuccess: () => {
       queryClient.invalidateQueries(["courseProgress", courseId]);
       console.log("Lesson progress updated successfully.");
@@ -83,10 +82,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   const handleProgress = (progress: { playedSeconds: number }) => {
     const currentSeconds = Math.floor(progress.playedSeconds);
     setLastWatched(currentSeconds);
-    setCurrentSec(currentSeconds)
+    setCurrentSec(currentSeconds);
 
-   console.log("last watched",lastWatched);
-    
+    console.log("last watched", lastWatched);
 
     if (!updateTimer) {
       const timer = setTimeout(() => {
@@ -95,7 +93,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           payload: { lastWatched: currentSeconds },
         });
         setUpdateTimer(null);
-        
       }, 2000); // Update every 5 seconds
       setUpdateTimer(timer);
     }
@@ -112,18 +109,17 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     if (nextLesson) {
       setLoading(true);
       let currentProgress = 0;
-  
+
       // Start a timer to increment progress
       const interval = setInterval(() => {
         currentProgress += 10; // Increment progress by 10
         setProgress(currentProgress);
-  
+
         if (currentProgress >= 100) {
           clearInterval(interval); // Stop when progress reaches 100
         }
       }, 150); // Update progress every 200ms (adjust as needed)
-  
-      
+
       setTimeout(() => {
         clearInterval(interval);
         if (!isCanceledRef.current) {
@@ -131,14 +127,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           setProgress(0);
           setLoading(false);
           setPaused(false);
-
         }
       }, 2500);
     }
   };
-  
-
-  
 
   // Clear the update timer on unmount
   useEffect(() => {
@@ -149,82 +141,86 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
   return (
     <div
-      className="relative w-full h-full group video-player bg-[#1D1E27]"
+      className="video-player group relative h-full w-full bg-[#1D1E27]"
       style={{ width, height }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Current Lesson Title */}
-      <div className="absolute top-[65px] w-full text-start text-lg pl-10 text-white py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-black/75 to-transparent">
+      <div className="absolute top-[65px] w-full bg-gradient-to-b from-black/75 to-transparent py-2 pl-10 text-start text-lg text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
         {lessonIndex}. {currentLesson.title}
       </div>
 
       {/* Play Button Overlay */}
       <div
-        className={`absolute inset-0 flex items-center z-0 justify-center ${
+        className={`absolute inset-0 z-0 flex items-center justify-center ${
           paused ? "opacity-100" : "opacity-0"
         } transition-opacity duration-500`}
       >
-       {paused && !isEnded && (
-        <PlayIcon
-          size={80}
-          color="white"
-          className="bg-slate-950 rounded-full bg-opacity-70 p-4 absolute inset-0 m-auto flex justify-center items-center"
-        />)}
+        {paused && !isEnded && (
+          <PlayIcon
+            size={80}
+            color="white"
+            className="absolute inset-0 m-auto flex items-center justify-center rounded-full bg-slate-950 bg-opacity-70 p-4"
+          />
+        )}
       </div>
 
       {/* Loader */}
       {loading && (
-  <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900 bg-opacity-75 z-50">
-    {/* Display the "Up to next" message */}
-    <span className="text-sm text-gray-500 mb-2">Up to next</span>
-    <span className="text-white text-4xl mb-6">
-      {lessonIndex + 1}. {nextLesson?.title}
-    </span>
+        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-900 bg-opacity-75">
+          {/* Display the "Up to next" message */}
+          <span className="mb-2 text-sm text-gray-500">Up to next</span>
+          <span className="mb-6 text-4xl text-white">
+            {lessonIndex + 1}. {nextLesson?.title}
+          </span>
 
-    {/* Circular Progress Loader */}
-    <CircularProgress
-      variant="determinate"
-      value={progress}
-      size="6rem"
-      color="inherit"
-      style={{ color: "#D1D2E0" }} // Custom color
-    />
-    {/* Play Icon */}
-    <div className="absolute  flex items-center justify-center cursor-pointer">
-    <PlayIcon
+          {/* Circular Progress Loader */}
+          <CircularProgress
+            variant="determinate"
+            value={progress}
+            size="6rem"
+            color="inherit"
+            style={{ color: "#D1D2E0" }} // Custom color
+          />
+          {/* Play Icon */}
+          <div className="absolute  flex cursor-pointer items-center justify-center">
+            <PlayIcon
+              onClick={() => {
+                if (nextLesson) {
+                  onNavigate(nextLesson._id);
+                  setLoading(false);
+                  setProgress(0);
+                }
+              }}
+              size={80}
+              color="white"
+              className="absolute mt-7 rounded-full bg-opacity-70 p-4 "
+            />
+          </div>
+
+          {/* Cancel Button */}
+          <button
             onClick={() => {
-              if (nextLesson) {
-                onNavigate(nextLesson._id);
-                setLoading(false);
-                setProgress(0);
-              }
+              isCanceledRef.current = true; // Update the ref
+              setLoading(false);
+              setProgress(0);
             }}
-            size={80}
-        color="white"
-        className="mt-7 absolute rounded-full bg-opacity-70 p-4 "
-      />
-    </div>
-
-    {/* Cancel Button */}
-    <button
-      onClick={() => {
-        isCanceledRef.current = true; // Update the ref
-        setLoading(false);
-        setProgress(0);
-      }}
-      className="relative mt-6 px-6 py-2 text-white rounded hover:bg-slate-600 transition duration-300 z-10"
-    >
-      Cancel
-    </button>
-  </div>
-)}
-
+            className="relative z-10 mt-6 rounded px-6 py-2 text-white transition duration-300 hover:bg-slate-600"
+          >
+            Cancel
+          </button>
+        </div>
+      )}
 
       {/* Centered Custom Trigger */}
       {!open && window.innerWidth > 1000 && (
-        <div className="absolute inset-0 flex justify-end  pb-80 items-center">
-          <CustomTrigger open={open} toggleSidebar={toggleSidebar} position="centered" />
+        <div className="absolute inset-0 flex items-center  justify-end pb-80">
+          <CustomTrigger
+            open={open}
+            toggleSidebar={toggleSidebar}
+            position="centered"
+          />
         </div>
       )}
 
@@ -247,33 +243,32 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
       {/* Navigation Buttons */}
       {!open && (
-  <div
-    className={`absolute h-14 top-1/2 transform -translate-y-1/2 flex justify-between w-full z-[1000] transition-opacity duration-500 ${
-      isHovered ? "opacity-100" : "opacity-0 pointer-events-none"
-    }`}
-  >
-    <button
-      className={`text-white bg-gradient-to-r border bg-purple-500 bg-opacity-60 hover:bg-[#892DE1] pl-2 ${
-        prevLesson ? "opacity-100" : "invisible"
-      }`}
-      onClick={prevLesson ? () => onNavigate(prevLesson._id) : undefined}
-      title={prevLesson ? `Previous: ${prevLesson.title}` : ""}
-    >
-      <MdArrowBackIos size={24} />
-    </button>
+        <div
+          className={`absolute top-1/2 z-[1000] flex h-14 w-full -translate-y-1/2 transform justify-between transition-opacity duration-500 ${
+            isHovered ? "opacity-100" : "pointer-events-none opacity-0"
+          }`}
+        >
+          <button
+            className={`border bg-purple-500 bg-opacity-60 bg-gradient-to-r pl-2 text-white hover:bg-[#892DE1] ${
+              prevLesson ? "opacity-100" : "invisible"
+            }`}
+            onClick={prevLesson ? () => onNavigate(prevLesson._id) : undefined}
+            title={prevLesson ? `Previous: ${prevLesson.title}` : ""}
+          >
+            <MdArrowBackIos size={24} />
+          </button>
 
-    <button
-      className={`text-white bg-gradient-to-r border bg-purple-500 bg-opacity-60 hover:bg-[#892DE1] px-1  ${
-        nextLesson ? "opacity-100" : "invisible"
-      }`}
-      onClick={nextLesson ? () => onNavigate(nextLesson._id) : undefined}
-      title={nextLesson ? `Next: ${nextLesson.title}` : ""}
-    >
-      <MdArrowForwardIos size={24} />
-    </button>
-  </div>
-)}
-
+          <button
+            className={`border bg-purple-500 bg-opacity-60 bg-gradient-to-r px-1 text-white hover:bg-[#892DE1]  ${
+              nextLesson ? "opacity-100" : "invisible"
+            }`}
+            onClick={nextLesson ? () => onNavigate(nextLesson._id) : undefined}
+            title={nextLesson ? `Next: ${nextLesson.title}` : ""}
+          >
+            <MdArrowForwardIos size={24} />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

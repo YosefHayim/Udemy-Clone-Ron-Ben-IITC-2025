@@ -14,7 +14,7 @@ const CourseTag: React.FC<CourseTagProps> = ({ tagName = "Bestseller" }) => {
 
   return (
     <span
-      className={`${style} text-xs font-bold py-1 px-2 rounded-md inline-block`}
+      className={`${style} inline-block rounded-md px-2 py-1 text-xs font-bold`}
       style={{
         whiteSpace: "nowrap", // Prevents the span from expanding to fit the container
         width: "auto", // Ensures the width is only as wide as the content

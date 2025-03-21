@@ -34,7 +34,7 @@ const reportUserReviewByReviewId: fn = async ({
   } catch (error: any) {
     console.log(
       `Error reporting review with ID ${sanitizedReviewId}:`,
-      error.message
+      error.message,
     );
     throw new Error("Failed to report review. Please try again.");
   }

@@ -31,13 +31,13 @@ const InstructorProfile = () => {
   console.log(data);
 
   return (
-    <div className="flex flex-row items-center justify-center p-[3em] pl-[10em] w-full">
-      <div className="flex flex-row items-start justify-around w-max gap-[3em]">
+    <div className="flex w-full flex-row items-center justify-center p-[3em] pl-[10em]">
+      <div className="flex w-max flex-row items-start justify-around gap-[3em]">
         <div>
           <h2 className="font-bold">INSTRUCTOR</h2>
-          <h1 className="font-bold font-[lifeLtstd]">{data.userId.fullName}</h1>
+          <h1 className="font-[lifeLtstd] font-bold">{data.userId.fullName}</h1>
           <h3 className="font-bold">{data.userId.headline}</h3>
-          <div className="flex flex-row items-start justify-start gap-[2em] mt-[3em]">
+          <div className="mt-[3em] flex flex-row items-start justify-start gap-[2em]">
             <div className=" flex flex-col items-start justify-start">
               <b className="text-[1.1em]">Total Students</b>
               <b className="text-[1.6em]">{data.totalStudents}</b>
@@ -58,7 +58,7 @@ const InstructorProfile = () => {
           <img
             src={data.userId.profilePic}
             alt=""
-            className="rounded-[100em] h-[15em]"
+            className="h-[15em] rounded-[100em]"
           />
           <SocialLinks links={data.userId.links} />
         </div>

@@ -9,8 +9,8 @@ const HoverNotification = () => {
 
   return (
     <div>
-      <div className="mt-[0.1em] rounded-t-lg flex flex-col justify-center items-start border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-alertAlgoInfo cursor-pointer">
-        <div className="p-[1em] w-full flex items-center justify-between">
+      <div className="absolute right-[0em] top-[1em] z-[1000] mt-[0.1em] flex w-[300px] cursor-pointer flex-col items-start justify-center rounded-t-lg border border-gray-300 bg-white shadow-alertAlgoInfo">
+        <div className="flex w-full items-center justify-between p-[1em]">
           <div>
             <button className="focus:outline-none">
               <b className="text-[1.2em]">Notification</b>
@@ -25,7 +25,7 @@ const HoverNotification = () => {
           </div>
         </div>
         <div className="w-full">
-          <div className="w-full flex justify-around pb-[0.5em]">
+          <div className="flex w-full justify-around pb-[0.5em]">
             <div>
               <button className="focus:outline-none">
                 <b>Instructor</b>
@@ -37,19 +37,19 @@ const HoverNotification = () => {
               </button>
             </div>
           </div>
-          <hr className="w-full mb-[1em]" />
+          <hr className="mb-[1em] w-full" />
         </div>
-        <div className="font-medium w-full mb-[1em] p-[0.8em]">
+        <div className="mb-[1em] w-full p-[0.8em] font-medium">
           {!isNotificationsExist && (
             <p className="text-center">No notifications.</p>
           )}
-          <div className="w-full flex items-start justify-center gap-[0.5em] pb-[1em]">
+          <div className="flex w-full items-start justify-center gap-[0.5em] pb-[1em]">
             <img
               src={placeholderInstructorMessage}
               alt=""
-              className="rounded-[100em] h-[4em] border border-gray-500"
+              className="h-[4em] rounded-[100em] border border-gray-500"
             />
-            <div className="w-full flex flex-col">
+            <div className="flex w-full flex-col">
               <p className="font-bold">
                 Andrei Engobe and 1 other made an announcement:The AI Limits?...
               </p>
@@ -57,17 +57,17 @@ const HoverNotification = () => {
             </div>
           </div>
           <hr />
-          <div className="w-full flex flex-row items-center justify-between pt-[1em]">
+          <div className="flex w-full flex-row items-center justify-between pt-[1em]">
             <Button
               className={`${
                 isNotificationsExist
-                  ? "opacity-[0.3] cursor-not-allowed"
+                  ? "cursor-not-allowed opacity-[0.3]"
                   : "opacity-[1]"
-              } shadow-none bg-white text-purple-600 font-bold hover:bg-purpleHoverBtn`}
+              } bg-white font-bold text-purple-600 shadow-none hover:bg-purpleHoverBtn`}
             >
               Mark all as read
             </Button>
-            <Button className="shadow-none hover:bg-purpleHoverBtn rounded-[0.2em] bg-white text-purple-600 font-bold border border-purple-600  px-[2.5em] py-[0.5em]">
+            <Button className="rounded-[0.2em] border border-purple-600 bg-white px-[2.5em] py-[0.5em] font-bold text-purple-600  shadow-none hover:bg-purpleHoverBtn">
               See all
             </Button>
           </div>

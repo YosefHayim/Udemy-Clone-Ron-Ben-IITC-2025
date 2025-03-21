@@ -22,9 +22,9 @@ const SideBarTerms = ({ setSelectedPage, selectedPage }) => {
           {menuItems.map((item, index) => (
             <li
               key={index}
-              className={`px-6 py-2 cursor-pointer text-base font-[790] ${
+              className={`cursor-pointer px-6 py-2 text-base font-[790] ${
                 selectedPage === item
-                  ? "bg-black text-white opacity-86"
+                  ? "opacity-86 bg-black text-white"
                   : "text-courseNameColorTxt text-opacity-80 hover:text-black"
               }`}
               onClick={() => setSelectedPage(item)} // Atualiza a página ativa

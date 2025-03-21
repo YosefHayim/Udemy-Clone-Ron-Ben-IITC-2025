@@ -22,8 +22,8 @@ const convertToComparable = (filters: any) =>
       Object.entries(filters).map(([key, value]) => [
         key,
         value instanceof Set ? [...value] : value,
-      ])
-    )
+      ]),
+    ),
   );
 
 const FilterNSort = () => {
@@ -33,13 +33,13 @@ const FilterNSort = () => {
     convertToComparable(filterData) === convertToComparable(defaultFilters);
 
   return (
-    <div className="flex w-full items-center justify-between mb-[2.4em]">
+    <div className="mb-[2.4em] flex w-full items-center justify-between">
       <div className="flex items-center gap-[0.5em]">
         <FilterBtn />
         <SortDropDown />
         {!isFiltersDefault && (
           <span
-            className="text-purpleStatic hover:text-purpleHover font-bold cursor-pointer"
+            className="cursor-pointer font-bold text-purpleStatic hover:text-purpleHover"
             onClick={() => setFilterData(defaultFilters)}
           >
             Clear filters

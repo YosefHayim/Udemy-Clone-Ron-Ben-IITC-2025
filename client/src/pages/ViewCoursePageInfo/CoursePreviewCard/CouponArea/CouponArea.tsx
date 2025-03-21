@@ -39,11 +39,11 @@ const CouponArea: React.FC<{ btnBgDesign?: string; couponText?: string }> = ({
 
   return (
     <div>
-      <div className="flex flex-row border-dashed border border-gray-500 p-[0.3em] mb-[1em]">
-        <div className="flex flex-row items-center justify-between mb-[0.5em] w-full">
-          <div className="relative w-full flex flex-col items-start gap-[0.2em]">
-            <div className="flex flex-row w-full">
-              <div className="flex flex-row gap-[0.2em] w-full">
+      <div className="mb-[1em] flex flex-row border border-dashed border-gray-500 p-[0.3em]">
+        <div className="mb-[0.5em] flex w-full flex-row items-center justify-between">
+          <div className="relative flex w-full flex-col items-start gap-[0.2em]">
+            <div className="flex w-full flex-row">
+              <div className="flex w-full flex-row gap-[0.2em]">
                 <b className="text-weakGray">{couponText}</b>
                 <p>is applied</p>
               </div>
@@ -52,7 +52,7 @@ const CouponArea: React.FC<{ btnBgDesign?: string; couponText?: string }> = ({
               <p className="text-weakGray">Udemy coupon</p>
             </div>
           </div>
-          <button className="focus:outline-none hover:bg-purple-200 p-[1em] rounded-[0.2em] cursor-pointer border-none bg-none">
+          <button className="cursor-pointer rounded-[0.2em] border-none bg-none p-[1em] hover:bg-purple-200 focus:outline-none">
             <HiOutlineXMark className="text-[1.5em]" />
           </button>
         </div>

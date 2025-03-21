@@ -17,11 +17,11 @@ const Cart = () => {
       onMouseLeave={handleMouseLeave}
     >
       <div className={`${btnStyleNHover}`}>
-        <MdOutlineShoppingCart className="w-5 h-5" />
+        <MdOutlineShoppingCart className="h-5 w-5" />
         <CartCoursesNumber />
       </div>
       {showCartHover && (
-        <div className="absolute top-full left-0 z-[5000] p-[2em]">
+        <div className="absolute left-0 top-full z-[5000] p-[2em]">
           <HoverCart />
         </div>
       )}

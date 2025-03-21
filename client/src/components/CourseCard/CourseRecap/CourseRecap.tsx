@@ -1,6 +1,6 @@
 const CourseRecap = ({ recapInfo }: { recapInfo: string }) => {
   return (
-    <div className="w-full flex flex-wrap">
+    <div className="flex w-full flex-wrap">
       <p>
         {recapInfo || (
           <>

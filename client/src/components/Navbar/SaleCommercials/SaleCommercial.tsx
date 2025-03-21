@@ -4,7 +4,7 @@ import { HiOutlineXMark } from "react-icons/hi2";
 const SaleCommercial = () => {
   const [timeLeft, setTimeLeft] = useState("");
   const [hiddenCommercial, setHiddenCommercial] = useState(
-    localStorage.getItem("hiddenCommercial") === "true"
+    localStorage.getItem("hiddenCommercial") === "true",
   );
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const SaleCommercial = () => {
       if (remaining > 0) {
         const hours = Math.floor(remaining / (1000 * 60 * 60));
         const minutes = Math.floor(
-          (remaining % (1000 * 60 * 60)) / (1000 * 60)
+          (remaining % (1000 * 60 * 60)) / (1000 * 60),
         );
         setTimeLeft(`${hours}h ${minutes}m`);
       } else {
@@ -36,11 +36,11 @@ const SaleCommercial = () => {
 
   return (
     <div
-      className={`${hiddenCommercial ? "hidden" : "flex flex-wrap flex-grow"}`}
+      className={`${hiddenCommercial ? "hidden" : "flex flex-grow flex-wrap"}`}
     >
-      <div className="bg-[#c2e9eb] flex flex-col items-center justify-center w-full p-[1em]">
-        <div className="flex flex-row w-full justify-between items-center">
-          <div className="flex flex-row items-center justify-center w-full">
+      <div className="flex w-full flex-col items-center justify-center bg-[#c2e9eb] p-[1em]">
+        <div className="flex w-full flex-row items-center justify-between">
+          <div className="flex w-full flex-row items-center justify-center">
             <div className="text-center">
               <p className="text-[1.1em]">
                 <b className="text-[1.2em]">Sale ending</b> | Invest in yourself
@@ -53,7 +53,7 @@ const SaleCommercial = () => {
           </div>
           <div>
             <button
-              className="hover:bg-purpleHoverBtn p-[1em] rounded-[0.2em] cursor-pointer border-none bg-none"
+              className="cursor-pointer rounded-[0.2em] border-none bg-none p-[1em] hover:bg-purpleHoverBtn"
               onClick={handleCommercial}
             >
               <HiOutlineXMark className="text-[1.5em]" />

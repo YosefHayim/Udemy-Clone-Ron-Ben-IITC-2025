@@ -11,7 +11,7 @@ const ShoppingCart: React.FC = () => {
   document.title = "Cart | Udemy";
 
   const countOfCourses = useSelector(
-    (state: RootState) => state.cart.amountOfCourses
+    (state: RootState) => state.cart.amountOfCourses,
   );
 
   useEffect(() => {
@@ -25,15 +25,15 @@ const ShoppingCart: React.FC = () => {
       {loading ? (
         <Loader hSize="1000px" useSmallLoading={false} />
       ) : (
-        <div className="p-[1em] flex flex-row items-center justify-center w-full">
-          <div className="flex flex-row items-start justify-start w-full">
-            <div className="flex flex-row items-baseline justify-center gap-[2em] w-full">
+        <div className="flex w-full flex-row items-center justify-center p-[1em]">
+          <div className="flex w-full flex-row items-start justify-start">
+            <div className="flex w-full flex-row items-baseline justify-center gap-[2em]">
               {countOfCourses === 0 ? (
                 <EmptyCart />
               ) : (
-                <div className="flex flex-row-reverse items-start justify-center w-full">
+                <div className="flex w-full flex-row-reverse items-start justify-center">
                   <div className="flex flex-col">
-                    <h1 className="font-bold mb-4">Shopping Cart</h1>
+                    <h1 className="mb-4 font-bold">Shopping Cart</h1>
                     <div className="flex flex-row-reverse gap-10">
                       <CheckoutContainer />
                       <ItemsInCart />

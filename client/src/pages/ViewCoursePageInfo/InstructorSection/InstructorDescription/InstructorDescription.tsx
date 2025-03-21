@@ -29,15 +29,15 @@ const InstructorDescription: React.FC<{ descriptionInstructor: string }> = ({
           maskSize: "100% 100%",
         }}
       >
-        <div className="w-[700px] flex flex-col items-start justify-start gap-[0.5em] leading-[1.5em]">
+        <div className="flex w-[700px] flex-col items-start justify-start gap-[0.5em] leading-[1.5em]">
           {descriptionInstructor}
         </div>
       </div>
       <div
-        className="flex gap-[1em] items-center mt-[1em] cursor-pointer"
+        className="mt-[1em] flex cursor-pointer items-center gap-[1em]"
         onClick={handleToggle}
       >
-        <span className="text-purpleStatic hover:text-purpleHover font-bold ">
+        <span className="font-bold text-purpleStatic hover:text-purpleHover ">
           {isExpanded ? "Show less" : "Show more"}
         </span>
         {isExpanded ? (

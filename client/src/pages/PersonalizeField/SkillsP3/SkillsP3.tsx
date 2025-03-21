@@ -16,8 +16,8 @@ const SkillsP3 = () => {
       try {
         const response = await axios.get(
           `https://api.datamuse.com/words?rel_trg=${encodeURIComponent(
-            input
-          )}&max=30`
+            input,
+          )}&max=30`,
         );
 
         setSuggestions(response.data.map((item: any) => item.word));
@@ -30,9 +30,9 @@ const SkillsP3 = () => {
   };
 
   return (
-    <div className="w-[700px] text-start p-[2em] ml-[8em] mb-[2em]">
-      <div className="mb-[2em] bg-[#f2efff] flex flex-col items-start justify-start p-[1em] rounded-[1em] border border-[#d2caff] gap-[1em]">
-        <div className=" gap-[0.5em] flex flex-row items-center text-[1.2em]">
+    <div className="mb-[2em] ml-[8em] w-[700px] p-[2em] text-start">
+      <div className="mb-[2em] flex flex-col items-start justify-start gap-[1em] rounded-[1em] border border-[#d2caff] bg-[#f2efff] p-[1em]">
+        <div className=" flex flex-row items-center gap-[0.5em] text-[1.2em]">
           <MdPeople />
           <b>You're in the right place!</b>
         </div>
@@ -42,14 +42,14 @@ const SkillsP3 = () => {
         </p>
       </div>
       <div>
-        <h2 className="text-[1.3em] mb-[1em]">
+        <h2 className="mb-[1em] text-[1.3em]">
           What skills are you interested in?
         </h2>
         <p className="mb-[1em]">
           Choose a few to start with. You can change these or follow more skills
           in the future.
         </p>
-        <div className="hover:bg-gray-100 w-[600px] flex flex-row items-center flex-wrap gap-[0.5em] border border-gray-400 rounded-[0.3em] p-[1em] mb-[0.5em]">
+        <div className="mb-[0.5em] flex w-[600px] flex-row flex-wrap items-center gap-[0.5em] rounded-[0.3em] border border-gray-400 p-[1em] hover:bg-gray-100">
           <Skill skillName="Next.js" />
           <Skill skillName="JavaScript" />
           <Skill skillName="React JS" />
@@ -60,8 +60,8 @@ const SkillsP3 = () => {
           <Skill skillName="CSS" />
           <Skill skillName="Node.Js" />
           <Skill skillName="Web Development" />
-          <form className="w-full flex flex-row items-center justify-start text-[1.2em] gap-[0.2em]">
-            <div className="hover:bg-purpleHoverBtn p-[0.5em] rounded-[0.2em]">
+          <form className="flex w-full flex-row items-center justify-start gap-[0.2em] text-[1.2em]">
+            <div className="rounded-[0.2em] p-[0.5em] hover:bg-purpleHoverBtn">
               <IoMdSearch className="text-[1.5em]" />
             </div>
             <input
@@ -72,16 +72,16 @@ const SkillsP3 = () => {
               }}
               type="text"
               placeholder="Search for a skill"
-              className="hover:bg-gray-100 bg-white w-full p-[0.5em] placeholder:text-gray-500 focus:outline-none caret-gray-400"
+              className="w-full bg-white p-[0.5em] caret-gray-400 placeholder:text-gray-500 hover:bg-gray-100 focus:outline-none"
             />
           </form>
         </div>
         <div
           className={`${
             suggestions.length > 0
-              ? "overflow-y-auto h-[300px] absolute z-[200] bg-white"
+              ? "absolute z-[200] h-[300px] overflow-y-auto bg-white"
               : "hidden"
-          } w-[600px] shadow-skillsShadow rounded-[0.5em] border border-gray-300 text-center p-[2em]`}
+          } w-[600px] rounded-[0.5em] border border-gray-300 p-[2em] text-center shadow-skillsShadow`}
         >
           {suggestions.length > 0 ? (
             <div>
@@ -95,13 +95,13 @@ const SkillsP3 = () => {
             </div>
           )}
         </div>
-        <div className="flex flex-col items-start justify-start gap-[1em] mb-[1.5em]">
+        <div className="mb-[1.5em] flex flex-col items-start justify-start gap-[1em]">
           <b className="font-bold">Software</b>
           <OtherSkill otherSkillName="Microsoft Excel" />
         </div>
         <div>
           <b>Other skills</b>
-          <div className="w-[600px] flex flex-row items-center flex-wrap gap-[0.5em] rounded-[0.3em] p-[1em] mb-[0.5em]">
+          <div className="mb-[0.5em] flex w-[600px] flex-row flex-wrap items-center gap-[0.5em] rounded-[0.3em] p-[1em]">
             <OtherSkill otherSkillName="Finance Fundamentals" />
             <OtherSkill otherSkillName="Financial Modeling" />
             <OtherSkill otherSkillName="Financial Statement" />

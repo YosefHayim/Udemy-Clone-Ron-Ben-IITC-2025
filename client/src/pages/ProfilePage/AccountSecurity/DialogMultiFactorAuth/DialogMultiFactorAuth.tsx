@@ -32,12 +32,12 @@ const DialogMultiFactorAuth: React.FC<DialogMultiFactorAuthProps> = ({
         <AlertDialogFooter>
           <button
             onClick={() => setAuthOpen(false)}
-            className="font-bold p-[0.8em] rounded-[0.3em] bg-white hover:bg-purple-200 text-btnColor"
+            className="rounded-[0.3em] bg-white p-[0.8em] font-bold text-btnColor hover:bg-purple-200"
           >
             Cancel
           </button>
           <Link to="/logout">
-            <button className="font-bold p-[0.8em] rounded-[0.3em] bg-btnColor hover:bg-purple-600 text-white">
+            <button className="rounded-[0.3em] bg-btnColor p-[0.8em] font-bold text-white hover:bg-purple-600">
               Confirm
             </button>
           </Link>

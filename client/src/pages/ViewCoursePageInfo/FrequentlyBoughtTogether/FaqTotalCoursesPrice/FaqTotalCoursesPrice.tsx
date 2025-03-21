@@ -6,13 +6,13 @@ const FaqTotalCoursesPrice: React.FC<{
   courseIds: string[];
 }> = ({ sum, discountSum, courseIds }) => {
   return (
-    <div className="flex flex-row ml-[0.7em] justify-between items-center">
+    <div className="ml-[0.7em] flex flex-row items-center justify-between">
       <div className="flex flex-row">
         <p>Total:</p>
         <p>
           ₪<b>{discountSum}</b>
         </p>
-        <p className="line-through ml-[0.5em]">₪{sum}</p>
+        <p className="ml-[0.5em] line-through">₪{sum}</p>
       </div>
       <div>
         <AddToCart

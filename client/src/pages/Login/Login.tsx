@@ -34,13 +34,13 @@ const Login = () => {
   const [showRegularLogin, setShowRegularLogin] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const isLoggedPreviouslyWithGoogle = useSelector(
-    (state: RootState) => state?.user?.isLoggedPreviouslyWithGoogle
+    (state: RootState) => state?.user?.isLoggedPreviouslyWithGoogle,
   );
   const cookie = useSelector((state: RootState) => state?.user?.cookie);
   const fullname = useSelector((state: RootState) => state?.user?.fullName);
   const email = useSelector((state: RootState) => state?.user?.email);
   const userProfileImage = useSelector(
-    (state: RootState) => state?.user?.profilePic
+    (state: RootState) => state?.user?.profilePic,
   );
 
   const handleRegularLogin = () => {
@@ -116,14 +116,14 @@ const Login = () => {
 
   return (
     <div className="h-screen bg-cover bg-center">
-      <div className="flex-1 flex items-center justify-center w-full">
+      <div className="flex w-full flex-1 items-center justify-center">
         <img
           src="/images/loginImg.png"
           alt="Login Illustration"
-          className="w-[100%] h-auto max-w-[620px] max-h-[100%] object-contain p-12 mr-[2.7rem]"
+          className="mr-[2.7rem] h-auto max-h-[100%] w-[100%] max-w-[620px] object-contain p-12"
         />
-        <div className="w-full max-w-[29rem] p-6 bg-white  rounded-lg ml-[3rem] mr-[5rem]">
-          <h2 className="text-3xl font-bold text-gray-800 mb-10 text-center">
+        <div className="ml-[3rem] mr-[5rem] w-full max-w-[29rem]  rounded-lg bg-white p-6">
+          <h2 className="mb-10 text-center text-3xl font-bold text-gray-800">
             Log in to continue your learning journey
           </h2>
           {showRegularLogin && (
@@ -132,16 +132,16 @@ const Login = () => {
                 showRegularLogin && !differentAccount ? "block" : "hidden"
               }`}
             >
-              <div className="flex flex-col items-center justify-center w-full text-center mb-4">
+              <div className="mb-4 flex w-full flex-col items-center justify-center text-center">
                 <div>
                   {userProfileImage.length > 1 ? (
                     <img
                       src={userProfileImage}
                       alt="user profile image"
-                      className="rounded-[100em] bg-black w-[6em] h-[5rem]"
+                      className="h-[5rem] w-[6em] rounded-[100em] bg-black"
                     />
                   ) : (
-                    <div className="bg-black p-6 rounded-full">
+                    <div className="rounded-full bg-black p-6">
                       <FaRegUser size={24} className="text-white" />
                     </div>
                   )}
@@ -153,7 +153,7 @@ const Login = () => {
                 </p>
               </div>
               <form
-                className="flex flex-col space-y-4 mb-4"
+                className="mb-4 flex flex-col space-y-4"
                 onSubmit={handleSubmit}
               >
                 <button type="submit" className={`${loginWithEmailBtn}`}>
@@ -162,7 +162,7 @@ const Login = () => {
                   ) : (
                     <div className="flex items-center">
                       <button
-                        className={`focus:outline-none text-[1rem] font-bold flex items-center ${loginWithEmailBtn}`}
+                        className={`flex items-center text-[1rem] font-bold focus:outline-none ${loginWithEmailBtn}`}
                         type="submit"
                       >
                         <AiOutlineMail size={20} />
@@ -186,21 +186,21 @@ const Login = () => {
                     className={`${inputLoginWEmail}`}
                   />
                   <button
-                    className={`${loginWithEmailBtn} focus:outline-none text-[1rem] font-bold flex items-center`}
+                    className={`${loginWithEmailBtn} flex items-center text-[1rem] font-bold focus:outline-none`}
                     type="submit"
                   >
                     <AiOutlineMail size={20} />
                     Continue with email
                   </button>
                 </div>
-                <div className="w-full flex items-center my-6">
+                <div className="my-6 flex w-full items-center">
                   <hr className="flex-grow border-gray-300" />
                   <span className="mx-4 text-sm text-grayNavbarTxt">
                     Other log in options
                   </span>
                   <hr className="flex-grow border-gray-300" />
                 </div>
-                <div className="flex justify-center space-x-5 mb-[2em]">
+                <div className="mb-[2em] flex justify-center space-x-5">
                   <button
                     onClick={handleGoogle}
                     className={`${loginThirdPartyBtn}`}
@@ -246,9 +246,9 @@ const Login = () => {
               </div>
             )}
             <Link to="/signup">
-              <button className="focus:outline-none underline-offset-[5px] p-[0.7em]">
+              <button className="p-[0.7em] underline-offset-[5px] focus:outline-none">
                 Don't have an account?{" "}
-                <span className="text-btnColor font-bold underline">
+                <span className="font-bold text-btnColor underline">
                   Sign up
                 </span>
               </button>

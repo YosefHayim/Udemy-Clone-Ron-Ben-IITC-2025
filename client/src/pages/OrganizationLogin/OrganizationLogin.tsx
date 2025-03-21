@@ -12,17 +12,17 @@ const OrganizationLogin = () => {
   };
 
   return (
-    <div className="min-h-screen relative">
+    <div className="relative min-h-screen">
       <img
         src={loginUdemyBusinessOrganizationImg}
         alt="Udemy business organization image"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover"
       />
 
       <div className="absolute inset-0 bg-black/40" />
 
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-2">
-        <div className="max-w-md w-full flex flex-col items-center gap-6 bg-white p-8 shadow-lg mb-[30%]">
+      <div className="relative z-10 flex min-h-screen flex-col items-center justify-center p-2">
+        <div className="mb-[30%] flex w-full max-w-md flex-col items-center gap-6 bg-white p-8 shadow-lg">
           <img
             src={udemyBusinessLogo}
             alt="Udemy business logo"
@@ -35,30 +35,30 @@ const OrganizationLogin = () => {
               name="email"
               id="email"
               placeholder="Enter your work email address"
-              className="w-full px-4 py-3 bg-white text-black transition-colors duration-200 ease-in-out
-                hover:bg-gray-50 focus:bg-white focus:text-black focus:outline-none 
-                border border-[#9194ac] rounded-[0.3em] 
-                placeholder:font-bold placeholder:text-courseNameColorTxt 
-                focus:border-purple-800"
+              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white px-4 py-3 text-black
+                transition-colors duration-200 ease-in-out placeholder:font-bold 
+                placeholder:text-courseNameColorTxt hover:bg-gray-50 focus:border-purple-800 
+                focus:bg-white focus:text-black 
+                focus:outline-none"
             />
             <button
               type="submit"
-              className="w-full py-3 px-4 rounded-[0.3em] bg-btnColor 
-                hover:bg-[#892de1] transition-colors duration-200 ease-in-out
-                text-white font-medium text-center"
+              className="w-full rounded-[0.3em] bg-btnColor px-4 py-3 
+                text-center font-medium text-white transition-colors
+                duration-200 ease-in-out hover:bg-[#892de1]"
             >
               Continue
             </button>
           </form>
           <Link
             to="/hc/en-us/requests/new/ticket_form_id"
-            className="text-btnColor hover:text-[#892de1] transition-colors duration-200 underline focus:outline-none"
+            className="text-btnColor underline transition-colors duration-200 hover:text-[#892de1] focus:outline-none"
           >
             Need help with logging in or signing up?
           </Link>
           <Link
             to="/terms-of-use"
-            className="text-gray-600 hover:text-gray-800 transition-colors duration-200"
+            className="text-gray-600 transition-colors duration-200 hover:text-gray-800"
           >
             Read our Privacy Statement
           </Link>

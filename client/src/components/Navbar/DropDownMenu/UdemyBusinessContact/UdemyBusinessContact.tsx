@@ -9,7 +9,7 @@ const UdemyBusinessContact = () => {
       <div>
         <UdemyBusinessNavbar />
         <div>
-          <div className="flex flex-row items-center justify-center gap-[1em] w-full">
+          <div className="flex w-full flex-row items-center justify-center gap-[1em]">
             <UdemyGetYourDemoSection />
             <UdemyBusinessForm />
           </div>

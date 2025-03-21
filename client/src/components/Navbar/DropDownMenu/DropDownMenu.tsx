@@ -52,7 +52,7 @@ const DropdownMenu: React.FC = () => {
       type: "custom",
       component: (
         <li
-          className="my-[0.5em] flex items-center px-3 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
+          className="my-[0.5em] flex cursor-pointer items-center px-3 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600"
           onClick={() => setClicked((prev) => !prev)}
         >
           <ChangeLanguage showIcon={true} />
@@ -68,8 +68,8 @@ const DropdownMenu: React.FC = () => {
   ];
 
   return (
-    <div className="cursor-pointer absolute right-0 top-[100%] mt-[2.6em] w-72 bg-white border shadow-alertAlgoInfo rounded-lg z-[1600]">
-      <div className="flex items-center p-1 my-2 border-b">
+    <div className="absolute right-0 top-[100%] z-[1600] mt-[2.6em] w-72 cursor-pointer rounded-lg border bg-white shadow-alertAlgoInfo">
+      <div className="my-2 flex items-center border-b p-1">
         <Link to="/user/edit-profile">
           <ProfilePic
             isHover={false}
@@ -97,7 +97,7 @@ const DropdownMenu: React.FC = () => {
               <li key={index}>
                 <Link
                   to={to}
-                  className="my-[0.3em] px-4 py-[0.5em] text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex justify-between"
+                  className="my-[0.3em] flex cursor-pointer justify-between px-4 py-[0.5em] text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600"
                 >
                   {label}{" "}
                   {extra && (
@@ -108,12 +108,12 @@ const DropdownMenu: React.FC = () => {
                 </Link>
                 {separator && <hr className="border-gray-300" />}
               </li>
-            )
+            ),
         )}
         <li onClick={handleLogout}>
           <Link
             to="/logout"
-            className="block px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer"
+            className="block cursor-pointer px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600"
           >
             Logout
           </Link>
@@ -124,15 +124,15 @@ const DropdownMenu: React.FC = () => {
             to="/udemy-business/request-demo-mx/?ref=account-menu&locale=en_US"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col px-4 py-3 text-gray-70 cursor-pointer w-full"
+            className="text-gray-70 flex w-full cursor-pointer flex-col px-4 py-3"
           >
             <div className="flex justify-between">
-              <span className="hover:text-purple-600 font-bold">
+              <span className="font-bold hover:text-purple-600">
                 Udemy Business
               </span>
               <FaExternalLinkAlt size={18} />
             </div>
-            <p className="text-gray-500 mt-1">Bring learning to your company</p>
+            <p className="mt-1 text-gray-500">Bring learning to your company</p>
           </Link>
         </li>
       </ul>

@@ -89,20 +89,20 @@ const Carousel = () => {
   };
 
   return (
-    <div className="relative flex flex-col lg:flex-row items-center px-8 py-12 bg-white">
+    <div className="relative flex flex-col items-center bg-white px-8 py-12 lg:flex-row">
       {/* Texto e estatísticas */}
-      <div className="lg:w-1/2 text-left">
+      <div className="text-left lg:w-1/2">
         {slides[currentSlide].logo && (
           <img
             src={slides[currentSlide].logo}
             alt="Logo"
-            className="w-32 h-auto mb-4"
+            className="mb-4 h-auto w-32"
           />
         )}
-        <h2 className="text-3xl font-bold text-gray-800 my-4">
+        <h2 className="my-4 text-3xl font-bold text-gray-800">
           {slides[currentSlide].title}
         </h2>
-        <div className="flex space-x-12 my-4">
+        <div className="my-4 flex space-x-12">
           {slides[currentSlide].stats.map((stat, index) => (
             <div key={index}>
               <p className="text-4xl font-bold text-gray-900">
@@ -112,17 +112,17 @@ const Carousel = () => {
             </div>
           ))}
         </div>
-        <button className="focus:outline-none px-6 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-900 transition duration-300">
+        <button className="rounded-lg bg-black px-6 py-3 font-bold text-white transition duration-300 hover:bg-gray-900 focus:outline-none">
           {slides[currentSlide].buttonText}
         </button>
       </div>
 
       {/* Imagem */}
-      <div className="lg:w-1/2 flex justify-center items-center">
+      <div className="flex items-center justify-center lg:w-1/2">
         <img
           src={slides[currentSlide].image}
           alt={slides[currentSlide].title}
-          className="w-full max-w-2xl object-cover rounded-lg"
+          className="w-full max-w-2xl rounded-lg object-cover"
           style={{ height: "400px", width: "600px" }}
         />
       </div>
@@ -131,7 +131,7 @@ const Carousel = () => {
       <div className="absolute bottom-4 left-4 flex items-center space-x-4">
         <button
           onClick={prevSlide}
-          className="p-3 rounded-full border border-gray-800 hover:bg-gray-800 hover:text-white transition"
+          className="rounded-full border border-gray-800 p-3 transition hover:bg-gray-800 hover:text-white"
         >
           &lt;
         </button>
@@ -139,7 +139,7 @@ const Carousel = () => {
           {slides.map((_, index) => (
             <span
               key={index}
-              className={`w-3 h-3 rounded-full ${
+              className={`h-3 w-3 rounded-full ${
                 currentSlide === index ? "bg-purple-600" : "bg-gray-400"
               }`}
             />
@@ -147,7 +147,7 @@ const Carousel = () => {
         </div>
         <button
           onClick={nextSlide}
-          className="p-3 rounded-full border border-gray-800 hover:bg-gray-800 hover:text-white transition"
+          className="rounded-full border border-gray-800 p-3 transition hover:bg-gray-800 hover:text-white"
         >
           &gt;
         </button>

@@ -22,25 +22,27 @@ const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
       onClick={handleClick}
       className={`${
         isTyping ? `flex-col py-[0.5em]` : `hidden`
-      } absolute top-[90%] w-[76%] left-[5%] z-[1000] border border-gray-100 bg-white`}
+      } absolute left-[5%] top-[90%] z-[1000] w-[76%] border border-gray-100 bg-white`}
     >
-      {data.response?.slice(0, 13).map((result, index: number) => (
-        <div key={result._id}>
-          {index < 9 ? (
-            <SearchResultRow
-              algoWord={result.courseName}
-              courseId={result._id}
-            />
-          ) : (
-            <SearchResultsCourseImg
-              courseName={result.courseName}
-              instructorName={result.courseInstructor.fullName}
-              courseImg={result.courseImg}
-              courseId={result._id}
-            />
-          )}
-        </div>
-      ))}
+      {data.response
+        ?.slice(0, 13)
+        .map((result, index: number) => (
+          <div key={result._id}>
+            {index < 9 ? (
+              <SearchResultRow
+                algoWord={result.courseName}
+                courseId={result._id}
+              />
+            ) : (
+              <SearchResultsCourseImg
+                courseName={result.courseName}
+                instructorName={result.courseInstructor.fullName}
+                courseImg={result.courseImg}
+                courseId={result._id}
+              />
+            )}
+          </div>
+        ))}
     </div>
   );
 };

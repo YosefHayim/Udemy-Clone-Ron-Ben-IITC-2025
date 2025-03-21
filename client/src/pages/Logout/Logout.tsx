@@ -18,15 +18,15 @@ const Logout: React.FC = () => {
   };
 
   return (
-    <div className="px-[2em] mb-[2em]">
+    <div className="mb-[2em] px-[2em]">
       <LogoutMessage />
       <img src={logoutBanner} alt="Logout banner" />
-      <div className="w-[320px] flex col items-center justify-start gap-[0.5em] absolute top-[50%] right-[70%]">
+      <div className="col absolute right-[70%] top-[50%] flex w-[320px] items-center justify-start gap-[0.5em]">
         <div>
           <img
             src={udemyBusinessLogo}
             alt="Udemy business logo"
-            className="absolute top-[-80%] right-[7%]"
+            className="absolute right-[7%] top-[-80%]"
           />
         </div>
         <div>
@@ -35,7 +35,7 @@ const Logout: React.FC = () => {
             tech courses.
           </p>
           <div className="mt-[1em]">
-            <button className="font-bold transition duration-150 text-sm font-Sans py-[0.7em] bg-btnColor hover:bg-[#892DE1] text-white rounded-[0.2rem] px-[0.5em] focus:outline-none">
+            <button className="font-Sans rounded-[0.2rem] bg-btnColor px-[0.5em] py-[0.7em] text-sm font-bold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none">
               Learn More
             </button>
           </div>
@@ -54,13 +54,13 @@ const Logout: React.FC = () => {
           "personal-development",
         ].map((category) => (
           <div
-            className="pb-[0.5em] cursor-pointer"
+            className="cursor-pointer pb-[0.5em]"
             id={category}
             key={category}
           >
             <b
               className={`text-gray-600 hover:text-black ${
-                selectedCategory === category ? "!text-black font-bold" : ""
+                selectedCategory === category ? "font-bold !text-black" : ""
               }`}
             >
               {category
@@ -69,7 +69,7 @@ const Logout: React.FC = () => {
                 .join(" & ")}
             </b>
             <hr
-              className={`border border-black relative w-min-max bottom-0 ${
+              className={`w-min-max relative bottom-0 border border-black ${
                 selectedCategory === category ? "opacity-100" : "opacity-0"
               }`}
             />

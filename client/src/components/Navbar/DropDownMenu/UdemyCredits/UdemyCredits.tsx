@@ -7,22 +7,22 @@ import CoursePurchaseRow from "./CoursePurchaseRow/CoursePurchaseRow";
 
 const UdemyCredits = () => {
   const userCredits = useSelector(
-    (state: RootState) => state?.user.udemyCredits
+    (state: RootState) => state?.user.udemyCredits,
   );
 
   useEffect(() => {}, [userCredits]);
 
   return (
     <div className="p-[5em]">
-      <h1 className="font-bold mb-[1em]">Udemy credits</h1>
+      <h1 className="mb-[1em] font-bold">Udemy credits</h1>
       <h2 className="text-[1.4em]">
-        <span className="font-bold mt-[1em]">Your credits:</span> ₪
+        <span className="mt-[1em] font-bold">Your credits:</span> ₪
         {userCredits || 0.0}
       </h2>
       <div>
-        <div className="flex flex-row items-center justify-between w-full">
+        <div className="flex w-full flex-row items-center justify-between">
           <div>
-            <h3 className="font-bold mt-[1em] text-[1.4em] mb-[0.5em]">
+            <h3 className="mb-[0.5em] mt-[1em] text-[1.4em] font-bold">
               Credit balance history
             </h3>
           </div>
@@ -32,7 +32,7 @@ const UdemyCredits = () => {
                 placeholder="Enter credit code"
                 className="rounded-[0.1em] border border-black"
               ></Input>
-              <Button className="focus:outline-none font-bold rounded-[0.1em]">
+              <Button className="rounded-[0.1em] font-bold focus:outline-none">
                 Redeem
               </Button>
             </form>

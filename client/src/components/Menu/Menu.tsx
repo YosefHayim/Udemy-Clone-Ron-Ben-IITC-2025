@@ -26,25 +26,25 @@ const Menu: React.FC = () => {
 
   const handleNavigate = (category: string) => {
     navigate(
-      `/courses/search?src=ukw&q=${encodeURIComponent(category.toLowerCase())}`
+      `/courses/search?src=ukw&q=${encodeURIComponent(category.toLowerCase())}`,
     );
   };
   return (
     <div>
       <hr />
       <div
-        className="bg-white shadow-md z-20 relative"
+        className="relative z-20 bg-white shadow-md"
         onMouseLeave={handleMouseLeave}
       >
-        <div className="flex justify-center items-center py-4 space-x-8">
+        <div className="flex items-center justify-center space-x-8 py-4">
           {categories.map((category, index) => (
             <div
               key={index}
-              className="relative group"
+              className="group relative"
               onMouseEnter={() => handleMouseEnter(index)}
             >
               <button
-                className="menu-button text-gray-800 font-medium hover:text-purple-600"
+                className="menu-button font-medium text-gray-800 hover:text-purple-600"
                 onClick={() => handleNavigate(category.title)}
               >
                 {category.title}
@@ -56,29 +56,29 @@ const Menu: React.FC = () => {
         {/* Black Submenu */}
         {activeCategory !== null && (
           <div
-            className="absolute top-full left-0 w-screen bg-black text-white py-4 z-30"
+            className="absolute left-0 top-full z-30 w-screen bg-black py-4 text-white"
             onMouseLeave={handleMouseLeave}
           >
             {/* Black Arrow */}
             <div
-              className="absolute top-[-8px] w-0 h-0 border-l-8 border-r-8 border-b-8 border-l-transparent border-r-transparent border-b-black"
+              className="absolute top-[-8px] h-0 w-0 border-b-8 border-l-8 border-r-8 border-b-black border-l-transparent border-r-transparent"
               style={{
                 left: `${getArrowPosition(activeCategory)}px`,
               }}
             ></div>
 
             {/* Submenu Items */}
-            <div className="w-full max-w-screen-xl mx-auto flex justify-center space-x-8">
+            <div className="mx-auto flex w-full max-w-screen-xl justify-center space-x-8">
               {categories[activeCategory]?.subcategories.map(
                 (subcategory, index) => (
                   <div
                     key={index}
-                    className="hover:underline cursor-pointer"
+                    className="cursor-pointer hover:underline"
                     onClick={() => handleNavigate(subcategory)}
                   >
                     {subcategory}
                   </div>
-                )
+                ),
               )}
             </div>
           </div>

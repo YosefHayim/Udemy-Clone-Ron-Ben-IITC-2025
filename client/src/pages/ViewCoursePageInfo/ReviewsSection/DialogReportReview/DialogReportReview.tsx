@@ -60,7 +60,7 @@ const DialogReportReview: React.FC<{
         open={isOpenReportDrawer}
         onOpenChange={(isOpen) => setReportDrawer(isOpen)}
       >
-        <DialogContent className="w-max-none w-[600px] z-[2000]">
+        <DialogContent className="w-max-none z-[2000] w-[600px]">
           <DialogHeader>
             <DialogTitle className="mb-[1em] font-bold">
               Report abuse
@@ -85,7 +85,7 @@ const DialogReportReview: React.FC<{
                   <div>
                     If you have a question or technical issue, please contact
                     our{" "}
-                    <span className="underline text-purpleStatic cursor-pointer">
+                    <span className="cursor-pointer text-purpleStatic underline">
                       Support team here
                     </span>
                     .
@@ -100,7 +100,7 @@ const DialogReportReview: React.FC<{
                   <>
                     <label
                       htmlFor="issue-type"
-                      className="font-bold mt-[1.5em]"
+                      className="mt-[1.5em] font-bold"
                     >
                       Issue type
                     </label>
@@ -108,7 +108,7 @@ const DialogReportReview: React.FC<{
                       name="issue-type"
                       id="issue-type"
                       required
-                      className="bg-white text-black border border-black rounded-[0.2em] p-[1em] w-full"
+                      className="w-full rounded-[0.2em] border border-black bg-white p-[1em] text-black"
                     >
                       <option value="">Select an issue</option>
                       <option value="harmfulVioletHateful">
@@ -131,17 +131,17 @@ const DialogReportReview: React.FC<{
                       Issue details
                     </label>
                     <Input
-                      className="rounded-[0.2em] h-[4em] border border-black"
+                      className="h-[4em] rounded-[0.2em] border border-black"
                       type="text"
                       name="issue-details"
                       id="issue-details"
                     />
                   </>
                 )}
-                <div className="flex flex-row items-end justify-end gap-[1em] text-end w-full">
+                <div className="flex w-full flex-row items-end justify-end gap-[1em] text-end">
                   {isClicked ? (
                     <Button
-                      className="font-bold p-[1.3em] rounded-[0.3em]"
+                      className="rounded-[0.3em] p-[1.3em] font-bold"
                       onClick={handleCloseBtn}
                     >
                       OK
@@ -149,13 +149,13 @@ const DialogReportReview: React.FC<{
                   ) : (
                     <>
                       <Button
-                        className="font-bold p-[1.3em] bg-white text-black hover:bg-white shadow-none"
+                        className="bg-white p-[1.3em] font-bold text-black shadow-none hover:bg-white"
                         onClick={handleCloseBtn}
                       >
                         Cancel
                       </Button>
                       <Button
-                        className="font-bold p-[1.3em] rounded-[0.3em]"
+                        className="rounded-[0.3em] p-[1.3em] font-bold"
                         type="submit"
                       >
                         Submit

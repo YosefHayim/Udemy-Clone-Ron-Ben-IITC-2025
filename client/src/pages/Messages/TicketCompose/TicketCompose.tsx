@@ -3,9 +3,9 @@ const TicketCompose: React.FC<{ text: string; title: string }> = ({
   title,
 }) => {
   return (
-    <div className="flex flex-col justify-start items-start w-[320px] gap-[0.5em] border border-gray-300 rounded-[1em] p-[1em]">
+    <div className="flex w-[320px] flex-col items-start justify-start gap-[0.5em] rounded-[1em] border border-gray-300 p-[1em]">
       <b>{title}</b>
-      <button className="focus:outline-none text-btnColor border border-btnColor p-[0.6em] rounded-[0.2em] font-bold hover:bg-purpleHoverBtn">
+      <button className="rounded-[0.2em] border border-btnColor p-[0.6em] font-bold text-btnColor hover:bg-purpleHoverBtn focus:outline-none">
         {text}
       </button>
     </div>

@@ -70,11 +70,11 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
                 lessons: section.lessons.map((lesson) =>
                   lesson.lessonId._id === lessonId
                     ? { ...lesson, completed: payload.completed }
-                    : lesson
+                    : lesson,
                 ),
               })),
             },
-          }
+          },
         );
       }
 
@@ -85,7 +85,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
       if (context?.previousData) {
         queryClient.setQueryData<CourseProgressResponse>(
           ["courseProgress", courseId],
-          context.previousData
+          context.previousData,
         );
       }
     },
@@ -111,10 +111,10 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
 
   return (
     <SidebarMenu className=" ">
-      <div className="flex p-4  items-center justify-between border-b-2 font-semibold">
+      <div className="flex items-center  justify-between border-b-2 p-4 font-semibold">
         <span className="text-lg">Course content</span>
         {open && (
-          <div className="pl-6 size">
+          <div className="size pl-6">
             <CustomTrigger
               open={open}
               toggleSidebar={toggleSidebar}
@@ -126,22 +126,22 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
       {data?.progress.sections.map((section, index) => (
         <Collapsible
           key={section.sectionId._id}
-          className="group/collapsible  group-open:pb-0 pt-10  group-data-[state=open]/collapsible:pb-0 border-2 bg-[#F6F7F9] border-t-0   w-full"
+          className="group/collapsible  w-full border-2  border-t-0 bg-[#F6F7F9] pt-10 group-open:pb-0   group-data-[state=open]/collapsible:pb-0"
         >
           <SidebarMenuItem>
             <CollapsibleTrigger
               asChild
-              className=" gap-0 pl-0 focus:outline-none focus-visible:outline-none rounded-none"
+              className=" gap-0 rounded-none pl-0 focus:outline-none focus-visible:outline-none"
             >
-              <SidebarMenuButton className="p-0  flex overflow-visible focus:outline-none  items-center justify-between pl-2 focus-visible:outline-none rounded-none">
+              <SidebarMenuButton className="flex  items-center justify-between overflow-visible  rounded-none p-0 pl-2 focus:outline-none focus-visible:outline-none">
                 <div className=" flex w-full flex-col ">
-                  <div className="flex  items-center font-bold break-words text-courseNameColorTxt text-lg">
+                  <div className="flex  items-center break-words text-lg font-bold text-courseNameColorTxt">
                     <span>
                       Section {index + 1}: {section.sectionId.title}
                     </span>
                     <FaChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                   </div>
-                  <p className="text-xs mb-10 font-semibold text-courseNameColorTxt">
+                  <p className="mb-10 text-xs font-semibold text-courseNameColorTxt">
                     {section.completedLessonsInSection}/{" "}
                     {section.totalLessonsInSection} | 42min
                   </p>
@@ -150,34 +150,34 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
             </CollapsibleTrigger>
 
             <CollapsibleContent>
-              <SidebarMenuSub className="m-0 p-0 mt-4 bg-white border-l-0 w-full">
+              <SidebarMenuSub className="m-0 mt-4 w-full border-l-0 bg-white p-0">
                 {section.lessons.map((lesson) => {
                   lessonCounter += 1;
                   const isCurrentLesson = location.pathname.startsWith(
-                    `/course/${courseId}/lesson/${lesson.lessonId._id}`
+                    `/course/${courseId}/lesson/${lesson.lessonId._id}`,
                   );
 
                   return (
                     <SidebarMenuSubItem
                       className={
                         isCurrentLesson
-                          ? "bg-slate-400 h-full w-full"
-                          : "hover:bg-slate-400  h-full w-full"
+                          ? "h-full w-full bg-slate-400"
+                          : "h-full  w-full hover:bg-slate-400"
                       }
                       key={lesson.lessonId._id}
                     >
-                      <div className="  p-4 overflow-visible  group w-full">
+                      <div className="  group w-full  overflow-visible p-4">
                         <SidebarMenuSubButton className="overflow-visible">
-                          <div className="flex  items-center h-full">
+                          <div className="flex  h-full items-center">
                             <Checkbox
                               checked={lesson.completed}
                               onCheckedChange={() =>
                                 toggleLessonCompletion(
                                   lesson.lessonId._id,
-                                  lesson.completed
+                                  lesson.completed,
                                 )
                               }
-                              className=" focus:outline-none focus-visible:outline-none hover:border-purple-500 border-2 self-start mt-0 rounded-none"
+                              className=" mt-0 self-start rounded-none border-2 hover:border-purple-500 focus:outline-none focus-visible:outline-none"
                             />
                             <div className="ml-2  flex flex-col ">
                               <Link
@@ -187,9 +187,9 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
                                 <span>
                                   {lessonCounter}. {lesson.lessonId.title}
                                 </span>
-                                <span className="flex text-xs  overflow-visible text-black items-center hover:text-black">
+                                <span className="flex items-center  overflow-visible text-xs text-black hover:text-black">
                                   <MdOndemandVideo className=" text-gray-600" />
-                                  <span className="text-xs text-gray-600  relative">
+                                  <span className="relative text-xs  text-gray-600">
                                     {lesson.lessonId.duration}min
                                   </span>
                                 </span>

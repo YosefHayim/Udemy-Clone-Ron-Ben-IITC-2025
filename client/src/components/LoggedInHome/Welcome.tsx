@@ -31,7 +31,7 @@ const Welcome = () => {
           <p>{headline}</p>
           <Link
             to="/personalize/field"
-            className="hover:bg-purpleHoverBtn text-purple-600 underline font-bold p-[0.3em] rounded-[0.3em]"
+            className="rounded-[0.3em] p-[0.3em] font-bold text-purple-600 underline hover:bg-purpleHoverBtn"
           >
             Edit occupation and interests
           </Link>

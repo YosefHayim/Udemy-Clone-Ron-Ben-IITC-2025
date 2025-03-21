@@ -3,8 +3,8 @@ import { LuPlus } from "react-icons/lu";
 const FaqPlusBtn: React.FC = () => {
   return (
     <div>
-      <div className="border border-black rounded-[100em] p-[1em] z-[10] bg-white text-center">
-        <LuPlus className="font-bold text-[1.5em]" />
+      <div className="z-[10] rounded-[100em] border border-black bg-white p-[1em] text-center">
+        <LuPlus className="text-[1.5em] font-bold" />
       </div>
     </div>
   );

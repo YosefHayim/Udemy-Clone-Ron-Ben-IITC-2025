@@ -15,7 +15,7 @@ const Description: React.FC<{ description: string; whoThisFor: string[] }> = ({
   };
 
   return (
-    <div className="flex flex-col items-start justify-start w-[680px]">
+    <div className="flex w-[680px] flex-col items-start justify-start">
       <div
         className="overflow-hidden"
         style={{
@@ -31,10 +31,10 @@ const Description: React.FC<{ description: string; whoThisFor: string[] }> = ({
         }}
       >
         <div className="flex flex-col gap-[1em]">
-          <h2 className="font-bold text-[1.2em]">Description</h2>
+          <h2 className="text-[1.2em] font-bold">Description</h2>
           <p className=" mb-[2em]">{description}</p>
         </div>
-        <ul className="list-disc  flex flex-col items-start justify-start gap-[0.5em]">
+        <ul className="flex  list-disc flex-col items-start justify-start gap-[0.5em]">
           <li>Learn the basics of Semiconductors.</li>
           <li>Which materials are used as Semiconductors.</li>
           <li>
@@ -82,17 +82,17 @@ const Description: React.FC<{ description: string; whoThisFor: string[] }> = ({
           </li>
         </ul>
         <div className="mt-[1.5em]">
-          <h2 className="font-bold text-[1.5em]">Who is this course for?:</h2>
+          <h2 className="text-[1.5em] font-bold">Who is this course for?:</h2>
           <ul className=" list-disc">
             <li>{whoThisFor}</li>
           </ul>
         </div>
       </div>
       <div
-        className="flex gap-[1em] items-center mt-[1em] cursor-pointer"
+        className="mt-[1em] flex cursor-pointer items-center gap-[1em]"
         onClick={handleToggle}
       >
-        <span className="text-purpleStatic hover:text-purpleHover font-bold ">
+        <span className="font-bold text-purpleStatic hover:text-purpleHover ">
           {isExpanded ? "Show less" : "Show more"}
         </span>
         {isExpanded ? (

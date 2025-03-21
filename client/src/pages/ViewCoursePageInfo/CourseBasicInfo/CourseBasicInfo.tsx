@@ -13,7 +13,7 @@ const CourseBasicInfo: React.FC<CourseBasicInfoProps> = ({
   }/${date.getFullYear()}`;
 
   return (
-    <div className="flex flex-row gap-[0.5em] text-white items-center z-10 ">
+    <div className="z-10 flex flex-row items-center gap-[0.5em] text-white ">
       <TbInfoHexagonFilled />
       <p className="text-[#8cd3b0]">{formattedDate}</p>
       <TbWorld />

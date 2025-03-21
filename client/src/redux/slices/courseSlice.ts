@@ -23,7 +23,7 @@ const courseSlice = createSlice({
     },
     removeCourse: (state, action: PayloadAction<string>) => {
       state.courses = state.courses.filter(
-        (course) => course.id !== action.payload
+        (course) => course.id !== action.payload,
       );
     },
   },

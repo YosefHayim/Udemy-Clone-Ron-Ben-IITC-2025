@@ -98,13 +98,13 @@ const AddToCart: React.FC<{
         onClick={() => handleClick(courseId)}
         id={`btn-${courseId || "unknown"}`}
         disabled={isLoading}
-        className={`${extraCustomCss} font-bold w-full rounded-[0.2em] py-[1.5em] ${
+        className={`${extraCustomCss} w-full rounded-[0.2em] py-[1.5em] font-bold ${
           isLoading
-            ? "focus:outline-none bg-gray-400 cursor-not-allowed"
-            : "focus:outline-none bg-btnColor hover:bg-purpleStatic"
+            ? "cursor-not-allowed bg-gray-400 focus:outline-none"
+            : "bg-btnColor hover:bg-purpleStatic focus:outline-none"
         } ${
           isWhite &&
-          "bg-white text-purple-800 border border-purple-800 hover:bg-purple-100"
+          "border border-purple-800 bg-white text-purple-800 hover:bg-purple-100"
         }`}
       >
         {isLoading ? (

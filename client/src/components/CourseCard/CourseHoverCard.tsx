@@ -22,53 +22,53 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 border-[0.01rem] border-gray-300 border-lg z-[999] w-[350px]">
-      <h3 className="font-bold text-xl text-courseNameColorTxt">
+    <div className="border-lg z-[999] w-[350px] rounded-lg border-[0.01rem] border-gray-300 bg-white p-6 shadow-lg">
+      <h3 className="text-xl font-bold text-courseNameColorTxt">
         {truncateText(course.courseName || "", 70)}
       </h3>
 
       {course.isNew && (
-        <span className="text-xs text-white bg-green-500 px-2 py-1 rounded-full mt-2 inline-block">
+        <span className="mt-2 inline-block rounded-full bg-green-500 px-2 py-1 text-xs text-white">
           New
         </span>
       )}
 
-      <p className="text-xs text-gray-500 mt-2">
+      <p className="mt-2 text-xs text-gray-500">
         Updated{" "}
-        <span className="text-green-600 font-medium">
+        <span className="font-medium text-green-600">
           {new Date(course.updatedAt || "").toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",
           })}
         </span>
       </p>
-      <p className="text-xs text-gray-500 mt-1">
+      <p className="mt-1 text-xs text-gray-500">
         {course.totalCourseDuration?.toFixed(1)} total hours •{" "}
         {course.courseLevel || "All Levels"}
       </p>
 
-      <p className="text-sm text-gray-700 mt-4 leading-relaxed">
+      <p className="mt-4 text-sm leading-relaxed text-gray-700">
         {truncateText(course.courseDescription || "", 150)}
       </p>
 
-      <ul className="list-inside list-disc text-sm text-gray-700 mt-4">
+      <ul className="mt-4 list-inside list-disc text-sm text-gray-700">
         {truncateList(course.whatYouWillLearn || [""], 3).map((item, index) => (
           <li key={index} className="flex items-start gap-2">
-            <span className="text-green-600 font-bold">✓</span>
+            <span className="font-bold text-green-600">✓</span>
             {item}
           </li>
         ))}
       </ul>
 
-      <div className="flex items-center justify-between mt-6">
-        <button className="focus:outline-none w-full bg-purple-600 text-white py-2 rounded-lg font-medium hover:bg-purple-700 transition">
+      <div className="mt-6 flex items-center justify-between">
+        <button className="w-full rounded-lg bg-purple-600 py-2 font-medium text-white transition hover:bg-purple-700 focus:outline-none">
           Add to cart
         </button>
 
-        <div className="w-10 h-10 flex items-center justify-center border-2 border-gray-300 rounded-full hover:border-purple-600 cursor-pointer transition">
+        <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border-2 border-gray-300 transition hover:border-purple-600">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6 text-gray-400 hover:text-purple-600 transition"
+            className="h-6 w-6 text-gray-400 transition hover:text-purple-600"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

@@ -1,6 +1,6 @@
 const DefaultVisa: React.FC = () => {
   return (
-    <div className="flex flex-row items-start justify-around gap-[0.5em] w-full">
+    <div className="flex w-full flex-row items-start justify-around gap-[0.5em]">
       <div className="flex flex-col items-start justify-start gap-[0.5em]">
         <b>Name on card</b>
         <p>Yosef hayim sabag</p>

@@ -5,7 +5,7 @@ const UdemyBusiness: React.FC = () => {
     <div className="mt-[1em]  flex flex-col gap-[0.5em]">
       <b className="font-bold">Training 5 or more people?</b>
       <p>Get your team access to 27,000+ top Udemy courses anytime,anywhere.</p>
-      <Button className="focus:outline-none w-full text-black bg-white border border-gray-900 rounded-[0.2em] hover:bg-hoverDivGray">
+      <Button className="w-full rounded-[0.2em] border border-gray-900 bg-white text-black hover:bg-hoverDivGray focus:outline-none">
         Try Udemy Business
       </Button>
     </div>

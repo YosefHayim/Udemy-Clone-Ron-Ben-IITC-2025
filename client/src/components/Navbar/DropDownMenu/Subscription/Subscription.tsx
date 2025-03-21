@@ -5,18 +5,18 @@ import subscriptionImg from "/images/subscription-img.png";
 const Subscription = () => {
   return (
     <div className="p-[5em]">
-      <h1 className="font-bold mb-[1em]">Subscriptions</h1>
+      <h1 className="mb-[1em] font-bold">Subscriptions</h1>
       <div className="flex flex-col items-start justify-start gap-[1em]">
         <h2 className=" text-[1.5em]">Manage your Udemy subscriptions</h2>
-        <h3 className="font-bold text-[1.5em] mb-[0.5em]">Active plans</h3>
+        <h3 className="mb-[0.5em] text-[1.5em] font-bold">Active plans</h3>
       </div>
-      <div className="h-[10em] flex flex-row items-center justify-center p-[2em] border-dashed border-2 border-gray-200 w-full mb-[2em]">
+      <div className="mb-[2em] flex h-[10em] w-full flex-row items-center justify-center border-2 border-dashed border-gray-200 p-[2em]">
         <div>
           <p>You don’t have any active subscriptions</p>
         </div>
       </div>
       {/* Here we render the data of history purchases of courses etc */}
-      <h3 className="font-bold text-[1.5em] mb-[0.5em]">
+      <h3 className="mb-[0.5em] text-[1.5em] font-bold">
         Subscription plans available
       </h3>
       <div className="flex flex-row items-center justify-between border border-gray-200">
@@ -24,7 +24,7 @@ const Subscription = () => {
           <div className="flex flex-row items-center justify-between">
             <div>
               <h4 className="mb-[1.5em] font-bold">Personal Plan</h4>
-              <ul className="flex flex-col items-start justify-start gap-[0.5em] mb-[1em]">
+              <ul className="mb-[1em] flex flex-col items-start justify-start gap-[0.5em]">
                 <p>
                   New opportunities await. Sign up for Personal Plan to get all
                   this and more:
@@ -44,10 +44,10 @@ const Subscription = () => {
               </ul>
               <div className="flex flex-col items-start justify-start gap-[1em]">
                 <div className="flex flex-row items-start justify-start gap-[1em]">
-                  <Button className="focus:outline-none text-white font-bold bg-btnColor rounded-[0.2em] hover:bg-[#892de1] h-[3em]">
+                  <Button className="h-[3em] rounded-[0.2em] bg-btnColor font-bold text-white hover:bg-[#892de1] focus:outline-none">
                     Subscribe
                   </Button>
-                  <Button className="focus:outline-none font-bold text-btnColor bg-white hover:bg-white shadow-none hover:hover-color-mix rounded-[0.2em] h-[3em]">
+                  <Button className="hover:hover-color-mix h-[3em] rounded-[0.2em] bg-white font-bold text-btnColor shadow-none hover:bg-white focus:outline-none">
                     Learn more
                   </Button>
                 </div>

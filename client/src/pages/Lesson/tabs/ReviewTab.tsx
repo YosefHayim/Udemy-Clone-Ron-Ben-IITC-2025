@@ -30,13 +30,13 @@ const ReviewsTab = ({ avgRating = 1 }) => {
       <div className="flex items-center justify-between">
         {Array.from({ length: 5 }, (_, i) => {
           if (i < fullStars) {
-            return <IoIosStar key={i} className="text-[#c4710d] ml-1" />;
+            return <IoIosStar key={i} className="ml-1 text-[#c4710d]" />;
           } else if (i === fullStars && hasHalfStar) {
             return (
-              <MdOutlineStarHalf key={i} className="text-[#c4710d] ml-1" />
+              <MdOutlineStarHalf key={i} className="ml-1 text-[#c4710d]" />
             );
           } else {
-            return <IoIosStarOutline key={i} className="text-[#c4710d] ml-1" />;
+            return <IoIosStarOutline key={i} className="ml-1 text-[#c4710d]" />;
           }
         })}
       </div>
@@ -45,13 +45,13 @@ const ReviewsTab = ({ avgRating = 1 }) => {
   const limit = data?.length || 0;
 
   return (
-    <div className="min-w-fit mt-4">
+    <div className="mt-4 min-w-fit">
       {/* Student Feedback Section */}
-      <h2 className="text-3xl font-bold my-4">Student feedback</h2>
+      <h2 className="my-4 text-3xl font-bold">Student feedback</h2>
       <div className="mb-6 flex flex-col py-2">
-        <div className="flex  flex-row items-center min-w-full gap-5 p-4 ">
-          <div className="flex flex-col w-full justify-center items-center ">
-            <div className="text-7xl font-bold w-fit text-[#c4710d] ">
+        <div className="flex  min-w-full flex-row items-center gap-5 p-4 ">
+          <div className="flex w-full flex-col items-center justify-center ">
+            <div className="w-fit text-7xl font-bold text-[#c4710d] ">
               {avgRating.toFixed(1)}
             </div>
             <div className=" text-lg  ">{renderStars(avgRating)}</div>
@@ -71,14 +71,14 @@ const ReviewsTab = ({ avgRating = 1 }) => {
 
               return (
                 <div key={stars} className="flex  items-center">
-                  <div className="min-w-[720px]  bg-gray-200  mx-2 relative">
+                  <div className="relative  mx-2  min-w-[720px] bg-gray-200">
                     <div
                       className="h-2 bg-gray-600 "
                       style={{ width: `${percentage}%` }}
                     ></div>
                   </div>
-                  <div className="flex items-center gap-3 flex-row-reverse ">
-                    <span className="text-sm font-semibold underline text-btnColor">
+                  <div className="flex flex-row-reverse items-center gap-3 ">
+                    <span className="text-sm font-semibold text-btnColor underline">
                       {percentage}%
                     </span>
                     <div>{renderStars(stars)}</div>
@@ -91,22 +91,22 @@ const ReviewsTab = ({ avgRating = 1 }) => {
       </div>
 
       {/* Reviews Section */}
-      <form className="flex flex-row items-center gap-2 mb-6">
+      <form className="mb-6 flex flex-row items-center gap-2">
         {/* Search Input */}
         <Input
           placeholder="Search reviews"
           type="text"
-          className="bg-white min-w-[744px] min-h-[48px] focus:outline-none px-4 border border-black rounded-sm text-lg"
+          className="min-h-[48px] min-w-[744px] rounded-sm border border-black bg-white px-4 text-lg focus:outline-none"
         />
 
         {/* Search Button */}
-        <Button className="focus:outline-none bg-btnColor hover:bg-[#7551a7] px-4 min-h-[48px] ">
+        <Button className="min-h-[48px] bg-btnColor px-4 hover:bg-[#7551a7] focus:outline-none ">
           <MdSearch className="text-black" />
         </Button>
 
         {/* Dropdown Filter */}
         <select
-          className="bg-white border border-black rounded-sm px-4 min-h-[48px] text-lg focus:outline-none"
+          className="min-h-[48px] rounded-sm border border-black bg-white px-4 text-lg focus:outline-none"
           defaultValue="all"
         >
           <option value="all">All ratings</option>
@@ -124,7 +124,7 @@ const ReviewsTab = ({ avgRating = 1 }) => {
         </div>
       )}
       {data && (
-        <div className="overflow-y-auto min-w-full h-auto">
+        <div className="h-auto min-w-full overflow-y-auto">
           <div className="space-y-4">
             {data.map((review: Review) => (
               <UserCourseReview
@@ -134,11 +134,11 @@ const ReviewsTab = ({ avgRating = 1 }) => {
               />
             ))}
           </div>
-          <div className="w-full mt-4">
+          <div className="mt-4 w-full">
             <Button
               className={`${
                 data.length < limit ? "hidden" : "block"
-              } bg-white text-black rounded-[0.2em] border border-black font-bold w-full`}
+              } w-full rounded-[0.2em] border border-black bg-white font-bold text-black`}
             >
               Show more reviews
             </Button>

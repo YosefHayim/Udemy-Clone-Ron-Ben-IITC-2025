@@ -5,13 +5,13 @@ const PaymentMethodNLock: React.FC = () => {
   const [isHoverLock, setHoverLock] = useState(false);
   return (
     <div
-      className="flex flex-row items-start justify-between w-full"
+      className="flex w-full flex-row items-start justify-between"
       onMouseEnter={() => setHoverLock(true)}
       onMouseLeave={() => setHoverLock(false)}
     >
-      <div className="flex flex-row items-start justify-between w-full">
+      <div className="flex w-full flex-row items-start justify-between">
         <h3 className="font-bold">Payment method</h3>
-        <div className="flex flex-row gap-[0.5em] items-center">
+        <div className="flex flex-row items-center gap-[0.5em]">
           <p className="text-grayNavbarTxt underline decoration-dotted">
             Secure and encrypted
           </p>
@@ -19,7 +19,7 @@ const PaymentMethodNLock: React.FC = () => {
         </div>
       </div>
       {isHoverLock && (
-        <div className="right-[45%] top-[33%] bg-black rounded-[0.3em] shadow-alertAlgoInfo p-[0.8em] text-white absolute w-[18%] text-center">
+        <div className="absolute right-[45%] top-[33%] w-[18%] rounded-[0.3em] bg-black p-[0.8em] text-center text-white shadow-alertAlgoInfo">
           <p>
             We use 256-bit encryption to protect your payment method against
             unauthorized access.

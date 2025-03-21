@@ -55,7 +55,7 @@ const LessonRoutes: React.FC<LessonRoutesProps> = ({ currentSec }) => {
     <>
       {/* Render NavBar with course name */}
       <NavBar />
-      <div className="px-20 flex justify-center items-center">
+      <div className="flex items-center justify-center px-20">
         <Routes>
           {/* Redirect to overview tab by default */}
           <Route index element={<Navigate to={defaultRoute} replace />} />

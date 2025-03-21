@@ -15,7 +15,7 @@ const ReviewSectionTitle: React.FC<{
         />
       </h2>
       <h2>course rating</h2>
-      <LuDot className="text-gray-500 text-[1.5em]" />
+      <LuDot className="text-[1.5em] text-gray-500" />
       <h2>{totalRated} ratings</h2>
     </div>
   );

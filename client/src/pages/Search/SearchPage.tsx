@@ -91,7 +91,7 @@ const SearchPage: React.FC = () => {
         searchTerm || "",
         filterData || {},
         limit,
-        currentPage
+        currentPage,
       );
     },
     enabled: !!searchTerm,
@@ -106,20 +106,20 @@ const SearchPage: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col w-full gap-[1em] px-6 py-[3em] items-center justify-center">
-      <div className="flex flex-row justify-center items-start w-full gap-[1.5em]">
+    <div className="flex w-full flex-col items-center justify-center gap-[1em] px-6 py-[3em]">
+      <div className="flex w-full flex-row items-start justify-center gap-[1.5em]">
         <div className="flex flex-col items-start justify-center">
           <div>
-            <h1 className="font-bold text-[1.8em] w-full mb-[0.8em]">
+            <h1 className="mb-[0.8em] w-full text-[1.8em] font-bold">
               {data?.totalCourses || 0} results for "{searchTerm}"
             </h1>
           </div>
           <FilterNSort />
           <SidebarFilter />
         </div>
-        <div className="w-full flex flex-col items-center justify-center">
-          <div className="w-full flex-col items-center justify-center mt-[6em]">
-            <h2 className="font-bold w-full text-end">
+        <div className="flex w-full flex-col items-center justify-center">
+          <div className="mt-[6em] w-full flex-col items-center justify-center">
+            <h2 className="w-full text-end font-bold">
               {data?.totalCourses || 0} results
             </h2>
             {data?.response
@@ -135,7 +135,7 @@ const SearchPage: React.FC = () => {
                   <SearchCourseCard course={course} />
                   {hoveredCourse === course._id && (
                     <div
-                      className={` w-1/2 absolute right-[60%] translate-x-1/2 z-10 
+                      className={` absolute right-[60%] z-10 w-1/2 translate-x-1/2 
             ${getTopValue(index)}`}
                     >
                       <CourseHoverCardInfo

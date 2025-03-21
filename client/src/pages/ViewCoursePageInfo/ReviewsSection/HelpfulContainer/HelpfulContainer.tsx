@@ -23,7 +23,7 @@ const HelpfulContainer: React.FC<{ idOfReview: string }> = ({ idOfReview }) => {
   const saveStateToLocalStorage = (liked: boolean, disliked: boolean) => {
     localStorage.setItem(
       `review-${idOfReview}`,
-      JSON.stringify({ liked, disliked })
+      JSON.stringify({ liked, disliked }),
     );
   };
 

@@ -7,26 +7,26 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
 
   return (
     <div
-      className="relative inline-block mx-[0.2em] text-[1.4em]"
+      className="relative mx-[0.2em] inline-block text-[1.4em]"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
       <p
-        className={` ${btnStyleNHover} text-[#020202] font-normal text-sm font-Sans rounded-md px-3
-        py-3`}
+        className={` ${btnStyleNHover} font-Sans rounded-md px-3 py-3 text-sm font-normal
+        text-[#020202]`}
       >
         {aTagName}
       </p>
 
       {isHovering && aTagName !== "Categories" && (
         <div>
-          <div className="flex flex-col items-center justify-center gap-[0.5em] shadow-alertAlgoInfo border border-gray-300 absolute top-[3.1em] right-0 w-[290px] bg-white rounded-lg p-4 text-center z-50">
+          <div className="absolute right-0 top-[3.1em] z-50 flex w-[290px] flex-col items-center justify-center gap-[0.5em] rounded-lg border border-gray-300 bg-white p-4 text-center shadow-alertAlgoInfo">
             <p className="font-bold leading-tight text-gray-800">
               {aTagName === "Udemy Business"
                 ? "Get your team access to over 27,000 top Udemy courses, anytime, anywhere."
                 : "Turn what you know into an opportunity and reach millions around the world."}
             </p>
-            <Button className="font-bold transition duration-150 text-sm font-Sans py-[1.2rem] bg-btnColor hover:bg-[#892DE1] text-white rounded-[0.2rem] px-14 focus:outline-none">
+            <Button className="font-Sans rounded-[0.2rem] bg-btnColor px-14 py-[1.2rem] text-sm font-bold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none">
               {aTagName === "Udemy Business"
                 ? "Try Udemy Business"
                 : "Learn more"}

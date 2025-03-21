@@ -4,12 +4,12 @@ const PrivacyStatement = () => {
   return (
     <>
       <SideMenuPrivacy />
-      <div className="bg-gray-100 min-h-screen py-8 px-6 text-gray-800">
-        <div className="max-w-4xl mx-auto bg-white p-8 shadow-md rounded-md">
-          <h1 className="text-2xl font-bold mb-4">
+      <div className="min-h-screen bg-gray-100 px-6 py-8 text-gray-800">
+        <div className="mx-auto max-w-4xl rounded-md bg-white p-8 shadow-md">
+          <h1 className="mb-4 text-2xl font-bold">
             Udemy Business Privacy Statement
           </h1>
-          <p className="text-sm text-gray-700 mb-4">
+          <p className="mb-4 text-sm text-gray-700">
             This Udemy Business Privacy Statement was last updated on September
             4, 2024.
           </p>
@@ -22,10 +22,10 @@ const PrivacyStatement = () => {
             handling practices described in this Privacy Statement.
           </p>
 
-          <h2 className="text-lg font-bold mb-2">
+          <h2 className="mb-2 text-lg font-bold">
             Udemy Business Privacy Statement
           </h2>
-          <ol className="list-decimal ml-6 space-y-2">
+          <ol className="ml-6 list-decimal space-y-2">
             <li>Information about Users collected and stored by Udemy</li>
             <li>Purpose of User Data Processing and Retention Period</li>
             <li>Cookies and other Tracking Technologies</li>
@@ -35,14 +35,14 @@ const PrivacyStatement = () => {
             <li>General</li>
           </ol>
 
-          <h3 className="text-lg font-bold mt-6 mb-2">
+          <h3 className="mb-2 mt-6 text-lg font-bold">
             1. Information about Users collected and stored by Udemy
           </h3>
           <p className="mb-4">
             When a User logs on or is invited to use Udemy by a Customer, Udemy
             may collect and store certain data, including but not limited to:
           </p>
-          <ul className="list-disc ml-6 mb-6">
+          <ul className="mb-6 ml-6 list-disc">
             <li>Full name, email address, and other profile data.</li>
             <li>Course enrollments and progress data.</li>
             <li>
@@ -51,7 +51,7 @@ const PrivacyStatement = () => {
             </li>
           </ul>
 
-          <h3 className="text-lg font-bold mt-6 mb-2">
+          <h3 className="mb-2 mt-6 text-lg font-bold">
             2. Purpose of User Data Processing and Retention Period
           </h3>
           <p className="mb-4">
@@ -60,7 +60,7 @@ const PrivacyStatement = () => {
             platform.
           </p>
 
-          <h3 className="text-lg font-bold mt-6 mb-2">
+          <h3 className="mb-2 mt-6 text-lg font-bold">
             3. Cookies and other Tracking Technologies
           </h3>
           <p className="mb-4">
@@ -69,7 +69,7 @@ const PrivacyStatement = () => {
             manage their cookie settings via the Cookie Settings link.
           </p>
 
-          <h3 className="text-lg font-bold mt-6 mb-2">
+          <h3 className="mb-2 mt-6 text-lg font-bold">
             4. Sharing User Information
           </h3>
           <p className="mb-4">
@@ -78,7 +78,7 @@ const PrivacyStatement = () => {
             customer-specific agreements.
           </p>
 
-          <h3 className="text-lg font-bold mt-6 mb-2">
+          <h3 className="mb-2 mt-6 text-lg font-bold">
             5. Cross-Border Processing of User Data
           </h3>
           <p className="mb-4">
@@ -86,7 +86,7 @@ const PrivacyStatement = () => {
             accordance with applicable laws and customer agreements.
           </p>
 
-          <h3 className="text-lg font-bold mt-6 mb-2">
+          <h3 className="mb-2 mt-6 text-lg font-bold">
             6. Jurisdiction-Specific Information
           </h3>
           <p className="mb-4">
@@ -98,7 +98,7 @@ const PrivacyStatement = () => {
             for assistance.
           </p>
 
-          <h3 className="text-lg font-bold mt-6 mb-2">7. General</h3>
+          <h3 className="mb-2 mt-6 text-lg font-bold">7. General</h3>
           <p className="mb-4">
             In case of discrepancies, the English version of the Privacy
             Statement prevails.

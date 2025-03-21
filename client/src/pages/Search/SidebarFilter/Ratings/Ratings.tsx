@@ -41,15 +41,15 @@ const RatingsFilter = () => {
     <div>
       <hr />
       <div
-        className={`transition-all overflow-hidden ${
+        className={`overflow-hidden transition-all ${
           isClicked ? "h-auto" : "h-[50px]"
         }`}
       >
         <div
-          className="flex justify-between items-center cursor-pointer"
+          className="flex cursor-pointer items-center justify-between"
           onClick={handleClick}
         >
-          <p className="font-bold text-lg py-[0.5em]">Ratings</p>
+          <p className="py-[0.5em] text-lg font-bold">Ratings</p>
           {isClicked ? (
             <MdKeyboardArrowUp size={17} />
           ) : (
@@ -60,26 +60,26 @@ const RatingsFilter = () => {
           {ratings.map(({ rating, value, count }) => (
             <label
               key={value}
-              className="flex items-center cursor-pointer space-x-2 py-2"
+              className="flex cursor-pointer items-center space-x-2 py-2"
             >
               <span
                 onClick={() => handleRatingClick(value)}
-                className={`w-4 h-4 flex items-center justify-center border-2 rounded-full ${
+                className={`flex h-4 w-4 items-center justify-center rounded-full border-2 ${
                   selectedRating === value ? "border-black" : "border-gray-400"
                 }`}
               >
                 {selectedRating === value && (
-                  <span className="w-2.5 h-2.5 rounded-full bg-black"></span>
+                  <span className="h-2.5 w-2.5 rounded-full bg-black"></span>
                 )}
               </span>
               <div className="flex flex-row">
                 <span className="flex items-center">
-                  <span className="text-yellow-500 text-sm">{rating}</span>
-                  <span className="text-gray-600 text-sm ml-1">
+                  <span className="text-sm text-yellow-500">{rating}</span>
+                  <span className="ml-1 text-sm text-gray-600">
                     {value} & up
                   </span>
                 </span>
-                <span className="text-gray-500 text-sm ml-2">{`(${count})`}</span>
+                <span className="ml-2 text-sm text-gray-500">{`(${count})`}</span>
               </div>
             </label>
           ))}

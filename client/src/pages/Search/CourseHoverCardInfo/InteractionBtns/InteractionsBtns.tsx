@@ -34,7 +34,7 @@ const InteractionsBtns: React.FC<{
 
   return (
     <div>
-      <div className="flex items-center justify-start w-full gap-[0.5em] mt-[1em]">
+      <div className="mt-[1em] flex w-full items-center justify-start gap-[0.5em]">
         <AddToCart
           courseId={courseId}
           discountPrice={coursePrice}

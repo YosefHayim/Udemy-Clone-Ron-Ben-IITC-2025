@@ -17,12 +17,12 @@ const CantFindMyOccupation = ({
     <div
       className={
         isClicked
-          ? "block w-[600px] text-start p-[2em] ml-[8em] mt-[2em]"
+          ? "ml-[8em] mt-[2em] block w-[600px] p-[2em] text-start"
           : "hidden"
       }
     >
       <form
-        className="w-full flex flex-col items-start justify-start gap-[0.5em]"
+        className="flex w-full flex-col items-start justify-start gap-[0.5em]"
         onSubmit={handleDynamicOccupation}
       >
         <h1 className="text-[1.5em]">Which occupation are you learning for?</h1>
@@ -34,12 +34,12 @@ const CantFindMyOccupation = ({
           type="text"
           name="my-occupation"
           id="my-occupation"
-          className="bg-white border border-gray-400 p-[1em] rounded-[0.2em] w-full mb-[1em]"
+          className="mb-[1em] w-full rounded-[0.2em] border border-gray-400 bg-white p-[1em]"
           placeholder="Enter title"
         />
         <button
           type="button" // Prevents form submission
-          className="underline text-btnColor font-bold"
+          className="font-bold text-btnColor underline"
           onClick={handlePrevious}
         >
           Back to list of occupations

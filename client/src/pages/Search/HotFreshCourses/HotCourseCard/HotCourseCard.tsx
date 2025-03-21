@@ -8,7 +8,7 @@ import hotFreshOne from "/images/hot-fresh-course-1.png";
 
 const HotCourseCard = () => {
   return (
-    <div className="flex flex-row items-center justify-center gap-[2em] w-[200px] cursor-pointer">
+    <div className="flex w-[200px] cursor-pointer flex-row items-center justify-center gap-[2em]">
       <div>
         <CourseImg courseImg={hotFreshOne} widthChosen="" />
         <div className="flex flex-col items-start justify-start gap-[0.3em]">

@@ -9,7 +9,7 @@ import HeartBtn from "@/pages/Search/CourseHoverCardInfo/InteractionBtns/HeartBt
 const CourseCard: React.FC = () => {
   return (
     <div>
-      <div className="w-full py-[0.5em] flex flex-row items-start justify-around gap-[1em] ">
+      <div className="flex w-full flex-row items-start justify-around gap-[1em] py-[0.5em] ">
         <CourseImg />
         <div className="flex flex-col gap-[0.5em]">
           <CourseName />

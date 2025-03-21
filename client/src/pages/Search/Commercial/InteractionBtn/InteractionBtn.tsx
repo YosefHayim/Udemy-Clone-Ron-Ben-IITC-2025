@@ -3,7 +3,7 @@ import { BtnStyleNHoverTypeTwo } from "@/utils/stylesStorage";
 
 const InteractionBtn = () => {
   return (
-    <div className="py-[1em] w-min absolute bottom-0">
+    <div className="absolute bottom-0 w-min py-[1em]">
       <Button className={`${BtnStyleNHoverTypeTwo}`}>Learn more</Button>
     </div>
   );

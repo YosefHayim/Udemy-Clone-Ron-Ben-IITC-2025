@@ -9,7 +9,7 @@ const PersonalizeFieldP1 = () => {
   const [personalizeData, setPersonalizeData] = personalizeTracking;
 
   const handleChosenOccupation = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
     const chosenInput = (e.target as HTMLElement).closest("input");
     if (chosenInput) {
@@ -24,23 +24,23 @@ const PersonalizeFieldP1 = () => {
 
   return (
     <div
-      className="flex flex-col items-center justify-start w-full"
+      className="flex w-full flex-col items-center justify-start"
       onClick={handleChosenOccupation}
     >
-      <div className="bg-[#fff6e5] text-start p-[2em] ml-[8em] my-[2em] rounded-[1em] flex flex-row items-center justify-start gap-[0.5em]">
+      <div className="my-[2em] ml-[8em] flex flex-row items-center justify-start gap-[0.5em] rounded-[1em] bg-[#fff6e5] p-[2em] text-start">
         <FaUserEdit className="text-[2em] text-[#c4710d]" />
         <p className="text-courseNameColorTxt">
           Answer a few questions to improve your content recommendations
         </p>
       </div>
-      <form className="w-[500px] flex flex-col items-start justify-start">
+      <form className="flex w-[500px] flex-col items-start justify-start">
         <label htmlFor="field-learning" className="text-[1.5em]">
           What field are you learning for?
         </label>
 
         <RadioGroup
           defaultValue="software-development"
-          className="flex flex-row gap-[10em] mb-[2em]"
+          className="mb-[2em] flex flex-row gap-[10em]"
         >
           <div className="flex flex-col items-start justify-start gap-[1em]">
             <div className="flex items-center space-x-2">

@@ -23,22 +23,22 @@ const DialogChangeEmail: React.FC<DialogChangeEmailProps> = ({
       <AlertDialogTrigger asChild></AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <div className="flex flex-row items-center justify-between w-full">
+          <div className="flex w-full flex-row items-center justify-between">
             <div>
-              <AlertDialogTitle className="text-black font-bold">
+              <AlertDialogTitle className="font-bold text-black">
                 Change your email
               </AlertDialogTitle>
             </div>
             <div
               onClick={() => setIsDialogOpen(false)}
-              className="cursor-pointer p-[1em] text-gray-500
-              hover:bg-purpleHoverBtn rounded-[0.2em]"
+              className="cursor-pointer rounded-[0.2em] p-[1em]
+              text-gray-500 hover:bg-purpleHoverBtn"
             >
               <IoClose size={20} />
             </div>
           </div>
-          <AlertDialogDescription className="text-black w-min-max">
-            <form className=" w-full flex flex-col items-start justify-start gap-[0.5em]">
+          <AlertDialogDescription className="w-min-max text-black">
+            <form className=" flex w-full flex-col items-start justify-start gap-[0.5em]">
               <p>
                 Please enter the new email address you want to use. We will send
                 you a confirmation code to confirm the address
@@ -51,7 +51,7 @@ const DialogChangeEmail: React.FC<DialogChangeEmailProps> = ({
                 type="text"
                 id="new-password"
                 name="new-password"
-                className="hover:bg-gray-100 border border-gray-500 rounded-[0.3em] p-[0.5em] w-full overflow-hidden bg-white focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor"
+                className="w-full overflow-hidden rounded-[0.3em] border border-gray-500 bg-white p-[0.5em] focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor hover:bg-gray-100"
                 placeholder={"Enter the new email address"}
               />
               <p>
@@ -62,7 +62,7 @@ const DialogChangeEmail: React.FC<DialogChangeEmailProps> = ({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <button className="font-bold p-[0.8em] rounded-[0.3em] bg-btnColor hover:bg-purple-600 text-white">
+          <button className="rounded-[0.3em] bg-btnColor p-[0.8em] font-bold text-white hover:bg-purple-600">
             Verify my new email
           </button>
         </AlertDialogFooter>

@@ -47,7 +47,7 @@ const LessonPage: React.FC = () => {
       ...lesson,
       ...lesson.lessonId,
       completed: lesson.completed,
-    }))
+    })),
   );
 
   const lessonIndex = lessons.findIndex((lesson) => lesson._id === id);

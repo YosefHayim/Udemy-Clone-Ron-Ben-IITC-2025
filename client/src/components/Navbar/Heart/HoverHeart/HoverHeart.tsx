@@ -18,7 +18,7 @@ import { useDispatch } from "react-redux";
 const HoverHeart = () => {
   const dispatch = useDispatch();
   const totalCourses = useSelector(
-    (state: RootState) => state.cart.coursesAddedToWishList
+    (state: RootState) => state.cart.coursesAddedToWishList,
   );
 
   useEffect(() => {}, [totalCourses]);
@@ -38,7 +38,7 @@ const HoverHeart = () => {
 
   return (
     <div>
-      <div className="rounded-t-lg flex flex-col justify-center items-start border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-alertAlgoInfo cursor-pointer">
+      <div className="absolute right-[0em] top-[1em] z-[1000] flex w-[300px] cursor-pointer flex-col items-start justify-center rounded-t-lg border border-gray-300 bg-white shadow-alertAlgoInfo">
         {totalCourses.length > 0 ? (
           totalCourses.map((courseId: string) => (
             <div>
@@ -71,11 +71,11 @@ const HoverHeart = () => {
             </div>
           ))
         ) : (
-          <div className="mt-[3.5em] p-[1em] rounded-[0.8em] flex flex-col justify-center items-start w-[300px] bg-white z-[1000] absolute right-[0em] shadow-alertAlgoInfo cursor-pointer">
+          <div className="absolute right-[0em] z-[1000] mt-[3.5em] flex w-[300px] cursor-pointer flex-col items-start justify-center rounded-[0.8em] bg-white p-[1em] shadow-alertAlgoInfo">
             <div className="w-full">
-              <div className="flex flex-col items-center justify-center w-full text-center">
-                <p className="font-medium mb-[1em]">Your wishlist is empty.</p>
-                <b className="text-purpleStatic hover:text-purpleHover cursor-pointer">
+              <div className="flex w-full flex-col items-center justify-center text-center">
+                <p className="mb-[1em] font-medium">Your wishlist is empty.</p>
+                <b className="cursor-pointer text-purpleStatic hover:text-purpleHover">
                   <Link to="/">Explore courses</Link>
                 </b>
               </div>
@@ -84,7 +84,7 @@ const HoverHeart = () => {
         )}
         <div className="w-full p-[1em]">
           {totalCourses.length >= 1 && (
-            <Button className="font-bold w-full rounded-[0.2em] py-[1.5em] focus:outline-none bg-btnColor hover:bg-btnHoverColor">
+            <Button className="w-full rounded-[0.2em] bg-btnColor py-[1.5em] font-bold hover:bg-btnHoverColor focus:outline-none">
               Go to wishlist
             </Button>
           )}

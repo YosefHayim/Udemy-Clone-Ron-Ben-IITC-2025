@@ -11,7 +11,7 @@ const InstructorProfileImg: React.FC<{
           id={instructorId}
           src={instructorImg}
           alt="Instructor profile"
-          className="rounded-[100em] h-[10em]"
+          className="h-[10em] rounded-[100em]"
         />
       </div>
       <InstructorRatings />

@@ -2,7 +2,7 @@ import { personalizeFieldPayload } from "../../types/types";
 import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 const updatePersonalizeUserField = async (
-  personalizeField: personalizeFieldPayload
+  personalizeField: personalizeFieldPayload,
 ) => {
   if (!personalizeField) {
     return undefined;

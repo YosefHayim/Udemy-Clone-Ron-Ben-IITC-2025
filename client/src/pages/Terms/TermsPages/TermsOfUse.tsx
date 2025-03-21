@@ -1,19 +1,19 @@
 const Terms_of_use = () => {
   return (
     <>
-      <div className="p-6 bg-white rounded-lg ">
-        <h1 className="text-3xl font-bold mb-4">Terms of Use</h1>
-        <p className="text-base text-gray-800 font-semibold italic mb-4">
+      <div className="rounded-lg bg-white p-6 ">
+        <h1 className="mb-4 text-3xl font-bold">Terms of Use</h1>
+        <p className="mb-4 text-base font-semibold italic text-gray-800">
           These Terms of Use (<span className="font-bold">"Terms"</span>) were
           last updated on November 12, 2024.
         </p>
-        <p className="text-base font-bold mb-4">
+        <p className="mb-4 text-base font-bold">
           Please review these Terms carefully as they serve as an enforceable
           contract between us and contain important information about your legal
           rights, remedies, and obligations.
         </p>
 
-        <p className="text-base font-bold text-courseNameColorTxt mb-4">
+        <p className="mb-4 text-base font-bold text-courseNameColorTxt">
           IF YOU LIVE IN THE UNITED STATES OR CANADA, BY AGREEING TO THESE
           TERMS, YOU AGREE TO RESOLVE ALL DISPUTES WITH UDEMY IN SMALL CLAIMS
           COURT OR THROUGH BINDING INDIVIDUAL ARBITRATION ONLY, AND YOU WAIVE
@@ -21,7 +21,7 @@ const Terms_of_use = () => {
           DECIDED BY A JURY, AS EXPLAINED IN THE DISPUTE RESOLUTION SECTION.
         </p>
 
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Udemy’s mission is to improve lives through learning. We enable anyone
           anywhere to create and share educational content (instructors) and to
           access that educational content to learn (students). We consider our
@@ -32,7 +32,7 @@ const Terms_of_use = () => {
           applications, our TV applications, our APIs, and other related
           services (“Services”).
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           If you publish a course on the Udemy platform, you must also agree to
           the{" "}
           <a href="#" className="text-blue-600 underline">
@@ -67,9 +67,9 @@ const Terms_of_use = () => {
         </p>
       </div>
 
-      <div className="p-6 bg-white rounded-lg ">
-        <h2 className="text-2xl font-bold mb-4">Table of Contents</h2>
-        <ul className="list-disc list-inside space-y-2 text-blue-600">
+      <div className="rounded-lg bg-white p-6 ">
+        <h2 className="mb-4 text-2xl font-bold">Table of Contents</h2>
+        <ul className="list-inside list-disc space-y-2 text-blue-600">
           <li>
             <a href="#" className="hover:underline">
               1. Accounts
@@ -138,9 +138,9 @@ const Terms_of_use = () => {
         </ul>
       </div>
 
-      <div className="p-6 bg-white rounded-lg ">
-        <h3 className="text-2xl font-bold mb-4">1. Accounts</h3>
-        <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
+      <div className="rounded-lg bg-white p-6 ">
+        <h3 className="mb-4 text-2xl font-bold">1. Accounts</h3>
+        <div className="mb-4 rounded-lg border-l-4 border-blue-600 bg-gray-100 p-4">
           <p className="text-base text-gray-700">
             You need an account for most activities on our platform. Keep your
             password somewhere safe, because you’re responsible for all activity
@@ -153,7 +153,7 @@ const Terms_of_use = () => {
             your country to use Udemy.
           </p>
         </div>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           You need an account for most activities on our platform, including to
           purchase and access content or to submit content for publication. When
           setting up and maintaining your account, you must provide and continue
@@ -169,7 +169,7 @@ const Terms_of_use = () => {
           account. In the event of the death of a user, the account of that user
           will be closed.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           You may not share your account login credentials with anyone else. You
           are responsible for what happens with your account and Udemy will not
           intervene in disputes between students or instructors who have shared
@@ -183,7 +183,7 @@ const Terms_of_use = () => {
           . We may request some information from you to confirm that you are
           indeed the owner of your account.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Students and instructors must be at least 18 years of age to create an
           account on Udemy and use the Services. If you are younger than 18 but
           above the required age for consent to use online services where you
@@ -214,11 +214,11 @@ const Terms_of_use = () => {
         </p>
       </div>
 
-      <div className="p-6 bg-white rounded-lg ">
-        <h3 className="text-2xl font-bold mb-4">
+      <div className="rounded-lg bg-white p-6 ">
+        <h3 className="mb-4 text-2xl font-bold">
           2. Content Enrollment and Lifetime Access
         </h3>
-        <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
+        <div className="mb-4 rounded-lg border-l-4 border-blue-600 bg-gray-100 p-4">
           <p className="text-base text-gray-700">
             When you enroll in a course or other content, you get a license from
             us to view it via the Udemy Services and no other use. Don’t try to
@@ -228,7 +228,7 @@ const Terms_of_use = () => {
             Subscription Plans.
           </p>
         </div>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Under our{" "}
           <a href="#" className="text-blue-600 underline">
             Instructor Terms
@@ -244,7 +244,7 @@ const Terms_of_use = () => {
           (including by sharing account information with a purchaser or
           illegally downloading the content and sharing it on torrent sites).
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           In legal, more complete terms, Udemy grants you (as a student) a
           limited, non-exclusive, non-transferable license to access and view
           the content for which you have paid all required fees, solely for your
@@ -259,7 +259,7 @@ const Terms_of_use = () => {
           authorized representative. This also applies to content you can access
           via any of our APIs.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           We generally give a lifetime access license to our students when they
           enroll in a course or other content. However, we reserve the right to
           revoke any license to access and use any content at any point in time
@@ -284,19 +284,19 @@ const Terms_of_use = () => {
         </p>
       </div>
 
-      <div className="p-6 bg-white rounded-lg ">
-        <h3 className="text-2xl font-bold mb-4">
+      <div className="rounded-lg bg-white p-6 ">
+        <h3 className="mb-4 text-2xl font-bold">
           3. Payments, Credits, and Refunds
         </h3>
-        <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
+        <div className="mb-4 rounded-lg border-l-4 border-blue-600 bg-gray-100 p-4">
           <p className="text-base text-gray-700">
             When you make a payment, you agree to use a valid payment method. If
             you aren’t happy with your content, Udemy offers a 30-day refund or
             credit for most content purchases.
           </p>
         </div>
-        <h4 className="text-xl font-semibold mb-3">3.1 Pricing</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">3.1 Pricing</h4>
+        <p className="mb-4 text-base text-gray-700">
           The prices of content on Udemy are determined based on the terms of
           the{" "}
           <a href="#" className="text-blue-600 underline">
@@ -308,7 +308,7 @@ const Terms_of_use = () => {
           providers’ pricing systems and their policies around implementing
           sales and promotions.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           We occasionally run promotions and sales for our content, during which
           certain content is available at discounted prices for a set period of
           time. The price applicable to the content will be the price at the
@@ -318,14 +318,14 @@ const Terms_of_use = () => {
           aren’t registered or logged in, because some of our promotions are
           available only to new users.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           If you are logged into your account, the listed currency you see is
           based on your location when you created your account. If you are not
           logged into your account, the price currency is based on the country
           where you are located. We do not enable users to see pricing in other
           currencies.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           If you are a student located in a country where use and sales tax,
           goods and services tax, or value added tax is applicable to consumer
           sales, we are responsible for collecting and remitting that tax to the
@@ -333,8 +333,8 @@ const Terms_of_use = () => {
           may include such taxes, or tax may be added at checkout.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">3.2 Payments</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">3.2 Payments</h4>
+        <p className="mb-4 text-base text-gray-700">
           You agree to pay the fees for content that you purchase, and you
           authorize us to charge your debit or credit card or process other
           means of payment (such as Boleto, SEPA, direct debit, or mobile
@@ -348,7 +348,7 @@ const Terms_of_use = () => {
           </a>{" "}
           for more details.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           When you make a purchase, you agree not to use an invalid or
           unauthorized payment method. If your payment method fails and you
           still get access to the content you are enrolling in, you agree to pay
@@ -357,10 +357,10 @@ const Terms_of_use = () => {
           not received adequate payment.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           3.3 Refunds and Refund Credits
         </h4>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           If the content you purchased is not what you were expecting, you can
           request, within 30 days of your purchase of the content, that Udemy
           apply a refund to your account. This refund option does not apply to
@@ -377,7 +377,7 @@ const Terms_of_use = () => {
           students beyond the 30-day limit in cases of suspected or confirmed
           account fraud.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           To request a refund, follow the steps{" "}
           <a href="#" className="text-blue-600 underline">
             here
@@ -385,7 +385,7 @@ const Terms_of_use = () => {
           . As detailed in the Instructor Terms, instructors agree that students
           have the right to receive these refunds.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           At our discretion, if we believe you are abusing our refund policy,
           such as if you’ve consumed a notable amount of the content that you
           want to refund or if you’ve previously refunded the content, we
@@ -404,10 +404,10 @@ const Terms_of_use = () => {
           .
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           3.4 Gift and Promotional Codes
         </h4>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Udemy or our partners may offer gift and promotional codes to
           students. Certain codes may be redeemed for gift or promotional
           credits applied to your Udemy account, which then may be used to
@@ -416,7 +416,7 @@ const Terms_of_use = () => {
           specific content. Gift and promotional credits can’t be used for
           purchases in our mobile or TV applications.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           These codes and credits, as well as any promotional value linked to
           them, may expire if not used within the period specified in your Udemy
           account. Gift and promotional codes offered by Udemy may not be
@@ -430,11 +430,11 @@ const Terms_of_use = () => {
         </p>
       </div>
 
-      <div className="p-6 bg-white rounded-lg ">
-        <h3 className="text-2xl font-bold mb-4">
+      <div className="rounded-lg bg-white p-6 ">
+        <h3 className="mb-4 text-2xl font-bold">
           4. Content and Behavior Rules
         </h3>
-        <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
+        <div className="mb-4 rounded-lg border-l-4 border-blue-600 bg-gray-100 p-4">
           <p className="text-base text-gray-700">
             You can only use Udemy for lawful purposes. You’re responsible for
             all the content that you post on our platform. You should keep the
@@ -448,7 +448,7 @@ const Terms_of_use = () => {
             someone is infringing your copyright on our platform, let us know.
           </p>
         </div>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           You may not access or use the Services or create an account for
           unlawful purposes. Your use of the Services and behavior on our
           platform must comply with applicable local or national laws or
@@ -456,14 +456,14 @@ const Terms_of_use = () => {
           knowledge of and compliance with such laws and regulations that are
           applicable to you.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           If you are a student, the Services enable you to ask questions to the
           instructors of courses or other content you are enrolled in, and to
           post reviews of content. For certain content, the instructor may
           invite you to submit content as “homework” or tests. Don’t post or
           submit anything that is not yours.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           If you are an instructor, you can submit content for publication on
           the platform and you can also communicate with the students who have
           enrolled in your courses or other content. In both cases, you must
@@ -478,7 +478,7 @@ const Terms_of_use = () => {
           </a>{" "}
           before you submit any content for publication on Udemy.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           If we are put on notice that your course or content violates the law
           or the rights of others (for example, if it is established that it
           violates intellectual property or image rights of others, or is about
@@ -496,7 +496,7 @@ const Terms_of_use = () => {
           </a>{" "}
           for more details.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Udemy has discretion in enforcing these Terms and our{" "}
           <a href="#" className="text-blue-600 underline">
             Trust & Safety Guidelines
@@ -533,18 +533,18 @@ const Terms_of_use = () => {
         </p>
       </div>
 
-      <div className="p-6 bg-white rounded-lg ">
-        <h3 className="text-2xl font-bold mb-4">
+      <div className="rounded-lg bg-white p-6 ">
+        <h3 className="mb-4 text-2xl font-bold">
           5. Udemy’s Rights to Content You Post
         </h3>
-        <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
+        <div className="mb-4 rounded-lg border-l-4 border-blue-600 bg-gray-100 p-4">
           <p className="text-base text-gray-700">
             You retain ownership of content you post to our platform, including
             your courses. We’re allowed to share your content to anyone through
             any media, including promoting it via advertising on other websites.
           </p>
         </div>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           The content you post as a student or instructor (including courses)
           remains yours. By posting courses and other content, you allow Udemy
           to reuse and share it but you do not lose any ownership rights you may
@@ -555,14 +555,14 @@ const Terms_of_use = () => {
           </a>
           .
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           When you post content, comments, questions, reviews, and when you
           submit to us ideas and suggestions for new features or improvements,
           you authorize Udemy to use and share this content with anyone,
           distribute it and promote it on any platform and in any media, and to
           make modifications or edits to it as we see fit.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           In legal language, by submitting or posting content on or through the
           platforms, you grant us a worldwide, non-exclusive, royalty-free
           license (with the right to sublicense) to use, copy, reproduce,
@@ -582,11 +582,11 @@ const Terms_of_use = () => {
         </p>
       </div>
 
-      <div className="p-6 bg-white rounded-lg ">
-        <h3 className="text-2xl font-bold mb-4">
+      <div className="rounded-lg bg-white p-6 ">
+        <h3 className="mb-4 text-2xl font-bold">
           6. Using Udemy at Your Own Risk
         </h3>
-        <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
+        <div className="mb-4 rounded-lg border-l-4 border-blue-600 bg-gray-100 p-4">
           <p className="text-base text-gray-700">
             Anyone can use Udemy to create and publish content and instructors
             and we enable instructors and students to interact for teaching and
@@ -595,7 +595,7 @@ const Terms_of_use = () => {
             risk.
           </p>
         </div>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Our platform model means we do not review or edit the content for
           legal issues, and we are not in a position to determine the legality
           of content. We do not exercise any editorial control over the content
@@ -604,7 +604,7 @@ const Terms_of_use = () => {
           content. If you access content, you rely on any information provided
           by an instructor at your own risk.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           By using the Services, you may be exposed to content that you consider
           offensive, indecent, or objectionable. Udemy has no responsibility to
           keep such content from you and no liability for your access or
@@ -617,7 +617,7 @@ const Terms_of_use = () => {
           death. You assume full responsibility for the choices you make before,
           during, and after your access to the content.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           When you interact directly with a student or an instructor, you must
           be careful about the types of personal information that you share.
           While we restrict the types of information instructors may request
@@ -626,7 +626,7 @@ const Terms_of_use = () => {
           should not share your email or other personal information about you
           for your safety.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           We do not hire or employ instructors nor are we responsible or liable
           for any interactions involved between instructors and students. We are
           not liable for disputes, claims, losses, injuries, or damage of any
@@ -642,9 +642,9 @@ const Terms_of_use = () => {
         </p>
       </div>
 
-      <div className="p-6 bg-white rounded-lg ">
-        <h3 className="text-2xl font-bold mb-4">7. Udemy’s Rights</h3>
-        <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
+      <div className="rounded-lg bg-white p-6 ">
+        <h3 className="mb-4 text-2xl font-bold">7. Udemy’s Rights</h3>
+        <div className="mb-4 rounded-lg border-l-4 border-blue-600 bg-gray-100 p-4">
           <p className="text-base text-gray-700">
             We own the Udemy platform and Services, including the website,
             present or future apps and services, and things like our logos, API,
@@ -652,7 +652,7 @@ const Terms_of_use = () => {
             those or use them without authorization.
           </p>
         </div>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           All right, title, and interest in and to the Udemy platform and
           Services, including our website, our existing or future applications,
           our APIs, databases, and the content our employees or partners submit
@@ -667,11 +667,11 @@ const Terms_of_use = () => {
           we will be free to use such feedback, comments, or suggestions as we
           see fit and without any obligation to you.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           You may not do any of the following while accessing or using the Udemy
           platform and Services:
         </p>
-        <ul className="list-disc list-inside text-base text-gray-700 mb-4 space-y-2">
+        <ul className="mb-4 list-inside list-disc space-y-2 text-base text-gray-700">
           <li>
             Access, tamper with, or use non-public areas of the platform
             (including content storage), Udemy’s computer systems, or the
@@ -708,9 +708,9 @@ const Terms_of_use = () => {
         </ul>
       </div>
 
-      <div className="p-6 bg-white rounded-lg ">
-        <h3 className="text-2xl font-bold mb-4">8. Subscription Terms</h3>
-        <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
+      <div className="rounded-lg bg-white p-6 ">
+        <h3 className="mb-4 text-2xl font-bold">8. Subscription Terms</h3>
+        <div className="mb-4 rounded-lg border-l-4 border-blue-600 bg-gray-100 p-4">
           <p className="text-base text-gray-700">
             This section covers additional terms that apply to your use of our
             subscription-based collections as a student (“Subscription Plans”).
@@ -721,8 +721,8 @@ const Terms_of_use = () => {
           </p>
         </div>
 
-        <h4 className="text-xl font-semibold mb-3">8.1 Subscription Plans</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">8.1 Subscription Plans</h4>
+        <p className="mb-4 text-base text-gray-700">
           During your subscription to a Subscription Plan, you get a limited,
           non-exclusive, non-transferable license from us to access and view the
           content included in that Subscription Plan via the Services. With the
@@ -733,7 +733,7 @@ const Terms_of_use = () => {
           </a>{" "}
           section above apply to enrollments via Subscription Plans.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Your Subscription Plan may include access to interactive environments,
           such as workspaces (“Interactive Sessions”). Interactive Sessions may
           be provided by a third party, subject to its own agreement or terms
@@ -744,12 +744,12 @@ const Terms_of_use = () => {
           . You’re responsible for complying with the terms and conditions of
           any third party provider.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           The subscription that you purchase or renew determines the scope,
           features, and price of your access to a Subscription Plan. You may not
           transfer, assign, or share your subscription with anyone else.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           We reserve the right to revoke any license to use the content in our
           Subscription Plans for legal or policy reasons at any time and at our
           sole discretion, such as if we no longer have the right to offer the
@@ -761,8 +761,8 @@ const Terms_of_use = () => {
           section.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">8.2 Account Management</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">8.2 Account Management</h4>
+        <p className="mb-4 text-base text-gray-700">
           You may cancel your subscription by following the steps outlined on
           our{" "}
           <a href="#" className="text-blue-600 underline">
@@ -777,10 +777,10 @@ const Terms_of_use = () => {
           account.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           8.3 Free Trials & Renewals
         </h4>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Your subscription may start with a free trial. The duration of the
           free trial period of your subscription will be specified during
           sign-up. Udemy determines free trial eligibility at our sole
@@ -788,7 +788,7 @@ const Terms_of_use = () => {
           the right to terminate the free trial and suspend your subscription if
           we determine that you aren’t eligible.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           We will charge the subscription fee for your next billing cycle at the
           end of the free trial period. Your subscription will automatically
           renew according to your subscription settings (e.g., monthly or
@@ -801,8 +801,8 @@ const Terms_of_use = () => {
           .
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">8.4 Payments and Billing</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">8.4 Payments and Billing</h4>
+        <p className="mb-4 text-base text-gray-700">
           The subscription fee will be listed at the time of your purchase. You
           can visit our{" "}
           <a href="#" className="text-blue-600 underline">
@@ -814,10 +814,10 @@ const Terms_of_use = () => {
           required by applicable law.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           8.5 Interactive Session Restrictions
         </h4>
-        <ul className="list-disc list-inside text-base text-gray-700 mb-4 space-y-2">
+        <ul className="mb-4 list-inside list-disc space-y-2 text-base text-gray-700">
           <li>
             Use the Interactive Sessions for any purpose other than to perform
             the activities as instructed by Udemy’s labs.
@@ -840,7 +840,7 @@ const Terms_of_use = () => {
           </li>
         </ul>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           8.6 Subscription Disclaimers
         </h4>
         <p className="text-base text-gray-700">
@@ -856,9 +856,9 @@ const Terms_of_use = () => {
         </p>
       </div>
 
-      <div className="p-6 bg-white rounded-lg ">
-        <h3 className="text-2xl font-bold mb-4">9. Generative AI Terms</h3>
-        <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
+      <div className="rounded-lg bg-white p-6 ">
+        <h3 className="mb-4 text-2xl font-bold">9. Generative AI Terms</h3>
+        <div className="mb-4 rounded-lg border-l-4 border-blue-600 bg-gray-100 p-4">
           <p className="text-base text-gray-700">
             This section covers additional terms that apply to your use of
             generative AI features in our Services (“GenAI Features”). By
@@ -867,8 +867,8 @@ const Terms_of_use = () => {
           </p>
         </div>
 
-        <h4 className="text-xl font-semibold mb-3">9.1 Inputs and Outputs</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">9.1 Inputs and Outputs</h4>
+        <p className="mb-4 text-base text-gray-700">
           When using the GenAI Features, you may input or upload content
           (“Input”). The Services will process the Input to generate output,
           such as text, provided within the Services (“Output”). You retain
@@ -884,10 +884,10 @@ const Terms_of_use = () => {
           purposes through the Services.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           9.2 No Model Training or Fine-tuning
         </h4>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Udemy does not use your personal data to train or fine tune generative
           AI models used for the GenAI Features. If this changes in the future,
           Udemy will only use your personal data to train or fine tune
@@ -898,10 +898,10 @@ const Terms_of_use = () => {
           necessity, and provide you with the ability to opt out.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           9.3 GenAI Feature Restrictions
         </h4>
-        <ul className="list-disc list-inside text-base text-gray-700 mb-4 space-y-2">
+        <ul className="mb-4 list-inside list-disc space-y-2 text-base text-gray-700">
           <li>
             Use the GenAI Tools or Output in a manner that violates or could
             reasonably lead to the violation of the Terms or any applicable laws
@@ -932,7 +932,7 @@ const Terms_of_use = () => {
             welfare.
           </li>
         </ul>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           These restrictions are in addition to those listed elsewhere in these
           Terms, including in the{" "}
           <a href="#" className="text-blue-600 underline">
@@ -945,10 +945,10 @@ const Terms_of_use = () => {
           sections above.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           9.4 GenAI Feature Disclaimers
         </h4>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           To the extent permitted by law, we disclaim all liability for any
           damages arising from your use of the GenAI Features or Output. You
           acknowledge that the GenAI Features may produce Output that is
@@ -966,11 +966,11 @@ const Terms_of_use = () => {
         </p>
       </div>
 
-      <div className="p-6 bg-white rounded-lg ">
-        <h3 className="text-2xl font-bold mb-4">
+      <div className="rounded-lg bg-white p-6 ">
+        <h3 className="mb-4 text-2xl font-bold">
           10. Miscellaneous Legal Terms
         </h3>
-        <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
+        <div className="mb-4 rounded-lg border-l-4 border-blue-600 bg-gray-100 p-4">
           <p className="text-base text-gray-700">
             These Terms are like any other contract, and they have boring but
             important legal terms that protect us from the countless things that
@@ -979,44 +979,44 @@ const Terms_of_use = () => {
           </p>
         </div>
 
-        <h4 className="text-xl font-semibold mb-3">10.1 Binding Agreement</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">10.1 Binding Agreement</h4>
+        <p className="mb-4 text-base text-gray-700">
           You agree that by registering, accessing, or using our Services, you
           are agreeing to enter into a legally binding contract with Udemy. If
           you do not agree to these Terms, do not register, access, or otherwise
           use any of our Services.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           If you are an instructor accepting these Terms and using our Services
           on behalf of a company, organization, government, or other legal
           entity, you represent and warrant that you are authorized to do so.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Any version of these Terms in a language other than English is
           provided for convenience and you understand and agree that the English
           language will control if there is any conflict.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           These Terms (including any agreements and policies linked from these
           Terms) constitute the entire agreement between you and us (which
           include, if you are an instructor, the Instructor Terms, Promotions
           Policy, and Instructor GenAI Policy).
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           If any part of these Terms is found to be invalid or unenforceable by
           applicable law, then that provision will be deemed superseded by a
           valid, enforceable provision that most closely matches the intent of
           the original provision and the remainder of these Terms will continue
           in effect.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Even if we are delayed in exercising our rights or fail to exercise a
           right in one case, it doesn’t mean we waive our rights under these
           Terms, and we may decide to enforce them in the future. If we decide
           to waive any of our rights in a particular instance, it doesn’t mean
           we waive our rights generally or in the future.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           The following sections shall survive the expiration or termination of
           these Terms: Sections 2 (Content Enrollment and Lifetime Access), 5
           (Udemy’s Rights to Content You Post), 6 (Using Udemy at Your Own
@@ -1025,8 +1025,8 @@ const Terms_of_use = () => {
           Resolution).
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">10.2 Disclaimers</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">10.2 Disclaimers</h4>
+        <p className="mb-4 text-base text-gray-700">
           It may happen that our platform is down, either for planned
           maintenance or because something goes down with the site. It may
           happen that one of our instructors is making misleading statements in
@@ -1044,10 +1044,10 @@ const Terms_of_use = () => {
           non-infringement.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           10.3 Limitation of Liability
         </h4>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           There are risks inherent to using our Services, for example, if you
           access health and wellness content like yoga, and you injure yourself.
           You fully accept these risks and you agree that you will have no
@@ -1058,8 +1058,8 @@ const Terms_of_use = () => {
           incidental, punitive, or consequential damages.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">10.4 Indemnification</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">10.4 Indemnification</h4>
+        <p className="mb-4 text-base text-gray-700">
           If you behave in a way that gets us in legal trouble, we may exercise
           legal recourse against you. You agree to indemnify, defend (if we so
           request), and hold harmless Udemy, our group companies, and their
@@ -1070,10 +1070,10 @@ const Terms_of_use = () => {
           these Terms; or (d) your violation of any rights of a third party.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           10.5 Governing Law and Jurisdiction
         </h4>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           When these Terms mention “Udemy,” they’re referring to the Udemy
           entity that you’re contracting with. If you’re a student located in
           India, these Terms are governed by the laws of India, and you consent
@@ -1083,11 +1083,11 @@ const Terms_of_use = () => {
         </p>
       </div>
 
-      <div className="p-6 bg-white rounded-lg ">
-        <h3 className="text-2xl font-bold mb-4">
+      <div className="rounded-lg bg-white p-6 ">
+        <h3 className="mb-4 text-2xl font-bold">
           10. Miscellaneous Legal Terms
         </h3>
-        <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
+        <div className="mb-4 rounded-lg border-l-4 border-blue-600 bg-gray-100 p-4">
           <p className="text-base text-gray-700">
             These Terms are like any other contract, and they have boring but
             important legal terms that protect us from the countless things that
@@ -1096,44 +1096,44 @@ const Terms_of_use = () => {
           </p>
         </div>
 
-        <h4 className="text-xl font-semibold mb-3">10.1 Binding Agreement</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">10.1 Binding Agreement</h4>
+        <p className="mb-4 text-base text-gray-700">
           You agree that by registering, accessing, or using our Services, you
           are agreeing to enter into a legally binding contract with Udemy. If
           you do not agree to these Terms, do not register, access, or otherwise
           use any of our Services.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           If you are an instructor accepting these Terms and using our Services
           on behalf of a company, organization, government, or other legal
           entity, you represent and warrant that you are authorized to do so.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Any version of these Terms in a language other than English is
           provided for convenience and you understand and agree that the English
           language will control if there is any conflict.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           These Terms (including any agreements and policies linked from these
           Terms) constitute the entire agreement between you and us (which
           include, if you are an instructor, the Instructor Terms, Promotions
           Policy, and Instructor GenAI Policy).
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           If any part of these Terms is found to be invalid or unenforceable by
           applicable law, then that provision will be deemed superseded by a
           valid, enforceable provision that most closely matches the intent of
           the original provision and the remainder of these Terms will continue
           in effect.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Even if we are delayed in exercising our rights or fail to exercise a
           right in one case, it doesn’t mean we waive our rights under these
           Terms, and we may decide to enforce them in the future. If we decide
           to waive any of our rights in a particular instance, it doesn’t mean
           we waive our rights generally or in the future.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           The following sections shall survive the expiration or termination of
           these Terms: Sections 2 (Content Enrollment and Lifetime Access), 5
           (Udemy’s Rights to Content You Post), 6 (Using Udemy at Your Own
@@ -1142,8 +1142,8 @@ const Terms_of_use = () => {
           Resolution).
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">10.2 Disclaimers</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">10.2 Disclaimers</h4>
+        <p className="mb-4 text-base text-gray-700">
           It may happen that our platform is down, either for planned
           maintenance or because something goes down with the site. It may
           happen that one of our instructors is making misleading statements in
@@ -1161,10 +1161,10 @@ const Terms_of_use = () => {
           non-infringement.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           10.3 Limitation of Liability
         </h4>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           There are risks inherent to using our Services, for example, if you
           access health and wellness content like yoga, and you injure yourself.
           You fully accept these risks and you agree that you will have no
@@ -1175,8 +1175,8 @@ const Terms_of_use = () => {
           incidental, punitive, or consequential damages.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">10.4 Indemnification</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">10.4 Indemnification</h4>
+        <p className="mb-4 text-base text-gray-700">
           If you behave in a way that gets us in legal trouble, we may exercise
           legal recourse against you. You agree to indemnify, defend (if we so
           request), and hold harmless Udemy, our group companies, and their
@@ -1187,10 +1187,10 @@ const Terms_of_use = () => {
           these Terms; or (d) your violation of any rights of a third party.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           10.5 Governing Law and Jurisdiction
         </h4>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           When these Terms mention “Udemy,” they’re referring to the Udemy
           entity that you’re contracting with. If you’re a student located in
           India, these Terms are governed by the laws of India, and you consent
@@ -1200,9 +1200,9 @@ const Terms_of_use = () => {
         </p>
       </div>
 
-      <div className="p-6 bg-white rounded-lg ">
-        <h3 className="text-2xl font-bold mb-4">11. Dispute Resolution</h3>
-        <div className="bg-gray-100 p-4 border-l-4 border-blue-600 rounded-lg mb-4">
+      <div className="rounded-lg bg-white p-6 ">
+        <h3 className="mb-4 text-2xl font-bold">11. Dispute Resolution</h3>
+        <div className="mb-4 rounded-lg border-l-4 border-blue-600 bg-gray-100 p-4">
           <p className="text-base text-gray-700">
             If there’s a dispute, our Support Team is happy to help resolve the
             issue. If that doesn’t work and you live in the United States or
@@ -1213,10 +1213,10 @@ const Terms_of_use = () => {
           </p>
         </div>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           11.1 Dispute Resolution Overview
         </h4>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Udemy is committed to using its best efforts to resolve disputes with
           its users, without the need for a formal legal claim to be filed. If
           an issue arises between us, you and Udemy agree to first work
@@ -1226,17 +1226,17 @@ const Terms_of_use = () => {
           necessary to help resolve our dispute. This Dispute Resolution
           Agreement limits how these disputes can be resolved.
         </p>
-        <p className="text-base text-gray-700 mb-4 font-semibold">
+        <p className="mb-4 text-base font-semibold text-gray-700">
           YOU AND UDEMY AGREE THAT ANY AND ALL DISPUTES, CLAIMS, OR
           CONTROVERSIES ARISING OUT OF OR RELATING TO THESE TERMS OR THE USE OF
           THE SERVICES MUST BE ADDRESSED SOLELY IN SMALL CLAIMS COURT OR BY
           BINDING INDIVIDUAL ARBITRATION.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           11.2 Mandatory Informal Dispute Resolution Process
         </h4>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Before filing a claim against each other, you and Udemy must first
           participate in the informal dispute resolution process. The claiming
           party shall send a short, written statement (“Claim Statement”)
@@ -1252,16 +1252,16 @@ const Terms_of_use = () => {
           Floor, San Francisco, CA 94107.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">11.3 Small Claims</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">11.3 Small Claims</h4>
+        <p className="mb-4 text-base text-gray-700">
           Disputes not resolved through informal resolution can be brought in
           small claims court in San Francisco, California; the county where you
           live; or another mutually agreed location. We each waive the right to
           bring disputes in courts other than small claims court.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">11.4 Arbitration</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">11.4 Arbitration</h4>
+        <p className="mb-4 text-base text-gray-700">
           As an alternative to small claims court, you and Udemy can resolve
           disputes through individual arbitration. While there’s no judge or
           jury in arbitration, the arbitrator has the power to award the same
@@ -1269,61 +1269,61 @@ const Terms_of_use = () => {
           alternative for resolving disputes.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           11.5 General Arbitration Rules
         </h4>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           All arbitrations shall be before a single arbitrator. Disputes
           involving less than $15,000 USD in damages must be resolved through
           binding, non-appearance-based arbitration. For other disputes,
           arbitrations may be conducted by phone, video, or written submissions.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           11.6 Mass Arbitration Rules
         </h4>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           If 25 or more claimants file demands for arbitration against Udemy
           regarding substantially identical disputes, a bellwether procedure
           will apply to resolve initial cases and guide resolution of others.
           Mass Arbitration rules ensure fairness and consistency in such cases.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">11.7 Fees and Costs</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">11.7 Fees and Costs</h4>
+        <p className="mb-4 text-base text-gray-700">
           Each party will bear its own costs and attorney fees unless otherwise
           required by law or if the claim is found to be frivolous or brought in
           bad faith.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">11.8 No Class Actions</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">11.8 No Class Actions</h4>
+        <p className="mb-4 text-base text-gray-700">
           You and Udemy agree that claims may only be brought individually, not
           as part of a class or representative action. Arbitrators cannot
           preside over class actions or combine claims of multiple individuals.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">11.9 Changes</h4>
-        <p className="text-base text-gray-700 mb-4">
+        <h4 className="mb-3 text-xl font-semibold">11.9 Changes</h4>
+        <p className="mb-4 text-base text-gray-700">
           If Udemy updates this Dispute Resolution section, you may reject
           changes by notifying Udemy in writing within 30 days of the update. If
           you reject changes, disputes will be handled under the prior version
           of these terms.
         </p>
 
-        <h4 className="text-xl font-semibold mb-3">
+        <h4 className="mb-3 text-xl font-semibold">
           11.10 Improperly Commenced Arbitration
         </h4>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           If arbitration is improperly initiated, the responding party may seek
           a court order to enjoin the arbitration and recover fees or costs
           incurred.
         </p>
       </div>
 
-      <div className="p-6 bg-white rounded-lg ">
-        <h3 className="text-2xl font-bold mb-4">12. Updating These Terms</h3>
-        <p className="text-base text-gray-700 mb-4">
+      <div className="rounded-lg bg-white p-6 ">
+        <h3 className="mb-4 text-2xl font-bold">12. Updating These Terms</h3>
+        <p className="mb-4 text-base text-gray-700">
           From time to time, we may update these Terms to clarify our practices
           or to reflect new or different practices (such as when we add new
           features), and Udemy reserves the right in its sole discretion to
@@ -1333,14 +1333,14 @@ const Terms_of_use = () => {
           posting a notice through our Services. Modifications will become
           effective on the day they are posted unless stated otherwise.
         </p>
-        <p className="text-base text-gray-700 mb-4">
+        <p className="mb-4 text-base text-gray-700">
           Your continued use of our Services after changes become effective
           shall mean that you accept those changes. Any revised Terms shall
           supersede all previous Terms.
         </p>
 
-        <h3 className="text-2xl font-bold mb-4">13. How to Contact Us</h3>
-        <p className="text-base text-gray-700 mb-4">
+        <h3 className="mb-4 text-2xl font-bold">13. How to Contact Us</h3>
+        <p className="mb-4 text-base text-gray-700">
           The best way to get in touch with us is to contact our{" "}
           <a href="#" className="text-blue-600 underline">
             Support Team

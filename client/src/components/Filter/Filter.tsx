@@ -92,15 +92,15 @@ const Filter: React.FC<FilterProps> = ({
     <div className={useForSection ? "bg-bgCommercial" : ""}>
       <hr className={showLine ? "block" : "hidden"} />
       <div
-        className={`transition-all overflow-hidden ${
+        className={`overflow-hidden transition-all ${
           isClicked ? "h-auto" : `${chosenHeight}`
         }`}
       >
         <div
-          className="flex justify-between items-center cursor-pointer"
+          className="flex cursor-pointer items-center justify-between"
           onClick={handleClick}
         >
-          <p className="font-bold text-lg pb-[1em] py-[0.5em]">{filterTitle}</p>
+          <p className="py-[0.5em] pb-[1em] text-lg font-bold">{filterTitle}</p>
           {isClicked ? (
             <MdKeyboardArrowUp
               size={17}
@@ -129,31 +129,32 @@ const Filter: React.FC<FilterProps> = ({
           {filterItems?.map((item: DummyData) => (
             <label
               key={item.name}
-              className="flex gap-[0.5em] text-languageText py-[0.5em] cursor-pointer"
+              className="flex cursor-pointer gap-[0.5em] py-[0.5em] text-languageText"
             >
               <Checkbox
-                className="border-black border-2 rounded-[0.1em]"
+                className="rounded-[0.1em] border-2 border-black"
                 onClick={() => handleClickValue(item.name!)}
                 checked={
                   filterTitle === "Language" &&
                   filterData.language.has(item.name)
                     ? true
                     : filterTitle === "Hands-on Practice" &&
-                      filterData.handsOnPractice.has(item.name)
-                    ? true
-                    : filterTitle === "Video Duration" &&
-                      filterData.videosDurations.has(item.name)
-                    ? true
-                    : filterTitle === "Topics" &&
-                      filterData.topics.has(item.name)
-                    ? true
-                    : filterTitle === "Level" &&
-                      filterData.levels.has(item.name)
-                    ? true
-                    : filterTitle === "Subtitles" &&
-                      filterData.subtitles.has(item.name)
-                    ? true
-                    : filterTitle === "Price" && filterData.price === item.name
+                        filterData.handsOnPractice.has(item.name)
+                      ? true
+                      : filterTitle === "Video Duration" &&
+                          filterData.videosDurations.has(item.name)
+                        ? true
+                        : filterTitle === "Topics" &&
+                            filterData.topics.has(item.name)
+                          ? true
+                          : filterTitle === "Level" &&
+                              filterData.levels.has(item.name)
+                            ? true
+                            : filterTitle === "Subtitles" &&
+                                filterData.subtitles.has(item.name)
+                              ? true
+                              : filterTitle === "Price" &&
+                                filterData.price === item.name
                 }
               />
               <span>{item.name}</span>

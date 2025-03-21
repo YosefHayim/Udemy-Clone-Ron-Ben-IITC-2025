@@ -4,14 +4,14 @@ type fn = (
   searchTerm: string,
   limit: number,
   page: number,
-  filterData?: {}
+  filterData?: {},
 ) => Promise<any>;
 
 const getAllCourses: fn = async (
   searchTerm = "",
   filterData = {},
   limit = 13,
-  page = 1
+  page = 1,
 ) => {
   if (!searchTerm) {
     console.log("Search term is required");

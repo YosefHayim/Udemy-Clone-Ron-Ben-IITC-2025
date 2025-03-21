@@ -39,7 +39,7 @@ const LearningGoals = () => {
   ];
 
   return (
-    <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 px-8 py-16 bg-gray-50">
+    <div className="flex flex-col items-center gap-8 bg-gray-50 px-8 py-16 lg:flex-row lg:items-start">
       {/* Features Section */}
       <div className="flex-1 space-y-6">
         <h2 className="text-3xl font-bold text-gray-900">
@@ -48,14 +48,14 @@ const LearningGoals = () => {
         {features.map((feature, index) => (
           <div
             key={index}
-            className={`cursor-pointer hover:bg-gray-100 flex items-center p-6 border rounded-lg shadow-md ${
+            className={`flex cursor-pointer items-center rounded-lg border p-6 shadow-md hover:bg-gray-100 ${
               index === 0 ? "border-purple-500" : "border-gray-200"
             }`}
           >
             <img
               src={feature.image}
               alt={feature.title}
-              className="w-12 h-12 mr-4"
+              className="mr-4 h-12 w-12"
             />
             <div>
               <h3
@@ -65,16 +65,16 @@ const LearningGoals = () => {
               >
                 {feature.title}
               </h3>
-              <p className="text-gray-600 text-sm">{feature.description}</p>
+              <p className="text-sm text-gray-600">{feature.description}</p>
               {feature.badge && (
-                <span className="text-purple-600 text-xs font-bold mt-2 inline-block">
+                <span className="mt-2 inline-block text-xs font-bold text-purple-600">
                   {feature.badge}
                 </span>
               )}
               {feature.linkText && (
                 <Link
                   to="#"
-                  className="text-purple-600 text-sm font-bold mt-2 inline-block"
+                  className="mt-2 inline-block text-sm font-bold text-purple-600"
                 >
                   {feature.linkText}
                 </Link>
@@ -85,8 +85,8 @@ const LearningGoals = () => {
       </div>
 
       {/* Analysis Section */}
-      <div className="flex-1 max-w-md">
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+      <div className="max-w-md flex-1">
+        <div className="overflow-hidden rounded-lg bg-white shadow-md">
           <img
             src={containerizationImage}
             alt="Containerization analysis"

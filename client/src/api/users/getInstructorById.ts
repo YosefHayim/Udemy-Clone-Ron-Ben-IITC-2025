@@ -20,7 +20,7 @@ const getInstructorById = async (instructorId: string) => {
   } catch (error) {
     console.log(
       `Error has been occurred durning getting instructor information: `,
-      error
+      error,
     );
   }
 };

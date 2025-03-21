@@ -17,7 +17,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["course", courseId],
     queryFn: () => fetchCourseById(courseId || ""),
-    enabled: !!courseId,  // Only fetch if the courseId exists
+    enabled: !!courseId, // Only fetch if the courseId exists
   });
 
   if (isLoading) {
@@ -37,17 +37,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <SidebarProvider
-    style={{
-      "--sidebar-width": "28rem",
-      "--sidebar-width-mobile": "20rem",
-    }}
+      style={{
+        "--sidebar-width": "28rem",
+        "--sidebar-width-mobile": "20rem",
+      }}
     >
       <header>
-        <TopNavBar 
-        courseName={courseData.courseName} courseId={courseId}  />
+        <TopNavBar courseName={courseData.courseName} courseId={courseId} />
       </header>
       <SidebarInset>
-        <main className="w-full top-[64px] ">{children}</main>
+        <main className="top-[64px] w-full ">{children}</main>
       </SidebarInset>
       <AppSidebar />
     </SidebarProvider>
