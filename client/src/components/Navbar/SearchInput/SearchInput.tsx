@@ -76,7 +76,7 @@ const SearchInput = () => {
         } flex w-full items-center overflow-hidden rounded-full border border-gray-400 bg-gray-50 focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor`}
       >
         <button
-          className={`${searchTerm.length === 0 ? "cursor-not-allowed" : ""} focus:outline-none bg-none`}
+          className={`${searchTerm.length === 0 ? "cursor-not-allowed" : ""} bg-none focus:outline-none`}
         >
           <MdOutlineSearch
             className={`${

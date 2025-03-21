@@ -8,12 +8,17 @@ import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
-import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
 import { CourseTypeProps } from "@/types/types";
 import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
+import { useNavigate } from "react-router-dom";
+import Loader from "@/components/Loader/Loader";
+import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
+import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
+import CourseInstructor from "@/components/CourseCard/CourseInstructor/CourseInstructor";
 import CourseImg from "@/components/CourseCard/CourseImg/CourseImg";
 
 const Sections = () => {
+  const navigate = useNavigate();
   const [navbarCategory, setNavbarCategory] = useState("Data Science");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [courseIndex, setCourseIndex] = useState(0);
@@ -55,13 +60,21 @@ const Sections = () => {
     setTimeout(() => setCourseAnimating(false), 500);
   };
 
+  const handleNavigation = () => {
+    navigate(`/courses/search?src=ukw&q=${encodeURIComponent(navbarCategory)}`);
+  };
+
+  const handleCardClick = (courseId: string) => {
+    navigate(`/course-view/${courseId}`);
+  };
+
   const getDefaultTopic = () => {
     for (let category of categoriesData) {
       const match = category?.subcategory?.find((sub) => {
-        sub?.title || sub?.name === navbarCategory;
+        return sub?.title === navbarCategory || sub?.name === navbarCategory;
       });
       if (match) {
-        return match.topics?.[0] || null;
+        return match?.topics?.[0] || null;
       }
     }
     return null;
@@ -78,7 +91,7 @@ const Sections = () => {
   useEffect(() => {
     const newDefault = getDefaultTopic();
     if (newDefault) setChooseTopic(newDefault);
-  }, [navbarCategory]);
+  }, [navbarCategory, data]);
 
   return (
     <div className="flex w-full flex-col items-start justify-start">
@@ -90,7 +103,7 @@ const Sections = () => {
           From critical skills to technical topics, Udemy supports your
           professional development.
         </p>
-        <div className="flex w-full items-center justify-start gap-5 ">
+        <div className="flex w-full items-center justify-start gap-5">
           {navbarCategories.map((category, index) => (
             <div
               onClick={() => setNavbarCategory(category)}
@@ -118,7 +131,7 @@ const Sections = () => {
             state={countClick}
             useCustom={true}
             showDirectionalButtonsOnlyOnEdge={true}
-            topPosition="30%"
+            topPosition="67%"
             leftPosition="2%"
             rightPosition="2%"
           />
@@ -133,7 +146,7 @@ const Sections = () => {
                   key={i}
                   className={`flex w-max items-center justify-center gap-2 transition-transform duration-1000 ease-in-out`}
                   style={{
-                    transform: `translateX(-${currentIndex * 18}%)`,
+                    transform: `translateX(-${currentIndex * 5}%)`,
                   }}
                 >
                   {match?.topics?.map((topic, idx) => (
@@ -175,15 +188,15 @@ const Sections = () => {
               transform: `translateX(-${courseIndex * 30.5}%)`,
             }}
           >
-            {data &&
-              data.length > 1 &&
+            {data && data.length > 1 ? (
               data.map((courseCard: CourseTypeProps, index: number) => (
                 <div
+                  onClick={() => handleCardClick(courseCard._id)}
                   onMouseEnter={() => setHoveredCourse(courseCard._id)}
                   onMouseLeave={() => setHoveredCourse(courseCard._id)}
                   key={courseCard?._id}
                   id={courseCard?._id}
-                  className="w-[300px] flex-col items-start overflow-hidden rounded-lg border border-borderGrayColor bg-white shadow-sm"
+                  className="w-[300px] cursor-pointer flex-col items-start overflow-hidden rounded-lg border border-borderGrayColor bg-white shadow-sm"
                 >
                   <img
                     src={courseCard?.courseImg}
@@ -193,35 +206,29 @@ const Sections = () => {
                   <hr className="h-[0.1em] w-full bg-gray-300" />
                   <div className="flex flex-col items-start justify-start gap-4 p-4">
                     <CourseTitle title={courseCard.courseName} />
-                    <p className="truncate text-sm text-gray-600">
-                      {courseCard?.courseInstructor?.fullName}
-                    </p>
-                    <div className="flex items-center text-sm text-yellow-500">
-                      <span>{courseCard?.averageRating}</span>
-                      <span className="ml-1 text-gray-500">
-                        ({courseCard?.totalRatings})
-                      </span>
-                    </div>
-                    <div className="flex items-baseline justify-between">
-                      <div>
-                        <span className="font-bold text-gray-900">
-                          ₪{courseCard?.courseDiscountPrice}
-                        </span>
-                        <span className="ml-2 text-sm text-gray-500 line-through">
-                          ₪{courseCard?.courseFullPrice}
-                        </span>
-                      </div>
-                    </div>
-                    <div>
-                      <CourseTag tagName={courseCard?.courseTag} />
-                    </div>
+                    <CourseInstructor
+                      instructor={courseCard?.courseInstructor?.fullName}
+                    />
+                    <CourseRatings
+                      totalRatings={courseCard?.totalRatings}
+                      avgRatings={courseCard?.averageRating}
+                    />
+                    <CoursePrice
+                      discountPrice={courseCard.courseDiscountPrice}
+                      fullPrice={courseCard.courseFullPrice}
+                    />
+                    <CourseTag tagName={courseCard?.courseTag} />
                   </div>
                 </div>
-              ))}
+              ))
+            ) : (
+              <Loader useSmallLoading={false} hSize="" />
+            )}
           </div>
         </div>
         <div className="my-2 w-full">
           <button
+            onClick={handleNavigation}
             className={`${btnStyleNHover} border border-purple-800 font-bold text-purple-800`}
           >
             Show all {navbarCategory} courses
