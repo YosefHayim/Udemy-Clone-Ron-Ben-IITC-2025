@@ -95,7 +95,7 @@ const Sections = () => {
     event: React.MouseEvent<HTMLDivElement>,
   ) => {
     const rect = event.currentTarget.getBoundingClientRect();
-    setHoverPosition({ top: rect.top - 220, left: rect.right }); // right side of the card + 10px spacing
+    setHoverPosition({ top: rect.top - 360, left: rect.right }); // right side of the card + 10px spacing
     setHoveredCourse(id);
   };
 
@@ -169,8 +169,9 @@ const Sections = () => {
                       key={idx}
                       onClick={() => setChooseTopic(topic)}
                       className={`${
-                        choseTopic === topic &&
-                        "w-full bg-[#303141] text-white hover:bg-[#595c73]"
+                        choseTopic === topic
+                          ? "hover:bg-grayUdemyHover w-full bg-blackUdemy text-white"
+                          : ""
                       } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
                     >
                       <b className="w-max text-base">{topic}</b>
@@ -239,7 +240,7 @@ const Sections = () => {
                       </div>
                       {hoveredCourse === courseCard._id && (
                         <div
-                          className="z-1000 absolute"
+                          className="absolute z-[1000]"
                           style={{
                             top: `${hoverPosition.top}px`,
                             left: `${hoverPosition.left}px`,
@@ -275,7 +276,9 @@ const Sections = () => {
                 ),
               )
             ) : (
-              <Loader useSmallLoading={false} hSize="" />
+              <div className="w-full">
+                <Loader useSmallLoading={false} hSize="" />
+              </div>
             )}
           </div>
         </div>
