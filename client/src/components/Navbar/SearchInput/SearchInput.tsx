@@ -75,12 +75,14 @@ const SearchInput = () => {
           isRootPathOnly() ? "my-[0.2em]" : ""
         } flex w-full items-center overflow-hidden rounded-full border border-gray-400 bg-gray-50 focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor`}
       >
-        <button>
+        <button
+          className={`${searchTerm.length === 0 ? "cursor-not-allowed" : ""} focus:outline-none bg-none`}
+        >
           <MdOutlineSearch
             className={`${
               isRootPathOnly()
                 ? "hidden"
-                : "text-gray ml-[0.2em] h-6 w-6 bg-gray-100"
+                : `text-gray ml-[0.2em] h-6 w-6 bg-none focus:outline-none`
             }`}
           />
         </button>
@@ -95,7 +97,7 @@ const SearchInput = () => {
         />
         <button
           type="submit"
-          className={`mr-[0.2em] rounded-full bg-purple-600 p-[0.85em] transition-opacity 
+          className={`mr-[0.2em] rounded-full bg-purple-600 p-[0.85em] transition-opacity focus:outline-none 
           ${!isRootPathOnly() ? "hidden" : "block"} 
           ${searchTerm ? "opacity-100" : "cursor-not-allowed opacity-50"}`}
           disabled={!searchTerm}

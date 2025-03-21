@@ -75,7 +75,7 @@ const Navbar = () => {
                     </div>
                   )}
                   {!cookie && (
-                    <div className="flex flex-row gap-[0.3em]">
+                    <div className="flex flex-row gap-2">
                       <LoginBtn />
                       <SignupBtn />
                     </div>
@@ -83,7 +83,7 @@ const Navbar = () => {
                 </div>
                 {cookie && <Profile cookie={cookie} />}
                 {!cookie && (
-                  <div className="ml-[0.3em]">
+                  <div className="ml-2">
                     <ChangeLanguage
                       size={20}
                       isClicked={isClicked}

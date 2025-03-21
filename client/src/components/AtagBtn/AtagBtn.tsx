@@ -18,7 +18,7 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
         {aTagName}
       </p>
 
-      {isHovering && aTagName !== "Categories" && (
+      {isHovering && aTagName !== "Explore" && (
         <div>
           <div className="absolute right-0 top-[3.1em] z-50 flex w-[290px] flex-col items-center justify-center gap-[0.5em] rounded-lg border border-gray-300 bg-white p-4 text-center shadow-alertAlgoInfo">
             <p className="font-bold leading-tight text-gray-800">

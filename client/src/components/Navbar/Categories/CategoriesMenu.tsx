@@ -95,7 +95,7 @@ const CategoriesMenu = () => {
         onMouseEnter={() => handleMenuEnter("main")}
         onMouseLeave={handleMenuLeave}
       >
-        <AtagBtn aTagName="Categories" />
+        <AtagBtn aTagName="Explore" />
         {/* Menu one */}
         {hoveredMenu && (
           <div

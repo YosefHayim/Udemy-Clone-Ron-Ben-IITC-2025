@@ -52,7 +52,7 @@ const ChangeLanguage: React.FC<{
           <div
             className={`${
               !showIcon
-                ? "justify-center border border-purple-800 p-[0.66em]"
+                ? "justify-center border border-purple-800 p-[10px]"
                 : ""
             } flex items-center rounded-[0.2em] hover:bg-purpleHoverBtn focus:outline-none`}
           >

@@ -20,14 +20,22 @@ const baseBanners = [
 ];
 
 const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
+  const durationAmount = 1000;
+  const [isAnimating, setIsAnimating] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {
+    if (isAnimating || currentIndex === 0) return;
+    setIsAnimating(true);
     setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+    setTimeout(() => setIsAnimating(false), durationAmount);
   };
 
   const handleNext = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
     setCurrentIndex((prevIndex) => prevIndex + 1);
+    setTimeout(() => setIsAnimating(false), durationAmount);
   };
 
   // This one is creating infinite banners to scroll from the banners base which we just add to it and thats it.
@@ -38,12 +46,12 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
     },
   );
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext();
-    }, 10000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     handleNext();
+  //   }, 10000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <div className="w-full overflow-hidden relative">
@@ -83,16 +91,20 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
       ) : (
         <div className="w-full relative h-full overflow-hidden">
           <div
-            className="flex transition-transform duration-1000 ease-in-out"
+            className={`flex transition-transform duration-${durationAmount} ease-in-out`}
             style={{
               transform: `translateX(-${currentIndex * 100}%)`,
             }}
           >
             {generatedBanners.map((banner, index) => (
-              <div key={index} className="w-full flex-shrink-0 relative">
-                <img src={banner.src} alt={`banner-${index}`} className="" />
+              <div key={index} className={`w-full flex-shrink-0 relative`}>
+                <img
+                  src={banner.src}
+                  alt={`banner-${index}`}
+                  className="w-full"
+                />
                 <div
-                  className={`${banner.title === "Skills that drive you forward" ? "w-[420px]" : "w-min-max pr-14"} flex flex-col items-start shadow-alertAlgoInfo px-5 py-7 absolute left-16 top-16 bg-white text-black rounded-sm border-gray-100"`}
+                  className={`${banner.title === "Skills that drive you forward" ? "w-[450px] gap-[0.5em] p-[2em]" : "w-min-max pr-14"} flex flex-col items-start shadow-alertAlgoInfo px-5 py-7 absolute left-16 top-16 bg-white text-black rounded-sm border-gray-100"`}
                 >
                   <h1 className="font-bold">{banner.title}</h1>
                   <p
