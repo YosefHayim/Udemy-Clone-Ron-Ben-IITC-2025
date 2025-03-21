@@ -1,5 +1,18 @@
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 
+/**
+ * ButtonsCarousel - Navigation arrows for a carousel.
+ *
+ * @param {Function} handleFnPrev - Function triggered on clicking the left arrow.
+ * @param {Function} handleFnNext - Function triggered on clicking the right arrow.
+ * @param {number} state - Current index or step in the carousel.
+ * @param {boolean} useCustom - Enables showing buttons based on state logic.
+ * @param {boolean} showDirectionalButtonsOnlyOnEdge - If true, shows only right on index 0, only left above 0.
+ * @param {string} topPosition - Top position CSS value.
+ * @param {string} leftPosition - Left position CSS value.
+ * @param {string} bottomPosition - Bottom position CSS value.
+ * @param {string} rightPosition - Right position CSS value.
+ */
 const ButtonsCarousel = ({
   handleFnPrev,
   handleFnNext,

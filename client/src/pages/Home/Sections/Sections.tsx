@@ -172,7 +172,7 @@ const Sections = () => {
           <div
             className={`flex ${data && data.length > 7 ? "w-max" : "w-full"} items-center justify-center gap-4 transition-transform duration-1000 ease-in-out`}
             style={{
-              transform: `translateX(-${courseIndex * 30}%)`,
+              transform: `translateX(-${courseIndex * 30.5}%)`,
             }}
           >
             {data &&
@@ -183,7 +183,7 @@ const Sections = () => {
                   onMouseLeave={() => setHoveredCourse(courseCard._id)}
                   key={courseCard?._id}
                   id={courseCard?._id}
-                  className="w-[300px] flex-col items-start overflow-hidden rounded-lg border bg-white shadow-sm"
+                  className="w-[300px] flex-col items-start overflow-hidden rounded-lg border border-borderGrayColor bg-white shadow-sm"
                 >
                   <img
                     src={courseCard?.courseImg}
