@@ -105,7 +105,7 @@ const SearchPage: React.FC = () => {
             <h2 className="w-full text-end font-bold">
               {data?.totalCourses || 0} results
             </h2>
-            {data?.response
+            {data
               ?.slice(0, 18)
               .map((course: CourseTypeProps, index: number) => (
                 <div

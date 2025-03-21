@@ -16,7 +16,6 @@ const SearchCourseCard: React.FC<{ course: CourseTypeProps }> = ({
     console.log("Course is undefined", course);
   }
 
-  // console.log(course);
   const navigate = useNavigate();
 
   const handleCardClick = (courseId: string) => {

@@ -7,12 +7,15 @@ import { topics } from "@/utils/topics";
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
+import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
+import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
 
 const Sections = () => {
   const [navbarCategory, setNavbarCategory] = useState("Data Science");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [countClick, setCountClick] = useState(0);
+  const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
 
   const handlePrev = () => {
     if (isAnimating || currentIndex === 0) return;
@@ -121,7 +124,6 @@ const Sections = () => {
                       } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
                     >
                       <b className="w-max text-base">{topic}</b>
-
                       {idx < topics.length - 1 ? (
                         <p>{getRandomLearnersAmount()}</p>
                       ) : null}
@@ -132,50 +134,72 @@ const Sections = () => {
             })}
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {data?.map((course) => (
-            <div
-              key={course._id}
-              className="overflow-hidden rounded-lg border bg-white shadow-sm"
-            >
-              <img
-                src={course.courseImg}
-                alt={course.courseName}
-                className="h-40 w-full object-cover"
-              />
-              <div className="p-4">
-                <h3 className="truncate text-lg font-bold text-gray-900">
-                  {course.courseName}
-                </h3>
-                <p className="truncate text-sm text-gray-600">
-                  {course.courseInstructor.fullName}
-                </p>
-                <div className="mt-2 flex items-center text-sm text-yellow-500">
-                  <span>{course.averageRating}</span>
-                  <span className="ml-1 text-gray-500">
-                    ({course.totalRatings})
-                  </span>
-                </div>
-                <div className="mt-2 flex items-baseline justify-between">
-                  <div>
-                    <span className="font-bold text-gray-900">
-                      ₪{course.courseDiscountPrice}
+        <div
+          className={`flex w-max items-center justify-center gap-2 transition-transform duration-1000 ease-in-out`}
+        >
+          {data ? (
+            data.map((courseCard, index) => (
+              <div
+                onMouseEnter={() => setHoveredCourse(courseCard._id)}
+                onMouseLeave={() => setHoveredCourse(null)}
+                key={courseCard?._id}
+                id={courseCard?._id}
+                className="w-full overflow-hidden rounded-lg border bg-white shadow-sm"
+              >
+                <img
+                  src={courseCard?.courseImg}
+                  alt={courseCard?.courseName}
+                  className="h-40 w-full object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="truncate text-lg font-bold text-gray-900">
+                    {courseCard?.courseName}
+                  </h3>
+                  <p className="truncate text-sm text-gray-600">
+                    {courseCard?.courseInstructor?.fullName}
+                  </p>
+                  <div className="mt-2 flex items-center text-sm text-yellow-500">
+                    <span>{courseCard?.averageRating}</span>
+                    <span className="ml-1 text-gray-500">
+                      ({courseCard?.totalRatings})
                     </span>
-                    {course.courseFullPrice && (
-                      <span className="ml-2 text-sm text-gray-500 line-through">
-                        ₪{course.courseFullPrice}
-                      </span>
-                    )}
                   </div>
-                  {course.courseTag === "Bestseller" && (
-                    <span className="rounded-full bg-yellow-200 px-2 py-1 text-sm text-yellow-800">
-                      Bestseller
-                    </span>
+                  <div className="mt-2 flex items-baseline justify-between">
+                    <div>
+                      <span className="font-bold text-gray-900">
+                        ₪{courseCard?.courseDiscountPrice}
+                      </span>
+                      {courseCard.courseFullPrice && (
+                        <span className="ml-2 text-sm text-gray-500 line-through">
+                          ₪{courseCard?.courseFullPrice}
+                        </span>
+                      )}
+                    </div>
+                    <CourseTag tagName={courseCard?.courseTag} />
+                  </div>
+                </div>
+                <div className="absolute">
+                  {hoveredCourse === courseCard._id && (
+                    <div
+                      className={` absolute right-[60%] z-10 w-1/2 translate-x-1/2 `}
+                    >
+                      <CourseHoverCardInfo
+                        instructorId={courseCard?.courseInstructor?._id}
+                        courseTopic={courseCard?.courseTopic}
+                        index={index}
+                        whatYouWillLearn={courseCard?.whatYouWillLearn}
+                        courseId={courseCard?._id}
+                        fullPriceCourse={courseCard?.courseFullPrice}
+                        coursePrice={courseCard?.courseDiscountPrice}
+                      />
+                    </div>
                   )}
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p>No courses available</p>
+          )}
         </div>
         <div className="my-8 w-full">
           <button
