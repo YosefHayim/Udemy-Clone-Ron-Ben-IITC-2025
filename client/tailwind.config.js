@@ -113,6 +113,9 @@ export default {
         blackUdemy: {
           DEFAULT: "#1c1d1f",
         },
+        grayUdemy: {
+          DEFAULT: "#d1d2e0",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

@@ -47,7 +47,7 @@ const Wishlist: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-start justify-start bg-[#1d1e27] p-[1em] text-white">
+    <div className="flex flex-col items-start justify-start bg-grayUdemy p-[1em] text-white">
       <div>
         <h1 className=" my-[1.5em] mb-[1em] ml-[1em] ">My learning</h1>
         <div

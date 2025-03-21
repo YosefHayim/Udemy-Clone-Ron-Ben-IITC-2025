@@ -1,4 +1,4 @@
-import { ExploreCategory } from "../../types/types";
+import { ExploreCategory } from "@/types/types";
 
 export const categoriesData: (ExploreCategory | undefined)[] = [
   {
@@ -254,14 +254,14 @@ export const categoriesData: (ExploreCategory | undefined)[] = [
       {
         title: "Data Science",
         topics: [
-          "Machine Learning",
-          "Artificial Intelligence (AI)",
+          "ChatGPT",
+          "Data Science",
           "Python",
-          "Large Language Models (LLM)",
+          "Machine Learning",
           "Deep Learning",
-          "Generative AI (GenAI)",
-          "MLOps",
-          "Data Analysis",
+          "Artificial Intelligence (AI)",
+          "Statistics",
+          "Natural Language Processing (NLP)",
         ],
       },
       {
