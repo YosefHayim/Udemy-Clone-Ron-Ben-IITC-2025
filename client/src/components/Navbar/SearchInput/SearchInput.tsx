@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import SearchResults from "../SearchResults/SearchResults";
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
-import { isRootPathOnly } from "@/utils/extraGenerals";
+import { isRootPathOnly } from "@/utils/isRootPathOnly";
 
 const SearchInput = () => {
   const navigate = useNavigate();

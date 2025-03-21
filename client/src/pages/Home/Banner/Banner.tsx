@@ -1,97 +1,125 @@
-import { useState, useEffect } from "react";
-import banner1 from "/images/banner1.png";
-import banner2 from "/images/banner2.png";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { useEffect, useState } from "react";
+import { btnStyleNHover, loginWithEmailBtn } from "@/utils/stylesStorage";
+import LearningGetsYouBanner from "/images/banner3.jpg";
+import skillsDriveYouBanner from "/images/banner4.jpg";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 
-const slides = [
+const baseBanners = [
   {
-    title: "Make 2025 the year of your career",
+    src: LearningGetsYouBanner,
+    title: "Learning that gets you",
     description:
-      "The skills you need are on sale from ₪39.90. [Sale ends January 10]",
-    img: banner1,
+      "Skills for your present (and your future). Get started with us.",
   },
   {
-    title: "Certifications — the ultimate career move",
+    src: skillsDriveYouBanner,
+    title: "Skills that drive you forward",
     description:
-      "Prepare for certification exams in COMPTIA, AWS Cloud, and so much more — on sale now.",
-    img: banner2,
+      "Technology and the world of work change fast — with us, you’re faster. Get the skills to achieve goals and stay competitive.",
   },
 ];
 
-// Clone first and last slides for smooth looping
-const extendedSlides = [slides[slides.length - 1], ...slides, slides[0]];
-
-const Banner = () => {
-  const [currentIndex, setCurrentIndex] = useState(1); // Start at first real slide
-  const [isTransitioning, setIsTransitioning] = useState(true);
+const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev - 1);
+    setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
 
   const handleNext = () => {
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev + 1);
+    setCurrentIndex((prevIndex) => prevIndex + 1);
   };
 
-  // Reset transition instantly when reaching cloned slides
+  // This one is creating infinite banners to scroll from the banners base which we just add to it and thats it.
+  const generatedBanners = Array.from(
+    { length: (currentIndex + 1) * 2 },
+    (_, i) => {
+      return baseBanners[i % baseBanners.length];
+    },
+  );
+
   useEffect(() => {
-    if (currentIndex === 0) {
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(slides.length);
-      }, 500); // Wait for transition to complete
-    }
-    if (currentIndex === slides.length + 1) {
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(1);
-      }, 500);
-    }
-  }, [currentIndex]);
+    const interval = setInterval(() => {
+      handleNext();
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="relative h-[30rem] w-full overflow-hidden">
-      <div
-        className={`flex h-full w-full ${
-          isTransitioning ? "transition-transform duration-500 ease-in-out" : ""
-        }`}
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
-        {extendedSlides.map((slide, index) => (
-          <img
-            key={index}
-            src={slide.img}
-            alt={slide.title}
-            className="h-full w-full flex-shrink-0 object-cover"
-          />
-        ))}
+    <div className="w-full overflow-hidden relative">
+      <div className="absolute shadow-alertAlgoInfo z-10 bg-white rounded-full left-[1%] top-[43%]">
+        <button
+          className="focus:outline-none p-2 hover:bg-gray-200 rounded-full"
+          onClick={handlePrev}
+        >
+          <RiArrowLeftSLine size={24} />
+        </button>
+      </div>
+      <div className="absolute shadow-alertAlgoInfo z-10 bg-white rounded-full right-[2%] top-[43%]">
+        <button
+          className="focus:outline-none p-2 hover:bg-gray-200 rounded-full"
+          onClick={handleNext}
+        >
+          <RiArrowRightSLine size={24} />
+        </button>
       </div>
 
-      {/* Slide Content */}
-      <div className="absolute left-10 top-1/4 max-w-lg rounded-lg bg-white p-6 shadow-lg">
-        <h1 className="text-4xl font-bold leading-tight text-gray-900">
-          {slides[(currentIndex - 1) % slides.length].title}
-        </h1>
-        <p className="mt-4 text-lg text-gray-600">
-          {slides[(currentIndex - 1) % slides.length].description}
-        </p>
-      </div>
-
-      {/* Navigation Buttons */}
-      <button
-        className="absolute left-4 top-1/2 -translate-y-1/2 transform rounded-full bg-white p-3 shadow transition hover:bg-gray-200"
-        onClick={handlePrev}
-      >
-        <MdKeyboardArrowLeft size={24} className="text-black" />
-      </button>
-      <button
-        className="absolute right-4 top-1/2 -translate-y-1/2 transform rounded-full bg-white p-3 shadow transition hover:bg-gray-200"
-        onClick={handleNext}
-      >
-        <MdKeyboardArrowRight size={24} className="text-black" />
-      </button>
+      {isLogin ? (
+        <div className="p-2">
+          <div className="w-full relative">
+            <img
+              src={LearningGetsYouBanner}
+              alt="banner udemy welcome"
+              className="w-full relative"
+            />
+            <div className="flex flex-col items-start gap-2 w-[400px] shadow-alertAlgoInfo px-5 py-7 absolute left-16 top-16 bg-white text-black rounded-sm border-gray-100">
+              <h1 className="font-bold">Learning that gets you</h1>
+              <p className="text-lg pr-2">
+                Skills for your present (and your future). Get started with us.
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="w-full relative h-full overflow-hidden">
+          <div
+            className="flex transition-transform duration-1000 ease-in-out"
+            style={{
+              transform: `translateX(-${currentIndex * 100}%)`,
+            }}
+          >
+            {generatedBanners.map((banner, index) => (
+              <div key={index} className="w-full flex-shrink-0 relative">
+                <img src={banner.src} alt={`banner-${index}`} className="" />
+                <div
+                  className={`${banner.title === "Skills that drive you forward" ? "w-[420px]" : "w-min-max pr-14"} flex flex-col items-start shadow-alertAlgoInfo px-5 py-7 absolute left-16 top-16 bg-white text-black rounded-sm border-gray-100"`}
+                >
+                  <h1 className="font-bold">{banner.title}</h1>
+                  <p
+                    className={`${banner.title === "Skills that drive you forward" ? "" : "w-[380px]"} text-sm pr-2`}
+                  >
+                    {banner.description}
+                  </p>
+                  {banner.title === `Skills that drive you forward` && (
+                    <div className="w-full gap-2 flex items-center justify-center">
+                      <button
+                        className={`${loginWithEmailBtn} font-extrabold w-full h-[40px]`}
+                      >
+                        Plan for individuals
+                      </button>
+                      <button
+                        className={`${btnStyleNHover} font-extrabold text-purple-800 border-purple-800 border w-full h-[40px]`}
+                      >
+                        Plan for organizations
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

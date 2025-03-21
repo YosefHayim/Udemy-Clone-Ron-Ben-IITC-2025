@@ -30,9 +30,9 @@ const Homepage = () => {
   return (
     <div className={styles.homepage}>
       {!cookie ? (
-        <div>
+        <div className="w-full">
+          <Banner />
           <div className="container mx-auto px-[1.7rem]">
-            <Banner />
             <Sections />
             <TrustedBySection />
             <LearnersAreViewing />
@@ -49,9 +49,8 @@ const Homepage = () => {
         <div>
           {!isMobile && <Menu />}
           <Welcome />
-          <Banner />
+          <Banner isLogin={true} />
           <div className="container mx-auto px-0 xl:px-[1.7rem]">
-            <TeamAccess />
             <CoursesCarousel searchTerm={"JavaScript"} />
             <CoursesCarousel searchTerm={"Python"} />
             <CoursesCarousel searchTerm={"Books"} />

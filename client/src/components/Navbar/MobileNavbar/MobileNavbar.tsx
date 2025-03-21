@@ -4,7 +4,7 @@ import Cart from "../Cart/Cart";
 import Burger from "./Burger/Burger";
 import { btnStyleNHover } from "@/utils/stylesStorage";
 import SearchInput from "../SearchInput/SearchInput";
-import { isRootPathOnly } from "@/utils/extraGenerals";
+import { isRootPathOnly } from "@/utils/isRootPathOnly";
 
 const MobileNavbar = () => {
   return (

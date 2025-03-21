@@ -12,7 +12,7 @@ import Profile from "./Profile/Profile";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import CategoriesMenu from "./Categories/CategoriesMenu";
-import { isRootPathOnly } from "@/utils/extraGenerals";
+import { isRootPathOnly } from "@/utils/isRootPathOnly";
 import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
 import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercialTwo";
 import { useMediaQuery } from "react-responsive";
