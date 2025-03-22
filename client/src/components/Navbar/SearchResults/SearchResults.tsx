@@ -27,7 +27,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
       onClick={handleClick}
       className={`${
         isTyping ? "flex-col py-2" : "hidden"
-      } absolute left-0 top-full z-50  w-full rounded-md border border-gray-100 bg-white shadow-md`}
+      } absolute left-0 top-full z-50  w-full border border-gray-300 bg-white shadow-md`}
     >
       {data.response
         ?.slice(0, 13)

@@ -79,13 +79,13 @@ const SearchInput = () => {
         } flex w-full items-center overflow-hidden rounded-full border border-gray-400 bg-gray-50 focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor`}
       >
         <button
-          className={`${searchTerm.length === 0 ? "cursor-not-allowed" : ""} bg-none focus:outline-none`}
+          className={`${searchTerm.length === 0 ? "cursor-not-allowed" : ""} bg-none p-2 hover:bg-purple-100 focus:outline-none`}
         >
           <MdOutlineSearch
             className={`${
               isRootPathOnly()
                 ? "hidden"
-                : `text-gray ml-[0.2em] h-6 w-6 bg-none focus:outline-none`
+                : `text-gray focus:outline-non ml-[0.2em] h-6 w-6 bg-none`
             }`}
           />
         </button>
