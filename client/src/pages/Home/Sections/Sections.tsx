@@ -7,17 +7,10 @@ import { topics } from "@/utils/topics";
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
-import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import { CourseTypeProps } from "@/types/types";
-import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
 import { useNavigate } from "react-router-dom";
 import Loader from "@/components/Loader/Loader";
-import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
-import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
-import CourseInstructor from "@/components/CourseCard/CourseInstructor/CourseInstructor";
-import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
 import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
-import HomeCourseCards from "@/components/HomeCourseCard/HomeCourseCard";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
 
 const Sections = () => {
@@ -94,7 +87,7 @@ const Sections = () => {
 
   return (
     <div className="flex w-full flex-col items-start justify-start">
-      <div className="flex w-full flex-col items-start justify-start  px-5">
+      <div className="flex w-full flex-col items-start justify-start px-5">
         <h1 className="mt-12 w-full font-sans text-3xl font-extrabold text-gray-900">
           All the skills you need in one place
         </h1>
@@ -143,7 +136,7 @@ const Sections = () => {
               return (
                 <div
                   key={i}
-                  className={`flex w-max items-center justify-center gap-2 transition-transform duration-1000`}
+                  className={`flex w-full items-center justify-center gap-2 transition-transform duration-1000 overflow-hidden`}
                   style={{
                     transform: `translateX(-${currentIndex * 5}%)`,
                   }}

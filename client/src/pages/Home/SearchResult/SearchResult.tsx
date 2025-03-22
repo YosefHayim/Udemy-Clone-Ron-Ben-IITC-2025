@@ -24,7 +24,7 @@ const SearchResult: React.FC<{ title?: string; randomAlgoWord?: string }> = ({
   }
 
   const { data } = useQuery({
-    queryKey: ["algoCourseSearch", randomAlgoWord],
+    queryKey: [`courses`, randomAlgoWord],
     queryFn: () => getAllCourses(randomAlgoWord),
     enabled: !!randomAlgoWord,
   });
@@ -81,8 +81,10 @@ const SearchResult: React.FC<{ title?: string; randomAlgoWord?: string }> = ({
             transform: `translateX(-${courseIndex * 30.5}%)`,
           }}
         >
-          {data && data.length > 1 ? (
+          {data && data.length >= 1 ? (
             data.map((courseCard: CourseTypeProps, index: number) => (
+              console.log(courseCard),
+              
               <HomeCourseCard courseCard={courseCard} index={index} />
             ))
           ) : (
