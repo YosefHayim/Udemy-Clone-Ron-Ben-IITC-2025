@@ -119,6 +119,9 @@ export default {
         grayUdemyHover: {
           DEFAULT: "#595c73",
         },
+        watchUdemyCourse: {
+          DEFAULT: "#1D1E27",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
