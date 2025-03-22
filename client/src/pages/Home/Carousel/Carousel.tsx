@@ -7,6 +7,8 @@ import carrosela_logo1 from "/images/carossela_logo1.svg";
 import carrosela_logo2 from "/images/carrosela_logo2.svg";
 import carrosela_logo3 from "/images/carrosela_logo3.svg";
 import carrosela_logo4 from "/images/carrosela_logo4.svg";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import { loginWithEmailBtn } from "@/utils/stylesStorage";
 
 const Carousel = () => {
   const slides = [
@@ -89,9 +91,8 @@ const Carousel = () => {
   };
 
   return (
-    <div className="relative flex flex-col items-center bg-white px-8 py-12 lg:flex-row">
-      {/* Texto e estatísticas */}
-      <div className="text-left lg:w-1/2">
+    <div className="relative flex items-start justify-between">
+      <div className="text-left">
         {slides[currentSlide].logo && (
           <img
             src={slides[currentSlide].logo}
@@ -112,44 +113,42 @@ const Carousel = () => {
             </div>
           ))}
         </div>
-        <button className="rounded-lg bg-black px-6 py-3 font-bold text-white transition duration-300 hover:bg-gray-900 focus:outline-none">
+        <button className={`${loginWithEmailBtn} h-[30px] max-w-max px-2 py-0`}>
           {slides[currentSlide].buttonText}
         </button>
       </div>
 
-      {/* Imagem */}
-      <div className="flex items-center justify-center lg:w-1/2">
+      <div className="relative">
         <img
           src={slides[currentSlide].image}
           alt={slides[currentSlide].title}
-          className="w-full max-w-2xl rounded-lg object-cover"
+          className="relative w-full"
           style={{ height: "400px", width: "600px" }}
         />
       </div>
 
-      {/* Controles e Indicadores */}
       <div className="absolute bottom-4 left-4 flex items-center space-x-4">
         <button
+          className="z-10 h-min rounded-full p-2 shadow-alertAlgoInfo hover:bg-gray-200 focus:outline-none"
           onClick={prevSlide}
-          className="rounded-full border border-gray-800 p-3 transition hover:bg-gray-800 hover:text-white"
         >
-          &lt;
+          <RiArrowLeftSLine size={30} />
         </button>
-        <div className="flex space-x-2">
+        <div className="flex items-center gap-3">
           {slides.map((_, index) => (
             <span
               key={index}
-              className={`h-3 w-3 rounded-full ${
-                currentSlide === index ? "bg-purple-600" : "bg-gray-400"
+              className={`h-2 rounded-full transition-all duration-500 ease-in-out ${
+                currentSlide === index ? "w-6 bg-purple-600" : "w-2 bg-gray-400"
               }`}
             />
           ))}
         </div>
         <button
+          className="z-10 h-min rounded-full p-2 shadow-alertAlgoInfo hover:bg-gray-200 focus:outline-none"
           onClick={nextSlide}
-          className="rounded-full border border-gray-800 p-3 transition hover:bg-gray-800 hover:text-white"
         >
-          &gt;
+          <RiArrowRightSLine size={30} />
         </button>
       </div>
     </div>

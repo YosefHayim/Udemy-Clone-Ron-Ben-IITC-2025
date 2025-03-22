@@ -29,8 +29,6 @@ const Sections = () => {
   const [isCourseAnimating, setCourseAnimating] = useState(false);
   const [countClick, setCountClick] = useState(0);
   const [countCourseClick, setCourseClick] = useState(0);
-  const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
-  const [hoverPosition, setHoverPosition] = useState({ top: 0, left: 0 });
 
   const handlePrev = () => {
     if (isAnimating || currentIndex === 0) return;
@@ -69,10 +67,6 @@ const Sections = () => {
     searchAlgoLocalStorage(navbarCategory);
   };
 
-  const handleCardClick = (courseId: string) => {
-    navigate(`/course-view/${courseId}`);
-  };
-
   const getDefaultTopic = () => {
     for (let category of categoriesData) {
       const match = category?.subcategory?.find((sub) => {
@@ -92,19 +86,6 @@ const Sections = () => {
     queryFn: () => getAllCourses(choseTopic),
     enabled: !!choseTopic,
   });
-
-  const handleMouseEnter = (
-    id: string,
-    event: React.MouseEvent<HTMLDivElement>,
-  ) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    setHoverPosition({ top: rect.top - 360, left: rect.right }); // right side of the card + 10px spacing
-    setHoveredCourse(id);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredCourse(null);
-  };
 
   useEffect(() => {
     const newDefault = getDefaultTopic();

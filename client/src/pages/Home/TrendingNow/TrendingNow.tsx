@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const TrendingNow = () => {
   return (
-    <div className="bg-white px-12 py-16">
+    <div className="bg-gray-100 px-12 py-16">
       <h2 className="text-4xl font-bold leading-tight text-gray-900">
         Trending Now
       </h2>
