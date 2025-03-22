@@ -41,7 +41,7 @@ const LearnersAreViewing = () => {
   };
 
   return (
-    <section className="px-6 py-8">
+    <div className="px-6 py-8">
       <h2 className="mb-6 text-3xl font-bold">Learners are viewing</h2>
       <div className="relative w-full overflow-hidden">
         {data && data.length > 7 && (
@@ -73,7 +73,7 @@ const LearnersAreViewing = () => {
           )}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
