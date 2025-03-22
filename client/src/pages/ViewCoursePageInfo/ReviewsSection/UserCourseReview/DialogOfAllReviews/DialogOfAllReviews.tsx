@@ -4,6 +4,7 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
+  DialogOverlay,
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useQuery } from "@tanstack/react-query";
@@ -38,6 +39,7 @@ const DialogOfAllReviews: React.FC<{
   return (
     <div>
       <Dialog open={isClicked} onOpenChange={setClicked}>
+        <DialogOverlay style={{ backgroundColor: "#1d1e27cc" }} />
         <DialogContent className="z-[2000]">
           <DialogHeader>
             <DialogTitle>

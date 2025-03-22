@@ -16,6 +16,7 @@ import { useState } from "react";
 import { TbWorld } from "react-icons/tb";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { DialogOverlay } from "@radix-ui/react-dialog";
 
 const ChangeLanguage: React.FC<{
   isClicked?: boolean;
@@ -43,6 +44,7 @@ const ChangeLanguage: React.FC<{
   return (
     <div>
       <Dialog>
+        <DialogOverlay style={{ backgroundColor: "#1d1e27cc" }} />
         <DialogTrigger open={isClicked} onOpenChange={setClicked}>
           {showIcon && (
             <div>

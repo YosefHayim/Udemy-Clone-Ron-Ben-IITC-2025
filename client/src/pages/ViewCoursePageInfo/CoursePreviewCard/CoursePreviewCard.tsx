@@ -49,7 +49,7 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
 
   return (
     <div
-      className={`fixed right-[25%] top-[14.5%] z-[10] w-[24%] border border-b-gray-100 bg-white shadow-previewCourseCardShadow`}
+      className={`fixed right-[25%] top-[14.5%] z-[10] w-1/5 border border-b-gray-100 bg-white shadow-previewCourseCardShadow`}
     >
       <div className="relative" onClick={navigateCourseLesson}>
         <img
@@ -92,7 +92,7 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
             </Button>
           </div>
         ) : (
-          <div>
+          <div className="w-full">
             <TimeLeftBuyCourse coursePrice={coursePrice} />
             <InteractionsBtns
               customHeartExtraCSS={`rounded-sm  p-[0.8em] pt-[0.6em] `}
@@ -103,7 +103,7 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
               coursePrice={coursePrice}
               fullPriceCourse={fullPrice}
             />
-            <div className="mt-2">
+            <div className="mt-2 w-full">
               <BuyNowBtn
                 courseId={courseId}
                 discountPrice={discountPrice}

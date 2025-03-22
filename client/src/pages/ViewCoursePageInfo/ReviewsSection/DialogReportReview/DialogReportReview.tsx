@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
+  DialogOverlay,
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -61,6 +62,8 @@ const DialogReportReview: React.FC<{
         open={isOpenReportDrawer}
         onOpenChange={(isOpen) => setReportDrawer(isOpen)}
       >
+        <DialogOverlay style={{ backgroundColor: "#1d1e27cc" }} />
+
         <DialogContent className="w-max-none z-[2000] w-[600px]">
           <DialogHeader>
             <DialogTitle className="mb-[1em] font-sans font-extrabold">

@@ -34,7 +34,7 @@ const InteractionsBtns: React.FC<{
   }
 
   return (
-    <div>
+    <div className="w-full">
       <div className="mt-[1em] flex w-full items-center justify-start gap-[0.5em]">
         <AddToCart
           courseId={courseId}
@@ -43,12 +43,14 @@ const InteractionsBtns: React.FC<{
           onAddToCartSuccess={handleCartSuccess}
         />
         {isDisplayHeart && (
-          <HeartBtn
-            iconSize={"1.5em"}
-            courseId={courseId}
-            showHeart={true}
-            customHeartExtraCSS={customHeartExtraCSS}
-          />
+          <div className="w-min">
+            <HeartBtn
+              iconSize={"1.5em"}
+              courseId={courseId}
+              showHeart={true}
+              customHeartExtraCSS={customHeartExtraCSS}
+            />
+          </div>
         )}
       </div>
       {showDialogOfFbt && (

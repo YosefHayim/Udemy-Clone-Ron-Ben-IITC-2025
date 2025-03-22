@@ -4,6 +4,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
+  DialogOverlay,
 } from "@/components/ui/dialog";
 import { useLocation } from "react-router-dom";
 import { ReactNode } from "react";
@@ -15,7 +16,6 @@ interface DialogPopupProps {
   children?: ReactNode;
   extraCustomClass?: string;
 }
-
 const DialogPopup: React.FC<DialogPopupProps> = ({
   isClicked,
   setClicked,
@@ -25,7 +25,11 @@ const DialogPopup: React.FC<DialogPopupProps> = ({
 }) => {
   return (
     <Dialog open={isClicked} onOpenChange={setClicked}>
-      <DialogContent className={extraCustomClass}>
+      <DialogOverlay
+        className={extraCustomClass}
+        style={{ backgroundColor: "#1d1e27cc" }}
+      />
+      <DialogContent className={`${extraCustomClass} z-[2000]`}>
         <DialogHeader>
           {title && (
             <DialogTitle className="font-extrabold">{title}</DialogTitle>

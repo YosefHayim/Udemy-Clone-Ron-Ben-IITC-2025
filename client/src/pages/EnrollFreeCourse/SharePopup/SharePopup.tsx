@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
+  DialogOverlay,
   DialogTitle,
 } from "@/components/ui/dialog";
 import { regFullButtonPurpleHover, regInputFill } from "@/utils/stylesStorage";
@@ -61,6 +62,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
   return (
     <div>
       <Dialog open={isClicked} onOpenChange={setClicked}>
+        <DialogOverlay style={{ backgroundColor: "#1d1e27cc" }} />
         <DialogContent className="w-[500px]">
           <DialogHeader>
             <DialogTitle className="font-sans font-extrabold">
@@ -95,7 +97,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
                   <IoMdMail className="text-[1.3em] text-purple-600" />
                 </div>
                 <DialogPopup
-                  extraCustomClass="w-full max-w-[550px]"
+                  extraCustomClass="w-full max-w-[550px] "
                   isClicked={openEmailDialog}
                   setClicked={setOpenEmailDialog}
                   title="Share via email"

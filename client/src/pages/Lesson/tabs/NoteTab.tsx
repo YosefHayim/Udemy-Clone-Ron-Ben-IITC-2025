@@ -20,7 +20,7 @@ import "react-quill/dist/quill.snow.css";
 import { FaCirclePlus } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa6";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogOverlay, DialogTrigger } from "@/components/ui/dialog";
 import { DeleteNoteDialog } from "../comp/dialog";
 import { Note } from "../../../types/types";
 
@@ -246,6 +246,9 @@ const NotesTab: React.FC<NotesTabProps> = ({
                             onClick={() => startEditing(note.noteId, note.text)}
                           />
                           <Dialog>
+                            <DialogOverlay
+                              style={{ backgroundColor: "#1d1e27cc" }}
+                            />
                             <DialogTrigger asChild>
                               <FaTrash
                                 className="mr-2 cursor-pointer rounded-md p-1 text-xl text-courseNameColorTxt hover:bg-[#E6E6E8]"
