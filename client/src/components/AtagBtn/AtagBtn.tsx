@@ -12,7 +12,7 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
       onMouseLeave={() => setIsHovering(false)}
     >
       <p
-        className={` ${btnStyleNHover} font-Sans rounded-md px-3 py-3 text-sm font-normal
+        className={` ${btnStyleNHover} rounded-md px-3 py-3 font-sans text-sm font-normal
         text-[#020202]`}
       >
         {aTagName}
@@ -26,7 +26,7 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
                 ? "Get your team access to over 27,000 top Udemy courses, anytime, anywhere."
                 : "Turn what you know into an opportunity and reach millions around the world."}
             </p>
-            <Button className="font-Sans rounded-[0.2rem] bg-btnColor px-14 py-[1.2rem] text-sm font-extrabold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none">
+            <Button className="rounded-[0.2rem] bg-btnColor px-14 py-[1.2rem] font-sans text-sm font-extrabold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none">
               {aTagName === "Udemy Business"
                 ? "Try Udemy Business"
                 : "Learn more"}

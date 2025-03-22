@@ -4,7 +4,7 @@ const TrustedBySection = () => {
   return (
     <section className="bg-white py-12">
       <div className="mb-8 text-center">
-        <h2 className="font-sans text-lg font-medium text-gray-500">
+        <h2 className="font-[lifeLtstd] text-lg font-medium text-gray-500">
           Trusted by over 16,000 companies and millions of learners around the
           world
         </h2>

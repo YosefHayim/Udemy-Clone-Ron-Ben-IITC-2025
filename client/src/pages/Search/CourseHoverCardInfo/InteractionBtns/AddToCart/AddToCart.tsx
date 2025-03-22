@@ -24,6 +24,7 @@ const AddToCart: React.FC<{
   courseIds?: string[];
   extraCustomCss?: string;
   onAddToCartSuccess?: () => void;
+  doYouWantPurpleLoading?: boolean;
 }> = ({
   isWhite = false,
   extraCustomCss = "",
@@ -34,6 +35,7 @@ const AddToCart: React.FC<{
   discountSum = 0,
   courseIds = [],
   onAddToCartSuccess,
+  doYouWantPurpleLoading = false,
 }) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
@@ -108,8 +110,14 @@ const AddToCart: React.FC<{
         }`}
       >
         {isLoading ? (
-          <div className="absolute">
-            <Loader useSmallLoading={true} hSize="" />
+          <div
+            className={`${doYouWantPurpleLoading && `right-[3%] flex w-full items-center justify-center text-center`} absolute`}
+          >
+            <Loader
+              useSmallLoading={true}
+              hSize=""
+              purpleLightSmallStyle={doYouWantPurpleLoading}
+            />
           </div>
         ) : (
           textBtn

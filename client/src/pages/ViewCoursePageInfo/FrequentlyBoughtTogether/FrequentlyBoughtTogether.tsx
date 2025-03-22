@@ -13,15 +13,18 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
   const [sum, setSumFullPrice] = useState(0);
   const [discountSum, setDiscountSum] = useState(0);
 
+  if (!instructorId) return;
+
   const { data } = useQuery({
     queryKey: ["instructorThreeCourse"],
     queryFn: () => getThreeCoursesOfInstructor(instructorId),
+    enabled: !!instructorId,
   });
 
   useEffect(() => {
     if (data) {
       // Calculate total full price
-      const fullPriceTotal = data.reduce(
+      const fullPriceTotal = data?.reduce(
         (accumulator: number, course: Course) =>
           accumulator + course?.courseFullPrice,
         0,
@@ -29,7 +32,7 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
       setSumFullPrice(fullPriceTotal);
 
       // Calculate total discount price
-      const discountPriceTotal = data.reduce(
+      const discountPriceTotal = data?.reduce(
         (accumulator: number, course: Course) =>
           accumulator + course?.courseDiscountPrice,
         0,
@@ -38,36 +41,35 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
     }
   }, [data]);
 
-  if (!instructorId) {
-    return undefined;
-  }
+  if (!data || data.length <= 1) return null;
 
   return (
     <div className="w-full">
       <div className="flex w-full flex-col border border-borderCommercial p-[1em]">
         <h2 className="font-extrabold">Frequently Bought Together</h2>
-        {data?.map((course: Course, index: number) => (
-          <div key={course?._id} className="relative w-full">
-            <FrequentlyCourseCard
-              courseId={course?._id}
-              courseImg={course?.courseImg}
-              courseName={course?.courseName}
-              instructorName={course?.courseInstructor.fullName}
-              courseFullPrice={course?.courseFullPrice}
-              courseDiscountPrice={course?.courseDiscountPrice}
-              totalRatings={course?.totalRatings}
-            />
-            {(index === 1 || index === 2) && (
-              <AiOutlinePlus
-                size={35}
-                style={{
-                  background: "white",
-                }}
-                className="absolute left-[50%] right-2 top-[-17.5%] rounded-[100em] p-[0.4em] text-xl shadow-alertAlgoInfo"
+        {data &&
+          data.map((course: Course, index: number) => (
+            <div key={course?._id} className="relative w-full">
+              <FrequentlyCourseCard
+                courseId={course?._id}
+                courseImg={course?.courseImg}
+                courseName={course?.courseName}
+                instructorName={course?.courseInstructor.fullName}
+                courseFullPrice={course?.courseFullPrice}
+                courseDiscountPrice={course?.courseDiscountPrice}
+                totalRatings={course?.totalRatings}
               />
-            )}
-          </div>
-        ))}
+              {(index === 1 || index === 2) && (
+                <AiOutlinePlus
+                  size={35}
+                  style={{
+                    background: "white",
+                  }}
+                  className="absolute left-[50%] right-2 top-[-17.5%] rounded-[100em] p-[0.4em] text-xl shadow-alertAlgoInfo"
+                />
+              )}
+            </div>
+          ))}
         <FaqTotalCoursesPrice
           sum={sum}
           discountSum={discountSum}

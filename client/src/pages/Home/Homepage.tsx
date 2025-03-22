@@ -28,7 +28,7 @@ const Homepage = () => {
   useEffect(() => {}, [cookie]);
 
   return (
-    <div className="font-sans">
+    <div className="font-[lifeLtstd]">
       {!cookie ? (
         <div className="w-full">
           <Banner isLogin={false} />

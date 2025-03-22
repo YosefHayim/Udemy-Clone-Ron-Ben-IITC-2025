@@ -64,7 +64,7 @@ const ViewCoursePageInfo = () => {
           <div className="absolute left-0 top-[8%] h-[350px] w-full bg-blackUdemy"></div>
           <StickyCourseNavbar
             courseName={data?.courseName}
-            totalStudents={data?.totalStudentsEnrolled.count}
+            totalStudents={data?.totalStudentsEnrolled?.count}
             avgRating={data?.averageRating}
             totalRatings={data?.totalRatings}
           />
@@ -99,7 +99,7 @@ const ViewCoursePageInfo = () => {
           />
           <CourseContent
             sectionsOfCourse={data?.sections}
-            totalCourseSections={data?.sections.length}
+            totalCourseSections={data?.sections?.length}
             totalCourseDuration={data?.totalCourseDuration}
             totalCourseLessons={data?.totalCourseLessons}
             requirements={data?.courseRequirements}
@@ -120,7 +120,7 @@ const ViewCoursePageInfo = () => {
             avgRating={data?.averageRating}
           />
           <MoreCoursesByInstructor
-            instructorName={data?.courseInstructor.fullName}
+            instructorName={data?.courseInstructor?.fullName}
           />
           <ReportAbuse />
         </div>

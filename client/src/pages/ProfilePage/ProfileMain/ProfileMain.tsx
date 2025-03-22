@@ -98,7 +98,9 @@ const ProfileMain = () => {
           </div>
           <form className="space-y-6 px-[9rem]" onSubmit={handleSubmit}>
             <div>
-              <p className="pb-2 pt-8 font-sans font-extrabold">Basics:</p>
+              <p className="pb-2 pt-8 font-[lifeLtstd] font-extrabold">
+                Basics:
+              </p>
               <Input
                 id="fname"
                 name="fname"
@@ -300,7 +302,7 @@ const ProfileMain = () => {
             <div className="flex w-full justify-start">
               <Button
                 type="submit"
-                className="font-Sans mb-[1em] rounded-[0.2rem] bg-btnColor px-4 text-sm font-extrabold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none"
+                className="mb-[1em] rounded-[0.2rem] bg-btnColor px-4 font-[lifeLtstd] text-sm font-extrabold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none"
               >
                 Save
               </Button>

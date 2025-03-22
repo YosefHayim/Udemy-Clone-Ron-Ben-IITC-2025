@@ -91,7 +91,7 @@ const SignUp: React.FC = () => {
       </div>
       <div className="flex h-full w-1/2 items-center justify-center bg-white">
         <div className="w-3/4 max-w-[27rem]">
-          <h2 className="mb-6 w-full text-center font-sans text-[2rem] font-extrabold text-courseNameColorTxt">
+          <h2 className="mb-6 w-full text-center font-[lifeLtstd] text-[2rem] font-extrabold text-courseNameColorTxt">
             Sign up with email
           </h2>
           <div

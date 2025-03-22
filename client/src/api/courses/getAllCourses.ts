@@ -63,7 +63,7 @@ const getAllCourses: fn = async (
 
     if (data) {
       // console.log(data.response);
-      return data.response;
+      return data;
     }
     return null;
   } catch (error) {

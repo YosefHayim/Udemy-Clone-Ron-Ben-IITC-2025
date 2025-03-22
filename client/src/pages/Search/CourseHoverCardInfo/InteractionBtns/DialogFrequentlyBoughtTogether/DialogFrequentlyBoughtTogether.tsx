@@ -79,7 +79,7 @@ const DialogFrequentlyBoughtTogether: React.FC<{
             <AlertDialogTitle>
               <div className="flex w-full items-center justify-between">
                 <div>
-                  <p className="font-semibold">Added to cart</p>
+                  <p className="font-extrabold">Added to cart</p>
                 </div>
                 <div
                   onClick={() => setShowDialogOfFbt(false)}
@@ -105,7 +105,7 @@ const DialogFrequentlyBoughtTogether: React.FC<{
                   />
                 </div>
                 <Button className="w-min rounded-[0.3em] bg-btnColor px-[1em] font-extrabold text-white hover:bg-purpleStatic focus:outline-none">
-                  Go to cart
+                  <Link to="/cart">Go to cart</Link>
                 </Button>
               </div>
               <div>

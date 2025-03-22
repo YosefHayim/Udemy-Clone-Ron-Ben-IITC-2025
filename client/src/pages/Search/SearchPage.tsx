@@ -95,8 +95,8 @@ const SearchPage: React.FC = () => {
       <div className="flex w-full flex-row items-start justify-center gap-[1.5em]">
         <div className="flex flex-col items-start justify-center">
           <div>
-            <h1 className="mb-[0.8em] w-full text-[1.8em] font-extrabold">
-              {data?.totalCourses || 0} results for "{searchTerm}"
+            <h1 className="mb-[0.8em] w-full font-[lifeLtstd] text-[1.8em] font-extrabold">
+              {data?.response?.totalCourses || 0} results for "{searchTerm}"
             </h1>
           </div>
           <FilterNSort />
@@ -107,7 +107,7 @@ const SearchPage: React.FC = () => {
             <h2 className="w-full text-end font-extrabold">
               {data?.totalCourses || 0} results
             </h2>
-            {data
+            {data?.response
               ?.slice(0, 18)
               .map((course: CourseTypeProps, index: number) => (
                 <div
