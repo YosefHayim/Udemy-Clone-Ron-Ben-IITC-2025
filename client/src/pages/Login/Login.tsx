@@ -27,6 +27,7 @@ import { baseUrl, localhostUrl } from "@/api/configuration";
 import { AiOutlineMail } from "react-icons/ai";
 import {
   setBio,
+  setCookie,
   setCoursesBought,
   setEmailAddress,
   setFullName,
@@ -72,7 +73,20 @@ const Login = () => {
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
-    onSuccess: () => {
+    onSuccess: (cookie) => {
+      const decoded = jwtDecode<DecodedTokenProps>(cookie);
+      dispatch(setFullName(decoded.fullName));
+      dispatch(setHeadline(decoded.headline));
+      dispatch(setLanguage(decoded.language));
+      dispatch(setUserLinks(decoded.userLinks));
+      dispatch(setProfilePic(decoded.profilePic));
+      dispatch(setEmailAddress(decoded.email));
+      dispatch(setBio(decoded.bio));
+      dispatch(setRole(decoded.role));
+      dispatch(setCoursesBought(decoded.coursesBought));
+      dispatch(setUdemyCredits(decoded.udemyCredits));
+      dispatch(setIsLoggedWithGoogle(true));
+      dispatch(setCookie(cookie));
       navigate("/verify-code");
     },
     onError: (error) => {
@@ -84,7 +98,20 @@ const Login = () => {
 
   const googleMutationLogin = useMutation({
     mutationFn: googleLogin,
-    onSuccess: () => {
+    onSuccess: (cookie) => {
+      const decoded = jwtDecode<DecodedTokenProps>(cookie);
+      dispatch(setFullName(decoded.fullName));
+      dispatch(setHeadline(decoded.headline));
+      dispatch(setLanguage(decoded.language));
+      dispatch(setUserLinks(decoded.userLinks));
+      dispatch(setProfilePic(decoded.profilePic));
+      dispatch(setEmailAddress(decoded.email));
+      dispatch(setBio(decoded.bio));
+      dispatch(setRole(decoded.role));
+      dispatch(setCoursesBought(decoded.coursesBought));
+      dispatch(setUdemyCredits(decoded.udemyCredits));
+      dispatch(setIsLoggedWithGoogle(true));
+      dispatch(setCookie(cookie));
       navigate("/");
     },
     onError: (error) => {
