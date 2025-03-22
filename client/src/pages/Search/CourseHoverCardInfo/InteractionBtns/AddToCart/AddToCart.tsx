@@ -25,6 +25,7 @@ const AddToCart: React.FC<{
   extraCustomCss?: string;
   onAddToCartSuccess?: () => void;
   doYouWantPurpleLoading?: boolean;
+  BtnText?: string;
 }> = ({
   isWhite = false,
   extraCustomCss = "",
@@ -36,6 +37,7 @@ const AddToCart: React.FC<{
   courseIds = [],
   onAddToCartSuccess,
   doYouWantPurpleLoading = false,
+  BtnText,
 }) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
@@ -120,7 +122,7 @@ const AddToCart: React.FC<{
             />
           </div>
         ) : (
-          textBtn
+          BtnText || textBtn
         )}
       </Button>
     </div>

@@ -6,56 +6,59 @@ const CoursePrice: React.FC<CoursePriceProps> = ({
   discountPrice = 49.9,
   fullPrice = 369.9,
   chooseFlex = "flex-col",
-  discountPriceSize = "",
   showFullPrice = true,
 }) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const isFree = discountPrice === 0 || fullPrice === 0;
 
+  const percentOff = !isFree
+    ? Math.round(((fullPrice - discountPrice) / fullPrice) * 100)
+    : 0;
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1500);
+    const timer = setTimeout(() => setLoading(false), 1500);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <div>
-      <div className={`${chooseFlex} gap-[0.5em]`}>
-        <div>
-          {loading ? (
-            <div className="my-2">
-              <Loader
-                hSize=""
-                paddingSetTo="0em"
-                useSmallLoading={true}
-                useSmallBlackLoading={true}
-              />
-            </div>
-          ) : (
-            <b className={`text-[${discountPriceSize}]`}>
-              {isFree ? "Free" : `₪${discountPrice}`}
-            </b>
-          )}
-        </div>
-        {loading ? (
-          <div className="my-2">
+      <div className={`${chooseFlex}`}>
+        {/* Discount Price */}
+        <div className="w-min">
+          {loading && (
             <Loader
               hSize=""
               paddingSetTo="0em"
-              useSmallLoading={true}
-              useSmallBlackLoading={true}
+              useSmallLoading
+              useSmallBlackLoading
             />
-          </div>
-        ) : (
-          <div>
-            {showFullPrice && !isFree && (
-              <div>
-                <p className="text-gray-500 line-through">₪{fullPrice}</p>
-              </div>
-            )}
-          </div>
-        )}
+          )}
+          {!loading && isFree && <b className={``}>Free</b>}
+          {!loading && !isFree && (
+            <b className={`text-2xl`}>₪{discountPrice}</b>
+          )}
+        </div>
+
+        {/* Full Price */}
+        <div className="w-min">
+          {loading && (
+            <Loader
+              hSize=""
+              paddingSetTo="0em"
+              useSmallLoading
+              useSmallBlackLoading
+            />
+          )}
+          {!loading && showFullPrice && !isFree && (
+            <p className="text-base text-gray-500 line-through">₪{fullPrice}</p>
+          )}
+        </div>
+
+        {/* Percent Off */}
+        <div className="w-full">
+          {!loading && !isFree && percentOff > 0 && (
+            <span className="font-sans text-base">{percentOff}% off</span>
+          )}
+        </div>
       </div>
     </div>
   );

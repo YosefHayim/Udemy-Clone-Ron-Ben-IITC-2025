@@ -32,7 +32,7 @@ const Menu: React.FC = () => {
     searchAlgoLocalStorage(category.toLowerCase());
   };
   return (
-    <div>
+    <div className="font-sans">
       <hr />
       <div
         className="relative z-20 bg-white shadow-md"
@@ -46,7 +46,7 @@ const Menu: React.FC = () => {
               onMouseEnter={() => handleMouseEnter(index)}
             >
               <button
-                className="menu-button font-medium text-gray-800 hover:text-purple-600"
+                className="menu-button font-medium text-gray-800 hover:text-purple-600 focus:outline-none"
                 onClick={() => handleNavigate(category.title)}
               >
                 {category.title}

@@ -139,7 +139,6 @@ export interface CoursePriceProps {
   discountPrice?: number | string;
   fullPrice?: number | string;
   chooseFlex?: string;
-  discountPriceSize?: string;
   showFullPrice?: boolean;
 }
 

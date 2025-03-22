@@ -80,6 +80,10 @@ h1 {
   line-height: 1.1;
 }
 
+:not(h1, h2, h3, h4, h5, h6, div) {
+  font-family: sans-serif;
+}
+
 button {
   border-radius: 8px;
   /* border: 1px solid transparent; */
@@ -89,6 +93,7 @@ button {
   font-family: inherit;
   /* background-color: #1a1a1a; */
   cursor: pointer;
+  @apply focus:outline-none;
   transition: border-color 0.25s;
 }
 

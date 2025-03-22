@@ -1,7 +1,6 @@
 import SharePopup from "@/pages/EnrollFreeCourse/SharePopup/SharePopup";
-import "./styles.css";
+import "./styles.module.css";
 import { useState } from "react";
-import DialogPopup from "@/components/DialogPopup/DialogPopup";
 
 const InteractionButtonsOfPreviewCard: React.FC = () => {
   const [isClicked, setClicked] = useState(false);
@@ -12,18 +11,18 @@ const InteractionButtonsOfPreviewCard: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className=".interaction-button-div">
       <div className="relative mb-[1em] flex  w-full flex-wrap justify-between text-[0.75rem]">
         <div
           onClick={handleClick}
-          className="w-min-max flex cursor-pointer items-center justify-center rounded-sm text-center font-extrabold hover:bg-gray-200"
+          className="share w-min-max flex cursor-pointer items-center justify-center rounded-sm text-center font-extrabold hover:bg-gray-200"
         >
-          <b className=".share">Share</b>
+          <b>Share</b>
         </div>
-        <div className=".gift w-min-max flex cursor-pointer items-center justify-center rounded-sm text-center font-extrabold hover:bg-gray-200">
+        <div className="gift w-min-max flex cursor-pointer items-center justify-center rounded-sm text-center font-extrabold hover:bg-gray-200">
           <b>Gift this course</b>
         </div>
-        <div className=".apply w-min-max flex cursor-pointer items-center justify-center rounded-sm text-center font-extrabold hover:bg-gray-200">
+        <div className="apply w-min-max flex cursor-pointer items-center justify-center rounded-sm text-center font-extrabold hover:bg-gray-200">
           <b>Apply Coupon</b>
         </div>
       </div>

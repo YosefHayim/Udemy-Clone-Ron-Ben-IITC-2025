@@ -5,6 +5,6 @@
   text-decoration-color: rgb(111, 5, 111);
 }
 
-div {
+.interaction-button-div {
   width: -webkit-fill-available;
 }

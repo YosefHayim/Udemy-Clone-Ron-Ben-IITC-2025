@@ -11,6 +11,7 @@ const InteractionsBtns: React.FC<{
   instructorId: string;
   isDisplayHeart: boolean;
   customHeartExtraCSS?: string;
+  BtnText: string;
 }> = ({
   courseId,
   coursePrice,
@@ -19,6 +20,7 @@ const InteractionsBtns: React.FC<{
   instructorId,
   isDisplayHeart = true,
   customHeartExtraCSS,
+  BtnText,
 }) => {
   const [showDialogOfFbt, setShowDialogOfFbt] = useState(false);
 
@@ -37,6 +39,7 @@ const InteractionsBtns: React.FC<{
     <div className="w-full">
       <div className="mt-[1em] flex w-full items-center justify-start gap-[0.5em]">
         <AddToCart
+          BtnText={BtnText}
           courseId={courseId}
           discountPrice={coursePrice}
           fullPriceCourse={fullPriceCourse}

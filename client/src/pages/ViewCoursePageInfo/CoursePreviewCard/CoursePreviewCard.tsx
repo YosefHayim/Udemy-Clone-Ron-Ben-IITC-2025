@@ -26,7 +26,8 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
   instructorId,
   discountPrice,
 }) => {
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [isAlreadyBought, setAlreadyBought] = useState(false);
+  const [isAlreadyInCart, setAlreadyInCart] = useState(false);
   const navigate = useNavigate();
 
   const coursesBought = useSelector(
@@ -35,11 +36,11 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
 
   useEffect(() => {
     if (Array.isArray(coursesBought)) {
-      setIsAddedToCart(
+      setAlreadyBought(
         coursesBought.some((course) => course.courseId === courseId),
       );
     } else {
-      setIsAddedToCart(false); // Handle cases where coursesBought is not an array
+      setAlreadyBought(false); // Handle cases where coursesBought is not an array
     }
   }, [coursesBought, courseId]);
 
@@ -67,16 +68,15 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
       </div>
 
       <div className="p-[1.5em]">
-        <div className={isAddedToCart ? "hidden" : "block"}>
+        <div className={isAlreadyBought ? "hidden" : "flex"}>
           <CoursePrice
             showFullPrice={true}
             discountPrice={coursePrice}
             fullPrice={fullPrice}
-            chooseFlex={"flex flex-row items-center"}
-            discountPriceSize={"2em"}
+            chooseFlex={"flex w-full items-center justify-start gap-2"}
           />
         </div>
-        {isAddedToCart ? (
+        {isAlreadyBought && (
           <div className="flex w-full flex-col items-start justify-start">
             <div className="mb-[0.5em] flex flex-row items-start justify-start gap-[0.5em]">
               <AiFillInfoCircle className="text-[2.5em] text-btnColor" />
@@ -91,10 +91,12 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
               Go to course
             </Button>
           </div>
-        ) : (
+        )}
+        {!isAlreadyInCart ? (
           <div className="w-full">
             <TimeLeftBuyCourse coursePrice={coursePrice} />
             <InteractionsBtns
+              BtnText="Go to cart"
               customHeartExtraCSS={`rounded-sm  p-[0.8em] pt-[0.6em] `}
               isDisplayHeart={true}
               instructorId={instructorId}
@@ -111,6 +113,8 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
               />
             </div>
           </div>
+        ) : (
+          <div></div>
         )}
         <MoneyBack />
         <CourseIncludes />
