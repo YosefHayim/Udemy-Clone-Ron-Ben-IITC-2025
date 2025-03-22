@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import placeholderPhotoImg from "/images/placeholder-default-image-user-photo.png";
 import { Input } from "@/components/ui/input";
+import { setUserInformation } from "@/utils/setUserInformaiton";
 
 const Photo = () => {
   const dispatch = useDispatch();
@@ -37,12 +38,9 @@ const Photo = () => {
 
   const refreshUserDataMutation = useMutation({
     mutationFn: refreshMe,
-    onSuccess: () => {
-      const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
-      setTimeout(() => {
-        dispatch(setProfilePic(decoded.profilePic));
-        location.reload();
-      }, 1500);
+    onSuccess: (cookie) => {
+      setUserInformation(cookie);
+      location.reload();
     },
   });
 

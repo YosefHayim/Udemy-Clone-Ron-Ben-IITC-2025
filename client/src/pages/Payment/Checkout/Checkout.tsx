@@ -18,6 +18,7 @@ import { IoMdLock } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setUserInformation } from "@/utils/setUserInformaiton";
 
 const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
   isPaypal,
@@ -58,15 +59,9 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
 
   const refreshUserDataMutation = useMutation({
     mutationFn: refreshMe,
-    onSuccess: () => {
-      setTimeout(() => {
-        const decoded = jwtDecode<DecodedTokenProps>(cookie || "");
-        dispatch(setCookie(cookie || ""));
-        dispatch(setCoursesBought(decoded.coursesBought));
-        dispatch(setUdemyCredits(decoded.udemyCredits));
-        navigate(`/course-view/${coursesIds[0]}`);
-        dispatch(setClearAll());
-      }, 2000);
+    onSuccess: (cookie) => {
+      setUserInformation(cookie);
+      navigate(`/course-view/${coursesIds[0]}`);
     },
   });
 
