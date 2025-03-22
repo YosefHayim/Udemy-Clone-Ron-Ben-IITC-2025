@@ -10,7 +10,13 @@ const HeartBtn: React.FC<{
   iconSize?: string;
   courseId?: string;
   showHeart?: boolean;
-}> = ({ iconSize = "2em", courseId, showHeart = false }) => {
+  customHeartExtraCSS?: string;
+}> = ({
+  iconSize = "2em",
+  courseId,
+  showHeart = false,
+  customHeartExtraCSS,
+}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -48,7 +54,7 @@ const HeartBtn: React.FC<{
       id={courseId}
       className={`${
         showHeart ? "block" : "hidden"
-      } flex cursor-pointer items-center justify-center rounded-full border border-purple-700 p-[1em] transition-all duration-300 hover:bg-purpleHoverBtn`}
+      } flex cursor-pointer items-center justify-center rounded-full border border-purple-700 p-4 transition-all duration-300 hover:bg-purpleHoverBtn ${customHeartExtraCSS}`}
     >
       {isLoading ? (
         <Loader useSmallLoading={true} hSize="0em" paddingSetTo="0em" />

@@ -45,7 +45,7 @@ const BuyNowBtn: React.FC<{
     <Button
       id={courseId}
       onClick={() => handleClick(courseId)}
-      className={`w-full rounded-[0.2em] border border-black bg-white py-[1.5em] font-sans font-extrabold text-black hover:bg-hoverDivGray focus:outline-none`}
+      className={`w-full rounded-[0.2em] border border-purple-700 bg-white py-[1.5em] font-sans font-extrabold text-purple-700 hover:bg-hoverDivGray focus:outline-none`}
     >
       Buy now
     </Button>

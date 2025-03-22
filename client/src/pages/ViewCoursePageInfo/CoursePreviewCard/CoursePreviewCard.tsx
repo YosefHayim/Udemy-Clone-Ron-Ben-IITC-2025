@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
 import MoneyBack from "./MoneyBack/MoneyBack";
 import CourseIncludes from "./CourseIncludes/CourseIncludes";
-import InteractionBtns from "./InteractionBtns/InteractionBtns";
+import InteractionButtonsOfPreviewCard from "./InteractionBtns/InteractionBtns";
 import TimeLeftBuyCourse from "./TimeLeftBuyCourse/TimeLeftBuyCourse";
 import CouponArea from "./CouponArea/CouponArea";
 import UdemyBusiness from "./UdemyBusiness/UdemyBusiness";
-import AddCartNBuyBtn from "./AddCartNBuyBtn/AddCartNBuyBtn";
 import { useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
 import { AiFillInfoCircle } from "react-icons/ai";
@@ -14,6 +13,8 @@ import { RootState } from "@/redux/store";
 import { CoursePreviewCardProps } from "@/types/types";
 import { IoPlayCircleSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import InteractionsBtns from "@/pages/Search/CourseHoverCardInfo/InteractionBtns/InteractionsBtns";
+import BuyNowBtn from "./AddCartNBuyBtn/BuyNowBtn";
 
 const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
   courseImg,
@@ -21,12 +22,15 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
   fullPrice,
   courseId,
   firstLessonId,
+  courseTopic,
+  instructorId,
+  discountPrice,
 }) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const navigate = useNavigate();
 
   const coursesBought = useSelector(
-    (state: RootState) => state?.user.coursesBought,
+    (state: RootState) => state?.user?.coursesBought,
   );
 
   useEffect(() => {
@@ -45,7 +49,7 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
 
   return (
     <div
-      className={`fixed right-[25%] top-[14.5%] z-[1500] w-1/5 border border-b-gray-100 bg-white shadow-previewCourseCardShadow`}
+      className={`fixed right-[25%] top-[14.5%] z-[1500] w-[24%] border border-b-gray-100 bg-white shadow-previewCourseCardShadow`}
     >
       <div className="relative" onClick={navigateCourseLesson}>
         <img
@@ -90,17 +94,27 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
         ) : (
           <div>
             <TimeLeftBuyCourse coursePrice={coursePrice} />
-            <AddCartNBuyBtn
+            <InteractionsBtns
+              customHeartExtraCSS={`rounded-sm  p-[0.8em] pt-[0.6em] `}
+              isDisplayHeart={true}
+              instructorId={instructorId}
+              courseTopic={courseTopic}
               courseId={courseId}
-              discountPrice={coursePrice}
-              fullPrice={fullPrice}
+              coursePrice={coursePrice}
+              fullPriceCourse={fullPrice}
             />
+            <div className="mt-2">
+              <BuyNowBtn
+                courseId={courseId}
+                discountPrice={discountPrice}
+                fullPrice={fullPrice}
+              />
+            </div>
           </div>
         )}
-
         <MoneyBack />
         <CourseIncludes />
-        <InteractionBtns />
+        <InteractionButtonsOfPreviewCard />
         <CouponArea />
         <UdemyBusiness />
       </div>

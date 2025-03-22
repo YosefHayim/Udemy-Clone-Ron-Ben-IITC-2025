@@ -126,11 +126,14 @@ const ViewCoursePageInfo = () => {
         </div>
       </div>
       <CoursePreviewCard
+        courseTopic={data?.courseTopic}
+        instructorId={data?.courseInstructor?._id}
         firstLessonId={data?.sections?.[0]?.lessons?.[0]?._id}
         courseId={data?._id}
         courseImg={data?.courseImg}
         coursePrice={data?.courseDiscountPrice}
         fullPrice={data?.courseFullPrice}
+        discountPrice={data?.courseDiscountPrice}
       />
     </div>
   );

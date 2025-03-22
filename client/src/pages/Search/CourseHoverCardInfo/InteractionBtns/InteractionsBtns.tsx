@@ -1,7 +1,5 @@
-import { useSelector } from "react-redux";
 import AddToCart from "./AddToCart/AddToCart";
 import HeartBtn from "./HeartBtn/HeartBtn";
-import { RootState } from "@/redux/store";
 import DialogFrequentlyBoughtTogether from "./DialogFrequentlyBoughtTogether/DialogFrequentlyBoughtTogether";
 import { useState } from "react";
 
@@ -11,12 +9,16 @@ const InteractionsBtns: React.FC<{
   fullPriceCourse: number;
   courseTopic: string;
   instructorId: string;
+  isDisplayHeart: boolean;
+  customHeartExtraCSS?: string;
 }> = ({
   courseId,
   coursePrice,
   fullPriceCourse,
   courseTopic,
   instructorId,
+  isDisplayHeart = true,
+  customHeartExtraCSS,
 }) => {
   const [showDialogOfFbt, setShowDialogOfFbt] = useState(false);
 
@@ -40,7 +42,14 @@ const InteractionsBtns: React.FC<{
           fullPriceCourse={fullPriceCourse}
           onAddToCartSuccess={handleCartSuccess}
         />
-        <HeartBtn iconSize={"1.5em"} courseId={courseId} showHeart={true} />
+        {isDisplayHeart && (
+          <HeartBtn
+            iconSize={"1.5em"}
+            courseId={courseId}
+            showHeart={true}
+            customHeartExtraCSS={customHeartExtraCSS}
+          />
+        )}
       </div>
       {showDialogOfFbt && (
         <div>

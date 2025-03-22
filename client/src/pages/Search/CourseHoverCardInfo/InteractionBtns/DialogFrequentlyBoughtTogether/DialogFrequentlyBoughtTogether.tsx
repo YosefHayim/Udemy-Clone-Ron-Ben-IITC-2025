@@ -77,7 +77,7 @@ const DialogFrequentlyBoughtTogether: React.FC<{
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>
-              <div className="flex w-full items-center justify-between">
+              <div className="flex w-full items-center justify-between ">
                 <div>
                   <p className="font-sans font-extrabold">Added to cart</p>
                 </div>
