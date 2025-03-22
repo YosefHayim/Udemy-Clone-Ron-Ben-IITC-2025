@@ -10,7 +10,7 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
     <div
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
-      className="w-min-max relative mx-[0.2em] inline-block text-[1.4em]"
+      className="w-min-max relative mx-[0.2em]"
     >
       <p
         className={`${btnStyleNHover} rounded-md px-3 py-3 font-sans text-sm font-normal text-[#020202]`}
@@ -19,7 +19,7 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
       </p>
       <div>
         {isHovering && (
-          <div className="absolute right-0 top-[3.1em] z-50 flex w-[290px] flex-col items-center justify-center gap-[0.5em] rounded-lg border border-gray-300 bg-white p-4 text-center shadow-alertAlgoInfo">
+          <div className="absolute right-0 top-[103%] z-50 flex w-[290px] flex-col items-center justify-center gap-[0.5em] rounded-lg border border-gray-300 bg-white p-4 text-center shadow-alertAlgoInfo">
             {aTagName === "Udemy Business" && (
               <>
                 <p className="font-sans font-extrabold leading-tight text-gray-800">
