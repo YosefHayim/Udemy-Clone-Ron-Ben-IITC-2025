@@ -1,4 +1,4 @@
-const createError = (message: string, statusCode: number) => {
+const createError = (message: string) => {
   const error = new Error(message);
   return error;
 };
