@@ -22,6 +22,7 @@ const initialState: UserState = {
   cookie: localStorage.getItem("cookie") || Cookies.get("cookie"),
   isLoggedPreviouslyWithGoogle: false,
   isAuthActivated: false,
+  whenCreated: null,
 };
 
 const userSlice = createSlice({
@@ -43,12 +44,17 @@ const userSlice = createSlice({
     ) => {
       state.userLinks = { ...state.userLinks, ...action.payload };
     },
-
+    setCreatedAt: (state, action: PayloadAction<Date | undefined | null>) => {
+      state.whenCreated = action.payload;
+    },
     setRole: (state, action: PayloadAction<string>) => {
       state.role = action.payload;
     },
     setBio: (state, action: PayloadAction<string>) => {
       state.bio = action.payload;
+    },
+    setAuthActivate: (state, action: PayloadAction<boolean>) => {
+      state.isAuthActivated = action.payload;
     },
     setEmailAddress: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
@@ -113,7 +119,9 @@ export const {
   setUdemyCredits,
   setCookie,
   setIsLoggedWithGoogle,
+  setAuthActivate,
   setAuth,
+  setCreatedAt,
 } = userSlice.actions;
 
 export default userSlice.reducer;

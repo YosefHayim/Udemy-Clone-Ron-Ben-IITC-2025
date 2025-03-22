@@ -90,6 +90,10 @@ const userSchema = new Schema<UserDocument>(
     },
     temporaryCodeExpiresAt: { type: Date },
     active: { type: Boolean, default: true, select: false },
+    isAuthActivate: {
+      type: Boolean,
+      default: false,
+    },
     udemyCredits: { type: Number, default: 0 },
     subscriptionPlan: {
       type: {

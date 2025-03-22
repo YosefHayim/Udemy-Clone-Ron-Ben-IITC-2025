@@ -66,6 +66,7 @@ export interface UserState {
   };
   isLoggedPreviouslyWithGoogle: boolean;
   isAuthActivated: boolean;
+  whenCreated: Date | null | undefined;
 }
 
 export interface searchResultCourseImgProps {
@@ -283,6 +284,8 @@ export interface DecodedTokenProps {
     instagram: string;
   };
   isLoggedPreviouslyWithGoogle: boolean;
+  createdAt: Date | null | undefined;
+  isAuthActivated: boolean;
 }
 
 export type FormErrors = {

@@ -7,9 +7,9 @@ import DialogMultiFactorAuth from "./DialogMultiFactorAuth/DialogMultiFactorAuth
 import DialogChangeEmail from "./DialogChangeEmail/DialogChangeEmail";
 
 const AccountSecurity = () => {
-  const email = useSelector((state: RootState) => state?.user.email);
+  const email = useSelector((state: RootState) => state?.user?.email);
   const isAuthEnabled = useSelector(
-    (state: RootState) => state?.user.isAuthActivated,
+    (state: RootState) => state?.user?.isAuthActivated,
   );
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);

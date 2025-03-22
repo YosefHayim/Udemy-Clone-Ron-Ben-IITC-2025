@@ -147,6 +147,7 @@ const signUp = catchAsync(
       fieldLearning: newUser.fieldLearning,
       isLoggedPreviouslyWithGoogle: newUser.isLoggedPreviouslyWithGoogle,
       whenCreated: newUser.createdAt,
+      isAuthActivated: newUser.isAuthActivated,
     });
 
     res.cookie("cookie", token, {
@@ -222,6 +223,7 @@ const login = catchAsync(
       fieldLearning: isFoundUser.fieldLearning,
       isLoggedPreviouslyWithGoogle: isFoundUser.isLoggedPreviouslyWithGoogle,
       whenCreated: isFoundUser.createdAt,
+      isAuthActivated: isFoundUser.isAuthActivated,
     });
 
     res.cookie("cookie", token, {
@@ -303,6 +305,7 @@ const verifyCode = catchAsync(
       fieldLearning: user.fieldLearning,
       isLoggedPreviouslyWithGoogle: user.isLoggedPreviouslyWithGoogle,
       whenCreated: user.createdAt,
+      isAuthActivated: user.isAuthActivated,
     });
 
     res.cookie("cookie", token, {
@@ -668,13 +671,12 @@ const updateUserInfo = catchAsync(
     const {
       fullName,
       headline,
-      biography,
+      bio,
+      country,
+      email,
       preferredLanguage,
-      website,
-      xPlatform,
-      facebook,
-      linkedin,
-      youtube,
+      links: { website, xPlatform, facebook, linkedin, youtube } = {},
+      isAuthActivate,
     } = req.body;
 
     const updatedUser = await User.findByIdAndUpdate(
@@ -682,7 +684,8 @@ const updateUserInfo = catchAsync(
       {
         fullName,
         headline,
-        biography,
+        bio,
+        email,
         preferredLanguage,
         links: {
           website,
@@ -690,6 +693,8 @@ const updateUserInfo = catchAsync(
           facebook,
           linkedin,
           youtube,
+          isAuthActivate,
+          country,
         },
       },
       {
@@ -857,6 +862,7 @@ const googleLoginOrSignUp = catchAsync(
         fieldLearning: user.fieldLearning,
         isLoggedPreviouslyWithGoogle: user.isLoggedPreviouslyWithGoogle,
         whenCreated: user.createdAt,
+        isAuthActivated: user.isAuthActivated,
       });
 
       res.cookie("cookie", token, {
@@ -901,6 +907,7 @@ const updateMe = catchAsync(
       fieldLearning: user.fieldLearning,
       isLoggedPreviouslyWithGoogle: user.isLoggedPreviouslyWithGoogle,
       whenCreated: user.createdAt,
+      isAuthActivated: user.isAuthActivated,
     });
 
     res.cookie("cookie", token, {

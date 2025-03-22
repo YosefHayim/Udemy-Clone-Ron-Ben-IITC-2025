@@ -11,6 +11,8 @@ import {
   setUdemyCredits,
   setIsLoggedWithGoogle,
   setCookie,
+  setCreatedAt,
+  setAuthActivate,
 } from "@/redux/slices/userSlice";
 import { DecodedTokenProps } from "@/types/types";
 import { jwtDecode } from "jwt-decode";
@@ -30,6 +32,9 @@ export const setUserInformation = (cookie: string, dispatch: AppDispatch) => {
   if (decoded.role) dispatch(setRole(decoded.role));
   if (decoded.coursesBought) dispatch(setCoursesBought(decoded.coursesBought));
   if (decoded.udemyCredits) dispatch(setUdemyCredits(decoded.udemyCredits));
+  if (decoded.createdAt) dispatch(setCreatedAt(decoded.createdAt));
+  if (decoded.isAuthActivated)
+    dispatch(setAuthActivate(decoded.isAuthActivated));
   dispatch(setIsLoggedWithGoogle(true));
   dispatch(setCookie(cookie));
 
