@@ -8,12 +8,12 @@ import { useMutation } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import { FaApple, FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { MdEmail } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import googleLogin from "@/api/users/googleLogin";
 import { BiSolidErrorAlt } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { setIsLoggedWithGoogle } from "@/redux/slices/userSlice";
+import { AiOutlineMail } from "react-icons/ai";
 
 const SignUp: React.FC = () => {
   document.title = "Sign Up and Start Learning | Udemy";
@@ -91,13 +91,13 @@ const SignUp: React.FC = () => {
       </div>
       <div className="flex h-full w-1/2 items-center justify-center bg-white">
         <div className="w-3/4 max-w-[27rem]">
-          <h2 className="mb-6 w-full text-center text-[2rem] font-bold text-courseNameColorTxt">
+          <h2 className="mb-6 w-full text-center font-sans text-[2rem] font-extrabold text-courseNameColorTxt">
             Sign up with email
           </h2>
           <div
             className={
               isError
-                ? `mb-[1em] flex w-full flex-row items-start justify-center gap-[1em] rounded-[1.5em] border border-red-700 p-[1em] py-[1.5em] font-bold`
+                ? `mb-[1em] flex w-full flex-row items-start justify-center gap-[1em] rounded-[1.5em] border border-red-700 p-[1em] py-[1.5em] font-extrabold`
                 : "hidden"
             }
           >
@@ -134,7 +134,7 @@ const SignUp: React.FC = () => {
               name="fullName"
               required={true}
               placeholder="Full name"
-              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white p-[1em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt hover:bg-gray-100 focus:border-purple-800"
+              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white p-[1em] py-[1.5em] placeholder:font-extrabold placeholder:text-courseNameColorTxt hover:bg-gray-100 focus:border-purple-800"
             />
             <input
               required={true}
@@ -142,7 +142,7 @@ const SignUp: React.FC = () => {
               name="email"
               id="email"
               placeholder="Email"
-              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white p-[1em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt hover:bg-gray-100 focus:border-purple-800"
+              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white p-[1em] py-[1.5em] placeholder:font-extrabold placeholder:text-courseNameColorTxt hover:bg-gray-100 focus:border-purple-800"
             />
             <button
               type="submit"
@@ -152,13 +152,8 @@ const SignUp: React.FC = () => {
                 <Loader useSmallLoading={true} hSize="" />
               ) : (
                 <div className="flex items-center">
-                  <MdEmail size={25} />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
-                  />
-                  <span className="text-[1rem] font-bold">
+                  <AiOutlineMail size={20} />
+                  <span className="text-[1rem] font-extrabold">
                     Continue with email
                   </span>
                 </div>
@@ -189,25 +184,31 @@ const SignUp: React.FC = () => {
           <div className="flex justify-center px-0">
             <p className="mt-2 text-courseNameColorTxt">
               By signing up, you agree to our{" "}
+              <Link
+                className="mr-[0.3rem] cursor-pointer text-purple-600
+                underline"
+                to={`/terms-of-use`}
+              >
+                Terms of Use
+              </Link>
               <span className="inline">
-                <a
-                  className="mr-[0.3rem] cursor-pointer text-purple-600 underline"
-                  onClick={() => navigate("/terms-of-use")}
-                >
-                  Terms of Use
-                </a>
                 and{" "}
-                <a href="/privacy" className="text-purple-600 underline">
+                <Link
+                  className="mr-[0.3rem] cursor-pointer text-purple-600
+                underline"
+                  to={`/terms-of-use`}
+                >
                   Privacy Policy
-                </a>
+                </Link>
               </span>
-              .
             </p>
           </div>
           <div className="mt-6 flex w-full items-center justify-center space-x-0 bg-[#f6f7f9] py-[1.5em] text-center font-medium text-white">
             <Link to="/login" className="text-[1rem] text-courseNameColorTxt">
               Already have an account?{" "}
-              <span className="font-bold text-btnColor underline">Log in</span>
+              <span className="font-extrabold text-btnColor underline">
+                Log in
+              </span>
             </Link>
           </div>
         </div>

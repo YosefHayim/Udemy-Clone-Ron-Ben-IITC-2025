@@ -95,7 +95,7 @@ const SearchPage: React.FC = () => {
       <div className="flex w-full flex-row items-start justify-center gap-[1.5em]">
         <div className="flex flex-col items-start justify-center">
           <div>
-            <h1 className="mb-[0.8em] w-full text-[1.8em] font-bold">
+            <h1 className="mb-[0.8em] w-full text-[1.8em] font-extrabold">
               {data?.totalCourses || 0} results for "{searchTerm}"
             </h1>
           </div>
@@ -104,7 +104,7 @@ const SearchPage: React.FC = () => {
         </div>
         <div className="flex w-full flex-col items-center justify-center">
           <div className="mt-[6em] w-full flex-col items-center justify-center">
-            <h2 className="w-full text-end font-bold">
+            <h2 className="w-full text-end font-extrabold">
               {data?.totalCourses || 0} results
             </h2>
             {data

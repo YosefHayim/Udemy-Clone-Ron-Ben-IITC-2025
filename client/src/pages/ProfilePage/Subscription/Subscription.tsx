@@ -4,7 +4,7 @@ const Subscriptions = () => {
       {/* Main Content */}
       <main className="flex-1 p-8">
         <div className="mx-auto max-w-4xl rounded-lg bg-white p-8 shadow-lg">
-          <h2 className="mb-6 text-2xl font-bold text-gray-800">
+          <h2 className="mb-6 text-2xl font-extrabold text-gray-800">
             Subscriptions
           </h2>
           <p className="mb-4 text-gray-600">Manage your Udemy subscriptions</p>
@@ -27,7 +27,7 @@ const Subscriptions = () => {
             <div className="flex flex-col items-start rounded-lg border bg-gray-50 p-6 lg:flex-row">
               {/* Text Section */}
               <div className="flex-1">
-                <h4 className="text-xl font-bold text-gray-800">
+                <h4 className="text-xl font-extrabold text-gray-800">
                   Personal Plan
                 </h4>
                 <p className="my-4 text-gray-600">

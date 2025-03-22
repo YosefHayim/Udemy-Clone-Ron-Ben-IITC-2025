@@ -20,7 +20,7 @@ const InstructorSection: React.FC<{
   return (
     <div className="flex flex-col items-start justify-start gap-[1em]">
       <div>
-        <h2 className="text-[1.5em] font-bold">Instructor</h2>
+        <h2 className="text-[1.5em] font-extrabold">Instructor</h2>
         <Link to={`/user/instructor/${instructorId}`}>
           <InstructorName
             instructorName={instructorName}

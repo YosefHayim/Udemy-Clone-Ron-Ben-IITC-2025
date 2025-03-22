@@ -49,7 +49,7 @@ const RatingsFilter = () => {
           className="flex cursor-pointer items-center justify-between"
           onClick={handleClick}
         >
-          <p className="py-[0.5em] text-lg font-bold">Ratings</p>
+          <p className="py-[0.5em] text-lg font-extrabold">Ratings</p>
           {isClicked ? (
             <MdKeyboardArrowUp size={17} />
           ) : (

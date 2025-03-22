@@ -7,7 +7,9 @@ const FilterBtn = () => {
         <IoFilterOutline />
       </div>
       <div>
-        <b className="ml-[0.4em] text-base font-bold leading-[1.2]">Filter </b>
+        <b className="ml-[0.4em] text-base font-extrabold leading-[1.2]">
+          Filter{" "}
+        </b>
       </div>
       <div>
         <b></b>

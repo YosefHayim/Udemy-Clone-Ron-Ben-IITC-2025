@@ -135,7 +135,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
             >
               <SidebarMenuButton className="flex  items-center justify-between overflow-visible  rounded-none p-0 pl-2 focus:outline-none focus-visible:outline-none">
                 <div className=" flex w-full flex-col ">
-                  <div className="flex  items-center break-words text-lg font-bold text-courseNameColorTxt">
+                  <div className="flex  items-center break-words text-lg font-extrabold text-courseNameColorTxt">
                     <span>
                       Section {index + 1}: {section.sectionId.title}
                     </span>

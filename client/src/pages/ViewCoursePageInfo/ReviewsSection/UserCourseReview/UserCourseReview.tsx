@@ -54,7 +54,7 @@ const UserCourseReview: React.FC<{
             <div className="absolute left-[-60px] top-full mt-[0.5em] flex h-[50px] w-[75px] items-center justify-center rounded-[0.5em] border border-gray-400 bg-white px-[0.5em] text-center shadow-previewCourseCardShadow">
               <button
                 onClick={handleReportDrawer}
-                className="font-bold text-[#521e9f] hover:text-[#6D28D5]"
+                className="font-extrabold text-[#521e9f] hover:text-[#6D28D5]"
                 id={review._id}
               >
                 Report

@@ -107,14 +107,14 @@ const VerifyCode = () => {
       />
 
       <div className="flex w-full flex-col items-center justify-center bg-white">
-        <h2 className="mb-2 text-center text-3xl font-bold text-gray-800">
+        <h2 className="mb-2 text-center text-3xl font-extrabold text-gray-800">
           Check your inbox
         </h2>
 
         <p className="mb-7 mt-8 max-w-[25rem] text-center text-[1rem] text-gray-600">
           Enter the 6-digit code we sent to{" "}
-          <span className="font-bold">{emailUser || "your email"}</span>
-          <span className="font-bold text-gray-800"></span> to finish your
+          <span className="font-extrabold">{emailUser || "your email"}</span>
+          <span className="font-extrabold text-gray-800"></span> to finish your
           login.
         </p>
 
@@ -143,7 +143,7 @@ const VerifyCode = () => {
               <Loader useSmallLoading={true} hSize="" />
             ) : (
               <div className="flex flex-row">
-                <button className="text-[1rem] font-bold focus:outline-none">
+                <button className="text-[1rem] font-extrabold focus:outline-none">
                   Log in
                 </button>
               </div>
@@ -154,7 +154,7 @@ const VerifyCode = () => {
         {!isSentCodeAgain ? (
           <button
             onClick={handleResendCode}
-            className="mt-5 text-[1rem] font-bold text-btnColor underline hover:text-purple-800 focus:outline-none"
+            className="mt-5 text-[1rem] font-extrabold text-btnColor underline hover:text-purple-800 focus:outline-none"
           >
             Resend Code
           </button>
@@ -164,7 +164,9 @@ const VerifyCode = () => {
             className="mt-5 cursor-not-allowed text-[1rem] text-black"
           >
             Didn't receive the code?{" "}
-            <span className="font-bold">Resend code in {countdown} sec</span>
+            <span className="font-extrabold">
+              Resend code in {countdown} sec
+            </span>
           </button>
         )}
 
@@ -172,7 +174,7 @@ const VerifyCode = () => {
           <Link to="/login">
             <button
               onClick={handleDifferentAccount}
-              className="w-full rounded-md bg-[#F6F7F9] py-4 text-sm font-bold text-btnColor underline hover:bg-gray-200 focus:outline-none"
+              className="w-full rounded-md bg-[#F6F7F9] py-4 text-sm font-extrabold text-btnColor underline hover:bg-gray-200 focus:outline-none"
             >
               Log in to a different account
             </button>

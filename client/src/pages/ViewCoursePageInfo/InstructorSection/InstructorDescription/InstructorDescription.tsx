@@ -37,7 +37,7 @@ const InstructorDescription: React.FC<{ descriptionInstructor: string }> = ({
         className="mt-[1em] flex cursor-pointer items-center gap-[1em]"
         onClick={handleToggle}
       >
-        <span className="font-bold text-purpleStatic hover:text-purpleHover ">
+        <span className="font-extrabold text-purpleStatic hover:text-purpleHover ">
           {isExpanded ? "Show less" : "Show more"}
         </span>
         {isExpanded ? (

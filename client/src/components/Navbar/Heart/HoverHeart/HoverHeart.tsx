@@ -84,7 +84,7 @@ const HoverHeart = () => {
         )}
         <div className="w-full p-[1em]">
           {totalCourses.length >= 1 && (
-            <Button className="w-full rounded-[0.2em] bg-btnColor py-[1.5em] font-bold hover:bg-btnHoverColor focus:outline-none">
+            <Button className="w-full rounded-[0.2em] bg-btnColor py-[1.5em] font-extrabold hover:bg-btnHoverColor focus:outline-none">
               Go to wishlist
             </Button>
           )}

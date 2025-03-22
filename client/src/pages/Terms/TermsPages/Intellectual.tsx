@@ -3,7 +3,9 @@ const Intellectual = () => {
     <>
       <div className="space-y-6 bg-white p-8 text-base font-medium text-black opacity-80">
         {/* Title and Introduction */}
-        <h1 className="text-3xl font-bold">Intellectual Property Policy</h1>
+        <h1 className="text-3xl font-extrabold">
+          Intellectual Property Policy
+        </h1>
         <p className="italic  ">
           This Intellectual Property Policy was last updated on November 4,
           2021.
@@ -243,7 +245,7 @@ const Intellectual = () => {
           permission from the owner of the reported content to use such content,
           then you may send us a counter-notification.
         </p>
-        <p className="font-bold">
+        <p className="font-extrabold">
           Knowingly submitting a false or misleading counter-notification to a
           claim of infringement is illegal and you could be held liable and have
           to pay damages as a result.{" "}

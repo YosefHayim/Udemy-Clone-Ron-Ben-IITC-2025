@@ -37,8 +37,8 @@ const SkillsP3 = () => {
           <b>You're in the right place!</b>
         </div>
         <p>
-          <span className="font-bold">1,607,173</span> people learn Financial
-          Analysis on Udemy.
+          <span className="font-extrabold">1,607,173</span> people learn
+          Financial Analysis on Udemy.
         </p>
       </div>
       <div>
@@ -96,7 +96,7 @@ const SkillsP3 = () => {
           )}
         </div>
         <div className="mb-[1.5em] flex flex-col items-start justify-start gap-[1em]">
-          <b className="font-bold">Software</b>
+          <b className="font-extrabold">Software</b>
           <OtherSkill otherSkillName="Microsoft Excel" />
         </div>
         <div>

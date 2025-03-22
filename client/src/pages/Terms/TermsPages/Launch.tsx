@@ -2,7 +2,7 @@ const Launch = () => {
   return (
     <>
       <div className="space-y-8 bg-white p-8 text-gray-800">
-        <h1 className="text-3xl font-bold">Launch Services</h1>
+        <h1 className="text-3xl font-extrabold">Launch Services</h1>
         <p className="text-sm text-gray-600">
           This Agreement was last updated on June 1, 2023.
         </p>

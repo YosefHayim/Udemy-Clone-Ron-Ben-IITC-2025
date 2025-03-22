@@ -2,7 +2,7 @@ const Privacy_policy2 = () => {
   return (
     <>
       <div className="rounded-lg bg-white p-6 ">
-        <h1 className="mb-4 text-3xl font-bold">Privacy Policy</h1>
+        <h1 className="mb-4 text-3xl font-extrabold">Privacy Policy</h1>
         <p className="mb-6 text-sm text-gray-500">
           This Privacy Policy was last updated on November 11, 2024.
         </p>
@@ -26,7 +26,7 @@ const Privacy_policy2 = () => {
           Policy or any other agreement that governs your use of the Services.
         </p>
 
-        <h2 className="mb-4 text-2xl font-bold">Table of Contents</h2>
+        <h2 className="mb-4 text-2xl font-extrabold">Table of Contents</h2>
         <ul className="list-inside list-disc space-y-2 text-base text-blue-600">
           <li>
             <a href="#" className="hover:underline">
@@ -72,7 +72,7 @@ const Privacy_policy2 = () => {
       </div>
 
       <div className="rounded-lg bg-white p-6 shadow-lg">
-        <h1 className="mb-4 text-3xl font-bold">Privacy Policy</h1>
+        <h1 className="mb-4 text-3xl font-extrabold">Privacy Policy</h1>
         <p className="mb-6 text-sm text-gray-500">
           This Privacy Policy was last updated on November 11, 2024.
         </p>
@@ -96,7 +96,7 @@ const Privacy_policy2 = () => {
           Policy or any other agreement that governs your use of the Services.
         </p>
 
-        <h2 className="mb-4 text-2xl font-bold">Table of Contents</h2>
+        <h2 className="mb-4 text-2xl font-extrabold">Table of Contents</h2>
         <ul className="list-inside list-disc space-y-2 text-base text-blue-600">
           <li>
             <a href="#" className="hover:underline">
@@ -142,7 +142,9 @@ const Privacy_policy2 = () => {
       </div>
 
       <div className="mx-auto max-w-5xl rounded-2xl bg-white p-6 text-gray-900">
-        <h2 className="mb-6 text-xl font-bold">Categories of Personal Data</h2>
+        <h2 className="mb-6 text-xl font-extrabold">
+          Categories of Personal Data
+        </h2>
         <div className="overflow-x-auto">
           <table className="w-full table-auto border-collapse border border-gray-300 text-sm">
             <thead>
@@ -404,7 +406,7 @@ const Privacy_policy2 = () => {
 
       <div className="mx-auto max-w-5xl rounded-2xl bg-white p-6 text-gray-900">
         ""
-        <h2 className="mb-6 text-xl font-bold">
+        <h2 className="mb-6 text-xl font-extrabold">
           1.2 Data We Collect through Automated Means
         </h2>
         <p className="mb-4">
@@ -494,14 +496,16 @@ const Privacy_policy2 = () => {
       </div>
 
       <div className="mx-auto max-w-5xl rounded-2xl bg-white p-6 text-gray-900">
-        <h2 className="mb-6 text-xl font-bold">2. How We Get Data About You</h2>
+        <h2 className="mb-6 text-xl font-extrabold">
+          2. How We Get Data About You
+        </h2>
         <p className="mb-4">
           We use tools like cookies, web beacons, and similar tracking
           technologies to gather the data listed above. Some of these tools
           offer you the ability to opt out of data collection.
         </p>
 
-        <h3 className="mb-4 text-lg font-bold">
+        <h3 className="mb-4 text-lg font-extrabold">
           2.1 Cookies and Data Collection Tools
         </h3>
         <p className="mb-4">
@@ -532,7 +536,7 @@ const Privacy_policy2 = () => {
           described in this Privacy Policy.
         </p>
 
-        <h3 className="mb-4 text-lg font-bold">
+        <h3 className="mb-4 text-lg font-extrabold">
           2.2 Why We Use Data Collection Tools
         </h3>
         <p className="mb-4">
@@ -597,7 +601,9 @@ const Privacy_policy2 = () => {
       </div>
 
       <div className="mx-auto max-w-5xl rounded-2xl bg-white p-6 text-gray-900">
-        <h2 className="mb-6 text-xl font-bold">3. What We Use Your Data For</h2>
+        <h2 className="mb-6 text-xl font-extrabold">
+          3. What We Use Your Data For
+        </h2>
         <p className="mb-4">
           We use your data to do things like provide our Services, communicate
           with you, troubleshoot issues, secure against fraud and abuse, improve
@@ -728,7 +734,7 @@ const Privacy_policy2 = () => {
       </div>
 
       <div className="mx-auto max-w-5xl rounded-2xl bg-white p-6 text-gray-900">
-        <h2 className="mb-6 text-xl font-bold">
+        <h2 className="mb-6 text-xl font-extrabold">
           4. Who We Share Your Data With
         </h2>
         <p className="mb-4">
@@ -987,7 +993,7 @@ const Privacy_policy2 = () => {
       </div>
 
       <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 text-gray-900">
-        <h2 className="mb-6 text-xl font-bold">5. Security</h2>
+        <h2 className="mb-6 text-xl font-extrabold">5. Security</h2>
         <div className="mb-6 border-l-4 border-blue-500 bg-blue-50 p-4">
           <p className="text-sm">
             We use appropriate security based on the type and sensitivity of
@@ -1018,7 +1024,7 @@ const Privacy_policy2 = () => {
       </div>
 
       <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 text-gray-900 shadow-lg">
-        <h2 className="mb-6 text-xl font-bold">6. Your Rights</h2>
+        <h2 className="mb-6 text-xl font-extrabold">6. Your Rights</h2>
         <div className="mb-6 border-l-4 border-blue-500 bg-blue-50 p-4">
           <p className="text-sm">
             You have certain rights around the use of your data, including the
@@ -1031,7 +1037,7 @@ const Privacy_policy2 = () => {
           </p>
         </div>
 
-        <h3 className="mb-4 text-lg font-bold">
+        <h3 className="mb-4 text-lg font-extrabold">
           6.1 Your Choices About the Use of Your Data
         </h3>
         <p className="mb-4">
@@ -1170,7 +1176,7 @@ const Privacy_policy2 = () => {
       </div>
 
       <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 text-gray-900 shadow-lg">
-        <h3 className="mb-6 text-lg font-bold">
+        <h3 className="mb-6 text-lg font-extrabold">
           6.2 Accessing, Updating, and Deleting Your Personal Data
         </h3>
         <p className="mb-4">
@@ -1248,7 +1254,7 @@ const Privacy_policy2 = () => {
           </li>
         </ul>
 
-        <h3 className="mb-4 mt-6 text-lg font-bold">
+        <h3 className="mb-4 mt-6 text-lg font-extrabold">
           6.3 Our Policy Concerning Children
         </h3>
         <p className="mb-4">
@@ -1277,7 +1283,7 @@ const Privacy_policy2 = () => {
       </div>
 
       <div className="mx-auto max-w-4xl rounded-lg bg-white p-6 shadow-md">
-        <h2 className="mb-4 text-2xl font-bold">
+        <h2 className="mb-4 text-2xl font-extrabold">
           7. Jurisdiction-Specific Rules
         </h2>
         <p className="mb-4">
@@ -1288,7 +1294,7 @@ const Privacy_policy2 = () => {
           of the United States should note that we transfer data to the US and
           other areas outside of the European Economic Area.
         </p>
-        <h3 className="mb-4 text-xl font-bold">7.1 Users in California</h3>
+        <h3 className="mb-4 text-xl font-extrabold">7.1 Users in California</h3>
         <p className="mb-4">
           Users who are California residents have certain rights under the
           California Consumer Privacy Act, ("CCPA"). If you are an eligible
@@ -1379,7 +1385,7 @@ const Privacy_policy2 = () => {
       </div>
 
       <div className="mx-auto max-w-4xl rounded-lg bg-white p-6 shadow-md">
-        <h3 className="mb-4 text-xl font-bold">7.2 Users in Nevada</h3>
+        <h3 className="mb-4 text-xl font-extrabold">7.2 Users in Nevada</h3>
         <p className="mb-4">
           <strong>
             Udemy does not sell its users’ personal information or personal
@@ -1398,7 +1404,7 @@ const Privacy_policy2 = () => {
           Street, 3rd floor, San Francisco CA 94107.
         </p>
 
-        <h3 className="mb-4 text-xl font-bold">7.3 Users in Australia</h3>
+        <h3 className="mb-4 text-xl font-extrabold">7.3 Users in Australia</h3>
         <p className="mb-4">
           If you are an Australia resident and you have a complaint, you may
           refer it to the office of the Australian Information Commissioner
@@ -1425,7 +1431,7 @@ const Privacy_policy2 = () => {
           Principles which will be responded to within 30 days.
         </p>
 
-        <h3 className="mb-4 text-xl font-bold">
+        <h3 className="mb-4 text-xl font-extrabold">
           7.4 Users in the European Economic Area (“EEA”) and United Kingdom
           (“UK”)
         </h3>
@@ -1454,7 +1460,7 @@ const Privacy_policy2 = () => {
       </div>
 
       <div className="mx-auto max-w-4xl rounded-lg bg-white p-6 shadow-md">
-        <h3 className="mb-4 text-xl font-bold">
+        <h3 className="mb-4 text-xl font-extrabold">
           7.5 Data Privacy Framework (for EU/EEA, UK, and Swiss data subjects)
         </h3>
         <p className="mb-4">
@@ -1565,7 +1571,7 @@ const Privacy_policy2 = () => {
           .
         </p>
 
-        <h3 className="mb-4 text-xl font-bold">
+        <h3 className="mb-4 text-xl font-extrabold">
           7.6 Users Outside of the U.S.
         </h3>
         <p className="mb-4">
@@ -1578,7 +1584,9 @@ const Privacy_policy2 = () => {
       </div>
 
       <div className="mx-auto max-w-4xl rounded-lg bg-white p-6 shadow-md">
-        <h2 className="mb-4 text-2xl font-bold">8. Updates & Contact Info</h2>
+        <h2 className="mb-4 text-2xl font-extrabold">
+          8. Updates & Contact Info
+        </h2>
         <p className="mb-4">
           When we make a material change to this policy, we’ll notify users via
           email, in-product notice, or another mechanism required by law.
@@ -1586,7 +1594,7 @@ const Privacy_policy2 = () => {
           email or postal mail with any questions, concerns, or disputes.
         </p>
 
-        <h3 className="mb-4 text-xl font-bold">
+        <h3 className="mb-4 text-xl font-extrabold">
           8.1 Modifications to This Privacy Policy
         </h3>
         <p className="mb-4">
@@ -1605,7 +1613,7 @@ const Privacy_policy2 = () => {
           all previous Privacy Policies.
         </p>
 
-        <h3 className="mb-4 text-xl font-bold">8.2 Interpretation</h3>
+        <h3 className="mb-4 text-xl font-extrabold">8.2 Interpretation</h3>
         <p className="mb-4">
           Any capitalized terms not defined in this policy are defined as
           specified in Udemy’s{" "}
@@ -1618,7 +1626,7 @@ const Privacy_policy2 = () => {
           control.
         </p>
 
-        <h3 className="mb-4 text-xl font-bold">8.3 Questions</h3>
+        <h3 className="mb-4 text-xl font-extrabold">8.3 Questions</h3>
         <p className="mb-4">
           If you have any questions, concerns, or disputes regarding our Privacy
           Policy, please feel free to contact our privacy team (including our

@@ -56,7 +56,7 @@ const plans = [
 const PlansSection = () => {
   return (
     <div className="bg-gray-50 px-8 py-16">
-      <h2 className="text-center text-3xl font-bold text-gray-900">
+      <h2 className="text-center text-3xl font-extrabold text-gray-900">
         Accelerate growth — for you or your organization
       </h2>
       <p className="mt-2 text-center text-gray-600">
@@ -74,21 +74,23 @@ const PlansSection = () => {
                 {plan.placeholderIcon}
               </div>
               <div>
-                <h3 className="text-xl font-bold text-gray-900">{plan.name}</h3>
+                <h3 className="text-xl font-extrabold text-gray-900">
+                  {plan.name}
+                </h3>
                 <p className="text-sm text-gray-600">{plan.description}</p>
               </div>
             </div>
-            <p className="text-lg font-bold text-gray-900">{plan.price}</p>
+            <p className="text-lg font-extrabold text-gray-900">{plan.price}</p>
             {plan.details && (
               <p className="mt-1 text-sm text-gray-600">{plan.details}</p>
             )}
-            <button className="mt-4 w-full rounded bg-black py-2 font-bold text-white hover:bg-gray-800 focus:outline-none">
+            <button className="mt-4 w-full rounded bg-black py-2 font-extrabold text-white hover:bg-gray-800 focus:outline-none">
               {plan.buttonText}
             </button>
             <ul className="mt-4 space-y-2 text-sm text-gray-600">
               {plan.features.map((feature, featureIndex) => (
                 <li key={featureIndex} className="flex items-start">
-                  <span className="mr-2 font-bold text-green-600">✓</span>
+                  <span className="mr-2 font-extrabold text-green-600">✓</span>
                   {feature}
                 </li>
               ))}

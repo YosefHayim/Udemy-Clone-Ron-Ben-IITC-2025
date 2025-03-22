@@ -85,7 +85,7 @@ const DialogOfAllReviews: React.FC<{
                       <Button
                         className={`${
                           data.length < 13 ? "hidden" : "block"
-                        } w-full rounded-[0.2em] border border-black bg-white font-bold text-black`}
+                        } w-full rounded-[0.2em] border border-black bg-white font-extrabold text-black`}
                       >
                         Show more reviews
                       </Button>

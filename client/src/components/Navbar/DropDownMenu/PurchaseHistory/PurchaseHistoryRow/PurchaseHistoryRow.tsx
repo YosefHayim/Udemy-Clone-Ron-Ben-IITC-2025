@@ -17,7 +17,7 @@ const PurchaseHistoryRow = () => {
           <p className="text-purpleStatic">
             React Native - The Practical Guide [2025]
           </p>
-          <b className="font-bold text-purpleStatic">Request a refund</b>
+          <b className="font-extrabold text-purpleStatic">Request a refund</b>
         </div>
       </div>
       <div className="w-[50px]">

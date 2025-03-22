@@ -13,7 +13,7 @@ const ItemsInCart: React.FC = () => {
   return (
     <div>
       <div className="flex w-full flex-col items-center justify-center gap-[1em]">
-        <div className="mt-[1em] flex w-full flex-col items-start justify-start gap-[1.5em] font-bold">
+        <div className="mt-[1em] flex w-full flex-col items-start justify-start gap-[1.5em] font-extrabold">
           <h2>
             {totalCoursesInCart} {totalCoursesInCart > 1 ? "Courses" : "Course"}{" "}
             in Cart

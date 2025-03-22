@@ -55,7 +55,7 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
               className="relative w-full"
             />
             <div className="absolute left-16 top-16 flex w-[400px] flex-col items-start gap-2 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
-              <h1 className="font-bold">Learning that gets you</h1>
+              <h1 className="font-extrabold">Learning that gets you</h1>
               <p className="pr-2 text-lg">
                 Skills for your present (and your future). Get started with us.
               </p>
@@ -80,7 +80,7 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
                 <div
                   className={`${banner.title === "Skills that drive you forward" ? "w-[450px] gap-[0.5em] p-[2em]" : "w-min-max pr-14"} border-gray-100" absolute left-16 top-16 flex flex-col items-start rounded-sm bg-white px-5 py-7 text-black shadow-alertAlgoInfo`}
                 >
-                  <h1 className="w-full font-bold">{banner.title}</h1>
+                  <h1 className="w-full font-extrabold">{banner.title}</h1>
                   <p
                     className={`${banner.title === "Skills that drive you forward" && `w-[380px]`} pr-2 text-sm`}
                   >

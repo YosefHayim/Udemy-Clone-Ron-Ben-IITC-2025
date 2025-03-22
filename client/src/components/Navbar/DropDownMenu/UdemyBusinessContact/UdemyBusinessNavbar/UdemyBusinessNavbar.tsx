@@ -14,10 +14,10 @@ const UdemyBusinessNavbar = () => {
             <p>Plans</p>
           </div>
           <div className="flex w-full items-center justify-end gap-[1em]">
-            <Button className="bg-white font-bold text-black shadow-none hover:bg-white hover:text-btnColor focus:outline-none">
+            <Button className="bg-white font-extrabold text-black shadow-none hover:bg-white hover:text-btnColor focus:outline-none">
               Login
             </Button>
-            <Button className="h-[3em] rounded-[0.2em] bg-btnColor font-bold text-white shadow-none hover:bg-black focus:outline-none">
+            <Button className="h-[3em] rounded-[0.2em] bg-btnColor font-extrabold text-white shadow-none hover:bg-black focus:outline-none">
               Get started
             </Button>
             <div className="rounded-[0em bg-white] border border-black p-[1em] shadow-none hover:bg-white">

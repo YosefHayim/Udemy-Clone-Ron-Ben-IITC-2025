@@ -3,7 +3,9 @@ const Affiliate = () => {
     <>
       <div className="space-y-6 bg-white p-8 text-gray-800">
         {/* Header */}
-        <h1 className="text-3xl font-bold">Affiliate Terms & Conditions</h1>
+        <h1 className="text-3xl font-extrabold">
+          Affiliate Terms & Conditions
+        </h1>
         <p className="text-sm text-gray-600">
           These Affiliate Terms & Conditions were last updated on April 1, 2021.
         </p>
@@ -190,7 +192,9 @@ const Affiliate = () => {
       </div>
 
       <div className="space-y-6 bg-white p-8 text-gray-800">
-        <h2 className="text-2xl font-bold">4. Affiliate Responsibilities</h2>
+        <h2 className="text-2xl font-extrabold">
+          4. Affiliate Responsibilities
+        </h2>
         <p>
           As a member of Our Affiliate Program, You understand and agree that:
         </p>
@@ -295,7 +299,9 @@ const Affiliate = () => {
       </div>
 
       <div className="space-y-6 bg-white p-8 text-gray-800">
-        <h1 className="text-2xl font-bold">4. Affiliate Responsibilities</h1>
+        <h1 className="text-2xl font-extrabold">
+          4. Affiliate Responsibilities
+        </h1>
         <p className="text-base">
           As a member of Our Affiliate Program, You understand and agree that:
         </p>
@@ -405,7 +411,7 @@ const Affiliate = () => {
       <div className="space-y-6 bg-white p-8 text-gray-800">
         {/* Seção 5 - Affiliate Commissions */}
         <div>
-          <h1 className="text-2xl font-bold">5. Affiliate Commissions</h1>
+          <h1 className="text-2xl font-extrabold">5. Affiliate Commissions</h1>
           <div className="space-y-4">
             <p className="text-base">
               <span className="font-semibold">(a) Eligibility:</span> Except in
@@ -482,7 +488,7 @@ const Affiliate = () => {
 
         {/* Seção 6 - Licenses */}
         <div>
-          <h1 className="text-2xl font-bold">6. Licenses</h1>
+          <h1 className="text-2xl font-extrabold">6. Licenses</h1>
           <div className="space-y-4">
             <p className="text-base">
               <span className="font-semibold">(a)</span> You hereby grant Us a
@@ -513,7 +519,7 @@ const Affiliate = () => {
       <div className="space-y-6 bg-white p-8 text-gray-800">
         {/* Seção 7 - Disclaimer */}
         <div>
-          <h2 className="text-2xl font-bold">7. Disclaimer</h2>
+          <h2 className="text-2xl font-extrabold">7. Disclaimer</h2>
           <p className="text-base">
             WE MAKE NO EXPRESS OR IMPLIED REPRESENTATIONS OR WARRANTIES
             REGARDING UDEMY. ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS
@@ -527,7 +533,9 @@ const Affiliate = () => {
 
         {/* Seção 8 - Limitations of Liability */}
         <div>
-          <h2 className="text-2xl font-bold">8. Limitations of Liability</h2>
+          <h2 className="text-2xl font-extrabold">
+            8. Limitations of Liability
+          </h2>
           <p className="text-base">
             WE WILL NOT BE LIABLE TO YOU WITH RESPECT TO ANY SUBJECT MATTER OF
             THESE AFFILIATE TERMS UNDER ANY CONTRACT, NEGLIGENCE, TORT, STRICT
@@ -546,7 +554,7 @@ const Affiliate = () => {
 
         {/* Seção 9 - Indemnification */}
         <div>
-          <h2 className="text-2xl font-bold">9. Indemnification</h2>
+          <h2 className="text-2xl font-extrabold">9. Indemnification</h2>
           <p className="text-base">
             You agree to indemnify and hold harmless Udemy and its employees,
             representatives, agents, and affiliates, against any and all claims,
@@ -561,7 +569,7 @@ const Affiliate = () => {
 
         {/* Seção 10 - Termination */}
         <div>
-          <h2 className="text-2xl font-bold">10. Termination</h2>
+          <h2 className="text-2xl font-extrabold">10. Termination</h2>
           <p className="text-base italic">
             Udemy or You can Each End Our Engagement Under these Affiliate
             Terms:
@@ -577,7 +585,7 @@ const Affiliate = () => {
       <div className="space-y-8 bg-white p-8 text-gray-800">
         {/* Seção 11 - Modification */}
         <div>
-          <h2 className="mb-4 text-2xl font-bold">11. Modification</h2>
+          <h2 className="mb-4 text-2xl font-extrabold">11. Modification</h2>
           <p className="text-base leading-relaxed">
             From time to time, We may update these Terms to clarify Our
             practices or to reflect new or different practices, for example We
@@ -602,7 +610,7 @@ const Affiliate = () => {
 
         {/* Seção 12 - Miscellaneous */}
         <div>
-          <h2 className="mb-4 text-2xl font-bold">12. Miscellaneous</h2>
+          <h2 className="mb-4 text-2xl font-extrabold">12. Miscellaneous</h2>
           <p className="text-base leading-relaxed">
             (a) You represent and warrant to Us that:
           </p>
@@ -678,7 +686,7 @@ const Affiliate = () => {
       <div className="space-y-8 bg-white p-8 text-gray-800">
         {/* Seção 11 - Modification */}
         <div>
-          <h2 className="mb-4 text-2xl font-bold">11. Modification</h2>
+          <h2 className="mb-4 text-2xl font-extrabold">11. Modification</h2>
           <p className="text-base leading-relaxed">
             From time to time, We may update these Terms to clarify Our
             practices or to reflect new or different practices, for example We
@@ -703,7 +711,7 @@ const Affiliate = () => {
 
         {/* Seção 12 - Miscellaneous */}
         <div>
-          <h2 className="mb-4 text-2xl font-bold">12. Miscellaneous</h2>
+          <h2 className="mb-4 text-2xl font-extrabold">12. Miscellaneous</h2>
           <p className="text-base leading-relaxed">
             (a) You represent and warrant to Us that:
           </p>

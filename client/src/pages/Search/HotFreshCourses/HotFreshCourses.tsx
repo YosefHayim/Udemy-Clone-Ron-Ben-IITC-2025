@@ -19,7 +19,7 @@ const HotFreshCourses = () => {
 
   return (
     <div className="relative w-[1000px]">
-      <h2 className="my-[0.5em] text-[1.5em] font-bold">
+      <h2 className="my-[0.5em] text-[1.5em] font-extrabold">
         Hot and Fresh Courses
       </h2>
       <div

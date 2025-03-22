@@ -64,14 +64,16 @@ const CheckoutContainer: React.FC = () => {
   return (
     <div className="flex flex-col items-start justify-start gap-[1em]">
       <div className="mb-[0.5em] w-full text-start">
-        <h3 className="text-[1.2em] font-bold text-weakGray">Total:</h3>
-        <h2 className="text-[2em] font-bold">₪{totalToPay?.toFixed(2) || 0}</h2>
+        <h3 className="text-[1.2em] font-extrabold text-weakGray">Total:</h3>
+        <h2 className="text-[2em] font-extrabold">
+          ₪{totalToPay?.toFixed(2) || 0}
+        </h2>
         <p className="text-gray-600 line-through">
           {totalSavings?.toFixed(2) || 0}
         </p>
         <p className="text-gray-600">{totalDiscountPercent}% off</p>
         <Button
-          className="w-full rounded-[0.3em] bg-btnColor py-[1.7em] font-bold hover:bg-btnHoverColor"
+          className="w-full rounded-[0.3em] bg-btnColor py-[1.7em] font-extrabold hover:bg-btnHoverColor"
           onClick={handleCheckout}
         >
           Proceed to Checkout

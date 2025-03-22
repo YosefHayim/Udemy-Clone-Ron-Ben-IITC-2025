@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
           <footer className="text-white">
             {/* Top Section */}
             <div className="bg-blackUdemy">
-              <div className="flex items-center justify-between border-y-[0.5px]  border-y-[#9DA3A7] px-12 py-6 font-bold">
+              <div className="flex items-center justify-between border-y-[0.5px]  border-y-[#9DA3A7] px-12 py-6 font-extrabold">
                 <p className="text-[18px]">
                   Welcome back! Explore{" "}
                   <span className="text-[#C0C4FC]">Udemy Business</span> and
@@ -51,7 +51,9 @@ const Footer: React.FC = () => {
                 </p>
                 {sections.map((section, index) => (
                   <div key={index}>
-                    <h4 className="mb-4 text-lg font-bold">{section.title}</h4>
+                    <h4 className="mb-4 text-lg font-extrabold">
+                      {section.title}
+                    </h4>
                     <ul>
                       {section.links.map((link, i) => (
                         <li
@@ -73,7 +75,7 @@ const Footer: React.FC = () => {
                   <div className="grid grid-cols-1 gap-8 py-8 sm:grid-cols-2 lg:grid-cols-4">
                     {bottomSections.map((section, index) => (
                       <div key={index}>
-                        <h4 className="mb-4 text-lg font-bold">
+                        <h4 className="mb-4 text-lg font-extrabold">
                           {section.title}
                         </h4>
                         <ul>

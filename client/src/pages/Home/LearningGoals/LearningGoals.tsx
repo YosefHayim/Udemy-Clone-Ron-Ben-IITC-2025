@@ -42,7 +42,7 @@ const LearningGoals = () => {
     <div className="flex flex-col items-center gap-8 bg-gray-50 px-8 py-16 lg:flex-row lg:items-start">
       {/* Features Section */}
       <div className="flex-1 space-y-6">
-        <h2 className="text-3xl font-bold text-gray-900">
+        <h2 className="text-3xl font-extrabold text-gray-900">
           Learning focused on your goals
         </h2>
         {features.map((feature, index) => (
@@ -59,7 +59,7 @@ const LearningGoals = () => {
             />
             <div>
               <h3
-                className={`text-lg font-bold ${
+                className={`text-lg font-extrabold ${
                   index === 0 ? "text-purple-600" : "text-gray-900"
                 }`}
               >
@@ -67,14 +67,14 @@ const LearningGoals = () => {
               </h3>
               <p className="text-sm text-gray-600">{feature.description}</p>
               {feature.badge && (
-                <span className="mt-2 inline-block text-xs font-bold text-purple-600">
+                <span className="mt-2 inline-block text-xs font-extrabold text-purple-600">
                   {feature.badge}
                 </span>
               )}
               {feature.linkText && (
                 <Link
                   to="#"
-                  className="mt-2 inline-block text-sm font-bold text-purple-600"
+                  className="mt-2 inline-block text-sm font-extrabold text-purple-600"
                 >
                   {feature.linkText}
                 </Link>

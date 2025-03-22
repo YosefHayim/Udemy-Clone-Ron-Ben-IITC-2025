@@ -35,7 +35,7 @@ const Logout: React.FC = () => {
             tech courses.
           </p>
           <div className="mt-[1em]">
-            <button className="font-Sans rounded-[0.2rem] bg-btnColor px-[0.5em] py-[0.7em] text-sm font-bold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none">
+            <button className="font-Sans rounded-[0.2rem] bg-btnColor px-[0.5em] py-[0.7em] text-sm font-extrabold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none">
               Learn More
             </button>
           </div>
@@ -60,7 +60,9 @@ const Logout: React.FC = () => {
           >
             <b
               className={`text-gray-600 hover:text-black ${
-                selectedCategory === category ? "font-bold !text-black" : ""
+                selectedCategory === category
+                  ? "font-extrabold !text-black"
+                  : ""
               }`}
             >
               {category

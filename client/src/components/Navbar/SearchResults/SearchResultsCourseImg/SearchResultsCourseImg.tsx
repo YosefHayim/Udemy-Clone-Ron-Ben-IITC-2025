@@ -9,7 +9,7 @@ const SearchResultsCourseImg: React.FC<searchResultCourseImgProps> = ({
   return (
     <div
       id={courseId}
-      className=" flex cursor-pointer flex-row items-center justify-start gap-[1em] p-[0.8em] font-bold hover:bg-gray-100"
+      className=" flex cursor-pointer flex-row items-center justify-start gap-[1em] p-[0.8em] font-extrabold hover:bg-gray-100"
     >
       <img
         src={courseImg}

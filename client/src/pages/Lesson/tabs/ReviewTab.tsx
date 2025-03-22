@@ -47,11 +47,11 @@ const ReviewsTab = ({ avgRating = 1 }) => {
   return (
     <div className="mt-4 min-w-fit">
       {/* Student Feedback Section */}
-      <h2 className="my-4 text-3xl font-bold">Student feedback</h2>
+      <h2 className="my-4 text-3xl font-extrabold">Student feedback</h2>
       <div className="mb-6 flex flex-col py-2">
         <div className="flex  min-w-full flex-row items-center gap-5 p-4 ">
           <div className="flex w-full flex-col items-center justify-center ">
-            <div className="w-fit text-7xl font-bold text-[#c4710d] ">
+            <div className="w-fit text-7xl font-extrabold text-[#c4710d] ">
               {avgRating.toFixed(1)}
             </div>
             <div className=" text-lg  ">{renderStars(avgRating)}</div>
@@ -138,7 +138,7 @@ const ReviewsTab = ({ avgRating = 1 }) => {
             <Button
               className={`${
                 data.length < limit ? "hidden" : "block"
-              } w-full rounded-[0.2em] border border-black bg-white font-bold text-black`}
+              } w-full rounded-[0.2em] border border-black bg-white font-extrabold text-black`}
             >
               Show more reviews
             </Button>

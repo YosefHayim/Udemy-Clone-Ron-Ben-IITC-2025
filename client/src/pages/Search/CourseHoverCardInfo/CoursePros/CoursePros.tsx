@@ -8,7 +8,7 @@ const CoursePros: React.FC<{
     <ul className="flex w-full flex-col items-center justify-start">
       {displayWhatYouLearn && (
         <div>
-          <span className="font-bold">What you’ll learn</span>
+          <span className="font-extrabold">What you’ll learn</span>
         </div>
       )}
       <div className="mt-1">

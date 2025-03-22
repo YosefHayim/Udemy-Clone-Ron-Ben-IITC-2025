@@ -23,7 +23,7 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
 
   return (
     <div className="border-lg z-[999] w-[350px] rounded-lg border-[0.01rem] border-gray-300 bg-white p-6 shadow-lg">
-      <h3 className="text-xl font-bold text-courseNameColorTxt">
+      <h3 className="text-xl font-extrabold text-courseNameColorTxt">
         {truncateText(course.courseName || "", 70)}
       </h3>
 
@@ -54,7 +54,7 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
       <ul className="mt-4 list-inside list-disc text-sm text-gray-700">
         {truncateList(course.whatYouWillLearn || [""], 3).map((item, index) => (
           <li key={index} className="flex items-start gap-2">
-            <span className="font-bold text-green-600">✓</span>
+            <span className="font-extrabold text-green-600">✓</span>
             {item}
           </li>
         ))}

@@ -48,7 +48,7 @@ const testimonials = [
 const Testimonials = () => {
   return (
     <div className="bg-gray-50 px-8 py-16">
-      <h2 className="text-center text-3xl font-bold text-gray-900">
+      <h2 className="text-center text-3xl font-extrabold text-gray-900">
         See what others are achieving through learning
       </h2>
       <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -71,7 +71,7 @@ const Testimonials = () => {
                 className="mr-4 h-8 w-8 object-contain"
               />
               <div>
-                <h3 className="font-bold text-gray-900">
+                <h3 className="font-extrabold text-gray-900">
                   {testimonial.author}
                 </h3>
                 <p className="text-sm text-gray-600">{testimonial.details}</p>
@@ -80,7 +80,7 @@ const Testimonials = () => {
             {/* Link de ação */}
             <Link
               to={testimonial.link}
-              className="mt-4 inline-block font-bold text-purple-600 hover:underline"
+              className="mt-4 inline-block font-extrabold text-purple-600 hover:underline"
             >
               {testimonial.linkText}
             </Link>

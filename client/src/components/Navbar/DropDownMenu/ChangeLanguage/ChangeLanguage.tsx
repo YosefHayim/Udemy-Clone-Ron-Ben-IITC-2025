@@ -64,7 +64,7 @@ const ChangeLanguage: React.FC<{
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="mb-[0.5em] font-bold focus:outline-none">
+            <DialogTitle className="mb-[0.5em] font-extrabold focus:outline-none">
               Choose a language
             </DialogTitle>
             <DialogDescription>

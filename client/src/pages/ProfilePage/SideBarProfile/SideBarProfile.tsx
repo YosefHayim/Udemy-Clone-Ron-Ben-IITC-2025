@@ -22,7 +22,7 @@ const SideBarProfile = () => {
       {/* Picture & Name */}
       <div className="p-6 ">
         <div className="flex flex-col items-center space-y-4">
-          <div className="flex h-[8rem] w-[8rem] items-center justify-center rounded-full text-4xl font-bold text-white">
+          <div className="flex h-[8rem] w-[8rem] items-center justify-center rounded-full text-4xl font-extrabold text-white">
             <ProfilePic
               customTextSize={`text-4xl`}
               size={`w-[3em] h-[3em]`}
@@ -33,7 +33,7 @@ const SideBarProfile = () => {
             />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-gray-800">{fullName}</h2>
+            <h2 className="text-lg font-extrabold text-gray-800">{fullName}</h2>
           </div>
         </div>
       </div>

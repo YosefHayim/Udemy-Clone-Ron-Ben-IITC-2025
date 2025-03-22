@@ -2,7 +2,7 @@ const BusinessStatement = () => {
   return (
     <>
       <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 text-gray-900">
-        <h1 className="mb-4 text-2xl font-bold">
+        <h1 className="mb-4 text-2xl font-extrabold">
           Udemy Business Privacy Statement
         </h1>
         <p className="mb-4 text-sm">
@@ -77,7 +77,7 @@ const BusinessStatement = () => {
       </div>
 
       <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 text-gray-900">
-        <h1 className="mb-6 text-2xl font-bold">
+        <h1 className="mb-6 text-2xl font-extrabold">
           Udemy Business Privacy Statement
         </h1>
         <ol className="list-inside list-decimal space-y-4 text-blue-600">
@@ -120,7 +120,7 @@ const BusinessStatement = () => {
       </div>
 
       <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 text-gray-900">
-        <h2 className="mb-6 text-xl font-bold">
+        <h2 className="mb-6 text-xl font-extrabold">
           1. Information about Users collected and stored by Udemy
         </h2>
         <ol className="list-inside list-decimal space-y-4 text-sm">
@@ -228,7 +228,7 @@ const BusinessStatement = () => {
       </div>
 
       <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 text-gray-900">
-        <h2 className="mb-6 text-xl font-bold">
+        <h2 className="mb-6 text-xl font-extrabold">
           2. Purpose of User Data Processing and Retention Period
         </h2>
         <p className="mb-4">
@@ -282,7 +282,7 @@ const BusinessStatement = () => {
           If we are not able to collect and process your personal information,
           we may be unable to provide some or all of the UB Services to you.
         </p>
-        <h3 className="mb-4 mt-6 text-lg font-bold">Email Preferences</h3>
+        <h3 className="mb-4 mt-6 text-lg font-extrabold">Email Preferences</h3>
         <p className="mb-4">
           Users can individually opt out of receiving non-transactional emails
           by: (i) following the unsubscribe instructions provided in the email
@@ -290,7 +290,7 @@ const BusinessStatement = () => {
           Customer can also instruct Udemy to configure email preference
           settings for all Users in their UB account.
         </p>
-        <h3 className="mb-4 mt-6 text-lg font-bold">
+        <h3 className="mb-4 mt-6 text-lg font-extrabold">
           Retention of Personal Data
         </h3>
         <p className="mb-4">
@@ -300,7 +300,7 @@ const BusinessStatement = () => {
           Users upon request of the Customer. Udemy may retain aggregated or
           anonymized data as set forth below.
         </p>
-        <h3 className="mb-4 mt-6 text-lg font-bold">
+        <h3 className="mb-4 mt-6 text-lg font-extrabold">
           Use of aggregated or anonymized data
         </h3>
         <p className="mb-4">
@@ -333,7 +333,7 @@ const BusinessStatement = () => {
       </div>
 
       <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 text-gray-900">
-        <h2 className="mb-6 text-xl font-bold">
+        <h2 className="mb-6 text-xl font-extrabold">
           3. Cookies and other Tracking Technologies
         </h2>
         <p className="mb-4">
@@ -353,7 +353,7 @@ const BusinessStatement = () => {
           To view a complete list of cookies and your options, Users may click
           the “Cookie settings” link on the footer of the UB site.
         </p>
-        <h3 className="mb-4 mt-6 text-lg font-bold">
+        <h3 className="mb-4 mt-6 text-lg font-extrabold">
           User Preferences with respect to cookies and other tracking
           technologies
         </h3>
@@ -381,7 +381,9 @@ const BusinessStatement = () => {
       </div>
 
       <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 text-gray-900">
-        <h2 className="mb-6 text-xl font-bold">4. Sharing User Information</h2>
+        <h2 className="mb-6 text-xl font-extrabold">
+          4. Sharing User Information
+        </h2>
         <p className="mb-4">
           In order to provide the UB services to its Customers, Udemy shares
           data regarding Users with a number of third-party service providers.
@@ -434,7 +436,7 @@ const BusinessStatement = () => {
           instructions of the Customer.
         </p>
 
-        <h2 className="mb-6 mt-6 text-xl font-bold">
+        <h2 className="mb-6 mt-6 text-xl font-extrabold">
           5. Cross-Border Processing of User Data
         </h2>
         <p className="mb-4">
@@ -453,7 +455,7 @@ const BusinessStatement = () => {
       </div>
 
       <div className="mx-auto max-w-4xl rounded-2xl bg-white p-6 text-gray-900">
-        <h2 className="mb-6 text-xl font-bold">
+        <h2 className="mb-6 text-xl font-extrabold">
           6. Jurisdiction-Specific Information
         </h2>
         <p className="mb-4">
@@ -478,7 +480,7 @@ const BusinessStatement = () => {
           </li>
         </ul>
 
-        <h2 className="mb-6 mt-6 text-xl font-bold">7. General</h2>
+        <h2 className="mb-6 mt-6 text-xl font-extrabold">7. General</h2>
         <p className="mb-4">
           <strong>Translation for Convenience Purposes Only.</strong> In the
           event that Customer has been provided a translated version of the

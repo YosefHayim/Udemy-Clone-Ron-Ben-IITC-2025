@@ -78,7 +78,7 @@ const DropdownMenu: React.FC = () => {
           />
         </Link>
         <div>
-          <div className="font-bold text-gray-800 hover:text-btnColor">
+          <div className="font-extrabold text-gray-800 hover:text-btnColor">
             {fullName}
           </div>
           <div className=" text-gray-500">{email}</div>
@@ -100,7 +100,7 @@ const DropdownMenu: React.FC = () => {
                 >
                   {label}{" "}
                   {extra && (
-                    <span className="absolute right-[15%] top-[18.1%] font-bold">
+                    <span className="absolute right-[15%] top-[18.1%] font-extrabold">
                       {extra}
                     </span>
                   )}
@@ -126,7 +126,7 @@ const DropdownMenu: React.FC = () => {
             className="text-gray-70 flex w-full cursor-pointer flex-col px-4 py-3"
           >
             <div className="flex justify-between">
-              <span className="font-bold hover:text-purple-600">
+              <span className="font-extrabold hover:text-purple-600">
                 Udemy Business
               </span>
               <FaExternalLinkAlt size={18} />

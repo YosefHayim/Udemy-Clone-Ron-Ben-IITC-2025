@@ -31,8 +31,8 @@ const Payment: React.FC = () => {
           <div className="flex h-full w-full flex-row items-start justify-around">
             <div className="w-3/5 p-[10em] pt-[2em]">
               <div className=" flex w-full flex-col items-start justify-start gap-[1em]">
-                <h2 className="text-[1.5em] font-bold">Checkout</h2>
-                <h2 className="font-bold">Billing address</h2>
+                <h2 className="text-[1.5em] font-extrabold">Checkout</h2>
+                <h2 className="font-extrabold">Billing address</h2>
                 <SelectCountry />
                 <PaymentMethodNLock />
                 <PaymentOptionsRadio />

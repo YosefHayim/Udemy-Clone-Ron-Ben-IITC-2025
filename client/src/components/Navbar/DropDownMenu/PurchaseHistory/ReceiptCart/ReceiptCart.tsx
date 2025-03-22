@@ -4,10 +4,13 @@ const ReceiptCart = () => {
   return (
     <div className="p-[3em]">
       <div>
-        <h1 className="mb-[1.5em] text-[1.6em] font-bold" styles={styles.title}>
+        <h1
+          className="mb-[1.5em] text-[1.6em] font-extrabold"
+          styles={styles.title}
+        >
           Receipt
         </h1>
-        <h2 className="mb-[1.4em] text-[1.2em] font-bold">
+        <h2 className="mb-[1.4em] text-[1.2em] font-extrabold">
           Receipt for Cart - Dec. 30, 2024
         </h2>
       </div>

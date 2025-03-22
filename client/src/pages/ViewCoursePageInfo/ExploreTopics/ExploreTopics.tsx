@@ -7,7 +7,7 @@ const ExploreTopics: React.FC<{
 }> = ({ category, subCategory, topic }) => {
   return (
     <div>
-      <h2 className="mb-[0.5em] text-[1.5em] font-bold">
+      <h2 className="mb-[0.5em] text-[1.5em] font-extrabold">
         Explore related topics
       </h2>
       <div className="flex flex-row gap-[0.5em]">

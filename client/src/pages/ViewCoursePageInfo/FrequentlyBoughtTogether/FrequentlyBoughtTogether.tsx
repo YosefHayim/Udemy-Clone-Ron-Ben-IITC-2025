@@ -45,7 +45,7 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
   return (
     <div className="w-full">
       <div className="flex w-full flex-col border border-borderCommercial p-[1em]">
-        <h2 className="font-bold">Frequently Bought Together</h2>
+        <h2 className="font-extrabold">Frequently Bought Together</h2>
         {data?.map((course: Course, index: number) => (
           <div key={course?._id} className="relative w-full">
             <FrequentlyCourseCard

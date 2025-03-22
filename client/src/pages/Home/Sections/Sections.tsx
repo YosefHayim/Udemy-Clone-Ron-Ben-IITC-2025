@@ -95,7 +95,7 @@ const Sections = () => {
   return (
     <div className="flex w-full flex-col items-start justify-start">
       <div className="flex w-full flex-col items-start justify-start  px-5">
-        <h1 className="mt-12 w-full text-3xl font-bold text-gray-900">
+        <h1 className="mt-12 w-full text-3xl font-extrabold text-gray-900">
           All the skills you need in one place
         </h1>
         <p className="mb-6 mt-2 w-full text-base text-gray-600">
@@ -202,7 +202,7 @@ const Sections = () => {
         <div className="my-2 w-full">
           <button
             onClick={handleNavigation}
-            className={`${btnStyleNHover} border border-purple-800 font-bold text-purple-800`}
+            className={`${btnStyleNHover} border border-purple-800 font-extrabold text-purple-800`}
           >
             Show all {navbarCategory} courses
           </button>

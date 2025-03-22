@@ -56,7 +56,7 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
 
         <div className="absolute inset-0 flex cursor-pointer items-center justify-center bg-black bg-opacity-50">
           <IoPlayCircleSharp className="text-[6em] text-white" />
-          <b className="absolute bottom-[5%] text-[1.4em] font-bold text-white">
+          <b className="absolute bottom-[5%] text-[1.4em] font-extrabold text-white">
             Preview this course
           </b>
         </div>
@@ -81,7 +81,7 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
               </b>
             </div>
             <Button
-              className="w-full rounded-[0.2em] font-bold text-white"
+              className="w-full rounded-[0.2em] font-extrabold text-white"
               onClick={navigateCourseLesson}
             >
               Go to course

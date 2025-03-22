@@ -43,10 +43,10 @@ const OverviewTab: React.FC = () => {
         <div className="flex items-start gap-10 py-1 text-xl">
           <div className="flex flex-col">
             <div className="flex items-center">
-              <span className="mr-2 text-base font-bold text-[#4d3105]">
+              <span className="mr-2 text-base font-extrabold text-[#4d3105]">
                 {course.averageRating.toFixed(1) || "0.0"}
               </span>
-              <span className="text-base font-bold text-star">
+              <span className="text-base font-extrabold text-star">
                 <FaStar />
               </span>
             </div>
@@ -56,7 +56,7 @@ const OverviewTab: React.FC = () => {
           </div>
           <div className="flex flex-col">
             <div className="flex items-center">
-              <span className="mr-2 text-base font-bold text-[#000000]">
+              <span className="mr-2 text-base font-extrabold text-[#000000]">
                 {course.totalStudentsEnrolled.count || "0.0"}
               </span>
             </div>
@@ -64,7 +64,7 @@ const OverviewTab: React.FC = () => {
           </div>
           <div className="flex flex-col">
             <div className="flex items-center">
-              <span className="mr-2 text-base font-bold text-[#000000]">
+              <span className="mr-2 text-base font-extrabold text-[#000000]">
                 {course.totalCourseDuration || "0.0"} hours
               </span>
             </div>
@@ -94,7 +94,7 @@ const OverviewTab: React.FC = () => {
       <div className="mt-4 flex flex-col gap-4 rounded-lg border bg-white p-4 shadow-sm">
         <div className=" flex flex-row items-center gap-4">
           <IoMdAlarm className="text-4xl" />
-          <h1 className="text-lg font-bold">Schedule learning time</h1>
+          <h1 className="text-lg font-extrabold">Schedule learning time</h1>
         </div>
         <p className="text-sm text-gray-600">
           Learning a little each day adds up. Research shows that students who

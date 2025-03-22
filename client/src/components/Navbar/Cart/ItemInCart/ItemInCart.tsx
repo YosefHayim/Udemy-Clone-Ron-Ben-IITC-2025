@@ -197,7 +197,7 @@ const ItemInCart = ({
                 <div
                   className={`${
                     rowPrices
-                      ? "flex flex-row font-bold"
+                      ? "flex flex-row font-extrabold"
                       : "flex flex-col font-light text-black"
                   }  items-start gap-[0.4em]`}
                 >

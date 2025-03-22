@@ -3,7 +3,7 @@ const Master = () => {
     <>
       <div className="space-y-6 bg-white p-8 text-gray-800">
         {/* Master Services Agreement */}
-        <h1 className="text-3xl font-bold">Master Services Agreement</h1>
+        <h1 className="text-3xl font-extrabold">Master Services Agreement</h1>
         <p className="text-sm text-gray-500">
           This Agreement was last updated on June 1, 2023.
         </p>

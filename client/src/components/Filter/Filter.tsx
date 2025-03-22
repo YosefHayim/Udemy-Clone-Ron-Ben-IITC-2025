@@ -100,7 +100,9 @@ const Filter: React.FC<FilterProps> = ({
           className="flex cursor-pointer items-center justify-between"
           onClick={handleClick}
         >
-          <p className="py-[0.5em] pb-[1em] text-lg font-bold">{filterTitle}</p>
+          <p className="py-[0.5em] pb-[1em] text-lg font-extrabold">
+            {filterTitle}
+          </p>
           {isClicked ? (
             <MdKeyboardArrowUp
               size={17}

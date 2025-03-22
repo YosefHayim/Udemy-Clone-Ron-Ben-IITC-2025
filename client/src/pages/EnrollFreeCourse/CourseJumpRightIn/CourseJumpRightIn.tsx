@@ -23,7 +23,7 @@ const CourseJumpRightIn = ({
           <b>Your progress</b>
           <progress className="w-[800px]"></progress>
           <button
-            className="mr-4 rounded-[0.2em] bg-purple-600 px-6 py-2 font-bold text-white shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="mr-4 rounded-[0.2em] bg-purple-600 px-6 py-2 font-extrabold text-white shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
             onClick={handleNavigate}
           >
             Start course

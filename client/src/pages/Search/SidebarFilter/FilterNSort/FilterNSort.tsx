@@ -39,7 +39,7 @@ const FilterNSort = () => {
         <SortDropDown />
         {!isFiltersDefault && (
           <span
-            className="cursor-pointer font-bold text-purpleStatic hover:text-purpleHover"
+            className="cursor-pointer font-extrabold text-purpleStatic hover:text-purpleHover"
             onClick={() => setFilterData(defaultFilters)}
           >
             Clear filters

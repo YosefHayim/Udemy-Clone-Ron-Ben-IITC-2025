@@ -34,7 +34,7 @@ const LoginBusiness = () => {
               type="email"
               id="email"
               placeholder="Enter your work email address"
-              className="h-[3.8rem]  w-full rounded-sm border border-gray-400 bg-white px-4 py-2 placeholder:font-bold placeholder:text-black placeholder:text-opacity-80 focus:border-btnColor focus:bg-[#E8F0FE] focus:outline-none"
+              className="h-[3.8rem]  w-full rounded-sm border border-gray-400 bg-white px-4 py-2 placeholder:font-extrabold placeholder:text-black placeholder:text-opacity-80 focus:border-btnColor focus:bg-[#E8F0FE] focus:outline-none"
               required
             />
           </div>
@@ -42,7 +42,7 @@ const LoginBusiness = () => {
           {/* Botão de envio */}
           <button
             type="submit"
-            className="h-12 w-full rounded-sm bg-btnColor py-2 text-[1rem] font-bold text-white transition hover:bg-[#892de1]"
+            className="h-12 w-full rounded-sm bg-btnColor py-2 text-[1rem] font-extrabold text-white transition hover:bg-[#892de1]"
           >
             Continue
           </button>

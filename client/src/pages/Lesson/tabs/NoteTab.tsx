@@ -178,7 +178,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
         )}
         <div className="flex space-x-4">
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center  gap-2 rounded-sm border border-btnColor p-2 text-base font-bold text-btnColor hover:border-btnColor hover:bg-[#EDE5F9] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
+            <DropdownMenuTrigger className="flex items-center  gap-2 rounded-sm border border-btnColor p-2 text-base font-extrabold text-btnColor hover:border-btnColor hover:bg-[#EDE5F9] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
               {all} <IoIosArrowDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-white ">
@@ -198,7 +198,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
           </DropdownMenu>
 
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 rounded-sm border border-btnColor p-2 text-base font-bold text-btnColor hover:border-btnColor hover:bg-[#EDE5F9] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
+            <DropdownMenuTrigger className="flex items-center gap-1 rounded-sm border border-btnColor p-2 text-base font-extrabold text-btnColor hover:border-btnColor hover:bg-[#EDE5F9] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
               {timeSort} <IoIosArrowDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-white ">
@@ -233,7 +233,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
                     <div className="min-w-full">
                       <div className="flex items-center justify-between">
                         <span>
-                          <span className="pb-0 text-base font-bold text-black">
+                          <span className="pb-0 text-base font-extrabold text-black">
                             {note.sectionIndex + 1}. {note.sectionTitle}
                           </span>
                           <span className="relative mb-0 ml-4 pb-0 text-xs text-gray-500">

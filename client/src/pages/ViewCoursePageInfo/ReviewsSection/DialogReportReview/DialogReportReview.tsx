@@ -62,7 +62,7 @@ const DialogReportReview: React.FC<{
       >
         <DialogContent className="w-max-none z-[2000] w-[600px]">
           <DialogHeader>
-            <DialogTitle className="mb-[1em] font-bold">
+            <DialogTitle className="mb-[1em] font-extrabold">
               Report abuse
             </DialogTitle>
             <DialogDescription className="text-black">
@@ -100,7 +100,7 @@ const DialogReportReview: React.FC<{
                   <>
                     <label
                       htmlFor="issue-type"
-                      className="mt-[1.5em] font-bold"
+                      className="mt-[1.5em] font-extrabold"
                     >
                       Issue type
                     </label>
@@ -127,7 +127,7 @@ const DialogReportReview: React.FC<{
                       <option value="spammyContent">Spammy Content</option>
                       <option value="other">Other</option>
                     </select>
-                    <label htmlFor="issue-details" className="font-bold">
+                    <label htmlFor="issue-details" className="font-extrabold">
                       Issue details
                     </label>
                     <Input
@@ -141,7 +141,7 @@ const DialogReportReview: React.FC<{
                 <div className="flex w-full flex-row items-end justify-end gap-[1em] text-end">
                   {isClicked ? (
                     <Button
-                      className="rounded-[0.3em] p-[1.3em] font-bold"
+                      className="rounded-[0.3em] p-[1.3em] font-extrabold"
                       onClick={handleCloseBtn}
                     >
                       OK
@@ -149,13 +149,13 @@ const DialogReportReview: React.FC<{
                   ) : (
                     <>
                       <Button
-                        className="bg-white p-[1.3em] font-bold text-black shadow-none hover:bg-white"
+                        className="bg-white p-[1.3em] font-extrabold text-black shadow-none hover:bg-white"
                         onClick={handleCloseBtn}
                       >
                         Cancel
                       </Button>
                       <Button
-                        className="rounded-[0.3em] p-[1.3em] font-bold"
+                        className="rounded-[0.3em] p-[1.3em] font-extrabold"
                         type="submit"
                       >
                         Submit

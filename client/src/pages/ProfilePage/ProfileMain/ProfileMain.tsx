@@ -90,14 +90,16 @@ const ProfileMain = () => {
       <main className="flex-1 border border-gray-300">
         <div className="bg-white">
           <div className="min-w-full border-b border-gray-300 p-4 text-center">
-            <h2 className="text-2xl font-bold text-gray-800">Public Profile</h2>
+            <h2 className="text-2xl font-extrabold text-gray-800">
+              Public Profile
+            </h2>
             <p className="text-courseNameColorTxt">
               Add information about yourself
             </p>
           </div>
           <form className="space-y-6 px-[9rem]" onSubmit={handleSubmit}>
             <div>
-              <p className="pb-2 pt-8 font-sans font-bold">Basics:</p>
+              <p className="pb-2 pt-8 font-sans font-extrabold">Basics:</p>
               <Input
                 id="fname"
                 name="fname"
@@ -145,7 +147,7 @@ const ProfileMain = () => {
                   </button>
                   <button
                     type="button"
-                    className="flex h-8 w-8 items-center justify-center rounded-[0.2rem] font-serif font-bold italic text-black text-opacity-80 hover:bg-gray-300 focus:outline-none"
+                    className="flex h-8 w-8 items-center justify-center rounded-[0.2rem] font-serif font-extrabold italic text-black text-opacity-80 hover:bg-gray-300 focus:outline-none"
                   >
                     I
                   </button>
@@ -156,7 +158,7 @@ const ProfileMain = () => {
                   placeholder={bio}
                   rows={4}
                   className={`${
-                    isBoldText ? "font-bold" : "font-normal"
+                    isBoldText ? "font-extrabold" : "font-normal"
                   } w-full border border-t-0 border-gray-500 bg-white hover:bg-gray-100`}
                 ></textarea>
               </div>
@@ -299,7 +301,7 @@ const ProfileMain = () => {
             <div className="flex w-full justify-start">
               <Button
                 type="submit"
-                className="font-Sans mb-[1em] rounded-[0.2rem] bg-btnColor px-4 text-sm font-bold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none"
+                className="font-Sans mb-[1em] rounded-[0.2rem] bg-btnColor px-4 text-sm font-extrabold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none"
               >
                 Save
               </Button>

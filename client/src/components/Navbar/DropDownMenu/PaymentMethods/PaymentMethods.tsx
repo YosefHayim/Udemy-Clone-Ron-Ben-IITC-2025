@@ -5,7 +5,7 @@ import visaIcon from "/images/visa-icon.svg";
 const PaymentMethods = () => {
   return (
     <div className="p-[5em]">
-      <h1 className="mb-[1em] font-bold">Payment methods</h1>
+      <h1 className="mb-[1em] font-extrabold">Payment methods</h1>
       <div className="flex w-full flex-row items-center justify-start gap-[0.5em] bg-[#f6f7f9] p-[2em] shadow-sm">
         <Checkbox className="rounded-[0em]" name="save-payments" />
         <label
@@ -15,7 +15,7 @@ const PaymentMethods = () => {
           Show my saved payment methods on the checkout step.
         </label>
       </div>
-      <h2 className="my-[1em] text-[1.5em] font-bold">
+      <h2 className="my-[1em] text-[1.5em] font-extrabold">
         Your saved payment methods
       </h2>
       <div className="my-[1.5em] flex w-full flex-row items-start justify-normal border p-[1em]">

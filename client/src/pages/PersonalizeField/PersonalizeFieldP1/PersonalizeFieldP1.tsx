@@ -151,7 +151,10 @@ const PersonalizeFieldP1 = () => {
           </div>
         </RadioGroup>
         <div className="mb-[8em]">
-          <label htmlFor="manage-people" className="text-[1.5em] font-bold">
+          <label
+            htmlFor="manage-people"
+            className="text-[1.5em] font-extrabold"
+          >
             Do you currently manage people?
           </label>
           <RadioGroup defaultValue="no" className="flex flex-row gap-[5em]">

@@ -58,7 +58,7 @@
 //           <b
 //             key={index}
 //             className={`hover:bg-purpleHoverBtn text-[1rem] py-[1em] px-[0.7em] rounded-[0.2em]
-//               ${currentPage === page ? "relative font-bold text-[#6D28D2] before:absolute before:left-[0.4rem] before:right-[0.3rem] before:bottom-2 before:h-[2px] before:bg-black content-['']" : ""}
+//               ${currentPage === page ? "relative font-extrabold text-[#6D28D2] before:absolute before:left-[0.4rem] before:right-[0.3rem] before:bottom-2 before:h-[2px] before:bg-black content-['']" : ""}
 //               ${page === "..." ? "cursor-default text-gray-500" : "cursor-pointer"}
 //             `}
 
@@ -149,9 +149,9 @@ const PaginationPages: React.FC<{
             className={`rounded-[0.2em] px-[0.5em] py-[1em] text-[1rem] hover:bg-purpleHoverBtn 
               ${
                 currentPage === page
-                  ? "relative font-bold text-[#6D28D2] content-[''] before:absolute before:bottom-2 before:left-[0.25rem] before:right-[0.2rem] before:h-[0.15rem] before:bg-purple-900"
+                  ? "relative font-extrabold text-[#6D28D2] content-[''] before:absolute before:bottom-2 before:left-[0.25rem] before:right-[0.2rem] before:h-[0.15rem] before:bg-purple-900"
                   : page === totalPages
-                    ? "font-bold text-[#303141]" // 🔥 O total de páginas agora está preto
+                    ? "font-extrabold text-[#303141]" // 🔥 O total de páginas agora está preto
                     : ""
               }
               ${page === "..." ? "cursor-default text-gray-500" : "cursor-pointer"}

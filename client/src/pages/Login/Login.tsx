@@ -357,7 +357,7 @@ const Login = () => {
             <Link to="/signup">
               <button className="p-[0.7em] underline-offset-[5px] focus:outline-none">
                 Don't have an account?{" "}
-                <span className="font-bold text-btnColor underline">
+                <span className="font-extrabold text-btnColor underline">
                   Sign up
                 </span>
               </button>

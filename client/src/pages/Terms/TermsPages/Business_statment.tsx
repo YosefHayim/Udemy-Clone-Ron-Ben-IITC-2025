@@ -3,7 +3,9 @@ const Business_statment = () => {
     <>
       <div className="space-y-6 bg-white p-8 text-gray-800">
         {/* Title */}
-        <h1 className="text-3xl font-bold">Udemy Business Privacy Statement</h1>
+        <h1 className="text-3xl font-extrabold">
+          Udemy Business Privacy Statement
+        </h1>
         <p className="text-sm text-gray-500">
           This Udemy Business Privacy Statement was updated on September 6,
           2024.
@@ -90,7 +92,7 @@ const Business_statment = () => {
         </p>
 
         {/* Table of Contents */}
-        <h2 className="mt-8 text-xl font-bold">
+        <h2 className="mt-8 text-xl font-extrabold">
           Udemy Business Privacy Statement
         </h2>
         <ul className="ml-6 list-disc space-y-2">

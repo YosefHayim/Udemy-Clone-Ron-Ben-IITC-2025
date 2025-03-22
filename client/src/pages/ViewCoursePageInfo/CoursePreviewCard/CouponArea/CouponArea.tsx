@@ -72,7 +72,7 @@ const CouponArea: React.FC<{ btnBgDesign?: string; couponText?: string }> = ({
           type="submit"
           className={`${btnBgDesign} ${
             isCursorOff ? "cursor-not-allowed opacity-10" : ""
-          } rounded-[0.2em] font-bold`}
+          } rounded-[0.2em] font-extrabold`}
         >
           Apply
         </Button>
