@@ -24,24 +24,8 @@ import {
 } from "@/utils/stylesStorage";
 import { baseUrl, localhostUrl } from "@/api/configuration";
 import { AiOutlineMail } from "react-icons/ai";
-import {
-  setBio,
-  setCookie,
-  setCoursesBought,
-  setEmailAddress,
-  setFullName,
-  setHeadline,
-  setIsLoggedWithGoogle,
-  setLanguage,
-  setProfilePic,
-  setRole,
-  setUdemyCredits,
-  setUserLinks,
-} from "@/redux/slices/userSlice";
-import { jwtDecode } from "jwt-decode";
 import { useDispatch } from "react-redux";
-import { DecodedTokenProps } from "@/types/types";
-import { setUserInformation } from "@/utils/setUserInformaiton";
+import { setUserInformation } from "@/utils/setUserInformation";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -73,7 +57,7 @@ const Login = () => {
   const loginMutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (cookie) => {
-      setUserInformation(cookie);
+      setUserInformation(cookie, dispatch);
       navigate("/verify-code");
     },
     onError: (error) => {
@@ -86,7 +70,7 @@ const Login = () => {
   const googleMutationLogin = useMutation({
     mutationFn: googleLogin,
     onSuccess: (cookie) => {
-      setUserInformation(cookie);
+      setUserInformation(cookie, dispatch);
       navigate("/");
     },
     onError: (error) => {
@@ -168,7 +152,7 @@ const Login = () => {
                 </div>
                 <div className="my-2 flex flex-col items-center justify-center gap-2">
                   <b className="font-extrabold">Welcome back, {fullname}</b>
-                  <p>
+                  <p className="w-full text-sm font-medium">
                     We’ll email <b className="font-extrabold">{email}</b> a code
                     for a secure passwordless log-in.
                   </p>
@@ -177,21 +161,7 @@ const Login = () => {
               <form
                 className="mb-4 flex flex-col space-y-4"
                 onSubmit={handleSubmit}
-              >
-                <button
-                  type="submit"
-                  className={`${regFullButtonPurpleHover} flex w-full items-center justify-center font-extrabold`}
-                >
-                  {isLoading ? (
-                    <Loader useSmallLoading={true} hSize="" />
-                  ) : (
-                    <div className="flex items-center">
-                      <AiOutlineMail size={20} />
-                      Continue with email
-                    </div>
-                  )}
-                </button>
-              </form>
+              ></form>
             </div>
           )}
           {differentAccount && (
@@ -254,16 +224,9 @@ const Login = () => {
                     className="flex w-full flex-col gap-4"
                     onSubmit={handleSubmit}
                   >
-                    <input
-                      type="text"
-                      name="email"
-                      id="email"
-                      placeholder="Email"
-                      className={`${inputLoginWEmail}`}
-                    />
                     <button
                       type="submit"
-                      className={`${regFullButtonPurpleHover} flex w-full items-center justify-center font-extrabold`}
+                      className={`${regFullButtonPurpleHover} mb-6 flex w-full items-center justify-center font-extrabold`}
                     >
                       {isLoading ? (
                         <Loader useSmallLoading={true} hSize="" />
@@ -276,29 +239,31 @@ const Login = () => {
                     </button>
                   </form>
                 </div>
-                <div>
-                  <div className="my-6 flex w-full items-center">
-                    <hr className="flex-grow border-gray-300" />
-                    <span className="mx-4 text-sm text-grayNavbarTxt">
-                      Other log in options
-                    </span>
-                    <hr className="flex-grow border-gray-300" />
+                {!showRegularLogin && (
+                  <div>
+                    <div className="my-6 flex w-full items-center">
+                      <hr className="flex-grow border-gray-300" />
+                      <span className="mx-4 text-sm text-grayNavbarTxt">
+                        Other log in options
+                      </span>
+                      <hr className="flex-grow border-gray-300" />
+                    </div>
+                    <div className="mb-[2em] flex justify-center space-x-5">
+                      <button
+                        onClick={handleGoogle}
+                        className={`${loginThirdPartyBtn}`}
+                      >
+                        <FcGoogle className={`${iconSize}`} />
+                      </button>
+                      <button className={`${loginThirdPartyBtn}`}>
+                        <FaFacebook className={`${iconSize} text-blue-600`} />
+                      </button>
+                      <button className={`${loginThirdPartyBtn}`}>
+                        <FaApple className={`${iconSize}`} />
+                      </button>
+                    </div>
                   </div>
-                  <div className="mb-[2em] flex justify-center space-x-5">
-                    <button
-                      onClick={handleGoogle}
-                      className={`${loginThirdPartyBtn}`}
-                    >
-                      <FcGoogle className={`${iconSize}`} />
-                    </button>
-                    <button className={`${loginThirdPartyBtn}`}>
-                      <FaFacebook className={`${iconSize} text-blue-600`} />
-                    </button>
-                    <button className={`${loginThirdPartyBtn}`}>
-                      <FaApple className={`${iconSize}`} />
-                    </button>
-                  </div>
-                </div>
+                )}
               </>
             ))}
           {isLoggedPreviouslyWithGoogle && !differentAccount && (

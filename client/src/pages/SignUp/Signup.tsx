@@ -1,7 +1,7 @@
 import registerUser from "@/api/users/registerUser";
 import Loader from "@/components/Loader/Loader";
 import { emailContext } from "@/routes/AppRoutes";
-import { DecodedTokenProps, RegisterUserPayload } from "@/types/types";
+import { RegisterUserPayload } from "@/types/types";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useMutation } from "@tanstack/react-query";
@@ -12,22 +12,8 @@ import { Link, useNavigate } from "react-router-dom";
 import googleLogin from "@/api/users/googleLogin";
 import { BiSolidErrorAlt } from "react-icons/bi";
 import { useDispatch } from "react-redux";
-import {
-  setBio,
-  setCookie,
-  setCoursesBought,
-  setEmailAddress,
-  setFullName,
-  setIsLoggedWithGoogle,
-  setLanguage,
-  setProfilePic,
-  setRole,
-  setUdemyCredits,
-  setUserLinks,
-} from "@/redux/slices/userSlice";
 import { AiOutlineMail } from "react-icons/ai";
-import { jwtDecode } from "jwt-decode";
-import { setUserInformation } from "@/utils/setUserInformaiton";
+import { setUserInformation } from "@/utils/setUserInformation";
 
 const SignUp: React.FC = () => {
   document.title = "Sign Up and Start Learning | Udemy";
@@ -40,7 +26,7 @@ const SignUp: React.FC = () => {
   const googleMutationLogin = useMutation({
     mutationFn: googleLogin,
     onSuccess: (cookie) => {
-      setUserInformation(cookie);
+      setUserInformation(cookie, dispatch);
       navigate("/");
     },
     onError: (error) => {

@@ -2,22 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoMdLock } from "react-icons/io";
 import { useMutation } from "@tanstack/react-query";
 import verifyCode from "@/api/users/verifyCode";
-import { jwtDecode } from "jwt-decode";
-import {
-  setBio,
-  setCookie,
-  setCoursesBought,
-  setEmailAddress,
-  setFullName,
-  setHeadline,
-  setIsLoggedWithGoogle,
-  setLanguage,
-  setProfilePic,
-  setRole,
-  setUdemyCredits,
-  setUserLinks,
-} from "@/redux/slices/userSlice";
-import { DecodedTokenProps } from "@/types/types";
 import { useDispatch } from "react-redux";
 import { useContext, useEffect, useState } from "react";
 import { emailContext } from "@/routes/AppRoutes";
@@ -25,7 +9,7 @@ import Loader from "@/components/Loader/Loader";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import Cookies from "js-cookie";
-import { setUserInformation } from "@/utils/setUserInformaiton";
+import { setUserInformation } from "@/utils/setUserInformation";
 
 const VerifyCode = () => {
   const [countdown, setCountdown] = useState(30);
@@ -47,7 +31,7 @@ const VerifyCode = () => {
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
     onSuccess: (cookie) => {
-      setUserInformation(cookie);
+      setUserInformation(cookie, dispatch);
       navigate("/");
     },
     onError: (error) => {

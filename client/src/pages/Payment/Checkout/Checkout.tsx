@@ -3,22 +3,14 @@ import refreshMe from "@/api/users/refreshMe";
 import Loader from "@/components/Loader/Loader";
 import { Button } from "@/components/ui/button";
 import { RootState } from "@/redux/store";
-import { setClearAll } from "@/redux/slices/cartSlice";
-import {
-  setCookie,
-  setCoursesBought,
-  setUdemyCredits,
-} from "@/redux/slices/userSlice";
-import { DecodedTokenProps } from "@/types/types";
 import { ReactPayPalScriptOptions } from "@paypal/react-paypal-js";
 import { useMutation } from "@tanstack/react-query";
-import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import { IoMdLock } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setUserInformation } from "@/utils/setUserInformaiton";
+import { setUserInformation } from "@/utils/setUserInformation";
 
 const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
   isPaypal,
@@ -60,7 +52,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
   const refreshUserDataMutation = useMutation({
     mutationFn: refreshMe,
     onSuccess: (cookie) => {
-      setUserInformation(cookie);
+      setUserInformation(cookie, dispatch);
       navigate(`/course-view/${coursesIds[0]}`);
     },
   });

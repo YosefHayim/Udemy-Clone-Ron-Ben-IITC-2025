@@ -14,12 +14,12 @@ import {
 } from "@/redux/slices/userSlice";
 import { DecodedTokenProps } from "@/types/types";
 import { jwtDecode } from "jwt-decode";
-import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
 
-export const setUserInformation = (cookie: string) => {
+export const setUserInformation = (cookie: string, dispatch: AppDispatch) => {
   const decoded = jwtDecode<DecodedTokenProps>(cookie);
-  console.log(`user information has been updated: `, decoded);
-  const dispatch = useDispatch();
+  console.log("user information has been updated: ", decoded);
+
   if (decoded.fullName) dispatch(setFullName(decoded.fullName));
   if (decoded.headline) dispatch(setHeadline(decoded.headline));
   if (decoded.language) dispatch(setLanguage(decoded.language));
@@ -32,6 +32,7 @@ export const setUserInformation = (cookie: string) => {
   if (decoded.udemyCredits) dispatch(setUdemyCredits(decoded.udemyCredits));
   dispatch(setIsLoggedWithGoogle(true));
   dispatch(setCookie(cookie));
+
   if (decoded.isLoggedPreviouslyWithGoogle !== undefined) {
     dispatch(setIsLoggedWithGoogle(decoded.isLoggedPreviouslyWithGoogle));
   }

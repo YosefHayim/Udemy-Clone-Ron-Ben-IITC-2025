@@ -3,15 +3,12 @@ import SideBarProfile from "../SideBarProfile/SideBarProfile";
 import { useMutation } from "@tanstack/react-query";
 import updateProfilePic from "@/api/users/updateProfilePic";
 import refreshMe from "@/api/users/refreshMe";
-import { jwtDecode } from "jwt-decode";
-import { DecodedTokenProps } from "@/types/types";
-import { setProfilePic } from "@/redux/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import placeholderPhotoImg from "/images/placeholder-default-image-user-photo.png";
 import { Input } from "@/components/ui/input";
-import { setUserInformation } from "@/utils/setUserInformaiton";
+import { setUserInformation } from "@/utils/setUserInformation";
 
 const Photo = () => {
   const dispatch = useDispatch();
@@ -39,7 +36,7 @@ const Photo = () => {
   const refreshUserDataMutation = useMutation({
     mutationFn: refreshMe,
     onSuccess: (cookie) => {
-      setUserInformation(cookie);
+      setUserInformation(cookie, dispatch);
       location.reload();
     },
   });
