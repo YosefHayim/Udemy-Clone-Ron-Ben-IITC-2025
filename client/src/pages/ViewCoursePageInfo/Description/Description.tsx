@@ -15,7 +15,7 @@ const Description: React.FC<{ description: string; whoThisFor: string[] }> = ({
   };
 
   return (
-    <div className="flex w-[680px] flex-col items-start justify-start">
+    <div className="flex w-full flex-col items-start justify-start">
       <div
         className="overflow-hidden"
         style={{

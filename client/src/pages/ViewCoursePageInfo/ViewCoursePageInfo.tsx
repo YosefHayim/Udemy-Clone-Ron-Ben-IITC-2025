@@ -71,91 +71,101 @@ const ViewCoursePageInfo = () => {
 
   return (
     <div>
-      <div className="flex w-full flex-row items-start justify-start gap-[3em]">
-        <div className="flex w-full flex-col items-start justify-start gap-[1em]">
-          <div className="flex w-full flex-col items-start justify-start gap-5 bg-blackUdemy p-5">
-            <StickyCourseNavbar
-              courseName={data?.courseName}
-              totalStudents={data?.totalStudentsEnrolled?.count}
-              avgRating={data?.averageRating}
-              totalRatings={data?.totalRatings}
-            />
-            <TopicPathMenu
-              category={data?.category}
-              subcategory={data?.subCategory}
-              topic={data?.courseTopic}
-            />
-            <CourseBigTitle courseTitle={data?.courseName} />
-            <CourseRecap recapInfo={data?.courseRecapInfo} />
-            <div className="z-10 flex w-full flex-row items-center justify-start gap-3">
-              <CourseTag tagName={data?.courseTag} />
-              <CourseRating
-                courseRating={data?.averageRating}
-                amountOfStars={data?.averageRating}
-                isShowRating={true}
-              />
-              <CourseStudentRatings
-                totalRated={data?.totalRatings}
+      <div className="flex w-full items-start justify-start gap-4">
+        <div className="flex w-full flex-col items-start justify-start gap-4">
+          <div className="flex w-full flex-col items-start justify-start">
+            <div className="flex w-full flex-col items-start justify-start gap-5 bg-blackUdemy  p-5">
+              <StickyCourseNavbar
+                courseName={data?.courseName}
                 totalStudents={data?.totalStudentsEnrolled?.count}
+                avgRating={data?.averageRating}
+                totalRatings={data?.totalRatings}
+              />
+              <TopicPathMenu
+                category={data?.category}
+                subcategory={data?.subCategory}
+                topic={data?.courseTopic}
+              />
+              <CourseBigTitle courseTitle={data?.courseName} />
+              <CourseRecap recapInfo={data?.courseRecapInfo} />
+              <div className="flex w-full flex-row items-center justify-start gap-3">
+                <CourseTag tagName={data?.courseTag} />
+                <CourseRating
+                  courseRating={data?.averageRating}
+                  amountOfStars={data?.averageRating}
+                  isShowRating={true}
+                />
+                <CourseStudentRatings
+                  totalRated={data?.totalRatings}
+                  totalStudents={data?.totalStudentsEnrolled?.count}
+                />
+              </div>
+              <CourseCreatedBy
+                handleScroll={handleScroll}
+                instructorName={data?.courseInstructor?.fullName}
+                instructorId={data?.courseInstructor?._id}
+              />
+              <CourseBasicInfo
+                isDisplayMonthName={false}
+                lastUpdated={data?.updatedAt}
+                courseLanguage={data?.courseLanguages}
               />
             </div>
-            <CourseCreatedBy
-              handleScroll={handleScroll}
-              instructorName={data?.courseInstructor?.fullName}
+            <div className="flex flex-col items-start justify-start gap-5 p-5">
+              <WhatYouLearn prosCourse={data?.whatYouWillLearn} />
+              <ExploreTopics
+                category={data?.category}
+                subCategory={data?.subCategory}
+                topic={data?.courseTopic}
+              />
+              <CourseContent
+                sectionsOfCourse={data?.sections}
+                totalCourseSections={data?.sections?.length}
+                totalCourseDuration={data?.totalCourseDuration}
+                totalCourseLessons={data?.totalCourseLessons}
+                requirements={data?.courseRequirements}
+                description={data?.courseDescription}
+                whoThisFor={data?.whoThisCourseIsFor}
+              />
+              <StudentsAlsoBought />
+              <FrequentlyBoughtTogether
+                instructorId={data?.courseInstructor._id}
+              />
+              <div ref={scrollTargetRef}>
+                <InstructorSection
+                  instructorHeadline={data?.courseInstructor?.headline}
+                  instructorId={data?.courseInstructor?._id}
+                  instructorImg={data?.courseInstructor?.profilePic}
+                  instructorName={data?.courseInstructor?.fullName}
+                  descriptionInstructor={data?.courseInstructorDescription}
+                />
+              </div>
+              <ReviewsSection
+                reviewsToRender={data?.reviews}
+                avgRating={data?.averageRating}
+              />
+              <MoreCoursesByInstructor
+                instructorName={data?.courseInstructor?.fullName}
+              />
+              <ReportAbuse />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="absolute right-[10%] top-[10%] w-1/4">
+            <CoursePreviewCard
+              courseTopic={data?.courseTopic}
               instructorId={data?.courseInstructor?._id}
-            />
-            <CourseBasicInfo
-              isDisplayMonthName={false}
-              lastUpdated={data?.updatedAt}
-              courseLanguage={data?.courseLanguages}
+              firstLessonId={data?.sections?.[0]?.lessons?.[0]?._id}
+              courseId={data?._id}
+              courseImg={data?.courseImg}
+              coursePrice={data?.courseDiscountPrice}
+              fullPrice={data?.courseFullPrice}
+              discountPrice={data?.courseDiscountPrice}
             />
           </div>
-          <WhatYouLearn prosCourse={data?.whatYouWillLearn} />
-          <ExploreTopics
-            category={data?.category}
-            subCategory={data?.subCategory}
-            topic={data?.courseTopic}
-          />
-          <CourseContent
-            sectionsOfCourse={data?.sections}
-            totalCourseSections={data?.sections?.length}
-            totalCourseDuration={data?.totalCourseDuration}
-            totalCourseLessons={data?.totalCourseLessons}
-            requirements={data?.courseRequirements}
-            description={data?.courseDescription}
-            whoThisFor={data?.whoThisCourseIsFor}
-          />
-          <StudentsAlsoBought />
-          <FrequentlyBoughtTogether instructorId={data?.courseInstructor._id} />
-          <div ref={scrollTargetRef}>
-            <InstructorSection
-              instructorHeadline={data?.courseInstructor?.headline}
-              instructorId={data?.courseInstructor?._id}
-              instructorImg={data?.courseInstructor?.profilePic}
-              instructorName={data?.courseInstructor?.fullName}
-              descriptionInstructor={data?.courseInstructorDescription}
-            />
-          </div>
-          <ReviewsSection
-            reviewsToRender={data?.reviews}
-            avgRating={data?.averageRating}
-          />
-          <MoreCoursesByInstructor
-            instructorName={data?.courseInstructor?.fullName}
-          />
-          <ReportAbuse />
         </div>
       </div>
-      {/* <CoursePreviewCard
-        courseTopic={data?.courseTopic}
-        instructorId={data?.courseInstructor?._id}
-        firstLessonId={data?.sections?.[0]?.lessons?.[0]?._id}
-        courseId={data?._id}
-        courseImg={data?.courseImg}
-        coursePrice={data?.courseDiscountPrice}
-        fullPrice={data?.courseFullPrice}
-        discountPrice={data?.courseDiscountPrice}
-      /> */}
     </div>
   );
 };

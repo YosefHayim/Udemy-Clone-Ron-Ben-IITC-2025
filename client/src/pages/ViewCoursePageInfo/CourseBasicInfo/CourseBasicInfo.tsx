@@ -14,7 +14,7 @@ const CourseBasicInfo = ({
     : `Last updated ${date.getMonth() + 1}/${date.getFullYear()}`;
 
   return (
-    <div className="z-10 flex w-full items-center justify-start gap-2 text-white">
+    <div className="flex w-full items-center justify-start gap-2 text-white">
       <TbInfoHexagonFilled />
       <p
         className={`${isDisplayMonthName ? "font-sans font-extrabold text-[#206241]" : ""}`}

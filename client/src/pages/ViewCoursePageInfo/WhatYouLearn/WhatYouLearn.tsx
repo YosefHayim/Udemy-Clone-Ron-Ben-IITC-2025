@@ -21,9 +21,9 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
   const secondColumn = prosCourse.slice(half);
 
   return (
-    <div className="border">
+    <div className="border border-gray-300">
       <div
-        className="mt-[10em] flex w-full flex-col items-start justify-start p-[1em]"
+        className="flex w-full flex-col items-start justify-start p-2"
         style={{
           maxHeight: isExpanded ? "none" : "280px",
           WebkitMaskImage: isExpanded

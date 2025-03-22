@@ -2,6 +2,7 @@ import AtagBtn from "@/components/AtagBtn/AtagBtn";
 import { Category, Subcategory } from "@/types/types";
 import { categoriesData } from "@/utils/categoriesData";
 import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
+import { btnStyleNHover } from "@/utils/stylesStorage";
 import { useState, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +15,7 @@ const CategoriesMenu = () => {
   const [hoveredSecondSubMenu, setHoveredSecondSubMenu] = useState<
     boolean | null
   >(false);
+  const [hoveredTopic, setHoveredTopic] = useState<string | null>(null);
 
   const menuTimeout = useRef<NodeJS.Timeout | null>(null);
   const subMenuTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -97,16 +99,20 @@ const CategoriesMenu = () => {
         onMouseEnter={() => handleMenuEnter("main")}
         onMouseLeave={handleMenuLeave}
       >
-        <AtagBtn aTagName="Explore" />
+        <button
+          className={`${btnStyleNHover} rounded-md px-3 py-3 font-sans text-sm font-normal text-[#020202]`}
+        >
+          Explore
+        </button>
         {/* Menu one */}
         {hoveredMenu && (
           <div
-            className="absolute left-0 top-[130%] z-10 min-h-[40rem] w-64 rounded-l-lg border border-gray-300 bg-white text-sm"
+            className="absolute left-0 top-[130%] min-h-[40rem] w-64 rounded-l-lg border border-gray-300 bg-white text-sm"
             onMouseEnter={() => handleMenuEnter("main")}
             onMouseLeave={handleMenuLeave}
           >
             {/* Título */}
-            <div className="px-4 py-2 font-sans font-extrabold text-gray-700">
+            <div className="px-4 py-2 font-sans font-bold text-gray-700">
               Browse Certifications
             </div>
             {/* menu */}
@@ -117,7 +123,7 @@ const CategoriesMenu = () => {
                   key={index}
                   className={`flex cursor-pointer items-center justify-between px-4 py-2 hover:bg-gray-100 ${
                     hoveredMenu === category?.category
-                      ? "font-sans font-extrabold text-purple-700"
+                      ? "font-sans text-purple-700"
                       : ""
                   }`}
                   onMouseEnter={() =>
@@ -149,14 +155,14 @@ const CategoriesMenu = () => {
                       {/* Adiciona o título "Popular Issuers" antes de "Amazon Web Services (AWS) Certifications" */}
                       {subCategory.title ===
                         "Amazon Web Services (AWS) Certifications" && (
-                        <div className="px-4 py-2 font-sans font-extrabold text-gray-700">
+                        <div className="px-4 py-2 font-sans font-extrabold text-gray-400">
                           Popular Issuers
                         </div>
                       )}
 
                       {/* Adiciona "Popular Subjects" com linha em cima antes de "Cloud Certification" */}
                       {subCategory.title === "Cloud Certification" && (
-                        <div className="mt-4 border-t  border-gray-300 px-4 pb-2 pt-4 font-sans font-extrabold text-gray-700">
+                        <div className="mt-4 border-t  border-gray-300 px-4 pb-2 pt-4 font-sans  text-gray-700">
                           Popular Subjects
                         </div>
                       )}
@@ -172,7 +178,7 @@ const CategoriesMenu = () => {
                         className={`flex cursor-pointer items-center justify-between px-4 py-2 hover:bg-gray-100 ${
                           hoveredSubMenu ===
                           (subCategory.title || subCategory.name)
-                            ? "font-sans font-extrabold text-purple-700"
+                            ? "font-sans  text-purple-700"
                             : ""
                         }`}
                         onMouseEnter={() =>
@@ -203,7 +209,7 @@ const CategoriesMenu = () => {
                 onMouseEnter={handleSecondSubMenuEnter}
                 onMouseLeave={handleSecondSubMenuLeave}
               >
-                <div className="px-4 py-2 font-sans font-extrabold text-gray-700">
+                <div className="px-4 py-2 font-sans font-bold text-gray-600">
                   Popular topics
                 </div>
                 {getSubCategoryData(hoveredMenu, hoveredSubMenu)?.topics?.map(
@@ -211,7 +217,18 @@ const CategoriesMenu = () => {
                     <div
                       onClick={() => handleNavigate(topic)}
                       key={index}
-                      className="flex cursor-pointer items-center justify-between px-4 py-2 hover:bg-gray-100"
+                      onMouseEnter={() =>
+                        setHoveredTopic(
+                          typeof topic === "string" ? topic : topic.title,
+                        )
+                      }
+                      onMouseLeave={() => setHoveredTopic(null)}
+                      className={`flex cursor-pointer items-center justify-between px-4 py-2 hover:bg-gray-100 ${
+                        hoveredTopic ===
+                        (typeof topic === "string" ? topic : topic.title)
+                          ? "font-sans text-purple-700"
+                          : ""
+                      }`}
                     >
                       <span>
                         {typeof topic === "string"
