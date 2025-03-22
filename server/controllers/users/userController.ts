@@ -729,7 +729,7 @@ const updateProfilePic = catchAsync(
     // Construct image path
     const profilePic = `/imgs/users/${req.file.filename}`;
 
-    const updatedUser = await User.findOne(
+    const updatedUser = await User.findByIdAndUpdate(
       req.user._id,
       { profilePic },
       { new: true, runValidators: true }
@@ -834,9 +834,6 @@ const googleLoginOrSignUp = catchAsync(
         });
         await user.save();
       } else {
-        user.fullName = name;
-        user.email = email;
-        user.profilePic = picture;
         user.isLoggedPreviouslyWithGoogle = true;
         await user.save();
       }
