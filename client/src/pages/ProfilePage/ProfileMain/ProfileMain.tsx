@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 import updateUserLanguage from "@/api/users/updateUserLanguage";
 import { setLanguage } from "@/redux/slices/userSlice";
+import { regInputFill } from "@/utils/stylesStorage";
 
 const ProfileMain = () => {
   const dispatch = useDispatch();
@@ -98,15 +99,13 @@ const ProfileMain = () => {
           </div>
           <form className="space-y-6 px-[9rem]" onSubmit={handleSubmit}>
             <div>
-              <p className="pb-2 pt-8 font-[lifeLtstd] font-sans font-extrabold">
-                Basics:
-              </p>
+              <p className="pb-2 pt-8 font-sans font-extrabold">Basics:</p>
               <Input
                 id="fname"
                 name="fname"
                 type="text"
                 placeholder={fullName}
-                className="rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500 hover:bg-gray-100"
+                className={`${regInputFill}`}
               />
             </div>
             <div>
@@ -115,7 +114,7 @@ const ProfileMain = () => {
                 name="lname"
                 type="text"
                 placeholder="Last Name"
-                className="rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500 hover:bg-gray-100"
+                className={`${regInputFill}`}
               />
             </div>
             <div>
@@ -126,7 +125,7 @@ const ProfileMain = () => {
                 onChange={handleHeadlineChange}
                 value={headline}
                 placeholder={"Headline"}
-                className="rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500 hover:bg-gray-100"
+                className={`${regInputFill}`}
               />
               <span className="absolute right-[26%] top-[37.5%] font-medium text-gray-500">
                 {charsLeft}

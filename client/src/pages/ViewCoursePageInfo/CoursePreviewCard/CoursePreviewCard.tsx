@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
 import MoneyBack from "./MoneyBack/MoneyBack";
 import CourseIncludes from "./CourseIncludes/CourseIncludes";
-import InteractionButtonsOfPreviewCard from "./InteractionBtns/InteractionBtns";
 import TimeLeftBuyCourse from "./TimeLeftBuyCourse/TimeLeftBuyCourse";
 import CouponArea from "./CouponArea/CouponArea";
 import UdemyBusiness from "./UdemyBusiness/UdemyBusiness";
@@ -15,6 +14,7 @@ import { IoPlayCircleSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import InteractionsBtns from "@/pages/Search/CourseHoverCardInfo/InteractionBtns/InteractionsBtns";
 import BuyNowBtn from "./AddCartNBuyBtn/BuyNowBtn";
+import InteractionButtonsOfPreviewCard from "./InteractionButtonsOfPreviewCard/InteractionButtonsOfPreviewCard";
 
 const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
   courseImg,
@@ -49,7 +49,7 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
 
   return (
     <div
-      className={`fixed right-[25%] top-[14.5%] z-[1500] w-[24%] border border-b-gray-100 bg-white shadow-previewCourseCardShadow`}
+      className={`fixed right-[25%] top-[14.5%] z-[10] w-[24%] border border-b-gray-100 bg-white shadow-previewCourseCardShadow`}
     >
       <div className="relative" onClick={navigateCourseLesson}>
         <img
