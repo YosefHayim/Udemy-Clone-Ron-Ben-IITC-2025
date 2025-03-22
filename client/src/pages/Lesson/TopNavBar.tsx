@@ -34,7 +34,7 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
   const percentageCompleted = data?.percentageCompleted || 0;
 
   return (
-    <nav className="absolute left-0 top-0 z-50 w-full border-b border-gray-700 bg-grayUdemy text-white">
+    <nav className="absolute left-0 top-0 z-50 w-full border-b border-gray-700 bg-[#1D1E27] text-white">
       <div className="mx-auto flex items-center justify-between px-4 py-3">
         {/* Left-aligned logo and title */}
         <Link to="/">

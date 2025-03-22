@@ -154,8 +154,11 @@ const getCourseProgress = async (req: Request, res: Response) => {
   const { courseId } = req.params;
   const userId = req.user._id;
 
+  console.log(`Getting course progress for userId: ${userId}, courseId: ${courseId}`);
+
   try {
     // Find progress for the user and course
+    console.log("Querying CourseProgress with .lean() and populating related data");
     const progress = await CourseProgress.findOne({ userId, courseId })
       .lean()
       .populate({
@@ -168,24 +171,33 @@ const getCourseProgress = async (req: Request, res: Response) => {
           "title videoUrl duration order resources createdAt updatedAt completed", // Select required fields
       });
 
+    console.log("Query completed - result:", progress ? "Data found" : "No data found");
+
     if (!progress) {
+      console.log("No progress found, returning 404");
       return res.status(404).json({ message: "Progress not found" });
     }
+
+    console.log(`Progress data has ${progress.sections?.length || 0} sections`);
 
     // Initialize total lessons and completed lessons counters
     let totalLessons = 0;
     let completedLessons = 0;
 
     // Add stats for each section
-    const sectionsWithStats = progress.sections.map((section: any) => {
+    console.log("Processing sections and calculating stats");
+    const sectionsWithStats = progress.sections.map((section: any, index: number) => {
+      console.log(`Processing section ${index + 1}/${progress.sections.length}`);
       let sectionTotalLessons = 0;
       let sectionCompletedLessons = 0;
 
       // Calculate lessons for each section
-      section.lessons.forEach((lesson: LessonProgressDocument) => {
+      console.log(`Section ${index + 1} has ${section.lessons?.length || 0} lessons`);
+      section.lessons.forEach((lesson: LessonProgressDocument, lessonIndex: number) => {
         sectionTotalLessons++; // Count all lessons in the section
         if (lesson.completed) {
           sectionCompletedLessons++; // Count completed lessons in the section
+          console.log(`Lesson ${lessonIndex + 1} in section ${index + 1} is completed`);
         }
       });
 
@@ -193,9 +205,11 @@ const getCourseProgress = async (req: Request, res: Response) => {
       totalLessons += sectionTotalLessons;
       completedLessons += sectionCompletedLessons;
 
+      console.log(`Section ${index + 1}: ${sectionCompletedLessons}/${sectionTotalLessons} lessons completed`);
+
       // Add the stats to the section
       return {
-        ...section.toObject(),
+        ...section,
         totalLessonsInSection: sectionTotalLessons,
         completedLessonsInSection: sectionCompletedLessons,
       };
@@ -205,15 +219,22 @@ const getCourseProgress = async (req: Request, res: Response) => {
     const percentageCompleted =
       totalLessons > 0 ? completedLessons / totalLessons : 0;
 
+    console.log(`Overall progress: ${completedLessons}/${totalLessons} lessons completed (${(percentageCompleted * 100).toFixed(2)}%)`);
+
     // Add the calculated stats to the response
-    res.status(200).json({
-      progress: { ...progress.toObject(), sections: sectionsWithStats },
+    console.log("Preparing final response with progress data and stats");
+    const response = {
+      progress: { ...progress, sections: sectionsWithStats },
       totalLessons,
       completedLessons,
       percentageCompleted, // Returns as a float (e.g., 0.25 for 25%)
-    });
+    };
+
+    console.log("Response ready, sending 200 OK");
+    res.status(200).json(response);
   } catch (err) {
     console.log("Error retrieving course progress:", (err as Error).message);
+    console.log("Error stack:", (err as Error).stack);
     res.status(500).json({
       error: "Failed to retrieve progress",
       details: (err as Error).message,

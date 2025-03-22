@@ -1,3 +1,4 @@
+import log from "video.js/dist/types/utils/log";
 import { axiosClient, localhostUrl } from "../api/configuration";
 
 // Define response types
@@ -41,6 +42,7 @@ const fetchCourseProgress: FetchProgressFn = async (courseId) => {
       typeof response.data.completedLessons === "number" &&
       typeof response.data.percentageCompleted === "number"
     ) {
+      console.log("respone:--",response)
       return response.data;
     }
 
