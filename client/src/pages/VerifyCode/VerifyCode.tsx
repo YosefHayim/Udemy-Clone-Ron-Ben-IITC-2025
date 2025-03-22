@@ -178,7 +178,7 @@ const VerifyCode = () => {
         {!isSentCodeAgain ? (
           <button
             onClick={handleResendCode}
-            className="mt-5 text-[1rem] font-bold text-btnColor underline hover:text-purple-800"
+            className="mt-5 text-[1rem] font-bold text-btnColor underline hover:text-purple-800 focus:outline-none"
           >
             Resend Code
           </button>
