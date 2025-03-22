@@ -71,43 +71,45 @@ const ViewCoursePageInfo = () => {
 
   return (
     <div>
-      <div className="flex w-2/5 flex-row items-start justify-start gap-[3em] p-[3em]">
+      <div className="flex w-full flex-row items-start justify-start gap-[3em]">
         <div className="flex w-full flex-col items-start justify-start gap-[1em]">
-          <div className="absolute left-0 top-[8%] h-[350px] w-full bg-blackUdemy"></div>
-          <StickyCourseNavbar
-            courseName={data?.courseName}
-            totalStudents={data?.totalStudentsEnrolled?.count}
-            avgRating={data?.averageRating}
-            totalRatings={data?.totalRatings}
-          />
-          <TopicPathMenu
-            category={data?.category}
-            subcategory={data?.subCategory}
-            topic={data?.courseTopic}
-          />
-          <CourseBigTitle courseTitle={data?.courseName} />
-          <CourseRecap recapInfo={data?.courseRecapInfo} />
-          <div className="z-10 flex w-full flex-row items-center justify-start gap-3">
-            <CourseTag tagName={data?.courseTag} />
-            <CourseRating
-              courseRating={data?.averageRating}
-              amountOfStars={data?.averageRating}
-              isShowRating={true}
-            />
-            <CourseStudentRatings
-              totalRated={data?.totalRatings}
+          <div className="flex w-full flex-col items-start justify-start gap-5 bg-blackUdemy p-5">
+            <StickyCourseNavbar
+              courseName={data?.courseName}
               totalStudents={data?.totalStudentsEnrolled?.count}
+              avgRating={data?.averageRating}
+              totalRatings={data?.totalRatings}
+            />
+            <TopicPathMenu
+              category={data?.category}
+              subcategory={data?.subCategory}
+              topic={data?.courseTopic}
+            />
+            <CourseBigTitle courseTitle={data?.courseName} />
+            <CourseRecap recapInfo={data?.courseRecapInfo} />
+            <div className="z-10 flex w-full flex-row items-center justify-start gap-3">
+              <CourseTag tagName={data?.courseTag} />
+              <CourseRating
+                courseRating={data?.averageRating}
+                amountOfStars={data?.averageRating}
+                isShowRating={true}
+              />
+              <CourseStudentRatings
+                totalRated={data?.totalRatings}
+                totalStudents={data?.totalStudentsEnrolled?.count}
+              />
+            </div>
+            <CourseCreatedBy
+              handleScroll={handleScroll}
+              instructorName={data?.courseInstructor?.fullName}
+              instructorId={data?.courseInstructor?._id}
+            />
+            <CourseBasicInfo
+              isDisplayMonthName={false}
+              lastUpdated={data?.updatedAt}
+              courseLanguage={data?.courseLanguages}
             />
           </div>
-          <CourseCreatedBy
-            handleScroll={handleScroll}
-            instructorName={data?.courseInstructor?.fullName}
-            instructorId={data?.courseInstructor?._id}
-          />
-          <CourseBasicInfo
-            lastUpdated={data?.updatedAt}
-            courseLanguage={data?.courseLanguages}
-          />
           <WhatYouLearn prosCourse={data?.whatYouWillLearn} />
           <ExploreTopics
             category={data?.category}
@@ -144,7 +146,7 @@ const ViewCoursePageInfo = () => {
           <ReportAbuse />
         </div>
       </div>
-      <CoursePreviewCard
+      {/* <CoursePreviewCard
         courseTopic={data?.courseTopic}
         instructorId={data?.courseInstructor?._id}
         firstLessonId={data?.sections?.[0]?.lessons?.[0]?._id}
@@ -153,7 +155,7 @@ const ViewCoursePageInfo = () => {
         coursePrice={data?.courseDiscountPrice}
         fullPrice={data?.courseFullPrice}
         discountPrice={data?.courseDiscountPrice}
-      />
+      /> */}
     </div>
   );
 };

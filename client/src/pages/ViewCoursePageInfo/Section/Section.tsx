@@ -21,7 +21,7 @@ const Section: React.FC<{
     <div>
       <div
         onClick={() => setClicked(!isClicked)}
-        className="flex w-[550px] cursor-pointer flex-row items-center justify-around border border-borderCommercial bg-bgCommercial p-[0.8em] text-languageText"
+        className="flex w-[550px] cursor-pointer flex-row items-center justify-between border border-borderCommercial bg-bgCommercial p-[0.8em] text-languageText"
       >
         <div
           className={`transition-transform duration-300 ease-in-out ${
@@ -41,10 +41,10 @@ const Section: React.FC<{
         {lessonsOfSection?.length > 0 ? (
           lessonsOfSection.map((lesson, index) => (
             <Lesson
-              key={lesson._id}
-              title={lesson.title || ""}
-              videoUrl={lesson.videoUrl || ""}
-              duration={lesson.duration || 0}
+              key={lesson?._id}
+              title={lesson?.title}
+              videoUrl={lesson?.videoUrl}
+              duration={lesson?.duration}
               isQuizzLesson={index === lessonsOfSection.length - 1} // Example: Make last one a quiz
             />
           ))
