@@ -26,6 +26,9 @@ const Navbar = () => {
   const prevLogWGoogle = useSelector(
     (state: RootState) => state.user.isLoggedPreviouslyWithGoogle,
   );
+  const coursesInCart =
+    useSelector((state: RootState) => state?.cart?.coursesAddedToCart) ||
+    useSelector((state: RootState) => state?.cart?.coursesAddedToWishList);
 
   useEffect(() => {}, [cookie]);
 
@@ -83,6 +86,9 @@ const Navbar = () => {
                 </div>
                 {cookie && (
                   <Link to="/user/edit-profile">
+                    {coursesInCart.length >= 1 && (
+                      <div className="absolute right-[2.3%] top-[29%] z-10 h-3 w-3 rounded-full bg-purple-600"></div>
+                    )}
                     <Profile cookie={cookie} />
                   </Link>
                 )}
