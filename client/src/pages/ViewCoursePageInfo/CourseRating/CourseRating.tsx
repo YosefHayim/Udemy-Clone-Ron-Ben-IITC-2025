@@ -16,7 +16,7 @@ const CourseRating: React.FC<{
 
   return (
     <div className="z-10 flex items-center gap-[0.1em] text-white">
-      <b className={`${!isShowRating ? `${colorRating} block ` : "hidden"}`}>
+      <b className={`${isShowRating ? `${colorRating} block` : "hidden"}`}>
         {courseRating > 0 ? courseRating : ""}
       </b>
 

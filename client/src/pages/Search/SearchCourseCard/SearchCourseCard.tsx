@@ -44,6 +44,8 @@ const SearchCourseCard: React.FC<{ course: CourseTypeProps }> = ({
           </div>
         </div>
         <CoursePrice
+          displayPercent={false}
+          extraCSS={`text-sm`}
           fullPrice={course.courseFullPrice}
           discountPrice={course.courseDiscountPrice}
         />

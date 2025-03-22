@@ -7,6 +7,8 @@ const CoursePrice: React.FC<CoursePriceProps> = ({
   fullPrice = 369.9,
   chooseFlex = "flex-col",
   showFullPrice = true,
+  extraCSS,
+  displayPercent = true,
 }) => {
   const [loading, setLoading] = useState(true);
   const isFree = discountPrice === 0 || fullPrice === 0;
@@ -34,7 +36,7 @@ const CoursePrice: React.FC<CoursePriceProps> = ({
           )}
           {!loading && isFree && <b className={``}>Free</b>}
           {!loading && !isFree && (
-            <b className={`text-2xl`}>₪{discountPrice}</b>
+            <b className={`${extraCSS} text-2xl`}>₪{discountPrice}</b>
           )}
         </div>
 
@@ -49,14 +51,18 @@ const CoursePrice: React.FC<CoursePriceProps> = ({
             />
           )}
           {!loading && showFullPrice && !isFree && (
-            <p className="text-base text-gray-500 line-through">₪{fullPrice}</p>
+            <p className={`${extraCSS} text-base text-gray-500 line-through`}>
+              ₪{fullPrice}
+            </p>
           )}
         </div>
 
         {/* Percent Off */}
         <div className="w-full">
-          {!loading && !isFree && percentOff > 0 && (
-            <span className="font-sans text-base">{percentOff}% off</span>
+          {!loading && !isFree && displayPercent && percentOff > 0 && (
+            <span className={`${extraCSS} font-sans text-base`}>
+              {percentOff}% off
+            </span>
           )}
         </div>
       </div>

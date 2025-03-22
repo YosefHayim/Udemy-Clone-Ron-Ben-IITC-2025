@@ -22,13 +22,13 @@ import WhatYouLearn from "./WhatYouLearn/WhatYouLearn";
 import CoursePreviewCard from "./CoursePreviewCard/CoursePreviewCard";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import { CourseData } from "@/types/types";
+import { useRef } from "react";
 
 const ViewCoursePageInfo = () => {
   const { courseId } = useParams<{ courseId: string }>();
-  const navigate = useNavigate();
-
-  // Sanitize courseId
   const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
+  const scrollTargetRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const { data, isLoading, error } = useQuery<CourseData>({
     queryKey: ["course", sanitizedCourseId],
@@ -40,6 +40,16 @@ const ViewCoursePageInfo = () => {
     },
     enabled: !!sanitizedCourseId,
   });
+
+  const handleScroll = () => {
+    const offset = 100; // height of sticky navbar
+    const element = scrollTargetRef.current;
+    if (element) {
+      const y =
+        element.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: y, behavior: "instant" });
+    }
+  };
 
   if (data && data?.courseName) {
     document.title = data.courseName;
@@ -56,6 +66,8 @@ const ViewCoursePageInfo = () => {
   if (error) {
     return navigate("/not/found");
   }
+
+  console.log(data);
 
   return (
     <div>
@@ -75,15 +87,20 @@ const ViewCoursePageInfo = () => {
           />
           <CourseBigTitle courseTitle={data?.courseName} />
           <CourseRecap recapInfo={data?.courseRecapInfo} />
-          <div className="flex w-full flex-row items-center justify-start gap-[0.5em]">
+          <div className="z-10 flex w-full flex-row items-center justify-start gap-3">
             <CourseTag tagName={data?.courseTag} />
-            <CourseRating amountOfStars={data?.averageRating} />
+            <CourseRating
+              courseRating={data?.averageRating}
+              amountOfStars={data?.averageRating}
+              isShowRating={true}
+            />
             <CourseStudentRatings
               totalRated={data?.totalRatings}
               totalStudents={data?.totalStudentsEnrolled?.count}
             />
           </div>
           <CourseCreatedBy
+            handleScroll={handleScroll}
             instructorName={data?.courseInstructor?.fullName}
             instructorId={data?.courseInstructor?._id}
           />
@@ -108,13 +125,15 @@ const ViewCoursePageInfo = () => {
           />
           <StudentsAlsoBought />
           <FrequentlyBoughtTogether instructorId={data?.courseInstructor._id} />
-          <InstructorSection
-            instructorHeadline={data?.courseInstructor?.headline}
-            instructorId={data?.courseInstructor?._id}
-            instructorImg={data?.courseInstructor?.profilePic}
-            instructorName={data?.courseInstructor?.fullName}
-            descriptionInstructor={data?.courseInstructorDescription}
-          />
+          <div ref={scrollTargetRef}>
+            <InstructorSection
+              instructorHeadline={data?.courseInstructor?.headline}
+              instructorId={data?.courseInstructor?._id}
+              instructorImg={data?.courseInstructor?.profilePic}
+              instructorName={data?.courseInstructor?.fullName}
+              descriptionInstructor={data?.courseInstructorDescription}
+            />
+          </div>
           <ReviewsSection
             reviewsToRender={data?.reviews}
             avgRating={data?.averageRating}

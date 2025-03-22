@@ -140,6 +140,8 @@ export interface CoursePriceProps {
   fullPrice?: number | string;
   chooseFlex?: string;
   showFullPrice?: boolean;
+  extraCSS?: string;
+  displayPercent: boolean;
 }
 
 export interface CourseRatingsProps {
@@ -471,6 +473,7 @@ export interface CourseContentProps {
 export interface CourseCreatedByProps {
   instructorName: string;
   instructorId: string;
+  handleScroll: () => void;
 }
 
 export interface LessonProps {
