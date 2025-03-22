@@ -6,6 +6,7 @@ import SearchResults from "../SearchResults/SearchResults";
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { isRootPathOnly } from "@/utils/isRootPathOnly";
 import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
+import { useWindowWidth } from "@/utils/getCurrentWindowWidth";
 
 const SearchInput = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const SearchInput = () => {
   const [debouncedTerm, setDebouncedTerm] = useState<string>("");
   const [searchParams] = useSearchParams();
   const urlSearchTerm: string = searchParams.get("q")?.toLowerCase() || "";
+  const width = useWindowWidth();
 
   // Sync URL query with `searchTerm` on page load or navigation
   useEffect(() => {
@@ -67,9 +69,8 @@ const SearchInput = () => {
 
   return (
     <div
-      className={`flex items-center rounded-full
-      ${isRootPathOnly() ? " w-full" : "w-full"}
-      `}
+      style={{ width: `${width / 2}px` }}
+      className="relative flex flex-col items-center"
     >
       <form
         onSubmit={handleSubmit}
@@ -100,16 +101,16 @@ const SearchInput = () => {
         <button
           type="submit"
           className={`mr-[0.2em] rounded-full bg-purple-600 p-[0.85em] transition-opacity focus:outline-none 
-          ${!isRootPathOnly() ? "hidden" : "block"} 
-          ${searchTerm ? "opacity-100" : "cursor-not-allowed opacity-50"}`}
+      ${!isRootPathOnly() ? "hidden" : "block"} 
+      ${searchTerm ? "opacity-100" : "cursor-not-allowed opacity-50"}`}
           disabled={!searchTerm}
         >
           <MdOutlineSearch className="h-6 w-6 text-white " />
         </button>
       </form>
-      <div className="w-max">
-        <SearchResults isTyping={isTyping} data={data} />
-      </div>
+
+      {/* SearchResults is now placed directly below the form, inside the same container */}
+      <SearchResults isTyping={isTyping} data={data} width={width / 2} />
     </div>
   );
 };

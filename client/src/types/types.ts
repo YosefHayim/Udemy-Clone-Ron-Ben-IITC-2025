@@ -105,6 +105,7 @@ export interface SearchResultsProps {
     response: SearchResultsArray[];
   };
   response?: ResultProps;
+  width: number;
 }
 
 export interface ReportUserReviewPayload {
