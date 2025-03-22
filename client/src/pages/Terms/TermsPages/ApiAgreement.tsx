@@ -3,7 +3,9 @@ const ApiAgreement = () => {
     <>
       <div className="space-y-6 bg-white p-8 text-gray-800">
         {/* Udemy API License Agreement */}
-        <h1 className="text-3xl font-extrabold">Udemy API License Agreement</h1>
+        <h1 className="font-sans text-3xl font-extrabold">
+          Udemy API License Agreement
+        </h1>
         <p className="text-sm text-gray-500">
           These API Terms were last updated on June 1, 2023.
         </p>

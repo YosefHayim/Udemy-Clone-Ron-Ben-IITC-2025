@@ -4,7 +4,7 @@ const CloseAccount = () => {
   return (
     <div className="p-[3em]">
       <div className="flex flex-col items-center justify-center">
-        <h1 className="text-[1.3em] font-extrabold">Close Account</h1>
+        <h1 className="font-sans text-[1.3em] font-extrabold">Close Account</h1>
         <p className="text-[1.2em]">Close your account permanently.</p>
         <hr className="my-[1em] w-full" />
       </div>
@@ -24,7 +24,7 @@ const CloseAccount = () => {
             request.
           </p>
           <div className="mt-[1em]">
-            <Button className="mr-4 rounded-[0.2em] bg-btnColor px-[1em] py-[1.5em] font-extrabold text-white shadow-md hover:bg-[#892de1] focus:outline-none focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <Button className="mr-4 rounded-[0.2em] bg-btnColor px-[1em] py-[1.5em] font-sans font-extrabold text-white shadow-md hover:bg-[#892de1] focus:outline-none focus:outline-none focus:ring-2 focus:ring-purple-500">
               Close account
             </Button>
           </div>

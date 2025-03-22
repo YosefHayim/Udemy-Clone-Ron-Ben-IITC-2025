@@ -33,7 +33,9 @@ const ShoppingCart: React.FC = () => {
               ) : (
                 <div className="flex w-full flex-row-reverse items-start justify-center">
                   <div className="flex flex-col">
-                    <h1 className="mb-4 font-extrabold">Shopping Cart</h1>
+                    <h1 className="mb-4 font-sans font-extrabold">
+                      Shopping Cart
+                    </h1>
                     <div className="flex flex-row-reverse gap-10">
                       <CheckoutContainer />
                       <ItemsInCart />

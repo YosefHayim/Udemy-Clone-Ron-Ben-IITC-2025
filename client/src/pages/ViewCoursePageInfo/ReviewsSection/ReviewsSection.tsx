@@ -30,7 +30,7 @@ const ReviewsSection: React.FC<{
       <div>
         <Button
           onClick={handleClick}
-          className="rounded-[0.2em] border border-black bg-white font-extrabold text-black hover:bg-hoverDivGray focus:outline-none"
+          className="rounded-[0.2em] border border-black bg-white font-sans font-extrabold text-black hover:bg-hoverDivGray focus:outline-none"
         >
           Show all reviews
         </Button>

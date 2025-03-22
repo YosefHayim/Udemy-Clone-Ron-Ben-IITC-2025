@@ -90,10 +90,10 @@ const SearchResult = () => {
 
   return (
     <section className="px-6 py-8">
-      <h2 className="mb-6 text-3xl font-extrabold">
+      <h2 className="mb-6 font-sans text-3xl font-extrabold">
         Because you searched for “
         <Link
-          className="cursor-pointer font-extrabold text-purple-600 underline hover:text-purple-800"
+          className="cursor-pointer font-sans font-extrabold text-purple-600 underline hover:text-purple-800"
           to={``}
         >
           {randomAlgoWord}

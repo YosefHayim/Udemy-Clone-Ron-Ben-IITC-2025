@@ -100,13 +100,13 @@ const Carousel = () => {
             className="mb-4 h-auto w-32"
           />
         )}
-        <h2 className="my-4 text-3xl font-extrabold text-gray-800">
+        <h2 className="my-4 font-sans text-3xl font-extrabold text-gray-800">
           {slides[currentSlide].title}
         </h2>
         <div className="my-4 flex space-x-12">
           {slides[currentSlide].stats.map((stat, index) => (
             <div key={index}>
-              <p className="text-4xl font-extrabold text-gray-900">
+              <p className="font-sans text-4xl font-extrabold text-gray-900">
                 {stat.percentage}
               </p>
               <p className="text-gray-700">{stat.text}</p>

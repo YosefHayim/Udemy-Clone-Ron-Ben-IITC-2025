@@ -63,7 +63,7 @@ const DialogReportReview: React.FC<{
       >
         <DialogContent className="w-max-none z-[2000] w-[600px]">
           <DialogHeader>
-            <DialogTitle className="mb-[1em] font-extrabold">
+            <DialogTitle className="mb-[1em] font-sans font-extrabold">
               Report abuse
             </DialogTitle>
             <DialogDescription className="text-black">
@@ -101,7 +101,7 @@ const DialogReportReview: React.FC<{
                   <>
                     <label
                       htmlFor="issue-type"
-                      className="mt-[1.5em] font-extrabold"
+                      className="mt-[1.5em] font-sans font-extrabold"
                     >
                       Issue type
                     </label>
@@ -128,7 +128,10 @@ const DialogReportReview: React.FC<{
                       <option value="spammyContent">Spammy Content</option>
                       <option value="other">Other</option>
                     </select>
-                    <label htmlFor="issue-details" className="font-extrabold">
+                    <label
+                      htmlFor="issue-details"
+                      className="font-sans font-extrabold"
+                    >
                       Issue details
                     </label>
                     <Input
@@ -142,7 +145,7 @@ const DialogReportReview: React.FC<{
                 <div className="flex w-full flex-row items-end justify-end gap-[1em] text-end">
                   {isClicked ? (
                     <Button
-                      className="rounded-[0.3em] p-[1.3em] font-extrabold"
+                      className="rounded-[0.3em] p-[1.3em] font-sans font-extrabold"
                       onClick={handleCloseBtn}
                     >
                       OK
@@ -150,13 +153,13 @@ const DialogReportReview: React.FC<{
                   ) : (
                     <>
                       <Button
-                        className="bg-white p-[1.3em] font-extrabold text-black shadow-none hover:bg-white"
+                        className="bg-white p-[1.3em] font-sans font-extrabold text-black shadow-none hover:bg-white"
                         onClick={handleCloseBtn}
                       >
                         Cancel
                       </Button>
                       <Button
-                        className="rounded-[0.3em] p-[1.3em] font-extrabold"
+                        className="rounded-[0.3em] p-[1.3em] font-sans font-extrabold"
                         type="submit"
                       >
                         Submit

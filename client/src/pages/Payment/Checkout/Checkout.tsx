@@ -77,7 +77,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
   return (
     <div className="w-min-max flex flex-col items-start justify-start p-[3em]">
       <div className="flex w-full flex-col items-start justify-start">
-        <h2 className="mb-[1em] w-full text-[1.5em] font-extrabold">
+        <h2 className="mb-[1em] w-full font-sans text-[1.5em] font-extrabold">
           Order Summary
         </h2>
         <div className="flex w-[75%] flex-col items-start justify-start gap-[0.5em]">
@@ -103,7 +103,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
         <div className="mb-[2em] w-[75%]">
           <Button
             onClick={handleClick}
-            className="w-full rounded-[0.2em] bg-btnColor p-[1.7em] font-extrabold text-white hover:bg-[#892de1]"
+            className="w-full rounded-[0.2em] bg-btnColor p-[1.7em] font-sans font-extrabold text-white hover:bg-[#892de1]"
           >
             {isLoading ? (
               <div>

@@ -50,7 +50,7 @@ const HoverNotification = () => {
               className="h-[4em] rounded-[100em] border border-gray-500"
             />
             <div className="flex w-full flex-col">
-              <p className="font-extrabold">
+              <p className="font-sans font-extrabold">
                 Andrei Engobe and 1 other made an announcement:The AI Limits?...
               </p>
               <p className="font-normal text-gray-900">3 days ago</p>
@@ -63,11 +63,11 @@ const HoverNotification = () => {
                 isNotificationsExist
                   ? "cursor-not-allowed opacity-[0.3]"
                   : "opacity-[1]"
-              } bg-white font-extrabold text-purple-600 shadow-none hover:bg-purpleHoverBtn`}
+              } bg-white font-sans font-extrabold text-purple-600 shadow-none hover:bg-purpleHoverBtn`}
             >
               Mark all as read
             </Button>
-            <Button className="rounded-[0.2em] border border-purple-600 bg-white px-[2.5em] py-[0.5em] font-extrabold text-purple-600  shadow-none hover:bg-purpleHoverBtn">
+            <Button className="rounded-[0.2em] border border-purple-600 bg-white px-[2.5em] py-[0.5em] font-sans font-extrabold text-purple-600  shadow-none hover:bg-purpleHoverBtn">
               See all
             </Button>
           </div>

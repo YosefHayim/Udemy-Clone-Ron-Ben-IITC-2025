@@ -46,7 +46,7 @@ const NotificationPreferences = () => {
       {/* Main Content */}
       <main className="flex-1 p-8">
         <div className="mx-auto max-w-4xl rounded-lg bg-white p-8 shadow-lg">
-          <h2 className="mb-6 text-2xl font-extrabold text-gray-800">
+          <h2 className="mb-6 font-sans text-2xl font-extrabold text-gray-800">
             Notification preferences
           </h2>
           <p className="mb-6 text-gray-600">

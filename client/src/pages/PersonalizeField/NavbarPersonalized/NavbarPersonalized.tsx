@@ -19,7 +19,7 @@ const NavbarPersonalized = () => {
         </div>
         <div className="flex flex-row items-center justify-center gap-[0.5em] text-btnColor">
           <Link to="/">
-            <button className="rounded-[0.2em] px-[0.2em] py-[1em] font-extrabold hover:bg-purpleHoverBtn focus:outline-none">
+            <button className="rounded-[0.2em] px-[0.2em] py-[1em] font-sans font-extrabold hover:bg-purpleHoverBtn focus:outline-none">
               Save & Exit
             </button>
           </Link>

@@ -18,7 +18,7 @@ const Messages = () => {
   return (
     <div onClick={handleClicks}>
       <div className="pb-[2em] pl-[2em]">
-        <h1 className="mb-[0.5em] mt-[0.5em] font-[lifeLtstd] font-extrabold">
+        <h1 className="mb-[0.5em] mt-[0.5em] font-[lifeLtstd] font-sans font-extrabold">
           Messages
         </h1>
         <h2>You have 0 unread messages.</h2>
@@ -27,7 +27,7 @@ const Messages = () => {
       <div className="flex w-full flex-row items-start justify-start">
         <div className="ml-[0.5em] flex h-[50vh] w-1/3 flex-col flex-wrap items-start justify-start gap-[0.5em] bg-[#F6F7F9] p-[0.5em]">
           <div className="flex w-full flex-row items-center justify-start gap-[0.5em]">
-            <button className="rounded-[0.2em] border border-btnColor p-[0.5em] font-extrabold text-btnColor hover:bg-purpleHoverBtn focus:outline-none">
+            <button className="rounded-[0.2em] border border-btnColor p-[0.5em] font-sans font-extrabold text-btnColor hover:bg-purpleHoverBtn focus:outline-none">
               Compose
             </button>
             <select

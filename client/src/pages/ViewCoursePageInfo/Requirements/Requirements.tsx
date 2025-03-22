@@ -18,7 +18,7 @@ const Requirements: React.FC<{ requirements: string[] }> = ({
       } w-[550px] cursor-pointer flex-col items-center`}
     >
       <div className="flex flex-row items-center justify-between">
-        <h2 className="mb-[1em] mt-[1.5em] text-[1.2em] font-extrabold">
+        <h2 className="mb-[1em] mt-[1.5em] font-sans text-[1.2em] font-extrabold">
           Requirements
         </h2>
         <div className={`${isClicked ? "rotate-0" : "rotate-180"}`}>

@@ -79,7 +79,7 @@ const DialogFrequentlyBoughtTogether: React.FC<{
             <AlertDialogTitle>
               <div className="flex w-full items-center justify-between">
                 <div>
-                  <p className="font-extrabold">Added to cart</p>
+                  <p className="font-sans font-extrabold">Added to cart</p>
                 </div>
                 <div
                   onClick={() => setShowDialogOfFbt(false)}
@@ -104,7 +104,7 @@ const DialogFrequentlyBoughtTogether: React.FC<{
                     hide={false}
                   />
                 </div>
-                <Button className="w-min rounded-[0.3em] bg-btnColor px-[1em] font-extrabold text-white hover:bg-purpleStatic focus:outline-none">
+                <Button className="w-min rounded-[0.3em] bg-btnColor px-[1em] font-sans font-extrabold text-white hover:bg-purpleStatic focus:outline-none">
                   <Link to="/cart">Go to cart</Link>
                 </Button>
               </div>
@@ -112,7 +112,7 @@ const DialogFrequentlyBoughtTogether: React.FC<{
                 <FrequentlyBoughtTogether instructorId={instructorId} />
               </div>
               <div className="flex w-full flex-col items-start justify-start">
-                <h2 className="my-3 font-extrabold text-black">
+                <h2 className="my-3 font-sans font-extrabold text-black">
                   Related topics
                 </h2>
                 <div className="flex flex-wrap items-center justify-start gap-[0.5em]">

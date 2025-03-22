@@ -6,7 +6,7 @@ const PrivacyStatement = () => {
       <SideMenuPrivacy />
       <div className="min-h-screen bg-gray-100 px-6 py-8 text-gray-800">
         <div className="mx-auto max-w-4xl rounded-md bg-white p-8 shadow-md">
-          <h1 className="mb-4 text-2xl font-extrabold">
+          <h1 className="mb-4 font-sans text-2xl font-extrabold">
             Udemy Business Privacy Statement
           </h1>
           <p className="mb-4 text-sm text-gray-700">
@@ -22,7 +22,7 @@ const PrivacyStatement = () => {
             handling practices described in this Privacy Statement.
           </p>
 
-          <h2 className="mb-2 text-lg font-extrabold">
+          <h2 className="mb-2 font-sans text-lg font-extrabold">
             Udemy Business Privacy Statement
           </h2>
           <ol className="ml-6 list-decimal space-y-2">
@@ -35,7 +35,7 @@ const PrivacyStatement = () => {
             <li>General</li>
           </ol>
 
-          <h3 className="mb-2 mt-6 text-lg font-extrabold">
+          <h3 className="mb-2 mt-6 font-sans text-lg font-extrabold">
             1. Information about Users collected and stored by Udemy
           </h3>
           <p className="mb-4">
@@ -51,7 +51,7 @@ const PrivacyStatement = () => {
             </li>
           </ul>
 
-          <h3 className="mb-2 mt-6 text-lg font-extrabold">
+          <h3 className="mb-2 mt-6 font-sans text-lg font-extrabold">
             2. Purpose of User Data Processing and Retention Period
           </h3>
           <p className="mb-4">
@@ -60,7 +60,7 @@ const PrivacyStatement = () => {
             platform.
           </p>
 
-          <h3 className="mb-2 mt-6 text-lg font-extrabold">
+          <h3 className="mb-2 mt-6 font-sans text-lg font-extrabold">
             3. Cookies and other Tracking Technologies
           </h3>
           <p className="mb-4">
@@ -69,7 +69,7 @@ const PrivacyStatement = () => {
             manage their cookie settings via the Cookie Settings link.
           </p>
 
-          <h3 className="mb-2 mt-6 text-lg font-extrabold">
+          <h3 className="mb-2 mt-6 font-sans text-lg font-extrabold">
             4. Sharing User Information
           </h3>
           <p className="mb-4">
@@ -78,7 +78,7 @@ const PrivacyStatement = () => {
             customer-specific agreements.
           </p>
 
-          <h3 className="mb-2 mt-6 text-lg font-extrabold">
+          <h3 className="mb-2 mt-6 font-sans text-lg font-extrabold">
             5. Cross-Border Processing of User Data
           </h3>
           <p className="mb-4">
@@ -86,7 +86,7 @@ const PrivacyStatement = () => {
             accordance with applicable laws and customer agreements.
           </p>
 
-          <h3 className="mb-2 mt-6 text-lg font-extrabold">
+          <h3 className="mb-2 mt-6 font-sans text-lg font-extrabold">
             6. Jurisdiction-Specific Information
           </h3>
           <p className="mb-4">
@@ -98,7 +98,9 @@ const PrivacyStatement = () => {
             for assistance.
           </p>
 
-          <h3 className="mb-2 mt-6 text-lg font-extrabold">7. General</h3>
+          <h3 className="mb-2 mt-6 font-sans text-lg font-extrabold">
+            7. General
+          </h3>
           <p className="mb-4">
             In case of discrepancies, the English version of the Privacy
             Statement prevails.

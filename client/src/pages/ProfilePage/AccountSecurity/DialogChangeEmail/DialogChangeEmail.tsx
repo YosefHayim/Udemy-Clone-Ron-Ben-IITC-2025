@@ -25,7 +25,7 @@ const DialogChangeEmail: React.FC<DialogChangeEmailProps> = ({
         <AlertDialogHeader>
           <div className="flex w-full flex-row items-center justify-between">
             <div>
-              <AlertDialogTitle className="font-extrabold text-black">
+              <AlertDialogTitle className="font-sans font-extrabold text-black">
                 Change your email
               </AlertDialogTitle>
             </div>
@@ -43,7 +43,7 @@ const DialogChangeEmail: React.FC<DialogChangeEmailProps> = ({
                 Please enter the new email address you want to use. We will send
                 you a confirmation code to confirm the address
               </p>
-              <label htmlFor="email" className="font-extrabold">
+              <label htmlFor="email" className="font-sans font-extrabold">
                 Enter your email
               </label>
               <input
@@ -62,7 +62,7 @@ const DialogChangeEmail: React.FC<DialogChangeEmailProps> = ({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <button className="rounded-[0.3em] bg-btnColor p-[0.8em] font-extrabold text-white hover:bg-purple-600">
+          <button className="rounded-[0.3em] bg-btnColor p-[0.8em] font-sans font-extrabold text-white hover:bg-purple-600">
             Verify my new email
           </button>
         </AlertDialogFooter>

@@ -26,12 +26,14 @@ const Welcome = () => {
         isBig={true}
       />
       <div>
-        <h2 className="text-2xl font-extrabold">Welcome back, {fullName}</h2>
+        <h2 className="font-sans font-sans text-2xl font-extrabold">
+          Welcome back, {fullName}
+        </h2>
         <div className="flex flex-row items-center justify-start gap-[0.5em]">
           <p>{headline}</p>
           <Link
             to="/personalize/field"
-            className="rounded-[0.3em] p-[0.3em] font-extrabold text-purple-600 underline hover:bg-purpleHoverBtn"
+            className="rounded-[0.3em] p-[0.3em] font-sans font-extrabold text-purple-600 underline hover:bg-purpleHoverBtn"
           >
             Edit occupation and interests
           </Link>

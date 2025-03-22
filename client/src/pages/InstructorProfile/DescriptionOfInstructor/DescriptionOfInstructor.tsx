@@ -31,14 +31,14 @@ const DescriptionOfInstructor: React.FC<{
         }}
         className="flex w-[500px] flex-col items-start justify-start gap-[2em]"
       >
-        <b className="font-extrabold">About me</b>
+        <b className="font-sans font-extrabold">About me</b>
         <p>{backgroundOfInstructor}</p>
       </div>
       <div
         className="flex w-[115px] cursor-pointer items-center gap-[1em] rounded-[0.2em] py-[0.5em] pl-[0.5em] hover:bg-purpleHoverBtn"
         onClick={handleToggle}
       >
-        <span className="font-extrabold text-purpleStatic hover:text-purpleHover ">
+        <span className="font-sans font-extrabold text-purpleStatic hover:text-purpleHover ">
           {isExpanded ? "Show less" : "Show more"}
         </span>
         {isExpanded ? (

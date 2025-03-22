@@ -91,13 +91,13 @@ const SignUp: React.FC = () => {
       </div>
       <div className="flex h-full w-1/2 items-center justify-center bg-white">
         <div className="w-3/4 max-w-[27rem]">
-          <h2 className="mb-6 w-full text-center font-[lifeLtstd] text-[2rem] font-extrabold text-courseNameColorTxt">
+          <h2 className="mb-6 w-full text-center font-[lifeLtstd] font-sans text-[2rem] font-extrabold text-courseNameColorTxt">
             Sign up with email
           </h2>
           <div
             className={
               isError
-                ? `mb-[1em] flex w-full flex-row items-start justify-center gap-[1em] rounded-[1.5em] border border-red-700 p-[1em] py-[1.5em] font-extrabold`
+                ? `mb-[1em] flex w-full flex-row items-start justify-center gap-[1em] rounded-[1.5em] border border-red-700 p-[1em] py-[1.5em] font-sans font-extrabold`
                 : "hidden"
             }
           >
@@ -134,7 +134,7 @@ const SignUp: React.FC = () => {
               name="fullName"
               required={true}
               placeholder="Full name"
-              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white p-[1em] py-[1.5em] placeholder:font-extrabold placeholder:text-courseNameColorTxt hover:bg-gray-100 focus:border-purple-800"
+              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white p-[1em] py-[1.5em] font-sans placeholder:font-extrabold placeholder:text-courseNameColorTxt hover:bg-gray-100 focus:border-purple-800"
             />
             <input
               required={true}
@@ -142,7 +142,7 @@ const SignUp: React.FC = () => {
               name="email"
               id="email"
               placeholder="Email"
-              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white p-[1em] py-[1.5em] placeholder:font-extrabold placeholder:text-courseNameColorTxt hover:bg-gray-100 focus:border-purple-800"
+              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white p-[1em] py-[1.5em] font-sans placeholder:font-extrabold placeholder:text-courseNameColorTxt hover:bg-gray-100 focus:border-purple-800"
             />
             <button
               type="submit"
@@ -153,7 +153,7 @@ const SignUp: React.FC = () => {
               ) : (
                 <div className="flex items-center">
                   <AiOutlineMail size={20} />
-                  <span className="text-[1rem] font-extrabold">
+                  <span className="font-sans text-[1rem] font-extrabold">
                     Continue with email
                   </span>
                 </div>
@@ -206,7 +206,7 @@ const SignUp: React.FC = () => {
           <div className="mt-6 flex w-full items-center justify-center space-x-0 bg-[#f6f7f9] py-[1.5em] text-center font-medium text-white">
             <Link to="/login" className="text-[1rem] text-courseNameColorTxt">
               Already have an account?{" "}
-              <span className="font-extrabold text-btnColor underline">
+              <span className="font-sans font-extrabold text-btnColor underline">
                 Log in
               </span>
             </Link>

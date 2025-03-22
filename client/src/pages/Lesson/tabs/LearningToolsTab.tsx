@@ -1,7 +1,9 @@
 const LearningToolsTab: React.FC = () => {
   return (
     <div id="learning-tools" className="p-10">
-      <h2 className="mb-4 text-xl font-extrabold">Learning reminders</h2>
+      <h2 className="mb-4 font-sans text-xl font-extrabold">
+        Learning reminders
+      </h2>
       <p className="mb-6">
         Set up push notifications or calendar events to stay on track for your
         learning goals.

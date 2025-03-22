@@ -20,7 +20,10 @@ const AddCardInfo: React.FC = () => {
       >
         <div className="flex w-full flex-col items-start justify-start gap-[1em] px-[1em]">
           <div className="w-full">
-            <label htmlFor="card-number" className="mb-[0.3em] font-extrabold">
+            <label
+              htmlFor="card-number"
+              className="mb-[0.3em] font-sans font-extrabold"
+            >
               Credit number
             </label>
             <Input
@@ -31,7 +34,7 @@ const AddCardInfo: React.FC = () => {
           </div>
           <div className="flex w-full flex-row items-start justify-start gap-[1em]">
             <div>
-              <label htmlFor="date" className="font-extrabold">
+              <label htmlFor="date" className="font-sans font-extrabold">
                 Expiry date
               </label>
               <Input
@@ -41,7 +44,7 @@ const AddCardInfo: React.FC = () => {
               ></Input>
             </div>
             <div>
-              <label htmlFor="cvv" className="font-extrabold">
+              <label htmlFor="cvv" className="font-sans font-extrabold">
                 CVV / CVC
               </label>
               <Input
@@ -52,7 +55,7 @@ const AddCardInfo: React.FC = () => {
             </div>
           </div>
           <div className="w-full">
-            <label htmlFor="card-owner" className="font-extrabold">
+            <label htmlFor="card-owner" className="font-sans font-extrabold">
               Name on card
             </label>
             <Input

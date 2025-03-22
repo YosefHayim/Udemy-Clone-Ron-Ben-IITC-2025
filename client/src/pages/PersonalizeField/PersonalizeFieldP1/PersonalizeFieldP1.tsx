@@ -153,7 +153,7 @@ const PersonalizeFieldP1 = () => {
         <div className="mb-[8em]">
           <label
             htmlFor="manage-people"
-            className="text-[1.5em] font-extrabold"
+            className="font-sans text-[1.5em] font-extrabold"
           >
             Do you currently manage people?
           </label>

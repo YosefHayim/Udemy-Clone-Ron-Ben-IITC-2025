@@ -35,7 +35,7 @@ const StickyCourseNavbar: React.FC<{
         isHighPriority ? "z-[1000]" : "z-[10]"
       } w-full bg-blackUdemy px-[1em] py-[1em] text-white`}
     >
-      <h2 className="font-extrabold">{courseName}</h2>
+      <h2 className="font-sans font-extrabold">{courseName}</h2>
       <div className="flex w-full flex-row items-start justify-start gap-[0.5em]">
         <CourseRating courseRating={avgRating} />
         <CourseStudentRatings

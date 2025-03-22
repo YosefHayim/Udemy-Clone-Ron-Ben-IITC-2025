@@ -161,13 +161,13 @@ const NotesTab: React.FC<NotesTabProps> = ({
               <div className="mt-4 flex justify-end gap-4">
                 <button
                   onClick={() => setShowEditor(false)}
-                  className="rounded px-6 py-2 font-extrabold text-gray-700 transition duration-300 hover:bg-gray-400"
+                  className="rounded px-6 py-2 font-sans font-extrabold text-gray-700 transition duration-300 hover:bg-gray-400"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleAddNote}
-                  className="rounded bg-btnColor px-6 py-2 font-extrabold text-white transition duration-300 hover:bg-[#892DE1]"
+                  className="rounded bg-btnColor px-6 py-2 font-sans font-extrabold text-white transition duration-300 hover:bg-[#892DE1]"
                   disabled={noteMutation.isLoading}
                 >
                   {noteMutation.isLoading ? "Saving..." : "Save Note"}
@@ -178,7 +178,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
         )}
         <div className="flex space-x-4">
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center  gap-2 rounded-sm border border-btnColor p-2 text-base font-extrabold text-btnColor hover:border-btnColor hover:bg-[#EDE5F9] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
+            <DropdownMenuTrigger className="flex items-center  gap-2 rounded-sm border border-btnColor p-2 font-sans text-base font-extrabold text-btnColor hover:border-btnColor hover:bg-[#EDE5F9] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
               {all} <IoIosArrowDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-white ">
@@ -198,7 +198,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
           </DropdownMenu>
 
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 rounded-sm border border-btnColor p-2 text-base font-extrabold text-btnColor hover:border-btnColor hover:bg-[#EDE5F9] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
+            <DropdownMenuTrigger className="flex items-center gap-1 rounded-sm border border-btnColor p-2 font-sans text-base font-extrabold text-btnColor hover:border-btnColor hover:bg-[#EDE5F9] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
               {timeSort} <IoIosArrowDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-white ">
@@ -233,7 +233,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
                     <div className="min-w-full">
                       <div className="flex items-center justify-between">
                         <span>
-                          <span className="pb-0 text-base font-extrabold text-black">
+                          <span className="pb-0 font-sans text-base font-extrabold text-black">
                             {note.sectionIndex + 1}. {note.sectionTitle}
                           </span>
                           <span className="relative mb-0 ml-4 pb-0 text-xs text-gray-500">

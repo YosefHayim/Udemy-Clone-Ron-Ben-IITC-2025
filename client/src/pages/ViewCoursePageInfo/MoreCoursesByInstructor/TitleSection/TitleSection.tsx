@@ -3,8 +3,10 @@ const TitleSection: React.FC<{ instructorName: string }> = ({
 }) => {
   return (
     <div className="flex flex-row items-center justify-start gap-[0.5em] text-[1.2em]">
-      <h2 className="font-extrabold">More Courses by</h2>
-      <span className="font-extrabold text-purpleStatic">{instructorName}</span>
+      <h2 className="font-sans font-extrabold">More Courses by</h2>
+      <span className="font-sans font-extrabold text-purpleStatic">
+        {instructorName}
+      </span>
     </div>
   );
 };

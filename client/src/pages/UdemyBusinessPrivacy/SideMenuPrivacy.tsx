@@ -49,7 +49,7 @@ const SideMenuPrivacy = () => {
             : "bg-white"
         }`}
       >
-        <h1 className="mb-4 text-2xl font-extrabold">{activeItem}</h1>
+        <h1 className="mb-4 font-sans text-2xl font-extrabold">{activeItem}</h1>
         <p className="text-gray-700">
           Content for <strong>{activeItem}</strong> goes here. You can customize
           this section for each page as needed.

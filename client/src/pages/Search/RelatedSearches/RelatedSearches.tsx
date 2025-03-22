@@ -35,7 +35,9 @@ const RelatedSearches = () => {
   return (
     <div className="mt-[2em] flex w-full flex-col items-center justify-start gap-[1em]">
       <div className="flex w-full flex-row items-center justify-start gap-[0.5em]">
-        <b className="text-[1.2em] font-extrabold">Related searches</b>
+        <b className="font-sans text-[1.2em] font-extrabold">
+          Related searches
+        </b>
         <div className="relative">
           <div
             className="border-none bg-none shadow-none hover:bg-none hover:shadow-none"

@@ -28,12 +28,12 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
     },
   );
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext();
-    }, 15000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     handleNext();
+  //   }, 15000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <div className="relative w-full overflow-hidden">
@@ -62,11 +62,11 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
                 className="w-full"
               />
               <div
-                className={`${banner.title === "Skills that drive you forward" ? "w-[450px] gap-[0.5em] p-1" : "w-min-max pr-14"} border-gray-100" absolute left-16 top-16 flex flex-col items-start rounded-sm bg-white px-5 py-7 text-black shadow-alertAlgoInfo`}
+                className={`${banner.title === "Skills that drive you forward" ? "w-[450px]" : "w-[450px]"} border-gray-100" absolute left-16 top-16 flex flex-col items-start gap-3 rounded-sm bg-white px-5 py-7 text-black shadow-alertAlgoInfo`}
               >
                 <h1 className="w-full font-extrabold">{banner.title}</h1>
                 <p
-                  className={`${banner.title === "Skills that drive you forward" && `w-[380px]`} pr-2 text-sm`}
+                  className={`${banner.title === "Skills that drive you forward" && `w-[380px]`} pr-2 font-sans text-sm`}
                 >
                   {banner.description}
                 </p>
@@ -75,14 +75,23 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
                     className={`flex w-[370px] items-center justify-center gap-2`}
                   >
                     <button
-                      className={`w-full rounded-[0.3em] bg-btnColor px-0 py-3 font-extrabold text-white hover:bg-btnHoverColor focus:outline-none`}
+                      className={`w-full rounded-[0.3em] bg-btnColor px-0 py-3 font-sans font-extrabold text-white hover:bg-btnHoverColor focus:outline-none`}
                     >
                       Plan for individuals
                     </button>
                     <button
-                      className={`w-full rounded-[0.3em] border border-purple-800 px-2 py-3 font-extrabold text-purple-800 hover:bg-purple-100 focus:outline-none`}
+                      className={`w-full rounded-[0.3em] border border-purple-800 px-2 py-3 font-sans font-extrabold text-purple-800 hover:bg-purple-100 focus:outline-none`}
                     >
                       Plan for organizations
+                    </button>
+                  </div>
+                )}
+                {banner.title === `Subscribe to the best of Udemy` && (
+                  <div>
+                    <button
+                      className={`w-full rounded-[0.3em] bg-btnColor px-2 py-3 font-sans font-extrabold text-white hover:bg-btnHoverColor focus:outline-none`}
+                    >
+                      Try it free
                     </button>
                   </div>
                 )}

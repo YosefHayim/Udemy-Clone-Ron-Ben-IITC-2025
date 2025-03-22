@@ -13,7 +13,7 @@ const SelectCountry = () => {
   return (
     <div>
       <div className="mb-[0.5em] flex flex-col gap-[0.5em]">
-        <label htmlFor="country-select" className="font-extrabold">
+        <label htmlFor="country-select" className="font-sans font-extrabold">
           Country
         </label>
         <select

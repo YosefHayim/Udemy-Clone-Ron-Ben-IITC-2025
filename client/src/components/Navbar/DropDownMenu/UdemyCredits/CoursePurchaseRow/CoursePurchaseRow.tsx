@@ -5,7 +5,7 @@ const CoursePurchaseRow = () => {
     <div>
       <div className="flex flex-row items-center justify-start gap-[6em]">
         <p>Aug 16, 2023</p>
-        <p className="font-extrabold text-[#b32d0f]">-₪59.90</p>
+        <p className="font-sans font-extrabold text-[#b32d0f]">-₪59.90</p>
         <div className="ml-[4em] mt-[1em] flex flex-col items-start justify-start gap-[0.5em]">
           <p>Course purchase</p>
           <div className="flex flex-row items-center justify-start gap-[0.2em]">

@@ -27,7 +27,7 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
     const parts = text.split(new RegExp(`(${query})`, "gi"));
     return parts.map((part, index) =>
       part.toLowerCase() === query.toLowerCase() ? (
-        <span key={index} className="font-extrabold">
+        <span key={index} className="font-sans font-extrabold">
           {part}
         </span>
       ) : (
@@ -117,7 +117,7 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
         ) : (
           // No Results Found
           <div className="mt-10 text-center">
-            <h2 className="text-2xl font-extrabold text-gray-600">
+            <h2 className="font-sans text-2xl font-extrabold text-gray-600">
               No results found
             </h2>
             <p className="text-gray-500">Try a different search query.</p>
@@ -125,7 +125,7 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
         )
       ) : (
         <span className="my-[40px] flex flex-col items-center  self-center">
-          <h2 className="text-2xl font-extrabold text-[##303141] ">
+          <h2 className="font-sans text-2xl font-extrabold text-[##303141] ">
             Start a new search
           </h2>
           <h2 className="text-sm text-black ">

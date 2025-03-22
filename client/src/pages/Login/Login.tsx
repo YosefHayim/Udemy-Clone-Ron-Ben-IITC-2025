@@ -126,7 +126,7 @@ const Login = () => {
           className="mr-[2.7rem] h-auto max-h-[100%] w-[100%] max-w-[620px] object-contain p-12"
         />
         <div className="ml-[3rem] mr-[5rem] w-full max-w-[29rem]  rounded-lg bg-white p-6">
-          <h2 className="mb-10 text-center font-[lifeLtstd] text-3xl font-extrabold text-gray-800">
+          <h2 className="mb-10 text-center font-[lifeLtstd] font-sans text-3xl font-extrabold text-gray-800">
             Log in to continue your learning journey
           </h2>
           {showRegularLogin && !isLoggedPreviouslyWithGoogle && (
@@ -150,10 +150,13 @@ const Login = () => {
                   )}
                 </div>
                 <div className="my-2 flex flex-col items-center justify-center gap-2">
-                  <b className="font-extrabold">Welcome back, {fullname}</b>
+                  <b className="font-sans font-extrabold">
+                    Welcome back, {fullname}
+                  </b>
                   <p className="w-full text-sm font-medium">
-                    We’ll email <b className="font-extrabold">{globalEmail}</b>{" "}
-                    a code for a secure passwordless log-in.
+                    We’ll email{" "}
+                    <b className="font-sans font-extrabold">{globalEmail}</b> a
+                    code for a secure passwordless log-in.
                   </p>
                 </div>
               </div>
@@ -178,7 +181,7 @@ const Login = () => {
                 />
                 <button
                   type="submit"
-                  className={`${regFullButtonPurpleHover} flex w-full items-center justify-center font-extrabold`}
+                  className={`${regFullButtonPurpleHover} flex w-full items-center justify-center font-sans font-extrabold`}
                 >
                   {isLoading ? (
                     <Loader useSmallLoading={true} hSize="" />
@@ -232,7 +235,7 @@ const Login = () => {
                     />
                     <button
                       type="submit"
-                      className={`${regFullButtonPurpleHover} mb-6 flex w-full items-center justify-center font-extrabold`}
+                      className={`${regFullButtonPurpleHover} mb-6 flex w-full items-center justify-center font-sans font-extrabold`}
                     >
                       {isLoading ? (
                         <Loader useSmallLoading={true} hSize="" />
@@ -304,7 +307,7 @@ const Login = () => {
             <Link to="/signup">
               <button className="p-[0.7em] underline-offset-[5px] focus:outline-none">
                 Don't have an account?{" "}
-                <span className="font-extrabold text-btnColor underline">
+                <span className="font-sans font-extrabold text-btnColor underline">
                   Sign up
                 </span>
               </button>

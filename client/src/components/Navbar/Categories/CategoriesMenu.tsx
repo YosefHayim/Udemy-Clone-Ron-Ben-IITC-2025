@@ -106,7 +106,7 @@ const CategoriesMenu = () => {
             onMouseLeave={handleMenuLeave}
           >
             {/* Título */}
-            <div className="px-4 py-2 font-extrabold text-gray-700">
+            <div className="px-4 py-2 font-sans font-extrabold text-gray-700">
               Browse Certifications
             </div>
             {/* menu */}
@@ -117,7 +117,7 @@ const CategoriesMenu = () => {
                   key={index}
                   className={`flex cursor-pointer items-center justify-between px-4 py-2 hover:bg-gray-100 ${
                     hoveredMenu === category?.category
-                      ? "font-extrabold text-purple-700"
+                      ? "font-sans font-extrabold text-purple-700"
                       : ""
                   }`}
                   onMouseEnter={() =>
@@ -149,14 +149,14 @@ const CategoriesMenu = () => {
                       {/* Adiciona o título "Popular Issuers" antes de "Amazon Web Services (AWS) Certifications" */}
                       {subCategory.title ===
                         "Amazon Web Services (AWS) Certifications" && (
-                        <div className="px-4 py-2 font-extrabold text-gray-700">
+                        <div className="px-4 py-2 font-sans font-extrabold text-gray-700">
                           Popular Issuers
                         </div>
                       )}
 
                       {/* Adiciona "Popular Subjects" com linha em cima antes de "Cloud Certification" */}
                       {subCategory.title === "Cloud Certification" && (
-                        <div className="mt-4 border-t  border-gray-300 px-4 pb-2 pt-4 font-extrabold text-gray-700">
+                        <div className="mt-4 border-t  border-gray-300 px-4 pb-2 pt-4 font-sans font-extrabold text-gray-700">
                           Popular Subjects
                         </div>
                       )}
@@ -172,7 +172,7 @@ const CategoriesMenu = () => {
                         className={`flex cursor-pointer items-center justify-between px-4 py-2 hover:bg-gray-100 ${
                           hoveredSubMenu ===
                           (subCategory.title || subCategory.name)
-                            ? "font-extrabold text-purple-700"
+                            ? "font-sans font-extrabold text-purple-700"
                             : ""
                         }`}
                         onMouseEnter={() =>
@@ -203,7 +203,7 @@ const CategoriesMenu = () => {
                 onMouseEnter={handleSecondSubMenuEnter}
                 onMouseLeave={handleSecondSubMenuLeave}
               >
-                <div className="px-4 py-2 font-extrabold text-gray-700">
+                <div className="px-4 py-2 font-sans font-extrabold text-gray-700">
                   Popular topics
                 </div>
                 {getSubCategoryData(hoveredMenu, hoveredSubMenu)?.topics?.map(

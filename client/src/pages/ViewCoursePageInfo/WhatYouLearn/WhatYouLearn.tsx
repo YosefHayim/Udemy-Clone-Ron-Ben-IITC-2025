@@ -36,7 +36,7 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
           maskSize: "100% 100%",
         }}
       >
-        <h2 className="w-full p-[0.5em] text-[1.5em] font-extrabold">
+        <h2 className="w-full p-[0.5em] font-sans text-[1.5em] font-extrabold">
           What you'll learn
         </h2>
         <div className="flex">
@@ -66,7 +66,7 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
         className="mb-4 ml-4 flex w-[115px] cursor-pointer items-center gap-[1em] rounded-[0.2em] py-[0.3em] pl-[0.2em] hover:bg-purpleHoverBtn"
         onClick={handleToggle}
       >
-        <span className="m-[0.5em] font-extrabold text-purpleStatic hover:text-purpleHover ">
+        <span className="m-[0.5em] font-sans font-extrabold text-purpleStatic hover:text-purpleHover ">
           {isExpanded ? "Show less" : "Show more"}
         </span>
         {isExpanded ? (

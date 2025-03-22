@@ -95,7 +95,7 @@ const Wishlist: React.FC = () => {
                   <div className="flex flex-col items-start justify-start gap-[0.5em]">
                     <p>Sort by</p>
                     <DropdownMenu>
-                      <DropdownMenuTrigger className="flex flex-row items-center gap-[0.5em]  rounded-[0.2em] border border-btnColor p-[0.7em] font-extrabold text-btnColor hover:bg-purpleHoverBtn">
+                      <DropdownMenuTrigger className="flex flex-row items-center gap-[0.5em]  rounded-[0.2em] border border-btnColor p-[0.7em] font-sans font-extrabold text-btnColor hover:bg-purpleHoverBtn">
                         Recently Accessed
                         <RiArrowDropDownLine className="text-[1.5em]" />
                       </DropdownMenuTrigger>
@@ -118,7 +118,7 @@ const Wishlist: React.FC = () => {
                   <div className="flex flex-col items-start justify-start gap-[0.5em]">
                     <p>Filter by</p>
                     <DropdownMenu>
-                      <DropdownMenuTrigger className="flex w-min flex-row items-center gap-[0.5em] rounded-[0.2em] border border-btnColor p-[0.7em] font-extrabold text-btnColor hover:bg-purpleHoverBtn">
+                      <DropdownMenuTrigger className="flex w-min flex-row items-center gap-[0.5em] rounded-[0.2em] border border-btnColor p-[0.7em] font-sans font-extrabold text-btnColor hover:bg-purpleHoverBtn">
                         Categories
                         <RiArrowDropDownLine className="text-[1.5em]" />
                       </DropdownMenuTrigger>
@@ -147,7 +147,7 @@ const Wishlist: React.FC = () => {
                     </DropdownMenu>
                   </div>
                   <DropdownMenu>
-                    <DropdownMenuTrigger className="mt-[2em] flex w-min flex-row items-center gap-[0.5em] rounded-[0.2em] border  border-btnColor p-[0.7em] font-extrabold text-btnColor hover:bg-purpleHoverBtn">
+                    <DropdownMenuTrigger className="mt-[2em] flex w-min flex-row items-center gap-[0.5em] rounded-[0.2em] border  border-btnColor p-[0.7em] font-sans font-extrabold text-btnColor hover:bg-purpleHoverBtn">
                       Progress
                       <RiArrowDropDownLine className="text-[1.5em]" />
                     </DropdownMenuTrigger>
@@ -161,7 +161,7 @@ const Wishlist: React.FC = () => {
                     </DropdownMenuContent>
                   </DropdownMenu>
                   <DropdownMenu>
-                    <DropdownMenuTrigger className="mt-[2em] flex w-min flex-row items-center gap-[0.5em] rounded-[0.2em] border  border-btnColor p-[0.7em] font-extrabold text-btnColor hover:bg-purpleHoverBtn">
+                    <DropdownMenuTrigger className="mt-[2em] flex w-min flex-row items-center gap-[0.5em] rounded-[0.2em] border  border-btnColor p-[0.7em] font-sans font-extrabold text-btnColor hover:bg-purpleHoverBtn">
                       Instructor
                       <RiArrowDropDownLine className="text-[1.5em]" />
                     </DropdownMenuTrigger>
@@ -174,7 +174,7 @@ const Wishlist: React.FC = () => {
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
-                  <button className="mt-[2em]  cursor-not-allowed border-none font-extrabold text-gray-400 focus:outline-none">
+                  <button className="mt-[2em]  cursor-not-allowed border-none font-sans font-extrabold text-gray-400 focus:outline-none">
                     Reset
                   </button>
                 </div>
@@ -222,7 +222,7 @@ const Wishlist: React.FC = () => {
               </div>
             </div>
           ) : (
-            <Button className="mt-[10em] rounded-[0.2em] font-extrabold focus:outline-none">
+            <Button className="mt-[10em] rounded-[0.2em] font-sans font-extrabold focus:outline-none">
               <Link to="/">Browse all courses</Link>
             </Button>
           )}

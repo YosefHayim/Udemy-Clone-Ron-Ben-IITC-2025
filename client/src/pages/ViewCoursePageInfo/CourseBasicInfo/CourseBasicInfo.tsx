@@ -17,7 +17,7 @@ const CourseBasicInfo = ({
   return (
     <div className="flex w-full flex-row items-center text-white">
       <TbInfoHexagonFilled />
-      <p className="font-extrabold text-[#206241]">{formattedDate}</p>
+      <p className="font-sans font-extrabold text-[#206241]">{formattedDate}</p>
       {!isDisplayMonthName && <TbWorld />}
       <p>{courseLanguage}</p>
     </div>

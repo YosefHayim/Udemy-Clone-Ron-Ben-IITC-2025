@@ -29,20 +29,20 @@ const AccountSecurity = () => {
       <form className="w-full">
         <div className="flex w-full items-start justify-center border border-borderGrayColor py-[1em]">
           <div className="flex w-full flex-col items-center">
-            <h2 className="font-extrabold">Account</h2>
+            <h2 className="font-sans font-extrabold">Account</h2>
             <p className="mb-[1em]">
               Edit your account settings and change your password here.
             </p>
             <hr className="w-full" />
             <div className="w-[450px] flex-col py-[1.5em]">
-              <label htmlFor="email" className="font-extrabold">
+              <label htmlFor="email" className="font-sans font-extrabold">
                 Email:
               </label>
               <div className="flex w-full items-center justify-center gap-[0.6em]">
                 <div className="mt-[0.5em] w-full border border-gray-400 bg-white p-[1.1em] text-black placeholder:text-courseNameColorTxt focus:bg-white focus:text-black">
                   <p>
                     Your email address is{" "}
-                    <span className="font-extrabold">{email}</span>
+                    <span className="font-sans font-extrabold">{email}</span>
                   </p>
                 </div>
                 <div
@@ -75,7 +75,7 @@ const AccountSecurity = () => {
                 placeholder={"Re-type new password"}
               />
               <button
-                className="rounded-[0.3em] bg-btnColor p-[0.8em] font-extrabold text-white hover:bg-purple-600"
+                className="rounded-[0.3em] bg-btnColor p-[0.8em] font-sans font-extrabold text-white hover:bg-purple-600"
                 type="submit"
               >
                 Change password
@@ -97,7 +97,7 @@ const AccountSecurity = () => {
               </p>
               <button
                 onClick={handleAuth}
-                className="rounded-[0.3em] bg-btnColor p-[0.8em] font-extrabold text-white hover:bg-purple-600"
+                className="rounded-[0.3em] bg-btnColor p-[0.8em] font-sans font-extrabold text-white hover:bg-purple-600"
               >
                 {isAuthEnabled ? "Disable" : "Enable"}
               </button>

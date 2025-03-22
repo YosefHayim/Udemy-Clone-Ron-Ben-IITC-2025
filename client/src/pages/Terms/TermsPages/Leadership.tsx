@@ -2,7 +2,7 @@ const Leadership = () => {
   return (
     <>
       <div className="space-y-8 bg-white p-8 text-gray-800">
-        <h1 className="mb-4 text-3xl font-extrabold">
+        <h1 className="mb-4 font-sans text-3xl font-extrabold">
           Udemy Business Leadership Academy Terms & Conditions
         </h1>
         <p className="text-sm text-gray-600">

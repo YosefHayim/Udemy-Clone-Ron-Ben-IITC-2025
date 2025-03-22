@@ -31,7 +31,7 @@ const Description: React.FC<{ description: string; whoThisFor: string[] }> = ({
         }}
       >
         <div className="flex flex-col gap-[1em]">
-          <h2 className="text-[1.2em] font-extrabold">Description</h2>
+          <h2 className="font-sans text-[1.2em] font-extrabold">Description</h2>
           <p className=" mb-[2em]">{description}</p>
         </div>
         <ul className="flex  list-disc flex-col items-start justify-start gap-[0.5em]">
@@ -82,7 +82,7 @@ const Description: React.FC<{ description: string; whoThisFor: string[] }> = ({
           </li>
         </ul>
         <div className="mt-[1.5em]">
-          <h2 className="text-[1.5em] font-extrabold">
+          <h2 className="font-sans text-[1.5em] font-extrabold">
             Who is this course for?:
           </h2>
           <ul className=" list-disc">
@@ -94,7 +94,7 @@ const Description: React.FC<{ description: string; whoThisFor: string[] }> = ({
         className="mt-[1em] flex cursor-pointer items-center gap-[1em]"
         onClick={handleToggle}
       >
-        <span className="font-extrabold text-purpleStatic hover:text-purpleHover ">
+        <span className="font-sans font-extrabold text-purpleStatic hover:text-purpleHover ">
           {isExpanded ? "Show less" : "Show more"}
         </span>
         {isExpanded ? (

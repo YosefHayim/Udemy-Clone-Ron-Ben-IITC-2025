@@ -19,7 +19,7 @@ const Privacy = () => {
       {/* Main Content */}
       <main className="flex-1 p-8">
         <div className="mx-auto max-w-3xl rounded-lg bg-white p-8 shadow-lg">
-          <h2 className="mb-6 text-2xl font-extrabold text-gray-800">
+          <h2 className="mb-6 font-sans text-2xl font-extrabold text-gray-800">
             Privacy
           </h2>
           <p className="mb-4 text-gray-600">

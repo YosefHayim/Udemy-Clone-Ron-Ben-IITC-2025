@@ -6,7 +6,7 @@ const ReviewSectionTitle: React.FC<{
   avgRating: number;
 }> = ({ totalRated, avgRating }) => {
   return (
-    <div className="flex flex-row items-center justify-start gap-[0.2em] text-[1.5em] font-extrabold">
+    <div className="flex flex-row items-center justify-start gap-[0.2em] font-sans text-[1.5em] font-extrabold">
       <h2>
         <RatingAvg
           textSize=""

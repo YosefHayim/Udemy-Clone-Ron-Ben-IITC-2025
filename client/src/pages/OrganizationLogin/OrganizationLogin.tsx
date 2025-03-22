@@ -35,8 +35,8 @@ const OrganizationLogin = () => {
               name="email"
               id="email"
               placeholder="Enter your work email address"
-              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white px-4 py-3 text-black
-                transition-colors duration-200 ease-in-out placeholder:font-extrabold 
+              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white px-4 py-3 font-sans
+                text-black transition-colors duration-200 ease-in-out placeholder:font-extrabold 
                 placeholder:text-courseNameColorTxt hover:bg-gray-50 focus:border-purple-800 
                 focus:bg-white focus:text-black 
                 focus:outline-none"

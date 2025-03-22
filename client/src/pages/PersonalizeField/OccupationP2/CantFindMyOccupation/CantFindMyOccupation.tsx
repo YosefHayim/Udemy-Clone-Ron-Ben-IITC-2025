@@ -27,7 +27,7 @@ const CantFindMyOccupation = ({
       >
         <h1 className="text-[1.5em]">Which occupation are you learning for?</h1>
         <p>We'll do our best to bring you relevant recommendations.</p>
-        <label htmlFor="my-occupation" className="font-extrabold">
+        <label htmlFor="my-occupation" className="font-sans font-extrabold">
           My occupation
         </label>
         <input
@@ -39,7 +39,7 @@ const CantFindMyOccupation = ({
         />
         <button
           type="button" // Prevents form submission
-          className="font-extrabold text-btnColor underline"
+          className="font-sans font-extrabold text-btnColor underline"
           onClick={handlePrevious}
         >
           Back to list of occupations

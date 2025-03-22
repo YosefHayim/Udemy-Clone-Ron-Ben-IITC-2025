@@ -21,7 +21,7 @@ const SaleCommercialTwo = () => {
     >
       <div className="flex flex-grow items-center justify-center gap-4 text-center">
         <p>
-          <span className="font-extrabold">
+          <span className="font-sans font-extrabold">
             Future-ready skills on your schedule
           </span>{" "}
           |{" "}

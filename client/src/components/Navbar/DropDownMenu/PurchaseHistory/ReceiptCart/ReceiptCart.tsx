@@ -5,12 +5,12 @@ const ReceiptCart = () => {
     <div className="p-[3em]">
       <div>
         <h1
-          className="mb-[1.5em] text-[1.6em] font-extrabold"
+          className="mb-[1.5em] font-sans text-[1.6em] font-extrabold"
           styles={styles.title}
         >
           Receipt
         </h1>
-        <h2 className="mb-[1.4em] text-[1.2em] font-extrabold">
+        <h2 className="mb-[1.4em] font-sans text-[1.2em] font-extrabold">
           Receipt for Cart - Dec. 30, 2024
         </h2>
       </div>

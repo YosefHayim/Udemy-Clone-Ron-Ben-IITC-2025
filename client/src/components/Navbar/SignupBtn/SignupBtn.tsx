@@ -6,7 +6,7 @@ const SignupBtn = () => {
   return (
     <Link to="/signup">
       <Button
-        className={`${loginWithEmailBtn} h-full rounded-sm py-0 font-extrabold`}
+        className={`${loginWithEmailBtn} h-full rounded-sm py-0 font-sans font-extrabold`}
       >
         Sign up
       </Button>

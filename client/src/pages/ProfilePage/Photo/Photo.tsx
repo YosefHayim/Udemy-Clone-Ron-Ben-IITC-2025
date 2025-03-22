@@ -58,7 +58,7 @@ const Photo = () => {
       <div className="w-full">
         <div className="flex w-full flex-row items-center justify-center gap-4">
           <div className="flex w-full flex-col items-center justify-center border border-gray-300 p-[2em]">
-            <h2 className="font-extrabold">Photo</h2>
+            <h2 className="font-sans font-extrabold">Photo</h2>
             <p>Add a nice photo of yourself for your profile.</p>
           </div>
         </div>
@@ -95,7 +95,7 @@ const Photo = () => {
                 </div>
                 <button
                   type="button"
-                  className="rounded-[0.3em] bg-btnColor p-[0.8em] px-[1.5em] font-extrabold text-white hover:bg-purple-600"
+                  className="rounded-[0.3em] bg-btnColor p-[0.8em] px-[1.5em] font-sans font-extrabold text-white hover:bg-purple-600"
                   onClick={handleUpload}
                 >
                   Save

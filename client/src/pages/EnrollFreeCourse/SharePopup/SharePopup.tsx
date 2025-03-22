@@ -23,7 +23,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
       <Dialog open={isClicked} onOpenChange={setClicked}>
         <DialogContent className="w-[500px]">
           <DialogHeader>
-            <DialogTitle className="font-extrabold">
+            <DialogTitle className="font-sans font-extrabold">
               Share this course
             </DialogTitle>
             <DialogDescription>
@@ -36,7 +36,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
                 />
                 <button
                   onClick={handleCopyText}
-                  className="mr-4 rounded-[0.2em] bg-purple-600 px-6 py-2 font-extrabold text-white shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="mr-4 rounded-[0.2em] bg-purple-600 px-6 py-2 font-sans font-extrabold text-white shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
                   Copy
                 </button>

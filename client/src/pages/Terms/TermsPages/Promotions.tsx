@@ -9,7 +9,10 @@ const Promotions = () => {
         <nav className="border-b px-6 py-4">
           <ul className="flex items-center justify-between">
             <li>
-              <a href="/" className="text-base font-extrabold text-black">
+              <a
+                href="/"
+                className="font-sans text-base font-extrabold text-black"
+              >
                 Back to Udemy
               </a>
             </li>
@@ -463,7 +466,7 @@ const Promotions = () => {
             <div className="space-y-8 font-medium">
               {/* Related Articles Section */}
               <div>
-                <h3 className="mb-4 text-lg font-extrabold text-gray-900">
+                <h3 className="mb-4 font-sans text-lg font-extrabold text-gray-900">
                   Related articles
                 </h3>
                 <ul className="space-y-2">
@@ -497,7 +500,7 @@ const Promotions = () => {
 
               {/* Instructor Topics Section */}
               <div>
-                <h3 className="mb-4 text-lg font-extrabold text-gray-900">
+                <h3 className="mb-4 font-sans text-lg font-extrabold text-gray-900">
                   Instructor Topics
                 </h3>
                 <ul className="space-y-2">
@@ -509,7 +512,7 @@ const Promotions = () => {
                   <li>
                     <a
                       href="#"
-                      className="font-extrabold text-purple-600 hover:underline"
+                      className="font-sans font-extrabold text-purple-600 hover:underline"
                     >
                       Selling & Promotion
                     </a>
@@ -546,7 +549,7 @@ const Promotions = () => {
                   </a>
                   .
                 </p>
-                <button className="mt-4 rounded bg-black px-6 py-2 text-sm font-extrabold text-white hover:bg-gray-800 focus:outline-none">
+                <button className="mt-4 rounded bg-black px-6 py-2 font-sans text-sm font-extrabold text-white hover:bg-gray-800 focus:outline-none">
                   Contact Us
                 </button>
               </div>
