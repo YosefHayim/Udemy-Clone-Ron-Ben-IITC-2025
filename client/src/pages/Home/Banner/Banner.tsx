@@ -106,12 +106,12 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
                   {banner.title === `Skills that drive you forward` && (
                     <div className="flex w-full items-center justify-center gap-4">
                       <button
-                        className={`min-w-max rounded-[0.3em] bg-btnColor px-2 py-4 font-extrabold text-white hover:bg-btnHoverColor focus:outline-none`}
+                        className={`min-w-max rounded-[0.3em] bg-btnColor px-2 py-3 font-extrabold text-white hover:bg-btnHoverColor focus:outline-none`}
                       >
                         Plan for individuals
                       </button>
                       <button
-                        className={`min-w-max rounded-[0.3em] border border-purple-800 px-2 py-4 font-extrabold text-purple-800 hover:bg-purple-100 focus:outline-none`}
+                        className={`w-min-max rounded-[0.3em] border border-purple-800 px-2 py-3 font-extrabold text-purple-800 hover:bg-purple-100 focus:outline-none`}
                       >
                         Plan for organizations
                       </button>
