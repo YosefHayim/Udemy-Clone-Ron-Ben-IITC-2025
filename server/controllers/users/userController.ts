@@ -146,6 +146,7 @@ const signUp = catchAsync(
       headline: newUser.headline,
       fieldLearning: newUser.fieldLearning,
       isLoggedPreviouslyWithGoogle: newUser.isLoggedPreviouslyWithGoogle,
+      whenCreated: newUser.createdAt,
     });
 
     res.cookie("cookie", token, {
@@ -220,6 +221,7 @@ const login = catchAsync(
       headline: isFoundUser.headline,
       fieldLearning: isFoundUser.fieldLearning,
       isLoggedPreviouslyWithGoogle: isFoundUser.isLoggedPreviouslyWithGoogle,
+      whenCreated: isFoundUser.createdAt,
     });
 
     res.cookie("cookie", token, {
@@ -300,6 +302,7 @@ const verifyCode = catchAsync(
       headline: user.headline,
       fieldLearning: user.fieldLearning,
       isLoggedPreviouslyWithGoogle: user.isLoggedPreviouslyWithGoogle,
+      whenCreated: user.createdAt,
     });
 
     res.cookie("cookie", token, {
@@ -838,8 +841,6 @@ const googleLoginOrSignUp = catchAsync(
         await user.save();
       }
 
-      console.log(user);
-
       // Generate a JWT token for authentication
       const token = generateToken({
         id: user._id,
@@ -855,6 +856,7 @@ const googleLoginOrSignUp = catchAsync(
         headline: user.headline,
         fieldLearning: user.fieldLearning,
         isLoggedPreviouslyWithGoogle: user.isLoggedPreviouslyWithGoogle,
+        whenCreated: user.createdAt,
       });
 
       res.cookie("cookie", token, {
@@ -898,6 +900,7 @@ const updateMe = catchAsync(
       headline: user.headline,
       fieldLearning: user.fieldLearning,
       isLoggedPreviouslyWithGoogle: user.isLoggedPreviouslyWithGoogle,
+      whenCreated: user.createdAt,
     });
 
     res.cookie("cookie", token, {
