@@ -68,7 +68,6 @@ const Login = () => {
 
   const handleDifferentAccount = () => {
     setDifferentAccount(true);
-    // setShowRegularLogin(false);
   };
 
   const loginMutation = useMutation({
@@ -171,7 +170,7 @@ const Login = () => {
           <h2 className="mb-10 text-center font-sans text-3xl font-extrabold text-gray-800">
             Log in to continue your learning journey
           </h2>
-          {showRegularLogin && (
+          {showRegularLogin && !isLoggedPreviouslyWithGoogle && (
             <div
               className={`"w-full" ${
                 showRegularLogin && !differentAccount ? "block" : "hidden"
@@ -271,7 +270,6 @@ const Login = () => {
               </div>
             </div>
           )}
-
           {differentAccount ||
             (!isLoggedPreviouslyWithGoogle && (
               <>
@@ -327,7 +325,7 @@ const Login = () => {
                 </div>
               </>
             ))}
-          {isLoggedPreviouslyWithGoogle && !showRegularLogin && (
+          {isLoggedPreviouslyWithGoogle && !differentAccount && (
             <Button onClick={handleGoogle} className={`${continueWGoogleBtn}`}>
               <FcGoogle size={20} /> Continue with Google
             </Button>

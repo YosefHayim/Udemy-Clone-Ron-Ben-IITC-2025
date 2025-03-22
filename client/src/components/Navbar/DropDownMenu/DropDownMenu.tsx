@@ -29,7 +29,6 @@ const DropdownMenu: React.FC = () => {
 
   const handleLogout = () => {
     dispatch(clearUser());
-    localStorage.removeItem("persist:root");
     Cookies.remove("cookie");
   };
 
