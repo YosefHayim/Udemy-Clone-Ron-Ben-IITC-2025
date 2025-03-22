@@ -178,20 +178,36 @@ const Login = () => {
             (!isLoggedPreviouslyWithGoogle && (
               <>
                 <div className="flex flex-col items-center gap-4">
-                  <input
-                    type="text"
-                    name="email"
-                    id="email"
-                    placeholder="Email"
-                    className={`${inputLoginWEmail}`}
-                  />
-                  <button
-                    className={`${loginWithEmailBtn} flex items-center text-[1rem] font-bold focus:outline-none`}
-                    type="submit"
+                  <form
+                    className="flex w-full flex-col gap-4"
+                    onSubmit={handleSubmit}
                   >
-                    <AiOutlineMail size={20} />
-                    Continue with email
-                  </button>
+                    <input
+                      type="text"
+                      name="email"
+                      id="email"
+                      placeholder="Email"
+                      className={`${inputLoginWEmail}`}
+                    />
+                    <button
+                      className={`${loginWithEmailBtn} flex items-center text-[1rem] font-bold focus:outline-none`}
+                      type="submit"
+                    >
+                      {isLoading ? (
+                        <Loader useSmallLoading={true} hSize="" />
+                      ) : (
+                        <div className="flex items-center">
+                          <button
+                            className={`flex items-center text-[1rem] font-bold focus:outline-none ${loginWithEmailBtn}`}
+                            type="submit"
+                          >
+                            <AiOutlineMail size={20} />
+                            Continue with email
+                          </button>
+                        </div>
+                      )}
+                    </button>
+                  </form>
                 </div>
                 <div className="my-6 flex w-full items-center">
                   <hr className="flex-grow border-gray-300" />
