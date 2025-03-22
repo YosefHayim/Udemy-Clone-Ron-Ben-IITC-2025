@@ -115,8 +115,8 @@ const Sections = () => {
         </div>
         <hr className="w-full" />
       </div>
-      <div className="flex w-full flex-col items-center justify-center gap-10 bg-gray-100 p-5">
-        <div className="flex w-full">
+      <div className="flex w-full flex-col items-center justify-center gap-1 p-5 ">
+        <div className="flex w-full overflow-hidden ">
           <ButtonsCarousel
             handleFnNext={handleNext}
             handleFnPrev={handlePrev}
@@ -124,10 +124,12 @@ const Sections = () => {
             useCustom={true}
             showDirectionalButtonsOnlyOnEdge={true}
             topPosition="72%"
-            leftPosition="2%"
-            rightPosition="2%"
+            leftPosition="12%"
+            rightPosition="14%"
           />
-          <div className="mt-3 flex w-full">
+          <div 
+            className="mt-3 flex w-auto"
+          >
             {categoriesData.map((category, i) => {
               const match = category?.subcategory.find(
                 (sub) => sub?.title === navbarCategory,
@@ -138,7 +140,7 @@ const Sections = () => {
                   key={i}
                   className={`flex w-full items-center justify-center gap-2 transition-transform duration-1000 overflow-hidden`}
                   style={{
-                    transform: `translateX(-${currentIndex * 5}%)`,
+                    transform: `translateX(-${currentIndex * 10.5}%)`,
                   }}
                 >
                   {match?.topics?.map((topic, idx) => (
