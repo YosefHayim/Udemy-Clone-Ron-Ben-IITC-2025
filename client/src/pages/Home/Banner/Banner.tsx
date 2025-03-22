@@ -1,23 +1,6 @@
-import { useEffect, useState } from "react";
-import { btnStyleNHover, loginWithEmailBtn } from "@/utils/stylesStorage";
-import LearningGetsYouBanner from "/images/banner3.jpg";
-import skillsDriveYouBanner from "/images/banner4.jpg";
+import { useState } from "react";
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
-
-const baseBanners = [
-  {
-    src: LearningGetsYouBanner,
-    title: "Learning that gets you",
-    description:
-      "Skills for your present (and your future). Get started with us.",
-  },
-  {
-    src: skillsDriveYouBanner,
-    title: "Skills that drive you forward",
-    description:
-      "Technology and the world of work change fast — with us, you’re faster. Get the skills to achieve goals and stay competitive.",
-  },
-];
+import { baseBanners } from "@/utils/banners";
 
 const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -97,21 +80,23 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
                 <div
                   className={`${banner.title === "Skills that drive you forward" ? "w-[450px] gap-[0.5em] p-[2em]" : "w-min-max pr-14"} border-gray-100" absolute left-16 top-16 flex flex-col items-start rounded-sm bg-white px-5 py-7 text-black shadow-alertAlgoInfo`}
                 >
-                  <h1 className="font-bold">{banner.title}</h1>
+                  <h1 className="w-full font-bold">{banner.title}</h1>
                   <p
-                    className={`${banner.title === "Skills that drive you forward" ? "" : "w-[380px]"} pr-2 text-sm`}
+                    className={`${banner.title === "Skills that drive you forward" && `w-[380px]`} pr-2 text-sm`}
                   >
                     {banner.description}
                   </p>
                   {banner.title === `Skills that drive you forward` && (
-                    <div className="flex w-full items-center justify-center gap-4">
+                    <div
+                      className={`flex w-full items-center justify-center gap-2`}
+                    >
                       <button
-                        className={`min-w-max rounded-[0.3em] bg-btnColor px-2 py-3 font-extrabold text-white hover:bg-btnHoverColor focus:outline-none`}
+                        className={`w-full rounded-[0.3em] bg-btnColor px-2 py-3 font-extrabold text-white hover:bg-btnHoverColor focus:outline-none`}
                       >
                         Plan for individuals
                       </button>
                       <button
-                        className={`w-min-max rounded-[0.3em] border border-purple-800 px-2 py-3 font-extrabold text-purple-800 hover:bg-purple-100 focus:outline-none`}
+                        className={`w-full rounded-[0.3em] border border-purple-800 px-2 py-3 font-extrabold text-purple-800 hover:bg-purple-100 focus:outline-none`}
                       >
                         Plan for organizations
                       </button>

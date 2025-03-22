@@ -820,7 +820,7 @@ const googleLoginOrSignUp = catchAsync(
       );
 
       const { email, name, picture } = userResponse.data;
-      console.log(userResponse.data);
+      // console.log(userResponse.data);
 
       let user = await User.findOne({ email });
 

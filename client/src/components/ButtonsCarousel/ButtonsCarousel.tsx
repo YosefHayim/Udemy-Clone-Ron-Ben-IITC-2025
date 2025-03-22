@@ -42,7 +42,7 @@ const ButtonsCarousel = ({
           }}
         >
           <button
-            className="z-10 h-min rounded-full p-2 hover:bg-gray-200 focus:outline-none"
+            className="z-10 h-min rounded-full p-1 hover:bg-gray-200 focus:outline-none"
             onClick={handleFnPrev}
           >
             <RiArrowLeftSLine size={30} />
@@ -60,7 +60,7 @@ const ButtonsCarousel = ({
           }}
         >
           <button
-            className="h-min rounded-full p-2 hover:bg-gray-200 focus:outline-none"
+            className="h-min rounded-full p-1 hover:bg-gray-200 focus:outline-none"
             onClick={handleFnNext}
           >
             <RiArrowRightSLine size={30} />

@@ -31,7 +31,7 @@ const Homepage = () => {
     <div className="font-sans">
       {!cookie ? (
         <div className="w-full">
-          <Banner />
+          <Banner isLogin={false} />
           <div>
             <Sections />
             <TrustedBySection />
