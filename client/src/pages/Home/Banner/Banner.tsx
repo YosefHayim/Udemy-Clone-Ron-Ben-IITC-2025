@@ -1,8 +1,18 @@
 import { useEffect, useState } from "react";
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import { baseBanners } from "@/utils/banners";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import thanksTryingFreeCourse from "/images/banner7.jpg";
+import subscribeToTheBestOfUdemy from "/images/banner5.jpg";
 
 const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
+  const coursesBoughtOrJoined = useSelector(
+    (state: RootState) => state.user.coursesBought,
+  );
+  const fullName = useSelector((state: RootState) => state.user.fullName);
+  const registerAt = useSelector((state: RootState) => state.user.whenCreated);
+
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -27,6 +37,29 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
       return baseBanners[i % baseBanners.length];
     },
   );
+
+  if (coursesBoughtOrJoined.length > 1) {
+    baseBanners.push({
+      src: thanksTryingFreeCourse,
+      title: `${fullName}, thanks for trying a free course`,
+      description: `Now, unlock our best features with courses as low as ₪49.90 — limited time only.`,
+    });
+  }
+
+  const isWithin14Days =
+    registerAt &&
+    (new Date().getTime() - new Date(registerAt).getTime()) /
+      (1000 * 60 * 60 * 24) <=
+      14;
+
+  if (isWithin14Days) {
+    baseBanners.push({
+      src: subscribeToTheBestOfUdemy,
+      title: "Subscribe to the best of Udemy",
+      description:
+        "With Personal Plan, you get access to 11,000+ of our top-rated courses in tech, business, and more.",
+    });
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {

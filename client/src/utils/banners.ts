@@ -2,7 +2,6 @@ import make2025YourYear from "/images/banner1.png";
 import CertificationTheUltimate from "/images/banner2.png";
 import LearningGetsYouBanner from "/images/banner3.jpg";
 import skillsDriveYouBanner from "/images/banner4.jpg";
-import subscribeToTheBestOfUdemy from "/images/banner5.jpg";
 
 export const baseBanners = [
   {
@@ -28,11 +27,5 @@ export const baseBanners = [
     title: "Skills that drive you forward",
     description:
       "Technology and the world of work change fast — with us, you’re faster. Get the skills to achieve goals and stay competitive.",
-  },
-  {
-    src: subscribeToTheBestOfUdemy,
-    title: "Subscribe to the best of Udemy",
-    description:
-      "With Personal Plan, you get access to 11,000+ of our top-rated courses in tech, business, and more.",
   },
 ];
