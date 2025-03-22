@@ -11,6 +11,7 @@ import TrendingNow from "./TrendingNow/TrendingNow";
 import Carousel from "./Carousel/Carousel";
 import Sections from "./Sections/Sections";
 import Welcome from "@/components/LoggedInHome/Welcome";
+import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
@@ -49,7 +50,17 @@ const Homepage = () => {
           {!isMobile && <Menu />}
           <Welcome />
           <Banner isLogin={true} />
-          <div className="container mx-auto px-0 xl:px-[1.7rem]"></div>
+          <div className="px-6 py-8">
+            <h1 className="pl-4 font-extrabold">What to learn next</h1>
+            <SearchResult />
+            <SearchResult />
+            <LearnersAreViewing />
+            <SearchResult title="Short and sweet courses for you" />
+            <SearchResult title="Top courses in Design" />
+            <SearchResult title="Top courses in Development" />
+            <SearchResult title="Top courses in IT & Software" />
+            <SearchResult title="Top courses in Personal Development" />
+          </div>
         </div>
       )}
     </div>

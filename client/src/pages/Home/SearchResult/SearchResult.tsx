@@ -1,8 +1,4 @@
 import { Link } from "react-router-dom";
-import jsCourse1 from "/images/js1.jpg";
-import jsCourse2 from "/images/js2.jpg";
-import jsCourse3 from "/images/js3.jpg";
-import jsCourse4 from "/images/js4.jpg";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
@@ -11,50 +7,10 @@ import { CourseTypeProps } from "@/types/types";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
 import Loader from "@/components/Loader/Loader";
 
-const courses = [
-  {
-    title: "The Complete JavaScript Course 2025: From Zero to Expert!",
-    instructor: "Jonas Schmedtmann",
-    rating: 4.7,
-    reviews: 217830,
-    price: "₪79.90",
-    oldPrice: "₪619.90",
-    bestSeller: true,
-    image: jsCourse1,
-  },
-  {
-    title: "Complete JAVASCRIPT with HTML5, CSS3 from zero to Expert",
-    instructor: "Hemanth Kumar",
-    rating: 4.3,
-    reviews: 5377,
-    price: "₪39.90",
-    oldPrice: "₪179.90",
-    bestSeller: false,
-    image: jsCourse2,
-  },
-  {
-    title: "JavaScript for Beginners - The Complete introduction to JS",
-    instructor: "Yassin Marco MBA",
-    rating: 4.6,
-    reviews: 2541,
-    price: "₪39.90",
-    oldPrice: "₪79.90",
-    bestSeller: false,
-    image: jsCourse3,
-  },
-  {
-    title: "JavaScript: Understanding the Weird Parts (2024 Edition)",
-    instructor: "Anthony Alicea",
-    rating: 4.8,
-    reviews: 48598,
-    price: "₪49.90",
-    oldPrice: "₪369.90",
-    bestSeller: false,
-    image: jsCourse4,
-  },
-];
-
-const SearchResult = () => {
+const SearchResult: React.FC<{ title?: string; randomAlgoWord?: string }> = ({
+  title,
+  randomAlgoWord,
+}) => {
   const [courseIndex, setCourseIndex] = useState(0);
   const [isCourseAnimating, setCourseAnimating] = useState(false);
   const [countCourseClick, setCourseClick] = useState(0);
@@ -63,8 +19,9 @@ const SearchResult = () => {
   );
   const [arrayAlgo, setArrayAlgo] = useState(convertArrayStringToRegArray);
 
-  const randomAlgoWord =
-    arrayAlgo[Math.floor(Math.random() * arrayAlgo.length)];
+  if (!randomAlgoWord) {
+    randomAlgoWord = arrayAlgo[Math.floor(Math.random() * arrayAlgo.length)];
+  }
 
   const { data } = useQuery({
     queryKey: ["algoCourseSearch", randomAlgoWord],
@@ -90,16 +47,21 @@ const SearchResult = () => {
 
   return (
     <section className="px-6 py-8">
-      <h2 className="mb-6 font-sans text-3xl font-extrabold">
-        Because you searched for “
-        <Link
-          className="cursor-pointer font-sans font-extrabold text-purple-600 underline hover:text-purple-800"
-          to={``}
-        >
-          {randomAlgoWord}
-        </Link>
-        ”
-      </h2>
+      {randomAlgoWord && !title && (
+        <h2 className="mb-6 font-sans text-3xl font-extrabold">
+          Because you searched for “
+          <Link
+            className="cursor-pointer font-sans font-extrabold text-purple-600 underline hover:text-purple-800"
+            to={``}
+          >
+            {randomAlgoWord}
+          </Link>
+          ”
+        </h2>
+      )}
+      {title && !randomAlgoWord && (
+        <h2 className="mb-6 font-sans text-3xl font-extrabold">{title}</h2>
+      )}
       <div className="relative w-full overflow-hidden">
         {data && data.length > 7 && (
           <ButtonsCarousel
