@@ -800,9 +800,9 @@ const googleLoginOrSignUp = catchAsync(
           client_id: process.env.GOOGLE_CLIENT_ID,
           client_secret: process.env.GOOGLE_CLIENT_SECRET,
           redirect_uri: `${
-            process.env.NODE_ENV === `production` ?
-              "https://udemy-clone-ron-and-ben-front.onrender.com"
-            : "http://localhost:5173"
+            process.env.NODE_ENV === `production`
+              ? "https://udemy-clone-ron-and-ben-front.onrender.com"
+              : "http://localhost:5173"
           }`, // Must match the frontend's redirect URI
           grant_type: "authorization_code",
           code,
@@ -834,6 +834,9 @@ const googleLoginOrSignUp = catchAsync(
         });
         await user.save();
       } else {
+        user.fullName = name;
+        user.email = email;
+        user.profilePic = picture;
         user.isLoggedPreviouslyWithGoogle = true;
         await user.save();
       }

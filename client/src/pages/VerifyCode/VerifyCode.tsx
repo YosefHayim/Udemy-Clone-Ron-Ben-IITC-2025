@@ -45,31 +45,7 @@ const VerifyCode = () => {
 
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
-    onSuccess: (response) => {
-      const token = response.token; // Get token from API response
-      if (!token) throw new Error("No token received");
-
-      // Store token in localStorage and Redux state
-      Cookies.set("cookie", token);
-      localStorage.setItem("cookie", token);
-      dispatch(setCookie(token));
-
-      // Decode and update Redux state
-      const decoded = jwtDecode<DecodedTokenProps>(token);
-      console.log("Decoded Token Data:", decoded);
-
-      dispatch(setFullName(decoded.fullName));
-      dispatch(setHeadline(decoded.headline));
-      dispatch(setLanguage(decoded.language));
-      dispatch(setUserLinks(decoded.userLinks));
-      dispatch(setProfilePic(decoded.profilePic));
-      dispatch(setEmailAddress(decoded.email));
-      dispatch(setBio(decoded.bio));
-      dispatch(setRole(decoded.role));
-      dispatch(setCoursesBought(decoded.coursesBought));
-      dispatch(setUdemyCredits(decoded.udemyCredits));
-      dispatch(setIsLoggedWithGoogle(true));
-
+    onSuccess: () => {
       navigate("/");
     },
     onError: (error) => {

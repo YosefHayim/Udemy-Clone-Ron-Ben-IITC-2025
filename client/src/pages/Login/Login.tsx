@@ -25,9 +25,26 @@ import {
 } from "@/utils/stylesStorage";
 import { baseUrl, localhostUrl } from "@/api/configuration";
 import { AiOutlineMail } from "react-icons/ai";
+import {
+  setBio,
+  setCoursesBought,
+  setEmailAddress,
+  setFullName,
+  setHeadline,
+  setIsLoggedWithGoogle,
+  setLanguage,
+  setProfilePic,
+  setRole,
+  setUdemyCredits,
+  setUserLinks,
+} from "@/redux/slices/userSlice";
+import { jwtDecode } from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { DecodedTokenProps } from "@/types/types";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // Change this to true when using in production.
   const [isDeployed, setDeployed] = useState(false);
   const [isError, setShowIsError] = useState(false);
