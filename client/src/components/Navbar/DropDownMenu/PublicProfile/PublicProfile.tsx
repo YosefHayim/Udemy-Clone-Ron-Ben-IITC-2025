@@ -11,7 +11,7 @@ const PublicProfile = () => {
 
   return (
     <div className="text-white">
-      <div className="bg-grayUdemy px-[4em] py-[4em]">
+      <div className="bg-watchUdemyCourse px-[4em] py-[4em]">
         <h1 className="ml-[2em] text-[2.5em]">{fullName}</h1>
       </div>
       <div className="w-min bg-white p-[5em] text-center">

@@ -41,7 +41,7 @@ const Login = () => {
   );
   const cookie = useSelector((state: RootState) => state?.user?.cookie);
   const fullname = useSelector((state: RootState) => state?.user?.fullName);
-  const email = useSelector((state: RootState) => state?.user?.email);
+  const globalEmail = useSelector((state: RootState) => state?.user?.email);
   const userProfileImage = useSelector(
     (state: RootState) => state?.user?.profilePic,
   );
@@ -56,8 +56,7 @@ const Login = () => {
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
-    onSuccess: (cookie) => {
-      setUserInformation(cookie, dispatch);
+    onSuccess: () => {
       navigate("/verify-code");
     },
     onError: (error) => {
@@ -85,14 +84,14 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
     }, 2000);
 
     const formData = new FormData(e.currentTarget);
-    const email = formData.get("email") as string;
+    const email = (formData.get("email") as string) || globalEmail;
+
     setEmailUser(email);
     loginMutation.mutate({ email });
   };
@@ -113,7 +112,7 @@ const Login = () => {
   });
 
   useEffect(() => {
-    if (fullname.length > 1 && email.length > 1 && !cookie) {
+    if (fullname.length > 1 && globalEmail.length > 1 && !cookie) {
       setShowRegularLogin(true);
     }
   }, [isLoggedPreviouslyWithGoogle, showRegularLogin]);
@@ -153,8 +152,8 @@ const Login = () => {
                 <div className="my-2 flex flex-col items-center justify-center gap-2">
                   <b className="font-extrabold">Welcome back, {fullname}</b>
                   <p className="w-full text-sm font-medium">
-                    We’ll email <b className="font-extrabold">{email}</b> a code
-                    for a secure passwordless log-in.
+                    We’ll email <b className="font-extrabold">{globalEmail}</b>{" "}
+                    a code for a secure passwordless log-in.
                   </p>
                 </div>
               </div>
