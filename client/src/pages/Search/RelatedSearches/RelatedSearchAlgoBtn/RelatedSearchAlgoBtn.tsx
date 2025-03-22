@@ -1,3 +1,4 @@
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import { useNavigate } from "react-router-dom";
 
 const RelatedSearchAlgoBtn = ({
@@ -6,11 +7,12 @@ const RelatedSearchAlgoBtn = ({
   const navigate = useNavigate();
   const handleNavigateSearchTerm = () => {
     navigate(`/courses/search?src=ukw&q=${encodeURIComponent(algoSearch)}`);
+    searchAlgoLocalStorage(algoSearch);
   };
   return (
     <div
       onClick={handleNavigateSearchTerm}
-      className="cursor-pointer hover:bg-[#892de1] bg-btnColor min-w-min rounded-[100em] p-[0.5em] text-white"
+      className="min-w-min cursor-pointer rounded-[100em] bg-btnColor p-[0.5em] text-white hover:bg-[#892de1]"
     >
       <b>{algoSearch}</b>
     </div>

@@ -12,27 +12,25 @@ import Carousel from "./Carousel/Carousel";
 import Sections from "./Sections/Sections";
 import Welcome from "@/components/LoggedInHome/Welcome";
 import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
-import TeamAccess from "./TeamAccess/TeamAccess";
 import { useEffect } from "react";
-import styles from "./Homepage.module.css";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { useMediaQuery } from "react-responsive";
 
 const Homepage = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
 
   document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
-  const cookie = useSelector((state: RootState) => state?.user.cookie);
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   useEffect(() => {}, [cookie]);
 
   return (
-    <div className={styles.homepage}>
+    <div className="font-sans">
       {!cookie ? (
-        <div>
-          <div className="container mx-auto px-[1.7rem]">
-            <Banner />
+        <div className="w-full">
+          <Banner />
+          <div>
             <Sections />
             <TrustedBySection />
             <LearnersAreViewing />
@@ -49,9 +47,8 @@ const Homepage = () => {
         <div>
           {!isMobile && <Menu />}
           <Welcome />
-          <Banner />
+          <Banner isLogin={true} />
           <div className="container mx-auto px-0 xl:px-[1.7rem]">
-            <TeamAccess />
             <CoursesCarousel searchTerm={"JavaScript"} />
             <CoursesCarousel searchTerm={"Python"} />
             <CoursesCarousel searchTerm={"Books"} />

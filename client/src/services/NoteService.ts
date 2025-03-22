@@ -12,19 +12,19 @@ type EditNoteFn = (
   courseId: string,
   lessonId: string,
   noteId: string,
-  payload: AddNotePayload
+  payload: AddNotePayload,
 ) => Promise<Note>;
 
 type FetchNotesFn = (courseId: string) => Promise<Note[]>;
 type AddNoteFn = (
   courseId: string,
   lessonId: string,
-  payload: AddNotePayload
+  payload: AddNotePayload,
 ) => Promise<Note>;
 type DeleteNoteFn = (
   courseId: string,
   lessonId: string,
-  noteId: string
+  noteId: string,
 ) => Promise<void>;
 
 /**
@@ -36,7 +36,7 @@ const fetchAllNotes: FetchNotesFn = async (courseId) => {
     throw new Error("Course ID is required.");
   }
 
-  const url = `${baseUrl}/api/course-progress/${courseId.trim()}/notes`;
+  const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/notes`;
 
   try {
     const response = await axiosClient.get<{ notes: Note[] }>(url);
@@ -51,7 +51,7 @@ const fetchAllNotes: FetchNotesFn = async (courseId) => {
     console.log(`Error fetching notes for course ID ${courseId}:`, error);
     throw new Error(
       error.response?.data?.message ||
-        `Failed to fetch notes for course ID ${courseId}`
+        `Failed to fetch notes for course ID ${courseId}`,
     );
   }
 };
@@ -65,7 +65,7 @@ const addNote: AddNoteFn = async (courseId, lessonId, payload) => {
     throw new Error("Course ID and Lesson ID are required.");
   }
 
-  const url = `${baseUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}/notes`;
+  const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}/notes`;
 
   try {
     const response = await axiosClient.post<{ note: Note }>(url, payload);
@@ -79,11 +79,11 @@ const addNote: AddNoteFn = async (courseId, lessonId, payload) => {
   } catch (error: any) {
     console.log(
       `Error adding note for course ${courseId} and lesson ${lessonId}:`,
-      error
+      error,
     );
     throw new Error(
       error.response?.data?.message ||
-        `Failed to add note for course ID ${courseId} and lesson ID ${lessonId}`
+        `Failed to add note for course ID ${courseId} and lesson ID ${lessonId}`,
     );
   }
 };
@@ -97,7 +97,7 @@ const deleteNote: DeleteNoteFn = async (courseId, lessonId, noteId) => {
     throw new Error("Course ID, Lesson ID, and Note ID are required.");
   }
 
-  const url = `${baseUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}/notes/${noteId.trim()}`;
+  const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}/notes/${noteId.trim()}`;
 
   try {
     const response = await axiosClient.delete(url);
@@ -108,11 +108,11 @@ const deleteNote: DeleteNoteFn = async (courseId, lessonId, noteId) => {
   } catch (error: any) {
     console.log(
       `Error deleting note for course ${courseId}, lesson ${lessonId}, and note ${noteId}:`,
-      error
+      error,
     );
     throw new Error(
       error.response?.data?.message ||
-        `Failed to delete note for course ID ${courseId}, lesson ID ${lessonId}, and note ID ${noteId}`
+        `Failed to delete note for course ID ${courseId}, lesson ID ${lessonId}, and note ID ${noteId}`,
     );
   }
 };
@@ -123,7 +123,7 @@ const editNote: EditNoteFn = async (courseId, lessonId, noteId, payload) => {
     throw new Error("All parameters are required.");
   }
 
-  const url = `${baseUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId}/notes/${noteId}`;
+  const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId}/notes/${noteId}`;
 
   try {
     const response = await axiosClient.put<Note>(url, payload);

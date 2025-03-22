@@ -1,6 +1,6 @@
 const CourseRecap: React.FC<{ recapInfo: string }> = ({ recapInfo }) => {
   return (
-    <div className="text-white z-10">
+    <div className="z-10 text-white">
       <p>{recapInfo}</p>
     </div>
   );

@@ -17,23 +17,23 @@ const Messages = () => {
 
   return (
     <div onClick={handleClicks}>
-      <div className="pl-[2em] pb-[2em]">
-        <h1 className="mb-[0.5em] font-[lifeLtstd] font-bold mt-[0.5em]">
+      <div className="pb-[2em] pl-[2em]">
+        <h1 className="mb-[0.5em] mt-[0.5em] font-[lifeLtstd] font-bold">
           Messages
         </h1>
         <h2>You have 0 unread messages.</h2>
       </div>
       <hr className="mb-[0.5em]" />
-      <div className="w-full flex flex-row items-start justify-start">
-        <div className="ml-[0.5em] flex flex-col items-start justify-start w-1/3 flex-wrap gap-[0.5em] bg-[#F6F7F9] h-[50vh] p-[0.5em]">
-          <div className="w-full flex flex-row items-center justify-start gap-[0.5em]">
-            <button className="focus:outline-none text-btnColor border border-btnColor p-[0.5em] rounded-[0.2em] font-bold hover:bg-purpleHoverBtn">
+      <div className="flex w-full flex-row items-start justify-start">
+        <div className="ml-[0.5em] flex h-[50vh] w-1/3 flex-col flex-wrap items-start justify-start gap-[0.5em] bg-[#F6F7F9] p-[0.5em]">
+          <div className="flex w-full flex-row items-center justify-start gap-[0.5em]">
+            <button className="rounded-[0.2em] border border-btnColor p-[0.5em] font-bold text-btnColor hover:bg-purpleHoverBtn focus:outline-none">
               Compose
             </button>
             <select
               name="message-filter"
               id="message-filter"
-              className="cursor-pointer p-[0.5em] bg-white border border-gray-500 rounded-[0.2em] w-full"
+              className="w-full cursor-pointer rounded-[0.2em] border border-gray-500 bg-white p-[0.5em]"
             >
               <option value="all-messages" className="cursor-pointer">
                 All Messages
@@ -43,21 +43,21 @@ const Messages = () => {
               <option value="important">Important</option>
             </select>
           </div>
-          <div className="w-full flex flex-row items-center justify-start gap-[0.5em]">
+          <div className="flex w-full flex-row items-center justify-start gap-[0.5em]">
             <input
               type="text"
               placeholder="Search"
-              className="hover:bg-gray-100 w-full bg-white border border-gray-400 p-[0.5em] rounded-[0.2em] placeholder:text-gray-600"
+              className="w-full rounded-[0.2em] border border-gray-400 bg-white p-[0.5em] placeholder:text-gray-600 hover:bg-gray-100"
             />
-            <button className="focus:outline-none hover:bg-[#892de1] bg-btnColor p-[0.5em] rounded-[0.2em]">
-              <IoMdSearch className="text-white text-[1.5em]" />
+            <button className="rounded-[0.2em] bg-btnColor p-[0.5em] hover:bg-[#892de1] focus:outline-none">
+              <IoMdSearch className="text-[1.5em] text-white" />
             </button>
           </div>
           <p className="w-full text-center">You have no messages.</p>
         </div>
         <div className="w-2/3">
           {isClicked ? (
-            <div className="w-full text-start pl-[2em] flex flex-col items-start justify-start gap-[1em]">
+            <div className="flex w-full flex-col items-start justify-start gap-[1em] pl-[2em] text-start">
               <b className="text-[1.5em]">Compose</b>
               <b>What do you have in mind?</b>
               <TicketCompose

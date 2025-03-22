@@ -7,9 +7,9 @@ const CourseStudentRatings: React.FC<{
   };
 
   return (
-    <div className="flex gap-[0.5em] z-10 text-white">
+    <div className="z-10 flex gap-[0.5em] text-white">
       <p
-        className="underline text-[#c0c4fc] cursor-pointer"
+        className="cursor-pointer text-[#c0c4fc] underline"
         onClick={scrollToReviewsSection}
       >
         ({totalRated} ratings)

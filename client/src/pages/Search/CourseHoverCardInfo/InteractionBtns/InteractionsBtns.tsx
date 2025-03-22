@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import AddToCart from "./AddToCart/AddToCart";
 import HeartBtn from "./HeartBtn/HeartBtn";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import DialogFrequentlyBoughtTogether from "./DialogFrequentlyBoughtTogether/DialogFrequentlyBoughtTogether";
 import { useState } from "react";
 
@@ -19,7 +19,6 @@ const InteractionsBtns: React.FC<{
   instructorId,
 }) => {
   const [showDialogOfFbt, setShowDialogOfFbt] = useState(false);
-  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   const handleCartSuccess = () => {
     setTimeout(() => {
@@ -34,16 +33,14 @@ const InteractionsBtns: React.FC<{
 
   return (
     <div>
-      <div className="flex items-center justify-start w-full gap-[0.5em] mt-[1em]">
+      <div className="mt-[1em] flex w-full items-center justify-start gap-[0.5em]">
         <AddToCart
           courseId={courseId}
           discountPrice={coursePrice}
           fullPriceCourse={fullPriceCourse}
           onAddToCartSuccess={handleCartSuccess}
         />
-        {cookie && (
-          <HeartBtn iconSize={"1.5em"} courseId={courseId} showHeart={true} />
-        )}
+        <HeartBtn iconSize={"1.5em"} courseId={courseId} showHeart={true} />
       </div>
       {showDialogOfFbt && (
         <div>

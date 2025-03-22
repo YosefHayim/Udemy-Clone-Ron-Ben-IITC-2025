@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const SideMenuPrivacy = () => {
   const [activeItem, setActiveItem] = useState(
-    "Udemy Business Privacy Statement"
+    "Udemy Business Privacy Statement",
   ); // Item ativo
 
   const menuItems = [
@@ -28,7 +28,7 @@ const SideMenuPrivacy = () => {
           {menuItems.map((item, index) => (
             <li
               key={index}
-              className={`px-6 py-3 cursor-pointer text-sm font-medium ${
+              className={`cursor-pointer px-6 py-3 text-sm font-medium ${
                 activeItem === item
                   ? "bg-black text-white"
                   : "text-gray-600 hover:bg-gray-100"
@@ -49,7 +49,7 @@ const SideMenuPrivacy = () => {
             : "bg-white"
         }`}
       >
-        <h1 className="text-2xl font-bold mb-4">{activeItem}</h1>
+        <h1 className="mb-4 text-2xl font-bold">{activeItem}</h1>
         <p className="text-gray-700">
           Content for <strong>{activeItem}</strong> goes here. You can customize
           this section for each page as needed.

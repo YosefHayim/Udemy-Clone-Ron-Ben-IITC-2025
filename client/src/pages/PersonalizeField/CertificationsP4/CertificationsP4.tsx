@@ -2,21 +2,21 @@ import { IoMdSearch } from "react-icons/io";
 
 const CertificationsP4 = () => {
   return (
-    <div className="w-[700px] text-start p-[2em] ml-[8em] mb-[2em]">
-      <h1 className="text-[1.2em] font-bold mb-[1em]">
+    <div className="mb-[2em] ml-[8em] w-[700px] p-[2em] text-start">
+      <h1 className="mb-[1em] text-[1.2em] font-bold">
         Are you interested in any certifications?
       </h1>
-      <div className="flex flex-row items-center border border-[#9194ac] rounded-[0.3em] p-[0.5em] w-full bg-white">
-        <IoMdSearch className="text-[1.5em] text-gray-500 ml-[0.5em]" />
+      <div className="flex w-full flex-row items-center rounded-[0.3em] border border-[#9194ac] bg-white p-[0.5em]">
+        <IoMdSearch className="ml-[0.5em] text-[1.5em] text-gray-500" />
         <input
           type="text"
           placeholder="Search for a certification"
-          className="w-full p-[0.8em] bg-white text-black focus:bg-white focus:text-black focus:outline-none placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800 border-none"
+          className="w-full border-none bg-white p-[0.8em] text-black placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800 focus:bg-white focus:text-black focus:outline-none"
         />
       </div>
       <div className="mt-[1em]">
         <b>Popular with learners like you</b>
-        <div className="hover:bg-gray-100 cursor-pointer flex items-center gap-[1.5em] py-[2em] border border-gray-300 rounded-[0.3em] mt-[1em] px-[1em] text-[1.3em]">
+        <div className="mt-[1em] flex cursor-pointer items-center gap-[1.5em] rounded-[0.3em] border border-gray-300 px-[1em] py-[2em] text-[1.3em] hover:bg-gray-100">
           <input
             type="checkbox"
             id="chartered-financial-Analyst-cfa"
@@ -29,7 +29,7 @@ const CertificationsP4 = () => {
             Chartered Financial Analyst (CFA)
           </label>
         </div>
-        <div className="hover:bg-gray-100 cursor-pointer flex items-center gap-[1.5em] py-[2em] border border-gray-300 rounded-[0.3em] mt-[1em] px-[1em] text-[1.3em]">
+        <div className="mt-[1em] flex cursor-pointer items-center gap-[1.5em] rounded-[0.3em] border border-gray-300 px-[1em] py-[2em] text-[1.3em] hover:bg-gray-100">
           <input
             type="checkbox"
             id="association-of-chartered-certified-accountants-acca"
@@ -42,7 +42,7 @@ const CertificationsP4 = () => {
             Association of Chartered Certified Accountants (ACCA)
           </label>
         </div>
-        <div className="hover:bg-gray-100 cursor-pointer flex items-center gap-[1.5em] py-[2em] border border-gray-300 rounded-[0.3em] mt-[1em] px-[1em] text-[1.3em]">
+        <div className="mt-[1em] flex cursor-pointer items-center gap-[1.5em] rounded-[0.3em] border border-gray-300 px-[1em] py-[2em] text-[1.3em] hover:bg-gray-100">
           <input
             type="checkbox"
             id="uniform-cpa-examination"

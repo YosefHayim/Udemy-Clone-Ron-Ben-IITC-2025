@@ -5,14 +5,15 @@ type fn = (data: RegisterUserPayload) => Promise<any>;
 
 const registerUser: fn = async (data: RegisterUserPayload): Promise<any> => {
   try {
-    const response = await axiosClient.post<RegisterUserPayload>(
-      `${baseUrl}/api/user/auth/signup`,
-      data
+    const response = await axiosClient.post(
+      `${localhostUrl}/api/user/auth/signup`,
+      data,
     );
     if (response.status !== 200) {
       throw new Error("Registration failed");
     }
-    console.log(response);
+    console.log(response.data);
+    localStorage.setItem("cookie", response.data.token);
     return response.data;
   } catch (error) {
     console.log(`Error occurred during the signup: `, error);

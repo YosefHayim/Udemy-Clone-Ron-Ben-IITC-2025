@@ -1,6 +1,6 @@
 const ReportAbuse: React.FC = () => {
   return (
-    <div className="border border-black rounded-[0.2em] p-[0.8em] text-center hover:bg-hoverDivGray cursor-pointer w-[650px]">
+    <div className="w-[650px] cursor-pointer rounded-[0.2em] border border-black p-[0.8em] text-center hover:bg-hoverDivGray">
       <button>Report abuse</button>
     </div>
   );

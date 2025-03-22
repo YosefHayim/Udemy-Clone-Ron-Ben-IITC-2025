@@ -7,7 +7,7 @@ const MoreCoursesByInstructor: React.FC<{ instructorName: string }> = ({
   return (
     <div>
       <TitleSection instructorName={instructorName} />
-      <div className="w-[650px] flex flex-row items-start justify-start gap-[1em]">
+      <div className="flex w-[650px] flex-row items-start justify-start gap-[1em]">
         <CourseCard />
         <CourseCard />
         <CourseCard />

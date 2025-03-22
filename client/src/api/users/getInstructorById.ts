@@ -8,19 +8,19 @@ const getInstructorById = async (instructorId: string) => {
   }
 
   try {
-    const url = `${baseUrl}/api/instructor/${instructorId}`;
+    const url = `${localhostUrl}/api/instructor/${instructorId}`;
 
     const res = await axiosClient.get(url);
 
     if (res) {
-      console.log(res);
+      console.log(res.data.data);
 
       return res.data.data;
     }
   } catch (error) {
     console.log(
       `Error has been occurred durning getting instructor information: `,
-      error
+      error,
     );
   }
 };

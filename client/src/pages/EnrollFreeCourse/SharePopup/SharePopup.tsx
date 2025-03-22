@@ -25,29 +25,29 @@ const SharePopup = ({ isClicked, setClicked }) => {
           <DialogHeader>
             <DialogTitle className="font-bold">Share this course</DialogTitle>
             <DialogDescription>
-              <div className="flex flex-row w-full gap-[0.4em]">
+              <div className="flex w-full flex-row gap-[0.4em]">
                 <input
                   type="text"
                   value={location.pathname}
                   disabled={true}
-                  className="w-full bg-white border border-gray-300 h-[2.5em] rounded-[0.2em]"
+                  className="h-[2.5em] w-full rounded-[0.2em] border border-gray-300 bg-white"
                 />
                 <button
                   onClick={handleCopyText}
-                  className="px-6 py-2 bg-purple-600 text-white rounded-[0.2em] shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 mr-4 font-bold"
+                  className="mr-4 rounded-[0.2em] bg-purple-600 px-6 py-2 font-bold text-white shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
                   Copy
                 </button>
               </div>
-              <div className="flex flex-row items-center justify-center gap-[1em] mt-[0.7em]">
-                <div className="rounded-[100em] p-[0.5em] border border-purple-900 cursor-pointer hover:bg-purple-200">
-                  <FaFacebook className="text-purple-600 text-[1.3em]" />
+              <div className="mt-[0.7em] flex flex-row items-center justify-center gap-[1em]">
+                <div className="cursor-pointer rounded-[100em] border border-purple-900 p-[0.5em] hover:bg-purple-200">
+                  <FaFacebook className="text-[1.3em] text-purple-600" />
                 </div>
-                <div className="rounded-[100em] p-[0.5em] border border-purple-900 cursor-pointer hover:bg-purple-200">
-                  <FaSquareXTwitter className="text-purple-600 text-[1.3em]" />
+                <div className="cursor-pointer rounded-[100em] border border-purple-900 p-[0.5em] hover:bg-purple-200">
+                  <FaSquareXTwitter className="text-[1.3em] text-purple-600" />
                 </div>
-                <div className="rounded-[100em] p-[0.5em] border border-purple-900 cursor-pointer hover:bg-purple-200">
-                  <IoMdMail className="text-purple-600 text-[1.3em]" />
+                <div className="cursor-pointer rounded-[100em] border border-purple-900 p-[0.5em] hover:bg-purple-200">
+                  <IoMdMail className="text-[1.3em] text-purple-600" />
                 </div>
               </div>
             </DialogDescription>

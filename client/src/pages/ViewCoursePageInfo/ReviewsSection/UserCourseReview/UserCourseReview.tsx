@@ -5,7 +5,7 @@ import UserReviewRating from "./UserReviewRating/UserReviewRating";
 import UserProfile from "./UserProfile/UserProfile";
 import { useState } from "react";
 import DialogReportReview from "../DialogReportReview/DialogReportReview";
-import { Review } from "../../types/types";
+import { Review } from "@/types/types";
 
 const UserCourseReview: React.FC<{
   review?: Review;
@@ -17,7 +17,7 @@ const UserCourseReview: React.FC<{
 
   const [activeReviewId, setActiveReviewId] = useState<string | null>(null);
   const [isOpenReportDrawer, setReportDrawer] = useState<boolean | undefined>(
-    false
+    false,
   );
 
   const handleToggle = (id: string) => {
@@ -45,16 +45,16 @@ const UserCourseReview: React.FC<{
         </div>
         <div className="relative">
           <div
-            className="p-[0.5em] cursor-pointer rounded-[100em]"
+            className="cursor-pointer rounded-[100em] p-[0.5em]"
             onClick={() => handleToggle(review._id)}
           >
             <SlOptionsVertical />
           </div>
           {activeReviewId === review._id && (
-            <div className="bg-white rounded-[0.5em] w-[75px] h-[50px] border border-gray-400 shadow-previewCourseCardShadow text-center flex items-center justify-center absolute top-full left-[-60px] mt-[0.5em] px-[0.5em]">
+            <div className="absolute left-[-60px] top-full mt-[0.5em] flex h-[50px] w-[75px] items-center justify-center rounded-[0.5em] border border-gray-400 bg-white px-[0.5em] text-center shadow-previewCourseCardShadow">
               <button
                 onClick={handleReportDrawer}
-                className="hover:text-[#6D28D5] text-[#521e9f] font-bold"
+                className="font-bold text-[#521e9f] hover:text-[#6D28D5]"
                 id={review._id}
               >
                 Report

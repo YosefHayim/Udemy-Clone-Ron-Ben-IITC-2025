@@ -21,7 +21,7 @@ import PublicProfile from "@/components/Navbar/DropDownMenu/PublicProfile/Public
 import PaymentMethods from "@/components/Navbar/DropDownMenu/PaymentMethods/PaymentMethods";
 import UdemyBusinessContact from "@/components/Navbar/DropDownMenu/UdemyBusinessContact/UdemyBusinessContact";
 import { createContext, useState } from "react";
-import { FilterDataProps } from "../../types/types";
+import { FilterDataProps } from "@/types/types";
 import AccountSecurity from "@/pages/ProfilePage/AccountSecurity/AccountSecurity";
 import ApiClients from "@/pages/ProfilePage/ApiClients/ApiClients";
 import Photo from "@/pages/ProfilePage/Photo/Photo";

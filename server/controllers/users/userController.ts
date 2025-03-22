@@ -149,11 +149,11 @@ const signUp = catchAsync(
     });
 
     res.cookie("cookie", token, {
-      maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-      secure: process.env.NODE_ENV === "production", // Only HTTPS in production
-      httpOnly: false, // Restrict JavaScript access for security
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
-      path: "/", // Ensure the cookie is available across the entire site
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      secure: false,
+      httpOnly: false,
+      sameSite: "none",
+      maxAge: +90 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
@@ -161,6 +161,7 @@ const signUp = catchAsync(
       status: "success",
       message:
         "User created successfully. Please confirm your email to log in.",
+      token,
     });
   }
 );
@@ -185,7 +186,6 @@ const login = catchAsync(
     }
 
     const loginCode = +randomize("0", 6);
-
     isFoundUser.temporaryCode = loginCode;
     isFoundUser.temporaryCodeExpiresAt = new Date(Date.now() + 15 * 60 * 1000);
     await isFoundUser.save();
@@ -206,10 +206,35 @@ const login = catchAsync(
       return;
     }
 
+    const token = generateToken({
+      id: isFoundUser._id,
+      fullName: isFoundUser.fullName,
+      email: isFoundUser.email,
+      profilePic: isFoundUser.profilePic,
+      bio: isFoundUser.bio,
+      role: isFoundUser.role,
+      coursesBought: isFoundUser.coursesBought,
+      udemyCredits: isFoundUser.udemyCredits,
+      userLinks: isFoundUser.links,
+      language: isFoundUser.preferredLanguage,
+      headline: isFoundUser.headline,
+      fieldLearning: isFoundUser.fieldLearning,
+      isLoggedPreviouslyWithGoogle: isFoundUser.isLoggedPreviouslyWithGoogle,
+    });
+
+    res.cookie("cookie", token, {
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      secure: false,
+      httpOnly: false,
+      sameSite: "none",
+      maxAge: +90 * 24 * 60 * 60 * 1000,
+    });
+
     res.status(200).json({
       codeVerification: loginCode,
       status: "success",
       message: "Login successful.",
+      token,
     });
   }
 );
@@ -278,16 +303,17 @@ const verifyCode = catchAsync(
     });
 
     res.cookie("cookie", token, {
-      maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-      secure: process.env.NODE_ENV === "production", // Only HTTPS in production
-      httpOnly: false, // Restrict JavaScript access for security
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
-      path: "/", // Ensure the cookie is available across the entire site
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      secure: process.env.NODE_ENV === "production" ? true : false,
+      httpOnly: process.env.NODE_ENV === "production" ? true : false,
+      sameSite: "none",
+      maxAge: +90 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
       status: "success",
       message: "Code verified successfully. You are now logged in.",
+      token,
     });
   }
 );
@@ -323,6 +349,7 @@ const confirmEmailAddress = catchAsync(
       res.status(200).json({
         status: "success",
         message: "Email successfully verified!",
+        token,
       });
     }
   }
@@ -330,12 +357,14 @@ const confirmEmailAddress = catchAsync(
 
 const logout = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    res.cookie("cookie", "clear", {
-      maxAge: 900 * 1000, // 15 minutes
-      secure: process.env.NODE_ENV === "production", // Secure in production
-      httpOnly: false, // Allow JavaScript access
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
+    res.cookie("cookie", "", {
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      secure: false,
+      httpOnly: false,
+      sameSite: "none",
+      maxAge: +90 * 24 * 60 * 60 * 1000,
     });
+
     res.status(200).json({
       status: "success",
       message: "User logged out successfully.",
@@ -770,7 +799,11 @@ const googleLoginOrSignUp = catchAsync(
         {
           client_id: process.env.GOOGLE_CLIENT_ID,
           client_secret: process.env.GOOGLE_CLIENT_SECRET,
-          redirect_uri: "http://localhost:5173", // Must match the frontend's redirect URI
+          redirect_uri: `${
+            process.env.NODE_ENV === `production` ?
+              "https://udemy-clone-ron-and-ben-front.onrender.com"
+            : "http://localhost:5173"
+          }`, // Must match the frontend's redirect URI
           grant_type: "authorization_code",
           code,
         }
@@ -787,6 +820,7 @@ const googleLoginOrSignUp = catchAsync(
       );
 
       const { email, name, picture } = userResponse.data;
+      console.log(userResponse.data);
 
       let user = await User.findOne({ email });
 
@@ -822,16 +856,17 @@ const googleLoginOrSignUp = catchAsync(
       });
 
       res.cookie("cookie", token, {
-        maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-        secure: process.env.NODE_ENV === "production", // Only HTTPS in production
-        httpOnly: false, // Restrict JavaScript access for security
-        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
-        path: "/", // Ensure the cookie is available across the entire site
+        expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+        secure: false,
+        httpOnly: false,
+        sameSite: "none",
+        maxAge: +90 * 24 * 60 * 60 * 1000,
       });
 
       // Send success response
       res.status(200).json({
         status: "success",
+        token,
       });
     } catch (error) {
       console.log(
@@ -864,16 +899,17 @@ const updateMe = catchAsync(
     });
 
     res.cookie("cookie", token, {
-      maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
-      secure: process.env.NODE_ENV === "production", // Only HTTPS in production
-      httpOnly: process.env.NODE_ENV === "production", // Restrict JavaScript access for security
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Cross-origin in production
-      path: "/", // Ensure the cookie is available across the entire site
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      secure: false,
+      httpOnly: false,
+      sameSite: "none",
+      maxAge: +90 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
       status: "success",
       response: "cookie has been updated",
+      token,
       user,
     });
   }

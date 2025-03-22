@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/index";
+import { RootState } from "../../../redux/store";
 import DropdownMenu from "../DropDownMenu/DropDownMenu";
 import ProfilePic from "@/components/ProfilePic/ProfilePic";
 import { useEffect, useState } from "react";
@@ -20,7 +20,7 @@ const Profile: React.FC<{ cookie: string }> = ({ cookie }) => {
 
   return (
     <div
-      className="relative group"
+      className="group relative"
       onMouseEnter={() => setShowDropDown(true)}
       onMouseLeave={() => setShowDropDown(false)}
     >
@@ -34,8 +34,8 @@ const Profile: React.FC<{ cookie: string }> = ({ cookie }) => {
 
       {showDropDown && (
         <>
-          <div className="absolute w-full h-5 bg-transparent" />
-          <div className="absolute top-[1.8em] right-0 w-full">
+          <div className="absolute h-5 w-full bg-transparent" />
+          <div className="absolute right-0 top-[1.8em] w-full">
             <DropdownMenu />
           </div>
         </>

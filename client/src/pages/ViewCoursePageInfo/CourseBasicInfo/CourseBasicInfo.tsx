@@ -1,22 +1,24 @@
-import { CourseBasicInfoProps } from "../../types/types";
+import { CourseBasicInfoProps } from "@/types/types";
+import { monthNames } from "@/utils/monthNames";
 import { TbInfoHexagonFilled } from "react-icons/tb";
 import { TbWorld } from "react-icons/tb";
 
-const CourseBasicInfo: React.FC<CourseBasicInfoProps> = ({
+const CourseBasicInfo = ({
   lastUpdated,
   courseLanguage,
+  isDisplayMonthName,
 }) => {
-  // Extract month and year
   const date = new Date(lastUpdated);
-  const formattedDate = `Last updated ${
-    date.getMonth() + 1
-  }/${date.getFullYear()}`;
+
+  const formattedDate = isDisplayMonthName
+    ? `Updated ${monthNames[date.getMonth()]} ${date.getFullYear()}`
+    : `Last updated ${date.getMonth() + 1}/${date.getFullYear()}`;
 
   return (
-    <div className="flex flex-row gap-[0.5em] text-white items-center z-10 ">
+    <div className="flex w-full flex-row items-center text-white">
       <TbInfoHexagonFilled />
-      <p className="text-[#8cd3b0]">{formattedDate}</p>
-      <TbWorld />
+      <p className="font-bold text-[#206241]">{formattedDate}</p>
+      {!isDisplayMonthName && <TbWorld />}
       <p>{courseLanguage}</p>
     </div>
   );

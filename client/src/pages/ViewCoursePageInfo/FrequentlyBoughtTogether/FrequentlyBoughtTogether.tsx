@@ -4,7 +4,7 @@ import FaqTotalCoursesPrice from "./FaqTotalCoursesPrice/FaqTotalCoursesPrice";
 import getThreeCoursesOfInstructor from "@/api/courses/getThreeCoursesOfInstructor";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Course } from "../../types/types";
+import { Course } from "@/types/types";
 import { AiOutlinePlus } from "react-icons/ai";
 
 const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
@@ -24,7 +24,7 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
       const fullPriceTotal = data.reduce(
         (accumulator: number, course: Course) =>
           accumulator + course?.courseFullPrice,
-        0
+        0,
       );
       setSumFullPrice(fullPriceTotal);
 
@@ -32,7 +32,7 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
       const discountPriceTotal = data.reduce(
         (accumulator: number, course: Course) =>
           accumulator + course?.courseDiscountPrice,
-        0
+        0,
       );
       setDiscountSum(discountPriceTotal);
     }
@@ -44,7 +44,7 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
 
   return (
     <div className="w-full">
-      <div className="flex flex-col border border-borderCommercial w-full p-[1em]">
+      <div className="flex w-full flex-col border border-borderCommercial p-[1em]">
         <h2 className="font-bold">Frequently Bought Together</h2>
         {data?.map((course: Course, index: number) => (
           <div key={course?._id} className="relative w-full">
@@ -63,7 +63,7 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({
                 style={{
                   background: "white",
                 }}
-                className="p-[0.4em] absolute top-[-17.5%] left-[50%] right-2 text-xl shadow-alertAlgoInfo rounded-[100em]"
+                className="absolute left-[50%] right-2 top-[-17.5%] rounded-[100em] p-[0.4em] text-xl shadow-alertAlgoInfo"
               />
             )}
           </div>

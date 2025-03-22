@@ -1,153 +1,215 @@
-import sectionIMG1 from "/images/sectionIMG1.jpg";
-import sectionIMG2 from "/images/sectionIMG2.jpg";
-import sectionIMG3 from "/images/sectionIMG3.jpg";
-import sectionIMG4 from "/images/sectionIMG4.jpg";
-import { useState } from "react";
+import { btnStyleNHover } from "@/utils/stylesStorage";
+import { useEffect, useState } from "react";
+import { categoriesData } from "@/utils/categoriesData";
+import { navbarCategories } from "@/utils/navbarCategories";
+import { getRandomLearnersAmount } from "@/utils/randomLearnersAmount";
+import { topics } from "@/utils/topics";
+import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
+import { useQuery } from "@tanstack/react-query";
+import getAllCourses from "@/api/courses/getAllCourses";
+import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
+import { CourseTypeProps } from "@/types/types";
+import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
+import { useNavigate } from "react-router-dom";
+import Loader from "@/components/Loader/Loader";
+import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
+import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
+import CourseInstructor from "@/components/CourseCard/CourseInstructor/CourseInstructor";
+import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
+import HomeCourseCards from "@/components/HomeCourseCard/HomeCourseCard";
+import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
 
-const categories = [
-  { name: "ChatGPT", learners: "3M+ learners" },
-  { name: "Data Science", learners: "7M+ learners" },
-  { name: "Python", learners: "46.6M+ learners" },
-  { name: "Machine Learning", learners: "8M+ learners" },
-  { name: "Deep Learning", learners: "2M+ learners" },
-  { name: "Artificial Intelligence (AI)", learners: "3M+ learners" },
-  { name: "Statistics", learners: "1M+ learners" },
-  { name: "Natural Language Processing", learners: "794K+ learners" },
-];
+const Sections = () => {
+  const navigate = useNavigate();
+  const [navbarCategory, setNavbarCategory] = useState("Data Science");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [courseIndex, setCourseIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [isCourseAnimating, setCourseAnimating] = useState(false);
+  const [countClick, setCountClick] = useState(0);
+  const [countCourseClick, setCourseClick] = useState(0);
 
-const courses = [
-  {
-    title: "ChatGPT Complete Guide: Learn Generative AI, ChatGPT & More",
-    instructor: "Julian Melanson, Benza Maman",
-    rating: 4.5,
-    reviews: 42512,
-    price: "₪49.90",
-    oldPrice: "₪369.90",
-    bestSeller: true,
-    image: sectionIMG1,
-  },
-  {
-    title: "The Complete AI-Powered Copywriting Course & ChatGPT",
-    instructor: "Ing. Tomas Moravek",
-    rating: 4.5,
-    reviews: 1706,
-    price: "₪39.90",
-    oldPrice: "₪269.90",
-    bestSeller: false,
-    image: sectionIMG2,
-  },
-  {
-    title: "ChatGPT & MidJourney & Gemini: Digital Marketing Assistants",
-    instructor: "Anton Voroniuk",
-    rating: 4.5,
-    reviews: 446,
-    price: "₪49.90",
-    oldPrice: "₪199.90",
-    bestSeller: false,
-    image: sectionIMG3,
-  },
-  {
-    title: "ChatGPT Master: Complete OpenAI ChatGPT Course",
-    instructor: "Faisal Zamir",
-    rating: 4.3,
-    reviews: 413,
-    price: "₪49.90",
-    oldPrice: "₪89.90",
-    bestSeller: false,
-    image: sectionIMG4,
-  },
-];
+  const handlePrev = () => {
+    if (isAnimating || currentIndex === 0) return;
+    setIsAnimating(true);
+    setCountClick((prevCount) => prevCount - 1);
+    setCurrentIndex((prevIndex) => prevIndex - 1);
+    setTimeout(() => setIsAnimating(false), 500);
+  };
 
-const Section = () => {
-  const [activeCategory, setActiveCategory] = useState("ChatGPT");
+  const handleNext = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCountClick((prevCount) => prevCount + 1);
+    setCurrentIndex((prevIndex) => prevIndex + 1);
+    setTimeout(() => setIsAnimating(false), 500);
+  };
+
+  const handlePrevCourse = () => {
+    if (isCourseAnimating || courseIndex === 0) return;
+    setCourseAnimating(true);
+    setCourseClick((prevCount) => prevCount - 1);
+    setCourseIndex((prevIndex) => prevIndex - 1);
+    setTimeout(() => setCourseAnimating(false), 500);
+  };
+
+  const handleNextCourse = () => {
+    if (isCourseAnimating) return;
+    setCourseClick((prevCount) => prevCount + 1);
+    setCourseAnimating(true);
+    setCourseIndex((prevIndex) => prevIndex + 1);
+    setTimeout(() => setCourseAnimating(false), 500);
+  };
+
+  const handleNavigation = () => {
+    navigate(`/courses/search?src=ukw&q=${encodeURIComponent(navbarCategory)}`);
+    searchAlgoLocalStorage(navbarCategory);
+  };
+
+  const getDefaultTopic = () => {
+    for (let category of categoriesData) {
+      const match = category?.subcategory?.find((sub) => {
+        return sub?.title === navbarCategory || sub?.name === navbarCategory;
+      });
+      if (match) {
+        return match?.topics?.[0] || null;
+      }
+    }
+    return null;
+  };
+
+  const [choseTopic, setChooseTopic] = useState(getDefaultTopic());
+
+  const { data, isLoading, error, isPending } = useQuery({
+    queryKey: ["courses", choseTopic],
+    queryFn: () => getAllCourses(choseTopic),
+    enabled: !!choseTopic,
+  });
+
+  useEffect(() => {
+    const newDefault = getDefaultTopic();
+    if (newDefault) setChooseTopic(newDefault);
+  }, [navbarCategory]);
 
   return (
-    <div>
-      {/* Learning Section */}
-      <div className="text-left my-8 px-4">
-        <h1 className="text-3xl font-bold text-gray-900">
+    <div className="flex w-full flex-col items-start justify-start">
+      <div className="flex w-full flex-col items-start justify-start  px-5">
+        <h1 className="mt-12 w-full text-3xl font-bold text-gray-900">
           All the skills you need in one place
         </h1>
-        <p className="text-gray-600 mt-2 text-base mb-[2.5em]">
+        <p className="mb-6 mt-2 w-full text-base text-gray-600">
           From critical skills to technical topics, Udemy supports your
           professional development.
         </p>
-        <hr />
-      </div>
-
-      <section className="px-8 py-6">
-        {/* Navegação de Categorias */}
-        <div className="flex space-x-4 mb-6 overflow-x-auto">
-          {categories.map((category, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveCategory(category.name)}
-              className={`px-4 py-2 flex items-center space-x-2 rounded-full border ${
-                activeCategory === category.name
-                  ? "bg-black text-white"
-                  : "bg-gray-200 text-gray-800"
-              }`}
-            >
-              <span>{category.name}</span>
-              <span className="text-sm text-gray-500">{category.learners}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Lista de Cursos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {courses.map((course, index) => (
+        <div className="flex w-full items-center justify-start gap-5">
+          {navbarCategories.map((category, index) => (
             <div
+              onClick={() => setNavbarCategory(category)}
+              className="w-min-max cursor-pointer flex-col items-center justify-center text-base"
               key={index}
-              className="border rounded-lg shadow-sm overflow-hidden bg-white"
             >
-              <img
-                src={course.image}
-                alt={course.title}
-                className="w-full h-40 object-cover"
+              <b
+                className={`${category === navbarCategory ? "text-black" : "text-gray-600"}`}
+              >
+                {category}
+              </b>
+              <hr
+                className={`${category === navbarCategory ? "w-min-max h-[0.1em] bg-black" : "hidden"}`}
               />
-              <div className="p-4">
-                <h3 className="font-bold text-lg text-gray-900 truncate">
-                  {course.title}
-                </h3>
-                <p className="text-sm text-gray-600 truncate">
-                  {course.instructor}
-                </p>
-                <div className="flex items-center text-yellow-500 text-sm mt-2">
-                  <span>{course.rating}</span>
-                  <span className="text-gray-500 ml-1">({course.reviews})</span>
-                </div>
-                <div className="flex items-baseline justify-between mt-2">
-                  <div>
-                    <span className="font-bold text-gray-900">
-                      {course.price}
-                    </span>
-                    {course.oldPrice && (
-                      <span className="line-through text-gray-500 text-sm ml-2">
-                        {course.oldPrice}
-                      </span>
-                    )}
-                  </div>
-                  {course.bestSeller && (
-                    <span className="text-sm bg-yellow-200 text-yellow-800 px-2 py-1 rounded-full">
-                      Bestseller
-                    </span>
-                  )}
-                </div>
-              </div>
             </div>
           ))}
         </div>
-
-        {/* Botão Mostrar Mais */}
-        <div className="mt-6 text-left">
-          <button className="focus:outline-none px-6 py-3 bg-white border border-black rounded-lg font-bold text-black hover:bg-gray-100">
-            Show all {activeCategory} courses
+        <hr className="w-full" />
+      </div>
+      <div className="flex w-full flex-col items-center justify-center gap-10 bg-gray-100 p-5">
+        <div className="flex w-full">
+          <ButtonsCarousel
+            handleFnNext={handleNext}
+            handleFnPrev={handlePrev}
+            state={countClick}
+            useCustom={true}
+            showDirectionalButtonsOnlyOnEdge={true}
+            topPosition="70%"
+            leftPosition="2%"
+            rightPosition="2%"
+          />
+          <div className="mt-3 flex w-full">
+            {categoriesData.map((category, i) => {
+              const match = category?.subcategory.find(
+                (sub) => sub?.title === navbarCategory,
+              );
+              if (!match) return null;
+              return (
+                <div
+                  key={i}
+                  className={`flex w-max items-center justify-center gap-2 transition-transform duration-1000`}
+                  style={{
+                    transform: `translateX(-${currentIndex * 8}%)`,
+                  }}
+                >
+                  {match?.topics?.map((topic, idx) => (
+                    <div
+                      key={idx}
+                      onClick={() => setChooseTopic(topic)}
+                      className={`${
+                        choseTopic === topic
+                          ? "hover:bg-grayUdemyHover w-full bg-blackUdemy text-white"
+                          : ""
+                      } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
+                    >
+                      <b className="w-max text-base">{topic}</b>
+                      {idx < topics.length - 1 ? (
+                        <p>{getRandomLearnersAmount()}</p>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="relative w-full overflow-hidden">
+          {data && data.length > 7 && (
+            <ButtonsCarousel
+              handleFnNext={handleNextCourse}
+              handleFnPrev={handlePrevCourse}
+              state={countCourseClick}
+              useCustom={true}
+              showDirectionalButtonsOnlyOnEdge={false}
+              topPosition="40%"
+              leftPosition="1%"
+              rightPosition="2%"
+            />
+          )}
+          <div
+            className={`flex ${data && data.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+            style={{
+              transform: `translateX(-${courseIndex * 30.5}%)`,
+            }}
+          >
+            {data && data.length > 1 ? (
+              data.map((courseCard: CourseTypeProps, index: number) => (
+                <HomeCourseCard courseCard={courseCard} index={index} />
+              ))
+            ) : (
+              <div className="w-full">
+                <Loader useSmallLoading={false} hSize="" />
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="my-2 w-full">
+          <button
+            onClick={handleNavigation}
+            className={`${btnStyleNHover} border border-purple-800 font-bold text-purple-800`}
+          >
+            Show all {navbarCategory} courses
           </button>
         </div>
-      </section>
+      </div>
     </div>
   );
 };
 
-export default Section;
+export default Sections;

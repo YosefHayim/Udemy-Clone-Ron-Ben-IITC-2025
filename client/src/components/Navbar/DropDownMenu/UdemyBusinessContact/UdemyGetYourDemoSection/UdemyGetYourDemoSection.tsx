@@ -2,14 +2,14 @@ import { IoMdCheckmark } from "react-icons/io";
 
 const UdemyGetYourDemoSection = () => {
   return (
-    <div className="p-[2em] flex flex-col items-start justify-start gap-[1em]">
+    <div className="flex flex-col items-start justify-start gap-[1em] p-[2em]">
       <h1>Get your demo</h1>
       <h2>
         Tell us your needs and we’ll start on a custom plan to drive results.
       </h2>
       <div className="flex flex-col items-start justify-start gap-[1em]">
-        <ul className="flex flex-col items-start justify-start w-[300px] gap-[1em]">
-          <h3 className="font-bold text-[1.1em]">
+        <ul className="flex w-[300px] flex-col items-start justify-start gap-[1em]">
+          <h3 className="text-[1.1em] font-bold">
             With Udemy as your learning partner, you can:
           </h3>
           <li className="flex flex-row items-center justify-start gap-[0.5em]">
@@ -48,7 +48,7 @@ const UdemyGetYourDemoSection = () => {
           </li>
         </ul>
       </div>
-      <h2 className="font-bold text-[1.1em]">Trusted by</h2>
+      <h2 className="text-[1.1em] font-bold">Trusted by</h2>
       <div></div>
     </div>
   );

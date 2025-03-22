@@ -1,4 +1,4 @@
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { IoMdShareAlt } from "react-icons/io";
@@ -13,14 +13,14 @@ const NotificationJoinFreeCourse = ({ setClicked, isClicked }) => {
 
   return (
     <div>
-      <div className="p-[1em] border border-[#206241] rounded-[0.5em] m-[2em] text-[1.2em]">
+      <div className="m-[2em] rounded-[0.5em] border border-[#206241] p-[1em] text-[1.2em]">
         <div className="flex flex-col items-start justify-start gap-[0.5em]">
-          <div className="flex flex-row gap-[0.2em] items-center">
-            <IoMdCheckmarkCircle className="text-[#206241] text-[1.2em]" />
+          <div className="flex flex-row items-center gap-[0.2em]">
+            <IoMdCheckmarkCircle className="text-[1.2em] text-[#206241]" />
             <b>Great choice, {fullName}!</b>
           </div>
           <div className="ml-[1em]">
-            <button className="focus:outline-none border border-[#206241] rounded-[0.2em] p-[0.4em] text-[#206241] flex flex-row items-center gap-[0.2em]">
+            <button className="flex flex-row items-center gap-[0.2em] rounded-[0.2em] border border-[#206241] p-[0.4em] text-[#206241] focus:outline-none">
               <b onClick={handleShareCourse}>Share this course</b>
               <IoMdShareAlt />
             </button>

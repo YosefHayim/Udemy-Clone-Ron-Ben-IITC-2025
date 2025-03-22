@@ -1,97 +1,128 @@
-import { useState, useEffect } from "react";
-import banner1 from "/images/banner1.png";
-import banner2 from "/images/banner2.png";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { useEffect, useState } from "react";
+import { btnStyleNHover, loginWithEmailBtn } from "@/utils/stylesStorage";
+import LearningGetsYouBanner from "/images/banner3.jpg";
+import skillsDriveYouBanner from "/images/banner4.jpg";
+import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 
-const slides = [
+const baseBanners = [
   {
-    title: "Make 2025 the year of your career",
+    src: LearningGetsYouBanner,
+    title: "Learning that gets you",
     description:
-      "The skills you need are on sale from ₪39.90. [Sale ends January 10]",
-    img: banner1,
+      "Skills for your present (and your future). Get started with us.",
   },
   {
-    title: "Certifications — the ultimate career move",
+    src: skillsDriveYouBanner,
+    title: "Skills that drive you forward",
     description:
-      "Prepare for certification exams in COMPTIA, AWS Cloud, and so much more — on sale now.",
-    img: banner2,
+      "Technology and the world of work change fast — with us, you’re faster. Get the skills to achieve goals and stay competitive.",
   },
 ];
 
-// Clone first and last slides for smooth looping
-const extendedSlides = [slides[slides.length - 1], ...slides, slides[0]];
-
-const Banner = () => {
-  const [currentIndex, setCurrentIndex] = useState(1); // Start at first real slide
-  const [isTransitioning, setIsTransitioning] = useState(true);
+const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev - 1);
+    if (isAnimating || currentIndex === 0) return;
+    setIsAnimating(true);
+    setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+    setTimeout(() => setIsAnimating(false), 2000);
   };
 
   const handleNext = () => {
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev + 1);
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prevIndex) => prevIndex + 1);
+    setTimeout(() => setIsAnimating(false), 2000);
   };
 
-  // Reset transition instantly when reaching cloned slides
+  // This one is creating infinite banners to scroll from the banners base which we just add to it and thats it.
+  const generatedBanners = Array.from(
+    { length: (currentIndex + 1) * 2 },
+    (_, i) => {
+      return baseBanners[i % baseBanners.length];
+    },
+  );
+
   useEffect(() => {
-    if (currentIndex === 0) {
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(slides.length);
-      }, 500); // Wait for transition to complete
-    }
-    if (currentIndex === slides.length + 1) {
-      setTimeout(() => {
-        setIsTransitioning(false);
-        setCurrentIndex(1);
-      }, 500);
-    }
-  }, [currentIndex]);
+    const interval = setInterval(() => {
+      handleNext();
+    }, 15000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="relative w-full h-[30rem] overflow-hidden">
-      <div
-        className={`flex w-full h-full ${
-          isTransitioning ? "transition-transform duration-500 ease-in-out" : ""
-        }`}
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
-        {extendedSlides.map((slide, index) => (
-          <img
-            key={index}
-            src={slide.img}
-            alt={slide.title}
-            className="w-full h-full object-cover flex-shrink-0"
-          />
-        ))}
-      </div>
-
-      {/* Slide Content */}
-      <div className="absolute left-10 top-1/4 bg-white p-6 rounded-lg shadow-lg max-w-lg">
-        <h1 className="text-4xl font-bold text-gray-900 leading-tight">
-          {slides[(currentIndex - 1) % slides.length].title}
-        </h1>
-        <p className="text-lg text-gray-600 mt-4">
-          {slides[(currentIndex - 1) % slides.length].description}
-        </p>
-      </div>
-
-      {/* Navigation Buttons */}
-      <button
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow hover:bg-gray-200 transition"
-        onClick={handlePrev}
-      >
-        <MdKeyboardArrowLeft size={24} className="text-black" />
-      </button>
-      <button
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white p-3 rounded-full shadow hover:bg-gray-200 transition"
-        onClick={handleNext}
-      >
-        <MdKeyboardArrowRight size={24} className="text-black" />
-      </button>
+    <div className="relative w-full overflow-hidden">
+      <ButtonsCarousel
+        state={currentIndex}
+        leftPosition="1%"
+        topPosition="43%"
+        rightPosition="2%"
+        useCustom={false}
+        handleFnNext={handleNext}
+        handleFnPrev={handlePrev}
+      />
+      {isLogin ? (
+        <div className="p-2">
+          <div className="relative w-full">
+            <img
+              src={LearningGetsYouBanner}
+              alt="banner udemy welcome"
+              className="relative w-full"
+            />
+            <div className="absolute left-16 top-16 flex w-[400px] flex-col items-start gap-2 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
+              <h1 className="font-bold">Learning that gets you</h1>
+              <p className="pr-2 text-lg">
+                Skills for your present (and your future). Get started with us.
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="relative h-full w-full overflow-hidden">
+          <div
+            className={`flex transition-transform duration-1000 ease-in-out`}
+            style={{
+              transform: `translateX(-${currentIndex * 100}%)`,
+            }}
+          >
+            {generatedBanners.map((banner, index) => (
+              <div key={index} className={`relative w-full flex-shrink-0`}>
+                <img
+                  src={banner.src}
+                  alt={`banner-${index}`}
+                  className="w-full"
+                />
+                <div
+                  className={`${banner.title === "Skills that drive you forward" ? "w-[450px] gap-[0.5em] p-[2em]" : "w-min-max pr-14"} border-gray-100" absolute left-16 top-16 flex flex-col items-start rounded-sm bg-white px-5 py-7 text-black shadow-alertAlgoInfo`}
+                >
+                  <h1 className="font-bold">{banner.title}</h1>
+                  <p
+                    className={`${banner.title === "Skills that drive you forward" ? "" : "w-[380px]"} pr-2 text-sm`}
+                  >
+                    {banner.description}
+                  </p>
+                  {banner.title === `Skills that drive you forward` && (
+                    <div className="flex w-full items-center justify-center gap-2">
+                      <button
+                        className={`${loginWithEmailBtn} h-[40px] w-full font-extrabold`}
+                      >
+                        Plan for individuals
+                      </button>
+                      <button
+                        className={`${btnStyleNHover} h-[40px] w-full border border-purple-800 font-extrabold text-purple-800`}
+                      >
+                        Plan for organizations
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

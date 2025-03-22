@@ -3,7 +3,7 @@ import AddCardInfo from "../AddCardInfo/AddCardInfo";
 import DefaultVisa from "../DefaultVisa/DefaultVisa";
 import GooglePay from "../GooglePay/GooglePay";
 import PayPal from "../PayPal/PayPal";
-import { PaymentOptionProps } from "../../types/types";
+import { PaymentOptionProps } from "@/types/types";
 import masterCardSvg from "/svgs/card-mastercard.svg";
 import amexCardSvg from "/svgs/card-amex.svg";
 import jcbCardSvg from "/svgs/card-jcb.svg";
@@ -22,18 +22,18 @@ const PaymentOption: React.FC<PaymentOptionProps> = ({
   onToggle,
 }) => {
   return (
-    <div className="bg-[#f6f7f9] border border-gray-100 rounded-[0.2em] w-full">
+    <div className="w-full rounded-[0.2em] border border-gray-100 bg-[#f6f7f9]">
       <div
-        className="flex items-center justify-between gap-[1em] border-borderCommercial border-[1px] cursor-pointer"
+        className="flex cursor-pointer items-center justify-between gap-[1em] border-[1px] border-borderCommercial"
         onClick={onToggle} // Trigger toggle when clicked
       >
         <div className="flex items-center justify-start gap-[0.5em]">
           <input
             type="radio"
-            className="h-[3em] ml-[0.5em]"
+            className="ml-[0.5em] h-[3em]"
             name={`${radioName}`}
           />
-          <div className="bg-white rounded-[0.2em] border-borderCommercial border-[1px] p-[0.2em]">
+          <div className="rounded-[0.2em] border-[1px] border-borderCommercial bg-white p-[0.2em]">
             {providedIcon}
           </div>
           <b>{paymentOptionName}</b>
@@ -45,7 +45,7 @@ const PaymentOption: React.FC<PaymentOptionProps> = ({
               alt="Visa card"
               className={`${
                 showVisa ? "block" : "hidden"
-              } h-[2em] bg-white rounded-[0.2em] border border-gray-300 mr-[0.5em]`}
+              } mr-[0.5em] h-[2em] rounded-[0.2em] border border-gray-300 bg-white`}
             />
           </div>
           <div>
@@ -54,7 +54,7 @@ const PaymentOption: React.FC<PaymentOptionProps> = ({
               alt="Master card"
               className={`${
                 showVisa ? "block" : "hidden"
-              } h-[2em] bg-white rounded-[0.2em] border border-gray-300 mr-[0.5em]`}
+              } mr-[0.5em] h-[2em] rounded-[0.2em] border border-gray-300 bg-white`}
             />
           </div>
           <div>
@@ -63,7 +63,7 @@ const PaymentOption: React.FC<PaymentOptionProps> = ({
               alt="Amex card"
               className={`${
                 showVisa ? "block" : "hidden"
-              } h-[2em] bg-[#246dd0] rounded-[0.2em] mr-[0.5em] w-[3em]`}
+              } mr-[0.5em] h-[2em] w-[3em] rounded-[0.2em] bg-[#246dd0]`}
             />
           </div>
           <div>
@@ -72,7 +72,7 @@ const PaymentOption: React.FC<PaymentOptionProps> = ({
               alt="JCB card"
               className={`${
                 showVisa ? "block" : "hidden"
-              } h-[2em] bg-white rounded-[0.2em] mr-[0.5em] w-[3em]`}
+              } mr-[0.5em] h-[2em] w-[3em] rounded-[0.2em] bg-white`}
             />
           </div>
           <div>
@@ -81,14 +81,14 @@ const PaymentOption: React.FC<PaymentOptionProps> = ({
               alt="Diners card"
               className={`${
                 showVisa ? "block" : "hidden"
-              } h-[2em] bg-white rounded-[0.2em] mr-[0.5em] w-[3em]`}
+              } mr-[0.5em] h-[2em] w-[3em] rounded-[0.2em] bg-white`}
             />
           </div>
         </div>
       </div>
       {isOpen && ( // Conditionally render content based on `isOpen`
         <div
-          className={`px-[0.2em] py-[1em] flex flex-row items-start justify-around w-full bg-white border-borderCommercial border-[1px] rounded-[0.2em]`}
+          className={`flex w-full flex-row items-start justify-around rounded-[0.2em] border-[1px] border-borderCommercial bg-white px-[0.2em] py-[1em]`}
         >
           {showVisa && <DefaultVisa />}
           {showProvideCardInfo && <AddCardInfo />}

@@ -25,7 +25,7 @@ const PaymentOptionsRadio: React.FC = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-start justify-start">
+    <div className="flex w-full flex-col items-start justify-start">
       <PaymentOption
         radioName="reg-card"
         showVisa={true}

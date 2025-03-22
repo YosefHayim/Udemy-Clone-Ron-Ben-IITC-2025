@@ -3,7 +3,7 @@ import logo from "/images/logo-udemy.svg";
 const Logo = ({ CustomCssSize = "" }) => {
   return (
     <div>
-      <div className="flex items-center cursor-pointer">
+      <div className="flex cursor-pointer items-center">
         <img
           src={logo}
           alt="Udemy Logo"

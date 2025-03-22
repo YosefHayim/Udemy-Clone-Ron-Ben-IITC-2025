@@ -7,6 +7,8 @@ import carrosela_logo1 from "/images/carossela_logo1.svg";
 import carrosela_logo2 from "/images/carrosela_logo2.svg";
 import carrosela_logo3 from "/images/carrosela_logo3.svg";
 import carrosela_logo4 from "/images/carrosela_logo4.svg";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import { loginWithEmailBtn } from "@/utils/stylesStorage";
 
 const Carousel = () => {
   const slides = [
@@ -89,20 +91,19 @@ const Carousel = () => {
   };
 
   return (
-    <div className="relative flex flex-col lg:flex-row items-center px-8 py-12 bg-white">
-      {/* Texto e estatísticas */}
-      <div className="lg:w-1/2 text-left">
+    <div className="relative flex items-start justify-between">
+      <div className="text-left">
         {slides[currentSlide].logo && (
           <img
             src={slides[currentSlide].logo}
             alt="Logo"
-            className="w-32 h-auto mb-4"
+            className="mb-4 h-auto w-32"
           />
         )}
-        <h2 className="text-3xl font-bold text-gray-800 my-4">
+        <h2 className="my-4 text-3xl font-bold text-gray-800">
           {slides[currentSlide].title}
         </h2>
-        <div className="flex space-x-12 my-4">
+        <div className="my-4 flex space-x-12">
           {slides[currentSlide].stats.map((stat, index) => (
             <div key={index}>
               <p className="text-4xl font-bold text-gray-900">
@@ -112,44 +113,42 @@ const Carousel = () => {
             </div>
           ))}
         </div>
-        <button className="focus:outline-none px-6 py-3 bg-black text-white font-bold rounded-lg hover:bg-gray-900 transition duration-300">
+        <button className={`${loginWithEmailBtn} h-[30px] max-w-max px-2 py-0`}>
           {slides[currentSlide].buttonText}
         </button>
       </div>
 
-      {/* Imagem */}
-      <div className="lg:w-1/2 flex justify-center items-center">
+      <div className="relative">
         <img
           src={slides[currentSlide].image}
           alt={slides[currentSlide].title}
-          className="w-full max-w-2xl object-cover rounded-lg"
+          className="relative w-full"
           style={{ height: "400px", width: "600px" }}
         />
       </div>
 
-      {/* Controles e Indicadores */}
       <div className="absolute bottom-4 left-4 flex items-center space-x-4">
         <button
+          className="z-10 h-min rounded-full p-2 shadow-alertAlgoInfo hover:bg-gray-200 focus:outline-none"
           onClick={prevSlide}
-          className="p-3 rounded-full border border-gray-800 hover:bg-gray-800 hover:text-white transition"
         >
-          &lt;
+          <RiArrowLeftSLine size={30} />
         </button>
-        <div className="flex space-x-2">
+        <div className="flex items-center gap-3">
           {slides.map((_, index) => (
             <span
               key={index}
-              className={`w-3 h-3 rounded-full ${
-                currentSlide === index ? "bg-purple-600" : "bg-gray-400"
+              className={`h-2 rounded-full transition-all duration-500 ease-in-out ${
+                currentSlide === index ? "w-6 bg-purple-600" : "w-2 bg-gray-400"
               }`}
             />
           ))}
         </div>
         <button
+          className="z-10 h-min rounded-full p-2 shadow-alertAlgoInfo hover:bg-gray-200 focus:outline-none"
           onClick={nextSlide}
-          className="p-3 rounded-full border border-gray-800 hover:bg-gray-800 hover:text-white transition"
         >
-          &gt;
+          <RiArrowRightSLine size={30} />
         </button>
       </div>
     </div>

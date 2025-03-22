@@ -55,22 +55,22 @@ const plans = [
 
 const PlansSection = () => {
   return (
-    <div className="py-16 px-8 bg-gray-50">
-      <h2 className="text-3xl font-bold text-gray-900 text-center">
+    <div className="bg-gray-50 px-8 py-16">
+      <h2 className="text-center text-3xl font-bold text-gray-900">
         Accelerate growth — for you or your organization
       </h2>
-      <p className="text-gray-600 text-center mt-2">
+      <p className="mt-2 text-center text-gray-600">
         Reach goals faster with one of our plans or programs. Try one free today
         or contact sales to learn more.
       </p>
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
         {plans.map((plan, index) => (
           <div
             key={index}
-            className={`border rounded-lg shadow-sm p-6 ${plan.borderColor}`}
+            className={`rounded-lg border p-6 shadow-sm ${plan.borderColor}`}
           >
-            <div className="flex items-center mb-4">
-              <div className="w-10 h-10 flex items-center justify-center text-xl bg-gray-200 rounded-full mr-4">
+            <div className="mb-4 flex items-center">
+              <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-xl">
                 {plan.placeholderIcon}
               </div>
               <div>
@@ -80,15 +80,15 @@ const PlansSection = () => {
             </div>
             <p className="text-lg font-bold text-gray-900">{plan.price}</p>
             {plan.details && (
-              <p className="text-sm text-gray-600 mt-1">{plan.details}</p>
+              <p className="mt-1 text-sm text-gray-600">{plan.details}</p>
             )}
-            <button className="focus:outline-none mt-4 w-full bg-black text-white py-2 rounded font-bold hover:bg-gray-800">
+            <button className="mt-4 w-full rounded bg-black py-2 font-bold text-white hover:bg-gray-800 focus:outline-none">
               {plan.buttonText}
             </button>
             <ul className="mt-4 space-y-2 text-sm text-gray-600">
               {plan.features.map((feature, featureIndex) => (
                 <li key={featureIndex} className="flex items-start">
-                  <span className="text-green-600 font-bold mr-2">✓</span>
+                  <span className="mr-2 font-bold text-green-600">✓</span>
                   {feature}
                 </li>
               ))}

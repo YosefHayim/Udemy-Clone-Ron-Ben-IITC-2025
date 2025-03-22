@@ -19,13 +19,13 @@ const ViewCertificatesOnly = () => {
 
   return (
     <div
-      className="flex items-center gap-[0.5em] cursor-pointer py-[1em]"
+      className="flex cursor-pointer items-center gap-[0.5em] py-[1em]"
       onClick={handleToggle}
     >
       {isActive ? (
-        <BsToggleOff className="text-gray-400 text-2xl" />
+        <BsToggleOff className="text-2xl text-gray-400" />
       ) : (
-        <BsToggleOn className="text-toggleActive text-2xl" />
+        <BsToggleOn className="text-2xl text-toggleActive" />
       )}
       <p className="text-sm font-medium">
         View certification prep courses only

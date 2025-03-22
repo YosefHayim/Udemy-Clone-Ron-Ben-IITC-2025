@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseHoverCard from "./CourseHoverCard";
-import { Course } from "../../types/types";
+import { Course } from "@/types/types";
 import { MdOutlineStarHalf } from "react-icons/md";
 import {
   IoIosStar,
@@ -27,7 +27,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
   const fetchCourses = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/course/?search=${encodeURI(searchTerm)}`
+        `http://localhost:3000/api/course/?search=${encodeURI(searchTerm)}`,
       );
       const data = await response.json();
       if (data.status === "Success") {
@@ -71,7 +71,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
   // Função ao passar o mouse sobre um curso
   const handleMouseEnter = (
     course: Course,
-    event: React.MouseEvent<HTMLDivElement>
+    event: React.MouseEvent<HTMLDivElement>,
   ) => {
     setHoveredCourseId(course._id); // Define o curso em hover
     const courseRect = event.currentTarget.getBoundingClientRect();
@@ -85,8 +85,11 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
   };
 
   // Função para remover o hover
-  const handleMouseLeave = () => {
-    setHoveredCourseId(null); // Reseta o estado ao sair do hover
+  const handleMouseLeave = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!event.currentTarget.contains(event.relatedTarget as Node)) {
+      setHoveredCourseId(null);
+      setHoveredCourse(null);
+    }
   };
 
   const navigate = useNavigate();
@@ -103,14 +106,14 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
       <div className="flex items-center justify-between">
         {Array.from({ length: 5 }, (_, i) => {
           if (i < fullStars) {
-            return <IoIosStar key={i} className="text-[#c4710d] ml-[1px]" />;
+            return <IoIosStar key={i} className="ml-[1px] text-[#c4710d]" />;
           } else if (i === fullStars && hasHalfStar) {
             return (
-              <MdOutlineStarHalf key={i} className="text-[#c4710d] ml-[1px]" />
+              <MdOutlineStarHalf key={i} className="ml-[1px] text-[#c4710d]" />
             );
           } else {
             return (
-              <IoIosStarOutline key={i} className="text-[#c4710d] ml-[1px]" />
+              <IoIosStarOutline key={i} className="ml-[1px] text-[#c4710d]" />
             );
           }
         })}
@@ -119,18 +122,18 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
   };
 
   return (
-    <div className="relative w-full mx-auto py-6 overflow-visible">
-      <h2 className="text-2xl font-bold mb-4 pl-2 text-courseNameColorTxt overflow-visible">
+    <div className="relative mx-auto w-full overflow-visible py-6">
+      <h2 className="mb-4 overflow-visible pl-2 text-2xl font-bold text-courseNameColorTxt">
         Because you viewed{" "}
-        <span className="text-btnColor font-bold underline hover:text-[#521e9f]">
+        <span className="font-bold text-btnColor underline hover:text-[#521e9f]">
           {searchTerm}
         </span>
       </h2>
 
       {courses.length > 0 && (
-        <div className="overflow-y-visible relative">
+        <div className="relative overflow-x-clip overflow-y-visible">
           <div
-            className="flex transition-transform duration-300 overflow-y-visible"
+            className="flex overflow-y-visible transition-transform duration-300"
             style={{
               transform: `translateX(-${currentIndex * (100 / visibleItems)}%)`,
               width: `${courses.length * (100 / visibleItems)}%`,
@@ -139,47 +142,47 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
             {courses.map((course) => (
               <div
                 key={course._id}
-                className="w-[calc(100%/5)] px-[0.5rem] box-border relative overflow-visible "
+                className="relative box-border w-[calc(100%/5)] overflow-visible px-[0.5rem] "
                 onMouseEnter={(e) => handleMouseEnter(course, e)}
                 onMouseLeave={handleMouseLeave}
               >
                 <div
                   onClick={() => handleCardClick(course._id)}
-                  className="cursor-pointer shadow-sm bg-white flex flex-col maxh-[18rem] overflow-visible"
+                  className="maxh-[18rem] flex cursor-pointer flex-col overflow-visible bg-white shadow-sm"
                 >
                   <div className="h-36 w-full">
                     <img
                       src={course.courseImg}
                       alt={course.courseName}
-                      className={`border border-gray-300 w-full h-full object-cover transition-all duration-300 ${
+                      className={`h-full w-full border border-gray-300 object-cover transition-all duration-300 ${
                         hoveredCourseId === course._id ? "brightness-90" : ""
                       }`}
                     />
                   </div>
-                  <div className="flex flex-col justify-between flex-grow">
-                    <h3 className="font-bold text-[1rem] text-courseNameColorTxt line-clamp-2 pt-[0.3rem] leading-5">
+                  <div className="flex flex-grow flex-col justify-between">
+                    <h3 className="line-clamp-2 pt-[0.3rem] text-[1rem] font-bold leading-5 text-courseNameColorTxt">
                       {course.courseName}
                     </h3>
-                    <p className="text-xs text-grayNavbarTxt truncate py-[0.2rem]">
+                    <p className="truncate py-[0.2rem] text-xs text-grayNavbarTxt">
                       {course.courseInstructor.fullName}
                     </p>
-                    <div className="flex items-center text-sm text-[#8B4309] font-bold">
+                    <div className="flex items-center text-sm font-bold text-[#8B4309]">
                       <span className="mr-1 text-[#8B4309]">
                         {course.averageRating.toFixed(1)}
                       </span>
                       <div className="flex">
                         {renderStars(course.averageRating)}
                       </div>
-                      <span className="ml-2 text-gray-500 text-xs">
+                      <span className="ml-2 text-xs text-gray-500">
                         ({course.totalRatings.toLocaleString()})
                       </span>
                     </div>
                     <div className="flex items-baseline justify-between py-[0.15rem]">
-                      <span className="font-[700] text-courseNameColorTxt text-[1rem]">
+                      <span className="text-[1rem] font-[700] text-courseNameColorTxt">
                         ₪{course.courseDiscountPrice.toFixed(2)}
                       </span>
                       {course.courseFullPrice && (
-                        <span className="line-through text-gray-500 text-xs ml-2">
+                        <span className="ml-2 text-xs text-gray-500 line-through">
                           ₪{course.courseFullPrice.toFixed(2)}
                         </span>
                       )}
@@ -196,8 +199,12 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
                     style={{
                       top: `${hoverCardPosition.top}px`,
                       left: `${hoverCardPosition.left}px`,
-                      transform: "translateY(-50%)", // Centraliza verticalmente
+                      transform: "translateY(-50%)",
                     }}
+                    onMouseEnter={() =>
+                      setHoveredCourseId(hoveredCourse?._id || null)
+                    }
+                    onMouseLeave={(event) => handleMouseLeave(event)}
                   >
                     <CourseHoverCard course={hoveredCourse} />
                   </div>
@@ -210,14 +217,14 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
 
       <button
         onClick={handlePrev}
-        className="absolute left-[-1rem] top-[9.2rem] w-[3.2rem] h-[3.2rem] transform -translate-y-1/2 bg-white text-courseNameColorTxt p-3 rounded-full z-10 shadow-md hover:bg-[#E9EAF2]"
+        className="absolute left-[-1rem] top-[9.2rem] z-10 h-[3.2rem] w-[3.2rem] -translate-y-1/2 transform rounded-full bg-white p-3 text-courseNameColorTxt shadow-md hover:bg-[#E9EAF2]"
         aria-label="Scroll Left"
       >
         <IoIosArrowBack className="text-[1.4rem]" />
       </button>
       <button
         onClick={handleNext}
-        className="absolute right-[-1rem] top-[9.2rem] w-[3.2rem] h-[3.2rem] transform -translate-y-1/2 bg-white text-courseNameColorTxt p-3 rounded-full z-10 shadow-md hover:bg-[#E9EAF2]"
+        className="absolute right-[-1rem] top-[9.2rem] z-10 h-[3.2rem] w-[3.2rem] -translate-y-1/2 transform rounded-full bg-white p-3 text-courseNameColorTxt shadow-md hover:bg-[#E9EAF2]"
         aria-label="Scroll Right"
       >
         <IoIosArrowForward className="text-[1.4rem]" />

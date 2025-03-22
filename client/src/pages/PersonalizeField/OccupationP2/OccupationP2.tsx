@@ -20,16 +20,16 @@ const OccupationP2 = () => {
   return (
     <div>
       <div className={isClicked ? "hidden" : "block"}>
-        <div className="w-[500px] text-start p-[2em] ml-[8em] mt-[2em]">
+        <div className="ml-[8em] mt-[2em] w-[500px] p-[2em] text-start">
           <div>
-            <h1 className="text-[1.5em] mb-[1em]">
+            <h1 className="mb-[1em] text-[1.5em]">
               Which occupation are you learning for?
             </h1>
             <b>Data & Analytics occupations</b>
           </div>
           <form className="mt-[1em]">
             <RadioGroup className="flex flex-col gap-4" required={true}>
-              <div className="flex flex-row w-full items-start justify-start gap-[4em]">
+              <div className="flex w-full flex-row items-start justify-start gap-[4em]">
                 <div className="flex flex-col items-start justify-start gap-[1em]">
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="Business Analyst" />
@@ -75,7 +75,7 @@ const OccupationP2 = () => {
           </form>
           <div className="mt-[1.5em] cursor-pointer">
             <button
-              className="underline text-btnColor bg-none border-none"
+              className="border-none bg-none text-btnColor underline"
               onClick={handleClick}
             >
               I cant find my occupation

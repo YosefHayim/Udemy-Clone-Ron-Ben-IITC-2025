@@ -34,13 +34,13 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
   const percentageCompleted = data?.percentageCompleted || 0;
 
   return (
-    <nav className="border-b z-50 border-gray-700 absolute top-0 left-0 w-full bg-[#1D1E27] text-white">
-      <div className="mx-auto px-4 py-3 flex justify-between items-center">
+    <nav className="absolute left-0 top-0 z-50 w-full border-b border-gray-700 bg-grayUdemy text-white">
+      <div className="mx-auto flex items-center justify-between px-4 py-3">
         {/* Left-aligned logo and title */}
         <Link to="/">
           <div className="flex items-center justify-center space-x-4">
             <img src={inverted} alt="Logo" className="w-20 bg-transparent" />
-            <span className="text-gray-500 min-h-4">|</span>
+            <span className="min-h-4 text-gray-500">|</span>
             <span className="text-lg font-semibold">{courseName}</span>
           </div>
         </Link>
@@ -50,11 +50,11 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
           <div className="relative">
             <button
               onClick={toggleTooltip}
-              className="flex items-center gap-2 focus:outline-none justify-between text-lg rounded-sm"
+              className="flex items-center justify-between gap-2 rounded-sm text-lg focus:outline-none"
             >
               {/* Outer container with dynamic conic-gradient border */}
               <div
-                className="rounded-full flex items-center justify-center"
+                className="flex items-center justify-center rounded-full"
                 style={{
                   width: "40px",
                   height: "40px",
@@ -67,7 +67,7 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
               >
                 {/* Inner container to create the border effect */}
                 <div
-                  className="rounded-full flex items-center justify-center bg-[#1D1E27]"
+                  className="flex items-center justify-center rounded-full bg-grayUdemy"
                   style={{
                     width: "35px",
                     height: "35px",
@@ -79,13 +79,13 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
                   />
                 </div>
               </div>
-              <span className="hover:text-gray-300 text-sm">Your Progress</span>
+              <span className="text-sm hover:text-gray-300">Your Progress</span>
               <IoIosArrowDown className="text-sm" />
             </button>
             {showTooltip && (
-              <div className="absolute  top-[2.8rem] left-1/2 transform -translate-x-1/2 w-[250px] p-4 bg-white text-black rounded-lg shadow-lg border border-gray-200">
+              <div className="absolute  left-1/2 top-[2.8rem] w-[250px] -translate-x-1/2 transform rounded-lg border border-gray-200 bg-white p-4 text-black shadow-lg">
                 {/* Tooltip pointer */}
-                <div className="absolute  -top-[0.4rem] left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-gray-200"></div>
+                <div className="absolute  -top-[0.4rem] left-1/2 h-4 w-4 -translate-x-1/2 rotate-45 transform border-l border-t border-gray-200 bg-white"></div>
                 {isLoading ? (
                   <p className="text-sm font-semibold">Loading...</p>
                 ) : isError ? (
@@ -97,7 +97,7 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
                     <p className="text-sm font-semibold">
                       {completedLessons} of {totalLessons} complete.
                     </p>
-                    <p className="text-xs mt-1 text-gray-500">
+                    <p className="mt-1 text-xs text-gray-500">
                       Finish course to get your certificate.
                     </p>
                   </div>
@@ -106,13 +106,13 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
             )}
           </div>
           <div>
-            <button className="focus:outline-none border px-3 h-[2rem] flex p-4 justify-between items-center hover:border-white py-1 rounded-sm text-sm hover:bg-gray-600">
+            <button className="flex h-[2rem] items-center justify-between rounded-sm border p-4 px-3 py-1 text-sm hover:border-white hover:bg-gray-600 focus:outline-none">
               Share
               <IoMdShareAlt className="ml-2" />
             </button>
           </div>
-          <button className="focus:outline-none hover:bg-gray-300 border-white rounded-sm">
-            <HiDotsVertical className="border size-8 p-2 rounded-sm" />
+          <button className="rounded-sm border-white hover:bg-gray-300 focus:outline-none">
+            <HiDotsVertical className="size-8 rounded-sm border p-2" />
           </button>
         </div>
       </div>

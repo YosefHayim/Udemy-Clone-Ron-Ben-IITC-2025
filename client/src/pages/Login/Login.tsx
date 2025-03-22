@@ -3,16 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import loginUser from "@/api/users/loginUser";
 import { FcGoogle } from "react-icons/fc";
-import { FaApple } from "react-icons/fa";
+import { FaApple, FaRegUser } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
 import { emailContext } from "@/routes/AppRoutes";
-import { BiSolidErrorAlt } from "react-icons/bi";
 import { useGoogleLogin } from "@react-oauth/google";
 import googleLogin from "@/api/users/googleLogin";
 import Loader from "@/components/Loader/Loader";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { Button } from "@/components/ui/button";
 import {
   continueWGoogleBtn,
@@ -24,18 +22,34 @@ import {
   loginWDiffAccBtn,
   loginWithEmailBtn,
 } from "@/utils/stylesStorage";
+import { baseUrl, localhostUrl } from "@/api/configuration";
+import { AiOutlineMail } from "react-icons/ai";
 
 const Login = () => {
   const navigate = useNavigate();
+  // Change this to true when using in production.
+  const [isDeployed, setDeployed] = useState(false);
   const [isError, setShowIsError] = useState(false);
+  const [differentAccount, setDifferentAccount] = useState(false);
   const [showRegularLogin, setShowRegularLogin] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const isLoggedPreviouslyWithGoogle = useSelector(
-    (state: RootState) => state?.user.isLoggedPreviouslyWithGoogle
+    (state: RootState) => state?.user?.isLoggedPreviouslyWithGoogle,
+  );
+  const cookie = useSelector((state: RootState) => state?.user?.cookie);
+  const fullname = useSelector((state: RootState) => state?.user?.fullName);
+  const email = useSelector((state: RootState) => state?.user?.email);
+  const userProfileImage = useSelector(
+    (state: RootState) => state?.user?.profilePic,
   );
 
   const handleRegularLogin = () => {
     setShowRegularLogin(true);
+  };
+
+  const handleDifferentAccount = () => {
+    setDifferentAccount(true);
+    // setShowRegularLogin(false);
   };
 
   const loginMutation = useMutation({
@@ -91,88 +105,102 @@ const Login = () => {
     },
     flow: "auth-code",
     ux_mode: "popup",
-    redirect_uri: "http://127.0.0.1:5137",
+    redirect_uri: isDeployed ? `${baseUrl}` : `${localhostUrl}`,
   });
 
-  useEffect(() => {}, [isLoggedPreviouslyWithGoogle]);
+  useEffect(() => {
+    if (fullname.length > 1 && email.length > 1 && !cookie) {
+      setShowRegularLogin(true);
+    }
+  }, [isLoggedPreviouslyWithGoogle, showRegularLogin]);
 
   return (
     <div className="h-screen bg-cover bg-center">
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex w-full flex-1 items-center justify-center">
         <img
           src="/images/loginImg.png"
           alt="Login Illustration"
-          className="w-[100%] h-auto max-w-[620px] max-h-[100%] object-contain p-12 mr-[2.7rem]"
+          className="mr-[2.7rem] h-auto max-h-[100%] w-[100%] max-w-[620px] object-contain p-12"
         />
-        <div className="w-full max-w-[29rem] p-6 bg-white  rounded-lg ml-[3rem] mr-[5rem]">
-          <h2 className="text-3xl font-bold text-gray-800 mb-10 text-center">
+        <div className="ml-[3rem] mr-[5rem] w-full max-w-[29rem]  rounded-lg bg-white p-6">
+          <h2 className="mb-10 text-center text-3xl font-bold text-gray-800">
             Log in to continue your learning journey
           </h2>
-          <div
-            className={
-              isError
-                ? `gap-[1em] w-full border border-red-700 p-[1em] py-[1.5em] font-bold rounded-[1.5em] mb-[1em] flex flex-row items-start justify-center`
-                : "hidden"
-            }
-          >
-            <div>
-              <BiSolidErrorAlt className="text-[2.5em] text-red-600" />
-            </div>
-            <div>
-              <p className="text-[1.8em]">
-                There was a problem logging in. Check your email or create an
-                account.
-              </p>
-            </div>
-          </div>
-          {(!isLoggedPreviouslyWithGoogle || showRegularLogin) && (
-            <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
-              <div className="relative">
-                <input
-                  required={true}
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                  className={`${inputLoginWEmail}`}
-                />
-                <div className={isError ? "block" : "hidden"}>
-                  <span className="text-red-600 absolute font-bold top-[10%] right-[87%]">
-                    Email
-                  </span>
-                  <BiSolidErrorAlt className="text-[1.5em] text-red-600 absolute top-[10%] right-[82%]" />
-                </div>
-              </div>
-              <button type="submit" className={`${loginWithEmailBtn}`}>
-                {isLoading ? (
-                  <Loader useSmallLoading={true} hSize="" />
-                ) : (
-                  <div className="flex items-center">
-                    <MdEmail size={25} />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16.5 12h-9m6 0l-3-3m3 3l-3 3"
+          {showRegularLogin && (
+            <div
+              className={`"w-full" ${
+                showRegularLogin && !differentAccount ? "block" : "hidden"
+              }`}
+            >
+              <div className="mb-4 flex w-full flex-col items-center justify-center text-center">
+                <div>
+                  {userProfileImage.length > 1 ? (
+                    <img
+                      src={userProfileImage}
+                      alt="user profile image"
+                      className="h-[5rem] w-[6em] rounded-[100em] bg-black"
                     />
-                    <button className="focus:outline-none text-[1rem] font-bold">
-                      Continue with email
-                    </button>
-                  </div>
-                )}
-              </button>
-            </form>
+                  ) : (
+                    <div className="rounded-full bg-black p-6">
+                      <FaRegUser size={24} className="text-white" />
+                    </div>
+                  )}
+                </div>
+                <b>Welcome back, {fullname}</b>
+                <p>
+                  We’ll email <b>{email}</b> a code for a secure passwordless
+                  log-in.
+                </p>
+              </div>
+              <form
+                className="mb-4 flex flex-col space-y-4"
+                onSubmit={handleSubmit}
+              >
+                <button type="submit" className={`${loginWithEmailBtn}`}>
+                  {isLoading ? (
+                    <Loader useSmallLoading={true} hSize="" />
+                  ) : (
+                    <div className="flex items-center">
+                      <button
+                        className={`flex items-center text-[1rem] font-bold focus:outline-none ${loginWithEmailBtn}`}
+                        type="submit"
+                      >
+                        <AiOutlineMail size={20} />
+                        Continue with email
+                      </button>
+                    </div>
+                  )}
+                </button>
+              </form>
+            </div>
           )}
-          {showRegularLogin ||
+          {differentAccount ||
             (!isLoggedPreviouslyWithGoogle && (
               <>
-                <div className="w-full flex items-center my-6">
+                <div className="flex flex-col items-center gap-4">
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                    className={`${inputLoginWEmail}`}
+                  />
+                  <button
+                    className={`${loginWithEmailBtn} flex items-center text-[1rem] font-bold focus:outline-none`}
+                    type="submit"
+                  >
+                    <AiOutlineMail size={20} />
+                    Continue with email
+                  </button>
+                </div>
+                <div className="my-6 flex w-full items-center">
                   <hr className="flex-grow border-gray-300" />
                   <span className="mx-4 text-sm text-grayNavbarTxt">
                     Other log in options
                   </span>
                   <hr className="flex-grow border-gray-300" />
                 </div>
-                <div className="flex justify-center space-x-5 mb-[5em]">
+                <div className="mb-[2em] flex justify-center space-x-5">
                   <button
                     onClick={handleGoogle}
                     className={`${loginThirdPartyBtn}`}
@@ -194,21 +222,33 @@ const Login = () => {
             </Button>
           )}
           <div className={`${divDiffOptionsLogin}`}>
-            {isLoggedPreviouslyWithGoogle && !showRegularLogin && (
+            {showRegularLogin ||
+              (isLoggedPreviouslyWithGoogle && (
+                <div>
+                  <button
+                    onClick={handleRegularLogin}
+                    className={`${loginWDiffAccBtn}`}
+                  >
+                    Log in with different account
+                  </button>
+                  <hr />
+                </div>
+              ))}
+            {showRegularLogin && (
               <div>
                 <button
-                  onClick={handleRegularLogin}
+                  onClick={handleDifferentAccount}
                   className={`${loginWDiffAccBtn}`}
                 >
-                  Log in with different account
+                  Log to a different account
                 </button>
                 <hr />
               </div>
             )}
             <Link to="/signup">
-              <button className="focus:outline-none underline-offset-[5px] p-[0.7em]">
+              <button className="p-[0.7em] underline-offset-[5px] focus:outline-none">
                 Don't have an account?{" "}
-                <span className="text-btnColor font-bold underline">
+                <span className="font-bold text-btnColor underline">
                   Sign up
                 </span>
               </button>

@@ -32,7 +32,7 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
         </span>
       ) : (
         part
-      )
+      ),
     );
   };
 
@@ -41,7 +41,7 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
     .map((section) => ({
       ...section,
       lessons: section.lessons.filter((lesson) =>
-        lesson.title.toLowerCase().includes(searchQuery.toLowerCase())
+        lesson.title.toLowerCase().includes(searchQuery.toLowerCase()),
       ),
     }))
     .filter((section) => section.lessons.length > 0); // Only include sections with matching lessons
@@ -49,23 +49,23 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
   return (
     <div className="flex flex-col items-center justify-center p-10">
       {/* Search Input */}
-      <div id="search" className="flex items-center justify-between mb-6">
+      <div id="search" className="mb-6 flex items-center justify-between">
         <input
           type="text"
           placeholder="Search course content"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="bg-white min-w-[744px] min-h-[48px] focus:outline-none px-4 border border-black rounded-sm text-lg"
+          className="min-h-[48px] min-w-[744px] rounded-sm border border-black bg-white px-4 text-lg focus:outline-none"
         />
-        <IoIosSearch className="bg-btnColor text-white rounded-[4px] p-3 ml-2 size-[48px]" />
+        <IoIosSearch className="ml-2 size-[48px] rounded-[4px] bg-btnColor p-3 text-white" />
       </div>
 
       {/* Filtered Results */}
       {searchQuery ? (
         filteredSections.length > 0 ? (
           filteredSections.map((section, idx) => (
-            <div key={section._id} className="min-w-[800px] border-y group">
-              <div className="flex items-center justify-between p-4 bg-bgCommercial">
+            <div key={section._id} className="group min-w-[800px] border-y">
+              <div className="flex items-center justify-between bg-bgCommercial p-4">
                 <span className="text-lg font-medium">
                   Section {idx + 1}: {section.title}
                 </span>
@@ -81,7 +81,7 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
                   return (
                     <li
                       key={lesson._id}
-                      className={`flex items-center gap-3 mb-2 p-2 ${
+                      className={`mb-2 flex items-center gap-3 p-2 ${
                         isCurrentLesson
                           ? "bg-slate-400 text-white"
                           : "hover:bg-slate-400"
@@ -91,7 +91,7 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
                         <Link
                           to={`/course/${courseId}/lesson/${lesson._id}`}
                           state={{ courseId }}
-                          className="flex-col text-sm ml-2"
+                          className="ml-2 flex-col text-sm"
                         >
                           <span>
                             {highlightText(lesson.title, searchQuery)}
@@ -116,16 +116,16 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
           ))
         ) : (
           // No Results Found
-          <div className="text-center mt-10">
-            <h2 className="text-2xl text-gray-600 font-bold">
+          <div className="mt-10 text-center">
+            <h2 className="text-2xl font-bold text-gray-600">
               No results found
             </h2>
             <p className="text-gray-500">Try a different search query.</p>
           </div>
         )
       ) : (
-        <span className="self-center flex flex-col items-center  my-[40px]">
-          <h2 className="text-2xl text-[##303141] font-bold ">
+        <span className="my-[40px] flex flex-col items-center  self-center">
+          <h2 className="text-2xl font-bold text-[##303141] ">
             Start a new search
           </h2>
           <h2 className="text-sm text-black ">

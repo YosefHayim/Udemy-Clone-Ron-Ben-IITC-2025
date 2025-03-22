@@ -1,6 +1,6 @@
 const InteractionBtns: React.FC = () => {
   return (
-    <div className="flex flex-row justify-around  w-full mb-[1em]">
+    <div className="mb-[1em] flex w-full  flex-row justify-around">
       <b className="underline">Share</b>
       <b className="underline">Gift this course</b>
       <b className="underline">Apply Coupon</b>

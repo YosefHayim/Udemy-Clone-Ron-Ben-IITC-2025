@@ -18,15 +18,15 @@ const Privacy = () => {
 
       {/* Main Content */}
       <main className="flex-1 p-8">
-        <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Privacy</h2>
-          <p className="text-gray-600 mb-4">
+        <div className="mx-auto max-w-3xl rounded-lg bg-white p-8 shadow-lg">
+          <h2 className="mb-6 text-2xl font-bold text-gray-800">Privacy</h2>
+          <p className="mb-4 text-gray-600">
             Modify your privacy settings here.
           </p>
 
           {/* Profile Page Settings */}
           <div className="mb-6">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+            <h3 className="mb-4 text-lg font-semibold text-gray-800">
               Profile page settings
             </h3>
             <div className="space-y-4">
@@ -37,11 +37,11 @@ const Privacy = () => {
                   type="checkbox"
                   checked={showProfile}
                   onChange={() => setShowProfile(!showProfile)}
-                  className="h-5 w-5 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                  className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                 />
                 <label
                   htmlFor="showProfile"
-                  className="ml-3 text-gray-700 text-sm"
+                  className="ml-3 text-sm text-gray-700"
                 >
                   Show your profile to logged-in users
                 </label>
@@ -54,11 +54,11 @@ const Privacy = () => {
                   type="checkbox"
                   checked={showCourses}
                   onChange={() => setShowCourses(!showCourses)}
-                  className="h-5 w-5 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                  className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                 />
                 <label
                   htmlFor="showCourses"
-                  className="ml-3 text-gray-700 text-sm"
+                  className="ml-3 text-sm text-gray-700"
                 >
                   Show courses you're taking on your profile page
                 </label>
@@ -71,7 +71,7 @@ const Privacy = () => {
             <button
               type="button"
               onClick={handleSave}
-              className="px-6 py-2 bg-purple-600 text-white rounded-md shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="rounded-md bg-purple-600 px-6 py-2 text-white shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
             >
               Save
             </button>

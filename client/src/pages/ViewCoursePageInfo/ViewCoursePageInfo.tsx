@@ -21,7 +21,7 @@ import TopicPathMenu from "./TopicPathMenu/TopicPathMenu";
 import WhatYouLearn from "./WhatYouLearn/WhatYouLearn";
 import CoursePreviewCard from "./CoursePreviewCard/CoursePreviewCard";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
-import { CourseData } from "../../types/types";
+import { CourseData } from "@/types/types";
 
 const ViewCoursePageInfo = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -59,9 +59,9 @@ const ViewCoursePageInfo = () => {
 
   return (
     <div>
-      <div className="flex flex-row p-[3em] items-start justify-start w-2/5 gap-[3em]">
-        <div className="w-full flex flex-col items-start justify-start gap-[1em]">
-          <div className="bg-blackUdemy h-[350px] absolute w-full left-0 top-[8%]"></div>
+      <div className="flex w-2/5 flex-row items-start justify-start gap-[3em] p-[3em]">
+        <div className="flex w-full flex-col items-start justify-start gap-[1em]">
+          <div className="absolute left-0 top-[8%] h-[350px] w-full bg-blackUdemy"></div>
           <StickyCourseNavbar
             courseName={data?.courseName}
             totalStudents={data?.totalStudentsEnrolled.count}
@@ -75,7 +75,7 @@ const ViewCoursePageInfo = () => {
           />
           <CourseBigTitle courseTitle={data?.courseName} />
           <CourseRecap recapInfo={data?.courseRecapInfo} />
-          <div className="w-full flex flex-row items-center justify-start gap-[0.5em]">
+          <div className="flex w-full flex-row items-center justify-start gap-[0.5em]">
             <CourseTag tagName={data?.courseTag} />
             <CourseRating amountOfStars={data?.averageRating} />
             <CourseStudentRatings

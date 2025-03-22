@@ -24,25 +24,25 @@ const OptionsMyLearning = () => {
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <div className="bg-none w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+            <div className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] bg-none px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
               <IoIosShareAlt />
               <p>Share</p>
             </div>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <div className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+            <div className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
               <GoPlus />
               <p>Create new List</p>
             </div>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <div className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+            <div className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
               <MdOutlineStar />
               <p>Favorite</p>
             </div>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <div className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+            <div className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
               <IoMdFolder />
               <p>Archive</p>
             </div>

@@ -13,7 +13,7 @@ import { useCallback, useEffect, useState } from "react";
 import TopicSearch from "./TopicSearch/TopicSearch";
 import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
 import { IoClose } from "react-icons/io5";
-import { ResponseSuggestions } from "../../types/types";
+import { ResponseSuggestions } from "@/types/types";
 import { Link } from "react-router-dom";
 
 const DialogFrequentlyBoughtTogether: React.FC<{
@@ -44,15 +44,15 @@ const DialogFrequentlyBoughtTogether: React.FC<{
       try {
         const response = await axios.get(
           `https://api.datamuse.com/words?rel_trg=${encodeURIComponent(
-            query
-          )}&max=10`
+            query,
+          )}&max=10`,
         );
         if (response) {
           console.log(response);
         }
 
         setSuggestions(
-          response.data.map((item: ResponseSuggestions) => item.word)
+          response.data.map((item: ResponseSuggestions) => item.word),
         );
       } catch (error) {
         console.log("Error fetching autocomplete suggestions:", error);
@@ -77,21 +77,21 @@ const DialogFrequentlyBoughtTogether: React.FC<{
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>
-              <div className="flex items-center justify-between w-full">
+              <div className="flex w-full items-center justify-between">
                 <div>
                   <p className="font-semibold">Added to cart</p>
                 </div>
                 <div
                   onClick={() => setShowDialogOfFbt(false)}
-                  className="cursor-pointer p-[0.5em] text-gray-500
-              hover:bg-purpleHoverBtn rounded-[0.2em]"
+                  className="cursor-pointer rounded-[0.2em] p-[0.5em]
+              text-gray-500 hover:bg-purpleHoverBtn"
                 >
                   <IoClose size={20} />
                 </div>
               </div>
             </AlertDialogTitle>
             <AlertDialogDescription>
-              <div className="flex items-center justify-around w-full">
+              <div className="flex w-full items-center justify-around">
                 <div>
                   <IoMdCheckmarkCircle size={30} className="text-green-700" />
                 </div>
@@ -104,20 +104,20 @@ const DialogFrequentlyBoughtTogether: React.FC<{
                     hide={false}
                   />
                 </div>
-                <Button className="font-bold w-min rounded-[0.3em] px-[1em] focus:outline-none bg-btnColor hover:bg-purpleStatic text-white">
+                <Button className="w-min rounded-[0.3em] bg-btnColor px-[1em] font-bold text-white hover:bg-purpleStatic focus:outline-none">
                   Go to cart
                 </Button>
               </div>
               <div>
                 <FrequentlyBoughtTogether instructorId={instructorId} />
               </div>
-              <div className="flex flex-col items-start w-full justify-start">
-                <h2 className="font-bold my-3 text-black">Related topics</h2>
+              <div className="flex w-full flex-col items-start justify-start">
+                <h2 className="my-3 font-bold text-black">Related topics</h2>
                 <div className="flex flex-wrap items-center justify-start gap-[0.5em]">
                   {suggestions.map((suggestion) => (
                     <Link
                       to={`/courses/search?src=ukw&q=${encodeURIComponent(
-                        suggestion.toLowerCase()
+                        suggestion.toLowerCase(),
                       )}`}
                     >
                       <TopicSearch key={suggestion} text={suggestion} />

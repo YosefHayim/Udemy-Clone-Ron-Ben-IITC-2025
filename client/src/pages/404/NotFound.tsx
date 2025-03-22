@@ -17,7 +17,7 @@ const NotFound: React.FC = () => {
           Visit our
           <Link
             to="/"
-            className="underline text-purpleStatic cursor-pointer mx-[0.5em]"
+            className="mx-[0.5em] cursor-pointer text-purpleStatic underline"
           >
             support page
           </Link>

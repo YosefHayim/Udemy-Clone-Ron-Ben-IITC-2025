@@ -12,7 +12,7 @@ const SelectCountry = () => {
 
   return (
     <div>
-      <div className="flex flex-col gap-[0.5em] mb-[0.5em]">
+      <div className="mb-[0.5em] flex flex-col gap-[0.5em]">
         <label htmlFor="country-select" className="font-bold">
           Country
         </label>
@@ -21,7 +21,7 @@ const SelectCountry = () => {
           required={true}
           value={selectedCountry}
           onChange={handleChange}
-          className="bg-white text-black p-[1em] rounded-[0.2em] border border-black"
+          className="rounded-[0.2em] border border-black bg-white p-[1em] text-black"
         >
           <option value="" disabled>
             Please select...
@@ -34,7 +34,7 @@ const SelectCountry = () => {
           ))}
         </select>
       </div>
-      <p className="text-grayNavbarTxt w-full">
+      <p className="w-full text-grayNavbarTxt">
         Udemy is required by law to collect applicable transaction taxes for
         purchases made in certain tax jurisdictions.
       </p>

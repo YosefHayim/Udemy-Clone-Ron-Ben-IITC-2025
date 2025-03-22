@@ -1,20 +1,23 @@
 import Loader from "@/components/Loader/Loader";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { setCoursesAddedToWishList } from "@/redux/slices/cartSlice";
 import { useState } from "react";
 import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const HeartBtn: React.FC<{
   iconSize?: string;
   courseId?: string;
   showHeart?: boolean;
 }> = ({ iconSize = "2em", courseId, showHeart = false }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const cookie = useSelector((state: RootState) => state.user.cookie);
   // Get wishlist courses from Redux
   const coursesInWishlist = useSelector(
-    (state: RootState) => state.cart.coursesAddedToWishList
+    (state: RootState) => state.cart.coursesAddedToWishList,
   );
 
   // Check if course is in wishlist
@@ -25,10 +28,13 @@ const HeartBtn: React.FC<{
   if (!courseId) return null;
 
   const handleClick = () => {
+    if (!cookie) {
+      navigate("/signup");
+      return;
+    }
+
     if (isLoading) return;
-
     setLoading(true);
-
     dispatch(setCoursesAddedToWishList(courseId));
 
     setTimeout(() => {
@@ -42,7 +48,7 @@ const HeartBtn: React.FC<{
       id={courseId}
       className={`${
         showHeart ? "block" : "hidden"
-      } p-[1em] flex items-center justify-center rounded-full border border-purple-700 cursor-pointer hover:bg-purpleHoverBtn transition-all duration-300`}
+      } flex cursor-pointer items-center justify-center rounded-full border border-purple-700 p-[1em] transition-all duration-300 hover:bg-purpleHoverBtn`}
     >
       {isLoading ? (
         <Loader useSmallLoading={true} hSize="0em" paddingSetTo="0em" />

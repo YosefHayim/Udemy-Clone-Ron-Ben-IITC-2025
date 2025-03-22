@@ -1,16 +1,16 @@
 import ProfilePic from "@/components/ProfilePic/ProfilePic";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 const SideBarProfile = () => {
   const fullName = useSelector((state: RootState) => state?.user.fullName);
   const profilePic = useSelector((state: RootState) => state?.user.profilePic);
-  const cookie = useSelector((state: RootState) => state?.user.cookie);
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   const location = useLocation();
 
-  if (cookie && cookie.length < 20) {
+  if (!cookie) {
     return <div></div>;
   }
 
@@ -18,11 +18,11 @@ const SideBarProfile = () => {
   const shortcutName = (firstWord?.[0] || "") + (secondWord?.[0] || "");
 
   return (
-    <div className="w-56 bg-white border-l border-b border-t border-r border-borderGrayColor">
+    <div className="w-56 border-b border-l border-r border-t border-borderGrayColor bg-white">
       {/* Picture & Name */}
       <div className="p-6 ">
         <div className="flex flex-col items-center space-y-4">
-          <div className="flex items-center justify-center w-[8rem] h-[8rem] rounded-full text-white text-4xl font-bold">
+          <div className="flex h-[8rem] w-[8rem] items-center justify-center rounded-full text-4xl font-bold text-white">
             <ProfilePic
               customTextSize={`text-4xl`}
               size={`w-[3em] h-[3em]`}
@@ -43,7 +43,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/public-profile"
-              className={`block py-2 px-6 font-medium cursor ${
+              className={`cursor block px-6 py-2 font-medium ${
                 location.pathname === "/user/public-profile"
                   ? "bg-gray-300 text-gray-900"
                   : "text-gray-700 hover:bg-gray-400 hover:text-white"
@@ -55,7 +55,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/edit-profile"
-              className={`block py-2 px-6 font-medium cursor ${
+              className={`cursor block px-6 py-2 font-medium ${
                 location.pathname === "/user/edit-profile"
                   ? "bg-gray-300 text-gray-900"
                   : "text-gray-700 hover:bg-gray-400 hover:text-white"
@@ -67,7 +67,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/photo"
-              className={`block py-2 px-6 font-medium cursor ${
+              className={`cursor block px-6 py-2 font-medium ${
                 location.pathname === "/user/photo"
                   ? "bg-gray-400 text-white"
                   : "text-gray-700 hover:bg-gray-400 hover:text-white"
@@ -79,7 +79,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/edit-account"
-              className={`block py-2 px-6 font-medium cursor ${
+              className={`cursor block px-6 py-2 font-medium ${
                 location.pathname === "/user/edit-account"
                   ? "bg-gray-300 text-gray-900"
                   : "text-gray-700 hover:bg-gray-400 hover:text-white"
@@ -91,7 +91,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/manage-subscriptions"
-              className={`block py-2 px-6 font-medium cursor ${
+              className={`cursor block px-6 py-2 font-medium ${
                 location.pathname === "/user/manage-subscriptions"
                   ? "bg-gray-300 text-gray-900"
                   : "text-gray-700 hover:bg-gray-400 hover:text-white"
@@ -103,7 +103,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/edit-payment-methods/"
-              className={`block py-2 px-6 font-medium cursor ${
+              className={`cursor block px-6 py-2 font-medium ${
                 location.pathname === "/user/edit-payment-methods/"
                   ? "bg-gray-300 text-gray-900"
                   : "text-gray-700 hover:bg-gray-400 hover:text-white"
@@ -115,7 +115,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/edit-privacy"
-              className={`block py-2 px-6 font-medium cursor ${
+              className={`cursor block px-6 py-2 font-medium ${
                 location.pathname === "/user/edit-privacy"
                   ? "bg-gray-300 text-gray-900"
                   : "text-gray-700 hover:bg-gray-400 hover:text-white"
@@ -127,7 +127,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/edit-notifications/"
-              className={`block py-2 px-6 font-medium cursor ${
+              className={`cursor block px-6 py-2 font-medium ${
                 location.pathname === "/user/edit-notifications/"
                   ? "bg-gray-300 text-gray-900"
                   : "text-gray-700 hover:bg-gray-400 hover:text-white"
@@ -139,7 +139,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/edit-api-clients/"
-              className={`block py-2 px-6 font-medium cursor ${
+              className={`cursor block px-6 py-2 font-medium ${
                 location.pathname === "/user/edit-api-clients/"
                   ? "bg-gray-300 text-gray-900"
                   : "text-gray-700 hover:bg-gray-400 hover:text-white"
@@ -151,7 +151,7 @@ const SideBarProfile = () => {
           <li>
             <Link
               to="/user/close-account"
-              className={`block py-2 px-6 font-medium cursor ${
+              className={`cursor block px-6 py-2 font-medium ${
                 location.pathname === "/user/close-account"
                   ? "bg-gray-300 text-gray-900"
                   : "text-gray-700 hover:bg-gray-400 hover:text-white"

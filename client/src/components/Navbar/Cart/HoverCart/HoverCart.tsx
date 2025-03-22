@@ -4,16 +4,16 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loader from "@/components/Loader/Loader";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 
 const HoverCart = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const totalToPay = useSelector(
-    (state: RootState) => state.cart.totalCourseDiscountPrices
+    (state: RootState) => state.cart.totalCourseDiscountPrices,
   );
   const coursesIdAdded = useSelector(
-    (state: RootState) => state.cart.coursesAddedToCart
+    (state: RootState) => state.cart.coursesAddedToCart,
   );
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const HoverCart = () => {
 
   return (
     <div>
-      <div className="mt-[0.1em] rounded-[1em] flex flex-col justify-center items-start border border-gray-300 w-[300px] bg-white z-[1000] absolute right-[0em] top-[1em] shadow-alertAlgoInfo cursor-pointer">
+      <div className="absolute right-[0em] top-[1em] z-[1000] mt-[0.1em] flex w-[300px] cursor-pointer flex-col items-start justify-center rounded-[1em] border border-gray-300 bg-white shadow-alertAlgoInfo">
         <div className="w-full">
           {coursesIdAdded.length > 0 ? (
             coursesIdAdded.map((courseId: string) => (
@@ -47,23 +47,23 @@ const HoverCart = () => {
               />
             ))
           ) : (
-            <div className="flex flex-col items-center justify-center w-full text-center mt-[1em]">
-              <p className="text-grayNavbarTxt font-light mb-[1em]">
+            <div className="mt-[1em] flex w-full flex-col items-center justify-center text-center">
+              <p className="mb-[1em] font-light text-grayNavbarTxt">
                 Your cart is empty.
               </p>
-              <b className="text-purpleStatic hover:text-purpleHover cursor-pointer">
+              <b className="cursor-pointer text-purpleStatic hover:text-purpleHover">
                 <Link to="/">Keep shopping</Link>
               </b>
             </div>
           )}
         </div>
-        <div className="w-full p-[1em] flex flex-col">
+        <div className="flex w-full flex-col p-[1em]">
           {totalToPay && coursesIdAdded ? (
             <div>
               <b className="text-[1.5em]">
                 Total: ₪{totalToPay ? totalToPay.toFixed(2) : "0.00"}
               </b>
-              <Button className="focus:outline-none mt-[1em] w-full rounded-[0.3em] bg-btnColor hover:bg-btnHoverColor py-[1.7em] font-bold">
+              <Button className="mt-[1em] w-full rounded-[0.3em] bg-btnColor py-[1.7em] font-bold hover:bg-btnHoverColor focus:outline-none">
                 <Link to="/cart" className="cursor-pointer">
                   Go to cart
                 </Link>

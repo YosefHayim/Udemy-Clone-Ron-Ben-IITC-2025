@@ -1,10 +1,13 @@
 import { Button } from "@/components/ui/button";
+import { loginWithEmailBtn } from "@/utils/stylesStorage";
 import { Link } from "react-router-dom";
 
 const SignupBtn = () => {
   return (
     <Link to="/signup">
-      <Button className="font-bold transition duration-150 text-sm font-Sans py-[1.2rem] bg-btnColor hover:bg-[#892DE1] text-white rounded-[0.2rem] px-4 focus:outline-none">
+      <Button
+        className={`${loginWithEmailBtn} font-bold rounded-sm py-0 h-full`}
+      >
         Sign up
       </Button>
     </Link>

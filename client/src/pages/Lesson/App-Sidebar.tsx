@@ -58,11 +58,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <>
       <Sidebar
-        className="absolute min-h-full top-[4rem] px-0 bg-white"
+        className="absolute top-[4rem] min-h-full bg-white px-0"
         side="right"
       >
         <SidebarContent>
-          <SidebarGroup className="p-0 gap-0">
+          <SidebarGroup className="gap-0 p-0">
             <SidebarGroupContent className="gap-0">
               <CourseSidebarMenu courseId={courseId || ""} />
             </SidebarGroupContent>

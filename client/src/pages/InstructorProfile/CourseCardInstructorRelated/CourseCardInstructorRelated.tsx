@@ -26,7 +26,7 @@ const CourseCardInstructorRelated: React.FC<{
 }) => {
   return (
     <div>
-      <div className=" flex flex-col items-start justify-start gap-[0.2em] cursor-pointer">
+      <div className=" flex cursor-pointer flex-col items-start justify-start gap-[0.2em]">
         <img
           src={courseImg}
           alt=""
@@ -39,7 +39,7 @@ const CourseCardInstructorRelated: React.FC<{
           <CourseRating amountOfStars={4.7} courseRating={0} />
           <p className="text-gray-500 ">({totalRatings})</p>
         </div>
-        <div className="text-gray-500  flex flex-row items-center justify-start gap-[0.2em]">
+        <div className="flex  flex-row items-center justify-start gap-[0.2em] text-gray-500">
           <p>{totalCourseDuration} hours</p>
           <LuDot />
           <p>59 lectures</p>

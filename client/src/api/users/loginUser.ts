@@ -9,12 +9,13 @@ type fn = (email: email) => Promise<any>;
 const loginUser: fn = async (email) => {
   try {
     const response = await axiosClient.post(
-      `${baseUrl}/api/user/auth/login`,
-      email
+      `${localhostUrl}/api/user/auth/login`,
+      email,
     );
 
     if (response) {
-      console.log(response);
+      console.log(response.data);
+      localStorage.setItem("cookie", response.data.token);
       return response.data;
     }
   } catch (error) {

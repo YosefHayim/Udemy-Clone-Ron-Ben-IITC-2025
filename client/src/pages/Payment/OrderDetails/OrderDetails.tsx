@@ -1,14 +1,14 @@
 import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 
 const OrderDetails: React.FC = () => {
   const coursesIdAdded = useSelector(
-    (state: RootState) => state.cart.coursesAddedToCart
+    (state: RootState) => state.cart.coursesAddedToCart,
   );
 
   return (
-    <div className="flex flex-col items-start justify-start gap-[1em] w-[400px]">
+    <div className="flex w-[400px] flex-col items-start justify-start gap-[1em]">
       <div className="flex flex-row items-start justify-start gap-[0.2em]">
         <b>Order details</b>
         <p>({coursesIdAdded.length} Course)</p>

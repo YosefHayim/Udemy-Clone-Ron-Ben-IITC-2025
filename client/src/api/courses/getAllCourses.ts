@@ -4,14 +4,14 @@ type fn = (
   searchTerm: string,
   limit: number,
   page: number,
-  filterData?: {}
+  filterData?: {},
 ) => Promise<any>;
 
 const getAllCourses: fn = async (
   searchTerm = "",
   filterData = {},
   limit = 13,
-  page = 1
+  page = 1,
 ) => {
   if (!searchTerm) {
     console.log("Search term is required");
@@ -44,7 +44,7 @@ const getAllCourses: fn = async (
 
   // Construct query string, including only valid parameters
   const url =
-    `${baseUrl}/api/course/?search=${encodedSearchTerm}` +
+    `${localhostUrl}/api/course/?search=${encodedSearchTerm}` +
     (price === "Free" ? `&courseDiscountPrice=0` : "") + // Fix for free courses
     (price === "Paid" ? `&courseDiscountPrice[gte]=0.01` : "") + // Fix for paid courses
     (ratings ? `&averageRating[gte]=${ratings}` : "") +
@@ -62,7 +62,8 @@ const getAllCourses: fn = async (
     const { data } = await axiosClient.get(url);
 
     if (data) {
-      return data;
+      // console.log(data.response);
+      return data.response;
     }
     return null;
   } catch (error) {

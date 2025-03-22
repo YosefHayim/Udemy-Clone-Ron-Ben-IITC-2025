@@ -1,4 +1,4 @@
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
@@ -11,10 +11,10 @@ const PublicProfile = () => {
 
   return (
     <div className="text-white">
-      <div className="bg-[#1d1e27] py-[4em] px-[4em]">
-        <h1 className="text-[2.5em] ml-[2em]">{fullName}</h1>
+      <div className="bg-grayUdemy px-[4em] py-[4em]">
+        <h1 className="ml-[2em] text-[2.5em]">{fullName}</h1>
       </div>
-      <div className="bg-white p-[5em] w-min text-center">
+      <div className="w-min bg-white p-[5em] text-center">
         {/* // Temp leave it not working I dont have power to know why */}
         {/* <img
           src={profilePic}
@@ -22,7 +22,7 @@ const PublicProfile = () => {
           className="rounded-[100em] w-full h-full object-cover z-[100]"
         /> */}
         <div
-          className={`relative flex items-center justify-center rounded-[100em] text-[4em] bg-black p-[1em] w-full`}
+          className={`relative flex w-full items-center justify-center rounded-[100em] bg-black p-[1em] text-[4em]`}
         >
           <b className="absolute text-white">{shortcutName}</b>
         </div>

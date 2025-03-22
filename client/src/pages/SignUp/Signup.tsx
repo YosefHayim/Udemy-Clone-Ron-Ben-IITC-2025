@@ -1,7 +1,7 @@
 import registerUser from "@/api/users/registerUser";
 import Loader from "@/components/Loader/Loader";
 import { emailContext } from "@/routes/AppRoutes";
-import { RegisterUserPayload } from "../../types/types";
+import { RegisterUserPayload } from "@/types/types";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useMutation } from "@tanstack/react-query";
@@ -81,23 +81,23 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="flex mt-[8em]">
-      <div className="w-1/2 h-full mr-[-6rem] ml-[3rem] mt-[-3rem] flex items-center justify-center bg-white">
+    <div className="mt-[8em] flex">
+      <div className="ml-[3rem] mr-[-6rem] mt-[-3rem] flex h-full w-1/2 items-center justify-center bg-white">
         <img
           src="/images/signup.png"
           alt="Sign Up Illustration"
           className="h-[90%] w-auto object-contain"
         />
       </div>
-      <div className="w-1/2 h-full flex items-center justify-center bg-white">
+      <div className="flex h-full w-1/2 items-center justify-center bg-white">
         <div className="w-3/4 max-w-[27rem]">
-          <h2 className="text-[2rem] font-bold text-courseNameColorTxt mb-6 w-full text-center">
+          <h2 className="mb-6 w-full text-center text-[2rem] font-bold text-courseNameColorTxt">
             Sign up with email
           </h2>
           <div
             className={
               isError
-                ? `gap-[1em] w-full border border-red-700 p-[1em] py-[1.5em] font-bold rounded-[1.5em] mb-[1em] flex flex-row items-start justify-center`
+                ? `mb-[1em] flex w-full flex-row items-start justify-center gap-[1em] rounded-[1.5em] border border-red-700 p-[1em] py-[1.5em] font-bold`
                 : "hidden"
             }
           >
@@ -115,12 +115,12 @@ const SignUp: React.FC = () => {
             className="flex flex-col items-center justify-start space-y-4"
             onSubmit={handleSubmit}
           >
-            <div className="flex items-center justify-center gap-[0.5em] cursor-pointer">
-              <div className="w-full flex-col flex-wrap justify-center items-center">
+            <div className="flex cursor-pointer items-center justify-center gap-[0.5em]">
+              <div className="w-full flex-col flex-wrap items-center justify-center">
                 <Checkbox
                   id="offers"
                   required={true}
-                  className="relative h-4 w-4 mr-[0.5em] rounded-[0.2em] border-2 border-black focus:outline-none ring-0 focus:ring-0"
+                  className="relative mr-[0.5em] h-4 w-4 rounded-[0.2em] border-2 border-black ring-0 focus:outline-none focus:ring-0"
                 />
                 <label htmlFor="offers" className="mr-[0.5em]">
                   Send me special offers, personalized recommendations, and
@@ -134,7 +134,7 @@ const SignUp: React.FC = () => {
               name="fullName"
               required={true}
               placeholder="Full name"
-              className="hover:bg-gray-100 w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800"
+              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white p-[1em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt hover:bg-gray-100 focus:border-purple-800"
             />
             <input
               required={true}
@@ -142,11 +142,11 @@ const SignUp: React.FC = () => {
               name="email"
               id="email"
               placeholder="Email"
-              className="hover:bg-gray-100 w-full p-[1em] bg-white border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800"
+              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white p-[1em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt hover:bg-gray-100 focus:border-purple-800"
             />
             <button
               type="submit"
-              className="focus:outline-none w-full py-3 rounded-[0.4em] bg-btnColor hover:bg-[#892de1] text-white font-medium flex items-center justify-center space-x-0 h-[50px]"
+              className="flex h-[50px] w-full items-center justify-center space-x-0 rounded-[0.4em] bg-btnColor py-3 font-medium text-white hover:bg-[#892de1] focus:outline-none"
             >
               {isLoading ? (
                 <Loader useSmallLoading={true} hSize="" />
@@ -165,7 +165,7 @@ const SignUp: React.FC = () => {
               )}
             </button>
           </form>
-          <div className="w-full flex items-center my-6">
+          <div className="my-6 flex w-full items-center">
             <hr className="flex-grow border-gray-300" />
             <span className="mx-4 text-sm text-grayNavbarTxt">
               Other sign up options
@@ -175,23 +175,23 @@ const SignUp: React.FC = () => {
           <div className="flex justify-center space-x-5">
             <button
               onClick={handleGoogle}
-              className={`focus:outline-none p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn`}
+              className={`rounded-sm border border-btnColor p-2 hover:bg-purpleHoverBtn focus:outline-none`}
             >
-              <FcGoogle className="w-7 h-7" />
+              <FcGoogle className="h-7 w-7" />
             </button>
-            <button className="focus:outline-none p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
-              <FaFacebook className="w-7 h-7 text-blue-600" />
+            <button className="rounded-sm border border-btnColor p-2 hover:bg-purpleHoverBtn focus:outline-none">
+              <FaFacebook className="h-7 w-7 text-blue-600" />
             </button>
-            <button className="focus:outline-none p-2 border border-btnColor rounded-sm hover:bg-purpleHoverBtn">
-              <FaApple className="w-7 h-7 opacity-85" />
+            <button className="rounded-sm border border-btnColor p-2 hover:bg-purpleHoverBtn focus:outline-none">
+              <FaApple className="h-7 w-7 opacity-85" />
             </button>
           </div>
           <div className="flex justify-center px-0">
-            <p className="text-courseNameColorTxt mt-2">
+            <p className="mt-2 text-courseNameColorTxt">
               By signing up, you agree to our{" "}
               <span className="inline">
                 <a
-                  className="text-purple-600 underline mr-[0.3rem] cursor-pointer"
+                  className="mr-[0.3rem] cursor-pointer text-purple-600 underline"
                   onClick={() => navigate("/terms-of-use")}
                 >
                   Terms of Use
@@ -204,10 +204,10 @@ const SignUp: React.FC = () => {
               .
             </p>
           </div>
-          <div className="bg-[#f6f7f9] mt-6 text-center w-full py-[1.5em] text-white font-medium flex items-center justify-center space-x-0">
-            <Link to="/login" className="text-courseNameColorTxt text-[1rem]">
+          <div className="mt-6 flex w-full items-center justify-center space-x-0 bg-[#f6f7f9] py-[1.5em] text-center font-medium text-white">
+            <Link to="/login" className="text-[1rem] text-courseNameColorTxt">
               Already have an account?{" "}
-              <span className="text-btnColor underline font-bold">Log in</span>
+              <span className="font-bold text-btnColor underline">Log in</span>
             </Link>
           </div>
         </div>

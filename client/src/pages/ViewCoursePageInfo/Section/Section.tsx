@@ -3,7 +3,7 @@ import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 import SectionName from "./SectionName/SectionName";
 import SectionDuration from "./SectionDuration/SectionDuration";
 import Lesson from "../Lesson/Lesson";
-import { LessonProps } from "../../types/types";
+import { LessonProps } from "@/types/types";
 
 const Section: React.FC<{
   lessonsOfSection: LessonProps[];
@@ -14,14 +14,14 @@ const Section: React.FC<{
   const totalDuration =
     lessonsOfSection?.reduce(
       (sum, lesson) => sum + (lesson.duration || 0),
-      0
+      0,
     ) || 0;
 
   return (
     <div>
       <div
         onClick={() => setClicked(!isClicked)}
-        className="cursor-pointer flex flex-row bg-bgCommercial w-[550px] text-languageText items-center justify-around p-[0.8em] border border-borderCommercial"
+        className="flex w-[550px] cursor-pointer flex-row items-center justify-around border border-borderCommercial bg-bgCommercial p-[0.8em] text-languageText"
       >
         <div
           className={`transition-transform duration-300 ease-in-out ${

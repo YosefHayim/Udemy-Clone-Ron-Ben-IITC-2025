@@ -23,7 +23,7 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
   return (
     <div className="border">
       <div
-        className="flex flex-col items-start justify-start p-[1em] w-[700px] mt-[10em]"
+        className="mt-[10em] flex w-[700px] flex-col items-start justify-start p-[1em]"
         style={{
           maxHeight: isExpanded ? "none" : "280px",
           WebkitMaskImage: isExpanded
@@ -36,7 +36,7 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
           maskSize: "100% 100%",
         }}
       >
-        <h2 className="font-bold w-full p-[0.5em] text-[1.5em]">
+        <h2 className="w-full p-[0.5em] text-[1.5em] font-bold">
           What you'll learn
         </h2>
         <div className="flex">
@@ -63,10 +63,10 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
         </div>
       </div>
       <div
-        className="ml-4 mb-4 pl-[0.2em] py-[0.3em] rounded-[0.2em] flex gap-[1em] items-center cursor-pointer hover:bg-purpleHoverBtn w-[115px]"
+        className="mb-4 ml-4 flex w-[115px] cursor-pointer items-center gap-[1em] rounded-[0.2em] py-[0.3em] pl-[0.2em] hover:bg-purpleHoverBtn"
         onClick={handleToggle}
       >
-        <span className="m-[0.5em] text-purpleStatic hover:text-purpleHover font-bold ">
+        <span className="m-[0.5em] font-bold text-purpleStatic hover:text-purpleHover ">
           {isExpanded ? "Show less" : "Show more"}
         </span>
         {isExpanded ? (

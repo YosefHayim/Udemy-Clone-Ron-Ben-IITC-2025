@@ -2,14 +2,14 @@ import buyCourseById from "@/api/users/buyCourseId";
 import refreshMe from "@/api/users/refreshMe";
 import Loader from "@/components/Loader/Loader";
 import { Button } from "@/components/ui/button";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { setClearAll } from "@/redux/slices/cartSlice";
 import {
   setCookie,
   setCoursesBought,
   setUdemyCredits,
 } from "@/redux/slices/userSlice";
-import { DecodedTokenProps } from "../../types/types";
+import { DecodedTokenProps } from "@/types/types";
 import { ReactPayPalScriptOptions } from "@paypal/react-paypal-js";
 import { useMutation } from "@tanstack/react-query";
 import { jwtDecode } from "jwt-decode";
@@ -23,25 +23,26 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
   isPaypal,
 }) => {
   const cookie = useSelector((state: RootState) => state.user.cookie);
+
   const [isLoading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const totalToPay = useSelector(
-    (state: RootState) => state.cart.totalCourseDiscountPrices
+    (state: RootState) => state.cart.totalCourseDiscountPrices,
   );
 
   const totalCourses = useSelector(
-    (state: RootState) => state.cart.amountOfCourses
+    (state: RootState) => state.cart.amountOfCourses,
   );
 
   const originalPrice = useSelector(
-    (state: RootState) => state.cart.totalCoursesOriginalPrices
+    (state: RootState) => state.cart.totalCoursesOriginalPrices,
   );
 
   const coursesIds = useSelector(
-    (state: RootState) => state.cart.coursesAddedToCart
+    (state: RootState) => state.cart.coursesAddedToCart,
   );
 
   useEffect(() => {}, [originalPrice, totalCourses, totalToPay, cookie]);
@@ -87,18 +88,18 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
   };
 
   return (
-    <div className="flex flex-col items-start justify-start p-[3em] w-min-max">
-      <div className="flex flex-col items-start justify-start w-full">
-        <h2 className="font-bold mb-[1em] text-[1.5em] w-full">
+    <div className="w-min-max flex flex-col items-start justify-start p-[3em]">
+      <div className="flex w-full flex-col items-start justify-start">
+        <h2 className="mb-[1em] w-full text-[1.5em] font-bold">
           Order Summary
         </h2>
-        <div className="flex flex-col items-start justify-start gap-[0.5em] w-[75%]">
-          <div className="flex flex-row items-start justify-between w-full gap-[5em]">
+        <div className="flex w-[75%] flex-col items-start justify-start gap-[0.5em]">
+          <div className="flex w-full flex-row items-start justify-between gap-[5em]">
             <p>Original price:</p>
             <p>₪{originalPrice || 0}</p>
           </div>
           <hr className="w-full border border-b-gray-400" />
-          <div className="flex flex-row items-start justify-between w-full mb-[3em]">
+          <div className="mb-[3em] flex w-full flex-row items-start justify-between">
             <div className="flex flex-row gap-[0.3em]">
               <b>Total</b>
               <p>({totalCourses} course)</p>
@@ -115,7 +116,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
         <div className="mb-[2em] w-[75%]">
           <Button
             onClick={handleClick}
-            className="w-full rounded-[0.2em] bg-btnColor hover:bg-[#892de1] font-bold text-white p-[1.7em]"
+            className="w-full rounded-[0.2em] bg-btnColor p-[1.7em] font-bold text-white hover:bg-[#892de1]"
           >
             {isLoading ? (
               <div>
@@ -129,7 +130,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
             )}
           </Button>
         </div>
-        <div className="w-[75%] flex flex-col items-center justify-center mb-[3em] gap-[1em]">
+        <div className="mb-[3em] flex w-[75%] flex-col items-center justify-center gap-[1em]">
           <b>30-Day Money-Back Guarantee</b>
           <p className="text-center">
             Not satisfied? Get a full refund within 30 days. Simple and

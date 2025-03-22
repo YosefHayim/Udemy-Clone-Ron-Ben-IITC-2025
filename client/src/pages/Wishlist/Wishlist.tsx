@@ -1,7 +1,7 @@
 import Loader from "@/components/Loader/Loader";
 import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
 import { Button } from "@/components/ui/button";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { useEffect, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { useSelector } from "react-redux";
@@ -26,7 +26,7 @@ const Wishlist: React.FC = () => {
       state?.user.coursesBought as Array<{
         courseId: string;
         boughtAt: string;
-      }>
+      }>,
   );
 
   const handleClickedCategory = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -47,69 +47,69 @@ const Wishlist: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-start justify-start p-[1em] bg-[#1d1e27] text-white">
+    <div className="flex flex-col items-start justify-start bg-grayUdemy p-[1em] text-white">
       <div>
-        <h1 className=" ml-[1em] my-[1.5em] mb-[1em] ">My learning</h1>
+        <h1 className=" my-[1.5em] mb-[1em] ml-[1em] ">My learning</h1>
         <div
           className="flex flex-row items-start justify-start gap-[1em]"
           onClick={handleClickedCategory}
         >
           <div className="flex flex-col gap-[0.5em]">
             <button>All courses</button>
-            <hr className={`w-full border-white border-[3px]`} />
+            <hr className={`w-full border-[3px] border-white`} />
           </div>
           <div className="flex flex-col gap-[0.5em]">
             <button>My Lists</button>
-            <hr className={`w-full border-white border-[3px]`} />
+            <hr className={`w-full border-[3px] border-white`} />
           </div>
           <div className="flex flex-col gap-[0.5em]">
             <button>Wishlist</button>
-            <hr className={`w-full border-white border-[3px]`} />
+            <hr className={`w-full border-[3px] border-white`} />
           </div>
           <div className="flex flex-col gap-[0.5em]">
             <button>Archived</button>
-            <hr className={`w-full border-white border-[3px]`} />
+            <hr className={`w-full border-[3px] border-white`} />
           </div>
           <div className="flex flex-col gap-[0.5em]">
             <button>Learning tools</button>
-            <hr className={`w-full border-white border-[3px]`} />
+            <hr className={`w-full border-[3px] border-white`} />
           </div>
         </div>
       </div>
       {isLoading ? (
-        <div className="bg-white w-full">
+        <div className="w-full bg-white">
           <Loader hSize="1000px" useSmallLoading={false} />
         </div>
       ) : (
         <div
           className={`${
             coursesBought.length > 0
-              ? `bg-white w-full text-center text-black flex flex-col items-center justify-center`
-              : `bg-white w-full h-[400px] text-center text-black flex flex-col items-center justify-center`
+              ? `flex w-full flex-col items-center justify-center bg-white text-center text-black`
+              : `flex h-[400px] w-full flex-col items-center justify-center bg-white text-center text-black`
           }`}
         >
           {coursesBought && coursesBought.length > 0 ? (
-            <div className="w-full flex flex-col items-start justify-start">
-              <div className="flex flex-row items-center justify-between gap-[1em] w-full px-[3em] mt-[1em]">
-                <div className="flex flex-row items-center justify-center gap-[1em] w-full">
+            <div className="flex w-full flex-col items-start justify-start">
+              <div className="mt-[1em] flex w-full flex-row items-center justify-between gap-[1em] px-[3em]">
+                <div className="flex w-full flex-row items-center justify-center gap-[1em]">
                   <div className="flex flex-col items-start justify-start gap-[0.5em]">
                     <p>Sort by</p>
                     <DropdownMenu>
-                      <DropdownMenuTrigger className="flex flex-row items-center gap-[0.5em]  font-bold hover:bg-purpleHoverBtn text-btnColor border border-btnColor rounded-[0.2em] p-[0.7em]">
+                      <DropdownMenuTrigger className="flex flex-row items-center gap-[0.5em]  rounded-[0.2em] border border-btnColor p-[0.7em] font-bold text-btnColor hover:bg-purpleHoverBtn">
                         Recently Accessed
                         <RiArrowDropDownLine className="text-[1.5em]" />
                       </DropdownMenuTrigger>
                       <DropdownMenuContent>
-                        <DropdownMenuLabel className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                        <DropdownMenuLabel className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
                           Recently Enrolled
                         </DropdownMenuLabel>
-                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                        <DropdownMenuItem className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
                           Title: A-to-Z
                         </DropdownMenuItem>
-                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                        <DropdownMenuItem className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
                           Title: Z-to-A
                         </DropdownMenuItem>
-                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                        <DropdownMenuItem className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
                           Development
                         </DropdownMenuItem>
                       </DropdownMenuContent>
@@ -118,63 +118,63 @@ const Wishlist: React.FC = () => {
                   <div className="flex flex-col items-start justify-start gap-[0.5em]">
                     <p>Filter by</p>
                     <DropdownMenu>
-                      <DropdownMenuTrigger className="flex flex-row items-center gap-[0.5em] w-min font-bold hover:bg-purpleHoverBtn text-btnColor border border-btnColor rounded-[0.2em] p-[0.7em]">
+                      <DropdownMenuTrigger className="flex w-min flex-row items-center gap-[0.5em] rounded-[0.2em] border border-btnColor p-[0.7em] font-bold text-btnColor hover:bg-purpleHoverBtn">
                         Categories
                         <RiArrowDropDownLine className="text-[1.5em]" />
                       </DropdownMenuTrigger>
                       <DropdownMenuContent className="w-[250px]">
-                        <DropdownMenuLabel className="font-normal w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                        <DropdownMenuLabel className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 font-normal text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
                           Favorites
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator className="text-gray-800" />
-                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                        <DropdownMenuItem className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
                           All Categories
                         </DropdownMenuItem>
-                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                        <DropdownMenuItem className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
                           Design
                         </DropdownMenuItem>
-                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                        <DropdownMenuItem className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
                           Development
                         </DropdownMenuItem>
-                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                        <DropdownMenuItem className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
                           IT & Software
                         </DropdownMenuItem>
                         <DropdownMenuSeparator className="text-gray-800" />
-                        <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                        <DropdownMenuItem className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
                           Archived
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </div>
                   <DropdownMenu>
-                    <DropdownMenuTrigger className="mt-[2em] flex flex-row items-center gap-[0.5em] w-min font-bold hover:bg-purpleHoverBtn  text-btnColor border border-btnColor rounded-[0.2em] p-[0.7em]">
+                    <DropdownMenuTrigger className="mt-[2em] flex w-min flex-row items-center gap-[0.5em] rounded-[0.2em] border  border-btnColor p-[0.7em] font-bold text-btnColor hover:bg-purpleHoverBtn">
                       Progress
                       <RiArrowDropDownLine className="text-[1.5em]" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
-                      <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                      <DropdownMenuItem className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
                         Not Started
                       </DropdownMenuItem>
-                      <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                      <DropdownMenuItem className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
                         In Progress
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                   <DropdownMenu>
-                    <DropdownMenuTrigger className="mt-[2em] flex flex-row items-center gap-[0.5em] w-min font-bold hover:bg-purpleHoverBtn  text-btnColor border border-btnColor rounded-[0.2em] p-[0.7em]">
+                    <DropdownMenuTrigger className="mt-[2em] flex w-min flex-row items-center gap-[0.5em] rounded-[0.2em] border  border-btnColor p-[0.7em] font-bold text-btnColor hover:bg-purpleHoverBtn">
                       Instructor
                       <RiArrowDropDownLine className="text-[1.5em]" />
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-[250px] h-[300px] overflow-y-auto">
-                      <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                    <DropdownMenuContent className="h-[300px] w-[250px] overflow-y-auto">
+                      <DropdownMenuItem className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
                         Not Started
                       </DropdownMenuItem>
-                      <DropdownMenuItem className="w-full rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600 cursor-pointer flex flex-row items-center gap-[1em]">
+                      <DropdownMenuItem className="flex w-full cursor-pointer flex-row items-center gap-[1em] rounded-[0.2em] px-4 py-2 text-gray-700 hover:bg-purpleHoverBtn hover:text-purple-600">
                         In Progress
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
-                  <button className="focus:outline-none  mt-[2em] font-bold text-gray-400 cursor-not-allowed border-none">
+                  <button className="mt-[2em]  cursor-not-allowed border-none font-bold text-gray-400 focus:outline-none">
                     Reset
                   </button>
                 </div>
@@ -184,20 +184,20 @@ const Wishlist: React.FC = () => {
                     <input
                       type="text"
                       placeholder="Search my courses"
-                      className="bg-white border border-gray-400 p-[0.7em] rounded-[0.2em] placeholder:text-gray-600"
+                      className="rounded-[0.2em] border border-gray-400 bg-white p-[0.7em] placeholder:text-gray-600"
                     />
-                    <button className="focus:outline-none hover:bg-[#892de1] bg-btnColor p-[0.7em] rounded-[0.2em]">
-                      <IoMdSearch className="text-white text-[1.5em]" />
+                    <button className="rounded-[0.2em] bg-btnColor p-[0.7em] hover:bg-[#892de1] focus:outline-none">
+                      <IoMdSearch className="text-[1.5em] text-white" />
                     </button>
                   </form>
                 </div>
               </div>
-              <div className="grid grid-cols-4 gap-4 w-full text-center p-[5em]">
+              <div className="grid w-full grid-cols-4 gap-4 p-[5em] text-center">
                 {[...coursesBought]
                   .sort(
                     (a, b) =>
                       new Date((b as { boughtAt: string }).boughtAt).getTime() -
-                      new Date(a.boughtAt).getTime()
+                      new Date(a.boughtAt).getTime(),
                   )
                   .map((courseBought) => (
                     <div key={courseBought.courseId}>
@@ -222,7 +222,7 @@ const Wishlist: React.FC = () => {
               </div>
             </div>
           ) : (
-            <Button className="focus:outline-none font-bold rounded-[0.2em] mt-[10em]">
+            <Button className="mt-[10em] rounded-[0.2em] font-bold focus:outline-none">
               <Link to="/">Browse all courses</Link>
             </Button>
           )}

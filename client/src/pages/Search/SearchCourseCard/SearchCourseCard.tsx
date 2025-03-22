@@ -6,7 +6,7 @@ import CourseRecap from "@/components/CourseCard/CourseRecap/CourseRecap";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
 import CourseLength from "@/pages/ViewCoursePageInfo/MoreCoursesByInstructor/CourseLength/CourseLength";
-import { CourseTypeProps } from "../../types/types";
+import { CourseTypeProps } from "@/types/types";
 import { useNavigate } from "react-router-dom";
 
 const SearchCourseCard: React.FC<{ course: CourseTypeProps }> = ({
@@ -16,7 +16,6 @@ const SearchCourseCard: React.FC<{ course: CourseTypeProps }> = ({
     console.log("Course is undefined", course);
   }
 
-  // console.log(course);
   const navigate = useNavigate();
 
   const handleCardClick = (courseId: string) => {
@@ -25,10 +24,10 @@ const SearchCourseCard: React.FC<{ course: CourseTypeProps }> = ({
 
   return (
     <div id={course._id} onClick={() => handleCardClick(course._id)}>
-      <div className="flex-wrap flex justify-between items-start pb-[1.6em] w-full cursor-pointer pt-[1.6em]">
+      <div className="flex w-full cursor-pointer flex-wrap items-start justify-between pb-[1.6em] pt-[1.6em]">
         <div className="flex items-start justify-center gap-[0.3em]">
           <CourseImg courseImg={course.courseImg} widthChosen="200px" />
-          <div className="w-full flex flex-col items-start justify-start gap-[0.2em]">
+          <div className="flex w-full flex-col items-start justify-start gap-[0.2em]">
             <CourseTitle title={course.courseName} />
             <CourseRecap recapInfo={course.courseRecapInfo} />
             <CourseInstructor instructor={course.courseInstructor.fullName} />

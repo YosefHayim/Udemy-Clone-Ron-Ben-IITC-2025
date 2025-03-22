@@ -62,7 +62,7 @@ const ItemInCart = ({
         courseId,
         originalPrice: data?.courseFullPrice || 0,
         discountPrice: data?.courseDiscountPrice || 0,
-      })
+      }),
     );
   };
 
@@ -98,7 +98,7 @@ const ItemInCart = ({
         id={courseId}
         className={`flex ${
           isColCourseBox ? "flex-col" : "flex-row"
-        } items-start justify-start gap-[1em] cursor-pointer w-full`}
+        } w-full cursor-pointer items-start justify-start gap-[1em]`}
       >
         <div>
           <div className="relative">
@@ -111,21 +111,21 @@ const ItemInCart = ({
             <div
               className={
                 isMyLearning
-                  ? `hover:bg-black absolute top-0 w-full h-full opacity-[80%]`
+                  ? `absolute top-0 h-full w-full opacity-[80%] hover:bg-black`
                   : `hidden`
               }
             >
               <FaCirclePlay
                 className={`${
                   isMyLearning
-                    ? "text:none hover:text-white text-[3em] absolute left-[38%] top-[35%]"
+                    ? "text:none absolute left-[38%] top-[35%] text-[3em] hover:text-white"
                     : "hidden"
                 }`}
               />
               <div
                 className={
                   isMyLearning
-                    ? `bg-white absolute right-[5%] top-[5%] p-[0.5em] flex items-center rounded-[0.2em] h-[2em] hover:bg-gray-100`
+                    ? `absolute right-[5%] top-[5%] flex h-[2em] items-center rounded-[0.2em] bg-white p-[0.5em] hover:bg-gray-100`
                     : `hidden`
                 }
               >
@@ -137,7 +137,7 @@ const ItemInCart = ({
         <div
           className={`${chooseFlex} flex flex-row items-${itemsPosition} justify-center ${gapPrice}`}
         >
-          <div className="flex flex-col items-start gap-[0.5em] w-[220px]">
+          <div className="flex w-[220px] flex-col items-start gap-[0.5em]">
             <CourseTitle
               title={data?.courseName}
               shortcutTitle={shortcutTitle}
@@ -170,13 +170,13 @@ const ItemInCart = ({
           </div>
           <div className={hide ? "block" : "hidden"}>
             <div className="flex flex-col items-start text-purpleStatic">
-              <button className=" focus:outline-none rounded-[0.3em] hover:bg-purple-200 p-[0.3em]">
+              <button className=" rounded-[0.3em] p-[0.3em] hover:bg-purple-200 focus:outline-none">
                 Remove
               </button>
-              <button className=" focus:outline-none rounded-[0.3em] hover:bg-purple-200 p-[0.3em]">
+              <button className=" rounded-[0.3em] p-[0.3em] hover:bg-purple-200 focus:outline-none">
                 Save for Later
               </button>
-              <button className=" focus:outline-none rounded-[0.3em] hover:bg-purple-200 p-[0.3em]">
+              <button className=" rounded-[0.3em] p-[0.3em] hover:bg-purple-200 focus:outline-none">
                 Move to Wishlist
               </button>
             </div>

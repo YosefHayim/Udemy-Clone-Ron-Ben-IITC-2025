@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
 import ProfilePic from "../ProfilePic/ProfilePic";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
   const fullName = useSelector((state: RootState) => state?.user.fullName);
   const profilePic = useSelector((state: RootState) => state?.user.profilePic);
   const headline = useSelector((state: RootState) => state?.user.headline);
-  const cookie = useSelector((state: RootState) => state?.user.cookie);
+  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   if (!cookie) {
     return <div></div>;
@@ -31,7 +31,7 @@ const Welcome = () => {
           <p>{headline}</p>
           <Link
             to="/personalize/field"
-            className="hover:bg-purpleHoverBtn text-purple-600 underline font-bold p-[0.3em] rounded-[0.3em]"
+            className="rounded-[0.3em] p-[0.3em] font-bold text-purple-600 underline hover:bg-purpleHoverBtn"
           >
             Edit occupation and interests
           </Link>

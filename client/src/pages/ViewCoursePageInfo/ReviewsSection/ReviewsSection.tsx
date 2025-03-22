@@ -3,7 +3,7 @@ import ReviewSectionTitle from "./ReviewSectionTitle/ReviewSectionTitle";
 import UserCourseReview from "./UserCourseReview/UserCourseReview";
 import { useState } from "react";
 import DialogOfAllReviews from "./UserCourseReview/DialogOfAllReviews/DialogOfAllReviews";
-import { Review } from "../../types/types";
+import { Review } from "@/types/types";
 
 const ReviewsSection: React.FC<{
   totalRated?: number;
@@ -22,7 +22,7 @@ const ReviewsSection: React.FC<{
         totalRated={reviewsToRender.length}
         avgRating={avgRating}
       />
-      <div className="grid grid-cols-2 gap-4 w-[700px] mb-[2em]">
+      <div className="mb-[2em] grid w-[700px] grid-cols-2 gap-4">
         {reviewsToRender.slice(0, 4).map((review, index) => (
           <UserCourseReview review={review} key={index} />
         ))}
@@ -30,7 +30,7 @@ const ReviewsSection: React.FC<{
       <div>
         <Button
           onClick={handleClick}
-          className="hover:bg-hoverDivGray bg-white border border-black text-black font-bold rounded-[0.2em] focus:outline-none"
+          className="rounded-[0.2em] border border-black bg-white font-bold text-black hover:bg-hoverDivGray focus:outline-none"
         >
           Show all reviews
         </Button>

@@ -65,7 +65,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
       params:
         | { action: "add"; text: string; seconds: number }
         | { action: "edit"; text: string; noteId: string }
-        | { action: "delete"; noteId: string }
+        | { action: "delete"; noteId: string },
     ) => {
       if (params.action === "add") {
         return await addNote(courseId, lessonId, {
@@ -130,7 +130,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
   };
 
   const filteredNotes = (notes || []).filter((note: any) =>
-    all === "Current lecture" ? note.lessonId === lessonId : true
+    all === "Current lecture" ? note.lessonId === lessonId : true,
   );
 
   console.log("filtered notes", filteredNotes);
@@ -141,33 +141,33 @@ const NotesTab: React.FC<NotesTabProps> = ({
         {!showEditor ? (
           <div
             onClick={() => setShowEditor(true)}
-            className="hover:bg-[#F6F7F9] min-w-full flex justify-between items-center text-base font-semibold text-gray-400 border rounded-sm p-3 mb-4 cursor-pointer"
+            className="mb-4 flex min-w-full cursor-pointer items-center justify-between rounded-sm border p-3 text-base font-semibold text-gray-400 hover:bg-[#F6F7F9]"
           >
             <p>Create new note at {formatTime(currentSec)}</p>
             <FaCirclePlus className=" text-courseNameColorTxt" />
           </div>
         ) : (
           <div className="flex items-center justify-center">
-            <span className="relative self-start px-2 mr-2 rounded-3xl text-white bg-black text-sm">
+            <span className="relative mr-2 self-start rounded-3xl bg-black px-2 text-sm text-white">
               {formatTime(currentSec)}
             </span>
-            <div className="min-w-full rounded-sm p-4 mb-4">
+            <div className="mb-4 min-w-full rounded-sm p-4">
               <ReactQuill
                 value={content}
                 onChange={setContent}
                 placeholder="Write something..."
                 theme="snow"
               />
-              <div className="flex justify-end gap-4 mt-4">
+              <div className="mt-4 flex justify-end gap-4">
                 <button
                   onClick={() => setShowEditor(false)}
-                  className="px-6 py-2 text-gray-700 rounded font-extrabold hover:bg-gray-400 transition duration-300"
+                  className="rounded px-6 py-2 font-extrabold text-gray-700 transition duration-300 hover:bg-gray-400"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleAddNote}
-                  className="px-6 py-2 bg-btnColor text-white font-extrabold rounded hover:bg-[#892DE1] transition duration-300"
+                  className="rounded bg-btnColor px-6 py-2 font-extrabold text-white transition duration-300 hover:bg-[#892DE1]"
                   disabled={noteMutation.isLoading}
                 >
                   {noteMutation.isLoading ? "Saving..." : "Save Note"}
@@ -178,7 +178,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
         )}
         <div className="flex space-x-4">
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center  gap-2 border rounded-sm text-btnColor text-base font-bold p-2 border-btnColor hover:bg-[#EDE5F9] hover:border-btnColor focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
+            <DropdownMenuTrigger className="flex items-center  gap-2 rounded-sm border border-btnColor p-2 text-base font-bold text-btnColor hover:border-btnColor hover:bg-[#EDE5F9] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
               {all} <IoIosArrowDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-white ">
@@ -198,7 +198,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
           </DropdownMenu>
 
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 border rounded-sm text-btnColor text-base font-bold p-2 border-btnColor hover:bg-[#EDE5F9] hover:border-btnColor focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
+            <DropdownMenuTrigger className="flex items-center gap-1 rounded-sm border border-btnColor p-2 text-base font-bold text-btnColor hover:border-btnColor hover:bg-[#EDE5F9] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
               {timeSort} <IoIosArrowDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-white ">
@@ -227,28 +227,28 @@ const NotesTab: React.FC<NotesTabProps> = ({
               <div>
                 {filteredNotes.map((note: any) => (
                   <div key={note.noteId} className="flex min-w-full px-12">
-                    <span className="relative self-start px-2 mr-2 rounded-3xl text-white bg-black text-sm">
+                    <span className="relative mr-2 self-start rounded-3xl bg-black px-2 text-sm text-white">
                       {formatTime(note.seconds)}
                     </span>
                     <div className="min-w-full">
                       <div className="flex items-center justify-between">
                         <span>
-                          <span className="text-black font-bold pb-0 text-base">
+                          <span className="pb-0 text-base font-bold text-black">
                             {note.sectionIndex + 1}. {note.sectionTitle}
                           </span>
-                          <span className="text-gray-500 text-xs relative pb-0 mb-0 ml-4">
+                          <span className="relative mb-0 ml-4 pb-0 text-xs text-gray-500">
                             {note.lessonIndex + 1}. {note.lessonTitle}
                           </span>
                         </span>
                         <span className="flex gap-2">
                           <FaPen
-                            className="mr-2 text-courseNameColorTxt text-xl p-1 rounded-md hover:bg-[#E6E6E8]"
+                            className="mr-2 rounded-md p-1 text-xl text-courseNameColorTxt hover:bg-[#E6E6E8]"
                             onClick={() => startEditing(note.noteId, note.text)}
                           />
                           <Dialog>
                             <DialogTrigger asChild>
                               <FaTrash
-                                className="mr-2 text-courseNameColorTxt cursor-pointer text-xl p-1 rounded-md hover:bg-[#E6E6E8]"
+                                className="mr-2 cursor-pointer rounded-md p-1 text-xl text-courseNameColorTxt hover:bg-[#E6E6E8]"
                                 onClick={() => setNoteToDelete(note.noteId)}
                               />
                             </DialogTrigger>
@@ -269,7 +269,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
 
                       {/* Show ReactQuill editor if this note is being edited */}
                       {editingNoteId === note.noteId ? (
-                        <div className="flex flex-col bg-[#F6F7F9] border min-w-full p-6 my-3">
+                        <div className="my-3 flex min-w-full flex-col border bg-[#F6F7F9] p-6">
                           <ReactQuill
                             value={editingContent}
                             onChange={setEditingContent}
@@ -286,16 +286,16 @@ const NotesTab: React.FC<NotesTabProps> = ({
                             theme="snow"
                             className="custom-quill"
                           />
-                          <div className="flex justify-end gap-4 mt-4">
+                          <div className="mt-4 flex justify-end gap-4">
                             <button
                               onClick={() => setEditingNoteId(null)}
-                              className="px-6 py-2 text-gray-700 rounded hover:bg-gray-400 transition duration-300"
+                              className="rounded px-6 py-2 text-gray-700 transition duration-300 hover:bg-gray-400"
                             >
                               Cancel
                             </button>
                             <button
                               onClick={() => saveEditedNote(note.noteId)}
-                              className="px-6 py-2 bg-btnColor text-white rounded hover:bg-[#892DE1] transition duration-300"
+                              className="rounded bg-btnColor px-6 py-2 text-white transition duration-300 hover:bg-[#892DE1]"
                               disabled={noteMutation.isLoading}
                             >
                               {noteMutation.isLoading ? "Saving..." : "Save"}
@@ -303,7 +303,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
                           </div>
                         </div>
                       ) : (
-                        <div className="flex bg-[#F6F7F9] border min-w-full p-6 my-3">
+                        <div className="my-3 flex min-w-full border bg-[#F6F7F9] p-6">
                           <div
                             dangerouslySetInnerHTML={{ __html: note.text }}
                             className="text-gray-800"
@@ -315,12 +315,12 @@ const NotesTab: React.FC<NotesTabProps> = ({
                 ))}
               </div>
             ) : (
-              <p className="text-lg p-9">
+              <p className="p-9 text-lg">
                 Click the "Create a new note" box to make your first note.
               </p>
             )
           ) : (
-            <p className="text-lg p-9">
+            <p className="p-9 text-lg">
               Click the "Create a new note" box to make your first note.
             </p>
           )}

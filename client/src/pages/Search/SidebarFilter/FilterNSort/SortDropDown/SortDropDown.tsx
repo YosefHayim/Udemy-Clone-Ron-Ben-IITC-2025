@@ -6,7 +6,7 @@ const SortDropDown = () => {
   const [filterData, setFilterData] = useContext(filterContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedSort, setSelectedSort] = useState<string>(
-    filterData.sortBy || "most-relevant"
+    filterData.sortBy || "most-relevant",
   );
 
   // Sync with URL and filterData on mount
@@ -37,25 +37,23 @@ const SortDropDown = () => {
   };
 
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className="flex w-full flex-col items-center">
       <div className="relative w-full">
-        <b className="absolute  left-[10%] top-[12%] cursor-pointer">
-          Sort by
-        </b>
+        <b className="absolute  left-[10%] top-[12%] cursor-pointer">Sort by</b>
         <select
           value={selectedSort}
           onChange={handleSortChange}
-          className="block w-full h-[4em] border border-gray-900 rounded-[0.2em] bg-white text-gray-900 font-normal text-base px-[1em] pt-[1em] cursor-pointer focus:outline-none focus:ring-2 focus:none appearance-none mr-[2em] hover:bg-hoverDivGray"
+          className="focus:none mr-[2em] block h-[4em] w-full cursor-pointer appearance-none rounded-[0.2em] border border-gray-900 bg-white px-[1em] pt-[1em] text-base font-normal text-gray-900 hover:bg-hoverDivGray focus:outline-none focus:ring-2"
         >
           <option value="most-relevant">Most Relevant</option>
           <option value="most-reviewed">Most Reviewed</option>
           <option value="highest-rated">Highest Rated</option>
           <option value="newest">Newest</option>
         </select>
-        <div className="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5 text-gray-500"
+            className="h-5 w-5 text-gray-500"
             viewBox="0 0 20 20"
             fill="currentColor"
           >

@@ -1,4 +1,4 @@
-import { CourseTitleProps } from "../../types/types";
+import { CourseTitleProps } from "@/types/types";
 
 const CourseTitle: React.FC<CourseTitleProps> = ({
   title = "React - The Complete Guide 2024 (incl. Next.js, Redux)",

@@ -47,28 +47,28 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <div className="py-16 px-8 bg-gray-50">
-      <h2 className="text-3xl font-bold text-gray-900 text-center">
+    <div className="bg-gray-50 px-8 py-16">
+      <h2 className="text-center text-3xl font-bold text-gray-900">
         See what others are achieving through learning
       </h2>
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {testimonials.map((testimonial, index) => (
           <div
             key={index}
-            className="border rounded-lg shadow-sm p-6 bg-white text-left"
+            className="rounded-lg border bg-white p-6 text-left shadow-sm"
           >
             {/* Aspas como imagem */}
             <div className="mb-4">
-              <img src={quoteIcon} alt="Quote" className="w-6 h-6" />
+              <img src={quoteIcon} alt="Quote" className="h-6 w-6" />
             </div>
             {/* Texto do depoimento */}
-            <p className="text-gray-900 mb-4">{testimonial.quote}</p>
+            <p className="mb-4 text-gray-900">{testimonial.quote}</p>
             {/* Logo ou autor */}
-            <div className="flex items-center mt-4">
+            <div className="mt-4 flex items-center">
               <img
                 src={testimonial.placeholderIcon}
                 alt={testimonial.author}
-                className="w-8 h-8 object-contain mr-4"
+                className="mr-4 h-8 w-8 object-contain"
               />
               <div>
                 <h3 className="font-bold text-gray-900">
@@ -80,7 +80,7 @@ const Testimonials = () => {
             {/* Link de ação */}
             <Link
               to={testimonial.link}
-              className="text-purple-600 font-bold mt-4 inline-block hover:underline"
+              className="mt-4 inline-block font-bold text-purple-600 hover:underline"
             >
               {testimonial.linkText}
             </Link>

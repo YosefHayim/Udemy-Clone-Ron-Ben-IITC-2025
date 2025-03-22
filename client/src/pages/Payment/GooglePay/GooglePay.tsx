@@ -4,7 +4,7 @@ import GPayIcon from "../GPayIcon/GPayIcon";
 const GooglePay: React.FC = () => {
   return (
     <div className="w-full px-[1em]">
-      <Button className="focus:outline-none w-full rounded-[0.3em]">
+      <Button className="w-full rounded-[0.3em] focus:outline-none">
         <GPayIcon />
       </Button>
     </div>

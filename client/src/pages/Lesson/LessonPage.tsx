@@ -5,7 +5,7 @@ import LessonRoutes from "../../routes/LessonRoutes";
 import VideoPlayer from "./VideoPlayer";
 import Footer from "../../pages/Home/Footer/Footer";
 import { fetchCourseProgress } from "@/services/ProgressService";
-import { CourseProgressResponse, CourseProgress } from "../../types/types";
+import { CourseProgressResponse, CourseProgress } from "@/types/types";
 import { useState } from "react";
 
 const LessonPage: React.FC = () => {
@@ -47,7 +47,7 @@ const LessonPage: React.FC = () => {
       ...lesson,
       ...lesson.lessonId,
       completed: lesson.completed,
-    }))
+    })),
   );
 
   const lessonIndex = lessons.findIndex((lesson) => lesson._id === id);

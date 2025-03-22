@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import SearchResults from "../SearchResults/SearchResults";
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
-import { isRootPathOnly } from "@/utils/extraGenerals";
+import { isRootPathOnly } from "@/utils/isRootPathOnly";
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 
 const SearchInput = () => {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ const SearchInput = () => {
     e.preventDefault();
     if (searchTerm.trim().length > 0) {
       navigate(`/courses/search?src=ukw&q=${encodeURIComponent(searchTerm)}`);
+      searchAlgoLocalStorage(searchTerm);
       setIsTyping(false);
     }
   };
@@ -73,14 +75,16 @@ const SearchInput = () => {
         onSubmit={handleSubmit}
         className={`${
           isRootPathOnly() ? "my-[0.2em]" : ""
-        } flex items-center w-full border border-gray-400 rounded-full overflow-hidden bg-gray-50 focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor`}
+        } flex w-full items-center overflow-hidden rounded-full border border-gray-400 bg-gray-50 focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor`}
       >
-        <button>
+        <button
+          className={`${searchTerm.length === 0 ? "cursor-not-allowed" : ""} bg-none focus:outline-none`}
+        >
           <MdOutlineSearch
             className={`${
               isRootPathOnly()
                 ? "hidden"
-                : "w-6 h-6 text-gray ml-[0.2em] bg-gray-100"
+                : `text-gray ml-[0.2em] h-6 w-6 bg-none focus:outline-none`
             }`}
           />
         </button>
@@ -90,17 +94,17 @@ const SearchInput = () => {
           placeholder="Search for anything"
           className={`${
             isRootPathOnly() ? "p-[1.2em]" : "p-[1em]"
-          } hover:bg-gray-100 placeholder:pl-[1em] flex-grow bg-transparent text-gray-700 focus:outline-none text-sm placeholder:text-sm placeholder:font-light focus:bg-white`}
+          } flex-grow bg-transparent text-sm text-gray-700 placeholder:pl-[1em] placeholder:text-sm placeholder:font-light hover:bg-gray-100 focus:bg-white focus:outline-none`}
           onChange={handleOnChange}
         />
         <button
           type="submit"
-          className={`bg-purple-600 rounded-full p-[0.85em] transition-opacity mr-[0.2em] 
+          className={`mr-[0.2em] rounded-full bg-purple-600 p-[0.85em] transition-opacity focus:outline-none 
           ${!isRootPathOnly() ? "hidden" : "block"} 
-          ${searchTerm ? "opacity-100" : "opacity-50 cursor-not-allowed"}`}
+          ${searchTerm ? "opacity-100" : "cursor-not-allowed opacity-50"}`}
           disabled={!searchTerm}
         >
-          <MdOutlineSearch className="w-6 h-6 text-white " />
+          <MdOutlineSearch className="h-6 w-6 text-white " />
         </button>
       </form>
       <div className="w-max">

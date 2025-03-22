@@ -1,4 +1,4 @@
-import { ExploreCategory } from "../../types/types";
+import { ExploreCategory } from "@/types/types";
 
 export const categoriesData: (ExploreCategory | undefined)[] = [
   {
@@ -254,14 +254,15 @@ export const categoriesData: (ExploreCategory | undefined)[] = [
       {
         title: "Data Science",
         topics: [
-          "Machine Learning",
-          "Artificial Intelligence (AI)",
+          "ChatGPT",
+          "Data Science",
           "Python",
-          "Large Language Models (LLM)",
+          "Machine Learning",
           "Deep Learning",
-          "Generative AI (GenAI)",
-          "MLOps",
-          "Data Analysis",
+          "Artificial Intelligence (AI)",
+          "Statistics",
+          "Natural Language Processing (NLP)",
+          "",
         ],
       },
       {
@@ -747,7 +748,7 @@ export const categoriesData: (ExploreCategory | undefined)[] = [
     category: "IT & Software",
     subcategory: [
       {
-        title: "IT Certifications",
+        title: "IT Certification",
         topics: [
           "AWS Certified Cloud Practitioner",
           "AWS Certified Solutions Architect - Associate",

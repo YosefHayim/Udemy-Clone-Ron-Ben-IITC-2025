@@ -12,9 +12,7 @@ interface Subcategory {
   topics?: string[]; // Array of topics (used in specific subcategories)
 }
 
-
 export const menuItems: MenuItemProps[] = [
-  
   {
     title: "Certification Preparation",
     subcategories: [
@@ -32,8 +30,8 @@ export const menuItems: MenuItemProps[] = [
               { title: "AWS Certified DevOps Engineer - Professional" },
               { title: "AWS Certified Security - Specialty" },
               { title: "AWS Certified Machine Learning - Specialty" },
-              { title: "AWS Certified Advanced Networking - Specialty" }
-            ]
+              { title: "AWS Certified Advanced Networking - Specialty" },
+            ],
           },
           {
             title: "Microsoft Certifications",
@@ -50,10 +48,16 @@ export const menuItems: MenuItemProps[] = [
               { title: "AZ-400: Microsoft DevOps Engineer Expert" },
               { title: "AZ-305: Microsoft Azure Solutions Architect Expert" },
               { title: "MS-900: Microsoft 365 Fundamentals" },
-              { title: "SC-200: Microsoft Security Operations Analyst Associate" },
-              { title: "SC-900: Microsoft Security, Compliance, and Identity Fundamentals" },
-              { title: "DP-100: Microsoft Azure Data Scientist Associate" }
-            ]
+              {
+                title:
+                  "SC-200: Microsoft Security Operations Analyst Associate",
+              },
+              {
+                title:
+                  "SC-900: Microsoft Security, Compliance, and Identity Fundamentals",
+              },
+              { title: "DP-100: Microsoft Azure Data Scientist Associate" },
+            ],
           },
           {
             title: "Cisco Certifications",
@@ -65,8 +69,8 @@ export const menuItems: MenuItemProps[] = [
               { title: "Cisco CCIE Enterprise Infrastructure" },
               { title: "Cisco CCNP Service Provider" },
               { title: "Cisco CCT Routing and Switching" },
-              { title: "Cisco CCIE Data Center" }
-            ]
+              { title: "Cisco CCIE Data Center" },
+            ],
           },
           {
             title: "CompTIA Certifications",
@@ -82,8 +86,8 @@ export const menuItems: MenuItemProps[] = [
               { title: "CompTIA Cloud+" },
               { title: "CompTIA Server+" },
               { title: "CompTIA Cloud Essentials+" },
-              { title: "CompTIA Data+" }
-            ]
+              { title: "CompTIA Data+" },
+            ],
           },
           {
             title: "Project Management Institute (PMI) Certifications",
@@ -94,8 +98,10 @@ export const menuItems: MenuItemProps[] = [
               { title: "PMI Risk Management Professional (PMI-RMP)" },
               { title: "PMI Program Management Professional (PgMP)" },
               { title: "PMI Professional in Business Analysis (PMI-PBA)" },
-              { title: "SAP Certified Associate - SAP Activate Project Manager" }
-            ]
+              {
+                title: "SAP Certified Associate - SAP Activate Project Manager",
+              },
+            ],
           },
           {
             title: "Google Cloud Certifications",
@@ -109,8 +115,8 @@ export const menuItems: MenuItemProps[] = [
               { title: "Google Cloud Professional Cloud Network Engineer" },
               { title: "Google Cloud Professional Cloud Security Engineer" },
               { title: "Google Cloud Professional Machine Learning Engineer" },
-              { title: "Google Cloud Professional Cloud Database Engineer" }
-            ]
+              { title: "Google Cloud Professional Cloud Database Engineer" },
+            ],
           },
           {
             title: "Six Sigma Certifications",
@@ -122,22 +128,34 @@ export const menuItems: MenuItemProps[] = [
               { title: "Six Sigma Black Belt Certification" },
               { title: "Six Sigma Green Belt Certification" },
               { title: "Six Sigma Yellow Belt Certification" },
-              { title: "Six Sigma White Belt Certification" }
-            ]
+              { title: "Six Sigma White Belt Certification" },
+            ],
           },
           {
             title: "Oracle Certifications",
             subcategories: [
               { title: "1Z0-071: Oracle Database SQL Certified Associate" },
-              { title: "1Z0-808: Oracle Certified Associate, Java SE 8 Programmer" },
-              { title: "1Z0-819: Oracle Certified Professional: Java SE 11 Developer" },
-              { title: "1Z0-149: Oracle Database PL/SQL Developer Certified Professional" },
-              { title: "1Z0-133: Oracle Certified Associate, WebLogic Server 12c Administrator" }
-            ]
-          }
-        ]
+              {
+                title:
+                  "1Z0-808: Oracle Certified Associate, Java SE 8 Programmer",
+              },
+              {
+                title:
+                  "1Z0-819: Oracle Certified Professional: Java SE 11 Developer",
+              },
+              {
+                title:
+                  "1Z0-149: Oracle Database PL/SQL Developer Certified Professional",
+              },
+              {
+                title:
+                  "1Z0-133: Oracle Certified Associate, WebLogic Server 12c Administrator",
+              },
+            ],
+          },
+        ],
       },
-      
+
       {
         title: "Popular Subjects",
         items: [
@@ -158,8 +176,8 @@ export const menuItems: MenuItemProps[] = [
               { title: "AWS Certified Security - Specialty" },
               { title: "AZ-204: Microsoft Azure Developer Associate" },
               { title: "Google Cloud Professional Data Engineer" },
-              { title: "AWS Certified Machine Learning - Specialty" }
-            ]
+              { title: "AWS Certified Machine Learning - Specialty" },
+            ],
           },
           {
             title: "Networking Certification",
@@ -168,22 +186,35 @@ export const menuItems: MenuItemProps[] = [
               { title: "CompTIA Network+" },
               { title: "Cisco CCNP Enterprise" },
               { title: "AWS Certified Advanced Networking - Specialty" },
-              { title: "Juniper Networks Certified Internet Associate (JNCIA)" },
+              {
+                title: "Juniper Networks Certified Internet Associate (JNCIA)",
+              },
               { title: "F5 BIG-IP Certification" },
-              { title: "VMware Certified Professional - Network Virtualization (VCP-NV)" },
+              {
+                title:
+                  "VMware Certified Professional - Network Virtualization (VCP-NV)",
+              },
               { title: "Cisco CCIE Enterprise Infrastructure" },
-              { title: "Juniper Networks Certified Internet Specialist (JNCIS)" },
+              {
+                title: "Juniper Networks Certified Internet Specialist (JNCIS)",
+              },
               { title: "Cisco CCNP Service Provider" },
               { title: "Cisco CCT Routing and Switching" },
-              { title: "Palo Alto Networks Certified Network Security Administrator (PCNSA)" },
-              { title: "HashiCorp Certified: Consul Associate" }
-            ]
+              {
+                title:
+                  "Palo Alto Networks Certified Network Security Administrator (PCNSA)",
+              },
+              { title: "HashiCorp Certified: Consul Associate" },
+            ],
           },
           {
             title: "Cybersecurity Certification",
             subcategories: [
               { title: "CompTIA Security+" },
-              { title: "Certified Information Systems Security Professional (CISSP)" },
+              {
+                title:
+                  "Certified Information Systems Security Professional (CISSP)",
+              },
               { title: "AWS Certified Security - Specialty" },
               { title: "CompTIA Cybersecurity Analyst (CySA+)" },
               { title: "Certified in Cybersecurity (CC)" },
@@ -193,11 +224,20 @@ export const menuItems: MenuItemProps[] = [
               { title: "Cisco Certified CyberOps Associate" },
               { title: "CompTIA Advanced Security Practitioner (CASP+)" },
               { title: "Certified Cloud Security Professional (CCSP)" },
-              { title: "Certified in Risk and Information Systems Control (CRISC)" },
-              { title: "SC-200: Microsoft Security Operations Analyst Associate" },
+              {
+                title:
+                  "Certified in Risk and Information Systems Control (CRISC)",
+              },
+              {
+                title:
+                  "SC-200: Microsoft Security Operations Analyst Associate",
+              },
               { title: "Google Cloud Professional Cloud Security Engineer" },
-              { title: "SC-900: Microsoft Security, Compliance, and Identity Fundamentals" }
-            ]
+              {
+                title:
+                  "SC-900: Microsoft Security, Compliance, and Identity Fundamentals",
+              },
+            ],
           },
           {
             title: "Project Management Certification",
@@ -208,8 +248,10 @@ export const menuItems: MenuItemProps[] = [
               { title: "PMI Risk Management Professional (PMI-RMP)" },
               { title: "PMI Program Management Professional (PgMP)" },
               { title: "PMI Professional in Business Analysis (PMI-PBA)" },
-              { title: "SAP Certified Associate - SAP Activate Project Manager" }
-            ]
+              {
+                title: "SAP Certified Associate - SAP Activate Project Manager",
+              },
+            ],
           },
           {
             title: "DevOps Certification",
@@ -217,8 +259,8 @@ export const menuItems: MenuItemProps[] = [
               { title: "CompTIA A+" },
               { title: "CompTIA IT Fundamentals (ITF+)" },
               { title: "Japanese Information Technology Passport Examination" },
-              { title: "COBIT Foundation Certificate" }
-            ]
+              { title: "COBIT Foundation Certificate" },
+            ],
           },
           {
             title: "Coding Certification",
@@ -226,19 +268,31 @@ export const menuItems: MenuItemProps[] = [
               { title: "AWS Certified Developer - Associate" },
               { title: "Certified Entry-Level Python Programmer (PCEP)" },
               { title: "Certified Associate in Python Programming (PCAP)" },
-              { title: "1Z0-819: Oracle Certified Professional: Java SE 11 Developer" }
-            ]
+              {
+                title:
+                  "1Z0-819: Oracle Certified Professional: Java SE 11 Developer",
+              },
+            ],
           },
           {
             title: "System Administration Certification",
             subcategories: [
               { title: "Red Hat Certified System Administrator (RHCSA)" },
               { title: "Red Hat Certified Engineer (RHCE)" },
-              { title: "VMware Certified Professional - Desktop Management (VCP-DTM)" },
+              {
+                title:
+                  "VMware Certified Professional - Desktop Management (VCP-DTM)",
+              },
               { title: "MS-700: Microsoft 365 Teams Administrator Associate" },
-              { title: "MS-203: Microsoft 365 Messaging Administrator Associate" },
-              { title: "1Z0-133: Oracle Certified Associate, WebLogic Server 12c Administrator" }
-            ]
+              {
+                title:
+                  "MS-203: Microsoft 365 Messaging Administrator Associate",
+              },
+              {
+                title:
+                  "1Z0-133: Oracle Certified Associate, WebLogic Server 12c Administrator",
+              },
+            ],
           },
           {
             title: "Artificial Intelligence Certification",
@@ -250,13 +304,16 @@ export const menuItems: MenuItemProps[] = [
               { title: "AI-102: Microsoft Azure AI Engineer Associate" },
               { title: "Databricks Certified Data Engineer Associate" },
               { title: "Splunk Enterprise Certified Admin" },
-              { title: "Databricks Certified Associate Developer for Apache Spark" },
+              {
+                title:
+                  "Databricks Certified Associate Developer for Apache Spark",
+              },
               { title: "Splunk Core Certified Power User" },
-              { title: "Splunk Core Certified User" }
-            ]
-          }
-        ]
-      }
+              { title: "Splunk Core Certified User" },
+            ],
+          },
+        ],
+      },
     ],
   },
 
@@ -402,7 +459,7 @@ export const menuItems: MenuItemProps[] = [
       },
     ],
   },
-  
+
   {
     title: "Business",
     subcategories: [
@@ -472,7 +529,10 @@ export const menuItems: MenuItemProps[] = [
           { title: "IIBA Entry Certificate in Business Analysis (ECBA)" },
           { title: "Prompt Engineering" },
           { title: "Custom GPTs / GPT Builder" },
-          { title: "The Open Group Certified: TOGAF Enterprise Architecture Foundation" },
+          {
+            title:
+              "The Open Group Certified: TOGAF Enterprise Architecture Foundation",
+          },
         ],
       },
       {
@@ -537,7 +597,10 @@ export const menuItems: MenuItemProps[] = [
           { title: "Professional in Human Resources (PHR)" },
           { title: "Employment Law" },
           { title: "Corporate Learning and Development (L&D)" },
-          { title: "Society for Human Resource Management Certified Professional (SHRM-CP)" },
+          {
+            title:
+              "Society for Human Resource Management Certified Professional (SHRM-CP)",
+          },
           { title: "Payroll Accounting" },
           { title: "Emotional Intelligence" },
         ],
@@ -612,7 +675,7 @@ export const menuItems: MenuItemProps[] = [
       },
     ],
   },
-  
+
   {
     title: "Finance & Accounting",
     subcategories: [
@@ -844,7 +907,6 @@ export const menuItems: MenuItemProps[] = [
       },
     ],
   },
-  
 
   {
     title: "Office Productivity",
@@ -934,7 +996,6 @@ export const menuItems: MenuItemProps[] = [
       },
     ],
   },
-  
 
   {
     title: "Personal Development",
@@ -1159,7 +1220,6 @@ export const menuItems: MenuItemProps[] = [
       },
     ],
   },
-  
 
   {
     title: "Design",
@@ -1301,7 +1361,6 @@ export const menuItems: MenuItemProps[] = [
       },
     ],
   },
-  
 
   {
     title: "Marketing",
@@ -1497,7 +1556,6 @@ export const menuItems: MenuItemProps[] = [
       },
     ],
   },
-  
 
   {
     title: "Lifestyle",
@@ -1628,7 +1686,6 @@ export const menuItems: MenuItemProps[] = [
       },
     ],
   },
-  
 
   {
     title: "Photography & Video",
@@ -1730,7 +1787,6 @@ export const menuItems: MenuItemProps[] = [
       },
     ],
   },
-  
 
   {
     title: "Health & Fitness",
@@ -1883,7 +1939,7 @@ export const menuItems: MenuItemProps[] = [
         ],
       },
     ],
-  },  
+  },
 
   {
     title: "Music",
@@ -1987,7 +2043,6 @@ export const menuItems: MenuItemProps[] = [
       },
     ],
   },
-  
 
   {
     title: "Teaching & Academics",
@@ -2109,7 +2164,10 @@ export const menuItems: MenuItemProps[] = [
           { title: "PMI Project Management Professional (PMP)" },
           { title: "Statistics" },
           { title: "Test Taking Skills" },
-          { title: "Canadian English Language Proficiency Index Program (CELPIP)" },
+          {
+            title:
+              "Canadian English Language Proficiency Index Program (CELPIP)",
+          },
           { title: "PMI PMBOK" },
           { title: "English Language" },
           { title: "CCAT" },
@@ -2130,6 +2188,5 @@ export const menuItems: MenuItemProps[] = [
         ],
       },
     ],
-  }
-  
+  },
 ];

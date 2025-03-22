@@ -1,7 +1,8 @@
 const course = {
   id: "677d2556ad47969e12bb35b6",
   title: "Mastering React",
-  description: "A comprehensive course to learn React.js from beginner to advanced levels.",
+  description:
+    "A comprehensive course to learn React.js from beginner to advanced levels.",
   image: "https://img-c.udemycdn.com/course/480x270/883142_b67d_3.jpg",
   price: 199.99,
   category: "Development",
@@ -77,7 +78,8 @@ const course = {
             },
             {
               time: 90,
-              content: "Installing Node.js and setting up the React environment.",
+              content:
+                "Installing Node.js and setting up the React environment.",
             },
           ],
         },

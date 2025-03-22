@@ -13,10 +13,7 @@ import {
   fetchCourseProgress,
   updateLessonProgress,
 } from "../../../services/ProgressService";
-import {
-  CourseProgressResponse,
-  LessonProgressPayload,
-} from "../../types/types";
+import { CourseProgressResponse, LessonProgressPayload } from "@/types/types";
 
 const CourseContent: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -63,11 +60,11 @@ const CourseContent: React.FC = () => {
                 lessons: section.lessons.map((lesson) =>
                   lesson.lessonId._id === lessonId
                     ? { ...lesson, completed: payload.completed }
-                    : lesson
+                    : lesson,
                 ),
               })),
             },
-          }
+          },
         );
       }
 
@@ -77,7 +74,7 @@ const CourseContent: React.FC = () => {
       if (context?.previousData) {
         queryClient.setQueryData<CourseProgressResponse>(
           ["courseProgress", sanitizedCourseId],
-          context.previousData
+          context.previousData,
         );
       }
     },
@@ -100,17 +97,17 @@ const CourseContent: React.FC = () => {
   let lessonCounter = 0;
 
   return (
-    <div className="flex justify-center py-10 min-h-screen">
+    <div className="flex min-h-screen justify-center py-10">
       <div>
         {data?.progress.sections.map((section, idx) => (
           <Collapsible
             key={section.sectionId._id}
             defaultOpen
-            className="min-w-[800px] border-y group/collapsible"
+            className="group/collapsible min-w-[800px] border-y"
           >
-            <div className="flex items-center justify-between p-4 bg-bgCommercial">
+            <div className="flex items-center justify-between bg-bgCommercial p-4">
               <CollapsibleTrigger asChild>
-                <button className="focus:outline-none flex items-center w-full text-left focus:outline-none focus-visible:outline-none">
+                <button className="flex w-full items-center text-left focus:outline-none focus:outline-none focus-visible:outline-none">
                   <span className="text-lg font-medium">
                     Section {idx + 1}: {section.sectionId.title}
                   </span>
@@ -132,7 +129,7 @@ const CourseContent: React.FC = () => {
                   return (
                     <li
                       key={lesson.lessonId._id}
-                      className={`flex items-center gap-3 mb-2 p-2 ${
+                      className={`mb-2 flex items-center gap-3 p-2 ${
                         isCurrentLesson ? "bg-slate-400 " : "hover:bg-slate-400"
                       }`}
                     >
@@ -141,7 +138,7 @@ const CourseContent: React.FC = () => {
                         onCheckedChange={() =>
                           toggleLessonCompletion(
                             lesson.lessonId._id,
-                            lesson.completed
+                            lesson.completed,
                           )
                         }
                         className={`hover:border-black focus:outline-none ${
@@ -152,7 +149,7 @@ const CourseContent: React.FC = () => {
                         <Link
                           to={`/course/${sanitizedCourseId}/lesson/${lesson.lessonId._id}`}
                           state={{ courseId: sanitizedCourseId }}
-                          className="flex-col ml-2"
+                          className="ml-2 flex-col"
                         >
                           <span>
                             {lessonCounter}. {lesson.lessonId.title}

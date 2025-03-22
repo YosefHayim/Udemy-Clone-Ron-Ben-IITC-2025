@@ -5,13 +5,13 @@ const TotalCourseLength: React.FC<{
 }> = ({ totalCourseLessons, totalCourseDuration, totalCourseSections }) => {
   return (
     <div>
-      <div className="flex w-[550px] justify-between mb-[0.5em]">
+      <div className="mb-[0.5em] flex w-[550px] justify-between">
         <div className="flex flex-row gap-[0.5em]">
           <p>{totalCourseSections + 1} sections</p>
           <p>{totalCourseLessons} lectures</p>
           <p>{totalCourseDuration}h total length</p>
         </div>
-        <button className="focus:outline-none border-none font-bold text-purpleStatic">
+        <button className="border-none font-bold text-purpleStatic focus:outline-none">
           Expand all sections
         </button>
       </div>

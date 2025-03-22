@@ -29,12 +29,12 @@ const NavBar: React.FC = () => {
 
   return (
     <div className="min-w-full px-40">
-      <nav className="flex max-w-full flex-wrap bg-white text-gray-500  border-b">
+      <nav className="flex max-w-full flex-wrap border-b bg-white  text-gray-500">
         {tabs.map((tab) => (
           <Link
             key={tab.path}
             to={`${basePath}/${tab.path}`} // Append tab path to the base path
-            className={`px-4 py-3 text-base  font-medium flex items-center ${
+            className={`flex items-center px-4  py-3 text-base font-medium ${
               activePath === tab.path
                 ? "border-b-2 border-black text-black"
                 : "hover:text-black"

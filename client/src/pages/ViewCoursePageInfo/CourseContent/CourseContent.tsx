@@ -1,4 +1,4 @@
-import { CourseContentProps } from "../../types/types";
+import { CourseContentProps } from "@/types/types";
 import Description from "../Description/Description";
 import Requirements from "../Requirements/Requirements";
 import Section from "../Section/Section";
@@ -23,7 +23,7 @@ const CourseContent: React.FC<CourseContentProps> = ({
 
   return (
     <div className="flex flex-col">
-      <h2 className="font-bold text-[1.2em] mb-[1em]">Course Content</h2>
+      <h2 className="mb-[1em] text-[1.2em] font-bold">Course Content</h2>
       <TotalCourseLength
         totalCourseLessons={totalCourseLessons}
         totalCourseDuration={totalCourseDuration}
@@ -39,7 +39,7 @@ const CourseContent: React.FC<CourseContentProps> = ({
           </div>
         ))}
       </div>
-      <hr className="w-[550px] mt-[2em]" />
+      <hr className="mt-[2em] w-[550px]" />
       <Requirements requirements={requirements} />
       <Description description={description} whoThisFor={whoThisFor} />
     </div>

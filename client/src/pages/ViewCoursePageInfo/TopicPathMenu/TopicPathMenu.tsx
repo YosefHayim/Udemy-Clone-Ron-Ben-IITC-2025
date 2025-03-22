@@ -1,3 +1,4 @@
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
@@ -11,13 +12,14 @@ const TopicPathMenu: React.FC<{
   const handleNavigate = (searchTerm: string) => {
     navigate(
       `/courses/search?src=ukw&q=${encodeURIComponent(
-        searchTerm.toLowerCase()
-      )}`
+        searchTerm.toLowerCase(),
+      )}`,
     );
+    searchAlgoLocalStorage(searchTerm.toLowerCase());
   };
 
   return (
-    <div className="flex flex-row items-center gap-[1em] text-[#c0c4fc] z-[1] mb-[1em]">
+    <div className="z-[1] mb-[1em] flex flex-row items-center gap-[1em] text-[#c0c4fc]">
       <b
         className="cursor-pointer"
         onClick={() => handleNavigate(category)}

@@ -125,6 +125,8 @@ export type AtagBtnProps = {
 export interface CourseImgProps {
   courseImg: string;
   widthChosen: string;
+  standCardView: boolean;
+  imgExplanation: string;
 }
 
 export interface CourseInstructorProps {
@@ -359,7 +361,7 @@ export interface CourseTypeProps {
   courseTopic: string;
   courseTrailer: string;
   createdAt: string;
-  updatedAt: string;
+  updatedAt: Date;
   isActive: boolean;
   moneyBackGuarantee: string;
   reviews: Array<string>;

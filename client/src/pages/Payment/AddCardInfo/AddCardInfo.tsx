@@ -16,20 +16,20 @@ const AddCardInfo: React.FC = () => {
     <div className="w-full">
       <form
         onSubmit={handleSubmit}
-        className="w-full flex flex-col items-start justify-start"
+        className="flex w-full flex-col items-start justify-start"
       >
-        <div className="w-full px-[1em] flex flex-col items-start justify-start gap-[1em]">
+        <div className="flex w-full flex-col items-start justify-start gap-[1em] px-[1em]">
           <div className="w-full">
-            <label htmlFor="card-number" className="font-bold mb-[0.3em]">
+            <label htmlFor="card-number" className="mb-[0.3em] font-bold">
               Credit number
             </label>
             <Input
               name="card-number"
               placeholder="1234 5678 9012 3456"
-              className="border border-black rounded-[0.2em] w-full"
+              className="w-full rounded-[0.2em] border border-black"
             ></Input>
           </div>
-          <div className="w-full flex flex-row items-start justify-start gap-[1em]">
+          <div className="flex w-full flex-row items-start justify-start gap-[1em]">
             <div>
               <label htmlFor="date" className="font-bold">
                 Expiry date
@@ -37,7 +37,7 @@ const AddCardInfo: React.FC = () => {
               <Input
                 placeholder="MM/DD"
                 name="date"
-                className="border border-black rounded-[0.2em] w-full"
+                className="w-full rounded-[0.2em] border border-black"
               ></Input>
             </div>
             <div>
@@ -47,7 +47,7 @@ const AddCardInfo: React.FC = () => {
               <Input
                 placeholder="CVC"
                 name="cvv"
-                className="border border-black rounded-[0.2em] w-full"
+                className="w-full rounded-[0.2em] border border-black"
               ></Input>
             </div>
           </div>
@@ -58,7 +58,7 @@ const AddCardInfo: React.FC = () => {
             <Input
               placeholder="Name on card"
               name="card-owner"
-              className="border border-black rounded-[0.2em] w-full"
+              className="w-full rounded-[0.2em] border border-black"
             ></Input>
           </div>
           <div className="flex flex-row items-center justify-start gap-[0.5em]">

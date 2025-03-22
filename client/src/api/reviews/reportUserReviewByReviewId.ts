@@ -18,13 +18,14 @@ const reportUserReviewByReviewId: fn = async ({
     throw new Error("Invalid review ID provided after sanitization.");
   }
 
-  const url = `${baseUrl}/api/report/review/${sanitizedReviewId}`;
+  const url = `${localhostUrl}/api/report/review/${sanitizedReviewId}`;
 
   try {
     const payload = { issueType, issueDetails, userId };
     const response = await axiosClient.post(url, payload);
 
     if (response) {
+      log(response);
       return response;
     }
 
@@ -33,7 +34,7 @@ const reportUserReviewByReviewId: fn = async ({
   } catch (error: any) {
     console.log(
       `Error reporting review with ID ${sanitizedReviewId}:`,
-      error.message
+      error.message,
     );
     throw new Error("Failed to report review. Please try again.");
   }

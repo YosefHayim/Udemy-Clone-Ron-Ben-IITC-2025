@@ -1,7 +1,15 @@
+import { Link } from "react-router-dom";
 import jsCourse1 from "/images/js1.jpg";
 import jsCourse2 from "/images/js2.jpg";
 import jsCourse3 from "/images/js3.jpg";
 import jsCourse4 from "/images/js4.jpg";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import getAllCourses from "@/api/courses/getAllCourses";
+import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
+import { CourseTypeProps } from "@/types/types";
+import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
+import Loader from "@/components/Loader/Loader";
 
 const courses = [
   {
@@ -47,53 +55,80 @@ const courses = [
 ];
 
 const SearchResult = () => {
+  const [courseIndex, setCourseIndex] = useState(0);
+  const [isCourseAnimating, setCourseAnimating] = useState(false);
+  const [countCourseClick, setCourseClick] = useState(0);
+  const convertArrayStringToRegArray = JSON.parse(
+    localStorage.getItem("searchesOfUser"),
+  );
+  const [arrayAlgo, setArrayAlgo] = useState(convertArrayStringToRegArray);
+
+  const randomAlgoWord =
+    arrayAlgo[Math.floor(Math.random() * arrayAlgo.length)];
+
+  const { data } = useQuery({
+    queryKey: ["algoCourseSearch", randomAlgoWord],
+    queryFn: () => getAllCourses(randomAlgoWord),
+    enabled: !!randomAlgoWord,
+  });
+
+  const handlePrevCourse = () => {
+    if (isCourseAnimating || courseIndex === 0) return;
+    setCourseAnimating(true);
+    setCourseClick((prevCount) => prevCount - 1);
+    setCourseIndex((prevIndex) => prevIndex - 1);
+    setTimeout(() => setCourseAnimating(false), 500);
+  };
+
+  const handleNextCourse = () => {
+    if (isCourseAnimating) return;
+    setCourseClick((prevCount) => prevCount + 1);
+    setCourseAnimating(true);
+    setCourseIndex((prevIndex) => prevIndex + 1);
+    setTimeout(() => setCourseAnimating(false), 500);
+  };
+
   return (
     <section className="px-6 py-8">
-      <h2 className="text-3xl font-bold mb-6">
-        Because you searched for <span className="text-blue-500">"js"</span>
+      <h2 className="mb-6 text-3xl font-bold">
+        Because you searched for “
+        <Link
+          className="cursor-pointer font-bold text-purple-600 underline hover:text-purple-800"
+          to={``}
+        >
+          {randomAlgoWord}
+        </Link>
+        ”
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {courses.map((course, index) => (
-          <div
-            key={index}
-            className="border rounded-lg overflow-hidden shadow-sm bg-white"
-          >
-            <img
-              src={course.image}
-              alt={course.title}
-              className="w-full h-40 object-cover"
-            />
-            <div className="p-4">
-              <h3 className="font-bold text-lg text-gray-900 truncate">
-                {course.title}
-              </h3>
-              <p className="text-sm text-gray-600 truncate">
-                {course.instructor}
-              </p>
-              <div className="flex items-center text-yellow-500 text-sm mt-2">
-                <span>{course.rating}</span>
-                <span className="text-gray-500 ml-1">({course.reviews})</span>
-              </div>
-              <div className="flex items-baseline justify-between mt-2">
-                <div>
-                  <span className="font-bold text-gray-900">
-                    {course.price}
-                  </span>
-                  {course.oldPrice && (
-                    <span className="line-through text-gray-500 text-sm ml-2">
-                      {course.oldPrice}
-                    </span>
-                  )}
-                </div>
-                {course.bestSeller && (
-                  <span className="text-sm bg-yellow-200 text-yellow-800 px-2 py-1 rounded-full">
-                    Bestseller
-                  </span>
-                )}
-              </div>
+      <div className="relative w-full overflow-hidden">
+        {data && data.length > 7 && (
+          <ButtonsCarousel
+            handleFnNext={handleNextCourse}
+            handleFnPrev={handlePrevCourse}
+            state={countCourseClick}
+            useCustom={true}
+            showDirectionalButtonsOnlyOnEdge={false}
+            topPosition="40%"
+            leftPosition="1%"
+            rightPosition="2%"
+          />
+        )}
+        <div
+          className={`flex ${data && data.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+          style={{
+            transform: `translateX(-${courseIndex * 30.5}%)`,
+          }}
+        >
+          {data && data.length > 1 ? (
+            data.map((courseCard: CourseTypeProps, index: number) => (
+              <HomeCourseCard courseCard={courseCard} index={index} />
+            ))
+          ) : (
+            <div className="w-full">
+              <Loader useSmallLoading={false} hSize="" />
             </div>
-          </div>
-        ))}
+          )}
+        </div>
       </div>
     </section>
   );

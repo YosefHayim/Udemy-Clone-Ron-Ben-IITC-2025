@@ -4,10 +4,10 @@ const ReceiptCart = () => {
   return (
     <div className="p-[3em]">
       <div>
-        <h1 className="font-bold text-[1.6em] mb-[1.5em]" styles={styles.title}>
+        <h1 className="mb-[1.5em] text-[1.6em] font-bold" styles={styles.title}>
           Receipt
         </h1>
-        <h2 className="font-bold text-[1.2em] mb-[1.4em]">
+        <h2 className="mb-[1.4em] text-[1.2em] font-bold">
           Receipt for Cart - Dec. 30, 2024
         </h2>
       </div>
@@ -19,7 +19,7 @@ const ReceiptCart = () => {
           <li>
             <a
               href="https://www.udemy.com/"
-              className="underline text-purple-700"
+              className="text-purple-700 underline"
             >
               udemy.com
             </a>
@@ -39,11 +39,11 @@ const ReceiptCart = () => {
           </li>
         </ul>
       </div>
-      <div className="flex flex-row items-start justify-between w-full text-[1.2em]">
+      <div className="flex w-full flex-row items-start justify-between text-[1.2em]">
         <div>
           <b>Item</b>
         </div>
-        <div className="flex justify-end items-start gap-[3em]">
+        <div className="flex items-start justify-end gap-[3em]">
           <b>Ordered</b>
           <b>Coupon Codes</b>
           <b>Quantity</b>
@@ -52,11 +52,11 @@ const ReceiptCart = () => {
         </div>
       </div>
       <hr />
-      <div className="flex flex-row items-start justify-between w-full text-[1.2em]">
+      <div className="flex w-full flex-row items-start justify-between text-[1.2em]">
         <div>
           <p>React Native - The Practical Guide [2025]</p>
         </div>
-        <div className="flex gap-[3em] justify-end items-start">
+        <div className="flex items-start justify-end gap-[3em]">
           <p>Dec. 30,2024</p>
           <p>24T7MT123024</p>
           <p>1</p>
@@ -65,7 +65,7 @@ const ReceiptCart = () => {
         </div>
       </div>
       <hr />
-      <div className="flex justify-end w-[1180px] items-center gap-[3.5em] mb-[2em]">
+      <div className="mb-[2em] flex w-[1180px] items-center justify-end gap-[3.5em]">
         <p>Total Paid</p>
         <p> ₪149.90</p>
       </div>
@@ -73,7 +73,7 @@ const ReceiptCart = () => {
       <div>
         <p>
           If you have any questions about this receipt please contact our{" "}
-          <span className="underline text-purple-700">support team.</span>
+          <span className="text-purple-700 underline">support team.</span>
         </p>
       </div>
     </div>

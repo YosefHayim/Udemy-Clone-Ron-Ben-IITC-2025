@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 
 const TrendingNow = () => {
   return (
-    <div className="bg-white px-12 py-16">
-      <h2 className="text-4xl font-bold text-gray-900 leading-tight">
+    <div className="bg-gray-100 px-12 py-16">
+      <h2 className="text-4xl font-bold leading-tight text-gray-900">
         Trending Now
       </h2>
-      <div className="mt-6 border-t border-gray-300 pt-6 flex flex-col lg:flex-row justify-between">
+      <div className="mt-6 flex flex-col justify-between border-t border-gray-300 pt-6 lg:flex-row">
         {/* Coluna 1 */}
         <div className="mb-8 lg:mb-0 lg:w-1/4">
           <h3 className="text-xl font-bold text-gray-900">
@@ -14,12 +14,12 @@ const TrendingNow = () => {
           </h3>
           <Link
             to="/chatgpt-courses"
-            className="text-purple-600 hover:underline text-lg block mt-2"
+            className="mt-2 block text-lg text-purple-600 hover:underline"
           >
             See ChatGPT courses →
           </Link>
-          <p className="text-gray-600 text-sm mt-1">3,957,244 learners</p>
-          <button className="focus:outline-none mt-6 px-6 py-3 border border-gray-900 text-gray-900 font-bold rounded-lg hover:bg-gray-100 transition duration-200 flex items-center space-x-2">
+          <p className="mt-1 text-sm text-gray-600">3,957,244 learners</p>
+          <button className="mt-6 flex items-center space-x-2 rounded-lg border border-gray-900 px-6 py-3 font-bold text-gray-900 transition duration-200 hover:bg-gray-100 focus:outline-none">
             Show all trending skills
             <span className="text-lg">↗</span>
           </button>
@@ -27,7 +27,7 @@ const TrendingNow = () => {
 
         {/* Coluna 2 */}
         <div className="mb-8 lg:mb-0 lg:w-1/4">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Development</h3>
+          <h3 className="mb-4 text-lg font-bold text-gray-900">Development</h3>
           <div className="space-y-3">
             <Link
               to="/courses/python"
@@ -35,7 +35,7 @@ const TrendingNow = () => {
             >
               Python →
             </Link>
-            <p className="text-gray-600 text-sm">46,814,772 learners</p>
+            <p className="text-sm text-gray-600">46,814,772 learners</p>
 
             <Link
               to="/courses/web-development"
@@ -43,7 +43,7 @@ const TrendingNow = () => {
             >
               Web Development →
             </Link>
-            <p className="text-gray-600 text-sm">13,826,607 learners</p>
+            <p className="text-sm text-gray-600">13,826,607 learners</p>
 
             <Link
               to="/courses/data-science"
@@ -51,13 +51,13 @@ const TrendingNow = () => {
             >
               Data Science →
             </Link>
-            <p className="text-gray-600 text-sm">7,612,352 learners</p>
+            <p className="text-sm text-gray-600">7,612,352 learners</p>
           </div>
         </div>
 
         {/* Coluna 3 */}
         <div className="mb-8 lg:mb-0 lg:w-1/4">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Design</h3>
+          <h3 className="mb-4 text-lg font-bold text-gray-900">Design</h3>
           <div className="space-y-3">
             <Link
               to="/courses/blender"
@@ -65,7 +65,7 @@ const TrendingNow = () => {
             >
               Blender →
             </Link>
-            <p className="text-gray-600 text-sm">2,833,276 learners</p>
+            <p className="text-sm text-gray-600">2,833,276 learners</p>
 
             <Link
               to="/courses/graphic-design"
@@ -73,7 +73,7 @@ const TrendingNow = () => {
             >
               Graphic Design →
             </Link>
-            <p className="text-gray-600 text-sm">4,426,658 learners</p>
+            <p className="text-sm text-gray-600">4,426,658 learners</p>
 
             <Link
               to="/courses/adobe-photoshop"
@@ -81,13 +81,13 @@ const TrendingNow = () => {
             >
               Adobe Photoshop →
             </Link>
-            <p className="text-gray-600 text-sm">12,570,400 learners</p>
+            <p className="text-sm text-gray-600">12,570,400 learners</p>
           </div>
         </div>
 
         {/* Coluna 4 */}
         <div className="lg:w-1/4">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Business</h3>
+          <h3 className="mb-4 text-lg font-bold text-gray-900">Business</h3>
           <div className="space-y-3">
             <Link
               to="/courses/pmp-certification"
@@ -95,7 +95,7 @@ const TrendingNow = () => {
             >
               PMI Project Management Professional (PMP) →
             </Link>
-            <p className="text-gray-600 text-sm">2,464,690 learners</p>
+            <p className="text-sm text-gray-600">2,464,690 learners</p>
 
             <Link
               to="/courses/microsoft-power-bi"
@@ -103,7 +103,7 @@ const TrendingNow = () => {
             >
               Microsoft Power BI →
             </Link>
-            <p className="text-gray-600 text-sm">4,455,426 learners</p>
+            <p className="text-sm text-gray-600">4,455,426 learners</p>
 
             <Link
               to="/courses/project-management"
@@ -111,7 +111,7 @@ const TrendingNow = () => {
             >
               Project Management →
             </Link>
-            <p className="text-gray-600 text-sm">3,822,469 learners</p>
+            <p className="text-sm text-gray-600">3,822,469 learners</p>
           </div>
         </div>
       </div>

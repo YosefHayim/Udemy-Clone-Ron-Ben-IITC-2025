@@ -10,9 +10,9 @@ import Heart from "./Heart/Heart";
 import Notifications from "./Notifications/Notifications";
 import Profile from "./Profile/Profile";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 import CategoriesMenu from "./Categories/CategoriesMenu";
-import { isRootPathOnly } from "@/utils/extraGenerals";
+import { isRootPathOnly } from "@/utils/isRootPathOnly";
 import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
 import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercialTwo";
 import { useMediaQuery } from "react-responsive";
@@ -22,7 +22,10 @@ const Navbar = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
 
   const [isClicked, setClicked] = useState(false);
-  const cookie = useSelector((state: RootState) => state?.user.cookie);
+  const cookie = useSelector((state: RootState) => state?.user?.cookie);
+  const prevLogWGoogle = useSelector(
+    (state: RootState) => state.user.isLoggedPreviouslyWithGoogle,
+  );
 
   useEffect(() => {}, [cookie]);
 
@@ -31,9 +34,9 @@ const Navbar = () => {
       {/* <SaleCommercial />dasdsa */}
       <SaleCommercialTwo />
       {!isMobile && (
-        <div className="pb-[0.9em] pt-[0.2em] w-full flex items-center bg-white relative shadow-carouselShadowBtn justify-between px-[1.55rem] z-[9999]">
-          <div className="flex flex-col w-full">
-            <div className="w-full flex items-center">
+        <div className="relative z-[9999] flex w-full items-center justify-between bg-white px-[1.55rem] pb-[0.9em] pt-[0.2em] shadow-carouselShadowBtn">
+          <div className="flex w-full flex-col">
+            <div className="flex w-full items-center">
               <div className="flex flex-row items-center gap-[0.5em]">
                 <Link to="/">
                   <Logo />
@@ -43,8 +46,8 @@ const Navbar = () => {
               <div
                 className={
                   isRootPathOnly()
-                    ? "w-full flex items-center justify-end"
-                    : "w-full flex items-center justify-center p-[0.3em]"
+                    ? "flex w-full items-center justify-end"
+                    : "flex w-full items-center justify-center p-[0.3em]"
                 }
               >
                 <div className={isRootPathOnly() ? "hidden" : "flex-grow"}>
@@ -57,7 +60,7 @@ const Navbar = () => {
                     <AtagBtn aTagName={"My learning"} />
                   </Link>
                 )}
-                {cookie.length > 1 && (
+                {cookie && (
                   <div className="flex items-center">
                     <Heart />
                   </div>
@@ -66,13 +69,13 @@ const Navbar = () => {
                   <Cart />
                 </Link>
                 <div className="flex items-center justify-around gap-[0.3em]">
-                  {cookie.length > 1 && (
+                  {cookie && (
                     <div className="flex items-center">
                       <Notifications />
                     </div>
                   )}
                   {!cookie && (
-                    <div className="flex flex-row gap-[0.3em]">
+                    <div className="flex flex-row gap-2">
                       <LoginBtn />
                       <SignupBtn />
                     </div>
@@ -80,7 +83,7 @@ const Navbar = () => {
                 </div>
                 {cookie && <Profile cookie={cookie} />}
                 {!cookie && (
-                  <div className="ml-[0.3em]">
+                  <div className="ml-2">
                     <ChangeLanguage
                       size={20}
                       isClicked={isClicked}
@@ -91,7 +94,7 @@ const Navbar = () => {
                 )}
               </div>
             </div>
-            <div className={isRootPathOnly() ? "flex mt-[0.5em]" : "hidden"}>
+            <div className={isRootPathOnly() ? "mt-[0.5em] flex" : "hidden"}>
               <SearchInput />
             </div>
           </div>

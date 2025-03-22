@@ -29,16 +29,16 @@ const DescriptionOfInstructor: React.FC<{
           WebkitMaskSize: "100% 100%",
           maskSize: "100% 100%",
         }}
-        className="flex flex-col items-start justify-start w-[500px] gap-[2em]"
+        className="flex w-[500px] flex-col items-start justify-start gap-[2em]"
       >
         <b className="font-bold">About me</b>
         <p>{backgroundOfInstructor}</p>
       </div>
       <div
-        className="pl-[0.5em] py-[0.5em] rounded-[0.2em] flex gap-[1em] items-center cursor-pointer hover:bg-purpleHoverBtn w-[115px]"
+        className="flex w-[115px] cursor-pointer items-center gap-[1em] rounded-[0.2em] py-[0.5em] pl-[0.5em] hover:bg-purpleHoverBtn"
         onClick={handleToggle}
       >
-        <span className="text-purpleStatic hover:text-purpleHover font-bold ">
+        <span className="font-bold text-purpleStatic hover:text-purpleHover ">
           {isExpanded ? "Show less" : "Show more"}
         </span>
         {isExpanded ? (

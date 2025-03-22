@@ -2,7 +2,7 @@ import { personalizeFieldPayload } from "../../types/types";
 import { axiosClient, baseUrl, localhostUrl } from "../configuration";
 
 const updatePersonalizeUserField = async (
-  personalizeField: personalizeFieldPayload
+  personalizeField: personalizeFieldPayload,
 ) => {
   if (!personalizeField) {
     return undefined;
@@ -11,11 +11,11 @@ const updatePersonalizeUserField = async (
   console.log("personalizeField", personalizeField);
 
   try {
-    const url = `${baseUrl}/api/user/updatePersonalizeField`;
+    const url = `${localhostUrl}/api/user/updatePersonalizeField`;
     const r = await axiosClient.put(url, personalizeField);
 
     if (r) {
-      console.log(r);
+      console.log(r.data);
       return r.data;
     }
   } catch (error) {

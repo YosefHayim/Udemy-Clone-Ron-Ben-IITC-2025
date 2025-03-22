@@ -2,9 +2,9 @@ import { IoCloseOutline } from "react-icons/io5";
 
 const Skill = ({ skillName = "Next.js" }) => {
   return (
-    <div className="flex flex-row items-center gap-[0.5em] bg-gray-200 rounded-[100em] p-[0.7em] w-max cursor-pointer">
+    <div className="flex w-max cursor-pointer flex-row items-center gap-[0.5em] rounded-[100em] bg-gray-200 p-[0.7em]">
       <b>{skillName}</b>
-      <IoCloseOutline className="text-[1.5em] hover:bg-gray-400 rounded-[100em] h-[1.5em]" />
+      <IoCloseOutline className="h-[1.5em] rounded-[100em] text-[1.5em] hover:bg-gray-400" />
     </div>
   );
 };

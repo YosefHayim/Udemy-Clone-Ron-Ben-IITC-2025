@@ -15,7 +15,7 @@ const CourseRating: React.FC<{
     isNaN(amountOfStars) || amountOfStars <= 0 ? 1 : Math.floor(amountOfStars);
 
   return (
-    <div className="flex items-center gap-[0.1em] z-10 text-white">
+    <div className="z-10 flex items-center gap-[0.1em] text-white">
       <b className={`${!isShowRating ? `${colorRating} block ` : "hidden"}`}>
         {courseRating > 0 ? courseRating : ""}
       </b>

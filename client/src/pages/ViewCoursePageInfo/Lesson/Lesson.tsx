@@ -9,15 +9,15 @@ const Lesson: React.FC<{
   duration: number;
 }> = ({ isQuizzLesson = false, title, videoUrl, duration }) => {
   return (
-    <div className="flex flex-row justify-between items-center bg-white w-[550px] p-[0.5em]   border-right border border-left">
-      <div className="flex gap-[1em] items-center">
+    <div className="border-right border-left flex w-[550px] flex-row items-center justify-between   border bg-white p-[0.5em]">
+      <div className="flex items-center gap-[1em]">
         {isQuizzLesson ? (
           <GoLightBulb className="text-languageText" />
         ) : (
           <MdOutlineOndemandVideo className="text-languageText" />
         )}
         <a
-          className="text-purpleStatic underline cursor-pointer"
+          className="cursor-pointer text-purpleStatic underline"
           href={videoUrl}
         >
           {title}

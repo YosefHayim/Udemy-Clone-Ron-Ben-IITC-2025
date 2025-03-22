@@ -2,12 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setShowCart } from "@/redux/slices/cartSlice";
 import React, { useEffect } from "react";
-import { RootState } from "@/redux";
+import { RootState } from "@/redux/store";
 
 const CartCoursesNumber = () => {
   const dispatch = useDispatch();
   const countOfCourses = useSelector(
-    (state: RootState) => state.cart.amountOfCourses
+    (state: RootState) => state.cart.amountOfCourses,
   );
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const CartCoursesNumber = () => {
   }
 
   return (
-    <div className="bg-purple-500 rounded-full p-[1em] text-white absolute top-[-11%] left-[50%] right-[9.3%] text-center">
+    <div className="absolute left-[50%] right-[9.3%] top-[-11%] rounded-full bg-purple-500 p-[1em] text-center text-white">
       <p className=" absolute left-[0.7em] top-[0.2em]">{countOfCourses}</p>
     </div>
   );

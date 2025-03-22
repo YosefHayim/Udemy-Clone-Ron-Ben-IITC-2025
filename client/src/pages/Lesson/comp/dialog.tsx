@@ -11,20 +11,24 @@ import {
 
 export function DeleteNoteDialog({ onConfirm }: { onConfirm: () => void }) {
   return (
-    <DialogContent className="sm:max-w-md p-6 rounded-lg shadow-lg">
+    <DialogContent className="rounded-lg p-6 shadow-lg sm:max-w-md">
       <DialogHeader>
-        <DialogTitle className="text-lg font-semibold">Please confirm</DialogTitle>
+        <DialogTitle className="text-lg font-semibold">
+          Please confirm
+        </DialogTitle>
       </DialogHeader>
-      <DialogDescription className="text-gray-600 text-sm">
+      <DialogDescription className="text-sm text-gray-600">
         Are you sure you want to delete your note?
       </DialogDescription>
-      <DialogFooter className="flex justify-end gap-4 mt-4">
+      <DialogFooter className="mt-4 flex justify-end gap-4">
         <DialogClose asChild>
-          <Button variant="outline" className="text-gray-700">Cancel</Button>
+          <Button variant="outline" className="text-gray-700">
+            Cancel
+          </Button>
         </DialogClose>
         <Button
           onClick={onConfirm}
-          className="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
+          className="rounded bg-purple-600 px-4 py-2 text-white hover:bg-purple-700"
         >
           OK
         </Button>

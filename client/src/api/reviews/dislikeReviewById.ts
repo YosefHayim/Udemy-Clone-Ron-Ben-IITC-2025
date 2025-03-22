@@ -8,11 +8,12 @@ export const dislikeReviewById: fn = async (idOfReview: string) => {
     return;
   }
   const sanitizedReviewId = idOfReview.trim();
-  const url = `${baseUrl}/api/review/dislike/${sanitizedReviewId}`;
+  const url = `${localhostUrl}/api/review/dislike/${sanitizedReviewId}`;
   try {
     const res = await axiosClient.post(url);
 
     if (res) {
+      console.log(res);
       return res;
     }
   } catch (error) {

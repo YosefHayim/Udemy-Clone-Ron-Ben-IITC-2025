@@ -32,11 +32,11 @@ const CollapsibleSections: React.FC<CollapsibleSectionsProps> = ({
         <Collapsible
           key={section._id}
           defaultOpen
-          className="min-w-[800px] border-y group/collapsible"
+          className="group/collapsible min-w-[800px] border-y"
         >
-          <div className="flex items-center justify-between p-4 bg-bgCommercial">
+          <div className="flex items-center justify-between bg-bgCommercial p-4">
             <CollapsibleTrigger asChild>
-              <button className="focus:outline-none flex items-center w-full text-left focus:outline-none">
+              <button className="flex w-full items-center text-left focus:outline-none focus:outline-none">
                 <span className="text-lg font-medium">
                   Section {idx + 1}: {section.title}
                 </span>
@@ -49,7 +49,7 @@ const CollapsibleSections: React.FC<CollapsibleSectionsProps> = ({
               {section.lessons.map((lesson, lessonIdx) => (
                 <li
                   key={lesson._id}
-                  className="flex items-center gap-3 mb-2 p-2 hover:bg-slate-400"
+                  className="mb-2 flex items-center gap-3 p-2 hover:bg-slate-400"
                 >
                   <div className="flex flex-col">
                     <span>

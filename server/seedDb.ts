@@ -90,42 +90,39 @@ const createUsers = async () => {
   }
 };
 
-const createCourses = async () => {
+const createCourses = async ({
+  coursesPerTopic = 1, // 🔁 Customize this to control volume
+} = {}) => {
   console.log("Fetching instructors and students for course creation...");
 
   const instructors = await User.find({ role: "instructor" });
-  if (!instructors.length) {
-    throw new Error("No instructors found for course creation.");
-  }
+  if (!instructors.length) throw new Error("No instructors found.");
 
   const users = await User.find({ role: "student" });
-  if (!users.length) {
-    throw new Error("No students found for enrollment.");
+  if (!users.length) throw new Error("No students found.");
+
+  const topicList = [];
+
+  // 🔁 Flatten the structure: [{ parentCategory, subCategory, topic }]
+  for (const parentCategory of Object.keys(courseCategories)) {
+    const subCategories = courseCategories[parentCategory].subCategories;
+
+    for (const subCategory of Object.keys(subCategories)) {
+      const topics = subCategories[subCategory];
+
+      for (const topic of topics) {
+        topicList.push({ parentCategory, subCategory, topic });
+      }
+    }
   }
 
   const courses = [];
+  let instructorIndex = 0;
 
-  for (const instructor of instructors) {
-    const numCourses = faker.number.int({ min: 2, max: 10 });
-    console.log(
-      `Assigning ${numCourses} courses to instructor: ${instructor.fullName}`
-    );
-
-    for (let i = 0; i < numCourses; i++) {
-      console.log(
-        `Creating course ${i + 1}/${numCourses} for instructor ${
-          instructor.fullName
-        }...`
-      );
-
-      const parentCategory = faker.helpers.arrayElement(
-        Object.keys(courseCategories)
-      );
-      const subCategories = courseCategories[parentCategory].subCategories;
-      const subCategory = faker.helpers.arrayElement(
-        Object.keys(subCategories)
-      );
-      const topic = faker.helpers.arrayElement(subCategories[subCategory]);
+  for (const { parentCategory, subCategory, topic } of topicList) {
+    for (let i = 0; i < coursesPerTopic; i++) {
+      const instructor = instructors[instructorIndex];
+      instructorIndex = (instructorIndex + 1) % instructors.length;
 
       const enrolledStudents = faker.helpers.arrayElements(
         users,
@@ -141,12 +138,10 @@ const createCourses = async () => {
         }),
         courseRecapInfo: faker.lorem.words(10),
         courseDescription: faker.lorem.paragraph(),
-        // courseFullPrice: 0,
-        // courseDiscountPrice: 0,
         courseFullPrice: faker.number.int({ min: 500, max: 800 }),
         courseDiscountPrice: faker.number.int({ min: 100, max: 300 }),
         whoThisCourseIsFor: faker.lorem.sentence(),
-        courseInstructorDescription: faker.lorem.paragraphs(10),
+        courseInstructorDescription: faker.lorem.paragraphs(3),
         whatYouWillLearn: Array.from({ length: 8 }, () =>
           faker.lorem.sentence()
         ),
@@ -154,7 +149,7 @@ const createCourses = async () => {
           faker.lorem.sentence()
         ),
         category: parentCategory,
-        subCategory: subCategory,
+        subCategory,
         courseTopic: topic,
         courseLevel: faker.helpers.arrayElement([
           "Beginner",
@@ -192,25 +187,14 @@ const createCourses = async () => {
         reviews: [],
       });
 
-      if (!Array.isArray(instructor.coursesCreated)) {
-        instructor.coursesCreated = [];
-      }
+      // Save instructor linkage
+      instructor.coursesCreated ||= [];
       instructor.coursesCreated.push(course._id);
       await instructor.save();
 
-      if (!course || !course._id || !course.courseName) {
-        console.log(
-          "Course creation failed or returned incomplete data:",
-          course
-        );
-        return;
-      }
-
+      // Save student enrollments
       for (const student of enrolledStudents) {
-        if (!Array.isArray(student.coursesBought)) {
-          student.coursesBought = [];
-        }
-
+        student.coursesBought ||= [];
         student.coursesBought.push({
           courseName: course.courseName,
           courseId: course._id,
@@ -229,13 +213,11 @@ const createCourses = async () => {
       }
 
       courses.push(course);
-      console.log(`Course created: ${course.courseName}`);
+      console.log(`✅ Created course: ${course.courseName}`);
     }
   }
 
-  console.log(
-    `Courses created successfully. Total courses assigned: ${courses.length}`
-  );
+  console.log(`🎉 Finished creating ${courses.length} courses.`);
   return courses;
 };
 
@@ -796,47 +778,47 @@ const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
     console.log("Database connection established.");
-    await clearCollections();
-    console.log("Deleted all db.");
+    // await clearCollections();
+    // console.log("Deleted all db.");
 
-    console.log("Seeding users...");
-    const users = await createUsers();
-    console.log(`${users.length} users created.`);
+    // console.log("Seeding users...");
+    // const users = await createUsers();
+    // console.log(`${users.length} users created.`);
 
     console.log("Seeding courses...");
-    const courses = await createCourses();
+    const courses = await createCourses({ coursesPerTopic: 4 });
     if (courses && courses.length > 1) {
       console.log(`${courses.length} courses created.`);
     }
 
-    console.log("Seeding sections...");
-    const sections = await createSections();
-    console.log(`${sections.length} sections created.`);
+    // console.log("Seeding sections...");
+    // const sections = await createSections();
+    // console.log(`${sections.length} sections created.`);
 
-    console.log("Seeding lessons...");
-    const lessons = await createLessons();
-    console.log(`${lessons.length} lessons created.`);
+    // console.log("Seeding lessons...");
+    // const lessons = await createLessons();
+    // console.log(`${lessons.length} lessons created.`);
 
-    await simulateCoursePurchases();
-    console.log("Simulate courses purchases completed");
+    // await simulateCoursePurchases();
+    // console.log("Simulate courses purchases completed");
 
-    console.log("Seeding reviews...");
-    const reviews = await createReviews();
-    console.log(`reviews created.`);
+    // console.log("Seeding reviews...");
+    // const reviews = await createReviews();
+    // console.log(`reviews created.`);
 
-    console.log("Seeding reported reviews...");
-    await createReportedReviews();
+    // console.log("Seeding reported reviews...");
+    // await createReportedReviews();
 
-    await addCoursesToWishlistOfUsers();
-    console.log("Simulate courses wishlists completed");
+    // await addCoursesToWishlistOfUsers();
+    // console.log("Simulate courses wishlists completed");
 
-    await createInstructorProfiles();
-    console.log("create instructor profiles completed.");
+    // await createInstructorProfiles();
+    // console.log("create instructor profiles completed.");
 
-    await generateCouponsForCourses();
-    console.log("Coupon generation completed.");
+    // await generateCouponsForCourses();
+    // console.log("Coupon generation completed.");
 
-    console.log("All dummy data seeded successfully!");
+    // console.log("All dummy data seeded successfully!");
     process.exit();
   } catch (err) {
     console.log("Error generating dummy data:", err);

@@ -6,13 +6,13 @@ const MarketingGuest = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="bg-purpleStatic text-white py-[1rem] px-6 flex justify-center items-center relative">
-      <span className="text-base font-semibold text-center">
+    <div className="relative flex items-center justify-center bg-purpleStatic px-6 py-[1rem] text-white">
+      <span className="text-center text-base font-semibold">
         <span className="font-black">Ready to get with the times?</span> | Get
         the skills with Udemy Business.
       </span>
       <button
-        className="absolute right-4 text-white text-3xl font-light pv-12 hover:opacity-80 focus:outline-none"
+        className="pv-12 absolute right-4 text-3xl font-light text-white hover:opacity-80 focus:outline-none"
         onClick={() => setIsVisible(false)}
       >
         ×

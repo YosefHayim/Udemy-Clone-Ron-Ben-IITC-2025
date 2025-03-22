@@ -1,4 +1,4 @@
-import { Course } from "../../types/types";
+import { Course } from "@/types/types";
 import CourseCardInstructorRelated from "../CourseCardInstructorRelated/CourseCardInstructorRelated";
 import { useNavigate } from "react-router-dom";
 

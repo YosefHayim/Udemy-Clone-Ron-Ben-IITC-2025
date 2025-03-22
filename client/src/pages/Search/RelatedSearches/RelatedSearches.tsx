@@ -16,8 +16,8 @@ const RelatedSearches = () => {
       try {
         const response = await axios.get(
           `https://api.datamuse.com/words?rel_trg=${encodeURIComponent(
-            urlSearchTerm
-          )}&max=10`
+            urlSearchTerm,
+          )}&max=10`,
         );
         setSuggestions(response.data.map((item: any) => item.word));
       } catch (error) {
@@ -33,19 +33,19 @@ const RelatedSearches = () => {
   }, [fetchSuggestions]);
 
   return (
-    <div className="w-full flex flex-col items-center justify-start gap-[1em] mt-[2em]">
-      <div className="w-full flex flex-row items-center justify-start gap-[0.5em]">
-        <b className="font-bold text-[1.2em]">Related searches</b>
+    <div className="mt-[2em] flex w-full flex-col items-center justify-start gap-[1em]">
+      <div className="flex w-full flex-row items-center justify-start gap-[0.5em]">
+        <b className="text-[1.2em] font-bold">Related searches</b>
         <div className="relative">
           <div
-            className="bg-none border-none shadow-none hover:bg-none hover:shadow-none"
+            className="border-none bg-none shadow-none hover:bg-none hover:shadow-none"
             onMouseEnter={() => setIsHover(true)}
             onMouseLeave={() => setIsHover(false)}
           >
             <IoIosInformationCircle className="text-[1.5em]" />
           </div>
           {isHover && (
-            <div className="absolute  top-[-10%] left-[130%] bg-white text-black w-[250px] p-[1.5em] border border-gray-150 shadow-alertAlgoInfo rounded-md">
+            <div className="border-gray-150  absolute left-[130%] top-[-10%] w-[250px] rounded-md border bg-white p-[1.5em] text-black shadow-alertAlgoInfo">
               <b>About these results</b>
               <p>
                 Explore results for similar search terms from students like you.
@@ -54,7 +54,7 @@ const RelatedSearches = () => {
           )}
         </div>
       </div>
-      <div className="flex flex-row w-full flex-wrap gap-[0.8em]">
+      <div className="flex w-full flex-row flex-wrap gap-[0.8em]">
         {suggestions.map((suggestion) => (
           <RelatedSearchAlgoBtn key={suggestion} algoSearch={suggestion} />
         ))}

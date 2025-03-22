@@ -4,10 +4,12 @@ const CourseLength: React.FC<{
   courseLevel?: string;
   totalLectures?: number;
   totalMinutes?: number;
+  isSmallText?: boolean;
 }> = ({
   courseLevel = "All Levels",
   totalLectures = "14 lectures",
   totalMinutes = 60,
+  isSmallText = false,
 }) => {
   const totalHours =
     totalMinutes >= 60
@@ -17,7 +19,9 @@ const CourseLength: React.FC<{
       : `total ${totalMinutes} minutes`;
 
   return (
-    <div className="flex flex-row items-center justify-start text-weakGray w-full">
+    <div
+      className={`flex w-full flex-row items-center justify-start text-weakGray ${isSmallText && "text-[0.9em]"}`}
+    >
       <p className="w-min-max">{totalHours}</p>
       <LuDot />
       <p className="w-min-max">{totalLectures} lectures</p>
