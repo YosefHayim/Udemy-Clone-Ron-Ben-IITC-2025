@@ -85,18 +85,17 @@ const VerifyCode = () => {
   }, []);
 
   return (
-    <div className="min-width-[61.3125rem] flex w-[100rem] flex-1 items-start px-[10rem] py-[6.8rem]">
-      <img
-        src="/images/Login_Password_Page.png"
-        alt="Login Illustration"
-        className="mt-[-2rem] h-auto max-h-[100%] w-[100%] max-w-[620px] object-contain p-12"
-      />
-
+    <div className="min-width-[61.3125rem] flex w-full flex-1 items-start justify-center px-[10rem] py-[6.8rem]">
+      <div >
+        <img
+          src="/images/Login_Password_Page.png"
+          alt="Login Illustration"
+        />
+      </div>
       <div className="flex w-full flex-col items-center justify-center bg-white">
         <h2 className="mb-2 text-center font-sans text-3xl font-extrabold text-gray-800">
           Check your inbox
         </h2>
-
         <p className="mb-7 mt-8 max-w-[25rem] text-center text-[1rem] text-gray-600">
           Enter the 6-digit code we sent to{" "}
           <span className="font-sans font-extrabold">
@@ -105,7 +104,6 @@ const VerifyCode = () => {
           <span className="font-sans font-extrabold text-gray-800"></span> to
           finish your login.
         </p>
-
         <form
           onSubmit={handleSubmit}
           className="flex w-full max-w-[27rem] flex-col items-center space-y-4"

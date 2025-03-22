@@ -27,41 +27,43 @@ const Homepage = () => {
   useEffect(() => {}, [cookie]);
 
   return (
-    <div className="font-[lifeLtstd] px-52">
-      {!cookie ? (
-        <div className="w-full">
-          <Banner isLogin={false} />
-          <div>
-            <Sections />
-            <TrustedBySection />
-            <LearnersAreViewing />
-            <SearchResult />
-            <LearningGoals />
-            <PlansSection />
-            <Testimonials />
-            <TrendsReport />
-            <TrendingNow />
-            <Carousel />
+    <div>
+      {!isMobile  && cookie && <Menu />}
+      <div className="font-[lifeLtstd] px-52">
+        {!cookie ? (
+          <div className="w-full">
+            <Banner isLogin={false} />
+            <div>
+              <Sections />
+              <TrustedBySection />
+              <LearnersAreViewing />
+              <SearchResult />
+              <LearningGoals />
+              <PlansSection />
+              <Testimonials />
+              <TrendsReport />
+              <TrendingNow />
+              <Carousel />
+            </div>
           </div>
-        </div>
-      ) : (
-        <div>
-          {!isMobile && <Menu />}
-          <Welcome />
-          <Banner isLogin={true} />
-          <div className="px-6 py-8">
-            <h1 className="pl-4 font-extrabold">What to learn next</h1>
-            <SearchResult />
-            <SearchResult />
-            <LearnersAreViewing />
-            <SearchResult title="Short and sweet courses for you" />
-            <SearchResult title="Top courses in Design" />
-            <SearchResult title="Top courses in Development" />
-            <SearchResult title="Top courses in IT & Software" />
-            <SearchResult title="Top courses in Personal Development" />
+        ) : (
+          <div className="w-full">
+            <Welcome />
+            <Banner isLogin={true} />
+            <div className="px-6 py-8">
+              <h1 className="pl-4 font-extrabold">What to learn next</h1>
+              <SearchResult />
+              <SearchResult />
+              <LearnersAreViewing />
+              <SearchResult title="Short and sweet courses for you" />
+              <SearchResult title="Top courses in Design" />
+              <SearchResult title="Top courses in Development" />
+              <SearchResult title="Top courses in IT & Software" />
+              <SearchResult title="Top courses in Personal Development" />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
