@@ -11,15 +11,16 @@ import updateUserLanguage from "@/api/users/updateUserLanguage";
 import { setLanguage } from "@/redux/slices/userSlice";
 
 const ProfileMain = () => {
+  const dispatch = useDispatch();
   document.title = "Udemy | Edit profile";
   const MAX_LENGTH = 60;
 
-  const fullName = useSelector((state: RootState) => state?.user.fullName);
+  const fullName = useSelector((state: RootState) => state?.user?.fullName);
   const headlineFromStore = useSelector(
     (state: RootState) => state?.user.headline,
   );
-  const userLinks = useSelector((state: RootState) => state?.user.userLinks);
-  const bio = useSelector((state: RootState) => state?.user.bio);
+  const userLinks = useSelector((state: RootState) => state?.user?.userLinks);
+  const bio = useSelector((state: RootState) => state?.user?.bio);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -63,8 +64,6 @@ const ProfileMain = () => {
       setCharsLeft(MAX_LENGTH - inputValue.length);
     }
   };
-
-  const dispatch = useDispatch();
 
   const defaultLanguage = useSelector(
     (state: RootState) => state?.user.language,

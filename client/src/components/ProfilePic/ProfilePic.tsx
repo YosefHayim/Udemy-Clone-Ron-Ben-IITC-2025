@@ -16,6 +16,10 @@ const ProfilePic: React.FC<{
   size = "h-[5em] w-[5em]",
   customTextSize = "",
 }) => {
+  const imageUrl = profilePic.startsWith("https")
+    ? profilePic
+    : `${baseUrl}${profilePic}`;
+
   return (
     <div
       className={`${
@@ -23,10 +27,7 @@ const ProfilePic: React.FC<{
       } font-Sans rounded-[0.4em] p-[1em] px-[0.6em] py-[0.2em] font-normal text-[#020202] hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300`}
     >
       <Avatar className={`${isBig ? `${size}` : ""}`}>
-        <AvatarImage
-          src={`${baseUrl}${profilePic}`}
-          className="rounded-[100em]"
-        />
+        <AvatarImage src={imageUrl} className="rounded-[100em]" />
         <AvatarFallback
           className={`${
             isBig ? "text-2xl" : "text-1xl"
