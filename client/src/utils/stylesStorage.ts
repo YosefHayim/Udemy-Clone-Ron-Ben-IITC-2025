@@ -9,3 +9,4 @@ export const diffLoginOptionBtn = `focus:outline-none text-btnColor underline fo
 export const iconSize = `w-7 h-7`;
 export const inputLoginWEmail = `hover:bg-gray-100 w-full p-[1em] bg-white text-black focus:bg-white focus:text-black focus:outline-none border border-[#9194ac] rounded-[0.3em] py-[1.5em] placeholder:font-bold placeholder:text-courseNameColorTxt focus:border-purple-800`;
 export const divDiffOptionsLogin = `space-y-3 text-center text-base font-medium text-courseNameColorTxt bg-gray-100 p-[0.7em]`;
+export const regFullButtonPurpleHover = `min-w-max rounded-[0.3em] bg-btnColor px-2 py-3 font-extrabold text-white hover:bg-btnHoverColor focus:outline-none text-center`;

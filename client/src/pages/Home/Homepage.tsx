@@ -16,9 +16,11 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useMediaQuery } from "react-responsive";
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 
 const Homepage = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
+  searchAlgoLocalStorage("");
 
   document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
   const cookie = useSelector((state: RootState) => state.user.cookie);

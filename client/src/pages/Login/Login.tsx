@@ -21,12 +21,30 @@ import {
   loginThirdPartyBtn,
   loginWDiffAccBtn,
   loginWithEmailBtn,
+  regFullButtonPurpleHover,
 } from "@/utils/stylesStorage";
 import { baseUrl, localhostUrl } from "@/api/configuration";
 import { AiOutlineMail } from "react-icons/ai";
+import {
+  setBio,
+  setCoursesBought,
+  setEmailAddress,
+  setFullName,
+  setHeadline,
+  setIsLoggedWithGoogle,
+  setLanguage,
+  setProfilePic,
+  setRole,
+  setUdemyCredits,
+  setUserLinks,
+} from "@/redux/slices/userSlice";
+import { jwtDecode } from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { DecodedTokenProps } from "@/types/types";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // Change this to true when using in production.
   const [isDeployed, setDeployed] = useState(false);
   const [isError, setShowIsError] = useState(false);
@@ -123,7 +141,7 @@ const Login = () => {
           className="mr-[2.7rem] h-auto max-h-[100%] w-[100%] max-w-[620px] object-contain p-12"
         />
         <div className="ml-[3rem] mr-[5rem] w-full max-w-[29rem]  rounded-lg bg-white p-6">
-          <h2 className="mb-10 text-center text-3xl font-bold text-gray-800">
+          <h2 className="mb-10 text-center font-sans text-3xl font-extrabold text-gray-800">
             Log in to continue your learning journey
           </h2>
           {showRegularLogin && (
@@ -146,69 +164,62 @@ const Login = () => {
                     </div>
                   )}
                 </div>
-                <b>Welcome back, {fullname}</b>
-                <p>
-                  We’ll email <b>{email}</b> a code for a secure passwordless
-                  log-in.
-                </p>
+                <div className="my-2 flex flex-col items-center justify-center gap-2">
+                  <b className="font-extrabold">Welcome back, {fullname}</b>
+                  <p>
+                    We’ll email <b className="font-extrabold">{email}</b> a code
+                    for a secure passwordless log-in.
+                  </p>
+                </div>
               </div>
               <form
                 className="mb-4 flex flex-col space-y-4"
                 onSubmit={handleSubmit}
               >
-                <button type="submit" className={`${loginWithEmailBtn}`}>
+                <button
+                  type="submit"
+                  className={`${regFullButtonPurpleHover} flex w-full items-center justify-center font-extrabold`}
+                >
                   {isLoading ? (
                     <Loader useSmallLoading={true} hSize="" />
                   ) : (
                     <div className="flex items-center">
-                      <button
-                        className={`flex items-center text-[1rem] font-bold focus:outline-none ${loginWithEmailBtn}`}
-                        type="submit"
-                      >
-                        <AiOutlineMail size={20} />
-                        Continue with email
-                      </button>
+                      <AiOutlineMail size={20} />
+                      Continue with email
                     </div>
                   )}
                 </button>
               </form>
             </div>
           )}
-          {differentAccount ||
-            (!isLoggedPreviouslyWithGoogle && (
-              <>
-                <div className="flex flex-col items-center gap-4">
-                  <form
-                    className="flex w-full flex-col gap-4"
-                    onSubmit={handleSubmit}
-                  >
-                    <input
-                      type="text"
-                      name="email"
-                      id="email"
-                      placeholder="Email"
-                      className={`${inputLoginWEmail}`}
-                    />
-                    <button
-                      className={`${loginWithEmailBtn} flex items-center text-[1rem] font-bold focus:outline-none`}
-                      type="submit"
-                    >
-                      {isLoading ? (
-                        <Loader useSmallLoading={true} hSize="" />
-                      ) : (
-                        <div className="flex items-center">
-                          <button
-                            className={`flex items-center text-[1rem] font-bold focus:outline-none ${loginWithEmailBtn}`}
-                            type="submit"
-                          >
-                            <AiOutlineMail size={20} />
-                            Continue with email
-                          </button>
-                        </div>
-                      )}
-                    </button>
-                  </form>
-                </div>
+          {differentAccount && (
+            <div>
+              <form
+                className="mb-4 flex flex-col space-y-4"
+                onSubmit={handleSubmit}
+              >
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  className={`${inputLoginWEmail}`}
+                />
+                <button
+                  type="submit"
+                  className={`${regFullButtonPurpleHover} flex w-full items-center justify-center font-extrabold`}
+                >
+                  {isLoading ? (
+                    <Loader useSmallLoading={true} hSize="" />
+                  ) : (
+                    <div className="flex items-center">
+                      <AiOutlineMail size={20} />
+                      Continue with email
+                    </div>
+                  )}
+                </button>
+              </form>
+              <div>
                 <div className="my-6 flex w-full items-center">
                   <hr className="flex-grow border-gray-300" />
                   <span className="mx-4 text-sm text-grayNavbarTxt">
@@ -229,6 +240,63 @@ const Login = () => {
                   <button className={`${loginThirdPartyBtn}`}>
                     <FaApple className={`${iconSize}`} />
                   </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {differentAccount ||
+            (!isLoggedPreviouslyWithGoogle && (
+              <>
+                <div className="flex flex-col items-center gap-4">
+                  <form
+                    className="flex w-full flex-col gap-4"
+                    onSubmit={handleSubmit}
+                  >
+                    <input
+                      type="text"
+                      name="email"
+                      id="email"
+                      placeholder="Email"
+                      className={`${inputLoginWEmail}`}
+                    />
+                    <button
+                      type="submit"
+                      className={`${regFullButtonPurpleHover} flex w-full items-center justify-center font-extrabold`}
+                    >
+                      {isLoading ? (
+                        <Loader useSmallLoading={true} hSize="" />
+                      ) : (
+                        <div className="flex items-center">
+                          <AiOutlineMail size={20} />
+                          Continue with email
+                        </div>
+                      )}
+                    </button>
+                  </form>
+                </div>
+                <div>
+                  <div className="my-6 flex w-full items-center">
+                    <hr className="flex-grow border-gray-300" />
+                    <span className="mx-4 text-sm text-grayNavbarTxt">
+                      Other log in options
+                    </span>
+                    <hr className="flex-grow border-gray-300" />
+                  </div>
+                  <div className="mb-[2em] flex justify-center space-x-5">
+                    <button
+                      onClick={handleGoogle}
+                      className={`${loginThirdPartyBtn}`}
+                    >
+                      <FcGoogle className={`${iconSize}`} />
+                    </button>
+                    <button className={`${loginThirdPartyBtn}`}>
+                      <FaFacebook className={`${iconSize} text-blue-600`} />
+                    </button>
+                    <button className={`${loginThirdPartyBtn}`}>
+                      <FaApple className={`${iconSize}`} />
+                    </button>
+                  </div>
                 </div>
               </>
             ))}
