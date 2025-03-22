@@ -825,7 +825,7 @@ const googleLoginOrSignUp = catchAsync(
       let user = await User.findOne({ email });
 
       if (!user) {
-        user = new User({
+        user = await User.create({
           fullName: name,
           email,
           profilePic: picture,
@@ -840,6 +840,8 @@ const googleLoginOrSignUp = catchAsync(
         user.isLoggedPreviouslyWithGoogle = true;
         await user.save();
       }
+
+      console.log(user);
 
       // Generate a JWT token for authentication
       const token = generateToken({

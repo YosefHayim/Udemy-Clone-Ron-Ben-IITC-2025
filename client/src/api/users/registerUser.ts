@@ -14,7 +14,7 @@ const registerUser: fn = async (data: RegisterUserPayload): Promise<any> => {
     }
     console.log(response.data);
     localStorage.setItem("cookie", response.data.token);
-    return response.data;
+    return response.data.token;
   } catch (error) {
     console.log(`Error occurred during the signup: `, error);
     return undefined;

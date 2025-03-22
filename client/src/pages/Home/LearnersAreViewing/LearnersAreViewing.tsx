@@ -64,7 +64,11 @@ const LearnersAreViewing = () => {
         >
           {data && data.length > 1 ? (
             data.map((courseCard: CourseTypeProps, index: number) => (
-              <HomeCourseCard courseCard={courseCard} index={index} />
+              <HomeCourseCard
+                courseCard={courseCard}
+                index={index}
+                key={courseCard?._id}
+              />
             ))
           ) : (
             <div className="w-full">

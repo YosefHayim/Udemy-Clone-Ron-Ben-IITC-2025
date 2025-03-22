@@ -8,7 +8,8 @@
     "start:dev": "nodemon --exec \"tsx\" app.ts",
     "prod": "cross-env NODE_ENV=production npx tsx app.ts",
     "seed": "tsx seedDb.ts",
-    "delete": "node deleteDb.ts"
+    "delete": "node deleteDb.ts",
+    "reporter": "tsx reporter.ts"
   },
   "keywords": [],
   "author": "",

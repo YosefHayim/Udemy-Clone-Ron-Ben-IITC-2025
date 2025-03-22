@@ -20,7 +20,6 @@ import {
   inputLoginWEmail,
   loginThirdPartyBtn,
   loginWDiffAccBtn,
-  loginWithEmailBtn,
   regFullButtonPurpleHover,
 } from "@/utils/stylesStorage";
 import { baseUrl, localhostUrl } from "@/api/configuration";
@@ -42,6 +41,7 @@ import {
 import { jwtDecode } from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { DecodedTokenProps } from "@/types/types";
+import { setUserInformation } from "@/utils/setUserInformaiton";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -73,19 +73,7 @@ const Login = () => {
   const loginMutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (cookie) => {
-      const decoded = jwtDecode<DecodedTokenProps>(cookie);
-      dispatch(setFullName(decoded.fullName));
-      dispatch(setHeadline(decoded.headline));
-      dispatch(setLanguage(decoded.language));
-      dispatch(setUserLinks(decoded.userLinks));
-      dispatch(setProfilePic(decoded.profilePic));
-      dispatch(setEmailAddress(decoded.email));
-      dispatch(setBio(decoded.bio));
-      dispatch(setRole(decoded.role));
-      dispatch(setCoursesBought(decoded.coursesBought));
-      dispatch(setUdemyCredits(decoded.udemyCredits));
-      dispatch(setIsLoggedWithGoogle(true));
-      dispatch(setCookie(cookie));
+      setUserInformation(cookie);
       navigate("/verify-code");
     },
     onError: (error) => {
@@ -98,19 +86,7 @@ const Login = () => {
   const googleMutationLogin = useMutation({
     mutationFn: googleLogin,
     onSuccess: (cookie) => {
-      const decoded = jwtDecode<DecodedTokenProps>(cookie);
-      dispatch(setFullName(decoded.fullName));
-      dispatch(setHeadline(decoded.headline));
-      dispatch(setLanguage(decoded.language));
-      dispatch(setUserLinks(decoded.userLinks));
-      dispatch(setProfilePic(decoded.profilePic));
-      dispatch(setEmailAddress(decoded.email));
-      dispatch(setBio(decoded.bio));
-      dispatch(setRole(decoded.role));
-      dispatch(setCoursesBought(decoded.coursesBought));
-      dispatch(setUdemyCredits(decoded.udemyCredits));
-      dispatch(setIsLoggedWithGoogle(true));
-      dispatch(setCookie(cookie));
+      setUserInformation(cookie);
       navigate("/");
     },
     onError: (error) => {

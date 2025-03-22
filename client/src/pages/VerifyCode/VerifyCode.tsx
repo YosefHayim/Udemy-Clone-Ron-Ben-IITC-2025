@@ -25,6 +25,7 @@ import Loader from "@/components/Loader/Loader";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import Cookies from "js-cookie";
+import { setUserInformation } from "@/utils/setUserInformaiton";
 
 const VerifyCode = () => {
   const [countdown, setCountdown] = useState(30);
@@ -45,7 +46,8 @@ const VerifyCode = () => {
 
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
-    onSuccess: () => {
+    onSuccess: (cookie) => {
+      setUserInformation(cookie);
       navigate("/");
     },
     onError: (error) => {

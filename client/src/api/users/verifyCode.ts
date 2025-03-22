@@ -16,7 +16,7 @@ const verifyCode: fn = async (verificationCredentials) => {
     if (response) {
       console.log(response.data);
       localStorage.setItem("cookie", response.data.token);
-      return response.data;
+      return response.data.token;
     }
   } catch (error) {
     console.log(`Error occurred during the login of user: `, error);
