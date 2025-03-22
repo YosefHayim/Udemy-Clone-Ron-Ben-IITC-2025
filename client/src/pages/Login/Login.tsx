@@ -68,7 +68,7 @@ const Login = () => {
 
   const googleMutationLogin = useMutation({
     mutationFn: googleLogin,
-    onSuccess: (cookie) => {
+    onSuccess: (cookie) => {      
       setUserInformation(cookie, dispatch);
       navigate("/");
     },
