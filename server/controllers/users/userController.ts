@@ -153,8 +153,8 @@ const signUp = catchAsync(
 
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: false,
-      httpOnly: false,
+      secure: process.env.NODE_ENV === "production" ? true : false,
+      httpOnly: process.env.NODE_ENV === "production" ? true : false,
       sameSite: "none",
       maxAge: +90 * 24 * 60 * 60 * 1000,
     });
@@ -230,8 +230,8 @@ const login = catchAsync(
 
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: false,
-      httpOnly: false,
+      secure: process.env.NODE_ENV === "production" ? true : false,
+      httpOnly: process.env.NODE_ENV === "production" ? true : false,
       sameSite: "none",
       maxAge: +90 * 24 * 60 * 60 * 1000,
     });
@@ -368,8 +368,8 @@ const logout = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     res.cookie("cookie", "", {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: false,
-      httpOnly: false,
+      secure: process.env.NODE_ENV === "production" ? true : false,
+      httpOnly: process.env.NODE_ENV === "production" ? true : false,
       sameSite: "none",
       maxAge: +90 * 24 * 60 * 60 * 1000,
     });
@@ -871,8 +871,8 @@ const googleLoginOrSignUp = catchAsync(
 
       res.cookie("cookie", token, {
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-        secure: false,
-        httpOnly: false,
+        secure: process.env.NODE_ENV === "production" ? true : false,
+        httpOnly: process.env.NODE_ENV === "production" ? true : false,
         sameSite: "none",
         maxAge: +90 * 24 * 60 * 60 * 1000,
       });
@@ -917,8 +917,8 @@ const updateMe = catchAsync(
 
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: false,
-      httpOnly: false,
+      secure: process.env.NODE_ENV === "production" ? true : false,
+      httpOnly: process.env.NODE_ENV === "production" ? true : false,
       sameSite: "none",
       maxAge: +90 * 24 * 60 * 60 * 1000,
     });
