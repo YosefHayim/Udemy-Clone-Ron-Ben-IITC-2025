@@ -13,13 +13,14 @@ import {
   setCookie,
   setCreatedAt,
   setAuthActivate,
+  setUpdatedAt,
 } from "@/redux/slices/userSlice";
 import { DecodedTokenProps } from "@/types/types";
 import { jwtDecode } from "jwt-decode";
 import { AppDispatch } from "@/redux/store";
 
 export const setUserInformation = (cookie: string, dispatch: AppDispatch) => {
-  if (!cookie) console.log('Cookie is not provided: ', cookie)
+  if (!cookie) console.log("Cookie is not provided: ", cookie);
   const decoded = jwtDecode<DecodedTokenProps>(cookie);
   console.log("user information has been updated: ", decoded);
 
@@ -34,9 +35,11 @@ export const setUserInformation = (cookie: string, dispatch: AppDispatch) => {
   if (decoded.coursesBought) dispatch(setCoursesBought(decoded.coursesBought));
   if (decoded.udemyCredits) dispatch(setUdemyCredits(decoded.udemyCredits));
   if (decoded.createdAt) dispatch(setCreatedAt(decoded.createdAt));
+  if (decoded.createdAt) dispatch(setUpdatedAt(decoded.updatedAt));
   if (decoded.isAuthActivated)
     dispatch(setAuthActivate(decoded.isAuthActivated));
-  dispatch(setIsLoggedWithGoogle(true));
+  if (decoded.isLoggedPreviouslyWithGoogle)
+    dispatch(setIsLoggedWithGoogle(true));
   dispatch(setCookie(cookie));
 
   if (decoded.isLoggedPreviouslyWithGoogle !== undefined) {

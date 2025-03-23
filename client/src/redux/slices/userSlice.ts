@@ -24,6 +24,7 @@ export interface UserState {
   isAuthActivated: boolean;
   whenCreated: Date | null;
   coursesInProgress: CourseProgress[];
+  updatedAt: Date | null;
 }
 
 const initialState: UserState = {
@@ -47,6 +48,7 @@ const initialState: UserState = {
   isLoggedPreviouslyWithGoogle: false,
   isAuthActivated: false,
   whenCreated: null,
+  updatedAt: null,
   coursesInProgress: [],
 };
 
@@ -71,6 +73,9 @@ const userSlice = createSlice({
     },
     setCreatedAt: (state, action: PayloadAction<Date | undefined | null>) => {
       state.whenCreated = action.payload;
+    },
+    setUpdatedAt: (state, action: PayloadAction<Date | undefined | null>) => {
+      state.updatedAt = action.payload;
     },
     setRole: (state, action: PayloadAction<string>) => {
       state.role = action.payload;
@@ -138,6 +143,7 @@ export const {
   setLanguage,
   setFullName,
   setHeadline,
+  setUpdatedAt,
   setProfilePic,
   setRole,
   setBio,

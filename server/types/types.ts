@@ -254,7 +254,7 @@ export interface UserDocument {
   coursesCreated: string[];
   payments: string[];
   certificatesEarned: string[];
-  isAuthActivate: boolean;
+  isAuthActivate?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -460,5 +460,5 @@ export interface Payload {
   isLoggedPreviouslyWithGoogle: boolean;
   whenCreated: Date | undefined | null;
   whenUpdated: Date | undefined | null;
-  isAuthActivated: boolean;
+  isAuthActivated: boolean | undefined;
 }

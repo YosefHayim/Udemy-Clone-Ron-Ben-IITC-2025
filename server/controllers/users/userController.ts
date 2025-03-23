@@ -148,7 +148,7 @@ const signUp = catchAsync(
       isLoggedPreviouslyWithGoogle: newUser.isLoggedPreviouslyWithGoogle,
       whenCreated: newUser.createdAt,
       whenUpdated: newUser.updatedAt,
-      isAuthActivated: newUser.isAuthActivated,
+      isAuthActivated: newUser.isAuthActivate,
     });
 
     res.cookie("cookie", token, {
@@ -225,7 +225,7 @@ const login = catchAsync(
       isLoggedPreviouslyWithGoogle: isFoundUser.isLoggedPreviouslyWithGoogle,
       whenCreated: isFoundUser.createdAt,
       whenUpdated: isFoundUser.updatedAt,
-      isAuthActivated: isFoundUser.isAuthActivated,
+      isAuthActivated: isFoundUser.isAuthActivate,
     });
 
     res.cookie("cookie", token, {
@@ -308,7 +308,7 @@ const verifyCode = catchAsync(
       isLoggedPreviouslyWithGoogle: user.isLoggedPreviouslyWithGoogle,
       whenCreated: user.createdAt,
       whenUpdated: user.updatedAt,
-      isAuthActivated: user.isAuthActivated,
+      isAuthActivated: user.isAuthActivate,
     });
 
     res.cookie("cookie", token, {
@@ -866,7 +866,7 @@ const googleLoginOrSignUp = catchAsync(
         isLoggedPreviouslyWithGoogle: user.isLoggedPreviouslyWithGoogle,
         whenCreated: user.createdAt,
         whenUpdated: user.updatedAt,
-        isAuthActivated: user.isAuthActivated,
+        isAuthActivated: user.isAuthActivate,
       });
 
       res.cookie("cookie", token, {

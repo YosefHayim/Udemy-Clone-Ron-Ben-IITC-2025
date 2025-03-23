@@ -345,6 +345,7 @@ export interface DecodedTokenProps {
   };
   isLoggedPreviouslyWithGoogle: boolean;
   createdAt: Date | null | undefined;
+  updatedAt: Date | null | undefined;
   isAuthActivated: boolean;
 }
 
