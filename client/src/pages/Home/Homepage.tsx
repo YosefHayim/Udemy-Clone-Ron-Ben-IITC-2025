@@ -51,7 +51,7 @@ const Homepage = () => {
           <div className="w-full">
             <Welcome />
             <Banner isLogin={true} />
-            <div className="px-6 py-8">
+            <div className="flex flex-col  gap-4 px-6 py-8">
               <LetsStartLearning />
               <h1 className="pl-4 font-extrabold">What to learn next</h1>
               <SearchResult />
