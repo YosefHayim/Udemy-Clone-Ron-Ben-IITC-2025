@@ -8,16 +8,14 @@ import mylearningcourseplaceholderfrom from "/images/mylearningcourseplaceholder
 
 const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
   const [isHovering, setIsHovering] = useState(false);
-  // const coursesInProgress = useSelector(
-  //   (state: RootState) => state?.user?.coursesInProgress,
-  // );
-
-  const coursesInProgress = [1, 2];
+  const coursesInProgress = useSelector(
+    (state: RootState) => state?.user?.coursesInProgress,
+  );
 
   return (
     <div
       onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
       className="w-min-max relative mx-[0.2em]"
     >
       <p
