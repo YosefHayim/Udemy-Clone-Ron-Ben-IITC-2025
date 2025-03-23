@@ -67,6 +67,8 @@ const SearchInput = () => {
 
   useEffect(() => {}, [isRootPathOnly]);
 
+  console.log(data);
+
   return (
     <div
       style={{ width: `${width / 2}px` }}
