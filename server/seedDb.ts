@@ -19,6 +19,9 @@ import Instructor from "./models/users/instructorModel.ts";
 import CourseProgress from "./models/courses/courseProgressModel.ts";
 import { InstructorDocument, LessonDocument } from "./types/types.ts";
 import Coupon from "./models/courses/couponModel.ts";
+import fs from "fs";
+import path from "path";
+import { getRandomImageFromDir } from "./utils/getRandomImageFromDir.ts";
 
 const clearCollections = async () => {
   await Promise.all([
@@ -131,11 +134,9 @@ const createCourses = async ({
 
       const course = await Course.create({
         courseName: faker.helpers.arrayElement(courseNames),
-        courseImg: faker.image.urlPicsumPhotos({
-          width: 640,
-          height: 480,
-          category: "education",
-        }),
+        courseImg: getRandomImageFromDir(
+          path.join(__dirname, "public/imgs/courses")
+        ),
         courseRecapInfo: faker.lorem.words(10),
         courseDescription: faker.lorem.paragraph(),
         courseFullPrice: faker.number.int({ min: 500, max: 800 }),
