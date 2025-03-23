@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
-import { btnStyleNHover } from "@/utils/stylesStorage";
+import {
+  btnStyleNHover,
+  regFullButtonPurpleHover,
+} from "@/utils/stylesStorage";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
@@ -15,7 +18,7 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
   return (
     <div
       onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
+      onMouseLeave={() => setIsHovering(true)}
       className="w-min-max relative mx-[0.2em]"
     >
       <p
@@ -39,29 +42,36 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
             )}
             {aTagName === "My learning" && (
               <div>
-                {coursesInProgress.length > 1 ? (
-                  // Placeholder for future
-                  <div className="flex w-full flex-col items-center justify-start">
-                    <div className="relative flex w-full items-center justify-start">
-                      <img
-                        src={mylearningcourseplaceholderfrom}
-                        alt=""
-                        className=""
-                      />
-                      <div className="flex w-full flex-col items-start justify-start gap-1 text-start">
-                        <b>
-                          Web Design for Web Developers: Build Beautiful
-                          Websites!
-                        </b>
-                        <div className="relative h-2 w-full bg-gray-300">
-                          <div
-                            className="absolute left-0 top-0 h-full bg-purple-700"
-                            style={{ width: `50%` }}
-                          ></div>
+                {coursesInProgress?.length > 1 ? (
+                  coursesInProgress?.map(
+                    (progress) => (
+                      console.log(progress),
+                      (
+                        // Placeholder for future
+                        <div className="flex w-full flex-col items-center justify-start">
+                          <div className="relative flex w-full items-center justify-start">
+                            <img
+                              src={mylearningcourseplaceholderfrom}
+                              alt=""
+                              className=""
+                            />
+                            <div className="flex w-full flex-col items-start justify-start gap-1 text-start">
+                              <b>
+                                Web Design for Web Developers: Build Beautiful
+                                Websites!
+                              </b>
+                              <div className="relative h-2 w-full bg-gray-300">
+                                <div
+                                  className="absolute left-0 top-0 h-full bg-purple-700"
+                                  style={{ width: `50%` }}
+                                ></div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
+                      )
+                    ),
+                  )
                 ) : (
                   <div>
                     <p className="font-sans font-extrabold leading-tight text-gray-800">
@@ -70,6 +80,16 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
                     <Button className="w-full rounded-[0.3em] border border-purple-800 bg-white px-2 py-3 font-sans font-extrabold text-purple-800 hover:bg-purple-100 focus:outline-none">
                       <Link to="/">Browse now</Link>
                     </Button>
+                  </div>
+                )}
+                {coursesInProgress && coursesInProgress?.length > 1 && (
+                  <div>
+                    <hr className="my-4 w-full" />
+                    <button
+                      className={`${regFullButtonPurpleHover} w-full font-sans text-sm`}
+                    >
+                      Go to My learning
+                    </button>
                   </div>
                 )}
               </div>
