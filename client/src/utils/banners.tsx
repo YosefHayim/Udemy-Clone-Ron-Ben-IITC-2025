@@ -52,9 +52,9 @@ export const getBanners = ({
     {
       src: LearningGetsYouBanner,
       content: () => (
-        <div className="absolute left-16 top-16 flex flex-col items-start gap-3 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
+        <div className="absolute left-16 top-16 flex w-[400px] flex-col items-start gap-3 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
           <h1 className="w-full font-extrabold">Learning that gets you</h1>
-          <p className="pr-2 font-sans text-sm">
+          <p className="pr-2 font-sans text-base">
             Skills for your present (and your future). Get started with us.
           </p>
         </div>
