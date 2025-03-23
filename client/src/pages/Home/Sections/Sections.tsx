@@ -123,9 +123,9 @@ const Sections = () => {
             state={countClick}
             useCustom={true}
             showDirectionalButtonsOnlyOnEdge={true}
-            topPosition="72%"
-            leftPosition="12%"
-            rightPosition="14%"
+            topPosition="70%"
+            leftPosition="1%"
+            rightPosition="1%"
           />
           <div className="mt-3 flex w-auto">
             {categoriesData.map((category, i) => {
