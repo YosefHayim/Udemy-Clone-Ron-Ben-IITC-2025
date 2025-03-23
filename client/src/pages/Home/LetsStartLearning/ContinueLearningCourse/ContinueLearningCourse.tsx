@@ -21,17 +21,19 @@ const ContinueLearningCourse = () => {
             />
           </div>
         </div>
-        <div className="flex h-[10em] w-full flex-col items-start justify-between p-2">
-          <div className="flex w-full flex-col gap-2">
-            <b className="text-gray-600">
-              Web design for Web Developers: Build...
-            </b>
-            <b>8. Working with Images</b>
-          </div>
-          <div className="flex items-center justify-start">
-            <b>Lecture</b>
-            <BsDot />
-            <p>4m</p>
+        <div>
+          <div className="flex h-[10em] w-full flex-col items-start justify-between p-2">
+            <div className="flex w-full flex-col gap-2">
+              <b className="text-gray-600">
+                Web design for Web Developers: Build...
+              </b>
+              <b>8. Working with Images</b>
+            </div>
+            <div className="flex items-center justify-start">
+              <b>Lecture</b>
+              <BsDot />
+              <p>4m</p>
+            </div>
           </div>
         </div>
       </div>

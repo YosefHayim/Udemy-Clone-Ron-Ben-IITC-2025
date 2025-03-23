@@ -52,7 +52,7 @@ const SearchResult: React.FC<{ title?: string; randomAlgoWord?: string }> = ({
           Because you searched for “
           <Link
             className="cursor-pointer font-sans font-extrabold text-purple-600 underline hover:text-purple-800"
-            to={``}
+            to={`/courses/search?q=${randomAlgoWord}&page=1&limit=20`}
           >
             {randomAlgoWord}
           </Link>
@@ -82,11 +82,12 @@ const SearchResult: React.FC<{ title?: string; randomAlgoWord?: string }> = ({
           }}
         >
           {data && data.length >= 1 ? (
-            data.map((courseCard: CourseTypeProps, index: number) => (
-              console.log(courseCard),
-              
-              <HomeCourseCard courseCard={courseCard} index={index} />
-            ))
+            data.map(
+              (courseCard: CourseTypeProps, index: number) => (
+                console.log(courseCard),
+                (<HomeCourseCard courseCard={courseCard} index={index} />)
+              ),
+            )
           ) : (
             <div className="w-full">
               <Loader useSmallLoading={false} hSize="" />
