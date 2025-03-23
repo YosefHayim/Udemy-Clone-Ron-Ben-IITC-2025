@@ -6,7 +6,7 @@ type fn = (data: RegisterUserPayload) => Promise<any>;
 const registerUser: fn = async (data: RegisterUserPayload): Promise<any> => {
   try {
     const response = await axiosClient.post(
-      `${localhostUrl}/api/user/auth/signup`,
+      `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/user/auth/signup`,
       data,
     );
     if (response.status !== 200) {

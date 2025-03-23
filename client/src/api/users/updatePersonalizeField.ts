@@ -11,7 +11,7 @@ const updatePersonalizeUserField = async (
   console.log("personalizeField", personalizeField);
 
   try {
-    const url = `${localhostUrl}/api/user/updatePersonalizeField`;
+    const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/user/updatePersonalizeField`;
     const r = await axiosClient.put(url, personalizeField);
 
     if (r) {

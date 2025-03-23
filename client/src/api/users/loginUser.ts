@@ -9,7 +9,7 @@ type fn = (email: email) => Promise<any>;
 const loginUser: fn = async (email) => {
   try {
     const response = await axiosClient.post(
-      `${localhostUrl}/api/user/auth/login`,
+      `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/user/auth/login`,
       email,
     );
 

@@ -4,6 +4,6 @@ export const baseUrl = "https://udemy-clone-ron-ben.onrender.com";
 export const localhostUrl = "http://localhost:3000";
 
 export const axiosClient = axios.create({
-  baseURL: baseUrl, // Your back-end URL
+  baseURL: process.env.NODE === "production" ? baseUrl : localhostUrl, // Your back-end URL
   withCredentials: true, // Ensures cookies are included in all requests
 });

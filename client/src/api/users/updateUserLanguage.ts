@@ -5,7 +5,7 @@ const updateUserLanguage = async (preferredLanguage: string) => {
     return undefined;
   }
 
-  const url = `${localhostUrl}/api/user`;
+  const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/user`;
   try {
     const response = await axiosClient.put(url, preferredLanguage);
 

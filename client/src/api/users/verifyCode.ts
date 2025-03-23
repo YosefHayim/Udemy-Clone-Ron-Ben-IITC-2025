@@ -9,7 +9,7 @@ type fn = (verificationCredentials: {
 const verifyCode: fn = async (verificationCredentials) => {
   try {
     const response = await axiosClient.post(
-      `${localhostUrl}/api/user/verify`,
+      `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/user/verify`,
       verificationCredentials,
     );
 

@@ -10,7 +10,7 @@ const getCourseById: fn = async (courseId: string) => {
   }
 
   const sanitizedCourseId = courseId.trim();
-  const url = `${localhostUrl}/api/course/${sanitizedCourseId}`;
+  const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/course/${sanitizedCourseId}`;
 
   try {
     const response = await axiosClient.get(url);

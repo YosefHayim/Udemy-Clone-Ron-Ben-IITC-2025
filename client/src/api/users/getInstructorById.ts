@@ -8,7 +8,7 @@ const getInstructorById = async (instructorId: string) => {
   }
 
   try {
-    const url = `${localhostUrl}/api/instructor/${instructorId}`;
+    const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/instructor/${instructorId}`;
 
     const res = await axiosClient.get(url);
 

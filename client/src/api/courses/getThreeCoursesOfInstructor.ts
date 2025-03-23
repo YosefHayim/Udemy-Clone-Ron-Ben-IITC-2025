@@ -6,7 +6,7 @@ const getThreeCoursesOfInstructor = async (instructorId: string) => {
   }
 
   try {
-    const url = `${localhostUrl}/api/instructor/${instructorId}/three/courses`;
+    const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/instructor/${instructorId}/three/courses`;
     const res = await axiosClient.get(url);
 
     if (res) {

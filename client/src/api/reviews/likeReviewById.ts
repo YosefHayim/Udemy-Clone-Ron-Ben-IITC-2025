@@ -8,7 +8,7 @@ export const likeReviewById: fn = async (idOfReview: string) => {
     return;
   }
   const sanitizedReviewId = idOfReview.trim();
-  const url = `${localhostUrl}/api/review/like/${sanitizedReviewId}`;
+  const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/review/like/${sanitizedReviewId}`;
   try {
     const res = await axiosClient.post(url);
 

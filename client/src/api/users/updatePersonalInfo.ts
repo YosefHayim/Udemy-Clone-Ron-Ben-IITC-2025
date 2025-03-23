@@ -5,7 +5,7 @@ const updatePersonalInfo = async (dataOfUser: DataOfUser) => {
   if (!dataOfUser) {
     console.log("No data of user to update provided: ", dataOfUser);
   }
-  const url = `${localhostUrl}/api/user/`;
+  const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/user/`;
   try {
     const r = axiosClient.post(url, dataOfUser);
 

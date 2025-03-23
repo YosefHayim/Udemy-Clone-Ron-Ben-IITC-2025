@@ -4,7 +4,7 @@ const updateProfilePic = async (photo: File) => {
   if (!photo) console.log(`No photo provided to update`);
 
   try {
-    const url = `${localhostUrl}/api/user/profile/picture`;
+    const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/user/profile/picture`;
     const formData = new FormData();
     formData.append("photo", photo);
 
