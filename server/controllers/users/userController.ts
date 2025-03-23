@@ -147,6 +147,7 @@ const signUp = catchAsync(
       fieldLearning: newUser.fieldLearning,
       isLoggedPreviouslyWithGoogle: newUser.isLoggedPreviouslyWithGoogle,
       whenCreated: newUser.createdAt,
+      whenUpdated: newUser.updatedAt,
       isAuthActivated: newUser.isAuthActivated,
     });
 
@@ -223,6 +224,7 @@ const login = catchAsync(
       fieldLearning: isFoundUser.fieldLearning,
       isLoggedPreviouslyWithGoogle: isFoundUser.isLoggedPreviouslyWithGoogle,
       whenCreated: isFoundUser.createdAt,
+      whenUpdated: isFoundUser.updatedAt,
       isAuthActivated: isFoundUser.isAuthActivated,
     });
 
@@ -305,6 +307,7 @@ const verifyCode = catchAsync(
       fieldLearning: user.fieldLearning,
       isLoggedPreviouslyWithGoogle: user.isLoggedPreviouslyWithGoogle,
       whenCreated: user.createdAt,
+      whenUpdated: user.updatedAt,
       isAuthActivated: user.isAuthActivated,
     });
 
@@ -862,6 +865,7 @@ const googleLoginOrSignUp = catchAsync(
         fieldLearning: user.fieldLearning,
         isLoggedPreviouslyWithGoogle: user.isLoggedPreviouslyWithGoogle,
         whenCreated: user.createdAt,
+        whenUpdated: user.updatedAt,
         isAuthActivated: user.isAuthActivated,
       });
 
@@ -907,6 +911,7 @@ const updateMe = catchAsync(
       fieldLearning: user.fieldLearning,
       isLoggedPreviouslyWithGoogle: user.isLoggedPreviouslyWithGoogle,
       whenCreated: user.createdAt,
+      whenUpdated: user.updatedAt,
       isAuthActivated: user.isAuthActivated,
     });
 

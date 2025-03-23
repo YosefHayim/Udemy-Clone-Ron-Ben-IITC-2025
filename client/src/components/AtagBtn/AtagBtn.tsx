@@ -18,7 +18,7 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
   return (
     <div
       onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
       className="w-min-max relative mx-[0.2em]"
     >
       <p

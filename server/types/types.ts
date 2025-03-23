@@ -459,5 +459,6 @@ export interface Payload {
   };
   isLoggedPreviouslyWithGoogle: boolean;
   whenCreated: Date | undefined | null;
+  whenUpdated: Date | undefined | null;
   isAuthActivated: boolean;
 }
