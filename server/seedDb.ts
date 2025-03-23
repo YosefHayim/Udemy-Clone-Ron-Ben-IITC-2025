@@ -778,8 +778,8 @@ const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
     console.log("Database connection established.");
-    await clearCollections();
-    console.log("Deleted all db.");
+    // await clearCollections();
+    // console.log("Deleted all db.");
 
     console.log("Seeding users...");
     const users = await createUsers();

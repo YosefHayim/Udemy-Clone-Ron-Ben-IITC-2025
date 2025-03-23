@@ -103,7 +103,7 @@ interface ResultProps {
 export interface SearchResultsProps {
   isTyping: boolean;
   data: {
-    response: SearchResultsArray[];
+    response?: SearchResultsArray[];
   };
   response?: ResultProps;
   width: number;

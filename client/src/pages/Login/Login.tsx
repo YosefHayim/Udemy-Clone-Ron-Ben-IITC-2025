@@ -68,7 +68,7 @@ const Login = () => {
 
   const googleMutationLogin = useMutation({
     mutationFn: googleLogin,
-    onSuccess: (cookie) => {      
+    onSuccess: (cookie) => {
       setUserInformation(cookie, dispatch);
       navigate("/");
     },
@@ -126,7 +126,7 @@ const Login = () => {
           className="mr-[2.7rem] h-auto max-h-[100%] w-[100%] max-w-[620px] object-contain p-12"
         />
         <div className="ml-[3rem] mr-[5rem] w-full max-w-[29rem]  rounded-lg bg-white p-6">
-          <h2 className="mb-10 text-center font-[lifeLtstd] font-sans text-3xl font-extrabold text-gray-800">
+          <h2 className="mb-10 text-center font-sans text-3xl font-extrabold text-gray-800">
             Log in to continue your learning journey
           </h2>
           {showRegularLogin && !isLoggedPreviouslyWithGoogle && (
