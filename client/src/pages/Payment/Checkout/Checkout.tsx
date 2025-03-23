@@ -15,25 +15,20 @@ import { setUserInformation } from "@/utils/setUserInformation";
 const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
   isPaypal,
 }) => {
-  const cookie = useSelector((state: RootState) => state.user.cookie);
-
   const [isLoading, setLoading] = useState(false);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const cookie = useSelector((state: RootState) => state?.user?.cookie);
 
   const totalToPay = useSelector(
     (state: RootState) => state.cart.totalCourseDiscountPrices,
   );
-
   const totalCourses = useSelector(
     (state: RootState) => state.cart.amountOfCourses,
   );
-
   const originalPrice = useSelector(
     (state: RootState) => state.cart.totalCoursesOriginalPrices,
   );
-
   const coursesIds = useSelector(
     (state: RootState) => state.cart.coursesAddedToCart,
   );
