@@ -4,10 +4,10 @@ import { RootState } from "@/redux/store";
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
-  const fullName = useSelector((state: RootState) => state?.user.fullName);
-  const profilePic = useSelector((state: RootState) => state?.user.profilePic);
-  const headline = useSelector((state: RootState) => state?.user.headline);
-  const cookie = useSelector((state: RootState) => state.user.cookie);
+  const fullName = useSelector((state: RootState) => state?.user?.fullName);
+  const profilePic = useSelector((state: RootState) => state?.user?.profilePic);
+  const headline = useSelector((state: RootState) => state?.user?.headline);
+  const cookie = useSelector((state: RootState) => state?.user?.cookie);
 
   if (!cookie) {
     return <div></div>;
@@ -26,7 +26,7 @@ const Welcome = () => {
         isBig={true}
       />
       <div>
-        <h2 className="font-sans font-sans text-2xl font-extrabold">
+        <h2 className="font-sans text-2xl font-extrabold">
           Welcome back, {fullName}
         </h2>
         <div className="flex flex-row items-center justify-start gap-[0.5em]">

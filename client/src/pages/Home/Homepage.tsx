@@ -28,8 +28,8 @@ const Homepage = () => {
 
   return (
     <div>
-      {!isMobile  && cookie && <Menu />}
-      <div className="font-[lifeLtstd] px-52">
+      {!isMobile && cookie && <Menu />}
+      <div className="font-[lifeLtstd]">
         {!cookie ? (
           <div className="w-full">
             <Banner isLogin={false} />
