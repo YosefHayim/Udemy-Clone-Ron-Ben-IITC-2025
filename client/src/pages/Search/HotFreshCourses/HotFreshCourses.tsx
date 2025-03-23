@@ -1,9 +1,8 @@
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import HotCourseCard from "./HotCourseCard/HotCourseCard";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
-import { useParams, useSearchParams } from "react-router-dom";
 import Loader from "@/components/Loader/Loader";
 import { CourseTypeProps } from "@/types/types";
 
@@ -39,7 +38,8 @@ const HotFreshCourses = () => {
   });
 
   if (!data) {
-    return console.log("No data received");
+    console.log("No data received");
+    return null;
   }
 
   return (
@@ -85,4 +85,4 @@ const HotFreshCourses = () => {
   );
 };
 
-export default HotFreshCourses;
+export default memo(HotFreshCourses);
