@@ -70,19 +70,20 @@ const LetsStartLearning = () => {
           </div>
           {/* Tooltip area */}
           <DialogPopup
-            extraCustomClass="font-sans p-[0em]"
+            extraCustomClass="font-sans p-[0.2em]"
             isClicked={isOpenToolTip}
             setClicked={setOpenTooltip}
-            title=""
           >
-            <div className="w-full text-blackUdemy">
-              <div className=" flex w-full flex-col items-start justify-start p-5">
-                <h2 className="font-bold">About Streaks</h2>
+            <div className="flex w-full flex-col items-start justify-start gap-2 text-blackUdemy">
+              <div className=" flex w-full flex-col items-start justify-start gap-4 p-5">
+                <h2 className="font-sans text-xl font-extrabold">
+                  About Streaks
+                </h2>
                 <p>
                   Complete both your visit and minutes watched rings to maintain
                   your weekly streak.
                 </p>
-                <ul className="flex w-full flex-col items-center justify-center gap-2 p-5">
+                <ul className="flex w-full flex-col items-center justify-center gap-4">
                   <li className="flex w-full items-center justify-start gap-2">
                     <div className="h-1 w-1 rounded-full bg-yellow-500 p-2"></div>
                     <div className="flex flex-col items-start justify-start">
@@ -101,15 +102,18 @@ const LetsStartLearning = () => {
               </div>
               <div className="bg-gray-100 p-5">
                 <h2 className="font-sans font-extrabold ">Data updates</h2>
-                <p className="mt-2 ">
+                <p className="mt-2 w-full text-[0.9em]">
                   Your minutes watched updates three times per day. Return in a
                   few hours to see your progress.
                 </p>
               </div>
             </div>
           </DialogPopup>
-          <div className="flex items-center justify-start">
-            <CiCircleInfo size={18} onClick={handleClick} />
+          <div
+            className="flex cursor-pointer items-center justify-start"
+            onClick={handleClick}
+          >
+            <CiCircleInfo size={18} />
           </div>
         </div>
       </div>
