@@ -61,9 +61,9 @@ const getAllCourses: fn = async (
   try {
     const { data } = await axiosClient.get(url);
 
-    if (data) {
+    if (data.response) {
       // console.log(data.response);
-      return data;
+      return data.response;
     }
     return null;
   } catch (error) {

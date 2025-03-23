@@ -18,8 +18,8 @@ const LearnersAreViewing = () => {
   const randomAlgoWord =
     arrayAlgo[Math.floor(Math.random() * arrayAlgo.length)];
 
-  const { data } = useQuery({
-    queryKey: ["courses", randomAlgoWord],
+  const { data, isLoading, isPending } = useQuery({
+    queryKey: [`${randomAlgoWord}`, randomAlgoWord],
     queryFn: () => getAllCourses(randomAlgoWord),
     enabled: !!randomAlgoWord,
   });
@@ -39,6 +39,10 @@ const LearnersAreViewing = () => {
     setCourseIndex((prevIndex) => prevIndex + 1);
     setTimeout(() => setCourseAnimating(false), 500);
   };
+
+  if (isLoading || isPending) {
+    return <Loader useSmallLoading={false} hSize="" />;
+  }
 
   return (
     <div className="px-6 py-8">
@@ -64,19 +68,15 @@ const LearnersAreViewing = () => {
             transform: `translateX(-${courseIndex * 30.5}%)`,
           }}
         >
-          {data && data.length > 1 ? (
+          {data &&
+            data.length > 1 &&
             data.map((courseCard: CourseTypeProps, index: number) => (
               <HomeCourseCard
                 courseCard={courseCard}
                 index={index}
                 key={courseCard?._id}
               />
-            ))
-          ) : (
-            <div className="w-full">
-              <Loader useSmallLoading={false} hSize="" />
-            </div>
-          )}
+            ))}
         </div>
       </div>
     </div>

@@ -74,7 +74,7 @@ const Sections = () => {
 
   const [choseTopic, setChooseTopic] = useState(getDefaultTopic());
 
-  const { data, isLoading, error, isPending } = useQuery({
+  const { data } = useQuery({
     queryKey: ["courses", choseTopic],
     queryFn: () => getAllCourses(choseTopic),
     enabled: !!choseTopic,
@@ -100,7 +100,7 @@ const Sections = () => {
             <div
               onClick={() => setNavbarCategory(category)}
               className="w-min-max cursor-pointer flex-col items-center justify-center text-base"
-              key={index}
+              key={index + 1}
             >
               <b
                 className={`${category === navbarCategory ? "text-black" : "text-gray-600"}`}
@@ -135,7 +135,7 @@ const Sections = () => {
               if (!match) return null;
               return (
                 <div
-                  key={i}
+                  key={i + 2}
                   className={`flex w-full items-center justify-center gap-2 overflow-hidden transition-transform duration-1000`}
                   style={{
                     transform: `translateX(-${currentIndex * 10.5}%)`,
@@ -176,14 +176,18 @@ const Sections = () => {
             />
           )}
           <div
-            className={`flex ${data && data.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+            className={`flex ${data && data.length > 7 ? "w-max items-center justify-center p-4" : "w-full items-center justify-center p-4"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
             style={{
               transform: `translateX(-${courseIndex * 30.5}%)`,
             }}
           >
-            {data && data.length > 1 ? (
+            {data && data.length >= 1 ? (
               data.map((courseCard: CourseTypeProps, index: number) => (
-                <HomeCourseCard courseCard={courseCard} index={index} />
+                <HomeCourseCard
+                  courseCard={courseCard}
+                  index={courseCard._id}
+                  key={index + 3}
+                />
               ))
             ) : (
               <div className="w-full">

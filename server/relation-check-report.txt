@@ -1,9 +1,0 @@
-🔍 Starting Relationship Checks...
-
-🧑‍🏫 Courses missing instructor: 0
-📚 Sections missing course: 0
-🎥 Lessons missing section: 0
-🧑‍🎓 Students with broken courseBought refs: 0
-⭐ Reviews with broken user or course: 0
-👨‍🏫 Instructors missing user ref: 0
-🏷️ Coupons with broken course or creator: 0

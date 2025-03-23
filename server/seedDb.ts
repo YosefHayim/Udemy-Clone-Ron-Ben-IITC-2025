@@ -786,7 +786,7 @@ const generateUpdatedDummyData = async () => {
     console.log(`${users.length} users created.`);
 
     console.log("Seeding courses...");
-    const courses = await createCourses({ coursesPerTopic: 4 });
+    const courses = await createCourses({ coursesPerTopic: 30 });
     if (courses && courses.length > 1) {
       console.log(`${courses.length} courses created.`);
     }
@@ -803,7 +803,7 @@ const generateUpdatedDummyData = async () => {
     console.log("Simulate courses purchases completed");
 
     console.log("Seeding reviews...");
-    const reviews = await createReviews();
+    await createReviews();
     console.log(`reviews created.`);
 
     console.log("Seeding reported reviews...");

@@ -14,6 +14,7 @@ import { BiSolidErrorAlt } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { AiOutlineMail } from "react-icons/ai";
 import { setUserInformation } from "@/utils/setUserInformation";
+import signUpImage from "/images/signup.png";
 
 const SignUp: React.FC = () => {
   document.title = "Sign Up and Start Learning | Udemy";
@@ -81,17 +82,17 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="mt-[8em] flex">
+    <div className="flex h-screen w-full items-center justify-center bg-cover bg-center">
       <div className="ml-[3rem] mr-[-6rem] mt-[-3rem] flex h-full w-1/2 items-center justify-center bg-white">
         <img
           src="/images/signup.png"
-          alt="Sign Up Illustration"
-          className="h-[90%] w-auto object-contain"
+          alt={signUpImage}
+          className="mr-[2.7rem] h-auto max-h-[100%] w-[100%] max-w-[620px] object-contain p-12"
         />
       </div>
       <div className="flex h-full w-1/2 items-center justify-center bg-white">
         <div className="w-3/4 max-w-[27rem]">
-          <h2 className="mb-6 w-full text-center font-[lifeLtstd] font-sans text-[2rem] font-extrabold text-courseNameColorTxt">
+          <h2 className="mb-6 w-full text-center font-sans text-[2rem] font-extrabold text-courseNameColorTxt">
             Sign up with email
           </h2>
           <div
