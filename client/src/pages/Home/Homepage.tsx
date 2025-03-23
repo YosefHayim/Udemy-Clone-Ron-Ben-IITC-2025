@@ -52,7 +52,7 @@ const Homepage = () => {
             <Welcome />
             <Banner isLogin={true} />
             <div className="px-6 py-8">
-              <LetsStartLearning/>
+              <LetsStartLearning />
               <h1 className="pl-4 font-extrabold">What to learn next</h1>
               <SearchResult />
               <SearchResult />
