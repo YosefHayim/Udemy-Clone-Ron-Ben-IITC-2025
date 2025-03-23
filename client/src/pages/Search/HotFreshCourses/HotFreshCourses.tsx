@@ -1,48 +1,86 @@
-import { useRef } from "react";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import HotCourseCard from "./HotCourseCard/HotCourseCard";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import getAllCourses from "@/api/courses/getAllCourses";
+import { useParams, useSearchParams } from "react-router-dom";
+import Loader from "@/components/Loader/Loader";
+import { CourseTypeProps } from "@/types/types";
 
 const HotFreshCourses = () => {
-  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const convertArrayStringToRegArray = JSON.parse(
+    localStorage.getItem("searchesOfUser"),
+  );
+  const [arrayAlgo, setArrayAlgo] = useState(convertArrayStringToRegArray);
 
-  const scrollLeft = () => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -50, behavior: "smooth" });
-    }
+  const randomAlgoWord =
+    arrayAlgo[Math.floor(Math.random() * arrayAlgo.length)];
+
+  const handlePrev = () => {
+    if (isAnimating || currentIndex === 0) return;
+    setIsAnimating(true);
+    setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+    setTimeout(() => setIsAnimating(false), 2000);
   };
 
-  const scrollRight = () => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: 50, behavior: "smooth" });
-    }
+  const handleNext = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prevIndex) => prevIndex + 1);
+    setTimeout(() => setIsAnimating(false), 2000);
   };
+
+  const { data } = useQuery({
+    queryKey: [`${randomAlgoWord}`, randomAlgoWord],
+    queryFn: () => getAllCourses(randomAlgoWord),
+    enabled: !!randomAlgoWord,
+  });
+
+  if (!data) {
+    return console.log("No data received");
+  }
 
   return (
-    <div className="relative w-[1000px]">
+    <div className="w-full">
       <h2 className="my-[0.5em] font-sans text-[1.5em] font-extrabold">
         Hot and Fresh Courses
       </h2>
-      <div
-        className="flex w-full flex-row items-center justify-center gap-[1em] overflow-x-auto pb-[1.5em]"
-        ref={carouselRef}
-      >
-        <HotCourseCard />
-        <HotCourseCard />
-        <HotCourseCard />
-        <HotCourseCard />
+      <div className="relative w-full overflow-hidden">
+        {data.response && data.response?.length > 7 && (
+          <ButtonsCarousel
+            handleFnNext={handleNext}
+            handleFnPrev={handlePrev}
+            state={currentIndex}
+            useCustom={true}
+            showDirectionalButtonsOnlyOnEdge={true}
+            topPosition="55%"
+            leftPosition="1%"
+            rightPosition="2%"
+          />
+        )}
+        <div
+          className={`flex ${data.response && data.response?.length > 7 ? "w-max items-center justify-center p-4" : "w-full items-center justify-center p-4"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+          style={{
+            transform: `translateX(-${currentIndex * 30.5}%)`,
+          }}
+        >
+          {data && data?.response?.length >= 1 ? (
+            data?.response?.map((hotCourseAlgo: CourseTypeProps) => (
+              <HotCourseCard
+                hotCourseAlgo={hotCourseAlgo}
+                key={hotCourseAlgo._id}
+              />
+            ))
+          ) : (
+            <div className="w-full">
+              <Loader useSmallLoading={false} hSize="" />
+            </div>
+          )}
+        </div>
       </div>
-      <button
-        onClick={scrollLeft}
-        className="absolute left-0 top-[50%] -translate-y-1/2 transform rounded-full bg-white p-3 text-white shadow-carouselShadowBtn transition duration-200 hover:bg-[#e9eaf2] hover:brightness-125"
-      >
-        <MdKeyboardArrowLeft size={24} className="text-black" />
-      </button>
-      <button
-        onClick={scrollRight}
-        className="absolute right-0 top-[50%] -translate-y-1/2 transform rounded-full bg-white p-3 text-white shadow-carouselShadowBtn transition duration-200 hover:bg-[#e9eaf2] hover:brightness-125"
-      >
-        <MdKeyboardArrowRight size={24} className="text-black" />
-      </button>
+      <hr />
     </div>
   );
 };

@@ -50,7 +50,7 @@ const LearnersAreViewing = () => {
         Learners are viewing
       </h2>
       <div className="relative w-full overflow-hidden">
-        {data && data.length > 7 && (
+        {data.response && data?.response?.length > 7 && (
           <ButtonsCarousel
             handleFnNext={handleNextCourse}
             handleFnPrev={handlePrevCourse}
@@ -63,14 +63,14 @@ const LearnersAreViewing = () => {
           />
         )}
         <div
-          className={`flex ${data && data.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+          className={`flex ${data?.response && data?.response?.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
           style={{
             transform: `translateX(-${courseIndex * 30.5}%)`,
           }}
         >
-          {data &&
-            data.length > 1 &&
-            data.map((courseCard: CourseTypeProps, index: number) => (
+          {data.response &&
+            data.response?.length > 1 &&
+            data.response.map((courseCard: CourseTypeProps, index: number) => (
               <HomeCourseCard
                 courseCard={courseCard}
                 index={index}
