@@ -21,12 +21,10 @@ const HeartBtn: React.FC<{
   const dispatch = useDispatch();
 
   const cookie = useSelector((state: RootState) => state.user.cookie);
-  // Get wishlist courses from Redux
   const coursesInWishlist = useSelector(
     (state: RootState) => state.cart.coursesAddedToWishList,
   );
 
-  // Check if course is in wishlist
   const isFavorite = courseId ? coursesInWishlist.includes(courseId) : false;
 
   const [isLoading, setLoading] = useState(false);

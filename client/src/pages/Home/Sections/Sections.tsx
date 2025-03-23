@@ -127,9 +127,7 @@ const Sections = () => {
             leftPosition="12%"
             rightPosition="14%"
           />
-          <div 
-            className="mt-3 flex w-auto"
-          >
+          <div className="mt-3 flex w-auto">
             {categoriesData.map((category, i) => {
               const match = category?.subcategory.find(
                 (sub) => sub?.title === navbarCategory,
@@ -138,7 +136,7 @@ const Sections = () => {
               return (
                 <div
                   key={i}
-                  className={`flex w-full items-center justify-center gap-2 transition-transform duration-1000 overflow-hidden`}
+                  className={`flex w-full items-center justify-center gap-2 overflow-hidden transition-transform duration-1000`}
                   style={{
                     transform: `translateX(-${currentIndex * 10.5}%)`,
                   }}
@@ -149,7 +147,7 @@ const Sections = () => {
                       onClick={() => setChooseTopic(topic)}
                       className={`${
                         choseTopic === topic
-                          ? "hover:bg-grayUdemyHover w-full bg-blackUdemy text-white"
+                          ? "w-full bg-blackUdemy text-white hover:bg-grayUdemyHover"
                           : ""
                       } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
                     >
