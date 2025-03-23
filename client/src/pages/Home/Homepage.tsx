@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useMediaQuery } from "react-responsive";
 import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
+import LetsStartLearning from "./LetsStartLearning/LetsStartLearning";
 
 const Homepage = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
@@ -51,6 +52,7 @@ const Homepage = () => {
             <Welcome />
             <Banner isLogin={true} />
             <div className="px-6 py-8">
+              <LetsStartLearning />
               <h1 className="pl-4 font-extrabold">What to learn next</h1>
               <SearchResult />
               <SearchResult />
