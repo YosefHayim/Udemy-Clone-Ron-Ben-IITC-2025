@@ -19,9 +19,12 @@ import Instructor from "./models/users/instructorModel.ts";
 import CourseProgress from "./models/courses/courseProgressModel.ts";
 import { InstructorDocument, LessonDocument } from "./types/types.ts";
 import Coupon from "./models/courses/couponModel.ts";
-import fs from "fs";
-import path from "path";
 import { getRandomImageFromDir } from "./utils/getRandomImageFromDir.ts";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const clearCollections = async () => {
   await Promise.all([

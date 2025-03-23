@@ -16,7 +16,6 @@ import { IoMdCheckmarkCircle, IoMdMail } from "react-icons/io";
 import { useLocation } from "react-router-dom";
 
 const SharePopup = ({ isClicked, setClicked }) => {
-  const [isDeployed, setDeployed] = useState(false);
   const [openEmailDialog, setOpenEmailDialog] = useState(false);
   const [isSent, setSent] = useState(false);
   const [emailInput, setEmailInput] = useState("");
@@ -26,7 +25,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
 
   const handleCopyText = () => {
     navigator.clipboard.writeText(
-      `${isDeployed ? `${baseUrl}` : `${localhostUrl}`}${location.pathname}`,
+      `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}${location.pathname}`,
     );
   };
 
@@ -72,7 +71,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
               <div className="flex w-full flex-row gap-[0.4em]">
                 <input
                   type="text"
-                  value={`${isDeployed ? `${baseUrl}` : `${localhostUrl}`}${location.pathname}`}
+                  value={`${process.env.NODE_ENV ? `${baseUrl}` : `${localhostUrl}`}${location.pathname}`}
                   disabled={true}
                   className={`${regInputFill} w-full rounded-sm bg-white p-2`}
                 />

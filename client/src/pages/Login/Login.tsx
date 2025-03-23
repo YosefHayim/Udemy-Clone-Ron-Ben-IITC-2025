@@ -31,7 +31,6 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // Change this to true when using in production.
-  const [isDeployed, setDeployed] = useState(false);
   const [isError, setShowIsError] = useState(false);
   const [differentAccount, setDifferentAccount] = useState(false);
   const [showRegularLogin, setShowRegularLogin] = useState(false);
@@ -108,7 +107,8 @@ const Login = () => {
     },
     flow: "auth-code",
     ux_mode: "popup",
-    redirect_uri: isDeployed ? `${baseUrl}` : `${localhostUrl}`,
+    redirect_uri:
+      process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`,
   });
 
   useEffect(() => {
