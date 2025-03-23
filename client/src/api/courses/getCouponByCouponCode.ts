@@ -1,9 +1,14 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import {
+  axiosClient,
+  baseUrl,
+  isProduction,
+  localhostUrl,
+} from "../configuration";
 
 const getCouponByCouponCode = async (couponCode: string) => {
   if (!couponCode) return console.log(`Must provide coupon code`);
 
-  const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/coupon/:${couponCode}`;
+  const url = `${isProduction ? baseUrl : localhostUrl}/api/coupon/:${couponCode}`;
   try {
     const r = await axiosClient.get(url);
 

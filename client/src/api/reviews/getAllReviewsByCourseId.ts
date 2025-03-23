@@ -1,4 +1,9 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import {
+  axiosClient,
+  baseUrl,
+  isProduction,
+  localhostUrl,
+} from "../configuration";
 
 type fn = (courseId: string | null) => Promise<any>;
 
@@ -9,7 +14,7 @@ const getAllReviewsByCourseId: fn = async (courseId = "") => {
   }
 
   const sanitizedCourseId = courseId.trim();
-  const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/review/course/${sanitizedCourseId}`;
+  const url = `${isProduction ? baseUrl : localhostUrl}/api/review/course/${sanitizedCourseId}`;
 
   try {
     const response = await axiosClient.get(url);

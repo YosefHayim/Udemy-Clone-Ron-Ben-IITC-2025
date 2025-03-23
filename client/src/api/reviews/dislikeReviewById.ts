@@ -1,4 +1,9 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import {
+  axiosClient,
+  baseUrl,
+  isProduction,
+  localhostUrl,
+} from "../configuration";
 
 type fn = (idOfReview: string) => Promise<any>;
 
@@ -8,7 +13,7 @@ export const dislikeReviewById: fn = async (idOfReview: string) => {
     return;
   }
   const sanitizedReviewId = idOfReview.trim();
-  const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/review/dislike/${sanitizedReviewId}`;
+  const url = `${isProduction ? baseUrl : localhostUrl}/api/review/dislike/${sanitizedReviewId}`;
   try {
     const res = await axiosClient.post(url);
 

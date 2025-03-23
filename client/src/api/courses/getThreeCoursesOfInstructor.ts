@@ -1,4 +1,9 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import {
+  axiosClient,
+  baseUrl,
+  isProduction,
+  localhostUrl,
+} from "../configuration";
 
 const getThreeCoursesOfInstructor = async (instructorId: string) => {
   if (!instructorId) {
@@ -6,7 +11,7 @@ const getThreeCoursesOfInstructor = async (instructorId: string) => {
   }
 
   try {
-    const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/instructor/${instructorId}/three/courses`;
+    const url = `${isProduction ? baseUrl : localhostUrl}/api/instructor/${instructorId}/three/courses`;
     const res = await axiosClient.get(url);
 
     if (res) {

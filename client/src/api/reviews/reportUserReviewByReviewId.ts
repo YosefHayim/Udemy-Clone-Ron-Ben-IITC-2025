@@ -1,5 +1,10 @@
 import { ReportUserReviewPayload } from "../../types/types";
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import {
+  axiosClient,
+  baseUrl,
+  isProduction,
+  localhostUrl,
+} from "../configuration";
 
 type fn = (payload: ReportUserReviewPayload) => Promise<any>;
 
@@ -18,7 +23,7 @@ const reportUserReviewByReviewId: fn = async ({
     throw new Error("Invalid review ID provided after sanitization.");
   }
 
-  const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/report/review/${sanitizedReviewId}`;
+  const url = `${isProduction ? baseUrl : localhostUrl}/api/report/review/${sanitizedReviewId}`;
 
   try {
     const payload = { issueType, issueDetails, userId };

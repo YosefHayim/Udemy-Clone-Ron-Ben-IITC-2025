@@ -1,5 +1,10 @@
 import { CourseData } from "../../types/types";
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import {
+  axiosClient,
+  baseUrl,
+  isProduction,
+  localhostUrl,
+} from "../configuration";
 
 type fn = (courseId: string) => Promise<CourseData>;
 
@@ -10,7 +15,7 @@ const getCourseById: fn = async (courseId: string) => {
   }
 
   const sanitizedCourseId = courseId.trim();
-  const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/course/${sanitizedCourseId}`;
+  const url = `${isProduction ? baseUrl : localhostUrl}/api/course/${sanitizedCourseId}`;
 
   try {
     const response = await axiosClient.get(url);

@@ -1,4 +1,9 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import {
+  axiosClient,
+  baseUrl,
+  isProduction,
+  localhostUrl,
+} from "../configuration";
 
 type fn = (
   searchTerm: string,
@@ -44,7 +49,7 @@ const getAllCourses: fn = async (
 
   // Construct query string, including only valid parameters
   const url =
-    `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/course/?search=${encodedSearchTerm}` +
+    `${isProduction ? baseUrl : localhostUrl}/api/course/?search=${encodedSearchTerm}` +
     (price === "Free" ? `&courseDiscountPrice=0` : "") + // Fix for free courses
     (price === "Paid" ? `&courseDiscountPrice[gte]=0.01` : "") + // Fix for paid courses
     (ratings ? `&averageRating[gte]=${ratings}` : "") +

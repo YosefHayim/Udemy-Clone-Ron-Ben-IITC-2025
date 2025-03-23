@@ -1,9 +1,14 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import {
+  axiosClient,
+  baseUrl,
+  isProduction,
+  localhostUrl,
+} from "../configuration";
 
 const refreshMe = async () => {
   try {
     const res = await axiosClient.post(
-      `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/user/me`,
+      `${isProduction ? baseUrl : localhostUrl}/api/user/me`,
     );
 
     if (res) {

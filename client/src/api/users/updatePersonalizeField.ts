@@ -1,5 +1,10 @@
 import { personalizeFieldPayload } from "../../types/types";
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import {
+  axiosClient,
+  baseUrl,
+  isProduction,
+  localhostUrl,
+} from "../configuration";
 
 const updatePersonalizeUserField = async (
   personalizeField: personalizeFieldPayload,
@@ -11,7 +16,7 @@ const updatePersonalizeUserField = async (
   console.log("personalizeField", personalizeField);
 
   try {
-    const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/user/updatePersonalizeField`;
+    const url = `${isProduction ? baseUrl : localhostUrl}/api/user/updatePersonalizeField`;
     const r = await axiosClient.put(url, personalizeField);
 
     if (r) {

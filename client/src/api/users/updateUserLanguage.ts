@@ -1,11 +1,16 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import {
+  axiosClient,
+  baseUrl,
+  isProduction,
+  localhostUrl,
+} from "../configuration";
 
 const updateUserLanguage = async (preferredLanguage: string) => {
   if (!preferredLanguage) {
     return undefined;
   }
 
-  const url = `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}/api/user`;
+  const url = `${isProduction ? baseUrl : localhostUrl}/api/user`;
   try {
     const response = await axiosClient.put(url, preferredLanguage);
 
