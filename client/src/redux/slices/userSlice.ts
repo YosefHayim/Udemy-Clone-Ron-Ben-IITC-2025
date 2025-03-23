@@ -1,6 +1,30 @@
+import { Course, CourseProgress } from "@/types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
-import { UserState } from "../../types/types";
+
+export interface UserState {
+  fullName: string;
+  profilePic: string;
+  email: string;
+  headline: string;
+  bio: string;
+  role: string;
+  language: string;
+  userLinks: {
+    linkedin: string;
+    xPlatform: string;
+    facebook: string;
+    youtube: string;
+    website: string;
+  };
+  coursesBought: Course[];
+  udemyCredits: number;
+  cookie: string | null;
+  isLoggedPreviouslyWithGoogle: boolean;
+  isAuthActivated: boolean;
+  whenCreated: Date | null;
+  coursesInProgress: CourseProgress[];
+}
 
 const initialState: UserState = {
   fullName: "",
@@ -23,6 +47,7 @@ const initialState: UserState = {
   isLoggedPreviouslyWithGoogle: false,
   isAuthActivated: false,
   whenCreated: null,
+  coursesInProgress: [],
 };
 
 const userSlice = createSlice({
@@ -64,6 +89,9 @@ const userSlice = createSlice({
     },
     setLanguage: (state, action: PayloadAction<string>) => {
       state.language = action.payload;
+    },
+    setCoursesInProgress: (state, action: PayloadAction<CourseProgress[]>) => {
+      state.coursesInProgress = action.payload;
     },
     setCoursesBought: (state, action: PayloadAction<Course[]>) => {
       action.payload.forEach((newCourse) => {
@@ -121,6 +149,7 @@ export const {
   setIsLoggedWithGoogle,
   setAuthActivate,
   setAuth,
+  setCoursesInProgress,
   setCreatedAt,
 } = userSlice.actions;
 

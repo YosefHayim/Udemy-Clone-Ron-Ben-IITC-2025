@@ -67,6 +67,7 @@ export interface UserState {
   isLoggedPreviouslyWithGoogle: boolean;
   isAuthActivated: boolean;
   whenCreated: Date | null | undefined;
+  coursesInProgress: [];
 }
 
 export interface searchResultCourseImgProps {
