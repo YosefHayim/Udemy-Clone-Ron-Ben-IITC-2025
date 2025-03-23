@@ -1,4 +1,4 @@
-import { localhostUrl, baseUrl } from "@/api/configuration";
+import { localhostUrl, baseUrl, isProduction } from "@/api/configuration";
 import DialogPopup from "@/components/DialogPopup/DialogPopup";
 import {
   Dialog,
@@ -25,7 +25,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
 
   const handleCopyText = () => {
     navigator.clipboard.writeText(
-      `${process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`}${location.pathname}`,
+      `${isProduction ? baseUrl : localhostUrl}${location.pathname}`,
     );
   };
 
@@ -71,7 +71,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
               <div className="flex w-full flex-row gap-[0.4em]">
                 <input
                   type="text"
-                  value={`${process.env.NODE_ENV ? `${baseUrl}` : `${localhostUrl}`}${location.pathname}`}
+                  value={`${isProduction ? baseUrl : localhostUrl}${location.pathname}`}
                   disabled={true}
                   className={`${regInputFill} w-full rounded-sm bg-white p-2`}
                 />

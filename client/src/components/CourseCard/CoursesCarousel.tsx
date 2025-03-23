@@ -10,6 +10,7 @@ import {
   IoIosArrowForward,
 } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { baseUrl, isProduction, localhostUrl } from "@/api/configuration";
 
 const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
   searchTerm = "",
@@ -27,7 +28,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({
   const fetchCourses = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/course/?search=${encodeURI(searchTerm)}`,
+        `${isProduction ? baseUrl : localhostUrl}/api/course/?search=${encodeURI(searchTerm)}`,
       );
       const data = await response.json();
       if (data.status === "Success") {

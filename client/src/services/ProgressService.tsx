@@ -1,5 +1,10 @@
 import log from "video.js/dist/types/utils/log";
-import { axiosClient, localhostUrl } from "../api/configuration";
+import {
+  axiosClient,
+  baseUrl,
+  isProduction,
+  localhostUrl,
+} from "../api/configuration";
 
 // Define response types
 type CourseProgressResponse = {
@@ -30,7 +35,7 @@ const fetchCourseProgress: FetchProgressFn = async (courseId) => {
     throw new Error("Course ID is required.");
   }
 
-  const url = `${localhostUrl}/api/course-progress/${courseId.trim()}`;
+  const url = `${isProduction ? baseUrl : localhostUrl}/api/course-progress/${courseId.trim()}`;
 
   try {
     const response = await axiosClient.get<CourseProgressResponse>(url);
@@ -42,7 +47,7 @@ const fetchCourseProgress: FetchProgressFn = async (courseId) => {
       typeof response.data.completedLessons === "number" &&
       typeof response.data.percentageCompleted === "number"
     ) {
-      console.log("respone:--",response)
+      console.log("respone:--", response);
       return response.data;
     }
 
@@ -70,7 +75,7 @@ const updateLessonProgress: UpdateLessonProgressFn = async (
     throw new Error("Course ID and Lesson ID are required.");
   }
 
-  const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}`;
+  const url = `${isProduction ? baseUrl : localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}`;
 
   try {
     const response = await axiosClient.patch(url, payload);
@@ -100,7 +105,7 @@ const initializeCourseProgress: InitializeProgressFn = async (courseId) => {
     throw new Error("Course ID is required.");
   }
 
-  const url = `${localhostUrl}/api/course-progress/initialize/${courseId.trim()}`;
+  const url = `${isProduction ? baseUrl : localhostUrl}/api/course-progress/initialize/${courseId.trim()}`;
 
   try {
     const response = await axiosClient.post(url);

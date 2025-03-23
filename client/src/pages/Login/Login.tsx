@@ -22,7 +22,7 @@ import {
   loginWDiffAccBtn,
   regFullButtonPurpleHover,
 } from "@/utils/stylesStorage";
-import { baseUrl, localhostUrl } from "@/api/configuration";
+import { baseUrl, isProduction, localhostUrl } from "@/api/configuration";
 import { AiOutlineMail } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { setUserInformation } from "@/utils/setUserInformation";
@@ -107,8 +107,7 @@ const Login = () => {
     },
     flow: "auth-code",
     ux_mode: "popup",
-    redirect_uri:
-      process.env.NODE === "production" ? `${baseUrl}` : `${localhostUrl}`,
+    redirect_uri: isProduction ? baseUrl : localhostUrl,
   });
 
   useEffect(() => {
