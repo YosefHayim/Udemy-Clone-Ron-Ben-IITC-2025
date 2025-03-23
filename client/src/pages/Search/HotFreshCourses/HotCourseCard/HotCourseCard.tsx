@@ -21,7 +21,9 @@ const HotCourseCard = ({ hotCourseAlgo }) => {
           />
           <CourseRatings avgRatings={4} stars={"★★★★☆"} totalRatings={1} />
           <CoursePrice
+            extraCSS={`text-sm font-bold`}
             displayPercent={false}
+            showFullPrice={false}
             discountPrice={hotCourseAlgo.courseDiscountPrice}
             fullPrice={hotCourseAlgo.courseFullPrice}
             chooseFlex={"flex flex-row"}
