@@ -38,7 +38,7 @@ const TriangleShape: React.FC<{
       {/* // This is when hovering top or from bottom */}
       {index === 0 && !positionedRight && !positionedLeft && (
         <div
-          className={` -translate-x-1/2" z-10flex absolute left-[45%] top-[-5%] transform items-center justify-center`}
+          className={` -translate-x-1/2" z-10flex bg-gre absolute left-[180px] top-[-10px] transform items-center justify-center`}
         >
           <div className="flex w-[50px] items-center justify-center">
             {/* Wrapper triangle with thick gray border and white fill */}
@@ -52,7 +52,7 @@ const TriangleShape: React.FC<{
 
       {index === 1 && !positionedRight && !positionedLeft && (
         <div
-          className={`-translate-x-1/2" absolute bottom-[-4.4%] left-[45%] z-10 flex rotate-180 transform items-center justify-center`}
+          className={`-translate-x-1/2" absolute bottom-[-10px] left-[180px] z-10 flex rotate-180 transform items-center justify-center`}
         >
           <div className="flex w-[50px] items-center justify-center">
             {/* Wrapper triangle with thick gray border and white fill */}
@@ -66,7 +66,7 @@ const TriangleShape: React.FC<{
 
       {index > 1 && (
         <div
-          className={`-translate-x-1/2" absolute bottom-[-4.6%] left-[45%] z-10 flex rotate-180 transform items-center justify-center`}
+          className={`-translate-x-1/2" absolute bottom-[-10px] left-[180px] z-10 flex rotate-180 transform items-center justify-center`}
         >
           <div className="flex w-[50px] items-center justify-center">
             {/* Wrapper triangle with thick gray border and white fill */}

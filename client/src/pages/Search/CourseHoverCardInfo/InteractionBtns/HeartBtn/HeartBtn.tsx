@@ -52,7 +52,7 @@ const HeartBtn: React.FC<{
       id={courseId}
       className={`${
         showHeart ? "block" : "hidden"
-      } flex cursor-pointer items-center justify-center rounded-full border border-purple-700 p-4 transition-all duration-300 hover:bg-purpleHoverBtn ${customHeartExtraCSS}`}
+      } flex cursor-pointer items-center justify-center rounded-full border border-purple-700 p-3 transition-all duration-300 hover:bg-purpleHoverBtn ${customHeartExtraCSS}`}
     >
       {isLoading ? (
         <Loader useSmallLoading={true} hSize="0em" paddingSetTo="0em" />

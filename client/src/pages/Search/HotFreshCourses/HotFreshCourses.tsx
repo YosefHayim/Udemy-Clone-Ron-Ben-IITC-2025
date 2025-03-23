@@ -48,7 +48,7 @@ const HotFreshCourses = () => {
         Hot and Fresh Courses
       </h2>
       <div className="relative w-full overflow-hidden">
-        {data.response && data.response?.length > 7 && (
+        {data.response && data?.response?.length > 7 && (
           <ButtonsCarousel
             handleFnNext={handleNext}
             handleFnPrev={handlePrev}

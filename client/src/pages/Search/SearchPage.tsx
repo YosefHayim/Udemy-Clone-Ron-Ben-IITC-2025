@@ -115,7 +115,7 @@ const SearchPage: React.FC = () => {
                   id={course?._id}
                   className="relative"
                   onMouseEnter={() => setHoveredCourse(course?._id)}
-                  onMouseLeave={() => setHoveredCourse(null)}
+                  onMouseLeave={() => setHoveredCourse(course?._id)}
                 >
                   <SearchCourseCard course={course} />
                   {hoveredCourse === course?._id && (
@@ -124,6 +124,8 @@ const SearchPage: React.FC = () => {
             ${getTopValue(index)}`}
                     >
                       <CourseHoverCardInfo
+                        positionedLeft={false}
+                        positionedRight={false}
                         instructorId={course?.courseInstructor?._id}
                         courseTopic={course?.courseTopic}
                         index={index}
