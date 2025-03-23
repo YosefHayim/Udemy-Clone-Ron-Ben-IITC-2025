@@ -6,7 +6,6 @@ import {
   DialogTitle,
   DialogOverlay,
 } from "@/components/ui/dialog";
-import { useLocation } from "react-router-dom";
 import { ReactNode } from "react";
 
 interface DialogPopupProps {
