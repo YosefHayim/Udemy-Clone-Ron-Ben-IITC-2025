@@ -21,6 +21,8 @@ import { AppDispatch } from "@/redux/store";
 
 export const setUserInformation = (cookie: string, dispatch: AppDispatch) => {
   if (!cookie) console.log("Cookie is not provided: ", cookie);
+  if (cookie) console.log(`Cookie received is: `, cookie);
+
   const decoded = jwtDecode<DecodedTokenProps>(cookie);
   console.log("user information has been updated: ", decoded);
 
