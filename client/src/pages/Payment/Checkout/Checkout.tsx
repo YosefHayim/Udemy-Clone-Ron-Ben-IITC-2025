@@ -21,16 +21,16 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
   const cookie = useSelector((state: RootState) => state?.user?.cookie);
 
   const totalToPay = useSelector(
-    (state: RootState) => state.cart.totalCourseDiscountPrices,
+    (state: RootState) => state.cart?.totalCourseDiscountPrices,
   );
   const totalCourses = useSelector(
-    (state: RootState) => state.cart.amountOfCourses,
+    (state: RootState) => state.cart?.amountOfCourses,
   );
   const originalPrice = useSelector(
-    (state: RootState) => state.cart.totalCoursesOriginalPrices,
+    (state: RootState) => state.cart?.totalCoursesOriginalPrices,
   );
   const coursesIds = useSelector(
-    (state: RootState) => state.cart.coursesAddedToCart,
+    (state: RootState) => state.cart?.coursesAddedToCart,
   );
 
   useEffect(() => {}, [originalPrice, totalCourses, totalToPay, cookie]);
@@ -61,13 +61,31 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
     setLoading(true);
     setTimeout(() => setLoading(false), 2000);
 
-    const courseId = coursesIds[coursesIds.length - 1];
-    if (!courseId) {
-      console.log("Invalid courseId received.");
-      return;
+    if (coursesIds.length === 1) {
+      const courseId = coursesIds[0];
+      if (!courseId) {
+        console.log("Invalid courseId received.");
+        return;
+      }
+      checkOutMutation.mutate(courseId);
+    } else {
+      checkOutMultiMutation.mutate(coursesIds);
     }
-    checkOutMutation.mutate(courseId);
   };
+
+  const checkOutMultiMutation = useMutation({
+    mutationFn: (courseIds: string[]) => {
+      console.log("Course ids going to purchase: ", courseIds);
+
+      return Promise.all(courseIds.map((id) => buyCourseById(id)));
+    },
+    onSuccess: () => {
+      console.log("Successfully purchased multiple courses");
+      setTimeout(() => {
+        refreshUserDataMutation.mutate();
+      }, 500);
+    },
+  });
 
   return (
     <div className="w-min-max flex flex-col items-start justify-start p-[3em]">
