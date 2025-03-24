@@ -30,11 +30,11 @@ import { setUserInformation } from "@/utils/setUserInformation";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // Change this to true when using in production.
   const [isError, setShowIsError] = useState(false);
   const [differentAccount, setDifferentAccount] = useState(false);
   const [showRegularLogin, setShowRegularLogin] = useState(false);
   const [isLoading, setLoading] = useState(false);
+
   const isLoggedPreviouslyWithGoogle = useSelector(
     (state: RootState) => state?.user?.isLoggedPreviouslyWithGoogle,
   );
@@ -222,16 +222,18 @@ const Login = () => {
               <>
                 <div className="flex flex-col items-center gap-4">
                   <form
-                    className="flex w-full flex-col gap-4"
+                    className="flex w-full flex-col"
                     onSubmit={handleSubmit}
                   >
-                    <input
-                      type="text"
-                      name="email"
-                      id="email"
-                      placeholder="Email"
-                      className={`${inputLoginWEmail}`}
-                    />
+                    {!differentAccount && isLoggedPreviouslyWithGoogle && (
+                      <input
+                        type="text"
+                        name="email"
+                        id="email"
+                        placeholder="Email"
+                        className={`${inputLoginWEmail}`}
+                      />
+                    )}
                     <button
                       type="submit"
                       className={`${regFullButtonPurpleHover} mb-6 flex w-full items-center justify-center font-sans font-extrabold`}
