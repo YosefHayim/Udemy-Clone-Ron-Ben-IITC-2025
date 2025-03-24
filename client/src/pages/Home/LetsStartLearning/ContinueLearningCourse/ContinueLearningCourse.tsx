@@ -6,7 +6,7 @@ const ContinueLearningCourse = () => {
   // Need to add course lesson id to navigate on each map of this.
   return (
     <div className="max-w-[350px] cursor-pointer hover:bg-gray-100">
-      <div className="flex flex-row items-start justify-start border border-gray-300">
+      <div className="flex  items-start justify-start border border-gray-300">
         <div className="relative h-[10em] w-[150px]">
           <img
             src={placeholderCourseViewImg}

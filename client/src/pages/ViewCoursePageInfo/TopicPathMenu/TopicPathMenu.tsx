@@ -19,7 +19,7 @@ const TopicPathMenu: React.FC<{
   };
 
   return (
-    <div className="z-[1] mb-[1em] flex flex-row items-center gap-[1em] text-[#c0c4fc]">
+    <div className="z-[1] mb-[1em] flex  items-center gap-[1em] text-[#c0c4fc]">
       <b
         className="cursor-pointer"
         onClick={() => handleNavigate(category)}

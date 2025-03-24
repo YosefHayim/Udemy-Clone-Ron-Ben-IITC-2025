@@ -29,7 +29,7 @@ const OccupationP2 = () => {
           </div>
           <form className="mt-[1em]">
             <RadioGroup className="flex flex-col gap-4" required={true}>
-              <div className="flex w-full flex-row items-start justify-start gap-[4em]">
+              <div className="flex w-full  items-start justify-start gap-[4em]">
                 <div className="flex flex-col items-start justify-start gap-[1em]">
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="Business Analyst" />

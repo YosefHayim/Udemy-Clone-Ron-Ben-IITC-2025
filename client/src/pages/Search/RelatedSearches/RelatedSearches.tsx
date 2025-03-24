@@ -34,7 +34,7 @@ const RelatedSearches = () => {
 
   return (
     <div className="mt-[2em] flex w-full flex-col items-center justify-start gap-[1em]">
-      <div className="flex w-full flex-row items-center justify-start gap-[0.5em]">
+      <div className="flex w-full  items-center justify-start gap-[0.5em]">
         <b className="font-sans text-[1.2em] font-extrabold">
           Related searches
         </b>
@@ -56,7 +56,7 @@ const RelatedSearches = () => {
           )}
         </div>
       </div>
-      <div className="flex w-full flex-row flex-wrap gap-[0.8em]">
+      <div className="flex w-full  flex-wrap gap-[0.8em]">
         {suggestions.map((suggestion) => (
           <RelatedSearchAlgoBtn key={suggestion} algoSearch={suggestion} />
         ))}

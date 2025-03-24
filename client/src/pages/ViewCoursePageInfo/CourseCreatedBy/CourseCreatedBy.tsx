@@ -7,7 +7,7 @@ const CourseCreatedBy: React.FC<CourseCreatedByProps> = ({
   handleScroll,
 }) => {
   return (
-    <div className="z-[10] flex flex-row items-center justify-start gap-[0.5em]">
+    <div className="z-[10] flex  items-center justify-start gap-[0.5em]">
       <p className="text-white">Created by</p>
       <button
         onClick={handleScroll}

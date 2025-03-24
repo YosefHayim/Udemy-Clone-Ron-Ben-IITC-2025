@@ -5,7 +5,7 @@ const InstructorProfileImg: React.FC<{
   instructorId: string;
 }> = ({ instructorImg, instructorId }) => {
   return (
-    <div className="flex flex-row items-center justify-start gap-[2em]">
+    <div className="flex  items-center justify-start gap-[2em]">
       <div>
         <img
           id={instructorId}

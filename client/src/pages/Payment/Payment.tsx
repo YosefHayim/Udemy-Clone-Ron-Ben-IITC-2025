@@ -28,7 +28,7 @@ const Payment: React.FC = () => {
           <div className="flex w-full flex-col items-start justify-between p-[1em] shadow-alertAlgoInfo">
             <PaymentNavbar />
           </div>
-          <div className="flex h-full w-full flex-row items-start justify-around">
+          <div className="flex h-full w-full  items-start justify-around">
             <div className="w-3/5 p-[10em] pt-[2em]">
               <div className=" flex w-full flex-col items-start justify-start gap-[1em]">
                 <h2 className="font-sans text-[1.5em] font-extrabold">

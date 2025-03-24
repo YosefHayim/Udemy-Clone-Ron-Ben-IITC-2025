@@ -24,7 +24,7 @@ const Subscriptions = () => {
             <h3 className="mb-4 text-lg font-semibold text-gray-800">
               Subscription plans available
             </h3>
-            <div className="flex flex-col items-start rounded-lg border bg-gray-50 p-6 lg:flex-row">
+            <div className="lg: flex flex-col items-start rounded-lg border bg-gray-50 p-6">
               {/* Text Section */}
               <div className="flex-1">
                 <h4 className="font-sans text-xl font-extrabold text-gray-800">

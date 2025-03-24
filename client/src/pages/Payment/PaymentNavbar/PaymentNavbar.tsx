@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const PaymentNavbar: React.FC = () => {
   return (
-    <div className="flex w-full flex-row items-center justify-between">
+    <div className="flex w-full  items-center justify-between">
       <Link to="/" className="cursor-pointer">
         <Logo CustomCssSize="w-[7em]" />
       </Link>

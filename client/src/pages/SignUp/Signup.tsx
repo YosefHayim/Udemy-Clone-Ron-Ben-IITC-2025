@@ -98,7 +98,7 @@ const SignUp: React.FC = () => {
           <div
             className={
               isError
-                ? `mb-[1em] flex w-full flex-row items-start justify-center gap-[1em] rounded-[1.5em] border border-red-700 p-[1em] py-[1.5em] font-sans font-extrabold`
+                ? `mb-[1em] flex w-full  items-start justify-center gap-[1em] rounded-[1.5em] border border-red-700 p-[1em] py-[1.5em] font-sans font-extrabold`
                 : "hidden"
             }
           >

@@ -68,7 +68,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
               Share this course
             </DialogTitle>
             <DialogDescription>
-              <div className="flex w-full flex-row gap-[0.4em]">
+              <div className="flex w-full  gap-[0.4em]">
                 <input
                   type="text"
                   value={`${isProduction ? baseUrl : localhostUrl}${location.pathname}`}
@@ -82,7 +82,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
                   Copy
                 </button>
               </div>
-              <div className="mt-[0.7em] flex flex-row items-center justify-center gap-[1em]">
+              <div className="mt-[0.7em] flex  items-center justify-center gap-[1em]">
                 <div className="w-min cursor-pointer rounded-[100em] border border-purple-900 p-[0.5em] hover:bg-purple-200">
                   <FaFacebook className="text-[1.3em] text-purple-600" />
                 </div>
@@ -155,7 +155,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
                             className={`${regFullButtonPurpleHover} ${isSendDisabled() || isSent ? "cursor-not-allowed opacity-30" : "cursor-pointer"} flex h-full  items-center px-3 py-[0.5rem] focus:outline-none`}
                           >
                             {isSent ? (
-                              <div className="flex flex-row items-center justify-center">
+                              <div className="flex  items-center justify-center">
                                 <p>Email Sent</p>
                                 <IoMdCheckmarkCircle size={18} />
                               </div>

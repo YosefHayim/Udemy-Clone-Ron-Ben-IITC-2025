@@ -16,7 +16,7 @@ const CourseCard: React.FC = () => {
       </div>
       <CourseLength />
       <CoursePrice
-        chooseFlex="flex flex-row items-center"
+        chooseFlex="flex  items-center"
         discountPrice={39.9}
         fullPrice={79.9}
       />

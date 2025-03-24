@@ -78,7 +78,7 @@ const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
         </div>
         {isAlreadyBought && (
           <div className="flex w-full flex-col items-start justify-start">
-            <div className="mb-[0.5em] flex flex-row items-start justify-start gap-[0.5em]">
+            <div className="mb-[0.5em] flex  items-start justify-start gap-[0.5em]">
               <AiFillInfoCircle className="text-[2.5em] text-btnColor" />
               <b className="text-[1.3em]">
                 You purchased this course on Aug. 26, 2024

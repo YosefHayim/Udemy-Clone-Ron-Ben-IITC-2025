@@ -23,7 +23,7 @@ const DialogChangeEmail: React.FC<DialogChangeEmailProps> = ({
       <AlertDialogTrigger asChild></AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <div className="flex w-full flex-row items-center justify-between">
+          <div className="flex w-full  items-center justify-between">
             <div>
               <AlertDialogTitle className="font-sans font-extrabold text-black">
                 Change your email

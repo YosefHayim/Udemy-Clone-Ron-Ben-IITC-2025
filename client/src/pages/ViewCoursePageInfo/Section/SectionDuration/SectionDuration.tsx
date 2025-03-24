@@ -15,7 +15,7 @@ const SectionDuration: React.FC<{ duration: number; totalLessons: number }> = ({
   const lectureText = totalLessons === 1 ? "lecture" : "lectures";
 
   return (
-    <div className="flex flex-row items-center justify-center">
+    <div className="flex  items-center justify-center">
       <p>
         {totalLessons} {lectureText}
       </p>

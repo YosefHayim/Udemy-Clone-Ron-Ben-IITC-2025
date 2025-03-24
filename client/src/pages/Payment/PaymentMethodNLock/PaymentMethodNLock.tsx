@@ -5,13 +5,13 @@ const PaymentMethodNLock: React.FC = () => {
   const [isHoverLock, setHoverLock] = useState(false);
   return (
     <div
-      className="flex w-full flex-row items-start justify-between"
+      className="flex w-full  items-start justify-between"
       onMouseEnter={() => setHoverLock(true)}
       onMouseLeave={() => setHoverLock(false)}
     >
-      <div className="flex w-full flex-row items-start justify-between">
+      <div className="flex w-full  items-start justify-between">
         <h3 className="font-sans font-extrabold">Payment method</h3>
-        <div className="flex flex-row items-center gap-[0.5em]">
+        <div className="flex  items-center gap-[0.5em]">
           <p className="text-grayNavbarTxt underline decoration-dotted">
             Secure and encrypted
           </p>

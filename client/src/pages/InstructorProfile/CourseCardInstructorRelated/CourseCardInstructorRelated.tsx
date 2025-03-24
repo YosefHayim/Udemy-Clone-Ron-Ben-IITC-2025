@@ -34,12 +34,12 @@ const CourseCardInstructorRelated: React.FC<{
         />
         <b className="w-[200px]">{courseName}</b>
         <p>{courseInstructorName}</p>
-        <div className="flex flex-row items-center">
+        <div className="flex  items-center">
           <b className="text-[#BB6300]">4.7</b>
           <CourseRating amountOfStars={4.7} courseRating={0} />
           <p className="text-gray-500 ">({totalRatings})</p>
         </div>
-        <div className="flex  flex-row items-center justify-start gap-[0.2em] text-gray-500">
+        <div className="flex   items-center justify-start gap-[0.2em] text-gray-500">
           <p>{totalCourseDuration} hours</p>
           <LuDot />
           <p>59 lectures</p>

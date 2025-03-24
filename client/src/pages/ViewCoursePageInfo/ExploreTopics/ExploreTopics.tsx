@@ -10,7 +10,7 @@ const ExploreTopics: React.FC<{
       <h2 className="mb-[0.5em] font-sans text-[1.5em] font-extrabold">
         Explore related topics
       </h2>
-      <div className="flex flex-row gap-[0.5em]">
+      <div className="flex  gap-[0.5em]">
         <BubbleBtn similarTopicName={topic} />
         <BubbleBtn similarTopicName={subCategory} />
         <BubbleBtn similarTopicName={category} />

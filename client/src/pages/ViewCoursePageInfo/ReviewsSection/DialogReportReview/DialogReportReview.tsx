@@ -145,7 +145,7 @@ const DialogReportReview: React.FC<{
                     />
                   </>
                 )}
-                <div className="flex w-full flex-row items-end justify-end gap-[1em] text-end">
+                <div className="flex w-full  items-end justify-end gap-[1em] text-end">
                   {isClicked ? (
                     <Button
                       className="rounded-[0.3em] p-[1.3em] font-sans font-extrabold"

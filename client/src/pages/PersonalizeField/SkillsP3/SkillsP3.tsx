@@ -32,7 +32,7 @@ const SkillsP3 = () => {
   return (
     <div className="mb-[2em] ml-[8em] w-[700px] p-[2em] text-start">
       <div className="mb-[2em] flex flex-col items-start justify-start gap-[1em] rounded-[1em] border border-[#d2caff] bg-[#f2efff] p-[1em]">
-        <div className=" flex flex-row items-center gap-[0.5em] text-[1.2em]">
+        <div className=" flex  items-center gap-[0.5em] text-[1.2em]">
           <MdPeople />
           <b>You're in the right place!</b>
         </div>
@@ -49,7 +49,7 @@ const SkillsP3 = () => {
           Choose a few to start with. You can change these or follow more skills
           in the future.
         </p>
-        <div className="mb-[0.5em] flex w-[600px] flex-row flex-wrap items-center gap-[0.5em] rounded-[0.3em] border border-gray-400 p-[1em] hover:bg-gray-100">
+        <div className="mb-[0.5em] flex w-[600px]  flex-wrap items-center gap-[0.5em] rounded-[0.3em] border border-gray-400 p-[1em] hover:bg-gray-100">
           <Skill skillName="Next.js" />
           <Skill skillName="JavaScript" />
           <Skill skillName="React JS" />
@@ -60,7 +60,7 @@ const SkillsP3 = () => {
           <Skill skillName="CSS" />
           <Skill skillName="Node.Js" />
           <Skill skillName="Web Development" />
-          <form className="flex w-full flex-row items-center justify-start gap-[0.2em] text-[1.2em]">
+          <form className="flex w-full  items-center justify-start gap-[0.2em] text-[1.2em]">
             <div className="rounded-[0.2em] p-[0.5em] hover:bg-purpleHoverBtn">
               <IoMdSearch className="text-[1.5em]" />
             </div>
@@ -101,7 +101,7 @@ const SkillsP3 = () => {
         </div>
         <div>
           <b>Other skills</b>
-          <div className="mb-[0.5em] flex w-[600px] flex-row flex-wrap items-center gap-[0.5em] rounded-[0.3em] p-[1em]">
+          <div className="mb-[0.5em] flex w-[600px]  flex-wrap items-center gap-[0.5em] rounded-[0.3em] p-[1em]">
             <OtherSkill otherSkillName="Finance Fundamentals" />
             <OtherSkill otherSkillName="Financial Modeling" />
             <OtherSkill otherSkillName="Financial Statement" />

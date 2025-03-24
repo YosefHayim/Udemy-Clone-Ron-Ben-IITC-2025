@@ -27,7 +27,7 @@ const PersonalizeFieldP1 = () => {
       className="flex w-full flex-col items-center justify-start"
       onClick={handleChosenOccupation}
     >
-      <div className="my-[2em] ml-[8em] flex flex-row items-center justify-start gap-[0.5em] rounded-[1em] bg-[#fff6e5] p-[2em] text-start">
+      <div className="my-[2em] ml-[8em] flex  items-center justify-start gap-[0.5em] rounded-[1em] bg-[#fff6e5] p-[2em] text-start">
         <FaUserEdit className="text-[2em] text-[#c4710d]" />
         <p className="text-courseNameColorTxt">
           Answer a few questions to improve your content recommendations
@@ -40,7 +40,7 @@ const PersonalizeFieldP1 = () => {
 
         <RadioGroup
           defaultValue="software-development"
-          className="mb-[2em] flex flex-row gap-[10em]"
+          className="mb-[2em] flex  gap-[10em]"
         >
           <div className="flex flex-col items-start justify-start gap-[1em]">
             <div className="flex items-center space-x-2">
@@ -157,7 +157,7 @@ const PersonalizeFieldP1 = () => {
           >
             Do you currently manage people?
           </label>
-          <RadioGroup defaultValue="no" className="flex flex-row gap-[5em]">
+          <RadioGroup defaultValue="no" className="flex  gap-[5em]">
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="yes" id="yes" />
               <label htmlFor="yes">Yes</label>

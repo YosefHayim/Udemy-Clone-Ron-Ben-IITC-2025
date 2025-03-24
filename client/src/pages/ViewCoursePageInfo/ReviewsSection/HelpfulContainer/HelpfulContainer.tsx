@@ -72,7 +72,7 @@ const HelpfulContainer: React.FC<{ idOfReview: string }> = ({ idOfReview }) => {
   };
 
   return (
-    <div className="flex flex-row items-start justify-start gap-[1em]">
+    <div className="flex  items-start justify-start gap-[1em]">
       <p>Helpful?</p>
       <div onClick={handleLike} className="cursor-pointer">
         {isClickedLike ? <BiSolidLike /> : <BiLike />}

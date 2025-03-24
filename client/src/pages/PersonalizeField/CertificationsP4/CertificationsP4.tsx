@@ -6,7 +6,7 @@ const CertificationsP4 = () => {
       <h1 className="mb-[1em] font-sans text-[1.2em] font-extrabold">
         Are you interested in any certifications?
       </h1>
-      <div className="flex w-full flex-row items-center rounded-[0.3em] border border-[#9194ac] bg-white p-[0.5em]">
+      <div className="flex w-full  items-center rounded-[0.3em] border border-[#9194ac] bg-white p-[0.5em]">
         <IoMdSearch className="ml-[0.5em] text-[1.5em] text-gray-500" />
         <input
           type="text"

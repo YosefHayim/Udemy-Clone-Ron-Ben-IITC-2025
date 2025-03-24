@@ -11,7 +11,7 @@ const HotCourseCard = ({ hotCourseAlgo }) => {
   console.log(hotCourseAlgo);
 
   return (
-    <div className="flex w-[200px] cursor-pointer flex-row items-center justify-center gap-[2em]">
+    <div className="flex w-[200px] cursor-pointer  items-center justify-center gap-[2em]">
       <div>
         <CourseImg courseImg={hotCourseAlgo.courseImg} />
         <div className="flex flex-col items-start justify-start gap-[0.3em]">
@@ -26,7 +26,7 @@ const HotCourseCard = ({ hotCourseAlgo }) => {
             showFullPrice={false}
             discountPrice={hotCourseAlgo.courseDiscountPrice}
             fullPrice={hotCourseAlgo.courseFullPrice}
-            chooseFlex={"flex flex-row"}
+            chooseFlex={"flex "}
           />
           <CourseTag tagName={hotCourseAlgo.courseTag} />
         </div>

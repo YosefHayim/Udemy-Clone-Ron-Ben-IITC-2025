@@ -2,7 +2,7 @@
 import trendsReportImage from "/images/toptrends2.png";
 const TrendsReport = () => {
   return (
-    <div className="flex flex-col items-center bg-white  px-12 lg:flex-row">
+    <div className="lg: flex flex-col items-center  bg-white px-12">
       {/* Texto à esquerda */}
       <div className="text-left lg:w-1/4">
         <h2 className="font-sans  font-serif text-[33px] font-extrabold leading-tight text-gray-900">

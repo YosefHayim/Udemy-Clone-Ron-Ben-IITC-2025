@@ -9,7 +9,7 @@ const Lesson: React.FC<{
   duration: number;
 }> = ({ isQuizzLesson = false, title, videoUrl, duration }) => {
   return (
-    <div className="border-right border-left flex w-[550px] flex-row items-center justify-between   border bg-white p-[0.5em]">
+    <div className="border-right border-left flex w-[550px]  items-center justify-between   border bg-white p-[0.5em]">
       <div className="flex items-center gap-[1em]">
         {isQuizzLesson ? (
           <GoLightBulb className="text-languageText" />

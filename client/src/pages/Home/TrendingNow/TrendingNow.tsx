@@ -6,7 +6,7 @@ const TrendingNow = () => {
       <h2 className="font-sans text-4xl font-extrabold leading-tight text-gray-900">
         Trending Now
       </h2>
-      <div className="mt-6 flex flex-col justify-between border-t border-gray-300 pt-6 lg:flex-row">
+      <div className="lg: mt-6 flex flex-col justify-between border-t border-gray-300 pt-6">
         {/* Coluna 1 */}
         <div className="mb-8 lg:mb-0 lg:w-1/4">
           <h3 className="font-sans text-xl font-extrabold text-gray-900">

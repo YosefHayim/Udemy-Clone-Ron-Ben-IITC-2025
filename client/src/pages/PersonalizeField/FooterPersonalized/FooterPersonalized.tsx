@@ -45,7 +45,7 @@ const FooterPersonalized = () => {
     <div
       className={`${
         personalizeData.currentPage === 3 ? "relative" : "absolute"
-      } bottom-0 z-[1] flex w-full flex-row items-center justify-between bg-white p-[1em] shadow-personalizedFooterShadow`}
+      } bottom-0 z-[1] flex w-full  items-center justify-between bg-white p-[1em] shadow-personalizedFooterShadow`}
     >
       {personalizeData.currentPage > 1 ? (
         <div>

@@ -51,7 +51,7 @@ const ReviewsTab = ({ avgRating = 1 }) => {
         Student feedback
       </h2>
       <div className="mb-6 flex flex-col py-2">
-        <div className="flex  min-w-full flex-row items-center gap-5 p-4 ">
+        <div className="flex  min-w-full  items-center gap-5 p-4 ">
           <div className="flex w-full flex-col items-center justify-center ">
             <div className="w-fit font-sans text-7xl font-extrabold text-[#c4710d] ">
               {avgRating.toFixed(1)}
@@ -79,7 +79,7 @@ const ReviewsTab = ({ avgRating = 1 }) => {
                       style={{ width: `${percentage}%` }}
                     ></div>
                   </div>
-                  <div className="flex flex-row-reverse items-center gap-3 ">
+                  <div className="-reverse flex items-center gap-3 ">
                     <span className="text-sm font-semibold text-btnColor underline">
                       {percentage}%
                     </span>
@@ -93,7 +93,7 @@ const ReviewsTab = ({ avgRating = 1 }) => {
       </div>
 
       {/* Reviews Section */}
-      <form className="mb-6 flex flex-row items-center gap-2">
+      <form className="mb-6 flex  items-center gap-2">
         {/* Search Input */}
         <Input
           placeholder="Search reviews"

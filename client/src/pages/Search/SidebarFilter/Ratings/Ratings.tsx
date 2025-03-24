@@ -72,7 +72,7 @@ const RatingsFilter = () => {
                   <span className="h-2.5 w-2.5 rounded-full bg-black"></span>
                 )}
               </span>
-              <div className="flex flex-row">
+              <div className="flex ">
                 <span className="flex items-center">
                   <span className="text-sm text-yellow-500">{rating}</span>
                   <span className="ml-1 text-sm text-gray-600">

@@ -42,7 +42,7 @@ const Logout: React.FC = () => {
         </div>
       </div>
       <div
-        className="mt-[2.5em] flex flex-row items-start justify-start gap-[1.5em]"
+        className="mt-[2.5em] flex  items-start justify-start gap-[1.5em]"
         onClick={handleClick}
       >
         {[

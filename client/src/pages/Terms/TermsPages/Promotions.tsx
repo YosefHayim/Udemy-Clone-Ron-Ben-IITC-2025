@@ -61,7 +61,7 @@ const Promotions = () => {
         </header>
 
         {/* Main Content */}
-        <div className="flex flex-col space-y-6 px-6 py-6 lg:flex-row lg:space-x-8 lg:space-y-0">
+        <div className="lg: flex flex-col space-y-6 px-6 py-6 lg:space-x-8 lg:space-y-0">
           {/* Main Section */}
           <main className="flex-1">
             <div className="bg-white px-8 py-6">

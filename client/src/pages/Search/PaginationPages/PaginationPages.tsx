@@ -38,7 +38,7 @@ const PaginationPages: React.FC<{
   };
 
   return (
-    <div className="mt-[2em] flex flex-row items-center justify-center gap-[1em]">
+    <div className="mt-[2em] flex  items-center justify-center gap-[1em]">
       <button
         onClick={handlePreviousPage}
         disabled={currentPage === 1}
@@ -49,7 +49,7 @@ const PaginationPages: React.FC<{
         <MdKeyboardArrowLeft size={24} className="text-[#6D28D2]" />
       </button>
 
-      <div className="flex cursor-pointer flex-row items-center gap-[0.5em] text-[#6D28D2]">
+      <div className="flex cursor-pointer  items-center gap-[0.5em] text-[#6D28D2]">
         {getPageNumbers().map((page, index) => (
           <b
             key={index}

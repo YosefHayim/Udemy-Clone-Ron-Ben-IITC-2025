@@ -32,8 +32,8 @@ const UserCourseReview: React.FC<{
   return (
     <div className={`flex flex-col gap-[1em] ${widthOfReview}`} id={review._id}>
       <hr className="my-[0.5em]" />
-      <div className="flex flex-row items-center justify-between">
-        <div className="flex flex-row items-start justify-start gap-[1em]">
+      <div className="flex  items-center justify-between">
+        <div className="flex  items-start justify-start gap-[1em]">
           <UserProfile />
           <div className="flex flex-col items-start justify-start">
             <UserReviewRating

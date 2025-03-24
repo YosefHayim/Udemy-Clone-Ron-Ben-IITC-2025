@@ -39,11 +39,11 @@ const CouponArea: React.FC<{ btnBgDesign?: string; couponText?: string }> = ({
 
   return (
     <div>
-      <div className="mb-[1em] flex flex-row border border-dashed border-gray-500 p-[0.3em]">
-        <div className="mb-[0.5em] flex w-full flex-row items-center justify-between">
+      <div className="mb-[1em] flex  border border-dashed border-gray-500 p-[0.3em]">
+        <div className="mb-[0.5em] flex w-full  items-center justify-between">
           <div className="relative flex w-full flex-col items-start gap-[0.2em]">
-            <div className="flex w-full flex-row">
-              <div className="flex w-full flex-row gap-[0.2em]">
+            <div className="flex w-full ">
+              <div className="flex w-full  gap-[0.2em]">
                 <b className="text-weakGray">{couponText}</b>
                 <p>is applied</p>
               </div>
@@ -58,7 +58,7 @@ const CouponArea: React.FC<{ btnBgDesign?: string; couponText?: string }> = ({
         </div>
       </div>
       <form
-        className="flex flex-row items-center gap-[0.5em]"
+        className="flex  items-center gap-[0.5em]"
         onSubmit={handleCouponSubmit}
       >
         <Input

@@ -12,7 +12,7 @@ const UserReviewRating: React.FC<{
   return (
     <div>
       <b>{reviewUserName}</b>
-      <div className="flex flex-row items-center justify-start gap-[0.5em]">
+      <div className="flex  items-center justify-start gap-[0.5em]">
         <CourseRating
           amountOfStars={reviewRating}
           courseRating={reviewRating}

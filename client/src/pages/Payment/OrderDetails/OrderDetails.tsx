@@ -9,7 +9,7 @@ const OrderDetails: React.FC = () => {
 
   return (
     <div className="flex w-[400px] flex-col items-start justify-start gap-[1em]">
-      <div className="flex flex-row items-start justify-start gap-[0.2em]">
+      <div className="flex  items-start justify-start gap-[0.2em]">
         <b>Order details</b>
         <p>({coursesIdAdded.length} Course)</p>
       </div>
@@ -27,7 +27,7 @@ const OrderDetails: React.FC = () => {
               showDisPrice={true}
               shortCutInstructor={true}
               shortcutTitle={false}
-              chooseFlex={"flex flex-row"}
+              chooseFlex={"flex "}
               itemsPosition="start"
               textColor="text-bg-black"
             />

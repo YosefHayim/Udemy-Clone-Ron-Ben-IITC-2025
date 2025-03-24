@@ -32,7 +32,7 @@ const AddCardInfo: React.FC = () => {
               className="w-full rounded-[0.2em] border border-black"
             ></Input>
           </div>
-          <div className="flex w-full flex-row items-start justify-start gap-[1em]">
+          <div className="flex w-full  items-start justify-start gap-[1em]">
             <div>
               <label htmlFor="date" className="font-sans font-extrabold">
                 Expiry date
@@ -64,7 +64,7 @@ const AddCardInfo: React.FC = () => {
               className="w-full rounded-[0.2em] border border-black"
             ></Input>
           </div>
-          <div className="flex flex-row items-center justify-start gap-[0.5em]">
+          <div className="flex  items-center justify-start gap-[0.5em]">
             <Checkbox name="save-card" className="rounded-[0em]" />
             <label htmlFor="save-card">
               Securely save this card for my later purchase

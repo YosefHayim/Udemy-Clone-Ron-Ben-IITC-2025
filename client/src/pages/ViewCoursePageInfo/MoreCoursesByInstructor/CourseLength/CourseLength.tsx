@@ -20,7 +20,7 @@ const CourseLength: React.FC<{
 
   return (
     <div
-      className={`flex w-full flex-row items-center justify-start text-weakGray ${isSmallText && "text-[0.9em]"}`}
+      className={`flex w-full  items-center justify-start text-weakGray ${isSmallText && "text-[0.9em]"}`}
     >
       <p className="w-min-max">{totalHours}</p>
       <LuDot />

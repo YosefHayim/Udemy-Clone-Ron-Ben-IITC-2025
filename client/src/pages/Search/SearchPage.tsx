@@ -92,7 +92,7 @@ const SearchPage: React.FC = () => {
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-[1em] px-6 py-[3em]">
-      <div className="flex w-full flex-row items-start justify-center gap-[1.5em]">
+      <div className="flex w-full  items-start justify-center gap-[1.5em]">
         <div className="flex flex-col items-start justify-center">
           <div>
             <h1 className="mb-[0.8em] w-full font-sans text-[1.8em] font-extrabold">
@@ -115,7 +115,7 @@ const SearchPage: React.FC = () => {
                   id={course?._id}
                   className="relative"
                   onMouseEnter={() => setHoveredCourse(course?._id)}
-                  onMouseLeave={() => setHoveredCourse(course?._id)}
+                  onMouseLeave={() => setHoveredCourse(null)}
                 >
                   <SearchCourseCard course={course} />
                   {hoveredCourse === course?._id && (

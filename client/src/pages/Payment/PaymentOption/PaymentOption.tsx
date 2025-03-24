@@ -88,7 +88,7 @@ const PaymentOption: React.FC<PaymentOptionProps> = ({
       </div>
       {isOpen && ( // Conditionally render content based on `isOpen`
         <div
-          className={`flex w-full flex-row items-start justify-around rounded-[0.2em] border-[1px] border-borderCommercial bg-white px-[0.2em] py-[1em]`}
+          className={`flex w-full  items-start justify-around rounded-[0.2em] border-[1px] border-borderCommercial bg-white px-[0.2em] py-[1em]`}
         >
           {showVisa && <DefaultVisa />}
           {showProvideCardInfo && <AddCardInfo />}

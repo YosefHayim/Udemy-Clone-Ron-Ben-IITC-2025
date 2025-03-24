@@ -86,11 +86,8 @@ const VerifyCode = () => {
 
   return (
     <div className="min-width-[61.3125rem] flex w-full flex-1 items-start justify-center px-[10rem] py-[6.8rem]">
-      <div >
-        <img
-          src="/images/Login_Password_Page.png"
-          alt="Login Illustration"
-        />
+      <div>
+        <img src="/images/Login_Password_Page.png" alt="Login Illustration" />
       </div>
       <div className="flex w-full flex-col items-center justify-center bg-white">
         <h2 className="mb-2 text-center font-sans text-3xl font-extrabold text-gray-800">
@@ -128,7 +125,7 @@ const VerifyCode = () => {
             {isLoading ? (
               <Loader useSmallLoading={true} hSize="" />
             ) : (
-              <div className="flex flex-row">
+              <div className="flex ">
                 <button className="font-sans text-[1rem] font-extrabold focus:outline-none">
                   Log in
                 </button>

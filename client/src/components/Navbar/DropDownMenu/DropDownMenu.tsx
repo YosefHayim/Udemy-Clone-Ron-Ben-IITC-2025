@@ -33,7 +33,7 @@ const DropdownMenu: React.FC = () => {
   };
 
   const menuItems = [
-    { label: "My learning", to: "/home/my-courses" },
+    { label: "My learning", to: "/wishlist" },
     { label: "My cart", to: "/cart", extra: <CartCoursesNumber /> },
     { label: "Wishlist", to: "/wishlist", separator: true },
     { label: "Notifications", to: "/user/edit-notifications/" },

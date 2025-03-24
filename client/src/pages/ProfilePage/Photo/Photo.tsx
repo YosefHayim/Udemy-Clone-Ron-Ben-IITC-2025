@@ -56,7 +56,7 @@ const Photo = () => {
     <div className="flex w-full p-[4.5em]">
       <SideBarProfile />
       <div className="w-full">
-        <div className="flex w-full flex-row items-center justify-center gap-4">
+        <div className="flex w-full  items-center justify-center gap-4">
           <div className="flex w-full flex-col items-center justify-center border border-gray-300 p-[2em]">
             <h2 className="font-sans font-extrabold">Photo</h2>
             <p>Add a nice photo of yourself for your profile.</p>
@@ -79,7 +79,7 @@ const Photo = () => {
             <div className="w-full items-start justify-start">
               <b>Add / Change Image</b>
               <form className="flex w-full flex-col items-start justify-start gap-6">
-                <div className="flex w-full flex-row items-start justify-start gap-4">
+                <div className="flex w-full  items-start justify-start gap-4">
                   <Input
                     type="file"
                     className="bw-min-max g-white rounded-[0.2em] border border-gray-500 text-black"

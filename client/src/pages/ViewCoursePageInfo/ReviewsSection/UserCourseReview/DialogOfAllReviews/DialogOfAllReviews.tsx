@@ -43,7 +43,7 @@ const DialogOfAllReviews: React.FC<{
         <DialogContent className="z-[2000]">
           <DialogHeader>
             <DialogTitle>
-              <div className="flex flex-row items-center justify-start">
+              <div className="flex  items-center justify-start">
                 <MdStar className="text-[#c4710d]" />
                 <b>{avgRating} course rating</b>
                 <p>
@@ -60,11 +60,11 @@ const DialogOfAllReviews: React.FC<{
                 </div>
               )}
               {data && (
-                <div className="flex w-full flex-row items-start justify-between gap-[1em]">
+                <div className="flex w-full  items-start justify-between gap-[1em]">
                   <div>
                     {/* Star progress bars */}
                     {/* Add your star progress bar implementation here */}
-                    <form className="flex flex-row items-center justify-center gap-[0.5em]">
+                    <form className="flex  items-center justify-center gap-[0.5em]">
                       <Input
                         placeholder="Search reviews"
                         type="text"

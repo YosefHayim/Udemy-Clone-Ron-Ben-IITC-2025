@@ -7,7 +7,7 @@ const TimeLeftBuyCourse: React.FC<{ coursePrice: number }> = ({
     <div
       className={`${
         coursePrice > 0 ? "block" : "hidden"
-      } flex flex-row items-center gap-[0.2em] text-[#b32d0f]`}
+      } flex  items-center gap-[0.2em] text-[#b32d0f]`}
     >
       <LuAlarmClock />
       <b>3 days</b>

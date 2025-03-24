@@ -88,7 +88,7 @@ const ViewCoursePageInfo = () => {
               />
               <CourseBigTitle courseTitle={data?.courseName} />
               <CourseRecap recapInfo={data?.courseRecapInfo} />
-              <div className="flex w-full flex-row items-center justify-start gap-3">
+              <div className="flex w-full  items-center justify-start gap-3">
                 <CourseTag tagName={data?.courseTag} />
                 <CourseRating
                   courseRating={data?.averageRating}

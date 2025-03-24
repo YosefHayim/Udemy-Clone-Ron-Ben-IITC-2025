@@ -94,13 +94,13 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
           Order Summary
         </h2>
         <div className="flex w-[75%] flex-col items-start justify-start gap-[0.5em]">
-          <div className="flex w-full flex-row items-start justify-between gap-[5em]">
+          <div className="flex w-full  items-start justify-between gap-[5em]">
             <p>Original price:</p>
             <p>₪{originalPrice || 0}</p>
           </div>
           <hr className="w-full border border-b-gray-400" />
-          <div className="mb-[3em] flex w-full flex-row items-start justify-between">
-            <div className="flex flex-row gap-[0.3em]">
+          <div className="mb-[3em] flex w-full  items-start justify-between">
+            <div className="flex  gap-[0.3em]">
               <b>Total</b>
               <p>({totalCourses} course)</p>
             </div>
@@ -123,7 +123,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({
                 <Loader useSmallLoading={true} hSize="" />
               </div>
             ) : (
-              <div className="flex flex-row items-center">
+              <div className="flex  items-center">
                 <IoMdLock />
                 Pay ₪{totalToPay?.toFixed(2) || 0}
               </div>

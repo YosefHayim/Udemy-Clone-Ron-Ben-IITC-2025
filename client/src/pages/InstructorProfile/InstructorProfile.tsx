@@ -31,15 +31,15 @@ const InstructorProfile = () => {
   console.log(data);
 
   return (
-    <div className="flex w-full flex-row items-center justify-center p-[3em] pl-[10em]">
-      <div className="flex w-max flex-row items-start justify-around gap-[3em]">
+    <div className="flex w-full  items-center justify-center p-[3em] pl-[10em]">
+      <div className="flex w-max  items-start justify-around gap-[3em]">
         <div>
           <h2 className="font-sans font-extrabold">INSTRUCTOR</h2>
           <h1 className="font-[lifeLtstd] font-sans font-extrabold">
             {data.userId.fullName}
           </h1>
           <h3 className="font-sans font-extrabold">{data.userId.headline}</h3>
-          <div className="mt-[3em] flex flex-row items-start justify-start gap-[2em]">
+          <div className="mt-[3em] flex  items-start justify-start gap-[2em]">
             <div className=" flex flex-col items-start justify-start">
               <b className="text-[1.1em]">Total Students</b>
               <b className="text-[1.6em]">{data.totalStudents}</b>

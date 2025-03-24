@@ -201,7 +201,7 @@ const ProfileMain = () => {
                   />
                 </div>
                 <div className="flex w-full flex-col items-start justify-start">
-                  <div className="flex h-[35px] w-full flex-row items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                  <div className="flex h-[35px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
                     <label
                       htmlFor="twitter"
                       className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
@@ -225,7 +225,7 @@ const ProfileMain = () => {
                   </p>
                 </div>
                 <div className="flex w-full flex-col items-start justify-start">
-                  <div className="flex h-[35px] w-full flex-row items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                  <div className="flex h-[35px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
                     <label
                       htmlFor="facebook"
                       className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
@@ -249,7 +249,7 @@ const ProfileMain = () => {
                   </p>
                 </div>
                 <div className="flex w-full flex-col items-start justify-start">
-                  <div className="flex h-[35px] w-full flex-row items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                  <div className="flex h-[35px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
                     <label
                       htmlFor="linkedin"
                       className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
@@ -273,7 +273,7 @@ const ProfileMain = () => {
                   </p>
                 </div>
                 <div className="flex w-full flex-col items-start justify-start">
-                  <div className="flex h-[35px] w-full flex-row items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                  <div className="flex h-[35px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
                     <label
                       htmlFor="youtube"
                       className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"

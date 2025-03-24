@@ -73,7 +73,7 @@ const OverviewTab: React.FC = () => {
         </div>
         <div className="flex flex-col ">
           <span>
-            <div className="inline-flex flex-row items-center gap-2 pt-3 text-sm">
+            <div className="inline-flex  items-center gap-2 pt-3 text-sm">
               <BsPatchExclamationFill />
               Last update{" "}
               {new Date(course.updatedAt).toLocaleString("en-US", {
@@ -85,14 +85,14 @@ const OverviewTab: React.FC = () => {
         </div>
 
         <span>
-          <div className="inline-flex flex-row items-center gap-2 pt-3 text-sm">
+          <div className="inline-flex  items-center gap-2 pt-3 text-sm">
             <MdOutlineLanguage />
             {course.courseLanguages}
           </div>
         </span>
       </div>
       <div className="mt-4 flex flex-col gap-4 rounded-lg border bg-white p-4 shadow-sm">
-        <div className=" flex flex-row items-center gap-4">
+        <div className=" flex  items-center gap-4">
           <IoMdAlarm className="text-4xl" />
           <h1 className="font-sans text-lg font-extrabold">
             Schedule learning time
@@ -103,7 +103,7 @@ const OverviewTab: React.FC = () => {
           make learning a habit are more likely to reach their goals. Set time
           aside to learn and get reminders using your learning scheduler.
         </p>
-        <div className="flex flex-row gap-2">
+        <div className="flex  gap-2">
           <button className="rounded bg-black px-4 py-2 text-white hover:bg-gray-600 focus:outline-none">
             Get started
           </button>
