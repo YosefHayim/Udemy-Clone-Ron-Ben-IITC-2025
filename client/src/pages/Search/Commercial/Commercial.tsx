@@ -1,5 +1,5 @@
-import ContainerImg from "./ContainerImg/ContainerImg";
-import CommercialRecap from "./CommercialRecap/CommercialRecap";
+import ContainerImg from './ContainerImg/ContainerImg';
+import CommercialRecap from './CommercialRecap/CommercialRecap';
 
 const Commercial = () => {
   return (

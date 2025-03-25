@@ -1,17 +1,15 @@
-import { useContext, useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { filterContext } from "@/routes/AppRoutes";
+import { useContext, useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { filterContext } from '@/routes/AppRoutes';
 
 const SortDropDown = () => {
   const [filterData, setFilterData] = useContext(filterContext);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedSort, setSelectedSort] = useState<string>(
-    filterData.sortBy || "most-relevant",
-  );
+  const [selectedSort, setSelectedSort] = useState<string>(filterData.sortBy || 'most-relevant');
 
   // Sync with URL and filterData on mount
   useEffect(() => {
-    const sortFromURL = searchParams.get("sortBy");
+    const sortFromURL = searchParams.get('sortBy');
     if (sortFromURL) {
       setSelectedSort(sortFromURL);
       setFilterData((prev) => ({

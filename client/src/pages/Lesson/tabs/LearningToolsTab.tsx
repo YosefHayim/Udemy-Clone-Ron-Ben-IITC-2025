@@ -1,12 +1,9 @@
 const LearningToolsTab: React.FC = () => {
   return (
     <div id="learning-tools" className="p-10">
-      <h2 className="mb-4 font-sans text-xl font-extrabold">
-        Learning reminders
-      </h2>
+      <h2 className="mb-4 font-sans text-xl font-extrabold">Learning reminders</h2>
       <p className="mb-6">
-        Set up push notifications or calendar events to stay on track for your
-        learning goals.
+        Set up push notifications or calendar events to stay on track for your learning goals.
       </p>
       <button className="mb-10 rounded bg-purple-500 px-4 py-2 text-white hover:bg-purple-600 focus:outline-none">
         + Add a learning reminder
@@ -16,11 +13,7 @@ const LearningToolsTab: React.FC = () => {
       <p className="mb-4">Receive learning reminders on your mobile device.</p>
 
       <div className="flex items-center space-x-4">
-        <img
-          src="app-logo-placeholder.png"
-          alt="App Logo"
-          className="h-16 w-16 rounded"
-        />
+        <img src="app-logo-placeholder.png" alt="App Logo" className="h-16 w-16 rounded" />
         <div className="flex flex-col space-y-2">
           <div className="flex items-center space-x-2">
             <select className="rounded border p-2">
@@ -37,9 +30,8 @@ const LearningToolsTab: React.FC = () => {
             </button>
           </div>
           <p className="text-sm text-gray-500">
-            By providing your phone number, you agree to receive a one-time
-            automated text message with a link to get the app. Standard
-            messaging rates may apply.
+            By providing your phone number, you agree to receive a one-time automated text message
+            with a link to get the app. Standard messaging rates may apply.
           </p>
         </div>
       </div>

@@ -1,19 +1,12 @@
-import {
-  axiosClient,
-  baseUrl,
-  isProduction,
-  localhostUrl,
-} from "../configuration";
+import { axiosClient, baseUrl, isProduction, localhostUrl } from '../configuration';
 
 const refreshMe = async () => {
   try {
-    const res = await axiosClient.post(
-      `${isProduction ? baseUrl : localhostUrl}/api/user/me`,
-    );
+    const res = await axiosClient.post(`${isProduction ? baseUrl : localhostUrl}/api/user/me`);
 
     if (res) {
       console.log(res.data);
-      localStorage.setItem("cookie", res.data.token);
+      localStorage.setItem('cookie', res.data.token);
       return res.data;
     }
   } catch (error) {

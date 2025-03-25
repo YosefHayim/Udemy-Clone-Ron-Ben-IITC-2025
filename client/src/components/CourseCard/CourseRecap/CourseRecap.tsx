@@ -4,9 +4,8 @@ const CourseRecap = ({ recapInfo }: { recapInfo: string }) => {
       <p>
         {recapInfo || (
           <>
-            Dive in and learn <b>React</b>.js from scratch! Learn <b>React</b>,
-            Hooks, Redux, <b>React</b> Router, Next.js, Best Practices, and way
-            more!
+            Dive in and learn <b>React</b>.js from scratch! Learn <b>React</b>, Hooks, Redux,{' '}
+            <b>React</b> Router, Next.js, Best Practices, and way more!
           </>
         )}
       </p>

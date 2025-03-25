@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const cartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState: {
     isShowCart: false,
     amountOfCourses: 0,
@@ -32,18 +32,14 @@ const cartSlice = createSlice({
     },
     setAddCourseToCart: (state, action: PayloadAction<string>) => {
       // Prevent duplicate course additions
-      state.coursesAddedToCart = Array.from(
-        new Set([...state.coursesAddedToCart, action.payload]),
-      );
+      state.coursesAddedToCart = Array.from(new Set([...state.coursesAddedToCart, action.payload]));
     },
     setCoursesAddedToWishList: (state, action: PayloadAction<string>) => {
       const courseId = action.payload;
 
       if (state.coursesAddedToWishList.includes(courseId)) {
         // Remove course from wishlist
-        state.coursesAddedToWishList = state.coursesAddedToWishList.filter(
-          (id) => id !== courseId,
-        );
+        state.coursesAddedToWishList = state.coursesAddedToWishList.filter((id) => id !== courseId);
       } else {
         // Add course to wishlist
         state.coursesAddedToWishList.push(courseId);
@@ -52,7 +48,7 @@ const cartSlice = createSlice({
 
     setTotalOriginalCoursePrices: (state, action: PayloadAction<number>) => {
       if (!action.payload || isNaN(action.payload)) {
-        console.log("Invalid fullPrice payload:", action.payload);
+        console.log('Invalid fullPrice payload:', action.payload);
         return;
       }
       state.totalCoursesOriginalPrices += action.payload; // Add original price
@@ -60,14 +56,13 @@ const cartSlice = createSlice({
 
     setTotalCourseDiscountPrices: (state, action: PayloadAction<number>) => {
       if (!action.payload || isNaN(action.payload)) {
-        console.log("Invalid discountPrice payload:", action.payload);
+        console.log('Invalid discountPrice payload:', action.payload);
         return;
       }
       state.totalCourseDiscountPrices += action.payload; // Add discounted price
     },
     calculateTotalSavings: (state) => {
-      state.totalSavings =
-        state.totalCoursesOriginalPrices - state.totalCourseDiscountPrices;
+      state.totalSavings = state.totalCoursesOriginalPrices - state.totalCourseDiscountPrices;
 
       if (state.totalSavings < 0) {
         state.totalSavings = 0; // Prevent negative savings
@@ -76,7 +71,7 @@ const cartSlice = createSlice({
     calculateDiscountPercentage: (state) => {
       if (state.totalCoursesOriginalPrices > 0) {
         state.totalDiscountPercentage = Math.round(
-          (state.totalSavings / state.totalCoursesOriginalPrices) * 100,
+          (state.totalSavings / state.totalCoursesOriginalPrices) * 100
         );
       } else {
         state.totalDiscountPercentage = 0; // Avoid division by zero
@@ -88,19 +83,17 @@ const cartSlice = createSlice({
         courseId: string;
         originalPrice: number;
         discountPrice: number;
-      }>,
+      }>
     ) => {
       const { courseId, originalPrice = 0, discountPrice = 0 } = action.payload;
 
       if (!courseId) {
-        console.log("Invalid courseId:", courseId);
+        console.log('Invalid courseId:', courseId);
         return;
       }
 
       // Remove the course from the cart
-      state.coursesAddedToCart = state.coursesAddedToCart.filter(
-        (id) => id !== courseId,
-      );
+      state.coursesAddedToCart = state.coursesAddedToCart.filter((id) => id !== courseId);
 
       if (state.amountOfCourses > 0) {
         state.amountOfCourses -= 1;
@@ -108,21 +101,20 @@ const cartSlice = createSlice({
 
       state.totalCoursesOriginalPrices = Math.max(
         0,
-        state.totalCoursesOriginalPrices - originalPrice,
+        state.totalCoursesOriginalPrices - originalPrice
       );
 
       state.totalCourseDiscountPrices = Math.max(
         0,
-        state.totalCourseDiscountPrices - discountPrice,
+        state.totalCourseDiscountPrices - discountPrice
       );
 
       // Recalculate total savings and percentage discount
-      state.totalSavings =
-        state.totalCoursesOriginalPrices - state.totalCourseDiscountPrices;
+      state.totalSavings = state.totalCoursesOriginalPrices - state.totalCourseDiscountPrices;
 
       if (state.totalCoursesOriginalPrices > 0) {
         state.totalDiscountPercentage = Math.round(
-          (state.totalSavings / state.totalCoursesOriginalPrices) * 100,
+          (state.totalSavings / state.totalCoursesOriginalPrices) * 100
         );
       } else {
         state.totalDiscountPercentage = 0;

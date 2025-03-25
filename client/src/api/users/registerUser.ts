@@ -1,10 +1,5 @@
-import {
-  axiosClient,
-  baseUrl,
-  isProduction,
-  localhostUrl,
-} from "../configuration";
-import { RegisterUserPayload } from "../../types/types";
+import { axiosClient, baseUrl, isProduction, localhostUrl } from '../configuration';
+import { RegisterUserPayload } from '../../types/types';
 
 type fn = (data: RegisterUserPayload) => Promise<any>;
 
@@ -12,13 +7,13 @@ const registerUser: fn = async (data: RegisterUserPayload): Promise<any> => {
   try {
     const response = await axiosClient.post(
       `${isProduction ? baseUrl : localhostUrl}/api/user/auth/signup`,
-      data,
+      data
     );
     if (response.status !== 200) {
-      throw new Error("Registration failed");
+      throw new Error('Registration failed');
     }
     console.log(response.data);
-    localStorage.setItem("cookie", response.data.token);
+    localStorage.setItem('cookie', response.data.token);
     return response.data.token;
   } catch (error) {
     console.log(`Error occurred during the signup: `, error);

@@ -1,6 +1,6 @@
-import Logo from "@/components/Logo/Logo";
-import { btnStyleNHover } from "@/utils/stylesStorage";
-import { Link } from "react-router-dom";
+import Logo from '@/components/Logo/Logo';
+import { btnStyleNHover } from '@/utils/stylesStorage';
+import { Link } from 'react-router-dom';
 
 const PaymentNavbar: React.FC = () => {
   return (

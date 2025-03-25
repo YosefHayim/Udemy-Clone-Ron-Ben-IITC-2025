@@ -1,22 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
-import getAllCourses from "@/api/courses/getAllCourses";
-import { useState } from "react";
-import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
-import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
-import { CourseTypeProps } from "@/types/types";
-import Loader from "@/components/Loader/Loader";
+import { useQuery } from '@tanstack/react-query';
+import getAllCourses from '@/api/courses/getAllCourses';
+import { useState } from 'react';
+import HomeCourseCard from '@/components/HomeCourseCard/HomeCourseCard';
+import ButtonsCarousel from '@/components/ButtonsCarousel/ButtonsCarousel';
+import { CourseTypeProps } from '@/types/types';
+import Loader from '@/components/Loader/Loader';
 
 const LearnersAreViewing = () => {
   const [courseIndex, setCourseIndex] = useState(0);
   const [isCourseAnimating, setCourseAnimating] = useState(false);
   const [countCourseClick, setCourseClick] = useState(0);
-  const convertArrayStringToRegArray = JSON.parse(
-    localStorage.getItem("searchesOfUser"),
-  );
+  const convertArrayStringToRegArray = JSON.parse(localStorage.getItem('searchesOfUser'));
   const [arrayAlgo, setArrayAlgo] = useState(convertArrayStringToRegArray);
 
-  const randomAlgoWord =
-    arrayAlgo[Math.floor(Math.random() * arrayAlgo.length)];
+  const randomAlgoWord = arrayAlgo[Math.floor(Math.random() * arrayAlgo.length)];
 
   const { data, isLoading, isPending } = useQuery({
     queryKey: [`${randomAlgoWord}`, randomAlgoWord],
@@ -46,9 +43,7 @@ const LearnersAreViewing = () => {
 
   return (
     <div className="px-6 py-8">
-      <h2 className="mb-6 font-sans text-3xl font-extrabold">
-        Learners are viewing
-      </h2>
+      <h2 className="mb-6 font-sans text-3xl font-extrabold">Learners are viewing</h2>
       <div className="relative w-full overflow-hidden">
         {data.response && data?.response?.length > 7 && (
           <ButtonsCarousel
@@ -63,7 +58,7 @@ const LearnersAreViewing = () => {
           />
         )}
         <div
-          className={`flex ${data?.response && data?.response?.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+          className={`flex ${data?.response && data?.response?.length > 7 ? 'w-max items-center justify-center' : 'w-full items-center justify-start'}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
           style={{
             transform: `translateX(-${courseIndex * 30.5}%)`,
           }}
@@ -71,11 +66,7 @@ const LearnersAreViewing = () => {
           {data.response &&
             data.response?.length > 1 &&
             data.response.map((courseCard: CourseTypeProps, index: number) => (
-              <HomeCourseCard
-                courseCard={courseCard}
-                index={index}
-                key={courseCard?._id}
-              />
+              <HomeCourseCard courseCard={courseCard} index={index} key={courseCard?._id} />
             ))}
         </div>
       </div>

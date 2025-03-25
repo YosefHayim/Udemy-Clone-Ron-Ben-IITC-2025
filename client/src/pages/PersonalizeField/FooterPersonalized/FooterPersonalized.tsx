@@ -1,11 +1,11 @@
-import updatePersonalizeUserField from "@/api/users/updatePersonalizeField";
-import { personalizeContent } from "@/routes/AppRoutes";
-import { useMutation } from "@tanstack/react-query";
-import { useContext, useEffect } from "react";
+import updatePersonalizeUserField from '@/api/users/updatePersonalizeField';
+import { personalizeContent } from '@/routes/AppRoutes';
+import { useMutation } from '@tanstack/react-query';
+import { useContext, useEffect } from 'react';
 
 const FooterPersonalized = () => {
   const personalizeTracking = useContext(personalizeContent);
-  if (!personalizeTracking) throw new Error("No personalize tracking provided");
+  if (!personalizeTracking) throw new Error('No personalize tracking provided');
   const [personalizeData, setPersonalizeData] = personalizeTracking;
 
   const handleForward = () => {
@@ -44,7 +44,7 @@ const FooterPersonalized = () => {
   return (
     <div
       className={`${
-        personalizeData.currentPage === 3 ? "relative" : "absolute"
+        personalizeData.currentPage === 3 ? 'relative' : 'absolute'
       } bottom-0 z-[1] flex w-full  items-center justify-between bg-white p-[1em] shadow-personalizedFooterShadow`}
     >
       {personalizeData.currentPage > 1 ? (
@@ -57,7 +57,7 @@ const FooterPersonalized = () => {
           </button>
         </div>
       ) : (
-        ""
+        ''
       )}
       <div className="w-full text-end">
         {personalizeData.currentPage === 4 ? (

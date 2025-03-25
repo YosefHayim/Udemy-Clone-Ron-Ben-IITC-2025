@@ -1,14 +1,14 @@
-import { btnStyleNHover } from "@/utils/stylesStorage";
-import StartWeeklyStreak from "./StartWeeklyStreak/StartWeeklyStreak";
-import ContinueLearningCourse from "./ContinueLearningCourse/ContinueLearningCourse";
-import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { btnStyleNHover } from '@/utils/stylesStorage';
+import StartWeeklyStreak from './StartWeeklyStreak/StartWeeklyStreak';
+import ContinueLearningCourse from './ContinueLearningCourse/ContinueLearningCourse';
+import ButtonsCarousel from '@/components/ButtonsCarousel/ButtonsCarousel';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 
 const LetsStartLearning = () => {
   const amountOfLessonsSpecificCourseChosen = useSelector(
-    (state: RootState) => state.user.coursesInProgress,
+    (state: RootState) => state.user.coursesInProgress
   );
 
   const [isAnimating, setIsAnimating] = useState(false);

@@ -1,4 +1,4 @@
-import { IoMdSearch } from "react-icons/io";
+import { IoMdSearch } from 'react-icons/io';
 
 const CertificationsP4 = () => {
   return (
@@ -22,10 +22,7 @@ const CertificationsP4 = () => {
             id="chartered-financial-Analyst-cfa"
             name="chartered-financial-Analyst-cfa"
           />
-          <label
-            htmlFor="chartered-financial-Analyst-cfa"
-            className="font-sans font-extrabold"
-          >
+          <label htmlFor="chartered-financial-Analyst-cfa" className="font-sans font-extrabold">
             Chartered Financial Analyst (CFA)
           </label>
         </div>
@@ -43,15 +40,8 @@ const CertificationsP4 = () => {
           </label>
         </div>
         <div className="mt-[1em] flex cursor-pointer items-center gap-[1.5em] rounded-[0.3em] border border-gray-300 px-[1em] py-[2em] text-[1.3em] hover:bg-gray-100">
-          <input
-            type="checkbox"
-            id="uniform-cpa-examination"
-            name="uniform-cpa-examination"
-          />
-          <label
-            htmlFor="uniform-cpa-examination"
-            className="font-sans font-extrabold"
-          >
+          <input type="checkbox" id="uniform-cpa-examination" name="uniform-cpa-examination" />
+          <label htmlFor="uniform-cpa-examination" className="font-sans font-extrabold">
             Uniform CPA Examination
           </label>
         </div>

@@ -1,7 +1,7 @@
-import DialogPopup from "@/components/DialogPopup/DialogPopup";
-import { useState } from "react";
-import { CiCircleInfo } from "react-icons/ci";
-import { MdOutlineLocalFireDepartment } from "react-icons/md";
+import DialogPopup from '@/components/DialogPopup/DialogPopup';
+import { useState } from 'react';
+import { CiCircleInfo } from 'react-icons/ci';
+import { MdOutlineLocalFireDepartment } from 'react-icons/md';
 
 const StartWeeklyStreak = () => {
   const [isOpenToolTip, setOpenTooltip] = useState(false);
@@ -19,10 +19,7 @@ const StartWeeklyStreak = () => {
         <div className="flex w-full items-center justify-center">
           <div className="flex w-full items-center justify-start">
             <div className="flex w-full items-center justify-start">
-              <MdOutlineLocalFireDepartment
-                size={40}
-                className="text-gray-300"
-              />
+              <MdOutlineLocalFireDepartment size={40} className="text-gray-300" />
               <div className="flex flex-col items-start justify-start text-base">
                 <p className="text-sm">
                   <span className="text-2xl font-extrabold">0</span> Weeks
@@ -64,12 +61,10 @@ const StartWeeklyStreak = () => {
             >
               <div className="flex w-full flex-col items-start justify-start gap-2 text-blackUdemy">
                 <div className=" flex w-full flex-col items-start justify-start gap-4 p-5">
-                  <h2 className="font-sans text-xl font-extrabold">
-                    About Streaks
-                  </h2>
+                  <h2 className="font-sans text-xl font-extrabold">About Streaks</h2>
                   <p>
-                    Complete both your visit and minutes watched rings to
-                    maintain your weekly streak.
+                    Complete both your visit and minutes watched rings to maintain your weekly
+                    streak.
                   </p>
                   <ul className="flex w-full flex-col items-center justify-center gap-4">
                     <li className="flex w-full items-center justify-start gap-2">
@@ -91,16 +86,13 @@ const StartWeeklyStreak = () => {
                 <div className="bg-gray-100 p-5">
                   <h2 className="font-sans font-extrabold ">Data updates</h2>
                   <p className="mt-2 w-full text-[0.9em]">
-                    Your minutes watched updates three times per day. Return in
-                    a few hours to see your progress.
+                    Your minutes watched updates three times per day. Return in a few hours to see
+                    your progress.
                   </p>
                 </div>
               </div>
             </DialogPopup>
-            <div
-              className="flex cursor-pointer items-center justify-start"
-              onClick={handleClick}
-            >
+            <div className="flex cursor-pointer items-center justify-start" onClick={handleClick}>
               <CiCircleInfo size={18} />
             </div>
           </div>

@@ -1,9 +1,4 @@
-import {
-  axiosClient,
-  baseUrl,
-  isProduction,
-  localhostUrl,
-} from "../configuration";
+import { axiosClient, baseUrl, isProduction, localhostUrl } from '../configuration';
 
 const buyCourseById = async (courseId: string | string) => {
   try {
@@ -15,7 +10,7 @@ const buyCourseById = async (courseId: string | string) => {
       return response.data;
     }
   } catch (error) {
-    console.log("Error occurred during buying courses for user: ", error);
+    console.log('Error occurred during buying courses for user: ', error);
   }
 };
 

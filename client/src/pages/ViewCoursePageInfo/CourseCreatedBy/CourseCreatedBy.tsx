@@ -1,5 +1,5 @@
-import { CourseCreatedByProps } from "@/types/types";
-import { useRef } from "react";
+import { CourseCreatedByProps } from '@/types/types';
+import { useRef } from 'react';
 
 const CourseCreatedBy: React.FC<CourseCreatedByProps> = ({
   instructorName,

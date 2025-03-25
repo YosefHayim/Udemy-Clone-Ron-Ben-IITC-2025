@@ -1,13 +1,10 @@
-import styles from "./ReceiptCart.module.css";
+import styles from './ReceiptCart.module.css';
 
 const ReceiptCart = () => {
   return (
     <div className="p-[3em]">
       <div>
-        <h1
-          className="mb-[1.5em] font-sans text-[1.6em] font-extrabold"
-          styles={styles.title}
-        >
+        <h1 className="mb-[1.5em] font-sans text-[1.6em] font-extrabold" styles={styles.title}>
           Receipt
         </h1>
         <h2 className="mb-[1.4em] font-sans text-[1.2em] font-extrabold">
@@ -20,10 +17,7 @@ const ReceiptCart = () => {
           <li>600 Harrison Street, 3rd Floor</li>
           <li>San Francisco, CA 94107, US</li>
           <li>
-            <a
-              href="https://www.udemy.com/"
-              className="text-purple-700 underline"
-            >
+            <a href="https://www.udemy.com/" className="text-purple-700 underline">
               udemy.com
             </a>
           </li>
@@ -75,7 +69,7 @@ const ReceiptCart = () => {
       <hr className="mb-[1em]" />
       <div>
         <p>
-          If you have any questions about this receipt please contact our{" "}
+          If you have any questions about this receipt please contact our{' '}
           <span className="text-purple-700 underline">support team.</span>
         </p>
       </div>

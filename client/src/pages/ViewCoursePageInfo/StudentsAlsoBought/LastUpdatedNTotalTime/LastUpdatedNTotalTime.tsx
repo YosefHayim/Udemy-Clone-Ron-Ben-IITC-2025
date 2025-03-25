@@ -1,4 +1,4 @@
-import { LuDot } from "react-icons/lu";
+import { LuDot } from 'react-icons/lu';
 
 const LastUpdatedNTotalTime: React.FC = () => {
   return (

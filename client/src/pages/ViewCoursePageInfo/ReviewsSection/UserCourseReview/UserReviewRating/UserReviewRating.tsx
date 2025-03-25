@@ -1,5 +1,5 @@
-import CourseRating from "@/pages/ViewCoursePageInfo/CourseRating/CourseRating";
-import { calculateTimeDifference } from "@/utils/whenCreated";
+import CourseRating from '@/pages/ViewCoursePageInfo/CourseRating/CourseRating';
+import { calculateTimeDifference } from '@/utils/whenCreated';
 
 const UserReviewRating: React.FC<{
   reviewRating: number;
@@ -13,10 +13,7 @@ const UserReviewRating: React.FC<{
     <div>
       <b>{reviewUserName}</b>
       <div className="flex  items-center justify-start gap-[0.5em]">
-        <CourseRating
-          amountOfStars={reviewRating}
-          courseRating={reviewRating}
-        />
+        <CourseRating amountOfStars={reviewRating} courseRating={reviewRating} />
         <p className="font-sans font-extrabold text-gray-400">
           {calculateTimeDifference(createCommentAt)}
         </p>

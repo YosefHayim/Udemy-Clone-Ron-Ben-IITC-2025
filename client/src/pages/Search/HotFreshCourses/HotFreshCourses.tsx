@@ -1,21 +1,18 @@
-import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
-import HotCourseCard from "./HotCourseCard/HotCourseCard";
-import { memo, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import getAllCourses from "@/api/courses/getAllCourses";
-import Loader from "@/components/Loader/Loader";
-import { CourseTypeProps } from "@/types/types";
+import ButtonsCarousel from '@/components/ButtonsCarousel/ButtonsCarousel';
+import HotCourseCard from './HotCourseCard/HotCourseCard';
+import { memo, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import getAllCourses from '@/api/courses/getAllCourses';
+import Loader from '@/components/Loader/Loader';
+import { CourseTypeProps } from '@/types/types';
 
 const HotFreshCourses = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const convertArrayStringToRegArray = JSON.parse(
-    localStorage.getItem("searchesOfUser"),
-  );
+  const convertArrayStringToRegArray = JSON.parse(localStorage.getItem('searchesOfUser'));
   const [arrayAlgo, setArrayAlgo] = useState(convertArrayStringToRegArray);
 
-  const randomAlgoWord =
-    arrayAlgo[Math.floor(Math.random() * arrayAlgo.length)];
+  const randomAlgoWord = arrayAlgo[Math.floor(Math.random() * arrayAlgo.length)];
 
   const handlePrev = () => {
     if (isAnimating || currentIndex === 0) return;
@@ -38,15 +35,13 @@ const HotFreshCourses = () => {
   });
 
   if (!data) {
-    console.log("No data received");
+    console.log('No data received');
     return null;
   }
 
   return (
     <div className="w-full">
-      <h2 className="my-[0.5em] font-sans text-[1.5em] font-extrabold">
-        Hot and Fresh Courses
-      </h2>
+      <h2 className="my-[0.5em] font-sans text-[1.5em] font-extrabold">Hot and Fresh Courses</h2>
       <div className="relative w-full overflow-hidden">
         {data.response && data?.response?.length > 7 && (
           <ButtonsCarousel
@@ -61,17 +56,14 @@ const HotFreshCourses = () => {
           />
         )}
         <div
-          className={`flex ${data.response && data.response?.length > 7 ? "w-max items-center justify-center p-4" : "w-full items-center justify-center p-4"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+          className={`flex ${data.response && data.response?.length > 7 ? 'w-max items-center justify-center p-4' : 'w-full items-center justify-center p-4'}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
           style={{
             transform: `translateX(-${currentIndex * 30.5}%)`,
           }}
         >
           {data && data?.response?.length >= 1 ? (
             data?.response?.map((hotCourseAlgo: CourseTypeProps) => (
-              <HotCourseCard
-                hotCourseAlgo={hotCourseAlgo}
-                key={hotCourseAlgo._id}
-              />
+              <HotCourseCard hotCourseAlgo={hotCourseAlgo} key={hotCourseAlgo._id} />
             ))
           ) : (
             <div className="w-full">

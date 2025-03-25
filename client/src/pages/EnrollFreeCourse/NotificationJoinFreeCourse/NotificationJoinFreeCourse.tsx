@@ -1,11 +1,10 @@
-import { RootState } from "@/redux/store";
-import { IoMdCheckmarkCircle } from "react-icons/io";
-import { useSelector } from "react-redux";
-import { IoMdShareAlt } from "react-icons/io";
+import { RootState } from '@/redux/store';
+import { IoMdCheckmarkCircle } from 'react-icons/io';
+import { useSelector } from 'react-redux';
+import { IoMdShareAlt } from 'react-icons/io';
 
 const NotificationJoinFreeCourse = ({ setClicked, isClicked }) => {
-  const fullName =
-    useSelector((state: RootState) => state?.user.fullName) || "";
+  const fullName = useSelector((state: RootState) => state?.user.fullName) || '';
 
   const handleShareCourse = () => {
     setClicked((prev) => !prev);

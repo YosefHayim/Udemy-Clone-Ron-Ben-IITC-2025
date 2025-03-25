@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
-import loginUdemyBusinessOrganizationImg from "/images/login-udemy-business-organization.jpg";
-import udemyBusinessLogo from "/images/udemy-business-logo.png";
+import { Link } from 'react-router-dom';
+import loginUdemyBusinessOrganizationImg from '/images/login-udemy-business-organization.jpg';
+import udemyBusinessLogo from '/images/udemy-business-logo.png';
 
 const OrganizationLogin = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const target = e.currentTarget;
     const formData = new FormData(target);
-    const email = formData.get("email");
+    const email = formData.get('email');
     console.log(email);
   };
 

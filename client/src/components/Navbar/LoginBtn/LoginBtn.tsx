@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { btnStyleNHover } from "@/utils/stylesStorage";
-import { Link } from "react-router-dom";
+import { Button } from '@/components/ui/button';
+import { btnStyleNHover } from '@/utils/stylesStorage';
+import { Link } from 'react-router-dom';
 
 const LoginBtn = () => {
   return (

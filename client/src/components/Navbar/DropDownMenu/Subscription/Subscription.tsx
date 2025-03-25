@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { IoMdCheckmark } from "react-icons/io";
-import subscriptionImg from "/images/subscription-img.png";
+import { Button } from '@/components/ui/button';
+import { IoMdCheckmark } from 'react-icons/io';
+import subscriptionImg from '/images/subscription-img.png';
 
 const Subscription = () => {
   return (
@@ -8,9 +8,7 @@ const Subscription = () => {
       <h1 className="mb-[1em] font-sans font-extrabold">Subscriptions</h1>
       <div className="flex flex-col items-start justify-start gap-[1em]">
         <h2 className=" text-[1.5em]">Manage your Udemy subscriptions</h2>
-        <h3 className="mb-[0.5em] font-sans text-[1.5em] font-extrabold">
-          Active plans
-        </h3>
+        <h3 className="mb-[0.5em] font-sans text-[1.5em] font-extrabold">Active plans</h3>
       </div>
       <div className="mb-[2em] flex h-[10em] w-full flex-row items-center justify-center border-2 border-dashed border-gray-200 p-[2em]">
         <div>
@@ -25,14 +23,9 @@ const Subscription = () => {
         <div className=" p-[2em]">
           <div className="flex flex-row items-center justify-between">
             <div>
-              <h4 className="mb-[1.5em] font-sans font-extrabold">
-                Personal Plan
-              </h4>
+              <h4 className="mb-[1.5em] font-sans font-extrabold">Personal Plan</h4>
               <ul className="mb-[1em] flex flex-col items-start justify-start gap-[0.5em]">
-                <p>
-                  New opportunities await. Sign up for Personal Plan to get all
-                  this and more:
-                </p>
+                <p>New opportunities await. Sign up for Personal Plan to get all this and more:</p>
                 <li className="flex flex-row items-center justify-start gap-[0.5em]">
                   <IoMdCheckmark />
                   <p>Access to 12,000+ top courses</p>

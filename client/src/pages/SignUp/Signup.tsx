@@ -1,23 +1,23 @@
-import registerUser from "@/api/users/registerUser";
-import Loader from "@/components/Loader/Loader";
-import { emailContext } from "@/routes/AppRoutes";
-import { RegisterUserPayload } from "@/types/types";
-import { Checkbox } from "@/components/ui/checkbox";
-import { useGoogleLogin } from "@react-oauth/google";
-import { useMutation } from "@tanstack/react-query";
-import React, { useContext, useState } from "react";
-import { FaApple, FaFacebook } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
-import googleLogin from "@/api/users/googleLogin";
-import { BiSolidErrorAlt } from "react-icons/bi";
-import { useDispatch } from "react-redux";
-import { AiOutlineMail } from "react-icons/ai";
-import { setUserInformation } from "@/utils/setUserInformation";
-import signUpImage from "/images/signup.png";
+import registerUser from '@/api/users/registerUser';
+import Loader from '@/components/Loader/Loader';
+import { emailContext } from '@/routes/AppRoutes';
+import { RegisterUserPayload } from '@/types/types';
+import { Checkbox } from '@/components/ui/checkbox';
+import { useGoogleLogin } from '@react-oauth/google';
+import { useMutation } from '@tanstack/react-query';
+import React, { useContext, useState } from 'react';
+import { FaApple, FaFacebook } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
+import { Link, useNavigate } from 'react-router-dom';
+import googleLogin from '@/api/users/googleLogin';
+import { BiSolidErrorAlt } from 'react-icons/bi';
+import { useDispatch } from 'react-redux';
+import { AiOutlineMail } from 'react-icons/ai';
+import { setUserInformation } from '@/utils/setUserInformation';
+import signUpImage from '/images/signup.png';
 
 const SignUp: React.FC = () => {
-  document.title = "Sign Up and Start Learning | Udemy";
+  document.title = 'Sign Up and Start Learning | Udemy';
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [isError, setShowIsError] = useState(false);
@@ -28,10 +28,10 @@ const SignUp: React.FC = () => {
     mutationFn: googleLogin,
     onSuccess: (cookie) => {
       setUserInformation(cookie, dispatch);
-      navigate("/");
+      navigate('/');
     },
     onError: (error) => {
-      console.log("Error during google login process:", error);
+      console.log('Error during google login process:', error);
       setShowIsError(true);
     },
   });
@@ -46,19 +46,19 @@ const SignUp: React.FC = () => {
     onNonOAuthError: (nonAuthError) => {
       console.log(nonAuthError);
     },
-    flow: "auth-code",
-    ux_mode: "popup",
-    redirect_uri: "http://127.0.0.1:5137",
+    flow: 'auth-code',
+    ux_mode: 'popup',
+    redirect_uri: 'http://127.0.0.1:5137',
   });
 
   const emailCtx = useContext(emailContext);
-  if (!emailCtx) throw new Error("emailContext is not provided");
+  if (!emailCtx) throw new Error('emailContext is not provided');
   const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
 
   const mutation = useMutation<unknown, Error, RegisterUserPayload>({
     mutationFn: registerUser,
     onSuccess: () => {
-      navigate("/verify-code");
+      navigate('/verify-code');
     },
     onError: (error) => {
       console.log(error);
@@ -74,8 +74,8 @@ const SignUp: React.FC = () => {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-    const fullName = formData.get("fullName") as string;
-    const email = formData.get("email") as string;
+    const fullName = formData.get('fullName') as string;
+    const email = formData.get('email') as string;
     setEmailUser(email);
     setUserFullName(fullName);
     mutation.mutate({ fullName, email });
@@ -99,7 +99,7 @@ const SignUp: React.FC = () => {
             className={
               isError
                 ? `mb-[1em] flex w-full  items-start justify-center gap-[1em] rounded-[1.5em] border border-red-700 p-[1em] py-[1.5em] font-sans font-extrabold`
-                : "hidden"
+                : 'hidden'
             }
           >
             <div>
@@ -107,8 +107,7 @@ const SignUp: React.FC = () => {
             </div>
             <div>
               <p className="text-[1.8em]">
-                There was a problem logging in. Check your email or create an
-                account.
+                There was a problem logging in. Check your email or create an account.
               </p>
             </div>
           </div>
@@ -124,8 +123,7 @@ const SignUp: React.FC = () => {
                   className="relative mr-[0.5em] h-4 w-4 rounded-[0.2em] border-2 border-black ring-0 focus:outline-none focus:ring-0"
                 />
                 <label htmlFor="offers" className="mr-[0.5em]">
-                  Send me special offers, personalized recommendations, and
-                  learning tips.
+                  Send me special offers, personalized recommendations, and learning tips.
                 </label>
               </div>
             </div>
@@ -154,18 +152,14 @@ const SignUp: React.FC = () => {
               ) : (
                 <div className="flex items-center">
                   <AiOutlineMail size={20} />
-                  <span className="font-sans text-[1rem] font-extrabold">
-                    Continue with email
-                  </span>
+                  <span className="font-sans text-[1rem] font-extrabold">Continue with email</span>
                 </div>
               )}
             </button>
           </form>
           <div className="my-6 flex w-full items-center">
             <hr className="flex-grow border-gray-300" />
-            <span className="mx-4 text-sm text-grayNavbarTxt">
-              Other sign up options
-            </span>
+            <span className="mx-4 text-sm text-grayNavbarTxt">Other sign up options</span>
             <hr className="flex-grow border-gray-300" />
           </div>
           <div className="flex justify-center space-x-5">
@@ -184,7 +178,7 @@ const SignUp: React.FC = () => {
           </div>
           <div className="flex justify-center px-0">
             <p className="mt-2 text-courseNameColorTxt">
-              By signing up, you agree to our{" "}
+              By signing up, you agree to our{' '}
               <Link
                 className="mr-[0.3rem] cursor-pointer text-purple-600
                 underline"
@@ -193,7 +187,7 @@ const SignUp: React.FC = () => {
                 Terms of Use
               </Link>
               <span className="inline">
-                and{" "}
+                and{' '}
                 <Link
                   className="mr-[0.3rem] cursor-pointer text-purple-600
                 underline"
@@ -206,10 +200,8 @@ const SignUp: React.FC = () => {
           </div>
           <div className="mt-6 flex w-full items-center justify-center space-x-0 bg-[#f6f7f9] py-[1.5em] text-center font-medium text-white">
             <Link to="/login" className="text-[1rem] text-courseNameColorTxt">
-              Already have an account?{" "}
-              <span className="font-sans font-extrabold text-btnColor underline">
-                Log in
-              </span>
+              Already have an account?{' '}
+              <span className="font-sans font-extrabold text-btnColor underline">Log in</span>
             </Link>
           </div>
         </div>
@@ -220,5 +212,5 @@ const SignUp: React.FC = () => {
 
 export default SignUp;
 function setHeadline(headline: string): any {
-  throw new Error("Function not implemented.");
+  throw new Error('Function not implemented.');
 }

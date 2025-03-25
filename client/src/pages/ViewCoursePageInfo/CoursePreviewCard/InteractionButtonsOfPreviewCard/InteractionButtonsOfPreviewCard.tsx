@@ -1,6 +1,6 @@
-import SharePopup from "@/pages/EnrollFreeCourse/SharePopup/SharePopup";
-import "./styles.module.css";
-import { useState } from "react";
+import SharePopup from '@/pages/EnrollFreeCourse/SharePopup/SharePopup';
+import './styles.module.css';
+import { useState } from 'react';
 
 const InteractionButtonsOfPreviewCard: React.FC = () => {
   const [isClicked, setClicked] = useState(false);

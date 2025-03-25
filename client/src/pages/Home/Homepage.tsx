@@ -1,28 +1,28 @@
-import Menu from "@/components/Menu/Menu";
-import Banner from "./Banner/Banner";
-import TrustedBySection from "./TrustedBySection/TrustedBySection";
-import LearnersAreViewing from "./LearnersAreViewing/LearnersAreViewing";
-import SearchResult from "./SearchResult/SearchResult";
-import LearningGoals from "./LearningGoals/LearningGoals";
-import PlansSection from "./PansSection/PansSection";
-import Testimonials from "./Testimonials/Testimonials";
-import TrendsReport from "./TopTrends/TopTrends";
-import TrendingNow from "./TrendingNow/TrendingNow";
-import Carousel from "./Carousel/Carousel";
-import Sections from "./Sections/Sections";
-import Welcome from "@/components/LoggedInHome/Welcome";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { useMediaQuery } from "react-responsive";
-import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
-import LetsStartLearning from "./LetsStartLearning/LetsStartLearning";
+import Menu from '@/components/Menu/Menu';
+import Banner from './Banner/Banner';
+import TrustedBySection from './TrustedBySection/TrustedBySection';
+import LearnersAreViewing from './LearnersAreViewing/LearnersAreViewing';
+import SearchResult from './SearchResult/SearchResult';
+import LearningGoals from './LearningGoals/LearningGoals';
+import PlansSection from './PansSection/PansSection';
+import Testimonials from './Testimonials/Testimonials';
+import TrendsReport from './TopTrends/TopTrends';
+import TrendingNow from './TrendingNow/TrendingNow';
+import Carousel from './Carousel/Carousel';
+import Sections from './Sections/Sections';
+import Welcome from '@/components/LoggedInHome/Welcome';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import { useMediaQuery } from 'react-responsive';
+import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
+import LetsStartLearning from './LetsStartLearning/LetsStartLearning';
 
 const Homepage = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
-  searchAlgoLocalStorage("");
+  searchAlgoLocalStorage('');
 
-  document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
+  document.title = 'Online Courses - Learn Anything, On Your Schedule | Udemy';
   const cookie = useSelector((state: RootState) => state.user.cookie);
 
   useEffect(() => {}, [cookie]);

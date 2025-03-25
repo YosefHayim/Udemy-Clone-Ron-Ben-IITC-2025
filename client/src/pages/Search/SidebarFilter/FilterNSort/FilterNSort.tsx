@@ -1,14 +1,14 @@
-import { useContext } from "react";
-import FilterBtn from "./FilterBtn/FilterBtn";
-import SortDropDown from "./SortDropDown/SortDropDown";
-import { filterContext } from "@/routes/AppRoutes";
+import { useContext } from 'react';
+import FilterBtn from './FilterBtn/FilterBtn';
+import SortDropDown from './SortDropDown/SortDropDown';
+import { filterContext } from '@/routes/AppRoutes';
 
 const defaultFilters = {
-  sortBy: "",
+  sortBy: '',
   handsOnPractice: new Set(),
   language: new Set(),
   levels: new Set(),
-  price: "",
+  price: '',
   ratings: 0,
   subtitles: new Set(),
   topics: new Set(),
@@ -22,15 +22,14 @@ const convertToComparable = (filters: any) =>
       Object.entries(filters).map(([key, value]) => [
         key,
         value instanceof Set ? [...value] : value,
-      ]),
-    ),
+      ])
+    )
   );
 
 const FilterNSort = () => {
   const [filterData, setFilterData] = useContext(filterContext);
 
-  const isFiltersDefault =
-    convertToComparable(filterData) === convertToComparable(defaultFilters);
+  const isFiltersDefault = convertToComparable(filterData) === convertToComparable(defaultFilters);
 
   return (
     <div className="mb-[2.4em] flex w-full items-center justify-between">

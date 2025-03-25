@@ -1,13 +1,9 @@
-import { SearchResultsProps } from "@/types/types";
-import SearchResultRow from "./SearchResultRow/SearchResultRow";
-import SearchResultsCourseImg from "./SearchResultsCourseImg/SearchResultsCourseImg";
-import { useNavigate } from "react-router-dom";
+import { SearchResultsProps } from '@/types/types';
+import SearchResultRow from './SearchResultRow/SearchResultRow';
+import SearchResultsCourseImg from './SearchResultsCourseImg/SearchResultsCourseImg';
+import { useNavigate } from 'react-router-dom';
 
-const SearchResults: React.FC<SearchResultsProps> = ({
-  isTyping,
-  data,
-  width,
-}) => {
+const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data, width }) => {
   const navigate = useNavigate();
 
   if (!data) {
@@ -16,7 +12,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
-    const courseId = target.id || target.closest("div")?.id;
+    const courseId = target.id || target.closest('div')?.id;
 
     if (courseId) navigate(`/course-view/${courseId}`);
   };
@@ -26,7 +22,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
       style={{ width: `${width}px` }}
       onClick={handleClick}
       className={`${
-        isTyping ? "flex-col py-2" : "hidden"
+        isTyping ? 'flex-col py-2' : 'hidden'
       } absolute left-0 top-full z-50  w-full border border-gray-300 bg-white shadow-md`}
     >
       {data.response
@@ -34,10 +30,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
         .map((result, index: number) => (
           <div key={result._id}>
             {index < 9 ? (
-              <SearchResultRow
-                algoWord={result.courseName}
-                courseId={result._id}
-              />
+              <SearchResultRow algoWord={result.courseName} courseId={result._id} />
             ) : (
               <SearchResultsCourseImg
                 courseName={result.courseName}

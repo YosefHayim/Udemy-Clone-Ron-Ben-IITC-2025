@@ -1,8 +1,8 @@
-import CourseRating from "@/pages/ViewCoursePageInfo/CourseRating/CourseRating";
-import { LuDot } from "react-icons/lu";
-import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
-import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
-import React from "react";
+import CourseRating from '@/pages/ViewCoursePageInfo/CourseRating/CourseRating';
+import { LuDot } from 'react-icons/lu';
+import CoursePrice from '@/components/CourseCard/CoursePrice/CoursePrice';
+import CourseTag from '@/components/CourseCard/CourseTag/CourseTag';
+import React from 'react';
 
 const CourseCardInstructorRelated: React.FC<{
   courseId: string;
@@ -27,11 +27,7 @@ const CourseCardInstructorRelated: React.FC<{
   return (
     <div>
       <div className=" flex cursor-pointer flex-col items-start justify-start gap-[0.2em]">
-        <img
-          src={courseImg}
-          alt=""
-          className="w-[200px] border border-gray-300"
-        />
+        <img src={courseImg} alt="" className="w-[200px] border border-gray-300" />
         <b className="w-[200px]">{courseName}</b>
         <p>{courseInstructorName}</p>
         <div className="flex  items-center">

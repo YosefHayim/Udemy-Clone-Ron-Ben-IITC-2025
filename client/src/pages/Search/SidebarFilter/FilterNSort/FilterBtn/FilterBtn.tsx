@@ -1,4 +1,4 @@
-import { IoFilterOutline } from "react-icons/io5";
+import { IoFilterOutline } from 'react-icons/io5';
 
 const FilterBtn = () => {
   return (
@@ -7,9 +7,7 @@ const FilterBtn = () => {
         <IoFilterOutline />
       </div>
       <div>
-        <b className="ml-[0.4em] font-sans text-base font-extrabold leading-[1.2]">
-          Filter{" "}
-        </b>
+        <b className="ml-[0.4em] font-sans text-base font-extrabold leading-[1.2]">Filter </b>
       </div>
       <div>
         <b></b>

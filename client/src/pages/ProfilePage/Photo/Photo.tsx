@@ -1,14 +1,14 @@
-import { useState } from "react";
-import SideBarProfile from "../SideBarProfile/SideBarProfile";
-import { useMutation } from "@tanstack/react-query";
-import updateProfilePic from "@/api/users/updateProfilePic";
-import refreshMe from "@/api/users/refreshMe";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import placeholderPhotoImg from "/images/placeholder-default-image-user-photo.png";
-import { Input } from "@/components/ui/input";
-import { setUserInformation } from "@/utils/setUserInformation";
+import { useState } from 'react';
+import SideBarProfile from '../SideBarProfile/SideBarProfile';
+import { useMutation } from '@tanstack/react-query';
+import updateProfilePic from '@/api/users/updateProfilePic';
+import refreshMe from '@/api/users/refreshMe';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import placeholderPhotoImg from '/images/placeholder-default-image-user-photo.png';
+import { Input } from '@/components/ui/input';
+import { setUserInformation } from '@/utils/setUserInformation';
 
 const Photo = () => {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const Photo = () => {
         refreshUserDataMutation.mutate();
       }, 2000);
     } else {
-      alert("Please select an image first.");
+      alert('Please select an image first.');
     }
   };
 
@@ -69,10 +69,7 @@ const Photo = () => {
             <div className="w-full border border-gray-400 p-[1em]">
               <div className="flex w-full items-center justify-center bg-white">
                 <div className="flex w-full items-center justify-center bg-gray-100 p-[1em]">
-                  <img
-                    src={preview || placeholderPhotoImg}
-                    alt="Default user photo image"
-                  />
+                  <img src={preview || placeholderPhotoImg} alt="Default user photo image" />
                 </div>
               </div>
             </div>

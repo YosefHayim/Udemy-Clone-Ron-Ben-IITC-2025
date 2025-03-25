@@ -1,5 +1,5 @@
-import { useState } from "react";
-import SideBarProfile from "../SideBarProfile/SideBarProfile"; // Importando o componente da Sidebar
+import { useState } from 'react';
+import SideBarProfile from '../SideBarProfile/SideBarProfile'; // Importando o componente da Sidebar
 
 const Privacy = () => {
   // Estados para as configurações de privacidade
@@ -8,7 +8,7 @@ const Privacy = () => {
 
   // Função para salvar as alterações (simulação)
   const handleSave = () => {
-    alert("Privacy settings saved!");
+    alert('Privacy settings saved!');
   };
 
   return (
@@ -19,18 +19,12 @@ const Privacy = () => {
       {/* Main Content */}
       <main className="flex-1 p-8">
         <div className="mx-auto max-w-3xl rounded-lg bg-white p-8 shadow-lg">
-          <h2 className="mb-6 font-sans text-2xl font-extrabold text-gray-800">
-            Privacy
-          </h2>
-          <p className="mb-4 text-gray-600">
-            Modify your privacy settings here.
-          </p>
+          <h2 className="mb-6 font-sans text-2xl font-extrabold text-gray-800">Privacy</h2>
+          <p className="mb-4 text-gray-600">Modify your privacy settings here.</p>
 
           {/* Profile Page Settings */}
           <div className="mb-6">
-            <h3 className="mb-4 text-lg font-semibold text-gray-800">
-              Profile page settings
-            </h3>
+            <h3 className="mb-4 text-lg font-semibold text-gray-800">Profile page settings</h3>
             <div className="space-y-4">
               {/* Option 1 */}
               <div className="flex items-center">
@@ -41,10 +35,7 @@ const Privacy = () => {
                   onChange={() => setShowProfile(!showProfile)}
                   className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                 />
-                <label
-                  htmlFor="showProfile"
-                  className="ml-3 text-sm text-gray-700"
-                >
+                <label htmlFor="showProfile" className="ml-3 text-sm text-gray-700">
                   Show your profile to logged-in users
                 </label>
               </div>
@@ -58,10 +49,7 @@ const Privacy = () => {
                   onChange={() => setShowCourses(!showCourses)}
                   className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                 />
-                <label
-                  htmlFor="showCourses"
-                  className="ml-3 text-sm text-gray-700"
-                >
+                <label htmlFor="showCourses" className="ml-3 text-sm text-gray-700">
                   Show courses you're taking on your profile page
                 </label>
               </div>

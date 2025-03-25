@@ -1,28 +1,26 @@
-import { MdPeople } from "react-icons/md";
-import Skill from "./Skill/Skill";
-import { IoMdSearch } from "react-icons/io";
-import OtherSkill from "./OtherSkill/OtherSkill";
-import SkillResult from "./SkillResult/SkillResult";
-import axios from "axios";
-import { useState } from "react";
+import { MdPeople } from 'react-icons/md';
+import Skill from './Skill/Skill';
+import { IoMdSearch } from 'react-icons/io';
+import OtherSkill from './OtherSkill/OtherSkill';
+import SkillResult from './SkillResult/SkillResult';
+import axios from 'axios';
+import { useState } from 'react';
 
 const SkillsP3 = () => {
-  document.title = "Select Skills | Udemy";
-  const [query, setQuery] = useState("");
+  document.title = 'Select Skills | Udemy';
+  const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
   const fetchSuggestions = async (input: string) => {
     if (input.length > 1) {
       try {
         const response = await axios.get(
-          `https://api.datamuse.com/words?rel_trg=${encodeURIComponent(
-            input,
-          )}&max=30`,
+          `https://api.datamuse.com/words?rel_trg=${encodeURIComponent(input)}&max=30`
         );
 
         setSuggestions(response.data.map((item: any) => item.word));
       } catch (error) {
-        console.log("Error fetching autocomplete suggestions:", error);
+        console.log('Error fetching autocomplete suggestions:', error);
       }
     } else {
       setSuggestions([]);
@@ -37,17 +35,14 @@ const SkillsP3 = () => {
           <b>You're in the right place!</b>
         </div>
         <p>
-          <span className="font-sans font-extrabold">1,607,173</span> people
-          learn Financial Analysis on Udemy.
+          <span className="font-sans font-extrabold">1,607,173</span> people learn Financial
+          Analysis on Udemy.
         </p>
       </div>
       <div>
-        <h2 className="mb-[1em] text-[1.3em]">
-          What skills are you interested in?
-        </h2>
+        <h2 className="mb-[1em] text-[1.3em]">What skills are you interested in?</h2>
         <p className="mb-[1em]">
-          Choose a few to start with. You can change these or follow more skills
-          in the future.
+          Choose a few to start with. You can change these or follow more skills in the future.
         </p>
         <div className="mb-[0.5em] flex w-[600px]  flex-wrap items-center gap-[0.5em] rounded-[0.3em] border border-gray-400 p-[1em] hover:bg-gray-100">
           <Skill skillName="Next.js" />
@@ -79,8 +74,8 @@ const SkillsP3 = () => {
         <div
           className={`${
             suggestions.length > 0
-              ? "absolute z-[200] h-[300px] overflow-y-auto bg-white"
-              : "hidden"
+              ? 'absolute z-[200] h-[300px] overflow-y-auto bg-white'
+              : 'hidden'
           } w-[600px] rounded-[0.5em] border border-gray-300 p-[2em] text-center shadow-skillsShadow`}
         >
           {suggestions.length > 0 ? (

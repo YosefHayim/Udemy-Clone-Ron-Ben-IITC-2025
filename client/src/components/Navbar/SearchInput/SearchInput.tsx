@@ -1,21 +1,21 @@
-import getAllCourses from "@/api/courses/getAllCourses";
-import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
-import { MdOutlineSearch } from "react-icons/md";
-import SearchResults from "../SearchResults/SearchResults";
-import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
-import { isRootPathOnly } from "@/utils/isRootPathOnly";
-import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
-import { useWindowWidth } from "@/utils/getCurrentWindowWidth";
+import getAllCourses from '@/api/courses/getAllCourses';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+import { MdOutlineSearch } from 'react-icons/md';
+import SearchResults from '../SearchResults/SearchResults';
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
+import { isRootPathOnly } from '@/utils/isRootPathOnly';
+import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
+import { useWindowWidth } from '@/utils/getCurrentWindowWidth';
 
 const SearchInput = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isTyping, setIsTyping] = useState(false);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [debouncedTerm, setDebouncedTerm] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [debouncedTerm, setDebouncedTerm] = useState<string>('');
   const [searchParams] = useSearchParams();
-  const urlSearchTerm: string = searchParams.get("q")?.toLowerCase() || "";
+  const urlSearchTerm: string = searchParams.get('q')?.toLowerCase() || '';
   const width = useWindowWidth();
 
   // Sync URL query with `searchTerm` on page load or navigation
@@ -55,10 +55,10 @@ const SearchInput = () => {
   let limit = null;
 
   const { data } = useQuery({
-    queryKey: ["courses", debouncedTerm, page],
+    queryKey: ['courses', debouncedTerm, page],
     queryFn: () => {
       if (!debouncedTerm) {
-        throw new Error("Search term is undefined");
+        throw new Error('Search term is undefined');
       }
       return getAllCourses(debouncedTerm);
     },
@@ -68,24 +68,19 @@ const SearchInput = () => {
   useEffect(() => {}, [isRootPathOnly]);
 
   return (
-    <div
-      style={{ width: `${width / 2}px` }}
-      className="relative flex flex-col items-center"
-    >
+    <div style={{ width: `${width / 2}px` }} className="relative flex flex-col items-center">
       <form
         onSubmit={handleSubmit}
         className={`${
-          isRootPathOnly() ? "my-[0.2em]" : ""
+          isRootPathOnly() ? 'my-[0.2em]' : ''
         } flex w-full items-center overflow-hidden rounded-full border border-gray-400 bg-gray-50 focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor`}
       >
         <button
-          className={`${searchTerm.length === 0 ? "cursor-not-allowed" : ""} bg-none p-2 hover:bg-purple-100 focus:outline-none`}
+          className={`${searchTerm.length === 0 ? 'cursor-not-allowed' : ''} bg-none p-2 hover:bg-purple-100 focus:outline-none`}
         >
           <MdOutlineSearch
             className={`${
-              isRootPathOnly()
-                ? "hidden"
-                : `text-gray focus:outline-non ml-[0.2em] h-6 w-6 bg-none`
+              isRootPathOnly() ? 'hidden' : `text-gray focus:outline-non ml-[0.2em] h-6 w-6 bg-none`
             }`}
           />
         </button>
@@ -94,15 +89,15 @@ const SearchInput = () => {
           value={searchTerm}
           placeholder="Search for anything"
           className={`${
-            isRootPathOnly() ? "p-[1.2em]" : "p-[1em]"
+            isRootPathOnly() ? 'p-[1.2em]' : 'p-[1em]'
           } flex-grow bg-transparent text-sm text-gray-700 placeholder:pl-[1em] placeholder:text-sm placeholder:font-light hover:bg-gray-100 focus:bg-white focus:outline-none`}
           onChange={handleOnChange}
         />
         <button
           type="submit"
           className={`mr-[0.2em] rounded-full bg-purple-600 p-[0.85em] transition-opacity focus:outline-none 
-      ${!isRootPathOnly() ? "hidden" : "block"} 
-      ${searchTerm ? "opacity-100" : "cursor-not-allowed opacity-50"}`}
+      ${!isRootPathOnly() ? 'hidden' : 'block'} 
+      ${searchTerm ? 'opacity-100' : 'cursor-not-allowed opacity-50'}`}
           disabled={!searchTerm}
         >
           <MdOutlineSearch className="h-6 w-6 text-white " />

@@ -1,24 +1,22 @@
-import { SlOptionsVertical } from "react-icons/sl";
-import UserDescriptionReview from "./UserDescriptionReview/UserDescriptionReview";
-import HelpfulContainer from "../HelpfulContainer/HelpfulContainer";
-import UserReviewRating from "./UserReviewRating/UserReviewRating";
-import UserProfile from "./UserProfile/UserProfile";
-import { useState } from "react";
-import DialogReportReview from "../DialogReportReview/DialogReportReview";
-import { Review } from "@/types/types";
+import { SlOptionsVertical } from 'react-icons/sl';
+import UserDescriptionReview from './UserDescriptionReview/UserDescriptionReview';
+import HelpfulContainer from '../HelpfulContainer/HelpfulContainer';
+import UserReviewRating from './UserReviewRating/UserReviewRating';
+import UserProfile from './UserProfile/UserProfile';
+import { useState } from 'react';
+import DialogReportReview from '../DialogReportReview/DialogReportReview';
+import { Review } from '@/types/types';
 
 const UserCourseReview: React.FC<{
   review?: Review;
   widthOfReview?: string;
-}> = ({ review, widthOfReview = "w-[300px]" }) => {
+}> = ({ review, widthOfReview = 'w-[300px]' }) => {
   if (!review) {
     return;
   }
 
   const [activeReviewId, setActiveReviewId] = useState<string | null>(null);
-  const [isOpenReportDrawer, setReportDrawer] = useState<boolean | undefined>(
-    false,
-  );
+  const [isOpenReportDrawer, setReportDrawer] = useState<boolean | undefined>(false);
 
   const handleToggle = (id: string) => {
     // Toggle the clicked review or close if it's already active
@@ -38,7 +36,7 @@ const UserCourseReview: React.FC<{
           <div className="flex flex-col items-start justify-start">
             <UserReviewRating
               reviewRating={review.rating}
-              reviewUserName={review?.user?.fullName || ""}
+              reviewUserName={review?.user?.fullName || ''}
               createCommentAt={new Date(review.createdAt)}
             />
           </div>
@@ -69,7 +67,7 @@ const UserCourseReview: React.FC<{
               setReportDrawer={setReportDrawer}
             />
           ) : (
-            ""
+            ''
           )}
         </div>
       </div>

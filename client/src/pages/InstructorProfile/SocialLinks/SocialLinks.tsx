@@ -1,6 +1,6 @@
-import { FaFacebook, FaLinkedin, FaYoutube } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
-import { MdInsertLink } from "react-icons/md";
+import { FaFacebook, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { FaSquareXTwitter } from 'react-icons/fa6';
+import { MdInsertLink } from 'react-icons/md';
 
 const SocialLinks: React.FC<{
   links: {

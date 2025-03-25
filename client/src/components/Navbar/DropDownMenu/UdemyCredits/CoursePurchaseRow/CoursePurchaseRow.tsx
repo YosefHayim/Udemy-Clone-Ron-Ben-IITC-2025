@@ -1,4 +1,4 @@
-import { MdKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
+import { MdKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md';
 
 const CoursePurchaseRow = () => {
   return (

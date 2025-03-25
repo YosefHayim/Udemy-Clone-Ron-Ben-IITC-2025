@@ -1,15 +1,15 @@
-import SelectCountry from "./SelectCountry/SelectCountry";
-import Checkout from "./Checkout/Checkout";
-import PaymentNavbar from "./PaymentNavbar/PaymentNavbar";
-import PaymentMethodNLock from "./PaymentMethodNLock/PaymentMethodNLock";
-import PaymentOptionsRadio from "./PaymentOptionsRadio/PaymentOptionsRadio";
-import OrderDetails from "./OrderDetails/OrderDetails";
-import { useEffect, useState } from "react";
-import Loader from "@/components/Loader/Loader";
-import { usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import SelectCountry from './SelectCountry/SelectCountry';
+import Checkout from './Checkout/Checkout';
+import PaymentNavbar from './PaymentNavbar/PaymentNavbar';
+import PaymentMethodNLock from './PaymentMethodNLock/PaymentMethodNLock';
+import PaymentOptionsRadio from './PaymentOptionsRadio/PaymentOptionsRadio';
+import OrderDetails from './OrderDetails/OrderDetails';
+import { useEffect, useState } from 'react';
+import Loader from '@/components/Loader/Loader';
+import { usePayPalScriptReducer } from '@paypal/react-paypal-js';
 
 const Payment: React.FC = () => {
-  document.title = "Checkout | Udemy";
+  document.title = 'Checkout | Udemy';
   const [loading, setLoading] = useState(true);
   const [{ options }] = usePayPalScriptReducer();
 
@@ -31,9 +31,7 @@ const Payment: React.FC = () => {
           <div className="flex h-full w-full  items-start justify-around">
             <div className="w-3/5 p-[10em] pt-[2em]">
               <div className=" flex w-full flex-col items-start justify-start gap-[1em]">
-                <h2 className="font-sans text-[1.5em] font-extrabold">
-                  Checkout
-                </h2>
+                <h2 className="font-sans text-[1.5em] font-extrabold">Checkout</h2>
                 <h2 className="font-sans font-extrabold">Billing address</h2>
                 <SelectCountry />
                 <PaymentMethodNLock />

@@ -1,12 +1,12 @@
-import make2025YourYear from "/images/banner1.png";
-import CertificationTheUltimate from "/images/banner2.png";
-import LearningGetsYouBanner from "/images/banner3.jpg";
-import skillsDriveYouBanner from "/images/banner4.jpg";
-import thanksTryingFreeCourse from "/images/banner7.jpg";
-import subscribeToTheBestOfUdemy from "/images/banner5.jpg";
-import newsletterBanner from "/images/banner8.jpg";
-import itCertification from "/images/banner.jpg";
-import { Link } from "react-router-dom";
+import make2025YourYear from '/images/banner1.png';
+import CertificationTheUltimate from '/images/banner2.png';
+import LearningGetsYouBanner from '/images/banner3.jpg';
+import skillsDriveYouBanner from '/images/banner4.jpg';
+import thanksTryingFreeCourse from '/images/banner7.jpg';
+import subscribeToTheBestOfUdemy from '/images/banner5.jpg';
+import newsletterBanner from '/images/banner8.jpg';
+import itCertification from '/images/banner.jpg';
+import { Link } from 'react-router-dom';
 
 export const getBanners = ({
   coursesBoughtOrJoined = [],
@@ -17,21 +17,16 @@ export const getBanners = ({
   fullName?: string;
   registerAt?: Date;
 }) => {
-  const searchesOfUser = JSON.parse(
-    localStorage.getItem("searchesOfUser") || "[]",
-  );
+  const searchesOfUser = JSON.parse(localStorage.getItem('searchesOfUser') || '[]');
 
   const banners = [
     {
       src: CertificationTheUltimate,
       content: () => (
         <div className="absolute left-16 top-16 flex flex-col items-start gap-3 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
-          <h1 className="w-full font-extrabold">
-            Certifications - the ultimate career move
-          </h1>
+          <h1 className="w-full font-extrabold">Certifications - the ultimate career move</h1>
           <p className="pr-2 font-sans text-sm">
-            Prepare for certification exams in COMPTIA, AWS, Cloud, and so much
-            more — on sale now.
+            Prepare for certification exams in COMPTIA, AWS, Cloud, and so much more — on sale now.
           </p>
         </div>
       ),
@@ -40,9 +35,7 @@ export const getBanners = ({
       src: make2025YourYear,
       content: () => (
         <div className="absolute left-16 top-16 flex flex-col items-start gap-3 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
-          <h1 className="w-full font-extrabold">
-            Make 2025 the year of your career
-          </h1>
+          <h1 className="w-full font-extrabold">Make 2025 the year of your career</h1>
           <p className="pr-2 font-sans text-sm">
             The skills you need are on sale from 39.90 | Sale ends January 10.
           </p>
@@ -64,12 +57,10 @@ export const getBanners = ({
       src: skillsDriveYouBanner,
       content: () => (
         <div className="absolute left-16 top-16 flex w-[450px] flex-col items-start gap-3 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
-          <h1 className="w-full font-extrabold">
-            Skills that drive you forward
-          </h1>
+          <h1 className="w-full font-extrabold">Skills that drive you forward</h1>
           <p className="w-[380px] pr-2 font-sans text-sm">
-            Technology and the world of work change fast — with us, you’re
-            faster. Get the skills to achieve goals and stay competitive.
+            Technology and the world of work change fast — with us, you’re faster. Get the skills to
+            achieve goals and stay competitive.
           </p>
           <div className="flex w-[370px] items-center justify-center gap-2">
             <button className="w-full rounded-[0.3em] bg-btnColor px-0 py-3 font-sans font-extrabold text-white hover:bg-btnHoverColor focus:outline-none">
@@ -89,35 +80,26 @@ export const getBanners = ({
       src: thanksTryingFreeCourse,
       content: () => (
         <div className="absolute left-16 top-16 flex flex-col items-start gap-3 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
-          <h1 className="w-full font-extrabold">
-            {fullName}, thanks for trying a free course
-          </h1>
+          <h1 className="w-full font-extrabold">{fullName}, thanks for trying a free course</h1>
           <p className="pr-2 font-sans text-sm">
-            Now, unlock our best features with courses as low as ₪49.90 —
-            limited time only.
+            Now, unlock our best features with courses as low as ₪49.90 — limited time only.
           </p>
         </div>
       ),
     });
   }
 
-  if (
-    searchesOfUser.includes("it") ||
-    searchesOfUser.includes("certification")
-  ) {
+  if (searchesOfUser.includes('it') || searchesOfUser.includes('certification')) {
     banners.push({
       src: itCertification,
       content: () => (
         <div className="absolute left-16 top-16 flex w-[450px] flex-col items-start gap-3 rounded-sm border-gray-100 bg-white px-5 py-7 text-start  text-black shadow-alertAlgoInfo">
-          <h1 className="text-4xl font-extrabold">
-            Prep for your IT certificate
-          </h1>
+          <h1 className="text-4xl font-extrabold">Prep for your IT certificate</h1>
           <p className="w-5/6 pr-2 font-sans text-sm">
             <Link to="/courses/search?q=it+certifications&page=1&limit=20">
               Explore a future in IT.
             </Link>
-            Start learning toward AWS certification, CompTIA A+ certification,
-            and more.
+            Start learning toward AWS certification, CompTIA A+ certification, and more.
           </p>
         </div>
       ),
@@ -126,9 +108,7 @@ export const getBanners = ({
 
   const isWithin14Days =
     registerAt &&
-    (new Date().getTime() - new Date(registerAt).getTime()) /
-      (1000 * 60 * 60 * 24) <=
-      14;
+    (new Date().getTime() - new Date(registerAt).getTime()) / (1000 * 60 * 60 * 24) <= 14;
 
   if (isWithin14Days) {
     banners.push(
@@ -136,12 +116,10 @@ export const getBanners = ({
         src: subscribeToTheBestOfUdemy,
         content: () => (
           <div className="absolute left-16 top-16 flex w-[450px] flex-col items-start gap-3 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
-            <h1 className="w-full font-extrabold">
-              Subscribe to the best of Udemy
-            </h1>
+            <h1 className="w-full font-extrabold">Subscribe to the best of Udemy</h1>
             <p className="w-[360px] pr-2 font-sans text-sm">
-              With Personal Plan, you get access to 11,000+ of our top-rated
-              courses in tech, business, and more.
+              With Personal Plan, you get access to 11,000+ of our top-rated courses in tech,
+              business, and more.
             </p>
             <div>
               <button className="w-full rounded-[0.3em] bg-btnColor px-3 py-2 font-sans font-extrabold text-white hover:bg-btnHoverColor focus:outline-none">
@@ -162,12 +140,12 @@ export const getBanners = ({
                 className="font-medium text-purple-800 underline"
               >
                 Join our email list
-              </Link>{" "}
+              </Link>{' '}
               for special offers, personalized course recommendations, and more.
             </p>
           </div>
         ),
-      },
+      }
     );
   }
 

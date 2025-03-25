@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { IoMdHeartEmpty } from "react-icons/io";
-import HoverHeart from "./HoverHeart/HoverHeart";
-import { btnStyleNHover } from "@/utils/stylesStorage";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { IoMdHeartEmpty } from 'react-icons/io';
+import HoverHeart from './HoverHeart/HoverHeart';
+import { btnStyleNHover } from '@/utils/stylesStorage';
+import { Link } from 'react-router-dom';
 
 const Heart = () => {
   const [showHeartHover, setShowHeartHover] = useState(false);
@@ -11,11 +11,7 @@ const Heart = () => {
   const handleMouseLeave = () => setShowHeartHover(false);
 
   return (
-    <div
-      className="relative"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className={`${btnStyleNHover}`}>
         <Link to="/wishlist">
           <IoMdHeartEmpty className="h-6 w-6" />

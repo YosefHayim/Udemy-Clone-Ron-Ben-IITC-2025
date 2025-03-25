@@ -1,7 +1,7 @@
-import Filter from "@/components/Filter/Filter";
-import { filterContext } from "@/routes/AppRoutes";
-import { videoDurations } from "@/utils/videoDuration";
-import { useContext, useState } from "react";
+import Filter from '@/components/Filter/Filter';
+import { filterContext } from '@/routes/AppRoutes';
+import { videoDurations } from '@/utils/videoDuration';
+import { useContext, useState } from 'react';
 
 const VideosDurations: React.FC = () => {
   const [display, setDisplay] = useState<boolean>(true);
@@ -10,9 +10,9 @@ const VideosDurations: React.FC = () => {
   return (
     <div>
       <Filter
-        filterTitle={"Video Duration"}
+        filterTitle={'Video Duration'}
         filterItems={videoDurations}
-        chosenHeight={"h-[50px]"}
+        chosenHeight={'h-[50px]'}
         display={display}
         setDisplay={setDisplay}
         useForSection={false}

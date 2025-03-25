@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import visaIcon from "/images/visa-icon.svg";
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import visaIcon from '/images/visa-icon.svg';
 
 const PaymentMethods = () => {
   return (
@@ -15,9 +15,7 @@ const PaymentMethods = () => {
           Show my saved payment methods on the checkout step.
         </label>
       </div>
-      <h2 className="my-[1em] font-sans text-[1.5em] font-extrabold">
-        Your saved payment methods
-      </h2>
+      <h2 className="my-[1em] font-sans text-[1.5em] font-extrabold">Your saved payment methods</h2>
       <div className="my-[1.5em] flex w-full flex-row items-start justify-normal border p-[1em]">
         <div className="flex w-full flex-row items-center justify-between">
           <div className="flex flex-row items-center justify-start gap-[1em]">

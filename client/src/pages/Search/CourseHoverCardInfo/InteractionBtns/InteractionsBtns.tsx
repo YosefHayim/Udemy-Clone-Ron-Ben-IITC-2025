@@ -1,7 +1,7 @@
-import AddToCart from "./AddToCart/AddToCart";
-import HeartBtn from "./HeartBtn/HeartBtn";
-import DialogFrequentlyBoughtTogether from "./DialogFrequentlyBoughtTogether/DialogFrequentlyBoughtTogether";
-import { useState } from "react";
+import AddToCart from './AddToCart/AddToCart';
+import HeartBtn from './HeartBtn/HeartBtn';
+import DialogFrequentlyBoughtTogether from './DialogFrequentlyBoughtTogether/DialogFrequentlyBoughtTogether';
+import { useState } from 'react';
 
 const InteractionsBtns: React.FC<{
   courseId: string;
@@ -31,7 +31,7 @@ const InteractionsBtns: React.FC<{
   };
 
   if (!courseId && !coursePrice && courseTopic) {
-    console.log("No courseId, coursePrice and courseTopic provided.");
+    console.log('No courseId, coursePrice and courseTopic provided.');
     return;
   }
 
@@ -48,7 +48,7 @@ const InteractionsBtns: React.FC<{
         {isDisplayHeart && (
           <div className="w-min">
             <HeartBtn
-              iconSize={"1.5em"}
+              iconSize={'1.5em'}
               courseId={courseId}
               showHeart={true}
               customHeartExtraCSS={customHeartExtraCSS}

@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { IoMdSearch } from "react-icons/io";
-import TicketCompose from "./TicketCompose/TicketCompose";
+import { useState } from 'react';
+import { IoMdSearch } from 'react-icons/io';
+import TicketCompose from './TicketCompose/TicketCompose';
 
 const Messages = () => {
   const [isClicked, setClicked] = useState(false);
 
   const handleClicks = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
-    if (target.tagName === "BUTTON" && target.textContent === "Compose") {
+    if (target.tagName === 'BUTTON' && target.textContent === 'Compose') {
       setClicked(true);
     } else
       (isClicked) => {
@@ -61,16 +61,13 @@ const Messages = () => {
               <b className="text-[1.5em]">Compose</b>
               <b>What do you have in mind?</b>
               <TicketCompose
-                title={"Technical, payment or other platform issues"}
-                text={"Visit the Udemy help center"}
+                title={'Technical, payment or other platform issues'}
+                text={'Visit the Udemy help center'}
               />
+              <TicketCompose title={'Questions about course content'} text={'View course Q&A'} />
               <TicketCompose
-                title={"Questions about course content"}
-                text={"View course Q&A"}
-              />
-              <TicketCompose
-                title={"Private or personal message to instructor"}
-                text={"Send a new message"}
+                title={'Private or personal message to instructor'}
+                text={'Send a new message'}
               />
             </div>
           ) : (

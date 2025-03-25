@@ -1,4 +1,4 @@
-import { categoriesData } from "./categoriesData";
+import { categoriesData } from './categoriesData';
 
 export const searchAlgoLocalStorage = (searchTerm: string) => {
   const normalizedTerm = searchTerm.toLowerCase();
@@ -9,14 +9,14 @@ export const searchAlgoLocalStorage = (searchTerm: string) => {
     const subcategories = category?.subcategory || [];
 
     for (const sub of subcategories) {
-      const title = sub?.title?.toLowerCase() || "";
-      const name = sub?.name?.toLowerCase() || "";
+      const title = sub?.title?.toLowerCase() || '';
+      const name = sub?.name?.toLowerCase() || '';
       const topics = sub?.topics || [];
 
       const titleMatch = title.includes(normalizedTerm);
       const nameMatch = name.includes(normalizedTerm);
       const topicMatch = topics.some((topic: string) =>
-        topic.toLowerCase().includes(normalizedTerm),
+        topic.toLowerCase().includes(normalizedTerm)
       );
 
       if (titleMatch || nameMatch || topicMatch) {
@@ -30,14 +30,11 @@ export const searchAlgoLocalStorage = (searchTerm: string) => {
 
   if (!isValidSearch) return; // Skip saving if no match
 
-  let existingSearches = JSON.parse(localStorage.getItem("searchesOfUser")) || [
-    "web",
-    "python",
-  ];
+  let existingSearches = JSON.parse(localStorage.getItem('searchesOfUser')) || ['web', 'python'];
 
   if (!existingSearches.includes(normalizedTerm)) {
     existingSearches.push(normalizedTerm);
   }
 
-  localStorage.setItem("searchesOfUser", JSON.stringify(existingSearches));
+  localStorage.setItem('searchesOfUser', JSON.stringify(existingSearches));
 };

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogClose,
@@ -7,15 +7,13 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 
 export function DeleteNoteDialog({ onConfirm }: { onConfirm: () => void }) {
   return (
     <DialogContent className="rounded-lg p-6 shadow-lg sm:max-w-md">
       <DialogHeader>
-        <DialogTitle className="text-lg font-semibold">
-          Please confirm
-        </DialogTitle>
+        <DialogTitle className="text-lg font-semibold">Please confirm</DialogTitle>
       </DialogHeader>
       <DialogDescription className="text-sm text-gray-600">
         Are you sure you want to delete your note?

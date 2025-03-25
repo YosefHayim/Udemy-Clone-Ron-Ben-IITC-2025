@@ -5,8 +5,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { Link } from "react-router-dom";
+} from '@/components/ui/alert-dialog';
+import { Link } from 'react-router-dom';
 
 interface DialogMultiFactorAuthProps {
   isAuthOpen: boolean;
@@ -25,8 +25,8 @@ const DialogMultiFactorAuth: React.FC<DialogMultiFactorAuthProps> = ({
             Enable multi-factor authentication
           </AlertDialogTitle>
           <AlertDialogDescription>
-            Enabling multi-factor authentication will log you out of Udemy from
-            every device you`re currently logged in on.
+            Enabling multi-factor authentication will log you out of Udemy from every device you`re
+            currently logged in on.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

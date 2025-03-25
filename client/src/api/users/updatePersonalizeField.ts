@@ -1,19 +1,12 @@
-import { personalizeFieldPayload } from "../../types/types";
-import {
-  axiosClient,
-  baseUrl,
-  isProduction,
-  localhostUrl,
-} from "../configuration";
+import { personalizeFieldPayload } from '../../types/types';
+import { axiosClient, baseUrl, isProduction, localhostUrl } from '../configuration';
 
-const updatePersonalizeUserField = async (
-  personalizeField: personalizeFieldPayload,
-) => {
+const updatePersonalizeUserField = async (personalizeField: personalizeFieldPayload) => {
   if (!personalizeField) {
     return undefined;
   }
 
-  console.log("personalizeField", personalizeField);
+  console.log('personalizeField', personalizeField);
 
   try {
     const url = `${isProduction ? baseUrl : localhostUrl}/api/user/updatePersonalizeField`;
@@ -24,7 +17,7 @@ const updatePersonalizeUserField = async (
       return r.data;
     }
   } catch (error) {
-    console.log("Error in updatePersonalizeUserField", error);
+    console.log('Error in updatePersonalizeUserField', error);
   }
 };
 

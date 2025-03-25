@@ -1,13 +1,13 @@
-import { RootState } from "@/redux/store";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { RootState } from '@/redux/store';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const PublicProfile = () => {
   const fullName = useSelector((state: RootState) => state?.user.fullName);
   const profilePic = useSelector((state: RootState) => state?.user.profilePic);
 
-  const [firstWord, secondWord] = fullName.split(" ");
-  const shortcutName = (firstWord?.[0] || "") + (secondWord?.[0] || "");
+  const [firstWord, secondWord] = fullName.split(' ');
+  const shortcutName = (firstWord?.[0] || '') + (secondWord?.[0] || '');
 
   return (
     <div className="text-white">

@@ -1,4 +1,4 @@
-import { IoPeople } from "react-icons/io5";
+import { IoPeople } from 'react-icons/io5';
 
 const StudentsEnroll: React.FC = () => {
   return (

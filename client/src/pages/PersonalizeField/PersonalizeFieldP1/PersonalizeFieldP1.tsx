@@ -1,17 +1,15 @@
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { personalizeContent } from "@/routes/AppRoutes";
-import { useContext } from "react";
-import { FaUserEdit } from "react-icons/fa";
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { personalizeContent } from '@/routes/AppRoutes';
+import { useContext } from 'react';
+import { FaUserEdit } from 'react-icons/fa';
 
 const PersonalizeFieldP1 = () => {
   const personalizeTracking = useContext(personalizeContent);
-  if (!personalizeTracking) throw new Error("No personalize tracking provided");
+  if (!personalizeTracking) throw new Error('No personalize tracking provided');
   const [personalizeData, setPersonalizeData] = personalizeTracking;
 
-  const handleChosenOccupation = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
-    const chosenInput = (e.target as HTMLElement).closest("input");
+  const handleChosenOccupation = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const chosenInput = (e.target as HTMLElement).closest('input');
     if (chosenInput) {
       const chosenValue = chosenInput.value;
       setPersonalizeData((prevData: any) => ({
@@ -38,16 +36,10 @@ const PersonalizeFieldP1 = () => {
           What field are you learning for?
         </label>
 
-        <RadioGroup
-          defaultValue="software-development"
-          className="mb-[2em] flex  gap-[10em]"
-        >
+        <RadioGroup defaultValue="software-development" className="mb-[2em] flex  gap-[10em]">
           <div className="flex flex-col items-start justify-start gap-[1em]">
             <div className="flex items-center space-x-2">
-              <RadioGroupItem
-                value="software-development"
-                id="software-development"
-              />
+              <RadioGroupItem value="software-development" id="software-development" />
               <label htmlFor="software-development">Software Development</label>
             </div>
             <div className="flex items-center space-x-2">
@@ -55,13 +47,8 @@ const PersonalizeFieldP1 = () => {
               <label htmlFor="data-analytics">Data & Analytics</label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem
-                value="information-technology"
-                id="information-technology"
-              />
-              <label htmlFor="information-technology">
-                Information Technology
-              </label>
+              <RadioGroupItem value="information-technology" id="information-technology" />
+              <label htmlFor="information-technology">Information Technology</label>
             </div>
             <div className="flex items-center space-x-2">
               <RadioGroupItem value="marketing" id="marketing" />
@@ -72,36 +59,20 @@ const PersonalizeFieldP1 = () => {
               <label htmlFor="design">Design</label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem
-                value="finance-accounting"
-                id="finance-accounting"
-              />
+              <RadioGroupItem value="finance-accounting" id="finance-accounting" />
               <label htmlFor="finance-accounting">Finance & Accounting</label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem
-                value="product-project-management"
-                id="product-project-management"
-              />
-              <label htmlFor="product-project-management">
-                Product & Project Management
-              </label>
+              <RadioGroupItem value="product-project-management" id="product-project-management" />
+              <label htmlFor="product-project-management">Product & Project Management</label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem
-                value="business-operations"
-                id="business-operations"
-              />
+              <RadioGroupItem value="business-operations" id="business-operations" />
               <label htmlFor="business-operations">Business Operations</label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem
-                value="sales-business-development"
-                id="sales-business-development"
-              />
-              <label htmlFor="sales-business-development">
-                Sales & Business Development
-              </label>
+              <RadioGroupItem value="sales-business-development" id="sales-business-development" />
+              <label htmlFor="sales-business-development">Sales & Business Development</label>
             </div>
           </div>
           <div>
@@ -111,17 +82,11 @@ const PersonalizeFieldP1 = () => {
                 <label htmlFor="human-resources">Human Resources</label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem
-                  value="education-training"
-                  id="education-training"
-                />
+                <RadioGroupItem value="education-training" id="education-training" />
                 <label htmlFor="education-training">Education & Training</label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem
-                  value="customer-support"
-                  id="customer-support"
-                />
+                <RadioGroupItem value="customer-support" id="customer-support" />
                 <label htmlFor="customer-support">Customer Support</label>
               </div>
               <div className="flex items-center space-x-2">
@@ -141,20 +106,14 @@ const PersonalizeFieldP1 = () => {
                 <label htmlFor="art">Art</label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem
-                  value="none-of-the-above"
-                  id="none-of-the-above"
-                />
+                <RadioGroupItem value="none-of-the-above" id="none-of-the-above" />
                 <label htmlFor="none-of-the-above">None of the above</label>
               </div>
             </div>
           </div>
         </RadioGroup>
         <div className="mb-[8em]">
-          <label
-            htmlFor="manage-people"
-            className="font-sans text-[1.5em] font-extrabold"
-          >
+          <label htmlFor="manage-people" className="font-sans text-[1.5em] font-extrabold">
             Do you currently manage people?
           </label>
           <RadioGroup defaultValue="no" className="flex  gap-[5em]">
