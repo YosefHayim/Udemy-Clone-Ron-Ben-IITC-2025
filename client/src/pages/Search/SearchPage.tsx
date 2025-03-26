@@ -93,7 +93,7 @@ const SearchPage: React.FC = () => {
           <SidebarFilter />
         </div>
         <div className="flex w-full flex-col items-center justify-center">
-          <div className="mt-[6em] w-full flex-col items-center justify-center">
+          <div className="mt-[6em] flex w-fit flex-col items-center justify-center">
             <h2 className="w-full text-end font-sans font-extrabold">
               {data?.totalCourses} results
             </h2>
