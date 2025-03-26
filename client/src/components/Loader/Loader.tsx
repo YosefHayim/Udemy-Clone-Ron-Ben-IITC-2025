@@ -12,7 +12,9 @@ const Loader: React.FC<LoaderProps> = ({
   purpleLightSmallStyle = false,
 }) => {
   return (
-    <div className={`flex flex-row items-center justify-center h-[${hSize}] p-[${paddingSetTo}]`}>
+    <div
+      className={`flex h-[100vh] flex-row items-center justify-center h-[${hSize}] p-[${paddingSetTo}]`}
+    >
       <div className={useSmallLoading ? smallStyles.loader : styles.loader}></div>
       <div className={useSmallBlackLoading ? blackSmallStyle.loader : ''}></div>
       <div className={purpleLightSmallStyle ? purpleLightExtraSmallStyle.loader : ''}></div>
