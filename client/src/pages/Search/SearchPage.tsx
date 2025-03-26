@@ -81,7 +81,7 @@ const SearchPage: React.FC = () => {
   }
 
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-[1em] px-6 py-[3em]">
+    <div className="flex w-min flex-col items-center justify-center gap-[1em] px-6 py-[3em]">
       <div className="flex w-full  items-start justify-center gap-[1.5em]">
         <div className="flex flex-col items-start justify-center">
           <div>
@@ -101,7 +101,7 @@ const SearchPage: React.FC = () => {
               <div
                 key={course?._id}
                 id={course?._id}
-                className="relative w-fit"
+                className="relative w-full"
                 onMouseEnter={() => setHoveredCourse(course?._id)}
                 onMouseLeave={() => setHoveredCourse(null)}
               >

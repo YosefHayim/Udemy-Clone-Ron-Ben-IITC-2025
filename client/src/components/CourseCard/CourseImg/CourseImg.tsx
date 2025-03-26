@@ -7,7 +7,7 @@ const CourseImg: React.FC<CourseImgProps> = ({
 }) => {
   return (
     <div className="mr-2 border">
-      <img src={courseImg} alt="" className={`w-full`} />
+      <img src={courseImg} alt="" className={`w-[30em]`} />
     </div>
   );
 };

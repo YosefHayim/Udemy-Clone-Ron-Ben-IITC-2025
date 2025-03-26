@@ -46,7 +46,7 @@ const SearchCourseCard: React.FC<{ course: CourseTypeProps }> = ({ course }) => 
           discountPrice={course.courseDiscountPrice}
         />
       </div>
-      <hr className="my-4" />
+      <hr className="my-4 w-full" />
     </div>
   );
 };
