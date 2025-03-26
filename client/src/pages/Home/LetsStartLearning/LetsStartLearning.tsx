@@ -5,6 +5,7 @@ import ButtonsCarousel from '@/components/ButtonsCarousel/ButtonsCarousel';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { Link } from 'react-router-dom';
 
 const LetsStartLearning = () => {
   const amountOfLessonsSpecificCourseChosen = useSelector(
@@ -33,11 +34,13 @@ const LetsStartLearning = () => {
       <div className="flex w-full  items-center justify-between">
         <h1 className="font-extrabold">Let's start learning</h1>
         <div>
-          <button
-            className={`${btnStyleNHover} rounded-md px-3 py-3 font-sans text-base font-bold text-purple-700 underline`}
-          >
-            My learning
-          </button>
+          <Link to="/wishlist">
+            <button
+              className={`${btnStyleNHover} rounded-md px-3 py-3 font-sans text-base font-bold text-purple-700 underline`}
+            >
+              My learning
+            </button>
+          </Link>
         </div>
       </div>
       {amountOfLessonsSpecificCourseChosen.length > 1 && (

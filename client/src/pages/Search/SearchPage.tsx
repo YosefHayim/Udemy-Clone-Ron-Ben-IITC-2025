@@ -101,7 +101,7 @@ const SearchPage: React.FC = () => {
               <div
                 key={course?._id}
                 id={course?._id}
-                className="relative"
+                className="relative w-fit"
                 onMouseEnter={() => setHoveredCourse(course?._id)}
                 onMouseLeave={() => setHoveredCourse(null)}
               >
