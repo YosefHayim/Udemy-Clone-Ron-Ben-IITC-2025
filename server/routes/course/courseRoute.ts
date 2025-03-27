@@ -42,13 +42,13 @@ router.get("/pros/:courseId", getCourseProsById);
 router.post("/re-activate/:id", grantedAccess, reactivateCourseById);
 
 // join course by course id
-router.post("/add/course/:id", grantedAccess, joinCourseById);
+router.post("/add/:id", grantedAccess, joinCourseById);
 
 // join courses by array of courses ids
-router.post("/add/courses", grantedAccess, joinCoursesByIds);
+router.post("/multiple/courses", grantedAccess, joinCoursesByIds);
 
 // leave course by course id
-router.post("/leave/course/:id", grantedAccess, leaveCourseById);
+router.post("/leave/:id", grantedAccess, leaveCourseById);
 
 // Create course
 router.post("/", grantedAccess, createCourse);
