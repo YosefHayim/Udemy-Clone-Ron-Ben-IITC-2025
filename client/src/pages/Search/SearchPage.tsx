@@ -116,7 +116,7 @@ const SearchPage: React.FC = () => {
                     </div>
                   )}
                   {index === 2 && <Commercial key="commercial" />}
-                  {index === 6 && <HotFreshCourses key="hotfreshcourses" />}
+                  {/* {index === 6 && <HotFreshCourses key="hotfreshcourses" />} */}
                 </div>
               ))}
             </div>
