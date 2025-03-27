@@ -81,62 +81,52 @@ const SearchPage: React.FC = () => {
   }
 
   return (
-    <div className="flex w-full items-start justify-center">
-      <div className="px-6 py-3">
-        <div>
-          <FilterNSort coursesResults={data?.totalCourses} searchTerm={searchTerm} />
-        </div>
+    <div className="">
+      <div className="w-full px-6 py-3">
+        <FilterNSort coursesResults={data?.totalCourses} searchTerm={searchTerm} />
         <SidebarFilter />
-      </div>
-      <div className="flex items-start justify-start px-6 py-[3em]">
-        <div className="flex flex-col items-start justify-start"></div>
-        <div className="flex w-auto flex-col items-center justify-center gap-[1em]">
-          <div className="flex w-full  items-start justify-center gap-[1.5em]">
-            <div className="flex h-[100vh] flex-col items-start justify-start"></div>
-            <div className="flex w-full flex-row items-center justify-center">
-              <div className="mt-[6em] flex w-fit flex-col items-center justify-center">
-                {data?.response?.slice(0, 18).map((course: CourseTypeProps, index: number) => (
+        <div className="flex items-start justify-start px-6 py-[3em]">
+          <div className="flex w-auto flex-col items-center justify-center gap-[1em]">
+            {data?.response?.slice(0, 18).map((course: CourseTypeProps, index: number) => (
+              <div
+                key={course?._id}
+                id={course?._id}
+                className="relative"
+                onMouseEnter={() => setHoveredCourse(course?._id)}
+                onMouseLeave={() => setHoveredCourse(null)}
+              >
+                <SearchCourseCard course={course} />
+                {hoveredCourse === course?._id && (
                   <div
-                    key={course?._id}
-                    id={course?._id}
-                    className="relative w-fit"
-                    onMouseEnter={() => setHoveredCourse(course?._id)}
-                    onMouseLeave={() => setHoveredCourse(null)}
-                  >
-                    <SearchCourseCard course={course} />
-                    {hoveredCourse === course?._id && (
-                      <div
-                        className={` absolute right-[60%] z-10 w-1/2 translate-x-1/2
+                    className={` absolute right-[60%] z-10 w-1/2 translate-x-1/2
                 ${getTopValue(index)}`}
-                      >
-                        <CourseHoverCardInfo
-                          positionedLeft={false}
-                          positionedRight={false}
-                          instructorId={course?.courseInstructor?._id}
-                          courseTopic={course?.courseTopic}
-                          index={index}
-                          whatYouWillLearn={course?.whatYouWillLearn}
-                          courseId={course?._id}
-                          fullPriceCourse={course?.courseFullPrice}
-                          coursePrice={course?.courseDiscountPrice}
-                        />
-                      </div>
-                    )}
-                    {index === 2 && <Commercial key="commercial" />}
-                    {index === 6 && <HotFreshCourses key="hotfreshcourses" />}
+                  >
+                    <CourseHoverCardInfo
+                      positionedLeft={false}
+                      positionedRight={false}
+                      instructorId={course?.courseInstructor?._id}
+                      courseTopic={course?.courseTopic}
+                      index={index}
+                      whatYouWillLearn={course?.whatYouWillLearn}
+                      courseId={course?._id}
+                      fullPriceCourse={course?.courseFullPrice}
+                      coursePrice={course?.courseDiscountPrice}
+                    />
                   </div>
-                ))}
+                )}
+                {index === 2 && <Commercial key="commercial" />}
+                {index === 6 && <HotFreshCourses key="hotfreshcourses" />}
               </div>
-              <RelatedSearches />
-            </div>
+            ))}
           </div>
-          <Pagination
-            totalPages={data?.totalPages}
-            currentPage={currentPage || 1}
-            setCurrentPage={setCurrentPage}
-          />
+          <RelatedSearches />
         </div>
       </div>
+      <Pagination
+        totalPages={data?.totalPages}
+        currentPage={currentPage || 1}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };

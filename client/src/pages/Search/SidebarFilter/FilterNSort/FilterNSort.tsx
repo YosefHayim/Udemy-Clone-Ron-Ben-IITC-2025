@@ -32,12 +32,15 @@ const FilterNSort = ({ coursesResults, searchTerm }) => {
   const isFiltersDefault = convertToComparable(filterData) === convertToComparable(defaultFilters);
 
   return (
-    <div className="flex w-full flex-col-reverse items-start justify-center">
-      <div className="flex items-center gap-[0.5em]">
-        <FilterBtn />
-        <SortDropDown />
-        <div>placeholder</div>
-
+    <div className="flex w-full flex-col-reverse items-start justify-start">
+      <div className="flex w-full items-center justify-between">
+        <div className="flex w-full">
+          <FilterBtn />
+          <SortDropDown />
+        </div>
+        <div>
+          <p className="w-max font-sans text-base font-bold">{coursesResults} results</p>
+        </div>
         {!isFiltersDefault && (
           <span
             className="cursor-pointer font-sans font-extrabold text-purpleStatic hover:text-purpleHover"
