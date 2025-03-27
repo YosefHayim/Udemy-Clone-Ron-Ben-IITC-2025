@@ -35,7 +35,7 @@ const FilterNSort = ({ coursesResults, searchTerm }) => {
     <div className="flex w-full flex-col-reverse items-start justify-center">
       <div className="flex items-center gap-[0.5em]">
         <FilterBtn />
-        <SortDropDown courseResults={coursesResults} />
+        <SortDropDown />
         {!isFiltersDefault && (
           <span
             className="cursor-pointer font-sans font-extrabold text-purpleStatic hover:text-purpleHover"

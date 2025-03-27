@@ -86,7 +86,7 @@ const SearchPage: React.FC = () => {
         <div>
           <FilterNSort coursesResults={data?.totalCourses} searchTerm={searchTerm} />
         </div>
-        <SidebarFilter coursesResults={data?.totalCourses} />
+        <SidebarFilter />
       </div>
       <div className="flex items-start justify-start px-6 py-[3em]">
         <div className="flex flex-col items-start justify-start"></div>
@@ -99,7 +99,7 @@ const SearchPage: React.FC = () => {
                   <div
                     key={course?._id}
                     id={course?._id}
-                    className="relative w-full"
+                    className="relative w-fit"
                     onMouseEnter={() => setHoveredCourse(course?._id)}
                     onMouseLeave={() => setHoveredCourse(null)}
                   >

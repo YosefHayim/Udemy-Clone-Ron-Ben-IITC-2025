@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { filterContext } from '@/routes/AppRoutes';
 
-const SortDropDown = ({ courseResults }) => {
+const SortDropDown = () => {
   const [filterData, setFilterData] = useContext(filterContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedSort, setSelectedSort] = useState<string>(filterData.sortBy || 'most-relevant');
