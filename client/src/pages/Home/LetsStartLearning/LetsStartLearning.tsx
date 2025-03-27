@@ -1,15 +1,15 @@
-import { btnStyleNHover } from "@/utils/stylesStorage";
-import StartWeeklyStreak from "./StartWeeklyStreak/StartWeeklyStreak";
-import ContinueLearningCourse from "./ContinueLearningCourse/ContinueLearningCourse";
-import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { Link } from "react-router-dom";
+import { btnStyleNHover } from '@/utils/stylesStorage';
+import StartWeeklyStreak from './StartWeeklyStreak/StartWeeklyStreak';
+import ContinueLearningCourse from './ContinueLearningCourse/ContinueLearningCourse';
+import ButtonsCarousel from '@/components/ButtonsCarousel/ButtonsCarousel';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import { Link } from 'react-router-dom';
 
 const LetsStartLearning = () => {
   const amountOfLessonsSpecificCourseChosen = useSelector(
-    (state: RootState) => state?.user?.coursesInProgress,
+    (state: RootState) => state?.user?.coursesInProgress
   );
 
   const [isAnimating, setIsAnimating] = useState(false);
@@ -43,19 +43,18 @@ const LetsStartLearning = () => {
           </Link>
         </div>
       </div>
-      {amountOfLessonsSpecificCourseChosen &&
-        amountOfLessonsSpecificCourseChosen.length > 1 && (
-          <ButtonsCarousel
-            state={currentIndex}
-            leftPosition="1%"
-            topPosition="81.5%"
-            rightPosition="2%"
-            useCustom={false}
-            showDirectionalButtonsOnlyOnEdge={true}
-            handleFnNext={handleNext}
-            handleFnPrev={handlePrev}
-          />
-        )}
+      {amountOfLessonsSpecificCourseChosen && amountOfLessonsSpecificCourseChosen.length > 1 && (
+        <ButtonsCarousel
+          state={currentIndex}
+          leftPosition="1%"
+          topPosition="81.5%"
+          rightPosition="2%"
+          useCustom={false}
+          showDirectionalButtonsOnlyOnEdge={true}
+          handleFnNext={handleNext}
+          handleFnPrev={handlePrev}
+        />
+      )}
       {/* // TODO Pass all the course progress to this component  */}
       <ContinueLearningCourse />
       <div className="my-4">
