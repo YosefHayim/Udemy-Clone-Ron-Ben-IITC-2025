@@ -67,7 +67,7 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
               >
                 {/* Inner container to create the border effect */}
                 <div
-                  className="flex items-center justify-center rounded-full bg-grayUdemy"
+                  className="flex items-center justify-center rounded-full bg-watchUdemyCourse"
                   style={{
                     width: "35px",
                     height: "35px",
