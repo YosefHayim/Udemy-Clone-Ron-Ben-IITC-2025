@@ -1,10 +1,10 @@
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import CantFindMyOccupation from "./CantFindMyOccupation/CantFindMyOccupation";
-import { useContext, useEffect, useState } from "react";
-import { personalizeContent } from "@/routes/AppRoutes";
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import CantFindMyOccupation from './CantFindMyOccupation/CantFindMyOccupation';
+import { useContext, useEffect, useState } from 'react';
+import { personalizeContent } from '@/routes/AppRoutes';
 
 const OccupationP2 = () => {
-  document.title = "Select Occupation | Udemy";
+  document.title = 'Select Occupation | Udemy';
   const [isClicked, setClicked] = useState(false);
 
   const handleClick = () => {
@@ -12,24 +12,22 @@ const OccupationP2 = () => {
   };
 
   const personalizeTracking = useContext(personalizeContent);
-  if (!personalizeTracking) throw new Error("No personalize tracking provided");
+  if (!personalizeTracking) throw new Error('No personalize tracking provided');
   const [personalizeData, setPersonalizeData] = personalizeTracking;
 
   useEffect(() => {}, [personalizeData]);
 
   return (
     <div>
-      <div className={isClicked ? "hidden" : "block"}>
+      <div className={isClicked ? 'hidden' : 'block'}>
         <div className="ml-[8em] mt-[2em] w-[500px] p-[2em] text-start">
           <div>
-            <h1 className="mb-[1em] text-[1.5em]">
-              Which occupation are you learning for?
-            </h1>
+            <h1 className="mb-[1em] text-[1.5em]">Which occupation are you learning for?</h1>
             <b>Data & Analytics occupations</b>
           </div>
           <form className="mt-[1em]">
             <RadioGroup className="flex flex-col gap-4" required={true}>
-              <div className="flex w-full flex-row items-start justify-start gap-[4em]">
+              <div className="flex w-full  items-start justify-start gap-[4em]">
                 <div className="flex flex-col items-start justify-start gap-[1em]">
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="Business Analyst" />
@@ -74,10 +72,7 @@ const OccupationP2 = () => {
             </RadioGroup>
           </form>
           <div className="mt-[1.5em] cursor-pointer">
-            <button
-              className="border-none bg-none text-btnColor underline"
-              onClick={handleClick}
-            >
+            <button className="border-none bg-none text-btnColor underline" onClick={handleClick}>
               I cant find my occupation
             </button>
           </div>

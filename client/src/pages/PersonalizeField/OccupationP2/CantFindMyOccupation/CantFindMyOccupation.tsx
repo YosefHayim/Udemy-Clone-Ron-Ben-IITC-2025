@@ -14,13 +14,7 @@ const CantFindMyOccupation = ({
   };
 
   return (
-    <div
-      className={
-        isClicked
-          ? "ml-[8em] mt-[2em] block w-[600px] p-[2em] text-start"
-          : "hidden"
-      }
-    >
+    <div className={isClicked ? 'ml-[8em] mt-[2em] block w-[600px] p-[2em] text-start' : 'hidden'}>
       <form
         className="flex w-full flex-col items-start justify-start gap-[0.5em]"
         onSubmit={handleDynamicOccupation}

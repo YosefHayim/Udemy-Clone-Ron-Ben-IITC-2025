@@ -4,17 +4,17 @@ import {
   AlertDialogDescription,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
-import FrequentlyBoughtTogether from "@/pages/ViewCoursePageInfo/FrequentlyBoughtTogether/FrequentlyBoughtTogether";
-import axios from "axios";
-import { IoMdCheckmarkCircle } from "react-icons/io";
-import { useCallback, useEffect, useState } from "react";
-import TopicSearch from "./TopicSearch/TopicSearch";
-import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
-import { IoClose } from "react-icons/io5";
-import { ResponseSuggestions } from "@/types/types";
-import { Link } from "react-router-dom";
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
+import FrequentlyBoughtTogether from '@/pages/ViewCoursePageInfo/FrequentlyBoughtTogether/FrequentlyBoughtTogether';
+import axios from 'axios';
+import { IoMdCheckmarkCircle } from 'react-icons/io';
+import { useCallback, useEffect, useState } from 'react';
+import TopicSearch from './TopicSearch/TopicSearch';
+import ItemInCart from '@/components/Navbar/Cart/ItemInCart/ItemInCart';
+import { IoClose } from 'react-icons/io5';
+import { ResponseSuggestions } from '@/types/types';
+import { Link } from 'react-router-dom';
 
 const DialogFrequentlyBoughtTogether: React.FC<{
   courseTopic: string;
@@ -22,18 +22,12 @@ const DialogFrequentlyBoughtTogether: React.FC<{
   instructorId: string;
   showDialogOfFbt: boolean;
   setShowDialogOfFbt: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({
-  courseTopic,
-  courseId,
-  instructorId,
-  showDialogOfFbt,
-  setShowDialogOfFbt,
-}) => {
+}> = ({ courseTopic, courseId, instructorId, showDialogOfFbt, setShowDialogOfFbt }) => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
   // Extract first 1-2 words from courseName
   const getShortenedCourseName = (name: string): string => {
-    return name.split(" ")[0]; // Take only the first word before space
+    return name.split(' ')[0]; // Take only the first word before space
   };
 
   const fetchSuggestions = useCallback(async () => {
@@ -43,19 +37,15 @@ const DialogFrequentlyBoughtTogether: React.FC<{
     if (query.length > 1) {
       try {
         const response = await axios.get(
-          `https://api.datamuse.com/words?rel_trg=${encodeURIComponent(
-            query,
-          )}&max=10`,
+          `https://api.datamuse.com/words?rel_trg=${encodeURIComponent(query)}&max=10`
         );
         if (response) {
           console.log(response);
         }
 
-        setSuggestions(
-          response.data.map((item: ResponseSuggestions) => item.word),
-        );
+        setSuggestions(response.data.map((item: ResponseSuggestions) => item.word));
       } catch (error) {
-        console.log("Error fetching autocomplete suggestions:", error);
+        console.log('Error fetching autocomplete suggestions:', error);
       }
     } else {
       setSuggestions([]);
@@ -112,14 +102,12 @@ const DialogFrequentlyBoughtTogether: React.FC<{
                 <FrequentlyBoughtTogether instructorId={instructorId} />
               </div>
               <div className="flex w-full flex-col items-start justify-start">
-                <h2 className="my-3 font-sans font-extrabold text-black">
-                  Related topics
-                </h2>
+                <h2 className="my-3 font-sans font-extrabold text-black">Related topics</h2>
                 <div className="flex flex-wrap items-center justify-start gap-[0.5em]">
                   {suggestions.map((suggestion) => (
                     <Link
                       to={`/courses/search?src=ukw&q=${encodeURIComponent(
-                        suggestion.toLowerCase(),
+                        suggestion.toLowerCase()
                       )}`}
                     >
                       <TopicSearch key={suggestion} text={suggestion} />

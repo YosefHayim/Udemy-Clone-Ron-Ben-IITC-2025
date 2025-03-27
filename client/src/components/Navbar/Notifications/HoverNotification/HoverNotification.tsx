@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import placeholderInstructorMessage from "/images/instructor-img-placeholder.png";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import placeholderInstructorMessage from '/images/instructor-img-placeholder.png';
+import { Button } from '@/components/ui/button';
 
 const HoverNotification = () => {
   const [clickedType, setClickedType] = useState(false);
@@ -40,9 +40,7 @@ const HoverNotification = () => {
           <hr className="mb-[1em] w-full" />
         </div>
         <div className="mb-[1em] w-full p-[0.8em] font-medium">
-          {!isNotificationsExist && (
-            <p className="text-center">No notifications.</p>
-          )}
+          {!isNotificationsExist && <p className="text-center">No notifications.</p>}
           <div className="flex w-full items-start justify-center gap-[0.5em] pb-[1em]">
             <img
               src={placeholderInstructorMessage}
@@ -60,9 +58,7 @@ const HoverNotification = () => {
           <div className="flex w-full flex-row items-center justify-between pt-[1em]">
             <Button
               className={`${
-                isNotificationsExist
-                  ? "cursor-not-allowed opacity-[0.3]"
-                  : "opacity-[1]"
+                isNotificationsExist ? 'cursor-not-allowed opacity-[0.3]' : 'opacity-[1]'
               } bg-white font-sans font-extrabold text-purple-600 shadow-none hover:bg-purpleHoverBtn`}
             >
               Mark all as read

@@ -1,9 +1,4 @@
-import {
-  axiosClient,
-  baseUrl,
-  isProduction,
-  localhostUrl,
-} from "../configuration";
+import { axiosClient, baseUrl, isProduction, localhostUrl } from '../configuration';
 
 const getCouponByCouponCode = async (couponCode: string) => {
   if (!couponCode) return console.log(`Must provide coupon code`);

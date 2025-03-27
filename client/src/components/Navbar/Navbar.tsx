@@ -1,31 +1,29 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import SearchInput from "./SearchInput/SearchInput";
-import LoginBtn from "./LoginBtn/LoginBtn";
-import SignupBtn from "./SignupBtn/SignupBtn";
-import Cart from "./Cart/Cart";
-import Logo from "../Logo/Logo";
-import AtagBtn from "../AtagBtn/AtagBtn";
-import Heart from "./Heart/Heart";
-import Notifications from "./Notifications/Notifications";
-import Profile from "./Profile/Profile";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import CategoriesMenu from "./Categories/CategoriesMenu";
-import { isRootPathOnly } from "@/utils/isRootPathOnly";
-import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
-import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercialTwo";
-import { useMediaQuery } from "react-responsive";
-import MobileNavbar from "./MobileNavbar/MobileNavbar";
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import SearchInput from './SearchInput/SearchInput';
+import LoginBtn from './LoginBtn/LoginBtn';
+import SignupBtn from './SignupBtn/SignupBtn';
+import Cart from './Cart/Cart';
+import Logo from '../Logo/Logo';
+import AtagBtn from '../AtagBtn/AtagBtn';
+import Heart from './Heart/Heart';
+import Notifications from './Notifications/Notifications';
+import Profile from './Profile/Profile';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import CategoriesMenu from './Categories/CategoriesMenu';
+import { isRootPathOnly } from '@/utils/isRootPathOnly';
+import ChangeLanguage from './DropDownMenu/ChangeLanguage/ChangeLanguage';
+import SaleCommercialTwo from './SaleCommercials/SaleCommercialTwo/SaleCommercialTwo';
+import { useMediaQuery } from 'react-responsive';
+import MobileNavbar from './MobileNavbar/MobileNavbar';
 
 const Navbar = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
 
   const [isClicked, setClicked] = useState(false);
   const cookie = useSelector((state: RootState) => state?.user?.cookie);
-  const prevLogWGoogle = useSelector(
-    (state: RootState) => state.user.isLoggedPreviouslyWithGoogle,
-  );
+  const prevLogWGoogle = useSelector((state: RootState) => state.user.isLoggedPreviouslyWithGoogle);
   const coursesInCart =
     useSelector((state: RootState) => state?.cart?.coursesAddedToCart) ||
     useSelector((state: RootState) => state?.cart?.coursesAddedToWishList);
@@ -49,18 +47,18 @@ const Navbar = () => {
               <div
                 className={
                   isRootPathOnly()
-                    ? "flex w-full items-center justify-end"
-                    : "flex w-full items-center justify-center p-[0.3em]"
+                    ? 'flex w-full items-center justify-end'
+                    : 'flex w-full items-center justify-center p-[0.3em]'
                 }
               >
-                <div className={isRootPathOnly() ? "hidden" : "flex-grow"}>
+                <div className={isRootPathOnly() ? 'hidden' : 'flex-grow'}>
                   <SearchInput />
                 </div>
-                {cookie && <AtagBtn aTagName={"Udemy Business"} />}
-                <AtagBtn aTagName={"Teach on Udemy"} />
+                {cookie && <AtagBtn aTagName={'Udemy Business'} />}
+                <AtagBtn aTagName={'Teach on Udemy'} />
                 {cookie && (
                   <Link to="/wishlist">
-                    <AtagBtn aTagName={"My learning"} />
+                    <AtagBtn aTagName={'My learning'} />
                   </Link>
                 )}
                 {cookie && (
@@ -104,7 +102,7 @@ const Navbar = () => {
                 )}
               </div>
             </div>
-            <div className={isRootPathOnly() ? "mt-[0.5em] flex" : "hidden"}>
+            <div className={isRootPathOnly() ? 'mt-[0.5em] flex' : 'hidden'}>
               <SearchInput />
             </div>
           </div>

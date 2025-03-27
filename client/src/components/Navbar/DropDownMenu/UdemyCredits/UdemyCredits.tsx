@@ -1,14 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { RootState } from "@/redux/store";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import CoursePurchaseRow from "./CoursePurchaseRow/CoursePurchaseRow";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { RootState } from '@/redux/store';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import CoursePurchaseRow from './CoursePurchaseRow/CoursePurchaseRow';
 
 const UdemyCredits = () => {
-  const userCredits = useSelector(
-    (state: RootState) => state?.user.udemyCredits,
-  );
+  const userCredits = useSelector((state: RootState) => state?.user.udemyCredits);
 
   useEffect(() => {}, [userCredits]);
 
@@ -16,8 +14,8 @@ const UdemyCredits = () => {
     <div className="p-[5em]">
       <h1 className="mb-[1em] font-sans font-extrabold">Udemy credits</h1>
       <h2 className="text-[1.4em]">
-        <span className="mt-[1em] font-sans font-extrabold">Your credits:</span>{" "}
-        ₪{userCredits || 0.0}
+        <span className="mt-[1em] font-sans font-extrabold">Your credits:</span> ₪
+        {userCredits || 0.0}
       </h2>
       <div>
         <div className="flex w-full flex-row items-center justify-between">

@@ -1,21 +1,21 @@
-import { btnStyleNHover } from "@/utils/stylesStorage";
-import { useEffect, useState } from "react";
-import { categoriesData } from "@/utils/categoriesData";
-import { navbarCategories } from "@/utils/navbarCategories";
-import { getRandomLearnersAmount } from "@/utils/randomLearnersAmount";
-import { topics } from "@/utils/topics";
-import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
-import { useQuery } from "@tanstack/react-query";
-import getAllCourses from "@/api/courses/getAllCourses";
-import { CourseTypeProps } from "@/types/types";
-import { useNavigate } from "react-router-dom";
-import Loader from "@/components/Loader/Loader";
-import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
-import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
+import { btnStyleNHover } from '@/utils/stylesStorage';
+import { useEffect, useState } from 'react';
+import { categoriesData } from '@/utils/categoriesData';
+import { navbarCategories } from '@/utils/navbarCategories';
+import { getRandomLearnersAmount } from '@/utils/randomLearnersAmount';
+import { topics } from '@/utils/topics';
+import ButtonsCarousel from '@/components/ButtonsCarousel/ButtonsCarousel';
+import { useQuery } from '@tanstack/react-query';
+import getAllCourses from '@/api/courses/getAllCourses';
+import { CourseTypeProps } from '@/types/types';
+import { useNavigate } from 'react-router-dom';
+import Loader from '@/components/Loader/Loader';
+import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
+import HomeCourseCard from '@/components/HomeCourseCard/HomeCourseCard';
 
 const Sections = () => {
   const navigate = useNavigate();
-  const [navbarCategory, setNavbarCategory] = useState("Data Science");
+  const [navbarCategory, setNavbarCategory] = useState('Data Science');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [courseIndex, setCourseIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -75,7 +75,7 @@ const Sections = () => {
   const [choseTopic, setChooseTopic] = useState(getDefaultTopic());
 
   const { data } = useQuery({
-    queryKey: ["courses", choseTopic],
+    queryKey: ['courses', choseTopic],
     queryFn: () => getAllCourses(choseTopic),
     enabled: !!choseTopic,
   });
@@ -92,8 +92,7 @@ const Sections = () => {
           All the skills you need in one place
         </h1>
         <p className="mb-6 mt-2 w-full text-base text-gray-600">
-          From critical skills to technical topics, Udemy supports your
-          professional development.
+          From critical skills to technical topics, Udemy supports your professional development.
         </p>
         <div className="flex w-full items-center justify-start gap-5">
           {navbarCategories.map((category, index) => (
@@ -102,13 +101,11 @@ const Sections = () => {
               className="w-min-max cursor-pointer flex-col items-center justify-center text-base"
               key={index + 1}
             >
-              <b
-                className={`${category === navbarCategory ? "text-black" : "text-gray-600"}`}
-              >
+              <b className={`${category === navbarCategory ? 'text-black' : 'text-gray-600'}`}>
                 {category}
               </b>
               <hr
-                className={`${category === navbarCategory ? "w-min-max h-[0.1em] bg-black" : "hidden"}`}
+                className={`${category === navbarCategory ? 'w-min-max h-[0.1em] bg-black' : 'hidden'}`}
               />
             </div>
           ))}
@@ -129,9 +126,7 @@ const Sections = () => {
           />
           <div className="mt-3 flex w-auto">
             {categoriesData.map((category, i) => {
-              const match = category?.subcategory.find(
-                (sub) => sub?.title === navbarCategory,
-              );
+              const match = category?.subcategory.find((sub) => sub?.title === navbarCategory);
               if (!match) return null;
               return (
                 <div
@@ -147,14 +142,12 @@ const Sections = () => {
                       onClick={() => setChooseTopic(topic)}
                       className={`${
                         choseTopic === topic
-                          ? "w-full bg-blackUdemy text-white hover:bg-grayUdemyHover"
-                          : ""
+                          ? 'w-full bg-blackUdemy text-white hover:bg-grayUdemyHover'
+                          : ''
                       } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
                     >
                       <b className="w-max text-base">{topic}</b>
-                      {idx < topics.length - 1 ? (
-                        <p>{getRandomLearnersAmount()}</p>
-                      ) : null}
+                      {idx < topics.length - 1 ? <p>{getRandomLearnersAmount()}</p> : null}
                     </div>
                   ))}
                 </div>
@@ -176,18 +169,14 @@ const Sections = () => {
             />
           )}
           <div
-            className={`flex ${data && data.length > 7 ? "w-max items-center justify-center p-4" : "w-full items-center justify-center p-4"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+            className={`flex ${data && data.length > 7 ? 'w-max items-center justify-center p-4' : 'w-full items-center justify-center p-4'}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
             style={{
               transform: `translateX(-${courseIndex * 30.5}%)`,
             }}
           >
             {data && data.length >= 1 ? (
               data.map((courseCard: CourseTypeProps, index: number) => (
-                <HomeCourseCard
-                  courseCard={courseCard}
-                  index={courseCard._id}
-                  key={index + 3}
-                />
+                <HomeCourseCard courseCard={courseCard} index={courseCard._id} key={index + 3} />
               ))
             ) : (
               <div className="w-full">

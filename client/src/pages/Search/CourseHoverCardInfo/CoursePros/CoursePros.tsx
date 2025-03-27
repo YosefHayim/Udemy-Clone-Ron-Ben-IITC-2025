@@ -1,4 +1,4 @@
-import { GrCheckmark } from "react-icons/gr";
+import { GrCheckmark } from 'react-icons/gr';
 
 const CoursePros: React.FC<{
   whatYouWillLearn: string[];

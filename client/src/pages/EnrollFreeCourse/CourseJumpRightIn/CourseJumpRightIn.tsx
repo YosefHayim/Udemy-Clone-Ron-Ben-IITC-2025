@@ -1,10 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-const CourseJumpRightIn = ({
-  sanitizedCourseId = "",
-  courseImg = "",
-  instructor = "",
-}) => {
+const CourseJumpRightIn = ({ sanitizedCourseId = '', courseImg = '', instructor = '' }) => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
@@ -13,7 +9,7 @@ const CourseJumpRightIn = ({
   return (
     <div className="ml-[1.5em] p-[1em] text-white">
       <b className="mb-[1em]">Jump right in</b>
-      <div className="flex w-full flex-row items-start gap-[1em] bg-grayUdemy p-[1em]">
+      <div className="flex w-full  items-start gap-[1em] bg-grayUdemy p-[1em]">
         <div>
           <img src={courseImg} alt="" className="h-[200px] w-[200px]" />
         </div>

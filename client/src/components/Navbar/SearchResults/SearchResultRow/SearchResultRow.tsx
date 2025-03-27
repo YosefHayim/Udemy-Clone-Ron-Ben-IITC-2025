@@ -1,10 +1,7 @@
-import { SearchResultProps } from "@/types/types";
-import { MdOutlineSearch } from "react-icons/md";
+import { SearchResultProps } from '@/types/types';
+import { MdOutlineSearch } from 'react-icons/md';
 
-const SearchResultRow: React.FC<SearchResultProps> = ({
-  algoWord,
-  courseId,
-}) => {
+const SearchResultRow: React.FC<SearchResultProps> = ({ algoWord, courseId }) => {
   return (
     <div
       id={courseId}

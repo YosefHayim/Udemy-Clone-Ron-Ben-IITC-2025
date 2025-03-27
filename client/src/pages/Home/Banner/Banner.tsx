@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react";
-import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
-import { getBanners } from "@/utils/banners";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useEffect, useState } from 'react';
+import ButtonsCarousel from '@/components/ButtonsCarousel/ButtonsCarousel';
+import { getBanners } from '@/utils/banners';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 
 const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
-  const coursesBoughtOrJoined = useSelector(
-    (state: RootState) => state.user.coursesBought,
-  );
+  const coursesBoughtOrJoined = useSelector((state: RootState) => state.user.coursesBought);
   const fullName = useSelector((state: RootState) => state.user.fullName);
   const registerAt = useSelector((state: RootState) => state.user.whenCreated);
 
@@ -35,12 +33,9 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
   };
 
   // This one is creating infinite banners to scroll from the banners base which we just add to it and thats it.
-  const generatedBanners = Array.from(
-    { length: (currentIndex + 1) * 2 },
-    (_, i) => {
-      return banners[i % banners.length];
-    },
-  );
+  const generatedBanners = Array.from({ length: (currentIndex + 1) * 2 }, (_, i) => {
+    return banners[i % banners.length];
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -70,11 +65,7 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
         >
           {generatedBanners.map((banner, index) => (
             <div key={index} className="relative w-full flex-shrink-0">
-              <img
-                src={banner.src}
-                alt={`banner-${index}`}
-                className="w-full"
-              />
+              <img src={banner.src} alt={`banner-${index}`} className="w-full" />
               <div className="absolute left-16 top-16 bg-white px-5 py-7 shadow"></div>
               {banner.content && banner.content()}
             </div>

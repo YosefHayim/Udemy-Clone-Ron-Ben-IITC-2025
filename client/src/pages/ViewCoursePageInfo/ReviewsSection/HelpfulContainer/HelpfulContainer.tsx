@@ -1,10 +1,10 @@
-import { dislikeReviewById } from "@/api/reviews/dislikeReviewById";
-import { likeReviewById } from "@/api/reviews/likeReviewById";
-import { useMutation } from "@tanstack/react-query";
-import { useState, useEffect } from "react";
-import { BiDislike, BiLike } from "react-icons/bi";
-import { BiSolidDislike } from "react-icons/bi";
-import { BiSolidLike } from "react-icons/bi";
+import { dislikeReviewById } from '@/api/reviews/dislikeReviewById';
+import { likeReviewById } from '@/api/reviews/likeReviewById';
+import { useMutation } from '@tanstack/react-query';
+import { useState, useEffect } from 'react';
+import { BiDislike, BiLike } from 'react-icons/bi';
+import { BiSolidDislike } from 'react-icons/bi';
+import { BiSolidLike } from 'react-icons/bi';
 
 const HelpfulContainer: React.FC<{ idOfReview: string }> = ({ idOfReview }) => {
   const [isClickedLike, setClickedLike] = useState(false);
@@ -21,23 +21,20 @@ const HelpfulContainer: React.FC<{ idOfReview: string }> = ({ idOfReview }) => {
   }, [idOfReview]);
 
   const saveStateToLocalStorage = (liked: boolean, disliked: boolean) => {
-    localStorage.setItem(
-      `review-${idOfReview}`,
-      JSON.stringify({ liked, disliked }),
-    );
+    localStorage.setItem(`review-${idOfReview}`, JSON.stringify({ liked, disliked }));
   };
 
   const likeMutation = useMutation({
     mutationFn: likeReviewById,
     onError: (error) => {
-      console.log("Error liking review:", error);
+      console.log('Error liking review:', error);
     },
   });
 
   const disLikeMutation = useMutation({
     mutationFn: dislikeReviewById,
     onError: (error) => {
-      console.log("Error disliking review:", error);
+      console.log('Error disliking review:', error);
     },
   });
 
@@ -72,7 +69,7 @@ const HelpfulContainer: React.FC<{ idOfReview: string }> = ({ idOfReview }) => {
   };
 
   return (
-    <div className="flex flex-row items-start justify-start gap-[1em]">
+    <div className="flex  items-start justify-start gap-[1em]">
       <p>Helpful?</p>
       <div onClick={handleLike} className="cursor-pointer">
         {isClickedLike ? <BiSolidLike /> : <BiLike />}

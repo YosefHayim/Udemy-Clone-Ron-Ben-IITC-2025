@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { BsToggleOn, BsToggleOff } from "react-icons/bs";
-import { useContext } from "react";
-import { filterContext } from "@/routes/AppRoutes";
+import { useState } from 'react';
+import { BsToggleOn, BsToggleOff } from 'react-icons/bs';
+import { useContext } from 'react';
+import { filterContext } from '@/routes/AppRoutes';
 
 const ViewCertificatesOnly = () => {
   const [filterData, setFilterData] = useContext(filterContext);
@@ -18,18 +18,13 @@ const ViewCertificatesOnly = () => {
   };
 
   return (
-    <div
-      className="flex cursor-pointer items-center gap-[0.5em] py-[1em]"
-      onClick={handleToggle}
-    >
+    <div className="flex cursor-pointer items-center gap-[0.5em] py-[1em]" onClick={handleToggle}>
       {isActive ? (
         <BsToggleOff className="text-2xl text-gray-400" />
       ) : (
         <BsToggleOn className="text-2xl text-toggleActive" />
       )}
-      <p className="text-sm font-medium">
-        View certification prep courses only
-      </p>
+      <p className="text-sm font-medium">View certification prep courses only</p>
     </div>
   );
 };

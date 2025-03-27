@@ -1,14 +1,14 @@
-import { useState } from "react";
-import SideBarProfile from "../SideBarProfile/SideBarProfile";
-import { useMutation } from "@tanstack/react-query";
-import updateProfilePic from "@/api/users/updateProfilePic";
-import refreshMe from "@/api/users/refreshMe";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import placeholderPhotoImg from "/images/placeholder-default-image-user-photo.png";
-import { Input } from "@/components/ui/input";
-import { setUserInformation } from "@/utils/setUserInformation";
+import { useState } from 'react';
+import SideBarProfile from '../SideBarProfile/SideBarProfile';
+import { useMutation } from '@tanstack/react-query';
+import updateProfilePic from '@/api/users/updateProfilePic';
+import refreshMe from '@/api/users/refreshMe';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import placeholderPhotoImg from '/images/placeholder-default-image-user-photo.png';
+import { Input } from '@/components/ui/input';
+import { setUserInformation } from '@/utils/setUserInformation';
 
 const Photo = () => {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const Photo = () => {
         refreshUserDataMutation.mutate();
       }, 2000);
     } else {
-      alert("Please select an image first.");
+      alert('Please select an image first.');
     }
   };
 
@@ -56,7 +56,7 @@ const Photo = () => {
     <div className="flex w-full p-[4.5em]">
       <SideBarProfile />
       <div className="w-full">
-        <div className="flex w-full flex-row items-center justify-center gap-4">
+        <div className="flex w-full  items-center justify-center gap-4">
           <div className="flex w-full flex-col items-center justify-center border border-gray-300 p-[2em]">
             <h2 className="font-sans font-extrabold">Photo</h2>
             <p>Add a nice photo of yourself for your profile.</p>
@@ -69,17 +69,14 @@ const Photo = () => {
             <div className="w-full border border-gray-400 p-[1em]">
               <div className="flex w-full items-center justify-center bg-white">
                 <div className="flex w-full items-center justify-center bg-gray-100 p-[1em]">
-                  <img
-                    src={preview || placeholderPhotoImg}
-                    alt="Default user photo image"
-                  />
+                  <img src={preview || placeholderPhotoImg} alt="Default user photo image" />
                 </div>
               </div>
             </div>
             <div className="w-full items-start justify-start">
               <b>Add / Change Image</b>
               <form className="flex w-full flex-col items-start justify-start gap-6">
-                <div className="flex w-full flex-row items-start justify-start gap-4">
+                <div className="flex w-full  items-start justify-start gap-4">
                   <Input
                     type="file"
                     className="bw-min-max g-white rounded-[0.2em] border border-gray-500 text-black"

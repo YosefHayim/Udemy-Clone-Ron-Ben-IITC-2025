@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { MdOutlineShoppingCart } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { Button } from '@/components/ui/button';
+import { MdOutlineShoppingCart } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 const PurchaseHistoryRow = () => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/dashboard/cart-receipt/");
+    navigate('/dashboard/cart-receipt/');
   };
 
   return (
@@ -14,12 +14,8 @@ const PurchaseHistoryRow = () => {
       <div className="flex flex-row items-start justify-start gap-[0.5em]">
         <MdOutlineShoppingCart className="h-6 w-6" />
         <div className="flex flex-col items-start justify-start gap-[0.2em]">
-          <p className="text-purpleStatic">
-            React Native - The Practical Guide [2025]
-          </p>
-          <b className="font-sans font-extrabold text-purpleStatic">
-            Request a refund
-          </b>
+          <p className="text-purpleStatic">React Native - The Practical Guide [2025]</p>
+          <b className="font-sans font-extrabold text-purpleStatic">Request a refund</b>
         </div>
       </div>
       <div className="w-[50px]">

@@ -1,5 +1,5 @@
-import { localhostUrl, baseUrl, isProduction } from "@/api/configuration";
-import DialogPopup from "@/components/DialogPopup/DialogPopup";
+import { localhostUrl, baseUrl, isProduction } from '@/api/configuration';
+import DialogPopup from '@/components/DialogPopup/DialogPopup';
 import {
   Dialog,
   DialogContent,
@@ -7,26 +7,24 @@ import {
   DialogHeader,
   DialogOverlay,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { regFullButtonPurpleHover, regInputFill } from "@/utils/stylesStorage";
-import { useState } from "react";
-import { FaFacebook } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
-import { IoMdCheckmarkCircle, IoMdMail } from "react-icons/io";
-import { useLocation } from "react-router-dom";
+} from '@/components/ui/dialog';
+import { regFullButtonPurpleHover, regInputFill } from '@/utils/stylesStorage';
+import { useState } from 'react';
+import { FaFacebook } from 'react-icons/fa';
+import { FaSquareXTwitter } from 'react-icons/fa6';
+import { IoMdCheckmarkCircle, IoMdMail } from 'react-icons/io';
+import { useLocation } from 'react-router-dom';
 
 const SharePopup = ({ isClicked, setClicked }) => {
   const [openEmailDialog, setOpenEmailDialog] = useState(false);
   const [isSent, setSent] = useState(false);
-  const [emailInput, setEmailInput] = useState("");
-  const [message, setMessage] = useState("");
+  const [emailInput, setEmailInput] = useState('');
+  const [message, setMessage] = useState('');
 
   const location = useLocation();
 
   const handleCopyText = () => {
-    navigator.clipboard.writeText(
-      `${isProduction ? baseUrl : localhostUrl}${location.pathname}`,
-    );
+    navigator.clipboard.writeText(`${isProduction ? baseUrl : localhostUrl}${location.pathname}`);
   };
 
   const handleEmail = () => {
@@ -34,8 +32,8 @@ const SharePopup = ({ isClicked, setClicked }) => {
   };
 
   const handleCancel = () => {
-    setEmailInput("");
-    setMessage("");
+    setEmailInput('');
+    setMessage('');
     setSent(false);
     setOpenEmailDialog(false);
   };
@@ -43,17 +41,17 @@ const SharePopup = ({ isClicked, setClicked }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const emails = formData.get("emails");
-    const recommendReason = formData.get("recommend");
+    const emails = formData.get('emails');
+    const recommendReason = formData.get('recommend');
     setSent(true);
     console.log(emails, recommendReason);
   };
 
   const isSendDisabled = () => {
     const hasValidEmail = emailInput
-      .split(",")
+      .split(',')
       .map((e) => e.trim())
-      .some((email) => email.includes("@"));
+      .some((email) => email.includes('@'));
     const hasMessage = message.trim().length > 0;
     return !(hasValidEmail && hasMessage);
   };
@@ -61,14 +59,12 @@ const SharePopup = ({ isClicked, setClicked }) => {
   return (
     <div>
       <Dialog open={isClicked} onOpenChange={setClicked}>
-        <DialogOverlay style={{ backgroundColor: "#1d1e27cc" }} />
+        <DialogOverlay style={{ backgroundColor: '#1d1e27cc' }} />
         <DialogContent className="w-[500px]">
           <DialogHeader>
-            <DialogTitle className="font-sans font-extrabold">
-              Share this course
-            </DialogTitle>
+            <DialogTitle className="font-sans font-extrabold">Share this course</DialogTitle>
             <DialogDescription>
-              <div className="flex w-full flex-row gap-[0.4em]">
+              <div className="flex w-full  gap-[0.4em]">
                 <input
                   type="text"
                   value={`${isProduction ? baseUrl : localhostUrl}${location.pathname}`}
@@ -82,7 +78,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
                   Copy
                 </button>
               </div>
-              <div className="mt-[0.7em] flex flex-row items-center justify-center gap-[1em]">
+              <div className="mt-[0.7em] flex  items-center justify-center gap-[1em]">
                 <div className="w-min cursor-pointer rounded-[100em] border border-purple-900 p-[0.5em] hover:bg-purple-200">
                   <FaFacebook className="text-[1.3em] text-purple-600" />
                 </div>
@@ -121,9 +117,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
                         <label htmlFor="recommend" className="font-bold ">
                           Why are you recommending this?
                         </label>
-                        <p className="text-xs font-normal text-gray-500">
-                          Optional
-                        </p>
+                        <p className="text-xs font-normal text-gray-500">Optional</p>
                       </div>
                       <textarea
                         id="recommend"
@@ -152,10 +146,10 @@ const SharePopup = ({ isClicked, setClicked }) => {
                           </button>
                           <button
                             type="submit"
-                            className={`${regFullButtonPurpleHover} ${isSendDisabled() || isSent ? "cursor-not-allowed opacity-30" : "cursor-pointer"} flex h-full  items-center px-3 py-[0.5rem] focus:outline-none`}
+                            className={`${regFullButtonPurpleHover} ${isSendDisabled() || isSent ? 'cursor-not-allowed opacity-30' : 'cursor-pointer'} flex h-full  items-center px-3 py-[0.5rem] focus:outline-none`}
                           >
                             {isSent ? (
-                              <div className="flex flex-row items-center justify-center">
+                              <div className="flex  items-center justify-center">
                                 <p>Email Sent</p>
                                 <IoMdCheckmarkCircle size={18} />
                               </div>

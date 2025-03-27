@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { IoMdNotificationsOutline } from "react-icons/io";
-import HoverNotification from "./HoverNotification/HoverNotification";
-import { btnStyleNHover } from "@/utils/stylesStorage";
+import { useState } from 'react';
+import { IoMdNotificationsOutline } from 'react-icons/io';
+import HoverNotification from './HoverNotification/HoverNotification';
+import { btnStyleNHover } from '@/utils/stylesStorage';
 
 const Notifications = () => {
   const [showNotificationHover, setShowNotificationHover] = useState(false);
@@ -11,11 +11,7 @@ const Notifications = () => {
 
   return (
     <div>
-      <div
-        className="relative"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <button className={`${btnStyleNHover}`}>
           <IoMdNotificationsOutline className="h-6 w-6" />
         </button>

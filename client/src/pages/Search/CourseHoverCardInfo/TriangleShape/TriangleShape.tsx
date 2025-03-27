@@ -19,7 +19,6 @@ const TriangleShape: React.FC<{
           </div>
         </div>
       )}
-
       {/* // This is when hovering right */}
       {index >= 0 && positionedRight && (
         <div

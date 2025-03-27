@@ -1,14 +1,14 @@
-import { useSidebar } from "@/components/ui/sidebar";
+import { useSidebar } from '@/components/ui/sidebar';
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
-} from "@/components/ui/sidebar";
-import { CourseSidebarMenu } from "./CourseSliderBarMenu";
-import fetchCourseById from "@/services/courseService";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+} from '@/components/ui/sidebar';
+import { CourseSidebarMenu } from './CourseSliderBarMenu';
+import fetchCourseById from '@/services/courseService';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [courseData, setCourseData] = useState<any>(null);
@@ -28,24 +28,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       }
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
     handleResize(); // Initial check
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [open, toggleSidebar]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (!courseId) {
-          console.log("Missing courseId in the route.");
+          console.log('Missing courseId in the route.');
           return;
         }
 
         const data = await fetchCourseById(courseId);
         setCourseData(data);
       } catch (error) {
-        console.log("Failed to fetch course data.", error);
+        console.log('Failed to fetch course data.', error);
       }
     };
     fetchData();
@@ -57,14 +57,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <>
-      <Sidebar
-        className="absolute top-[4rem] min-h-full bg-white px-0"
-        side="right"
-      >
+      <Sidebar className="absolute top-[4rem] min-h-full bg-white px-0" side="right">
         <SidebarContent>
           <SidebarGroup className="gap-0 p-0">
             <SidebarGroupContent className="gap-0">
-              <CourseSidebarMenu courseId={courseId || ""} />
+              <CourseSidebarMenu courseId={courseId || ''} />
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>

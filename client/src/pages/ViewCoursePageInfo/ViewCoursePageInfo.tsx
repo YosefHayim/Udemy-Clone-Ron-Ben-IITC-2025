@@ -1,40 +1,40 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import Loader from "@/components/Loader/Loader";
-import getCourseById from "@/api/courses/getCourseById";
-import CourseBasicInfo from "./CourseBasicInfo/CourseBasicInfo";
-import CourseBigTitle from "./CourseBigTitle/CourseBigTitle";
-import CourseContent from "./CourseContent/CourseContent";
-import CourseCreatedBy from "./CourseCreatedBy/CourseCreatedBy";
-import CourseRating from "./CourseRating/CourseRating";
-import CourseRecap from "./CourseRecap/CourseRecap";
-import CourseStudentRatings from "./CourseStudentsRatings/CourseStudentRatings";
-import ExploreTopics from "./ExploreTopics/ExploreTopics";
-import FrequentlyBoughtTogether from "./FrequentlyBoughtTogether/FrequentlyBoughtTogether";
-import InstructorSection from "./InstructorSection/InstructorSection";
-import MoreCoursesByInstructor from "./MoreCoursesByInstructor/MoreCoursesByInstructor";
-import ReportAbuse from "./ReportAbuse/ReportAbuse";
-import ReviewsSection from "./ReviewsSection/ReviewsSection";
-import StickyCourseNavbar from "./StickyCourseNavbar/StickyCourseNavbar";
-import StudentsAlsoBought from "./StudentsAlsoBought/StudentsAlsoBought";
-import TopicPathMenu from "./TopicPathMenu/TopicPathMenu";
-import WhatYouLearn from "./WhatYouLearn/WhatYouLearn";
-import CoursePreviewCard from "./CoursePreviewCard/CoursePreviewCard";
-import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
-import { CourseData } from "@/types/types";
-import { useRef } from "react";
+import { useNavigate, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import Loader from '@/components/Loader/Loader';
+import getCourseById from '@/api/courses/getCourseById';
+import CourseBasicInfo from './CourseBasicInfo/CourseBasicInfo';
+import CourseBigTitle from './CourseBigTitle/CourseBigTitle';
+import CourseContent from './CourseContent/CourseContent';
+import CourseCreatedBy from './CourseCreatedBy/CourseCreatedBy';
+import CourseRating from './CourseRating/CourseRating';
+import CourseRecap from './CourseRecap/CourseRecap';
+import CourseStudentRatings from './CourseStudentsRatings/CourseStudentRatings';
+import ExploreTopics from './ExploreTopics/ExploreTopics';
+import FrequentlyBoughtTogether from './FrequentlyBoughtTogether/FrequentlyBoughtTogether';
+import InstructorSection from './InstructorSection/InstructorSection';
+import MoreCoursesByInstructor from './MoreCoursesByInstructor/MoreCoursesByInstructor';
+import ReportAbuse from './ReportAbuse/ReportAbuse';
+import ReviewsSection from './ReviewsSection/ReviewsSection';
+import StickyCourseNavbar from './StickyCourseNavbar/StickyCourseNavbar';
+import StudentsAlsoBought from './StudentsAlsoBought/StudentsAlsoBought';
+import TopicPathMenu from './TopicPathMenu/TopicPathMenu';
+import WhatYouLearn from './WhatYouLearn/WhatYouLearn';
+import CoursePreviewCard from './CoursePreviewCard/CoursePreviewCard';
+import CourseTag from '@/components/CourseCard/CourseTag/CourseTag';
+import { CourseData } from '@/types/types';
+import { useRef } from 'react';
 
 const ViewCoursePageInfo = () => {
   const { courseId } = useParams<{ courseId: string }>();
-  const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
+  const sanitizedCourseId = courseId?.trim().replace(/^:/, '');
   const scrollTargetRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   const { data, isLoading, error } = useQuery<CourseData>({
-    queryKey: ["course", sanitizedCourseId],
+    queryKey: ['course', sanitizedCourseId],
     queryFn: async () => {
       if (!sanitizedCourseId) {
-        throw new Error("Course ID is missing");
+        throw new Error('Course ID is missing');
       }
       return await getCourseById(sanitizedCourseId);
     },
@@ -45,9 +45,8 @@ const ViewCoursePageInfo = () => {
     const offset = 100; // height of sticky navbar
     const element = scrollTargetRef.current;
     if (element) {
-      const y =
-        element.getBoundingClientRect().top + window.pageYOffset - offset;
-      window.scrollTo({ top: y, behavior: "instant" });
+      const y = element.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: y, behavior: 'instant' });
     }
   };
 
@@ -64,7 +63,7 @@ const ViewCoursePageInfo = () => {
   }
 
   if (error) {
-    return navigate("/not/found");
+    return navigate('/not/found');
   }
 
   console.log(data);
@@ -88,7 +87,7 @@ const ViewCoursePageInfo = () => {
               />
               <CourseBigTitle courseTitle={data?.courseName} />
               <CourseRecap recapInfo={data?.courseRecapInfo} />
-              <div className="flex w-full flex-row items-center justify-start gap-3">
+              <div className="flex w-full  items-center justify-start gap-3">
                 <CourseTag tagName={data?.courseTag} />
                 <CourseRating
                   courseRating={data?.averageRating}
@@ -128,9 +127,7 @@ const ViewCoursePageInfo = () => {
                 whoThisFor={data?.whoThisCourseIsFor}
               />
               <StudentsAlsoBought />
-              <FrequentlyBoughtTogether
-                instructorId={data?.courseInstructor._id}
-              />
+              <FrequentlyBoughtTogether instructorId={data?.courseInstructor._id} />
               <div ref={scrollTargetRef}>
                 <InstructorSection
                   instructorHeadline={data?.courseInstructor?.headline}
@@ -140,13 +137,8 @@ const ViewCoursePageInfo = () => {
                   descriptionInstructor={data?.courseInstructorDescription}
                 />
               </div>
-              <ReviewsSection
-                reviewsToRender={data?.reviews}
-                avgRating={data?.averageRating}
-              />
-              <MoreCoursesByInstructor
-                instructorName={data?.courseInstructor?.fullName}
-              />
+              <ReviewsSection reviewsToRender={data?.reviews} avgRating={data?.averageRating} />
+              <MoreCoursesByInstructor instructorName={data?.courseInstructor?.fullName} />
               <ReportAbuse />
             </div>
           </div>

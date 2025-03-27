@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   calculateDiscountPercentage,
   calculateTotalSavings,
@@ -7,13 +7,13 @@ import {
   setAmountOfCourses,
   setTotalCourseDiscountPrices,
   setTotalOriginalCoursePrices,
-} from "@/redux/slices/cartSlice";
-import { useDispatch, useSelector } from "react-redux";
-import Loader from "@/components/Loader/Loader";
-import { useNavigate, Link } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import buyCourseByCourseId from "@/api/users/buyCourseByCourseId";
-import { RootState } from "@/redux/store";
+} from '@/redux/slices/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import Loader from '@/components/Loader/Loader';
+import { useNavigate, Link } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import buyCourseByCourseId from '@/api/users/buyCourseByCourseId';
+import { RootState } from '@/redux/store';
 
 const AddToCart: React.FC<{
   discountSum?: number;
@@ -29,9 +29,9 @@ const AddToCart: React.FC<{
   BtnText?: string;
 }> = ({
   isWhite = false,
-  extraCustomCss = "",
-  textBtn = "Add to cart",
-  courseId = "",
+  extraCustomCss = '',
+  textBtn = 'Add to cart',
+  courseId = '',
   discountPrice = 0,
   fullPriceCourse = 0,
   discountSum = 0,
@@ -43,9 +43,7 @@ const AddToCart: React.FC<{
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const coursesInCart = useSelector(
-    (state: RootState) => state.cart.coursesAddedToCart,
-  );
+  const coursesInCart = useSelector((state: RootState) => state.cart.coursesAddedToCart);
 
   const isAddedToCart = courseId ? coursesInCart.includes(courseId) : false;
 
@@ -60,17 +58,12 @@ const AddToCart: React.FC<{
       }, 2000);
     },
     onError: (error) => {
-      console.error("Error during buying course:", error);
+      console.error('Error during buying course:', error);
     },
   });
 
   const handleClick = (courseId: string) => {
-    if (
-      textBtn === "Add to cart" &&
-      courseId &&
-      discountPrice &&
-      fullPriceCourse
-    ) {
+    if (textBtn === 'Add to cart' && courseId && discountPrice && fullPriceCourse) {
       setIsLoading(true);
       setTimeout(() => {
         dispatch(setAmountOfCourses());
@@ -82,9 +75,9 @@ const AddToCart: React.FC<{
         setIsLoading(false);
         onAddToCartSuccess();
       }, 2000);
-    } else if (textBtn === "Enroll Now" && courseId) {
+    } else if (textBtn === 'Enroll Now' && courseId) {
       buyCourseMutation.mutate(courseId);
-    } else if (textBtn === "Add all to cart" && Array.isArray(courseIds)) {
+    } else if (textBtn === 'Add all to cart' && Array.isArray(courseIds)) {
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
@@ -94,23 +87,20 @@ const AddToCart: React.FC<{
 
   // Decide final button text
   let finalText = BtnText || textBtn;
-  if (discountPrice === 0 || fullPriceCourse === 0) finalText = "Enroll Now";
-  if (discountSum > 0) finalText = "Add all to cart";
-  if (isAddedToCart) finalText = "Go to cart";
+  if (discountPrice === 0 || fullPriceCourse === 0) finalText = 'Enroll Now';
+  if (discountSum > 0) finalText = 'Add all to cart';
+  if (isAddedToCart) finalText = 'Go to cart';
 
   const ButtonElement = (
     <Button
       onClick={() => handleClick(courseId)}
-      id={`btn-${courseId || "unknown"}`}
+      id={`btn-${courseId || 'unknown'}`}
       disabled={isLoading}
       className={`${extraCustomCss} w-full rounded-[0.2em] py-[1.5em] font-sans font-extrabold ${
         isLoading
-          ? "cursor-not-allowed bg-gray-400 focus:outline-none"
-          : "bg-btnColor hover:bg-purpleStatic focus:outline-none"
-      } ${
-        isWhite &&
-        "border border-purple-800 bg-white text-purple-800 hover:bg-purple-100"
-      }`}
+          ? 'cursor-not-allowed bg-gray-400 focus:outline-none'
+          : 'bg-btnColor hover:bg-purpleStatic focus:outline-none'
+      } ${isWhite && 'border border-purple-800 bg-white text-purple-800 hover:bg-purple-100'}`}
     >
       {isLoading ? (
         <div
@@ -119,11 +109,7 @@ const AddToCart: React.FC<{
             `right-[3%] flex w-full items-center justify-center text-center`
           }`}
         >
-          <Loader
-            useSmallLoading={true}
-            hSize=""
-            purpleLightSmallStyle={doYouWantPurpleLoading}
-          />
+          <Loader useSmallLoading={true} hSize="" purpleLightSmallStyle={doYouWantPurpleLoading} />
         </div>
       ) : (
         finalText
@@ -133,11 +119,7 @@ const AddToCart: React.FC<{
 
   return (
     <div className="w-full">
-      {finalText === "Go to cart" ? (
-        <Link to="/cart">{ButtonElement}</Link>
-      ) : (
-        ButtonElement
-      )}
+      {finalText === 'Go to cart' ? <Link to="/cart">{ButtonElement}</Link> : ButtonElement}
     </div>
   );
 };

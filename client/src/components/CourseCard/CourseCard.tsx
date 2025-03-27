@@ -1,4 +1,4 @@
-import { CourseCardProps } from "@/types/types";
+import { CourseCardProps } from '@/types/types';
 
 const CourseCard: React.FC<CourseCardProps> = ({
   title,
@@ -15,9 +15,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
         <h3 className="font-sans text-lg font-extrabold">{title}</h3>
         <p className="text-sm text-gray-600">{description}</p>
         <div className="mt-2">
-          <span className="font-sans font-extrabold text-red-500">
-            ${discountPrice}
-          </span>
+          <span className="font-sans font-extrabold text-red-500">${discountPrice}</span>
           <span className="ml-2 text-gray-500 line-through">${fullPrice}</span>
         </div>
         {tag && (

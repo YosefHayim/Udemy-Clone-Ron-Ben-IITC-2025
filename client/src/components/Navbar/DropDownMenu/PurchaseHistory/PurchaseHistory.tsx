@@ -1,12 +1,10 @@
-import { RootState } from "@/redux/store";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import PurchaseHistoryRow from "./PurchaseHistoryRow/PurchaseHistoryRow";
+import { RootState } from '@/redux/store';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import PurchaseHistoryRow from './PurchaseHistoryRow/PurchaseHistoryRow';
 
 const PurchaseHistory = () => {
-  const userCredits = useSelector(
-    (state: RootState) => state?.user.udemyCredits,
-  );
+  const userCredits = useSelector((state: RootState) => state?.user.udemyCredits);
 
   useEffect(() => {}, [userCredits]);
 

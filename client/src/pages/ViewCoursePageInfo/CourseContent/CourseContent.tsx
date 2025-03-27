@@ -1,8 +1,8 @@
-import { CourseContentProps } from "@/types/types";
-import Description from "../Description/Description";
-import Requirements from "../Requirements/Requirements";
-import Section from "../Section/Section";
-import TotalCourseLength from "../TotalCourseLength/TotalCourseLength";
+import { CourseContentProps } from '@/types/types';
+import Description from '../Description/Description';
+import Requirements from '../Requirements/Requirements';
+import Section from '../Section/Section';
+import TotalCourseLength from '../TotalCourseLength/TotalCourseLength';
 
 const CourseContent: React.FC<CourseContentProps> = ({
   description,
@@ -23,9 +23,7 @@ const CourseContent: React.FC<CourseContentProps> = ({
 
   return (
     <div className="flex flex-col">
-      <h2 className="mb-[1em] font-sans text-[1.2em] font-extrabold">
-        Course Content
-      </h2>
+      <h2 className="mb-[1em] font-sans text-[1.2em] font-extrabold">Course Content</h2>
       <TotalCourseLength
         totalCourseLessons={totalCourseLessons}
         totalCourseDuration={totalCourseDuration}
@@ -34,10 +32,7 @@ const CourseContent: React.FC<CourseContentProps> = ({
       <div>
         {sectionsOfCourse.map((courseSection) => (
           <div key={courseSection._id}>
-            <Section
-              lessonsOfSection={courseSection.lessons}
-              sectionName={courseSection.title}
-            />
+            <Section lessonsOfSection={courseSection.lessons} sectionName={courseSection.title} />
           </div>
         ))}
       </div>

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Link, useLocation } from "react-router-dom";
-import { FaChevronDown } from "react-icons/fa";
-import { MdOndemandVideo } from "react-icons/md";
+import React, { useState } from 'react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Link, useLocation } from 'react-router-dom';
+import { FaChevronDown } from 'react-icons/fa';
+import { MdOndemandVideo } from 'react-icons/md';
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -11,71 +11,56 @@ import {
   SidebarMenuSubItem,
   SidebarMenuSubButton,
   useSidebar,
-} from "@/components/ui/sidebar";
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from "@/components/ui/collapsible";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  fetchCourseProgress,
-  updateLessonProgress,
-} from "@/services/ProgressService";
-import { CourseProgressResponse, LessonProgressPayload } from "@/types";
-import CustomTrigger from "../Lesson/CustomTrigger";
+} from '@/components/ui/sidebar';
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { fetchCourseProgress, updateLessonProgress } from '@/services/ProgressService';
+import { CourseProgressResponse, LessonProgressPayload } from '@/types';
+import CustomTrigger from '../Lesson/CustomTrigger';
 
 export function CourseSidebarMenu({ courseId }: { courseId: string }) {
-  const [hover, setHover] = useState("gray-600");
+  const [hover, setHover] = useState('gray-600');
   const { toggleSidebar, open } = useSidebar();
   const location = useLocation();
   const queryClient = useQueryClient();
 
   // React Query: Fetch course progress
   const { data, isLoading, isError, error } = useQuery<CourseProgressResponse>({
-    queryKey: ["courseProgress", courseId],
+    queryKey: ['courseProgress', courseId],
     queryFn: () => fetchCourseProgress(courseId),
     enabled: !!courseId,
   });
 
   // Mutation for updating lesson progress with optimistic updates
   const mutation = useMutation({
-    mutationFn: ({
-      lessonId,
-      payload,
-    }: {
-      lessonId: string;
-      payload: LessonProgressPayload;
-    }) => updateLessonProgress(courseId, lessonId, payload),
+    mutationFn: ({ lessonId, payload }: { lessonId: string; payload: LessonProgressPayload }) =>
+      updateLessonProgress(courseId, lessonId, payload),
     onMutate: async ({ lessonId, payload }) => {
       // Cancel ongoing queries
-      await queryClient.cancelQueries(["courseProgress", courseId]);
+      await queryClient.cancelQueries(['courseProgress', courseId]);
 
       // Snapshot previous state
       const previousData = queryClient.getQueryData<CourseProgressResponse>([
-        "courseProgress",
+        'courseProgress',
         courseId,
       ]);
 
       // Optimistically update the UI
       if (previousData) {
-        queryClient.setQueryData<CourseProgressResponse>(
-          ["courseProgress", courseId],
-          {
-            ...previousData,
-            progress: {
-              ...previousData.progress,
-              sections: previousData.progress.sections.map((section) => ({
-                ...section,
-                lessons: section.lessons.map((lesson) =>
-                  lesson.lessonId._id === lessonId
-                    ? { ...lesson, completed: payload.completed }
-                    : lesson,
-                ),
-              })),
-            },
+        queryClient.setQueryData<CourseProgressResponse>(['courseProgress', courseId], {
+          ...previousData,
+          progress: {
+            ...previousData.progress,
+            sections: previousData.progress.sections.map((section) => ({
+              ...section,
+              lessons: section.lessons.map((lesson) =>
+                lesson.lessonId._id === lessonId
+                  ? { ...lesson, completed: payload.completed }
+                  : lesson
+              ),
+            })),
           },
-        );
+        });
       }
 
       return { previousData };
@@ -84,14 +69,14 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
       // Rollback the UI if the mutation fails
       if (context?.previousData) {
         queryClient.setQueryData<CourseProgressResponse>(
-          ["courseProgress", courseId],
-          context.previousData,
+          ['courseProgress', courseId],
+          context.previousData
         );
       }
     },
     onSettled: () => {
       // Refetch data to ensure consistency
-      queryClient.invalidateQueries(["courseProgress", courseId]);
+      queryClient.invalidateQueries(['courseProgress', courseId]);
     },
   });
 
@@ -104,8 +89,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
   };
 
   if (isLoading) return <div>Loading course content...</div>;
-  if (isError && error instanceof Error)
-    return <div>Error: {error.message}</div>;
+  if (isError && error instanceof Error) return <div>Error: {error.message}</div>;
 
   let lessonCounter = 0;
 
@@ -115,11 +99,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
         <span className="text-lg">Course content</span>
         {open && (
           <div className="size pl-6">
-            <CustomTrigger
-              open={open}
-              toggleSidebar={toggleSidebar}
-              position="insideSidebar"
-            />
+            <CustomTrigger open={open} toggleSidebar={toggleSidebar} position="insideSidebar" />
           </div>
         )}
       </div>
@@ -142,8 +122,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
                     <FaChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                   </div>
                   <p className="mb-10 text-xs font-semibold text-courseNameColorTxt">
-                    {section.completedLessonsInSection}/{" "}
-                    {section.totalLessonsInSection} | 42min
+                    {section.completedLessonsInSection}/ {section.totalLessonsInSection} | 42min
                   </p>
                 </div>
               </SidebarMenuButton>
@@ -154,15 +133,15 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
                 {section.lessons.map((lesson) => {
                   lessonCounter += 1;
                   const isCurrentLesson = location.pathname.startsWith(
-                    `/course/${courseId}/lesson/${lesson.lessonId._id}`,
+                    `/course/${courseId}/lesson/${lesson.lessonId._id}`
                   );
 
                   return (
                     <SidebarMenuSubItem
                       className={
                         isCurrentLesson
-                          ? "h-full w-full bg-slate-400"
-                          : "h-full  w-full hover:bg-slate-400"
+                          ? 'h-full w-full bg-slate-400'
+                          : 'h-full  w-full hover:bg-slate-400'
                       }
                       key={lesson.lessonId._id}
                     >
@@ -172,10 +151,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
                             <Checkbox
                               checked={lesson.completed}
                               onCheckedChange={() =>
-                                toggleLessonCompletion(
-                                  lesson.lessonId._id,
-                                  lesson.completed,
-                                )
+                                toggleLessonCompletion(lesson.lessonId._id, lesson.completed)
                               }
                               className=" mt-0 self-start rounded-none border-2 hover:border-purple-500 focus:outline-none focus-visible:outline-none"
                             />

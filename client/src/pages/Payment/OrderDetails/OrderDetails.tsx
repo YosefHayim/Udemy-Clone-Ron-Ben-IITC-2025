@@ -1,15 +1,13 @@
-import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
-import { RootState } from "@/redux/store";
-import { useSelector } from "react-redux";
+import ItemInCart from '@/components/Navbar/Cart/ItemInCart/ItemInCart';
+import { RootState } from '@/redux/store';
+import { useSelector } from 'react-redux';
 
 const OrderDetails: React.FC = () => {
-  const coursesIdAdded = useSelector(
-    (state: RootState) => state.cart.coursesAddedToCart,
-  );
+  const coursesIdAdded = useSelector((state: RootState) => state.cart.coursesAddedToCart);
 
   return (
     <div className="flex w-[400px] flex-col items-start justify-start gap-[1em]">
-      <div className="flex flex-row items-start justify-start gap-[0.2em]">
+      <div className="flex  items-start justify-start gap-[0.2em]">
         <b>Order details</b>
         <p>({coursesIdAdded.length} Course)</p>
       </div>
@@ -27,7 +25,7 @@ const OrderDetails: React.FC = () => {
               showDisPrice={true}
               shortCutInstructor={true}
               shortcutTitle={false}
-              chooseFlex={"flex flex-row"}
+              chooseFlex={'flex '}
               itemsPosition="start"
               textColor="text-bg-black"
             />

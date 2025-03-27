@@ -1,10 +1,10 @@
-import BG from "/images/businessBG.jpg";
-import Logo from "/images/BusinessLogo.png";
-import { useNavigate } from "react-router-dom";
+import BG from '/images/businessBG.jpg';
+import Logo from '/images/BusinessLogo.png';
+import { useNavigate } from 'react-router-dom';
 
 const navigate = useNavigate();
 const navigatePrivacy = () => {
-  navigate("/terms/ub-privacy/");
+  navigate('/terms/ub-privacy/');
 };
 
 const LoginBusiness = () => {
@@ -19,11 +19,7 @@ const LoginBusiness = () => {
       <div className="mb-[15.7rem] w-full max-w-md bg-white p-6 shadow-lg">
         {/* Logo */}
         <div className="mb-[1.8rem] text-center">
-          <img
-            src={Logo}
-            alt="Udemy Business Logo"
-            className="mx-auto h-[2.35rem]"
-          />
+          <img src={Logo} alt="Udemy Business Logo" className="mx-auto h-[2.35rem]" />
         </div>
 
         {/* Formulário */}
@@ -54,9 +50,7 @@ const LoginBusiness = () => {
             Need help with logging in or signing up?
           </a>
           <p className="mt-7 text-xs text-grayNavbarTxt">
-            <button onClick={navigatePrivacy}>
-              Read our Privacy Statement
-            </button>
+            <button onClick={navigatePrivacy}>Read our Privacy Statement</button>
           </p>
         </div>
       </div>

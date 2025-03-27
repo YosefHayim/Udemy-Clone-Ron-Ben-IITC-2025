@@ -1,17 +1,17 @@
-import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import loginUser from "@/api/users/loginUser";
-import { FcGoogle } from "react-icons/fc";
-import { FaApple, FaRegUser } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { emailContext } from "@/routes/AppRoutes";
-import { useGoogleLogin } from "@react-oauth/google";
-import googleLogin from "@/api/users/googleLogin";
-import Loader from "@/components/Loader/Loader";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { Button } from "@/components/ui/button";
+import { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import loginUser from '@/api/users/loginUser';
+import { FcGoogle } from 'react-icons/fc';
+import { FaApple, FaRegUser } from 'react-icons/fa';
+import { FaFacebook } from 'react-icons/fa';
+import { emailContext } from '@/routes/AppRoutes';
+import { useGoogleLogin } from '@react-oauth/google';
+import googleLogin from '@/api/users/googleLogin';
+import Loader from '@/components/Loader/Loader';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import { Button } from '@/components/ui/button';
 import {
   continueWGoogleBtn,
   diffLoginOptionBtn,
@@ -21,29 +21,27 @@ import {
   loginThirdPartyBtn,
   loginWDiffAccBtn,
   regFullButtonPurpleHover,
-} from "@/utils/stylesStorage";
-import { baseUrl, isProduction, localhostUrl } from "@/api/configuration";
-import { AiOutlineMail } from "react-icons/ai";
-import { useDispatch } from "react-redux";
-import { setUserInformation } from "@/utils/setUserInformation";
+} from '@/utils/stylesStorage';
+import { baseUrl, isProduction, localhostUrl } from '@/api/configuration';
+import { AiOutlineMail } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import { setUserInformation } from '@/utils/setUserInformation';
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // Change this to true when using in production.
   const [isError, setShowIsError] = useState(false);
   const [differentAccount, setDifferentAccount] = useState(false);
   const [showRegularLogin, setShowRegularLogin] = useState(false);
   const [isLoading, setLoading] = useState(false);
+
   const isLoggedPreviouslyWithGoogle = useSelector(
-    (state: RootState) => state?.user?.isLoggedPreviouslyWithGoogle,
+    (state: RootState) => state?.user?.isLoggedPreviouslyWithGoogle
   );
   const cookie = useSelector((state: RootState) => state?.user?.cookie);
   const fullname = useSelector((state: RootState) => state?.user?.fullName);
   const globalEmail = useSelector((state: RootState) => state?.user?.email);
-  const userProfileImage = useSelector(
-    (state: RootState) => state?.user?.profilePic,
-  );
+  const userProfileImage = useSelector((state: RootState) => state?.user?.profilePic);
 
   const handleRegularLogin = () => {
     setShowRegularLogin(true);
@@ -56,10 +54,10 @@ const Login = () => {
   const loginMutation = useMutation({
     mutationFn: loginUser,
     onSuccess: () => {
-      navigate("/verify-code");
+      navigate('/verify-code');
     },
     onError: (error) => {
-      console.log("Error during login process:", error);
+      console.log('Error during login process:', error);
       setShowIsError(true);
       return;
     },
@@ -69,16 +67,16 @@ const Login = () => {
     mutationFn: googleLogin,
     onSuccess: (cookie) => {
       setUserInformation(cookie, dispatch);
-      navigate("/");
+      navigate('/');
     },
     onError: (error) => {
-      console.log("Error during google login process:", error);
+      console.log('Error during google login process:', error);
       setShowIsError(true);
     },
   });
 
   const emailCtx = useContext(emailContext);
-  if (!emailCtx) throw new Error("emailContext is not provided");
+  if (!emailCtx) throw new Error('emailContext is not provided');
   const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -89,7 +87,7 @@ const Login = () => {
     }, 2000);
 
     const formData = new FormData(e.currentTarget);
-    const email = (formData.get("email") as string) || globalEmail;
+    const email = (formData.get('email') as string) || globalEmail;
 
     setEmailUser(email);
     loginMutation.mutate({ email });
@@ -105,8 +103,8 @@ const Login = () => {
     onNonOAuthError: (nonAuthError) => {
       console.log(nonAuthError);
     },
-    flow: "auth-code",
-    ux_mode: "popup",
+    flow: 'auth-code',
+    ux_mode: 'popup',
     redirect_uri: isProduction ? baseUrl : localhostUrl,
   });
 
@@ -130,9 +128,7 @@ const Login = () => {
           </h2>
           {showRegularLogin && !isLoggedPreviouslyWithGoogle && (
             <div
-              className={`"w-full" ${
-                showRegularLogin && !differentAccount ? "block" : "hidden"
-              }`}
+              className={`"w-full" ${showRegularLogin && !differentAccount ? 'block' : 'hidden'}`}
             >
               <div className="mb-4 flex w-full flex-col items-center justify-center text-center">
                 <div>
@@ -149,28 +145,19 @@ const Login = () => {
                   )}
                 </div>
                 <div className="my-2 flex flex-col items-center justify-center gap-2">
-                  <b className="font-sans font-extrabold">
-                    Welcome back, {fullname}
-                  </b>
+                  <b className="font-sans font-extrabold">Welcome back, {fullname}</b>
                   <p className="w-full text-sm font-medium">
-                    We’ll email{" "}
-                    <b className="font-sans font-extrabold">{globalEmail}</b> a
-                    code for a secure passwordless log-in.
+                    We’ll email <b className="font-sans font-extrabold">{globalEmail}</b> a code for
+                    a secure passwordless log-in.
                   </p>
                 </div>
               </div>
-              <form
-                className="mb-4 flex flex-col space-y-4"
-                onSubmit={handleSubmit}
-              ></form>
+              <form className="mb-4 flex flex-col space-y-4" onSubmit={handleSubmit}></form>
             </div>
           )}
           {differentAccount && (
             <div>
-              <form
-                className="mb-4 flex flex-col space-y-4"
-                onSubmit={handleSubmit}
-              >
+              <form className="mb-4 flex flex-col space-y-4" onSubmit={handleSubmit}>
                 <input
                   type="text"
                   name="email"
@@ -195,16 +182,11 @@ const Login = () => {
               <div>
                 <div className="my-6 flex w-full items-center">
                   <hr className="flex-grow border-gray-300" />
-                  <span className="mx-4 text-sm text-grayNavbarTxt">
-                    Other log in options
-                  </span>
+                  <span className="mx-4 text-sm text-grayNavbarTxt">Other log in options</span>
                   <hr className="flex-grow border-gray-300" />
                 </div>
                 <div className="mb-[2em] flex justify-center space-x-5">
-                  <button
-                    onClick={handleGoogle}
-                    className={`${loginThirdPartyBtn}`}
-                  >
+                  <button onClick={handleGoogle} className={`${loginThirdPartyBtn}`}>
                     <FcGoogle className={`${iconSize}`} />
                   </button>
                   <button className={`${loginThirdPartyBtn}`}>
@@ -221,17 +203,16 @@ const Login = () => {
             (!isLoggedPreviouslyWithGoogle && (
               <>
                 <div className="flex flex-col items-center gap-4">
-                  <form
-                    className="flex w-full flex-col gap-4"
-                    onSubmit={handleSubmit}
-                  >
-                    <input
-                      type="text"
-                      name="email"
-                      id="email"
-                      placeholder="Email"
-                      className={`${inputLoginWEmail}`}
-                    />
+                  <form className="flex w-full flex-col" onSubmit={handleSubmit}>
+                    {!differentAccount && isLoggedPreviouslyWithGoogle && (
+                      <input
+                        type="text"
+                        name="email"
+                        id="email"
+                        placeholder="Email"
+                        className={`${inputLoginWEmail}`}
+                      />
+                    )}
                     <button
                       type="submit"
                       className={`${regFullButtonPurpleHover} mb-6 flex w-full items-center justify-center font-sans font-extrabold`}
@@ -251,16 +232,11 @@ const Login = () => {
                   <div>
                     <div className="my-6 flex w-full items-center">
                       <hr className="flex-grow border-gray-300" />
-                      <span className="mx-4 text-sm text-grayNavbarTxt">
-                        Other log in options
-                      </span>
+                      <span className="mx-4 text-sm text-grayNavbarTxt">Other log in options</span>
                       <hr className="flex-grow border-gray-300" />
                     </div>
                     <div className="mb-[2em] flex justify-center space-x-5">
-                      <button
-                        onClick={handleGoogle}
-                        className={`${loginThirdPartyBtn}`}
-                      >
+                      <button onClick={handleGoogle} className={`${loginThirdPartyBtn}`}>
                         <FcGoogle className={`${iconSize}`} />
                       </button>
                       <button className={`${loginThirdPartyBtn}`}>
@@ -283,10 +259,7 @@ const Login = () => {
             {showRegularLogin ||
               (isLoggedPreviouslyWithGoogle && (
                 <div>
-                  <button
-                    onClick={handleRegularLogin}
-                    className={`${loginWDiffAccBtn}`}
-                  >
+                  <button onClick={handleRegularLogin} className={`${loginWDiffAccBtn}`}>
                     Log in with different account
                   </button>
                   <hr />
@@ -294,10 +267,7 @@ const Login = () => {
               ))}
             {showRegularLogin && (
               <div>
-                <button
-                  onClick={handleDifferentAccount}
-                  className={`${loginWDiffAccBtn}`}
-                >
+                <button onClick={handleDifferentAccount} className={`${loginWDiffAccBtn}`}>
                   Log to a different account
                 </button>
                 <hr />
@@ -305,17 +275,13 @@ const Login = () => {
             )}
             <Link to="/signup">
               <button className="p-[0.7em] underline-offset-[5px] focus:outline-none">
-                Don't have an account?{" "}
-                <span className="font-sans font-extrabold text-btnColor underline">
-                  Sign up
-                </span>
+                Don't have an account?{' '}
+                <span className="font-sans font-extrabold text-btnColor underline">Sign up</span>
               </button>
             </Link>
             <hr />
             <Link to="/organization/global-login/email">
-              <button className={`${diffLoginOptionBtn}`}>
-                Log in with your organization
-              </button>
+              <button className={`${diffLoginOptionBtn}`}>Log in with your organization</button>
             </Link>
           </div>
         </div>

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { IoIosSearch } from "react-icons/io";
-import { Link, useParams, useLocation } from "react-router-dom";
-import { MdOndemandVideo } from "react-icons/md";
+import React, { useState } from 'react';
+import { IoIosSearch } from 'react-icons/io';
+import { Link, useParams, useLocation } from 'react-router-dom';
+import { MdOndemandVideo } from 'react-icons/md';
 
 interface CourseContentProps {
   sections: Array<{
@@ -19,12 +19,12 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
   const { courseId } = useParams<{ courseId: string }>();
   const location = useLocation();
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Highlight matching text
   const highlightText = (text: string, query: string) => {
     if (!query) return text;
-    const parts = text.split(new RegExp(`(${query})`, "gi"));
+    const parts = text.split(new RegExp(`(${query})`, 'gi'));
     return parts.map((part, index) =>
       part.toLowerCase() === query.toLowerCase() ? (
         <span key={index} className="font-sans font-extrabold">
@@ -32,7 +32,7 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
         </span>
       ) : (
         part
-      ),
+      )
     );
   };
 
@@ -41,7 +41,7 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
     .map((section) => ({
       ...section,
       lessons: section.lessons.filter((lesson) =>
-        lesson.title.toLowerCase().includes(searchQuery.toLowerCase()),
+        lesson.title.toLowerCase().includes(searchQuery.toLowerCase())
       ),
     }))
     .filter((section) => section.lessons.length > 0); // Only include sections with matching lessons
@@ -73,18 +73,14 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
               <ul className="mt-2 pl-4">
                 {section.lessons.map((lesson) => {
                   const isCurrentLesson =
-                    location.pathname ===
-                      `/course/${courseId}/lesson/${lesson._id}/search` ||
-                    location.pathname ===
-                      `/course/${courseId}/lesson/${lesson._id}`;
+                    location.pathname === `/course/${courseId}/lesson/${lesson._id}/search` ||
+                    location.pathname === `/course/${courseId}/lesson/${lesson._id}`;
 
                   return (
                     <li
                       key={lesson._id}
                       className={`mb-2 flex items-center gap-3 p-2 ${
-                        isCurrentLesson
-                          ? "bg-slate-400 text-white"
-                          : "hover:bg-slate-400"
+                        isCurrentLesson ? 'bg-slate-400 text-white' : 'hover:bg-slate-400'
                       }`}
                     >
                       <div className="flex flex-col">
@@ -93,18 +89,14 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
                           state={{ courseId }}
                           className="ml-2 flex-col text-sm"
                         >
-                          <span>
-                            {highlightText(lesson.title, searchQuery)}
-                          </span>
+                          <span>{highlightText(lesson.title, searchQuery)}</span>
                           <span
                             className={`flex items-center text-xs ${
-                              isCurrentLesson ? "text-white" : "text-black"
+                              isCurrentLesson ? 'text-white' : 'text-black'
                             }`}
                           >
                             <MdOndemandVideo />
-                            <span>
-                              {lesson.duration ? `${lesson.duration} min` : ""}
-                            </span>
+                            <span>{lesson.duration ? `${lesson.duration} min` : ''}</span>
                           </span>
                         </Link>
                       </div>
@@ -117,20 +109,14 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
         ) : (
           // No Results Found
           <div className="mt-10 text-center">
-            <h2 className="font-sans text-2xl font-extrabold text-gray-600">
-              No results found
-            </h2>
+            <h2 className="font-sans text-2xl font-extrabold text-gray-600">No results found</h2>
             <p className="text-gray-500">Try a different search query.</p>
           </div>
         )
       ) : (
         <span className="my-[40px] flex flex-col items-center  self-center">
-          <h2 className="font-sans text-2xl font-extrabold text-[##303141] ">
-            Start a new search
-          </h2>
-          <h2 className="text-sm text-black ">
-            To find captions, lectures or resources
-          </h2>
+          <h2 className="font-sans text-2xl font-extrabold text-[##303141] ">Start a new search</h2>
+          <h2 className="text-sm text-black ">To find captions, lectures or resources</h2>
         </span>
       )}
     </div>

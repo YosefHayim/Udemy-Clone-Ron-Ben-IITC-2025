@@ -1,10 +1,5 @@
-import log from "video.js/dist/types/utils/log";
-import {
-  axiosClient,
-  baseUrl,
-  isProduction,
-  localhostUrl,
-} from "../api/configuration";
+import log from 'video.js/dist/types/utils/log';
+import { axiosClient, baseUrl, isProduction, localhostUrl } from '../api/configuration';
 
 // Define response types
 type CourseProgressResponse = {
@@ -22,7 +17,7 @@ type FetchProgressFn = (courseId: string) => Promise<CourseProgressResponse>;
 type UpdateLessonProgressFn = (
   courseId: string,
   lessonId: string,
-  payload: LessonProgressPayload,
+  payload: LessonProgressPayload
 ) => Promise<void>;
 type InitializeProgressFn = (courseId: string) => Promise<void>;
 
@@ -31,8 +26,8 @@ type InitializeProgressFn = (courseId: string) => Promise<void>;
  */
 const fetchCourseProgress: FetchProgressFn = async (courseId) => {
   if (!courseId) {
-    console.log("Invalid course ID provided.");
-    throw new Error("Course ID is required.");
+    console.log('Invalid course ID provided.');
+    throw new Error('Course ID is required.');
   }
 
   const url = `${isProduction ? baseUrl : localhostUrl}/api/course-progress/${courseId.trim()}`;
@@ -43,21 +38,20 @@ const fetchCourseProgress: FetchProgressFn = async (courseId) => {
     // Validate response structure
     if (
       response?.data &&
-      typeof response.data.totalLessons === "number" &&
-      typeof response.data.completedLessons === "number" &&
-      typeof response.data.percentageCompleted === "number"
+      typeof response.data.totalLessons === 'number' &&
+      typeof response.data.completedLessons === 'number' &&
+      typeof response.data.percentageCompleted === 'number'
     ) {
-      console.log("respone:--", response);
+      console.log('respone:--', response);
       return response.data;
     }
 
-    console.warn("Unexpected response structure:", response?.data);
-    throw new Error("Invalid response format.");
+    console.warn('Unexpected response structure:', response?.data);
+    throw new Error('Invalid response format.');
   } catch (error: any) {
     console.log(`Error fetching progress for course ID ${courseId}:`, error);
     throw new Error(
-      error.response?.data?.message ||
-        `Failed to fetch progress for course ID ${courseId}`,
+      error.response?.data?.message || `Failed to fetch progress for course ID ${courseId}`
     );
   }
 };
@@ -65,14 +59,10 @@ const fetchCourseProgress: FetchProgressFn = async (courseId) => {
 /**
  * Update progress for a specific lesson in a course.
  */
-const updateLessonProgress: UpdateLessonProgressFn = async (
-  courseId,
-  lessonId,
-  payload,
-) => {
+const updateLessonProgress: UpdateLessonProgressFn = async (courseId, lessonId, payload) => {
   if (!courseId || !lessonId) {
-    console.log("Invalid course ID or lesson ID provided.");
-    throw new Error("Course ID and Lesson ID are required.");
+    console.log('Invalid course ID or lesson ID provided.');
+    throw new Error('Course ID and Lesson ID are required.');
   }
 
   const url = `${isProduction ? baseUrl : localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}`;
@@ -81,17 +71,17 @@ const updateLessonProgress: UpdateLessonProgressFn = async (
     const response = await axiosClient.patch(url, payload);
 
     if (!response?.data) {
-      console.warn("No data returned from updating lesson progress.");
-      throw new Error("Failed to update lesson progress.");
+      console.warn('No data returned from updating lesson progress.');
+      throw new Error('Failed to update lesson progress.');
     }
   } catch (error: any) {
     console.log(
       `Error updating lesson progress for course ${courseId} and lesson ${lessonId}:`,
-      error,
+      error
     );
     throw new Error(
       error.response?.data?.message ||
-        `Failed to update progress for course ID ${courseId} and lesson ID ${lessonId}`,
+        `Failed to update progress for course ID ${courseId} and lesson ID ${lessonId}`
     );
   }
 };
@@ -101,8 +91,8 @@ const updateLessonProgress: UpdateLessonProgressFn = async (
  */
 const initializeCourseProgress: InitializeProgressFn = async (courseId) => {
   if (!courseId) {
-    console.log("Invalid course ID provided.");
-    throw new Error("Course ID is required.");
+    console.log('Invalid course ID provided.');
+    throw new Error('Course ID is required.');
   }
 
   const url = `${isProduction ? baseUrl : localhostUrl}/api/course-progress/initialize/${courseId.trim()}`;
@@ -111,17 +101,13 @@ const initializeCourseProgress: InitializeProgressFn = async (courseId) => {
     const response = await axiosClient.post(url);
 
     if (!response?.data) {
-      console.warn("No data returned from initializing course progress.");
-      throw new Error("Failed to initialize course progress.");
+      console.warn('No data returned from initializing course progress.');
+      throw new Error('Failed to initialize course progress.');
     }
   } catch (error: any) {
-    console.log(
-      `Error initializing progress for course ID ${courseId}:`,
-      error,
-    );
+    console.log(`Error initializing progress for course ID ${courseId}:`, error);
     throw new Error(
-      error.response?.data?.message ||
-        `Failed to initialize progress for course ID ${courseId}`,
+      error.response?.data?.message || `Failed to initialize progress for course ID ${courseId}`
     );
   }
 };

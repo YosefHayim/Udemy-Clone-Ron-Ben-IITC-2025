@@ -1,4 +1,4 @@
-import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 
 /**
  * ButtonsCarousel - Navigation arrows for a carousel.
@@ -20,15 +20,13 @@ const ButtonsCarousel = ({
   state,
   useCustom = false,
   showDirectionalButtonsOnlyOnEdge = false,
-  topPosition = "67%",
-  leftPosition = "1%",
-  bottomPosition = "0%",
-  rightPosition = "0%",
+  topPosition = '67%',
+  leftPosition = '1%',
+  bottomPosition = '0%',
+  rightPosition = '0%',
 }) => {
-  const showLeft =
-    !useCustom || (showDirectionalButtonsOnlyOnEdge ? state > 0 : state >= 0);
-  const showRight =
-    !useCustom || (showDirectionalButtonsOnlyOnEdge ? state === 0 : state >= 0);
+  const showLeft = !useCustom || (showDirectionalButtonsOnlyOnEdge ? state > 0 : state >= 0);
+  const showRight = !useCustom || (showDirectionalButtonsOnlyOnEdge ? state === 0 : state >= 0);
 
   return (
     <div>

@@ -1,19 +1,12 @@
-import React from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { FaChevronDown } from "react-icons/fa";
-import { MdOndemandVideo } from "react-icons/md";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from "@/components/ui/collapsible";
-import {
-  fetchCourseProgress,
-  updateLessonProgress,
-} from "../../../services/ProgressService";
-import { CourseProgressResponse, LessonProgressPayload } from "@/types/types";
+import React from 'react';
+import { Link, useParams, useLocation } from 'react-router-dom';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { FaChevronDown } from 'react-icons/fa';
+import { MdOndemandVideo } from 'react-icons/md';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
+import { fetchCourseProgress, updateLessonProgress } from '../../../services/ProgressService';
+import { CourseProgressResponse, LessonProgressPayload } from '@/types/types';
 
 const CourseContent: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -23,49 +16,39 @@ const CourseContent: React.FC = () => {
   const sanitizedCourseId = courseId?.trim();
 
   // React Query: Fetch course progress
-  const { data, isLoading, isError, error } = useQuery<
-    CourseProgressResponse | undefined
-  >({
-    queryKey: ["courseProgress", courseId],
+  const { data, isLoading, isError, error } = useQuery<CourseProgressResponse | undefined>({
+    queryKey: ['courseProgress', courseId],
     queryFn: () => fetchCourseProgress(courseId),
     enabled: !!courseId,
   });
 
   // Mutation with optimistic updates
   const mutation = useMutation({
-    mutationFn: ({
-      lessonId,
-      payload,
-    }: {
-      lessonId: string;
-      payload: LessonProgressPayload;
-    }) => updateLessonProgress(sanitizedCourseId!, lessonId, payload),
+    mutationFn: ({ lessonId, payload }: { lessonId: string; payload: LessonProgressPayload }) =>
+      updateLessonProgress(sanitizedCourseId!, lessonId, payload),
     onMutate: async ({ lessonId, payload }) => {
-      await queryClient.cancelQueries(["courseProgress", sanitizedCourseId]);
+      await queryClient.cancelQueries(['courseProgress', sanitizedCourseId]);
 
       const previousData = queryClient.getQueryData<CourseProgressResponse>([
-        "courseProgress",
+        'courseProgress',
         sanitizedCourseId,
       ]);
 
       if (previousData) {
-        queryClient.setQueryData<CourseProgressResponse>(
-          ["courseProgress", sanitizedCourseId],
-          {
-            ...previousData,
-            progress: {
-              ...previousData.progress,
-              sections: previousData.progress.sections.map((section) => ({
-                ...section,
-                lessons: section.lessons.map((lesson) =>
-                  lesson.lessonId._id === lessonId
-                    ? { ...lesson, completed: payload.completed }
-                    : lesson,
-                ),
-              })),
-            },
+        queryClient.setQueryData<CourseProgressResponse>(['courseProgress', sanitizedCourseId], {
+          ...previousData,
+          progress: {
+            ...previousData.progress,
+            sections: previousData.progress.sections.map((section) => ({
+              ...section,
+              lessons: section.lessons.map((lesson) =>
+                lesson.lessonId._id === lessonId
+                  ? { ...lesson, completed: payload.completed }
+                  : lesson
+              ),
+            })),
           },
-        );
+        });
       }
 
       return { previousData };
@@ -73,13 +56,13 @@ const CourseContent: React.FC = () => {
     onError: (err, variables, context) => {
       if (context?.previousData) {
         queryClient.setQueryData<CourseProgressResponse>(
-          ["courseProgress", sanitizedCourseId],
-          context.previousData,
+          ['courseProgress', sanitizedCourseId],
+          context.previousData
         );
       }
     },
     onSettled: () => {
-      queryClient.invalidateQueries(["courseProgress", sanitizedCourseId]);
+      queryClient.invalidateQueries(['courseProgress', sanitizedCourseId]);
     },
   });
 
@@ -91,8 +74,7 @@ const CourseContent: React.FC = () => {
   };
 
   if (isLoading) return <div>Loading course content...</div>;
-  if (isError && error instanceof Error)
-    return <div>Error: {error.message}</div>;
+  if (isError && error instanceof Error) return <div>Error: {error.message}</div>;
 
   let lessonCounter = 0;
 
@@ -130,19 +112,16 @@ const CourseContent: React.FC = () => {
                     <li
                       key={lesson.lessonId._id}
                       className={`mb-2 flex items-center gap-3 p-2 ${
-                        isCurrentLesson ? "bg-slate-400 " : "hover:bg-slate-400"
+                        isCurrentLesson ? 'bg-slate-400 ' : 'hover:bg-slate-400'
                       }`}
                     >
                       <Checkbox
                         checked={lesson.completed}
                         onCheckedChange={() =>
-                          toggleLessonCompletion(
-                            lesson.lessonId._id,
-                            lesson.completed,
-                          )
+                          toggleLessonCompletion(lesson.lessonId._id, lesson.completed)
                         }
                         className={`hover:border-black focus:outline-none ${
-                          isCurrentLesson ? "border-white" : ""
+                          isCurrentLesson ? 'border-white' : ''
                         }`}
                       />
                       <div className="flex flex-col">
@@ -156,14 +135,12 @@ const CourseContent: React.FC = () => {
                           </span>
                           <span
                             className={`flex items-center text-xs ${
-                              isCurrentLesson ? "text-white" : "text-black"
+                              isCurrentLesson ? 'text-white' : 'text-black'
                             }`}
                           >
                             <MdOndemandVideo />
                             <span>
-                              {lesson.lessonId.duration
-                                ? `${lesson.lessonId.duration} min`
-                                : ""}
+                              {lesson.lessonId.duration ? `${lesson.lessonId.duration} min` : ''}
                             </span>
                           </span>
                         </Link>

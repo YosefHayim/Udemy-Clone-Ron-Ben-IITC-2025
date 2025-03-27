@@ -2,15 +2,11 @@ const FooterLogin: React.FC = () => {
   return (
     <div className="flex items-center justify-between border-t border-gray-700 border-y-[#9DA3A7]  bg-blackUdemy px-12 pb-4 pt-2 font-medium text-white">
       <div>
-        <h3
-          className="font-sans text-lg font-extrabold"
-          style={{ lineHeight: "2.2" }}
-        >
+        <h3 className="font-sans text-lg font-extrabold" style={{ lineHeight: '2.2' }}>
           Teach the world online
         </h3>
         <p className="text-sm text-white">
-          Create an online video course, reach students across the globe, and
-          earn money
+          Create an online video course, reach students across the globe, and earn money
         </p>
       </div>
       <div>

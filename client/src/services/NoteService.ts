@@ -1,5 +1,5 @@
-import { axiosClient, localhostUrl } from "../api/configuration";
-import { Note } from "../types/types";
+import { axiosClient, localhostUrl } from '../api/configuration';
+import { Note } from '../types/types';
 
 // Define response types
 
@@ -12,28 +12,20 @@ type EditNoteFn = (
   courseId: string,
   lessonId: string,
   noteId: string,
-  payload: AddNotePayload,
+  payload: AddNotePayload
 ) => Promise<Note>;
 
 type FetchNotesFn = (courseId: string) => Promise<Note[]>;
-type AddNoteFn = (
-  courseId: string,
-  lessonId: string,
-  payload: AddNotePayload,
-) => Promise<Note>;
-type DeleteNoteFn = (
-  courseId: string,
-  lessonId: string,
-  noteId: string,
-) => Promise<void>;
+type AddNoteFn = (courseId: string, lessonId: string, payload: AddNotePayload) => Promise<Note>;
+type DeleteNoteFn = (courseId: string, lessonId: string, noteId: string) => Promise<void>;
 
 /**
  * Fetch all notes for a specific course.
  */
 const fetchAllNotes: FetchNotesFn = async (courseId) => {
   if (!courseId) {
-    console.log("Invalid course ID provided.");
-    throw new Error("Course ID is required.");
+    console.log('Invalid course ID provided.');
+    throw new Error('Course ID is required.');
   }
 
   const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/notes`;
@@ -45,13 +37,12 @@ const fetchAllNotes: FetchNotesFn = async (courseId) => {
       return response.data.notes;
     }
 
-    console.warn("Unexpected response structure:", response?.data);
-    throw new Error("Invalid response format.");
+    console.warn('Unexpected response structure:', response?.data);
+    throw new Error('Invalid response format.');
   } catch (error: any) {
     console.log(`Error fetching notes for course ID ${courseId}:`, error);
     throw new Error(
-      error.response?.data?.message ||
-        `Failed to fetch notes for course ID ${courseId}`,
+      error.response?.data?.message || `Failed to fetch notes for course ID ${courseId}`
     );
   }
 };
@@ -61,8 +52,8 @@ const fetchAllNotes: FetchNotesFn = async (courseId) => {
  */
 const addNote: AddNoteFn = async (courseId, lessonId, payload) => {
   if (!courseId || !lessonId) {
-    console.log("Invalid course ID or lesson ID provided.");
-    throw new Error("Course ID and Lesson ID are required.");
+    console.log('Invalid course ID or lesson ID provided.');
+    throw new Error('Course ID and Lesson ID are required.');
   }
 
   const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}/notes`;
@@ -74,16 +65,13 @@ const addNote: AddNoteFn = async (courseId, lessonId, payload) => {
       return response.data.note;
     }
 
-    console.warn("Unexpected response structure:", response?.data);
-    throw new Error("Failed to add note.");
+    console.warn('Unexpected response structure:', response?.data);
+    throw new Error('Failed to add note.');
   } catch (error: any) {
-    console.log(
-      `Error adding note for course ${courseId} and lesson ${lessonId}:`,
-      error,
-    );
+    console.log(`Error adding note for course ${courseId} and lesson ${lessonId}:`, error);
     throw new Error(
       error.response?.data?.message ||
-        `Failed to add note for course ID ${courseId} and lesson ID ${lessonId}`,
+        `Failed to add note for course ID ${courseId} and lesson ID ${lessonId}`
     );
   }
 };
@@ -93,8 +81,8 @@ const addNote: AddNoteFn = async (courseId, lessonId, payload) => {
  */
 const deleteNote: DeleteNoteFn = async (courseId, lessonId, noteId) => {
   if (!courseId || !lessonId || !noteId) {
-    console.log("Invalid course ID, lesson ID, or note ID provided.");
-    throw new Error("Course ID, Lesson ID, and Note ID are required.");
+    console.log('Invalid course ID, lesson ID, or note ID provided.');
+    throw new Error('Course ID, Lesson ID, and Note ID are required.');
   }
 
   const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}/notes/${noteId.trim()}`;
@@ -103,24 +91,24 @@ const deleteNote: DeleteNoteFn = async (courseId, lessonId, noteId) => {
     const response = await axiosClient.delete(url);
 
     if (!response?.data) {
-      console.warn("No data returned from deleting the note.");
+      console.warn('No data returned from deleting the note.');
     }
   } catch (error: any) {
     console.log(
       `Error deleting note for course ${courseId}, lesson ${lessonId}, and note ${noteId}:`,
-      error,
+      error
     );
     throw new Error(
       error.response?.data?.message ||
-        `Failed to delete note for course ID ${courseId}, lesson ID ${lessonId}, and note ID ${noteId}`,
+        `Failed to delete note for course ID ${courseId}, lesson ID ${lessonId}, and note ID ${noteId}`
     );
   }
 };
 
 const editNote: EditNoteFn = async (courseId, lessonId, noteId, payload) => {
   if (!courseId || !lessonId || !noteId || !payload.text) {
-    console.log("Invalid parameters provided for editing note.");
-    throw new Error("All parameters are required.");
+    console.log('Invalid parameters provided for editing note.');
+    throw new Error('All parameters are required.');
   }
 
   const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId}/notes/${noteId}`;
@@ -132,11 +120,11 @@ const editNote: EditNoteFn = async (courseId, lessonId, noteId, payload) => {
       return response.data;
     }
 
-    console.warn("Unexpected response structure:", response?.data);
-    throw new Error("Invalid response format.");
+    console.warn('Unexpected response structure:', response?.data);
+    throw new Error('Invalid response format.');
   } catch (error: any) {
     console.log(`Error editing note for course ID ${courseId}:`, error);
-    throw new Error("Error editing note.");
+    throw new Error('Error editing note.');
   }
 };
 

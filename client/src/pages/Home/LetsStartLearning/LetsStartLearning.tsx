@@ -1,14 +1,19 @@
-import { btnStyleNHover } from "@/utils/stylesStorage";
-import StartWeeklyStreak from "./StartWeeklyStreak/StartWeeklyStreak";
-import ContinueLearningCourse from "./ContinueLearningCourse/ContinueLearningCourse";
-import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { btnStyleNHover } from '@/utils/stylesStorage';
+import StartWeeklyStreak from './StartWeeklyStreak/StartWeeklyStreak';
+import ContinueLearningCourse from './ContinueLearningCourse/ContinueLearningCourse';
+import ButtonsCarousel from '@/components/ButtonsCarousel/ButtonsCarousel';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import { Link } from 'react-router-dom';
 
 const LetsStartLearning = () => {
   const amountOfLessonsSpecificCourseChosen = useSelector(
+<<<<<<< HEAD
     (state: RootState) => state?.user?.coursesInProgress,
+=======
+    (state: RootState) => state.user.coursesInProgress
+>>>>>>> 4eb05a278113fb8aaaaa4bfdf987a8503a5c97c7
   );
 
   const [isAnimating, setIsAnimating] = useState(false);
@@ -30,14 +35,16 @@ const LetsStartLearning = () => {
 
   return (
     <div className="flex w-full flex-col items-stretch justify-start gap-6 pl-4">
-      <div className="flex w-full flex-row items-center justify-between">
+      <div className="flex w-full  items-center justify-between">
         <h1 className="font-extrabold">Let's start learning</h1>
         <div>
-          <button
-            className={`${btnStyleNHover} rounded-md px-3 py-3 font-sans text-base font-bold text-purple-700 underline`}
-          >
-            My learning
-          </button>
+          <Link to="/wishlist">
+            <button
+              className={`${btnStyleNHover} rounded-md px-3 py-3 font-sans text-base font-bold text-purple-700 underline`}
+            >
+              My learning
+            </button>
+          </Link>
         </div>
       </div>
       {amountOfLessonsSpecificCourseChosen &&

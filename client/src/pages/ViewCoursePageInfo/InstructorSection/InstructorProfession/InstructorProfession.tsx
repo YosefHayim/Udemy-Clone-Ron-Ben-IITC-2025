@@ -1,6 +1,4 @@
-const InstructorProfession: React.FC<{ instructorHeadline: string }> = ({
-  instructorHeadline,
-}) => {
+const InstructorProfession: React.FC<{ instructorHeadline: string }> = ({ instructorHeadline }) => {
   return (
     <div>
       <p>{instructorHeadline}</p>

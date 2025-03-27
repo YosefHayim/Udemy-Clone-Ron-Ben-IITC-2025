@@ -1,7 +1,4 @@
-const TicketCompose: React.FC<{ text: string; title: string }> = ({
-  text,
-  title,
-}) => {
+const TicketCompose: React.FC<{ text: string; title: string }> = ({ text, title }) => {
   return (
     <div className="flex w-[320px] flex-col items-start justify-start gap-[0.5em] rounded-[1em] border border-gray-300 p-[1em]">
       <b>{title}</b>

@@ -1,6 +1,6 @@
 const FaqCourseName: React.FC<{ courseName: string }> = ({ courseName }) => {
   return (
-    <div className="flex w-full flex-row">
+    <div className="flex w-full ">
       <b>{courseName}</b>
     </div>
   );

@@ -1,16 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
-import { fetchCourseProgress } from "../../services/ProgressService"; // Import your fetch function
-import inverted from "/images/logo-udemy-inverted.svg?url";
-import { AiOutlineTrophy } from "react-icons/ai";
-import { IoIosArrowDown, IoMdShareAlt } from "react-icons/io";
-import { HiDotsVertical } from "react-icons/hi";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useQuery } from '@tanstack/react-query';
+import { fetchCourseProgress } from '../../services/ProgressService'; // Import your fetch function
+import inverted from '/images/logo-udemy-inverted.svg?url';
+import { AiOutlineTrophy } from 'react-icons/ai';
+import { IoIosArrowDown, IoMdShareAlt } from 'react-icons/io';
+import { HiDotsVertical } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
-  courseName,
-  courseId,
-}) => {
+const Navbar: React.FC<{ courseName: string; courseId: string }> = ({ courseName, courseId }) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const toggleTooltip = () => {
@@ -23,7 +20,7 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
   };
   // Use React Query to fetch progress data
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["courseProgress", courseId], // Query key
+    queryKey: ['courseProgress', courseId], // Query key
     queryFn: () => fetchCourseProgress(courseId), // Query function
     enabled: !!courseId, // Fetch only if courseId exists
   });
@@ -56,27 +53,24 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
               <div
                 className="flex items-center justify-center rounded-full"
                 style={{
-                  width: "40px",
-                  height: "40px",
+                  width: '40px',
+                  height: '40px',
                   background: `conic-gradient(
                     #C0C4FC ${percentageCompleted * 360}deg,
                     #595C73 ${percentageCompleted * 360}deg
                   )`,
-                  padding: "2px",
+                  padding: '2px',
                 }}
               >
                 {/* Inner container to create the border effect */}
                 <div
                   className="flex items-center justify-center rounded-full bg-grayUdemy"
                   style={{
-                    width: "35px",
-                    height: "35px",
+                    width: '35px',
+                    height: '35px',
                   }}
                 >
-                  <AiOutlineTrophy
-                    className="text-grayNavbarTxt"
-                    style={{ fontSize: "18px" }}
-                  />
+                  <AiOutlineTrophy className="text-grayNavbarTxt" style={{ fontSize: '18px' }} />
                 </div>
               </div>
               <span className="text-sm hover:text-gray-300">Your Progress</span>
@@ -89,9 +83,7 @@ const Navbar: React.FC<{ courseName: string; courseId: string }> = ({
                 {isLoading ? (
                   <p className="text-sm font-semibold">Loading...</p>
                 ) : isError ? (
-                  <p className="text-sm text-red-500">
-                    Failed to load progress.
-                  </p>
+                  <p className="text-sm text-red-500">Failed to load progress.</p>
                 ) : (
                   <div>
                     <p className="text-sm font-semibold">

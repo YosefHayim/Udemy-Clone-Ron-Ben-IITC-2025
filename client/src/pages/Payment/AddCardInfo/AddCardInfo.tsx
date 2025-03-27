@@ -1,29 +1,23 @@
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
+import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
 
 const AddCardInfo: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const visaOwnerName = formData.get("card-owner");
-    const creditCardNumber = formData.get("card-number");
-    const date = formData.get("date");
-    const cvv = formData.get("cvv");
+    const visaOwnerName = formData.get('card-owner');
+    const creditCardNumber = formData.get('card-number');
+    const date = formData.get('date');
+    const cvv = formData.get('cvv');
     // console.log(visaOwnerName, creditCardNumber, date, cvv);
   };
 
   return (
     <div className="w-full">
-      <form
-        onSubmit={handleSubmit}
-        className="flex w-full flex-col items-start justify-start"
-      >
+      <form onSubmit={handleSubmit} className="flex w-full flex-col items-start justify-start">
         <div className="flex w-full flex-col items-start justify-start gap-[1em] px-[1em]">
           <div className="w-full">
-            <label
-              htmlFor="card-number"
-              className="mb-[0.3em] font-sans font-extrabold"
-            >
+            <label htmlFor="card-number" className="mb-[0.3em] font-sans font-extrabold">
               Credit number
             </label>
             <Input
@@ -32,7 +26,7 @@ const AddCardInfo: React.FC = () => {
               className="w-full rounded-[0.2em] border border-black"
             ></Input>
           </div>
-          <div className="flex w-full flex-row items-start justify-start gap-[1em]">
+          <div className="flex w-full  items-start justify-start gap-[1em]">
             <div>
               <label htmlFor="date" className="font-sans font-extrabold">
                 Expiry date
@@ -64,11 +58,9 @@ const AddCardInfo: React.FC = () => {
               className="w-full rounded-[0.2em] border border-black"
             ></Input>
           </div>
-          <div className="flex flex-row items-center justify-start gap-[0.5em]">
+          <div className="flex  items-center justify-start gap-[0.5em]">
             <Checkbox name="save-card" className="rounded-[0em]" />
-            <label htmlFor="save-card">
-              Securely save this card for my later purchase
-            </label>
+            <label htmlFor="save-card">Securely save this card for my later purchase</label>
           </div>
         </div>
       </form>

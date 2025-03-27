@@ -1,88 +1,88 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import NotFound from "../pages/404/NotFound";
-import LessonPage from "../pages/Lesson/LessonPage";
-import SearchPage from "@/pages/Search/SearchPage";
-import Homepage from "@/pages/Home/Homepage";
-import Navbar from "@/components/Navbar/Navbar";
-import Footer from "../pages/Home/Footer/Footer";
-import ViewCoursePageInfo from "@/pages/ViewCoursePageInfo/ViewCoursePageInfo";
-import Loader from "@/components/Loader/Loader";
-import ShoppingCart from "@/pages/ShoppingCart/ShoppingCart";
-import SignUp from "@/pages/SignUp/Signup";
-import Login from "@/pages/Login/Login";
-import Wishlist from "@/pages/Wishlist/Wishlist";
-import Logout from "@/pages/Logout/Logout";
-import Payment from "@/pages/Payment/Payment";
-import ProfileMain from "@/pages/ProfilePage/ProfileMain/ProfileMain";
-import UdemyCredits from "@/components/Navbar/DropDownMenu/UdemyCredits/UdemyCredits";
-import PurchaseHistory from "@/components/Navbar/DropDownMenu/PurchaseHistory/PurchaseHistory";
-import Subscription from "@/components/Navbar/DropDownMenu/Subscription/Subscription";
-import PublicProfile from "@/components/Navbar/DropDownMenu/PublicProfile/PublicProfile";
-import PaymentMethods from "@/components/Navbar/DropDownMenu/PaymentMethods/PaymentMethods";
-import UdemyBusinessContact from "@/components/Navbar/DropDownMenu/UdemyBusinessContact/UdemyBusinessContact";
-import { createContext, useState } from "react";
-import { FilterDataProps } from "@/types/types";
-import AccountSecurity from "@/pages/ProfilePage/AccountSecurity/AccountSecurity";
-import ApiClients from "@/pages/ProfilePage/ApiClients/ApiClients";
-import Photo from "@/pages/ProfilePage/Photo/Photo";
-import NotificationPreferences from "@/pages/ProfilePage/NotificationPreferences/NotificationPreferences";
-import Privacy from "@/pages/ProfilePage/Privacy/Privacy";
-import CloseAccount from "@/pages/ProfilePage/CloseAccount/CloseAccount";
-import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
-import VerifyCode from "../pages/VerifyCode/VerifyCode";
-import InstructorProfile from "@/pages/InstructorProfile/InstructorProfile";
-import PersonalizeField from "@/pages/PersonalizeField/PersonalizeField";
-import Terms from "../pages/Terms/Terms";
-import SearchNotFound from "@/pages/Search/SearchNotFound/SearchNotFound";
-import ReceiptCart from "@/components/Navbar/DropDownMenu/PurchaseHistory/ReceiptCart/ReceiptCart";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import Promotions from "../pages/Terms/TermsPages/Promotions";
-import Messages from "@/pages/Messages/Messages";
-import Support from "@/pages/Support/Support";
-import OrganizationLogin from "@/pages/OrganizationLogin/OrganizationLogin";
-import SignUpOrganization from "@/pages/SignUpOrganization/SignUpOrganization";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NotFound from '../pages/404/NotFound';
+import LessonPage from '../pages/Lesson/LessonPage';
+import SearchPage from '@/pages/Search/SearchPage';
+import Homepage from '@/pages/Home/Homepage';
+import Navbar from '@/components/Navbar/Navbar';
+import Footer from '../pages/Home/Footer/Footer';
+import ViewCoursePageInfo from '@/pages/ViewCoursePageInfo/ViewCoursePageInfo';
+import Loader from '@/components/Loader/Loader';
+import ShoppingCart from '@/pages/ShoppingCart/ShoppingCart';
+import SignUp from '@/pages/SignUp/Signup';
+import Login from '@/pages/Login/Login';
+import Wishlist from '@/pages/Wishlist/Wishlist';
+import Logout from '@/pages/Logout/Logout';
+import Payment from '@/pages/Payment/Payment';
+import ProfileMain from '@/pages/ProfilePage/ProfileMain/ProfileMain';
+import UdemyCredits from '@/components/Navbar/DropDownMenu/UdemyCredits/UdemyCredits';
+import PurchaseHistory from '@/components/Navbar/DropDownMenu/PurchaseHistory/PurchaseHistory';
+import Subscription from '@/components/Navbar/DropDownMenu/Subscription/Subscription';
+import PublicProfile from '@/components/Navbar/DropDownMenu/PublicProfile/PublicProfile';
+import PaymentMethods from '@/components/Navbar/DropDownMenu/PaymentMethods/PaymentMethods';
+import UdemyBusinessContact from '@/components/Navbar/DropDownMenu/UdemyBusinessContact/UdemyBusinessContact';
+import { createContext, useState } from 'react';
+import { FilterDataProps } from '@/types/types';
+import AccountSecurity from '@/pages/ProfilePage/AccountSecurity/AccountSecurity';
+import ApiClients from '@/pages/ProfilePage/ApiClients/ApiClients';
+import Photo from '@/pages/ProfilePage/Photo/Photo';
+import NotificationPreferences from '@/pages/ProfilePage/NotificationPreferences/NotificationPreferences';
+import Privacy from '@/pages/ProfilePage/Privacy/Privacy';
+import CloseAccount from '@/pages/ProfilePage/CloseAccount/CloseAccount';
+import EnrollFreeCourse from '@/pages/EnrollFreeCourse/EnrollFreeCourse';
+import VerifyCode from '../pages/VerifyCode/VerifyCode';
+import InstructorProfile from '@/pages/InstructorProfile/InstructorProfile';
+import PersonalizeField from '@/pages/PersonalizeField/PersonalizeField';
+import Terms from '../pages/Terms/Terms';
+import SearchNotFound from '@/pages/Search/SearchNotFound/SearchNotFound';
+import ReceiptCart from '@/components/Navbar/DropDownMenu/PurchaseHistory/ReceiptCart/ReceiptCart';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import Promotions from '../pages/Terms/TermsPages/Promotions';
+import Messages from '@/pages/Messages/Messages';
+import Support from '@/pages/Support/Support';
+import OrganizationLogin from '@/pages/OrganizationLogin/OrganizationLogin';
+import SignUpOrganization from '@/pages/SignUpOrganization/SignUpOrganization';
 // import LoginBusiness from "@/pages/Login/LoginBusiness";
 
 export const filterContext = createContext<FilterDataProps>({
-  sortBy: "",
+  sortBy: '',
   handsOnPractice: new Set(),
   language: new Set(),
   levels: new Set(),
-  price: "",
+  price: '',
   ratings: 0,
   subtitles: new Set(),
   topics: new Set(),
   videosDurations: new Set(),
   certificateOnly: false,
-  searchTerm: "",
+  searchTerm: '',
 });
 
 export const emailContext = createContext({
-  email: "",
-  fullName: "",
+  email: '',
+  fullName: '',
 });
 
 export const personalizeContent = createContext({
-  fieldLearning: "",
+  fieldLearning: '',
   managePeople: false,
-  occupation: "",
+  occupation: '',
   progressBar: 25,
 });
 
 const initialOptions = {
   clientId: `AWBvZAvKH5izd24F1JfMsToGlmQP5hvDtnAPLWOP8TJ0qif2nRpYrnKesjNZaDl8IfuJ_QibFfai0ahB`,
-  currency: "USD",
-  intent: "capture",
+  currency: 'USD',
+  intent: 'capture',
   isPaypal: false,
 };
 
 const AppRoutes: React.FC = () => {
   const [filterData, setFilterData] = useState({
-    sortBy: "",
+    sortBy: '',
     handsOnPractice: new Set(),
     language: new Set(),
     levels: new Set(),
-    price: "",
+    price: '',
     ratings: 0,
     subtitles: new Set(),
     topics: new Set(),
@@ -90,13 +90,13 @@ const AppRoutes: React.FC = () => {
     certificateOnly: false,
   });
 
-  const [userFullName, setUserFullName] = useState("");
-  const [emailUser, setEmailUser] = useState("");
+  const [userFullName, setUserFullName] = useState('');
+  const [emailUser, setEmailUser] = useState('');
   const [personalizeData, setPersonalizeData] = useState({
     currentPage: 1,
-    fieldLearning: "",
+    fieldLearning: '',
     managePeople: false,
-    occupation: "",
+    occupation: '',
     progressBar: 25,
   });
 
@@ -111,69 +111,31 @@ const AppRoutes: React.FC = () => {
               <Navbar />
               <Routes>
                 <Route path="/" element={<Homepage />} />
-                <Route
-                  path="/dashboard/credit-history"
-                  element={<UdemyCredits />}
-                />
+                <Route path="/dashboard/credit-history" element={<UdemyCredits />} />
                 <Route path="/user/edit-profile" element={<ProfileMain />} />
                 <Route path="/user/edit-privacy" element={<Privacy />} />
-                <Route
-                  path="/dashboard/purchase-history/"
-                  element={<PurchaseHistory />}
-                />
-                <Route
-                  path="/user/manage-subscriptions/"
-                  element={<Subscription />}
-                />
+                <Route path="/dashboard/purchase-history/" element={<PurchaseHistory />} />
+                <Route path="/user/manage-subscriptions/" element={<Subscription />} />
                 <Route path="/cart" element={<ShoppingCart />} />
-                <Route
-                  path="/dashboard/cart-receipt/"
-                  element={<ReceiptCart />}
-                />
-                <Route
-                  path="/user/public-profile"
-                  element={<PublicProfile />}
-                />
-                <Route
-                  path="/user/edit-account"
-                  element={<AccountSecurity />}
-                />
+                <Route path="/dashboard/cart-receipt/" element={<ReceiptCart />} />
+                <Route path="/user/public-profile" element={<PublicProfile />} />
+                <Route path="/user/edit-account" element={<AccountSecurity />} />
                 <Route path="/user/close-account" element={<CloseAccount />} />
-                <Route
-                  path="/cart/subscribe/course/:courseId"
-                  element={<EnrollFreeCourse />}
-                />
+                <Route path="/cart/subscribe/course/:courseId" element={<EnrollFreeCourse />} />
                 <Route path="/user/photo" element={<Photo />} />
                 <Route path="/user/edit-api-clients" element={<ApiClients />} />
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route path="/message" element={<Messages />} />
-                <Route
-                  path="/loader"
-                  element={<Loader useSmallLoading={false} hSize="" />}
-                />
-                <Route
-                  path="/user/edit-notifications/"
-                  element={<NotificationPreferences />}
-                />
-                <Route
-                  path="/user/edit-payment-methods/"
-                  element={<PaymentMethods />}
-                />
-                <Route
-                  path="/user/instructor/:instructorId"
-                  element={<InstructorProfile />}
-                />
+                <Route path="/loader" element={<Loader useSmallLoading={false} hSize="" />} />
+                <Route path="/user/edit-notifications/" element={<NotificationPreferences />} />
+                <Route path="/user/edit-payment-methods/" element={<PaymentMethods />} />
+                <Route path="/user/instructor/:instructorId" element={<InstructorProfile />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route
                   path="/Signup"
                   element={
                     <emailContext.Provider
-                      value={[
-                        emailUser,
-                        setEmailUser,
-                        userFullName,
-                        setUserFullName,
-                      ]}
+                      value={[emailUser, setEmailUser, userFullName, setUserFullName]}
                     >
                       <SignUp />
                     </emailContext.Provider>
@@ -183,12 +145,7 @@ const AppRoutes: React.FC = () => {
                   path="/login"
                   element={
                     <emailContext.Provider
-                      value={[
-                        emailUser,
-                        setEmailUser,
-                        userFullName,
-                        setUserFullName,
-                      ]}
+                      value={[emailUser, setEmailUser, userFullName, setUserFullName]}
                     >
                       <Login />
                     </emailContext.Provider>
@@ -198,12 +155,7 @@ const AppRoutes: React.FC = () => {
                   path="/verify-code"
                   element={
                     <emailContext.Provider
-                      value={[
-                        emailUser,
-                        setEmailUser,
-                        userFullName,
-                        setUserFullName,
-                      ]}
+                      value={[emailUser, setEmailUser, userFullName, setUserFullName]}
                     >
                       <VerifyCode />
                     </emailContext.Provider>
@@ -218,15 +170,9 @@ const AppRoutes: React.FC = () => {
                     </filterContext.Provider>
                   }
                 />
-                <Route
-                  path="/not/search/not/found/:searchTerm"
-                  element={<SearchNotFound />}
-                />
+                <Route path="/not/search/not/found/:searchTerm" element={<SearchNotFound />} />
                 <Route path="*" element={<NotFound />} />
-                <Route
-                  path="/course-view/:courseId"
-                  element={<ViewCoursePageInfo />}
-                />
+                <Route path="/course-view/:courseId" element={<ViewCoursePageInfo />} />
                 <Route path="/terms-of-use" element={<Terms />} />
               </Routes>
               <Footer />
@@ -254,9 +200,7 @@ const AppRoutes: React.FC = () => {
         <Route
           path="/personalize/field/"
           element={
-            <personalizeContent.Provider
-              value={[personalizeData, setPersonalizeData]}
-            >
+            <personalizeContent.Provider value={[personalizeData, setPersonalizeData]}>
               <PersonalizeField />
             </personalizeContent.Provider>
           }
@@ -266,17 +210,12 @@ const AppRoutes: React.FC = () => {
         <Route
           path="/organization/global-login/email"
           element={
-            <emailContext.Provider
-              value={[emailUser, setEmailUser, userFullName, setUserFullName]}
-            >
+            <emailContext.Provider value={[emailUser, setEmailUser, userFullName, setUserFullName]}>
               <OrganizationLogin />
             </emailContext.Provider>
           }
         />
-        <Route
-          path="hc/en-us/requests/new/ticket_form_id"
-          element={<SignUpOrganization />}
-        />
+        <Route path="hc/en-us/requests/new/ticket_form_id" element={<SignUpOrganization />} />
       </Routes>
     </Router>
   );

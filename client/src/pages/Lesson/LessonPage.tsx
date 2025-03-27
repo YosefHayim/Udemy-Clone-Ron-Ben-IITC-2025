@@ -1,12 +1,12 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import Layout from "./Layout";
-import LessonRoutes from "../../routes/LessonRoutes";
-import VideoPlayer from "./VideoPlayer";
-import Footer from "../../pages/Home/Footer/Footer";
-import { fetchCourseProgress } from "@/services/ProgressService";
-import { CourseProgressResponse, CourseProgress } from "@/types/types";
-import { useState } from "react";
+import { useParams, useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import Layout from './Layout';
+import LessonRoutes from '../../routes/LessonRoutes';
+import VideoPlayer from './VideoPlayer';
+import Footer from '../../pages/Home/Footer/Footer';
+import { fetchCourseProgress } from '@/services/ProgressService';
+import { CourseProgressResponse, CourseProgress } from '@/types/types';
+import { useState } from 'react';
 
 const LessonPage: React.FC = () => {
   const [currentSec, setCurrentSec] = useState(0); // Shared state for last watched time
@@ -16,8 +16,8 @@ const LessonPage: React.FC = () => {
   const navigate = useNavigate();
 
   const { data, isLoading, error } = useQuery<CourseProgressResponse>({
-    queryKey: ["courseProgress", courseId],
-    queryFn: () => fetchCourseProgress(courseId || ""),
+    queryKey: ['courseProgress', courseId],
+    queryFn: () => fetchCourseProgress(courseId || ''),
     enabled: !!courseId,
   });
 
@@ -47,7 +47,7 @@ const LessonPage: React.FC = () => {
       ...lesson,
       ...lesson.lessonId,
       completed: lesson.completed,
-    })),
+    }))
   );
 
   const lessonIndex = lessons.findIndex((lesson) => lesson._id === id);
@@ -61,7 +61,7 @@ const LessonPage: React.FC = () => {
 
   const nextLesson = lessons[lessonIndex + 1] || null;
   const prevLesson = lessons[lessonIndex - 1] || null;
-  const isNotesRoute = location.pathname.endsWith("/notes");
+  const isNotesRoute = location.pathname.endsWith('/notes');
 
   return (
     <Layout>
@@ -73,9 +73,7 @@ const LessonPage: React.FC = () => {
         videoUrl={currentLesson.videoUrl}
         nextLesson={nextLesson}
         prevLesson={prevLesson}
-        onNavigate={(lessonId) =>
-          navigate(`/course/${courseId}/lesson/${lessonId}/overview`)
-        }
+        onNavigate={(lessonId) => navigate(`/course/${courseId}/lesson/${lessonId}/overview`)}
       />
       <div className="px-0">
         <LessonRoutes currentSec={currentSec} />
