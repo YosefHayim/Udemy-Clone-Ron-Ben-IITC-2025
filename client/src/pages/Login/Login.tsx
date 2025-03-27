@@ -109,7 +109,7 @@ const Login = () => {
   });
 
   useEffect(() => {
-    if (fullname.length > 1 && globalEmail.length > 1 && !cookie) {
+    if (fullname.length > 1 && !globalEmail > 1 && !cookie) {
       setShowRegularLogin(true);
     }
   }, [isLoggedPreviouslyWithGoogle, showRegularLogin]);
@@ -201,7 +201,14 @@ const Login = () => {
           )}
           {differentAccount ||
             (!isLoggedPreviouslyWithGoogle && (
-              <>
+              <div className="flex w-full flex-col gap-4">
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  className={`${inputLoginWEmail}`}
+                />
                 <div className="flex flex-col items-center gap-4">
                   <form className="flex w-full flex-col" onSubmit={handleSubmit}>
                     {!differentAccount && isLoggedPreviouslyWithGoogle && (
@@ -248,7 +255,7 @@ const Login = () => {
                     </div>
                   </div>
                 )}
-              </>
+              </div>
             ))}
           {isLoggedPreviouslyWithGoogle && !differentAccount && (
             <Button onClick={handleGoogle} className={`${continueWGoogleBtn}`}>
