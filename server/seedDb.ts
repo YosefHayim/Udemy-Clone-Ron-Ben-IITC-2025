@@ -780,8 +780,8 @@ const generateCouponsForCourses = async () => {
 
 const generateUpdatedDummyData = async () => {
   try {
-    await connectDb();
-    console.log("Database connection established.");
+    // await connectDb();
+    // console.log("Database connection established.");
     // await clearCollections();
     // console.log("Deleted all db.");
 

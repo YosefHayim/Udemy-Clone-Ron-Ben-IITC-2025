@@ -141,7 +141,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
   return (
     <div
-      className="video-player group relative h-full w-full bg-grayUdemy"
+      className="video-player group relative h-full w-full bg-watchUdemyCourse"
       style={{ width, height }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
