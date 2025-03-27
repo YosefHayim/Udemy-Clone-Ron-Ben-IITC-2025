@@ -1,6 +1,4 @@
 import Course from "../../models/courses/courseModel.ts";
-import courseProgress from "../../models/courses/courseProgressModel.ts";
-import mongoose from "mongoose";
 import User from "../../models/users/userModel.ts";
 import APIFeatures from "../../utils/apiFeatures.ts";
 import sendEmail from "../../utils/email.ts";
@@ -15,7 +13,6 @@ import multer from "multer";
 import sharp from "sharp";
 import { NextFunction, Request, Response } from "express";
 import { generateToken } from "../authorization/authController.ts";
-import { courseBought } from "../../types/types.ts";
 dotenv.config();
 
 // for updating user profile
@@ -410,7 +407,6 @@ const reactiveUser = catchAsync(
     const findUser = await User.findOne({
       email,
       active: false,
-      includeInactive: true,
     });
 
     if (!findUser) {
@@ -465,204 +461,6 @@ const resendEmailVerificationToken = catchAsync(
       status: "success",
       message:
         "A new email verification token has been sent to your email address.",
-    });
-  }
-);
-
-const joinCourseById = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const courseId = req.params.id;
-      const user = req.user;
-
-      if (!user) return next(createError("User authentication required", 401));
-      if (!mongoose.Types.ObjectId.isValid(courseId))
-        return next(createError("Invalid course ID", 400));
-
-      const course = await Course.findById(courseId);
-      if (!course)
-        return next(createError(`No course found: ${courseId}`, 404));
-
-      if (!Array.isArray(user.coursesBought)) user.coursesBought = [];
-
-      if (user.coursesCreated.includes(courseId))
-        return next(createError("You cannot join your own course.", 403));
-
-      if (
-        user.coursesBought.some((bought: courseBought) =>
-          bought.courseId ? bought.courseId.toString() === courseId : false
-        )
-      ) {
-        return next(createError("You have already joined this course.", 400));
-      }
-
-      const existingProgress = await courseProgress.findOne({
-        userId: user._id,
-        courseId: courseId,
-      });
-
-      if (existingProgress)
-        return next(
-          createError("You already have progress for this course.", 400)
-        );
-
-      if (!course.totalStudentsEnrolled) {
-        course.totalStudentsEnrolled = { students: [], count: 0 };
-      }
-      if (!Array.isArray(course.totalStudentsEnrolled.students)) {
-        course.totalStudentsEnrolled.students = [];
-      }
-      course.totalStudentsEnrolled.students.push(user._id);
-      await course.save();
-
-      user.coursesBought.push({
-        courseName: course.courseName,
-        courseId: courseId,
-        coursePrice: course.courseDiscountPrice,
-        boughtAt: new Date(),
-      });
-
-      const initCourseProgress = await courseProgress.create({
-        userId: user._id,
-        courseId: courseId,
-      });
-
-      if (typeof user.udemyCredits !== "number") {
-        return next(createError("User credits not initialized properly", 500));
-      }
-
-      user.udemyCredits -= course.courseDiscountPrice;
-      await user.save();
-
-      res.status(201).json({
-        status: "success",
-        message: `Successfully joined ${course.courseName}`,
-        courseProgress: initCourseProgress,
-      });
-    } catch (error) {
-      console.log("Error in joinCourseById:", error);
-      return next(createError("An unexpected error occurred.", 500));
-    }
-  }
-);
-
-const joinCoursesByIds = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
-    let courseIds = req.body.courses;
-
-    const user = req.user;
-
-    if (!courseIds || !Array.isArray(courseIds)) {
-      return next(createError("Please provide an array of course IDs.", 400));
-    }
-
-    courseIds = courseIds.filter((id) => mongoose.Types.ObjectId.isValid(id));
-
-    if (courseIds.length === 0) {
-      return next(createError("No valid course IDs provided.", 400));
-    }
-
-    const courses = await Course.find({ _id: { $in: courseIds } });
-    const validCourseIds = courses.map((course) => course._id.toString());
-
-    const existingProgress = await courseProgress.find({
-      userId: user._id,
-      courseId: { $in: validCourseIds },
-    });
-
-    const existingIds = existingProgress.map((prog) =>
-      prog.courseId.toString()
-    );
-    const newCourseIds = validCourseIds.filter(
-      (id) => !existingIds.includes(id)
-    );
-
-    if (newCourseIds.length === 0) {
-      return next(
-        createError("You have already joined all the provided courses.", 400)
-      );
-    }
-
-    const purchasedCourses = newCourseIds.map((courseId) => {
-      const course = courses.find((c) => c._id.toString() === courseId);
-      return {
-        courseName: course?.courseName,
-        courseId: courseId,
-        coursePrice: course?.courseDiscountPrice,
-        boughtAt: new Date(),
-      };
-    });
-
-    user.coursesBought.push(...purchasedCourses);
-
-    const initCoursesProgress = await Promise.all(
-      newCourseIds.map((courseId) =>
-        courseProgress.create({
-          userId: user._id,
-          courseId: courseId,
-        })
-      )
-    );
-
-    await user.save();
-
-    res.status(201).json({
-      status: "success",
-      message: `Successfully joined courses: ${newCourseIds.join(", ")}`,
-      coursesJoined: initCoursesProgress,
-    });
-  }
-);
-
-const leaveCourseById = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
-    const courseId = req.params.id;
-    const user = req.user;
-
-    if (!courseId) {
-      return next(createError("Please provide a course ID in the URL.", 400));
-    }
-
-    const course = await Course.findById(courseId);
-
-    if (!course) {
-      return next(
-        createError(`No course exists with this ID: ${courseId}`, 404)
-      );
-    }
-
-    if (!user.coursesBought.includes(courseId)) {
-      return next(createError("You are not enrolled in this course.", 400));
-    }
-
-    if (user.coursesCreated.includes(courseId)) {
-      return next(
-        createError(
-          "You cannot leave your own course. Please use another route to deactivate it.",
-          403
-        )
-      );
-    }
-
-    // Remove user from course enrollment
-    if (!course.totalStudentsEnrolled) {
-      course.totalStudentsEnrolled = { students: [], count: 0 };
-    }
-    course.totalStudentsEnrolled.students =
-      course.totalStudentsEnrolled.students.filter(
-        (id: mongoose.Types.ObjectId) => id.toString() !== user._id.toString()
-      );
-    await course.save(); // `post('save')` will update the count automatically
-
-    // Remove course from user's purchased courses
-    user.coursesBought = user.coursesBought.filter(
-      (id: string) => id.toString() !== courseId.toString()
-    );
-    await user.save();
-
-    res.status(200).json({
-      status: "success",
-      response: `You have successfully left the course ${course.courseName}`,
     });
   }
 );

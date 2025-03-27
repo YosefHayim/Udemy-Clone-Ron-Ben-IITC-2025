@@ -6,6 +6,9 @@ import {
   updateCourse,
   deleteCourse,
   reactivateCourseById,
+  joinCourseById,
+  leaveCourseById,
+  joinCoursesByIds,
   getCourseProsById,
   getCourseInfoForCart,
   viewCourseById,
@@ -37,6 +40,15 @@ router.get("/pros/:courseId", getCourseProsById);
 
 // Re-activate course by the authorized creator
 router.post("/re-activate/:id", grantedAccess, reactivateCourseById);
+
+// join course by course id
+router.post("/add/course/:id", grantedAccess, joinCourseById);
+
+// join courses by array of courses ids
+router.post("/add/courses", grantedAccess, joinCoursesByIds);
+
+// leave course by course id
+router.post("/leave/course/:id", grantedAccess, leaveCourseById);
 
 // Create course
 router.post("/", grantedAccess, createCourse);
