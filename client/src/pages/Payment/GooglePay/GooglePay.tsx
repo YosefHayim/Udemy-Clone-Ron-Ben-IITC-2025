@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import GPayIcon from "../GPayIcon/GPayIcon";
+import { Button } from '@/components/ui/button';
+import GPayIcon from '../GPayIcon/GPayIcon';
 
 const GooglePay: React.FC = () => {
   return (

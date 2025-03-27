@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { RootState } from "@/redux/store";
+import { Button } from '@/components/ui/button';
+import { RootState } from '@/redux/store';
 import {
   calculateDiscountPercentage,
   calculateTotalSavings,
@@ -7,11 +7,11 @@ import {
   setAmountOfCourses,
   setTotalCourseDiscountPrices,
   setTotalOriginalCoursePrices,
-} from "@/redux/slices/cartSlice";
-import React from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+} from '@/redux/slices/cartSlice';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const BuyNowBtn: React.FC<{
   courseId: string;
@@ -27,7 +27,7 @@ const BuyNowBtn: React.FC<{
       setTimeout(() => {
         dispatch(setAmountOfCourses());
         if (!discountPrice || isNaN(discountPrice)) {
-          console.log("Invalid discountPrice:", discountPrice);
+          console.log('Invalid discountPrice:', discountPrice);
           return;
         }
         dispatch(setTotalCourseDiscountPrices(Number(discountPrice)));
@@ -35,17 +35,17 @@ const BuyNowBtn: React.FC<{
         dispatch(calculateTotalSavings());
         dispatch(calculateDiscountPercentage());
         dispatch(setAddCourseToCart(courseId));
-        navigate("/payment/checkout/");
+        navigate('/payment/checkout/');
       }, 1000);
     } else {
-      navigate("/login");
+      navigate('/login');
     }
   };
   return (
     <Button
       id={courseId}
       onClick={() => handleClick(courseId)}
-      className={`w-full rounded-[0.2em] border border-black bg-white py-[1.5em] font-bold text-black hover:bg-hoverDivGray focus:outline-none`}
+      className={`w-full rounded-[0.2em] border border-purple-700 bg-white py-[1.5em] font-sans font-extrabold text-purple-700 hover:bg-hoverDivGray focus:outline-none`}
     >
       Buy now
     </Button>

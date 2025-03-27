@@ -1,4 +1,4 @@
-import BubbleBtn from "./BubbleBtn/BubbleBtn";
+import BubbleBtn from './BubbleBtn/BubbleBtn';
 
 const ExploreTopics: React.FC<{
   category: string;
@@ -7,10 +7,8 @@ const ExploreTopics: React.FC<{
 }> = ({ category, subCategory, topic }) => {
   return (
     <div>
-      <h2 className="mb-[0.5em] text-[1.5em] font-bold">
-        Explore related topics
-      </h2>
-      <div className="flex flex-row gap-[0.5em]">
+      <h2 className="mb-[0.5em] font-sans text-[1.5em] font-extrabold">Explore related topics</h2>
+      <div className="flex  gap-[0.5em]">
         <BubbleBtn similarTopicName={topic} />
         <BubbleBtn similarTopicName={subCategory} />
         <BubbleBtn similarTopicName={category} />

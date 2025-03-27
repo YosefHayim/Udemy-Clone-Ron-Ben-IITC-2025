@@ -1,69 +1,71 @@
-import Menu from "@/components/Menu/Menu";
-import Banner from "./Banner/Banner";
-import TrustedBySection from "./TrustedBySection/TrustedBySection";
-import LearnersAreViewing from "./LearnersAreViewing/LearnersAreViewing";
-import SearchResult from "./SearchResult/SearchResult";
-import LearningGoals from "./LearningGoals/LearningGoals";
-import PlansSection from "./PansSection/PansSection";
-import Testimonials from "./Testimonials/Testimonials";
-import TrendsReport from "./TopTrends/TopTrends";
-import TrendingNow from "./TrendingNow/TrendingNow";
-import Carousel from "./Carousel/Carousel";
-import Sections from "./Sections/Sections";
-import Welcome from "@/components/LoggedInHome/Welcome";
-import CoursesCarousel from "@/components/CourseCard/CoursesCarousel";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { useMediaQuery } from "react-responsive";
-import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
+import Menu from '@/components/Menu/Menu';
+import Banner from './Banner/Banner';
+import TrustedBySection from './TrustedBySection/TrustedBySection';
+import LearnersAreViewing from './LearnersAreViewing/LearnersAreViewing';
+import SearchResult from './SearchResult/SearchResult';
+import LearningGoals from './LearningGoals/LearningGoals';
+import PlansSection from './PansSection/PansSection';
+import Testimonials from './Testimonials/Testimonials';
+import TrendsReport from './TopTrends/TopTrends';
+import TrendingNow from './TrendingNow/TrendingNow';
+import Carousel from './Carousel/Carousel';
+import Sections from './Sections/Sections';
+import Welcome from '@/components/LoggedInHome/Welcome';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import { useMediaQuery } from 'react-responsive';
+import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
+import LetsStartLearning from './LetsStartLearning/LetsStartLearning';
 
 const Homepage = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
-  searchAlgoLocalStorage("");
+  searchAlgoLocalStorage('');
 
-  document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
+  document.title = 'Online Courses - Learn Anything, On Your Schedule | Udemy';
   const cookie = useSelector((state: RootState) => state.user.cookie);
 
   useEffect(() => {}, [cookie]);
 
   return (
-    <div className="font-sans">
-      {!cookie ? (
-        <div className="w-full">
-          <Banner />
-          <div>
-            <Sections />
-            <TrustedBySection />
-            <LearnersAreViewing />
-            <SearchResult />
-            <LearningGoals />
-            <PlansSection />
-            <Testimonials />
-            <TrendsReport />
-            <TrendingNow />
-            <Carousel />
+    <div>
+      {!isMobile && cookie && <Menu />}
+      <div className="font-[lifeLtstd]">
+        {!cookie ? (
+          <div className="w-full">
+            <Banner isLogin={false} />
+            <div>
+              <Sections />
+              <TrustedBySection />
+              <LearnersAreViewing />
+              <SearchResult />
+              <LearningGoals />
+              <PlansSection />
+              <Testimonials />
+              <TrendsReport />
+              <TrendingNow />
+              <Carousel />
+            </div>
           </div>
-        </div>
-      ) : (
-        <div>
-          {!isMobile && <Menu />}
-          <Welcome />
-          <Banner isLogin={true} />
-          <div className="container mx-auto px-0 xl:px-[1.7rem]">
-            <CoursesCarousel searchTerm={"JavaScript"} />
-            <CoursesCarousel searchTerm={"Python"} />
-            <CoursesCarousel searchTerm={"Books"} />
-            <CoursesCarousel searchTerm={"Investing"} />
-            <CoursesCarousel searchTerm={"Science"} />
-            <CoursesCarousel searchTerm={"Amazon"} />
-            <CoursesCarousel searchTerm={"Learning"} />
-            <CoursesCarousel searchTerm={"Meditation"} />
-            <CoursesCarousel searchTerm={"Web Development"} />
-            <CoursesCarousel searchTerm={"Microsoft"} />
+        ) : (
+          <div className="w-full">
+            <Welcome />
+            <Banner isLogin={true} />
+            <div className="flex flex-col  gap-4 px-6 py-8">
+              <LetsStartLearning />
+              <h1 className="pl-4 font-extrabold">What to learn next</h1>
+              <SearchResult />
+              <SearchResult />
+              <LearnersAreViewing />
+              <SearchResult title="Short and sweet courses for you" />
+              <SearchResult title="Top courses in Design" />
+              <SearchResult title="Top courses in Development" />
+              <SearchResult title="Top courses in IT & Software" />
+              <SearchResult title="Top courses in Personal Development" />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

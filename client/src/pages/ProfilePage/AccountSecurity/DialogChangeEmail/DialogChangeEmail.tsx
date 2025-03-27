@@ -6,26 +6,23 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { IoClose } from "react-icons/io5";
+} from '@/components/ui/alert-dialog';
+import { IoClose } from 'react-icons/io5';
 
 interface DialogChangeEmailProps {
   isDialogOpen: boolean;
   setIsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DialogChangeEmail: React.FC<DialogChangeEmailProps> = ({
-  isDialogOpen,
-  setIsDialogOpen,
-}) => {
+const DialogChangeEmail: React.FC<DialogChangeEmailProps> = ({ isDialogOpen, setIsDialogOpen }) => {
   return (
     <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <AlertDialogTrigger asChild></AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <div className="flex w-full flex-row items-center justify-between">
+          <div className="flex w-full  items-center justify-between">
             <div>
-              <AlertDialogTitle className="font-bold text-black">
+              <AlertDialogTitle className="font-sans font-extrabold text-black">
                 Change your email
               </AlertDialogTitle>
             </div>
@@ -40,10 +37,10 @@ const DialogChangeEmail: React.FC<DialogChangeEmailProps> = ({
           <AlertDialogDescription className="w-min-max text-black">
             <form className=" flex w-full flex-col items-start justify-start gap-[0.5em]">
               <p>
-                Please enter the new email address you want to use. We will send
-                you a confirmation code to confirm the address
+                Please enter the new email address you want to use. We will send you a confirmation
+                code to confirm the address
               </p>
-              <label htmlFor="email" className="font-bold">
+              <label htmlFor="email" className="font-sans font-extrabold">
                 Enter your email
               </label>
               <input
@@ -52,17 +49,17 @@ const DialogChangeEmail: React.FC<DialogChangeEmailProps> = ({
                 id="new-password"
                 name="new-password"
                 className="w-full overflow-hidden rounded-[0.3em] border border-gray-500 bg-white p-[0.5em] focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor hover:bg-gray-100"
-                placeholder={"Enter the new email address"}
+                placeholder={'Enter the new email address'}
               />
               <p>
-                For your security, if you change your email address your saved
-                credit card information will be deleted.
+                For your security, if you change your email address your saved credit card
+                information will be deleted.
               </p>
             </form>
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <button className="rounded-[0.3em] bg-btnColor p-[0.8em] font-bold text-white hover:bg-purple-600">
+          <button className="rounded-[0.3em] bg-btnColor p-[0.8em] font-sans font-extrabold text-white hover:bg-purple-600">
             Verify my new email
           </button>
         </AlertDialogFooter>

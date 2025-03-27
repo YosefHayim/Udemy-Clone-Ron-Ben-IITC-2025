@@ -1,10 +1,10 @@
-import { RootState } from "@/redux/store";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import ItemInCart from "../../Cart/ItemInCart/ItemInCart";
-import AddToCart from "@/pages/Search/CourseHoverCardInfo/InteractionBtns/AddToCart/AddToCart";
-import { Button } from "@/components/ui/button";
+import { RootState } from '@/redux/store';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import ItemInCart from '../../Cart/ItemInCart/ItemInCart';
+import AddToCart from '@/pages/Search/CourseHoverCardInfo/InteractionBtns/AddToCart/AddToCart';
+import { Button } from '@/components/ui/button';
 import {
   calculateDiscountPercentage,
   calculateTotalSavings,
@@ -12,20 +12,15 @@ import {
   setAmountOfCourses,
   setTotalCourseDiscountPrices,
   setTotalOriginalCoursePrices,
-} from "@/redux/slices/cartSlice";
-import { useDispatch } from "react-redux";
+} from '@/redux/slices/cartSlice';
+import { useDispatch } from 'react-redux';
 
 const HoverHeart = () => {
   const dispatch = useDispatch();
-  const totalCourses = useSelector(
-    (state: RootState) => state.cart.coursesAddedToWishList,
-  );
-
+  const totalCourses = useSelector((state: RootState) => state.cart.coursesAddedToWishList);
+  const discountPrice = useSelector((state: RootState) => state.cart.totalCourseDiscountPrices);
+  const fullPriceCourse = useSelector((state: RootState) => state.cart.totalCoursesOriginalPrices);
   useEffect(() => {}, [totalCourses]);
-
-  const discountPrice = 0;
-  const fullPriceCourse = 0;
-  const courseId = ``;
 
   const handleWishlistCart = () => {
     dispatch(setAmountOfCourses()); // Increment the amount of courses
@@ -33,7 +28,7 @@ const HoverHeart = () => {
     dispatch(setTotalOriginalCoursePrices(Number(fullPriceCourse)));
     dispatch(calculateTotalSavings());
     dispatch(calculateDiscountPercentage());
-    dispatch(setAddCourseToCart(courseId)); // Add course to the cart
+    dispatch(setAddCourseToCart(totalCourses[0])); // Add course to the cart
   };
 
   return (
@@ -53,18 +48,18 @@ const HoverHeart = () => {
                 showFullPrice={true}
                 shortCutInstructor={true}
                 shortcutTitle={true}
-                chooseFlex={"flex flex-col"}
+                chooseFlex={'flex flex-col'}
                 itemsPosition="start"
                 textColor="text-bg-black"
                 gapPrice="gap-[0em]"
               />
-              <div className="w-full p-[1em]" onClick={handleWishlistCart}>
+              <div className="w-full p-3" onClick={handleWishlistCart}>
                 <AddToCart
-                  extraCustomCss="p-[1.5em]"
                   isWhite={true}
-                  courseId={"courseId"}
+                  courseId={totalCourses[0]}
                   discountPrice={2}
                   fullPriceCourse={2}
+                  doYouWantPurpleLoading={true}
                 />
               </div>
               <hr />
@@ -84,7 +79,7 @@ const HoverHeart = () => {
         )}
         <div className="w-full p-[1em]">
           {totalCourses.length >= 1 && (
-            <Button className="w-full rounded-[0.2em] bg-btnColor py-[1.5em] font-bold hover:bg-btnHoverColor focus:outline-none">
+            <Button className="w-full rounded-[0.2em] bg-btnColor py-[1.5em] font-sans font-extrabold hover:bg-btnHoverColor focus:outline-none">
               Go to wishlist
             </Button>
           )}

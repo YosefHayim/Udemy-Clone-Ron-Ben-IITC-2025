@@ -1,11 +1,7 @@
 const FaqCourseImg: React.FC<{ courseImg: string }> = ({ courseImg }) => {
   return (
     <div>
-      <img
-        src={courseImg}
-        alt=""
-        className="h-[8em] border border-b-gray-300"
-      />
+      <img src={courseImg} alt="" className="h-[8em] border border-b-gray-300" />
     </div>
   );
 };

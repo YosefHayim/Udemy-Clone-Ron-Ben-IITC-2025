@@ -10,12 +10,9 @@ import {
   getUserById,
   confirmEmailAddress,
   resendEmailVerificationToken,
-  joinCourseById,
   updateUserInfo,
-  leaveCourseById,
   updateProfilePic,
   toggleCourseWishlist,
-  joinCoursesByIds,
   verifyCode,
   googleLoginOrSignUp,
   updateMe,
@@ -33,26 +30,17 @@ router.param("id", (req: Request, res: Response, next: NextFunction, val) => {
 // get all users
 router.get("/", getAllUsers);
 
-// refresh cookie data
-router.post("/me", grantedAccess, updateMe);
-
-// join course by course id
-router.post("/add/course/:id", grantedAccess, joinCourseById);
-
 // get user by is id
 router.get("/:id", getUserById);
 
-// join courses by array of courses ids
-router.post("/add/courses", grantedAccess, joinCoursesByIds);
+// refresh cookie data
+router.post("/me", grantedAccess, updateMe);
 
 // Verify user code either for login or for sign up.
 router.post("/verify", verifyCode);
 
 // Add or remove courses to wishlist
 router.post("/course/wishlist/:id", grantedAccess, toggleCourseWishlist);
-
-// leave course by course id
-router.post("/leave/course/:id", grantedAccess, leaveCourseById);
 
 // verify email address of user auth
 router.get("/email/verification", confirmEmailAddress);

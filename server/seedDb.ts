@@ -19,6 +19,12 @@ import Instructor from "./models/users/instructorModel.ts";
 import CourseProgress from "./models/courses/courseProgressModel.ts";
 import { InstructorDocument, LessonDocument } from "./types/types.ts";
 import Coupon from "./models/courses/couponModel.ts";
+import { getRandomImageFromDir } from "./utils/getRandomImageFromDir.ts";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const clearCollections = async () => {
   await Promise.all([
@@ -131,11 +137,9 @@ const createCourses = async ({
 
       const course = await Course.create({
         courseName: faker.helpers.arrayElement(courseNames),
-        courseImg: faker.image.urlPicsumPhotos({
-          width: 640,
-          height: 480,
-          category: "education",
-        }),
+        courseImg: getRandomImageFromDir(
+          path.join(__dirname, "public/imgs/courses")
+        ),
         courseRecapInfo: faker.lorem.words(10),
         courseDescription: faker.lorem.paragraph(),
         courseFullPrice: faker.number.int({ min: 500, max: 800 }),
@@ -781,19 +785,19 @@ const generateUpdatedDummyData = async () => {
     // await clearCollections();
     // console.log("Deleted all db.");
 
-    // console.log("Seeding users...");
-    // const users = await createUsers();
-    // console.log(`${users.length} users created.`);
+    console.log("Seeding users...");
+    const users = await createUsers();
+    console.log(`${users.length} users created.`);
 
-    // console.log("Seeding courses...");
-    // const courses = await createCourses({ coursesPerTopic: 4 });
-    // if (courses && courses.length > 1) {
-    //   console.log(`${courses.length} courses created.`);
-    // }
+    console.log("Seeding courses...");
+    const courses = await createCourses({ coursesPerTopic: 1000 });
+    if (courses && courses.length > 1) {
+      console.log(`${courses.length} courses created.`);
+    }
 
-    // console.log("Seeding sections...");
-    // const sections = await createSections();
-    // console.log(`${sections.length} sections created.`);
+    console.log("Seeding sections...");
+    const sections = await createSections();
+    console.log(`${sections.length} sections created.`);
 
     console.log("Seeding lessons...");
     const lessons = await createLessons();
@@ -803,7 +807,7 @@ const generateUpdatedDummyData = async () => {
     console.log("Simulate courses purchases completed");
 
     console.log("Seeding reviews...");
-    const reviews = await createReviews();
+    await createReviews();
     console.log(`reviews created.`);
 
     console.log("Seeding reported reviews...");

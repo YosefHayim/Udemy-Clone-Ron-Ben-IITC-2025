@@ -1,19 +1,19 @@
-import { supportedCountries } from "@/utils/supportedCountries";
-import { useState } from "react";
-import { TfiWorld } from "react-icons/tfi";
+import { supportedCountries } from '@/utils/supportedCountries';
+import { useState } from 'react';
+import { TfiWorld } from 'react-icons/tfi';
 
 const SelectCountry = () => {
-  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCountry(e.target.value);
-    console.log("Selected Country:", e.target.value);
+    console.log('Selected Country:', e.target.value);
   };
 
   return (
     <div>
       <div className="mb-[0.5em] flex flex-col gap-[0.5em]">
-        <label htmlFor="country-select" className="font-bold">
+        <label htmlFor="country-select" className="font-sans font-extrabold">
           Country
         </label>
         <select
@@ -35,8 +35,8 @@ const SelectCountry = () => {
         </select>
       </div>
       <p className="w-full text-grayNavbarTxt">
-        Udemy is required by law to collect applicable transaction taxes for
-        purchases made in certain tax jurisdictions.
+        Udemy is required by law to collect applicable transaction taxes for purchases made in
+        certain tax jurisdictions.
       </p>
     </div>
   );

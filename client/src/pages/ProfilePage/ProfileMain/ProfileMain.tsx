@@ -1,39 +1,39 @@
-import { Input } from "@/components/ui/input";
-import SideBarProfile from "../SideBarProfile/SideBarProfile";
-import { Button } from "@/components/ui/button";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import { useState } from "react";
-import { btnLanguages } from "@/utils/languages";
-import { useDispatch } from "react-redux";
-import { useMutation } from "@tanstack/react-query";
-import updateUserLanguage from "@/api/users/updateUserLanguage";
-import { setLanguage } from "@/redux/slices/userSlice";
+import { Input } from '@/components/ui/input';
+import SideBarProfile from '../SideBarProfile/SideBarProfile';
+import { Button } from '@/components/ui/button';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import { useState } from 'react';
+import { btnLanguages } from '@/utils/languages';
+import { useDispatch } from 'react-redux';
+import { useMutation } from '@tanstack/react-query';
+import updateUserLanguage from '@/api/users/updateUserLanguage';
+import { setLanguage } from '@/redux/slices/userSlice';
+import { regInputFill } from '@/utils/stylesStorage';
 
 const ProfileMain = () => {
-  document.title = "Udemy | Edit profile";
+  const dispatch = useDispatch();
+  document.title = 'Udemy | Edit profile';
   const MAX_LENGTH = 60;
 
-  const fullName = useSelector((state: RootState) => state?.user.fullName);
-  const headlineFromStore = useSelector(
-    (state: RootState) => state?.user.headline,
-  );
-  const userLinks = useSelector((state: RootState) => state?.user.userLinks);
-  const bio = useSelector((state: RootState) => state?.user.bio);
+  const fullName = useSelector((state: RootState) => state?.user?.fullName);
+  const headlineFromStore = useSelector((state: RootState) => state?.user.headline);
+  const userLinks = useSelector((state: RootState) => state?.user?.userLinks);
+  const bio = useSelector((state: RootState) => state?.user?.bio);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const fName = formData.get("fname");
-    const lName = formData.get("lname");
-    const languageChosen = formData.get("language");
-    const headline = formData.get("headline");
-    const xPlatform = formData.get("twitter");
-    const linkedin = formData.get("linkedin");
-    const youtube = formData.get("youtube");
-    const facebook = formData.get("facebook");
-    const website = formData.get("website");
-    const bio = formData.get("bio");
+    const fName = formData.get('fname');
+    const lName = formData.get('lname');
+    const languageChosen = formData.get('language');
+    const headline = formData.get('headline');
+    const xPlatform = formData.get('twitter');
+    const linkedin = formData.get('linkedin');
+    const youtube = formData.get('youtube');
+    const facebook = formData.get('facebook');
+    const website = formData.get('website');
+    const bio = formData.get('bio');
 
     console.log(
       `Language chosen: ${languageChosen}`,
@@ -45,15 +45,13 @@ const ProfileMain = () => {
       `YouTube: ${youtube}`,
       `Facebook: ${facebook}`,
       `Bio: ${bio}`,
-      `Website: ${website}`,
+      `Website: ${website}`
     );
   };
 
-  const [headline, setHeadline] = useState(headlineFromStore || "");
+  const [headline, setHeadline] = useState(headlineFromStore || '');
   const [isBoldText, setBoldText] = useState(false);
-  const [charsLeft, setCharsLeft] = useState(
-    MAX_LENGTH - (headlineFromStore?.length || 0),
-  );
+  const [charsLeft, setCharsLeft] = useState(MAX_LENGTH - (headlineFromStore?.length || 0));
 
   const handleHeadlineChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
@@ -64,11 +62,7 @@ const ProfileMain = () => {
     }
   };
 
-  const dispatch = useDispatch();
-
-  const defaultLanguage = useSelector(
-    (state: RootState) => state?.user.language,
-  );
+  const defaultLanguage = useSelector((state: RootState) => state?.user.language);
   const [chosenLanguage, setChosenLanguage] = useState(defaultLanguage);
 
   const postUserLanguage = useMutation({
@@ -90,20 +84,18 @@ const ProfileMain = () => {
       <main className="flex-1 border border-gray-300">
         <div className="bg-white">
           <div className="min-w-full border-b border-gray-300 p-4 text-center">
-            <h2 className="text-2xl font-bold text-gray-800">Public Profile</h2>
-            <p className="text-courseNameColorTxt">
-              Add information about yourself
-            </p>
+            <h2 className="font-sans text-2xl font-extrabold text-gray-800">Public Profile</h2>
+            <p className="text-courseNameColorTxt">Add information about yourself</p>
           </div>
           <form className="space-y-6 px-[9rem]" onSubmit={handleSubmit}>
             <div>
-              <p className="pb-2 pt-8 font-sans font-bold">Basics:</p>
+              <p className="pb-2 pt-8 font-sans font-extrabold">Basics:</p>
               <Input
                 id="fname"
                 name="fname"
                 type="text"
                 placeholder={fullName}
-                className="rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500 hover:bg-gray-100"
+                className={`${regInputFill}`}
               />
             </div>
             <div>
@@ -112,7 +104,7 @@ const ProfileMain = () => {
                 name="lname"
                 type="text"
                 placeholder="Last Name"
-                className="rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500 hover:bg-gray-100"
+                className={`${regInputFill}`}
               />
             </div>
             <div>
@@ -122,15 +114,14 @@ const ProfileMain = () => {
                 name="headline"
                 onChange={handleHeadlineChange}
                 value={headline}
-                placeholder={"Headline"}
-                className="rounded-[0.2rem] border border-gray-500 focus-within:border-purple-500 focus-within:ring-1 focus-within:ring-purple-500 hover:bg-gray-100"
+                placeholder={'Headline'}
+                className={`${regInputFill}`}
               />
               <span className="absolute right-[26%] top-[37.5%] font-medium text-gray-500">
                 {charsLeft}
               </span>
               <p className=" my-[0.4em] text-gray-600">
-                Add a professional headline like "instructor at udemy" or
-                "Architect"
+                Add a professional headline like "instructor at udemy" or "Architect"
               </p>
             </div>
             <div>
@@ -145,7 +136,7 @@ const ProfileMain = () => {
                   </button>
                   <button
                     type="button"
-                    className="flex h-8 w-8 items-center justify-center rounded-[0.2rem] font-serif font-bold italic text-black text-opacity-80 hover:bg-gray-300 focus:outline-none"
+                    className="flex h-8 w-8 items-center justify-center rounded-[0.2rem] font-sans font-serif font-extrabold italic text-black text-opacity-80 hover:bg-gray-300 focus:outline-none"
                   >
                     I
                   </button>
@@ -156,7 +147,7 @@ const ProfileMain = () => {
                   placeholder={bio}
                   rows={4}
                   className={`${
-                    isBoldText ? "font-bold" : "font-normal"
+                    isBoldText ? 'font-sans font-extrabold' : 'font-normal'
                   } w-full border border-t-0 border-gray-500 bg-white hover:bg-gray-100`}
                 ></textarea>
               </div>
@@ -171,13 +162,11 @@ const ProfileMain = () => {
                   onChange={(e) => handleChosenLanguage(e.target.value)}
                   className="mb-[1em] w-full cursor-pointer rounded-[0.2rem] border border-gray-500 bg-white p-2 hover:bg-gray-100"
                 >
-                  {btnLanguages.map(
-                    (language: { code: string; name: string }) => (
-                      <option key={language.code} value={language.name}>
-                        {language.name}
-                      </option>
-                    ),
-                  )}
+                  {btnLanguages.map((language: { code: string; name: string }) => (
+                    <option key={language.code} value={language.name}>
+                      {language.name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <hr />
@@ -191,15 +180,13 @@ const ProfileMain = () => {
                     name="website"
                     id="website"
                     placeholder={
-                      userLinks.website.length > 1
-                        ? userLinks.website
-                        : "Website (http(s)://..)"
+                      userLinks.website.length > 1 ? userLinks.website : 'Website (http(s)://..)'
                     }
                     className="w-full rounded-[0.2rem] border border-gray-500"
                   />
                 </div>
                 <div className="flex w-full flex-col items-start justify-start">
-                  <div className="flex h-[35px] w-full flex-row items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                  <div className="flex h-[35px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
                     <label
                       htmlFor="twitter"
                       className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
@@ -211,9 +198,7 @@ const ProfileMain = () => {
                       name="twitter"
                       id="twitter"
                       placeholder={
-                        userLinks.xPlatform.length > 1
-                          ? userLinks.xPlatform
-                          : "Twitter Profile"
+                        userLinks.xPlatform.length > 1 ? userLinks.xPlatform : 'Twitter Profile'
                       }
                       className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
                     />
@@ -223,7 +208,7 @@ const ProfileMain = () => {
                   </p>
                 </div>
                 <div className="flex w-full flex-col items-start justify-start">
-                  <div className="flex h-[35px] w-full flex-row items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                  <div className="flex h-[35px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
                     <label
                       htmlFor="facebook"
                       className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
@@ -234,11 +219,7 @@ const ProfileMain = () => {
                       type="text"
                       name="facebook"
                       id="facebook"
-                      placeholder={
-                        userLinks.facebook.length > 1
-                          ? userLinks.facebook
-                          : "Username"
-                      }
+                      placeholder={userLinks.facebook.length > 1 ? userLinks.facebook : 'Username'}
                       className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
                     />
                   </div>
@@ -247,7 +228,7 @@ const ProfileMain = () => {
                   </p>
                 </div>
                 <div className="flex w-full flex-col items-start justify-start">
-                  <div className="flex h-[35px] w-full flex-row items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                  <div className="flex h-[35px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
                     <label
                       htmlFor="linkedin"
                       className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
@@ -258,11 +239,7 @@ const ProfileMain = () => {
                       type="text"
                       name="linkedin"
                       id="linkedin"
-                      placeholder={
-                        userLinks.linkedin.length > 1
-                          ? userLinks.linkedin
-                          : "Username"
-                      }
+                      placeholder={userLinks.linkedin.length > 1 ? userLinks.linkedin : 'Username'}
                       className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
                     />
                   </div>
@@ -271,7 +248,7 @@ const ProfileMain = () => {
                   </p>
                 </div>
                 <div className="flex w-full flex-col items-start justify-start">
-                  <div className="flex h-[35px] w-full flex-row items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                  <div className="flex h-[35px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
                     <label
                       htmlFor="youtube"
                       className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
@@ -282,11 +259,7 @@ const ProfileMain = () => {
                       type="text"
                       id="youtube"
                       name="youtube"
-                      placeholder={
-                        userLinks.youtube.length > 1
-                          ? userLinks.youtube
-                          : "Username"
-                      }
+                      placeholder={userLinks.youtube.length > 1 ? userLinks.youtube : 'Username'}
                       className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
                     />
                   </div>
@@ -299,7 +272,7 @@ const ProfileMain = () => {
             <div className="flex w-full justify-start">
               <Button
                 type="submit"
-                className="font-Sans mb-[1em] rounded-[0.2rem] bg-btnColor px-4 text-sm font-bold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none"
+                className="mb-[1em] rounded-[0.2rem] bg-btnColor px-4 font-[lifeLtstd] font-sans text-sm font-extrabold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none"
               >
                 Save
               </Button>

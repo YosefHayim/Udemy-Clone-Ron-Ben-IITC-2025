@@ -1,14 +1,14 @@
-import { Button } from "@/components/ui/button";
-import { IoMdCheckmark } from "react-icons/io";
-import subscriptionImg from "/images/subscription-img.png";
+import { Button } from '@/components/ui/button';
+import { IoMdCheckmark } from 'react-icons/io';
+import subscriptionImg from '/images/subscription-img.png';
 
 const Subscription = () => {
   return (
     <div className="p-[5em]">
-      <h1 className="mb-[1em] font-bold">Subscriptions</h1>
+      <h1 className="mb-[1em] font-sans font-extrabold">Subscriptions</h1>
       <div className="flex flex-col items-start justify-start gap-[1em]">
         <h2 className=" text-[1.5em]">Manage your Udemy subscriptions</h2>
-        <h3 className="mb-[0.5em] text-[1.5em] font-bold">Active plans</h3>
+        <h3 className="mb-[0.5em] font-sans text-[1.5em] font-extrabold">Active plans</h3>
       </div>
       <div className="mb-[2em] flex h-[10em] w-full flex-row items-center justify-center border-2 border-dashed border-gray-200 p-[2em]">
         <div>
@@ -16,19 +16,16 @@ const Subscription = () => {
         </div>
       </div>
       {/* Here we render the data of history purchases of courses etc */}
-      <h3 className="mb-[0.5em] text-[1.5em] font-bold">
+      <h3 className="mb-[0.5em] font-sans text-[1.5em] font-extrabold">
         Subscription plans available
       </h3>
       <div className="flex flex-row items-center justify-between border border-gray-200">
         <div className=" p-[2em]">
           <div className="flex flex-row items-center justify-between">
             <div>
-              <h4 className="mb-[1.5em] font-bold">Personal Plan</h4>
+              <h4 className="mb-[1.5em] font-sans font-extrabold">Personal Plan</h4>
               <ul className="mb-[1em] flex flex-col items-start justify-start gap-[0.5em]">
-                <p>
-                  New opportunities await. Sign up for Personal Plan to get all
-                  this and more:
-                </p>
+                <p>New opportunities await. Sign up for Personal Plan to get all this and more:</p>
                 <li className="flex flex-row items-center justify-start gap-[0.5em]">
                   <IoMdCheckmark />
                   <p>Access to 12,000+ top courses</p>
@@ -44,10 +41,10 @@ const Subscription = () => {
               </ul>
               <div className="flex flex-col items-start justify-start gap-[1em]">
                 <div className="flex flex-row items-start justify-start gap-[1em]">
-                  <Button className="h-[3em] rounded-[0.2em] bg-btnColor font-bold text-white hover:bg-[#892de1] focus:outline-none">
+                  <Button className="h-[3em] rounded-[0.2em] bg-btnColor font-sans font-extrabold text-white hover:bg-[#892de1] focus:outline-none">
                     Subscribe
                   </Button>
-                  <Button className="hover:hover-color-mix h-[3em] rounded-[0.2em] bg-white font-bold text-btnColor shadow-none hover:bg-white focus:outline-none">
+                  <Button className="hover:hover-color-mix h-[3em] rounded-[0.2em] bg-white font-sans font-extrabold text-btnColor shadow-none hover:bg-white focus:outline-none">
                     Learn more
                   </Button>
                 </div>

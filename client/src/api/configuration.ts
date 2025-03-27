@@ -1,9 +1,10 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const baseUrl = "https://udemy-clone-ron-ben.onrender.com";
-export const localhostUrl = "http://localhost:3000";
+export const baseUrl = import.meta.env.VITE_API_BASE_URL;
+export const localhostUrl = import.meta.env.VITE_LOCALHOST;
+export const isProduction = import.meta.env.VITE_NODE_ENV === 'production';
 
 export const axiosClient = axios.create({
-  baseURL: baseUrl, // Your back-end URL
-  withCredentials: true, // Ensures cookies are included in all requests
+  baseURL: isProduction ? baseUrl : localhostUrl,
+  withCredentials: true,
 });

@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import SideBarProfile from "../SideBarProfile/SideBarProfile";
+import { Link } from 'react-router-dom';
+import SideBarProfile from '../SideBarProfile/SideBarProfile';
 const ApiClients = () => {
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -9,20 +9,15 @@ const ApiClients = () => {
       {/* Main Content */}
       <main className="flex-1 p-8">
         <div className="mx-auto max-w-4xl rounded-lg bg-white p-8 shadow-lg">
-          <h2 className="mb-6 text-2xl font-bold text-gray-800">API Clients</h2>
-          <p className="mb-6 text-gray-600">
-            Create and list your API clients.
-          </p>
+          <h2 className="mb-6 font-sans text-2xl font-extrabold text-gray-800">API Clients</h2>
+          <p className="mb-6 text-gray-600">Create and list your API clients.</p>
 
           {/* Affiliate API Section */}
           <div className="mb-10">
-            <h3 className="mb-4 text-lg font-semibold text-gray-800">
-              Affiliate API
-            </h3>
+            <h3 className="mb-4 text-lg font-semibold text-gray-800">Affiliate API</h3>
             <p className="mb-4 text-gray-600">
-              The Udemy Affiliate API exposes functionalities of Udemy to help
-              developers build client applications and integrations with Udemy.
-              To see more details, please visit{" "}
+              The Udemy Affiliate API exposes functionalities of Udemy to help developers build
+              client applications and integrations with Udemy. To see more details, please visit{' '}
               <Link to="#" className="text-purple-600 hover:underline">
                 Udemy Affiliate API
               </Link>
@@ -52,9 +47,7 @@ const ApiClients = () => {
                 d="M13 16h-1v-4h-1m1-4h.01M12 8v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            <p className="text-sm text-gray-600">
-              You don’t have any API clients yet.
-            </p>
+            <p className="text-sm text-gray-600">You don’t have any API clients yet.</p>
           </div>
         </div>
       </main>

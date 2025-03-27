@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { AiFillCreditCard } from "react-icons/ai";
-import PaymentOption from "../PaymentOption/PaymentOption";
-import GPayIcon from "../GPayIcon/GPayIcon";
-import PayPalIcon from "../PayPalIcon/PayPalIcon";
-import { usePayPalScriptReducer } from "@paypal/react-paypal-js";
-import { useDispatch } from "react-redux";
+import { useState } from 'react';
+import { AiFillCreditCard } from 'react-icons/ai';
+import PaymentOption from '../PaymentOption/PaymentOption';
+import GPayIcon from '../GPayIcon/GPayIcon';
+import PayPalIcon from '../PayPalIcon/PayPalIcon';
+import { usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import { useDispatch } from 'react-redux';
 
 const PaymentOptionsRadio: React.FC = () => {
   const dispatch = useDispatch();
@@ -14,14 +14,14 @@ const PaymentOptionsRadio: React.FC = () => {
   const handleToggle = (option: string | null): void => {
     setActiveOption((prev) => (prev === option ? null : option)); // Toggle open/close
 
-    const newIsPaypal = option === "paypal" ? !options.isPaypal : false; // Toggle PayPal
+    const newIsPaypal = option === 'paypal' ? !options.isPaypal : false; // Toggle PayPal
 
     dispatch({
-      type: "resetOptions",
+      type: 'resetOptions',
       value: { ...options, isPaypal: newIsPaypal },
     });
 
-    console.log("PayPal toggled:", newIsPaypal);
+    console.log('PayPal toggled:', newIsPaypal);
   };
 
   return (
@@ -30,8 +30,8 @@ const PaymentOptionsRadio: React.FC = () => {
         radioName="reg-card"
         showVisa={true}
         providedIcon={<AiFillCreditCard className="text-[2em]" />}
-        isOpen={activeOption === "reg-card"}
-        onToggle={() => handleToggle("reg-card")}
+        isOpen={activeOption === 'reg-card'}
+        onToggle={() => handleToggle('reg-card')}
       />
       <PaymentOption
         showVisa={false}
@@ -39,8 +39,8 @@ const PaymentOptionsRadio: React.FC = () => {
         radioName="add-card"
         paymentOptionName="Cards"
         providedIcon={<AiFillCreditCard className="text-[2em]" />}
-        isOpen={activeOption === "add-card"}
-        onToggle={() => handleToggle("add-card")}
+        isOpen={activeOption === 'add-card'}
+        onToggle={() => handleToggle('add-card')}
       />
       <PaymentOption
         showVisa={false}
@@ -48,8 +48,8 @@ const PaymentOptionsRadio: React.FC = () => {
         radioName="g-pay"
         paymentOptionName="Google Pay"
         providedIcon={<GPayIcon extraDesign={`p-[0.1em] gap-[0.05em]`} />}
-        isOpen={activeOption === "g-pay"}
-        onToggle={() => handleToggle("g-pay")}
+        isOpen={activeOption === 'g-pay'}
+        onToggle={() => handleToggle('g-pay')}
       />
       <PaymentOption
         showVisa={false}
@@ -57,8 +57,8 @@ const PaymentOptionsRadio: React.FC = () => {
         radioName="paypal"
         paymentOptionName="PayPal"
         providedIcon={<PayPalIcon extraDesign={``} />}
-        isOpen={activeOption === "paypal"}
-        onToggle={() => handleToggle("paypal")}
+        isOpen={activeOption === 'paypal'}
+        onToggle={() => handleToggle('paypal')}
       />
     </div>
   );

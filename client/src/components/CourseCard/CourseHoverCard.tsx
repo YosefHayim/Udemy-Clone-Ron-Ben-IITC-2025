@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface CourseHoverCardProps {
   course: {
@@ -18,13 +18,13 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
   };
 
   const truncateList = (list: string[], maxItems: number) => {
-    return list.length > maxItems ? [...list.slice(0, maxItems), "..."] : list;
+    return list.length > maxItems ? [...list.slice(0, maxItems), '...'] : list;
   };
 
   return (
     <div className="border-lg z-[999] w-[350px] rounded-lg border-[0.01rem] border-gray-300 bg-white p-6 shadow-lg">
-      <h3 className="text-xl font-bold text-courseNameColorTxt">
-        {truncateText(course.courseName || "", 70)}
+      <h3 className="font-sans text-xl font-extrabold text-courseNameColorTxt">
+        {truncateText(course.courseName || '', 70)}
       </h3>
 
       {course.isNew && (
@@ -34,27 +34,26 @@ const CourseHoverCard: React.FC<CourseHoverCardProps> = ({ course }) => {
       )}
 
       <p className="mt-2 text-xs text-gray-500">
-        Updated{" "}
+        Updated{' '}
         <span className="font-medium text-green-600">
-          {new Date(course.updatedAt || "").toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
+          {new Date(course.updatedAt || '').toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
           })}
         </span>
       </p>
       <p className="mt-1 text-xs text-gray-500">
-        {course.totalCourseDuration?.toFixed(1)} total hours •{" "}
-        {course.courseLevel || "All Levels"}
+        {course.totalCourseDuration?.toFixed(1)} total hours • {course.courseLevel || 'All Levels'}
       </p>
 
       <p className="mt-4 text-sm leading-relaxed text-gray-700">
-        {truncateText(course.courseDescription || "", 150)}
+        {truncateText(course.courseDescription || '', 150)}
       </p>
 
       <ul className="mt-4 list-inside list-disc text-sm text-gray-700">
-        {truncateList(course.whatYouWillLearn || [""], 3).map((item, index) => (
+        {truncateList(course.whatYouWillLearn || [''], 3).map((item, index) => (
           <li key={index} className="flex items-start gap-2">
-            <span className="font-bold text-green-600">✓</span>
+            <span className="font-sans font-extrabold text-green-600">✓</span>
             {item}
           </li>
         ))}

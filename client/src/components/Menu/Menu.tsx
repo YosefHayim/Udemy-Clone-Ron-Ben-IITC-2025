@@ -1,7 +1,7 @@
-import { categories } from "@/utils/categoriesOfCoursesNavbarHover";
-import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { categories } from '@/utils/categoriesOfCoursesNavbarHover';
+import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Menu: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
@@ -16,8 +16,7 @@ const Menu: React.FC = () => {
   };
 
   const getArrowPosition = (index: number): number => {
-    const buttons =
-      document.querySelectorAll<HTMLButtonElement>(".menu-button");
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.menu-button');
     if (buttons[index]) {
       const rect = buttons[index].getBoundingClientRect();
       return rect.left + rect.width / 2;
@@ -26,18 +25,13 @@ const Menu: React.FC = () => {
   };
 
   const handleNavigate = (category: string) => {
-    navigate(
-      `/courses/search?src=ukw&q=${encodeURIComponent(category.toLowerCase())}`,
-    );
+    navigate(`/courses/search?src=ukw&q=${encodeURIComponent(category.toLowerCase())}`);
     searchAlgoLocalStorage(category.toLowerCase());
   };
   return (
-    <div>
+    <div className="font-sans">
       <hr />
-      <div
-        className="relative z-20 bg-white shadow-md"
-        onMouseLeave={handleMouseLeave}
-      >
+      <div className="relative z-20 bg-white shadow-md" onMouseLeave={handleMouseLeave}>
         <div className="flex items-center justify-center space-x-8 py-4">
           {categories.map((category, index) => (
             <div
@@ -46,7 +40,7 @@ const Menu: React.FC = () => {
               onMouseEnter={() => handleMouseEnter(index)}
             >
               <button
-                className="menu-button font-medium text-gray-800 hover:text-purple-600"
+                className="menu-button font-medium text-gray-800 hover:text-purple-600 focus:outline-none"
                 onClick={() => handleNavigate(category.title)}
               >
                 {category.title}
@@ -71,17 +65,15 @@ const Menu: React.FC = () => {
 
             {/* Submenu Items */}
             <div className="mx-auto flex w-full max-w-screen-xl justify-center space-x-8">
-              {categories[activeCategory]?.subcategories.map(
-                (subcategory, index) => (
-                  <div
-                    key={index}
-                    className="cursor-pointer hover:underline"
-                    onClick={() => handleNavigate(subcategory)}
-                  >
-                    {subcategory}
-                  </div>
-                ),
-              )}
+              {categories[activeCategory]?.subcategories.map((subcategory, index) => (
+                <div
+                  key={index}
+                  className="cursor-pointer hover:underline"
+                  onClick={() => handleNavigate(subcategory)}
+                >
+                  {subcategory}
+                </div>
+              ))}
             </div>
           </div>
         )}

@@ -1,4 +1,4 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import { axiosClient, baseUrl, isProduction, localhostUrl } from '../configuration';
 
 const getInstructorById = async (instructorId: string) => {
   console.log(instructorId);
@@ -8,7 +8,7 @@ const getInstructorById = async (instructorId: string) => {
   }
 
   try {
-    const url = `${localhostUrl}/api/instructor/${instructorId}`;
+    const url = `${isProduction ? baseUrl : localhostUrl}/api/instructor/${instructorId}`;
 
     const res = await axiosClient.get(url);
 
@@ -18,10 +18,7 @@ const getInstructorById = async (instructorId: string) => {
       return res.data.data;
     }
   } catch (error) {
-    console.log(
-      `Error has been occurred durning getting instructor information: `,
-      error,
-    );
+    console.log(`Error has been occurred durning getting instructor information: `, error);
   }
 };
 

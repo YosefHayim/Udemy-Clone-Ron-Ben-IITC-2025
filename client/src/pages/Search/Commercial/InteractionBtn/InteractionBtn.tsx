@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { BtnStyleNHoverTypeTwo } from "@/utils/stylesStorage";
+import { Button } from '@/components/ui/button';
+import { BtnStyleNHoverTypeTwo } from '@/utils/stylesStorage';
 
 const InteractionBtn = () => {
   return (

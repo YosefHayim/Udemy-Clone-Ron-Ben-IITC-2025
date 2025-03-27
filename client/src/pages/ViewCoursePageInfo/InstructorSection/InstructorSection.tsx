@@ -1,8 +1,8 @@
-import InstructorProfileImg from "./InstructorProfileImg/InstructorProfileImg";
-import InstructorName from "./InstructorName/InstructorName";
-import InstructorProfession from "./InstructorProfession/InstructorProfession";
-import InstructorDescription from "./InstructorDescription/InstructorDescription";
-import { Link } from "react-router-dom";
+import InstructorProfileImg from './InstructorProfileImg/InstructorProfileImg';
+import InstructorName from './InstructorName/InstructorName';
+import InstructorProfession from './InstructorProfession/InstructorProfession';
+import InstructorDescription from './InstructorDescription/InstructorDescription';
+import { Link } from 'react-router-dom';
 
 const InstructorSection: React.FC<{
   instructorImg: string;
@@ -20,19 +20,13 @@ const InstructorSection: React.FC<{
   return (
     <div className="flex flex-col items-start justify-start gap-[1em]">
       <div>
-        <h2 className="text-[1.5em] font-bold">Instructor</h2>
+        <h2 className="font-sans text-[1.5em] font-extrabold">Instructor</h2>
         <Link to={`/user/instructor/${instructorId}`}>
-          <InstructorName
-            instructorName={instructorName}
-            instructorId={instructorId}
-          />
+          <InstructorName instructorName={instructorName} instructorId={instructorId} />
         </Link>
         <InstructorProfession instructorHeadline={instructorHeadline} />
       </div>
-      <InstructorProfileImg
-        instructorImg={instructorImg}
-        instructorId={instructorId}
-      />
+      <InstructorProfileImg instructorImg={instructorImg} instructorId={instructorId} />
       <InstructorDescription descriptionInstructor={descriptionInstructor} />
     </div>
   );

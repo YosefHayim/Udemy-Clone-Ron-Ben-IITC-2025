@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
-import loginUdemyBusinessOrganizationImg from "/images/login-udemy-business-organization.jpg";
-import udemyBusinessLogo from "/images/udemy-business-logo.png";
+import { Link } from 'react-router-dom';
+import loginUdemyBusinessOrganizationImg from '/images/login-udemy-business-organization.jpg';
+import udemyBusinessLogo from '/images/udemy-business-logo.png';
 
 const OrganizationLogin = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const target = e.currentTarget;
     const formData = new FormData(target);
-    const email = formData.get("email");
+    const email = formData.get('email');
     console.log(email);
   };
 
@@ -35,8 +35,8 @@ const OrganizationLogin = () => {
               name="email"
               id="email"
               placeholder="Enter your work email address"
-              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white px-4 py-3 text-black
-                transition-colors duration-200 ease-in-out placeholder:font-bold 
+              className="w-full rounded-[0.3em] border border-[#9194ac] bg-white px-4 py-3 font-sans
+                text-black transition-colors duration-200 ease-in-out placeholder:font-extrabold 
                 placeholder:text-courseNameColorTxt hover:bg-gray-50 focus:border-purple-800 
                 focus:bg-white focus:text-black 
                 focus:outline-none"

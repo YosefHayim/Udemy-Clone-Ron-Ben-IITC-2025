@@ -1,14 +1,14 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import { axiosClient, baseUrl, isProduction, localhostUrl } from '../configuration';
 
 type fn = (idOfReview: string) => Promise<any>;
 
 export const dislikeReviewById: fn = async (idOfReview: string) => {
-  if (!idOfReview || typeof idOfReview !== "string") {
+  if (!idOfReview || typeof idOfReview !== 'string') {
     console.log(`Invalid reviewId: ${idOfReview}`);
     return;
   }
   const sanitizedReviewId = idOfReview.trim();
-  const url = `${localhostUrl}/api/review/dislike/${sanitizedReviewId}`;
+  const url = `${isProduction ? baseUrl : localhostUrl}/api/review/dislike/${sanitizedReviewId}`;
   try {
     const res = await axiosClient.post(url);
 

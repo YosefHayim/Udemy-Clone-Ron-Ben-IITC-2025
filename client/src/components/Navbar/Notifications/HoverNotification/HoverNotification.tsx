@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import placeholderInstructorMessage from "/images/instructor-img-placeholder.png";
-import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import placeholderInstructorMessage from '/images/instructor-img-placeholder.png';
+import { Button } from '@/components/ui/button';
 
 const HoverNotification = () => {
   const [clickedType, setClickedType] = useState(false);
@@ -40,9 +40,7 @@ const HoverNotification = () => {
           <hr className="mb-[1em] w-full" />
         </div>
         <div className="mb-[1em] w-full p-[0.8em] font-medium">
-          {!isNotificationsExist && (
-            <p className="text-center">No notifications.</p>
-          )}
+          {!isNotificationsExist && <p className="text-center">No notifications.</p>}
           <div className="flex w-full items-start justify-center gap-[0.5em] pb-[1em]">
             <img
               src={placeholderInstructorMessage}
@@ -50,7 +48,7 @@ const HoverNotification = () => {
               className="h-[4em] rounded-[100em] border border-gray-500"
             />
             <div className="flex w-full flex-col">
-              <p className="font-bold">
+              <p className="font-sans font-extrabold">
                 Andrei Engobe and 1 other made an announcement:The AI Limits?...
               </p>
               <p className="font-normal text-gray-900">3 days ago</p>
@@ -60,14 +58,12 @@ const HoverNotification = () => {
           <div className="flex w-full flex-row items-center justify-between pt-[1em]">
             <Button
               className={`${
-                isNotificationsExist
-                  ? "cursor-not-allowed opacity-[0.3]"
-                  : "opacity-[1]"
-              } bg-white font-bold text-purple-600 shadow-none hover:bg-purpleHoverBtn`}
+                isNotificationsExist ? 'cursor-not-allowed opacity-[0.3]' : 'opacity-[1]'
+              } bg-white font-sans font-extrabold text-purple-600 shadow-none hover:bg-purpleHoverBtn`}
             >
               Mark all as read
             </Button>
-            <Button className="rounded-[0.2em] border border-purple-600 bg-white px-[2.5em] py-[0.5em] font-bold text-purple-600  shadow-none hover:bg-purpleHoverBtn">
+            <Button className="rounded-[0.2em] border border-purple-600 bg-white px-[2.5em] py-[0.5em] font-sans font-extrabold text-purple-600  shadow-none hover:bg-purpleHoverBtn">
               See all
             </Button>
           </div>

@@ -1,4 +1,4 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import { axiosClient, baseUrl, isProduction, localhostUrl } from '../configuration';
 
 type email = {
   email: string;
@@ -9,14 +9,14 @@ type fn = (email: email) => Promise<any>;
 const loginUser: fn = async (email) => {
   try {
     const response = await axiosClient.post(
-      `${localhostUrl}/api/user/auth/login`,
-      email,
+      `${isProduction ? baseUrl : localhostUrl}/api/user/auth/login`,
+      email
     );
 
     if (response) {
       console.log(response.data);
-      localStorage.setItem("cookie", response.data.token);
-      return response.data;
+      localStorage.setItem('cookie', response.data.token);
+      return response.data.token;
     }
   } catch (error) {
     console.log(`Error occurred during the login of user: `, error);

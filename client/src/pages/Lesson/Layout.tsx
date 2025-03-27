@@ -1,9 +1,9 @@
-import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
-import { AppSidebar } from "./App-Sidebar";
-import TopNavBar from "./TopNavBar";
-import fetchCourseById from "@/services/courseService";
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
+import { AppSidebar } from './App-Sidebar';
+import TopNavBar from './TopNavBar';
+import fetchCourseById from '@/services/courseService';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -15,8 +15,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   // Fetching course data using the courseId from the URL
   const { data, isLoading, error } = useQuery({
-    queryKey: ["course", courseId],
-    queryFn: () => fetchCourseById(courseId || ""),
+    queryKey: ['course', courseId],
+    queryFn: () => fetchCourseById(courseId || ''),
     enabled: !!courseId, // Only fetch if the courseId exists
   });
 
@@ -38,8 +38,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <SidebarProvider
       style={{
-        "--sidebar-width": "28rem",
-        "--sidebar-width-mobile": "20rem",
+        '--sidebar-width': '28rem',
+        '--sidebar-width-mobile': '20rem',
       }}
     >
       <header>

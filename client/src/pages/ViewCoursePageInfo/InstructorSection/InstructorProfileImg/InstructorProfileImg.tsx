@@ -1,11 +1,11 @@
-import InstructorRatings from "../InstructorRatings/InstructorRatings";
+import InstructorRatings from '../InstructorRatings/InstructorRatings';
 
 const InstructorProfileImg: React.FC<{
   instructorImg: string;
   instructorId: string;
 }> = ({ instructorImg, instructorId }) => {
   return (
-    <div className="flex flex-row items-center justify-start gap-[2em]">
+    <div className="flex  items-center justify-start gap-[2em]">
       <div>
         <img
           id={instructorId}

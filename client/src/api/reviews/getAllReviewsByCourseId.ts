@@ -1,15 +1,15 @@
-import { axiosClient, baseUrl, localhostUrl } from "../configuration";
+import { axiosClient, baseUrl, isProduction, localhostUrl } from '../configuration';
 
 type fn = (courseId: string | null) => Promise<any>;
 
-const getAllReviewsByCourseId: fn = async (courseId = "") => {
-  if (!courseId || typeof courseId !== "string") {
-    console.log("Invalid course ID provided.");
+const getAllReviewsByCourseId: fn = async (courseId = '') => {
+  if (!courseId || typeof courseId !== 'string') {
+    console.log('Invalid course ID provided.');
     return null;
   }
 
   const sanitizedCourseId = courseId.trim();
-  const url = `${localhostUrl}/api/review/course/${sanitizedCourseId}`;
+  const url = `${isProduction ? baseUrl : localhostUrl}/api/review/course/${sanitizedCourseId}`;
 
   try {
     const response = await axiosClient.get(url);
@@ -19,7 +19,7 @@ const getAllReviewsByCourseId: fn = async (courseId = "") => {
       return response.data.data;
     }
 
-    console.warn("No course data found in the response.");
+    console.warn('No course data found in the response.');
     return null;
   } catch (error) {
     console.log(`Error fetching course with ID ${sanitizedCourseId}:`, error);

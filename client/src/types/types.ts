@@ -5,9 +5,7 @@ export interface DummyData {
 }
 
 export interface FilterProps {
-  setFilterData?:
-    | boolean
-    | React.Dispatch<React.SetStateAction<FilterDataProps>>;
+  setFilterData?: boolean | React.Dispatch<React.SetStateAction<FilterDataProps>>;
   filterData?: boolean | FilterDataProps;
   filterTitle: string;
   filterItems?: DummyData[];
@@ -66,6 +64,8 @@ export interface UserState {
   };
   isLoggedPreviouslyWithGoogle: boolean;
   isAuthActivated: boolean;
+  whenCreated: Date | null | undefined;
+  coursesInProgress: [];
 }
 
 export interface searchResultCourseImgProps {
@@ -101,9 +101,10 @@ interface ResultProps {
 export interface SearchResultsProps {
   isTyping: boolean;
   data: {
-    response: SearchResultsArray[];
+    response?: SearchResultsArray[];
   };
   response?: ResultProps;
+  width: number;
 }
 
 export interface ReportUserReviewPayload {
@@ -124,7 +125,7 @@ export type AtagBtnProps = {
 
 export interface CourseImgProps {
   courseImg: string;
-  widthChosen: string;
+  widthChosen?: string;
   standCardView: boolean;
   imgExplanation: string;
 }
@@ -138,8 +139,9 @@ export interface CoursePriceProps {
   discountPrice?: number | string;
   fullPrice?: number | string;
   chooseFlex?: string;
-  discountPriceSize?: string;
   showFullPrice?: boolean;
+  extraCSS?: string;
+  displayPercent: boolean;
 }
 
 export interface CourseRatingsProps {
@@ -184,33 +186,90 @@ export interface ResponseSuggestions {
 export interface CourseData {
   _id: string;
   courseName: string;
+  courseImg: string;
+  courseTrailer: string;
+  courseDescription: string;
+  courseRecapInfo: string;
+  courseRequirements: string[];
+  whoThisCourseIsFor: string;
+  whatYouWillLearn: string[];
+  courseFullPrice: number;
+  courseDiscountPrice: number;
   category: string;
   subCategory: string;
   courseTopic: string;
-  courseRecapInfo: string;
+  courseLevel: string;
+  courseLanguages: string; // string, not array
   courseTag: string;
+  moneyBackGuarantee: string;
   averageRating: number;
   totalRatings: number;
-  totalStudentsEnrolled: { count: number };
+  totalStudentsEnrolled: {
+    count: number;
+    students: string[];
+  };
   courseInstructor: {
     _id: string;
     fullName: string;
     headline: string;
+    bio: string;
     profilePic: string;
   };
-  updatedAt: string;
-  courseLanguages: string[];
-  whatYouWillLearn: string[];
-  sections: { lessons: { _id: string }[] }[];
-  totalCourseDuration: string;
+  courseInstructorDescription: string;
+  totalCourseDuration: number;
   totalCourseLessons: number;
-  courseRequirements: string[];
-  courseDescription: string;
-  whoThisCourseIsFor: string[];
-  courseImg: string;
-  courseDiscountPrice: number;
-  courseFullPrice: number;
-  reviews: any[];
+  totalCourseSections: number;
+  isActive: boolean;
+  certificateOnly: boolean;
+  reviews: {
+    _id: string;
+    user: {
+      _id: string;
+      fullName: string;
+    };
+    courseReview: string;
+    rating: number;
+    comment: string;
+    createdAt: string;
+    updatedAt: string;
+    likes: {
+      users: string[];
+      count: number;
+    };
+    dislikes: {
+      users: string[];
+      count: number;
+    };
+    reports: {
+      entries: any[];
+      count: number;
+    };
+  }[];
+  sections: {
+    _id: string;
+    course: string;
+    title: string;
+    totalSectionDuration: number;
+    totalSectionLessons: number;
+    createdAt: string;
+    updatedAt: string;
+    lessons: {
+      _id: string;
+      section: string;
+      title: string;
+      videoUrl: string;
+      duration: number;
+      order: number;
+      isDone: boolean;
+      lastTimeVideoPlayed: number;
+      resources: any[];
+      createdAt: string;
+      updatedAt: string;
+    }[];
+  }[];
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
 }
 
 export interface LoaderProps {
@@ -219,6 +278,7 @@ export interface LoaderProps {
   paddingSetTo?: string;
   usePurpleLoading?: boolean;
   useSmallBlackLoading?: boolean;
+  purpleLightSmallStyle?: boolean;
 }
 // explore data ts
 export interface Topic {
@@ -282,6 +342,9 @@ export interface DecodedTokenProps {
     instagram: string;
   };
   isLoggedPreviouslyWithGoogle: boolean;
+  createdAt: Date | null | undefined;
+  updatedAt: Date | null | undefined;
+  isAuthActivated: boolean;
 }
 
 export type FormErrors = {
@@ -307,6 +370,9 @@ export interface CoursePreviewCardProps {
   fullPrice: number;
   courseId: string;
   firstLessonId?: string;
+  courseTopic: string;
+  instructorId: string;
+  discountPrice: number;
 }
 
 export interface Review {
@@ -321,13 +387,13 @@ export interface Review {
 }
 
 export interface FilterDataProps {
-  sortBy: "";
+  sortBy: '';
   searchTerm: string;
   certificateOnly: boolean;
   handsOnPractice: Set<string>;
   language: Set<string>;
   levels: Set<string>;
-  price: "";
+  price: '';
   ratings: number;
   subtitles: Set<string>;
   topics: Set<string>;
@@ -408,6 +474,7 @@ export interface CourseContentProps {
 export interface CourseCreatedByProps {
   instructorName: string;
   instructorId: string;
+  handleScroll: () => void;
 }
 
 export interface LessonProps {

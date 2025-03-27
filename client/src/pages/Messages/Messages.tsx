@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { IoMdSearch } from "react-icons/io";
-import TicketCompose from "./TicketCompose/TicketCompose";
+import { useState } from 'react';
+import { IoMdSearch } from 'react-icons/io';
+import TicketCompose from './TicketCompose/TicketCompose';
 
 const Messages = () => {
   const [isClicked, setClicked] = useState(false);
 
   const handleClicks = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
-    if (target.tagName === "BUTTON" && target.textContent === "Compose") {
+    if (target.tagName === 'BUTTON' && target.textContent === 'Compose') {
       setClicked(true);
     } else
       (isClicked) => {
@@ -18,16 +18,16 @@ const Messages = () => {
   return (
     <div onClick={handleClicks}>
       <div className="pb-[2em] pl-[2em]">
-        <h1 className="mb-[0.5em] mt-[0.5em] font-[lifeLtstd] font-bold">
+        <h1 className="mb-[0.5em] mt-[0.5em] font-[lifeLtstd] font-sans font-extrabold">
           Messages
         </h1>
         <h2>You have 0 unread messages.</h2>
       </div>
       <hr className="mb-[0.5em]" />
-      <div className="flex w-full flex-row items-start justify-start">
+      <div className="flex w-full  items-start justify-start">
         <div className="ml-[0.5em] flex h-[50vh] w-1/3 flex-col flex-wrap items-start justify-start gap-[0.5em] bg-[#F6F7F9] p-[0.5em]">
-          <div className="flex w-full flex-row items-center justify-start gap-[0.5em]">
-            <button className="rounded-[0.2em] border border-btnColor p-[0.5em] font-bold text-btnColor hover:bg-purpleHoverBtn focus:outline-none">
+          <div className="flex w-full  items-center justify-start gap-[0.5em]">
+            <button className="rounded-[0.2em] border border-btnColor p-[0.5em] font-sans font-extrabold text-btnColor hover:bg-purpleHoverBtn focus:outline-none">
               Compose
             </button>
             <select
@@ -43,7 +43,7 @@ const Messages = () => {
               <option value="important">Important</option>
             </select>
           </div>
-          <div className="flex w-full flex-row items-center justify-start gap-[0.5em]">
+          <div className="flex w-full  items-center justify-start gap-[0.5em]">
             <input
               type="text"
               placeholder="Search"
@@ -61,16 +61,13 @@ const Messages = () => {
               <b className="text-[1.5em]">Compose</b>
               <b>What do you have in mind?</b>
               <TicketCompose
-                title={"Technical, payment or other platform issues"}
-                text={"Visit the Udemy help center"}
+                title={'Technical, payment or other platform issues'}
+                text={'Visit the Udemy help center'}
               />
+              <TicketCompose title={'Questions about course content'} text={'View course Q&A'} />
               <TicketCompose
-                title={"Questions about course content"}
-                text={"View course Q&A"}
-              />
-              <TicketCompose
-                title={"Private or personal message to instructor"}
-                text={"Send a new message"}
+                title={'Private or personal message to instructor'}
+                text={'Send a new message'}
               />
             </div>
           ) : (

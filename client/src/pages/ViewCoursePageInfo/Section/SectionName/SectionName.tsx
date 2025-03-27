@@ -5,7 +5,7 @@ const SectionName: React.FC<{ name: string }> = ({ name }) => {
 
   return (
     <div>
-      <h2 className="font-bold">{name}</h2>
+      <h2 className="font-sans font-extrabold">{name}</h2>
     </div>
   );
 };

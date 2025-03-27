@@ -1,0 +1,10 @@
+.gift,
+.share,
+.apply {
+  text-decoration: underline;
+  text-decoration-color: rgb(111, 5, 111);
+}
+
+.interaction-button-div {
+  width: -webkit-fill-available;
+}

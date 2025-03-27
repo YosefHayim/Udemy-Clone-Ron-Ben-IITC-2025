@@ -1,62 +1,48 @@
-import { Link, useNavigate } from "react-router-dom";
-import { IoMdLock } from "react-icons/io";
-import { useMutation } from "@tanstack/react-query";
-import verifyCode from "@/api/users/verifyCode";
-import { jwtDecode } from "jwt-decode";
-import {
-  setBio,
-  setCookie,
-  setCoursesBought,
-  setEmailAddress,
-  setFullName,
-  setHeadline,
-  setIsLoggedWithGoogle,
-  setLanguage,
-  setProfilePic,
-  setRole,
-  setUdemyCredits,
-  setUserLinks,
-} from "@/redux/slices/userSlice";
-import { DecodedTokenProps } from "@/types/types";
-import { useDispatch } from "react-redux";
-import { useContext, useEffect, useState } from "react";
-import { emailContext } from "@/routes/AppRoutes";
-import Loader from "@/components/Loader/Loader";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import Cookies from "js-cookie";
+import { Link, useNavigate } from 'react-router-dom';
+import { IoMdLock } from 'react-icons/io';
+import { useMutation } from '@tanstack/react-query';
+import verifyCode from '@/api/users/verifyCode';
+import { useDispatch } from 'react-redux';
+import { useContext, useEffect, useState } from 'react';
+import { emailContext } from '@/routes/AppRoutes';
+import Loader from '@/components/Loader/Loader';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
+import Cookies from 'js-cookie';
+import { setUserInformation } from '@/utils/setUserInformation';
 
 const VerifyCode = () => {
   const [countdown, setCountdown] = useState(30);
   const [isSentCodeAgain, setIsSentCodeAgain] = useState(false);
   const [isLoading, setLoading] = useState(false);
 
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState('');
   const cookie = useSelector((state: RootState) => state.user.cookie);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const emailCtx = useContext(emailContext);
-  if (!emailCtx) throw new Error("emailContext is not provided");
+  if (!emailCtx) throw new Error('emailContext is not provided');
   const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
 
   useEffect(() => {}, [emailUser, userFullName, code, cookie]);
 
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
-    onSuccess: () => {
-      navigate("/");
+    onSuccess: (cookie) => {
+      setUserInformation(cookie, dispatch);
+      navigate('/');
     },
     onError: (error) => {
-      console.error("Error during login process:", error);
+      console.error('Error during login process:', error);
     },
   });
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const code = formData.get("code") as string;
+    const code = formData.get('code') as string;
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -88,7 +74,7 @@ const VerifyCode = () => {
   };
 
   const handleDifferentAccount = () => {
-    console.log("Login to a different account clicked");
+    console.log('Login to a different account clicked');
   };
 
   useEffect(() => {
@@ -99,25 +85,19 @@ const VerifyCode = () => {
   }, []);
 
   return (
-    <div className="min-width-[61.3125rem] flex w-[100rem] flex-1 items-start px-[10rem] py-[6.8rem]">
-      <img
-        src="/images/Login_Password_Page.png"
-        alt="Login Illustration"
-        className="mt-[-2rem] h-auto max-h-[100%] w-[100%] max-w-[620px] object-contain p-12"
-      />
-
+    <div className="min-width-[61.3125rem] flex w-full flex-1 items-start justify-center px-[10rem] py-[6.8rem]">
+      <div>
+        <img src="/images/Login_Password_Page.png" alt="Login Illustration" />
+      </div>
       <div className="flex w-full flex-col items-center justify-center bg-white">
-        <h2 className="mb-2 text-center text-3xl font-bold text-gray-800">
+        <h2 className="mb-2 text-center font-sans text-3xl font-extrabold text-gray-800">
           Check your inbox
         </h2>
-
         <p className="mb-7 mt-8 max-w-[25rem] text-center text-[1rem] text-gray-600">
-          Enter the 6-digit code we sent to{" "}
-          <span className="font-bold">{emailUser || "your email"}</span>
-          <span className="font-bold text-gray-800"></span> to finish your
-          login.
+          Enter the 6-digit code we sent to{' '}
+          <span className="font-sans font-extrabold">{emailUser || 'your email'}</span>
+          <span className="font-sans font-extrabold text-gray-800"></span> to finish your login.
         </p>
-
         <form
           onSubmit={handleSubmit}
           className="flex w-full max-w-[27rem] flex-col items-center space-y-4"
@@ -142,8 +122,8 @@ const VerifyCode = () => {
             {isLoading ? (
               <Loader useSmallLoading={true} hSize="" />
             ) : (
-              <div className="flex flex-row">
-                <button className="text-[1rem] font-bold focus:outline-none">
+              <div className="flex ">
+                <button className="font-sans text-[1rem] font-extrabold focus:outline-none">
                   Log in
                 </button>
               </div>
@@ -154,17 +134,14 @@ const VerifyCode = () => {
         {!isSentCodeAgain ? (
           <button
             onClick={handleResendCode}
-            className="mt-5 text-[1rem] font-bold text-btnColor underline hover:text-purple-800 focus:outline-none"
+            className="mt-5 font-sans text-[1rem] font-extrabold text-btnColor underline hover:text-purple-800 focus:outline-none"
           >
             Resend Code
           </button>
         ) : (
-          <button
-            disabled
-            className="mt-5 cursor-not-allowed text-[1rem] text-black"
-          >
-            Didn't receive the code?{" "}
-            <span className="font-bold">Resend code in {countdown} sec</span>
+          <button disabled className="mt-5 cursor-not-allowed text-[1rem] text-black">
+            Didn't receive the code?{' '}
+            <span className="font-sans font-extrabold">Resend code in {countdown} sec</span>
           </button>
         )}
 
@@ -172,7 +149,7 @@ const VerifyCode = () => {
           <Link to="/login">
             <button
               onClick={handleDifferentAccount}
-              className="w-full rounded-md bg-[#F6F7F9] py-4 text-sm font-bold text-btnColor underline hover:bg-gray-200 focus:outline-none"
+              className="w-full rounded-md bg-[#F6F7F9] py-4 font-sans text-sm font-extrabold text-btnColor underline hover:bg-gray-200 focus:outline-none"
             >
               Log in to a different account
             </button>

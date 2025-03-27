@@ -1,25 +1,20 @@
-import { useEffect, useState } from "react";
-import { btnStyleNHover, loginWithEmailBtn } from "@/utils/stylesStorage";
-import LearningGetsYouBanner from "/images/banner3.jpg";
-import skillsDriveYouBanner from "/images/banner4.jpg";
-import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
-
-const baseBanners = [
-  {
-    src: LearningGetsYouBanner,
-    title: "Learning that gets you",
-    description:
-      "Skills for your present (and your future). Get started with us.",
-  },
-  {
-    src: skillsDriveYouBanner,
-    title: "Skills that drive you forward",
-    description:
-      "Technology and the world of work change fast — with us, you’re faster. Get the skills to achieve goals and stay competitive.",
-  },
-];
+import { useEffect, useState } from 'react';
+import ButtonsCarousel from '@/components/ButtonsCarousel/ButtonsCarousel';
+import { getBanners } from '@/utils/banners';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 
 const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
+  const coursesBoughtOrJoined = useSelector((state: RootState) => state.user.coursesBought);
+  const fullName = useSelector((state: RootState) => state.user.fullName);
+  const registerAt = useSelector((state: RootState) => state.user.whenCreated);
+
+  const banners = getBanners({
+    coursesBoughtOrJoined,
+    fullName,
+    registerAt,
+  });
+
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -38,19 +33,16 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
   };
 
   // This one is creating infinite banners to scroll from the banners base which we just add to it and thats it.
-  const generatedBanners = Array.from(
-    { length: (currentIndex + 1) * 2 },
-    (_, i) => {
-      return baseBanners[i % baseBanners.length];
-    },
-  );
+  const generatedBanners = Array.from({ length: (currentIndex + 1) * 2 }, (_, i) => {
+    return banners[i % banners.length];
+  });
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     handleNext();
-  //   }, 15000);
-  //   return () => clearInterval(interval);
-  // }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 15000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="relative w-full overflow-hidden">
@@ -63,66 +55,23 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
         handleFnNext={handleNext}
         handleFnPrev={handlePrev}
       />
-      {isLogin ? (
-        <div className="p-2">
-          <div className="relative w-full">
-            <img
-              src={LearningGetsYouBanner}
-              alt="banner udemy welcome"
-              className="relative w-full"
-            />
-            <div className="absolute left-16 top-16 flex w-[400px] flex-col items-start gap-2 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
-              <h1 className="font-bold">Learning that gets you</h1>
-              <p className="pr-2 text-lg">
-                Skills for your present (and your future). Get started with us.
-              </p>
+
+      <div className="relative h-full w-full overflow-hidden">
+        <div
+          className={`flex transition-transform duration-1000 ease-in-out`}
+          style={{
+            transform: `translateX(-${currentIndex * 100}%)`,
+          }}
+        >
+          {generatedBanners.map((banner, index) => (
+            <div key={index} className="relative w-full flex-shrink-0">
+              <img src={banner.src} alt={`banner-${index}`} className="w-full" />
+              <div className="absolute left-16 top-16 bg-white px-5 py-7 shadow"></div>
+              {banner.content && banner.content()}
             </div>
-          </div>
+          ))}
         </div>
-      ) : (
-        <div className="relative h-full w-full overflow-hidden">
-          <div
-            className={`flex transition-transform duration-1000 ease-in-out`}
-            style={{
-              transform: `translateX(-${currentIndex * 100}%)`,
-            }}
-          >
-            {generatedBanners.map((banner, index) => (
-              <div key={index} className={`relative w-full flex-shrink-0`}>
-                <img
-                  src={banner.src}
-                  alt={`banner-${index}`}
-                  className="w-full"
-                />
-                <div
-                  className={`${banner.title === "Skills that drive you forward" ? "w-[450px] gap-[0.5em] p-[2em]" : "w-min-max pr-14"} border-gray-100" absolute left-16 top-16 flex flex-col items-start rounded-sm bg-white px-5 py-7 text-black shadow-alertAlgoInfo`}
-                >
-                  <h1 className="font-bold">{banner.title}</h1>
-                  <p
-                    className={`${banner.title === "Skills that drive you forward" ? "" : "w-[380px]"} pr-2 text-sm`}
-                  >
-                    {banner.description}
-                  </p>
-                  {banner.title === `Skills that drive you forward` && (
-                    <div className="flex w-full items-center justify-center gap-4">
-                      <button
-                        className={`min-w-max rounded-[0.3em] bg-btnColor px-2 py-3 font-extrabold text-white hover:bg-btnHoverColor focus:outline-none`}
-                      >
-                        Plan for individuals
-                      </button>
-                      <button
-                        className={`w-min-max rounded-[0.3em] border border-purple-800 px-2 py-3 font-extrabold text-purple-800 hover:bg-purple-100 focus:outline-none`}
-                      >
-                        Plan for organizations
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 };

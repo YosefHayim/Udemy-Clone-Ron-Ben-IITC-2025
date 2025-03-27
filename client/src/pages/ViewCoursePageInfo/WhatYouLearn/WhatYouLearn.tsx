@@ -1,9 +1,6 @@
-import { useState } from "react";
-import { IoMdCheckmark } from "react-icons/io";
-import {
-  MdOutlineKeyboardArrowDown,
-  MdOutlineKeyboardArrowUp,
-} from "react-icons/md";
+import { useState } from 'react';
+import { IoMdCheckmark } from 'react-icons/io';
+import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md';
 
 const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
   const [isExpanded, setExpanded] = useState(true);
@@ -21,22 +18,22 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
   const secondColumn = prosCourse.slice(half);
 
   return (
-    <div className="border">
+    <div className="border border-gray-300">
       <div
-        className="mt-[10em] flex w-[700px] flex-col items-start justify-start p-[1em]"
+        className="flex w-full flex-col items-start justify-start p-2"
         style={{
-          maxHeight: isExpanded ? "none" : "280px",
+          maxHeight: isExpanded ? 'none' : '280px',
           WebkitMaskImage: isExpanded
-            ? "none"
-            : "linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))",
+            ? 'none'
+            : 'linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))',
           maskImage: isExpanded
-            ? "none"
-            : "linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))",
-          WebkitMaskSize: "100% 100%",
-          maskSize: "100% 100%",
+            ? 'none'
+            : 'linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))',
+          WebkitMaskSize: '100% 100%',
+          maskSize: '100% 100%',
         }}
       >
-        <h2 className="w-full p-[0.5em] text-[1.5em] font-bold">
+        <h2 className="w-full p-[0.5em] font-sans text-[1.5em] font-extrabold">
           What you'll learn
         </h2>
         <div className="flex">
@@ -66,14 +63,10 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
         className="mb-4 ml-4 flex w-[115px] cursor-pointer items-center gap-[1em] rounded-[0.2em] py-[0.3em] pl-[0.2em] hover:bg-purpleHoverBtn"
         onClick={handleToggle}
       >
-        <span className="m-[0.5em] font-bold text-purpleStatic hover:text-purpleHover ">
-          {isExpanded ? "Show less" : "Show more"}
+        <span className="m-[0.5em] font-sans font-extrabold text-purpleStatic hover:text-purpleHover ">
+          {isExpanded ? 'Show less' : 'Show more'}
         </span>
-        {isExpanded ? (
-          <MdOutlineKeyboardArrowUp />
-        ) : (
-          <MdOutlineKeyboardArrowDown />
-        )}
+        {isExpanded ? <MdOutlineKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
       </div>
     </div>
   );

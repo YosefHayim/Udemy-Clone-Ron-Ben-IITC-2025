@@ -1,12 +1,11 @@
-import { logos } from "@/utils/trustedByCompaniesLogos";
+import { logos } from '@/utils/trustedByCompaniesLogos';
 
 const TrustedBySection = () => {
   return (
     <section className="bg-white py-12">
       <div className="mb-8 text-center">
-        <h2 className="font-sans text-lg font-medium text-gray-500">
-          Trusted by over 16,000 companies and millions of learners around the
-          world
+        <h2 className="font-[lifeLtstd] text-lg font-medium text-gray-500">
+          Trusted by over 16,000 companies and millions of learners around the world
         </h2>
       </div>
       <div className="flex flex-wrap items-center justify-center space-x-6">

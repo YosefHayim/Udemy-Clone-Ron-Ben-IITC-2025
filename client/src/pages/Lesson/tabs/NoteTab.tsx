@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -6,47 +6,38 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { IoIosArrowDown } from "react-icons/io";
-import ReactQuill from "react-quill";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import {
-  addNote,
-  deleteNote,
-  editNote,
-  fetchAllNotes,
-} from "@/services/NoteService";
-import "react-quill/dist/quill.snow.css";
-import { FaCirclePlus } from "react-icons/fa6";
-import { FaPen } from "react-icons/fa6";
-import { FaTrash } from "react-icons/fa6";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { DeleteNoteDialog } from "../comp/dialog";
-import { Note } from "../../../types/types";
+} from '@/components/ui/dropdown-menu';
+import { IoIosArrowDown } from 'react-icons/io';
+import ReactQuill from 'react-quill';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { addNote, deleteNote, editNote, fetchAllNotes } from '@/services/NoteService';
+import 'react-quill/dist/quill.snow.css';
+import { FaCirclePlus } from 'react-icons/fa6';
+import { FaPen } from 'react-icons/fa6';
+import { FaTrash } from 'react-icons/fa6';
+import { Dialog, DialogOverlay, DialogTrigger } from '@/components/ui/dialog';
+import { DeleteNoteDialog } from '../comp/dialog';
+import { Note } from '../../../types/types';
 
 interface NotesTabProps {
   currentSec: number;
   courseId: string;
   lessonId: string;
 }
-const NotesTab: React.FC<NotesTabProps> = ({
-  currentSec,
-  courseId,
-  lessonId,
-}) => {
-  const [content, setContent] = useState(""); // State for notes content
+const NotesTab: React.FC<NotesTabProps> = ({ currentSec, courseId, lessonId }) => {
+  const [content, setContent] = useState(''); // State for notes content
   const [showEditor, setShowEditor] = useState(false); // State to toggle editor visibility
-  const [timeSort, setTimeSort] = useState<string>("Sort by most recent");
-  const [all, setAll] = useState<string>("All lectures"); //
+  const [timeSort, setTimeSort] = useState<string>('Sort by most recent');
+  const [all, setAll] = useState<string>('All lectures'); //
   const [editingNoteId, setEditingNoteId] = useState<string | null>(null); // Track which note is being edited
-  const [editingContent, setEditingContent] = useState<string>(""); // Track the content being edited
+  const [editingContent, setEditingContent] = useState<string>(''); // Track the content being edited
   const [noteToDelete, setNoteToDelete] = useState<string | null>(null);
   const queryClient = useQueryClient();
 
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
 
   const {
@@ -54,7 +45,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
     isLoading,
     isError,
   } = useQuery<Note[]>({
-    queryKey: ["notes", courseId],
+    queryKey: ['notes', courseId],
     queryFn: () => fetchAllNotes(courseId),
     enabled: !!courseId,
   });
@@ -63,44 +54,44 @@ const NotesTab: React.FC<NotesTabProps> = ({
   const noteMutation = useMutation({
     mutationFn: async (
       params:
-        | { action: "add"; text: string; seconds: number }
-        | { action: "edit"; text: string; noteId: string }
-        | { action: "delete"; noteId: string },
+        | { action: 'add'; text: string; seconds: number }
+        | { action: 'edit'; text: string; noteId: string }
+        | { action: 'delete'; noteId: string }
     ) => {
-      if (params.action === "add") {
+      if (params.action === 'add') {
         return await addNote(courseId, lessonId, {
           seconds: params.seconds,
           text: params.text,
         });
-      } else if (params.action === "edit") {
+      } else if (params.action === 'edit') {
         return await editNote(courseId, lessonId, params.noteId, {
           text: params.text,
         });
-      } else if (params.action === "delete") {
+      } else if (params.action === 'delete') {
         return await deleteNote(courseId, lessonId, params.noteId);
       }
-      throw new Error("Invalid action");
+      throw new Error('Invalid action');
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["notes", courseId]);
+      queryClient.invalidateQueries(['notes', courseId]);
       setShowEditor(false);
-      setContent("");
+      setContent('');
       setEditingNoteId(null);
       // Reset content after successful mutation
     },
     onError: (error: any) => {
-      console.log("Failed to process note:", error.message);
+      console.log('Failed to process note:', error.message);
     },
   });
 
   // Function to handle adding a new note
   const handleAddNote = () => {
     if (!content.trim()) {
-      alert("Please enter some content for the note.");
+      alert('Please enter some content for the note.');
       return;
     }
     noteMutation.mutate({
-      action: "add",
+      action: 'add',
       text: content,
       seconds: currentSec,
     });
@@ -118,11 +109,11 @@ const NotesTab: React.FC<NotesTabProps> = ({
 
   const saveEditedNote = (noteId: string) => {
     if (!editingContent.trim()) {
-      alert("Cannot save an empty note.");
+      alert('Cannot save an empty note.');
       return;
     }
     noteMutation.mutate({
-      action: "edit",
+      action: 'edit',
       noteId,
       text: editingContent,
     });
@@ -130,10 +121,10 @@ const NotesTab: React.FC<NotesTabProps> = ({
   };
 
   const filteredNotes = (notes || []).filter((note: any) =>
-    all === "Current lecture" ? note.lessonId === lessonId : true,
+    all === 'Current lecture' ? note.lessonId === lessonId : true
   );
 
-  console.log("filtered notes", filteredNotes);
+  console.log('filtered notes', filteredNotes);
 
   return (
     <div id="notes" className="min-w-full px-80">
@@ -161,16 +152,16 @@ const NotesTab: React.FC<NotesTabProps> = ({
               <div className="mt-4 flex justify-end gap-4">
                 <button
                   onClick={() => setShowEditor(false)}
-                  className="rounded px-6 py-2 font-extrabold text-gray-700 transition duration-300 hover:bg-gray-400"
+                  className="rounded px-6 py-2 font-sans font-extrabold text-gray-700 transition duration-300 hover:bg-gray-400"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleAddNote}
-                  className="rounded bg-btnColor px-6 py-2 font-extrabold text-white transition duration-300 hover:bg-[#892DE1]"
+                  className="rounded bg-btnColor px-6 py-2 font-sans font-extrabold text-white transition duration-300 hover:bg-[#892DE1]"
                   disabled={noteMutation.isLoading}
                 >
-                  {noteMutation.isLoading ? "Saving..." : "Save Note"}
+                  {noteMutation.isLoading ? 'Saving...' : 'Save Note'}
                 </button>
               </div>
             </div>
@@ -178,18 +169,18 @@ const NotesTab: React.FC<NotesTabProps> = ({
         )}
         <div className="flex space-x-4">
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center  gap-2 rounded-sm border border-btnColor p-2 text-base font-bold text-btnColor hover:border-btnColor hover:bg-[#EDE5F9] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
+            <DropdownMenuTrigger className="flex items-center  gap-2 rounded-sm border border-btnColor p-2 font-sans text-base font-extrabold text-btnColor hover:border-btnColor hover:bg-[#EDE5F9] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
               {all} <IoIosArrowDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-white ">
               <DropdownMenuItem
-                onClick={() => setAll("All lectures")}
+                onClick={() => setAll('All lectures')}
                 className="hover:bg-[#EDE5F9] data-[highlighted]:bg-[#EDE5F9]"
               >
                 All lectures
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => setAll("Current lecture")}
+                onClick={() => setAll('Current lecture')}
                 className="hover:bg-[#EDE5F9] data-[highlighted]:bg-[#EDE5F9]"
               >
                 Current lecture
@@ -198,18 +189,18 @@ const NotesTab: React.FC<NotesTabProps> = ({
           </DropdownMenu>
 
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 rounded-sm border border-btnColor p-2 text-base font-bold text-btnColor hover:border-btnColor hover:bg-[#EDE5F9] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
+            <DropdownMenuTrigger className="flex items-center gap-1 rounded-sm border border-btnColor p-2 font-sans text-base font-extrabold text-btnColor hover:border-btnColor hover:bg-[#EDE5F9] focus:outline-none data-[state=open]:bg-[#EDE5F9]  ">
               {timeSort} <IoIosArrowDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-white ">
               <DropdownMenuItem
-                onClick={() => setTimeSort("Sort by most recent")}
+                onClick={() => setTimeSort('Sort by most recent')}
                 className="hover:bg-[#EDE5F9] data-[highlighted]:bg-[#EDE5F9]"
               >
                 Sort by most recent
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={() => setTimeSort("Sort by oldest")}
+                onClick={() => setTimeSort('Sort by oldest')}
                 className="hover:bg-[#EDE5F9] data-[highlighted]:bg-[#EDE5F9]"
               >
                 Sort by oldest
@@ -233,7 +224,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
                     <div className="min-w-full">
                       <div className="flex items-center justify-between">
                         <span>
-                          <span className="pb-0 text-base font-bold text-black">
+                          <span className="pb-0 font-sans text-base font-extrabold text-black">
                             {note.sectionIndex + 1}. {note.sectionTitle}
                           </span>
                           <span className="relative mb-0 ml-4 pb-0 text-xs text-gray-500">
@@ -246,6 +237,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
                             onClick={() => startEditing(note.noteId, note.text)}
                           />
                           <Dialog>
+                            <DialogOverlay style={{ backgroundColor: '#1d1e27cc' }} />
                             <DialogTrigger asChild>
                               <FaTrash
                                 className="mr-2 cursor-pointer rounded-md p-1 text-xl text-courseNameColorTxt hover:bg-[#E6E6E8]"
@@ -256,7 +248,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
                               onConfirm={() => {
                                 if (noteToDelete) {
                                   noteMutation.mutate({
-                                    action: "delete",
+                                    action: 'delete',
                                     noteId: noteToDelete,
                                   });
                                   setNoteToDelete(null);
@@ -276,10 +268,10 @@ const NotesTab: React.FC<NotesTabProps> = ({
                             modules={{
                               toolbar: [
                                 [{ header: [1, 2, 3, false] }],
-                                ["bold", "italic", "underline", "strike"],
-                                [{ list: "ordered" }, { list: "bullet" }],
-                                ["code-block"],
-                                ["clean"],
+                                ['bold', 'italic', 'underline', 'strike'],
+                                [{ list: 'ordered' }, { list: 'bullet' }],
+                                ['code-block'],
+                                ['clean'],
                               ],
                             }}
                             placeholder="Edit your note..."
@@ -298,7 +290,7 @@ const NotesTab: React.FC<NotesTabProps> = ({
                               className="rounded bg-btnColor px-6 py-2 text-white transition duration-300 hover:bg-[#892DE1]"
                               disabled={noteMutation.isLoading}
                             >
-                              {noteMutation.isLoading ? "Saving..." : "Save"}
+                              {noteMutation.isLoading ? 'Saving...' : 'Save'}
                             </button>
                           </div>
                         </div>

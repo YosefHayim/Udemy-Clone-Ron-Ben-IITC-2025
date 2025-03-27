@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const UserProfile: React.FC = () => {
   return (
@@ -6,7 +6,7 @@ const UserProfile: React.FC = () => {
       <div>
         <Avatar>
           <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback className="bg-black font-bold text-white">
+          <AvatarFallback className="bg-black font-sans font-extrabold text-white">
             CN
           </AvatarFallback>
         </Avatar>

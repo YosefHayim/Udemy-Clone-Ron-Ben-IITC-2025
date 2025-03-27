@@ -1,10 +1,10 @@
-import BG from "/images/businessBG.jpg";
-import Logo from "/images/BusinessLogo.png";
-import { useNavigate } from "react-router-dom";
+import BG from '/images/businessBG.jpg';
+import Logo from '/images/BusinessLogo.png';
+import { useNavigate } from 'react-router-dom';
 
 const navigate = useNavigate();
 const navigatePrivacy = () => {
-  navigate("/terms/ub-privacy/");
+  navigate('/terms/ub-privacy/');
 };
 
 const LoginBusiness = () => {
@@ -19,11 +19,7 @@ const LoginBusiness = () => {
       <div className="mb-[15.7rem] w-full max-w-md bg-white p-6 shadow-lg">
         {/* Logo */}
         <div className="mb-[1.8rem] text-center">
-          <img
-            src={Logo}
-            alt="Udemy Business Logo"
-            className="mx-auto h-[2.35rem]"
-          />
+          <img src={Logo} alt="Udemy Business Logo" className="mx-auto h-[2.35rem]" />
         </div>
 
         {/* Formulário */}
@@ -34,7 +30,7 @@ const LoginBusiness = () => {
               type="email"
               id="email"
               placeholder="Enter your work email address"
-              className="h-[3.8rem]  w-full rounded-sm border border-gray-400 bg-white px-4 py-2 placeholder:font-bold placeholder:text-black placeholder:text-opacity-80 focus:border-btnColor focus:bg-[#E8F0FE] focus:outline-none"
+              className="h-[3.8rem]  w-full rounded-sm border border-gray-400 bg-white px-4 py-2 font-sans placeholder:font-extrabold placeholder:text-black placeholder:text-opacity-80 focus:border-btnColor focus:bg-[#E8F0FE] focus:outline-none"
               required
             />
           </div>
@@ -42,7 +38,7 @@ const LoginBusiness = () => {
           {/* Botão de envio */}
           <button
             type="submit"
-            className="h-12 w-full rounded-sm bg-btnColor py-2 text-[1rem] font-bold text-white transition hover:bg-[#892de1]"
+            className="h-12 w-full rounded-sm bg-btnColor py-2 font-sans text-[1rem] font-extrabold text-white transition hover:bg-[#892de1]"
           >
             Continue
           </button>
@@ -54,9 +50,7 @@ const LoginBusiness = () => {
             Need help with logging in or signing up?
           </a>
           <p className="mt-7 text-xs text-grayNavbarTxt">
-            <button onClick={navigatePrivacy}>
-              Read our Privacy Statement
-            </button>
+            <button onClick={navigatePrivacy}>Read our Privacy Statement</button>
           </p>
         </div>
       </div>

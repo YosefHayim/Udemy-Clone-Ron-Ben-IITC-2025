@@ -1,13 +1,11 @@
-import TitleSection from "./TitleSection/TitleSection";
-import CourseCard from "./CourseCard/CourseCard";
+import TitleSection from './TitleSection/TitleSection';
+import CourseCard from './CourseCard/CourseCard';
 
-const MoreCoursesByInstructor: React.FC<{ instructorName: string }> = ({
-  instructorName,
-}) => {
+const MoreCoursesByInstructor: React.FC<{ instructorName: string }> = ({ instructorName }) => {
   return (
     <div>
       <TitleSection instructorName={instructorName} />
-      <div className="flex w-[650px] flex-row items-start justify-start gap-[1em]">
+      <div className="flex w-[650px]  items-start justify-start gap-[1em]">
         <CourseCard />
         <CourseCard />
         <CourseCard />

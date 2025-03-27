@@ -1,61 +1,48 @@
-import Loader from "@/components/Loader/Loader";
-import { CoursePriceProps } from "@/types/types";
-import { useEffect, useState } from "react";
+import Loader from '@/components/Loader/Loader';
+import { CoursePriceProps } from '@/types/types';
+import { useEffect, useState } from 'react';
 
 const CoursePrice: React.FC<CoursePriceProps> = ({
   discountPrice = 49.9,
   fullPrice = 369.9,
-  chooseFlex = "flex-col",
-  discountPriceSize = "",
+  chooseFlex = 'flex-col',
   showFullPrice = true,
+  extraCSS,
+  displayPercent = true,
 }) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const isFree = discountPrice === 0 || fullPrice === 0;
 
+  const percentOff = !isFree ? Math.round(((fullPrice - discountPrice) / fullPrice) * 100) : 0;
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1500);
+    const timer = setTimeout(() => setLoading(false), 1500);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div>
-      <div className={`${chooseFlex} gap-[0.5em]`}>
-        <div>
-          {loading ? (
-            <div className="my-2">
-              <Loader
-                hSize=""
-                paddingSetTo="0em"
-                useSmallLoading={true}
-                useSmallBlackLoading={true}
-              />
-            </div>
-          ) : (
-            <b className={`text-[${discountPriceSize}]`}>
-              {isFree ? "Free" : `₪${discountPrice}`}
-            </b>
+    <div className="">
+      <div className={`${chooseFlex}`}>
+        {/* Discount Price */}
+        <div className="">
+          {loading && <Loader hSize="" paddingSetTo="0em" useSmallLoading useSmallBlackLoading />}
+          {!loading && isFree && <b className={``}>Free</b>}
+          {!loading && !isFree && <b className={`${extraCSS} text-2xl`}>₪{discountPrice}</b>}
+        </div>
+
+        {/* Full Price */}
+        <div className="">
+          {loading && <Loader hSize="" paddingSetTo="0em" useSmallLoading useSmallBlackLoading />}
+          {!loading && showFullPrice && !isFree && (
+            <p className={`${extraCSS} text-base text-gray-500 line-through`}>₪{fullPrice}</p>
           )}
         </div>
-        {loading ? (
-          <div className="my-2">
-            <Loader
-              hSize=""
-              paddingSetTo="0em"
-              useSmallLoading={true}
-              useSmallBlackLoading={true}
-            />
-          </div>
-        ) : (
-          <div>
-            {showFullPrice && !isFree && (
-              <div>
-                <p className="text-gray-500 line-through">₪{fullPrice}</p>
-              </div>
-            )}
-          </div>
-        )}
+
+        {/* Percent Off */}
+        <div className="">
+          {!loading && !isFree && displayPercent && percentOff > 0 && (
+            <span className={`${extraCSS} font-sans text-base`}>{percentOff}% off</span>
+          )}
+        </div>
       </div>
     </div>
   );

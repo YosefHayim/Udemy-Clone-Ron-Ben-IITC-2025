@@ -1,10 +1,10 @@
-import { axiosClient, localhostUrl } from "../api/configuration";
+import { axiosClient, localhostUrl } from '../api/configuration';
 
 type fn = (courseId: string) => Promise<any>;
 
 const fetchCourseById: fn = async (courseId: string) => {
-  if (!courseId || typeof courseId !== "string") {
-    console.log("Invalid course ID provided.");
+  if (!courseId || typeof courseId !== 'string') {
+    console.log('Invalid course ID provided.');
     return null;
   }
 
@@ -18,7 +18,7 @@ const fetchCourseById: fn = async (courseId: string) => {
       return response.data.data;
     }
 
-    console.warn("No course data found in the response.");
+    console.warn('No course data found in the response.');
     return null;
   } catch (error) {
     console.log(`Error fetching course with ID ${sanitizedCourseId}:`, error);

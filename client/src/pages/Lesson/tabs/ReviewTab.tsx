@@ -1,13 +1,13 @@
-import getAllReviewsByCourseId from "@/api/reviews/getAllReviewsByCourseId";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
-import UserCourseReview from "@/pages/ViewCoursePageInfo/ReviewsSection/UserCourseReview/UserCourseReview";
-import { MdSearch, MdOutlineStarHalf } from "react-icons/md";
-import { IoIosStar, IoIosStarOutline } from "react-icons/io";
-import Loader from "@/components/Loader/Loader";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Review } from "@/types/types";
+import getAllReviewsByCourseId from '@/api/reviews/getAllReviewsByCourseId';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+import UserCourseReview from '@/pages/ViewCoursePageInfo/ReviewsSection/UserCourseReview/UserCourseReview';
+import { MdSearch, MdOutlineStarHalf } from 'react-icons/md';
+import { IoIosStar, IoIosStarOutline } from 'react-icons/io';
+import Loader from '@/components/Loader/Loader';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Review } from '@/types/types';
 
 const ReviewsTab = ({ avgRating = 1 }) => {
   if (!avgRating) {
@@ -18,8 +18,8 @@ const ReviewsTab = ({ avgRating = 1 }) => {
   let courseId: string | undefined = params.courseId;
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["reviews", courseId],
-    queryFn: () => getAllReviewsByCourseId(courseId || ""),
+    queryKey: ['reviews', courseId],
+    queryFn: () => getAllReviewsByCourseId(courseId || ''),
   });
 
   const renderStars = (rating) => {
@@ -32,9 +32,7 @@ const ReviewsTab = ({ avgRating = 1 }) => {
           if (i < fullStars) {
             return <IoIosStar key={i} className="ml-1 text-[#c4710d]" />;
           } else if (i === fullStars && hasHalfStar) {
-            return (
-              <MdOutlineStarHalf key={i} className="ml-1 text-[#c4710d]" />
-            );
+            return <MdOutlineStarHalf key={i} className="ml-1 text-[#c4710d]" />;
           } else {
             return <IoIosStarOutline key={i} className="ml-1 text-[#c4710d]" />;
           }
@@ -47,37 +45,29 @@ const ReviewsTab = ({ avgRating = 1 }) => {
   return (
     <div className="mt-4 min-w-fit">
       {/* Student Feedback Section */}
-      <h2 className="my-4 text-3xl font-bold">Student feedback</h2>
+      <h2 className="my-4 font-sans text-3xl font-extrabold">Student feedback</h2>
       <div className="mb-6 flex flex-col py-2">
-        <div className="flex  min-w-full flex-row items-center gap-5 p-4 ">
+        <div className="flex  min-w-full  items-center gap-5 p-4 ">
           <div className="flex w-full flex-col items-center justify-center ">
-            <div className="w-fit text-7xl font-bold text-[#c4710d] ">
+            <div className="w-fit font-sans text-7xl font-extrabold text-[#c4710d] ">
               {avgRating.toFixed(1)}
             </div>
             <div className=" text-lg  ">{renderStars(avgRating)}</div>
-            <span className=" text-lg font-semibold text-[#c4710d]">
-              Course Rating
-            </span>
+            <span className=" text-lg font-semibold text-[#c4710d]">Course Rating</span>
           </div>
 
           <div className="space-y-2 p-4">
             {[5, 4, 3, 2, 1].map((stars) => {
               const count =
-                data?.filter((review) => Math.round(review.rating) === stars)
-                  .length || 0;
-              const percentage = data?.length
-                ? ((count / data.length) * 100).toFixed(1)
-                : 0;
+                data?.filter((review) => Math.round(review.rating) === stars).length || 0;
+              const percentage = data?.length ? ((count / data.length) * 100).toFixed(1) : 0;
 
               return (
                 <div key={stars} className="flex  items-center">
                   <div className="relative  mx-2  min-w-[720px] bg-gray-200">
-                    <div
-                      className="h-2 bg-gray-600 "
-                      style={{ width: `${percentage}%` }}
-                    ></div>
+                    <div className="h-2 bg-gray-600 " style={{ width: `${percentage}%` }}></div>
                   </div>
-                  <div className="flex flex-row-reverse items-center gap-3 ">
+                  <div className="-reverse flex items-center gap-3 ">
                     <span className="text-sm font-semibold text-btnColor underline">
                       {percentage}%
                     </span>
@@ -91,7 +81,7 @@ const ReviewsTab = ({ avgRating = 1 }) => {
       </div>
 
       {/* Reviews Section */}
-      <form className="mb-6 flex flex-row items-center gap-2">
+      <form className="mb-6 flex  items-center gap-2">
         {/* Search Input */}
         <Input
           placeholder="Search reviews"
@@ -118,27 +108,19 @@ const ReviewsTab = ({ avgRating = 1 }) => {
         </select>
       </form>
       {isLoading && <Loader />}
-      {error && (
-        <div className="text-red-500">
-          Error loading reviews. Please try again later.
-        </div>
-      )}
+      {error && <div className="text-red-500">Error loading reviews. Please try again later.</div>}
       {data && (
         <div className="h-auto min-w-full overflow-y-auto">
           <div className="space-y-4">
             {data.map((review: Review) => (
-              <UserCourseReview
-                review={review}
-                key={review._id}
-                widthOfReview={`w-full`}
-              />
+              <UserCourseReview review={review} key={review._id} widthOfReview={`w-full`} />
             ))}
           </div>
           <div className="mt-4 w-full">
             <Button
               className={`${
-                data.length < limit ? "hidden" : "block"
-              } w-full rounded-[0.2em] border border-black bg-white font-bold text-black`}
+                data.length < limit ? 'hidden' : 'block'
+              } w-full rounded-[0.2em] border border-black bg-white font-sans font-extrabold text-black`}
             >
               Show more reviews
             </Button>

@@ -1,4 +1,4 @@
-import { RiInformationFill } from "react-icons/ri";
+import { RiInformationFill } from 'react-icons/ri';
 
 const RelatedSearchesFooterSearch = () => {
   return (
