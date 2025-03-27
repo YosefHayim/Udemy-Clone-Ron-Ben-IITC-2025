@@ -33,7 +33,7 @@ const FilterNSort = ({ coursesResults, searchTerm }) => {
 
   return (
     <div className="flex w-full flex-col-reverse items-start justify-center">
-      <div className="flex items-end gap-[0.5em]">
+      <div className="flex items-center gap-[0.5em]">
         <FilterBtn />
         <SortDropDown courseResults={coursesResults} />
         {!isFiltersDefault && (
