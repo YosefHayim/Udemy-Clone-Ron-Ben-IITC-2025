@@ -20,17 +20,17 @@ const CoursePrice: React.FC<CoursePriceProps> = ({
   }, []);
 
   return (
-    <div>
+    <div className="">
       <div className={`${chooseFlex}`}>
         {/* Discount Price */}
-        <div className="w-min">
+        <div className="">
           {loading && <Loader hSize="" paddingSetTo="0em" useSmallLoading useSmallBlackLoading />}
           {!loading && isFree && <b className={``}>Free</b>}
           {!loading && !isFree && <b className={`${extraCSS} text-2xl`}>₪{discountPrice}</b>}
         </div>
 
         {/* Full Price */}
-        <div className="w-min">
+        <div className="">
           {loading && <Loader hSize="" paddingSetTo="0em" useSmallLoading useSmallBlackLoading />}
           {!loading && showFullPrice && !isFree && (
             <p className={`${extraCSS} text-base text-gray-500 line-through`}>₪{fullPrice}</p>
@@ -38,7 +38,7 @@ const CoursePrice: React.FC<CoursePriceProps> = ({
         </div>
 
         {/* Percent Off */}
-        <div className="w-full">
+        <div className="">
           {!loading && !isFree && displayPercent && percentOff > 0 && (
             <span className={`${extraCSS} font-sans text-base`}>{percentOff}% off</span>
           )}

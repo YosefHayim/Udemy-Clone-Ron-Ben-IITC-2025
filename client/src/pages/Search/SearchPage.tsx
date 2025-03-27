@@ -81,22 +81,16 @@ const SearchPage: React.FC = () => {
   }
 
   return (
-    <div className="flex w-min flex-col items-center justify-center gap-[1em] px-6 py-[3em]">
+    <div className="flex w-auto flex-col items-center justify-center gap-[1em] px-6 py-[3em]">
       <div className="flex w-full  items-start justify-center gap-[1.5em]">
-        <div className="flex flex-col items-start justify-center">
+        <div className="flex h-[100vh] flex-col items-start justify-start">
           <div>
-            <h1 className="mb-[0.8em] w-full font-sans text-[1.8em] font-extrabold">
-              {data?.totalCourses} results for "{searchTerm}"
-            </h1>
+            <FilterNSort coursesResults={data?.totalCourses} searchTerm={searchTerm} />
+            <SidebarFilter />
           </div>
-          <FilterNSort />
-          <SidebarFilter />
         </div>
-        <div className="flex w-full flex-col items-center justify-center">
+        <div className="flex w-full flex-row items-center justify-center">
           <div className="mt-[6em] flex w-fit flex-col items-center justify-center">
-            <h2 className="w-full text-end font-sans font-extrabold">
-              {data?.totalCourses} results
-            </h2>
             {data?.response?.slice(0, 18).map((course: CourseTypeProps, index: number) => (
               <div
                 key={course?._id}
