@@ -1,5 +1,6 @@
 import Course from "../../models/courses/courseModel.ts";
 import courseReviews from "../../models/reviews/courseReviewModel.ts";
+import { courseBought } from "../../types/types.ts";
 import APIFeatures from "../../utils/apiFeatures.ts";
 import createError from "../../utils/errorFn.ts";
 import catchAsync from "../../utils/wrapperFn.ts";
@@ -171,15 +172,19 @@ const getAllReviewsByCourseId = catchAsync(
 const addReviewByCourseId = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const courseId = req.params.id;
+    const user = req.user;
 
     if (!courseId) {
       return next(createError("Please provide courseId to add a review.", 400));
     }
 
-    if (!req.user.coursesBought?.map(String).includes(String(courseId))) {
-      return next(
-        createError("You can't review a course you're not enrolled in.", 403)
-      );
+    const isEnrolled = user.coursesBought.some(
+      (course: courseBought) =>
+        course.courseId.toString() === courseId.toString()
+    );
+
+    if (!isEnrolled) {
+      createError("You can't review a course you're not enrolled in.", 403);
     }
 
     const isCourseExist = await Course.findById(courseId);

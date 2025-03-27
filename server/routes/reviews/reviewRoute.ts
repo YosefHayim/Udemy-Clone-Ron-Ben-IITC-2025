@@ -26,6 +26,7 @@ router.get("/", getAllReviews);
 // Get review by review id
 router.get("/single/:id", getReviewByReviewId);
 
+// get reviews analytics
 router.get("/courses/analytics", getAllReviewsCountOfAllCourses);
 
 // Get all reviews of specific course by its id
@@ -33,9 +34,6 @@ router.get("/course/:id", getAllReviewsByCourseId);
 
 // Get all reviews that the current user that is auth is commented
 router.get("/user/:id", getAllReviewsOfUser);
-
-// Get review to a specific course by course id
-router.get("/:courseid", addReviewByCourseId);
 
 // Add review to a specific course by course id
 router.post("/:id", grantedAccess, addReviewByCourseId);

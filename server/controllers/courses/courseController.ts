@@ -239,7 +239,12 @@ const leaveCourseById = catchAsync(
       );
     }
 
-    if (!user.coursesBought.includes(courseId)) {
+    const isEnrolled = user.coursesBought.some(
+      (course: courseBought) =>
+        course.courseId.toString() === courseId.toString()
+    );
+
+    if (!isEnrolled) {
       return next(createError("You are not enrolled in this course.", 400));
     }
 
@@ -372,7 +377,7 @@ const deleteCourse = catchAsync(
       return next(createError("Please provide the course ID in the URL.", 400));
     }
 
-    const course = await Course.findById(courseId);
+    const course = await Course.findById({ _id: courseId });
 
     if (!course) {
       return next(createError("Course not found.", 404));
@@ -380,13 +385,13 @@ const deleteCourse = catchAsync(
 
     const students = await User.find({
       role: "student",
-      coursesBought: courseId,
+      "coursesBought.courseId": courseId,
     });
 
     await Promise.all(
       students.map(async (student) => {
         student.coursesBought = student.coursesBought.filter(
-          (boughtCourseId) => boughtCourseId.courseId !== courseId
+          (boughtCourseId) => boughtCourseId !== courseId
         );
         await student.save();
       })
