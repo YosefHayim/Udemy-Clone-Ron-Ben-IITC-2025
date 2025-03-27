@@ -17,7 +17,7 @@ const Cart = () => {
       onMouseLeave={handleMouseLeave}
     >
       <div className={`${btnStyleNHover}`}>
-        <MdOutlineShoppingCart className="h-5 w-5" />
+        <MdOutlineShoppingCart className="h-4 w-4" />
         <CartCoursesNumber />
       </div>
       {showCartHover && (

@@ -17,7 +17,7 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
       className="w-min-max relative mx-[0.2em]"
     >
       <p
-        className={`${btnStyleNHover} rounded-md px-3 py-3 font-sans text-xs font-normal text-[#020202]`}
+        className={`${btnStyleNHover} flex-row rounded-md px-3 py-3 font-sans text-[0.5rem] font-normal text-[#020202]`}
       >
         {aTagName}
       </p>

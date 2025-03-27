@@ -14,7 +14,7 @@ const Heart = () => {
     <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className={`${btnStyleNHover}`}>
         <Link to="/wishlist">
-          <IoMdHeartEmpty className="h-6 w-6" />
+          <IoMdHeartEmpty className="h-4 w-4" />
         </Link>
       </div>
       {showHeartHover && (

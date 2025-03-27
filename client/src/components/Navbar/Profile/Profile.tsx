@@ -24,7 +24,15 @@ const Profile: React.FC<{ cookie: string }> = ({ cookie }) => {
       onMouseLeave={() => setShowDropDown(false)}
     >
       <div className="cursor-pointer">
-        <ProfilePic shortcutName={shortcutName} profilePic={profilePic} isBig={false} />
+      <ProfilePic
+          shortcutName={shortcutName}
+          profilePic={profilePic}
+          isBig={true}
+          isHover={true}
+          size="h-[1.7rem] w-[1.7rem]"  // ← black circle size 
+          customTextSize="text-[1rem]" // ← font-size inside the black circle 
+      />
+
       </div>
 
       {showDropDown && (

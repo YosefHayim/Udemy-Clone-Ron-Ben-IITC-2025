@@ -44,13 +44,7 @@ const Navbar = () => {
                 </Link>
                 <CategoriesMenu />
               </div>
-              <div
-                className={
-                  isRootPathOnly()
-                    ? 'flex w-full items-center justify-end'
-                    : 'flex w-full items-center justify-center p-[0.3em]'
-                }
-              >
+              <div className={ isRootPathOnly()? 'flex w-full items-center justify-end' : 'flex w-full items-center justify-center p-[0.3em]' }>
                 <div className={isRootPathOnly() ? 'hidden' : 'flex-grow'}>
                   <SearchInput />
                 </div>
@@ -67,9 +61,11 @@ const Navbar = () => {
                   </div>
                 )}
                 <Link to="/cart">
-                  <Cart />
+                  <div className="relative inline-block">
+                    <Cart />
+                  </div>
                 </Link>
-                <div className="flex items-center justify-around gap-[0.3em]">
+                <div className="flex items-center justify-around gap-[0.3rem]">
                   {cookie && (
                     <div className="flex items-center">
                       <Notifications />
@@ -84,11 +80,13 @@ const Navbar = () => {
                 </div>
                 {cookie && (
                   <Link to="/user/edit-profile">
-                    {coursesInCart.length >= 1 && (
-                      <div className="absolute right-[2.3%] top-[29%] z-10 h-3 w-3 rounded-full bg-purple-600"></div>
-                    )}
+                  <div className="relative inline-block">
                     <Profile cookie={cookie} />
-                  </Link>
+                    {coursesInCart.length >= 1 && (
+                      <div className="absolute top-[16%] right-[6%]  h-[0.7rem] w-[0.7rem] rounded-full bg-[#A435F0] z-10"></div>
+                    )}
+                  </div>
+                </Link>                
                 )}
                 {!cookie && (
                   <div className="ml-2">
