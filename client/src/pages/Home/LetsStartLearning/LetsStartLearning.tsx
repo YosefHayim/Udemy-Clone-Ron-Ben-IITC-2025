@@ -8,7 +8,7 @@ import { RootState } from "@/redux/store";
 
 const LetsStartLearning = () => {
   const amountOfLessonsSpecificCourseChosen = useSelector(
-    (state: RootState) => state.user.coursesInProgress,
+    (state: RootState) => state?.user?.coursesInProgress,
   );
 
   const [isAnimating, setIsAnimating] = useState(false);
@@ -40,18 +40,19 @@ const LetsStartLearning = () => {
           </button>
         </div>
       </div>
-      {amountOfLessonsSpecificCourseChosen.length > 1 && (
-        <ButtonsCarousel
-          state={currentIndex}
-          leftPosition="1%"
-          topPosition="81.5%"
-          rightPosition="2%"
-          useCustom={false}
-          showDirectionalButtonsOnlyOnEdge={true}
-          handleFnNext={handleNext}
-          handleFnPrev={handlePrev}
-        />
-      )}
+      {amountOfLessonsSpecificCourseChosen &&
+        amountOfLessonsSpecificCourseChosen.length > 1 && (
+          <ButtonsCarousel
+            state={currentIndex}
+            leftPosition="1%"
+            topPosition="81.5%"
+            rightPosition="2%"
+            useCustom={false}
+            showDirectionalButtonsOnlyOnEdge={true}
+            handleFnNext={handleNext}
+            handleFnPrev={handlePrev}
+          />
+        )}
       {/* // TODO Pass all the course progress to this component  */}
       <ContinueLearningCourse />
       <div className="my-4">
