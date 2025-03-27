@@ -36,7 +36,6 @@ app.use(cookieParser());
 app.use(loggerInfo);
 // app.use(limiter);
 
-// Allow CORS for all origins
 app.use(
   cors({
     origin: "*",
