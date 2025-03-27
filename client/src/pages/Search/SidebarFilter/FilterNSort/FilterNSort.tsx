@@ -33,13 +33,9 @@ const FilterNSort = ({ coursesResults, searchTerm }) => {
 
   return (
     <div className="flex w-full flex-col-reverse items-start justify-center">
-      <div className="flex items-center gap-[0.5em]">
+      <div className="flex items-end gap-[0.5em]">
         <FilterBtn />
-
-        <SortDropDown />
-        <div className="w-full">
-          <h2 className="text-base font-extrabold">{coursesResults} results</h2>
-        </div>
+        <SortDropDown courseResults={coursesResults} />
         {!isFiltersDefault && (
           <span
             className="cursor-pointer font-sans font-extrabold text-purpleStatic hover:text-purpleHover"

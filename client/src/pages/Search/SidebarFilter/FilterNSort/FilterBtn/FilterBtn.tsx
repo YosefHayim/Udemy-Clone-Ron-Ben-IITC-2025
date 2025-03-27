@@ -9,9 +9,6 @@ const FilterBtn = () => {
       <div>
         <b className="ml-[0.4em] font-sans text-base font-extrabold leading-[1.2]">Filter </b>
       </div>
-      <div>
-        <b></b>
-      </div>
     </div>
   );
 };
