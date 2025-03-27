@@ -1,7 +1,4 @@
 Tasks to handle:
-
-joseph:
-
 1. fix cookie
 2. click pay go to view course
 3. if already paid change to go view course
@@ -17,10 +14,6 @@ joseph:
 13. finish my learning courses view.
 14. navbar fix to be the same
 15. footer make sure each subject is clickable
-
-16. ben:
-
-ron:
-
-1. make sure course view of lessons are working.
-2. make sure the design is the same
+16. add clicking outside search result it closes it
+17. make sure course view of lessons are working.
+18. make sure the design is the same
