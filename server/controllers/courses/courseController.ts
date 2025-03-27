@@ -6,6 +6,7 @@ import createError from "../../utils/errorFn.ts";
 import { NextFunction, Request, Response } from "express";
 import courseProgress from "../../models/courses/courseProgressModel.ts";
 import { courseBought } from "../../types/types.ts";
+import mongoose from "mongoose";
 
 const getAllCourses = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
