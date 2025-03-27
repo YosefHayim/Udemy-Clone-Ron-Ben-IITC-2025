@@ -109,7 +109,7 @@ const Login = () => {
   });
 
   useEffect(() => {
-    if (fullname.length > 1 && !globalEmail > 1 && !cookie) {
+    if (fullname.length > 1 && globalEmail.length > 1 && !cookie) {
       setShowRegularLogin(true);
     }
   }, [isLoggedPreviouslyWithGoogle, showRegularLogin]);

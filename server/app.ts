@@ -36,24 +36,11 @@ app.use(cookieParser());
 app.use(loggerInfo);
 // app.use(limiter);
 
-// Allowed CORS origins
-const allowedOrigins: string[] = [
-  "http://localhost:5173", // Frontend in development
-  "https://udemy-clone-ron-and-ben-front.onrender.com", // Frontend in production
-  "http://127.0.0.1:5173",
-];
-
-// CORS Configuration
+// Allow CORS for all origins
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true, // Allow cookies
+    origin: "*",
+    credentials: true,
   })
 );
 
