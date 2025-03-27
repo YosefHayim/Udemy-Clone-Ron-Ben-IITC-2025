@@ -6,7 +6,7 @@ const CourseImg: React.FC<CourseImgProps> = ({
   widthChosen = '200px',
 }) => {
   return (
-    <div className="mr-2 border">
+    <div className="border">
       <img src={courseImg} alt="" className={`w-[30em]`} />
     </div>
   );

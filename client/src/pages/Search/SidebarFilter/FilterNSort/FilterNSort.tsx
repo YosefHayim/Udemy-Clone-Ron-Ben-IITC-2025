@@ -34,21 +34,23 @@ const FilterNSort = ({ coursesResults, searchTerm }) => {
   return (
     <div className="flex w-full flex-col-reverse items-start justify-start">
       <div className="flex w-full items-center justify-between">
-        <div className="flex w-full">
+        <div className="flex w-full gap-2">
           <FilterBtn />
           <SortDropDown />
+          {!isFiltersDefault && (
+            <div className="flex items-center">
+              <span
+                className="cursor-pointer font-sans font-extrabold text-purpleStatic hover:text-purpleHover"
+                onClick={() => setFilterData(defaultFilters)}
+              >
+                Clear filters
+              </span>
+            </div>
+          )}
         </div>
         <div>
           <p className="w-max font-sans text-base font-bold">{coursesResults} results</p>
         </div>
-        {!isFiltersDefault && (
-          <span
-            className="cursor-pointer font-sans font-extrabold text-purpleStatic hover:text-purpleHover"
-            onClick={() => setFilterData(defaultFilters)}
-          >
-            Clear filters
-          </span>
-        )}
       </div>
       <div className="mb-2 flex w-auto flex-col items-start justify-center">
         <h1 className="my-3 text-start font-sans text-2xl font-extrabold">
