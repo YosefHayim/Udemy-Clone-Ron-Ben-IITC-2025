@@ -782,15 +782,15 @@ const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
     console.log("Database connection established.");
-    await clearCollections();
-    console.log("Deleted all db.");
+    // await clearCollections();
+    // console.log("Deleted all db.");
 
     console.log("Seeding users...");
     const users = await createUsers();
     console.log(`${users.length} users created.`);
 
     console.log("Seeding courses...");
-    const courses = await createCourses({ coursesPerTopic: 30 });
+    const courses = await createCourses({ coursesPerTopic: 1000 });
     if (courses && courses.length > 1) {
       console.log(`${courses.length} courses created.`);
     }
