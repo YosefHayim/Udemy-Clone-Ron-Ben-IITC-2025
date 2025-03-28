@@ -41,7 +41,9 @@ const DescriptionOfInstructor: React.FC<{
         {isExpanded ? <MdOutlineKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
       </div>
       <div className="mt-[1em]">
-        <InstructorCourses coursesRelatedIds={coursesRelatedIds} />
+        {coursesRelatedIds?.length > 1 && (
+          <InstructorCourses coursesRelatedIds={coursesRelatedIds} />
+        )}
       </div>
     </div>
   );

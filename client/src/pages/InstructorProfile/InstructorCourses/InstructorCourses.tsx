@@ -10,7 +10,7 @@ const InstructorCourses: React.FC<{ coursesRelatedIds: string[] }> = ({ coursesR
     const courseDiv = target.closest('div[id]');
     console.log(courseDiv?.id);
     const courseId = courseDiv?.id;
-    // navigate(`/course-view/${courseId}`);
+    navigate(`/course-view/${courseId}`);
   };
 
   return (
