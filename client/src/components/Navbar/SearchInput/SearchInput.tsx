@@ -5,7 +5,6 @@ import { MdOutlineSearch } from 'react-icons/md';
 import SearchResults from '../SearchResults/SearchResults';
 import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
-import { useWindowWidth } from '@/utils/getCurrentWindowWidth';
 
 const SearchInput = ({ isTyping, setIsTyping }) => {
   const navigate = useNavigate();
@@ -14,7 +13,6 @@ const SearchInput = ({ isTyping, setIsTyping }) => {
   const [debouncedTerm, setDebouncedTerm] = useState<string>('');
   const [searchParams] = useSearchParams();
   const urlSearchTerm: string = searchParams.get('q')?.toLowerCase() || '';
-  const width = useWindowWidth();
 
   // Sync URL query with `searchTerm` on page load or navigation
   useEffect(() => {
@@ -64,7 +62,7 @@ const SearchInput = ({ isTyping, setIsTyping }) => {
   });
 
   return (
-    <div style={{ width: `${width / 2}px` }} className="relative flex flex-col items-center">
+    <div className="relative flex flex-col items-center">
       <form
         onSubmit={handleSubmit}
         className={`flex w-full items-center overflow-hidden rounded-full border border-gray-400 bg-transparent 
@@ -94,7 +92,7 @@ const SearchInput = ({ isTyping, setIsTyping }) => {
         </button>
       </form>
 
-      <SearchResults isTyping={isTyping} data={data} width={width / 2} />
+      <SearchResults isTyping={isTyping} data={data} />
     </div>
   );
 };

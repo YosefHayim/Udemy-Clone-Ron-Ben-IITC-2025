@@ -2,10 +2,9 @@ import { SearchResultsProps } from '@/types/types';
 import SearchResultRow from './SearchResultRow/SearchResultRow';
 import SearchResultsCourseImg from './SearchResultsCourseImg/SearchResultsCourseImg';
 
-const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data, width }) => {
+const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
   return (
     <div
-      style={{ width: `${width}px` }}
       className={`${
         isTyping ? 'flex-col py-2' : 'hidden'
       } absolute left-0 top-full z-50  w-full border border-gray-300 bg-white shadow-md`}

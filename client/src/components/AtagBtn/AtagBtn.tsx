@@ -23,7 +23,7 @@ const AtagBtn: React.FC<{ aTagName: string }> = ({ aTagName }) => {
       </p>
       <div>
         {isHovering && (
-          <div className="absolute right-0 top-[103%] z-50 flex w-[290px] flex-col items-center justify-center gap-[0.5em] rounded-lg border border-gray-300 bg-white p-4 text-center shadow-alertAlgoInfo">
+          <div className="absolute right-0 top-[105%] z-50 flex w-[290px] flex-col items-center justify-center gap-[0.5em] rounded-lg border border-gray-300 bg-white p-4 text-center shadow-alertAlgoInfo">
             {aTagName === 'Udemy Business' && (
               <div className="flex flex-col items-center justify-center">
                 <p className="font-sans text-base font-extrabold leading-tight text-gray-800">
