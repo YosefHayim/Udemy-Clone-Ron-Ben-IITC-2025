@@ -1,7 +1,6 @@
 import React from 'react';
 
 const OrganizationForm = () => {
-  
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const target = e.currentTarget;
@@ -11,7 +10,7 @@ const OrganizationForm = () => {
   };
 
   return (
-    <form className="w-full space-y-4" onSubmit={handleSubmit}>
+    <form className="mt-2 w-full space-y-4" onSubmit={handleSubmit}>
       <input
         required
         type="email"
@@ -27,7 +26,7 @@ const OrganizationForm = () => {
       <button
         type="submit"
         className="w-full rounded-[0.3em] bg-btnColor px-4 py-3 
-      text-center font-medium text-white transition-colors
+      text-center font-extrabold text-white transition-colors
       duration-200 ease-in-out hover:bg-[#892de1]"
       >
         Continue
