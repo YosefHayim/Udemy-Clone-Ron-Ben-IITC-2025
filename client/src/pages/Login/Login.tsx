@@ -5,6 +5,7 @@ import LoginForm from './LoginForm/LoginForm';
 import OtherLoginOptions from './OtherLoginOptions/OtherLoginOptions';
 import WebsiteLoginOptions from './OtherLoginOptions/WebsiteLoginOptions/WebsiteLoginOptions';
 import GoogleBtn from './OtherLoginOptions/GoogleBtn/GoogleBtn';
+import LoginImg from './LoginImg/LoginImg';
 
 const Login = () => {
   const [isDifferentAccount, setDifferentAccount] = useState(false);
@@ -14,11 +15,7 @@ const Login = () => {
   return (
     <div className="h-screen bg-cover bg-center">
       <div className="flex w-full flex-1 items-center justify-center">
-        <img
-          src="/images/loginImg.png"
-          alt="Login Illustration"
-          className="mr-[2.7rem] h-auto max-h-[100%] w-[100%] max-w-[620px] object-contain p-12"
-        />
+        <LoginImg />
         <div className="ml-[3rem] mr-[5rem] w-full max-w-[29rem]  rounded-lg bg-white p-6">
           <h2 className="mb-10 text-center font-sans text-3xl font-extrabold text-gray-800">
             Log in to continue your learning journey
