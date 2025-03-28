@@ -14,7 +14,7 @@ const ContinueWEmail = () => {
       {isLoading ? (
         <Loader useSmallLoading={true} hSize="" />
       ) : (
-        <button type="submit" className="flex items-center">
+        <button type="submit" className="flex items-center gap-2">
           <AiOutlineMail size={20} />
           Continue with email
         </button>
