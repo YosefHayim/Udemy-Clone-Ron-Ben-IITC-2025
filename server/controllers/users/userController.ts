@@ -150,10 +150,11 @@ const signUp = catchAsync(
 
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: process.env.NODE_ENV === "production" ? true : false,
-      httpOnly: process.env.NODE_ENV === "production" ? true : false,
-      sameSite: "none",
-      maxAge: +90 * 24 * 60 * 60 * 1000,
+      // For localhost development:
+      secure: false,
+      httpOnly: true,
+      sameSite: "lax", // Change this from "none" to "lax" for localhost
+      maxAge: 90 * 24 * 60 * 60 * 1000, // Remove the + before 90
     });
 
     res.status(200).json({
@@ -227,10 +228,11 @@ const login = catchAsync(
 
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: process.env.NODE_ENV === "production" ? true : false,
-      httpOnly: process.env.NODE_ENV === "production" ? true : false,
-      sameSite: "none",
-      maxAge: +90 * 24 * 60 * 60 * 1000,
+      // For localhost development:
+      secure: false,
+      httpOnly: true,
+      sameSite: "lax", // Change this from "none" to "lax" for localhost
+      maxAge: 90 * 24 * 60 * 60 * 1000, // Remove the + before 90
     });
 
     res.status(200).json({
@@ -310,10 +312,11 @@ const verifyCode = catchAsync(
 
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: process.env.NODE_ENV === "production" ? true : false,
-      httpOnly: process.env.NODE_ENV === "production" ? true : false,
-      sameSite: "none",
-      maxAge: +90 * 24 * 60 * 60 * 1000,
+      // For localhost development:
+      secure: false,
+      httpOnly: true,
+      sameSite: "lax", // Change this from "none" to "lax" for localhost
+      maxAge: 90 * 24 * 60 * 60 * 1000, // Remove the + before 90
     });
 
     res.status(200).json({
@@ -669,10 +672,11 @@ const googleLoginOrSignUp = catchAsync(
 
       res.cookie("cookie", token, {
         expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-        secure: process.env.NODE_ENV === "production" ? true : false,
-        httpOnly: process.env.NODE_ENV === "production" ? true : false,
-        sameSite: "none",
-        maxAge: +90 * 24 * 60 * 60 * 1000,
+        // For localhost development:
+        secure: false,
+        httpOnly: true,
+        sameSite: "lax", // Change this from "none" to "lax" for localhost
+        maxAge: 90 * 24 * 60 * 60 * 1000, // Remove the + before 90
       });
 
       // Send success response
@@ -712,13 +716,13 @@ const updateMe = catchAsync(
       whenUpdated: user.updatedAt,
       isAuthActivated: user.isAuthActivated,
     });
-
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: process.env.NODE_ENV === "production" ? true : false,
-      httpOnly: process.env.NODE_ENV === "production" ? true : false,
-      sameSite: "none",
-      maxAge: +90 * 24 * 60 * 60 * 1000,
+      // For localhost development:
+      secure: false,
+      httpOnly: true,
+      sameSite: "lax", // Change this from "none" to "lax" for localhost
+      maxAge: 90 * 24 * 60 * 60 * 1000, // Remove the + before 90
     });
 
     res.status(200).json({
