@@ -22,7 +22,10 @@ const HoverCart = () => {
 
   return (
     <div>
-      <div className="absolute right-[0em] top-[1em] z-[1000] mt-[0.1em] flex w-[300px] cursor-pointer flex-col items-start justify-center rounded-[1em] border border-gray-300 bg-white shadow-alertAlgoInfo">
+      <div
+        style={{ scrollbarColor: '#8B8B8B #FCFCFC' }}
+        className={`${coursesIdAdded.length >= 5 && 'h-[550px] overflow-y-scroll'} absolute right-[0em] top-[1em] z-[1000] mt-[0.1em] flex w-[300px] cursor-pointer flex-col items-start justify-center rounded-[1em] border border-gray-300 bg-white shadow-alertAlgoInfo`}
+      >
         <div className="w-full">
           {coursesIdAdded.length > 0 ? (
             coursesIdAdded.map((courseId: string) => (
@@ -51,8 +54,8 @@ const HoverCart = () => {
             </div>
           )}
         </div>
-        <div className="flex w-full flex-col p-[1em]">
-          {totalToPay && coursesIdAdded ? (
+        <div className="flex w-full flex-col p-3">
+          {totalToPay && coursesIdAdded.length < 5 && (
             <div>
               <b className="text-[1.5em]">Total: ₪{totalToPay ? totalToPay.toFixed(2) : '0.00'}</b>
               <Button className="mt-[1em] w-full rounded-[0.3em] bg-btnColor py-[1.7em] font-sans font-extrabold hover:bg-btnHoverColor focus:outline-none">
@@ -61,7 +64,10 @@ const HoverCart = () => {
                 </Link>
               </Button>
             </div>
-          ) : null}
+          )}
+        </div>
+        <div className="z-10 flex w-full cursor-text items-start justify-start border-gray-800 px-3 py-5 shadow-personalizedFooterShadow">
+          <b className="text-[1.5em]">Total: ₪{totalToPay ? totalToPay.toFixed(2) : '0.00'}</b>
         </div>
       </div>
     </div>
