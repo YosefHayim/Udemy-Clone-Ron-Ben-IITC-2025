@@ -12,7 +12,6 @@ import Profile from './Profile/Profile';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import CategoriesMenu from './Categories/CategoriesMenu';
-import { isRootPathOnly } from '@/utils/isRootPathOnly';
 import ChangeLanguage from './DropDownMenu/ChangeLanguage/ChangeLanguage';
 import SaleCommercialTwo from './SaleCommercials/SaleCommercialTwo/SaleCommercialTwo';
 import { useMediaQuery } from 'react-responsive';
@@ -44,11 +43,11 @@ const Navbar = () => {
                 </Link>
                 <CategoriesMenu />
               </div>
-              <div className={ isRootPathOnly()? 'flex w-full items-center justify-center' : 'flex w-full items-center justify-center p-[0.3em]' }>
-                <div className={isRootPathOnly() ? 'hidden' : 'flex-grow'}>
+              <div className={'flex w-full items-center justify-evenly p-1'}>
+                <div>
                   <SearchInput />
                 </div>
-                {cookie && <AtagBtn aTagName={'Udemy Business'} />}
+                <AtagBtn aTagName={'Udemy Business'} />
                 <AtagBtn aTagName={'Teach on Udemy'} />
                 {cookie && (
                   <Link to="/wishlist">
@@ -80,28 +79,23 @@ const Navbar = () => {
                 </div>
                 {cookie && (
                   <Link to="/user/edit-profile">
-                  <div className="relative inline-block">
-                    <Profile cookie={cookie} />
-                    {coursesInCart.length >= 1 && (
-                      <div className="absolute top-[11%] right-[-15%]  h-[0.85rem] w-[0.85rem] rounded-full bg-[#A435F0] z-10"></div>
-                    )}
-                  </div>
-                </Link>                
+                    <div className="relative inline-block">
+                      <Profile cookie={cookie} />
+                      {coursesInCart.length >= 1 && (
+                        <div className="absolute right-[-15%] top-[11%]  z-10 h-[0.85rem] w-[0.85rem] rounded-full bg-[#A435F0]"></div>
+                      )}
+                    </div>
+                  </Link>
                 )}
                 {!cookie && (
-                  <div className="ml-2">
-                    <ChangeLanguage
-                      size={20}
-                      isClicked={isClicked}
-                      setClicked={setClicked}
-                      showIcon={false}
-                    />
-                  </div>
+                  <ChangeLanguage
+                    size={20}
+                    isClicked={isClicked}
+                    setClicked={setClicked}
+                    showIcon={false}
+                  />
                 )}
               </div>
-            </div>
-            <div className={isRootPathOnly() ? 'flex' : 'hidden'}>
-              <SearchInput />
             </div>
           </div>
         </div>

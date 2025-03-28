@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { MdOutlineSearch } from 'react-icons/md';
 import SearchResults from '../SearchResults/SearchResults';
 import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
-import { isRootPathOnly } from '@/utils/isRootPathOnly';
 import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
 import { useWindowWidth } from '@/utils/getCurrentWindowWidth';
 
@@ -65,51 +64,39 @@ const SearchInput = () => {
     enabled: !!debouncedTerm,
   });
 
-  useEffect(() => {}, [isRootPathOnly]);
-
   return (
-    <div
-    // style={{ width: `${width / 2}px` }} 
-    className="relative flex flex-col items-center">
-  <form
-    onSubmit={handleSubmit}
-    className={`${
-      isRootPathOnly() ? 'mt-[1.5em] mb-[0.2em]' : 'mt-[0.3em]'
-    } hover:bg-gray-100 flex w-full items-center overflow-hidden rounded-full border border-gray-400 
-    bg-transparent focus-within:bg-white focus-within:border-[#6D28D2] focus-within:ring-1 focus-within:ring-btnColor`}
-  >
-    <button
-      className={`${searchTerm.length === 0 ? 'cursor-not-allowed' : ''} bg-none p-[0.8rem] focus:outline-none`}
-    >
-      <MdOutlineSearch
-        className={`${
-          isRootPathOnly() ? 'hidden' : `text-[#595C84] focus:outline-non ml-[0.2em] h-5 w-5 bg-none`
-        }`}
-      />
-    </button>
-    <input
-      type="text"
-      value={searchTerm}
-      placeholder="Search for anything"
-      className={`${
-        isRootPathOnly() ? 'p-[1em]' : 'p-[0rem]'
-      } flex-grow bg-transparent text-sm text-[#595C84] placeholder:text-[0.85rem] placeholder:text-[#595C84] focus:outline-none`}
-      onChange={handleOnChange}
-    />
-    <button
-      type="submit"
-      className={`mr-[0.2em] rounded-full bg-purple-600 p-[0.85em] transition-opacity focus:outline-none 
-      ${!isRootPathOnly() ? 'hidden' : 'block'} 
+    <div style={{ width: `${width / 2}px` }} className="relative flex flex-col items-center">
+      <form
+        onSubmit={handleSubmit}
+        className={`flex w-full items-center overflow-hidden rounded-full border border-gray-400 bg-transparent 
+    focus-within:border-[#6D28D2] focus-within:bg-white focus-within:ring-1 focus-within:ring-btnColor hover:bg-gray-100`}
+      >
+        <button
+          className={`${searchTerm.length === 0 ? 'cursor-not-allowed' : ''} bg-none p-[0.8rem] focus:outline-none`}
+        >
+          <MdOutlineSearch
+            className={`focus:outline-non ml-[0.2em] h-5 w-5 bg-none text-[#595C84]`}
+          />
+        </button>
+        <input
+          type="text"
+          value={searchTerm}
+          placeholder="Search for anything"
+          className={`flex-grow bg-transparent text-sm text-[#595C84] placeholder:text-[0.85rem] placeholder:text-[#595C84] focus:outline-none`}
+          onChange={handleOnChange}
+        />
+        <button
+          type="submit"
+          className={`mr-[0.2em] rounded-full bg-purple-600 p-[0.85em] transition-opacity focus:outline-none 
       ${searchTerm ? 'opacity-100' : 'cursor-not-allowed opacity-50'}`}
-      disabled={!searchTerm}
-    >
-      <MdOutlineSearch className="h-6 w-6 text-white " />
-    </button>
-  </form>
+          disabled={!searchTerm}
+        >
+          <MdOutlineSearch className="h-6 w-6 text-white " />
+        </button>
+      </form>
 
-  <SearchResults isTyping={isTyping} data={data} width={width / 2} />
-</div>
-
+      <SearchResults isTyping={isTyping} data={data} width={width / 2} />
+    </div>
   );
 };
 
