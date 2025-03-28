@@ -22,7 +22,7 @@ const ProfilePic: React.FC<{
     <div
       className={`${
         isHover ? 'hover:bg-purple-100' : ''
-      } rounded-[0.4em] p-[1em] px-[0.6em] py-[0.2em] font-sans font-normal text-[#020202] hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300`}
+      } rounded-[0.4em] py-[0.2em] font-sans font-normal text-[#020202] hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300`}
     >
       <Avatar className={`${isBig ? `${size}` : ''}`}>
         <AvatarImage src={imageUrl} className="rounded-[100em]" />

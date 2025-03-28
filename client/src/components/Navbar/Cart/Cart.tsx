@@ -12,16 +12,16 @@ const Cart = () => {
 
   return (
     <div
-      className="relative mr-[0.8em]"
+      className="relative"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div className={`${btnStyleNHover}`}>
-        <MdOutlineShoppingCart className="h-4 w-4" />
+        <MdOutlineShoppingCart className="h-5 w-5" />
         <CartCoursesNumber />
       </div>
       {showCartHover && (
-        <div className="absolute left-0 top-full z-[5000] p-[2em]">
+        <div className="absolute top-full z-[5000]">
           <HoverCart />
         </div>
       )}

@@ -68,45 +68,48 @@ const SearchInput = () => {
   useEffect(() => {}, [isRootPathOnly]);
 
   return (
-    <div style={{ width: `${width / 2}px` }} className="relative flex flex-col items-center">
-      <form
-        onSubmit={handleSubmit}
+    <div
+    // style={{ width: `${width / 2}px` }} 
+    className="relative flex flex-col items-center">
+  <form
+    onSubmit={handleSubmit}
+    className={`${
+      isRootPathOnly() ? 'mt-[1.5em] mb-[0.2em]' : 'mt-[0.3em]'
+    } hover:bg-gray-100 flex w-full items-center overflow-hidden rounded-full border border-gray-400 
+    bg-transparent focus-within:bg-white focus-within:border-[#6D28D2] focus-within:ring-1 focus-within:ring-btnColor`}
+  >
+    <button
+      className={`${searchTerm.length === 0 ? 'cursor-not-allowed' : ''} bg-none p-[0.8rem] focus:outline-none`}
+    >
+      <MdOutlineSearch
         className={`${
-          isRootPathOnly() ? 'my-[0.2em]' : ''
-        } flex w-full items-center overflow-hidden rounded-full border border-gray-400 bg-gray-50 focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor`}
-      >
-        <button
-          className={`${searchTerm.length === 0 ? 'cursor-not-allowed' : ''} bg-none p-2 hover:bg-purple-100 focus:outline-none`}
-        >
-          <MdOutlineSearch
-            className={`${
-              isRootPathOnly() ? 'hidden' : `text-gray focus:outline-non ml-[0.2em] h-6 w-6 bg-none`
-            }`}
-          />
-        </button>
-        <input
-          type="text"
-          value={searchTerm}
-          placeholder="Search for anything"
-          className={`${
-            isRootPathOnly() ? 'p-[1.2em]' : 'p-[1em]'
-          } flex-grow bg-transparent text-sm text-gray-700 placeholder:pl-[1em] placeholder:text-sm placeholder:font-light hover:bg-gray-100 focus:bg-white focus:outline-none`}
-          onChange={handleOnChange}
-        />
-        <button
-          type="submit"
-          className={`mr-[0.2em] rounded-full bg-purple-600 p-[0.85em] transition-opacity focus:outline-none 
+          isRootPathOnly() ? 'hidden' : `text-[#595C84] focus:outline-non ml-[0.2em] h-5 w-5 bg-none`
+        }`}
+      />
+    </button>
+    <input
+      type="text"
+      value={searchTerm}
+      placeholder="Search for anything"
+      className={`${
+        isRootPathOnly() ? 'p-[1em]' : 'p-[0rem]'
+      } flex-grow bg-transparent text-sm text-[#595C84] placeholder:text-[0.85rem] placeholder:text-[#595C84] focus:outline-none`}
+      onChange={handleOnChange}
+    />
+    <button
+      type="submit"
+      className={`mr-[0.2em] rounded-full bg-purple-600 p-[0.85em] transition-opacity focus:outline-none 
       ${!isRootPathOnly() ? 'hidden' : 'block'} 
       ${searchTerm ? 'opacity-100' : 'cursor-not-allowed opacity-50'}`}
-          disabled={!searchTerm}
-        >
-          <MdOutlineSearch className="h-6 w-6 text-white " />
-        </button>
-      </form>
+      disabled={!searchTerm}
+    >
+      <MdOutlineSearch className="h-6 w-6 text-white " />
+    </button>
+  </form>
 
-      {/* SearchResults is now placed directly below the form, inside the same container */}
-      <SearchResults isTyping={isTyping} data={data} width={width / 2} />
-    </div>
+  <SearchResults isTyping={isTyping} data={data} width={width / 2} />
+</div>
+
   );
 };
 

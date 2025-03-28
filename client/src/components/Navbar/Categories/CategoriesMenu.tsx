@@ -93,7 +93,7 @@ const CategoriesMenu = () => {
         onMouseLeave={handleMenuLeave}
       >
         <button
-          className={`${btnStyleNHover} rounded-md px-3 py-3 font-sans text-sm font-normal text-[#020202]`}
+          className={`${btnStyleNHover} rounded-md px-3 py-3 font-sans text-[0.85rem] font-normal text-[#37474F]`}
         >
           Explore
         </button>

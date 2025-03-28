@@ -49,9 +49,9 @@ const Homepage = () => {
           </div>
         ) : (
           <div className="w-full">
+            <div className="flex flex-col  gap-4 px-24 py-8">
             <Welcome />
             <Banner isLogin={true} />
-            <div className="flex flex-col  gap-4 px-6 py-8">
               <LetsStartLearning />
               <h1 className="pl-4 font-extrabold">What to learn next</h1>
               <SearchResult />

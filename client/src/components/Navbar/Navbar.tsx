@@ -44,7 +44,7 @@ const Navbar = () => {
                 </Link>
                 <CategoriesMenu />
               </div>
-              <div className={ isRootPathOnly()? 'flex w-full items-center justify-end' : 'flex w-full items-center justify-center p-[0.3em]' }>
+              <div className={ isRootPathOnly()? 'flex w-full items-center justify-center' : 'flex w-full items-center justify-center p-[0.3em]' }>
                 <div className={isRootPathOnly() ? 'hidden' : 'flex-grow'}>
                   <SearchInput />
                 </div>
@@ -61,11 +61,11 @@ const Navbar = () => {
                   </div>
                 )}
                 <Link to="/cart">
-                  <div className="relative inline-block">
+                  <div className="relative flex items-center">
                     <Cart />
                   </div>
                 </Link>
-                <div className="flex items-center justify-around gap-[0.3rem]">
+                <div className="flex items-center justify-around gap-[0.9rem]">
                   {cookie && (
                     <div className="flex items-center">
                       <Notifications />
@@ -83,7 +83,7 @@ const Navbar = () => {
                   <div className="relative inline-block">
                     <Profile cookie={cookie} />
                     {coursesInCart.length >= 1 && (
-                      <div className="absolute top-[16%] right-[6%]  h-[0.7rem] w-[0.7rem] rounded-full bg-[#A435F0] z-10"></div>
+                      <div className="absolute top-[11%] right-[-15%]  h-[0.85rem] w-[0.85rem] rounded-full bg-[#A435F0] z-10"></div>
                     )}
                   </div>
                 </Link>                
@@ -100,7 +100,7 @@ const Navbar = () => {
                 )}
               </div>
             </div>
-            <div className={isRootPathOnly() ? 'mt-[0.5em] flex' : 'hidden'}>
+            <div className={isRootPathOnly() ? 'flex' : 'hidden'}>
               <SearchInput />
             </div>
           </div>

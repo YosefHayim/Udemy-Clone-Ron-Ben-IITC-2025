@@ -1,6 +1,6 @@
 import logo from '/images/logo-udemy.svg';
 
-const Logo = ({ CustomCssSize = 'w-[7em]' }) => {
+const Logo = ({ CustomCssSize = 'w-[7rem]' }) => {
   return <img src={logo} alt="Udemy Logo" className={`${CustomCssSize}`} />;
 };
 
