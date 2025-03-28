@@ -54,19 +54,18 @@ const LoginForm = () => {
         placeholder="Email"
         className={`${inputLoginWEmail}`}
       />
-      <button
-        type="submit"
-        className={`${regFullButtonPurpleHover} flex w-full items-center justify-center font-sans font-extrabold`}
-      >
-        {isLoading ? (
-          <Loader useSmallLoading={true} hSize="" />
-        ) : (
-          <div className="flex items-center">
-            <AiOutlineMail size={20} />
-            Continue with email
-          </div>
-        )}
-      </button>
+      <div>
+        <button type="submit" className={`${regFullButtonPurpleHover} w-full`}>
+          {isLoading ? (
+            <Loader useSmallLoading={true} hSize="" />
+          ) : (
+            <p className="flex w-full items-center justify-center gap-2 text-base">
+              <AiOutlineMail size={20} />
+              Continue with email
+            </p>
+          )}
+        </button>
+      </div>
     </form>
   );
 };

@@ -15,6 +15,8 @@ import { useDispatch } from 'react-redux';
 import { AiOutlineMail } from 'react-icons/ai';
 import { setUserInformation } from '@/utils/setUserInformation';
 import signUpImage from '/images/signup.png';
+import OtherLoginOptions from '../Login/OtherLoginOptions/OtherLoginOptions';
+import WebsiteLoginOptions from '../Login/OtherLoginOptions/WebsiteLoginOptions/WebsiteLoginOptions';
 
 const SignUp: React.FC = () => {
   document.title = 'Sign Up and Start Learning | Udemy';
@@ -83,14 +85,14 @@ const SignUp: React.FC = () => {
 
   return (
     <div className="flex h-screen w-full items-center justify-center bg-cover bg-center">
-      <div className="ml-[3rem] mr-[-6rem] mt-[-3rem] flex h-full w-1/2 items-center justify-center bg-white">
+      <div className=" flex h-full w-1/2 items-start justify-center bg-white">
         <img
           src="/images/signup.png"
           alt={signUpImage}
           className="mr-[2.7rem] h-auto max-h-[100%] w-[100%] max-w-[620px] object-contain p-12"
         />
       </div>
-      <div className="flex h-full w-1/2 items-center justify-center bg-white">
+      <div className="mt-36 flex h-full w-1/2 items-start justify-center bg-white">
         <div className="w-3/4 max-w-[27rem]">
           <h2 className="mb-6 w-full text-center font-sans text-[2rem] font-extrabold text-courseNameColorTxt">
             Sign up with email
@@ -116,13 +118,13 @@ const SignUp: React.FC = () => {
             onSubmit={handleSubmit}
           >
             <div className="flex cursor-pointer items-center justify-center gap-[0.5em]">
-              <div className="w-full flex-col flex-wrap items-center justify-center">
+              <div className="w-full flex-col flex-wrap items-center justify-center gap-1">
                 <Checkbox
                   id="offers"
                   required={true}
-                  className="relative mr-[0.5em] h-4 w-4 rounded-[0.2em] border-2 border-black ring-0 focus:outline-none focus:ring-0"
+                  className="absolute mr-[0.5em] h-4 w-4 scale-90 rounded-[0.2em] border-2 border-black ring-0 focus:outline-none focus:ring-0"
                 />
-                <label htmlFor="offers" className="mr-[0.5em]">
+                <label htmlFor="offers" className="ml-5 text-sm">
                   Send me special offers, personalized recommendations, and learning tips.
                 </label>
               </div>
@@ -157,25 +159,7 @@ const SignUp: React.FC = () => {
               )}
             </button>
           </form>
-          <div className="my-6 flex w-full items-center">
-            <hr className="flex-grow border-gray-300" />
-            <span className="mx-4 text-sm text-grayNavbarTxt">Other sign up options</span>
-            <hr className="flex-grow border-gray-300" />
-          </div>
-          <div className="flex justify-center space-x-5">
-            <button
-              onClick={handleGoogle}
-              className={`rounded-sm border border-btnColor p-2 hover:bg-purpleHoverBtn focus:outline-none`}
-            >
-              <FcGoogle className="h-7 w-7" />
-            </button>
-            <button className="rounded-sm border border-btnColor p-2 hover:bg-purpleHoverBtn focus:outline-none">
-              <FaFacebook className="h-7 w-7 text-blue-600" />
-            </button>
-            <button className="rounded-sm border border-btnColor p-2 hover:bg-purpleHoverBtn focus:outline-none">
-              <FaApple className="h-7 w-7 opacity-85" />
-            </button>
-          </div>
+          <OtherLoginOptions />
           <div className="flex justify-center px-0">
             <p className="mt-2 text-courseNameColorTxt">
               By signing up, you agree to our{' '}
@@ -198,11 +182,14 @@ const SignUp: React.FC = () => {
               </span>
             </p>
           </div>
-          <div className="mt-6 flex w-full items-center justify-center space-x-0 bg-[#f6f7f9] py-[1.5em] text-center font-medium text-white">
-            <Link to="/login" className="text-[1rem] text-courseNameColorTxt">
-              Already have an account?{' '}
-              <span className="font-sans font-extrabold text-btnColor underline">Log in</span>
-            </Link>
+          <div className="mt-4">
+            <WebsiteLoginOptions
+              text="Already have an account?"
+              to={'/login'}
+              extraCSS={`text-center w-full text-base no-underline text-gray-950 font-normal`}
+              textAfterSpace={`Log in`}
+              textAfterSpaceCSS={`underline text-purple-600 font-extrabold`}
+            />
           </div>
         </div>
       </div>
