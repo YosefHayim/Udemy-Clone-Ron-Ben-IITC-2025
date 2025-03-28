@@ -16,30 +16,53 @@ const Login = () => {
     <div className="h-screen bg-cover bg-center">
       <div className="flex w-full flex-1 items-center justify-center">
         <LoginImg />
-        <div className="ml-[3rem] mr-[5rem] w-full max-w-[29rem]  rounded-lg bg-white p-6">
-          <h2 className="mb-10 text-center font-sans text-3xl font-extrabold text-gray-800">
+        <div className="h-svh w-full max-w-[29rem] rounded-lg bg-white p-6">
+          <h2 className="mb-10 mt-20 text-center font-sans text-3xl font-extrabold text-gray-800">
             Log in to continue your learning journey
           </h2>
-          {!cookie && !prevWGoogle && (
+          {!cookie ||
+            (!prevWGoogle && (
+              <div>
+                <LoginForm />
+                <OtherLoginOptions />
+              </div>
+            ))}
+          {isDifferentAccount && (
             <div>
               <LoginForm />
               <OtherLoginOptions />
             </div>
           )}
-          {prevWGoogle && (
+          {prevWGoogle && !isDifferentAccount && (
             <div>
               <GoogleBtn />
             </div>
           )}
           <div className="items-center justify-center text-center">
-            {prevWGoogle && isDifferentAccount && (
-              <WebsiteLoginOptions text={`Log in to a different account`} to={`/login`} />
+            {prevWGoogle && (
+              <div
+                onClick={() => setDifferentAccount(true)}
+                className={`${isDifferentAccount ? 'hidden' : 'block'}`}
+              >
+                <WebsiteLoginOptions
+                  text={`Log in to a different account`}
+                  to={`/login`}
+                  extraCSS={`text-base font-extrabold`}
+                />
+              </div>
             )}
-            <WebsiteLoginOptions text={`Don't have an account ? Sign up`} to={`/signup`} />
+            <WebsiteLoginOptions
+              text={`Don't have an account ?`}
+              to={'/login'}
+              extraCSS={`text-center w-full text-base no-underline text-gray-950 font-normal`}
+              textAfterSpace={` Sign up`}
+              textAfterSpaceCSS={`underline text-purple-600 font-extrabold`}
+            />
             <hr className="w-full" />
             <WebsiteLoginOptions
               text={`Log in with your organization`}
               to={`/organization/global-login/email`}
+              extraCSS={`font-extrabold text-sm`}
             />
           </div>
         </div>

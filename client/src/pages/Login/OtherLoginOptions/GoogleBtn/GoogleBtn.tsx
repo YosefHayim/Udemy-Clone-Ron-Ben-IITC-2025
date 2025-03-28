@@ -42,9 +42,14 @@ const GoogleBtn = () => {
     redirect_uri: isProduction ? baseUrl : localhostUrl,
   });
   return (
-    <Button onClick={handleGoogle} className={`${continueWGoogleBtn}`}>
-      <FcGoogle size={20} /> Continue with Google
-    </Button>
+    <div className="flex w-full items-center justify-start">
+      <button
+        onClick={handleGoogle}
+        className={`${continueWGoogleBtn} rounded-sm border border-purple-800 text-sm text-purple-800`}
+      >
+        <FcGoogle size={35} /> Continue with Google
+      </button>
+    </div>
   );
 };
 
