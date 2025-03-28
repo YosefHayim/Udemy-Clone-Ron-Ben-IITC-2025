@@ -11,7 +11,7 @@ import { SidebarFilterProps } from '@/types/types';
 
 const SidebarFilter: React.FC<SidebarFilterProps> = () => {
   return (
-    <div className="relative min-h-max w-full">
+    <div className="w-full">
       <ViewCertificatesOnly />
       <RatingsFilter />
       <LanguageFilter />
