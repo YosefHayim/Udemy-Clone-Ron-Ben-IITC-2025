@@ -201,14 +201,7 @@ const Login = () => {
           )}
           {differentAccount ||
             (!isLoggedPreviouslyWithGoogle && (
-              <div className="flex w-full flex-col gap-4">
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                  className={`${inputLoginWEmail}`}
-                />
+              <>
                 <div className="flex flex-col items-center gap-4">
                   <form className="flex w-full flex-col" onSubmit={handleSubmit}>
                     {!differentAccount && isLoggedPreviouslyWithGoogle && (
@@ -227,10 +220,10 @@ const Login = () => {
                       {isLoading ? (
                         <Loader useSmallLoading={true} hSize="" />
                       ) : (
-                        <div className="flex items-center">
+                        <button type="submit" className="flex items-center">
                           <AiOutlineMail size={20} />
                           Continue with email
-                        </div>
+                        </button>
                       )}
                     </button>
                   </form>
@@ -255,7 +248,7 @@ const Login = () => {
                     </div>
                   </div>
                 )}
-              </div>
+              </>
             ))}
           {isLoggedPreviouslyWithGoogle && !differentAccount && (
             <Button onClick={handleGoogle} className={`${continueWGoogleBtn}`}>
@@ -298,3 +291,34 @@ const Login = () => {
 };
 
 export default Login;
+
+// return (
+//   <div className="h-screen bg-cover bg-center">
+//     <div className="flex w-full flex-1 items-center justify-center">
+//       <img
+//         src="/images/loginImg.png"
+//         alt="Login Illustration"
+//         className="mr-[2.7rem] h-auto max-h-[100%] w-[100%] max-w-[620px] object-contain p-12"
+//       />
+//       <div className="ml-[3rem] mr-[5rem] w-full max-w-[29rem]  rounded-lg bg-white p-6">
+//         <h2 className="mb-10 text-center font-sans text-3xl font-extrabold text-gray-800">
+//           Log in to continue your learning journey
+//         </h2>
+//         {!cookie && (
+//           <div>
+//             <LoginForm />
+//           </div>
+//         )}
+//         <OtherLoginOptions />
+//         <div className="items-center justify-center text-center">
+//           <WebsiteLoginOptions text={`Don't have an account ? Sign up`} to={`/signup`} />
+//           <hr className="w-full" />
+//           <WebsiteLoginOptions
+//             text={`Log in with your organization`}
+//             to={`/organization/global-login/email`}
+//           />
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// );
