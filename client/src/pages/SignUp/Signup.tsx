@@ -211,6 +211,3 @@ const SignUp: React.FC = () => {
 };
 
 export default SignUp;
-function setHeadline(headline: string): any {
-  throw new Error('Function not implemented.');
-}
