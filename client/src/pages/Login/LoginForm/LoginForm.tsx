@@ -59,9 +59,7 @@ const LoginForm = () => {
             error={isError}
             sx={{
               width: '100%',
-              borderRadius: '5px',
               '& .MuiInputBase-root': {
-                fontWeight: 600,
                 backgroundColor: 'white',
                 border: '1px solid gray',
                 borderRadius: '5px',
@@ -73,6 +71,10 @@ const LoginForm = () => {
                   borderColor: 'purple',
                   backgroundColor: 'white',
                 },
+                '& input': {
+                  fontWeight: 600,
+                  color: 'black',
+                },
               },
               '& .MuiInputLabel-root': {
                 color: 'black',
@@ -81,9 +83,6 @@ const LoginForm = () => {
             slotProps={{
               input: {
                 disableUnderline: true,
-              },
-              inputLabel: {
-                color: 'black',
               },
             }}
           />
