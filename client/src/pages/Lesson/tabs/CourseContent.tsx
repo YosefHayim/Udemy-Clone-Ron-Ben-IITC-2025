@@ -89,8 +89,8 @@ const CourseContent: React.FC = () => {
           >
             <div className="flex items-center justify-between bg-bgCommercial p-4">
               <CollapsibleTrigger asChild>
-                <button className="flex w-full items-center text-left focus:outline-none focus:outline-none focus-visible:outline-none">
-                  <span className="text-lg font-medium">
+                <button className="flex w-full items-center text-left  focus:outline-none focus-visible:outline-none">
+                  <span className="text-lg font-bold">
                     Section {idx + 1}: {section.sectionId.title}
                   </span>
                   <FaChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
@@ -111,7 +111,7 @@ const CourseContent: React.FC = () => {
                   return (
                     <li
                       key={lesson.lessonId._id}
-                      className={`mb-2 flex items-center gap-3 p-2 ${
+                      className={`mb-2 flex items-start gap-3 p-2 ${
                         isCurrentLesson ? 'bg-slate-400 ' : 'hover:bg-slate-400'
                       }`}
                     >
@@ -120,28 +120,30 @@ const CourseContent: React.FC = () => {
                         onCheckedChange={() =>
                           toggleLessonCompletion(lesson.lessonId._id, lesson.completed)
                         }
-                        className={`hover:border-black focus:outline-none ${
-                          isCurrentLesson ? 'border-white' : ''
+                        className={` focus:outline-none ${
+                          lesson.completed ? '' : 'border-black border-2'
                         }`}
                       />
-                      <div className="flex flex-col">
+                      <div className="flex flex-col ">
                         <Link
                           to={`/course/${sanitizedCourseId}/lesson/${lesson.lessonId._id}`}
                           state={{ courseId: sanitizedCourseId }}
                           className="ml-2 flex-col"
                         >
-                          <span>
+                          <span className='text-base'>
                             {lessonCounter}. {lesson.lessonId.title}
                           </span>
                           <span
-                            className={`flex items-center text-xs ${
-                              isCurrentLesson ? 'text-white' : 'text-black'
+                            className={`flex items-center text-s ${
+                              isCurrentLesson ? 'text-gray-900' : 'text-gray-600'
                             }`}
                           >
+                            <div className='flex items-center gap-x-1 pt-2'>
                             <MdOndemandVideo />
-                            <span>
+                            <span className=''>
                               {lesson.lessonId.duration ? `${lesson.lessonId.duration} min` : ''}
                             </span>
+                            </div>
                           </span>
                         </Link>
                       </div>
