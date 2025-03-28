@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SearchInput from './SearchInput/SearchInput';
 import LoginBtn from './LoginBtn/LoginBtn';
 import SignupBtn from './SignupBtn/SignupBtn';
@@ -19,7 +19,8 @@ import MobileNavbar from './MobileNavbar/MobileNavbar';
 
 const Navbar = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
-
+  const navigate = useNavigate();
+  const [isTyping, setIsTyping] = useState(false);
   const [isClicked, setClicked] = useState(false);
   const cookie = useSelector((state: RootState) => state?.user?.cookie);
   const prevLogWGoogle = useSelector((state: RootState) => state.user.isLoggedPreviouslyWithGoogle);
@@ -28,6 +29,26 @@ const Navbar = () => {
     useSelector((state: RootState) => state?.cart?.coursesAddedToWishList);
 
   useEffect(() => {}, [cookie]);
+
+  useEffect(() => {
+    const body = document.querySelector('body');
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const courseId = target.id || target.closest('div')?.id;
+      if (courseId) {
+        console.log(courseId);
+        navigate(`/course-view/${courseId}`);
+      } else {
+        setIsTyping(false);
+      }
+    };
+
+    body.addEventListener('click', handleClick);
+
+    return () => {
+      body.removeEventListener('click', handleClick);
+    };
+  });
 
   return (
     <div>
@@ -45,7 +66,7 @@ const Navbar = () => {
               </div>
               <div className={'flex w-full items-center justify-evenly p-1'}>
                 <div>
-                  <SearchInput />
+                  <SearchInput isTyping={isTyping} setIsTyping={setIsTyping} />
                 </div>
                 <AtagBtn aTagName={'Udemy Business'} />
                 <AtagBtn aTagName={'Teach on Udemy'} />

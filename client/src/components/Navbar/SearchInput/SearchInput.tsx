@@ -7,10 +7,9 @@ import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
 import { useWindowWidth } from '@/utils/getCurrentWindowWidth';
 
-const SearchInput = () => {
+const SearchInput = ({ isTyping, setIsTyping }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [isTyping, setIsTyping] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [debouncedTerm, setDebouncedTerm] = useState<string>('');
   const [searchParams] = useSearchParams();
