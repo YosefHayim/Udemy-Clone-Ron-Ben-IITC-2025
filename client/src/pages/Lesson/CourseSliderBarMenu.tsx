@@ -146,7 +146,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
                       key={lesson.lessonId._id}
                     >
                       <div className="  group w-full  overflow-visible p-4">
-                        <SidebarMenuSubButton className="overflow-visible">
+                        <SidebarMenuSubButton className="overflow-visible hover:bg-[#94A3B8]">
                           <div className="flex  h-full items-center">
                             <Checkbox
                               checked={lesson.completed}
@@ -155,7 +155,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
                               }
                               className=" mt-0 self-start rounded-none border-2 hover:border-purple-500 focus:outline-none focus-visible:outline-none"
                             />
-                            <div className="ml-2  flex flex-col ">
+                            <div className="ml-2   flex flex-col ">
                               <Link
                                 to={`/course/${courseId}/lesson/${lesson.lessonId._id}`}
                                 className="  w-full"
