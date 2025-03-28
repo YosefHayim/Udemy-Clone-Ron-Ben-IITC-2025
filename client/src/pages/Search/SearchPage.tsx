@@ -84,7 +84,7 @@ const SearchPage: React.FC = () => {
     <div>
       <div className="w-full px-6 py-3">
         <FilterNSort coursesResults={data?.totalCourses} searchTerm={searchTerm} />
-        <div className="flex w-full">
+        <div className="flex w-auto items-start justify-center gap-4">
           <SidebarFilter />
           <div className="flex flex-col items-start justify-start">
             <div className="flex w-auto flex-col items-center justify-center gap-[1em]">
@@ -115,7 +115,7 @@ const SearchPage: React.FC = () => {
                       />
                     </div>
                   )}
-                  {index === 2 && <Commercial key="commercial" />}
+                  {/* {index === 2 && <Commercial key="commercial" />} */}
                   {/* {index === 6 && <HotFreshCourses key="hotfreshcourses" />} */}
                 </div>
               ))}
