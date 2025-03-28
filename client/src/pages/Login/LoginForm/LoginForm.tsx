@@ -1,13 +1,13 @@
 import loginUser from '@/api/users/loginUser';
 import Loader from '@/components/Loader/Loader';
-import { RootState } from '@/redux/store';
 import { emailContext } from '@/routes/AppRoutes';
 import { inputLoginWEmail, regFullButtonPurpleHover } from '@/utils/stylesStorage';
 import { useMutation } from '@tanstack/react-query';
 import { useContext, useState } from 'react';
 import { AiOutlineMail } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { PiWarningOctagon } from 'react-icons/pi';
+import { TextField } from '@mui/material';
 
 const LoginForm = () => {
   const emailCtx = useContext(emailContext);
@@ -26,7 +26,6 @@ const LoginForm = () => {
     onError: (error) => {
       console.log('Error during login process:', error);
       setShowIsError(true);
-      return;
     },
   });
 
@@ -47,15 +46,50 @@ const LoginForm = () => {
   return (
     <form className="mb-4 flex flex-col space-y-4" onSubmit={handleSubmit}>
       <div className="relative">
-        <span className="absolute ml-3 mt-2 font-sans font-bold text-black">Email</span>
+        <div className="absolute mb-2 ml-3 mt-2 flex items-center justify-center gap-1 font-sans font-bold text-black">
+          {isError && <PiWarningOctagon size={18} className="text-red-600" />}
+        </div>
+        <div className="flex w-full flex-col items-start justify-center gap-2">
+          <TextField
+            inputMode="email"
+            id="email"
+            label="Email"
+            variant="filled"
+            name="Email"
+            error={isError}
+            sx={{
+              width: '100%',
+              borderRadius: '5px',
+              '& .MuiInputBase-root': {
+                fontWeight: 600,
+                backgroundColor: 'white',
+                border: '1px solid gray',
+                borderRadius: '5px',
+                transition: 'border-color 0.2s ease-in-out',
+                '&:hover': {
+                  borderColor: 'purple',
+                },
+                '&.Mui-focused': {
+                  borderColor: 'purple',
+                  backgroundColor: 'white',
+                },
+              },
+              '& .MuiInputLabel-root': {
+                color: 'black',
+              },
+            }}
+            slotProps={{
+              input: {
+                disableUnderline: true,
+              },
+              inputLabel: {
+                color: 'black',
+              },
+            }}
+          />
 
-        <input
-          type="text"
-          name="email"
-          id="email"
-          required={true}
-          className={`${inputLoginWEmail}`}
-        />
+          {isError && <p className="text-red-600">Please enter a valid email address.</p>}
+        </div>
       </div>
       <div>
         <button type="submit" className={`${regFullButtonPurpleHover} w-full`}>

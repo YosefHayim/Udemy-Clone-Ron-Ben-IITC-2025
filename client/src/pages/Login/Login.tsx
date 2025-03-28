@@ -20,13 +20,12 @@ const Login = () => {
           <h2 className="mb-10 mt-20 text-center font-sans text-3xl font-extrabold text-gray-800">
             Log in to continue your learning journey
           </h2>
-          {!cookie ||
-            (!prevWGoogle && (
-              <div>
-                <LoginForm />
-                <OtherLoginOptions />
-              </div>
-            ))}
+          {!prevWGoogle && (
+            <div>
+              <LoginForm />
+              <OtherLoginOptions />
+            </div>
+          )}
           {isDifferentAccount && (
             <div>
               <LoginForm />
