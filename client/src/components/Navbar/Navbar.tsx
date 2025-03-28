@@ -34,12 +34,12 @@ const Navbar = () => {
     const body = document.querySelector('body');
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const courseId = target.id || target.closest('div')?.id;
+      const courseId = target.closest('div')?.id;
       if (courseId) {
-        console.log(courseId);
         navigate(`/course-view/${courseId}`);
       } else {
         setIsTyping(false);
+        return;
       }
     };
 

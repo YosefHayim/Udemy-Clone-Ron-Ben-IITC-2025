@@ -17,7 +17,6 @@ const LoginForm = () => {
   const [isLoading, setLoading] = useState(false);
   const [isError, setShowIsError] = useState(false);
   const navigate = useNavigate();
-  const globalEmail = useSelector((state: RootState) => state?.user?.email);
 
   const loginMutation = useMutation({
     mutationFn: loginUser,
@@ -39,7 +38,7 @@ const LoginForm = () => {
     }, 2000);
 
     const formData = new FormData(e.currentTarget);
-    const email = (formData.get('email') as string) || globalEmail;
+    const email = formData.get('email') as string;
 
     setEmailUser(email);
     loginMutation.mutate({ email });
@@ -47,13 +46,17 @@ const LoginForm = () => {
 
   return (
     <form className="mb-4 flex flex-col space-y-4" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="email"
-        id="email"
-        placeholder="Email"
-        className={`${inputLoginWEmail}`}
-      />
+      <div className="relative">
+        <span className="absolute ml-3 mt-2 font-sans font-bold text-black">Email</span>
+
+        <input
+          type="text"
+          name="email"
+          id="email"
+          required={true}
+          className={`${inputLoginWEmail}`}
+        />
+      </div>
       <div>
         <button type="submit" className={`${regFullButtonPurpleHover} w-full`}>
           {isLoading ? (
