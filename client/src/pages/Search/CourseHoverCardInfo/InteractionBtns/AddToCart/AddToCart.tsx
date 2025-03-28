@@ -12,8 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Loader from '@/components/Loader/Loader';
 import { useNavigate, Link } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import buyCourseByCourseId from '@/api/users/buyCourseByCourseId';
 import { RootState } from '@/redux/store';
+import buyCourseById from '@/api/users/buyCourseId';
 
 const AddToCart: React.FC<{
   discountSum?: number;
@@ -48,7 +48,7 @@ const AddToCart: React.FC<{
   const isAddedToCart = courseId ? coursesInCart.includes(courseId) : false;
 
   const buyCourseMutation = useMutation({
-    mutationFn: buyCourseByCourseId,
+    mutationFn: buyCourseById,
     onSuccess: () => {
       setIsLoading(true);
       setTimeout(() => {

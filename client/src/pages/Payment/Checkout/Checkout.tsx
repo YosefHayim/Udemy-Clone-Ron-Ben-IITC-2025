@@ -37,7 +37,10 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
   const refreshUserDataMutation = useMutation({
     mutationFn: refreshMe,
     onSuccess: (cookie) => {
+      console.log(cookie);
+
       setUserInformation(cookie, dispatch);
+      alert('Success purchase course');
       navigate(`/course-view/${coursesIds[0]}`);
     },
   });
@@ -70,7 +73,6 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
       return Promise.all(courseIds.map((id) => buyCourseById(id)));
     },
     onSuccess: () => {
-      console.log('Successfully purchased multiple courses');
       setTimeout(() => {
         refreshUserDataMutation.mutate();
       }, 500);
