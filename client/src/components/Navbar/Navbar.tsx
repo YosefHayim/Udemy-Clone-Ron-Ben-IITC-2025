@@ -66,7 +66,10 @@ const Navbar = () => {
                 <SearchInput isTyping={isTyping} setIsTyping={setIsTyping} />
               </div>
             </div>
-            <div className="flex w-full items-end justify-end" style={{ maxWidth: 'min-content' }}>
+            <div
+              className="flex w-full items-end justify-end gap-2"
+              style={{ maxWidth: 'min-content' }}
+            >
               <AtagBtn aTagName={'Udemy Business'} />
               <AtagBtn aTagName={'Teach on Udemy'} />
               {cookie && (

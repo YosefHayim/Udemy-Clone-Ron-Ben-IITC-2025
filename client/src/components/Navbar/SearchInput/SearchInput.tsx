@@ -82,16 +82,7 @@ const SearchInput = ({ isTyping, setIsTyping }) => {
           className={`flex-grow bg-transparent text-sm text-[#595C84] placeholder:text-[0.85rem] placeholder:text-[#595C84] focus:outline-none`}
           onChange={handleOnChange}
         />
-        <button
-          type="submit"
-          className={`mr-[0.2em] rounded-full bg-purple-600 p-[0.85em] transition-opacity focus:outline-none 
-      ${searchTerm ? 'opacity-100' : 'cursor-not-allowed opacity-50'}`}
-          disabled={!searchTerm}
-        >
-          <MdOutlineSearch className="h-6 w-6 text-white " />
-        </button>
       </form>
-
       <SearchResults isTyping={isTyping} data={data} />
     </div>
   );
