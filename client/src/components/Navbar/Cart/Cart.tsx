@@ -17,7 +17,7 @@ const Cart = () => {
         <CartCoursesNumber />
       </div>
       {showCartHover && (
-        <div className="absolute top-full z-[5000]">
+        <div className="absolute top-6 z-[5000]">
           <HoverCart />
         </div>
       )}
