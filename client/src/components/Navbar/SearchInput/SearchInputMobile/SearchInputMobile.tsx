@@ -18,15 +18,12 @@ const SearchInputMobile = ({
       <form onSubmit={handleSubmit} className={`w-full ${extraCSS}`}>
         <input
           type="text"
-          className="w-full border-b bg-white p-2 text-base hover:bg-gray-100 focus:outline-none"
+          className="w-full bg-white p-2 text-base hover:bg-gray-100 focus:outline-none"
           placeholder="Search for anything"
           onChange={handleOnChange}
         />
       </form>
-      <CloseMobileSearchButton
-        setShowSearchMobile={setShowSearchMobile}
-        showSearchMobile={showSearchMobile}
-      />
+      <CloseMobileSearchButton setShowSearchMobile={setShowSearchMobile} />
       <SearchResults isTyping={isTyping} data={data} />
     </div>
   );

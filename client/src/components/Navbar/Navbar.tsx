@@ -56,7 +56,7 @@ const Navbar = () => {
       <SaleCommercialTwo />
       {!isMobile && (
         <div className="relative z-[50] flex w-full items-center justify-between bg-white px-[1rem] pb-[0.9em] pt-[0.2em] shadow-md shadow-[#bcc0ce]">
-          <div className="flex w-full items-center justify-between pt-[0.4rem] px-[0.25rem] ">
+          <div className="flex w-full items-center justify-between px-[0.25rem] pt-[0.4rem] ">
             <Link to="/">
               <Logo />
             </Link>
@@ -124,6 +124,7 @@ const Navbar = () => {
       )}
       {isMobile && (
         <div className="w-full">
+          {isTyping && <div className="absolute left-0 top-0 z-50 h-screen w-full bg-white"></div>}
           <MobileNavbar isTyping={isTyping} setIsTyping={setIsTyping} />
         </div>
       )}

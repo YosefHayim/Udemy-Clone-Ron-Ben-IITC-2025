@@ -1,13 +1,13 @@
 import { IoClose } from 'react-icons/io5';
 
-const CloseMobileSearchButton = ({ setShowSearchMobile, showSearchMobile }) => {
+const CloseMobileSearchButton = ({ setShowSearchMobile }) => {
   return (
-    <div
-      className="cursor-pointer rounded-[0.2em] p-2 text-gray-500 hover:bg-purpleHoverBtn"
+    <button
+      className="cursor-pointer rounded-[0.2em] p-2 text-gray-500 hover:bg-purpleHoverBtn focus:outline-none"
       onClick={() => setShowSearchMobile(false)}
     >
       <IoClose size={20} />
-    </div>
+    </button>
   );
 };
 

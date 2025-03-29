@@ -5,12 +5,12 @@ import Cart from '../../Cart/Cart';
 const CartAndSearchMobile = ({ setShowSearchMobile }) => {
   return (
     <div className="flex items-center">
-      <div
-        className="cursor-pointer rounded-md p-2 hover:bg-purple-100"
+      <button
+        className="cursor-pointer rounded-md p-2 hover:bg-purple-100 focus:outline-none"
         onClick={() => setShowSearchMobile(true)}
       >
         <MdOutlineSearch size={20} />
-      </div>
+      </button>
       <div>
         <Link to="/cart">
           <Cart />
