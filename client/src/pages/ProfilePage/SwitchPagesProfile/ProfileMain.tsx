@@ -1,5 +1,5 @@
 import { Input } from "@/components/ui/input";
-import SideBarProfile from "../SideBarProfile/SideBarProfile";
+import SideBarProfile from "../SideBarProfile";
 import { Button } from "@/components/ui/button";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
@@ -76,11 +76,6 @@ const ProfileMain = () => {
   };
 
   return (
-    <div className="mx-[12rem] mb-[3rem] mt-[1.5rem] flex min-h-screen bg-gray-100">
-      {/* Sidebar */}
-      <SideBarProfile />
-
-      {/* Main Content */}
       <main className="flex-1 border border-gray-300">
         <div className="bg-white">
           <div className="min-w-full border-b border-gray-300 p-4 text-center">
@@ -146,9 +141,8 @@ const ProfileMain = () => {
                   name="bio"
                   placeholder={bio}
                   rows={4}
-                  className={`${
-                    isBoldText ? "font-sans font-extrabold" : "font-normal"
-                  } w-full border border-t-0 border-gray-500 bg-white hover:bg-gray-100`}
+                  className={`${isBoldText ? "font-sans font-extrabold" : "font-normal"
+                    } w-full border border-t-0 border-gray-500 bg-white hover:bg-gray-100`}
                 ></textarea>
               </div>
               <p className=" my-[0.5em] text-gray-600">
@@ -280,7 +274,6 @@ const ProfileMain = () => {
           </form>
         </div>
       </main>
-    </div>
   );
 };
 

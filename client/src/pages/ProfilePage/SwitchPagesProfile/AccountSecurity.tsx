@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import SideBarProfile from "../SideBarProfile/SideBarProfile";
+import SideBarProfile from "../SideBarProfile";
 import { RootState } from "@/redux/store";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { useState } from "react";
-import DialogMultiFactorAuth from "./DialogMultiFactorAuth/DialogMultiFactorAuth";
-import DialogChangeEmail from "./DialogChangeEmail/DialogChangeEmail";
+import DialogMultiFactorAuth from "./DialogMultiFactorAuth";
+import DialogChangeEmail from "./DialogChangeEmail";
 
 const AccountSecurity = () => {
   const email = useSelector((state: RootState) => state?.user?.email);
@@ -22,8 +22,7 @@ const AccountSecurity = () => {
   };
 
   return (
-    <div className="flex p-[4.5em]">
-      <SideBarProfile />
+    <>
       <form className="w-full">
         <div className="flex w-full items-start justify-center border border-borderGrayColor py-[1em]">
           <div className="flex w-full flex-col items-center">
@@ -98,7 +97,7 @@ const AccountSecurity = () => {
       </form>
       <DialogChangeEmail isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} />
       <DialogMultiFactorAuth isAuthOpen={isAuthOpen} setAuthOpen={setAuthOpen} />
-    </div>
+    </>
   );
 };
 

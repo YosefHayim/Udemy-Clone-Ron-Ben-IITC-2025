@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SideBarProfile from "../SideBarProfile/SideBarProfile";
+import SideBarProfile from "../SideBarProfile";
 import { useMutation } from "@tanstack/react-query";
 import updateProfilePic from "@/api/users/updateProfilePic";
 import refreshMe from "@/api/users/refreshMe";
@@ -53,8 +53,6 @@ const Photo = () => {
   };
 
   return (
-    <div className="flex w-full p-[4.5em]">
-      <SideBarProfile />
       <div className="w-full">
         <div className="flex w-full  items-center justify-center gap-4">
           <div className="flex w-full flex-col items-center justify-center border border-gray-300 p-[2em]">
@@ -102,7 +100,6 @@ const Photo = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
