@@ -94,7 +94,7 @@ const MobileSidebar = ({ showSidebar, setShowSidebar }) => {
         className="fixed left-[260px] top-5 z-[1301] cursor-pointer rounded-full bg-white p-2 shadow-md hover:bg-gray-100"
         onClick={() => setShowSidebar(false)}
       >
-        <IoCloseOutline size={22} />
+        <IoCloseOutline size={20} className="text-gray-600" />
       </div>
     </div>
   );
