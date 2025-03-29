@@ -96,12 +96,12 @@ const SearchPage: React.FC = () => {
 
           {/* courses on the right */}
           <main className="flex flex-grow flex-col">
-            <div className="flex flex-col gap-0">
+            <div className="flex flex-col gap-1">
               {data?.response?.slice(0, 18).map((course: CourseTypeProps, index: number) => (
                 <div
                   key={course?._id}
                   id={course?._id}
-                  className="relative"
+                  className="relative w-auto"
                   onMouseEnter={() => setHoveredCourse(course?._id)}
                   onMouseLeave={() => setHoveredCourse(null)}
                 >

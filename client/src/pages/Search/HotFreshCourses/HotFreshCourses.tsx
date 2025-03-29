@@ -40,7 +40,7 @@ const HotFreshCourses = () => {
   }
 
   return (
-    <div className="w-full bg-red-500">
+    <div className="w-[1000px]">
       <h2 className="my-[0.5em] font-sans text-[1.5em] font-extrabold">Hot and Fresh Courses</h2>
       <div className="relative w-full overflow-hidden">
         {data.response && data?.response?.length > 7 && (
