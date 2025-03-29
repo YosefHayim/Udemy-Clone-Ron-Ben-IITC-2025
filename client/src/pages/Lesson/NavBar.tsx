@@ -2,6 +2,8 @@ import { Link, useLocation, useParams } from 'react-router-dom';
 import { IoIosSearch } from 'react-icons/io';
 import { useSidebar } from '@/components/ui/sidebar';
 
+
+
 const NavBar: React.FC = () => {
   const location = useLocation();
   const { courseId, id } = useParams<{ courseId: string; id: string }>(); // Get courseId and lessonId from route params

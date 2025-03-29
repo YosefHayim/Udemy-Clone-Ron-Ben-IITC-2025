@@ -12,6 +12,17 @@ import {
   SidebarMenuSubButton,
   useSidebar,
 } from '@/components/ui/sidebar';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchCourseProgress, updateLessonProgress } from '@/services/ProgressService';
@@ -95,13 +106,8 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
 
   return (
     <SidebarMenu className=" ">
-      <div className="flex items-center  justify-between border-b-2 p-4 font-semibold">
-        <span className="text-lg">Course content</span>
-        {open && (
-          <div className="size pl-6">
-            <CustomTrigger open={open} toggleSidebar={toggleSidebar} position="insideSidebar" />
-          </div>
-        )}
+      <div className="flex items-center  justify-between border-b-2  font-semibold">
+
       </div>
       {data?.progress.sections.map((section, index) => (
         <Collapsible
@@ -111,8 +117,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
           <SidebarMenuItem>
             <CollapsibleTrigger
               asChild
-              className=" gap-0 rounded-none pl-0 focus:outline-none focus-visible:outline-none"
-            >
+              className=" gap-0 rounded-none pl-0 focus:outline-none focus-visible:outline-none" >
               <SidebarMenuButton className="flex  items-center justify-between overflow-visible  rounded-none p-0 pl-2 focus:outline-none focus-visible:outline-none">
                 <div className=" flex w-full flex-col ">
                   <div className="flex  items-center break-words font-sans text-lg font-extrabold text-courseNameColorTxt">
@@ -145,7 +150,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
                       }
                       key={lesson.lessonId._id}
                     >
-                      <div className="  group w-full  overflow-visible p-4">
+                      <div className="  group w-full  overflow-visible ">
                         <SidebarMenuSubButton className="overflow-visible hover:bg-[#94A3B8]">
                           <div className="flex  h-full items-center">
                             <Checkbox
