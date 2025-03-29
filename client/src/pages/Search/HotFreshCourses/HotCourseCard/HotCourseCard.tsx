@@ -15,7 +15,7 @@ const HotCourseCard = ({ hotCourseAlgo }) => {
       <div>
         <CourseImg courseImg={hotCourseAlgo.courseImg} />
         <div className="flex flex-col items-start justify-start gap-[0.3em]">
-          <CourseTitle title={hotCourseAlgo.courseName} />
+          <CourseTitle title={hotCourseAlgo.courseName} shortcutTitle={true} />
           <CourseInstructor instructor={hotCourseAlgo.courseInstructor.fullName} />
           <CourseRatings avgRatings={4} stars={"★★★★☆"} totalRatings={1} />
           <CoursePrice

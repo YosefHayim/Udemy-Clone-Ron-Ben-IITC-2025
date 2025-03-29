@@ -55,7 +55,7 @@ const HotFreshCourses = () => {
           />
         )}
         <div
-          className={`flex ${data.response && data.response?.length > 7 ? "w-max items-center justify-center p-4" : "w-full items-center justify-center p-4"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+          className={`flex ${data.response && data.response?.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-center"}  z-20 h-full gap-4 pb-2 transition-transform duration-1000 ease-in-out`}
           style={{
             transform: `translateX(-${currentIndex * 30.5}%)`,
           }}
