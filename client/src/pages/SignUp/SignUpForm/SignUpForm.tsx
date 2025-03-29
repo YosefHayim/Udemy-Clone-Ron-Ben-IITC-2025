@@ -34,14 +34,9 @@ const SignUpForm = ({ isMobile }) => {
     const fullName = formData.get("fullName") as string;
     const email = formData.get("email") as string;
 
-    if (email.length > 1) {
+    if (email.length > 1 && fullName.length < 1) {
       const isValidEmail = /^[^\s@]+@[^\s@]+\.(com|co\.il)$/.test(email);
       setShowIsError(!isValidEmail);
-      return;
-    }
-
-    if (fullName.length === 0 || email.length === 0) {
-      setShowIsError(true);
       return;
     }
 

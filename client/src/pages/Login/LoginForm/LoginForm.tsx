@@ -32,8 +32,10 @@ const LoginForm = () => {
 
     if (email.length > 1) {
       const isValidEmail = /^[^\s@]+@[^\s@]+\.(com|co\.il)$/.test(email);
-      setShowIsError(!isValidEmail);
-      return;
+      if (!isValidEmail) {
+        setShowIsError(!isValidEmail);
+        return;
+      }
     }
 
     setLoading(true);
