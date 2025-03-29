@@ -9,8 +9,11 @@ const ButtonLoader: React.FC<{ isLoading: boolean; text: string; showIcon: boole
   showIcon = true,
 }) => {
   return (
-    <div>
-      <button type="submit" className={`${regFullButtonPurpleHover} w-full`}>
+    <div className={`${isLoading && 'pointer-events-none'}`}>
+      <button
+        type="submit"
+        className={`${regFullButtonPurpleHover} w-full ${isLoading && 'cursor-not-allowed opacity-50'}`}
+      >
         {isLoading ? (
           <Loader useSmallLoading={true} hSize="" />
         ) : (

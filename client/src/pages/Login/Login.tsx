@@ -22,7 +22,7 @@ const Login = () => {
       >
         {!isMobile && <LoginImgDesktop />}
         <div className="h-svh w-full max-w-[29rem] rounded-lg bg-white p-6">
-          <MobileLoginImg />
+          {isMobile && <MobileLoginImg />}
           <h2
             className={`${isMobile && 'text-lg'} mb-10 mt-20 text-center font-sans text-3xl font-extrabold text-gray-800`}
           >
