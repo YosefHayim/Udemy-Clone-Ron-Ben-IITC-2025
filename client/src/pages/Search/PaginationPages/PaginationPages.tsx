@@ -53,7 +53,7 @@ const PaginationPages: React.FC<{
         {getPageNumbers().map((page, index) => (
           <b
             key={index}
-            className={`rounded-[0.2em] px-[0.5em] py-[1em] text-[1rem] hover:bg-purpleHoverBtn 
+            className={`rounded-[0.2em] p-[0.5em] text-[1rem] hover:bg-purpleHoverBtn 
               ${
                 currentPage === page
                   ? "relative font-sans font-extrabold text-[#6D28D2] content-[''] before:absolute before:bottom-2 before:left-[0.25rem] before:right-[0.2rem] before:h-[0.15rem] before:bg-purple-900"

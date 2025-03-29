@@ -112,7 +112,6 @@ const SearchPage: React.FC = () => {
                       className={`absolute right-[60%] z-10 w-1/2 translate-x-1/2 ${getTopValue(index)}`}
                     >
                       <CourseHoverCardInfo
-                      
                         positionedLeft={false}
                         positionedRight={false}
                         instructorId={course?.courseInstructor?._id}
@@ -134,7 +133,7 @@ const SearchPage: React.FC = () => {
             </div>
 
             {/* Pesquisas relacionadas */}
-            <div className="mt-10">
+            <div className="">
               <RelatedSearches />
             </div>
           </main>
