@@ -6,7 +6,11 @@ import SearchResults from '../SearchResults/SearchResults';
 import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
 
-const SearchInput = ({ isTyping, setIsTyping }) => {
+const SearchInput: React.FC<{
+  isTyping: boolean;
+  setIsTyping: (value: boolean) => void;
+  extraCSS?: string;
+}> = ({ isTyping, setIsTyping, extraCSS }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -47,8 +51,8 @@ const SearchInput = ({ isTyping, setIsTyping }) => {
     setIsTyping(false);
   }, [location.pathname]);
 
-  let page = null;
-  let limit = null;
+  let page: number | null = null;
+  let limit: number | null = null;
 
   const { data } = useQuery({
     queryKey: ['courses', debouncedTerm, page],
