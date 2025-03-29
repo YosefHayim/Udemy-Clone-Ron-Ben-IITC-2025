@@ -70,11 +70,11 @@ const Navbar = () => {
               className="flex w-full items-end justify-end gap-2"
               style={{ maxWidth: 'min-content' }}
             >
-              <ButtonNavbar aTagName={'Udemy Business'} />
-              <ButtonNavbar aTagName={'Teach on Udemy'} />
+              <ButtonNavbar buttonName={'Udemy Business'} />
+              <ButtonNavbar buttonName={'Teach on Udemy'} />
               {cookie && (
                 <Link to="/wishlist">
-                  <ButtonNavbar aTagName={'My learning'} />
+                  <ButtonNavbar buttonName={'My learning'} />
                 </Link>
               )}
               {cookie && (
