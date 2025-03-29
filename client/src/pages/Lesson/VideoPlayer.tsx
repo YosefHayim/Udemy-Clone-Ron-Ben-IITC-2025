@@ -245,23 +245,23 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           }`}
         >
           <button
-            className={`border bg-purple-500 bg-opacity-60 bg-gradient-to-r pl-2 text-white hover:bg-[#892DE1] ${
+            className={` bg-purple-500 bg-opacity-60 bg-gradient-to-r px-1 w-8 flex items-center justify-center  max-h-10 text-white hover:bg-[#892DE1]  ${
               prevLesson ? 'opacity-100' : 'invisible'
             }`}
             onClick={prevLesson ? () => onNavigate(prevLesson._id) : undefined}
             title={prevLesson ? `Previous: ${prevLesson.title}` : ''}
           >
-            <MdArrowBackIos size={24} />
+            <MdArrowBackIos size={16} />
           </button>
 
           <button
-            className={`border bg-purple-500 bg-opacity-60 bg-gradient-to-r px-1 text-white hover:bg-[#892DE1]  ${
+            className={` bg-purple-500 bg-opacity-60 bg-gradient-to-r px-1 w-8 flex items-center justify-center  max-h-10 text-white hover:bg-[#892DE1]  ${
               nextLesson ? 'opacity-100' : 'invisible'
             }`}
             onClick={nextLesson ? () => onNavigate(nextLesson._id) : undefined}
             title={nextLesson ? `Next: ${nextLesson.title}` : ''}
           >
-            <MdArrowForwardIos size={24} />
+            <MdArrowForwardIos size={16} />
           </button>
         </div>
       )}

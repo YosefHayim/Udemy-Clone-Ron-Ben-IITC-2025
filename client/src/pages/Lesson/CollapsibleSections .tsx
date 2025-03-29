@@ -30,7 +30,7 @@ const CollapsibleSections: React.FC<CollapsibleSectionsProps> = ({ sections }) =
         >
           <div className="flex items-center justify-between bg-bgCommercial p-4">
             <CollapsibleTrigger asChild>
-              <button className="flex w-full items-center text-left focus:outline-none focus:outline-none">
+              <button className="flex w-full items-center text-left focus:outline-none">
                 <span className="text-lg font-medium">
                   Section {idx + 1}: {section.title}
                 </span>
@@ -39,7 +39,7 @@ const CollapsibleSections: React.FC<CollapsibleSectionsProps> = ({ sections }) =
             </CollapsibleTrigger>
           </div>
           <CollapsibleContent>
-            <ul className="mt-2 pl-4">
+            <ul className="mt-0 pl-4">
               {section.lessons.map((lesson, lessonIdx) => (
                 <li
                   key={lesson._id}

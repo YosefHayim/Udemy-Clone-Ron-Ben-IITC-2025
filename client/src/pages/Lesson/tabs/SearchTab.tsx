@@ -46,6 +46,12 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
     }))
     .filter((section) => section.lessons.length > 0); // Only include sections with matching lessons
 
+  // Count total lessons that match the search query
+  const totalLessons = filteredSections.reduce(
+    (count, section) => count + section.lessons.length,
+    0
+  );
+
   return (
     <div className="flex flex-col items-center justify-center p-10">
       {/* Search Input */}
@@ -62,59 +68,68 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
 
       {/* Filtered Results */}
       {searchQuery ? (
-        filteredSections.length > 0 ? (
-          filteredSections.map((section, idx) => (
-            <div key={section._id} className="group min-w-[800px] border-y">
-              <div className="flex items-center justify-between bg-bgCommercial p-4">
-                <span className="text-lg font-medium">
-                  Section {idx + 1}: {section.title}
-                </span>
-              </div>
-              <ul className="mt-2 pl-4">
-                {section.lessons.map((lesson) => {
-                  const isCurrentLesson =
-                    location.pathname === `/course/${courseId}/lesson/${lesson._id}/search` ||
-                    location.pathname === `/course/${courseId}/lesson/${lesson._id}`;
-
-                  return (
-                    <li
-                      key={lesson._id}
-                      className={`mb-2 flex items-center gap-3 p-2 ${
-                        isCurrentLesson ? 'bg-slate-400 text-white' : 'hover:bg-slate-400'
-                      }`}
-                    >
-                      <div className="flex flex-col">
-                        <Link
-                          to={`/course/${courseId}/lesson/${lesson._id}`}
-                          state={{ courseId }}
-                          className="ml-2 flex-col text-sm"
-                        >
-                          <span>{highlightText(lesson.title, searchQuery)}</span>
-                          <span
-                            className={`flex items-center text-xs ${
-                              isCurrentLesson ? 'text-white' : 'text-black'
-                            }`}
-                          >
-                            <MdOndemandVideo />
-                            <span>{lesson.duration ? `${lesson.duration} min` : ''}</span>
-                          </span>
-                        </Link>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
+        <>
+          {/* Results count summary */}
+          {filteredSections.length > 0 && (
+            <div className="mb-4 self-start text-lg font-medium">
+              Results for "{searchQuery}" ({totalLessons} {totalLessons === 1 ? 'lecture' : 'lectures'})
             </div>
-          ))
-        ) : (
-          // No Results Found
-          <div className="mt-10 text-center">
-            <h2 className="font-sans text-2xl font-extrabold text-gray-600">No results found</h2>
-            <p className="text-gray-500">Try a different search query.</p>
-          </div>
-        )
+          )}
+          
+          {filteredSections.length > 0 ? (
+            filteredSections.map((section, idx) => (
+              <div key={section._id} className="group min-w-[800px] border-y">
+                <div className="flex items-center justify-between bg-bgCommercial p-4">
+                  <span className="text-lg font-medium">
+                    Section {idx + 1}: {section.title}
+                  </span>
+                </div>
+                <ul className="mt-2 pl-4">
+                  {section.lessons.map((lesson) => {
+                    const isCurrentLesson =
+                      location.pathname === `/course/${courseId}/lesson/${lesson._id}/search` ||
+                      location.pathname === `/course/${courseId}/lesson/${lesson._id}`;
+
+                    return (
+                      <li
+                        key={lesson._id}
+                        className={`mb-2 flex items-center gap-3 p-2 ${
+                          isCurrentLesson ? 'bg-slate-400 ' : 'hover:bg-slate-400'
+                        }`}
+                      >
+                        <div className="flex flex-col">
+                          <Link
+                            to={`/course/${courseId}/lesson/${lesson._id}`}
+                            state={{ courseId }}
+                            className="ml-2 flex-col text-sm"
+                          >
+                            <span>{highlightText(lesson.title, searchQuery)}</span>
+                            <span
+                              className={`flex items-center text-xs ${
+                                isCurrentLesson ? '' : 'text-black'
+                              }`}
+                            >
+                              <MdOndemandVideo />
+                              <span>{lesson.duration ? `${lesson.duration} min` : ''}</span>
+                            </span>
+                          </Link>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))
+          ) : (
+            // No Results Found
+            <div className="mt-10 text-center">
+              <h2 className="font-sans text-2xl font-extrabold text-gray-600">No results found</h2>
+              <p className="text-gray-500">Try a different search query.</p>
+            </div>
+          )}
+        </>
       ) : (
-        <span className="my-[40px] flex flex-col items-center  self-center">
+        <span className="my-[40px] flex flex-col items-center self-center">
           <h2 className="font-sans text-2xl font-extrabold text-[##303141] ">Start a new search</h2>
           <h2 className="text-sm text-black ">To find captions, lectures or resources</h2>
         </span>

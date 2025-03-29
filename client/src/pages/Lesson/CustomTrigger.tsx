@@ -3,6 +3,8 @@ import { FaTimes, FaArrowRight } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+
+
 interface CustomTriggerProps {
   open: boolean;
   toggleSidebar: () => void;
@@ -44,13 +46,13 @@ const CustomTrigger: React.FC<CustomTriggerProps> = ({
             onClick={handleSidebarToggle}
             className={`z-40 ${
               isInsideSidebar
-                ? 'flex items-center bg-transparent text-xl font-semibold text-gray-700'
-                : 'rounded-ts group   top-40 flex w-10 items-center overflow-hidden border bg-purple-500 bg-opacity-60 py-3 pl-2 text-2xl text-white transition-all duration-300 hover:w-80 hover:border-0 hover:bg-[##892DE1]'
+                ? 'flex items-center bg-transparent text-2xl  font-semibold border-b  pr-2  rounded-none pb-[0.7rem] focus:outline-none  text-gray-700'
+                : 'rounded-ts group   top-40 flex w-10 items-center  overflow-hidden border bg-purple-500 bg-opacity-60 py-3 pl-2 text-2xl text-white transition-all duration-300 hover:w-80 hover:border-0 hover:bg-[##892DE1]'
             } transform transition-all duration-300 ${isInsideSidebar ? '' : 'absolute'}`}
           >
             {open ? (
               isInsideSidebar ? (
-                <IoClose className=" " />
+                <IoClose className=" hover:bg-slate-200 rounded-md " />
               ) : (
                 <FaTimes />
               )

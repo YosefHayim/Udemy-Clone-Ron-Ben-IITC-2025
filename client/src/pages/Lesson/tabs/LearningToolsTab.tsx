@@ -1,3 +1,5 @@
+import udemyAppIcon from '/images/udemy-app-icon.svg';
+
 const LearningToolsTab: React.FC = () => {
   return (
     <div id="learning-tools" className="p-10">
@@ -13,7 +15,7 @@ const LearningToolsTab: React.FC = () => {
       <p className="mb-4">Receive learning reminders on your mobile device.</p>
 
       <div className="flex items-center space-x-4">
-        <img src="app-logo-placeholder.png" alt="App Logo" className="h-16 w-16 rounded" />
+        <img src="udemyAppIcon" alt="App Logo" className="h-16 w-16 rounded" />
         <div className="flex flex-col space-y-2">
           <div className="flex items-center space-x-2">
             <select className="rounded border p-2">
