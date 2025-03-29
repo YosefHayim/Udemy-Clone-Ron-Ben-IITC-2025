@@ -100,7 +100,6 @@ export interface RegisterUserPayload {
   email: string;
 }
 
-
 export interface CourseData {
   _id: string;
   courseName: string;
@@ -299,79 +298,6 @@ export interface SidebarFilterProps {
   setFilterData?: React.Dispatch<React.SetStateAction<FilterDataProps>>;
 }
 
-export interface CourseTypeProps {
-  _id: string;
-  category: string;
-  courseDescription: string;
-  courseDiscountPrice: number;
-  courseFullPrice: number;
-  courseImg: string;
-  courseInstructor: {
-    _id: string;
-    fullName: string;
-    profilePic: string;
-  };
-  courseInstructorDescription: string;
-  courseLanguages: string;
-  courseLevel: string;
-  courseName: string;
-  courseRecapInfo: string;
-  courseRequirements: string[];
-  courseTag: string;
-  courseTopic: string;
-  courseTrailer: string;
-  createdAt: string;
-  updatedAt: Date;
-  isActive: boolean;
-  moneyBackGuarantee: string;
-  reviews: Array<string>;
-  sections: Array<{
-    [key: string]: any;
-  }>;
-  subCategory: string;
-  totalCourseDuration: number;
-  totalCourseLessons: number;
-  totalCourseSections: number;
-  totalRatings: number;
-  totalStudentsEnrolled: {
-    students: Array<string>;
-    count: number;
-  };
-  whatYouWillLearn: string[];
-  whoThisCourseIsFor: string;
-  averageRating: number;
-}
-
-export interface CourseBasicInfoProps {
-  lastUpdated: Date;
-  courseLanguage: string;
-}
-
-export interface CourseContentProps {
-  description: string;
-  whoThisFor: string[];
-  requirements: string[];
-  totalCourseDuration: number; // in minutes
-  totalCourseLessons: number;
-  totalCourseSections: number;
-  sectionsOfCourse: Array<{
-    _id: string;
-    title: string;
-    lessons: Array<{
-      title: string;
-      duration: number; // in minutes
-      isPreviewAvailable: boolean;
-    }>;
-  }>;
-}
-
-export interface LessonProps {
-  _id?: string;
-  title?: string;
-  videoUrl?: string;
-  duration?: number;
-}
-
 export interface Course {
   _id: string;
   courseName: string;
@@ -389,16 +315,6 @@ export interface Course {
   isNew?: boolean;
   isBestseller?: boolean;
 }
-
-export interface GoogleAuthResponse {
-  accessToken: string;
-  user: {
-    id: string;
-    email: string;
-  };
-}
-
-//progress
 
 // Define the type for a lesson
 export interface Lesson {
@@ -445,10 +361,4 @@ export interface CourseProgress {
   totalLessons: number;
   completedLessons: number;
   percentageCompleted: number;
-}
-
-// Optional: Define the type for the mutation payload
-export interface LessonProgressPayload {
-  completed?: boolean;
-  lastWatched?: number;
 }

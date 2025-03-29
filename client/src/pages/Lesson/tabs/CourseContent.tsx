@@ -6,7 +6,7 @@ import { MdOndemandVideo } from 'react-icons/md';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
 import { fetchCourseProgress, updateLessonProgress } from '../../../services/ProgressService';
-import { CourseProgressResponse, LessonProgressPayload } from '@/types/types';
+import { CourseProgressResponse } from '@/types/types';
 
 const CourseContent: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -24,8 +24,16 @@ const CourseContent: React.FC = () => {
 
   // Mutation with optimistic updates
   const mutation = useMutation({
-    mutationFn: ({ lessonId, payload }: { lessonId: string; payload: LessonProgressPayload }) =>
-      updateLessonProgress(sanitizedCourseId!, lessonId, payload),
+    mutationFn: ({
+      lessonId,
+      payload,
+    }: {
+      lessonId: string;
+      payload: {
+        completed?: boolean;
+        lastWatched?: number;
+      };
+    }) => updateLessonProgress(sanitizedCourseId!, lessonId, payload),
     onMutate: async ({ lessonId, payload }) => {
       await queryClient.cancelQueries(['courseProgress', sanitizedCourseId]);
 
