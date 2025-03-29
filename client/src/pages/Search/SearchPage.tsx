@@ -98,7 +98,7 @@ const SearchPage: React.FC = () => {
   
           {/* courses on the right */}
           <main className="flex flex-col flex-grow">
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-0">
               {data?.response?.slice(0, 18).map((course: CourseTypeProps, index: number) => (
                 <div
                   key={course?._id}
