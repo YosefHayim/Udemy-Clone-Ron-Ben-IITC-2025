@@ -66,7 +66,7 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   return (
     <div className="w-full">
       {isClickedResend && <NotificationCodeResent />}
-      {isError && (
+      {isError && !isLoading && (
         <div className="mb-2">
           <DisplayErrorCode />
         </div>
