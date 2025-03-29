@@ -41,13 +41,14 @@ const DialogFrequentlyBoughtTogether: React.FC<{
               <div className="flex w-full items-center justify-around">
                 <div className="flex w-full flex-col items-start justify-start">
                   <ItemInCart
+                    widthChosen={`w-[19em]`}
                     courseId={courseId}
                     rowPrices={false}
                     showHR={false}
                     showFullPrice={true}
                     hide={false}
                   />
-                  <div className="flex w-full flex-col gap-2">
+                  <div className="mt-3 flex w-full flex-col gap-2">
                     <ProcCheckNGoToCart />
                   </div>
                   <hr className="mb-6 mt-3 w-full" />

@@ -7,7 +7,7 @@ import FaqTotalStudentsCourse from "../FaqTotalStudentsCourse/FaqTotalStudentsCo
 import { Link } from "react-router-dom";
 import { GoPlusCircle } from "react-icons/go";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "@/components/Loader/Loader";
 import {
   calculateDiscountPercentage,
@@ -26,6 +26,7 @@ const FrequentlyCourseCard: React.FC<{
   courseDiscountPrice: number;
   courseId: string;
   totalRatings?: number;
+  setDisplayFBT: boolean;
 }> = ({
   courseImg,
   courseName,
@@ -34,9 +35,11 @@ const FrequentlyCourseCard: React.FC<{
   courseDiscountPrice,
   totalRatings,
   courseId,
+  setDisplayFBT,
 }) => {
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(false);
+  const [showCourse, setShowCourse] = useState(true);
 
   const handleAddToCart = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.currentTarget;
@@ -53,10 +56,14 @@ const FrequentlyCourseCard: React.FC<{
       onAddToCartSuccess();
       setLoading(false);
     }, 2000);
+    setShowCourse(false);
+    setDisplayFBT((prev) => (prev -= 1));
   };
 
+  useEffect(() => {}, [showCourse]);
+
   return (
-    <div className="flex flex-col p-[1em]" id={courseId}>
+    <div className={`flex flex-col p-[1em] ${showCourse ? "flex" : "hidden"}`} id={courseId}>
       <div className="item-start flex justify-evenly gap-[1em]">
         <Link to={`/course-view/${courseId}`}>
           <FaqCourseImg courseImg={courseImg} />
@@ -75,7 +82,7 @@ const FrequentlyCourseCard: React.FC<{
             courseDiscountPrice={courseDiscountPrice}
           />
         </div>
-        <div>
+        <div className="w-min">
           <button
             className="rounded-full text-purple-800 hover:bg-purple-100 focus:outline-none"
             onClick={handleAddToCart}

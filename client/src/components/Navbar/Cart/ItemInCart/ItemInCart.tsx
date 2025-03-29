@@ -33,6 +33,7 @@ const ItemInCart = ({
   gapPrice = "gap-[1em]",
   width = "w-full",
   isMyLearning = false,
+  widthChosen,
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -99,7 +100,11 @@ const ItemInCart = ({
       >
         <div>
           <div className="relative">
-            <CourseImg courseImg={data?.courseImg} imgExplanation={data?.courseName} />
+            <CourseImg
+              courseImg={data?.courseImg}
+              imgExplanation={data?.courseName}
+              widthChosen={widthChosen}
+            />
 
             <div
               className={
