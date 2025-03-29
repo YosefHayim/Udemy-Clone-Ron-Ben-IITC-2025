@@ -12,12 +12,12 @@ const registerUser: fn = async (data: RegisterUserPayload): Promise<any> => {
     if (response.status !== 200) {
       throw new Error('Registration failed');
     }
-    console.log(response.data);
+    console.log(response);
+
     localStorage.setItem('cookie', response.data.token);
-    return response.data.token;
+    return response;
   } catch (error) {
     console.log(`Error occurred during the signup: `, error);
-    return undefined;
   }
 };
 
