@@ -1,6 +1,4 @@
-import { CourseInstructorProps } from '@/types/types';
-
-const CourseInstructor: React.FC<CourseInstructorProps> = ({
+const CourseInstructor: React.FC<{ instructor?: string; shortCutInstructor?: boolean }> = ({
   instructor = 'Academind by Maximilian Schwarzmüller, Maximilian Schwarzmüller',
   shortCutInstructor = false,
 }) => {

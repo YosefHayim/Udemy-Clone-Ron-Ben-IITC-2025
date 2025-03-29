@@ -1,4 +1,3 @@
-
 const EnterCodeSendTo = ({ emailUser }) => {
   return (
     <div className="mb-6 w-full text-center text-base">
