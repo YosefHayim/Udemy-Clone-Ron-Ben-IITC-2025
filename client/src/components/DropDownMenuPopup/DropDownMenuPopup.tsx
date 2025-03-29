@@ -6,31 +6,21 @@ import {
 import { ReactNode } from 'react';
 
 interface DropDownMenuProps {
-  setState: boolean;
-  clickState: (clicked: boolean) => void;
+  setState: (hover: boolean) => void;
+  hoverState: boolean;
   children: ReactNode;
   extraCustomCss?: string;
-  triggerEvent?: 'click' | 'hover'; // Add a prop for the trigger event
 }
 
 export const DropdownMenuPopup: React.FC<DropDownMenuProps> = ({
   setState,
-  clickState,
+  hoverState,
   children,
   extraCustomCss,
-  triggerEvent = 'click',
 }) => {
   return (
-    <DropdownMenu
-      open={setState}
-      onOpenChange={(open) => clickState(open)}
-      modal={triggerEvent === 'click'}
-    >
-      <DropdownMenuTrigger
-        asChild
-        onMouseEnter={triggerEvent === 'hover' ? () => clickState(true) : undefined}
-        onMouseLeave={triggerEvent === 'hover' ? () => clickState(false) : undefined}
-      ></DropdownMenuTrigger>
+    <DropdownMenu open={hoverState} onOpenChange={(open) => setState(open)}>
+      <DropdownMenuTrigger asChild></DropdownMenuTrigger>
       {children && (
         <DropdownMenuContent className={`${extraCustomCss}`}>{children}</DropdownMenuContent>
       )}
