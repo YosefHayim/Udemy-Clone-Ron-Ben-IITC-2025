@@ -27,9 +27,8 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
     mutationFn: verifyCode,
     onSuccess: (data) => {
       console.log(data);
-
       setUserInformation(data, dispatch);
-      // navigate('/');
+      navigate('/');
     },
     onError: (error) => {
       console.error('Error during login process:', error);
@@ -67,11 +66,15 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   return (
     <div className="w-full">
       {isClickedResend && <NotificationCodeResent />}
+      {isError && (
+        <div className="mb-2">
+          <DisplayErrorCode />
+        </div>
+      )}
       <form
         onSubmit={handleSubmit}
         className="flex w-full flex-col items-center justify-center gap-5"
       >
-        <DisplayErrorCode isError={isError} />
         <div className="relative w-full">
           <IoMdLock className="absolute right-3 top-1/2 z-10 h-5 w-5 -translate-y-1/2 transform text-courseNameColorTxt" />
           <div className="w-full">

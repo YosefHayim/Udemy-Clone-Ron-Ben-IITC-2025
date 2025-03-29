@@ -17,7 +17,6 @@ const VerifyCode = () => {
   const handleResendCode = () => {
     setCountdown(30);
     setResend(true);
-    setResend(true);
   };
 
   useEffect(() => {
