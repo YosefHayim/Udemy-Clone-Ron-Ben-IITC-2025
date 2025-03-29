@@ -96,128 +96,155 @@ const createUsers = async () => {
   }
 };
 
-const createCourses = async ({ totalCourses = 100 } = {}) => {
-  console.log("Fetching instructors and students for course creation...");
+const createCourses = async ({
+  coursesPerTopic = 5,
+  coursesPerInstructor = 20,
+} = {}) => {
+  console.log("🎯 Creating structured course set...");
 
   const instructors = await User.find({ role: "instructor" });
-  if (!instructors.length) throw new Error("No instructors found.");
+  const students = await User.find({ role: "student" });
 
-  const users = await User.find({ role: "student" });
-  if (!users.length) throw new Error("No students found.");
+  if (!instructors.length || !students.length) {
+    throw new Error("❌ Missing instructors or students.");
+  }
 
-  // Flatten: [{ parentCategory, subCategory, topics: [...] }]
-  const subcategoryList = [];
+  // Flatten topics with category metadata
+  const topicMatrix = [];
   for (const parentCategory of Object.keys(courseCategories)) {
     const subCategories = courseCategories[parentCategory].subCategories;
     for (const subCategory of Object.keys(subCategories)) {
-      subcategoryList.push({
-        parentCategory,
-        subCategory,
-        topics: subCategories[subCategory],
-      });
-    }
-  }
-
-  const courses = [];
-  let instructorIndex = 0;
-  let subcategoryIndex = 0;
-
-  while (courses.length < totalCourses) {
-    const { parentCategory, subCategory, topics } =
-      subcategoryList[subcategoryIndex];
-    subcategoryIndex = (subcategoryIndex + 1) % subcategoryList.length;
-
-    const topic = faker.helpers.arrayElement(topics);
-    const instructor = instructors[instructorIndex];
-    instructorIndex = (instructorIndex + 1) % instructors.length;
-
-    const enrolledStudents = faker.helpers.arrayElements(
-      users,
-      faker.number.int({ min: 7, max: 15 })
-    );
-
-    const course = await Course.create({
-      courseName: faker.helpers.arrayElement(courseNames),
-      courseImg: getRandomImageFromDir(
-        path.join(__dirname, "public/imgs/courses")
-      ),
-      courseRecapInfo: faker.lorem.words(10),
-      courseDescription: faker.lorem.paragraph(),
-      courseFullPrice: faker.number.int({ min: 500, max: 800 }),
-      courseDiscountPrice: faker.number.int({ min: 100, max: 300 }),
-      whoThisCourseIsFor: faker.lorem.sentence(),
-      courseInstructorDescription: faker.lorem.paragraphs(3),
-      whatYouWillLearn: Array.from({ length: 8 }, () => faker.lorem.sentence()),
-      courseRequirements: Array.from({ length: 5 }, () =>
-        faker.lorem.sentence()
-      ),
-      category: parentCategory,
-      subCategory,
-      courseTopic: topic,
-      courseLevel: faker.helpers.arrayElement([
-        "Beginner",
-        "Intermediate",
-        "Advanced",
-      ]),
-      courseLanguages: faker.helpers.arrayElement([
-        "English",
-        "Spanish",
-        "French",
-        "German",
-      ]),
-      courseTag: faker.helpers.arrayElement([
-        "Bestseller",
-        "Highest Rated",
-        "Hot and New",
-        "New",
-        "",
-      ]),
-      courseInstructor: instructor._id,
-      courseTrailer: faker.helpers.arrayElement(videosToDisplay),
-      moneyBackGuarantee: faker.date.soon(30),
-      averageRating: 0,
-      totalRatings: 0,
-      totalStudentsEnrolled: {
-        students: enrolledStudents.map((s) => s._id),
-        count: enrolledStudents.length,
-      },
-      certificateOnly: faker.datatype.boolean(),
-      isActive: true,
-      totalCourseDuration: 0,
-      totalCourseLessons: 0,
-      sections: [],
-      lessons: [],
-      reviews: [],
-    });
-
-    instructor.coursesCreated ||= [];
-    instructor.coursesCreated.push(course._id);
-    await instructor.save();
-
-    for (const student of enrolledStudents) {
-      student.coursesBought ||= [];
-      student.coursesBought.push({
-        courseName: course.courseName,
-        courseId: course._id,
-        boughtAt: new Date(),
-        coursePrice: course.courseDiscountPrice,
-      });
-      try {
-        await student.save();
-      } catch (error) {
-        console.log(
-          `❌ Failed to update student ${student._id}:`,
-          error.message
-        );
+      for (const topic of subCategories[subCategory]) {
+        topicMatrix.push({ parentCategory, subCategory, topic });
       }
     }
-
-    courses.push(course);
-    console.log(`✅ Created course: ${course.courseName}`);
   }
 
-  console.log(`🎉 Finished creating ${courses.length} courses.`);
-  return courses;
+  const instructorBuckets = new Map(
+    instructors.map((inst) => [inst._id.toString(), []])
+  );
+  let instructorIndex = 0;
+
+  const allCourses = [];
+
+  for (const { parentCategory, subCategory, topic } of topicMatrix) {
+    for (let i = 1; i <= coursesPerTopic; i++) {
+      // Find next instructor with available quota
+      let instructor;
+      let attempts = 0;
+      while (attempts < instructors.length) {
+        const candidate = instructors[instructorIndex];
+        const bucket = instructorBuckets.get(candidate._id.toString()) || [];
+        if (bucket.length < coursesPerInstructor) {
+          instructor = candidate;
+          break;
+        }
+        instructorIndex = (instructorIndex + 1) % instructors.length;
+        attempts++;
+      }
+
+      if (!instructor) {
+        console.warn("🚫 No available instructor found with remaining quota.");
+        continue;
+      }
+
+      const enrolledStudents = faker.helpers.arrayElements(
+        students,
+        faker.number.int({ min: 7, max: 15 })
+      );
+
+      const course = await Course.create({
+        courseName: faker.helpers.arrayElement(courseNames),
+        courseImg: getRandomImageFromDir(
+          path.join(__dirname, "public/imgs/courses")
+        ),
+        courseRecapInfo: faker.lorem.words(10),
+        courseDescription: faker.lorem.paragraph(),
+        courseFullPrice: faker.number.int({ min: 500, max: 800 }),
+        courseDiscountPrice: faker.number.int({ min: 100, max: 300 }),
+        whoThisCourseIsFor: faker.lorem.sentence(),
+        courseInstructorDescription: faker.lorem.paragraphs(3),
+        whatYouWillLearn: Array.from({ length: 8 }, () =>
+          faker.lorem.sentence()
+        ),
+        courseRequirements: Array.from({ length: 5 }, () =>
+          faker.lorem.sentence()
+        ),
+        category: parentCategory,
+        subCategory,
+        courseTopic: topic,
+        courseLevel: faker.helpers.arrayElement([
+          "Beginner",
+          "Intermediate",
+          "Advanced",
+        ]),
+        courseLanguages: faker.helpers.arrayElement([
+          "English",
+          "Spanish",
+          "French",
+          "German",
+        ]),
+        courseTag: faker.helpers.arrayElement([
+          "Bestseller",
+          "Highest Rated",
+          "Hot and New",
+          "New",
+          "",
+        ]),
+        courseInstructor: instructor._id, // ✅ SET HERE
+        courseTrailer: faker.helpers.arrayElement(videosToDisplay),
+        moneyBackGuarantee: faker.date.soon(30),
+        averageRating: 0,
+        totalRatings: 0,
+        totalStudentsEnrolled: {
+          students: enrolledStudents.map((s) => s._id),
+          count: enrolledStudents.length,
+        },
+        certificateOnly: faker.datatype.boolean(),
+        isActive: true,
+        totalCourseDuration: 0,
+        totalCourseLessons: 0,
+        sections: [],
+        lessons: [],
+        reviews: [],
+      });
+
+      // Track instructor usage
+      instructorBuckets.get(instructor._id.toString()).push(course._id);
+
+      // Save instructor with linked course
+      instructor.coursesCreated ||= [];
+      instructor.coursesCreated.push(course._id);
+      await instructor.save();
+
+      // Save student course purchases
+      for (const student of enrolledStudents) {
+        student.coursesBought ||= [];
+        student.coursesBought.push({
+          courseName: course.courseName,
+          courseId: course._id,
+          boughtAt: new Date(),
+          coursePrice: course.courseDiscountPrice,
+        });
+        try {
+          await student.save();
+        } catch (err) {
+          console.log(
+            `⚠️ Failed to update student ${student._id}: ${err.message}`
+          );
+        }
+      }
+
+      allCourses.push(course);
+
+      console.log(
+        `📘 Created: "${course.courseName}" — Topic: "${topic}" | Sub: "${subCategory}" | Cat: "${parentCategory}" | 👨‍🏫 ${instructor.fullName}`
+      );
+    }
+  }
+
+  console.log(`\n✅ Total courses created: ${allCourses.length}`);
+  return allCourses;
 };
 
 const createSections = async () => {
@@ -785,7 +812,11 @@ const generateUpdatedDummyData = async () => {
     console.log(`${users.length} users created.`);
 
     console.log("Seeding courses...");
-    const courses = await createCourses({ totalCourses: 10000 });
+    const courses = await createCourses({
+      coursesPerTopic: 15,
+      coursesPerInstructor: 5,
+    });
+
     if (courses && courses.length > 1) {
       console.log(`${courses.length} courses created.`);
     }
