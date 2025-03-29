@@ -100,7 +100,7 @@ const Navbar = () => {
                   <div className="relative inline-block">
                     <Profile cookie={cookie} />
                     {coursesInCart.length >= 1 && (
-                      <div className="absolute right-[-2%] top-[10%]  z-10 h-[0.85rem] w-[0.85rem] rounded-full bg-[#A435F0]"></div>
+                      <div className="absolute right-[20%] top-[10%]  z-10 h-[0.85rem] w-[0.85rem] rounded-full bg-[#A435F0]"></div>
                     )}
                   </div>
                 </Link>
