@@ -17,10 +17,12 @@ const SignUp = () => {
         {!isMobile && <LoginImgDesktop />}
         <div className="h-svh w-full max-w-[29rem] rounded-lg bg-white p-6">
           {isMobile && <MobileLoginImg />}
-          <h2 className="mb-10 mt-20 text-center font-sans text-3xl font-extrabold text-gray-800">
+          <h2
+            className={`${isMobile && 'mt-0 text-lg'} mb-10 text-center font-sans text-3xl font-extrabold text-gray-800`}
+          >
             Sign up with email
           </h2>
-          <SignUpForm />
+          <SignUpForm isMobile={isMobile} />
           <OtherLoginOptions />
           <TermsOfUseP />
           <div className="mt-4">

@@ -8,7 +8,7 @@ import CheckboxSpecialOffer from './CheckboxSpecialOffer/CheckboxSpecialOffer';
 import ButtonLoader from '@/components/ButtonLoader/ButtonLoader';
 import CustomInput from '@/components/CustomInput/CustomInput';
 
-const SignUpForm = () => {
+const SignUpForm = ({ isMobile }) => {
   const [isLoading, setLoading] = useState(false);
   const [isError, setShowIsError] = useState(false);
   const navigate = useNavigate();
@@ -50,7 +50,9 @@ const SignUpForm = () => {
 
   return (
     <form className="flex flex-col items-center justify-start space-y-4" onSubmit={handleSubmit}>
-      <CheckboxSpecialOffer />
+      <div className={`${isMobile && 'mb-5'}`}>
+        <CheckboxSpecialOffer />
+      </div>
       <CustomInput
         useErrorDisplay={false}
         isError={isError}
