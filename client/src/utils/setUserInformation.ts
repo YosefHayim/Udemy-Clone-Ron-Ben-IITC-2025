@@ -22,14 +22,14 @@ import Cookies from "js-cookie";
 
 export const setUserInformation = (cookie: string, dispatch?: AppDispatch) => {
   const reduxCookie = Cookies.get("cookie");
-  if (!reduxCookie || !cookie) console.log("Cookie or redux cookie is not provided: ", cookie);
+  if (!reduxCookie) throw new Error(`No cookie received ${reduxCookie}`);
 
-  if (reduxCookie || cookie)
+  if (reduxCookie)
     console.log(
       `Cookie or redux cookie received is redux cookie: ${reduxCookie} and reg cookie: ${cookie} `
     );
   {
-    const decoded = jwtDecode<DecodedTokenProps>(reduxCookie || cookie);
+    const decoded = jwtDecode<DecodedTokenProps>(reduxCookie);
     console.log("user information has been updated: ", decoded);
 
     if (decoded.fullName) dispatch(setFullName(decoded.fullName));
