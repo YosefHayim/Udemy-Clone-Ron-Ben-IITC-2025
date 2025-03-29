@@ -47,11 +47,12 @@ const CustomInput: React.FC<{
             width: "100%",
             "& .MuiInputBase-root": {
               backgroundColor: "white",
-              border: "1px solid gray",
+              border: "2px solid gray",
               borderRadius: "5px",
               transition: "border-color 0.2s ease-in-out",
               "&:hover": {
-                borderColor: "purple",
+                background: "#f6f7f9",
+                borderColor: "gray",
               },
               "&.Mui-focused": {
                 borderColor: "#6D28D2",
