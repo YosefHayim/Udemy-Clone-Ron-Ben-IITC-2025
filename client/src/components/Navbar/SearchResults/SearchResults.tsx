@@ -2,7 +2,12 @@ import { SearchResultsProps } from '@/types/types';
 import SearchResultRow from './SearchResultRow/SearchResultRow';
 import SearchResultsCourseImg from './SearchResultsCourseImg/SearchResultsCourseImg';
 
-const SearchResults: React.FC<SearchResultsProps> = ({ isTyping, data }) => {
+const SearchResults: React.FC<{
+  isTyping: boolean;
+  setIsTyping: (value: boolean) => void;
+  extraCSS?: string;
+  data: any;
+}> = ({ isTyping, data }) => {
   return (
     <div
       className={`${

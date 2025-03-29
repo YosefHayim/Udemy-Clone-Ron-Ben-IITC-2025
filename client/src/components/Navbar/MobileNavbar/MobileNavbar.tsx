@@ -4,6 +4,8 @@ import Cart from '../Cart/Cart';
 import Burger from './Burger/Burger';
 import { btnStyleNHover } from '@/utils/stylesStorage';
 import SearchInput from '../SearchInput/SearchInput';
+import { MdOutlineSearch } from 'react-icons/md';
+import CartAndSearchMobile from './CartAndSearchMobile/CartAndSearchMobile';
 
 const MobileNavbar = ({ isTyping, setIsTyping }) => {
   return (
@@ -15,13 +17,9 @@ const MobileNavbar = ({ isTyping, setIsTyping }) => {
         <div>
           <Logo CustomCssSize="h-[2.5em]" />
         </div>
-        <div>
-          <Link to="/cart">
-            <Cart />
-          </Link>
-        </div>
+        <CartAndSearchMobile />
       </div>
-      <div className={`hidden`}>
+      <div className={`flex`}>
         <SearchInput isTyping={isTyping} setIsTyping={setIsTyping} />
       </div>
     </div>
