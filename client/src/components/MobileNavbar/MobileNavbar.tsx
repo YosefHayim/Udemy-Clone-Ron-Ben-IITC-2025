@@ -4,9 +4,11 @@ import { btnStyleNHover } from '@/utils/stylesStorage';
 import CartAndSearchMobile from './CartAndSearchMobile/CartAndSearchMobile';
 import { useEffect, useState } from 'react';
 import SearchInput from '../Navbar/SearchInput/SearchInput';
+import MobileSidebar from './MobileSidebar/MobileSidebar';
 
 const MobileNavbar = ({ isTyping, setIsTyping }) => {
   const [showSearchMobile, setShowSearchMobile] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   useEffect(() => {}, [showSearchMobile]);
 
@@ -14,7 +16,7 @@ const MobileNavbar = ({ isTyping, setIsTyping }) => {
     <div className="fixed z-50 flex w-full flex-col items-center justify-center bg-white px-2 py-2 shadow-carouselShadowBtn">
       {!showSearchMobile && (
         <div className="flex w-full items-center justify-between">
-          <div className={`${btnStyleNHover}`}>
+          <div className={`${btnStyleNHover}`} onClick={() => setShowSidebar(true)}>
             <Burger />
           </div>
           <div className="flex h-full items-center justify-center">
@@ -32,6 +34,7 @@ const MobileNavbar = ({ isTyping, setIsTyping }) => {
           extraCSS={`rounded-sm border-none hover:bg-gray-100`}
         />
       </div>
+      <MobileSidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
     </div>
   );
 };
