@@ -1,13 +1,12 @@
-import { CourseCardProps } from '@/types/types';
 
-const CourseCard: React.FC<CourseCardProps> = ({
-  title,
-  image,
-  description,
-  fullPrice,
-  discountPrice,
-  tag,
-}) => {
+const CourseCard: React.FC<{
+  title: string;
+  image: string;
+  description: string;
+  fullPrice: number;
+  discountPrice: number;
+  tag?: string;
+}> = ({ title, image, description, fullPrice, discountPrice, tag }) => {
   return (
     <div className="overflow-hidden rounded-lg bg-white shadow-md">
       <img src={image} alt={title} className="h-32 w-full object-cover" />

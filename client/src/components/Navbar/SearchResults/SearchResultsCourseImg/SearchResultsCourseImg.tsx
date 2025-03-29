@@ -1,11 +1,10 @@
-import { searchResultCourseImgProps } from '@/types/types';
 
-const SearchResultsCourseImg: React.FC<searchResultCourseImgProps> = ({
-  courseName,
-  instructorName,
-  courseImg,
-  courseId,
-}) => {
+const SearchResultsCourseImg: React.FC<{
+  courseName: string;
+  instructorName: string;
+  courseImg: string;
+  courseId: string;
+}> = ({ courseName, instructorName, courseImg, courseId }) => {
   return (
     <div className=" flex cursor-pointer flex-row items-center justify-start gap-[1em] p-[0.8em] font-sans font-extrabold hover:bg-gray-100">
       <img src={courseImg} alt="" className="opacity-200 h-6 w-7 text-gray-600" id={courseId} />

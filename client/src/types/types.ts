@@ -68,19 +68,7 @@ export interface UserState {
   coursesInProgress: [];
 }
 
-export interface searchResultCourseImgProps {
-  courseName: string;
-  instructorName: string;
-  courseImg: string;
-  courseId: string;
-}
-
-export type SearchResultProps = {
-  algoWord: string;
-  courseId: string;
-};
-
-export interface SearchResultsArray {
+interface SearchResultsArray {
   _id: string;
   courseName: string;
   courseInstructor: {
@@ -107,74 +95,11 @@ export interface SearchResultsProps {
   width: number;
 }
 
-export interface ReportUserReviewPayload {
-  reviewId: string;
-  issueType?: string;
-  issueDetails?: string;
-  userId?: string;
-}
-
 export interface RegisterUserPayload {
   fullName: string;
   email: string;
 }
 
-export type AtagBtnProps = {
-  aTagName: string;
-};
-
-export interface CourseInstructorProps {
-  instructor?: string;
-  shortCutInstructor?: boolean;
-}
-
-export interface CoursePriceProps {
-  discountPrice?: number | string;
-  fullPrice?: number | string;
-  chooseFlex?: string;
-  showFullPrice?: boolean;
-  extraCSS?: string;
-  displayPercent: boolean;
-}
-
-export interface CourseRatingsProps {
-  avgRatings?: number;
-  stars?: string;
-  totalRatings?: number;
-}
-
-export interface CourseTagProps {
-  tagName?: string;
-  bgColorTag?: string;
-}
-
-export interface CourseTitleProps {
-  title?: string;
-  shortcutTitle?: boolean;
-}
-
-export interface CourseCardProps {
-  title: string;
-  image: string;
-  description: string;
-  fullPrice: number;
-  discountPrice: number;
-  tag?: string;
-}
-
-export interface CourseProps {
-  _id: string;
-  courseName: string;
-  courseImg: string;
-  courseDescription: string;
-  courseFullPrice: number;
-  courseDiscountPrice: number;
-}
-
-export interface ResponseSuggestions {
-  word: string;
-  score: number;
-}
 
 export interface CourseData {
   _id: string;
@@ -192,7 +117,7 @@ export interface CourseData {
   subCategory: string;
   courseTopic: string;
   courseLevel: string;
-  courseLanguages: string; // string, not array
+  courseLanguages: string;
   courseTag: string;
   moneyBackGuarantee: string;
   averageRating: number;
@@ -265,14 +190,6 @@ export interface CourseData {
   __v: number;
 }
 
-export interface LoaderProps {
-  hSize: string;
-  useSmallLoading: boolean;
-  paddingSetTo?: string;
-  usePurpleLoading?: boolean;
-  useSmallBlackLoading?: boolean;
-  purpleLightSmallStyle?: boolean;
-}
 // explore data ts
 export interface Topic {
   title?: string;
@@ -340,11 +257,6 @@ export interface DecodedTokenProps {
   isAuthActivated: boolean;
 }
 
-export type FormErrors = {
-  email?: string;
-  password?: string;
-};
-
 export interface PaymentOptionProps {
   paymentOptionName?: string;
   providedIcon?: React.ReactNode;
@@ -355,17 +267,6 @@ export interface PaymentOptionProps {
   radioName?: string;
   isOpen?: boolean;
   onToggle?: () => void;
-}
-
-export interface CoursePreviewCardProps {
-  courseImg: string;
-  coursePrice: number;
-  fullPrice: number;
-  courseId: string;
-  firstLessonId?: string;
-  courseTopic: string;
-  instructorId: string;
-  discountPrice: number;
 }
 
 export interface Review {
@@ -464,20 +365,12 @@ export interface CourseContentProps {
   }>;
 }
 
-export interface CourseCreatedByProps {
-  instructorName: string;
-  instructorId: string;
-  handleScroll: () => void;
-}
-
 export interface LessonProps {
   _id?: string;
   title?: string;
   videoUrl?: string;
   duration?: number;
 }
-
-export interface SearchCourseCardProps {}
 
 export interface Course {
   _id: string;

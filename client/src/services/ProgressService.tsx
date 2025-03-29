@@ -1,5 +1,6 @@
 import log from 'video.js/dist/types/utils/log';
 import { axiosClient, baseUrl, isProduction, localhostUrl } from '../api/configuration';
+import { LessonProgressPayload } from '@/types/types';
 
 // Define response types
 type CourseProgressResponse = {
@@ -8,10 +9,6 @@ type CourseProgressResponse = {
   percentageCompleted: number;
 };
 
-type LessonProgressPayload = {
-  completed?: boolean;
-  lastWatched?: number;
-};
 
 type FetchProgressFn = (courseId: string) => Promise<CourseProgressResponse>;
 type UpdateLessonProgressFn = (

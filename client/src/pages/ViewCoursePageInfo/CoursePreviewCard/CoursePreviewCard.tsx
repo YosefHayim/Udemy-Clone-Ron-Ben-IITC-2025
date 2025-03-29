@@ -16,7 +16,16 @@ import InteractionsBtns from '@/pages/Search/CourseHoverCardInfo/InteractionBtns
 import BuyNowBtn from './AddCartNBuyBtn/BuyNowBtn';
 import InteractionButtonsOfPreviewCard from './InteractionButtonsOfPreviewCard/InteractionButtonsOfPreviewCard';
 
-const CoursePreviewCard: React.FC<CoursePreviewCardProps> = ({
+const CoursePreviewCard: React.FC<{
+  courseImg: string;
+  coursePrice: number;
+  fullPrice: number;
+  courseId: string;
+  firstLessonId?: string;
+  courseTopic: string;
+  instructorId: string;
+  discountPrice: number;
+}> = ({
   courseImg,
   coursePrice,
   fullPrice,

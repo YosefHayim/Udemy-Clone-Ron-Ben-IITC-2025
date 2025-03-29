@@ -15,8 +15,8 @@ import {
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchCourseProgress, updateLessonProgress } from '@/services/ProgressService';
-import { CourseProgressResponse, LessonProgressPayload } from '@/types';
 import CustomTrigger from '../Lesson/CustomTrigger';
+import { CourseProgressResponse, LessonProgressPayload } from '@/types/types';
 
 export function CourseSidebarMenu({ courseId }: { courseId: string }) {
   const [hover, setHover] = useState('gray-600');
