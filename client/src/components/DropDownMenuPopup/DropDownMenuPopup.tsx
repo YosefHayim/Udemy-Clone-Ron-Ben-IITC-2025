@@ -20,7 +20,9 @@ export const DropdownMenuPopup: React.FC<DropDownMenuProps> = ({
 }) => {
   return (
     <DropdownMenu open={hoverState} onOpenChange={(open) => setState(open)}>
-      <DropdownMenuTrigger asChild></DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
+        <button>Open Dropdown</button>
+      </DropdownMenuTrigger>
       {children && (
         <DropdownMenuContent className={`${extraCustomCss}`}>{children}</DropdownMenuContent>
       )}
