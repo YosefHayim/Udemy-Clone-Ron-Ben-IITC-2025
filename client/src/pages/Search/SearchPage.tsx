@@ -10,7 +10,6 @@ import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
 import React, { useContext, useState } from "react";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
-import { CourseTypeProps } from "@/types/types";
 import { filterContext } from "@/routes/AppRoutes";
 import { useEffect } from "react";
 import RelatedSearches from "./RelatedSearches/RelatedSearches";
@@ -97,7 +96,7 @@ const SearchPage: React.FC = () => {
           {/* courses on the right */}
           <main className="flex flex-grow flex-col">
             <div className="flex flex-col gap-1">
-              {data?.response?.slice(0, 18).map((course: CourseTypeProps, index: number) => (
+              {data?.response?.slice(0, 18).map((course, index: number) => (
                 <div
                   key={course?._id}
                   id={course?._id}
@@ -113,6 +112,7 @@ const SearchPage: React.FC = () => {
                       className={`absolute right-[60%] z-10 w-1/2 translate-x-1/2 ${getTopValue(index)}`}
                     >
                       <CourseHoverCardInfo
+                      
                         positionedLeft={false}
                         positionedRight={false}
                         instructorId={course?.courseInstructor?._id}

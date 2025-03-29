@@ -4,7 +4,6 @@ import { memo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
-import { CourseTypeProps } from "@/types/types";
 
 const HotFreshCourses = () => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -49,7 +48,7 @@ const HotFreshCourses = () => {
             handleFnPrev={handlePrev}
             state={currentIndex}
             useCustom={true}
-            showDirectionalButtonsOnlyOnEdge={true}
+            showDirectionalButtonsOnlyOnEdge={false}
             topPosition="55%"
             leftPosition="1%"
             rightPosition="2%"
@@ -62,7 +61,7 @@ const HotFreshCourses = () => {
           }}
         >
           {data && data?.response?.length >= 1 ? (
-            data?.response?.map((hotCourseAlgo: CourseTypeProps) => (
+            data?.response?.map((hotCourseAlgo) => (
               <HotCourseCard hotCourseAlgo={hotCourseAlgo} key={hotCourseAlgo._id} />
             ))
           ) : (
