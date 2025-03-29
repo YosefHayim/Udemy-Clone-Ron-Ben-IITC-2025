@@ -11,7 +11,9 @@ const SearchInput: React.FC<{
   isTyping: boolean;
   setIsTyping: (value: boolean) => void;
   extraCSS?: string;
-}> = ({ isTyping, setIsTyping, extraCSS }) => {
+  setShowSearchMobile;
+  showSearchMobile;
+}> = ({ isTyping, setIsTyping, extraCSS, setShowSearchMobile, showSearchMobile }) => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
 
   const navigate = useNavigate();
@@ -80,8 +82,10 @@ const SearchInput: React.FC<{
           data={data}
         />
       )}
-      {isMobile && (
+      {isMobile && showSearchMobile && (
         <SearchInputMobile
+          setShowSearchMobile={setShowSearchMobile}
+          showSearchMobile={showSearchMobile}
           handleSubmit={handleSubmit}
           handleOnChange={handleOnChange}
           extraCSS={''}
