@@ -83,7 +83,7 @@ const SearchPage: React.FC = () => {
   return (
     <div className="w-full bg-white">
       {/* Central container */}
-      <div className="mx-auto max-w-screen-xl px-4 py-6">
+      <div className="mx-auto max-w-screen-xl py-8">
         
         {/* Filter */}
         <FilterNSort coursesResults={data?.totalCourses} searchTerm={searchTerm} />

@@ -38,11 +38,11 @@ const SortDropDown = () => {
     <div className="flex flex-col items-start justify-start">
       <div className="flex w-full flex-col items-center">
         <div className="relative w-full">
-          <b className="absolute  left-[10%] top-[12%] cursor-pointer">Sort by</b>
+          <b className="absolute  left-[10%] top-[12%] cursor-pointer font-black">Sort by</b>
           <select
             value={selectedSort}
             onChange={handleSortChange}
-            className="focus:none mr-[2em] block h-[4em] w-full cursor-pointer appearance-none rounded-[0.2em] border border-gray-900 bg-white px-[1em] pt-[1em] text-base font-normal text-gray-900 hover:bg-hoverDivGray focus:outline-none focus:ring-2"
+            className="focus:none mr-[2em] block h-[3.5em] w-full cursor-pointer appearance-none rounded-[0.2em] border border-gray-900 bg-white px-[1em] pt-[1em] text-base font-normal text-gray-900 hover:bg-hoverDivGray focus:outline-none focus:ring-2"
           >
             <option value="most-relevant">Most Relevant</option>
             <option value="most-reviewed">Most Reviewed</option>
