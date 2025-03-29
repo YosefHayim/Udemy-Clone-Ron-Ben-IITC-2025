@@ -1,15 +1,16 @@
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import AppRoutes from "./routes/AppRoutes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+export const googleClient = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 const queryClient = new QueryClient();
 const App = () => {
   return (
-    <GoogleOAuthProvider clientId="935575669979-5b0kqifsd8rgqsg2kul01pafbq2o62pv.apps.googleusercontent.com">
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <GoogleOAuthProvider clientId={googleClient}>
         <AppRoutes />
-      </QueryClientProvider>
-    </GoogleOAuthProvider>
+      </GoogleOAuthProvider>
+    </QueryClientProvider>
   );
 };
 
