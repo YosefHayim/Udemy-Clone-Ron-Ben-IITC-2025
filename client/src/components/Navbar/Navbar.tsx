@@ -56,7 +56,7 @@ const Navbar = () => {
       <SaleCommercialTwo />
       {!isMobile && (
         <div className="relative z-[50] flex w-full items-center justify-between bg-white px-[1.55rem] pb-[0.9em] pt-[0.2em] shadow-carouselShadowBtn">
-          <div className="flex w-full items-center justify-between">
+          <div className="flex w-full items-center justify-between pt-[0.3rem]">
             <Link to="/">
               <Logo />
             </Link>
