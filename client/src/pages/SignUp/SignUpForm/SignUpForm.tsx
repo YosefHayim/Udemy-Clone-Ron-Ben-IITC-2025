@@ -19,11 +19,11 @@ const SignUpForm = () => {
 
   const mutation = useMutation<unknown, Error, RegisterUserPayload>({
     mutationFn: registerUser,
-    onSuccess: () => {
-      navigate('/verify-code');
+    onSuccess: (data) => {
+      if (data) navigate('/verify-code');
     },
     onError: (error) => {
-      console.log(error);
+      if (error.status === 500) setShowIsError(true);
     },
   });
 
@@ -52,6 +52,7 @@ const SignUpForm = () => {
     <form className="flex flex-col items-center justify-start space-y-4" onSubmit={handleSubmit}>
       <CheckboxSpecialOffer />
       <CustomInput
+        useErrorDisplay={false}
         isError={isError}
         setShowIsError={setShowIsError}
         nameAttribute={'fullName'}
