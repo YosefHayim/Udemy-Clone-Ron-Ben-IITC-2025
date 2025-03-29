@@ -24,7 +24,7 @@ const WelcomeBack = () => {
           )}
         </div>
         <div className="my-2 flex flex-col items-center justify-center gap-2">
-          <b className="font-sans font-extrabold">Welcome back, {fullname}</b>
+          <b className="font-sans text-base font-extrabold">Welcome back, {fullname}</b>
           <p className="w-full text-sm font-medium">
             We’ll email <b className="font-sans font-extrabold">{globalEmail}</b> a code for a
             secure passwordless log-in.

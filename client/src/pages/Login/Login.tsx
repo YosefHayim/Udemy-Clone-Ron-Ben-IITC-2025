@@ -8,11 +8,12 @@ import GoogleBtn from "./OtherLoginOptions/GoogleBtn/GoogleBtn";
 import LoginImgDesktop from "./LoginImg/LoginImg";
 import { useMediaQuery } from "react-responsive";
 import MobileLoginImg from "./MobileLoginImg/MobileLoginImg";
+import WelcomeBack from "./WelcomeBack/WelcomeBack";
 
 const Login = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
   const [isDifferentAccount, setDifferentAccount] = useState(false);
-  const cookie = useSelector((state: RootState) => state?.user?.cookie);
+  const fullName = useSelector((state: RootState) => state.user?.fullName);
   const prevWGoogle = useSelector((state: RootState) => state?.user?.isLoggedPreviouslyWithGoogle);
 
   return (
@@ -28,7 +29,13 @@ const Login = () => {
           >
             Log in to continue your learning journey
           </h2>
-          {!prevWGoogle && (
+          {fullName && (
+            <div>
+              <WelcomeBack />
+              <LoginForm onlyShowLoginButton={true} />
+            </div>
+          )}
+          {!prevWGoogle && !fullName && (
             <div>
               <LoginForm />
               <OtherLoginOptions />
