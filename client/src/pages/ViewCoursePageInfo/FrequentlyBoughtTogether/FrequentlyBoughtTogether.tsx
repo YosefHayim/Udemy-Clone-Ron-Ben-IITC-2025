@@ -48,7 +48,7 @@ const FrequentlyBoughtTogether: React.FC<{
       <div className="flex w-full flex-col border border-borderCommercial p-[1em]">
         <h2 className="font-sans font-extrabold">Frequently Bought Together</h2>
         {data &&
-          data.map((course: Course, index: number) => (
+          data.slice(0, 2).map((course: Course, index: number) => (
             <div key={course?._id} className="relative w-full">
               <FrequentlyCourseCard
                 courseId={course?._id}

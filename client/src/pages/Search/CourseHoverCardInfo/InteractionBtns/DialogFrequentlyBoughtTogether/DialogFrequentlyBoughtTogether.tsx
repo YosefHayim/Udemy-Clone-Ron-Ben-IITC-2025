@@ -5,12 +5,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
 import FrequentlyBoughtTogether from "@/pages/ViewCoursePageInfo/FrequentlyBoughtTogether/FrequentlyBoughtTogether";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
-import { Link } from "react-router-dom";
-import { MdArrowForward, MdOutlineShoppingCart } from "react-icons/md";
 import CloseButtonDialogFBTAndTitle from "./CloseButtonDialogFBTAndTitle/CloseButtonDialogFBTAndTitle";
 import ProcCheckNGoToCart from "../ProcCheckNGoToCart/ProcCheckNGoToCart";
 

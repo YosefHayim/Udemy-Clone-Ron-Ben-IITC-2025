@@ -99,7 +99,7 @@ const ItemInCart = ({
       >
         <div>
           <div className="relative">
-            <CourseImg courseImg={data.courseImg} imgExplanation={data.courseName} />
+            <CourseImg courseImg={data?.courseImg} imgExplanation={data?.courseName} />
 
             <div
               className={
