@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import mylearningcourseplaceholderfrom from '/images/mylearningcourseplaceholder.jpg';
 
-const NavbarButton: React.FC<{ buttonName: string }> = ({ buttonName }) => {
+const ButtonNavbar: React.FC<{ buttonName: string }> = ({ buttonName }) => {
   const [isHovering, setIsHovering] = useState(false);
   const coursesInProgress = useSelector((state: RootState) => state?.user?.coursesInProgress);
 
@@ -96,4 +96,4 @@ const NavbarButton: React.FC<{ buttonName: string }> = ({ buttonName }) => {
   );
 };
 
-export default NavbarButton;
+export default ButtonNavbar;
