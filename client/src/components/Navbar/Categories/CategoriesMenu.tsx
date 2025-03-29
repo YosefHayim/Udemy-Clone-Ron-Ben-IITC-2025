@@ -85,7 +85,7 @@ const CategoriesMenu = () => {
   };
 
   return (
-    <div className="relative z-50 inline-block w-auto text-left font-medium text-gray-600">
+    <div className="relative z-50 inline-block w-auto text-left font-medium text-gray-600 px-[0.25rem]">
       {/* Botão Explore com hover para mostrar menu */}
       <div
         className="inline-block"
