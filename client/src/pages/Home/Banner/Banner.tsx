@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 
 const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
-  const coursesBoughtOrJoined = useSelector((state: RootState) => state.user.coursesBought);
+  const coursesBoughtOrJoined = useSelector((state: RootState) => state?.user?.coursesBought);
   const fullName = useSelector((state: RootState) => state.user.fullName);
   const registerAt = useSelector((state: RootState) => state.user.whenCreated);
 

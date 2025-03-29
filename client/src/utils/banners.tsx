@@ -6,6 +6,7 @@ import thanksTryingFreeCourse from '/images/banner7.jpg';
 import subscribeToTheBestOfUdemy from '/images/banner5.jpg';
 import newsletterBanner from '/images/banner8.jpg';
 import itCertification from '/images/banner.jpg';
+import starYellowBanner from '/images/banner10.jpg';
 import { Link } from 'react-router-dom';
 
 export const getBanners = ({
@@ -142,6 +143,21 @@ export const getBanners = ({
                 Join our email list
               </Link>{' '}
               for special offers, personalized course recommendations, and more.
+            </p>
+          </div>
+        ),
+      },
+      {
+        src: starYellowBanner,
+        content: () => (
+          <div className="absolute left-16 top-16 flex w-[450px] flex-col items-start gap-3 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
+            <h1 className="w-full font-extrabold">Every day a little closer</h1>
+            <p className="w-5/6 pr-2 font-sans text-sm">
+              Learning helps you reach your goals.
+              <Link to="/wishlist" className="font-medium text-purple-800 underline">
+                Keep learning
+              </Link>
+              and reap the rewards.
             </p>
           </div>
         ),

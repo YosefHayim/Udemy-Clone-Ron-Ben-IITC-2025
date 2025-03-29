@@ -68,11 +68,21 @@ const Navbar = () => {
               className="flex w-full items-end justify-end gap-1"
               style={{ maxWidth: 'min-content' }}
             >
-              <ButtonNavbar buttonName={'Udemy Business'} />
-              <ButtonNavbar buttonName={'Teach on Udemy'} />
+              <ButtonNavbar
+                buttonName={'Udemy Business'}
+                insideBtnText="Try Udemy Business"
+                paragraphText="Get your team access to over 27,000 top Udemy courses, anytime, anywhere."
+                to="/udemy-business/request-demo-mx/?ref=account-menu&locale=en_US"
+              />
+              <ButtonNavbar
+                buttonName={'Teach on Udemy'}
+                paragraphText="Turn what you know into an opportunity and reach millions around the world."
+                to="/teaching/?ref=teach_header"
+                insideBtnText="Learn more"
+              />
               {cookie && (
                 <Link to="/wishlist">
-                  <ButtonNavbar buttonName={'My learning'} />
+                  <ButtonNavbar buttonName={'My learning'} insideBtnText="Go to my learning" />
                 </Link>
               )}
               {cookie && (
