@@ -42,7 +42,7 @@ const SortDropDown = () => {
           <select
             value={selectedSort}
             onChange={handleSortChange}
-            className="focus:none mr-[2em] block h-[3.5em] w-full cursor-pointer appearance-none rounded-[0.2em] border border-gray-900 bg-white px-[1em] pt-[1em] text-base font-normal text-gray-900 hover:bg-hoverDivGray focus:outline-none focus:ring-2"
+            className="focus:none mr-[2em] block h-[3.5em] w-full cursor-pointer appearance-none rounded-[0.2em] border border-gray-400 bg-white px-[1em] pt-[1em] text-base font-normal text-gray-900 hover:bg-[#F6F7F9] focus:outline-none focus:ring-2"
           >
             <option value="most-relevant">Most Relevant</option>
             <option value="most-reviewed">Most Reviewed</option>

@@ -92,7 +92,7 @@ const SearchPage: React.FC = () => {
         <div className="mt-4 flex gap-6">
           
           {/* Sidebar on the left */}
-          <aside className="w-[260px] shrink-0">
+          <aside className="w-[320px] shrink-0">
             <SidebarFilter />
           </aside>
   
