@@ -1,6 +1,6 @@
-import { IoClose } from 'react-icons/io5';
 import SearchInputSearchButton from '../SearchInputSearchButton/SearchInputSearchButton';
 import SearchResults from '../../SearchResults/SearchResults';
+import CloseMobileSearchButton from '../CloseMobileSearchButton/CloseMobileSearchButton';
 
 const SearchInputMobile = ({
   searchTerm,
@@ -9,6 +9,8 @@ const SearchInputMobile = ({
   extraCSS,
   isTyping,
   data,
+  setShowSearchMobile,
+  showSearchMobile,
 }) => {
   return (
     <div className="flex w-full items-center justify-center gap-1">
@@ -21,9 +23,10 @@ const SearchInputMobile = ({
           onChange={handleOnChange}
         />
       </form>
-      <div className="cursor-pointer rounded-[0.2em] p-2 text-gray-500 hover:bg-purpleHoverBtn">
-        <IoClose size={20} />
-      </div>
+      <CloseMobileSearchButton
+        setShowSearchMobile={setShowSearchMobile}
+        showSearchMobile={showSearchMobile}
+      />
       <SearchResults isTyping={isTyping} data={data} />
     </div>
   );
