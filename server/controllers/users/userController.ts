@@ -149,7 +149,7 @@ const signUp = catchAsync(
     });
 
     res.cookie("cookie", token, {
-      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: process.env.NODE_ENV === "production",
       httpOnly: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
@@ -161,7 +161,6 @@ const signUp = catchAsync(
       status: "success",
       message:
         "User created successfully. Please confirm your email to log in.",
-      token,
     });
   }
 );
@@ -226,7 +225,7 @@ const login = catchAsync(
     });
 
     res.cookie("cookie", token, {
-      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: process.env.NODE_ENV === "production",
       httpOnly: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
@@ -237,7 +236,6 @@ const login = catchAsync(
       codeVerification: loginCode,
       status: "success",
       message: "Login successful.",
-      token,
     });
   }
 );
@@ -309,7 +307,7 @@ const verifyCode = catchAsync(
     });
 
     res.cookie("cookie", token, {
-      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: process.env.NODE_ENV === "production",
       httpOnly: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
@@ -319,7 +317,6 @@ const verifyCode = catchAsync(
     res.status(200).json({
       status: "success",
       message: "Code verified successfully. You are now logged in.",
-      token,
     });
   }
 );
@@ -364,7 +361,7 @@ const confirmEmailAddress = catchAsync(
 const logout = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     res.cookie("cookie", "", {
-      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: process.env.NODE_ENV === "production",
       httpOnly: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
@@ -668,7 +665,7 @@ const googleLoginOrSignUp = catchAsync(
       });
 
       res.cookie("cookie", token, {
-        expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days
+        expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
         secure: process.env.NODE_ENV === "production",
         httpOnly: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
@@ -678,7 +675,6 @@ const googleLoginOrSignUp = catchAsync(
       // Send success response
       res.status(200).json({
         status: "success",
-        token,
       });
     } catch (error) {
       console.log(
@@ -714,7 +710,7 @@ const updateMe = catchAsync(
     });
 
     res.cookie("cookie", token, {
-      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
       secure: process.env.NODE_ENV === "production",
       httpOnly: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
@@ -724,8 +720,6 @@ const updateMe = catchAsync(
     res.status(200).json({
       status: "success",
       response: "cookie has been updated",
-      token,
-      user,
     });
   }
 );
