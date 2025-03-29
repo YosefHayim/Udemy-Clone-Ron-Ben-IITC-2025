@@ -9,6 +9,14 @@ import { GoPlusCircle } from "react-icons/go";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import Loader from "@/components/Loader/Loader";
+import {
+  calculateDiscountPercentage,
+  calculateTotalSavings,
+  setAddCourseToCart,
+  setAmountOfCourses,
+  setTotalCourseDiscountPrices,
+  setTotalOriginalCoursePrices,
+} from "@/redux/slices/cartSlice";
 
 const FrequentlyCourseCard: React.FC<{
   courseImg: string;
@@ -36,8 +44,15 @@ const FrequentlyCourseCard: React.FC<{
     console.log(courseId);
     setLoading(true);
     setTimeout(() => {
+      dispatch(setAmountOfCourses());
+      dispatch(setTotalCourseDiscountPrices(Number(courseFullPrice)));
+      dispatch(setTotalOriginalCoursePrices(Number(courseDiscountPrice)));
+      dispatch(calculateTotalSavings());
+      dispatch(calculateDiscountPercentage());
+      dispatch(setAddCourseToCart(courseId));
+      onAddToCartSuccess();
       setLoading(false);
-    }, 500);
+    }, 2000);
   };
 
   return (
@@ -78,3 +93,6 @@ const FrequentlyCourseCard: React.FC<{
 };
 
 export default FrequentlyCourseCard;
+function onAddToCartSuccess() {
+  throw new Error("Function not implemented.");
+}
