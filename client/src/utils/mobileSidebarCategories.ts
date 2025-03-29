@@ -1,4 +1,7 @@
-export const firstDividerList = ['Login', 'Sign up'];
+export const firstDividerList = [
+  { text: 'Login', to: '/login' },
+  { text: 'Sign up', to: '/signup' },
+];
 
 export const secondDividerList = [
   'Web Development',

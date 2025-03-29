@@ -11,9 +11,13 @@ import {
 } from '@/utils/mobileSidebarCategories';
 import { IoIosArrowForward } from 'react-icons/io';
 import ChangeLanguage from '@/components/Navbar/DropDownMenu/ChangeLanguage/ChangeLanguage';
+import { Link } from 'react-router-dom';
 
 const style = {
   width: '100%',
+  margin: '1px',
+  overflow: 'unset',
+  borderRadius: '5px',
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'start',
@@ -26,42 +30,33 @@ const MobileSidebar = ({ showSidebar, setShowSidebar }) => {
   const DrawerList = (
     <Box sx={{ width: 250, fontSize: '14px' }} role="presentation">
       <List>
-        {firstDividerList.map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton
-              sx={{
-                width: '100%',
-                margin: '1px',
-                color: '#6d28d2',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'start',
-                ':hover': {
-                  background: '#EDE5FA',
-                },
-              }}
-            >
-              <div className="flex w-full items-center justify-between">
-                <p>{text}</p>
-              </div>
-            </ListItemButton>
+        {firstDividerList.map((word) => (
+          <ListItem key={word.text} disablePadding>
+            <Link to={word.to} className="w-full">
+              <ListItemButton
+                sx={{
+                  width: '100%',
+                  margin: '1px',
+                  color: '#6d28d2',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'start',
+                  ':hover': {
+                    background: '#EDE5FA',
+                  },
+                }}
+              >
+                <div className="flex w-full items-center justify-between">
+                  <p>{word.text}</p>
+                </div>
+              </ListItemButton>
+            </Link>
           </ListItem>
         ))}
       </List>
       <Divider sx={{ border: '1px solid gray-100' }} />
       <List>
-        <ListItemButton
-          sx={{
-            width: '100%',
-            margin: '1px',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'start',
-            ':hover': {
-              background: '#EDE5FA',
-            },
-          }}
-        >
+        <ListItemButton sx={style}>
           Certification preparation <IoIosArrowForward />
         </ListItemButton>
       </List>
@@ -72,20 +67,7 @@ const MobileSidebar = ({ showSidebar, setShowSidebar }) => {
         </List>
         {secondDividerList.map((text) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton
-              sx={{
-                width: '100%',
-                margin: '1px',
-                overflow: 'unset',
-                borderRadius: '5px',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'start',
-                ':hover': {
-                  background: '#EDE5FA',
-                },
-              }}
-            >
+            <ListItemButton sx={style}>
               <p>{text}</p>
               <IoIosArrowForward />
             </ListItemButton>
@@ -99,22 +81,7 @@ const MobileSidebar = ({ showSidebar, setShowSidebar }) => {
         </List>
         {thirdDividerList.map((text) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton
-              sx={{
-                width: '100%',
-                margin: '1px',
-                overflow: 'unset',
-                borderRadius: '5px',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'start',
-                ':hover': {
-                  background: '#EDE5FA',
-                },
-              }}
-            >
-              {text}
-            </ListItemButton>
+            <ListItemButton sx={style}>{text}</ListItemButton>
           </ListItem>
         ))}
       </List>
