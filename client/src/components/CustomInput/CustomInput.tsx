@@ -26,6 +26,7 @@ const CustomInput = ({
     <div className="flex w-full flex-col items-start justify-center gap-2">
       <div className="relative flex w-full">
         <TextField
+          required={true}
           ref={focusOrBlurRef}
           onFocus={() => setIsFocused(true)}
           onBlur={(e) => handleBlur}
@@ -67,6 +68,9 @@ const CustomInput = ({
           slotProps={{
             input: {
               disableUnderline: true,
+            },
+            inputLabel: {
+              required: false,
             },
           }}
         />

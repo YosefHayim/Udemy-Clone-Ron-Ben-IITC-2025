@@ -1,12 +1,10 @@
 import loginUser from '@/api/users/loginUser';
-import Loader from '@/components/Loader/Loader';
 import { emailContext } from '@/routes/AppRoutes';
-import { regFullButtonPurpleHover } from '@/utils/stylesStorage';
 import { useMutation } from '@tanstack/react-query';
 import { useContext, useState } from 'react';
-import { AiOutlineMail } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
-import CustomInput from '@/components/CustomInput/customInput';
+import CustomInput from '@/components/CustomInput/CustomInput';
+import ButtonLoader from '@/components/ButtonLoader/ButtonLoader';
 
 const LoginForm = () => {
   const emailCtx = useContext(emailContext);
@@ -29,9 +27,9 @@ const LoginForm = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const formData = new FormData(e.currentTarget);
     const email = formData.get('email') as string;
+
     if (!email.includes('@') || !email.includes('.com')) {
       setShowIsError(true);
       return;
@@ -57,18 +55,7 @@ const LoginForm = () => {
           inputMode={`email`}
         />
       </div>
-      <div>
-        <button type="submit" className={`${regFullButtonPurpleHover} w-full`}>
-          {isLoading ? (
-            <Loader useSmallLoading={true} hSize="" />
-          ) : (
-            <p className="flex w-full items-center justify-center gap-2 text-base">
-              <AiOutlineMail size={20} />
-              Continue with email
-            </p>
-          )}
-        </button>
-      </div>
+      <ButtonLoader isLoading={isLoading} />
     </form>
   );
 };
