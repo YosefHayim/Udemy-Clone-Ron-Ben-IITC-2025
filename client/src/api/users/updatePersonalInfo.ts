@@ -2,9 +2,8 @@ import { DataOfUser } from "../../types/types";
 import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configuration";
 
 const updatePersonalInfo = async (dataOfUser: DataOfUser) => {
-  if (!dataOfUser) {
-    console.log("No data of user to update provided: ", dataOfUser);
-  }
+  if (!dataOfUser) throw new Error("Please provide dataOfUser in url.");
+
   const url = `${isProduction ? baseUrl : localhostUrl}/api/user/`;
   try {
     const r = axiosClient.post(url, dataOfUser);
@@ -14,7 +13,8 @@ const updatePersonalInfo = async (dataOfUser: DataOfUser) => {
       return r;
     }
   } catch (error) {
-    console.log(error);
+    console.log(`error occurred during update user personal info`, error.response.data.message);
+    throw error;
   }
 };
 

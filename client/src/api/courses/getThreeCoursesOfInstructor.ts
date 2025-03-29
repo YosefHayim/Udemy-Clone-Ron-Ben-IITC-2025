@@ -1,19 +1,22 @@
 import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configuration";
 
 const getThreeCoursesOfInstructor = async (instructorId: string) => {
-  if (!instructorId) {
-    console.log(`No instructorId provided: `, instructorId);
-  }
+  if (!instructorId) throw new Error("Please provide instructorId in url.");
 
   try {
     const url = `${isProduction ? baseUrl : localhostUrl}/api/instructor/${instructorId}/three/courses`;
-    const res = await axiosClient.get(url);
+    const r = await axiosClient.get(url);
 
-    if (res) {
-      return res.data.data;
+    if (r) {
+      console.log(r);
+      return r?.data?.data;
     }
   } catch (error) {
-    console.log("Error for getting 3 courses: ", error);
+    console.log(
+      "Error for getting frequently bought together courses of instructor: ",
+      error.response.data.message
+    );
+    throw error;
   }
 };
 

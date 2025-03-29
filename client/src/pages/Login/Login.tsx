@@ -8,11 +8,12 @@ import GoogleBtn from "./OtherLoginOptions/GoogleBtn/GoogleBtn";
 import LoginImgDesktop from "./LoginImg/LoginImg";
 import { useMediaQuery } from "react-responsive";
 import MobileLoginImg from "./MobileLoginImg/MobileLoginImg";
+import WelcomeBack from "./WelcomeBack/WelcomeBack";
 
 const Login = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
   const [isDifferentAccount, setDifferentAccount] = useState(false);
-  const cookie = useSelector((state: RootState) => state?.user?.cookie);
+  const fullName = useSelector((state: RootState) => state.user?.fullName);
   const prevWGoogle = useSelector((state: RootState) => state?.user?.isLoggedPreviouslyWithGoogle);
 
   return (
@@ -28,7 +29,13 @@ const Login = () => {
           >
             Log in to continue your learning journey
           </h2>
-          {!prevWGoogle && (
+          {fullName && !isDifferentAccount && (
+            <div>
+              <WelcomeBack />
+              <LoginForm showOnlyLoginButton={false} />
+            </div>
+          )}
+          {!prevWGoogle && !fullName && (
             <div>
               <LoginForm />
               <OtherLoginOptions />
@@ -46,32 +53,33 @@ const Login = () => {
             </div>
           )}
           <div className="flex flex-col items-center justify-center pt-6 text-center">
-            {prevWGoogle && (
+            {prevWGoogle || isDifferentAccount || (
               <div
                 onClick={() => setDifferentAccount(true)}
-                className={`${isDifferentAccount ? "hidden" : "flex"}`}
+                className={`${isDifferentAccount ? "hidden" : "flex w-full"}`}
               >
                 <WebsiteLoginOptions
                   text={`Log in to a different account`}
                   to={`/login`}
-                  extraCSS={`text-base font-extrabold`}
+                  extraCSS={`font-extrabold text-sm`}
                 />
               </div>
             )}
-            <WebsiteLoginOptions
-              text={`Don't have an account ?`}
-              to={"/signup"}
-              extraCSS={`text-center w-full text-base no-underline text-gray-950 font-normal`}
-              textAfterSpace={`Sign up`}
-              textAfterSpaceCSS={`underline text-purple-600 font-extrabold`}
-            />
-            <hr className="h-[0.1em] w-full bg-gray-300" />
-            <WebsiteLoginOptions
-              text={`Log in with your organization`}
-              to={`/organization/global-login/email`}
-              extraCSS={`font-extrabold text-sm`}
-            />
           </div>
+          <hr className="h-[0.1em] w-full bg-gray-300" />
+          <WebsiteLoginOptions
+            text={`Don't have an account ?`}
+            to={"/signup"}
+            extraCSS={`w-full text-base no-underline text-gray-950 font-normal`}
+            textAfterSpace={`Sign up`}
+            textAfterSpaceCSS={`underline text-purple-700 font-extrabold text-sm`}
+          />
+          <hr className="h-[0.1em] w-full bg-gray-300" />
+          <WebsiteLoginOptions
+            text={`Log in with your organization`}
+            to={`/organization/global-login/email`}
+            extraCSS={`font-extrabold text-sm`}
+          />
         </div>
       </div>
     </div>

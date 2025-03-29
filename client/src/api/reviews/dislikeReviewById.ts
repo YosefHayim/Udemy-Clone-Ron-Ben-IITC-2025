@@ -3,20 +3,19 @@ import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configurati
 type fn = (idOfReview: string) => Promise<any>;
 
 export const dislikeReviewById: fn = async (idOfReview: string) => {
-  if (!idOfReview || typeof idOfReview !== "string") {
-    console.log(`Invalid reviewId: ${idOfReview}`);
-    return;
-  }
+  if (!idOfReview) throw new Error("Please provide idOfReview in url.");
+
   const sanitizedReviewId = idOfReview.trim();
   const url = `${isProduction ? baseUrl : localhostUrl}/api/review/dislike/${sanitizedReviewId}`;
   try {
-    const res = await axiosClient.post(url);
+    const r = await axiosClient.post(url);
 
-    if (res) {
-      console.log(res);
-      return res;
+    if (r) {
+      console.log(r);
+      return r;
     }
   } catch (error) {
-    console.log(`Error occurred during like a review: `, error);
+    console.log(`Error occurred during like a review: `, error.response.data.message);
+    throw error;
   }
 };

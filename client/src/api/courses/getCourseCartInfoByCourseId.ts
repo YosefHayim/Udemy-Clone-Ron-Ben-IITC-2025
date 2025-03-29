@@ -3,25 +3,20 @@ import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configurati
 type fn = (courseId: string) => Promise<any>;
 
 const getCourseCartInfoByCourseId: fn = async (courseId: string) => {
-  if (!courseId || typeof courseId !== "string") {
-    console.log("Invalid course ID provided.");
-    return null;
-  }
+  if (!courseId) throw new Error("Please provide courseId in url.");
 
   const sanitizedCourseId = courseId.trim();
   const url = `${isProduction ? baseUrl : localhostUrl}/api/course/cartInfo/${sanitizedCourseId}`;
 
   try {
-    const response = await axiosClient.get(url);
+    const r = await axiosClient.get(url);
 
-    if (response?.data?.data) {
-      return response.data.data;
+    if (r) {
+      console.log(r);
+      return r?.data?.data;
     }
-
-    console.warn("No course data found in the response.");
-    return null;
   } catch (error) {
-    console.log(`Error fetching course with ID ${sanitizedCourseId}:`, error);
+    console.log(`Error occurred fetching course cart info: `, error.response.data.message);
     throw error;
   }
 };
