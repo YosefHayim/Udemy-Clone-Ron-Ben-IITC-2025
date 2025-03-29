@@ -10,12 +10,14 @@ const SearchInputMobile = ({
   isTyping,
   data,
   setShowSearchMobile,
-  showSearchMobile,
 }) => {
   return (
     <div className="flex w-full items-center justify-center gap-1">
-      <SearchInputSearchButton searchTerm={searchTerm} />
-      <form onSubmit={handleSubmit} className={`w-full ${extraCSS}`}>
+      <form
+        onSubmit={handleSubmit}
+        className={`w-full ${extraCSS} items-cen flex w-full justify-center`}
+      >
+        <SearchInputSearchButton searchTerm={searchTerm} />
         <input
           type="text"
           className="w-full bg-white p-2 text-base hover:bg-gray-100 focus:outline-none"
