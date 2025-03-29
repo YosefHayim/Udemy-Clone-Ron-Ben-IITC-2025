@@ -712,7 +712,7 @@ const updateMe = catchAsync(
       whenUpdated: user.updatedAt,
       isAuthActivated: user.isAuthActivated,
     });
-    
+
     res.cookie("cookie", token, {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 90 days
       secure: process.env.NODE_ENV === "production",
@@ -757,11 +757,8 @@ const updatePersonalizeInfo = catchAsync(
 export {
   updatePersonalizeInfo,
   updateMe,
-  joinCoursesByIds,
   toggleCourseWishlist,
   updateProfilePic,
-  joinCourseById,
-  leaveCourseById,
   logout,
   login,
   googleLoginOrSignUp,

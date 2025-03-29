@@ -7,16 +7,17 @@ type email = {
 type fn = (email: email) => Promise<any>;
 
 const loginUser: fn = async (email) => {
+  if (!email) throw new Error("Please provide email in url.");
+
   try {
-    const response = await axiosClient.post(
+    const r = await axiosClient.post(
       `${isProduction ? baseUrl : localhostUrl}/api/user/auth/login`,
       email
     );
 
-    if (response) {
-      localStorage.setItem("cookie", response.data.token);
-      // console.log(response.data);
-      return response.data;
+    if (r) {
+      console.log(r);
+      return r?.data;
     }
   } catch (error) {
     console.log(`Error occurred during the login of user: `, error);

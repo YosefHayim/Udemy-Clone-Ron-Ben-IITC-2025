@@ -1,4 +1,4 @@
-import buyCourseById from "@/api/users/buyCourseId";
+import buyCourseById from "@/api/courses/buyCourseId";
 import refreshMe from "@/api/users/refreshMe";
 import Loader from "@/components/Loader/Loader";
 import { Button } from "@/components/ui/button";

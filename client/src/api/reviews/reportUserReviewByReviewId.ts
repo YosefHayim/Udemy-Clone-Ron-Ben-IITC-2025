@@ -1,17 +1,9 @@
-import { ReportUserReviewPayload } from "../../types/types";
 import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configuration";
 
-type fn = (payload: ReportUserReviewPayload) => Promise<any>;
+type fn = (payload) => Promise<any>;
 
-const reportUserReviewByReviewId: fn = async ({
-  reviewId,
-  issueType,
-  issueDetails,
-  userId,
-}: ReportUserReviewPayload) => {
-  if (!reviewId || typeof reviewId !== "string") {
-    throw new Error("Invalid review ID provided.");
-  }
+const reportUserReviewByReviewId: fn = async ({ reviewId, issueType, issueDetails, userId }) => {
+  if (!reviewId) throw new Error("Please provide idOfReview in url.");
 
   const sanitizedReviewId = reviewId.trim().toString();
   if (!sanitizedReviewId) {
@@ -22,18 +14,15 @@ const reportUserReviewByReviewId: fn = async ({
 
   try {
     const payload = { issueType, issueDetails, userId };
-    const response = await axiosClient.post(url, payload);
+    const r = await axiosClient.post(url, payload);
 
-    if (response) {
-      console.log(response);
-      return response;
+    if (r) {
+      console.log(r);
+      return r;
     }
-
-    console.warn("No review data found in the response.");
-    return null;
-  } catch (error: any) {
+  } catch (error) {
     console.log(`Error reporting review with ID ${sanitizedReviewId}:`, error.message);
-    throw new Error("Failed to report review. Please try again.");
+    throw error;
   }
 };
 

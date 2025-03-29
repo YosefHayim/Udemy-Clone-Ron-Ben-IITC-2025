@@ -13,7 +13,7 @@ import Loader from "@/components/Loader/Loader";
 import { useNavigate, Link } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { RootState } from "@/redux/store";
-import buyCourseById from "@/api/users/buyCourseId";
+import buyCourseById from "@/api/courses/buyCourseId";
 
 const AddToCart: React.FC<{
   discountSum?: number;
