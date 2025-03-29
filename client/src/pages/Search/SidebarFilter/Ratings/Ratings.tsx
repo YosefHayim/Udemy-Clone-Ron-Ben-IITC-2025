@@ -50,7 +50,7 @@ const RatingsFilter = () => {
               <span
                 onClick={() => handleRatingClick(value)}
                 className={`flex h-4 w-4 items-center justify-center rounded-full border-2 ${
-                  selectedRating === value ? 'border-black' : 'border-gray-400'
+                  selectedRating === value ? 'border-black' : 'border-gray-600'
                 }`}
               >
                 {selectedRating === value && (
@@ -59,7 +59,7 @@ const RatingsFilter = () => {
               </span>
               <div className="flex ">
                 <span className="flex items-center">
-                  <span className="text-sm text-yellow-500">{rating}</span>
+                  <span className="text-sm text-[#C4710D]">{rating}</span>
                   <span className="ml-1 text-sm text-gray-600">{value} & up</span>
                 </span>
                 <span className="ml-2 text-sm text-gray-500">{`(${count})`}</span>

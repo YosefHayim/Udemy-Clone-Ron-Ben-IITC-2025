@@ -83,7 +83,7 @@ const SearchPage: React.FC = () => {
   return (
     <div className="w-full bg-white">
       {/* Central container */}
-      <div className="mx-auto max-w-screen-xl px-4 py-6">
+      <div className="mx-auto max-w-screen-xl py-8">
         
         {/* Filter */}
         <FilterNSort coursesResults={data?.totalCourses} searchTerm={searchTerm} />
@@ -92,7 +92,7 @@ const SearchPage: React.FC = () => {
         <div className="mt-4 flex gap-6">
           
           {/* Sidebar on the left */}
-          <aside className="w-[260px] shrink-0">
+          <aside className="w-[320px] shrink-0">
             <SidebarFilter />
           </aside>
   

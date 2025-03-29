@@ -2,7 +2,7 @@ import { IoFilterOutline } from 'react-icons/io5';
 
 const FilterBtn = () => {
   return (
-    <div className="flex h-[5em] w-min cursor-pointer items-center gap-[0.1em] rounded-[0.2em] border border-black px-[0.5em] py-[1em] hover:bg-hoverDivGray">
+    <div className="flex h-[5em] w-min cursor-pointer items-center gap-[0.1em] rounded-[0.2em] border border-gray-400 px-[0.5em] py-[1em] hover:bg-[#F6F7F9]">
       <div>
         <IoFilterOutline />
       </div>
