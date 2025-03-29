@@ -81,13 +81,24 @@ const SearchPage: React.FC = () => {
   }
 
   return (
-    <div>
-      <div className="w-full px-6 py-3">
+    <div className="w-full bg-white">
+      {/* Container central com limite de largura */}
+      <div className="mx-auto max-w-screen-xl px-6 py-6">
+        
+        {/* Filtro topo */}
         <FilterNSort coursesResults={data?.totalCourses} searchTerm={searchTerm} />
-        <div className="flex w-auto items-start justify-center gap-4">
-          <SidebarFilter />
-          <div className="flex flex-col items-start justify-start">
-            <div className="flex w-auto flex-col items-center justify-center gap-[1em]">
+        
+        {/* Grid layout: Sidebar | Cursos */}
+        <div className="mt-4 flex gap-6">
+          
+          {/* Sidebar à esquerda */}
+          <aside className="w-[260px] shrink-0">
+            <SidebarFilter />
+          </aside>
+  
+          {/* Lista de cursos à direita */}
+          <main className="flex flex-col flex-grow">
+            <div className="flex flex-col gap-6">
               {data?.response?.slice(0, 18).map((course: CourseTypeProps, index: number) => (
                 <div
                   key={course?._id}
@@ -97,11 +108,10 @@ const SearchPage: React.FC = () => {
                   onMouseLeave={() => setHoveredCourse(null)}
                 >
                   <SearchCourseCard course={course} />
+  
+                  {/* Hover card */}
                   {hoveredCourse === course?._id && (
-                    <div
-                      className={` absolute right-[60%] z-10 w-1/2 translate-x-1/2
-                ${getTopValue(index)}`}
-                    >
+                    <div className={`absolute right-[60%] z-10 w-1/2 translate-x-1/2 ${getTopValue(index)}`}>
                       <CourseHoverCardInfo
                         positionedLeft={false}
                         positionedRight={false}
@@ -115,22 +125,33 @@ const SearchPage: React.FC = () => {
                       />
                     </div>
                   )}
-                  {/* {index === 2 && <Commercial key="commercial" />} */}
-                  {/* {index === 6 && <HotFreshCourses key="hotfreshcourses" />} */}
+  
+                  {/* Anúncios intermediários */}
+                  {index === 2 && <Commercial key="commercial" />}
+                  {index === 6 && <HotFreshCourses key="hotfreshcourses" />}
                 </div>
               ))}
             </div>
-            <RelatedSearches />
-          </div>
+  
+            {/* Pesquisas relacionadas */}
+            <div className="mt-10">
+              <RelatedSearches />
+            </div>
+          </main>
+        </div>
+  
+        {/* Paginação */}
+        <div className="mt-10">
+          <Pagination
+            totalPages={data?.totalPages}
+            currentPage={currentPage || 1}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
       </div>
-      <Pagination
-        totalPages={data?.totalPages}
-        currentPage={currentPage || 1}
-        setCurrentPage={setCurrentPage}
-      />
     </div>
   );
+  
 };
 
 export default SearchPage;
