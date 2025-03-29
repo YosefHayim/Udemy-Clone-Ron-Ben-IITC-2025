@@ -1,9 +1,8 @@
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { MdLanguage } from 'react-icons/md';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
-import ProfilePic from '../../ProfilePic/ProfilePic';
 import CartCoursesNumber from '../Cart/CartCoursesNumber/CartCoursesNumber';
 import ChangeLanguage from './ChangeLanguage/ChangeLanguage';
 import { clearUser } from '@/redux/slices/userSlice';
@@ -14,7 +13,6 @@ import DropDownMenuProfileArea from './DropDownMenuProfileArea/DropDownMenuProfi
 const DropdownMenu: React.FC = () => {
   const [isClicked, setClicked] = useState(false);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { fullName = '', profilePic, email } = useSelector((state: RootState) => state?.user);
