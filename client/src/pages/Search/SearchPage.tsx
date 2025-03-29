@@ -82,21 +82,21 @@ const SearchPage: React.FC = () => {
 
   return (
     <div className="w-full bg-white">
-      {/* Container central com limite de largura */}
-      <div className="mx-auto max-w-screen-xl px-6 py-6">
+      {/* Central container */}
+      <div className="mx-auto max-w-screen-xl px-4 py-6">
         
-        {/* Filtro topo */}
+        {/* Filter */}
         <FilterNSort coursesResults={data?.totalCourses} searchTerm={searchTerm} />
         
-        {/* Grid layout: Sidebar | Cursos */}
+        {/* Grid layout: Sidebar | Curses */}
         <div className="mt-4 flex gap-6">
           
-          {/* Sidebar à esquerda */}
+          {/* Sidebar on the left */}
           <aside className="w-[260px] shrink-0">
             <SidebarFilter />
           </aside>
   
-          {/* Lista de cursos à direita */}
+          {/* courses on the right */}
           <main className="flex flex-col flex-grow">
             <div className="flex flex-col gap-6">
               {data?.response?.slice(0, 18).map((course: CourseTypeProps, index: number) => (
