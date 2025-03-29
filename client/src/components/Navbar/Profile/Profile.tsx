@@ -19,7 +19,7 @@ const Profile: React.FC<{ cookie: string }> = ({ cookie }) => {
     <div
       className="group relative px-[0.2rem] pr-[1rem]"
       onMouseEnter={() => setShowDropDown(true)}
-      onMouseLeave={() => setShowDropDown(true)}
+      onMouseLeave={() => setShowDropDown(false)}
     >
       <div className="cursor-pointer">
         <ProfilePic
