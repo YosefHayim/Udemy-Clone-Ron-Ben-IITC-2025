@@ -55,21 +55,16 @@ const Navbar = () => {
       {/* <SaleCommercial />dasdsa */}
       <SaleCommercialTwo />
       {!isMobile && (
-        <div className="relative z-[50] flex w-full items-center justify-between bg-white px-[1.55rem] pb-[0.9em] pt-[0.2em] shadow-carouselShadowBtn">
-          <div className="flex w-full items-center justify-between pt-[0.5rem] ">
+        <div className="relative z-[50] flex w-full items-center justify-between bg-white px-[1rem] pb-[0.9em] pt-[0.2em] ">
+          <div className="flex w-full items-center justify-between pt-[0.4rem] px-[0.25rem] ">
             <Link to="/">
               <Logo />
             </Link>
             <CategoriesMenu />
-            <div className={'flex w-full items-center p-1'}>
-              <div className="w-full">
+            <div className={'flex-grow w-full items-center p-1 px-[0.25rem]'}>
                 <SearchInput isTyping={isTyping} setIsTyping={setIsTyping} />
-              </div>
             </div>
-            <div
-              className="flex w-full items-end justify-end gap-2"
-              style={{ maxWidth: 'min-content' }}
-            >
+            <div className="flex w-full items-end justify-end gap-1"  style={{ maxWidth: 'min-content' }}>
               <ButtonNavbar buttonName={'Udemy Business'} />
               <ButtonNavbar buttonName={'Teach on Udemy'} />
               {cookie && (
@@ -105,7 +100,7 @@ const Navbar = () => {
                   <div className="relative inline-block">
                     <Profile cookie={cookie} />
                     {coursesInCart.length >= 1 && (
-                      <div className="absolute right-[-15%] top-[11%]  z-10 h-[0.85rem] w-[0.85rem] rounded-full bg-[#A435F0]"></div>
+                      <div className="absolute right-[-2%] top-[10%]  z-10 h-[0.85rem] w-[0.85rem] rounded-full bg-[#A435F0]"></div>
                     )}
                   </div>
                 </Link>

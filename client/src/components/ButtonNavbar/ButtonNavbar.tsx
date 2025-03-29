@@ -17,7 +17,7 @@ const ButtonNavbar: React.FC<{ buttonName: string }> = ({ buttonName }) => {
       className="w-min-max relative mx-[0.2em]"
     >
       <p
-        className={`${btnStyleNHover} flex-row overflow-hidden text-ellipsis whitespace-nowrap rounded-md px-3 py-3 font-sans text-[0.85rem] font-normal text-[#37474F]`}
+        className={`${btnStyleNHover} flex-row overflow-hidden text-ellipsis whitespace-nowrap rounded-md font-sans text-[0.85rem] font-normal text-[#37474F]`}
       >
         {buttonName}
       </p>

@@ -17,7 +17,7 @@ const Profile: React.FC<{ cookie: string }> = ({ cookie }) => {
 
   return (
     <div
-      className="group relative"
+      className="group relative px-[0.2rem]"
       onMouseEnter={() => setShowDropDown(true)}
       onMouseLeave={() => setShowDropDown(true)}
     >
@@ -28,7 +28,8 @@ const Profile: React.FC<{ cookie: string }> = ({ cookie }) => {
           isBig={true}
           isHover={true}
           size="h-[2rem] w-[2rem]" // ← black circle size
-          customTextSize="text-[1rem]" // ← font-size inside the black circle
+          customTextSize="text-[0.9rem]" // ← font-size inside the black circle
+          
         />
       </div>
 
