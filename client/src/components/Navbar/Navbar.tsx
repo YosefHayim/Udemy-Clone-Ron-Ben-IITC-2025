@@ -15,7 +15,7 @@ import CategoriesMenu from './Categories/CategoriesMenu';
 import ChangeLanguage from './DropDownMenu/ChangeLanguage/ChangeLanguage';
 import SaleCommercialTwo from './SaleCommercials/SaleCommercialTwo/SaleCommercialTwo';
 import { useMediaQuery } from 'react-responsive';
-import MobileNavbar from './MobileNavbar/MobileNavbar';
+import MobileNavbar from '../MobileNavbar/MobileNavbar';
 
 const Navbar = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });

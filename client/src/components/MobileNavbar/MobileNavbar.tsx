@@ -1,9 +1,9 @@
 import Logo from '@/components/Logo/Logo';
 import Burger from './Burger/Burger';
 import { btnStyleNHover } from '@/utils/stylesStorage';
-import SearchInput from '../SearchInput/SearchInput';
 import CartAndSearchMobile from './CartAndSearchMobile/CartAndSearchMobile';
 import { useEffect, useState } from 'react';
+import SearchInput from '../Navbar/SearchInput/SearchInput';
 
 const MobileNavbar = ({ isTyping, setIsTyping }) => {
   const [showSearchMobile, setShowSearchMobile] = useState(false);

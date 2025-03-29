@@ -1,5 +1,5 @@
-import SearchInputSearchButton from '../SearchInputSearchButton/SearchInputSearchButton';
-import SearchResults from '../../SearchResults/SearchResults';
+import SearchInputSearchButton from '@/components/Navbar/SearchInput/SearchInputSearchButton/SearchInputSearchButton';
+import SearchResults from '@/components/Navbar/SearchResults/SearchResults';
 import CloseMobileSearchButton from '../CloseMobileSearchButton/CloseMobileSearchButton';
 
 const SearchInputMobile = ({
