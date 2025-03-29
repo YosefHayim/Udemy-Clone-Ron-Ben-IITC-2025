@@ -2,15 +2,24 @@ import { TextField } from '@mui/material';
 import React, { useRef, useState } from 'react';
 import { PiWarningOctagon } from 'react-icons/pi';
 
-const CustomInput = ({ isError, setShowIsError, labelName, idAttribute, nameAttribute,inputMode }) => {
+const CustomInput = ({
+  isError,
+  setShowIsError,
+  labelName,
+  idAttribute,
+  nameAttribute,
+  inputMode,
+}) => {
   const [email, setEmail] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const focusOrBlurRef = useRef(null);
 
-  const handleBlur = () => {
+  const handleBlur = (e: React.FocusEventHandler<HTMLInputElement>) => {
     setIsFocused(false);
-    const isValidEmail = /^[^\s@]+@[^\s@]+\.(com)$/.test(email);
-    setShowIsError(!isValidEmail);
+    if (email.length > 1) {
+      const isValidEmail = /^[^\s@]+@[^\s@]+\.(com|co\.il)$/.test(email);
+      setShowIsError(!isValidEmail);
+    }
   };
 
   return (
@@ -19,7 +28,7 @@ const CustomInput = ({ isError, setShowIsError, labelName, idAttribute, nameAttr
         <TextField
           ref={focusOrBlurRef}
           onFocus={() => setIsFocused(true)}
-          onBlur={handleBlur}
+          onBlur={(e) => handleBlur}
           inputMode={inputMode}
           id={idAttribute}
           value={email}
