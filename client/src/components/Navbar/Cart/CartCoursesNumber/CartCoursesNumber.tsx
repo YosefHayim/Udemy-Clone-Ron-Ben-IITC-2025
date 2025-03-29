@@ -6,7 +6,7 @@ import { RootState } from "@/redux/store";
 
 const CartCoursesNumber = () => {
   const dispatch = useDispatch();
-  const countOfCourses = useSelector((state: RootState) => state.cart.amountOfCourses);
+  const countOfCourses = useSelector((state: RootState) => state?.cart?.amountOfCourses);
 
   useEffect(() => {
     if (countOfCourses >= 1) {

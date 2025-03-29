@@ -14,7 +14,7 @@ const FaqTotalCoursesPrice: React.FC<{
         </p>
         <p className="ml-[0.5em] line-through">₪{sum}</p>
       </div>
-      <div>
+      <div className="w-full">
         <AddToCart textBtn={"Add all to cart"} discountSum={discountSum} courseIds={courseIds} />
       </div>
     </div>

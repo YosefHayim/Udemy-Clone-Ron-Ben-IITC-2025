@@ -8,8 +8,8 @@ import { RootState } from "@/redux/store";
 const HoverCart = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const totalToPay = useSelector((state: RootState) => state.cart.totalCourseDiscountPrices);
-  const coursesIdAdded = useSelector((state: RootState) => state.cart.coursesAddedToCart);
+  const totalToPay = useSelector((state: RootState) => state?.cart?.totalCourseDiscountPrices);
+  const coursesIdAdded = useSelector((state: RootState) => state?.cart?.coursesAddedToCart);
 
   useEffect(() => {
     const timer = setTimeout(() => {
