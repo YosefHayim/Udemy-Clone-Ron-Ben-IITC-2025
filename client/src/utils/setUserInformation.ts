@@ -18,13 +18,18 @@ import {
 import { DecodedTokenProps } from "@/types/types";
 import { jwtDecode } from "jwt-decode";
 import { AppDispatch } from "@/redux/store";
+import Cookies from "js-cookie";
 
 export const setUserInformation = (cookie: string, dispatch?: AppDispatch) => {
-  if (!cookie) console.log("Cookie is not provided: ", cookie);
+  const reduxCookie = Cookies.get("cookie");
+  if (!reduxCookie || !cookie) console.log("Cookie or redux cookie is not provided: ", cookie);
 
-  if (cookie) console.log(`Cookie received is: `, cookie);
+  if (reduxCookie || cookie)
+    console.log(
+      `Cookie or redux cookie received is redux cookie: ${reduxCookie} and reg cookie: ${cookie} `
+    );
   {
-    const decoded = jwtDecode<DecodedTokenProps>(cookie);
+    const decoded = jwtDecode<DecodedTokenProps>(reduxCookie || cookie);
     console.log("user information has been updated: ", decoded);
 
     if (decoded.fullName) dispatch(setFullName(decoded.fullName));
