@@ -58,7 +58,7 @@ const CustomInput: React.FC<{
                 borderColor: 'purple',
               },
               '&.Mui-focused': {
-                borderColor: 'purple',
+                borderColor: '#6D28D2',
                 backgroundColor: 'white',
               },
               '& input': {

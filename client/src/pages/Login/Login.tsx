@@ -5,19 +5,27 @@ import LoginForm from './LoginForm/LoginForm';
 import OtherLoginOptions from './OtherLoginOptions/OtherLoginOptions';
 import WebsiteLoginOptions from './OtherLoginOptions/WebsiteLoginOptions/WebsiteLoginOptions';
 import GoogleBtn from './OtherLoginOptions/GoogleBtn/GoogleBtn';
-import LoginImg from './LoginImg/LoginImg';
+import LoginImgDesktop from './LoginImg/LoginImg';
+import { useMediaQuery } from 'react-responsive';
+import MobileLoginImg from './MobileLoginImg/MobileLoginImg';
 
 const Login = () => {
+  const isMobile = useMediaQuery({ maxWidth: 800 });
   const [isDifferentAccount, setDifferentAccount] = useState(false);
   const cookie = useSelector((state: RootState) => state?.user?.cookie);
   const prevWGoogle = useSelector((state: RootState) => state?.user?.isLoggedPreviouslyWithGoogle);
 
   return (
     <div className="h-screen w-full bg-cover bg-center">
-      <div className="flex w-full flex-1 items-center justify-center">
-        <LoginImg />
+      <div
+        className={`${isMobile ? 'w-full flex-col' : ''} flex w-full flex-1 items-center justify-center`}
+      >
+        {!isMobile && <LoginImgDesktop />}
         <div className="h-svh w-full max-w-[29rem] rounded-lg bg-white p-6">
-          <h2 className="mb-10 mt-20 text-center font-sans text-3xl font-extrabold text-gray-800">
+          <MobileLoginImg />
+          <h2
+            className={`${isMobile && 'text-lg'} mb-10 mt-20 text-center font-sans text-3xl font-extrabold text-gray-800`}
+          >
             Log in to continue your learning journey
           </h2>
           {!prevWGoogle && (

@@ -126,7 +126,7 @@ const Navbar = () => {
       )}
       {isMobile && (
         <div>
-          <MobileNavbar />
+          <MobileNavbar isTyping={isTyping} setIsTyping={setIsTyping} />
         </div>
       )}
     </div>
