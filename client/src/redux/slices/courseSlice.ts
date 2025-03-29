@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Course {
   id: string;
@@ -15,7 +15,7 @@ const initialState: CourseState = {
 };
 
 const courseSlice = createSlice({
-  name: 'course',
+  name: "course",
   initialState,
   reducers: {
     addCourse: (state, action: PayloadAction<Course>) => {

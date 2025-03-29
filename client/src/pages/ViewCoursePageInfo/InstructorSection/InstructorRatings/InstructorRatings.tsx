@@ -1,6 +1,6 @@
-import { FaCirclePlay } from 'react-icons/fa6';
-import { IoIosRibbon } from 'react-icons/io';
-import { MdOutlineStarPurple500, MdPeople } from 'react-icons/md';
+import { FaCirclePlay } from "react-icons/fa6";
+import { IoIosRibbon } from "react-icons/io";
+import { MdOutlineStarPurple500, MdPeople } from "react-icons/md";
 
 const InstructorRatings: React.FC = () => {
   return (

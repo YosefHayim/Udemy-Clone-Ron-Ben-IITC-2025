@@ -1,4 +1,4 @@
-import loginImg from '/images/loginImg.png';
+import loginImg from "/images/loginImg.png";
 
 const LoginImg = () => {
   return (

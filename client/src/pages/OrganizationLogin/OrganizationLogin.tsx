@@ -1,7 +1,7 @@
-import OrganizationBackground from './OrganizationBackground/OrganizationBackground';
-import OrganizationLogo from './OrganizationLogo/OrganizationLogo';
-import OrganizationForm from './OrganizationForm/OrganizationForm';
-import HelperLinks from './HelperLinks/HelperLinks';
+import OrganizationBackground from "./OrganizationBackground/OrganizationBackground";
+import OrganizationLogo from "./OrganizationLogo/OrganizationLogo";
+import OrganizationForm from "./OrganizationForm/OrganizationForm";
+import HelperLinks from "./HelperLinks/HelperLinks";
 
 const OrganizationLogin = () => {
   return (

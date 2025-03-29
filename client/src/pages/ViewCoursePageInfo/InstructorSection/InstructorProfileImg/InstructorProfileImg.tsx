@@ -1,4 +1,4 @@
-import InstructorRatings from '../InstructorRatings/InstructorRatings';
+import InstructorRatings from "../InstructorRatings/InstructorRatings";
 
 const InstructorProfileImg: React.FC<{
   instructorImg: string;

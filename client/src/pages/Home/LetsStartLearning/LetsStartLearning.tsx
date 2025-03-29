@@ -1,11 +1,11 @@
-import { btnStyleNHover } from '@/utils/stylesStorage';
-import StartWeeklyStreak from './StartWeeklyStreak/StartWeeklyStreak';
-import ContinueLearningCourse from './ContinueLearningCourse/ContinueLearningCourse';
-import ButtonsCarousel from '@/components/ButtonsCarousel/ButtonsCarousel';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
-import { Link } from 'react-router-dom';
+import { btnStyleNHover } from "@/utils/stylesStorage";
+import StartWeeklyStreak from "./StartWeeklyStreak/StartWeeklyStreak";
+import ContinueLearningCourse from "./ContinueLearningCourse/ContinueLearningCourse";
+import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { Link } from "react-router-dom";
 
 const LetsStartLearning = () => {
   const amountOfLessonsSpecificCourseChosen = useSelector(

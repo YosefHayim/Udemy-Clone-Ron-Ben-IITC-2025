@@ -1,4 +1,4 @@
-import { IoMdCheckmark } from 'react-icons/io';
+import { IoMdCheckmark } from "react-icons/io";
 
 const UdemyGetYourDemoSection = () => {
   return (

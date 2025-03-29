@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { IoMdCheckmark } from 'react-icons/io';
-import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md';
+import { useState } from "react";
+import { IoMdCheckmark } from "react-icons/io";
+import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
 
 const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
   const [isExpanded, setExpanded] = useState(true);
@@ -22,15 +22,15 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
       <div
         className="flex w-full flex-col items-start justify-start p-2"
         style={{
-          maxHeight: isExpanded ? 'none' : '280px',
+          maxHeight: isExpanded ? "none" : "280px",
           WebkitMaskImage: isExpanded
-            ? 'none'
-            : 'linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))',
+            ? "none"
+            : "linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))",
           maskImage: isExpanded
-            ? 'none'
-            : 'linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))',
-          WebkitMaskSize: '100% 100%',
-          maskSize: '100% 100%',
+            ? "none"
+            : "linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))",
+          WebkitMaskSize: "100% 100%",
+          maskSize: "100% 100%",
         }}
       >
         <h2 className="w-full p-[0.5em] font-sans text-[1.5em] font-extrabold">
@@ -64,7 +64,7 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
         onClick={handleToggle}
       >
         <span className="m-[0.5em] font-sans font-extrabold text-purpleStatic hover:text-purpleHover ">
-          {isExpanded ? 'Show less' : 'Show more'}
+          {isExpanded ? "Show less" : "Show more"}
         </span>
         {isExpanded ? <MdOutlineKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
       </div>

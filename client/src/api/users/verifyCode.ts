@@ -1,4 +1,4 @@
-import { axiosClient, baseUrl, isProduction, localhostUrl } from '../configuration';
+import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configuration";
 
 type fn = (verificationCredentials: {
   fullName?: string;
@@ -15,7 +15,7 @@ const verifyCode: fn = async (verificationCredentials) => {
 
     if (response) {
       console.log(response.data);
-      localStorage.setItem('cookie', response.data.token);
+      localStorage.setItem("cookie", response.data.token);
       return response.data.token;
     }
   } catch (error) {

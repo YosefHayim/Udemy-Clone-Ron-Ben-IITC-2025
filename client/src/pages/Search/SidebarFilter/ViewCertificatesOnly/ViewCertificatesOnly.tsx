@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { BsToggleOn, BsToggleOff } from 'react-icons/bs';
-import { useContext } from 'react';
-import { filterContext } from '@/routes/AppRoutes';
+import { useState } from "react";
+import { BsToggleOn, BsToggleOff } from "react-icons/bs";
+import { useContext } from "react";
+import { filterContext } from "@/routes/AppRoutes";
 
 const ViewCertificatesOnly = () => {
   const [filterData, setFilterData] = useContext(filterContext);

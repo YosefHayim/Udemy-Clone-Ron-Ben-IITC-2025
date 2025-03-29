@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
-import { HiOutlineXMark } from 'react-icons/hi2';
+import { useEffect, useState } from "react";
+import { HiOutlineXMark } from "react-icons/hi2";
 
 const SaleCommercial = () => {
-  const [timeLeft, setTimeLeft] = useState('');
+  const [timeLeft, setTimeLeft] = useState("");
   const [hiddenCommercial, setHiddenCommercial] = useState(
-    localStorage.getItem('hiddenCommercial') === 'true'
+    localStorage.getItem("hiddenCommercial") === "true"
   );
 
   useEffect(() => {
@@ -29,11 +29,11 @@ const SaleCommercial = () => {
 
   const handleCommercial = () => {
     setHiddenCommercial(true);
-    localStorage.setItem('hiddenCommercial', 'true');
+    localStorage.setItem("hiddenCommercial", "true");
   };
 
   return (
-    <div className={`${hiddenCommercial ? 'hidden' : 'flex flex-grow flex-wrap'}`}>
+    <div className={`${hiddenCommercial ? "hidden" : "flex flex-grow flex-wrap"}`}>
       <div className="flex w-full flex-col items-center justify-center bg-[#c2e9eb] p-[1em]">
         <div className="flex w-full flex-row items-center justify-between">
           <div className="flex w-full flex-row items-center justify-center">

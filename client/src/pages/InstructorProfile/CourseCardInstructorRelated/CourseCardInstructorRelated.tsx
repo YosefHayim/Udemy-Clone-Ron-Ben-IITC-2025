@@ -1,8 +1,8 @@
-import CourseRating from '@/pages/ViewCoursePageInfo/CourseRating/CourseRating';
-import { LuDot } from 'react-icons/lu';
-import CoursePrice from '@/components/CourseCard/CoursePrice/CoursePrice';
-import CourseTag from '@/components/CourseCard/CourseTag/CourseTag';
-import React from 'react';
+import CourseRating from "@/pages/ViewCoursePageInfo/CourseRating/CourseRating";
+import { LuDot } from "react-icons/lu";
+import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
+import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
+import React from "react";
 
 const CourseCardInstructorRelated: React.FC<{
   courseId: string;

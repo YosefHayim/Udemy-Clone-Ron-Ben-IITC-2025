@@ -1,5 +1,5 @@
-import TitleSection from './TitleSection/TitleSection';
-import CourseCard from './CourseCard/CourseCard';
+import TitleSection from "./TitleSection/TitleSection";
+import CourseCard from "./CourseCard/CourseCard";
 
 const MoreCoursesByInstructor: React.FC<{ instructorName: string }> = ({ instructorName }) => {
   return (

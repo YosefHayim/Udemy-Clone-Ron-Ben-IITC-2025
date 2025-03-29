@@ -203,7 +203,7 @@ const Intellectual = () => {
         </p>
         <p className="font-sans font-extrabold">
           Knowingly submitting a false or misleading counter-notification to a claim of infringement
-          is illegal and you could be held liable and have to pay damages as a result.{' '}
+          is illegal and you could be held liable and have to pay damages as a result.{" "}
           <span className="font-normal">
             Udemy reserves the right to seek damages from any party that submits a
             counter-notification of claimed infringement or counter-notification in violation of the
@@ -258,7 +258,7 @@ const Intellectual = () => {
           How to Submit a Trademark Takedown Notice
         </h3>
         <p>
-          The fastest and easiest way to submit a trademark takedown notice to us is to use this{' '}
+          The fastest and easiest way to submit a trademark takedown notice to us is to use this{" "}
           <a
             href="https://example.com/trademark-complaint-form"
             className="text-blue-600 hover:underline"
@@ -350,13 +350,13 @@ const Intellectual = () => {
         </p>
         <p>
           In the event you find your course available on another platform without your permission,
-          please fill out the{' '}
+          please fill out the{" "}
           <a
             href="https://example.com/third-party-piracy-reporting-form"
             className="text-blue-600 hover:underline"
           >
             third-party piracy reporting form
-          </a>{' '}
+          </a>{" "}
           so that we can pursue action.
         </p>
 
@@ -370,27 +370,27 @@ const Intellectual = () => {
         </p>
         <ul className="ml-6 list-disc space-y-2">
           <li>
-            By filling out the{' '}
+            By filling out the{" "}
             <a
               href="https://example.com/copyright-complaint-form"
               className="text-blue-600 hover:underline"
             >
               copyright complaint form
-            </a>{' '}
+            </a>{" "}
             (for copyright takedown notices only)
           </li>
           <li>
-            By filling out the{' '}
+            By filling out the{" "}
             <a
               href="https://example.com/trademark-complaint-form"
               className="text-blue-600 hover:underline"
             >
               trademark complaint form
-            </a>{' '}
+            </a>{" "}
             (for trademark takedown notices only)
           </li>
           <li>
-            Via Email:{' '}
+            Via Email:{" "}
             <a href="mailto:takedowns@udemy.com" className="text-blue-600 hover:underline">
               takedowns@udemy.com
             </a>

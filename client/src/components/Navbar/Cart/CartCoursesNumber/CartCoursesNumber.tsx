@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
-import { setShowCart } from '@/redux/slices/cartSlice';
-import React, { useEffect } from 'react';
-import { RootState } from '@/redux/store';
+import { setShowCart } from "@/redux/slices/cartSlice";
+import React, { useEffect } from "react";
+import { RootState } from "@/redux/store";
 
 const CartCoursesNumber = () => {
   const dispatch = useDispatch();

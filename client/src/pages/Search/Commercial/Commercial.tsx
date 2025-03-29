@@ -1,9 +1,9 @@
-import ContainerImg from './ContainerImg/ContainerImg';
-import CommercialRecap from './CommercialRecap/CommercialRecap';
+import ContainerImg from "./ContainerImg/ContainerImg";
+import CommercialRecap from "./CommercialRecap/CommercialRecap";
 
 const Commercial = () => {
   return (
-    <div className="flex text-[0.8rem] items-start justify-start gap-[0.5em]  border border-borderCommercial bg-bgCommercial">
+    <div className="flex items-start justify-start gap-[0.5em] border  border-borderCommercial bg-bgCommercial text-[0.8rem]">
       <ContainerImg />
       <CommercialRecap />
     </div>

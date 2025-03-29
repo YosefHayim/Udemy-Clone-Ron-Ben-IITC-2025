@@ -1,15 +1,15 @@
-import SelectCountry from './SelectCountry/SelectCountry';
-import Checkout from './Checkout/Checkout';
-import PaymentNavbar from './PaymentNavbar/PaymentNavbar';
-import PaymentMethodNLock from './PaymentMethodNLock/PaymentMethodNLock';
-import PaymentOptionsRadio from './PaymentOptionsRadio/PaymentOptionsRadio';
-import OrderDetails from './OrderDetails/OrderDetails';
-import { useEffect, useState } from 'react';
-import Loader from '@/components/Loader/Loader';
-import { usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import SelectCountry from "./SelectCountry/SelectCountry";
+import Checkout from "./Checkout/Checkout";
+import PaymentNavbar from "./PaymentNavbar/PaymentNavbar";
+import PaymentMethodNLock from "./PaymentMethodNLock/PaymentMethodNLock";
+import PaymentOptionsRadio from "./PaymentOptionsRadio/PaymentOptionsRadio";
+import OrderDetails from "./OrderDetails/OrderDetails";
+import { useEffect, useState } from "react";
+import Loader from "@/components/Loader/Loader";
+import { usePayPalScriptReducer } from "@paypal/react-paypal-js";
 
 const Payment: React.FC = () => {
-  document.title = 'Checkout | Udemy';
+  document.title = "Checkout | Udemy";
   const [loading, setLoading] = useState(true);
   const [{ options }] = usePayPalScriptReducer();
 

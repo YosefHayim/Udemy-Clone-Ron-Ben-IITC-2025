@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from 'react-icons/md';
-import InstructorCourses from '../InstructorCourses/InstructorCourses';
+import React, { useState } from "react";
+import { MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowUp } from "react-icons/md";
+import InstructorCourses from "../InstructorCourses/InstructorCourses";
 
 const DescriptionOfInstructor: React.FC<{
   backgroundOfInstructor: string;
@@ -16,15 +16,15 @@ const DescriptionOfInstructor: React.FC<{
     <div>
       <div
         style={{
-          maxHeight: isExpanded ? 'none' : '310px',
+          maxHeight: isExpanded ? "none" : "310px",
           WebkitMaskImage: isExpanded
-            ? 'none'
-            : 'linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))',
+            ? "none"
+            : "linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))",
           maskImage: isExpanded
-            ? 'none'
-            : 'linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))',
-          WebkitMaskSize: '100% 100%',
-          maskSize: '100% 100%',
+            ? "none"
+            : "linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))",
+          WebkitMaskSize: "100% 100%",
+          maskSize: "100% 100%",
         }}
         className="flex w-[500px] flex-col items-start justify-start gap-[2em]"
       >
@@ -36,7 +36,7 @@ const DescriptionOfInstructor: React.FC<{
         onClick={handleToggle}
       >
         <span className="font-sans font-extrabold text-purpleStatic hover:text-purpleHover ">
-          {isExpanded ? 'Show less' : 'Show more'}
+          {isExpanded ? "Show less" : "Show more"}
         </span>
         {isExpanded ? <MdOutlineKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
       </div>

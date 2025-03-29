@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import LogoutMessage from '../Home/LogoutMessage/LogoutMessage';
-import logoutBanner from '/images/logout-banner.jpg';
-import udemyBusinessLogo from '/images/udemy-business-logo.png';
+import { useState } from "react";
+import LogoutMessage from "../Home/LogoutMessage/LogoutMessage";
+import logoutBanner from "/images/logout-banner.jpg";
+import udemyBusinessLogo from "/images/udemy-business-logo.png";
 
 const Logout: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  document.title = 'udemy.com/logout/';
+  document.title = "udemy.com/logout/";
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
-    const closestDiv = target.closest('div[id]');
+    const closestDiv = target.closest("div[id]");
     if (closestDiv) {
       const categoryName = closestDiv.id;
       console.log(categoryName);
@@ -42,27 +42,27 @@ const Logout: React.FC = () => {
       </div>
       <div className="mt-[2.5em] flex  items-start justify-start gap-[1.5em]" onClick={handleClick}>
         {[
-          'business',
-          'design',
-          'photography-video',
-          'marketing',
-          'it-software',
-          'personal-development',
+          "business",
+          "design",
+          "photography-video",
+          "marketing",
+          "it-software",
+          "personal-development",
         ].map((category) => (
           <div className="cursor-pointer pb-[0.5em]" id={category} key={category}>
             <b
               className={`text-gray-600 hover:text-black ${
-                selectedCategory === category ? 'font-sans font-extrabold !text-black' : ''
+                selectedCategory === category ? "font-sans font-extrabold !text-black" : ""
               }`}
             >
               {category
-                .split('-')
+                .split("-")
                 .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(' & ')}
+                .join(" & ")}
             </b>
             <hr
               className={`w-min-max relative bottom-0 border border-black ${
-                selectedCategory === category ? 'opacity-100' : 'opacity-0'
+                selectedCategory === category ? "opacity-100" : "opacity-0"
               }`}
             />
           </div>

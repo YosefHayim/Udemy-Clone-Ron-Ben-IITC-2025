@@ -1,5 +1,5 @@
-import updateUserLanguage from '@/api/users/updateUserLanguage';
-import { Button } from '@/components/ui/button';
+import updateUserLanguage from "@/api/users/updateUserLanguage";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,16 +7,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
-import { RootState } from '@/redux/store';
-import { setLanguage } from '@/redux/slices/userSlice';
-import { btnLanguages } from '@/utils/languages';
-import { useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
-import { TbWorld } from 'react-icons/tb';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { DialogOverlay } from '@radix-ui/react-dialog';
+} from "@/components/ui/dialog";
+import { RootState } from "@/redux/store";
+import { setLanguage } from "@/redux/slices/userSlice";
+import { btnLanguages } from "@/utils/languages";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
+import { TbWorld } from "react-icons/tb";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { DialogOverlay } from "@radix-ui/react-dialog";
 
 const ChangeLanguage: React.FC<{
   isClicked?: boolean;
@@ -41,7 +41,7 @@ const ChangeLanguage: React.FC<{
 
   return (
     <Dialog>
-      <DialogOverlay style={{ backgroundColor: '#1d1e27cc' }} />
+      <DialogOverlay style={{ backgroundColor: "#1d1e27cc" }} />
       <DialogTrigger open={isClicked} onOpenChange={setClicked}>
         {showIcon && (
           <div>
@@ -50,7 +50,7 @@ const ChangeLanguage: React.FC<{
         )}
         <div
           className={`${
-            !showIcon ? 'justify-center border border-purple-800 p-[10px]' : ''
+            !showIcon ? "justify-center border border-purple-800 p-[10px]" : ""
           } flex items-center rounded-[0.2em] hover:bg-purpleHoverBtn focus:outline-none`}
         >
           {!showIcon && <TbWorld size={size} className="focus:outline-none" />}
@@ -72,7 +72,7 @@ const ChangeLanguage: React.FC<{
                 >
                   <Button
                     className={`hover:hover-color-mix flex h-[3em] w-full justify-start rounded-[0.2em] bg-white text-black shadow-none hover:text-btnColor focus:outline-none
-                          ${chosenLanguage === language.name && 'border border-gray-500'} `}
+                          ${chosenLanguage === language.name && "border border-gray-500"} `}
                   >
                     {language.name}
                   </Button>

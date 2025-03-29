@@ -1,5 +1,5 @@
-import Loader from '@/components/Loader/Loader';
-import { useEffect, useState } from 'react';
+import Loader from "@/components/Loader/Loader";
+import { useEffect, useState } from "react";
 
 const CoursePrice: React.FC<{
   discountPrice?: number | string;
@@ -11,7 +11,7 @@ const CoursePrice: React.FC<{
 }> = ({
   discountPrice = 49.9,
   fullPrice = 369.9,
-  chooseFlex = 'flex-col',
+  chooseFlex = "flex-col",
   showFullPrice = true,
   extraCSS,
   displayPercent = true,

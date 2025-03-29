@@ -1,4 +1,4 @@
-import signUpImage from '/images/signup.png';
+import signUpImage from "/images/signup.png";
 
 const SignUpImg = () => {
   return (

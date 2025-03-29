@@ -1,6 +1,6 @@
-import { TextField } from '@mui/material';
-import React, { useRef, useState } from 'react';
-import { PiWarningOctagon } from 'react-icons/pi';
+import { TextField } from "@mui/material";
+import React, { useRef, useState } from "react";
+import { PiWarningOctagon } from "react-icons/pi";
 
 const CustomInput: React.FC<{
   isError?: boolean | null;
@@ -19,7 +19,7 @@ const CustomInput: React.FC<{
   inputMode,
   useErrorDisplay = true,
 }) => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const focusOrBlurRef = useRef(null);
 
@@ -48,29 +48,29 @@ const CustomInput: React.FC<{
           name={nameAttribute}
           error={isError && useErrorDisplay}
           sx={{
-            width: '100%',
-            '& .MuiInputBase-root': {
-              backgroundColor: 'white',
-              border: '1px solid gray',
-              borderRadius: '5px',
-              transition: 'border-color 0.2s ease-in-out',
-              '&:hover': {
-                borderColor: 'purple',
+            width: "100%",
+            "& .MuiInputBase-root": {
+              backgroundColor: "white",
+              border: "1px solid gray",
+              borderRadius: "5px",
+              transition: "border-color 0.2s ease-in-out",
+              "&:hover": {
+                borderColor: "purple",
               },
-              '&.Mui-focused': {
-                borderColor: '#6D28D2',
-                backgroundColor: 'white',
+              "&.Mui-focused": {
+                borderColor: "#6D28D2",
+                backgroundColor: "white",
               },
-              '& input': {
-                color: 'black',
+              "& input": {
+                color: "black",
               },
             },
-            '& .MuiInputLabel-root': {
-              color: `${isError && useErrorDisplay ? 'red' : 'black'}`,
+            "& .MuiInputLabel-root": {
+              color: `${isError && useErrorDisplay ? "red" : "black"}`,
               fontWeight: 600,
               fontSize: 15,
-              '&.Mui-focused': {
-                color: isError && useErrorDisplay ? 'red' : 'black',
+              "&.Mui-focused": {
+                color: isError && useErrorDisplay ? "red" : "black",
               },
             },
           }}
@@ -86,7 +86,7 @@ const CustomInput: React.FC<{
         {isError && useErrorDisplay && (
           <PiWarningOctagon
             size={18}
-            className={`${isFocused ? '' : 'left-14 top-[28%]'} absolute left-12 top-[4px] text-red-600`}
+            className={`${isFocused ? "" : "left-14 top-[28%]"} absolute left-12 top-[4px] text-red-600`}
           />
         )}
       </div>

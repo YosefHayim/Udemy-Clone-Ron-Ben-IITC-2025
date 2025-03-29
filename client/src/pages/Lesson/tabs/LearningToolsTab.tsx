@@ -1,4 +1,4 @@
-import udemyAppIcon from '/images/udemy-app-icon.svg';
+import udemyAppIcon from "/images/udemy-app-icon.svg";
 
 const LearningToolsTab: React.FC = () => {
   return (

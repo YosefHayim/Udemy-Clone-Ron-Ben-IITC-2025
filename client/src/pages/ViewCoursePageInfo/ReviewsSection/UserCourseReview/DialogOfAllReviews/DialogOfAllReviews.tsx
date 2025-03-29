@@ -1,4 +1,4 @@
-import getAllReviewsByCourseId from '@/api/reviews/getAllReviewsByCourseId';
+import getAllReviewsByCourseId from "@/api/reviews/getAllReviewsByCourseId";
 import {
   Dialog,
   DialogContent,
@@ -6,16 +6,16 @@ import {
   DialogHeader,
   DialogOverlay,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { useQuery } from '@tanstack/react-query';
-import { LuDot } from 'react-icons/lu';
-import { useParams } from 'react-router-dom';
-import UserCourseReview from '@/pages/ViewCoursePageInfo/ReviewsSection/UserCourseReview/UserCourseReview';
-import { MdSearch, MdStar } from 'react-icons/md';
-import Loader from '@/components/Loader/Loader';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Review } from '@/types/types';
+} from "@/components/ui/dialog";
+import { useQuery } from "@tanstack/react-query";
+import { LuDot } from "react-icons/lu";
+import { useParams } from "react-router-dom";
+import UserCourseReview from "@/pages/ViewCoursePageInfo/ReviewsSection/UserCourseReview/UserCourseReview";
+import { MdSearch, MdStar } from "react-icons/md";
+import Loader from "@/components/Loader/Loader";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Review } from "@/types/types";
 
 const DialogOfAllReviews: React.FC<{
   avgRating: number;
@@ -26,10 +26,10 @@ const DialogOfAllReviews: React.FC<{
   const courseId: string | undefined = params.courseId;
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['reviews', courseId],
+    queryKey: ["reviews", courseId],
     queryFn: () => {
       if (!courseId) {
-        throw new Error('Course ID is undefined');
+        throw new Error("Course ID is undefined");
       }
       return getAllReviewsByCourseId(courseId);
     },
@@ -39,7 +39,7 @@ const DialogOfAllReviews: React.FC<{
   return (
     <div>
       <Dialog open={isClicked} onOpenChange={setClicked}>
-        <DialogOverlay style={{ backgroundColor: '#1d1e27cc' }} />
+        <DialogOverlay style={{ backgroundColor: "#1d1e27cc" }} />
         <DialogContent className="z-[2000]">
           <DialogHeader>
             <DialogTitle>
@@ -80,7 +80,7 @@ const DialogOfAllReviews: React.FC<{
                     <div className="mt-[2em] w-full">
                       <Button
                         className={`${
-                          data.length < 13 ? 'hidden' : 'block'
+                          data.length < 13 ? "hidden" : "block"
                         } w-full rounded-[0.2em] border border-black bg-white font-sans font-extrabold text-black`}
                       >
                         Show more reviews

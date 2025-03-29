@@ -1,11 +1,11 @@
-import Logo from '@/components/Logo/Logo';
-import Burger from './Burger/Burger';
-import { btnStyleNHover } from '@/utils/stylesStorage';
-import CartAndSearchMobile from './CartAndSearchMobile/CartAndSearchMobile';
-import { useEffect, useState } from 'react';
-import SearchInput from '../Navbar/SearchInput/SearchInput';
-import MobileSidebar from './MobileSidebar/MobileSidebar';
-import { Link } from 'react-router-dom';
+import Logo from "@/components/Logo/Logo";
+import Burger from "./Burger/Burger";
+import { btnStyleNHover } from "@/utils/stylesStorage";
+import CartAndSearchMobile from "./CartAndSearchMobile/CartAndSearchMobile";
+import { useEffect, useState } from "react";
+import SearchInput from "../Navbar/SearchInput/SearchInput";
+import MobileSidebar from "./MobileSidebar/MobileSidebar";
+import { Link } from "react-router-dom";
 
 const MobileNavbar = ({ isTyping, setIsTyping }) => {
   const [showSearchMobile, setShowSearchMobile] = useState(false);

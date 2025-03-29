@@ -1,13 +1,13 @@
-import getCouponByCouponCode from '@/api/courses/getCouponByCouponCode';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
-import { HiOutlineXMark } from 'react-icons/hi2';
+import getCouponByCouponCode from "@/api/courses/getCouponByCouponCode";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
+import { HiOutlineXMark } from "react-icons/hi2";
 
 const CouponArea: React.FC<{ btnBgDesign?: string; couponText?: string }> = ({
-  btnBgDesign = '',
-  couponText = 'NEWYEARCAREER',
+  btnBgDesign = "",
+  couponText = "NEWYEARCAREER",
 }) => {
   const [isError, setError] = useState(false);
   const [isCursorOff, setCursorClickOff] = useState(false);
@@ -15,13 +15,13 @@ const CouponArea: React.FC<{ btnBgDesign?: string; couponText?: string }> = ({
   const handleCouponSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const couponCode = formData.get('coupon-code') as string;
-    if (couponCode === 'KEEPLEARNING') return undefined;
+    const couponCode = formData.get("coupon-code") as string;
+    if (couponCode === "KEEPLEARNING") return undefined;
     couponMutation.mutate(couponCode);
   };
 
   const handleChange = (v: string) => {
-    if (v === 'KEEPLEARNING') {
+    if (v === "KEEPLEARNING") {
       setCursorClickOff(true);
     } else {
       setCursorClickOff(false);
@@ -68,7 +68,7 @@ const CouponArea: React.FC<{ btnBgDesign?: string; couponText?: string }> = ({
         <Button
           type="submit"
           className={`${btnBgDesign} ${
-            isCursorOff ? 'cursor-not-allowed opacity-10' : ''
+            isCursorOff ? "cursor-not-allowed opacity-10" : ""
           } rounded-[0.2em] font-sans font-extrabold`}
         >
           Apply

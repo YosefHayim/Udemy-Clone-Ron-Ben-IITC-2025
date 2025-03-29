@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState: {
     isShowCart: false,
     amountOfCourses: 0,
@@ -48,7 +48,7 @@ const cartSlice = createSlice({
 
     setTotalOriginalCoursePrices: (state, action: PayloadAction<number>) => {
       if (!action.payload || isNaN(action.payload)) {
-        console.log('Invalid fullPrice payload:', action.payload);
+        console.log("Invalid fullPrice payload:", action.payload);
         return;
       }
       state.totalCoursesOriginalPrices += action.payload; // Add original price
@@ -56,7 +56,7 @@ const cartSlice = createSlice({
 
     setTotalCourseDiscountPrices: (state, action: PayloadAction<number>) => {
       if (!action.payload || isNaN(action.payload)) {
-        console.log('Invalid discountPrice payload:', action.payload);
+        console.log("Invalid discountPrice payload:", action.payload);
         return;
       }
       state.totalCourseDiscountPrices += action.payload; // Add discounted price
@@ -88,7 +88,7 @@ const cartSlice = createSlice({
       const { courseId, originalPrice = 0, discountPrice = 0 } = action.payload;
 
       if (!courseId) {
-        console.log('Invalid courseId:', courseId);
+        console.log("Invalid courseId:", courseId);
         return;
       }
 

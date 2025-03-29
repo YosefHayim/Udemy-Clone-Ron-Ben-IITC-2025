@@ -1,4 +1,4 @@
-import { axiosClient, baseUrl, isProduction, localhostUrl } from '../configuration';
+import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configuration";
 
 const getThreeCoursesOfInstructor = async (instructorId: string) => {
   if (!instructorId) {
@@ -13,7 +13,7 @@ const getThreeCoursesOfInstructor = async (instructorId: string) => {
       return res.data.data;
     }
   } catch (error) {
-    console.log('Error for getting 3 courses: ', error);
+    console.log("Error for getting 3 courses: ", error);
   }
 };
 

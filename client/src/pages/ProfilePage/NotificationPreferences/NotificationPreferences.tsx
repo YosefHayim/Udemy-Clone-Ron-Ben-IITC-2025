@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import SideBarProfile from '../SideBarProfile/SideBarProfile'; // Importando o componente da Sidebar
+import { useState } from "react";
+import SideBarProfile from "../SideBarProfile/SideBarProfile"; // Importando o componente da Sidebar
 
 const NotificationPreferences = () => {
   // Estados para os switches de categorias
@@ -18,9 +18,9 @@ const NotificationPreferences = () => {
 
   // Função para alternar categorias
   const toggleCategory = (category) => {
-    if (category === 'updates') {
+    if (category === "updates") {
       setUpdatesEnabled(!updatesEnabled);
-    } else if (category === 'learning') {
+    } else if (category === "learning") {
       setLearningEnabled(!learningEnabled);
     }
   };
@@ -35,7 +35,7 @@ const NotificationPreferences = () => {
 
   // Função para salvar as alterações (simulação)
   const handleSave = () => {
-    alert('Notification preferences saved!');
+    alert("Notification preferences saved!");
   };
 
   return (
@@ -56,14 +56,14 @@ const NotificationPreferences = () => {
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-semibold text-gray-800">Updates and offerings</h3>
               <button
-                onClick={() => toggleCategory('updates')}
+                onClick={() => toggleCategory("updates")}
                 className={`flex h-6 w-12 items-center rounded-full p-1 ${
-                  updatesEnabled ? 'bg-purple-600' : 'bg-gray-300'
+                  updatesEnabled ? "bg-purple-600" : "bg-gray-300"
                 }`}
               >
                 <div
                   className={`h-4 w-4 transform rounded-full bg-white shadow-md ${
-                    updatesEnabled ? 'translate-x-6' : 'translate-x-0'
+                    updatesEnabled ? "translate-x-6" : "translate-x-0"
                   }`}
                 ></div>
               </button>
@@ -75,7 +75,7 @@ const NotificationPreferences = () => {
                     type="checkbox"
                     id="productLaunches"
                     checked={preferences.productLaunches}
-                    onChange={() => togglePreference('productLaunches')}
+                    onChange={() => togglePreference("productLaunches")}
                     className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
                   <label htmlFor="productLaunches" className="ml-3 text-sm text-gray-700">
@@ -87,7 +87,7 @@ const NotificationPreferences = () => {
                     type="checkbox"
                     id="offersPromotions"
                     checked={preferences.offersPromotions}
-                    onChange={() => togglePreference('offersPromotions')}
+                    onChange={() => togglePreference("offersPromotions")}
                     className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
                   <label htmlFor="offersPromotions" className="ml-3 text-sm text-gray-700">
@@ -103,14 +103,14 @@ const NotificationPreferences = () => {
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-semibold text-gray-800">Your learning</h3>
               <button
-                onClick={() => toggleCategory('learning')}
+                onClick={() => toggleCategory("learning")}
                 className={`flex h-6 w-12 items-center rounded-full p-1 ${
-                  learningEnabled ? 'bg-purple-600' : 'bg-gray-300'
+                  learningEnabled ? "bg-purple-600" : "bg-gray-300"
                 }`}
               >
                 <div
                   className={`h-4 w-4 transform rounded-full bg-white shadow-md ${
-                    learningEnabled ? 'translate-x-6' : 'translate-x-0'
+                    learningEnabled ? "translate-x-6" : "translate-x-0"
                   }`}
                 ></div>
               </button>
@@ -122,7 +122,7 @@ const NotificationPreferences = () => {
                     type="checkbox"
                     id="learningStats"
                     checked={preferences.learningStats}
-                    onChange={() => togglePreference('learningStats')}
+                    onChange={() => togglePreference("learningStats")}
                     className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
                   <label htmlFor="learningStats" className="ml-3 text-sm text-gray-700">
@@ -134,7 +134,7 @@ const NotificationPreferences = () => {
                     type="checkbox"
                     id="inspiration"
                     checked={preferences.inspiration}
-                    onChange={() => togglePreference('inspiration')}
+                    onChange={() => togglePreference("inspiration")}
                     className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
                   <label htmlFor="inspiration" className="ml-3 text-sm text-gray-700">
@@ -146,7 +146,7 @@ const NotificationPreferences = () => {
                     type="checkbox"
                     id="courseRecommendations"
                     checked={preferences.courseRecommendations}
-                    onChange={() => togglePreference('courseRecommendations')}
+                    onChange={() => togglePreference("courseRecommendations")}
                     className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
                   <label htmlFor="courseRecommendations" className="ml-3 text-sm text-gray-700">
@@ -158,7 +158,7 @@ const NotificationPreferences = () => {
                     type="checkbox"
                     id="notificationsFromInstructors"
                     checked={preferences.notificationsFromInstructors}
-                    onChange={() => togglePreference('notificationsFromInstructors')}
+                    onChange={() => togglePreference("notificationsFromInstructors")}
                     className="h-5 w-5 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
                   <label

@@ -1,10 +1,10 @@
-import { useSelector } from 'react-redux';
-import SideBarProfile from '../SideBarProfile/SideBarProfile';
-import { RootState } from '@/redux/store';
-import { MdOutlineModeEditOutline } from 'react-icons/md';
-import { useState } from 'react';
-import DialogMultiFactorAuth from './DialogMultiFactorAuth/DialogMultiFactorAuth';
-import DialogChangeEmail from './DialogChangeEmail/DialogChangeEmail';
+import { useSelector } from "react-redux";
+import SideBarProfile from "../SideBarProfile/SideBarProfile";
+import { RootState } from "@/redux/store";
+import { MdOutlineModeEditOutline } from "react-icons/md";
+import { useState } from "react";
+import DialogMultiFactorAuth from "./DialogMultiFactorAuth/DialogMultiFactorAuth";
+import DialogChangeEmail from "./DialogChangeEmail/DialogChangeEmail";
 
 const AccountSecurity = () => {
   const email = useSelector((state: RootState) => state?.user?.email);
@@ -44,7 +44,7 @@ const AccountSecurity = () => {
                   onClick={handleChangeEmail}
                   className="mt-[0.5em] cursor-pointer rounded-[0.3em] border border-purple-700 p-[0.9em] px-[1em] hover:bg-purpleHoverBtn"
                 >
-                  <MdOutlineModeEditOutline size={24} style={{ color: 'border-purple-700' }} />
+                  <MdOutlineModeEditOutline size={24} style={{ color: "border-purple-700" }} />
                 </div>
               </div>
             </div>
@@ -56,7 +56,7 @@ const AccountSecurity = () => {
                 id="new-password"
                 name="new-password"
                 className="w-full overflow-hidden rounded-[0.3em] border border-gray-400 bg-white p-[0.5em] focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor hover:bg-gray-100"
-                placeholder={'Enter new password'}
+                placeholder={"Enter new password"}
               />
               <input
                 required
@@ -64,7 +64,7 @@ const AccountSecurity = () => {
                 id="re-type-password"
                 name="re-type-password"
                 className="w-full overflow-hidden rounded-[0.3em] border border-gray-400 bg-white p-[0.5em] focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor hover:bg-gray-100"
-                placeholder={'Re-type new password'}
+                placeholder={"Re-type new password"}
               />
               <button
                 className="rounded-[0.3em] bg-btnColor p-[0.8em] font-sans font-extrabold text-white hover:bg-purple-600"
@@ -82,14 +82,14 @@ const AccountSecurity = () => {
               <p>
                 Increase your account security by requiring that a code emailed to you be entered
                 when you log in. For more information on how multi-factor authentication works,
-                refer to our{' '}
+                refer to our{" "}
                 <span className="font-medium text-purple-900 underline">Help Center article.</span>
               </p>
               <button
                 onClick={handleAuth}
                 className="rounded-[0.3em] bg-btnColor p-[0.8em] font-sans font-extrabold text-white hover:bg-purple-600"
               >
-                {isAuthEnabled ? 'Disable' : 'Enable'}
+                {isAuthEnabled ? "Disable" : "Enable"}
               </button>
             </div>
           </div>

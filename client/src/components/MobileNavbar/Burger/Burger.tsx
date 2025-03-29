@@ -1,4 +1,4 @@
-import { GiHamburgerMenu } from 'react-icons/gi';
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Burger = () => {
   return (

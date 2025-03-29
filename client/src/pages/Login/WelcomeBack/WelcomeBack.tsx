@@ -1,6 +1,6 @@
-import { RootState } from '@/redux/store';
-import { FaRegUser } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { RootState } from "@/redux/store";
+import { FaRegUser } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const WelcomeBack = () => {
   const fullname = useSelector((state: RootState) => state?.user?.fullName);

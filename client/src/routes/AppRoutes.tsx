@@ -1,88 +1,88 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import NotFound from '../pages/404/NotFound';
-import LessonPage from '../pages/Lesson/LessonPage';
-import SearchPage from '@/pages/Search/SearchPage';
-import Homepage from '@/pages/Home/Homepage';
-import Navbar from '@/components/Navbar/Navbar';
-import Footer from '../pages/Home/Footer/Footer';
-import ViewCoursePageInfo from '@/pages/ViewCoursePageInfo/ViewCoursePageInfo';
-import Loader from '@/components/Loader/Loader';
-import ShoppingCart from '@/pages/ShoppingCart/ShoppingCart';
-import SignUp from '@/pages/SignUp/Signup';
-import Login from '@/pages/Login/Login';
-import Wishlist from '@/pages/Wishlist/Wishlist';
-import Logout from '@/pages/Logout/Logout';
-import Payment from '@/pages/Payment/Payment';
-import ProfileMain from '@/pages/ProfilePage/ProfileMain/ProfileMain';
-import UdemyCredits from '@/components/Navbar/DropDownMenu/UdemyCredits/UdemyCredits';
-import PurchaseHistory from '@/components/Navbar/DropDownMenu/PurchaseHistory/PurchaseHistory';
-import Subscription from '@/components/Navbar/DropDownMenu/Subscription/Subscription';
-import PublicProfile from '@/components/Navbar/DropDownMenu/PublicProfile/PublicProfile';
-import PaymentMethods from '@/components/Navbar/DropDownMenu/PaymentMethods/PaymentMethods';
-import UdemyBusinessContact from '@/components/Navbar/DropDownMenu/UdemyBusinessContact/UdemyBusinessContact';
-import { createContext, useState } from 'react';
-import { FilterDataProps } from '@/types/types';
-import AccountSecurity from '@/pages/ProfilePage/AccountSecurity/AccountSecurity';
-import ApiClients from '@/pages/ProfilePage/ApiClients/ApiClients';
-import Photo from '@/pages/ProfilePage/Photo/Photo';
-import NotificationPreferences from '@/pages/ProfilePage/NotificationPreferences/NotificationPreferences';
-import Privacy from '@/pages/ProfilePage/Privacy/Privacy';
-import CloseAccount from '@/pages/ProfilePage/CloseAccount/CloseAccount';
-import EnrollFreeCourse from '@/pages/EnrollFreeCourse/EnrollFreeCourse';
-import VerifyCode from '../pages/VerifyCode/VerifyCode';
-import InstructorProfile from '@/pages/InstructorProfile/InstructorProfile';
-import PersonalizeField from '@/pages/PersonalizeField/PersonalizeField';
-import Terms from '../pages/Terms/Terms';
-import SearchNotFound from '@/pages/Search/SearchNotFound/SearchNotFound';
-import ReceiptCart from '@/components/Navbar/DropDownMenu/PurchaseHistory/ReceiptCart/ReceiptCart';
-import { PayPalScriptProvider } from '@paypal/react-paypal-js';
-import Promotions from '../pages/Terms/TermsPages/Promotions';
-import Messages from '@/pages/Messages/Messages';
-import Support from '@/pages/Support/Support';
-import OrganizationLogin from '@/pages/OrganizationLogin/OrganizationLogin';
-import SignUpOrganization from '@/pages/SignUpOrganization/SignUpOrganization';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NotFound from "../pages/404/NotFound";
+import LessonPage from "../pages/Lesson/LessonPage";
+import SearchPage from "@/pages/Search/SearchPage";
+import Homepage from "@/pages/Home/Homepage";
+import Navbar from "@/components/Navbar/Navbar";
+import Footer from "../pages/Home/Footer/Footer";
+import ViewCoursePageInfo from "@/pages/ViewCoursePageInfo/ViewCoursePageInfo";
+import Loader from "@/components/Loader/Loader";
+import ShoppingCart from "@/pages/ShoppingCart/ShoppingCart";
+import SignUp from "@/pages/SignUp/Signup";
+import Login from "@/pages/Login/Login";
+import Wishlist from "@/pages/Wishlist/Wishlist";
+import Logout from "@/pages/Logout/Logout";
+import Payment from "@/pages/Payment/Payment";
+import ProfileMain from "@/pages/ProfilePage/ProfileMain/ProfileMain";
+import UdemyCredits from "@/components/Navbar/DropDownMenu/UdemyCredits/UdemyCredits";
+import PurchaseHistory from "@/components/Navbar/DropDownMenu/PurchaseHistory/PurchaseHistory";
+import Subscription from "@/components/Navbar/DropDownMenu/Subscription/Subscription";
+import PublicProfile from "@/components/Navbar/DropDownMenu/PublicProfile/PublicProfile";
+import PaymentMethods from "@/components/Navbar/DropDownMenu/PaymentMethods/PaymentMethods";
+import UdemyBusinessContact from "@/components/Navbar/DropDownMenu/UdemyBusinessContact/UdemyBusinessContact";
+import { createContext, useState } from "react";
+import { FilterDataProps } from "@/types/types";
+import AccountSecurity from "@/pages/ProfilePage/AccountSecurity/AccountSecurity";
+import ApiClients from "@/pages/ProfilePage/ApiClients/ApiClients";
+import Photo from "@/pages/ProfilePage/Photo/Photo";
+import NotificationPreferences from "@/pages/ProfilePage/NotificationPreferences/NotificationPreferences";
+import Privacy from "@/pages/ProfilePage/Privacy/Privacy";
+import CloseAccount from "@/pages/ProfilePage/CloseAccount/CloseAccount";
+import EnrollFreeCourse from "@/pages/EnrollFreeCourse/EnrollFreeCourse";
+import VerifyCode from "../pages/VerifyCode/VerifyCode";
+import InstructorProfile from "@/pages/InstructorProfile/InstructorProfile";
+import PersonalizeField from "@/pages/PersonalizeField/PersonalizeField";
+import Terms from "../pages/Terms/Terms";
+import SearchNotFound from "@/pages/Search/SearchNotFound/SearchNotFound";
+import ReceiptCart from "@/components/Navbar/DropDownMenu/PurchaseHistory/ReceiptCart/ReceiptCart";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import Promotions from "../pages/Terms/TermsPages/Promotions";
+import Messages from "@/pages/Messages/Messages";
+import Support from "@/pages/Support/Support";
+import OrganizationLogin from "@/pages/OrganizationLogin/OrganizationLogin";
+import SignUpOrganization from "@/pages/SignUpOrganization/SignUpOrganization";
 // import LoginBusiness from "@/pages/Login/LoginBusiness";
 
 export const filterContext = createContext<FilterDataProps>({
-  sortBy: '',
+  sortBy: "",
   handsOnPractice: new Set(),
   language: new Set(),
   levels: new Set(),
-  price: '',
+  price: "",
   ratings: 0,
   subtitles: new Set(),
   topics: new Set(),
   videosDurations: new Set(),
   certificateOnly: false,
-  searchTerm: '',
+  searchTerm: "",
 });
 
 export const emailContext = createContext({
-  email: '',
-  fullName: '',
+  email: "",
+  fullName: "",
 });
 
 export const personalizeContent = createContext({
-  fieldLearning: '',
+  fieldLearning: "",
   managePeople: false,
-  occupation: '',
+  occupation: "",
   progressBar: 25,
 });
 
 const initialOptions = {
   clientId: `AWBvZAvKH5izd24F1JfMsToGlmQP5hvDtnAPLWOP8TJ0qif2nRpYrnKesjNZaDl8IfuJ_QibFfai0ahB`,
-  currency: 'USD',
-  intent: 'capture',
+  currency: "USD",
+  intent: "capture",
   isPaypal: false,
 };
 
 const AppRoutes: React.FC = () => {
   const [filterData, setFilterData] = useState({
-    sortBy: '',
+    sortBy: "",
     handsOnPractice: new Set(),
     language: new Set(),
     levels: new Set(),
-    price: '',
+    price: "",
     ratings: 0,
     subtitles: new Set(),
     topics: new Set(),
@@ -90,13 +90,13 @@ const AppRoutes: React.FC = () => {
     certificateOnly: false,
   });
 
-  const [userFullName, setUserFullName] = useState('');
-  const [emailUser, setEmailUser] = useState('');
+  const [userFullName, setUserFullName] = useState("");
+  const [emailUser, setEmailUser] = useState("");
   const [personalizeData, setPersonalizeData] = useState({
     currentPage: 1,
-    fieldLearning: '',
+    fieldLearning: "",
     managePeople: false,
-    occupation: '',
+    occupation: "",
     progressBar: 25,
   });
 

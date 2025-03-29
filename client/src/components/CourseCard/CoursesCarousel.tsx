@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import CourseTag from '@/components/CourseCard/CourseTag/CourseTag';
-import CourseHoverCard from './CourseHoverCard';
-import { Course } from '@/types/types';
-import { MdOutlineStarHalf } from 'react-icons/md';
-import { IoIosStar, IoIosStarOutline, IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
-import { useNavigate } from 'react-router-dom';
-import { baseUrl, isProduction, localhostUrl } from '@/api/configuration';
+import React, { useState, useEffect } from "react";
+import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
+import CourseHoverCard from "./CourseHoverCard";
+import { Course } from "@/types/types";
+import { MdOutlineStarHalf } from "react-icons/md";
+import { IoIosStar, IoIosStarOutline, IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import { baseUrl, isProduction, localhostUrl } from "@/api/configuration";
 
-const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = '' }) => {
+const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = "" }) => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [hoveredCourse, setHoveredCourse] = useState<Course | null>(null);
   const [hoverCardPosition, setHoverCardPosition] = useState({
@@ -24,7 +24,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = '' }) 
         `${isProduction ? baseUrl : localhostUrl}/api/course/?search=${encodeURI(searchTerm)}`
       );
       const data = await response.json();
-      if (data.status === 'Success') {
+      if (data.status === "Success") {
         const updatedCourses = data.response.map((course: any) => ({
           ...course,
           isNew: course.totalRatings < 10,
@@ -33,10 +33,10 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = '' }) 
 
         setCourses(updatedCourses);
       } else {
-        console.log('Erro ao buscar cursos:', data);
+        console.log("Erro ao buscar cursos:", data);
       }
     } catch (error) {
-      console.log('Erro ao carregar cursos:', error);
+      console.log("Erro ao carregar cursos:", error);
     }
   };
 
@@ -111,7 +111,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = '' }) 
   return (
     <div className="relative mx-auto w-full overflow-visible py-6">
       <h2 className="mb-4 overflow-visible pl-2 font-sans text-2xl font-extrabold text-courseNameColorTxt">
-        Because you viewed{' '}
+        Because you viewed{" "}
         <span className="font-sans font-extrabold text-btnColor underline hover:text-[#521e9f]">
           {searchTerm}
         </span>
@@ -142,7 +142,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = '' }) 
                       src={course.courseImg}
                       alt={course.courseName}
                       className={`h-full w-full border border-gray-300 object-cover transition-all duration-300 ${
-                        hoveredCourseId === course._id ? 'brightness-90' : ''
+                        hoveredCourseId === course._id ? "brightness-90" : ""
                       }`}
                     />
                   </div>
@@ -182,7 +182,7 @@ const CoursesCarousel: React.FC<{ searchTerm: string }> = ({ searchTerm = '' }) 
                     style={{
                       top: `${hoverCardPosition.top}px`,
                       left: `${hoverCardPosition.left}px`,
-                      transform: 'translateY(-50%)',
+                      transform: "translateY(-50%)",
                     }}
                     onMouseEnter={() => setHoveredCourseId(hoveredCourse?._id || null)}
                     onMouseLeave={(event) => handleMouseLeave(event)}

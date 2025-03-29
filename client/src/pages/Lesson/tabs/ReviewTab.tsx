@@ -1,13 +1,13 @@
-import getAllReviewsByCourseId from '@/api/reviews/getAllReviewsByCourseId';
-import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
-import UserCourseReview from '@/pages/ViewCoursePageInfo/ReviewsSection/UserCourseReview/UserCourseReview';
-import { MdSearch, MdOutlineStarHalf } from 'react-icons/md';
-import { IoIosStar, IoIosStarOutline } from 'react-icons/io';
-import Loader from '@/components/Loader/Loader';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Review } from '@/types/types';
+import getAllReviewsByCourseId from "@/api/reviews/getAllReviewsByCourseId";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import UserCourseReview from "@/pages/ViewCoursePageInfo/ReviewsSection/UserCourseReview/UserCourseReview";
+import { MdSearch, MdOutlineStarHalf } from "react-icons/md";
+import { IoIosStar, IoIosStarOutline } from "react-icons/io";
+import Loader from "@/components/Loader/Loader";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Review } from "@/types/types";
 
 const ReviewsTab = ({ avgRating = 1 }) => {
   if (!avgRating) {
@@ -18,8 +18,8 @@ const ReviewsTab = ({ avgRating = 1 }) => {
   let courseId: string | undefined = params.courseId;
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['reviews', courseId],
-    queryFn: () => getAllReviewsByCourseId(courseId || ''),
+    queryKey: ["reviews", courseId],
+    queryFn: () => getAllReviewsByCourseId(courseId || ""),
   });
 
   const renderStars = (rating) => {
@@ -119,7 +119,7 @@ const ReviewsTab = ({ avgRating = 1 }) => {
           <div className="mt-4 w-full">
             <Button
               className={`${
-                data.length < limit ? 'hidden' : 'block'
+                data.length < limit ? "hidden" : "block"
               } w-full rounded-[0.2em] border border-black bg-white font-sans font-extrabold text-black`}
             >
               Show more reviews

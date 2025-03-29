@@ -1,15 +1,15 @@
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { personalizeContent } from '@/routes/AppRoutes';
-import { useContext } from 'react';
-import { FaUserEdit } from 'react-icons/fa';
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { personalizeContent } from "@/routes/AppRoutes";
+import { useContext } from "react";
+import { FaUserEdit } from "react-icons/fa";
 
 const PersonalizeFieldP1 = () => {
   const personalizeTracking = useContext(personalizeContent);
-  if (!personalizeTracking) throw new Error('No personalize tracking provided');
+  if (!personalizeTracking) throw new Error("No personalize tracking provided");
   const [personalizeData, setPersonalizeData] = personalizeTracking;
 
   const handleChosenOccupation = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const chosenInput = (e.target as HTMLElement).closest('input');
+    const chosenInput = (e.target as HTMLElement).closest("input");
     if (chosenInput) {
       const chosenValue = chosenInput.value;
       setPersonalizeData((prevData: any) => ({

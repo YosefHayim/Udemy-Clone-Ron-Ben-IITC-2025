@@ -1,9 +1,9 @@
-import { Button } from '@/components/ui/button';
-import ItemInCart from '../ItemInCart/ItemInCart';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { RootState } from '@/redux/store';
+import { Button } from "@/components/ui/button";
+import ItemInCart from "../ItemInCart/ItemInCart";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { RootState } from "@/redux/store";
 
 const HoverCart = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,8 +22,8 @@ const HoverCart = () => {
   return (
     <div>
       <div
-        style={{ scrollbarColor: '#8B8B8B #FCFCFC' }}
-        className={`${coursesIdAdded.length >= 5 && 'h-[550px] overflow-y-scroll'} absolute right-[-30px] top-4 z-[1000] flex w-[300px] cursor-pointer flex-col items-start justify-center rounded-[1em] border border-gray-300 bg-white shadow-alertAlgoInfo`}
+        style={{ scrollbarColor: "#8B8B8B #FCFCFC" }}
+        className={`${coursesIdAdded.length >= 5 && "h-[550px] overflow-y-scroll"} absolute right-[-30px] top-4 z-[1000] flex w-[300px] cursor-pointer flex-col items-start justify-center rounded-[1em] border border-gray-300 bg-white shadow-alertAlgoInfo`}
       >
         <div className="w-full">
           {coursesIdAdded.length > 0 ? (
@@ -38,7 +38,7 @@ const HoverCart = () => {
                 showFullPrice={false}
                 shortCutInstructor={true}
                 shortcutTitle={true}
-                chooseFlex={'flex flex-col'}
+                chooseFlex={"flex flex-col"}
                 itemsPosition="start"
                 textColor="text-bg-black"
                 gapPrice="gap-[0em]"

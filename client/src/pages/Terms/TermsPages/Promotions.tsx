@@ -1,5 +1,5 @@
-import Logo from '@/components/Logo/Logo';
-import { IoMdSearch } from 'react-icons/io';
+import Logo from "@/components/Logo/Logo";
+import { IoMdSearch } from "react-icons/io";
 
 const Promotions = () => {
   return (
@@ -37,7 +37,7 @@ const Promotions = () => {
             <nav className="text-[#5624D0]">
               <a href="/" className="text-[#5624D0]">
                 Udemy
-              </a>{' '}
+              </a>{" "}
               <span className="text-xl font-semibold text-[#6F7478]"> › </span>
               Selling & Promotion
               <span className="text-xl font-semibold text-[#6F7478]"> › </span>
@@ -68,11 +68,11 @@ const Promotions = () => {
                 This Promotions Policy (<span className="font-semibold text-black">“Policy”</span>)
                 includes information about methods that Udemy instructors can use to promote their
                 content, including instructor coupons, course referral links, and Udemy’s optional
-                marketing programs. This Policy is incorporated by reference into our{' '}
+                marketing programs. This Policy is incorporated by reference into our{" "}
                 <a href="#" className="text-[#5624D0] underline">
                   Terms of Use
-                </a>{' '}
-                and{' '}
+                </a>{" "}
+                and{" "}
                 <a href="#" className="text-[#5624D0] underline">
                   Instructor Terms
                 </a>
@@ -80,7 +80,7 @@ const Promotions = () => {
                 in the Terms of Use or Instructor Terms.
               </p>
               <p className="mb-4 text-base text-blackUdemy">
-                You can find translated versions of this Policy by following our{' '}
+                You can find translated versions of this Policy by following our{" "}
                 <a href="#" className="text-[#5624D0] underline">
                   Help Center language instructions
                 </a>
@@ -157,10 +157,10 @@ const Promotions = () => {
               </h2>
               <p className="mb-4 text-base text-blackUdemy">
                 Udemy offers premium instructors the opportunity to participate in Promotional
-                Programs, which you can opt into through the{' '}
+                Programs, which you can opt into through the{" "}
                 <a href="#" className="text-[#5624D0] underline">
                   Promotional Agreements page
-                </a>{' '}
+                </a>{" "}
                 of your instructor settings or by a written agreement (including by email) between
                 you and Udemy for certain programs, as detailed below. The specific programs offered
                 may change from time to time.
@@ -182,7 +182,7 @@ const Promotions = () => {
                 may be lower. For clarity, Udemy determines local equivalents of $9.99 USD using
                 economic factors such as purchasing power, rather than employing a direct currency
                 conversion. A table of minimum sales prices after discount in each of Udemy’s major
-                markets can be found in our{' '}
+                markets can be found in our{" "}
                 <a href="#" className="text-[#5624D0] underline">
                   Help Center article on pricing tiers
                 </a>
@@ -300,7 +300,7 @@ const Promotions = () => {
               <h2 className="mb-4 text-xl font-semibold text-gray-900">3.3 Termination</h2>
               <p className="mb-4 text-base text-blackUdemy">
                 You can choose to terminate your participation in the Udemy Business Program at any
-                time by emailing{' '}
+                time by emailing{" "}
                 <a href="mailto:instructorsupport@udemy.com" className="text-[#5624D0] underline">
                   instructorsupport@udemy.com
                 </a>
@@ -318,7 +318,7 @@ const Promotions = () => {
               <h2 className="mb-4 text-xl font-semibold text-gray-900">4. Assessments</h2>
               <p className="mb-4 text-base text-blackUdemy">
                 Udemy’s assessments (<span className="font-semibold">“Assessments”</span>) consist
-                of question and answer pairs with explanations (each, an{' '}
+                of question and answer pairs with explanations (each, an{" "}
                 <span className="font-semibold">“Assessment Question”</span>) to measure proficiency
                 and learning across certain topics, skills, domains, or occupations. Assessments are
                 made available by Udemy as a standalone content type, separate from courses. For
@@ -350,7 +350,7 @@ const Promotions = () => {
               </p>
               <p className="mb-6 text-base text-blackUdemy">
                 You may choose to terminate your license of an Assessment Question at any time by
-                emailing{' '}
+                emailing{" "}
                 <a href="mailto:instructorsupport@udemy.com" className="text-[#5624D0] underline">
                   instructorsupport@udemy.com
                 </a>
@@ -373,7 +373,7 @@ const Promotions = () => {
               {/* Section 6 */}
               <h2 className="mb-4 text-xl font-semibold text-gray-900">6. How to Contact Us</h2>
               <p className="mb-6 text-base text-blackUdemy">
-                If you have any questions about this Policy, please contact our{' '}
+                If you have any questions about this Policy, please contact our{" "}
                 <a href="/support" className="text-[#5624D0] underline">
                   support team
                 </a>
@@ -475,11 +475,11 @@ const Promotions = () => {
               <div className="text-sm text-gray-600">
                 <p>
                   By clicking to access Udemy’s support virtual assistant, you are agreeing to
-                  Udemy’s{' '}
+                  Udemy’s{" "}
                   <a href="#" className="text-[#5624D0] hover:underline">
                     Terms of Use
-                  </a>{' '}
-                  and{' '}
+                  </a>{" "}
+                  and{" "}
                   <a href="#" className="text-[#5624D0] hover:underline">
                     Privacy Policy
                   </a>

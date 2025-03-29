@@ -1,4 +1,4 @@
-import { MdOutlineSearch } from 'react-icons/md';
+import { MdOutlineSearch } from "react-icons/md";
 
 const SearchResultRow: React.FC<{
   algoWord: string;

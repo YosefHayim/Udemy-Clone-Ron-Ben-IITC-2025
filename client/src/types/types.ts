@@ -280,13 +280,13 @@ export interface Review {
 }
 
 export interface FilterDataProps {
-  sortBy: '';
+  sortBy: "";
   searchTerm: string;
   certificateOnly: boolean;
   handsOnPractice: Set<string>;
   language: Set<string>;
   levels: Set<string>;
-  price: '';
+  price: "";
   ratings: number;
   subtitles: Set<string>;
   topics: Set<string>;

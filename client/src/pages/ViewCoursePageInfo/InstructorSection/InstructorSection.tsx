@@ -1,8 +1,8 @@
-import InstructorProfileImg from './InstructorProfileImg/InstructorProfileImg';
-import InstructorName from './InstructorName/InstructorName';
-import InstructorProfession from './InstructorProfession/InstructorProfession';
-import InstructorDescription from './InstructorDescription/InstructorDescription';
-import { Link } from 'react-router-dom';
+import InstructorProfileImg from "./InstructorProfileImg/InstructorProfileImg";
+import InstructorName from "./InstructorName/InstructorName";
+import InstructorProfession from "./InstructorProfession/InstructorProfession";
+import InstructorDescription from "./InstructorDescription/InstructorDescription";
+import { Link } from "react-router-dom";
 
 const InstructorSection: React.FC<{
   instructorImg: string;

@@ -1,7 +1,7 @@
-import FooterUdemyBusiness from './FooterUdemyBusiness/FooterUdemyBusiness';
-import NavigatingPath from './NavigatingPath/NavigatingPath';
-import OpenTicketArea from './OpenTicketArea/OpenTicketArea';
-import OrganizationNavbar from './OrganizationNavbar/OrganizationNavbar';
+import FooterUdemyBusiness from "./FooterUdemyBusiness/FooterUdemyBusiness";
+import NavigatingPath from "./NavigatingPath/NavigatingPath";
+import OpenTicketArea from "./OpenTicketArea/OpenTicketArea";
+import OrganizationNavbar from "./OrganizationNavbar/OrganizationNavbar";
 
 const SignUpOrganization = () => {
   return (

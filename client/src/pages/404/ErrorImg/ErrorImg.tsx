@@ -1,4 +1,4 @@
-import notFoundImg from '/images/udemy-not-found.png';
+import notFoundImg from "/images/udemy-not-found.png";
 
 const ErrorImg = () => {
   return (

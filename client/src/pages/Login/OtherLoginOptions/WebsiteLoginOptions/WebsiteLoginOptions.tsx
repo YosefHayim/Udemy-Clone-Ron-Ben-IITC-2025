@@ -1,5 +1,5 @@
-import { diffLoginOptionBtn } from '@/utils/stylesStorage';
-import { Link } from 'react-router-dom';
+import { diffLoginOptionBtn } from "@/utils/stylesStorage";
+import { Link } from "react-router-dom";
 
 const WebsiteLoginOptions: React.FC<{
   text: string;

@@ -1,7 +1,6 @@
-
 const CourseRatings: React.FC<{ avgRatings?: number; stars?: string; totalRatings?: number }> = ({
   avgRatings = 0,
-  stars = '★★★★☆',
+  stars = "★★★★☆",
   totalRatings = 0,
 }) => {
   return (

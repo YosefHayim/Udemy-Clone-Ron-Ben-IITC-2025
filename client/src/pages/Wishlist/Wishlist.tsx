@@ -1,11 +1,11 @@
-import Loader from '@/components/Loader/Loader';
-import ItemInCart from '@/components/Navbar/Cart/ItemInCart/ItemInCart';
-import { Button } from '@/components/ui/button';
-import { RootState } from '@/redux/store';
-import { useEffect, useState } from 'react';
-import { IoMdSearch } from 'react-icons/io';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import Loader from "@/components/Loader/Loader";
+import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
+import { Button } from "@/components/ui/button";
+import { RootState } from "@/redux/store";
+import { useEffect, useState } from "react";
+import { IoMdSearch } from "react-icons/io";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,15 +13,15 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { RiArrowDropDownLine } from 'react-icons/ri';
+} from "@/components/ui/dropdown-menu";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
-const categories = ['all courses', 'My Lists', 'Wishlist', 'Archived', 'Learning tools'];
+const categories = ["all courses", "My Lists", "Wishlist", "Archived", "Learning tools"];
 
 const Wishlist: React.FC = () => {
-  document.title = 'My learning | Udemy';
+  document.title = "My learning | Udemy";
   const [isLoading, setLoading] = useState(false);
-  const [categoryChoosed, setCategoryChoosed] = useState<string | null>('');
+  const [categoryChoosed, setCategoryChoosed] = useState<string | null>("");
 
   const coursesBought = useSelector(
     (state: RootState) =>
@@ -34,7 +34,7 @@ const Wishlist: React.FC = () => {
   const handleClickedCategory = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
 
-    const btn = target.closest('button');
+    const btn = target.closest("button");
 
     if (btn) {
       setCategoryChoosed(btn.innerText);
@@ -60,7 +60,7 @@ const Wishlist: React.FC = () => {
             <div className="flex flex-col" key={category} id={category}>
               <button className="pb-1 font-bold focus:outline-none">{category}</button>
               <hr
-                className={`w-full border-[3px]  ${category === categoryChoosed ? 'border-white' : 'border-[#1D1E27]'}`}
+                className={`w-full border-[3px]  ${category === categoryChoosed ? "border-white" : "border-[#1D1E27]"}`}
               />
             </div>
           ))}
@@ -202,7 +202,7 @@ const Wishlist: React.FC = () => {
                         showDisPrice={false}
                         shortCutInstructor={true}
                         shortcutTitle={false}
-                        chooseFlex={'flex '}
+                        chooseFlex={"flex "}
                         itemsPosition="start"
                         textColor="text-black"
                       />

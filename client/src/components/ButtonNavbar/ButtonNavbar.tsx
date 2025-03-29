@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Button } from '../ui/button';
-import { btnStyleNHover, regFullButtonPurpleHover } from '@/utils/stylesStorage';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
-import mylearningcourseplaceholderfrom from '/images/mylearningcourseplaceholder.jpg';
-import WrapperButtonParagraph from './WrapperButtonParagraph/WrapperButtonParagraph';
+import React, { useState } from "react";
+import { Button } from "../ui/button";
+import { btnStyleNHover, regFullButtonPurpleHover } from "@/utils/stylesStorage";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import mylearningcourseplaceholderfrom from "/images/mylearningcourseplaceholder.jpg";
+import WrapperButtonParagraph from "./WrapperButtonParagraph/WrapperButtonParagraph";
 
 const ButtonNavbar: React.FC<{
   buttonName: string;

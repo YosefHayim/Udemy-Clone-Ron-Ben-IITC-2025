@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import SideBarProfile from '../SideBarProfile/SideBarProfile';
+import { Link } from "react-router-dom";
+import SideBarProfile from "../SideBarProfile/SideBarProfile";
 const ApiClients = () => {
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -17,7 +17,7 @@ const ApiClients = () => {
             <h3 className="mb-4 text-lg font-semibold text-gray-800">Affiliate API</h3>
             <p className="mb-4 text-gray-600">
               The Udemy Affiliate API exposes functionalities of Udemy to help developers build
-              client applications and integrations with Udemy. To see more details, please visit{' '}
+              client applications and integrations with Udemy. To see more details, please visit{" "}
               <Link to="#" className="text-purple-600 hover:underline">
                 Udemy Affiliate API
               </Link>

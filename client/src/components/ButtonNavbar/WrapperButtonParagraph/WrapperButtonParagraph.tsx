@@ -1,6 +1,6 @@
-import React from 'react';
-import ParagraphInside from '../ParagraphInside/ParagraphInside';
-import ButtonInsideHover from '../ButtonInsideHover/ButtonInsideHover';
+import React from "react";
+import ParagraphInside from "../ParagraphInside/ParagraphInside";
+import ButtonInsideHover from "../ButtonInsideHover/ButtonInsideHover";
 
 const WrapperButtonParagraph = ({ paragraphText, to, insideBtnText }) => {
   return (

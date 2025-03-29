@@ -29,25 +29,25 @@ const Terms_of_use = () => {
           APIs, and other related services (“Services”).
         </p>
         <p className="mb-4 text-base text-gray-700">
-          If you publish a course on the Udemy platform, you must also agree to the{' '}
+          If you publish a course on the Udemy platform, you must also agree to the{" "}
           <a href="#" className="text-blue-600 underline">
             Instructor Terms
           </a>
           . We also provide details regarding our processing of personal data of our students and
-          instructors in our{' '}
+          instructors in our{" "}
           <a href="#" className="text-blue-600 underline">
             Privacy Policy
           </a>
           . If you are using Udemy as part of your employer’s Udemy Business learning and
-          development program, you can consult our{' '}
+          development program, you can consult our{" "}
           <a href="#" className="text-blue-600 underline">
             Udemy Business Privacy Statement
           </a>
-          . Our{' '}
+          . Our{" "}
           <a href="#" className="text-blue-600 underline">
             Instructor Terms
           </a>
-          ,{' '}
+          ,{" "}
           <a href="#" className="text-blue-600 underline">
             Privacy Policy
           </a>
@@ -138,7 +138,7 @@ const Terms_of_use = () => {
           <p className="text-base text-gray-700">
             You need an account for most activities on our platform. Keep your password somewhere
             safe, because you’re responsible for all activity associated with your account. If you
-            suspect someone else is using your account, let us know by contacting our{' '}
+            suspect someone else is using your account, let us know by contacting our{" "}
             <a href="#" className="text-blue-600 underline">
               Support Team
             </a>
@@ -164,7 +164,7 @@ const Terms_of_use = () => {
           what happens with your account and Udemy will not intervene in disputes between students
           or instructors who have shared account login credentials. You must notify us immediately
           upon learning that someone else may be using your account without your permission (or if
-          you suspect any other security incident) by contacting our{' '}
+          you suspect any other security incident) by contacting our{" "}
           <a href="#" className="text-blue-600 underline">
             Support Team
           </a>
@@ -179,7 +179,7 @@ const Terms_of_use = () => {
           account and help you access content that is appropriate for you. If you are below this age
           of consent to use online services, you may not create a Udemy account or use the Services,
           regardless of parental or guardian assistance or consent. If we discover that you have
-          created an account that violates these rules, we will terminate your account. Under our{' '}
+          created an account that violates these rules, we will terminate your account. Under our{" "}
           <a href="#" className="text-blue-600 underline">
             Instructor Terms
           </a>
@@ -187,14 +187,14 @@ const Terms_of_use = () => {
           for publication on Udemy.
         </p>
         <p className="text-base text-gray-700">
-          You can terminate your account at any time by following the steps{' '}
+          You can terminate your account at any time by following the steps{" "}
           <a href="#" className="text-blue-600 underline">
             here
           </a>
-          . Check our{' '}
+          . Check our{" "}
           <a href="#" className="text-blue-600 underline">
             Privacy Policy
-          </a>{' '}
+          </a>{" "}
           to see what happens when you terminate your account.
         </p>
       </div>
@@ -212,7 +212,7 @@ const Terms_of_use = () => {
           </p>
         </div>
         <p className="mb-4 text-base text-gray-700">
-          Under our{' '}
+          Under our{" "}
           <a href="#" className="text-blue-600 underline">
             Instructor Terms
           </a>
@@ -243,7 +243,7 @@ const Terms_of_use = () => {
           any content at any point in time in the event where we decide or are obligated to disable
           access to the content due to legal or policy reasons, for example, if the course or other
           content you enrolled in is the object of a copyright complaint, or if we determine it
-          violates our{' '}
+          violates our{" "}
           <a href="#" className="text-blue-600 underline">
             Trust & Safety Guidelines
           </a>
@@ -271,10 +271,10 @@ const Terms_of_use = () => {
         </div>
         <h4 className="mb-3 text-xl font-semibold">3.1 Pricing</h4>
         <p className="mb-4 text-base text-gray-700">
-          The prices of content on Udemy are determined based on the terms of the{' '}
+          The prices of content on Udemy are determined based on the terms of the{" "}
           <a href="#" className="text-blue-600 underline">
             Instructor Terms
-          </a>{' '}
+          </a>{" "}
           and our Promotions Policy. In some instances, the price of content offered on the Udemy
           website may not be exactly the same as the price offered on our mobile or TV applications,
           due to mobile platform providers’ pricing systems and their policies around implementing
@@ -308,10 +308,10 @@ const Terms_of_use = () => {
           debit, or mobile wallet) for those fees. Udemy works with payment service providers to
           offer you the most convenient payment methods in your country and to keep your payment
           information secure. We may update your payment methods using information provided by our
-          payment service providers. Check out our{' '}
+          payment service providers. Check out our{" "}
           <a href="#" className="text-blue-600 underline">
             Privacy Policy
-          </a>{' '}
+          </a>{" "}
           for more details.
         </p>
         <p className="mb-4 text-base text-gray-700">
@@ -337,7 +337,7 @@ const Terms_of_use = () => {
           the 30-day limit in cases of suspected or confirmed account fraud.
         </p>
         <p className="mb-4 text-base text-gray-700">
-          To request a refund, follow the steps{' '}
+          To request a refund, follow the steps{" "}
           <a href="#" className="text-blue-600 underline">
             here
           </a>
@@ -350,12 +350,12 @@ const Terms_of_use = () => {
           refunded the content, we reserve the right to deny your refund, restrict you from other
           future refunds, ban your account, and/or restrict all future use of the Services. If we
           ban your account or disable your access to the content due to your violation of these
-          Terms or our{' '}
+          Terms or our{" "}
           <a href="#" className="text-blue-600 underline">
             Trust & Safety Guidelines
           </a>
           , you will not be eligible to receive a refund. Additional information on our refund
-          policy is available{' '}
+          policy is available{" "}
           <a href="#" className="text-blue-600 underline">
             here
           </a>
@@ -387,10 +387,10 @@ const Terms_of_use = () => {
           <p className="text-base text-gray-700">
             You can only use Udemy for lawful purposes. You’re responsible for all the content that
             you post on our platform. You should keep the reviews, questions, posts, courses and
-            other content you upload in line with our{' '}
+            other content you upload in line with our{" "}
             <a href="#" className="text-blue-600 underline">
               Trust & Safety Guidelines
-            </a>{' '}
+            </a>{" "}
             and the law, and respect the intellectual property rights of others. We can ban your
             account for repeated or major offenses. If you think someone is infringing your
             copyright on our platform, let us know.
@@ -415,30 +415,30 @@ const Terms_of_use = () => {
           any course, question, answer, review or other content that violates applicable local or
           national laws or regulations of your country. You are solely responsible for any courses,
           content, and actions you post or take via the platform and Services and their
-          consequences. Make sure you understand all the copyright restrictions set forth in the{' '}
+          consequences. Make sure you understand all the copyright restrictions set forth in the{" "}
           <a href="#" className="text-blue-600 underline">
             Instructor Terms
-          </a>{' '}
+          </a>{" "}
           before you submit any content for publication on Udemy.
         </p>
         <p className="mb-4 text-base text-gray-700">
           If we are put on notice that your course or content violates the law or the rights of
           others (for example, if it is established that it violates intellectual property or image
           rights of others, or is about an illegal activity), if we discover that your content or
-          behavior violates our{' '}
+          behavior violates our{" "}
           <a href="#" className="text-blue-600 underline">
             Trust & Safety Guidelines
           </a>
           , or if we believe your content or behavior is unlawful, inappropriate, or objectionable
           (for example if you impersonate someone else), we may remove your content from our
-          platform. Udemy complies with copyright laws. Check out our{' '}
+          platform. Udemy complies with copyright laws. Check out our{" "}
           <a href="#" className="text-blue-600 underline">
             Intellectual Property Policy
-          </a>{' '}
+          </a>{" "}
           for more details.
         </p>
         <p className="mb-4 text-base text-gray-700">
-          Udemy has discretion in enforcing these Terms and our{' '}
+          Udemy has discretion in enforcing these Terms and our{" "}
           <a href="#" className="text-blue-600 underline">
             Trust & Safety Guidelines
           </a>
@@ -456,13 +456,13 @@ const Terms_of_use = () => {
         </p>
         <p className="text-base text-gray-700">
           If a user has published content that infringes your copyright or trademark rights, please
-          let us know. Our{' '}
+          let us know. Our{" "}
           <a href="#" className="text-blue-600 underline">
             Instructor Terms
-          </a>{' '}
+          </a>{" "}
           require our instructors to follow the law and respect the intellectual property rights of
           others. For more details on how to file a copyright or trademark infringement claim with
-          us, see our{' '}
+          us, see our{" "}
           <a href="#" className="text-blue-600 underline">
             Intellectual Property Policy
           </a>
@@ -485,7 +485,7 @@ const Terms_of_use = () => {
           The content you post as a student or instructor (including courses) remains yours. By
           posting courses and other content, you allow Udemy to reuse and share it but you do not
           lose any ownership rights you may have over your content. If you are an instructor, be
-          sure to understand the content licensing terms that are detailed in the{' '}
+          sure to understand the content licensing terms that are detailed in the{" "}
           <a href="#" className="text-blue-600 underline">
             Instructor Terms
           </a>
@@ -637,17 +637,17 @@ const Terms_of_use = () => {
           During your subscription to a Subscription Plan, you get a limited, non-exclusive,
           non-transferable license from us to access and view the content included in that
           Subscription Plan via the Services. With the exception of the lifetime access license
-          grant, the terms included in the{' '}
+          grant, the terms included in the{" "}
           <a href="#" className="text-blue-600 underline">
             “Content Enrollment and Lifetime Access”
-          </a>{' '}
+          </a>{" "}
           section above apply to enrollments via Subscription Plans.
         </p>
         <p className="mb-4 text-base text-gray-700">
           Your Subscription Plan may include access to interactive environments, such as workspaces
           (“Interactive Sessions”). Interactive Sessions may be provided by a third party, subject
           to its own agreement or terms and conditions, and subject to usage limitations outlined on
-          our{' '}
+          our{" "}
           <a href="#" className="text-blue-600 underline">
             Support Page
           </a>
@@ -663,16 +663,16 @@ const Terms_of_use = () => {
           We reserve the right to revoke any license to use the content in our Subscription Plans
           for legal or policy reasons at any time and at our sole discretion, such as if we no
           longer have the right to offer the content through a Subscription Plan. Additional
-          information on our right to revoke is included in the{' '}
+          information on our right to revoke is included in the{" "}
           <a href="#" className="text-blue-600 underline">
             “Content Enrollment and Lifetime Access”
-          </a>{' '}
+          </a>{" "}
           section.
         </p>
 
         <h4 className="mb-3 text-xl font-semibold">8.2 Account Management</h4>
         <p className="mb-4 text-base text-gray-700">
-          You may cancel your subscription by following the steps outlined on our{' '}
+          You may cancel your subscription by following the steps outlined on our{" "}
           <a href="#" className="text-blue-600 underline">
             Support Page
           </a>
@@ -696,7 +696,7 @@ const Terms_of_use = () => {
           trial period. Your subscription will automatically renew according to your subscription
           settings (e.g., monthly or annually) unless you cancel your subscription prior to the end
           of the free trial period. For more information on how to view applicable fees and dates of
-          your free trial period, visit our{' '}
+          your free trial period, visit our{" "}
           <a href="#" className="text-blue-600 underline">
             Support Page
           </a>
@@ -705,10 +705,10 @@ const Terms_of_use = () => {
 
         <h4 className="mb-3 text-xl font-semibold">8.4 Payments and Billing</h4>
         <p className="mb-4 text-base text-gray-700">
-          The subscription fee will be listed at the time of your purchase. You can visit our{' '}
+          The subscription fee will be listed at the time of your purchase. You can visit our{" "}
           <a href="#" className="text-blue-600 underline">
             Support Page
-          </a>{' '}
+          </a>{" "}
           to learn more about where to find the fees and dates applicable to your subscription.
           Payments are non-refundable and there are no refunds or credits for partially used
           periods, unless otherwise required by applicable law.
@@ -725,7 +725,7 @@ const Terms_of_use = () => {
             through the Interactive Sessions.
           </li>
           <li>
-            Exceed the usage limitations outlined on our{' '}
+            Exceed the usage limitations outlined on our{" "}
             <a href="#" className="text-blue-600 underline">
               Support Page
             </a>
@@ -742,10 +742,10 @@ const Terms_of_use = () => {
           We make no guarantees as to the availability of any specific content in any Subscription
           Plan or as to any minimum amount of content in any Subscription Plan. We reserve the right
           to modify or terminate a Subscription Plan at our sole discretion. These disclaimers are
-          in addition to those listed in the{' '}
+          in addition to those listed in the{" "}
           <a href="#" className="text-blue-600 underline">
             “Disclaimers”
-          </a>{' '}
+          </a>{" "}
           section below.
         </p>
       </div>
@@ -764,10 +764,10 @@ const Terms_of_use = () => {
         <p className="mb-4 text-base text-gray-700">
           When using the GenAI Features, you may input or upload content (“Input”). The Services
           will process the Input to generate output, such as text, provided within the Services
-          (“Output”). You retain ownership of the Input and grant Udemy the rights detailed in the{' '}
+          (“Output”). You retain ownership of the Input and grant Udemy the rights detailed in the{" "}
           <a href="#" className="text-blue-600 underline">
             “Udemy’s Rights to Content You Post”
-          </a>{' '}
+          </a>{" "}
           section above, allowing us to use the Input in the same manner as the other content you
           submit or post on or through our platform. Udemy grants you a limited, non-transferable,
           non-sublicensable license to access and use the GenAI Features and Output in accordance
@@ -810,14 +810,14 @@ const Terms_of_use = () => {
         </ul>
         <p className="mb-4 text-base text-gray-700">
           These restrictions are in addition to those listed elsewhere in these Terms, including in
-          the{' '}
+          the{" "}
           <a href="#" className="text-blue-600 underline">
             “Content and Behavior Rules”
-          </a>{' '}
-          and{' '}
+          </a>{" "}
+          and{" "}
           <a href="#" className="text-blue-600 underline">
             “Udemy’s Rights”
-          </a>{' '}
+          </a>{" "}
           sections above.
         </p>
 
@@ -830,10 +830,10 @@ const Terms_of_use = () => {
           and others using the GenAI Features may generate the same or similar Output. At any point
           in the future, we reserve the right to limit, suspend, terminate, or otherwise modify your
           access to the GenAI Features at our sole discretion. These disclaimers are in addition to
-          those listed in the{' '}
+          those listed in the{" "}
           <a href="#" className="text-blue-600 underline">
             “Disclaimers”
-          </a>{' '}
+          </a>{" "}
           section below.
         </p>
       </div>
@@ -1066,7 +1066,7 @@ const Terms_of_use = () => {
           Before filing a claim against each other, you and Udemy must first participate in the
           informal dispute resolution process. The claiming party shall send a short, written
           statement (“Claim Statement”) explaining the dispute and a proposal for resolving it to
-          Udemy by email at{' '}
+          Udemy by email at{" "}
           <a href="mailto:notices@udemy.com" className="text-blue-600 underline">
             notices@udemy.com
           </a>
@@ -1149,7 +1149,7 @@ const Terms_of_use = () => {
 
         <h3 className="mb-4 font-sans text-2xl font-extrabold">13. How to Contact Us</h3>
         <p className="mb-4 text-base text-gray-700">
-          The best way to get in touch with us is to contact our{' '}
+          The best way to get in touch with us is to contact our{" "}
           <a href="#" className="text-blue-600 underline">
             Support Team
           </a>

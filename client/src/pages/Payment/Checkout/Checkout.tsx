@@ -1,16 +1,16 @@
-import buyCourseById from '@/api/users/buyCourseId';
-import refreshMe from '@/api/users/refreshMe';
-import Loader from '@/components/Loader/Loader';
-import { Button } from '@/components/ui/button';
-import { RootState } from '@/redux/store';
-import { ReactPayPalScriptOptions } from '@paypal/react-paypal-js';
-import { useMutation } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
-import { IoMdLock } from 'react-icons/io';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { setUserInformation } from '@/utils/setUserInformation';
+import buyCourseById from "@/api/users/buyCourseId";
+import refreshMe from "@/api/users/refreshMe";
+import Loader from "@/components/Loader/Loader";
+import { Button } from "@/components/ui/button";
+import { RootState } from "@/redux/store";
+import { ReactPayPalScriptOptions } from "@paypal/react-paypal-js";
+import { useMutation } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { IoMdLock } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setUserInformation } from "@/utils/setUserInformation";
 
 const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }) => {
   const [isLoading, setLoading] = useState(false);
@@ -40,14 +40,14 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
       console.log(cookie);
 
       setUserInformation(cookie, dispatch);
-      alert('Success purchase course');
+      alert("Success purchase course");
       navigate(`/course-view/${coursesIds[0]}`);
     },
   });
 
   const handleClick = () => {
     if (!coursesIds.length) {
-      console.log('No courses available for checkout.');
+      console.log("No courses available for checkout.");
       return;
     }
 
@@ -57,7 +57,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
     if (coursesIds.length === 1) {
       const courseId = coursesIds[0];
       if (!courseId) {
-        console.log('Invalid courseId received.');
+        console.log("Invalid courseId received.");
         return;
       }
       checkOutMutation.mutate(courseId);
@@ -68,7 +68,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
 
   const checkOutMultiMutation = useMutation({
     mutationFn: (courseIds: string[]) => {
-      console.log('Course ids going to purchase: ', courseIds);
+      console.log("Course ids going to purchase: ", courseIds);
 
       return Promise.all(courseIds.map((id) => buyCourseById(id)));
     },
@@ -99,7 +99,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
         </div>
         <div className="mb-[1em] w-[75%]">
           <p>
-            By completing your purchase you agree to these{' '}
+            By completing your purchase you agree to these{" "}
             <span className="text-btnColor">Terms of Service.</span>
           </p>
         </div>

@@ -1,23 +1,23 @@
-import verifyCode from '@/api/users/verifyCode';
-import ButtonLoader from '@/components/ButtonLoader/ButtonLoader';
-import CustomInput from '@/components/CustomInput/CustomInput';
-import { RootState } from '@/redux/store';
-import { setUserInformation } from '@/utils/setUserInformation';
-import { useMutation } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
-import { IoMdLock } from 'react-icons/io';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import NotificationCodeResent from './NotificationCodeResent/NotificationCodeResent';
-import loginUser from '@/api/users/loginUser';
-import { PiWarningOctagon } from 'react-icons/pi';
-import DisplayErrorCode from './DisplayErrorCode/DisplayErrorCode';
+import verifyCode from "@/api/users/verifyCode";
+import ButtonLoader from "@/components/ButtonLoader/ButtonLoader";
+import CustomInput from "@/components/CustomInput/CustomInput";
+import { RootState } from "@/redux/store";
+import { setUserInformation } from "@/utils/setUserInformation";
+import { useMutation } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { IoMdLock } from "react-icons/io";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import NotificationCodeResent from "./NotificationCodeResent/NotificationCodeResent";
+import loginUser from "@/api/users/loginUser";
+import { PiWarningOctagon } from "react-icons/pi";
+import DisplayErrorCode from "./DisplayErrorCode/DisplayErrorCode";
 
 const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   const [isLoading, setLoading] = useState(false);
   const [isError, setShowIsError] = useState(false);
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState("");
   const [codeVerification, setCodeVerification] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,10 +28,10 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
     onSuccess: (data) => {
       console.log(data);
       setUserInformation(data, dispatch);
-      navigate('/');
+      navigate("/");
     },
     onError: (error) => {
-      console.error('Error during login process:', error);
+      console.error("Error during login process:", error);
       setShowIsError(true);
     },
   });
@@ -46,7 +46,7 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const code = formData.get('code') as string;
+    const code = formData.get("code") as string;
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -80,9 +80,9 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
           <div className="w-full">
             <CustomInput
               isError={null}
-              inputMode={'text'}
-              nameAttribute={'code'}
-              idAttribute={'code'}
+              inputMode={"text"}
+              nameAttribute={"code"}
+              idAttribute={"code"}
               useErrorDisplay={false}
               labelName={`6-digit code`}
             />

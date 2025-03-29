@@ -1,14 +1,14 @@
-import { useContext } from 'react';
-import FilterBtn from './FilterBtn/FilterBtn';
-import SortDropDown from './SortDropDown/SortDropDown';
-import { filterContext } from '@/routes/AppRoutes';
+import { useContext } from "react";
+import FilterBtn from "./FilterBtn/FilterBtn";
+import SortDropDown from "./SortDropDown/SortDropDown";
+import { filterContext } from "@/routes/AppRoutes";
 
 const defaultFilters = {
-  sortBy: '',
+  sortBy: "",
   handsOnPractice: new Set(),
   language: new Set(),
   levels: new Set(),
-  price: '',
+  price: "",
   ratings: 0,
   subtitles: new Set(),
   topics: new Set(),
@@ -49,7 +49,9 @@ const FilterNSort = ({ coursesResults, searchTerm }) => {
           )}
         </div>
         <div>
-          <p className="w-max font-sans text-[1rem] font-extrabold text-[#595C73]">{coursesResults} results</p>
+          <p className="w-max font-sans text-[1rem] font-extrabold text-[#595C73]">
+            {coursesResults} results
+          </p>
         </div>
       </div>
       <div className="mb-2 flex w-auto flex-col items-start justify-center">

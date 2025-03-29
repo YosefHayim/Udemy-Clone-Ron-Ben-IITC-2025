@@ -1,8 +1,8 @@
-import Filter from '@/components/Filter/Filter';
-import { topics } from '@/utils/topics';
-import { useState } from 'react';
-import { useContext } from 'react';
-import { filterContext } from '@/routes/AppRoutes';
+import Filter from "@/components/Filter/Filter";
+import { topics } from "@/utils/topics";
+import { useState } from "react";
+import { useContext } from "react";
+import { filterContext } from "@/routes/AppRoutes";
 
 const Topics = () => {
   const [display, setDisplay] = useState<boolean>(true);
@@ -11,9 +11,9 @@ const Topics = () => {
   return (
     <div>
       <Filter
-        filterTitle={'Topics'}
+        filterTitle={"Topics"}
         filterItems={topics}
-        chosenHeight={'h-[50px]'}
+        chosenHeight={"h-[50px]"}
         display={display}
         setDisplay={setDisplay}
         useForSection={false}

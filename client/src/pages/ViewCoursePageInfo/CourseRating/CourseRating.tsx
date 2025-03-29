@@ -1,4 +1,4 @@
-import { MdOutlineStarPurple500 } from 'react-icons/md';
+import { MdOutlineStarPurple500 } from "react-icons/md";
 
 const CourseRating: React.FC<{
   colorRating?: string;
@@ -6,7 +6,7 @@ const CourseRating: React.FC<{
   amountOfStars?: number;
   isShowRating?: boolean;
 }> = ({
-  colorRating = 'text-[#f69c08]',
+  colorRating = "text-[#f69c08]",
   courseRating = 0,
   amountOfStars = 1,
   isShowRating = false,
@@ -15,8 +15,8 @@ const CourseRating: React.FC<{
 
   return (
     <div className="flex items-center gap-[0.1em] text-white">
-      <b className={`${isShowRating ? `${colorRating} block` : 'hidden'}`}>
-        {courseRating > 0 ? courseRating : ''}
+      <b className={`${isShowRating ? `${colorRating} block` : "hidden"}`}>
+        {courseRating > 0 ? courseRating : ""}
       </b>
 
       {Array(validStars)

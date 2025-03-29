@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { MdOutlineKeyboardArrowUp, MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { useState } from "react";
+import { MdOutlineKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 const Description: React.FC<{ description: string; whoThisFor: string[] }> = ({
   description,
@@ -16,15 +16,15 @@ const Description: React.FC<{ description: string; whoThisFor: string[] }> = ({
       <div
         className="overflow-hidden"
         style={{
-          maxHeight: isExpanded ? 'none' : '280px',
+          maxHeight: isExpanded ? "none" : "280px",
           WebkitMaskImage: isExpanded
-            ? 'none'
-            : 'linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))',
+            ? "none"
+            : "linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))",
           maskImage: isExpanded
-            ? 'none'
-            : 'linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))',
-          WebkitMaskSize: '100% 100%',
-          maskSize: '100% 100%',
+            ? "none"
+            : "linear-gradient(#ffffff, #ffffff, rgba(255, 255, 255, 0))",
+          WebkitMaskSize: "100% 100%",
+          maskSize: "100% 100%",
         }}
       >
         <div className="flex flex-col gap-[1em]">
@@ -40,7 +40,7 @@ const Description: React.FC<{ description: string; whoThisFor: string[] }> = ({
       </div>
       <div className="mt-[1em] flex cursor-pointer items-center gap-[1em]" onClick={handleToggle}>
         <span className="font-sans font-extrabold text-purpleStatic hover:text-purpleHover ">
-          {isExpanded ? 'Show less' : 'Show more'}
+          {isExpanded ? "Show less" : "Show more"}
         </span>
         {isExpanded ? <MdOutlineKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
       </div>

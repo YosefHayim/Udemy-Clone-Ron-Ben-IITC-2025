@@ -1,5 +1,5 @@
-import SearchResults from '../../SearchResults/SearchResults';
-import SearchInputSearchButton from '../SearchInputSearchButton/SearchInputSearchButton';
+import SearchResults from "../../SearchResults/SearchResults";
+import SearchInputSearchButton from "../SearchInputSearchButton/SearchInputSearchButton";
 
 const SearchInputDesktop = ({
   handleSubmit,

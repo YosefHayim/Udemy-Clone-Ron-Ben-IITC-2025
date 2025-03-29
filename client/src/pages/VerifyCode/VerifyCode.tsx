@@ -1,17 +1,17 @@
-import { useState, useEffect, useContext } from 'react';
-import LoginImgDesktop from '../Login/LoginImg/LoginImg';
-import WebsiteLoginOptions from '../Login/OtherLoginOptions/WebsiteLoginOptions/WebsiteLoginOptions';
-import { emailContext } from '@/routes/AppRoutes';
-import CodeForm from './CodeForm/CodeForm';
-import DidntReceiveCode from './CodeForm/DidntReceiveCode/DidntReceiveCode';
-import EnterCodeSendTo from './CodeForm/EnterCodeSendTo/EnterCodeSendTo';
-import { useMediaQuery } from 'react-responsive';
-import MobileLoginImg from '../Login/MobileLoginImg/MobileLoginImg';
+import { useState, useEffect, useContext } from "react";
+import LoginImgDesktop from "../Login/LoginImg/LoginImg";
+import WebsiteLoginOptions from "../Login/OtherLoginOptions/WebsiteLoginOptions/WebsiteLoginOptions";
+import { emailContext } from "@/routes/AppRoutes";
+import CodeForm from "./CodeForm/CodeForm";
+import DidntReceiveCode from "./CodeForm/DidntReceiveCode/DidntReceiveCode";
+import EnterCodeSendTo from "./CodeForm/EnterCodeSendTo/EnterCodeSendTo";
+import { useMediaQuery } from "react-responsive";
+import MobileLoginImg from "../Login/MobileLoginImg/MobileLoginImg";
 
 const VerifyCode = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
   const emailCtx = useContext(emailContext);
-  if (!emailCtx) throw new Error('emailContext is not provided');
+  if (!emailCtx) throw new Error("emailContext is not provided");
   const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
 
   const [countdown, setCountdown] = useState(30);
@@ -41,7 +41,7 @@ const VerifyCode = () => {
   return (
     <div className="h-screen w-full bg-cover bg-center">
       <div
-        className={`${isMobile ? 'w-full flex-col' : ''} flex w-full flex-1 items-center justify-center`}
+        className={`${isMobile ? "w-full flex-col" : ""} flex w-full flex-1 items-center justify-center`}
       >
         {!isMobile && <LoginImgDesktop />}
         <div className="h-svh w-full max-w-[29rem] rounded-lg bg-white p-6">

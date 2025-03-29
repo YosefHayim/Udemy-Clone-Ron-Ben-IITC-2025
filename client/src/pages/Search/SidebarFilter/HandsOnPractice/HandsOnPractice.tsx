@@ -1,8 +1,8 @@
-import Filter from '@/components/Filter/Filter';
-import { handsOnPractice } from '@/utils/handsOnPractice';
-import { useState } from 'react';
-import { useContext } from 'react';
-import { filterContext } from '@/routes/AppRoutes';
+import Filter from "@/components/Filter/Filter";
+import { handsOnPractice } from "@/utils/handsOnPractice";
+import { useState } from "react";
+import { useContext } from "react";
+import { filterContext } from "@/routes/AppRoutes";
 
 const HandsOnPractice = () => {
   const [display, setDisplay] = useState<boolean>(false);
@@ -11,9 +11,9 @@ const HandsOnPractice = () => {
   return (
     <div>
       <Filter
-        filterTitle={'Hands-on Practice'}
+        filterTitle={"Hands-on Practice"}
         filterItems={handsOnPractice}
-        chosenHeight={'h-[50px]'}
+        chosenHeight={"h-[50px]"}
         display={display}
         setDisplay={setDisplay}
         useForSection={false}

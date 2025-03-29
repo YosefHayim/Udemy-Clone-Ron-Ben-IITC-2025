@@ -1,14 +1,14 @@
-import { baseUrl, isProduction, localhostUrl } from '@/api/configuration';
-import googleLogin from '@/api/users/googleLogin';
-import { setUserInformation } from '@/utils/setUserInformation';
-import { iconSize, loginThirdPartyBtn } from '@/utils/stylesStorage';
-import { useGoogleLogin } from '@react-oauth/google';
-import { useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
-import { FaApple, FaFacebook } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { baseUrl, isProduction, localhostUrl } from "@/api/configuration";
+import googleLogin from "@/api/users/googleLogin";
+import { setUserInformation } from "@/utils/setUserInformation";
+import { iconSize, loginThirdPartyBtn } from "@/utils/stylesStorage";
+import { useGoogleLogin } from "@react-oauth/google";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
+import { FaApple, FaFacebook } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const OtherLoginOptions = () => {
   const [isError, setShowIsError] = useState(false);
@@ -19,10 +19,10 @@ const OtherLoginOptions = () => {
     mutationFn: googleLogin,
     onSuccess: (cookie) => {
       setUserInformation(cookie, dispatch);
-      navigate('/');
+      navigate("/");
     },
     onError: (error) => {
-      console.log('Error during google login process:', error);
+      console.log("Error during google login process:", error);
       setShowIsError(true);
     },
   });
@@ -37,8 +37,8 @@ const OtherLoginOptions = () => {
     onNonOAuthError: (nonAuthError) => {
       console.log(nonAuthError);
     },
-    flow: 'auth-code',
-    ux_mode: 'popup',
+    flow: "auth-code",
+    ux_mode: "popup",
     redirect_uri: isProduction ? baseUrl : localhostUrl,
   });
 

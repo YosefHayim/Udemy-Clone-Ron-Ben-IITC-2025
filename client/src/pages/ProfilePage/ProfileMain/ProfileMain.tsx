@@ -1,19 +1,19 @@
-import { Input } from '@/components/ui/input';
-import SideBarProfile from '../SideBarProfile/SideBarProfile';
-import { Button } from '@/components/ui/button';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
-import { useState } from 'react';
-import { btnLanguages } from '@/utils/languages';
-import { useDispatch } from 'react-redux';
-import { useMutation } from '@tanstack/react-query';
-import updateUserLanguage from '@/api/users/updateUserLanguage';
-import { setLanguage } from '@/redux/slices/userSlice';
-import { regInputFill } from '@/utils/stylesStorage';
+import { Input } from "@/components/ui/input";
+import SideBarProfile from "../SideBarProfile/SideBarProfile";
+import { Button } from "@/components/ui/button";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { useState } from "react";
+import { btnLanguages } from "@/utils/languages";
+import { useDispatch } from "react-redux";
+import { useMutation } from "@tanstack/react-query";
+import updateUserLanguage from "@/api/users/updateUserLanguage";
+import { setLanguage } from "@/redux/slices/userSlice";
+import { regInputFill } from "@/utils/stylesStorage";
 
 const ProfileMain = () => {
   const dispatch = useDispatch();
-  document.title = 'Udemy | Edit profile';
+  document.title = "Udemy | Edit profile";
   const MAX_LENGTH = 60;
 
   const fullName = useSelector((state: RootState) => state?.user?.fullName);
@@ -24,16 +24,16 @@ const ProfileMain = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const fName = formData.get('fname');
-    const lName = formData.get('lname');
-    const languageChosen = formData.get('language');
-    const headline = formData.get('headline');
-    const xPlatform = formData.get('twitter');
-    const linkedin = formData.get('linkedin');
-    const youtube = formData.get('youtube');
-    const facebook = formData.get('facebook');
-    const website = formData.get('website');
-    const bio = formData.get('bio');
+    const fName = formData.get("fname");
+    const lName = formData.get("lname");
+    const languageChosen = formData.get("language");
+    const headline = formData.get("headline");
+    const xPlatform = formData.get("twitter");
+    const linkedin = formData.get("linkedin");
+    const youtube = formData.get("youtube");
+    const facebook = formData.get("facebook");
+    const website = formData.get("website");
+    const bio = formData.get("bio");
 
     console.log(
       `Language chosen: ${languageChosen}`,
@@ -49,7 +49,7 @@ const ProfileMain = () => {
     );
   };
 
-  const [headline, setHeadline] = useState(headlineFromStore || '');
+  const [headline, setHeadline] = useState(headlineFromStore || "");
   const [isBoldText, setBoldText] = useState(false);
   const [charsLeft, setCharsLeft] = useState(MAX_LENGTH - (headlineFromStore?.length || 0));
 
@@ -114,7 +114,7 @@ const ProfileMain = () => {
                 name="headline"
                 onChange={handleHeadlineChange}
                 value={headline}
-                placeholder={'Headline'}
+                placeholder={"Headline"}
                 className={`${regInputFill}`}
               />
               <span className="absolute right-[26%] top-[37.5%] font-medium text-gray-500">
@@ -147,7 +147,7 @@ const ProfileMain = () => {
                   placeholder={bio}
                   rows={4}
                   className={`${
-                    isBoldText ? 'font-sans font-extrabold' : 'font-normal'
+                    isBoldText ? "font-sans font-extrabold" : "font-normal"
                   } w-full border border-t-0 border-gray-500 bg-white hover:bg-gray-100`}
                 ></textarea>
               </div>
@@ -180,7 +180,7 @@ const ProfileMain = () => {
                     name="website"
                     id="website"
                     placeholder={
-                      userLinks.website.length > 1 ? userLinks.website : 'Website (http(s)://..)'
+                      userLinks.website.length > 1 ? userLinks.website : "Website (http(s)://..)"
                     }
                     className="w-full rounded-[0.2rem] border border-gray-500"
                   />
@@ -198,7 +198,7 @@ const ProfileMain = () => {
                       name="twitter"
                       id="twitter"
                       placeholder={
-                        userLinks.xPlatform.length > 1 ? userLinks.xPlatform : 'Twitter Profile'
+                        userLinks.xPlatform.length > 1 ? userLinks.xPlatform : "Twitter Profile"
                       }
                       className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
                     />
@@ -219,7 +219,7 @@ const ProfileMain = () => {
                       type="text"
                       name="facebook"
                       id="facebook"
-                      placeholder={userLinks.facebook.length > 1 ? userLinks.facebook : 'Username'}
+                      placeholder={userLinks.facebook.length > 1 ? userLinks.facebook : "Username"}
                       className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
                     />
                   </div>
@@ -239,7 +239,7 @@ const ProfileMain = () => {
                       type="text"
                       name="linkedin"
                       id="linkedin"
-                      placeholder={userLinks.linkedin.length > 1 ? userLinks.linkedin : 'Username'}
+                      placeholder={userLinks.linkedin.length > 1 ? userLinks.linkedin : "Username"}
                       className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
                     />
                   </div>
@@ -259,7 +259,7 @@ const ProfileMain = () => {
                       type="text"
                       id="youtube"
                       name="youtube"
-                      placeholder={userLinks.youtube.length > 1 ? userLinks.youtube : 'Username'}
+                      placeholder={userLinks.youtube.length > 1 ? userLinks.youtube : "Username"}
                       className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
                     />
                   </div>

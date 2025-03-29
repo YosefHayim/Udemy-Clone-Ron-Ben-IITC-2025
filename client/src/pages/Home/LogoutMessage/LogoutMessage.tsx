@@ -1,4 +1,4 @@
-import { IoMdCheckmarkCircle } from 'react-icons/io';
+import { IoMdCheckmarkCircle } from "react-icons/io";
 
 const LogoutMessage = () => {
   return (

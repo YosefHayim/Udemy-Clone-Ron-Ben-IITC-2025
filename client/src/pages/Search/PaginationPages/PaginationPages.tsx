@@ -1,4 +1,4 @@
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 const PaginationPages: React.FC<{
   currentPage: number;
@@ -27,11 +27,11 @@ const PaginationPages: React.FC<{
     }
 
     if (currentPage <= 3) {
-      pages.push(1, 2, 3, '...', totalPages);
+      pages.push(1, 2, 3, "...", totalPages);
     } else if (currentPage >= totalPages - 2) {
-      pages.push(1, '...', totalPages - 2, totalPages - 1, totalPages);
+      pages.push(1, "...", totalPages - 2, totalPages - 1, totalPages);
     } else {
-      pages.push('...', currentPage, '...');
+      pages.push("...", currentPage, "...");
     }
 
     return pages;
@@ -43,7 +43,7 @@ const PaginationPages: React.FC<{
         onClick={handlePreviousPage}
         disabled={currentPage === 1}
         className={`rounded-[100em] border border-[#6D28D2] p-[0.5em] hover:bg-hoverDivGray focus:outline-none ${
-          currentPage === 1 ? 'cursor-not-allowed opacity-50' : ''
+          currentPage === 1 ? "cursor-not-allowed opacity-50" : ""
         }`}
       >
         <MdKeyboardArrowLeft size={24} className="text-[#6D28D2]" />
@@ -58,14 +58,14 @@ const PaginationPages: React.FC<{
                 currentPage === page
                   ? "relative font-sans font-extrabold text-[#6D28D2] content-[''] before:absolute before:bottom-2 before:left-[0.25rem] before:right-[0.2rem] before:h-[0.15rem] before:bg-purple-900"
                   : page === totalPages
-                    ? 'font-sans font-extrabold text-[#303141]' // 🔥 O total de páginas agora está preto
-                    : ''
+                    ? "font-sans font-extrabold text-[#303141]" // 🔥 O total de páginas agora está preto
+                    : ""
               }
-              ${page === '...' ? 'cursor-default text-gray-500' : 'cursor-pointer'}
+              ${page === "..." ? "cursor-default text-gray-500" : "cursor-pointer"}
             `}
-            onClick={() => typeof page === 'number' && setCurrentPage(page)}
+            onClick={() => typeof page === "number" && setCurrentPage(page)}
           >
-            {page === '...' ? (
+            {page === "..." ? (
               <span className="font-sans font-extrabold tracking-[0.1em] text-[#303141]">...</span>
             ) : (
               page
@@ -78,7 +78,7 @@ const PaginationPages: React.FC<{
         onClick={handleNextPage}
         disabled={currentPage === totalPages}
         className={`rounded-[100em] border border-[#6D28D2] p-[0.5em] hover:bg-hoverDivGray focus:outline-none ${
-          currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
+          currentPage === totalPages ? "cursor-not-allowed opacity-50" : ""
         }`}
       >
         <MdKeyboardArrowRight size={24} className="text-[#6D28D2]" />

@@ -1,5 +1,5 @@
-import CourseRating from '@/pages/ViewCoursePageInfo/CourseRating/CourseRating';
-import { calculateTimeDifference } from '@/utils/whenCreated';
+import CourseRating from "@/pages/ViewCoursePageInfo/CourseRating/CourseRating";
+import { calculateTimeDifference } from "@/utils/whenCreated";
 
 const UserReviewRating: React.FC<{
   reviewRating: number;

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import ButtonsCarousel from '@/components/ButtonsCarousel/ButtonsCarousel';
-import { getBanners } from '@/utils/banners';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
+import { useEffect, useState } from "react";
+import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
+import { getBanners } from "@/utils/banners";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
   const coursesBoughtOrJoined = useSelector((state: RootState) => state?.user?.coursesBought);

@@ -1,6 +1,6 @@
-import { MdOutlineOndemandVideo } from 'react-icons/md';
-import { GoLightBulb } from 'react-icons/go';
-import { Link } from 'react-router-dom';
+import { MdOutlineOndemandVideo } from "react-icons/md";
+import { GoLightBulb } from "react-icons/go";
+import { Link } from "react-router-dom";
 
 const Lesson: React.FC<{
   isQuizzLesson: boolean;
@@ -35,7 +35,7 @@ const Lesson: React.FC<{
               Preview
             </Link>
             <p className="text-weakGray">{`${Math.floor(duration / 60)}:${
-              duration % 60 < 10 ? '0' : ''
+              duration % 60 < 10 ? "0" : ""
             }${duration % 60}`}</p>
           </div>
         )}

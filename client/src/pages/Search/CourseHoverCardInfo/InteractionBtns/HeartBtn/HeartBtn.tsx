@@ -1,17 +1,17 @@
-import Loader from '@/components/Loader/Loader';
-import { RootState } from '@/redux/store';
-import { setCoursesAddedToWishList } from '@/redux/slices/cartSlice';
-import { useState } from 'react';
-import { IoHeartOutline, IoHeartSharp } from 'react-icons/io5';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import Loader from "@/components/Loader/Loader";
+import { RootState } from "@/redux/store";
+import { setCoursesAddedToWishList } from "@/redux/slices/cartSlice";
+import { useState } from "react";
+import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const HeartBtn: React.FC<{
   iconSize?: string;
   courseId?: string;
   showHeart?: boolean;
   customHeartExtraCSS?: string;
-}> = ({ iconSize = '2em', courseId, showHeart = false, customHeartExtraCSS }) => {
+}> = ({ iconSize = "2em", courseId, showHeart = false, customHeartExtraCSS }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const HeartBtn: React.FC<{
 
   const handleClick = () => {
     if (!cookie) {
-      navigate('/signup');
+      navigate("/signup");
       return;
     }
 
@@ -44,7 +44,7 @@ const HeartBtn: React.FC<{
       onClick={handleClick}
       id={courseId}
       className={`${
-        showHeart ? 'block' : 'hidden'
+        showHeart ? "block" : "hidden"
       } flex cursor-pointer items-center justify-center rounded-full border border-purple-700 p-3 transition-all duration-300 hover:bg-purpleHoverBtn ${customHeartExtraCSS}`}
     >
       {isLoading ? (

@@ -1,4 +1,4 @@
-import { axiosClient, baseUrl, isProduction, localhostUrl } from '../configuration';
+import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configuration";
 
 const getInstructorById = async (instructorId: string) => {
   console.log(instructorId);

@@ -1,12 +1,12 @@
-import { Button } from '@/components/ui/button';
-import { MdOutlineShoppingCart } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
+import { MdOutlineShoppingCart } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const PurchaseHistoryRow = () => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate('/dashboard/cart-receipt/');
+    navigate("/dashboard/cart-receipt/");
   };
 
   return (

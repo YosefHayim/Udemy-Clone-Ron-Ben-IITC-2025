@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import SideBarProfile from '../SideBarProfile/SideBarProfile'; // Importando o componente da Sidebar
+import { useState } from "react";
+import SideBarProfile from "../SideBarProfile/SideBarProfile"; // Importando o componente da Sidebar
 
 const Privacy = () => {
   // Estados para as configurações de privacidade
@@ -8,7 +8,7 @@ const Privacy = () => {
 
   // Função para salvar as alterações (simulação)
   const handleSave = () => {
-    alert('Privacy settings saved!');
+    alert("Privacy settings saved!");
   };
 
   return (

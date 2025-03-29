@@ -1,4 +1,4 @@
-import loginUdemyBusinessOrganizationImg from '/images/login-udemy-business-organization.jpg';
+import loginUdemyBusinessOrganizationImg from "/images/login-udemy-business-organization.jpg";
 
 const OrganizationBackground = () => {
   return (

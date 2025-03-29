@@ -1,4 +1,4 @@
-import SideMenuPrivacy from './SideMenuPrivacy';
+import SideMenuPrivacy from "./SideMenuPrivacy";
 
 const PrivacyStatement = () => {
   return (
@@ -87,10 +87,10 @@ const PrivacyStatement = () => {
           </h3>
           <p className="mb-4">
             <strong>Australia:</strong> If you are located in Australia, you may contact our privacy
-            team at{' '}
+            team at{" "}
             <a href="mailto:privacy@udemy.com" className="text-blue-500">
               privacy@udemy.com
-            </a>{' '}
+            </a>{" "}
             for assistance.
           </p>
 

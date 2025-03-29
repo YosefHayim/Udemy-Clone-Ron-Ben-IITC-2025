@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from 'react-icons/md';
-import { useContext } from 'react';
-import { filterContext } from '@/routes/AppRoutes';
-import { FilterDataProps } from '@/types/types';
-import { useEffect } from 'react';
+import { useState } from "react";
+import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { useContext } from "react";
+import { filterContext } from "@/routes/AppRoutes";
+import { FilterDataProps } from "@/types/types";
+import { useEffect } from "react";
 
 const RatingsFilter = () => {
   const [isClicked, setClicked] = useState(true);
@@ -21,7 +21,7 @@ const RatingsFilter = () => {
       ...prev,
       ratings: rating,
     }));
-    console.log('Selected Rating:', rating);
+    console.log("Selected Rating:", rating);
   };
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = () => {
@@ -30,27 +30,27 @@ const RatingsFilter = () => {
 
   // modify ratings to be based on the result received from the backend
   const ratings = [
-    { rating: '★★★★½', value: 4.5, count: '4,394' },
-    { rating: '★★★★☆', value: 4.0, count: '8,757' },
-    { rating: '★★★½☆', value: 3.5, count: '9,900' },
-    { rating: '★★★☆☆', value: 3, count: '10,000' },
+    { rating: "★★★★½", value: 4.5, count: "4,394" },
+    { rating: "★★★★☆", value: 4.0, count: "8,757" },
+    { rating: "★★★½☆", value: 3.5, count: "9,900" },
+    { rating: "★★★☆☆", value: 3, count: "10,000" },
   ];
 
   return (
     <div>
       <hr />
-      <div className={`overflow-hidden transition-all ${isClicked ? 'h-auto' : 'h-[50px]'}`}>
+      <div className={`overflow-hidden transition-all ${isClicked ? "h-auto" : "h-[50px]"}`}>
         <div className="flex cursor-pointer items-center justify-between" onClick={handleClick}>
           <p className="py-[0.5em] font-sans text-lg font-extrabold">Ratings</p>
           {isClicked ? <MdKeyboardArrowUp size={17} /> : <MdOutlineKeyboardArrowDown size={17} />}
         </div>
-        <div className={`${isClicked ? 'block' : 'hidden'}`}>
+        <div className={`${isClicked ? "block" : "hidden"}`}>
           {ratings.map(({ rating, value, count }) => (
             <label key={value} className="flex cursor-pointer items-center space-x-2 py-2">
               <span
                 onClick={() => handleRatingClick(value)}
                 className={`flex h-4 w-4 items-center justify-center rounded-full border-2 ${
-                  selectedRating === value ? 'border-black' : 'border-gray-600'
+                  selectedRating === value ? "border-black" : "border-gray-600"
                 }`}
               >
                 {selectedRating === value && (

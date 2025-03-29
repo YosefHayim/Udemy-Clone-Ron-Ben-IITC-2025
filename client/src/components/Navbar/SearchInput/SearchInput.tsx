@@ -1,11 +1,11 @@
-import getAllCourses from '@/api/courses/getAllCourses';
-import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
-import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
-import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
-import { useMediaQuery } from 'react-responsive';
-import SearchInputDesktop from './SearchInputDesktop/SearchInputDekstop';
-import SearchInputMobile from '@/components/MobileNavbar/SearchInputMobile/SearchInputMobile';
+import getAllCourses from "@/api/courses/getAllCourses";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
+import { useMediaQuery } from "react-responsive";
+import SearchInputDesktop from "./SearchInputDesktop/SearchInputDekstop";
+import SearchInputMobile from "@/components/MobileNavbar/SearchInputMobile/SearchInputMobile";
 
 const SearchInput: React.FC<{
   isTyping: boolean;
@@ -18,10 +18,10 @@ const SearchInput: React.FC<{
 
   const navigate = useNavigate();
   const location = useLocation();
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const [debouncedTerm, setDebouncedTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [debouncedTerm, setDebouncedTerm] = useState<string>("");
   const [searchParams] = useSearchParams();
-  const urlSearchTerm: string = searchParams.get('q')?.toLowerCase() || '';
+  const urlSearchTerm: string = searchParams.get("q")?.toLowerCase() || "";
 
   // Sync URL query with `searchTerm` on page load or navigation
   useEffect(() => {
@@ -60,10 +60,10 @@ const SearchInput: React.FC<{
   let limit: number | null = null;
 
   const { data } = useQuery({
-    queryKey: ['courses', debouncedTerm, page],
+    queryKey: ["courses", debouncedTerm, page],
     queryFn: () => {
       if (!debouncedTerm) {
-        throw new Error('Search term is undefined');
+        throw new Error("Search term is undefined");
       }
       return getAllCourses(debouncedTerm);
     },
@@ -76,7 +76,7 @@ const SearchInput: React.FC<{
         <SearchInputDesktop
           handleSubmit={handleSubmit}
           handleOnChange={handleOnChange}
-          extraCSS={''}
+          extraCSS={""}
           searchTerm={searchTerm}
           isTyping={isTyping}
           data={data}
@@ -88,7 +88,7 @@ const SearchInput: React.FC<{
           showSearchMobile={showSearchMobile}
           handleSubmit={handleSubmit}
           handleOnChange={handleOnChange}
-          extraCSS={''}
+          extraCSS={""}
           searchTerm={searchTerm}
           isTyping={isTyping}
           data={data}

@@ -1,11 +1,11 @@
-import AtagBtn from '@/components/ButtonNavbar/ButtonNavbar';
-import { Category, Subcategory } from '@/types/types';
-import { categoriesData } from '@/utils/categoriesData';
-import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
-import { btnStyleNHover } from '@/utils/stylesStorage';
-import { useState, useRef } from 'react';
-import { IoIosArrowForward } from 'react-icons/io';
-import { useNavigate } from 'react-router-dom';
+import AtagBtn from "@/components/ButtonNavbar/ButtonNavbar";
+import { Category, Subcategory } from "@/types/types";
+import { categoriesData } from "@/utils/categoriesData";
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
+import { btnStyleNHover } from "@/utils/stylesStorage";
+import { useState, useRef } from "react";
+import { IoIosArrowForward } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const CategoriesMenu = () => {
   const navigate = useNavigate();
@@ -85,11 +85,11 @@ const CategoriesMenu = () => {
   };
 
   return (
-    <div className="relative z-50 inline-block w-auto text-left font-medium text-gray-600 px-[0.25rem]">
+    <div className="relative z-50 inline-block w-auto px-[0.25rem] text-left font-medium text-gray-600">
       {/* Botão Explore com hover para mostrar menu */}
       <div
         className="inline-block"
-        onMouseEnter={() => handleMenuEnter('main')}
+        onMouseEnter={() => handleMenuEnter("main")}
         onMouseLeave={handleMenuLeave}
       >
         <button
@@ -101,7 +101,7 @@ const CategoriesMenu = () => {
         {hoveredMenu && (
           <div
             className="absolute left-0 top-[130%] min-h-[40rem] w-64 rounded-l-lg border border-gray-300 bg-white text-sm"
-            onMouseEnter={() => handleMenuEnter('main')}
+            onMouseEnter={() => handleMenuEnter("main")}
             onMouseLeave={handleMenuLeave}
           >
             {/* Título */}
@@ -110,27 +110,27 @@ const CategoriesMenu = () => {
             {categoriesData.map((category, index: number) => (
               <>
                 <div
-                  onClick={() => handleNavigate(category?.category || '')}
+                  onClick={() => handleNavigate(category?.category || "")}
                   key={index}
                   className={`flex cursor-pointer items-center justify-between px-4 py-2 hover:bg-gray-100 ${
-                    hoveredMenu === category?.category ? 'font-sans text-purple-700' : ''
+                    hoveredMenu === category?.category ? "font-sans text-purple-700" : ""
                   }`}
                   onMouseEnter={() => handleMenuEnter(category?.category || null)}
                 >
-                  <span>{category?.category || 'Unnamed Category'}</span>
+                  <span>{category?.category || "Unnamed Category"}</span>
                   <span>
                     <IoIosArrowForward />
                   </span>
                 </div>
                 {/* Linha divisória entre "Certification Preparation" e "Development" */}
-                {category?.category === 'Certification Preparation' && (
+                {category?.category === "Certification Preparation" && (
                   <hr className="my-2 border-t border-gray-300" />
                 )}
               </>
             ))}
 
             {/* First Submenu */}
-            {hoveredMenu && hoveredMenu !== 'main' && (
+            {hoveredMenu && hoveredMenu !== "main" && (
               <div
                 className="absolute left-[15.9rem] top-[-0.05rem] z-20 mt-0 min-h-[40rem] w-64 border border-y-gray-300 bg-white"
                 onMouseEnter={() => handleSubMenuEnter(hoveredMenu)}
@@ -139,14 +139,14 @@ const CategoriesMenu = () => {
                 {getCategoryData(hoveredMenu)?.subcategory.map((subCategory, index) => (
                   <div key={index}>
                     {/* Adiciona o título "Popular Issuers" antes de "Amazon Web Services (AWS) Certifications" */}
-                    {subCategory.title === 'Amazon Web Services (AWS) Certifications' && (
+                    {subCategory.title === "Amazon Web Services (AWS) Certifications" && (
                       <div className="px-4 py-2 font-sans font-extrabold text-gray-400">
                         Popular Issuers
                       </div>
                     )}
 
                     {/* Adiciona "Popular Subjects" com linha em cima antes de "Cloud Certification" */}
-                    {subCategory.title === 'Cloud Certification' && (
+                    {subCategory.title === "Cloud Certification" && (
                       <div className="mt-4 border-t  border-gray-300 px-4 pb-2 pt-4 font-sans  text-gray-700">
                         Popular Subjects
                       </div>
@@ -160,14 +160,14 @@ const CategoriesMenu = () => {
                       }
                       className={`flex cursor-pointer items-center justify-between px-4 py-2 hover:bg-gray-100 ${
                         hoveredSubMenu === (subCategory.title || subCategory.name)
-                          ? 'font-sans  text-purple-700'
-                          : ''
+                          ? "font-sans  text-purple-700"
+                          : ""
                       }`}
                       onMouseEnter={() =>
                         handleSubMenuEnter(subCategory.title || subCategory.name || null)
                       }
                     >
-                      <span>{subCategory.title || subCategory.name || 'Unnamed Subcategory'}</span>
+                      <span>{subCategory.title || subCategory.name || "Unnamed Subcategory"}</span>
                       <span>
                         <IoIosArrowForward />
                       </span>
@@ -191,17 +191,17 @@ const CategoriesMenu = () => {
                       onClick={() => handleNavigate(topic)}
                       key={index}
                       onMouseEnter={() =>
-                        setHoveredTopic(typeof topic === 'string' ? topic : topic.title)
+                        setHoveredTopic(typeof topic === "string" ? topic : topic.title)
                       }
                       onMouseLeave={() => setHoveredTopic(null)}
                       className={`flex cursor-pointer items-center justify-between px-4 py-2 hover:bg-gray-100 ${
-                        hoveredTopic === (typeof topic === 'string' ? topic : topic.title)
-                          ? 'font-sans text-purple-700'
-                          : ''
+                        hoveredTopic === (typeof topic === "string" ? topic : topic.title)
+                          ? "font-sans text-purple-700"
+                          : ""
                       }`}
                     >
                       <span>
-                        {typeof topic === 'string' ? topic : topic.title || topic.group || 'web'}
+                        {typeof topic === "string" ? topic : topic.title || topic.group || "web"}
                       </span>
                     </div>
                   )

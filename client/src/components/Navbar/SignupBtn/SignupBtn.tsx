@@ -1,6 +1,6 @@
-import { Button } from '@/components/ui/button';
-import { loginWithEmailBtn } from '@/utils/stylesStorage';
-import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
+import { loginWithEmailBtn } from "@/utils/stylesStorage";
+import { Link } from "react-router-dom";
 
 const SignupBtn = () => {
   return (

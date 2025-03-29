@@ -2,8 +2,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { ReactNode } from 'react';
+} from "@/components/ui/dropdown-menu";
+import { ReactNode } from "react";
 
 interface DropDownMenuProps {
   setState: (hover: boolean) => void;

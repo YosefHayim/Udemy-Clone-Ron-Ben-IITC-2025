@@ -1,7 +1,7 @@
-import { useSelector } from 'react-redux';
-import ProfilePic from '../ProfilePic/ProfilePic';
-import { RootState } from '@/redux/store';
-import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import ProfilePic from "../ProfilePic/ProfilePic";
+import { RootState } from "@/redux/store";
+import { Link } from "react-router-dom";
 
 const Welcome = () => {
   const fullName = useSelector((state: RootState) => state?.user?.fullName);
@@ -17,9 +17,9 @@ const Welcome = () => {
     return <div></div>;
   }
 
-  const [firstWord, secondWord] = fullName?.split(' ') || '';
+  const [firstWord, secondWord] = fullName?.split(" ") || "";
 
-  const shortcutName = (firstWord?.[0] || '') + (secondWord?.[0] || '');
+  const shortcutName = (firstWord?.[0] || "") + (secondWord?.[0] || "");
 
   return (
     <div className="flex items-center space-x-4 bg-white p-5">
@@ -39,7 +39,7 @@ const Welcome = () => {
             to="/personalize/field"
             className="rounded-[0.3em] p-[0.3em] font-sans font-extrabold text-purple-600 underline hover:bg-purpleHoverBtn"
           >
-            {areDatesEqual ? 'Add occupation and interests' : 'Edit occupation and interests'}
+            {areDatesEqual ? "Add occupation and interests" : "Edit occupation and interests"}
           </Link>
         </div>
       </div>

@@ -1,7 +1,7 @@
-import { BiMobile } from 'react-icons/bi';
-import { IoIosInfinite } from 'react-icons/io';
-import { IoTrophyOutline } from 'react-icons/io5';
-import { MdOutlineOndemandVideo } from 'react-icons/md';
+import { BiMobile } from "react-icons/bi";
+import { IoIosInfinite } from "react-icons/io";
+import { IoTrophyOutline } from "react-icons/io5";
+import { MdOutlineOndemandVideo } from "react-icons/md";
 
 const CourseIncludes: React.FC = () => {
   return (

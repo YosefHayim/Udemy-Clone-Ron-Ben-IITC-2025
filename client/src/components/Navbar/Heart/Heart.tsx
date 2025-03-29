@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { IoMdHeartEmpty } from 'react-icons/io';
-import HoverHeart from './HoverHeart/HoverHeart';
-import { btnStyleNHover } from '@/utils/stylesStorage';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { IoMdHeartEmpty } from "react-icons/io";
+import HoverHeart from "./HoverHeart/HoverHeart";
+import { btnStyleNHover } from "@/utils/stylesStorage";
+import { Link } from "react-router-dom";
 
 const Heart = () => {
   const [showHeartHover, setShowHeartHover] = useState(false);

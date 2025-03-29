@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 const OrganizationForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const target = e.currentTarget;
     const formData = new FormData(target);
-    const email = formData.get('email');
+    const email = formData.get("email");
     console.log(email);
   };
 

@@ -1,4 +1,4 @@
-import { axiosClient, baseUrl, isProduction, localhostUrl } from '../configuration';
+import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configuration";
 
 type email = {
   email: string;
@@ -14,7 +14,7 @@ const loginUser: fn = async (email) => {
     );
 
     if (response) {
-      localStorage.setItem('cookie', response.data.token);
+      localStorage.setItem("cookie", response.data.token);
       // console.log(response.data);
       return response.data;
     }

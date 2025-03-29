@@ -15,7 +15,7 @@ const Privacy_policy2 = () => {
         </p>
         <p className="mb-4 text-base text-gray-700">
           Unless we link to a different policy or state otherwise, this Privacy Policy applies when
-          you visit or use Udemy websites, mobile applications, APIs, or related services (the{' '}
+          you visit or use Udemy websites, mobile applications, APIs, or related services (the{" "}
           <span className="font-semibold">“Services”</span>). It also applies to prospective
           customers of our business and enterprise products.
         </p>
@@ -84,7 +84,7 @@ const Privacy_policy2 = () => {
         </p>
         <p className="mb-4 text-base text-gray-700">
           Unless we link to a different policy or state otherwise, this Privacy Policy applies when
-          you visit or use Udemy websites, mobile applications, APIs, or related services (the{' '}
+          you visit or use Udemy websites, mobile applications, APIs, or related services (the{" "}
           <span className="font-semibold">“Services”</span>). It also applies to prospective
           customers of our business and enterprise products.
         </p>
@@ -448,7 +448,7 @@ const Privacy_policy2 = () => {
           We use cookies, which are small text files stored by your browser, to collect, store, and
           share data about your activities across websites, including on Udemy. They allow us to
           remember things about your visits to Udemy, like your preferred language, and to make the
-          site easier to use. To learn more about cookies, visit{' '}
+          site easier to use. To learn more about cookies, visit{" "}
           <a href="https://cookiepedia.co.uk/all-about-cookies" className="text-blue-600 underline">
             https://cookiepedia.co.uk/all-about-cookies
           </a>
@@ -457,7 +457,7 @@ const Privacy_policy2 = () => {
         <p className="mb-4">
           Udemy and service providers acting on our behalf (like Google Analytics and third-party
           advertisers) use server log files and automated data collection tools like cookies, tags,
-          scripts, customized links, device or browser fingerprints, and web beacons (together,{' '}
+          scripts, customized links, device or browser fingerprints, and web beacons (together,{" "}
           <strong>“Data Collection Tools”</strong>) when you access and use the Services. These Data
           Collection Tools automatically track and collect certain System Data and Usage Data (as
           detailed in Section 1) when you use the Services. In some cases, we tie data gathered
@@ -597,10 +597,10 @@ const Privacy_policy2 = () => {
           <li>Tailor advertisements across devices (Cookie Data).</li>
           <li>
             Improve our Services and develop new products, services, and features (all data
-            categories), including through the use of AI consistent with the{' '}
+            categories), including through the use of AI consistent with the{" "}
             <a href="#" className="text-blue-600 underline">
               Instructor GenAI Policy
-            </a>{' '}
+            </a>{" "}
             (Instructor Shared Content).
           </li>
           <li>
@@ -711,7 +711,7 @@ const Privacy_policy2 = () => {
           </li>
           <li>
             <strong>For Advertising:</strong> If we decide to use an advertising-supported revenue
-            model in the future, we may use and share certain System Data and{' '}
+            model in the future, we may use and share certain System Data and{" "}
             <strong>Usage Data</strong> with third-party advertisers and networks to show general
             demographic and preference information among our users. We may also allow advertisers to
             collect System Data through Data Collection Tools (as detailed in Section 2.1), to use
@@ -784,7 +784,7 @@ const Privacy_policy2 = () => {
           </li>
           <li>
             <strong>For Advertising:</strong> If we decide to use an advertising-supported revenue
-            model in the future, we may use and share certain System Data and{' '}
+            model in the future, we may use and share certain System Data and{" "}
             <strong>Usage Data</strong> with third-party advertisers and networks to show general
             demographic and preference information among our users. We may also allow advertisers to
             collect System Data through Data Collection Tools (as detailed in Section 2.1), to use
@@ -867,10 +867,10 @@ const Privacy_policy2 = () => {
           password is an important part of our security system, and it is your responsibility to
           protect it. You should not share your password with any third party, and if you believe
           your password or account has been compromised, you should change it immediately and
-          contact our{' '}
+          contact our{" "}
           <a href="#" className="text-blue-600 underline">
             Support Team
-          </a>{' '}
+          </a>{" "}
           with any concerns.
         </p>
       </div>
@@ -898,7 +898,7 @@ const Privacy_policy2 = () => {
         <ul className="list-inside list-disc space-y-4 pl-4">
           <li>
             To stop receiving promotional communications from us, you can opt out by using the
-            unsubscribe mechanism in the promotional communication you receive or by changing the{' '}
+            unsubscribe mechanism in the promotional communication you receive or by changing the{" "}
             <a href="#" className="text-blue-600 underline">
               email preferences in your account
             </a>
@@ -913,7 +913,7 @@ const Privacy_policy2 = () => {
           </li>
           <li>
             The browser or device you use may allow you to control cookies and other types of local
-            data storage. To learn more about managing cookies, visit{' '}
+            data storage. To learn more about managing cookies, visit{" "}
             <a
               href="https://cookiepedia.co.uk/how-to-manage-cookies"
               className="text-blue-600 underline"
@@ -925,31 +925,31 @@ const Privacy_policy2 = () => {
           </li>
           <li>
             To get information and control cookies used for tailored advertising from participating
-            companies, see the consumer opt-out pages for the{' '}
+            companies, see the consumer opt-out pages for the{" "}
             <a href="https://optout.networkadvertising.org/" className="text-blue-600 underline">
               Network Advertising Initiative
-            </a>{' '}
-            and{' '}
+            </a>{" "}
+            and{" "}
             <a href="https://youradchoices.com/" className="text-blue-600 underline">
               Digital Advertising Alliance
             </a>
-            . If you’re located in the European Economic Area, visit{' '}
+            . If you’re located in the European Economic Area, visit{" "}
             <a href="https://www.youronlinechoices.eu/" className="text-blue-600 underline">
               Your Online Choices
             </a>
-            . If you’re located in Japan, visit the{' '}
+            . If you’re located in Japan, visit the{" "}
             <a href="https://www.japan-ima.org/" className="text-blue-600 underline">
               Digital Advertising Consortium
             </a>
             . To opt out of Google’s display advertising or customize Google Display Network ads,
-            visit the{' '}
+            visit the{" "}
             <a
               href="https://adssettings.google.com/authenticated"
               className="text-blue-600 underline"
             >
               Google Ads Settings page
             </a>
-            . To opt out of Taboola’s targeted ads, see the{' '}
+            . To opt out of Taboola’s targeted ads, see the{" "}
             <a
               href="https://www.taboola.com/policies/cookie-policy"
               className="text-blue-600 underline"
@@ -960,22 +960,22 @@ const Privacy_policy2 = () => {
           </li>
           <li>
             To opt out of allowing Google Analytics, Mixpanel, ZoomInfo, or Clearbit to use your
-            data for analytics or enrichment, see the{' '}
+            data for analytics or enrichment, see the{" "}
             <a href="https://tools.google.com/dlpage/gaoptout/" className="text-blue-600 underline">
               Google Analytics Opt-out Browser Add-on
             </a>
-            ,{' '}
+            ,{" "}
             <a href="https://mixpanel.com/optout/" className="text-blue-600 underline">
               Mixpanel Opt-Out Cookie
             </a>
-            ,{' '}
+            ,{" "}
             <a
               href="https://privacyportal.onetrust.com/webform/d3b30a25-8b48-4bd5-a42c-74b5b10a01bd/8ef6d151-c5c7-4ea4-9ed1-d8d9259c2c0d"
               className="text-blue-600 underline"
             >
               ZoomInfo’s opt-out mechanism
             </a>
-            , and{' '}
+            , and{" "}
             <a href="https://clearbit.com/privacy" className="text-blue-600 underline">
               Clearbit data claiming mechanism
             </a>
@@ -988,7 +988,7 @@ const Privacy_policy2 = () => {
           </li>
         </ul>
         <p className="mt-4">
-          If you have any questions about your data, our use of it, or your rights, contact us at{' '}
+          If you have any questions about your data, our use of it, or your rights, contact us at{" "}
           <a href="mailto:privacy@udemy.com" className="text-blue-600 underline">
             privacy@udemy.com
           </a>
@@ -1012,21 +1012,21 @@ const Privacy_policy2 = () => {
             To terminate your account:
             <ul className="list-inside list-disc space-y-2 pl-4">
               <li>
-                If you are a student, visit your profile settings page and follow the steps detailed{' '}
+                If you are a student, visit your profile settings page and follow the steps detailed{" "}
                 <a href="#" className="text-blue-600 underline">
                   here
                 </a>
                 .
               </li>
               <li>
-                If you are an instructor, follow the steps detailed{' '}
+                If you are an instructor, follow the steps detailed{" "}
                 <a href="#" className="text-blue-600 underline">
                   here
                 </a>
                 .
               </li>
               <li>
-                If you have any issues terminating your account, please contact our{' '}
+                If you have any issues terminating your account, please contact our{" "}
                 <a href="#" className="text-blue-600 underline">
                   Support Team
                 </a>
@@ -1046,14 +1046,14 @@ const Privacy_policy2 = () => {
             </ul>
           </li>
           <li>
-            To request to access, correct, or delete your personal data, please use our online form{' '}
+            To request to access, correct, or delete your personal data, please use our online form{" "}
             <a href="#" className="text-blue-600 underline">
               here
             </a>
-            . You can also submit these requests by emailing{' '}
+            . You can also submit these requests by emailing{" "}
             <a href="mailto:privacy@udemy.com" className="text-blue-600 underline">
               privacy@udemy.com
-            </a>{' '}
+            </a>{" "}
             or writing to us at Udemy, Attn: Privacy/Legal Team, 600 Harrison Street, 3rd floor, San
             Francisco CA 94107. Please allow up to 30 days for a response. For your protection, we
             may require that the request be sent through the email address associated with your
@@ -1078,7 +1078,7 @@ const Privacy_policy2 = () => {
         </p>
         <p className="mb-4">
           Parents who believe that Udemy may have collected personal data from a child under those
-          ages can submit a request that it be removed to{' '}
+          ages can submit a request that it be removed to{" "}
           <a href="mailto:privacy@udemy.com" className="text-blue-600 underline">
             privacy@udemy.com
           </a>
@@ -1134,10 +1134,10 @@ const Privacy_policy2 = () => {
           the bottom of this page.
         </p>
         <p className="mb-4">
-          To exercise any of these rights under CCPA, please email{' '}
+          To exercise any of these rights under CCPA, please email{" "}
           <a href="mailto:privacy@udemy.com" className="text-blue-500 underline">
             privacy@udemy.com
-          </a>{' '}
+          </a>{" "}
           or write to us at Udemy, Attn: Privacy/Legal Team, 600 Harrison Street, 3rd floor, San
           Francisco CA 94107. CCPA allows you to designate an authorized agent to make these
           requests on your behalf. For your protection, we may require that the request be sent
@@ -1158,10 +1158,10 @@ const Privacy_policy2 = () => {
         <p className="mb-4">
           As a California resident, you also have the right to request certain details about what
           personal information we share with third parties for those third parties’ direct marketing
-          purposes. To submit your request, send an email to{' '}
+          purposes. To submit your request, send an email to{" "}
           <a href="mailto:privacy@udemy.com" className="text-blue-500 underline">
             privacy@udemy.com
-          </a>{' '}
+          </a>{" "}
           with the phrase “California Shine the Light” and include your mailing address, state of
           residence, and email address.
         </p>
@@ -1174,12 +1174,12 @@ const Privacy_policy2 = () => {
       <div className="mx-auto max-w-4xl rounded-lg bg-white p-6 shadow-md">
         <h3 className="mb-4 font-sans text-xl font-extrabold">7.2 Users in Nevada</h3>
         <p className="mb-4">
-          <strong>Udemy does not sell its users’ personal information or personal data.</strong>{' '}
+          <strong>Udemy does not sell its users’ personal information or personal data.</strong>{" "}
           Nonetheless, Nevada residents have the right to submit a request that we do not sell your
-          covered personal information, which you can do by emailing{' '}
+          covered personal information, which you can do by emailing{" "}
           <a href="mailto:privacy@udemy.com" className="text-blue-500 underline">
             privacy@udemy.com
-          </a>{' '}
+          </a>{" "}
           or writing to us at Udemy, Attn: Privacy/Legal Team, 600 Harrison Street, 3rd floor, San
           Francisco CA 94107.
         </p>
@@ -1187,19 +1187,19 @@ const Privacy_policy2 = () => {
         <h3 className="mb-4 font-sans text-xl font-extrabold">7.3 Users in Australia</h3>
         <p className="mb-4">
           If you are an Australia resident and you have a complaint, you may refer it to the office
-          of the Australian Information Commissioner (“OAIC”). You can contact OAIC by visiting{' '}
+          of the Australian Information Commissioner (“OAIC”). You can contact OAIC by visiting{" "}
           <a href="https://www.oaic.gov.au" className="text-blue-500 underline">
             www.oaic.gov.au
           </a>
-          ; forwarding an email to{' '}
+          ; forwarding an email to{" "}
           <a href="mailto:enquiries@oaic.gov.au" className="text-blue-500 underline">
             enquiries@oaic.gov.au
           </a>
           ; telephoning 1300 363 992; or writing to OAIC at GPO Box 5218, Sydney NSW 2001. You may
-          contact our privacy team at{' '}
+          contact our privacy team at{" "}
           <a href="mailto:privacy@udemy.com" className="text-blue-500 underline">
             privacy@udemy.com
-          </a>{' '}
+          </a>{" "}
           to make a complaint about a breach of the Australian Privacy Principles which will be
           responded to within 30 days.
         </p>
@@ -1244,7 +1244,7 @@ const Privacy_policy2 = () => {
           Switzerland in reliance on the Swiss-U.S. DPF. If there is any conflict between the terms
           in this Privacy Policy and the EU-U.S. DPF Principles and/or the Swiss-U.S. DPF
           Principles, the DPF Principles shall govern. To learn more about the Data Privacy
-          Framework (DPF) program, and to view our certification, please visit{' '}
+          Framework (DPF) program, and to view our certification, please visit{" "}
           <a
             href="https://www.dataprivacyframework.gov/"
             className="text-blue-500 underline"
@@ -1285,7 +1285,7 @@ const Privacy_policy2 = () => {
           collection and use of your personal information. EU, UK and Swiss individuals with
           inquiries or complaints regarding our handling of personal data received in reliance on
           EU-U.S. DPF, the UK Extension to the EU-U.S. DPF, and the Swiss-U.S. DPF, should first
-          contact Udemy at{' '}
+          contact Udemy at{" "}
           <a href="mailto:privacy@udemy.com" className="text-blue-500 underline">
             privacy@udemy.com
           </a>
@@ -1299,7 +1299,7 @@ const Privacy_policy2 = () => {
           Arbitration Association (ICDR-AAA), an alternative dispute resolution provider based in
           the United States. If you do not receive timely acknowledgment of your DPF
           Principles-related complaint from us, or if we have not addressed your DPF
-          Principles-related complaint to your satisfaction, please visit{' '}
+          Principles-related complaint to your satisfaction, please visit{" "}
           <a
             href="https://go.adr.org/dpf.html"
             className="text-blue-500 underline"
@@ -1307,11 +1307,11 @@ const Privacy_policy2 = () => {
             rel="noopener noreferrer"
           >
             https://go.adr.org/dpf.html
-          </a>{' '}
+          </a>{" "}
           for more information or to file a complaint. The services of ICDR-AAA are provided at no
           cost to you. Under certain conditions, you may invoke binding arbitration for complaints
           regarding DPF compliance not resolved by any of the other DPF mechanisms as more
-          particularly detailed here:{' '}
+          particularly detailed here:{" "}
           <a
             href="https://www.dataprivacyframework.gov/s/article/ANNEX-I-introduction-dpf?tabset-35584=2"
             className="text-blue-500 underline"
@@ -1359,7 +1359,7 @@ const Privacy_policy2 = () => {
 
         <h3 className="mb-4 font-sans text-xl font-extrabold">8.2 Interpretation</h3>
         <p className="mb-4">
-          Any capitalized terms not defined in this policy are defined as specified in Udemy’s{' '}
+          Any capitalized terms not defined in this policy are defined as specified in Udemy’s{" "}
           <a href="#" className="text-blue-500 underline">
             Terms of Use
           </a>
@@ -1371,7 +1371,7 @@ const Privacy_policy2 = () => {
         <h3 className="mb-4 font-sans text-xl font-extrabold">8.3 Questions</h3>
         <p className="mb-4">
           If you have any questions, concerns, or disputes regarding our Privacy Policy, please feel
-          free to contact our privacy team (including our Data Protection Officer) at{' '}
+          free to contact our privacy team (including our Data Protection Officer) at{" "}
           <a href="mailto:privacy@udemy.com" className="text-blue-500 underline">
             privacy@udemy.com
           </a>

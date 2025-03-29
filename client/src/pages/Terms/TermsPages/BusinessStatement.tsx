@@ -44,13 +44,13 @@ const BusinessStatement = () => {
             corporate prospects; and
           </li>
           <li>
-            any other offerings available at Udemy.com separate from the UB services, for which the{' '}
+            any other offerings available at Udemy.com separate from the UB services, for which the{" "}
             <a href="#" className="text-blue-600 underline">
               Udemy Privacy Policy
-            </a>{' '}
+            </a>{" "}
             is applicable. A User may already have an account with Udemy to access Udemy’s consumer
             services (<strong>“Consumer Services”</strong>), and data processed as a result of the
-            use of the UB Consumer Services from a User account is governed by the{' '}
+            use of the UB Consumer Services from a User account is governed by the{" "}
             <a href="#" className="text-blue-600 underline">
               Udemy Privacy Policy
             </a>
@@ -306,7 +306,7 @@ const BusinessStatement = () => {
           placement of new cookies, limit the type of cookies or reject cookies altogether. If a
           browser is set to block cookies, Users may not be able to use some or all of the features
           of the UB services (for example, may not be able to log in). General information about
-          cookies and how to disable them can be found at{' '}
+          cookies and how to disable them can be found at{" "}
           <a
             href="https://cookiepedia.co.uk/how-to-manage-cookies"
             className="text-blue-600 underline"
@@ -388,10 +388,10 @@ const BusinessStatement = () => {
         </h2>
         <p className="mb-4">
           <strong>Australia.</strong> If you are located in Australia, you may contact our privacy
-          team at{' '}
+          team at{" "}
           <a href="mailto:privacy@udemy.com" className="text-blue-600 underline">
             privacy@udemy.com
-          </a>{' '}
+          </a>{" "}
           in order to:
         </p>
         <ul className="list-inside list-disc space-y-2 pl-4">
@@ -407,10 +407,10 @@ const BusinessStatement = () => {
           <strong>Translation for Convenience Purposes Only.</strong> In the event that Customer has
           been provided a translated version of the Udemy Business Privacy Statement in a language
           other than English, that translation is provided for convenience purposes only. The
-          English version of the UB Privacy Statement provided at{' '}
+          English version of the UB Privacy Statement provided at{" "}
           <a href="https://www.udemy.com/terms/ub-privacy/" className="text-blue-600 underline">
             https://www.udemy.com/terms/ub-privacy/
-          </a>{' '}
+          </a>{" "}
           is controlling, and in the event of a conflict between the English version of this Privacy
           Statement and any translated version, the English version will prevail.
         </p>

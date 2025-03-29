@@ -1,4 +1,3 @@
-
 const SearchResultsCourseImg: React.FC<{
   courseName: string;
   instructorName: string;

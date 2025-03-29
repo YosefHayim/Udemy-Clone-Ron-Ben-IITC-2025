@@ -5,8 +5,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogOverlay,
-} from '@/components/ui/dialog';
-import { ReactNode } from 'react';
+} from "@/components/ui/dialog";
+import { ReactNode } from "react";
 
 interface DialogPopupProps {
   isClicked: boolean;
@@ -24,7 +24,7 @@ const DialogPopup: React.FC<DialogPopupProps> = ({
 }) => {
   return (
     <Dialog open={isClicked} onOpenChange={setClicked}>
-      <DialogOverlay className={extraCustomClass} style={{ backgroundColor: '#1d1e27cc' }} />
+      <DialogOverlay className={extraCustomClass} style={{ backgroundColor: "#1d1e27cc" }} />
       <DialogContent className={`${extraCustomClass} z-[2000]`}>
         <DialogHeader>
           {title && <DialogTitle className="font-extrabold">{title}</DialogTitle>}

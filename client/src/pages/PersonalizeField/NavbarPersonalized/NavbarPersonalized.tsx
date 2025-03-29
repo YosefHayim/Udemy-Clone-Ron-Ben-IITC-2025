@@ -1,12 +1,12 @@
-import Logo from '@/components/Logo/Logo';
-import ChangeLanguage from '@/components/Navbar/DropDownMenu/ChangeLanguage/ChangeLanguage';
-import { personalizeContent } from '@/routes/AppRoutes';
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import Logo from "@/components/Logo/Logo";
+import ChangeLanguage from "@/components/Navbar/DropDownMenu/ChangeLanguage/ChangeLanguage";
+import { personalizeContent } from "@/routes/AppRoutes";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 const NavbarPersonalized = () => {
   const personalizeTracking = useContext(personalizeContent);
-  if (!personalizeTracking) throw new Error('No personalize tracking provided');
+  if (!personalizeTracking) throw new Error("No personalize tracking provided");
   const [personalizeData, setPersonalizeData] = personalizeTracking;
 
   return (

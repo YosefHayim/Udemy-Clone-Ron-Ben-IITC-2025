@@ -1,4 +1,4 @@
-import { LuPlus } from 'react-icons/lu';
+import { LuPlus } from "react-icons/lu";
 
 const FaqPlusBtn: React.FC = () => {
   return (

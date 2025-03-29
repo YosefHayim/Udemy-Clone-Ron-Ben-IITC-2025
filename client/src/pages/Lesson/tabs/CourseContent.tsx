@@ -1,12 +1,12 @@
-import React from 'react';
-import { Link, useParams, useLocation } from 'react-router-dom';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { FaChevronDown } from 'react-icons/fa';
-import { MdOndemandVideo } from 'react-icons/md';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
-import { fetchCourseProgress, updateLessonProgress } from '../../../services/ProgressService';
-import { CourseProgressResponse } from '@/types/types';
+import React from "react";
+import { Link, useParams, useLocation } from "react-router-dom";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { FaChevronDown } from "react-icons/fa";
+import { MdOndemandVideo } from "react-icons/md";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
+import { fetchCourseProgress, updateLessonProgress } from "../../../services/ProgressService";
+import { CourseProgressResponse } from "@/types/types";
 
 const CourseContent: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -17,7 +17,7 @@ const CourseContent: React.FC = () => {
 
   // React Query: Fetch course progress
   const { data, isLoading, isError, error } = useQuery<CourseProgressResponse | undefined>({
-    queryKey: ['courseProgress', courseId],
+    queryKey: ["courseProgress", courseId],
     queryFn: () => fetchCourseProgress(courseId),
     enabled: !!courseId,
   });
@@ -35,15 +35,15 @@ const CourseContent: React.FC = () => {
       };
     }) => updateLessonProgress(sanitizedCourseId!, lessonId, payload),
     onMutate: async ({ lessonId, payload }) => {
-      await queryClient.cancelQueries(['courseProgress', sanitizedCourseId]);
+      await queryClient.cancelQueries(["courseProgress", sanitizedCourseId]);
 
       const previousData = queryClient.getQueryData<CourseProgressResponse>([
-        'courseProgress',
+        "courseProgress",
         sanitizedCourseId,
       ]);
 
       if (previousData) {
-        queryClient.setQueryData<CourseProgressResponse>(['courseProgress', sanitizedCourseId], {
+        queryClient.setQueryData<CourseProgressResponse>(["courseProgress", sanitizedCourseId], {
           ...previousData,
           progress: {
             ...previousData.progress,
@@ -64,13 +64,13 @@ const CourseContent: React.FC = () => {
     onError: (err, variables, context) => {
       if (context?.previousData) {
         queryClient.setQueryData<CourseProgressResponse>(
-          ['courseProgress', sanitizedCourseId],
+          ["courseProgress", sanitizedCourseId],
           context.previousData
         );
       }
     },
     onSettled: () => {
-      queryClient.invalidateQueries(['courseProgress', sanitizedCourseId]);
+      queryClient.invalidateQueries(["courseProgress", sanitizedCourseId]);
     },
   });
 
@@ -120,7 +120,7 @@ const CourseContent: React.FC = () => {
                     <li
                       key={lesson.lessonId._id}
                       className={`mb-2 flex items-start gap-3 p-2 ${
-                        isCurrentLesson ? 'bg-slate-400 ' : 'hover:bg-slate-400'
+                        isCurrentLesson ? "bg-slate-400 " : "hover:bg-slate-400"
                       }`}
                     >
                       <Checkbox
@@ -129,7 +129,7 @@ const CourseContent: React.FC = () => {
                           toggleLessonCompletion(lesson.lessonId._id, lesson.completed)
                         }
                         className={` focus:outline-none ${
-                          lesson.completed ? '' : 'border-black border-2'
+                          lesson.completed ? "" : "border-2 border-black"
                         }`}
                       />
                       <div className="flex flex-col ">
@@ -138,19 +138,19 @@ const CourseContent: React.FC = () => {
                           state={{ courseId: sanitizedCourseId }}
                           className="ml-2 flex-col"
                         >
-                          <span className='text-base'>
+                          <span className="text-base">
                             {lessonCounter}. {lesson.lessonId.title}
                           </span>
                           <span
-                            className={`flex items-center text-s ${
-                              isCurrentLesson ? 'text-gray-900' : 'text-gray-600'
+                            className={`text-s flex items-center ${
+                              isCurrentLesson ? "text-gray-900" : "text-gray-600"
                             }`}
                           >
-                            <div className='flex items-center gap-x-1 pt-2'>
-                            <MdOndemandVideo />
-                            <span className=''>
-                              {lesson.lessonId.duration ? `${lesson.lessonId.duration} min` : ''}
-                            </span>
+                            <div className="flex items-center gap-x-1 pt-2">
+                              <MdOndemandVideo />
+                              <span className="">
+                                {lesson.lessonId.duration ? `${lesson.lessonId.duration} min` : ""}
+                              </span>
                             </div>
                           </span>
                         </Link>

@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-const CourseJumpRightIn = ({ sanitizedCourseId = '', courseImg = '', instructor = '' }) => {
+const CourseJumpRightIn = ({ sanitizedCourseId = "", courseImg = "", instructor = "" }) => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {

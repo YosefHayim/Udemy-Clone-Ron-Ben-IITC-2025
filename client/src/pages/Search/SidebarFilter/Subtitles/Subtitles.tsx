@@ -1,8 +1,8 @@
-import Filter from '@/components/Filter/Filter';
-import { languages } from '@/utils/languages';
-import { useState } from 'react';
-import { useContext } from 'react';
-import { filterContext } from '@/routes/AppRoutes';
+import Filter from "@/components/Filter/Filter";
+import { languages } from "@/utils/languages";
+import { useState } from "react";
+import { useContext } from "react";
+import { filterContext } from "@/routes/AppRoutes";
 
 const Subtitles = () => {
   const [display, setDisplay] = useState<boolean>(false);
@@ -11,9 +11,9 @@ const Subtitles = () => {
   return (
     <div>
       <Filter
-        filterTitle={'Subtitles'}
+        filterTitle={"Subtitles"}
         filterItems={languages}
-        chosenHeight={'h-[50px]'}
+        chosenHeight={"h-[50px]"}
         display={display}
         setDisplay={setDisplay}
         useForSection={false}

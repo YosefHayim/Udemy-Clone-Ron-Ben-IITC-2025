@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import ReactPlayer from 'react-player';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateLessonProgress } from '@/services/ProgressService';
-import { useSidebar } from '@/components/ui/sidebar';
-import CustomTrigger from '../Lesson/CustomTrigger';
-import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
-import { PlayIcon } from 'lucide-react';
-import CircularProgress from '@mui/material/CircularProgress';
-import { Navigate, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from "react";
+import ReactPlayer from "react-player";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { updateLessonProgress } from "@/services/ProgressService";
+import { useSidebar } from "@/components/ui/sidebar";
+import CustomTrigger from "../Lesson/CustomTrigger";
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
+import { PlayIcon } from "lucide-react";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Navigate, useNavigate } from "react-router-dom";
 
 interface VideoPlayerProps {
   videoUrl: string;
@@ -35,8 +35,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   setCurrentSec,
   controls = true,
   playing = true,
-  width = '100%',
-  height = '780px',
+  width = "100%",
+  height = "780px",
 }) => {
   const { open, toggleSidebar } = useSidebar();
   const [isHovered, setIsHovered] = useState(false);
@@ -55,10 +55,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
   // Seek to the last watched time when the video URL changes or lastWatched updates
   useEffect(() => {
-    console.log('currentlesson lastwatched', currentLesson.lastWatched);
+    console.log("currentlesson lastwatched", currentLesson.lastWatched);
 
     if (playerRef.current && currentLesson?.lastWatched > 0) {
-      playerRef.current.seekTo(currentLesson.lastWatched, 'seconds');
+      playerRef.current.seekTo(currentLesson.lastWatched, "seconds");
       setPaused(true); // Set paused state to true
     }
   }, [videoUrl, currentLesson._id]);
@@ -73,8 +73,8 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       payload: { lastWatched?: number; completed?: boolean };
     }) => updateLessonProgress(courseId, lessonId, payload),
     onSuccess: () => {
-      queryClient.invalidateQueries(['courseProgress', courseId]);
-      console.log('Lesson progress updated successfully.');
+      queryClient.invalidateQueries(["courseProgress", courseId]);
+      console.log("Lesson progress updated successfully.");
     },
   });
 
@@ -84,7 +84,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     setLastWatched(currentSeconds);
     setCurrentSec(currentSeconds);
 
-    console.log('last watched', lastWatched);
+    console.log("last watched", lastWatched);
 
     if (!updateTimer) {
       const timer = setTimeout(() => {
@@ -154,7 +154,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       {/* Play Button Overlay */}
       <div
         className={`absolute inset-0 z-0 flex items-center justify-center ${
-          paused ? 'opacity-100' : 'opacity-0'
+          paused ? "opacity-100" : "opacity-0"
         } transition-opacity duration-500`}
       >
         {paused && !isEnded && (
@@ -181,7 +181,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             value={progress}
             size="6rem"
             color="inherit"
-            style={{ color: '#D1D2E0' }} // Custom color
+            style={{ color: "#D1D2E0" }} // Custom color
           />
           {/* Play Icon */}
           <div className="absolute  flex cursor-pointer items-center justify-center">
@@ -241,25 +241,25 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       {!open && (
         <div
           className={`absolute top-1/2 z-[1000] flex h-14 w-full -translate-y-1/2 transform justify-between transition-opacity duration-500 ${
-            isHovered ? 'opacity-100' : 'pointer-events-none opacity-0'
+            isHovered ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
         >
           <button
-            className={` bg-purple-500 bg-opacity-60 bg-gradient-to-r px-1 w-8 flex items-center justify-center  max-h-10 text-white hover:bg-[#892DE1]  ${
-              prevLesson ? 'opacity-100' : 'invisible'
+            className={` flex max-h-10 w-8 items-center justify-center bg-purple-500 bg-opacity-60 bg-gradient-to-r  px-1 text-white hover:bg-[#892DE1]  ${
+              prevLesson ? "opacity-100" : "invisible"
             }`}
             onClick={prevLesson ? () => onNavigate(prevLesson._id) : undefined}
-            title={prevLesson ? `Previous: ${prevLesson.title}` : ''}
+            title={prevLesson ? `Previous: ${prevLesson.title}` : ""}
           >
             <MdArrowBackIos size={16} />
           </button>
 
           <button
-            className={` bg-purple-500 bg-opacity-60 bg-gradient-to-r px-1 w-8 flex items-center justify-center  max-h-10 text-white hover:bg-[#892DE1]  ${
-              nextLesson ? 'opacity-100' : 'invisible'
+            className={` flex max-h-10 w-8 items-center justify-center bg-purple-500 bg-opacity-60 bg-gradient-to-r  px-1 text-white hover:bg-[#892DE1]  ${
+              nextLesson ? "opacity-100" : "invisible"
             }`}
             onClick={nextLesson ? () => onNavigate(nextLesson._id) : undefined}
-            title={nextLesson ? `Next: ${nextLesson.title}` : ''}
+            title={nextLesson ? `Next: ${nextLesson.title}` : ""}
           >
             <MdArrowForwardIos size={16} />
           </button>

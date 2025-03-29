@@ -72,10 +72,10 @@ const Master = () => {
           of that Order Form, the Affiliate shall be deemed the “Customer,” responsible for its
           performance and all obligations to Udemy thereunder; provided, however, Customer shall be
           and remain responsible for the acts and omissions of any of its Affiliates. For certain
-          Services, additional Service-specific terms may apply, which can be found at{' '}
+          Services, additional Service-specific terms may apply, which can be found at{" "}
           <a href="https://www.udemy.com/terms/ub/" className="text-blue-600 hover:underline">
             https://www.udemy.com/terms/ub/
-          </a>{' '}
+          </a>{" "}
           and/or will be attached to Customer’s Order Form.
         </p>
 
@@ -97,7 +97,7 @@ const Master = () => {
             product to the Services; (vi) share login access to the Services among multiple
             individuals, transfer a User license (except in connection with a termination of
             employment), or otherwise permit any person other than the Users to use the Services;
-            (vii) use Udemy’s APIs in violation of the API License Agreement, which can be found at{' '}
+            (vii) use Udemy’s APIs in violation of the API License Agreement, which can be found at{" "}
             <a href="https://www.udemy.com/terms/api/" className="text-blue-600 hover:underline">
               https://www.udemy.com/terms/api/
             </a>

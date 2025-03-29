@@ -51,16 +51,16 @@ const Business_statment = () => {
             corporate prospects;
           </li>
           <li>
-            any other offerings available at Udemy.com separate from the UB services, for which the{' '}
+            any other offerings available at Udemy.com separate from the UB services, for which the{" "}
             <a
               href="https://www.udemy.com/terms/privacy/"
               className="text-blue-600 hover:underline"
             >
               Udemy Privacy Policy
-            </a>{' '}
+            </a>{" "}
             is applicable. A User may already have an account with Udemy to access Udemy’s consumer
             services (<strong>“Consumer Services”</strong>), and data processed as a result of the
-            use of the Udemy Consumer Services from a User account is governed by the{' '}
+            use of the Udemy Consumer Services from a User account is governed by the{" "}
             <a
               href="https://www.udemy.com/terms/privacy/"
               className="text-blue-600 hover:underline"
@@ -305,7 +305,7 @@ const Business_statment = () => {
           placement of new cookies, limit the type of cookies or reject cookies altogether. If a
           browser is set to block cookies, Users may not be able to use some or all of the features
           of the UB services (for example, may not be able to log in). General information about
-          cookies and how to disable them can be found at{' '}
+          cookies and how to disable them can be found at{" "}
           <a
             href="https://cookiepedia.co.uk/how-to-manage-cookies"
             className="text-blue-600 hover:underline"
@@ -382,7 +382,7 @@ const Business_statment = () => {
           adequate level of data protection; (b) the transfer is made pursuant to a Data Processing
           Agreement (<strong>“DPA”</strong>) executed between Udemy and the Customer and subject to
           a lawful transfer mechanism, like the Data Privacy Framework (for eligible entities) or
-          the Standard Contractual Clauses adopted by the European Commission (also known as{' '}
+          the Standard Contractual Clauses adopted by the European Commission (also known as{" "}
           <strong>“Model Clauses”</strong>), which have been incorporated into the DPA.
         </p>
 
@@ -390,10 +390,10 @@ const Business_statment = () => {
         <h2 className="text-2xl font-semibold">6. Jurisdiction-Specific Information</h2>
         <p>
           <strong>Australia.</strong> If you are located in Australia, you may contact our privacy
-          team at{' '}
+          team at{" "}
           <a href="mailto:privacy@udemy.com" className="text-blue-600 hover:underline">
             privacy@udemy.com
-          </a>{' '}
+          </a>{" "}
           in order to:
         </p>
         <ul className="ml-6 list-disc space-y-2">
@@ -410,13 +410,13 @@ const Business_statment = () => {
           <strong>Translation for Convenience Purposes Only.</strong> In the event that Customer has
           been provided a translated version of the Udemy Business Privacy Statement in a language
           other than English, that translation is provided for convenience purposes only. The
-          English version of the UB Privacy Statement provided at{' '}
+          English version of the UB Privacy Statement provided at{" "}
           <a
             href="https://www.udemy.com/terms/ub-privacy/"
             className="text-blue-600 hover:underline"
           >
             https://www.udemy.com/terms/ub-privacy/
-          </a>{' '}
+          </a>{" "}
           is controlling, and in the event of a conflict between the English version of this Privacy
           Statement and any translated version, the English version will prevail.
         </p>

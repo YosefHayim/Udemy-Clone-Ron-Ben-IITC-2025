@@ -1,5 +1,5 @@
 const CourseInstructor: React.FC<{ instructor?: string; shortCutInstructor?: boolean }> = ({
-  instructor = 'Academind by Maximilian Schwarzmüller, Maximilian Schwarzmüller',
+  instructor = "Academind by Maximilian Schwarzmüller, Maximilian Schwarzmüller",
   shortCutInstructor = false,
 }) => {
   const truncatedInstructor =

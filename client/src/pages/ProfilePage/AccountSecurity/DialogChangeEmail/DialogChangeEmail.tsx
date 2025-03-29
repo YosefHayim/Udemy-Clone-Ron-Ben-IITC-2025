@@ -6,8 +6,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { IoClose } from 'react-icons/io5';
+} from "@/components/ui/alert-dialog";
+import { IoClose } from "react-icons/io5";
 
 interface DialogChangeEmailProps {
   isDialogOpen: boolean;
@@ -49,7 +49,7 @@ const DialogChangeEmail: React.FC<DialogChangeEmailProps> = ({ isDialogOpen, set
                 id="new-password"
                 name="new-password"
                 className="w-full overflow-hidden rounded-[0.3em] border border-gray-500 bg-white p-[0.5em] focus-within:border-btnColor focus-within:ring-1 focus-within:ring-btnColor hover:bg-gray-100"
-                placeholder={'Enter the new email address'}
+                placeholder={"Enter the new email address"}
               />
               <p>
                 For your security, if you change your email address your saved credit card

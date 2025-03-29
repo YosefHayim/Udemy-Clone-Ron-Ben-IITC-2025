@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Link, useLocation } from 'react-router-dom';
-import { FaChevronDown } from 'react-icons/fa';
-import { MdOndemandVideo } from 'react-icons/md';
+import React, { useState } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Link, useLocation } from "react-router-dom";
+import { FaChevronDown } from "react-icons/fa";
+import { MdOndemandVideo } from "react-icons/md";
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -11,7 +11,7 @@ import {
   SidebarMenuSubItem,
   SidebarMenuSubButton,
   useSidebar,
-} from '@/components/ui/sidebar';
+} from "@/components/ui/sidebar";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -21,46 +21,44 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
-} from "@/components/ui/navigation-menu"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchCourseProgress, updateLessonProgress } from '@/services/ProgressService';
-import CustomTrigger from '../Lesson/CustomTrigger';
-import { CourseProgressResponse } from '@/types/types';
+} from "@/components/ui/navigation-menu";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { fetchCourseProgress, updateLessonProgress } from "@/services/ProgressService";
+import CustomTrigger from "../Lesson/CustomTrigger";
+import { CourseProgressResponse } from "@/types/types";
 
 export function CourseSidebarMenu({ courseId }: { courseId: string }) {
-  const [hover, setHover] = useState('gray-600');
+  const [hover, setHover] = useState("gray-600");
   const { toggleSidebar, open } = useSidebar();
   const location = useLocation();
   const queryClient = useQueryClient();
 
   // React Query: Fetch course progress
   const { data, isLoading, isError, error } = useQuery<CourseProgressResponse>({
-    queryKey: ['courseProgress', courseId],
+    queryKey: ["courseProgress", courseId],
     queryFn: () => fetchCourseProgress(courseId),
     enabled: !!courseId,
   });
 
   // Mutation for updating lesson progress with optimistic updates
   const mutation = useMutation({
-    mutationFn: ({ lessonId, payload }: { lessonId: string; payload: {
-      
-    } }) =>
+    mutationFn: ({ lessonId, payload }: { lessonId: string; payload: {} }) =>
       updateLessonProgress(courseId, lessonId, payload),
     onMutate: async ({ lessonId, payload }) => {
       // Cancel ongoing queries
-      await queryClient.cancelQueries(['courseProgress', courseId]);
+      await queryClient.cancelQueries(["courseProgress", courseId]);
 
       // Snapshot previous state
       const previousData = queryClient.getQueryData<CourseProgressResponse>([
-        'courseProgress',
+        "courseProgress",
         courseId,
       ]);
 
       // Optimistically update the UI
       if (previousData) {
-        queryClient.setQueryData<CourseProgressResponse>(['courseProgress', courseId], {
+        queryClient.setQueryData<CourseProgressResponse>(["courseProgress", courseId], {
           ...previousData,
           progress: {
             ...previousData.progress,
@@ -82,14 +80,14 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
       // Rollback the UI if the mutation fails
       if (context?.previousData) {
         queryClient.setQueryData<CourseProgressResponse>(
-          ['courseProgress', courseId],
+          ["courseProgress", courseId],
           context.previousData
         );
       }
     },
     onSettled: () => {
       // Refetch data to ensure consistency
-      queryClient.invalidateQueries(['courseProgress', courseId]);
+      queryClient.invalidateQueries(["courseProgress", courseId]);
     },
   });
 
@@ -108,9 +106,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
 
   return (
     <SidebarMenu className=" ">
-      <div className="flex items-center  justify-between border-b-2  font-semibold">
-
-      </div>
+      <div className="flex items-center  justify-between border-b-2  font-semibold"></div>
       {data?.progress.sections.map((section, index) => (
         <Collapsible
           key={section.sectionId._id}
@@ -119,7 +115,8 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
           <SidebarMenuItem>
             <CollapsibleTrigger
               asChild
-              className=" gap-0 rounded-none pl-0 focus:outline-none focus-visible:outline-none" >
+              className=" gap-0 rounded-none pl-0 focus:outline-none focus-visible:outline-none"
+            >
               <SidebarMenuButton className="flex  items-center justify-between overflow-visible  rounded-none p-0 pl-2 focus:outline-none focus-visible:outline-none">
                 <div className=" flex w-full flex-col ">
                   <div className="flex  items-center break-words font-sans text-lg font-extrabold text-courseNameColorTxt">
@@ -147,8 +144,8 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
                     <SidebarMenuSubItem
                       className={
                         isCurrentLesson
-                          ? 'h-full w-full bg-slate-400'
-                          : 'h-full  w-full hover:bg-slate-400'
+                          ? "h-full w-full bg-slate-400"
+                          : "h-full  w-full hover:bg-slate-400"
                       }
                       key={lesson.lessonId._id}
                     >

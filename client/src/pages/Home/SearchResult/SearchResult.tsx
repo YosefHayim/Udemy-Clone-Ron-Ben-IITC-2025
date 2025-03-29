@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import getAllCourses from '@/api/courses/getAllCourses';
-import ButtonsCarousel from '@/components/ButtonsCarousel/ButtonsCarousel';
-import { CourseTypeProps } from '@/types/types';
-import HomeCourseCard from '@/components/HomeCourseCard/HomeCourseCard';
-import Loader from '@/components/Loader/Loader';
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import getAllCourses from "@/api/courses/getAllCourses";
+import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
+import { CourseTypeProps } from "@/types/types";
+import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
+import Loader from "@/components/Loader/Loader";
 
 const SearchResult: React.FC<{ title?: string; randomAlgoWord?: string }> = ({
   title,
@@ -14,7 +14,7 @@ const SearchResult: React.FC<{ title?: string; randomAlgoWord?: string }> = ({
   const [courseIndex, setCourseIndex] = useState(0);
   const [isCourseAnimating, setCourseAnimating] = useState(false);
   const [countCourseClick, setCourseClick] = useState(0);
-  const convertArrayStringToRegArray = JSON.parse(localStorage.getItem('searchesOfUser'));
+  const convertArrayStringToRegArray = JSON.parse(localStorage.getItem("searchesOfUser"));
   const [arrayAlgo, setArrayAlgo] = useState(convertArrayStringToRegArray);
 
   if (!randomAlgoWord) {
@@ -74,7 +74,7 @@ const SearchResult: React.FC<{ title?: string; randomAlgoWord?: string }> = ({
           />
         )}
         <div
-          className={`flex ${data && data.length > 7 ? 'w-max items-center justify-center' : 'w-full items-center justify-start'}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+          className={`flex ${data && data.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
           style={{
             transform: `translateX(-${courseIndex * 30.5}%)`,
           }}

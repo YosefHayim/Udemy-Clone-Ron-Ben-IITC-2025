@@ -1,9 +1,9 @@
-import CourseRating from '../../CourseRating/CourseRating';
-import CoursePrice from '../../StudentsAlsoBought/CoursePrice/CoursePrice';
-import FaqCourseImg from '../FaqCourseImg/FaqCourseImg';
-import FaqCourseName from '../FaqCourseName/FaqCourseName';
-import FaqInstructName from '../FaqInstructName/FaqInstructName';
-import FaqTotalStudentsCourse from '../FaqTotalStudentsCourse/FaqTotalStudentsCourse';
+import CourseRating from "../../CourseRating/CourseRating";
+import CoursePrice from "../../StudentsAlsoBought/CoursePrice/CoursePrice";
+import FaqCourseImg from "../FaqCourseImg/FaqCourseImg";
+import FaqCourseName from "../FaqCourseName/FaqCourseName";
+import FaqInstructName from "../FaqInstructName/FaqInstructName";
+import FaqTotalStudentsCourse from "../FaqTotalStudentsCourse/FaqTotalStudentsCourse";
 
 const FrequentlyCourseCard: React.FC<{
   courseImg: string;

@@ -1,17 +1,17 @@
-import { useQuery } from '@tanstack/react-query';
-import DescriptionOfInstructor from './DescriptionOfInstructor/DescriptionOfInstructor';
-import SocialLinks from './SocialLinks/SocialLinks';
-import getInstructorById from '@/api/users/getInstructorById';
-import Loader from '@/components/Loader/Loader';
-import { useParams } from 'react-router-dom';
+import { useQuery } from "@tanstack/react-query";
+import DescriptionOfInstructor from "./DescriptionOfInstructor/DescriptionOfInstructor";
+import SocialLinks from "./SocialLinks/SocialLinks";
+import getInstructorById from "@/api/users/getInstructorById";
+import Loader from "@/components/Loader/Loader";
+import { useParams } from "react-router-dom";
 
 const InstructorProfile = () => {
   const params = useParams();
   const instructorId = params.instructorId;
 
   const { isPending, error, data } = useQuery({
-    queryKey: ['instructorInfo', instructorId],
-    queryFn: () => getInstructorById(instructorId || ''),
+    queryKey: ["instructorInfo", instructorId],
+    queryFn: () => getInstructorById(instructorId || ""),
     enabled: !!instructorId,
   });
 
@@ -23,7 +23,7 @@ const InstructorProfile = () => {
     );
   }
 
-  if (error) return 'An error has occurred: ' + error.message;
+  if (error) return "An error has occurred: " + error.message;
 
   document.title = `
     ${data?.userId?.fullName} | ${data?.userId?.headline}| Udemy`;

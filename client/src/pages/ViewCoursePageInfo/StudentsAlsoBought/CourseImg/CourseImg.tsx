@@ -1,4 +1,4 @@
-import studentBoughtImg from '/images/student-also-bought.png';
+import studentBoughtImg from "/images/student-also-bought.png";
 
 const CourseImg: React.FC = () => {
   return (

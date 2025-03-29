@@ -1,8 +1,8 @@
-import { MdOutlineShoppingCart } from 'react-icons/md';
-import CartCoursesNumber from './CartCoursesNumber/CartCoursesNumber';
-import { useState } from 'react';
-import HoverCart from './HoverCart/HoverCart';
-import { btnStyleNHover } from '@/utils/stylesStorage';
+import { MdOutlineShoppingCart } from "react-icons/md";
+import CartCoursesNumber from "./CartCoursesNumber/CartCoursesNumber";
+import { useState } from "react";
+import HoverCart from "./HoverCart/HoverCart";
+import { btnStyleNHover } from "@/utils/stylesStorage";
 
 const Cart = () => {
   const [showCartHover, setShowCartHover] = useState(false);

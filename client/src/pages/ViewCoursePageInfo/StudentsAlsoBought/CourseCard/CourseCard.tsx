@@ -1,10 +1,10 @@
-import CourseImg from '../CourseImg/CourseImg';
-import CourseName from '../CourseName/CourseName';
-import LastUpdatedNTotalTime from '../LastUpdatedNTotalTime/LastUpdatedNTotalTime';
-import RatingAvg from '../RatingAvg/RatingAvg';
-import StudentsEnroll from '../StudentsEnroll/StudentsEnroll';
-import CoursePrice from '../CoursePrice/CoursePrice';
-import HeartBtn from '@/pages/Search/CourseHoverCardInfo/InteractionBtns/HeartBtn/HeartBtn';
+import CourseImg from "../CourseImg/CourseImg";
+import CourseName from "../CourseName/CourseName";
+import LastUpdatedNTotalTime from "../LastUpdatedNTotalTime/LastUpdatedNTotalTime";
+import RatingAvg from "../RatingAvg/RatingAvg";
+import StudentsEnroll from "../StudentsEnroll/StudentsEnroll";
+import CoursePrice from "../CoursePrice/CoursePrice";
+import HeartBtn from "@/pages/Search/CourseHoverCardInfo/InteractionBtns/HeartBtn/HeartBtn";
 
 const CourseCard: React.FC = () => {
   return (

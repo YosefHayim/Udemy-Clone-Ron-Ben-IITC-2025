@@ -1,13 +1,13 @@
-import make2025YourYear from '/images/banner1.png';
-import CertificationTheUltimate from '/images/banner2.png';
-import LearningGetsYouBanner from '/images/banner3.jpg';
-import skillsDriveYouBanner from '/images/banner4.jpg';
-import thanksTryingFreeCourse from '/images/banner7.jpg';
-import subscribeToTheBestOfUdemy from '/images/banner5.jpg';
-import newsletterBanner from '/images/banner8.jpg';
-import itCertification from '/images/banner.jpg';
-import starYellowBanner from '/images/banner10.jpg';
-import { Link } from 'react-router-dom';
+import make2025YourYear from "/images/banner1.png";
+import CertificationTheUltimate from "/images/banner2.png";
+import LearningGetsYouBanner from "/images/banner3.jpg";
+import skillsDriveYouBanner from "/images/banner4.jpg";
+import thanksTryingFreeCourse from "/images/banner7.jpg";
+import subscribeToTheBestOfUdemy from "/images/banner5.jpg";
+import newsletterBanner from "/images/banner8.jpg";
+import itCertification from "/images/banner.jpg";
+import starYellowBanner from "/images/banner10.jpg";
+import { Link } from "react-router-dom";
 
 export const getBanners = ({
   coursesBoughtOrJoined = [],
@@ -18,7 +18,7 @@ export const getBanners = ({
   fullName?: string;
   registerAt?: Date;
 }) => {
-  const searchesOfUser = JSON.parse(localStorage.getItem('searchesOfUser') || '[]');
+  const searchesOfUser = JSON.parse(localStorage.getItem("searchesOfUser") || "[]");
 
   const banners = [
     {
@@ -90,7 +90,7 @@ export const getBanners = ({
     });
   }
 
-  if (searchesOfUser.includes('it') || searchesOfUser.includes('certification')) {
+  if (searchesOfUser.includes("it") || searchesOfUser.includes("certification")) {
     banners.push({
       src: itCertification,
       content: () => (
@@ -141,7 +141,7 @@ export const getBanners = ({
                 className="font-medium text-purple-800 underline"
               >
                 Join our email list
-              </Link>{' '}
+              </Link>{" "}
               for special offers, personalized course recommendations, and more.
             </p>
           </div>

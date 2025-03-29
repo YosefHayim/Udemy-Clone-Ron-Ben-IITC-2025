@@ -1,11 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
-import FrequentlyCourseCard from './FaqCourseCard/FaqCourseCard';
-import FaqTotalCoursesPrice from './FaqTotalCoursesPrice/FaqTotalCoursesPrice';
-import getThreeCoursesOfInstructor from '@/api/courses/getThreeCoursesOfInstructor';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { Course } from '@/types/types';
-import { AiOutlinePlus } from 'react-icons/ai';
+import { useQuery } from "@tanstack/react-query";
+import FrequentlyCourseCard from "./FaqCourseCard/FaqCourseCard";
+import FaqTotalCoursesPrice from "./FaqTotalCoursesPrice/FaqTotalCoursesPrice";
+import getThreeCoursesOfInstructor from "@/api/courses/getThreeCoursesOfInstructor";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Course } from "@/types/types";
+import { AiOutlinePlus } from "react-icons/ai";
 
 const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({ instructorId }) => {
   const [sum, setSumFullPrice] = useState(0);
@@ -14,7 +14,7 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({ instruct
   if (!instructorId) return;
 
   const { data } = useQuery({
-    queryKey: ['instructorThreeCourse'],
+    queryKey: ["instructorThreeCourse"],
     queryFn: () => getThreeCoursesOfInstructor(instructorId),
     enabled: !!instructorId,
   });
@@ -59,7 +59,7 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({ instruct
                 <AiOutlinePlus
                   size={35}
                   style={{
-                    background: 'white',
+                    background: "white",
                   }}
                   className="absolute left-[50%] right-2 top-[-17.5%] rounded-[100em] p-[0.4em] text-xl shadow-alertAlgoInfo"
                 />

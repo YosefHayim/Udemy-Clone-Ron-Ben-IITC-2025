@@ -1,7 +1,7 @@
-import React from 'react';
-import { FaChevronDown } from 'react-icons/fa';
-import { MdOndemandVideo } from 'react-icons/md';
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
+import React from "react";
+import { FaChevronDown } from "react-icons/fa";
+import { MdOndemandVideo } from "react-icons/md";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 
 interface Section {
   _id: string;

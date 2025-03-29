@@ -23,7 +23,7 @@ const ApiAgreement = () => {
         <h2 className="text-2xl font-semibold">1. Purpose.</h2>
         <p>
           <strong>1.1 Parties.</strong> This API License Agreement (<strong>“Agreement”</strong>) is
-          between Udemy, Inc. (<strong>“Udemy”</strong>, <strong>“us”</strong>, or{' '}
+          between Udemy, Inc. (<strong>“Udemy”</strong>, <strong>“us”</strong>, or{" "}
           <strong>“we”</strong>
           ), and you, or the individual, company, or other entity that you represent (
           <strong>“you”</strong>). By building applications that interact with Udemy’s products and

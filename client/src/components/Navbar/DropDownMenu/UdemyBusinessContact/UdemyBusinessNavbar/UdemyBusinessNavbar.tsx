@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button';
-import { TbWorld } from 'react-icons/tb';
+import { Button } from "@/components/ui/button";
+import { TbWorld } from "react-icons/tb";
 
 const UdemyBusinessNavbar = () => {
   return (

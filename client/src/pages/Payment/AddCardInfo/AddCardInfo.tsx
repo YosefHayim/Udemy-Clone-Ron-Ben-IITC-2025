@@ -1,14 +1,14 @@
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
 
 const AddCardInfo: React.FC = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const visaOwnerName = formData.get('card-owner');
-    const creditCardNumber = formData.get('card-number');
-    const date = formData.get('date');
-    const cvv = formData.get('cvv');
+    const visaOwnerName = formData.get("card-owner");
+    const creditCardNumber = formData.get("card-number");
+    const date = formData.get("date");
+    const cvv = formData.get("cvv");
     // console.log(visaOwnerName, creditCardNumber, date, cvv);
   };
 

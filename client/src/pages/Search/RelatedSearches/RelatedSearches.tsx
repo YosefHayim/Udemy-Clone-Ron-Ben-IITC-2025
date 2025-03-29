@@ -1,12 +1,12 @@
-import { IoIosInformationCircle } from 'react-icons/io';
-import RelatedSearchAlgoBtn from './RelatedSearchAlgoBtn/RelatedSearchAlgoBtn';
-import { useSearchParams } from 'react-router-dom';
-import axios from 'axios';
-import { useCallback, useEffect, useState } from 'react';
+import { IoIosInformationCircle } from "react-icons/io";
+import RelatedSearchAlgoBtn from "./RelatedSearchAlgoBtn/RelatedSearchAlgoBtn";
+import { useSearchParams } from "react-router-dom";
+import axios from "axios";
+import { useCallback, useEffect, useState } from "react";
 
 const RelatedSearches = () => {
   const [searchParams] = useSearchParams();
-  const urlSearchTerm: string = searchParams.get('q')?.toLowerCase() || '';
+  const urlSearchTerm: string = searchParams.get("q")?.toLowerCase() || "";
 
   const [suggestions, setSuggestions] = useState([]);
   const [isHover, setIsHover] = useState(false);
@@ -19,7 +19,7 @@ const RelatedSearches = () => {
         );
         setSuggestions(response.data.map((item: any) => item.word));
       } catch (error) {
-        console.log('Error fetching autocomplete suggestions:', error);
+        console.log("Error fetching autocomplete suggestions:", error);
       }
     } else {
       setSuggestions([]);

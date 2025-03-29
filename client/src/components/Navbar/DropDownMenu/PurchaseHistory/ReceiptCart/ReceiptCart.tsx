@@ -1,4 +1,4 @@
-import styles from './ReceiptCart.module.css';
+import styles from "./ReceiptCart.module.css";
 
 const ReceiptCart = () => {
   return (
@@ -69,7 +69,7 @@ const ReceiptCart = () => {
       <hr className="mb-[1em]" />
       <div>
         <p>
-          If you have any questions about this receipt please contact our{' '}
+          If you have any questions about this receipt please contact our{" "}
           <span className="text-purple-700 underline">support team.</span>
         </p>
       </div>

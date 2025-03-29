@@ -1,5 +1,5 @@
-import { localhostUrl, baseUrl, isProduction } from '@/api/configuration';
-import DialogPopup from '@/components/DialogPopup/DialogPopup';
+import { localhostUrl, baseUrl, isProduction } from "@/api/configuration";
+import DialogPopup from "@/components/DialogPopup/DialogPopup";
 import {
   Dialog,
   DialogContent,
@@ -7,19 +7,19 @@ import {
   DialogHeader,
   DialogOverlay,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { regFullButtonPurpleHover, regInputFill } from '@/utils/stylesStorage';
-import { useState } from 'react';
-import { FaFacebook } from 'react-icons/fa';
-import { FaSquareXTwitter } from 'react-icons/fa6';
-import { IoMdCheckmarkCircle, IoMdMail } from 'react-icons/io';
-import { useLocation } from 'react-router-dom';
+} from "@/components/ui/dialog";
+import { regFullButtonPurpleHover, regInputFill } from "@/utils/stylesStorage";
+import { useState } from "react";
+import { FaFacebook } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import { IoMdCheckmarkCircle, IoMdMail } from "react-icons/io";
+import { useLocation } from "react-router-dom";
 
 const SharePopup = ({ isClicked, setClicked }) => {
   const [openEmailDialog, setOpenEmailDialog] = useState(false);
   const [isSent, setSent] = useState(false);
-  const [emailInput, setEmailInput] = useState('');
-  const [message, setMessage] = useState('');
+  const [emailInput, setEmailInput] = useState("");
+  const [message, setMessage] = useState("");
 
   const location = useLocation();
 
@@ -32,8 +32,8 @@ const SharePopup = ({ isClicked, setClicked }) => {
   };
 
   const handleCancel = () => {
-    setEmailInput('');
-    setMessage('');
+    setEmailInput("");
+    setMessage("");
     setSent(false);
     setOpenEmailDialog(false);
   };
@@ -41,17 +41,17 @@ const SharePopup = ({ isClicked, setClicked }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const emails = formData.get('emails');
-    const recommendReason = formData.get('recommend');
+    const emails = formData.get("emails");
+    const recommendReason = formData.get("recommend");
     setSent(true);
     console.log(emails, recommendReason);
   };
 
   const isSendDisabled = () => {
     const hasValidEmail = emailInput
-      .split(',')
+      .split(",")
       .map((e) => e.trim())
-      .some((email) => email.includes('@'));
+      .some((email) => email.includes("@"));
     const hasMessage = message.trim().length > 0;
     return !(hasValidEmail && hasMessage);
   };
@@ -59,7 +59,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
   return (
     <div>
       <Dialog open={isClicked} onOpenChange={setClicked}>
-        <DialogOverlay style={{ backgroundColor: '#1d1e27cc' }} />
+        <DialogOverlay style={{ backgroundColor: "#1d1e27cc" }} />
         <DialogContent className="w-[500px]">
           <DialogHeader>
             <DialogTitle className="font-sans font-extrabold">Share this course</DialogTitle>
@@ -146,7 +146,7 @@ const SharePopup = ({ isClicked, setClicked }) => {
                           </button>
                           <button
                             type="submit"
-                            className={`${regFullButtonPurpleHover} ${isSendDisabled() || isSent ? 'cursor-not-allowed opacity-30' : 'cursor-pointer'} flex h-full  items-center px-3 py-[0.5rem] focus:outline-none`}
+                            className={`${regFullButtonPurpleHover} ${isSendDisabled() || isSent ? "cursor-not-allowed opacity-30" : "cursor-pointer"} flex h-full  items-center px-3 py-[0.5rem] focus:outline-none`}
                           >
                             {isSent ? (
                               <div className="flex  items-center justify-center">

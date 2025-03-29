@@ -1,10 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
-import fetchCourseById from '@/services/courseService';
-import { FaStar } from 'react-icons/fa';
-import { BsPatchExclamationFill } from 'react-icons/bs';
-import { MdOutlineLanguage } from 'react-icons/md';
-import { IoMdAlarm } from 'react-icons/io';
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import fetchCourseById from "@/services/courseService";
+import { FaStar } from "react-icons/fa";
+import { BsPatchExclamationFill } from "react-icons/bs";
+import { MdOutlineLanguage } from "react-icons/md";
+import { IoMdAlarm } from "react-icons/io";
 
 const OverviewTab: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();
@@ -12,13 +12,13 @@ const OverviewTab: React.FC = () => {
   // Log courseId for debugging
   // console.log("Raw courseId from useParams:", courseId);
 
-  const sanitizedCourseId = courseId?.trim().replace(/^:/, '');
+  const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['course', sanitizedCourseId],
+    queryKey: ["course", sanitizedCourseId],
     queryFn: () => {
       // console.log("Calling fetchCourseById with:", sanitizedCourseId);
-      return fetchCourseById(sanitizedCourseId || '');
+      return fetchCourseById(sanitizedCourseId || "");
     },
     enabled: !!sanitizedCourseId,
   });
@@ -37,12 +37,12 @@ const OverviewTab: React.FC = () => {
   return (
     <div id="overview" className="p-20 pt-5">
       <div className="ml-4">
-        <h2 className="mb-4 text-2xl">{course.courseDescription || 'No Description'}</h2>
+        <h2 className="mb-4 text-2xl">{course.courseDescription || "No Description"}</h2>
         <div className="flex items-start gap-10 py-1 text-xl">
           <div className="flex flex-col">
             <div className="flex items-center">
               <span className="mr-2 font-sans text-base font-extrabold text-[#4d3105]">
-                {course.averageRating.toFixed(1) || '0.0'}
+                {course.averageRating.toFixed(1) || "0.0"}
               </span>
               <span className="font-sans text-base font-extrabold text-star">
                 <FaStar />
@@ -53,7 +53,7 @@ const OverviewTab: React.FC = () => {
           <div className="flex flex-col">
             <div className="flex items-center">
               <span className="mr-2 font-sans text-base font-extrabold text-[#000000]">
-                {course.totalStudentsEnrolled.count || '0.0'}
+                {course.totalStudentsEnrolled.count || "0.0"}
               </span>
             </div>
             <span className="text-xs text-gray-500">students</span>
@@ -61,7 +61,7 @@ const OverviewTab: React.FC = () => {
           <div className="flex flex-col">
             <div className="flex items-center">
               <span className="mr-2 font-sans text-base font-extrabold text-[#000000]">
-                {course.totalCourseDuration || '0.0'} hours
+                {course.totalCourseDuration || "0.0"} hours
               </span>
             </div>
             <span className="text-xs text-gray-500">Total</span>
@@ -71,10 +71,10 @@ const OverviewTab: React.FC = () => {
           <span>
             <div className="inline-flex  items-center gap-2 pt-3 text-sm">
               <BsPatchExclamationFill />
-              Last update{' '}
-              {new Date(course.updatedAt).toLocaleString('en-US', {
-                month: 'long',
-                year: 'numeric',
+              Last update{" "}
+              {new Date(course.updatedAt).toLocaleString("en-US", {
+                month: "long",
+                year: "numeric",
               })}
             </div>
           </span>

@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import Loader from '../Loader/Loader';
-import { AiOutlineMail } from 'react-icons/ai';
-import { regFullButtonPurpleHover } from '@/utils/stylesStorage';
+import React, { useState } from "react";
+import Loader from "../Loader/Loader";
+import { AiOutlineMail } from "react-icons/ai";
+import { regFullButtonPurpleHover } from "@/utils/stylesStorage";
 
-const ButtonLoader: React.FC<{ isLoading: boolean; text: string; showIcon: boolean }> = ({
+const ButtonLoader: React.FC<{ isLoading: boolean; text?: string; showIcon?: boolean }> = ({
   isLoading,
   text = `Continue with email`,
   showIcon = true,
 }) => {
   return (
-    <div className={`${isLoading && 'pointer-events-none'}`}>
+    <div className={`${isLoading && "pointer-events-none"}`}>
       <button
         type="submit"
-        className={`${regFullButtonPurpleHover} w-full ${isLoading && 'cursor-not-allowed opacity-50'}`}
+        className={`${regFullButtonPurpleHover} w-full ${isLoading && "cursor-not-allowed opacity-50"}`}
       >
         {isLoading ? (
           <Loader useSmallLoading={true} hSize="" />

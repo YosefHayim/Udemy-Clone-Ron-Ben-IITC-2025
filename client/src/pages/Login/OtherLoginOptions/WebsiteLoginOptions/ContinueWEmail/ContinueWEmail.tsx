@@ -1,7 +1,7 @@
-import Loader from '@/components/Loader/Loader';
-import { regFullButtonPurpleHover } from '@/utils/stylesStorage';
-import { useState } from 'react';
-import { AiOutlineMail } from 'react-icons/ai';
+import Loader from "@/components/Loader/Loader";
+import { regFullButtonPurpleHover } from "@/utils/stylesStorage";
+import { useState } from "react";
+import { AiOutlineMail } from "react-icons/ai";
 
 const ContinueWEmail = () => {
   const [isLoading, setLoading] = useState(false);

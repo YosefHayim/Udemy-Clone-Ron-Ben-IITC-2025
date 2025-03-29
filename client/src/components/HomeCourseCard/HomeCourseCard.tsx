@@ -1,11 +1,11 @@
-import CourseTag from '@/components/CourseCard/CourseTag/CourseTag';
-import CourseTitle from '@/components/CourseCard/CourseTitle/CourseTitle';
-import CoursePrice from '@/components/CourseCard/CoursePrice/CoursePrice';
-import CourseRatings from '@/components/CourseCard/CourseRatings/CourseRatings';
-import CourseInstructor from '@/components/CourseCard/CourseInstructor/CourseInstructor';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import CourseHoverCardInfo from '@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo';
+import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
+import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
+import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
+import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
+import CourseInstructor from "@/components/CourseCard/CourseInstructor/CourseInstructor";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
 
 const HomeCourseCard = ({ courseCard, index }) => {
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);

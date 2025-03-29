@@ -1,8 +1,8 @@
-import { Button } from '@/components/ui/button';
-import emptyCartImg from '/images/empty-cart.png';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
+import { Button } from "@/components/ui/button";
+import emptyCartImg from "/images/empty-cart.png";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 const EmptyCart: React.FC = () => {
   const totalCoursesInCart = useSelector((state: RootState) => state.cart.amountOfCourses);

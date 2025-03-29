@@ -1,14 +1,14 @@
-import { Button } from '@/components/ui/button';
-import CouponArea from '@/pages/ViewCoursePageInfo/CoursePreviewCard/CouponArea/CouponArea';
-import { RootState } from '@/redux/store';
-import { setRole } from '@/redux/slices/userSlice';
-import { DecodedTokenProps } from '@/types/types';
-import { jwtDecode } from 'jwt-decode';
-import { useEffect } from 'react';
-import { FaArrowRight } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
+import CouponArea from "@/pages/ViewCoursePageInfo/CoursePreviewCard/CouponArea/CouponArea";
+import { RootState } from "@/redux/store";
+import { setRole } from "@/redux/slices/userSlice";
+import { DecodedTokenProps } from "@/types/types";
+import { jwtDecode } from "jwt-decode";
+import { useEffect } from "react";
+import { FaArrowRight } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -29,8 +29,8 @@ const CheckoutContainer: React.FC = () => {
   const handleCheckout = () => {
     try {
       if (!cookie) {
-        console.log('Invalid or missing cookie. Redirecting to login.');
-        navigate('/login');
+        console.log("Invalid or missing cookie. Redirecting to login.");
+        navigate("/login");
         return;
       }
 
@@ -38,22 +38,22 @@ const CheckoutContainer: React.FC = () => {
       try {
         decoded = jwtDecode<DecodedTokenProps>(cookie);
       } catch (err: any) {
-        console.log('Failed to decode cookie:', err.message);
-        navigate('/login');
+        console.log("Failed to decode cookie:", err.message);
+        navigate("/login");
         return;
       }
 
       const isLogged = dispatch(setRole(decoded?.role));
       if (!isLogged) {
-        console.log('User role dispatch failed. Redirecting to login.');
-        navigate('/login');
+        console.log("User role dispatch failed. Redirecting to login.");
+        navigate("/login");
         return;
       }
 
-      navigate('/payment/checkout/');
+      navigate("/payment/checkout/");
     } catch (err: any) {
-      console.log('An unexpected error occurred:', err.message);
-      navigate('/login');
+      console.log("An unexpected error occurred:", err.message);
+      navigate("/login");
     }
   };
 
@@ -75,7 +75,7 @@ const CheckoutContainer: React.FC = () => {
       </div>
       <hr className="w-full border border-gray-100" />
       <b>Promotions</b>
-      <CouponArea btnBgDesign={'bg-btnColor hover:bg-btnHoverColor'} couponText="KEEPLEARNING" />
+      <CouponArea btnBgDesign={"bg-btnColor hover:bg-btnHoverColor"} couponText="KEEPLEARNING" />
     </div>
   );
 };

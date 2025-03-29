@@ -1,9 +1,9 @@
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { RootState } from '@/redux/store';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import CoursePurchaseRow from './CoursePurchaseRow/CoursePurchaseRow';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { RootState } from "@/redux/store";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import CoursePurchaseRow from "./CoursePurchaseRow/CoursePurchaseRow";
 
 const UdemyCredits = () => {
   const userCredits = useSelector((state: RootState) => state?.user.udemyCredits);

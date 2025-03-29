@@ -1,10 +1,10 @@
-import { RootState } from '@/redux/store';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import ItemInCart from '../../Cart/ItemInCart/ItemInCart';
-import AddToCart from '@/pages/Search/CourseHoverCardInfo/InteractionBtns/AddToCart/AddToCart';
-import { Button } from '@/components/ui/button';
+import { RootState } from "@/redux/store";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import ItemInCart from "../../Cart/ItemInCart/ItemInCart";
+import AddToCart from "@/pages/Search/CourseHoverCardInfo/InteractionBtns/AddToCart/AddToCart";
+import { Button } from "@/components/ui/button";
 import {
   calculateDiscountPercentage,
   calculateTotalSavings,
@@ -12,8 +12,8 @@ import {
   setAmountOfCourses,
   setTotalCourseDiscountPrices,
   setTotalOriginalCoursePrices,
-} from '@/redux/slices/cartSlice';
-import { useDispatch } from 'react-redux';
+} from "@/redux/slices/cartSlice";
+import { useDispatch } from "react-redux";
 
 const HoverHeart = () => {
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const HoverHeart = () => {
                 showFullPrice={true}
                 shortCutInstructor={true}
                 shortcutTitle={true}
-                chooseFlex={'flex flex-col'}
+                chooseFlex={"flex flex-col"}
                 itemsPosition="start"
                 textColor="text-bg-black"
                 gapPrice="gap-[0em]"

@@ -1,5 +1,5 @@
-import CourseCard from './CourseCard/CourseCard';
-import ShowMore from './ShowMore/ShowMore';
+import CourseCard from "./CourseCard/CourseCard";
+import ShowMore from "./ShowMore/ShowMore";
 
 const StudentsAlsoBought: React.FC = () => {
   return (

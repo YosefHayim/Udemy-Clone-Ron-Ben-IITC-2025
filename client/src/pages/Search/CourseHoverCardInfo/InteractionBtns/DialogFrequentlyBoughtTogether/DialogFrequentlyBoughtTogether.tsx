@@ -4,17 +4,17 @@ import {
   AlertDialogDescription,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import FrequentlyBoughtTogether from '@/pages/ViewCoursePageInfo/FrequentlyBoughtTogether/FrequentlyBoughtTogether';
-import axios from 'axios';
-import { IoMdCheckmarkCircle } from 'react-icons/io';
-import { useCallback, useEffect, useState } from 'react';
-import TopicSearch from './TopicSearch/TopicSearch';
-import ItemInCart from '@/components/Navbar/Cart/ItemInCart/ItemInCart';
-import { IoClose } from 'react-icons/io5';
-import { ResponseSuggestions } from '@/types/types';
-import { Link } from 'react-router-dom';
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import FrequentlyBoughtTogether from "@/pages/ViewCoursePageInfo/FrequentlyBoughtTogether/FrequentlyBoughtTogether";
+import axios from "axios";
+import { IoMdCheckmarkCircle } from "react-icons/io";
+import { useCallback, useEffect, useState } from "react";
+import TopicSearch from "./TopicSearch/TopicSearch";
+import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
+import { IoClose } from "react-icons/io5";
+import { ResponseSuggestions } from "@/types/types";
+import { Link } from "react-router-dom";
 
 const DialogFrequentlyBoughtTogether: React.FC<{
   courseTopic: string;
@@ -27,7 +27,7 @@ const DialogFrequentlyBoughtTogether: React.FC<{
 
   // Extract first 1-2 words from courseName
   const getShortenedCourseName = (name: string): string => {
-    return name.split(' ')[0]; // Take only the first word before space
+    return name.split(" ")[0]; // Take only the first word before space
   };
 
   const fetchSuggestions = useCallback(async () => {
@@ -45,7 +45,7 @@ const DialogFrequentlyBoughtTogether: React.FC<{
 
         setSuggestions(response.data.map((item: ResponseSuggestions) => item.word));
       } catch (error) {
-        console.log('Error fetching autocomplete suggestions:', error);
+        console.log("Error fetching autocomplete suggestions:", error);
       }
     } else {
       setSuggestions([]);

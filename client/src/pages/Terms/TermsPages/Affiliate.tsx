@@ -24,15 +24,15 @@ const Affiliate = () => {
         </p>
         <p>
           All capitalized terms used and not otherwise defined herein shall have the meaning
-          ascribed to them in Udemy’s{' '}
+          ascribed to them in Udemy’s{" "}
           <a href="/terms" className="text-blue-600 hover:underline">
             Terms of Use
           </a>
-          ,{' '}
+          ,{" "}
           <a href="/pricing-promotions" className="text-blue-600 hover:underline">
             Pricing and Promotions Policy
-          </a>{' '}
-          or the{' '}
+          </a>{" "}
+          or the{" "}
           <a href="/publisher-membership" className="text-blue-600 hover:underline">
             Publisher Membership Agreement
           </a>
@@ -55,7 +55,7 @@ const Affiliate = () => {
           If You have not already done so, You need to complete an application to the Affiliate
           Program (the “Application”). You need to identify Your website, describe how You plan to
           promote Udemy’s Services on Your website, and provide certain contact information. The
-          Application can be found at{' '}
+          Application can be found at{" "}
           <a href="https://www.udemy.com/affiliate/" className="text-blue-600 hover:underline">
             https://www.udemy.com/affiliate/
           </a>
@@ -174,10 +174,10 @@ const Affiliate = () => {
             Program will be considered Our customers, at Our sole discretion. All Our terms, rules,
             policies, and operating procedures that apply to Our Users will apply to such referred
             customers. We may change Our terms, rules, policies, and operating procedures at any
-            time, as further described in Our{' '}
+            time, as further described in Our{" "}
             <a href="#" className="text-blue-600 underline">
               Terms of Use
-            </a>{' '}
+            </a>{" "}
             and Our other terms as We may post from time to time.
           </p>
         </div>
@@ -267,10 +267,10 @@ const Affiliate = () => {
               Program will be considered Our customers, at Our sole discretion. All Our terms,
               rules, policies, and operating procedures that apply to Our Users will apply to such
               referred customers. We may change Our terms, rules, policies, and operating procedures
-              at any time, as further described in Our{' '}
+              at any time, as further described in Our{" "}
               <a href="#" className="text-blue-600 underline">
                 Terms of Use
-              </a>{' '}
+              </a>{" "}
               and Our other terms as We may post from time to time.
             </p>
           </div>
@@ -551,7 +551,7 @@ const Affiliate = () => {
             California without regard to its conflict of laws principles that would require the
             application of the laws of another jurisdiction, and shall be considered to have been
             made and accepted in the State of California. Any dispute arising under these Affiliate
-            Terms shall be resolved in accordance with our{' '}
+            Terms shall be resolved in accordance with our{" "}
             <a href="/terms-of-use" className="text-blue-600 underline">
               Terms of Use
             </a>
@@ -638,7 +638,7 @@ const Affiliate = () => {
             California without regard to its conflict of laws principles that would require the
             application of the laws of another jurisdiction, and shall be considered to have been
             made and accepted in the State of California. Any dispute arising under these Affiliate
-            Terms shall be resolved in accordance with our{' '}
+            Terms shall be resolved in accordance with our{" "}
             <a href="/terms-of-use" className="text-blue-600 underline">
               Terms of Use
             </a>

@@ -1,4 +1,4 @@
-import { PiWarningOctagon } from 'react-icons/pi';
+import { PiWarningOctagon } from "react-icons/pi";
 
 const DisplayErrorCode = () => {
   return (

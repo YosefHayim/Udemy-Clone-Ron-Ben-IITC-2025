@@ -1,13 +1,13 @@
-import { Course } from '@/types/types';
-import CourseCardInstructorRelated from '../CourseCardInstructorRelated/CourseCardInstructorRelated';
-import { useNavigate } from 'react-router-dom';
+import { Course } from "@/types/types";
+import CourseCardInstructorRelated from "../CourseCardInstructorRelated/CourseCardInstructorRelated";
+import { useNavigate } from "react-router-dom";
 
 const InstructorCourses: React.FC<{ coursesRelatedIds: string[] }> = ({ coursesRelatedIds }) => {
   const navigate = useNavigate();
 
   const handleNavigate = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.currentTarget;
-    const courseDiv = target.closest('div[id]');
+    const courseDiv = target.closest("div[id]");
     console.log(courseDiv?.id);
     const courseId = courseDiv?.id;
     navigate(`/course-view/${courseId}`);

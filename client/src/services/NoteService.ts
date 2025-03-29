@@ -1,5 +1,5 @@
-import { axiosClient, localhostUrl } from '../api/configuration';
-import { Note } from '../types/types';
+import { axiosClient, localhostUrl } from "../api/configuration";
+import { Note } from "../types/types";
 
 // Define response types
 
@@ -24,8 +24,8 @@ type DeleteNoteFn = (courseId: string, lessonId: string, noteId: string) => Prom
  */
 const fetchAllNotes: FetchNotesFn = async (courseId) => {
   if (!courseId) {
-    console.log('Invalid course ID provided.');
-    throw new Error('Course ID is required.');
+    console.log("Invalid course ID provided.");
+    throw new Error("Course ID is required.");
   }
 
   const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/notes`;
@@ -37,8 +37,8 @@ const fetchAllNotes: FetchNotesFn = async (courseId) => {
       return response.data.notes;
     }
 
-    console.warn('Unexpected response structure:', response?.data);
-    throw new Error('Invalid response format.');
+    console.warn("Unexpected response structure:", response?.data);
+    throw new Error("Invalid response format.");
   } catch (error: any) {
     console.log(`Error fetching notes for course ID ${courseId}:`, error);
     throw new Error(
@@ -52,8 +52,8 @@ const fetchAllNotes: FetchNotesFn = async (courseId) => {
  */
 const addNote: AddNoteFn = async (courseId, lessonId, payload) => {
   if (!courseId || !lessonId) {
-    console.log('Invalid course ID or lesson ID provided.');
-    throw new Error('Course ID and Lesson ID are required.');
+    console.log("Invalid course ID or lesson ID provided.");
+    throw new Error("Course ID and Lesson ID are required.");
   }
 
   const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}/notes`;
@@ -65,8 +65,8 @@ const addNote: AddNoteFn = async (courseId, lessonId, payload) => {
       return response.data.note;
     }
 
-    console.warn('Unexpected response structure:', response?.data);
-    throw new Error('Failed to add note.');
+    console.warn("Unexpected response structure:", response?.data);
+    throw new Error("Failed to add note.");
   } catch (error: any) {
     console.log(`Error adding note for course ${courseId} and lesson ${lessonId}:`, error);
     throw new Error(
@@ -81,8 +81,8 @@ const addNote: AddNoteFn = async (courseId, lessonId, payload) => {
  */
 const deleteNote: DeleteNoteFn = async (courseId, lessonId, noteId) => {
   if (!courseId || !lessonId || !noteId) {
-    console.log('Invalid course ID, lesson ID, or note ID provided.');
-    throw new Error('Course ID, Lesson ID, and Note ID are required.');
+    console.log("Invalid course ID, lesson ID, or note ID provided.");
+    throw new Error("Course ID, Lesson ID, and Note ID are required.");
   }
 
   const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId.trim()}/notes/${noteId.trim()}`;
@@ -91,7 +91,7 @@ const deleteNote: DeleteNoteFn = async (courseId, lessonId, noteId) => {
     const response = await axiosClient.delete(url);
 
     if (!response?.data) {
-      console.warn('No data returned from deleting the note.');
+      console.warn("No data returned from deleting the note.");
     }
   } catch (error: any) {
     console.log(
@@ -107,8 +107,8 @@ const deleteNote: DeleteNoteFn = async (courseId, lessonId, noteId) => {
 
 const editNote: EditNoteFn = async (courseId, lessonId, noteId, payload) => {
   if (!courseId || !lessonId || !noteId || !payload.text) {
-    console.log('Invalid parameters provided for editing note.');
-    throw new Error('All parameters are required.');
+    console.log("Invalid parameters provided for editing note.");
+    throw new Error("All parameters are required.");
   }
 
   const url = `${localhostUrl}/api/course-progress/${courseId.trim()}/lessons/${lessonId}/notes/${noteId}`;
@@ -120,11 +120,11 @@ const editNote: EditNoteFn = async (courseId, lessonId, noteId, payload) => {
       return response.data;
     }
 
-    console.warn('Unexpected response structure:', response?.data);
-    throw new Error('Invalid response format.');
+    console.warn("Unexpected response structure:", response?.data);
+    throw new Error("Invalid response format.");
   } catch (error: any) {
     console.log(`Error editing note for course ID ${courseId}:`, error);
-    throw new Error('Error editing note.');
+    throw new Error("Error editing note.");
   }
 };
 

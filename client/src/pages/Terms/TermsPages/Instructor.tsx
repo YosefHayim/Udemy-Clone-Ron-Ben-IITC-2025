@@ -13,7 +13,7 @@ const Instructor = () => {
           When you sign up to become an instructor on the Udemy platform, you agree to abide by
           these Instructor Terms (<strong>“Terms”</strong>). These Terms cover details about the
           aspects of the Udemy platform relevant to instructors and are incorporated by reference
-          into our{' '}
+          into our{" "}
           <a href="/terms" className="text-blue-600 hover:underline">
             Terms of Use
           </a>
@@ -98,19 +98,19 @@ const Instructor = () => {
 
         {/* Content */}
         <p>
-          You grant Udemy the rights detailed in the{' '}
+          You grant Udemy the rights detailed in the{" "}
           <a href="/terms" className="text-blue-600 hover:underline">
             Terms of Use
-          </a>{' '}
+          </a>{" "}
           to offer, market, and otherwise exploit your Submitted Content. This includes the right to
           add captions or otherwise modify Submitted Content to ensure accessibility. You also
           authorize Udemy to sublicense these rights to your Submitted Content to third parties,
           including to students directly and through third parties such as resellers, distributors,
           affiliate sites, deal sites, and paid advertising on third-party platforms. The rights
-          granted in the{' '}
+          granted in the{" "}
           <a href="/terms" className="text-blue-600 hover:underline">
             Terms of Use
-          </a>{' '}
+          </a>{" "}
           also include Udemy's right to apply generative and non-generative AI models to, and
           develop and improve non-generative AI models on, your Submitted Content to support the
           core capabilities of the Services (such as search and recommendations). Further, Udemy may
@@ -118,7 +118,7 @@ const Instructor = () => {
           phases in 2024. Udemy will stop applying generative AI models to Submitted Content of
           instructors who have opted out of the Instructor Generative AI Program (
           <strong>“GenAI Program”</strong>) and will ensure that such Submitted Content is excluded
-          from our generative AI features prior to any public launch as described in the{' '}
+          from our generative AI features prior to any public launch as described in the{" "}
           <a href="/instructor-genai-policy" className="text-blue-600 hover:underline">
             Instructor GenAI Policy
           </a>
@@ -127,7 +127,7 @@ const Instructor = () => {
 
         <p>
           For instructors included in the GenAI Program, be sure to understand the additional
-          content licensing terms detailed in the{' '}
+          content licensing terms detailed in the{" "}
           <a href="/instructor-genai-policy" className="text-blue-600 hover:underline">
             Instructor GenAI Policy
           </a>
@@ -136,11 +136,11 @@ const Instructor = () => {
         </p>
 
         <p>
-          Unless otherwise agreed (including within our{' '}
+          Unless otherwise agreed (including within our{" "}
           <a href="/promotions-policy" className="text-blue-600 hover:underline">
             Promotions Policy
-          </a>{' '}
-          or{' '}
+          </a>{" "}
+          or{" "}
           <a href="/instructor-genai-policy" className="text-blue-600 hover:underline">
             Instructor GenAI Policy
           </a>
@@ -170,11 +170,11 @@ const Instructor = () => {
         {/* Subsection 3.1: Trust & Safety Policies */}
         <h3 className="text-xl font-semibold">3.1 Trust & Safety Policies</h3>
         <p>
-          You agree to abide by Udemy’s{' '}
+          You agree to abide by Udemy’s{" "}
           <a href="/trust-safety-policies" className="text-blue-600 hover:underline">
             Trust & Safety policies
           </a>
-          ,{' '}
+          ,{" "}
           <a href="/restricted-topics-policy" className="text-blue-600 hover:underline">
             Restricted Topics policy
           </a>
@@ -215,10 +215,10 @@ const Instructor = () => {
         <h3 className="text-xl font-semibold">3.2 Co-Instructors and Teaching Assistants</h3>
         <p>
           The Udemy platform allows you to add other users as co-instructors or teaching assistants
-          for Submitted Content that you manage, and you are required to comply with our{' '}
+          for Submitted Content that you manage, and you are required to comply with our{" "}
           <a href="/co-instructor-guidelines" className="text-blue-600 hover:underline">
             Co-Instructor Relationship Rules and Guidelines
-          </a>{' '}
+          </a>{" "}
           when taking such actions. By adding a co-instructor or teaching assistant, you understand
           that you are authorizing them to take certain actions that affect your Udemy account and
           Submitted Content. Violations of Udemy’s terms and policies by your co-instructor or
@@ -254,10 +254,10 @@ const Instructor = () => {
         </p>
         <p>
           You agree that Udemy and our anti-piracy vendors will retain the above rights unless you
-          revoke them by sending an email to{' '}
+          revoke them by sending an email to{" "}
           <a href="mailto:takedowns@udemy.com" className="text-blue-600 hover:underline">
             takedowns@udemy.com
-          </a>{' '}
+          </a>{" "}
           with the subject line: “Revoke Anti-Piracy Protection Rights” from the email address
           associated with your account. Any revocation of rights will be effective 48 hours after we
           receive it.
@@ -271,14 +271,14 @@ const Instructor = () => {
         {/* Subsection 4.1: Instructor Programs */}
         <h3 className="text-xl font-semibold">4.1 Instructor Programs</h3>
         <p>
-          Udemy offers marketing programs as specified in the{' '}
+          Udemy offers marketing programs as specified in the{" "}
           <a href="/promotions-policy" className="text-blue-600 hover:underline">
             Promotions Policy
-          </a>{' '}
-          (“Promotional Programs”) and the GenAI Program as specified in the{' '}
+          </a>{" "}
+          (“Promotional Programs”) and the GenAI Program as specified in the{" "}
           <a href="/instructor-genai-policy" className="text-blue-600 hover:underline">
             Instructor GenAI Policy
-          </a>{' '}
+          </a>{" "}
           (collectively, “Instructor Programs”). These programs can help increase your revenue
           potential on Udemy and do not require any up-front cost to participate. You can modify
           your participation status, though certain programs restrict when modifications can be made
@@ -310,7 +310,7 @@ const Instructor = () => {
           is fixed, those conversion rates may not be identical to the applicable market rate in
           effect when a transaction is processed. We reserve the right to update the Price Tier
           Matrix at any time. The Price Tier Matrix and additional information on Udemy’s pricing
-          tiers are available{' '}
+          tiers are available{" "}
           <a href="/pricing-tiers" className="text-blue-600 hover:underline">
             here
           </a>
@@ -366,7 +366,7 @@ const Instructor = () => {
         </p>
         <p>
           To get your payment report, you can access the relevant revenue share data by month as
-          defined and explained in the{' '}
+          defined and explained in the{" "}
           <a href="/promotions-policy" className="text-blue-600 hover:underline">
             Promotions Policy
           </a>
@@ -381,7 +381,7 @@ const Instructor = () => {
           certain items of your Submitted Content to students at a discount. All Udemy’s current
           price for items, as permitted within the Services, includes these coupons and referral
           links as specific to limits. Additional information and restrictions on these are
-          described further in our{' '}
+          described further in our{" "}
           <a href="/trust-safety-policies" className="text-blue-600 hover:underline">
             Trust & Safety policies
           </a>
@@ -409,7 +409,7 @@ const Instructor = () => {
         <h3 className="text-xl font-semibold">5.4 Refunds</h3>
         <p>
           You acknowledge and agree that students have the right to receive a refund, as detailed in
-          the{' '}
+          the{" "}
           <a href="/terms-of-use" className="text-blue-600 hover:underline">
             Terms of Use
           </a>
@@ -458,7 +458,7 @@ const Instructor = () => {
         {/* Section Title */}
         <h2 className="text-2xl font-semibold">7. Deleting Your Account</h2>
         <p>
-          Instructions on how to delete your instructor account are available{' '}
+          Instructions on how to delete your instructor account are available{" "}
           <a href="/support-center" className="text-blue-600 hover:underline">
             here
           </a>
@@ -466,7 +466,7 @@ const Instructor = () => {
           are owed to you before deleting your account. You understand that if students have
           previously enrolled in your Submitted Content, your name and that Submitted Content may
           remain accessible to those students after your account is deleted. If you need help or
-          encounter difficulty deleting your account, you can contact us via our{' '}
+          encounter difficulty deleting your account, you can contact us via our{" "}
           <a href="/support-center" className="text-blue-600 hover:underline">
             Support Center
           </a>
@@ -518,7 +518,7 @@ const Instructor = () => {
         {/* Section Title */}
         <h2 className="text-2xl font-semibold">9. How to Contact Us</h2>
         <p>
-          The best way to get in touch with us is to contact our{' '}
+          The best way to get in touch with us is to contact our{" "}
           <a href="/support-team" className="text-blue-600 hover:underline">
             Support Team
           </a>

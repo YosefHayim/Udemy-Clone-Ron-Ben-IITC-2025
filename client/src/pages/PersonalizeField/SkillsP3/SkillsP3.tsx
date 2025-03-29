@@ -1,14 +1,14 @@
-import { MdPeople } from 'react-icons/md';
-import Skill from './Skill/Skill';
-import { IoMdSearch } from 'react-icons/io';
-import OtherSkill from './OtherSkill/OtherSkill';
-import SkillResult from './SkillResult/SkillResult';
-import axios from 'axios';
-import { useState } from 'react';
+import { MdPeople } from "react-icons/md";
+import Skill from "./Skill/Skill";
+import { IoMdSearch } from "react-icons/io";
+import OtherSkill from "./OtherSkill/OtherSkill";
+import SkillResult from "./SkillResult/SkillResult";
+import axios from "axios";
+import { useState } from "react";
 
 const SkillsP3 = () => {
-  document.title = 'Select Skills | Udemy';
-  const [query, setQuery] = useState('');
+  document.title = "Select Skills | Udemy";
+  const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
   const fetchSuggestions = async (input: string) => {
@@ -20,7 +20,7 @@ const SkillsP3 = () => {
 
         setSuggestions(response.data.map((item: any) => item.word));
       } catch (error) {
-        console.log('Error fetching autocomplete suggestions:', error);
+        console.log("Error fetching autocomplete suggestions:", error);
       }
     } else {
       setSuggestions([]);
@@ -74,8 +74,8 @@ const SkillsP3 = () => {
         <div
           className={`${
             suggestions.length > 0
-              ? 'absolute z-[200] h-[300px] overflow-y-auto bg-white'
-              : 'hidden'
+              ? "absolute z-[200] h-[300px] overflow-y-auto bg-white"
+              : "hidden"
           } w-[600px] rounded-[0.5em] border border-gray-300 p-[2em] text-center shadow-skillsShadow`}
         >
           {suggestions.length > 0 ? (

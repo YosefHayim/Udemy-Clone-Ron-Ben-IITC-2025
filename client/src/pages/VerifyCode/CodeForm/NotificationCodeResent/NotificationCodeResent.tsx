@@ -1,4 +1,4 @@
-import { IoCheckmarkCircle } from 'react-icons/io5';
+import { IoCheckmarkCircle } from "react-icons/io5";
 
 const NotificationCodeResent = () => {
   return (

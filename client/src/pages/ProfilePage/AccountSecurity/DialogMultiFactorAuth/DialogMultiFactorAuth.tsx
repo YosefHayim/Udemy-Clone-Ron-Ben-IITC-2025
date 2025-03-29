@@ -5,8 +5,8 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
-import { Link } from 'react-router-dom';
+} from "@/components/ui/alert-dialog";
+import { Link } from "react-router-dom";
 
 interface DialogMultiFactorAuthProps {
   isAuthOpen: boolean;

@@ -1,4 +1,4 @@
-import MobileLogImg from '/webps/mobile-login-illustration.webp';
+import MobileLogImg from "/webps/mobile-login-illustration.webp";
 
 const MobileLoginImg = () => {
   return (

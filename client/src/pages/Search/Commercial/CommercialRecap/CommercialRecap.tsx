@@ -1,4 +1,4 @@
-import InteractionBtn from '../InteractionBtn/InteractionBtn';
+import InteractionBtn from "../InteractionBtn/InteractionBtn";
 
 const CommercialRecap = () => {
   return (

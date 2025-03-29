@@ -1,6 +1,6 @@
-import { Button } from '@/components/ui/button';
-import { IoMdCheckmark } from 'react-icons/io';
-import subscriptionImg from '/images/subscription-img.png';
+import { Button } from "@/components/ui/button";
+import { IoMdCheckmark } from "react-icons/io";
+import subscriptionImg from "/images/subscription-img.png";
 
 const Subscription = () => {
   return (

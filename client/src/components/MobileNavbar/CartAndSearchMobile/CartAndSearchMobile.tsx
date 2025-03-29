@@ -1,6 +1,6 @@
-import Cart from '@/components/Navbar/Cart/Cart';
-import { MdOutlineSearch } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import Cart from "@/components/Navbar/Cart/Cart";
+import { MdOutlineSearch } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const CartAndSearchMobile = ({ setShowSearchMobile }) => {
   return (

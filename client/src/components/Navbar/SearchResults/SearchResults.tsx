@@ -1,6 +1,6 @@
-import { SearchResultsProps } from '@/types/types';
-import SearchResultRow from './SearchResultRow/SearchResultRow';
-import SearchResultsCourseImg from './SearchResultsCourseImg/SearchResultsCourseImg';
+import { SearchResultsProps } from "@/types/types";
+import SearchResultRow from "./SearchResultRow/SearchResultRow";
+import SearchResultsCourseImg from "./SearchResultsCourseImg/SearchResultsCourseImg";
 
 const SearchResults: React.FC<{
   isTyping: boolean;

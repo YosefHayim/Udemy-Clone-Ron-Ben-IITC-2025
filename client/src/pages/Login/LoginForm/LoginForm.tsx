@@ -1,14 +1,14 @@
-import loginUser from '@/api/users/loginUser';
-import { emailContext } from '@/routes/AppRoutes';
-import { useMutation } from '@tanstack/react-query';
-import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import CustomInput from '@/components/CustomInput/CustomInput';
-import ButtonLoader from '@/components/ButtonLoader/ButtonLoader';
+import loginUser from "@/api/users/loginUser";
+import { emailContext } from "@/routes/AppRoutes";
+import { useMutation } from "@tanstack/react-query";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import CustomInput from "@/components/CustomInput/CustomInput";
+import ButtonLoader from "@/components/ButtonLoader/ButtonLoader";
 
 const LoginForm = () => {
   const emailCtx = useContext(emailContext);
-  if (!emailCtx) throw new Error('emailContext is not provided');
+  if (!emailCtx) throw new Error("emailContext is not provided");
   const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
   const [isLoading, setLoading] = useState(false);
   const [isError, setShowIsError] = useState(false);
@@ -17,10 +17,10 @@ const LoginForm = () => {
   const loginMutation = useMutation({
     mutationFn: loginUser,
     onSuccess: () => {
-      navigate('/verify-code');
+      navigate("/verify-code");
     },
     onError: (error) => {
-      console.log('Error during login process:', error);
+      console.log("Error during login process:", error);
       setShowIsError(true);
     },
   });
@@ -28,9 +28,9 @@ const LoginForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const email = formData.get('email') as string;
+    const email = formData.get("email") as string;
 
-    if (!email.includes('@') || !email.includes('.com')) {
+    if (!email.includes("@") || !email.includes(".com")) {
       setShowIsError(true);
       return;
     }
@@ -49,7 +49,7 @@ const LoginForm = () => {
         <CustomInput
           isError={isError}
           setShowIsError={setShowIsError}
-          labelName={'Email'}
+          labelName={"Email"}
           idAttribute={`email`}
           nameAttribute={`email`}
           inputMode={`email`}

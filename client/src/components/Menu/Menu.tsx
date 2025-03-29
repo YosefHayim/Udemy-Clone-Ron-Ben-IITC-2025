@@ -1,7 +1,7 @@
-import { categories } from '@/utils/categoriesOfCoursesNavbarHover';
-import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { categories } from "@/utils/categoriesOfCoursesNavbarHover";
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Menu: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
@@ -16,7 +16,7 @@ const Menu: React.FC = () => {
   };
 
   const getArrowPosition = (index: number): number => {
-    const buttons = document.querySelectorAll<HTMLButtonElement>('.menu-button');
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".menu-button");
     if (buttons[index]) {
       const rect = buttons[index].getBoundingClientRect();
       return rect.left + rect.width / 2.5;

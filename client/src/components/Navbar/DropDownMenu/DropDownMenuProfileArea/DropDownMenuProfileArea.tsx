@@ -1,5 +1,5 @@
-import ProfilePic from '@/components/ProfilePic/ProfilePic';
-import { Link } from 'react-router-dom';
+import ProfilePic from "@/components/ProfilePic/ProfilePic";
+import { Link } from "react-router-dom";
 
 const DropDownMenuProfileArea = ({ shortcutName, profilePic, email, fullName }) => {
   return (

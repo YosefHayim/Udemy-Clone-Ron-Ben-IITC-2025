@@ -1,14 +1,14 @@
-import { useSelector } from 'react-redux';
-import LogoFooter from '/images/logo-udemy-inverted.svg';
-import Nasdaq from '/images/nasdaq-light.svg';
-import Wolkswagen from '/images/volkswagen-light (1).svg';
-import Box from '/images/box-light.svg';
-import Netapp from '/images/netapp-light.svg';
-import Eventbrite from '/images/eventbrite-light.svg';
-import { MdOutlineLanguage } from 'react-icons/md';
-import FooterLogin from '@/components/FooterLogin/FooterLogin';
-import { bottomSections, sections } from '@/utils/footerCategories';
-import { RootState } from '@/redux/store';
+import { useSelector } from "react-redux";
+import LogoFooter from "/images/logo-udemy-inverted.svg";
+import Nasdaq from "/images/nasdaq-light.svg";
+import Wolkswagen from "/images/volkswagen-light (1).svg";
+import Box from "/images/box-light.svg";
+import Netapp from "/images/netapp-light.svg";
+import Eventbrite from "/images/eventbrite-light.svg";
+import { MdOutlineLanguage } from "react-icons/md";
+import FooterLogin from "@/components/FooterLogin/FooterLogin";
+import { bottomSections, sections } from "@/utils/footerCategories";
+import { RootState } from "@/redux/store";
 
 const Footer: React.FC = () => {
   const user = useSelector((state: RootState) => state?.user);

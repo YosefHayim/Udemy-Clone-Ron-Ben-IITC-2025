@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { IoMdLock } from 'react-icons/io';
+import { useState } from "react";
+import { IoMdLock } from "react-icons/io";
 
 const PaymentMethodNLock: React.FC = () => {
   const [isHoverLock, setHoverLock] = useState(false);

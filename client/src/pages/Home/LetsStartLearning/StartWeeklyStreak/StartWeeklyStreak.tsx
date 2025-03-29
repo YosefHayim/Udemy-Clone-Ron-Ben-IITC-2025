@@ -1,7 +1,7 @@
-import DialogPopup from '@/components/DialogPopup/DialogPopup';
-import { useState } from 'react';
-import { CiCircleInfo } from 'react-icons/ci';
-import { MdOutlineLocalFireDepartment } from 'react-icons/md';
+import DialogPopup from "@/components/DialogPopup/DialogPopup";
+import { useState } from "react";
+import { CiCircleInfo } from "react-icons/ci";
+import { MdOutlineLocalFireDepartment } from "react-icons/md";
 
 const StartWeeklyStreak = () => {
   const [isOpenToolTip, setOpenTooltip] = useState(false);

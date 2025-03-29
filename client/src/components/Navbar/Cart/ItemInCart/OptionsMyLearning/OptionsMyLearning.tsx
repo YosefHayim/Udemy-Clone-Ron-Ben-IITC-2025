@@ -5,11 +5,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { IoIosShareAlt, IoMdFolder } from 'react-icons/io';
-import { GoPlus } from 'react-icons/go';
-import { MdOutlineStar } from 'react-icons/md';
-import { BsThreeDotsVertical } from 'react-icons/bs';
+} from "@/components/ui/dropdown-menu";
+import { IoIosShareAlt, IoMdFolder } from "react-icons/io";
+import { GoPlus } from "react-icons/go";
+import { MdOutlineStar } from "react-icons/md";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 const OptionsMyLearning = () => {
   return (

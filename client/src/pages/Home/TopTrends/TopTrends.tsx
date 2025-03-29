@@ -1,5 +1,5 @@
 //
-import trendsReportImage from '/images/toptrends2.png';
+import trendsReportImage from "/images/toptrends2.png";
 const TrendsReport = () => {
   return (
     <div className="lg: flex flex-col items-center  bg-white px-12">
@@ -24,7 +24,7 @@ const TrendsReport = () => {
           alt="2025 Global Learning & Skills Trends Report"
           className="max-w-16xl w-full object-contain"
           style={{
-            transform: 'translateX(5%)', // Adiciona um leve deslocamento à direita para simular o espaçamento
+            transform: "translateX(5%)", // Adiciona um leve deslocamento à direita para simular o espaçamento
           }}
         />
       </div>

@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { MdOutlineKeyboardArrowUp } from 'react-icons/md';
-import SectionName from './SectionName/SectionName';
-import SectionDuration from './SectionDuration/SectionDuration';
-import Lesson from '../Lesson/Lesson';
-import { LessonProps } from '@/types/types';
+import { useState } from "react";
+import { MdOutlineKeyboardArrowUp } from "react-icons/md";
+import SectionName from "./SectionName/SectionName";
+import SectionDuration from "./SectionDuration/SectionDuration";
+import Lesson from "../Lesson/Lesson";
+import { LessonProps } from "@/types/types";
 
 const Section: React.FC<{
   lessonsOfSection: LessonProps[];
@@ -22,7 +22,7 @@ const Section: React.FC<{
       >
         <div
           className={`transition-transform duration-300 ease-in-out ${
-            isClicked ? 'rotate-180' : 'rotate-0'
+            isClicked ? "rotate-180" : "rotate-0"
           }`}
         >
           <MdOutlineKeyboardArrowUp />
@@ -31,7 +31,7 @@ const Section: React.FC<{
         <SectionDuration duration={totalDuration} totalLessons={lessonsOfSection.length} />
       </div>
 
-      <div className={isClicked ? 'hidden' : 'block w-[550px]'}>
+      <div className={isClicked ? "hidden" : "block w-[550px]"}>
         {lessonsOfSection?.length > 0 ? (
           lessonsOfSection.map((lesson, index) => (
             <Lesson

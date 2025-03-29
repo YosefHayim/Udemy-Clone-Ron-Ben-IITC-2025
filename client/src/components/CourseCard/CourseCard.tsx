@@ -1,4 +1,3 @@
-
 const CourseCard: React.FC<{
   title: string;
   image: string;

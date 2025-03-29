@@ -1,4 +1,4 @@
-import { logos } from '@/utils/trustedByCompaniesLogos';
+import { logos } from "@/utils/trustedByCompaniesLogos";
 
 const TrustedBySection = () => {
   return (

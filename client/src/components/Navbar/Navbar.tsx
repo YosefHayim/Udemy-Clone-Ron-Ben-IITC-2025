@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import SearchInput from './SearchInput/SearchInput';
-import LoginBtn from './LoginBtn/LoginBtn';
-import SignupBtn from './SignupBtn/SignupBtn';
-import Cart from './Cart/Cart';
-import Logo from '../Logo/Logo';
-import ButtonNavbar from '../ButtonNavbar/ButtonNavbar';
-import Heart from './Heart/Heart';
-import Notifications from './Notifications/Notifications';
-import Profile from './Profile/Profile';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/redux/store';
-import CategoriesMenu from './Categories/CategoriesMenu';
-import ChangeLanguage from './DropDownMenu/ChangeLanguage/ChangeLanguage';
-import SaleCommercialTwo from './SaleCommercials/SaleCommercialTwo/SaleCommercialTwo';
-import { useMediaQuery } from 'react-responsive';
-import MobileNavbar from '../MobileNavbar/MobileNavbar';
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import SearchInput from "./SearchInput/SearchInput";
+import LoginBtn from "./LoginBtn/LoginBtn";
+import SignupBtn from "./SignupBtn/SignupBtn";
+import Cart from "./Cart/Cart";
+import Logo from "../Logo/Logo";
+import ButtonNavbar from "../ButtonNavbar/ButtonNavbar";
+import Heart from "./Heart/Heart";
+import Notifications from "./Notifications/Notifications";
+import Profile from "./Profile/Profile";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import CategoriesMenu from "./Categories/CategoriesMenu";
+import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
+import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercialTwo";
+import { useMediaQuery } from "react-responsive";
+import MobileNavbar from "../MobileNavbar/MobileNavbar";
 
 const Navbar = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
@@ -31,10 +31,10 @@ const Navbar = () => {
   useEffect(() => {}, [cookie]);
 
   useEffect(() => {
-    const body = document.querySelector('body');
+    const body = document.querySelector("body");
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const courseId = target.closest('div')?.id;
+      const courseId = target.closest("div")?.id;
       if (courseId) {
         navigate(`/course-view/${courseId}`);
       } else {
@@ -43,10 +43,10 @@ const Navbar = () => {
       }
     };
 
-    body.addEventListener('click', handleClick);
+    body.addEventListener("click", handleClick);
 
     return () => {
-      body.removeEventListener('click', handleClick);
+      body.removeEventListener("click", handleClick);
     };
   });
 
@@ -61,28 +61,28 @@ const Navbar = () => {
               <Logo />
             </Link>
             <CategoriesMenu />
-            <div className={'w-full flex-grow items-center p-1 px-[0.25rem]'}>
+            <div className={"w-full flex-grow items-center p-1 px-[0.25rem]"}>
               <SearchInput isTyping={isTyping} setIsTyping={setIsTyping} />
             </div>
             <div
               className="flex w-full items-end justify-end gap-1"
-              style={{ maxWidth: 'min-content' }}
+              style={{ maxWidth: "min-content" }}
             >
               <ButtonNavbar
-                buttonName={'Udemy Business'}
+                buttonName={"Udemy Business"}
                 insideBtnText="Try Udemy Business"
                 paragraphText="Get your team access to over 27,000 top Udemy courses, anytime, anywhere."
                 to="/udemy-business/request-demo-mx/?ref=account-menu&locale=en_US"
               />
               <ButtonNavbar
-                buttonName={'Teach on Udemy'}
+                buttonName={"Teach on Udemy"}
                 paragraphText="Turn what you know into an opportunity and reach millions around the world."
                 to="/teaching/?ref=teach_header"
                 insideBtnText="Learn more"
               />
               {cookie && (
                 <Link to="/wishlist">
-                  <ButtonNavbar buttonName={'My learning'} insideBtnText="Go to my learning" />
+                  <ButtonNavbar buttonName={"My learning"} insideBtnText="Go to my learning" />
                 </Link>
               )}
               {cookie && (

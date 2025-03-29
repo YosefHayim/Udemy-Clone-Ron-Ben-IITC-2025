@@ -1,11 +1,11 @@
-import TriangleShape from './TriangleShape/TriangleShape';
-import InteractionsBtns from './InteractionBtns/InteractionsBtns';
-import CoursePros from './CoursePros/CoursePros';
-import CourseLength from '@/pages/ViewCoursePageInfo/MoreCoursesByInstructor/CourseLength/CourseLength';
-import CourseTag from '@/components/CourseCard/CourseTag/CourseTag';
-import CourseBasicInfo from '@/pages/ViewCoursePageInfo/CourseBasicInfo/CourseBasicInfo';
-import CourseRecap from '@/components/CourseCard/CourseRecap/CourseRecap';
-import CourseTitle from '@/components/CourseCard/CourseTitle/CourseTitle';
+import TriangleShape from "./TriangleShape/TriangleShape";
+import InteractionsBtns from "./InteractionBtns/InteractionsBtns";
+import CoursePros from "./CoursePros/CoursePros";
+import CourseLength from "@/pages/ViewCoursePageInfo/MoreCoursesByInstructor/CourseLength/CourseLength";
+import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
+import CourseBasicInfo from "@/pages/ViewCoursePageInfo/CourseBasicInfo/CourseBasicInfo";
+import CourseRecap from "@/components/CourseCard/CourseRecap/CourseRecap";
+import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
 
 const CourseHoverCardInfo: React.FC<{
   whatYouWillLearn: string[];
@@ -36,11 +36,11 @@ const CourseHoverCardInfo: React.FC<{
   index,
   courseTopic,
   instructorId,
-  width = '400px',
+  width = "400px",
   positionedLeft = false,
   positionedRight = false,
   showCourseLength = false,
-  courseLevel = '',
+  courseLevel = "",
   totalCourseDuration = 0,
   totalCourseLessons = 0,
   courseUpdatedAt,
@@ -48,7 +48,7 @@ const CourseHoverCardInfo: React.FC<{
   courseLanguages,
   courseRecapInfo,
   displayWhatYouLearn = true,
-  courseName = '',
+  courseName = "",
 }) => {
   return (
     <div className="" id={courseId}>

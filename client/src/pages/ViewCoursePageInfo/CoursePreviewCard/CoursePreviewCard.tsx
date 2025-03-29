@@ -1,20 +1,20 @@
-import { useState, useEffect } from 'react';
-import CoursePrice from '@/components/CourseCard/CoursePrice/CoursePrice';
-import MoneyBack from './MoneyBack/MoneyBack';
-import CourseIncludes from './CourseIncludes/CourseIncludes';
-import TimeLeftBuyCourse from './TimeLeftBuyCourse/TimeLeftBuyCourse';
-import CouponArea from './CouponArea/CouponArea';
-import UdemyBusiness from './UdemyBusiness/UdemyBusiness';
-import { useSelector } from 'react-redux';
-import { Button } from '@/components/ui/button';
-import { AiFillInfoCircle } from 'react-icons/ai';
-import { RootState } from '@/redux/store';
-import { CoursePreviewCardProps } from '@/types/types';
-import { IoPlayCircleSharp } from 'react-icons/io5';
-import { useNavigate } from 'react-router-dom';
-import InteractionsBtns from '@/pages/Search/CourseHoverCardInfo/InteractionBtns/InteractionsBtns';
-import BuyNowBtn from './AddCartNBuyBtn/BuyNowBtn';
-import InteractionButtonsOfPreviewCard from './InteractionButtonsOfPreviewCard/InteractionButtonsOfPreviewCard';
+import { useState, useEffect } from "react";
+import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
+import MoneyBack from "./MoneyBack/MoneyBack";
+import CourseIncludes from "./CourseIncludes/CourseIncludes";
+import TimeLeftBuyCourse from "./TimeLeftBuyCourse/TimeLeftBuyCourse";
+import CouponArea from "./CouponArea/CouponArea";
+import UdemyBusiness from "./UdemyBusiness/UdemyBusiness";
+import { useSelector } from "react-redux";
+import { Button } from "@/components/ui/button";
+import { AiFillInfoCircle } from "react-icons/ai";
+import { RootState } from "@/redux/store";
+import { CoursePreviewCardProps } from "@/types/types";
+import { IoPlayCircleSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+import InteractionsBtns from "@/pages/Search/CourseHoverCardInfo/InteractionBtns/InteractionsBtns";
+import BuyNowBtn from "./AddCartNBuyBtn/BuyNowBtn";
+import InteractionButtonsOfPreviewCard from "./InteractionButtonsOfPreviewCard/InteractionButtonsOfPreviewCard";
 
 const CoursePreviewCard: React.FC<{
   courseImg: string;
@@ -69,12 +69,12 @@ const CoursePreviewCard: React.FC<{
       </div>
 
       <div className="p-[1.5em]">
-        <div className={isAlreadyBought ? 'hidden' : 'flex'}>
+        <div className={isAlreadyBought ? "hidden" : "flex"}>
           <CoursePrice
             showFullPrice={true}
             discountPrice={coursePrice}
             fullPrice={fullPrice}
-            chooseFlex={'flex w-full items-center justify-start gap-2'}
+            chooseFlex={"flex w-full items-center justify-start gap-2"}
           />
         </div>
         {isAlreadyBought && (

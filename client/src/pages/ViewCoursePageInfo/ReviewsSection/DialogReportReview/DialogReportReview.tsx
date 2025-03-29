@@ -1,5 +1,5 @@
-import reportUserReviewByReviewId from '@/api/reviews/reportUserReviewByReviewId';
-import { Button } from '@/components/ui/button';
+import reportUserReviewByReviewId from "@/api/reviews/reportUserReviewByReviewId";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,10 +7,10 @@ import {
   DialogHeader,
   DialogOverlay,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
 
 const DialogReportReview: React.FC<{
   reviewId: string;
@@ -27,11 +27,11 @@ const DialogReportReview: React.FC<{
   const handleSubmitReport = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const issueType = String(formData.get('issue-type'));
-    const issueDetails = String(formData.get('issue-details'));
+    const issueType = String(formData.get("issue-type"));
+    const issueDetails = String(formData.get("issue-details"));
 
     if (!issueType || !issueDetails) {
-      alert('Please fill in all fields before submitting.');
+      alert("Please fill in all fields before submitting.");
       return;
     }
 
@@ -46,7 +46,7 @@ const DialogReportReview: React.FC<{
       setIsClicked(true);
     },
     onError: (error) => {
-      console.log('Error reporting review:', error);
+      console.log("Error reporting review:", error);
     },
   });
 
@@ -59,7 +59,7 @@ const DialogReportReview: React.FC<{
   return (
     <div>
       <Dialog open={isOpenReportDrawer} onOpenChange={(isOpen) => setReportDrawer(isOpen)}>
-        <DialogOverlay style={{ backgroundColor: '#1d1e27cc' }} />
+        <DialogOverlay style={{ backgroundColor: "#1d1e27cc" }} />
 
         <DialogContent className="w-max-none z-[2000] w-[600px]">
           <DialogHeader>
@@ -80,7 +80,7 @@ const DialogReportReview: React.FC<{
                     Terms of Service or Community Guidelines.
                   </p>
                   <div>
-                    If you have a question or technical issue, please contact our{' '}
+                    If you have a question or technical issue, please contact our{" "}
                     <span className="cursor-pointer text-purpleStatic underline">
                       Support team here
                     </span>

@@ -1,8 +1,8 @@
-import CourseInstructor from '@/components/CourseCard/CourseInstructor/CourseInstructor';
-import CourseRatings from '@/components/CourseCard/CourseRatings/CourseRatings';
-import CoursePrice from '@/components/CourseCard/CoursePrice/CoursePrice';
-import CourseLength from '../CourseLength/CourseLength';
-import CourseImg from '../CourseImg/CourseImg';
+import CourseInstructor from "@/components/CourseCard/CourseInstructor/CourseInstructor";
+import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
+import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
+import CourseLength from "../CourseLength/CourseLength";
+import CourseImg from "../CourseImg/CourseImg";
 
 const CourseCard: React.FC = () => {
   return (

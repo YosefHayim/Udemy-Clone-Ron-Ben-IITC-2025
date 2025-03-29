@@ -1,28 +1,28 @@
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 import {
   firstDividerList,
   secondDividerList,
   thirdDividerList,
-} from '@/utils/mobileSidebarCategories';
-import { IoIosArrowForward } from 'react-icons/io';
-import { Link } from 'react-router-dom';
-import { IoClose, IoCloseOutline } from 'react-icons/io5';
+} from "@/utils/mobileSidebarCategories";
+import { IoIosArrowForward } from "react-icons/io";
+import { Link } from "react-router-dom";
+import { IoClose, IoCloseOutline } from "react-icons/io5";
 
 const style = {
-  width: '100%',
-  margin: '2px',
-  overflow: 'hidden',
-  borderRadius: '5px',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'start',
-  ':hover': {
-    background: '#EDE5FA',
+  width: "100%",
+  margin: "2px",
+  overflow: "hidden",
+  borderRadius: "5px",
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "start",
+  ":hover": {
+    background: "#EDE5FA",
   },
 };
 
@@ -30,7 +30,7 @@ const MobileSidebar = ({ showSidebar, setShowSidebar }) => {
   const DrawerList = (
     <div>
       <Box
-        sx={{ width: 250, fontSize: '14px', overflowX: 'hidden', overflowY: 'hidden' }}
+        sx={{ width: 250, fontSize: "14px", overflowX: "hidden", overflowY: "hidden" }}
         role="presentation"
       >
         <List>
@@ -39,14 +39,14 @@ const MobileSidebar = ({ showSidebar, setShowSidebar }) => {
               <Link to={word.to} className="w-full">
                 <ListItemButton
                   sx={{
-                    width: '100%',
-                    margin: '2px',
-                    color: '#6d28d2',
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'start',
-                    ':hover': {
-                      background: '#EDE5FA',
+                    width: "100%",
+                    margin: "2px",
+                    color: "#6d28d2",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "start",
+                    ":hover": {
+                      background: "#EDE5FA",
                     },
                   }}
                 >
@@ -58,7 +58,7 @@ const MobileSidebar = ({ showSidebar, setShowSidebar }) => {
             </ListItem>
           ))}
         </List>
-        <Divider sx={{ border: '1px solid gray-100' }} />
+        <Divider sx={{ border: "1px solid gray-100" }} />
         <List>
           <ListItemButton sx={style}>
             Certification preparation <IoIosArrowForward />
@@ -66,7 +66,7 @@ const MobileSidebar = ({ showSidebar, setShowSidebar }) => {
         </List>
         <Divider />
         <List>
-          <List sx={{ width: '100%', marginLeft: '25px', fontWeight: 700, color: 'gray' }}>
+          <List sx={{ width: "100%", marginLeft: "25px", fontWeight: 700, color: "gray" }}>
             Most popular
           </List>
           {secondDividerList.map((text) => (
@@ -80,7 +80,7 @@ const MobileSidebar = ({ showSidebar, setShowSidebar }) => {
         </List>
         <Divider />
         <List>
-          <List sx={{ width: '100%', marginLeft: '25px', fontWeight: 700, color: 'gray' }}>
+          <List sx={{ width: "100%", marginLeft: "25px", fontWeight: 700, color: "gray" }}>
             More from Udemy
           </List>
           {thirdDividerList.map((text) => (

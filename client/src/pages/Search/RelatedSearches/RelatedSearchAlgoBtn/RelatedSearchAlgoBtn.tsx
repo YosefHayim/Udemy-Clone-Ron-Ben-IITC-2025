@@ -1,7 +1,7 @@
-import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
-import { useNavigate } from 'react-router-dom';
+import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
+import { useNavigate } from "react-router-dom";
 
-const RelatedSearchAlgoBtn = ({ algoSearch = 'the complete 20204 web development bootcamp' }) => {
+const RelatedSearchAlgoBtn = ({ algoSearch = "the complete 20204 web development bootcamp" }) => {
   const navigate = useNavigate();
   const handleNavigateSearchTerm = () => {
     navigate(`/courses/search?src=ukw&q=${encodeURIComponent(algoSearch)}`);

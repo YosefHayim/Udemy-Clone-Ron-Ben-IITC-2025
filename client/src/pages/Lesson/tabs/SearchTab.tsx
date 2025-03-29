@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { IoIosSearch } from 'react-icons/io';
-import { Link, useParams, useLocation } from 'react-router-dom';
-import { MdOndemandVideo } from 'react-icons/md';
+import React, { useState } from "react";
+import { IoIosSearch } from "react-icons/io";
+import { Link, useParams, useLocation } from "react-router-dom";
+import { MdOndemandVideo } from "react-icons/md";
 
 interface CourseContentProps {
   sections: Array<{
@@ -19,12 +19,12 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
   const { courseId } = useParams<{ courseId: string }>();
   const location = useLocation();
 
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Highlight matching text
   const highlightText = (text: string, query: string) => {
     if (!query) return text;
-    const parts = text.split(new RegExp(`(${query})`, 'gi'));
+    const parts = text.split(new RegExp(`(${query})`, "gi"));
     return parts.map((part, index) =>
       part.toLowerCase() === query.toLowerCase() ? (
         <span key={index} className="font-sans font-extrabold">
@@ -72,10 +72,11 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
           {/* Results count summary */}
           {filteredSections.length > 0 && (
             <div className="mb-4 self-start text-lg font-medium">
-              Results for "{searchQuery}" ({totalLessons} {totalLessons === 1 ? 'lecture' : 'lectures'})
+              Results for "{searchQuery}" ({totalLessons}{" "}
+              {totalLessons === 1 ? "lecture" : "lectures"})
             </div>
           )}
-          
+
           {filteredSections.length > 0 ? (
             filteredSections.map((section, idx) => (
               <div key={section._id} className="group min-w-[800px] border-y">
@@ -94,7 +95,7 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
                       <li
                         key={lesson._id}
                         className={`mb-2 flex items-center gap-3 p-2 ${
-                          isCurrentLesson ? 'bg-slate-400 ' : 'hover:bg-slate-400'
+                          isCurrentLesson ? "bg-slate-400 " : "hover:bg-slate-400"
                         }`}
                       >
                         <div className="flex flex-col">
@@ -106,11 +107,11 @@ const SearchTab: React.FC<CourseContentProps> = ({ sections }) => {
                             <span>{highlightText(lesson.title, searchQuery)}</span>
                             <span
                               className={`flex items-center text-xs ${
-                                isCurrentLesson ? '' : 'text-black'
+                                isCurrentLesson ? "" : "text-black"
                               }`}
                             >
                               <MdOndemandVideo />
-                              <span>{lesson.duration ? `${lesson.duration} min` : ''}</span>
+                              <span>{lesson.duration ? `${lesson.duration} min` : ""}</span>
                             </span>
                           </Link>
                         </div>
