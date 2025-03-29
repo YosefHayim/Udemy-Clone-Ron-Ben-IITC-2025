@@ -8,7 +8,7 @@ import ButtonLoader from "@/components/ButtonLoader/ButtonLoader";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 
-const LoginForm = ({ showOnlyLoginButton = false }) => {
+const LoginForm = ({ showOnlyLoginButton = true }) => {
   const emailCtx = useContext(emailContext);
   const globalEmail = useSelector((state: RootState) => state.user.email);
   if (!emailCtx) throw new Error("emailContext is not provided");
