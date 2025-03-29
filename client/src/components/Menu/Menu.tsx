@@ -19,7 +19,7 @@ const Menu: React.FC = () => {
     const buttons = document.querySelectorAll<HTMLButtonElement>('.menu-button');
     if (buttons[index]) {
       const rect = buttons[index].getBoundingClientRect();
-      return rect.left + rect.width / 2;
+      return rect.left + rect.width / 2.5;
     }
     return 0;
   };
