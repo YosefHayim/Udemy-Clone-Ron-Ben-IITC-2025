@@ -32,7 +32,7 @@ const Login = () => {
           {fullName && (
             <div>
               <WelcomeBack />
-              <LoginForm onlyShowLoginButton={true} />
+              <LoginForm />
             </div>
           )}
           {!prevWGoogle && !fullName && (
