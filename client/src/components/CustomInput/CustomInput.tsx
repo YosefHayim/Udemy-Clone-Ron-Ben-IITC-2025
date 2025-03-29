@@ -25,10 +25,6 @@ const CustomInput: React.FC<{
 
   const handleBlur = () => {
     setIsFocused(false);
-    if (email.length > 1) {
-      const isValidEmail = /^[^\s@]+@[^\s@]+\.(com|co\.il)$/.test(email);
-      setShowIsError(!isValidEmail);
-    }
   };
 
   return (

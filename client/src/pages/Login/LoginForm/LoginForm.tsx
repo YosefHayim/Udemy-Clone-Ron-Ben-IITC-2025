@@ -30,8 +30,9 @@ const LoginForm = () => {
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email") as string;
 
-    if (!email.includes("@") || !email.includes(".com")) {
-      setShowIsError(true);
+    if (email.length > 1) {
+      const isValidEmail = /^[^\s@]+@[^\s@]+\.(com|co\.il)$/.test(email);
+      setShowIsError(!isValidEmail);
       return;
     }
 
