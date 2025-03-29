@@ -5,6 +5,7 @@ import CartAndSearchMobile from './CartAndSearchMobile/CartAndSearchMobile';
 import { useEffect, useState } from 'react';
 import SearchInput from '../Navbar/SearchInput/SearchInput';
 import MobileSidebar from './MobileSidebar/MobileSidebar';
+import { Link } from 'react-router-dom';
 
 const MobileNavbar = ({ isTyping, setIsTyping }) => {
   const [showSearchMobile, setShowSearchMobile] = useState(false);
@@ -20,7 +21,9 @@ const MobileNavbar = ({ isTyping, setIsTyping }) => {
             <Burger />
           </div>
           <div className="flex h-full items-center justify-center">
-            <Logo CustomCssSize="h-[3em] w-full object-contain mt-1" />
+            <Link to="/">
+              <Logo CustomCssSize="h-[3em] w-full object-contain mt-1" />
+            </Link>
           </div>
           <CartAndSearchMobile setShowSearchMobile={setShowSearchMobile} />
         </div>
