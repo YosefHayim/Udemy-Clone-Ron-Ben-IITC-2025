@@ -49,7 +49,7 @@ const getAllCourses: fn = async (searchTerm = "", filterData = {}, limit = 13, p
     console.log(r);
     return r.data;
   } catch (error) {
-    console.log("Error fetching courses:", error);
+    console.log("Error fetching courses: ", error.response.data.message);
     throw error;
   }
 };

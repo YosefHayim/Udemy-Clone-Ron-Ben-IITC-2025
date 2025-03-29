@@ -11,7 +11,7 @@ const refreshMe = async () => {
       return r.data;
     }
   } catch (error) {
-    console.log(`Error has been occurred durning refreshing user.`, error);
+    console.log(`Error has been occurred durning refreshing user: `, error.response.data.message);
     throw error;
   }
 };

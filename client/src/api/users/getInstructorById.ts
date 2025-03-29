@@ -13,7 +13,10 @@ const getInstructorById = async (instructorId: string) => {
       return r?.data;
     }
   } catch (error) {
-    console.log(`Error has been occurred durning getting instructor information: `, error);
+    console.log(
+      `Error has been occurred durning getting instructor information: `,
+      error.response.data.message
+    );
     throw error;
   }
 };

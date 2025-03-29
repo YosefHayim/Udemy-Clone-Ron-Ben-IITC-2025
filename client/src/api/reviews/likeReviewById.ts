@@ -15,7 +15,7 @@ export const likeReviewById: fn = async (idOfReview: string) => {
       return r;
     }
   } catch (error) {
-    console.log(`Error occurred during like a review: `, error);
-    throw error
+    console.log(`Error occurred during like a review: `, error.response.data.message);
+    throw error;
   }
 };

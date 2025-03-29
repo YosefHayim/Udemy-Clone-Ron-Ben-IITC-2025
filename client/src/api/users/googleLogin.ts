@@ -12,7 +12,10 @@ const googleLogin = async (googleCode: string) => {
       return r?.data?.token;
     }
   } catch (error) {
-    console.log(`Error has occurred durning request to backend via googleLogin: `, error);
+    console.log(
+      `Error has occurred durning request to backend via googleLogin: `,
+      error.response.data.message
+    );
     throw error;
   }
 };

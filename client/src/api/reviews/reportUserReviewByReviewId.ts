@@ -21,7 +21,10 @@ const reportUserReviewByReviewId: fn = async ({ reviewId, issueType, issueDetail
       return r;
     }
   } catch (error) {
-    console.log(`Error reporting review with ID ${sanitizedReviewId}:`, error.message);
+    console.log(
+      `Error reporting review with ID ${sanitizedReviewId}:`,
+      error.response.data.message
+    );
     throw error;
   }
 };

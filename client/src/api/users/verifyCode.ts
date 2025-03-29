@@ -18,7 +18,7 @@ const verifyCode: fn = async (verificationCredentials) => {
       return r.data.token;
     }
   } catch (error) {
-    console.log(`Error occurred during the login of user: `, error);
+    console.log(`Error occurred during the login of user: `, error.response.data.message);
     throw error;
   }
 };

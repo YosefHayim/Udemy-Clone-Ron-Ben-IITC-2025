@@ -12,7 +12,7 @@ const getCouponByCouponCode = async (couponCode: string) => {
       return r.data.exists;
     }
   } catch (error) {
-    console.log(error);
+    console.log(`Error occurred durning getting coupon by code: `, error.response.data.message);
     throw error;
   }
 };

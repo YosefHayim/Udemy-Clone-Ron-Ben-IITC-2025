@@ -13,7 +13,7 @@ const updatePersonalizeUserField = async (personalizeField: personalizeFieldPayl
       return r.data;
     }
   } catch (error) {
-    console.log("Error in updatePersonalizeUserField", error);
+    console.log("Error in updatePersonalizeUserField", error.response.data.message);
     throw error;
   }
 };

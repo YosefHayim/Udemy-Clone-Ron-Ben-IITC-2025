@@ -12,7 +12,7 @@ const updateUserLanguage = async (preferredLanguage: string) => {
       return r.data;
     }
   } catch (error) {
-    console.log(`error occurred durning updateUserLanguage`, error);
+    console.log(`error occurred durning updateUserLanguage`, error.response.data.message);
     throw error;
   }
 };

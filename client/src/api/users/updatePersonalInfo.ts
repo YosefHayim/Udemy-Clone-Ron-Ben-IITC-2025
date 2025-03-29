@@ -13,7 +13,7 @@ const updatePersonalInfo = async (dataOfUser: DataOfUser) => {
       return r;
     }
   } catch (error) {
-    console.log(`error occurred during update user personal info`);
+    console.log(`error occurred during update user personal info`, error.response.data.message);
     throw error;
   }
 };

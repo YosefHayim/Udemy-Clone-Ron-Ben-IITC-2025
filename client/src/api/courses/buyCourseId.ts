@@ -2,7 +2,7 @@ import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configurati
 
 const buyCourseById = async (courseId: string | string) => {
   if (!courseId) throw new Error("Please provide course Id in url.");
-  
+
   try {
     const url = `${isProduction ? baseUrl : localhostUrl}/api/user/add/course/${courseId}`;
 
@@ -12,7 +12,7 @@ const buyCourseById = async (courseId: string | string) => {
       return r.data;
     }
   } catch (error) {
-    console.log("Error occurred during buying courses for user: ", error);
+    console.log("Error occurred during buying courses for user: ", error.response.data.message);
     throw error;
   }
 };

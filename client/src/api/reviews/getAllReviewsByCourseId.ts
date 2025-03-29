@@ -16,7 +16,7 @@ const getAllReviewsByCourseId: fn = async (courseId = "") => {
       return r?.data?.data;
     }
   } catch (error) {
-    console.log(`Error fetching course with ID ${sanitizedCourseId}:`, error);
+    console.log(`Error fetching course with ID ${sanitizedCourseId}:`, error.response.data.message);
     throw error;
   }
 };
