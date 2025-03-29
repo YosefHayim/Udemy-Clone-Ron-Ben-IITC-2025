@@ -10,7 +10,7 @@ const WebsiteLoginOptions: React.FC<{
   extraToFatherDiv?: string;
 }> = ({ text, to, extraCSS, textAfterSpace, textAfterSpaceCSS, extraToFatherDiv }) => {
   return (
-    <div className={`bg-gray-100 p-3 ${extraToFatherDiv}`}>
+    <div className={`bg-gray-100 p-3 ${extraToFatherDiv} w-full`}>
       <Link to={`${to}`}>
         <button className={`${diffLoginOptionBtn} ${extraCSS}`}>
           {text} <span className={`${textAfterSpaceCSS}`}>{textAfterSpace}</span>

@@ -45,11 +45,11 @@ const SignUpForm = ({ isMobile }) => {
       return;
     }
 
-    setEmailUser(email);
-    setUserFullName(fullName);
-    mutation.mutate({ fullName, email });
     setLoading(true);
     setTimeout(() => {
+      setEmailUser(email);
+      setUserFullName(fullName);
+      mutation.mutate({ fullName, email });
       setLoading(false);
     }, 2000);
   };

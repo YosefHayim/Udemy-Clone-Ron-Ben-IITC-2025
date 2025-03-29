@@ -45,11 +45,11 @@ const Login = () => {
               <GoogleBtn />
             </div>
           )}
-          <div className="items-center justify-center text-center">
+          <div className="flex flex-col items-center justify-center pt-6 text-center">
             {prevWGoogle && (
               <div
                 onClick={() => setDifferentAccount(true)}
-                className={`${isDifferentAccount ? "hidden" : "block"}`}
+                className={`${isDifferentAccount ? "hidden" : "flex"}`}
               >
                 <WebsiteLoginOptions
                   text={`Log in to a different account`}
@@ -65,7 +65,7 @@ const Login = () => {
               textAfterSpace={`Sign up`}
               textAfterSpaceCSS={`underline text-purple-600 font-extrabold`}
             />
-            <hr className="w-full" />
+            <hr className="h-[0.1em] w-full bg-gray-300" />
             <WebsiteLoginOptions
               text={`Log in with your organization`}
               to={`/organization/global-login/email`}
