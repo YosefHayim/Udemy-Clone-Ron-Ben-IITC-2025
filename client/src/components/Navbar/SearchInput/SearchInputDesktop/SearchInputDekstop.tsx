@@ -13,7 +13,7 @@ const SearchInputDesktop = ({
     <div className="relative flex flex-col items-center px-[0.25rem]">
       <form
         onSubmit={handleSubmit}
-        className={`${extraCSS} flex w-full items-center overflow-hidden rounded-full border border-gray-400 bg-transparent 
+        className={`${extraCSS} flex w-full items-center overflow-hidden rounded-full border border-gray-400 bg-transparent p-1 
     focus-within:border-[#6D28D2] focus-within:bg-white focus-within:ring-1 focus-within:ring-btnColor hover:bg-gray-100`}
       >
         <SearchInputSearchButton searchTerm={searchTerm} />
