@@ -49,7 +49,7 @@ const FilterNSort = ({ coursesResults, searchTerm }) => {
           )}
         </div>
         <div>
-          <p className="w-max font-sans text-base font-bold">{coursesResults} results</p>
+          <p className="w-max font-sans text-[1rem] font-extrabold text-[#595C73]">{coursesResults} results</p>
         </div>
       </div>
       <div className="mb-2 flex w-auto flex-col items-start justify-center">

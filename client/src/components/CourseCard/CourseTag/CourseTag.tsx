@@ -1,7 +1,8 @@
-import { CourseTagProps } from '@/types/types';
 import { tagStyles } from '@/utils/tagStyle';
 
-const CourseTag: React.FC<CourseTagProps> = ({ tagName = 'Bestseller' }) => {
+const CourseTag: React.FC<{ tagName?: string; bgColorTag?: string }> = ({
+  tagName = 'Bestseller',
+}) => {
   const style = tagStyles[tagName] || 'bg-gray-100 text-gray-800';
 
   return (

@@ -7,7 +7,7 @@ const ItemsInCart: React.FC = () => {
   const coursesIdAdded = useSelector((state: RootState) => state.cart.coursesAddedToCart);
 
   return (
-    <div>
+    <div className="w-full">
       <div className="flex w-full flex-col items-center justify-center gap-[1em]">
         <div className="mt-[1em] flex w-full flex-col items-start justify-start gap-[1.5em] font-sans font-extrabold">
           <h2>

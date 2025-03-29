@@ -1,295 +1,76 @@
-import { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
-import loginUser from '@/api/users/loginUser';
-import { FcGoogle } from 'react-icons/fc';
-import { FaApple, FaRegUser } from 'react-icons/fa';
-import { FaFacebook } from 'react-icons/fa';
-import { emailContext } from '@/routes/AppRoutes';
-import { useGoogleLogin } from '@react-oauth/google';
-import googleLogin from '@/api/users/googleLogin';
-import Loader from '@/components/Loader/Loader';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
-import { Button } from '@/components/ui/button';
-import {
-  continueWGoogleBtn,
-  diffLoginOptionBtn,
-  divDiffOptionsLogin,
-  iconSize,
-  inputLoginWEmail,
-  loginThirdPartyBtn,
-  loginWDiffAccBtn,
-  regFullButtonPurpleHover,
-} from '@/utils/stylesStorage';
-import { baseUrl, isProduction, localhostUrl } from '@/api/configuration';
-import { AiOutlineMail } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
-import { setUserInformation } from '@/utils/setUserInformation';
+import LoginForm from './LoginForm/LoginForm';
+import OtherLoginOptions from './OtherLoginOptions/OtherLoginOptions';
+import WebsiteLoginOptions from './OtherLoginOptions/WebsiteLoginOptions/WebsiteLoginOptions';
+import GoogleBtn from './OtherLoginOptions/GoogleBtn/GoogleBtn';
+import LoginImgDesktop from './LoginImg/LoginImg';
+import { useMediaQuery } from 'react-responsive';
+import MobileLoginImg from './MobileLoginImg/MobileLoginImg';
 
 const Login = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [isError, setShowIsError] = useState(false);
-  const [differentAccount, setDifferentAccount] = useState(false);
-  const [showRegularLogin, setShowRegularLogin] = useState(false);
-  const [isLoading, setLoading] = useState(false);
-
-  const isLoggedPreviouslyWithGoogle = useSelector(
-    (state: RootState) => state?.user?.isLoggedPreviouslyWithGoogle
-  );
+  const isMobile = useMediaQuery({ maxWidth: 800 });
+  const [isDifferentAccount, setDifferentAccount] = useState(false);
   const cookie = useSelector((state: RootState) => state?.user?.cookie);
-  const fullname = useSelector((state: RootState) => state?.user?.fullName);
-  const globalEmail = useSelector((state: RootState) => state?.user?.email);
-  const userProfileImage = useSelector((state: RootState) => state?.user?.profilePic);
-
-  const handleRegularLogin = () => {
-    setShowRegularLogin(true);
-  };
-
-  const handleDifferentAccount = () => {
-    setDifferentAccount(true);
-  };
-
-  const loginMutation = useMutation({
-    mutationFn: loginUser,
-    onSuccess: () => {
-      navigate('/verify-code');
-    },
-    onError: (error) => {
-      console.log('Error during login process:', error);
-      setShowIsError(true);
-      return;
-    },
-  });
-
-  const googleMutationLogin = useMutation({
-    mutationFn: googleLogin,
-    onSuccess: (cookie) => {
-      setUserInformation(cookie, dispatch);
-      navigate('/');
-    },
-    onError: (error) => {
-      console.log('Error during google login process:', error);
-      setShowIsError(true);
-    },
-  });
-
-  const emailCtx = useContext(emailContext);
-  if (!emailCtx) throw new Error('emailContext is not provided');
-  const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    const formData = new FormData(e.currentTarget);
-    const email = (formData.get('email') as string) || globalEmail;
-
-    setEmailUser(email);
-    loginMutation.mutate({ email });
-  };
-
-  const handleGoogle = useGoogleLogin({
-    onSuccess: (credentialResponse) => {
-      googleMutationLogin.mutate(credentialResponse.code);
-    },
-    onError: (error) => {
-      console.log(`Error occurred durning login via google: `, error);
-    },
-    onNonOAuthError: (nonAuthError) => {
-      console.log(nonAuthError);
-    },
-    flow: 'auth-code',
-    ux_mode: 'popup',
-    redirect_uri: isProduction ? baseUrl : localhostUrl,
-  });
-
-  useEffect(() => {
-    if (fullname.length > 1 && globalEmail.length > 1 && !cookie) {
-      setShowRegularLogin(true);
-    }
-  }, [isLoggedPreviouslyWithGoogle, showRegularLogin]);
+  const prevWGoogle = useSelector((state: RootState) => state?.user?.isLoggedPreviouslyWithGoogle);
 
   return (
-    <div className="h-screen bg-cover bg-center">
-      <div className="flex w-full flex-1 items-center justify-center">
-        <img
-          src="/images/loginImg.png"
-          alt="Login Illustration"
-          className="mr-[2.7rem] h-auto max-h-[100%] w-[100%] max-w-[620px] object-contain p-12"
-        />
-        <div className="ml-[3rem] mr-[5rem] w-full max-w-[29rem]  rounded-lg bg-white p-6">
-          <h2 className="mb-10 text-center font-sans text-3xl font-extrabold text-gray-800">
+    <div className="h-screen w-full bg-cover bg-center">
+      <div
+        className={`${isMobile ? 'w-full flex-col' : ''} flex w-full flex-1 items-center justify-center`}
+      >
+        {!isMobile && <LoginImgDesktop />}
+        <div className="h-svh w-full max-w-[29rem] rounded-lg bg-white p-6">
+          <MobileLoginImg />
+          <h2
+            className={`${isMobile && 'text-lg'} mb-10 mt-20 text-center font-sans text-3xl font-extrabold text-gray-800`}
+          >
             Log in to continue your learning journey
           </h2>
-          {showRegularLogin && !isLoggedPreviouslyWithGoogle && (
-            <div
-              className={`"w-full" ${showRegularLogin && !differentAccount ? 'block' : 'hidden'}`}
-            >
-              <div className="mb-4 flex w-full flex-col items-center justify-center text-center">
-                <div>
-                  {userProfileImage.length > 1 ? (
-                    <img
-                      src={userProfileImage}
-                      alt="user profile image"
-                      className="h-[5rem] w-[6em] rounded-[100em] bg-black"
-                    />
-                  ) : (
-                    <div className="rounded-full bg-black p-6">
-                      <FaRegUser size={24} className="text-white" />
-                    </div>
-                  )}
-                </div>
-                <div className="my-2 flex flex-col items-center justify-center gap-2">
-                  <b className="font-sans font-extrabold">Welcome back, {fullname}</b>
-                  <p className="w-full text-sm font-medium">
-                    We’ll email <b className="font-sans font-extrabold">{globalEmail}</b> a code for
-                    a secure passwordless log-in.
-                  </p>
-                </div>
-              </div>
-              <form className="mb-4 flex flex-col space-y-4" onSubmit={handleSubmit}></form>
-            </div>
-          )}
-          {differentAccount && (
+          {!prevWGoogle && (
             <div>
-              <form className="mb-4 flex flex-col space-y-4" onSubmit={handleSubmit}>
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                  className={`${inputLoginWEmail}`}
-                />
-                <button
-                  type="submit"
-                  className={`${regFullButtonPurpleHover} flex w-full items-center justify-center font-sans font-extrabold`}
-                >
-                  {isLoading ? (
-                    <Loader useSmallLoading={true} hSize="" />
-                  ) : (
-                    <div className="flex items-center">
-                      <AiOutlineMail size={20} />
-                      Continue with email
-                    </div>
-                  )}
-                </button>
-              </form>
-              <div>
-                <div className="my-6 flex w-full items-center">
-                  <hr className="flex-grow border-gray-300" />
-                  <span className="mx-4 text-sm text-grayNavbarTxt">Other log in options</span>
-                  <hr className="flex-grow border-gray-300" />
-                </div>
-                <div className="mb-[2em] flex justify-center space-x-5">
-                  <button onClick={handleGoogle} className={`${loginThirdPartyBtn}`}>
-                    <FcGoogle className={`${iconSize}`} />
-                  </button>
-                  <button className={`${loginThirdPartyBtn}`}>
-                    <FaFacebook className={`${iconSize} text-blue-600`} />
-                  </button>
-                  <button className={`${loginThirdPartyBtn}`}>
-                    <FaApple className={`${iconSize}`} />
-                  </button>
-                </div>
-              </div>
+              <LoginForm />
+              <OtherLoginOptions />
             </div>
           )}
-          {differentAccount ||
-            (!isLoggedPreviouslyWithGoogle && (
-              <div className="flex w-full flex-col gap-4">
-                <input
-                  type="text"
-                  name="email"
-                  id="email"
-                  placeholder="Email"
-                  className={`${inputLoginWEmail}`}
-                />
-                <div className="flex flex-col items-center gap-4">
-                  <form className="flex w-full flex-col" onSubmit={handleSubmit}>
-                    {!differentAccount && isLoggedPreviouslyWithGoogle && (
-                      <input
-                        type="text"
-                        name="email"
-                        id="email"
-                        placeholder="Email"
-                        className={`${inputLoginWEmail}`}
-                      />
-                    )}
-                    <button
-                      type="submit"
-                      className={`${regFullButtonPurpleHover} mb-6 flex w-full items-center justify-center font-sans font-extrabold`}
-                    >
-                      {isLoading ? (
-                        <Loader useSmallLoading={true} hSize="" />
-                      ) : (
-                        <div className="flex items-center">
-                          <AiOutlineMail size={20} />
-                          Continue with email
-                        </div>
-                      )}
-                    </button>
-                  </form>
-                </div>
-                {!showRegularLogin && (
-                  <div>
-                    <div className="my-6 flex w-full items-center">
-                      <hr className="flex-grow border-gray-300" />
-                      <span className="mx-4 text-sm text-grayNavbarTxt">Other log in options</span>
-                      <hr className="flex-grow border-gray-300" />
-                    </div>
-                    <div className="mb-[2em] flex justify-center space-x-5">
-                      <button onClick={handleGoogle} className={`${loginThirdPartyBtn}`}>
-                        <FcGoogle className={`${iconSize}`} />
-                      </button>
-                      <button className={`${loginThirdPartyBtn}`}>
-                        <FaFacebook className={`${iconSize} text-blue-600`} />
-                      </button>
-                      <button className={`${loginThirdPartyBtn}`}>
-                        <FaApple className={`${iconSize}`} />
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          {isLoggedPreviouslyWithGoogle && !differentAccount && (
-            <Button onClick={handleGoogle} className={`${continueWGoogleBtn}`}>
-              <FcGoogle size={20} /> Continue with Google
-            </Button>
+          {isDifferentAccount && (
+            <div>
+              <LoginForm />
+              <OtherLoginOptions />
+            </div>
           )}
-          <div className={`${divDiffOptionsLogin}`}>
-            {showRegularLogin ||
-              (isLoggedPreviouslyWithGoogle && (
-                <div>
-                  <button onClick={handleRegularLogin} className={`${loginWDiffAccBtn}`}>
-                    Log in with different account
-                  </button>
-                  <hr />
-                </div>
-              ))}
-            {showRegularLogin && (
-              <div>
-                <button onClick={handleDifferentAccount} className={`${loginWDiffAccBtn}`}>
-                  Log to a different account
-                </button>
-                <hr />
+          {prevWGoogle && !isDifferentAccount && (
+            <div>
+              <GoogleBtn />
+            </div>
+          )}
+          <div className="items-center justify-center text-center">
+            {prevWGoogle && (
+              <div
+                onClick={() => setDifferentAccount(true)}
+                className={`${isDifferentAccount ? 'hidden' : 'block'}`}
+              >
+                <WebsiteLoginOptions
+                  text={`Log in to a different account`}
+                  to={`/login`}
+                  extraCSS={`text-base font-extrabold`}
+                />
               </div>
             )}
-            <Link to="/signup">
-              <button className="p-[0.7em] underline-offset-[5px] focus:outline-none">
-                Don't have an account?{' '}
-                <span className="font-sans font-extrabold text-btnColor underline">Sign up</span>
-              </button>
-            </Link>
-            <hr />
-            <Link to="/organization/global-login/email">
-              <button className={`${diffLoginOptionBtn}`}>Log in with your organization</button>
-            </Link>
+            <WebsiteLoginOptions
+              text={`Don't have an account ?`}
+              to={'/signup'}
+              extraCSS={`text-center w-full text-base no-underline text-gray-950 font-normal`}
+              textAfterSpace={`Sign up`}
+              textAfterSpaceCSS={`underline text-purple-600 font-extrabold`}
+            />
+            <hr className="w-full" />
+            <WebsiteLoginOptions
+              text={`Log in with your organization`}
+              to={`/organization/global-login/email`}
+              extraCSS={`font-extrabold text-sm`}
+            />
           </div>
         </div>
       </div>

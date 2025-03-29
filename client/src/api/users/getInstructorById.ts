@@ -8,14 +8,12 @@ const getInstructorById = async (instructorId: string) => {
   }
 
   try {
-    const url = `${isProduction ? baseUrl : localhostUrl}/api/instructor/${instructorId}`;
+    const url = `${isProduction ? baseUrl : localhostUrl}/api/user/${instructorId}`;
 
     const res = await axiosClient.get(url);
 
     if (res) {
-      console.log(res.data.data);
-
-      return res.data.data;
+      return res.data;
     }
   } catch (error) {
     console.log(`Error has been occurred durning getting instructor information: `, error);

@@ -11,17 +11,13 @@ const Cart = () => {
   const handleMouseLeave = () => setShowCartHover(false);
 
   return (
-    <div
-      className="relative mr-[0.8em]"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className={`${btnStyleNHover}`}>
         <MdOutlineShoppingCart className="h-5 w-5" />
         <CartCoursesNumber />
       </div>
       {showCartHover && (
-        <div className="absolute left-0 top-full z-[5000] p-[2em]">
+        <div className="absolute top-6 z-[5000]">
           <HoverCart />
         </div>
       )}

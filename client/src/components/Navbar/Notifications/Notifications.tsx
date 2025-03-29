@@ -13,11 +13,11 @@ const Notifications = () => {
     <div>
       <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <button className={`${btnStyleNHover}`}>
-          <IoMdNotificationsOutline className="h-6 w-6" />
+          <IoMdNotificationsOutline className="h-5 w-5" />
         </button>
       </div>
       {showNotificationHover && (
-        <div className="absolute z-[5000] p-[2em]">
+        <div className="absolute z-[5000]">
           <HoverNotification />
         </div>
       )}

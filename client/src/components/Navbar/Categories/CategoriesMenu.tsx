@@ -1,4 +1,4 @@
-import AtagBtn from '@/components/AtagBtn/AtagBtn';
+import AtagBtn from '@/components/ButtonNavbar/ButtonNavbar';
 import { Category, Subcategory } from '@/types/types';
 import { categoriesData } from '@/utils/categoriesData';
 import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
@@ -85,7 +85,7 @@ const CategoriesMenu = () => {
   };
 
   return (
-    <div className="relative z-50 inline-block w-auto text-left font-medium text-gray-600">
+    <div className="relative z-50 inline-block w-auto text-left font-medium text-gray-600 px-[0.25rem]">
       {/* Botão Explore com hover para mostrar menu */}
       <div
         className="inline-block"
@@ -93,7 +93,7 @@ const CategoriesMenu = () => {
         onMouseLeave={handleMenuLeave}
       >
         <button
-          className={`${btnStyleNHover} rounded-md px-3 py-3 font-sans text-sm font-normal text-[#020202]`}
+          className={`${btnStyleNHover} rounded-md px-3 py-3 font-sans text-[0.85rem] font-normal text-[#37474F]`}
         >
           Explore
         </button>

@@ -1,6 +1,6 @@
 import { ExploreCategory } from '@/types/types';
 
-export const categoriesData: (ExploreCategory | undefined)[] = [
+export const categoriesData: ExploreCategory[] = [
   {
     category: 'Certification Preparation',
     subcategory: [

@@ -1,20 +1,18 @@
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import { MdLanguage } from 'react-icons/md';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
-import ProfilePic from '../../ProfilePic/ProfilePic';
 import CartCoursesNumber from '../Cart/CartCoursesNumber/CartCoursesNumber';
 import ChangeLanguage from './ChangeLanguage/ChangeLanguage';
 import { clearUser } from '@/redux/slices/userSlice';
 import { RootState } from '@/redux/store';
-import { setClearAll } from '@/redux/slices/cartSlice';
 import Cookies from 'js-cookie';
+import DropDownMenuProfileArea from './DropDownMenuProfileArea/DropDownMenuProfileArea';
 
 const DropdownMenu: React.FC = () => {
   const [isClicked, setClicked] = useState(false);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { fullName = '', profilePic, email } = useSelector((state: RootState) => state?.user);
@@ -64,22 +62,12 @@ const DropdownMenu: React.FC = () => {
 
   return (
     <div className="absolute right-0 top-[100%] z-[1600] mt-[2.6em] w-72 cursor-pointer rounded-lg border bg-white shadow-alertAlgoInfo">
-      <div className="my-2 flex items-center border-b p-1">
-        <Link to="/user/edit-profile">
-          <ProfilePic
-            isHover={false}
-            shortcutName={shortcutName}
-            profilePic={profilePic}
-            isBig={true}
-          />
-        </Link>
-        <div>
-          <div className="font-sans font-extrabold text-gray-800 hover:text-btnColor">
-            {fullName}
-          </div>
-          <div className=" text-gray-500">{email}</div>
-        </div>
-      </div>
+      <DropDownMenuProfileArea
+        shortcutName={shortcutName}
+        profilePic={profilePic}
+        email={email}
+        fullName={fullName}
+      />
       <ul>
         {menuItems.map(({ label, to, extra, separator, type, component }, index) =>
           type === 'custom' ? (

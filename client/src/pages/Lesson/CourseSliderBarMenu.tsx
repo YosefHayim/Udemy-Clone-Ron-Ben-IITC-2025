@@ -26,8 +26,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { fetchCourseProgress, updateLessonProgress } from '@/services/ProgressService';
-import { CourseProgressResponse, LessonProgressPayload } from '@/types';
 import CustomTrigger from '../Lesson/CustomTrigger';
+import { CourseProgressResponse } from '@/types/types';
 
 export function CourseSidebarMenu({ courseId }: { courseId: string }) {
   const [hover, setHover] = useState('gray-600');
@@ -44,7 +44,9 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
 
   // Mutation for updating lesson progress with optimistic updates
   const mutation = useMutation({
-    mutationFn: ({ lessonId, payload }: { lessonId: string; payload: LessonProgressPayload }) =>
+    mutationFn: ({ lessonId, payload }: { lessonId: string; payload: {
+      
+    } }) =>
       updateLessonProgress(courseId, lessonId, payload),
     onMutate: async ({ lessonId, payload }) => {
       // Cancel ongoing queries

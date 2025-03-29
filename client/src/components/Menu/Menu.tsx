@@ -19,7 +19,7 @@ const Menu: React.FC = () => {
     const buttons = document.querySelectorAll<HTMLButtonElement>('.menu-button');
     if (buttons[index]) {
       const rect = buttons[index].getBoundingClientRect();
-      return rect.left + rect.width / 2;
+      return rect.left + rect.width / 2.5;
     }
     return 0;
   };
@@ -29,10 +29,10 @@ const Menu: React.FC = () => {
     searchAlgoLocalStorage(category.toLowerCase());
   };
   return (
-    <div className="font-sans">
+    <div className="font-sans text-[0.8rem]">
       <hr />
       <div className="relative z-20 bg-white shadow-md" onMouseLeave={handleMouseLeave}>
-        <div className="flex items-center justify-center space-x-8 py-4">
+        <div className="flex items-center justify-center space-x-8 py-[0.8rem]">
           {categories.map((category, index) => (
             <div
               key={index}
