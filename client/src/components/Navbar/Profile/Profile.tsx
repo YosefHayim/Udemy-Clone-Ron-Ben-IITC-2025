@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 const Profile: React.FC<{ cookie: string }> = ({ cookie }) => {
   const fullName = useSelector((state: RootState) => state?.user.fullName);
   const profilePic = useSelector((state: RootState) => state?.user.profilePic);
-  const [showDropDown, setShowDropDown] = useState(true);
+  const [showDropDown, setShowDropDown] = useState(false);
   const [firstWord, secondWord] = fullName ? fullName.split(' ') : ['', ''];
 
   const shortcutName =

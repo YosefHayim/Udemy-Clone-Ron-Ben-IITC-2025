@@ -14,7 +14,17 @@ import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
  * @param {string} rightPosition - Right position CSS value.
  */
 
-const ButtonsCarousel = ({
+const ButtonsCarousel: React.FC<{
+  handleFnPrev: () => void;
+  handleFnNext: () => void;
+  state: number;
+  useCustom?: boolean;
+  showDirectionalButtonsOnlyOnEdge?: boolean;
+  topPosition?: string;
+  leftPosition?: string;
+  bottomPosition?: string;
+  rightPosition?: string;
+}> = ({
   handleFnPrev,
   handleFnNext,
   state,
