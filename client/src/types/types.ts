@@ -123,13 +123,6 @@ export type AtagBtnProps = {
   aTagName: string;
 };
 
-export interface CourseImgProps {
-  courseImg: string;
-  widthChosen?: string;
-  standCardView: boolean;
-  imgExplanation: string;
-}
-
 export interface CourseInstructorProps {
   instructor?: string;
   shortCutInstructor?: boolean;
