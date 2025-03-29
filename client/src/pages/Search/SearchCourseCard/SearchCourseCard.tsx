@@ -24,9 +24,12 @@ const SearchCourseCard: React.FC<{ course: CourseTypeProps }> = ({ course }) => 
   return (
     <div id={course._id} onClick={() => handleCardClick(course._id)}>
       <div className="flex w-auto cursor-pointer items-start justify-between">
-        <div className="flex items-start justify-center gap-[0.3em]">
+        
+        <div className="flex items-start justify-center gap-[1em] text-[0.8rem]">
+          
           <CourseImg courseImg={course.courseImg} />
-          <div className="flex w-full flex-col items-start justify-start gap-[0.2em]">
+          
+          <div className="flex w-full flex-col items-start justify-start gap-[0.3em] text-[0.8rem]">
             <CourseTitle title={course.courseName} />
             <CourseRecap recapInfo={course.courseRecapInfo} />
             <CourseInstructor instructor={course.courseInstructor.fullName} />
