@@ -1,26 +1,16 @@
-import registerUser from '@/api/users/registerUser';
-import { emailContext } from '@/routes/AppRoutes';
-import { RegisterUserPayload } from '@/types/types';
-import { useMutation } from '@tanstack/react-query';
-import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { BiSolidErrorAlt } from 'react-icons/bi';
-import { useDispatch } from 'react-redux';
+import LoginImg from '../Login/LoginImg/LoginImg';
 import OtherLoginOptions from '../Login/OtherLoginOptions/OtherLoginOptions';
 import WebsiteLoginOptions from '../Login/OtherLoginOptions/WebsiteLoginOptions/WebsiteLoginOptions';
-import TermsOfUseP from './TermsOfUseP/TermsOfUseP';
 import SignUpForm from './SignUpForm/SignUpForm';
-import SignUpImg from './SignUpImg/SignUpImg';
+import TermsOfUseP from './TermsOfUseP/TermsOfUseP';
 
-const SignUp: React.FC = () => {
-  document.title = 'Sign Up and Start Learning | Udemy';
-
+const SignUp = () => {
   return (
-    <div className="flex h-screen w-full items-center justify-center bg-cover bg-center">
-      <SignUpImg />
-      <div className="mt-36 flex h-full w-1/2 items-start justify-center bg-white">
-        <div className="w-3/4 max-w-[27rem]">
-          <h2 className="mb-6 w-full text-center font-sans text-[2rem] font-extrabold text-courseNameColorTxt">
+    <div className="h-screen w-full bg-cover bg-center">
+      <div className="flex w-full flex-1 items-center justify-center">
+        <LoginImg />
+        <div className="h-svh w-full max-w-[29rem] rounded-lg bg-white p-6">
+          <h2 className="mb-10 mt-20 text-center font-sans text-3xl font-extrabold text-gray-800">
             Sign up with email
           </h2>
           <SignUpForm />
@@ -28,6 +18,7 @@ const SignUp: React.FC = () => {
           <TermsOfUseP />
           <div className="mt-4">
             <WebsiteLoginOptions
+              extraToFatherDiv={`p-[0.5em]`}
               text="Already have an account?"
               to={'/login'}
               extraCSS={`text-center w-full text-base no-underline text-gray-950 font-normal`}
