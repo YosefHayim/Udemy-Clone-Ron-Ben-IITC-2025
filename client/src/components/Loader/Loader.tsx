@@ -4,7 +4,14 @@ import smallStyles from './SmallLoader.module.css';
 import blackSmallStyle from './SmallLoaderBlack.module.css';
 import purpleLightExtraSmallStyle from './smallLoaderLightPurple.module.css';
 
-const Loader: React.FC<LoaderProps> = ({
+const Loader: React.FC<{
+  hSize: string;
+  useSmallLoading: boolean;
+  paddingSetTo?: string;
+  usePurpleLoading?: boolean;
+  useSmallBlackLoading?: boolean;
+  purpleLightSmallStyle?: boolean;
+}> = ({
   hSize = '1000px',
   useSmallLoading = false,
   paddingSetTo = '25em',

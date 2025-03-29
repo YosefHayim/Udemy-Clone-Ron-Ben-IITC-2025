@@ -1,8 +1,14 @@
 import Loader from '@/components/Loader/Loader';
-import { CoursePriceProps } from '@/types/types';
 import { useEffect, useState } from 'react';
 
-const CoursePrice: React.FC<CoursePriceProps> = ({
+const CoursePrice: React.FC<{
+  discountPrice?: number | string;
+  fullPrice?: number | string;
+  chooseFlex?: string;
+  showFullPrice?: boolean;
+  extraCSS?: string;
+  displayPercent: boolean;
+}> = ({
   discountPrice = 49.9,
   fullPrice = 369.9,
   chooseFlex = 'flex-col',

@@ -1,6 +1,5 @@
-import { CourseTitleProps } from '@/types/types';
 
-const CourseTitle: React.FC<CourseTitleProps> = ({
+const CourseTitle: React.FC<{ title?: string; shortcutTitle?: boolean }> = ({
   title = 'React - The Complete Guide 2024 (incl. Next.js, Redux)',
   shortcutTitle = false,
 }) => {

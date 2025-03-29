@@ -14,7 +14,7 @@ const OtherLoginOptions = () => {
   const [isError, setShowIsError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const googleMutationLogin = useMutation({
     mutationFn: googleLogin,
     onSuccess: (cookie) => {

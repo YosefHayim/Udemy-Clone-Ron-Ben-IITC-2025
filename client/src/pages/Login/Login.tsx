@@ -52,9 +52,9 @@ const Login = () => {
             )}
             <WebsiteLoginOptions
               text={`Don't have an account ?`}
-              to={'/login'}
+              to={'/signup'}
               extraCSS={`text-center w-full text-base no-underline text-gray-950 font-normal`}
-              textAfterSpace={` Sign up`}
+              textAfterSpace={`Sign up`}
               textAfterSpaceCSS={`underline text-purple-600 font-extrabold`}
             />
             <hr className="w-full" />

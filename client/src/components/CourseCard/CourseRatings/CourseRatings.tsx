@@ -1,6 +1,5 @@
-import { CourseRatingsProps } from '@/types/types';
 
-const CourseRatings: React.FC<CourseRatingsProps> = ({
+const CourseRatings: React.FC<{ avgRatings?: number; stars?: string; totalRatings?: number }> = ({
   avgRatings = 0,
   stars = '★★★★☆',
   totalRatings = 0,

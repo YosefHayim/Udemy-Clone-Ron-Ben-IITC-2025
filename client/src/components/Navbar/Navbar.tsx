@@ -5,7 +5,7 @@ import LoginBtn from './LoginBtn/LoginBtn';
 import SignupBtn from './SignupBtn/SignupBtn';
 import Cart from './Cart/Cart';
 import Logo from '../Logo/Logo';
-import AtagBtn from '../AtagBtn/AtagBtn';
+import ButtonNavbar from '../ButtonNavbar/ButtonNavbar';
 import Heart from './Heart/Heart';
 import Notifications from './Notifications/Notifications';
 import Profile from './Profile/Profile';
@@ -70,11 +70,11 @@ const Navbar = () => {
               className="flex w-full items-end justify-end gap-2"
               style={{ maxWidth: 'min-content' }}
             >
-              <AtagBtn aTagName={'Udemy Business'} />
-              <AtagBtn aTagName={'Teach on Udemy'} />
+              <ButtonNavbar buttonName={'Udemy Business'} />
+              <ButtonNavbar buttonName={'Teach on Udemy'} />
               {cookie && (
                 <Link to="/wishlist">
-                  <AtagBtn aTagName={'My learning'} />
+                  <ButtonNavbar buttonName={'My learning'} />
                 </Link>
               )}
               {cookie && (

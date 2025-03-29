@@ -1,4 +1,4 @@
-import AtagBtn from '@/components/AtagBtn/AtagBtn';
+import AtagBtn from '@/components/ButtonNavbar/ButtonNavbar';
 import { Category, Subcategory } from '@/types/types';
 import { categoriesData } from '@/utils/categoriesData';
 import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
