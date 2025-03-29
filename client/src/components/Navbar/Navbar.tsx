@@ -56,15 +56,18 @@ const Navbar = () => {
       <SaleCommercialTwo />
       {!isMobile && (
         <div className="relative z-[50] flex w-full items-center justify-between bg-white px-[1rem] pb-[0.9em] pt-[0.2em] ">
-          <div className="flex w-full items-center justify-between pt-[0.4rem] px-[0.25rem] ">
+          <div className="flex w-full items-center justify-between px-[0.25rem] pt-[0.4rem] ">
             <Link to="/">
               <Logo />
             </Link>
             <CategoriesMenu />
-            <div className={'flex-grow w-full items-center p-1 px-[0.25rem]'}>
-                <SearchInput isTyping={isTyping} setIsTyping={setIsTyping} />
+            <div className={'w-full flex-grow items-center p-1 px-[0.25rem]'}>
+              <SearchInput isTyping={isTyping} setIsTyping={setIsTyping} />
             </div>
-            <div className="flex w-full items-end justify-end gap-1"  style={{ maxWidth: 'min-content' }}>
+            <div
+              className="flex w-full items-end justify-end gap-1"
+              style={{ maxWidth: 'min-content' }}
+            >
               <ButtonNavbar buttonName={'Udemy Business'} />
               <ButtonNavbar buttonName={'Teach on Udemy'} />
               {cookie && (
@@ -120,7 +123,7 @@ const Navbar = () => {
         </div>
       )}
       {isMobile && (
-        <div>
+        <div className="w-full">
           <MobileNavbar isTyping={isTyping} setIsTyping={setIsTyping} />
         </div>
       )}

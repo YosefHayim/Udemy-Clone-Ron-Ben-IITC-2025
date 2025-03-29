@@ -4,7 +4,6 @@ import SearchResultsCourseImg from './SearchResultsCourseImg/SearchResultsCourse
 
 const SearchResults: React.FC<{
   isTyping: boolean;
-  setIsTyping: (value: boolean) => void;
   extraCSS?: string;
   data: any;
 }> = ({ isTyping, data }) => {

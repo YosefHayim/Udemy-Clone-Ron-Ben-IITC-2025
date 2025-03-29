@@ -1,16 +1,19 @@
 import getAllCourses from '@/api/courses/getAllCourses';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { MdOutlineSearch } from 'react-icons/md';
-import SearchResults from '../SearchResults/SearchResults';
 import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
+import { useMediaQuery } from 'react-responsive';
+import SearchInputDesktop from './SearchInputDesktop/SearchInputDekstop';
+import SearchInputMobile from './SearchInputMobile/SearchInputMobile';
 
 const SearchInput: React.FC<{
   isTyping: boolean;
   setIsTyping: (value: boolean) => void;
   extraCSS?: string;
 }> = ({ isTyping, setIsTyping, extraCSS }) => {
+  const isMobile = useMediaQuery({ maxWidth: 800 });
+
   const navigate = useNavigate();
   const location = useLocation();
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -66,28 +69,27 @@ const SearchInput: React.FC<{
   });
 
   return (
-    <div className="relative flex flex-col items-center px-[0.25rem]">
-      <form
-        onSubmit={handleSubmit}
-        className={`flex w-full items-center overflow-hidden rounded-full border border-gray-400 bg-transparent 
-    focus-within:border-[#6D28D2] focus-within:bg-white focus-within:ring-1 focus-within:ring-btnColor hover:bg-gray-100`}
-      >
-        <button
-          className={`${searchTerm.length === 0 ? 'cursor-not-allowed' : ''} bg-none p-[0.8rem] focus:outline-none`}
-        >
-          <MdOutlineSearch
-            className={`focus:outline-non ml-[-0.5em] h-5 w-5 bg-none text-gray-400`}
-          />
-        </button>
-        <input
-          type="text"
-          value={searchTerm}
-          placeholder="Search for anything"
-          className={`flex-grow bg-transparent ml-[-0.2em] text-sm text-[#595C84] placeholder:text-[0.85rem] placeholder:text-[#595C84] focus:outline-none`}
-          onChange={handleOnChange}
+    <div className="w-full">
+      {!isMobile && (
+        <SearchInputDesktop
+          handleSubmit={handleSubmit}
+          handleOnChange={handleOnChange}
+          extraCSS={''}
+          searchTerm={searchTerm}
+          isTyping={isTyping}
+          data={data}
         />
-      </form>
-      <SearchResults isTyping={isTyping} data={data} />
+      )}
+      {isMobile && (
+        <SearchInputMobile
+          handleSubmit={handleSubmit}
+          handleOnChange={handleOnChange}
+          extraCSS={''}
+          searchTerm={searchTerm}
+          isTyping={isTyping}
+          data={data}
+        />
+      )}
     </div>
   );
 };
