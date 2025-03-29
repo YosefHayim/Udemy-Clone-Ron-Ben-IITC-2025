@@ -27,8 +27,8 @@ const Profile: React.FC<{ cookie: string }> = ({ cookie }) => {
           profilePic={profilePic}
           isBig={true}
           isHover={true}
-          size="h-[2rem] w-[2rem]" // ← black circle size
-          customTextSize="text-[0.9rem]" // ← font-size inside the black circle
+          size="h-[2rem] w-[2rem]"
+          customTextSize="text-[0.9rem]"
         />
       </div>
 

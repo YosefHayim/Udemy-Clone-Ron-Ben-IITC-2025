@@ -22,12 +22,12 @@ const InteractionsBtns: React.FC<{
   customHeartExtraCSS,
   BtnText,
 }) => {
-  const [showDialogOfFbt, setShowDialogOfFbt] = useState(false);
+  const [showDialogOfFbt, setShowDialogOfFbt] = useState(true);
 
   const handleCartSuccess = () => {
-    setTimeout(() => {
-      setShowDialogOfFbt(true);
-    }, 500);
+    // setTimeout(() => {
+    setShowDialogOfFbt(true);
+    // }, 500);
   };
 
   if (!courseId && !coursePrice && courseTopic) {
@@ -56,17 +56,17 @@ const InteractionsBtns: React.FC<{
           </div>
         )}
       </div>
-      {showDialogOfFbt && (
-        <div>
-          <DialogFrequentlyBoughtTogether
-            showDialogOfFbt={showDialogOfFbt}
-            setShowDialogOfFbt={setShowDialogOfFbt}
-            instructorId={instructorId}
-            courseTopic={courseTopic}
-            courseId={courseId}
-          />
-        </div>
-      )}
+      {/* {showDialogOfFbt && ( */}
+      <div>
+        <DialogFrequentlyBoughtTogether
+          showDialogOfFbt={showDialogOfFbt}
+          setShowDialogOfFbt={setShowDialogOfFbt}
+          instructorId={instructorId}
+          courseTopic={courseTopic}
+          courseId={courseId}
+        />
+      </div>
+      {/* )} */}
     </div>
   );
 };

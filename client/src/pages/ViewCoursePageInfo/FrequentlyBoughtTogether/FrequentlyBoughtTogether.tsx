@@ -7,7 +7,11 @@ import { useEffect } from "react";
 import { Course } from "@/types/types";
 import { AiOutlinePlus } from "react-icons/ai";
 
-const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({ instructorId }) => {
+const FrequentlyBoughtTogether: React.FC<{
+  instructorId: string;
+  showPlusButtons: boolean;
+  amountOfCourses: number;
+}> = ({ instructorId, showPlusButtons, amountOfCourses }) => {
   const [sum, setSumFullPrice] = useState(0);
   const [discountSum, setDiscountSum] = useState(0);
 
@@ -55,7 +59,7 @@ const FrequentlyBoughtTogether: React.FC<{ instructorId: string }> = ({ instruct
                 courseDiscountPrice={course?.courseDiscountPrice}
                 totalRatings={course?.totalRatings}
               />
-              {(index === 1 || index === 2) && (
+              {((index === 1 && showPlusButtons) || (index === 2 && showPlusButtons)) && (
                 <AiOutlinePlus
                   size={35}
                   style={{

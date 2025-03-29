@@ -11,6 +11,7 @@ import { removeCourseFromCart } from "@/redux/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { FaCirclePlay } from "react-icons/fa6";
 import OptionsMyLearning from "./OptionsMyLearning/OptionsMyLearning";
+import CourseImg from "@/components/CourseCard/CourseImg/CourseImg";
 
 const ItemInCart = ({
   isFontThick = false,
@@ -98,12 +99,8 @@ const ItemInCart = ({
       >
         <div>
           <div className="relative">
-            <img
-              id={courseId}
-              src={data?.courseImg}
-              alt={`${data?.courseName} image`}
-              className={`${courseImgSize}`}
-            />
+            <CourseImg courseImg={data.courseImg} imgExplanation={data.courseName} />
+
             <div
               className={
                 isMyLearning
