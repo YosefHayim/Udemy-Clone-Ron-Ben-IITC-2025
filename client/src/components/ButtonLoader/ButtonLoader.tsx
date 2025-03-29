@@ -17,7 +17,7 @@ const ButtonLoader: React.FC<{ isLoading: boolean; text: string; showIcon: boole
         {isLoading ? (
           <Loader useSmallLoading={true} hSize="" />
         ) : (
-          <p className="flex w-full items-center justify-center gap-2 text-base">
+          <p className="flex w-full items-center justify-center gap-2 text-base font-bold">
             {showIcon && <AiOutlineMail size={20} />}
             {text}
           </p>
