@@ -13,7 +13,7 @@ const Login = () => {
   const prevWGoogle = useSelector((state: RootState) => state?.user?.isLoggedPreviouslyWithGoogle);
 
   return (
-    <div className="h-screen bg-cover bg-center">
+    <div className="h-screen w-full bg-cover bg-center">
       <div className="flex w-full flex-1 items-center justify-center">
         <LoginImg />
         <div className="h-svh w-full max-w-[29rem] rounded-lg bg-white p-6">

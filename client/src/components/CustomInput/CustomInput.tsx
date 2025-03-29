@@ -2,7 +2,15 @@ import { TextField } from '@mui/material';
 import React, { useRef, useState } from 'react';
 import { PiWarningOctagon } from 'react-icons/pi';
 
-const CustomInput = ({
+const CustomInput: React.FC<{
+  isError?: boolean | null;
+  setShowIsError?: React.Dispatch<React.SetStateAction<boolean | null>>;
+  labelName: string;
+  idAttribute: string;
+  nameAttribute: string;
+  inputMode: string;
+  useErrorDisplay?: boolean;
+}> = ({
   isError,
   setShowIsError,
   labelName,
