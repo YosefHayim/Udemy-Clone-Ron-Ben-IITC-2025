@@ -19,6 +19,7 @@ import { DecodedTokenProps } from "@/types/types";
 import { jwtDecode } from "jwt-decode";
 import { AppDispatch } from "@/redux/store";
 import Cookies from "js-cookie";
+import { setUserLoaded } from "@/redux/slices/userSlice";
 
 export const setUserInformation = (cookie: string, dispatch?: AppDispatch) => {
   const reduxCookie = Cookies.get("cookie");
@@ -51,5 +52,6 @@ export const setUserInformation = (cookie: string, dispatch?: AppDispatch) => {
     if (decoded.isLoggedPreviouslyWithGoogle !== undefined) {
       dispatch(setIsLoggedWithGoogle(decoded.isLoggedPreviouslyWithGoogle));
     }
+    dispatch(setUserLoaded(true));
   }
 };

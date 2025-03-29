@@ -8,7 +8,7 @@ const SideBarProfile = ({selectedPage, setSelectedPage}) => {
   const fullName = useSelector((state: RootState) => state?.user?.fullName);
   const profilePic = useSelector((state: RootState) => state?.user?.profilePic);
   const location = useLocation();
-  const cookie = useSelector((state: RootState) => state.user?.cookie ?? true);
+  const cookie = useSelector((state: RootState) => state.user?.cookie);
 
   if (!cookie) { return <div></div> }
 

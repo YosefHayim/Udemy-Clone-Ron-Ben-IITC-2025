@@ -8,12 +8,19 @@ import Photo from "./SwitchPagesProfile/Photo"
 import Privacy from "./SwitchPagesProfile/Privacy";
 import SideBarProfile from "./SideBarProfile";
 import ProfileMain from "./SwitchPagesProfile/ProfileMain";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+
 
 const ProfilePage = () => {
 
     const [selectedPage, setSelectedPage] = useState("Profile"); // Estado inicial
     const navigate = useNavigate();
-
+    const isUserLoaded = useSelector((state: RootState) => state.user.isUserLoaded);
+    if (!isUserLoaded) {
+        return null; // ou um spinner de loading, se quiser
+      }
+      
     useEffect(() => {
         if (selectedPage === "Subscription") { navigate("/user/manage-subscriptions", { replace: true }) };
         if (selectedPage === "View public profile") { navigate("/user/public-profile", { replace: true }) };
