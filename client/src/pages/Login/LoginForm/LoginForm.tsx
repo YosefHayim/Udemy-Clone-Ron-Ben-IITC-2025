@@ -48,7 +48,14 @@ const LoginForm = () => {
   return (
     <form className="mb-4 flex flex-col space-y-4" onSubmit={handleSubmit}>
       <div className="relative">
-        <CustomInput isError={isError} />
+        <CustomInput
+          isError={isError}
+          setShowIsError={setShowIsError}
+          labelName={'Email'}
+          idAttribute={`email`}
+          nameAttribute={`email`}
+          inputMode={`email`}
+        />
       </div>
       <div>
         <button type="submit" className={`${regFullButtonPurpleHover} w-full`}>

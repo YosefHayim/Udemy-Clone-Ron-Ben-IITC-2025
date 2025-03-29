@@ -2,9 +2,16 @@ import { TextField } from '@mui/material';
 import React, { useRef, useState } from 'react';
 import { PiWarningOctagon } from 'react-icons/pi';
 
-const CustomInput = ({ isError }) => {
+const CustomInput = ({ isError, setShowIsError, labelName, idAttribute, nameAttribute,inputMode }) => {
+  const [email, setEmail] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const focusOrBlurRef = useRef(null);
+
+  const handleBlur = () => {
+    setIsFocused(false);
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.(com)$/.test(email);
+    setShowIsError(!isValidEmail);
+  };
 
   return (
     <div className="flex w-full flex-col items-start justify-center gap-2">
@@ -12,12 +19,14 @@ const CustomInput = ({ isError }) => {
         <TextField
           ref={focusOrBlurRef}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          inputMode="email"
-          id="email"
-          label="Email"
+          onBlur={handleBlur}
+          inputMode={inputMode}
+          id={idAttribute}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          label={labelName}
           variant="filled"
-          name="email"
+          name={nameAttribute}
           error={isError}
           sx={{
             width: '100%',
