@@ -1,4 +1,3 @@
-import { setUserInformation } from "@/utils/setUserInformation";
 import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configuration";
 
 const refreshMe = async () => {
@@ -7,7 +6,6 @@ const refreshMe = async () => {
 
     if (r) {
       console.log(r.data);
-      setUserInformation(r.data.token);
       return r.data;
     }
   } catch (error) {

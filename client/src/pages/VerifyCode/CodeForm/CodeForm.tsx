@@ -11,7 +11,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NotificationCodeResent from "./NotificationCodeResent/NotificationCodeResent";
 import loginUser from "@/api/users/loginUser";
-import { PiWarningOctagon } from "react-icons/pi";
 import DisplayErrorCode from "./DisplayErrorCode/DisplayErrorCode";
 
 const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
@@ -25,9 +24,7 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
 
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
-    onSuccess: (data) => {
-      console.log(data);
-      setUserInformation(data, dispatch);
+    onSuccess: () => {
       navigate("/");
     },
     onError: (error) => {
@@ -66,7 +63,7 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   return (
     <div className="w-full">
       {isClickedResend && <NotificationCodeResent />}
-      {isError && !isLoading && (
+      {isError && (
         <div className="mb-2">
           <DisplayErrorCode />
         </div>
