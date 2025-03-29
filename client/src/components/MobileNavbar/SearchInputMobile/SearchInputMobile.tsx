@@ -1,5 +1,5 @@
-import SearchInputSearchButton from '../SearchInputSearchButton/SearchInputSearchButton';
-import SearchResults from '../../SearchResults/SearchResults';
+import SearchInputSearchButton from '@/components/Navbar/SearchInput/SearchInputSearchButton/SearchInputSearchButton';
+import SearchResults from '@/components/Navbar/SearchResults/SearchResults';
 import CloseMobileSearchButton from '../CloseMobileSearchButton/CloseMobileSearchButton';
 
 const SearchInputMobile = ({
@@ -10,23 +10,22 @@ const SearchInputMobile = ({
   isTyping,
   data,
   setShowSearchMobile,
-  showSearchMobile,
 }) => {
   return (
     <div className="flex w-full items-center justify-center gap-1">
-      <SearchInputSearchButton searchTerm={searchTerm} />
-      <form onSubmit={handleSubmit} className={`w-full ${extraCSS}`}>
+      <form
+        onSubmit={handleSubmit}
+        className={`w-full ${extraCSS} items-cen flex w-full justify-center`}
+      >
+        <SearchInputSearchButton searchTerm={searchTerm} />
         <input
           type="text"
-          className="w-full border-b bg-white p-2 text-base hover:bg-gray-100 focus:outline-none"
+          className="w-full bg-white p-2 text-base hover:bg-gray-100 focus:outline-none"
           placeholder="Search for anything"
           onChange={handleOnChange}
         />
       </form>
-      <CloseMobileSearchButton
-        setShowSearchMobile={setShowSearchMobile}
-        showSearchMobile={showSearchMobile}
-      />
+      <CloseMobileSearchButton setShowSearchMobile={setShowSearchMobile} />
       <SearchResults isTyping={isTyping} data={data} />
     </div>
   );

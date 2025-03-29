@@ -5,7 +5,7 @@ import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { searchAlgoLocalStorage } from '@/utils/searchesOfUser';
 import { useMediaQuery } from 'react-responsive';
 import SearchInputDesktop from './SearchInputDesktop/SearchInputDekstop';
-import SearchInputMobile from './SearchInputMobile/SearchInputMobile';
+import SearchInputMobile from '@/components/MobileNavbar/SearchInputMobile/SearchInputMobile';
 
 const SearchInput: React.FC<{
   isTyping: boolean;

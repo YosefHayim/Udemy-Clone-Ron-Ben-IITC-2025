@@ -1,12 +1,12 @@
 import Logo from '@/components/Logo/Logo';
 import Burger from './Burger/Burger';
 import { btnStyleNHover } from '@/utils/stylesStorage';
-import SearchInput from '../SearchInput/SearchInput';
 import CartAndSearchMobile from './CartAndSearchMobile/CartAndSearchMobile';
 import { useEffect, useState } from 'react';
+import SearchInput from '../Navbar/SearchInput/SearchInput';
 
 const MobileNavbar = ({ isTyping, setIsTyping }) => {
-  const [showSearchMobile, setShowSearchMobile] = useState(true);
+  const [showSearchMobile, setShowSearchMobile] = useState(false);
 
   useEffect(() => {}, [showSearchMobile]);
 
@@ -17,14 +17,13 @@ const MobileNavbar = ({ isTyping, setIsTyping }) => {
           <div className={`${btnStyleNHover}`}>
             <Burger />
           </div>
-          <div>
-            <Logo CustomCssSize="h-[2.5em]" />
+          <div className="flex h-full items-center justify-center">
+            <Logo CustomCssSize="h-[3em] w-full object-contain mt-1" />
           </div>
           <CartAndSearchMobile setShowSearchMobile={setShowSearchMobile} />
         </div>
       )}
-
-      <div className={`w-full`}>
+      <div className={` w-full`}>
         <SearchInput
           showSearchMobile={showSearchMobile}
           setShowSearchMobile={setShowSearchMobile}
