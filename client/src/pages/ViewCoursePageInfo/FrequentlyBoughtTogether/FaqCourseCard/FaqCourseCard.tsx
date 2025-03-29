@@ -1,9 +1,14 @@
+import CourseTitle from "@/components/CourseCard/CourseTitle/CourseTitle";
 import CourseRating from "../../CourseRating/CourseRating";
 import CoursePrice from "../../StudentsAlsoBought/CoursePrice/CoursePrice";
 import FaqCourseImg from "../FaqCourseImg/FaqCourseImg";
-import FaqCourseName from "../FaqCourseName/FaqCourseName";
 import FaqInstructName from "../FaqInstructName/FaqInstructName";
 import FaqTotalStudentsCourse from "../FaqTotalStudentsCourse/FaqTotalStudentsCourse";
+import { Link } from "react-router-dom";
+import { GoPlusCircle } from "react-icons/go";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import Loader from "@/components/Loader/Loader";
 
 const FrequentlyCourseCard: React.FC<{
   courseImg: string;
@@ -22,12 +27,27 @@ const FrequentlyCourseCard: React.FC<{
   totalRatings,
   courseId,
 }) => {
+  const dispatch = useDispatch();
+  const [isLoading, setLoading] = useState(false);
+
+  const handleAddToCart = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.currentTarget;
+    const courseId = target.closest("div[id]").id;
+    console.log(courseId);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  };
+
   return (
     <div className="flex flex-col p-[1em]" id={courseId}>
-      <div className="flex  justify-around gap-[1em]">
-        <FaqCourseImg courseImg={courseImg} />
+      <div className="item-start flex justify-evenly gap-[1em]">
+        <Link to={`/course-view/${courseId}`}>
+          <FaqCourseImg courseImg={courseImg} />
+        </Link>
         <div>
-          <FaqCourseName courseName={courseName} />
+          <CourseTitle shortcutTitle={true} title={courseName} />
           <FaqInstructName instructorName={instructorName} />
           <div className="flex  items-center gap-[0.5em]">
             <CourseRating colorRating="text-black" amountOfStars={4} courseRating={totalRatings} />
@@ -39,6 +59,18 @@ const FrequentlyCourseCard: React.FC<{
             courseFullPrice={courseFullPrice}
             courseDiscountPrice={courseDiscountPrice}
           />
+        </div>
+        <div>
+          <button
+            className="rounded-full text-purple-800 hover:bg-purple-100 focus:outline-none"
+            onClick={handleAddToCart}
+          >
+            {isLoading ? (
+              <Loader hSize="0px" useSmallBlackLoading={true} useSmallLoading={true} />
+            ) : (
+              <GoPlusCircle size={22} />
+            )}
+          </button>
         </div>
       </div>
     </div>

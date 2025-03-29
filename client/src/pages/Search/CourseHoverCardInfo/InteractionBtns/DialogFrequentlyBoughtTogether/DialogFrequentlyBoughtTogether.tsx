@@ -26,16 +26,19 @@ const DialogFrequentlyBoughtTogether: React.FC<{
   return (
     <div>
       <AlertDialog open={showDialogOfFbt} onOpenChange={setShowDialogOfFbt}>
-        <AlertDialogContent style={{ borderRadius: "0em", maxWidth: "650px", maxHeight: "650px" }}>
+        <AlertDialogContent
+          style={{
+            borderRadius: "0em",
+            maxWidth: "750px",
+            background: "#F6F7F9",
+          }}
+        >
           <AlertDialogHeader>
             <AlertDialogTitle>
               <CloseButtonDialogFBTAndTitle setShowDialogOfFbt={setShowDialogOfFbt} />
             </AlertDialogTitle>
             <AlertDialogDescription>
               <div className="flex w-full items-center justify-around">
-                <div>
-                  <IoMdCheckmarkCircle size={30} className="text-green-700" />
-                </div>
                 <div className="flex w-full flex-col items-start justify-start">
                   <ItemInCart
                     courseId={courseId}
@@ -44,7 +47,10 @@ const DialogFrequentlyBoughtTogether: React.FC<{
                     showFullPrice={true}
                     hide={false}
                   />
-                  <ProcCheckNGoToCart />
+                  <div className="flex w-full flex-col gap-2">
+                    <ProcCheckNGoToCart />
+                  </div>
+                  <hr className="mb-6 mt-3 w-full" />
                 </div>
               </div>
               <div className="flex flex-wrap text-black">

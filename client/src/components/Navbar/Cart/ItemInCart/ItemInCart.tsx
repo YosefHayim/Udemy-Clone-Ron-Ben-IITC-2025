@@ -90,7 +90,7 @@ const ItemInCart = ({
   }
 
   return (
-    <div id={courseId} className={`p-[1em] ${width} ${textSize}`} onClick={handlePreformOperation}>
+    <div id={courseId} className={` ${width} ${textSize}`} onClick={handlePreformOperation}>
       <div
         id={courseId}
         className={`flex ${
