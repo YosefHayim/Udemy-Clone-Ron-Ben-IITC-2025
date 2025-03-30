@@ -1,8 +1,8 @@
 import Filter from "@/components/Filter/Filter";
+import { filterContext } from "@/contexts/filterSearch";
 import { topics } from "@/utils/topics";
 import { useState } from "react";
 import { useContext } from "react";
-import { filterContext } from "@/routes/AppRoutes";
 
 const Topics = () => {
   const [display, setDisplay] = useState<boolean>(true);

@@ -1,9 +1,9 @@
 import Filter from "@/components/Filter/Filter";
+import { filterContext } from "@/contexts/filterSearch";
 import { SidebarFilterProps } from "@/types/types";
 import { languages } from "@/utils/languages";
 import { useState } from "react";
 import { useContext } from "react";
-import { filterContext } from "@/routes/AppRoutes";
 
 const LanguageFilter: React.FC<SidebarFilterProps> = () => {
   const [display, setDisplay] = useState<boolean>(true);

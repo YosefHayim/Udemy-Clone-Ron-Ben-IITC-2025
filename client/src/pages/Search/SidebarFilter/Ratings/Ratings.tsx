@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useContext } from "react";
-import { filterContext } from "@/routes/AppRoutes";
-import { FilterDataProps } from "@/types/types";
 import { useEffect } from "react";
+import { filterContext } from "@/contexts/filterSearch";
 
 const RatingsFilter = () => {
   const [isClicked, setClicked] = useState(true);
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
-  const [filterData, setFilterData] = useContext<FilterDataProps>(filterContext);
+  const [filterData, setFilterData] = useContext(filterContext);
 
   // Sync selectedRating with filterData on mount
   useEffect(() => {

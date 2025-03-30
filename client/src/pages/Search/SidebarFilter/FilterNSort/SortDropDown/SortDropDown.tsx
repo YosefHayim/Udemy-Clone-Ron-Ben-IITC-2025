@@ -1,6 +1,6 @@
+import { filterContext } from "@/contexts/filterSearch";
 import { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { filterContext } from "@/routes/AppRoutes";
 
 const SortDropDown = () => {
   const [filterData, setFilterData] = useContext(filterContext);

@@ -280,7 +280,7 @@ export interface Review {
   };
 }
 
-export interface FilterDataProps {
+interface FilterDataProps {
   sortBy: string;
   searchTerm: string;
   certificateOnly: boolean;

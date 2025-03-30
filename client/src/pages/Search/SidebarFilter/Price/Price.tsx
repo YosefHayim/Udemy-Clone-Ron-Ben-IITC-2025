@@ -1,8 +1,8 @@
 import Filter from "@/components/Filter/Filter";
+import { filterContext } from "@/contexts/filterSearch";
 import { prices } from "@/utils/price";
 import { useState } from "react";
 import { useContext } from "react";
-import { filterContext } from "@/routes/AppRoutes";
 
 const Price = () => {
   const [display, setDisplay] = useState<boolean>(false);

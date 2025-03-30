@@ -10,11 +10,12 @@ import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
 import React, { useContext, useState } from "react";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
-import { filterContext } from "@/routes/AppRoutes";
+
 import { useEffect } from "react";
 import RelatedSearches from "./RelatedSearches/RelatedSearches";
 import { getTopValue } from "@/utils/geTopValues";
 import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
+import { filterContext } from "@/contexts/filterSearch";
 
 const SearchPage: React.FC = () => {
   const [filterData, setFilterData] = useContext(filterContext);

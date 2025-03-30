@@ -1,8 +1,6 @@
 import Filter from "@/components/Filter/Filter";
 import { levels } from "@/utils/levels";
 import { useState } from "react";
-import { useContext } from "react";
-import { filterContext } from "@/routes/AppRoutes";
 
 const Levels = () => {
   const [display, setDisplay] = useState<boolean>(false);

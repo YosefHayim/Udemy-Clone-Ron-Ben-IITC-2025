@@ -1,7 +1,7 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import CantFindMyOccupation from "./CantFindMyOccupation/CantFindMyOccupation";
 import { useContext, useEffect, useState } from "react";
-import { personalizeContent } from "@/routes/AppRoutes";
+import { personalizeContent } from "@/contexts/PersonalizeContext";
 
 const OccupationP2 = () => {
   document.title = "Select Occupation | Udemy";

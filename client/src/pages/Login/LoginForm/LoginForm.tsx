@@ -1,5 +1,4 @@
 import loginUser from "@/api/users/loginUser";
-import { emailContext } from "@/routes/AppRoutes";
 import { useMutation } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +6,7 @@ import CustomInput from "@/components/CustomInput/CustomInput";
 import ButtonLoader from "@/components/ButtonLoader/ButtonLoader";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import { emailContext } from "@/contexts/EmailContext";
 
 const LoginForm = ({ showOnlyLoginButton = true }) => {
   const emailCtx = useContext(emailContext);

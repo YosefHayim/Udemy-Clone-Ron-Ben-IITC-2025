@@ -1,5 +1,4 @@
 import registerUser from "@/api/users/registerUser";
-import { emailContext } from "@/routes/AppRoutes";
 import { RegisterUserPayload } from "@/types/types";
 import { useMutation } from "@tanstack/react-query";
 import { useState, useContext } from "react";
@@ -7,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import CheckboxSpecialOffer from "./CheckboxSpecialOffer/CheckboxSpecialOffer";
 import ButtonLoader from "@/components/ButtonLoader/ButtonLoader";
 import CustomInput from "@/components/CustomInput/CustomInput";
+import { emailContext } from "@/contexts/EmailContext";
 
 const SignUpForm = ({ isMobile }) => {
   const [isLoading, setLoading] = useState(false);
