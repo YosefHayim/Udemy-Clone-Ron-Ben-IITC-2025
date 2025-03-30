@@ -9,6 +9,7 @@ import FrequentlyBoughtTogether from "@/pages/ViewCoursePageInfo/FrequentlyBough
 import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
 import CloseButtonDialogFBTAndTitle from "./CloseButtonDialogFBTAndTitle/CloseButtonDialogFBTAndTitle";
 import ProcCheckNGoToCart from "../ProcCheckNGoToCart/ProcCheckNGoToCart";
+import { useEffect, useState } from "react";
 
 const DialogFrequentlyBoughtTogether: React.FC<{
   courseTopic: string;
@@ -17,10 +18,16 @@ const DialogFrequentlyBoughtTogether: React.FC<{
   showDialogOfFbt: boolean;
   setShowDialogOfFbt: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ courseTopic, courseId, instructorId, showDialogOfFbt, setShowDialogOfFbt }) => {
+  const [coursesAdded, setCoursesAdded] = useState([]);
+
   if (!courseTopic) {
     console.log(`There is no course topic provided`);
     return;
   }
+
+  useEffect(() => {
+    console.log(coursesAdded);
+  }, [coursesAdded]);
 
   return (
     <div>
@@ -39,17 +46,48 @@ const DialogFrequentlyBoughtTogether: React.FC<{
             <AlertDialogDescription>
               <div className="flex w-full items-center justify-around">
                 <div className="flex w-full flex-col items-start justify-start text-black">
-                  <ItemInCart
-                    chooseFlex={`w-full`}
-                    isFBT={true}
-                    widthChosen={`w-[22em]`}
-                    courseId={courseId}
-                    rowPrices={false}
-                    showHR={false}
-                    showDisPrice={true}
-                    showFullPrice={true}
-                    hide={false}
-                  />
+                  {coursesAdded.length === 0 ? (
+                    <ItemInCart
+                      chooseFlex={`w-full`}
+                      isFBT={true}
+                      widthChosen={`w-[22em]`}
+                      courseId={courseId}
+                      rowPrices={false}
+                      showHR={false}
+                      showDisPrice={true}
+                      showFullPrice={true}
+                      hide={false}
+                    />
+                  ) : (
+                    <div className="flex flex-col items-start justify-start gap-6">
+                      <ItemInCart
+                        chooseFlex={`w-full`}
+                        isFBT={true}
+                        widthChosen={`w-[22em]`}
+                        courseId={courseId}
+                        rowPrices={false}
+                        showHR={false}
+                        showDisPrice={true}
+                        showFullPrice={true}
+                        hide={false}
+                      />
+                      {coursesAdded.map((courseAddedToCart) => (
+                        <ItemInCart
+                          key={courseAddedToCart}
+                          chooseFlex={`w-full`}
+                          isFBT={true}
+                          widthChosen={`w-[22em]`}
+                          courseId={courseAddedToCart}
+                          rowPrices={false}
+                          showHR={false}
+                          showDisPrice={true}
+                          showFullPrice={true}
+                          hide={false}
+                        />
+                      ))}
+                    </div>
+                  )}
+
                   <div className="mt-3 flex w-full flex-col gap-2">
                     <ProcCheckNGoToCart />
                   </div>
@@ -58,6 +96,7 @@ const DialogFrequentlyBoughtTogether: React.FC<{
               </div>
               <div className="flex flex-wrap text-black">
                 <FrequentlyBoughtTogether
+                  setCoursesAdded={setCoursesAdded}
                   instructorId={instructorId}
                   showPlusButtons={false}
                   amountOfCourses={2}

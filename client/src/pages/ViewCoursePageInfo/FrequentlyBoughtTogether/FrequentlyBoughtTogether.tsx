@@ -11,7 +11,8 @@ const FrequentlyBoughtTogether: React.FC<{
   instructorId: string;
   showPlusButtons: boolean;
   amountOfCourses: number;
-}> = ({ instructorId, showPlusButtons, amountOfCourses }) => {
+  setCoursesAdded: React.Dispatch<React.SetStateAction<any[]>>;
+}> = ({ instructorId, showPlusButtons, amountOfCourses, setCoursesAdded }) => {
   const [sum, setSumFullPrice] = useState(0);
   const [discountSum, setDiscountSum] = useState(0);
   const [displayFBT, setDisplayFBT] = useState(amountOfCourses);
@@ -53,6 +54,7 @@ const FrequentlyBoughtTogether: React.FC<{
             data.slice(0, amountOfCourses).map((course: Course, index: number) => (
               <div key={course?._id} className="w-full">
                 <FrequentlyCourseCard
+                  setCoursesAdded={setCoursesAdded}
                   setDisplayFBT={setDisplayFBT}
                   courseId={course?._id}
                   courseImg={course?.courseImg}

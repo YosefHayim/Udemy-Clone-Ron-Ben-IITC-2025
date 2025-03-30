@@ -26,7 +26,8 @@ const FrequentlyCourseCard: React.FC<{
   courseDiscountPrice: number;
   courseId: string;
   totalRatings?: number;
-  setDisplayFBT: boolean;
+  setDisplayFBT: React.Dispatch<React.SetStateAction<number>>;
+  setCoursesAdded: React.Dispatch<React.SetStateAction<any[]>>;
 }> = ({
   courseImg,
   courseName,
@@ -36,6 +37,7 @@ const FrequentlyCourseCard: React.FC<{
   totalRatings,
   courseId,
   setDisplayFBT,
+  setCoursesAdded,
 }) => {
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(false);
@@ -58,6 +60,7 @@ const FrequentlyCourseCard: React.FC<{
     }, 2000);
     setShowCourse(false);
     setDisplayFBT((prev) => (prev -= 1));
+    setCoursesAdded((prev) => [...prev, courseId]);
   };
 
   useEffect(() => {}, [showCourse]);
