@@ -52,9 +52,9 @@ const Photo = () => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full border-l flex-1">
       <div className="flex w-full  items-center justify-center gap-4">
-        <div className="flex w-full flex-col items-center justify-center border border-gray-300 p-[2em]">
+        <div className="flex w-full flex-col items-center justify-center border-gray-300 p-[2em]">
           <h2 className="font-sans font-extrabold">Photo</h2>
           <p>Add a nice photo of yourself for your profile.</p>
         </div>
