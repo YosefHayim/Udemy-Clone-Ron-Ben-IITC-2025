@@ -25,7 +25,7 @@ const OtherLoginOptions = () => {
       navigate("/");
     },
     onError: (error) => {
-      console.log("Error during google login process:", error);
+      console.log("Error during google login process:", error.response.data);
       setShowIsError(true);
     },
   });
@@ -35,7 +35,7 @@ const OtherLoginOptions = () => {
       googleMutationLogin.mutate(credentialResponse.code);
     },
     onError: (error) => {
-      console.log(`Error occurred durning login via google: `, error);
+      console.log(`Error occurred durning login via google: `, error.response.data);
     },
     onNonOAuthError: (nonAuthError) => {
       console.log(nonAuthError);

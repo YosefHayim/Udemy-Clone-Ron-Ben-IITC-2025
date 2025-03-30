@@ -12,7 +12,6 @@ const LoginForm = ({ showOnlyLoginButton = true }) => {
   const emailCtx = useContext(emailContext);
   const globalEmail = useSelector((state: RootState) => state.user.email);
   if (!emailCtx) throw new Error("emailContext is not provided");
-  const [setEmailUser] = emailCtx;
   const [isLoading, setLoading] = useState(false);
   const [isError, setShowIsError] = useState(false);
   const navigate = useNavigate();
@@ -23,7 +22,7 @@ const LoginForm = ({ showOnlyLoginButton = true }) => {
       navigate("/verify-code");
     },
     onError: (error) => {
-      console.log("Error during login process:", error);
+      console.log("Error during login process:", error.response.data);
       setShowIsError(true);
     },
   });
@@ -43,10 +42,9 @@ const LoginForm = ({ showOnlyLoginButton = true }) => {
 
     setLoading(true);
     setTimeout(() => {
-      setEmailUser(email);
       loginMutation.mutate({ email });
       setLoading(false);
-    }, 2000);
+    }, 1500);
   };
 
   return (

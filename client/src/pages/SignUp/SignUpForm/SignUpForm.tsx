@@ -15,7 +15,6 @@ const SignUpForm = ({ isMobile }) => {
 
   const emailCtx = useContext(emailContext);
   if (!emailCtx) throw new Error("emailContext is not provided");
-  const [setEmailUser, setUserFullName] = emailCtx;
 
   const mutation = useMutation<unknown, Error, RegisterUserPayload>({
     mutationFn: registerUser,
@@ -23,7 +22,8 @@ const SignUpForm = ({ isMobile }) => {
       if (data) navigate("/verify-code");
     },
     onError: (error) => {
-      if (error.status === 500) setShowIsError(true);
+      console.log(`Error occurred durning sign up: `, error.response.data);
+      setShowIsError(true);
     },
   });
 
@@ -42,8 +42,6 @@ const SignUpForm = ({ isMobile }) => {
 
     setLoading(true);
     setTimeout(() => {
-      setEmailUser(email);
-      setUserFullName(fullName);
       mutation.mutate({ fullName, email });
       setLoading(false);
     }, 2000);

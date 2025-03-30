@@ -28,7 +28,7 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
       navigate("/");
     },
     onError: (error) => {
-      console.error("Error during login process:", error);
+      console.error("Error during login process:", error.response.data);
       setShowIsError(true);
     },
   });
