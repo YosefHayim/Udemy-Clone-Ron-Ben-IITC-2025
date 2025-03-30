@@ -16,13 +16,14 @@ import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
 import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercialTwo";
 import { useMediaQuery } from "react-responsive";
 import MobileNavbar from "../MobileNavbar/MobileNavbar";
+import Cookies from "js-cookie";
 
 const Navbar = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
   const navigate = useNavigate();
   const [isTyping, setIsTyping] = useState(false);
   const [isClicked, setClicked] = useState(false);
-  const cookie = useSelector((state: RootState) => state?.user?.cookie);
+  const cookie = Cookies.get("cookie");
   const coursesInCart =
     useSelector((state: RootState) => state?.cart?.coursesAddedToCart) ||
     useSelector((state: RootState) => state?.cart?.coursesAddedToWishList);
@@ -110,7 +111,7 @@ const Navbar = () => {
               {cookie && (
                 <Link to="/user/edit-profile">
                   <div className="relative inline-block">
-                    <Profile />
+                    <Profile cookie={cookie} />
                     {coursesInCart.length >= 1 && (
                       <div className="absolute right-[20%] top-[10%]  z-10 h-[0.85rem] w-[0.85rem] rounded-full bg-[#A435F0]"></div>
                     )}

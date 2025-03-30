@@ -16,9 +16,12 @@ const GoogleBtn = () => {
 
   const googleMutationLogin = useMutation({
     mutationFn: googleLogin,
-    onSuccess: (cookie) => {
-      setUserInformation(cookie, dispatch);
-      navigate("/");
+    onSuccess: (data) => {
+      console.log(data);
+      setUserInformation(data.token, dispatch);
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     },
     onError: (error) => {
       console.log("Error during google login process:", error.response.data);

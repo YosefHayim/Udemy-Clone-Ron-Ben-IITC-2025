@@ -4,7 +4,6 @@ import { setUserInformation } from "@/utils/setUserInformation";
 import { iconSize, loginThirdPartyBtn } from "@/utils/stylesStorage";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useMutation } from "@tanstack/react-query";
-import Cookies from "js-cookie";
 import { useState } from "react";
 import { FaApple, FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -13,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 
 const OtherLoginOptions = () => {
   const [isError, setShowIsError] = useState(false);
-  const cookie = Cookies.get("cookie");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,8 +19,10 @@ const OtherLoginOptions = () => {
     mutationFn: googleLogin,
     onSuccess: (data) => {
       console.log(data);
-      setUserInformation(cookie, dispatch);
-      navigate("/");
+      setUserInformation(data.token, dispatch);
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     },
     onError: (error) => {
       console.log("Error during google login process:", error.response.data);

@@ -10,7 +10,6 @@ import NotificationCodeResent from "./NotificationCodeResent/NotificationCodeRes
 import loginUser from "@/api/users/loginUser";
 import DisplayErrorCode from "./DisplayErrorCode/DisplayErrorCode";
 import { useDispatch } from "react-redux";
-import Cookies from "js-cookie";
 
 const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   const [isLoading, setLoading] = useState(false);
@@ -19,15 +18,15 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   const [codeVerification, setCodeVerification] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cookie = Cookies.get("cookie");
 
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log(data);
+      setUserInformation(data.token, dispatch);
       setTimeout(() => {
-        setUserInformation(cookie, dispatch);
+        navigate("/");
       }, 1000);
-      navigate("/");
     },
     onError: (error) => {
       console.error("Error during login process:", error.response.data);
@@ -55,7 +54,7 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
     verifyCodeMutation.mutate({ code, email: emailUser });
   };
 
-  useEffect(() => {}, [emailUser, userFullName, code, cookie]);
+  useEffect(() => {}, [emailUser, userFullName, code]);
 
   useEffect(() => {
     if (isClickedResend) {

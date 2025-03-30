@@ -22,8 +22,7 @@ import { AppDispatch } from "@/redux/store";
 export const setUserInformation = (cookie: string, dispatch: AppDispatch) => {
   if (cookie) {
     const decoded = jwtDecode<DecodedTokenProps>(cookie);
-    console.log("🔐user information decoded: ", decoded);
-
+    console.log(decoded);
     if (decoded.fullName) dispatch(setFullName(decoded.fullName));
     if (decoded.headline) dispatch(setHeadline(decoded.headline));
     if (decoded.language) dispatch(setLanguage(decoded.language));
