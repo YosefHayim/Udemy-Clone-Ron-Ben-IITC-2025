@@ -20,8 +20,6 @@ import Subscription from "@/components/Navbar/DropDownMenu/Subscription/Subscrip
 import PublicProfile from "@/components/Navbar/DropDownMenu/PublicProfile/PublicProfile";
 import PaymentMethods from "@/components/Navbar/DropDownMenu/PaymentMethods/PaymentMethods";
 import UdemyBusinessContact from "@/components/Navbar/DropDownMenu/UdemyBusinessContact/UdemyBusinessContact";
-import { createContext, useState } from "react";
-import { FilterDataProps } from "@/types/types";
 import AccountSecurity from "@/pages/ProfilePage/SwitchPagesProfile/AccountSecurity";
 import ApiClients from "@/pages/ProfilePage/SwitchPagesProfile/ApiClients";
 import Photo from "@/pages/ProfilePage/SwitchPagesProfile/Photo";
@@ -35,7 +33,6 @@ import PersonalizeField from "@/pages/PersonalizeField/PersonalizeField";
 import Terms from "../pages/Terms/Terms";
 import SearchNotFound from "@/pages/Search/SearchNotFound/SearchNotFound";
 import ReceiptCart from "@/components/Navbar/DropDownMenu/PurchaseHistory/ReceiptCart/ReceiptCart";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Promotions from "../pages/Terms/TermsPages/Promotions";
 import Messages from "@/pages/Messages/Messages";
 // import Support from "@/pages/Support/Support";
@@ -44,73 +41,7 @@ import SignUpOrganization from "@/pages/SignUpOrganization/SignUpOrganization";
 import ProfilePage from "@/pages/ProfilePage/ProfilePage";
 // import LoginBusiness from "@/pages/Login/LoginBusiness";
 
-export const filterContext = createContext<
-  [FilterDataProps, React.Dispatch<React.SetStateAction<FilterDataProps>>]
->([
-  {
-    sortBy: "",
-    handsOnPractice: new Set(),
-    language: new Set(),
-    levels: new Set(),
-    price: "",
-    ratings: 0,
-    subtitles: new Set(),
-    topics: new Set(),
-    videosDurations: new Set(),
-    certificateOnly: false,
-    searchTerm: "",
-  },
-  () => {},
-]);
-
-export const emailContext = createContext<
-  [
-    string,
-    React.Dispatch<React.SetStateAction<string>>,
-    string,
-    React.Dispatch<React.SetStateAction<string>>,
-  ]
->(["", () => {}, "", () => {}]);
-
-export const personalizeContent = createContext({
-  fieldLearning: "",
-  managePeople: false,
-  occupation: "",
-  progressBar: 25,
-});
-
-const initialOptions = {
-  clientId: `AWBvZAvKH5izd24F1JfMsToGlmQP5hvDtnAPLWOP8TJ0qif2nRpYrnKesjNZaDl8IfuJ_QibFfai0ahB`,
-  currency: "USD",
-  intent: "capture",
-  isPaypal: false,
-};
-
 const AppRoutes: React.FC = () => {
-  const [filterData, setFilterData] = useState({
-    sortBy: "",
-    handsOnPractice: new Set(),
-    language: new Set(),
-    levels: new Set(),
-    price: "",
-    ratings: 0,
-    subtitles: new Set(),
-    topics: new Set(),
-    videosDurations: new Set(),
-    certificateOnly: false,
-    searchTerm: "",
-  });
-
-  const [userFullName, setUserFullName] = useState("");
-  const [emailUser, setEmailUser] = useState("");
-  const [personalizeData, setPersonalizeData] = useState({
-    currentPage: 1,
-    fieldLearning: "",
-    managePeople: false,
-    occupation: "",
-    progressBar: 25,
-  });
-
   return (
     <Router>
       <Routes>
@@ -142,45 +73,10 @@ const AppRoutes: React.FC = () => {
                 <Route path="/user/edit-payment-methods/" element={<PaymentMethods />} />
                 <Route path="/user/instructor/:instructorId" element={<InstructorProfile />} />
                 <Route path="/logout" element={<Logout />} />
-                <Route
-                  path="/Signup"
-                  element={
-                    <emailContext.Provider
-                      value={[emailUser, setEmailUser, userFullName, setUserFullName]}
-                    >
-                      <SignUp />
-                    </emailContext.Provider>
-                  }
-                />
-                <Route
-                  path="/login"
-                  element={
-                    <emailContext.Provider
-                      value={[emailUser, setEmailUser, userFullName, setUserFullName]}
-                    >
-                      <Login />
-                    </emailContext.Provider>
-                  }
-                />
-                <Route
-                  path="/verify-code"
-                  element={
-                    <emailContext.Provider
-                      value={[emailUser, setEmailUser, userFullName, setUserFullName]}
-                    >
-                      <VerifyCode />
-                    </emailContext.Provider>
-                  }
-                />
-
-                <Route
-                  path="/courses/search"
-                  element={
-                    <filterContext.Provider value={[filterData, setFilterData]}>
-                      <SearchPage />
-                    </filterContext.Provider>
-                  }
-                />
+                <Route path="/Signup" element={<SignUp />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/verify-code" element={<VerifyCode />} />
+                <Route path="/courses/search" element={<SearchPage />} />
                 <Route path="/not/search/not/found/:searchTerm" element={<SearchNotFound />} />
                 <Route path="*" element={<NotFound />} />
                 <Route path="/course-view/:courseId" element={<ViewCoursePageInfo />} />
@@ -192,14 +88,7 @@ const AppRoutes: React.FC = () => {
         />
         {/* Route where navbar is hidden */}
         <Route path="/demo-business" element={<UdemyBusinessContact />} />
-        <Route
-          path="/payment/checkout/"
-          element={
-            <PayPalScriptProvider options={initialOptions}>
-              <Payment />
-            </PayPalScriptProvider>
-          }
-        />
+        <Route path="/payment/checkout/" element={<Payment />} />
         <Route
           path="/course/:courseId/lesson/:id/*"
           element={
@@ -208,24 +97,10 @@ const AppRoutes: React.FC = () => {
             </>
           }
         />
-        <Route
-          path="/personalize/field/"
-          element={
-            <personalizeContent.Provider value={[personalizeData, setPersonalizeData]}>
-              <PersonalizeField />
-            </personalizeContent.Provider>
-          }
-        />
+        <Route path="/personalize/field/" element={<PersonalizeField />} />
 
         <Route path="/terms/promotions" element={<Promotions />} />
-        <Route
-          path="/organization/global-login/email"
-          element={
-            <emailContext.Provider value={[emailUser, setEmailUser, userFullName, setUserFullName]}>
-              <OrganizationLogin />
-            </emailContext.Provider>
-          }
-        />
+        <Route path="/organization/global-login/email" element={<OrganizationLogin />} />
         <Route path="hc/en-us/requests/new/ticket_form_id" element={<SignUpOrganization />} />
       </Routes>
     </Router>

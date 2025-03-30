@@ -32,9 +32,7 @@ const PORT: number = Number(process.env.PORT) || 3000;
 io.on("connection", (socket) => {
   console.log(`A user has been connected: ${socket.id}`);
   if (socket.connected) {
-    socket.emit(`Hello from the server side`ֿ() => {
-
-    });
+    socket.emit("welcomeToServer", "Welcome to the Udemy clone socket server");
   }
 });
 connectDb();
