@@ -31,7 +31,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
       dispatch(setClearAll());
       setTimeout(() => {
         refreshUserDataMutation.mutate();
-      }, 500);
+      }, 1000);
     },
   });
 
@@ -74,9 +74,10 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
       return Promise.all(courseIds.map((id) => buyCourseById(id)));
     },
     onSuccess: () => {
+      dispatch(setClearAll());
       setTimeout(() => {
         refreshUserDataMutation.mutate();
-      }, 500);
+      }, 1000);
     },
   });
 
