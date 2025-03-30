@@ -4,7 +4,7 @@ const buyCourseById = async (courseId: string | string) => {
   if (!courseId) throw new Error("Please provide course Id in url.");
 
   try {
-    const url = `${isProduction ? baseUrl : localhostUrl}/api/user/add/course/${courseId}`;
+    const url = `${isProduction ? baseUrl : localhostUrl}/api/course/add/${courseId}`;
 
     const r = await axiosClient.post(url);
     if (r) {

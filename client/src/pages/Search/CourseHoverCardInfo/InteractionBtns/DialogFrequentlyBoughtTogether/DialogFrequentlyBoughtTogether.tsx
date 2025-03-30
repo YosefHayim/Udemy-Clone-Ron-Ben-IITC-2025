@@ -17,13 +17,8 @@ const DialogFrequentlyBoughtTogether: React.FC<{
   instructorId: string;
   showDialogOfFbt: boolean;
   setShowDialogOfFbt: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ courseTopic, courseId, instructorId, showDialogOfFbt, setShowDialogOfFbt }) => {
+}> = ({ courseId, instructorId, showDialogOfFbt, setShowDialogOfFbt }) => {
   const [coursesAdded, setCoursesAdded] = useState([]);
-
-  if (!courseTopic) {
-    console.log(`There is no course topic provided`);
-    return;
-  }
 
   useEffect(() => {
     console.log(coursesAdded);

@@ -11,12 +11,14 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUserInformation } from "@/utils/setUserInformation";
+import Cookies from "js-cookie";
+import { setClearAll } from "@/redux/slices/cartSlice";
 
 const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }) => {
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const cookie = useSelector((state: RootState) => state?.user?.cookie);
+  const cookie = Cookies.get("cookie");
 
   const totalToPay = useSelector((state: RootState) => state.cart?.totalCourseDiscountPrices);
   const totalCourses = useSelector((state: RootState) => state.cart?.amountOfCourses);
@@ -28,6 +30,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
   const checkOutMutation = useMutation({
     mutationFn: buyCourseById,
     onSuccess: () => {
+      dispatch(setClearAll());
       setTimeout(() => {
         refreshUserDataMutation.mutate();
       }, 500);
@@ -36,11 +39,8 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
 
   const refreshUserDataMutation = useMutation({
     mutationFn: refreshMe,
-    onSuccess: (cookie) => {
-      console.log(cookie);
-
+    onSuccess: () => {
       setUserInformation(cookie, dispatch);
-      alert("Success purchase course");
       navigate(`/course-view/${coursesIds[0]}`);
     },
   });

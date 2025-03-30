@@ -157,8 +157,8 @@ const ItemInCart = ({
               />
             </div>
           </div>
-          <div className={hide ? "block" : "hidden"}>
-            <div className="flex flex-col items-start text-purpleStatic">
+          <div className={hide ? "flex" : "hidden"}>
+            <div className="flex w-full flex-col items-start text-purpleStatic">
               <button className=" rounded-[0.3em] p-[0.3em] hover:bg-purple-200 focus:outline-none">
                 Remove
               </button>

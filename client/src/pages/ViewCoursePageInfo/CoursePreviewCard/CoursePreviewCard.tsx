@@ -95,7 +95,7 @@ const CoursePreviewCard: React.FC<{
           <div className="w-full">
             <TimeLeftBuyCourse coursePrice={coursePrice} />
             <InteractionsBtns
-              BtnText="Go to cart"
+              BtnText="Add to cart"
               customHeartExtraCSS={`rounded-sm  p-[0.8em] pt-[0.6em] `}
               isDisplayHeart={true}
               instructorId={instructorId}
