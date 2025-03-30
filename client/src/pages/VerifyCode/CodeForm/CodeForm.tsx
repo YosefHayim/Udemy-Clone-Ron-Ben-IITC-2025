@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import NotificationCodeResent from "./NotificationCodeResent/NotificationCodeResent";
 import loginUser from "@/api/users/loginUser";
 import DisplayErrorCode from "./DisplayErrorCode/DisplayErrorCode";
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 
 const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   const [isLoading, setLoading] = useState(false);
@@ -18,12 +20,13 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   const [code, setCode] = useState("");
   const [codeVerification, setCodeVerification] = useState(null);
   const navigate = useNavigate();
-  const cookie = useSelector((state: RootState) => state?.user?.cookie);
+  const dispatch = useDispatch();
+  const cookie = Cookies.get("cookie");
 
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
     onSuccess: () => {
-      setUserInformation(cookie);
+      setUserInformation(cookie, dispatch);
       navigate("/");
     },
     onError: (error) => {

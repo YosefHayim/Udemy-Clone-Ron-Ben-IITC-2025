@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 
 export interface UserState {
-  isUserLoaded: boolean; // ✅ Adicionado
   fullName: string;
   profilePic: string;
   email: string;
@@ -29,7 +28,6 @@ export interface UserState {
 }
 
 const initialState: UserState = {
-  isUserLoaded: false, // ✅ Inicializado
   fullName: "",
   profilePic: "",
   email: "",
@@ -58,9 +56,6 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUserLoaded: (state, action: PayloadAction<boolean>) => {
-      state.isUserLoaded = action.payload;
-    },
     setIsLoggedWithGoogle: (state, action: PayloadAction<boolean>) => {
       state.isLoggedPreviouslyWithGoogle = action.payload;
     },
@@ -156,7 +151,6 @@ export const {
   setAuth,
   setCoursesInProgress,
   setCreatedAt,
-  setUserLoaded,
 } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -27,8 +27,6 @@ const Navbar = () => {
     useSelector((state: RootState) => state?.cart?.coursesAddedToCart) ||
     useSelector((state: RootState) => state?.cart?.coursesAddedToWishList);
 
-  useEffect(() => {}, [cookie]);
-
   useEffect(() => {
     const body = document.querySelector("body");
     const handleClick = (e: MouseEvent) => {
@@ -48,6 +46,8 @@ const Navbar = () => {
       body.removeEventListener("click", handleClick);
     };
   });
+
+  useEffect(() => {}, [cookie]);
 
   return (
     <div className="w-full">
