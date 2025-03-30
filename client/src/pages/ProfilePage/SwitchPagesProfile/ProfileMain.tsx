@@ -76,8 +76,8 @@ const ProfileMain = () => {
   };
 
   return (
-      <main className="flex-1 border border-gray-300">
-        <div className="bg-white">
+      <main className="flex border border-gray-300">
+        <div className="bg-yellow-500">
           <div className="min-w-full border-b border-gray-300 p-4 text-center">
             <h2 className="font-sans text-2xl font-extrabold text-gray-800">Public Profile</h2>
             <p className="text-courseNameColorTxt">Add information about yourself</p>
@@ -266,7 +266,7 @@ const ProfileMain = () => {
             <div className="flex w-full justify-start">
               <Button
                 type="submit"
-                className="mb-[1em] rounded-[0.2rem] bg-btnColor px-4 font-[lifeLtstd] font-sans text-sm font-extrabold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none"
+                className="mb-[1em] rounded-[0.2rem] bg-btnColor px-4 font-[lifeLtstd] text-sm font-extrabold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none"
               >
                 Save
               </Button>

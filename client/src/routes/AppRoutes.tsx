@@ -41,6 +41,7 @@ import Messages from "@/pages/Messages/Messages";
 import Support from "@/pages/Support/Support";
 import OrganizationLogin from "@/pages/OrganizationLogin/OrganizationLogin";
 import SignUpOrganization from "@/pages/SignUpOrganization/SignUpOrganization";
+import ProfilePage from "@/pages/ProfilePage/ProfilePage";
 // import LoginBusiness from "@/pages/Login/LoginBusiness";
 
 export const filterContext = createContext<FilterDataProps>({
@@ -112,7 +113,7 @@ const AppRoutes: React.FC = () => {
               <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="/dashboard/credit-history" element={<UdemyCredits />} />
-                <Route path="/user/edit-profile" element={<ProfileMain />} />
+                <Route path="/user/edit-profile" element={<ProfilePage />} />
                 <Route path="/user/edit-privacy" element={<Privacy />} />
                 <Route path="/dashboard/purchase-history/" element={<PurchaseHistory />} />
                 <Route path="/user/manage-subscriptions/" element={<Subscription />} />

@@ -1,36 +1,55 @@
 import ProfilePic from "@/components/ProfilePic/ProfilePic";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
 
-const SideBarProfile = ({selectedPage, setSelectedPage}) => {
-  
+const SideBarProfile = ({ selectedPage, setSelectedPage }) => {
+
   const fullName = useSelector((state: RootState) => state?.user?.fullName);
   const profilePic = useSelector((state: RootState) => state?.user?.profilePic);
-  const location = useLocation();
-  const cookie = useSelector((state: RootState) => state.user?.cookie ?? true);
+  const isUserLoaded = useSelector((state: RootState) => state?.user?.isUserLoaded);
+  const user = useSelector((state: RootState) => state.user);
+  console.log("🔍 user state in SideBarProfile:", user);
+  
+  console.log("👁️ isUserLoaded:", isUserLoaded);
+  console.log("👤 fullName:", fullName);
+  console.log("🖼️ profilePic:", profilePic);
 
-  if (!cookie) { return <div></div> }
 
-  const [firstWord, secondWord] = fullName.split(" ");
-  const shortcutName = (firstWord?.[0] || "") + (secondWord?.[0] || "");
+  console.log("fullName:", fullName);
+  console.log("profilePic:", profilePic);
+
+  if (!isUserLoaded) {
+    console.log("⏳ Esperando carregar usuário...");
+    return null;
+  }
+  
+  // ...resto do código
+
+
+
+  // 🛡️ Quebra segura do nome
+  const nameParts = fullName.split(" ");
+  const firstWord = nameParts[0] || "";
+  const secondWord = nameParts[1] || "";
+  const shortcutName = firstWord[0] + (secondWord[0] || "");
 
   const menuItems = [
     "View public profile",
     "Profile",
     "Photo",
-    "Account security",
-    "Subscriptions",
-    "Payment methods",
+    "Account Security", // ✅ maiúscula igual no switch
+    "Subscriptions",     // ✅ igual no switch
+    "Payment Methods",   // ✅ igual no switch
     "Privacy",
     "Notification Preferences",
-    "API clients",
-    "Close account",
+    "API Clients",
+    "Close Account",
   ];
+  
 
 
   return (
-    <div className="w-56 border-b border-l border-r border-t border-borderGrayColor bg-white">
+    <div className="w-56 border-b border-l border-r border-t border-borderGrayColor bg-red-500">
       {/* Picture & Name */}
       <div className="p-6 ">
         <div className="flex flex-col items-center space-y-4">
@@ -50,25 +69,24 @@ const SideBarProfile = ({selectedPage, setSelectedPage}) => {
         </div>
       </div>
       <div className="h-screen w-[16rem] bg-white shadow-md">
-      {/* Menu lateral */}
-      <aside className="w-64">
-        <ul className="py-4">
-          {menuItems.map((item, index) => (
-            <li
-              key={index}
-              className={`cursor-pointer px-6 py-2 text-base font-[790] ${
-                selectedPage === item
+        {/* Menu lateral */}
+        <aside className="w-64">
+          <ul className="py-4">
+            {menuItems.map((item, index) => (
+              <li
+                key={index}
+                className={`cursor-pointer px-6 py-2 text-base font-[790] ${selectedPage === item
                   ? "opacity-86 bg-black text-white"
                   : "text-courseNameColorTxt text-opacity-80 hover:text-black"
-              }`}
-              onClick={() => setSelectedPage(item)} // Atualiza a página ativa
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
-      </aside>
-    </div>
+                  }`}
+                onClick={() => setSelectedPage(item)} // Atualiza a página ativa
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </aside>
+      </div>
       {/* Profile Nav_Side_Bar
       <nav className="mt-6 ">
         <ul className="space-y-2">
