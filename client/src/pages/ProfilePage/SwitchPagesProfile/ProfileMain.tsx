@@ -97,7 +97,8 @@ const ProfileMain = () => {
               name="fname"
               type="text"
               placeholder={firstName || "First Name"}
-              className={`${regInputFill} rounded-sm`}
+              className={`${regInputFill} rounded-sm py-4`}
+              style={{ paddingTop: "1.2rem", paddingBottom: "1.2rem" }}
             />
             <Input
               id="lname"
@@ -105,6 +106,7 @@ const ProfileMain = () => {
               type="text"
               placeholder={lastName || "Last Name"}
               className={`${regInputFill} rounded-sm`}
+              style={{ paddingTop: "1.2rem", paddingBottom: "1.2rem" }}
             />
             {/* Headline */}
             <div className="relative">
@@ -116,6 +118,7 @@ const ProfileMain = () => {
                 value={headline}
                 placeholder="Headline"
                 className={`${regInputFill} w-full rounded-sm border border-gray-400 px-4 py-2 pr-10 placeholder:text-gray-500`}
+                style={{ paddingTop: "1.2rem", paddingBottom: "1.2rem" }}
               />
               {/* Characters counter in the right side */}
               <span className="absolute right-4 top-[30%] -translate-y-1/2 text-[1rem] font-semibold text-gray-500 opacity-90">
@@ -166,9 +169,10 @@ const ProfileMain = () => {
             value={chosenLanguage}
             onChange={(e) => handleChosenLanguage(e.target.value)}
             className="mt-[1.2em] mb-[1.5rem] text-[0.875rem] text-gray-600 w-full cursor-pointer rounded-[0.2rem] border border-gray-500 bg-white p-2 hover:bg-white"
+            style={{ paddingTop: "0.8rem", paddingBottom: "0.8rem" }}
           >
             <option value="" disabled className="text-gray-700 ">
-            – – Select Language – –
+              – – Select Language – –
             </option>
             {btnLanguages.map((language: { code: string; name: string }) => (
               <option key={language.code} value={language.name}>
@@ -177,44 +181,26 @@ const ProfileMain = () => {
             ))}
           </select>
 
-          <hr/>
+          <hr />
 
           <form className="mt-5">
             <b className="font-semibold text-[0.9rem]" >Links:</b>
             <div className="mt-2 space-y-4">
+              
               <div>
                 <Input
                   type="text"
                   name="website"
                   id="website"
-                  placeholder={
-                    userLinks.website.length > 1 ? userLinks.website : "Website (http(s)://..)"
-                  }
+                  placeholder={userLinks.website.length > 1 ? userLinks.website : "Website (http(s)://..)"}
                   className="w-full rounded-[0.2rem] border border-gray-500"
+                  style={{ paddingTop: "1.2rem", paddingBottom: "1.2rem" }}
                 />
               </div>
+
+              {/* Facebook  */}
               <div className="flex w-full flex-col items-start justify-start">
-                <div className="flex h-[35px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
-                  <label
-                    htmlFor="twitter"
-                    className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
-                  >
-                    http://twitter.com/
-                  </label>
-                  <Input
-                    type="text"
-                    name="twitter"
-                    id="twitter"
-                    placeholder={
-                      userLinks.xPlatform.length > 1 ? userLinks.xPlatform : "Twitter Profile"
-                    }
-                    className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
-                  />
-                </div>
-                <p className=" my-[1em] text-gray-600">Add your Twitter username (e.g. johnsmith)</p>
-              </div>
-              <div className="flex w-full flex-col items-start justify-start">
-                <div className="flex h-[35px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                <div className="flex h-[45px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
                   <label
                     htmlFor="facebook"
                     className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
@@ -233,8 +219,32 @@ const ProfileMain = () => {
                   Input your Facebook username (e.g. johnsmith)
                 </p>
               </div>
+
+              {/* Instagram  */}
               <div className="flex w-full flex-col items-start justify-start">
-                <div className="flex h-[35px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                <div className="flex h-[45px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                  <label
+                    htmlFor="facebook"
+                    className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
+                  >
+                    https://www.instagram.com/
+                  </label>
+                  <Input
+                    type="text"
+                    name="instagram"
+                    id="instagram"
+                    placeholder={userLinks.facebook.length > 1 ? userLinks.facebook : "Username"}
+                    className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
+                  />
+                </div>
+                <p className=" my-[1em] text-gray-600">
+                  Input your Facebook username (e.g. johnsmith)
+                </p>
+              </div>
+
+              {/* Linkedin  */}
+              <div className="flex w-full flex-col items-start justify-start">
+                <div className="flex h-[45px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
                   <label
                     htmlFor="linkedin"
                     className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
@@ -245,7 +255,7 @@ const ProfileMain = () => {
                     type="text"
                     name="linkedin"
                     id="linkedin"
-                    placeholder={userLinks.linkedin.length > 1 ? userLinks.linkedin : "Username"}
+                    placeholder={userLinks.linkedin.length > 1 ? userLinks.linkedin : "Public Profile URL"}
                     className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
                   />
                 </div>
@@ -253,8 +263,53 @@ const ProfileMain = () => {
                   Input your Linkedin username (e.g. johnsmith)
                 </p>
               </div>
+
+              {/* Tik-Tok  */}
               <div className="flex w-full flex-col items-start justify-start">
-                <div className="flex h-[35px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                <div className="flex h-[45px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                  <label
+                    htmlFor="linkedin"
+                    className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
+                  >
+                    https://www.tiktok.com/
+                  </label>
+                  <Input
+                    type="text"
+                    name="tiktok"
+                    id="tiktok"
+                    placeholder={userLinks.linkedin.length > 1 ? userLinks.linkedin : "@Username"}
+                    className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
+                  />
+                </div>
+                <p className=" my-[1em] text-gray-600">
+                  Input your Youtube username (e.g. johnsmith)
+                </p>
+              </div>
+
+              {/* X */}
+              <div className="flex w-full flex-col items-start justify-start">
+                <div className="flex h-[45px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                  <label
+                    htmlFor="X"
+                    className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
+                  >
+                    https://x.com/
+                  </label>
+                  <Input
+                    type="text"
+                    name="X"
+                    id="X"
+                    placeholder={userLinks.xPlatform.length > 1 ? userLinks.xPlatform : "Username"}
+                    className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
+                  />
+                </div>
+                <p className=" my-[1em] text-gray-600">Add your X username (e.g. johnsmith)</p>
+              </div>
+
+
+              {/* Youtube */}
+              <div className="flex w-full flex-col items-start justify-start">
+                <div className="flex h-[45px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
                   <label
                     htmlFor="youtube"
                     className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
@@ -273,6 +328,7 @@ const ProfileMain = () => {
                   Input your YouTube username (e.g. johnsmith)
                 </p>
               </div>
+
             </div>
             <div className="flex w-full justify-start">
               <Button
