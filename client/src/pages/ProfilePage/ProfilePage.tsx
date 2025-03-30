@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 
 const ProfilePage = () => {
-  const [selectedPage, setSelectedPage] = useState("Privacy");
+  const [selectedPage, setSelectedPage] = useState("Profile");
   const navigate = useNavigate();
   const isUserLoaded = useSelector((state: RootState) => state.user.isUserLoaded);
   const user = useSelector((state: RootState) => state.user);
@@ -57,12 +57,12 @@ const ProfilePage = () => {
     }
   };
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen my-6 mx-[12rem] border-[1px] border-gray-300">
       <div className="w-64">
         <SideBarProfile selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
       </div>
       <div
-        className="custom-scrollbar flex-1/2 h-screen overflow-y-scroll px-[12rem]"
+        className="custom-scrollbar flex-1 h-screen overflow-y-scroll"
         style={{
           scrollbarWidth: "none",
           msOverflowStyle: "none",
