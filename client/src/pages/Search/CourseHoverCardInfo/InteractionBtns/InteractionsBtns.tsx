@@ -22,12 +22,12 @@ const InteractionsBtns: React.FC<{
   customHeartExtraCSS,
   BtnText,
 }) => {
-  const [showDialogOfFbt, setShowDialogOfFbt] = useState(true);
+  const [showDialogOfFbt, setShowDialogOfFbt] = useState(false);
 
   const handleCartSuccess = () => {
-    setShowDialogOfFbt(true);
-    // setTimeout(() => {
-    // }, 500);
+    setTimeout(() => {
+      setShowDialogOfFbt(true);
+    }, 500);
   };
 
   if (!courseId && !coursePrice && courseTopic) {

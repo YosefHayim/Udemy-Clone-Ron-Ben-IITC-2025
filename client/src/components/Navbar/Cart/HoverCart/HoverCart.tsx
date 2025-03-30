@@ -29,6 +29,8 @@ const HoverCart = () => {
           {coursesIdAdded.length > 0 ? (
             coursesIdAdded.map((courseId: string) => (
               <ItemInCart
+                isFBT={false}
+                widthChosen={`w-[5em]`}
                 key={courseId}
                 courseImgSize={`h-[5em] w-[5em] rounded-[0.5em]`}
                 courseId={courseId}
@@ -38,8 +40,8 @@ const HoverCart = () => {
                 showFullPrice={false}
                 shortCutInstructor={true}
                 shortcutTitle={true}
-                chooseFlex={"flex flex-col"}
-                itemsPosition="start"
+                chooseFlex={"w-full flex flex-col justify-start"}
+                itemsPosition="items-start"
                 textColor="text-bg-black"
                 gapPrice="gap-[0em]"
               />
