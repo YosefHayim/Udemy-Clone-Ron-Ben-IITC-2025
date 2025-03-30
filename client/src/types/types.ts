@@ -132,6 +132,7 @@ export interface CourseData {
     bio: string;
     profilePic: string;
   };
+  courseRating: number;
   courseInstructorDescription: string;
   totalCourseDuration: number;
   totalCourseLessons: number;

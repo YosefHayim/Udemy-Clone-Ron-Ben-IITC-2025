@@ -2,53 +2,65 @@ import CourseRating from "@/pages/ViewCoursePageInfo/CourseRating/CourseRating";
 import { LuDot } from "react-icons/lu";
 import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
-import React from "react";
+import React, { useEffect } from "react";
+import getCourseById from "@/api/courses/getCourseById";
+import { CourseData } from "@/types/types";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "@/components/Loader/Loader";
 
 const CourseCardInstructorRelated: React.FC<{
   courseId: string;
-  courseDiscountPrice: number;
-  courseFullPrice: number;
-  totalRatings: number;
-  courseName: string;
-  courseTag: string;
-  courseInstructorName: string;
-  courseImg: string;
-  totalCourseDuration: number;
-}> = ({
-  courseDiscountPrice,
-  courseInstructorName,
-  courseFullPrice,
-  totalRatings,
-  courseTag,
-  courseName,
-  courseImg,
-  totalCourseDuration,
-}) => {
+}> = ({ courseId }) => {
+  if (!courseId) throw new Error("Missing courseId of instructor");
+
+  const { data, isLoading, error } = useQuery<CourseData>({
+    queryKey: ["course", courseId],
+    queryFn: async () => {
+      if (!courseId) {
+        throw new Error("Course ID is missing");
+      }
+      return await getCourseById(courseId);
+    },
+    enabled: !!courseId,
+  });
+
+  if (error) {
+    console.log("Error durning rendering of instructor courses: ", error);
+  }
+
+  useEffect(() => {}, [data]);
+
   return (
     <div>
-      <div className=" flex cursor-pointer flex-col items-start justify-start gap-[0.2em]">
-        <img src={courseImg} alt="" className="w-[200px] border border-gray-300" />
-        <b className="w-[200px]">{courseName}</b>
-        <p>{courseInstructorName}</p>
-        <div className="flex  items-center">
-          <b className="text-[#BB6300]">4.7</b>
-          <CourseRating amountOfStars={4.7} courseRating={0} />
-          <p className="text-gray-500 ">({totalRatings})</p>
+      {isLoading ? (
+        <Loader hSize="" useSmallBlackLoading={true} useSmallLoading={true} />
+      ) : (
+        <div className=" flex cursor-pointer flex-col items-start justify-start gap-[0.2em]">
+          <img src={data?.courseImg} alt="" className="w-[200px] border border-gray-300" />
+          <b className="w-[200px]">{data?.courseName}</b>
+          {/* <p>{fullName}</p> */}
+          <div className="flex  items-center">
+            <b className="text-[#BB6300]">4.7</b>
+            <CourseRating amountOfStars={0} courseRating={data?.courseRating} />
+            <p className="text-gray-500 ">({data?.totalRatings})</p>
+          </div>
+          <div className="flex   items-center justify-start gap-[0.2em] text-gray-500">
+            <p>{data?.totalCourseDuration} hours</p>
+            <LuDot />
+            <p>59 lectures</p>
+            <LuDot />
+            <p>Intermediate</p>
+          </div>
+          <CoursePrice
+            extraCSS={`text-sm`}
+            displayPercent={false}
+            chooseFlex={`flex items-center gap-2`}
+            fullPrice={data?.courseFullPrice}
+            discountPrice={data?.courseDiscountPrice}
+          />
+          <CourseTag tagName={data?.courseTag} />
         </div>
-        <div className="flex   items-center justify-start gap-[0.2em] text-gray-500">
-          <p>{totalCourseDuration} hours</p>
-          <LuDot />
-          <p>59 lectures</p>
-          <LuDot />
-          <p>Intermediate</p>
-        </div>
-        <CoursePrice
-          chooseFlex={`flex items-center`}
-          fullPrice={courseFullPrice || 0}
-          discountPrice={courseDiscountPrice || 0}
-        />
-        <CourseTag tagName={courseTag} />
-      </div>
+      )}
     </div>
   );
 };
