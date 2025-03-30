@@ -16,7 +16,7 @@ const verifyCode: fn = async (verificationCredentials) => {
 
     if (r) {
       console.log(r.data);
-      return r.data.token;
+      return r?.data;
     }
   } catch (error) {
     console.log(`Error occurred during the login of user: `, error.response.data.message);
