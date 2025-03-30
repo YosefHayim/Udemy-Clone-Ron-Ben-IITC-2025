@@ -15,7 +15,7 @@ const SignUpForm = ({ isMobile }) => {
 
   const emailCtx = useContext(emailContext);
   if (!emailCtx) throw new Error("emailContext is not provided");
-  const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
+  const [setEmailUser, setUserFullName] = emailCtx;
 
   const mutation = useMutation<unknown, Error, RegisterUserPayload>({
     mutationFn: registerUser,

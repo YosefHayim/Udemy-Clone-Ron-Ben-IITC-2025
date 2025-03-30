@@ -1,12 +1,10 @@
 import verifyCode from "@/api/users/verifyCode";
 import ButtonLoader from "@/components/ButtonLoader/ButtonLoader";
 import CustomInput from "@/components/CustomInput/CustomInput";
-import { RootState } from "@/redux/store";
 import { setUserInformation } from "@/utils/setUserInformation";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { IoMdLock } from "react-icons/io";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NotificationCodeResent from "./NotificationCodeResent/NotificationCodeResent";
 import loginUser from "@/api/users/loginUser";
@@ -38,6 +36,7 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   const loginMutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
+      console.log(data);
       setCodeVerification(data.codeVerification);
     },
   });
