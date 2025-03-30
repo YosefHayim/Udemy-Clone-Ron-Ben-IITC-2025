@@ -18,7 +18,6 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   const [isError, setShowIsError] = useState(false);
   const [code, setCode] = useState("");
   const [codeVerification, setCodeVerification] = useState(null);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const cookie = useSelector((state: RootState) => state?.user?.cookie);
 
