@@ -46,7 +46,7 @@ const initialState: UserState = {
   },
   coursesBought: [],
   udemyCredits: 0,
-  cookie: localStorage.getItem("cookie") || Cookies.get("cookie"),
+  cookie: Cookies.get("cookie"),
   isLoggedPreviouslyWithGoogle: false,
   isAuthActivated: false,
   whenCreated: null,

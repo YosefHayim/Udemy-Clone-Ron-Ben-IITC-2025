@@ -1,7 +1,7 @@
-const FaqInstructName: React.FC = () => {
+const FaqInstructName: React.FC<{ instructorName: string }> = ({ instructorName }) => {
   return (
     <div>
-      <p>Sumanta kumar Pal</p>
+      <p>{instructorName}</p>
     </div>
   );
 };

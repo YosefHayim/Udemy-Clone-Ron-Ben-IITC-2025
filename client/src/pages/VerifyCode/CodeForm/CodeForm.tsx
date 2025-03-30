@@ -7,7 +7,6 @@ import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { IoMdLock } from "react-icons/io";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NotificationCodeResent from "./NotificationCodeResent/NotificationCodeResent";
 import loginUser from "@/api/users/loginUser";
@@ -18,13 +17,13 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   const [isError, setShowIsError] = useState(false);
   const [code, setCode] = useState("");
   const [codeVerification, setCodeVerification] = useState(null);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const cookie = useSelector((state: RootState) => state?.user?.cookie);
 
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
     onSuccess: () => {
+      setUserInformation(cookie);
       navigate("/");
     },
     onError: (error) => {

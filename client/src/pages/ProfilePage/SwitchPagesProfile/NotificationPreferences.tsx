@@ -52,12 +52,14 @@ const NotificationPreferences = () => {
             <h3 className="text-lg font-semibold text-gray-800">Updates and offerings</h3>
             <button
               onClick={() => toggleCategory("updates")}
-              className={`flex h-6 w-12 items-center rounded-full p-1 ${updatesEnabled ? "bg-purple-600" : "bg-gray-300"
-                }`}
+              className={`flex h-6 w-12 items-center rounded-full p-1 ${
+                updatesEnabled ? "bg-purple-600" : "bg-gray-300"
+              }`}
             >
               <div
-                className={`h-4 w-4 transform rounded-full bg-white shadow-md ${updatesEnabled ? "translate-x-6" : "translate-x-0"
-                  }`}
+                className={`h-4 w-4 transform rounded-full bg-white shadow-md ${
+                  updatesEnabled ? "translate-x-6" : "translate-x-0"
+                }`}
               ></div>
             </button>
           </div>
@@ -97,12 +99,14 @@ const NotificationPreferences = () => {
             <h3 className="text-lg font-semibold text-gray-800">Your learning</h3>
             <button
               onClick={() => toggleCategory("learning")}
-              className={`flex h-6 w-12 items-center rounded-full p-1 ${learningEnabled ? "bg-purple-600" : "bg-gray-300"
-                }`}
+              className={`flex h-6 w-12 items-center rounded-full p-1 ${
+                learningEnabled ? "bg-purple-600" : "bg-gray-300"
+              }`}
             >
               <div
-                className={`h-4 w-4 transform rounded-full bg-white shadow-md ${learningEnabled ? "translate-x-6" : "translate-x-0"
-                  }`}
+                className={`h-4 w-4 transform rounded-full bg-white shadow-md ${
+                  learningEnabled ? "translate-x-6" : "translate-x-0"
+                }`}
               ></div>
             </button>
           </div>

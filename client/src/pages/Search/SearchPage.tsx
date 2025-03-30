@@ -102,7 +102,7 @@ const SearchPage: React.FC = () => {
                   id={course?._id}
                   className="relative w-auto"
                   onMouseEnter={() => setHoveredCourse(course?._id)}
-                  onMouseLeave={() => setHoveredCourse(null)}
+                  // onMouseLeave={() => setHoveredCourse(null)}
                 >
                   <SearchCourseCard course={course} />
 

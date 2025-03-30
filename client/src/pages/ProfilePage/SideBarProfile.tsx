@@ -3,6 +3,7 @@ import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 
 const SideBarProfile = ({ selectedPage, setSelectedPage }) => {
+<<<<<<< HEAD
 
   const fullName = useSelector((state: RootState) => state?.user?.fullName);
   const profilePic = useSelector((state: RootState) => state?.user?.profilePic);
@@ -14,6 +15,16 @@ const SideBarProfile = ({ selectedPage, setSelectedPage }) => {
   console.log("👤 fullName:", fullName);
   console.log("🖼️ profilePic:", profilePic);
 
+=======
+  const fullName = useSelector((state: RootState) => state?.user?.fullName);
+  const profilePic = useSelector((state: RootState) => state?.user?.profilePic);
+  const location = useLocation();
+  const cookie = useSelector((state: RootState) => state.user?.cookie);
+
+  if (!cookie) {
+    return <div></div>;
+  }
+>>>>>>> b48f82a4b0cf441f6bc25ff511aca3d168de6971
 
   console.log("fullName:", fullName);
   console.log("profilePic:", profilePic);
@@ -47,7 +58,6 @@ const SideBarProfile = ({ selectedPage, setSelectedPage }) => {
   ];
   
 
-
   return (
     <div className="w-56 border-b border-l border-r border-t border-borderGrayColor bg-red-500">
       {/* Picture & Name */}
@@ -75,10 +85,18 @@ const SideBarProfile = ({ selectedPage, setSelectedPage }) => {
             {menuItems.map((item, index) => (
               <li
                 key={index}
+<<<<<<< HEAD
                 className={`cursor-pointer px-6 py-2 text-base font-[790] ${selectedPage === item
                   ? "opacity-86 bg-black text-white"
                   : "text-courseNameColorTxt text-opacity-80 hover:text-black"
                   }`}
+=======
+                className={`cursor-pointer px-6 py-2 text-base font-[790] ${
+                  selectedPage === item
+                    ? "opacity-86 bg-black text-white"
+                    : "text-courseNameColorTxt text-opacity-80 hover:text-black"
+                }`}
+>>>>>>> b48f82a4b0cf441f6bc25ff511aca3d168de6971
                 onClick={() => setSelectedPage(item)} // Atualiza a página ativa
               >
                 {item}

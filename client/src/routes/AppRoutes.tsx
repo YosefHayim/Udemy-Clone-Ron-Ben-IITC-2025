@@ -38,30 +38,39 @@ import ReceiptCart from "@/components/Navbar/DropDownMenu/PurchaseHistory/Receip
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Promotions from "../pages/Terms/TermsPages/Promotions";
 import Messages from "@/pages/Messages/Messages";
-import Support from "@/pages/Support/Support";
+// import Support from "@/pages/Support/Support";
 import OrganizationLogin from "@/pages/OrganizationLogin/OrganizationLogin";
 import SignUpOrganization from "@/pages/SignUpOrganization/SignUpOrganization";
 import ProfilePage from "@/pages/ProfilePage/ProfilePage";
 // import LoginBusiness from "@/pages/Login/LoginBusiness";
 
-export const filterContext = createContext<FilterDataProps>({
-  sortBy: "",
-  handsOnPractice: new Set(),
-  language: new Set(),
-  levels: new Set(),
-  price: "",
-  ratings: 0,
-  subtitles: new Set(),
-  topics: new Set(),
-  videosDurations: new Set(),
-  certificateOnly: false,
-  searchTerm: "",
-});
+export const filterContext = createContext<
+  [FilterDataProps, React.Dispatch<React.SetStateAction<FilterDataProps>>]
+>([
+  {
+    sortBy: "",
+    handsOnPractice: new Set(),
+    language: new Set(),
+    levels: new Set(),
+    price: "",
+    ratings: 0,
+    subtitles: new Set(),
+    topics: new Set(),
+    videosDurations: new Set(),
+    certificateOnly: false,
+    searchTerm: "",
+  },
+  () => {},
+]);
 
-export const emailContext = createContext({
-  email: "",
-  fullName: "",
-});
+export const emailContext = createContext<
+  [
+    string,
+    React.Dispatch<React.SetStateAction<string>>,
+    string,
+    React.Dispatch<React.SetStateAction<string>>,
+  ]
+>(["", () => {}, "", () => {}]);
 
 export const personalizeContent = createContext({
   fieldLearning: "",
@@ -89,6 +98,7 @@ const AppRoutes: React.FC = () => {
     topics: new Set(),
     videosDurations: new Set(),
     certificateOnly: false,
+    searchTerm: "",
   });
 
   const [userFullName, setUserFullName] = useState("");
