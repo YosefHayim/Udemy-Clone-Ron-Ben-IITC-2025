@@ -133,7 +133,7 @@ const SearchPage: React.FC = () => {
             </div>
 
             {/* Pesquisas relacionadas */}
-            <div className="">
+            <div>
               <RelatedSearches />
             </div>
           </main>

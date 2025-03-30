@@ -15,6 +15,7 @@ import CourseImg from "@/components/CourseCard/CourseImg/CourseImg";
 
 const ItemInCart = ({
   isFontThick = false,
+  isFBT,
   rowPrices = true,
   courseId = "",
   courseImgSize = "h-[5em] rounded-[0.3em]",
@@ -86,10 +87,6 @@ const ItemInCart = ({
     navigate("/not/found");
   }
 
-  if (isPending) {
-    <div></div>;
-  }
-
   return (
     <div id={courseId} className={` ${width} ${textSize}`} onClick={handlePreformOperation}>
       <div
@@ -105,7 +102,6 @@ const ItemInCart = ({
               imgExplanation={data?.courseName}
               widthChosen={widthChosen}
             />
-
             <div
               className={
                 isMyLearning
@@ -132,10 +128,8 @@ const ItemInCart = ({
             </div>
           </div>
         </div>
-        <div
-          className={`${chooseFlex} flex flex-row items-${itemsPosition} justify-center ${gapPrice}`}
-        >
-          <div className="flex w-[220px] flex-col items-start gap-[0.5em]">
+        <div className={`${isFBT && "items-start justify-start"} ${chooseFlex} flex  ${gapPrice}`}>
+          <div className="flex w-full flex-col items-start gap-[0.5em]">
             <CourseTitle title={data?.courseName} shortcutTitle={shortcutTitle} />
             <div className={`${showInstructor ? "block" : "hidden"}`}>
               <CourseInstructor
@@ -147,7 +141,7 @@ const ItemInCart = ({
               <div className={hide ? "block" : "hidden"}>
                 <CourseTag tagName={data?.courseTag} />
               </div>
-              <div className={hide ? "block" : "hidden"}>
+              <div className={hide || isFBT ? "block" : "hidden"}>
                 <CourseRatings
                   stars=""
                   avgRatings={data?.averageRating}
@@ -190,7 +184,9 @@ const ItemInCart = ({
                       : "flex flex-col font-light text-black"
                   }  items-start gap-[0.4em]`}
                 >
-                  <p>{data && showDisPrice ? `₪${data?.courseDiscountPrice}` : ""}</p>
+                  <p className={`${isFBT && "font-bold"}`}>
+                    {data && showDisPrice && `₪${data?.courseDiscountPrice}`}
+                  </p>
                   <p
                     className={
                       showFullPrice

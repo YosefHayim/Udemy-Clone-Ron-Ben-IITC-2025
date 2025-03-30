@@ -25,8 +25,8 @@ const InteractionsBtns: React.FC<{
   const [showDialogOfFbt, setShowDialogOfFbt] = useState(true);
 
   const handleCartSuccess = () => {
-    // setTimeout(() => {
     setShowDialogOfFbt(true);
+    // setTimeout(() => {
     // }, 500);
   };
 

@@ -6,7 +6,6 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import FrequentlyBoughtTogether from "@/pages/ViewCoursePageInfo/FrequentlyBoughtTogether/FrequentlyBoughtTogether";
-import { IoMdCheckmarkCircle } from "react-icons/io";
 import ItemInCart from "@/components/Navbar/Cart/ItemInCart/ItemInCart";
 import CloseButtonDialogFBTAndTitle from "./CloseButtonDialogFBTAndTitle/CloseButtonDialogFBTAndTitle";
 import ProcCheckNGoToCart from "../ProcCheckNGoToCart/ProcCheckNGoToCart";
@@ -39,12 +38,15 @@ const DialogFrequentlyBoughtTogether: React.FC<{
             </AlertDialogTitle>
             <AlertDialogDescription>
               <div className="flex w-full items-center justify-around">
-                <div className="flex w-full flex-col items-start justify-start">
+                <div className="flex w-full flex-col items-start justify-start text-black">
                   <ItemInCart
-                    widthChosen={`w-[19em]`}
+                    chooseFlex={`w-full`}
+                    isFBT={true}
+                    widthChosen={`w-[22em]`}
                     courseId={courseId}
                     rowPrices={false}
                     showHR={false}
+                    showDisPrice={true}
                     showFullPrice={true}
                     hide={false}
                   />
