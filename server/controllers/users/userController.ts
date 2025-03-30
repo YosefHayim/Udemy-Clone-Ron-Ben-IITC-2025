@@ -161,6 +161,7 @@ const signUp = catchAsync(
       status: "success",
       message:
         "User created successfully. Please confirm your email to log in.",
+      token,
     });
   }
 );
@@ -236,6 +237,7 @@ const login = catchAsync(
       codeVerification: loginCode,
       status: "success",
       message: "Login successful.",
+      token,
     });
   }
 );
@@ -317,6 +319,7 @@ const verifyCode = catchAsync(
     res.status(200).json({
       status: "success",
       message: "Code verified successfully. You are now logged in.",
+      token,
     });
   }
 );
@@ -675,6 +678,7 @@ const googleLoginOrSignUp = catchAsync(
       // Send success response
       res.status(200).json({
         status: "success",
+        token,
       });
     } catch (error) {
       console.log(
@@ -720,6 +724,7 @@ const updateMe = catchAsync(
     res.status(200).json({
       status: "success",
       response: "cookie has been updated",
+      token,
     });
   }
 );
