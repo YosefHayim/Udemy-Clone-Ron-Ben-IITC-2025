@@ -3,28 +3,15 @@ import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 
 const SideBarProfile = ({ selectedPage, setSelectedPage }) => {
-<<<<<<< HEAD
-
   const fullName = useSelector((state: RootState) => state?.user?.fullName);
   const profilePic = useSelector((state: RootState) => state?.user?.profilePic);
   const isUserLoaded = useSelector((state: RootState) => state?.user?.isUserLoaded);
   const user = useSelector((state: RootState) => state.user);
   console.log("🔍 user state in SideBarProfile:", user);
-  
+
   console.log("👁️ isUserLoaded:", isUserLoaded);
   console.log("👤 fullName:", fullName);
   console.log("🖼️ profilePic:", profilePic);
-
-=======
-  const fullName = useSelector((state: RootState) => state?.user?.fullName);
-  const profilePic = useSelector((state: RootState) => state?.user?.profilePic);
-  const location = useLocation();
-  const cookie = useSelector((state: RootState) => state.user?.cookie);
-
-  if (!cookie) {
-    return <div></div>;
-  }
->>>>>>> b48f82a4b0cf441f6bc25ff511aca3d168de6971
 
   console.log("fullName:", fullName);
   console.log("profilePic:", profilePic);
@@ -33,10 +20,8 @@ const SideBarProfile = ({ selectedPage, setSelectedPage }) => {
     console.log("⏳ Esperando carregar usuário...");
     return null;
   }
-  
+
   // ...resto do código
-
-
 
   // 🛡️ Quebra segura do nome
   const nameParts = fullName.split(" ");
@@ -49,14 +34,13 @@ const SideBarProfile = ({ selectedPage, setSelectedPage }) => {
     "Profile",
     "Photo",
     "Account Security", // ✅ maiúscula igual no switch
-    "Subscriptions",     // ✅ igual no switch
-    "Payment Methods",   // ✅ igual no switch
+    "Subscriptions", // ✅ igual no switch
+    "Payment Methods", // ✅ igual no switch
     "Privacy",
     "Notification Preferences",
     "API Clients",
     "Close Account",
   ];
-  
 
   return (
     <div className="w-56 border-b border-l border-r border-t border-borderGrayColor bg-red-500">
@@ -85,18 +69,11 @@ const SideBarProfile = ({ selectedPage, setSelectedPage }) => {
             {menuItems.map((item, index) => (
               <li
                 key={index}
-<<<<<<< HEAD
-                className={`cursor-pointer px-6 py-2 text-base font-[790] ${selectedPage === item
-                  ? "opacity-86 bg-black text-white"
-                  : "text-courseNameColorTxt text-opacity-80 hover:text-black"
-                  }`}
-=======
                 className={`cursor-pointer px-6 py-2 text-base font-[790] ${
                   selectedPage === item
                     ? "opacity-86 bg-black text-white"
                     : "text-courseNameColorTxt text-opacity-80 hover:text-black"
                 }`}
->>>>>>> b48f82a4b0cf441f6bc25ff511aca3d168de6971
                 onClick={() => setSelectedPage(item)} // Atualiza a página ativa
               >
                 {item}

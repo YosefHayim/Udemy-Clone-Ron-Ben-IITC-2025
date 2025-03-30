@@ -15,7 +15,7 @@ import lessonRoute from "./routes/course/lessonRoute.ts";
 import sectionRoute from "./routes/course/sectionRoute.ts";
 import courseProgressRoutes from "./routes/course/courseProgressRoutes.ts";
 import userRoute from "./routes/users/userRoute.ts";
-import commentRoute from "./routes/reviews/commentRoute.ts";
+import commentRoute from "./rutes/reviews/commentRoute.ts";
 import reviewRoute from "./routes/reviews/reviewRoute.ts";
 import reportReviewRoute from "./routes/reviews/reportReviewRoute.ts";
 import instructorRoute from "./routes/users/instructorRoute.ts";
