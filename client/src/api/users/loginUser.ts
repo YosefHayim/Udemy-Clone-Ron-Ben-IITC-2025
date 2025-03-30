@@ -1,6 +1,10 @@
 import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configuration";
 
-type fn = (email: string) => Promise<any>;
+type email = {
+  email: string;
+};
+
+type fn = (email: email) => Promise<any>;
 
 const loginUser: fn = async (email) => {
   if (!email) throw new Error("Please provide email in url.");
@@ -13,7 +17,7 @@ const loginUser: fn = async (email) => {
 
     if (r) {
       console.log(r);
-      return r.data;
+      return r?.data;
     }
   } catch (error) {
     console.log(`Error occurred during the login of user: `, error.response.data.message);

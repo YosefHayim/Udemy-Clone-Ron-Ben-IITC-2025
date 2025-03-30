@@ -3,14 +3,15 @@ import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
-const SideBarProfile = ({selectedPage, setSelectedPage}) => {
-  
+const SideBarProfile = ({ selectedPage, setSelectedPage }) => {
   const fullName = useSelector((state: RootState) => state?.user?.fullName);
   const profilePic = useSelector((state: RootState) => state?.user?.profilePic);
   const location = useLocation();
   const cookie = useSelector((state: RootState) => state.user?.cookie);
 
-  if (!cookie) { return <div></div> }
+  if (!cookie) {
+    return <div></div>;
+  }
 
   const [firstWord, secondWord] = fullName.split(" ");
   const shortcutName = (firstWord?.[0] || "") + (secondWord?.[0] || "");
@@ -27,7 +28,6 @@ const SideBarProfile = ({selectedPage, setSelectedPage}) => {
     "API clients",
     "Close account",
   ];
-
 
   return (
     <div className="w-56 border-b border-l border-r border-t border-borderGrayColor bg-white">
@@ -50,25 +50,25 @@ const SideBarProfile = ({selectedPage, setSelectedPage}) => {
         </div>
       </div>
       <div className="h-screen w-[16rem] bg-white shadow-md">
-      {/* Menu lateral */}
-      <aside className="w-64">
-        <ul className="py-4">
-          {menuItems.map((item, index) => (
-            <li
-              key={index}
-              className={`cursor-pointer px-6 py-2 text-base font-[790] ${
-                selectedPage === item
-                  ? "opacity-86 bg-black text-white"
-                  : "text-courseNameColorTxt text-opacity-80 hover:text-black"
-              }`}
-              onClick={() => setSelectedPage(item)} // Atualiza a página ativa
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
-      </aside>
-    </div>
+        {/* Menu lateral */}
+        <aside className="w-64">
+          <ul className="py-4">
+            {menuItems.map((item, index) => (
+              <li
+                key={index}
+                className={`cursor-pointer px-6 py-2 text-base font-[790] ${
+                  selectedPage === item
+                    ? "opacity-86 bg-black text-white"
+                    : "text-courseNameColorTxt text-opacity-80 hover:text-black"
+                }`}
+                onClick={() => setSelectedPage(item)} // Atualiza a página ativa
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </aside>
+      </div>
       {/* Profile Nav_Side_Bar
       <nav className="mt-6 ">
         <ul className="space-y-2">
