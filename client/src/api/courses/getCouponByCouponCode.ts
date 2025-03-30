@@ -8,7 +8,7 @@ const getCouponByCouponCode = async (couponCode: string) => {
     const r = await axiosClient.get(url);
 
     if (r) {
-      console.log(r);
+      console.log(r.data.data);
       return r.data.exists;
     }
   } catch (error) {

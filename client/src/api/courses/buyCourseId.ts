@@ -8,7 +8,7 @@ const buyCourseById = async (courseId: string | string) => {
 
     const r = await axiosClient.post(url);
     if (r) {
-      console.log(r.data);
+      console.log(r.data.data);
       return r.data;
     }
   } catch (error) {

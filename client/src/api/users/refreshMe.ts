@@ -5,7 +5,7 @@ const refreshMe = async () => {
     const r = await axiosClient.post(`${isProduction ? baseUrl : localhostUrl}/api/user/me`);
 
     if (r) {
-      console.log(r.data);
+      console.log(r.data.data);
       return r.data;
     }
   } catch (error) {
