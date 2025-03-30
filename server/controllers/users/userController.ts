@@ -148,13 +148,14 @@ const signUp = catchAsync(
       isAuthActivated: newUser.isAuthActivate,
     });
 
-    res.cookie("cookie", token, {
-      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-      secure: process.env.NODE_ENV === "production",
-      httpOnly: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      maxAge: 90 * 24 * 60 * 60 * 1000,
-    });
+    // We do not send cookie on login only on Verify code.
+    // res.cookie("cookie", token, {
+    //   expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+    //   secure: process.env.NODE_ENV === "production",
+    //   httpOnly: process.env.NODE_ENV === "production",
+    //   sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    //   maxAge: 90 * 24 * 60 * 60 * 1000,
+    // });
 
     res.status(200).json({
       codeVerification: signUpCode,
