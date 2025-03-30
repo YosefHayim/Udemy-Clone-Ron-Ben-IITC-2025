@@ -4,6 +4,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import dotenv from "dotenv";
+import { Server } from "socket.io";
 import limiter from "./middlewares/rateLimit.ts";
 import errorHandler from "./middlewares/errorHandler.ts";
 import undefinedRoute from "./middlewares/undefinedRoutes.ts";
@@ -19,12 +20,18 @@ import commentRoute from "./routes/reviews/commentRoute.ts";
 import reviewRoute from "./routes/reviews/reviewRoute.ts";
 import reportReviewRoute from "./routes/reviews/reportReviewRoute.ts";
 import instructorRoute from "./routes/users/instructorRoute.ts";
+import { createServer } from "node:http";
 
 dotenv.config();
 
 const app: Application = express();
+const server = createServer(app);
+const io = new Server(server);
 const PORT: number = Number(process.env.PORT) || 3000;
 
+io.on("connection", (socket) => {
+  console.log(`A user has been connected: ${socket.id}`);
+});
 connectDb();
 
 // Serve static images
