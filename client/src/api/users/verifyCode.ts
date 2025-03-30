@@ -7,6 +7,7 @@ type fn = (verificationCredentials: {
 }) => Promise<any>;
 
 const verifyCode: fn = async (verificationCredentials) => {
+  if (!verificationCredentials) throw new Error("Must provide verification credential");
   try {
     const r = await axiosClient.post(
       `${isProduction ? baseUrl : localhostUrl}/api/user/verify`,
