@@ -4,6 +4,7 @@ import SocialLinks from "./SocialLinks/SocialLinks";
 import getInstructorById from "@/api/users/getInstructorById";
 import Loader from "@/components/Loader/Loader";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const InstructorProfile = () => {
   const params = useParams();
@@ -15,6 +16,11 @@ const InstructorProfile = () => {
     enabled: !!instructorId,
   });
 
+  useEffect(() => {
+    document.title = `
+    ${data?.fullName} | ${data?.headline}| Udemy`;
+  }, [data]);
+
   if (isPending) {
     return (
       <div>
@@ -24,11 +30,6 @@ const InstructorProfile = () => {
   }
 
   if (error) return "An error has occurred: " + error.message;
-
-  document.title = `
-    ${data?.fullName} | ${data?.headline}| Udemy`;
-
-  console.log(data);
 
   return (
     <div className="flex w-full  items-center justify-center p-[3em] pl-[10em]">

@@ -28,8 +28,6 @@ const CourseCardInstructorRelated: React.FC<{
     console.log("Error durning rendering of instructor courses: ", error);
   }
 
-  useEffect(() => {}, [data]);
-
   return (
     <div>
       {isLoading ? (
