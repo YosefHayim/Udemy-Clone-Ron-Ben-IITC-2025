@@ -14,6 +14,8 @@ const SignUpForm = ({ isMobile }) => {
   const navigate = useNavigate();
 
   const emailCtx = useContext(emailContext);
+  const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
+
   if (!emailCtx) throw new Error("emailContext is not provided");
 
   const mutation = useMutation<unknown, Error, RegisterUserPayload>({
@@ -32,19 +34,21 @@ const SignUpForm = ({ isMobile }) => {
     const form = e.currentTarget;
     const formData = new FormData(form);
     const fullName = formData.get("fullName") as string;
-    const email = formData.get("email") as string;
+    const signUpEmail = formData.get("email") as string;
 
-    if (email.length > 1 && fullName.length < 1) {
-      const isValidEmail = /^[^\s@]+@[^\s@]+\.(com|co\.il)$/.test(email);
+    if (signUpEmail.length > 1 && fullName.length < 1) {
+      const isValidEmail = /^[^\s@]+@[^\s@]+\.(com|co\.il)$/.test(signUpEmail);
       setShowIsError(!isValidEmail);
       return;
     }
 
     setLoading(true);
     setTimeout(() => {
-      mutation.mutate({ fullName, email });
+      mutation.mutate({ fullName, email: signUpEmail });
       setLoading(false);
     }, 2000);
+    setUserFullName(fullName);
+    setEmailUser(signUpEmail);
   };
 
   return (

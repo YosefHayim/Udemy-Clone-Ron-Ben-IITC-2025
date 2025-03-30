@@ -12,7 +12,7 @@ const VerifyCode = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
   const emailCtx = useContext(emailContext);
   if (!emailCtx) throw new Error("emailContext is not provided");
-  const [emailUser, userFullName] = emailCtx;
+  const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
 
   const [countdown, setCountdown] = useState(30);
   const [isClickedResend, setResend] = useState(false);

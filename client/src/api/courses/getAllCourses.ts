@@ -46,7 +46,7 @@ const getAllCourses: fn = async (searchTerm = "", filterData = {}, limit = 13, p
 
   try {
     const r = await axiosClient.get(url);
-    console.log(r.data.data);
+    console.log(r.data);
     return r.data;
   } catch (error) {
     console.log("Error fetching courses: ", error.response.data.message);

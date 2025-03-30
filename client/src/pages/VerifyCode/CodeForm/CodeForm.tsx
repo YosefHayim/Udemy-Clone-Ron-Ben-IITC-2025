@@ -24,7 +24,9 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
     onSuccess: () => {
-      setUserInformation(cookie, dispatch);
+      setTimeout(() => {
+        setUserInformation(cookie, dispatch);
+      }, 1000);
       navigate("/");
     },
     onError: (error) => {

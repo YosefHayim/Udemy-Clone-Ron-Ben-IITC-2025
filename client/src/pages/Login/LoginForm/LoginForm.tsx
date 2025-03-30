@@ -12,6 +12,8 @@ const LoginForm = ({ showOnlyLoginButton = true }) => {
   const emailCtx = useContext(emailContext);
   const globalEmail = useSelector((state: RootState) => state.user.email);
   if (!emailCtx) throw new Error("emailContext is not provided");
+  const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
+
   const [isLoading, setLoading] = useState(false);
   const [isError, setShowIsError] = useState(false);
   const navigate = useNavigate();
