@@ -12,7 +12,7 @@ socket.on("connect", () => {
   console.log(`✅ Connected to server with ID: ${socket.id}`);
 });
 
-socket.on("WelcomeToServer", (data) => {
+socket.on("welcomeToServer", (data) => {
   console.log(data);
 });
 
