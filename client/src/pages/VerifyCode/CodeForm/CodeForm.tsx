@@ -1,18 +1,15 @@
 import verifyCode from "@/api/users/verifyCode";
 import ButtonLoader from "@/components/ButtonLoader/ButtonLoader";
 import CustomInput from "@/components/CustomInput/CustomInput";
-import { RootState } from "@/redux/store";
 import { setUserInformation } from "@/utils/setUserInformation";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { IoMdLock } from "react-icons/io";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NotificationCodeResent from "./NotificationCodeResent/NotificationCodeResent";
 import loginUser from "@/api/users/loginUser";
 import DisplayErrorCode from "./DisplayErrorCode/DisplayErrorCode";
 import { useDispatch } from "react-redux";
-import Cookies from "js-cookie";
 
 const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   const [isLoading, setLoading] = useState(false);
@@ -21,16 +18,18 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   const [codeVerification, setCodeVerification] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cookie = Cookies.get("cookie");
 
   const verifyCodeMutation = useMutation({
     mutationFn: verifyCode,
-    onSuccess: () => {
-      setUserInformation(cookie, dispatch);
-      navigate("/");
+    onSuccess: (data) => {
+      console.log(data);
+      setUserInformation(data.token, dispatch);
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     },
     onError: (error) => {
-      console.error("Error during login process:", error);
+      console.error("Error during login process:", error.response.data);
       setShowIsError(true);
     },
   });
@@ -38,6 +37,7 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
   const loginMutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
+      console.log(data);
       setCodeVerification(data.codeVerification);
     },
   });
@@ -54,7 +54,7 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
     verifyCodeMutation.mutate({ code, email: emailUser });
   };
 
-  useEffect(() => {}, [emailUser, userFullName, code, cookie]);
+  useEffect(() => {}, [emailUser, userFullName, code]);
 
   useEffect(() => {
     if (isClickedResend) {

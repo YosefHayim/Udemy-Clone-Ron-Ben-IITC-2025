@@ -11,21 +11,19 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUserInformation } from "@/utils/setUserInformation";
-import Cookies from "js-cookie";
 import { setClearAll } from "@/redux/slices/cartSlice";
 
 const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }) => {
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const cookie = Cookies.get("cookie");
 
   const totalToPay = useSelector((state: RootState) => state.cart?.totalCourseDiscountPrices);
   const totalCourses = useSelector((state: RootState) => state.cart?.amountOfCourses);
   const originalPrice = useSelector((state: RootState) => state.cart?.totalCoursesOriginalPrices);
   const coursesIds = useSelector((state: RootState) => state.cart?.coursesAddedToCart);
 
-  useEffect(() => {}, [originalPrice, totalCourses, totalToPay, cookie]);
+  useEffect(() => {}, [originalPrice, totalCourses, totalToPay]);
 
   const checkOutMutation = useMutation({
     mutationFn: buyCourseById,
@@ -33,15 +31,18 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
       dispatch(setClearAll());
       setTimeout(() => {
         refreshUserDataMutation.mutate();
-      }, 500);
+      }, 1000);
     },
   });
 
   const refreshUserDataMutation = useMutation({
     mutationFn: refreshMe,
-    onSuccess: () => {
-      setUserInformation(cookie, dispatch);
-      navigate(`/course-view/${coursesIds[0]}`);
+    onSuccess: (data) => {
+      console.log(data);
+      setUserInformation(data.token, dispatch);
+      setTimeout(() => {
+        navigate(`/course-view/${coursesIds[0]}`);
+      }, 1000);
     },
   });
 
@@ -73,9 +74,10 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
       return Promise.all(courseIds.map((id) => buyCourseById(id)));
     },
     onSuccess: () => {
+      dispatch(setClearAll());
       setTimeout(() => {
         refreshUserDataMutation.mutate();
-      }, 500);
+      }, 1000);
     },
   });
 

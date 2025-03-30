@@ -16,12 +16,15 @@ const GoogleBtn = () => {
 
   const googleMutationLogin = useMutation({
     mutationFn: googleLogin,
-    onSuccess: (cookie) => {
-      setUserInformation(cookie, dispatch);
-      navigate("/");
+    onSuccess: (data) => {
+      console.log(data);
+      setUserInformation(data.token, dispatch);
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     },
     onError: (error) => {
-      console.log("Error during google login process:", error);
+      console.log("Error during google login process:", error.response.data);
       setShowIsError(true);
     },
   });
@@ -31,7 +34,7 @@ const GoogleBtn = () => {
       googleMutationLogin.mutate(credentialResponse.code);
     },
     onError: (error) => {
-      console.log(`Error occurred durning login via google: `, error);
+      console.log(`Error occurred durning login via google: `, error.response.data);
     },
     onNonOAuthError: (nonAuthError) => {
       console.log(nonAuthError);

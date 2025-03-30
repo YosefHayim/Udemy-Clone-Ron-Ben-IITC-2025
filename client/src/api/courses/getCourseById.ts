@@ -13,7 +13,7 @@ const getCourseById: fn = async (courseId: string) => {
     const r = await axiosClient.get(url);
 
     if (r) {
-      console.log(r);
+      console.log(r.data.data);
       return r?.data?.data;
     }
   } catch (error) {

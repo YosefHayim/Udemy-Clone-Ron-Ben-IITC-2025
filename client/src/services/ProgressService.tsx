@@ -45,11 +45,9 @@ const fetchCourseProgress: FetchProgressFn = async (courseId) => {
 
     console.warn("Unexpected response structure:", response?.data);
     throw new Error("Invalid response format.");
-  } catch (error: any) {
-    console.log(`Error fetching progress for course ID ${courseId}:`, error);
-    throw new Error(
-      error.response?.data?.message || `Failed to fetch progress for course ID ${courseId}`
-    );
+  } catch (error) {
+    console.log(`Error fetching progress for course ID ${courseId}:`, error.response.data.message);
+    throw error;
   }
 };
 

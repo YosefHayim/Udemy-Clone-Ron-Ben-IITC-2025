@@ -1,5 +1,4 @@
 import loginUser from "@/api/users/loginUser";
-import { emailContext } from "@/routes/AppRoutes";
 import { useMutation } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,12 +6,14 @@ import CustomInput from "@/components/CustomInput/CustomInput";
 import ButtonLoader from "@/components/ButtonLoader/ButtonLoader";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import { emailContext } from "@/contexts/EmailContext";
 
 const LoginForm = ({ showOnlyLoginButton = true }) => {
   const emailCtx = useContext(emailContext);
   const globalEmail = useSelector((state: RootState) => state.user.email);
   if (!emailCtx) throw new Error("emailContext is not provided");
   const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
+
   const [isLoading, setLoading] = useState(false);
   const [isError, setShowIsError] = useState(false);
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const LoginForm = ({ showOnlyLoginButton = true }) => {
       navigate("/verify-code");
     },
     onError: (error) => {
-      console.log("Error during login process:", error);
+      console.log("Error during login process:", error.response.data);
       setShowIsError(true);
     },
   });
@@ -43,10 +44,9 @@ const LoginForm = ({ showOnlyLoginButton = true }) => {
 
     setLoading(true);
     setTimeout(() => {
-      setEmailUser(email);
       loginMutation.mutate({ email });
       setLoading(false);
-    }, 2000);
+    }, 1500);
   };
 
   return (

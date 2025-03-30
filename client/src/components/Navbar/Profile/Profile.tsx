@@ -4,7 +4,7 @@ import DropdownMenu from "../DropDownMenu/DropDownMenu";
 import ProfilePic from "@/components/ProfilePic/ProfilePic";
 import { useState } from "react";
 
-const Profile = () => {
+const Profile = ({ cookie }) => {
   const fullName = useSelector((state: RootState) => state?.user.fullName);
   const profilePic = useSelector((state: RootState) => state?.user.profilePic);
   const [showDropDown, setShowDropDown] = useState(false);
@@ -19,17 +19,18 @@ const Profile = () => {
       onMouseEnter={() => setShowDropDown(true)}
       onMouseLeave={() => setShowDropDown(false)}
     >
-      <div className="cursor-pointer">
-        <ProfilePic
-          shortcutName={shortcutName}
-          profilePic={profilePic}
-          isBig={true}
-          isHover={true}
-          size="h-[2rem] w-[2rem]"
-          customTextSize="text-[0.9rem]"
-        />
-      </div>
-
+      {cookie && (
+        <div className="cursor-pointer">
+          <ProfilePic
+            shortcutName={shortcutName}
+            profilePic={profilePic}
+            isBig={true}
+            isHover={true}
+            size="h-[2rem] w-[2rem]"
+            customTextSize="text-[0.9rem]"
+          />
+        </div>
+      )}
       {showDropDown && (
         <>
           <div className="absolute h-5 w-full bg-transparent" />

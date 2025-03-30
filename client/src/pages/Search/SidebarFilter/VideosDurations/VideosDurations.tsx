@@ -1,5 +1,5 @@
 import Filter from "@/components/Filter/Filter";
-import { filterContext } from "@/routes/AppRoutes";
+import { filterContext } from "@/contexts/filterSearch";
 import { videoDurations } from "@/utils/videoDuration";
 import { useContext, useState } from "react";
 

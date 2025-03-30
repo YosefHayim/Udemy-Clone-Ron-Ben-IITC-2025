@@ -4,8 +4,8 @@ import InstructorCourses from "../InstructorCourses/InstructorCourses";
 
 const DescriptionOfInstructor: React.FC<{
   backgroundOfInstructor: string;
-  coursesRelatedIds: string[];
-}> = ({ backgroundOfInstructor, coursesRelatedIds }) => {
+  coursesCreated: string[];
+}> = ({ backgroundOfInstructor, coursesCreated }) => {
   const [isExpanded, setExpanded] = useState(true);
 
   const handleToggle = () => {
@@ -41,8 +41,8 @@ const DescriptionOfInstructor: React.FC<{
         {isExpanded ? <MdOutlineKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
       </div>
       <div className="mt-[1em]">
-        {coursesRelatedIds?.length > 1 && (
-          <InstructorCourses coursesRelatedIds={coursesRelatedIds} />
+        {coursesCreated && coursesCreated.length > 0 && (
+          <InstructorCourses coursesCreated={coursesCreated} />
         )}
       </div>
     </div>

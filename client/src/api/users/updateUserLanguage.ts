@@ -8,7 +8,7 @@ const updateUserLanguage = async (preferredLanguage: string) => {
     const r = await axiosClient.put(url, preferredLanguage);
 
     if (r) {
-      console.log(r.data);
+      console.log(r.data.data);
       return r.data;
     }
   } catch (error) {

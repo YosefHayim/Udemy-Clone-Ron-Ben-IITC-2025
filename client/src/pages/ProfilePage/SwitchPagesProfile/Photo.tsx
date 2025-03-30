@@ -1,11 +1,8 @@
 import { useState } from "react";
-import SideBarProfile from "../SideBarProfile";
 import { useMutation } from "@tanstack/react-query";
 import updateProfilePic from "@/api/users/updateProfilePic";
 import refreshMe from "@/api/users/refreshMe";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
 import placeholderPhotoImg from "/images/placeholder-default-image-user-photo.png";
 import { Input } from "@/components/ui/input";
 import { setUserInformation } from "@/utils/setUserInformation";
@@ -14,7 +11,6 @@ const Photo = () => {
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
-  const cookie = useSelector((state: RootState) => state.user.cookie);
 
   const handleFileChange = (event: any) => {
     const file = event.target.files[0];
@@ -35,9 +31,12 @@ const Photo = () => {
 
   const refreshUserDataMutation = useMutation({
     mutationFn: refreshMe,
-    onSuccess: (cookie) => {
-      setUserInformation(cookie, dispatch);
-      location.reload();
+    onSuccess: (data) => {
+      console.log(data);
+      setUserInformation(data.token, dispatch);
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     },
   });
 

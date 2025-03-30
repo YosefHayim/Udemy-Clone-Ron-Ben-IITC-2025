@@ -21,7 +21,7 @@ const fetchCourseById: fn = async (courseId: string) => {
     console.warn("No course data found in the response.");
     return null;
   } catch (error) {
-    console.log(`Error fetching course with ID ${sanitizedCourseId}:`, error);
+    console.log(`Error fetching course with ID ${sanitizedCourseId}:`, error.response.data.message);
     throw error;
   }
 };

@@ -132,6 +132,7 @@ export interface CourseData {
     bio: string;
     profilePic: string;
   };
+  courseRating: number;
   courseInstructorDescription: string;
   totalCourseDuration: number;
   totalCourseLessons: number;
@@ -279,7 +280,7 @@ export interface Review {
   };
 }
 
-export interface FilterDataProps {
+interface FilterDataProps {
   sortBy: string;
   searchTerm: string;
   certificateOnly: boolean;

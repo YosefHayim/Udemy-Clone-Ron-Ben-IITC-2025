@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from "react";
 import LoginImgDesktop from "../Login/LoginImg/LoginImg";
 import WebsiteLoginOptions from "../Login/OtherLoginOptions/WebsiteLoginOptions/WebsiteLoginOptions";
-import { emailContext } from "@/routes/AppRoutes";
 import CodeForm from "./CodeForm/CodeForm";
 import DidntReceiveCode from "./CodeForm/DidntReceiveCode/DidntReceiveCode";
 import EnterCodeSendTo from "./CodeForm/EnterCodeSendTo/EnterCodeSendTo";
 import { useMediaQuery } from "react-responsive";
 import MobileLoginImg from "../Login/MobileLoginImg/MobileLoginImg";
+import { emailContext } from "@/contexts/EmailContext";
 
 const VerifyCode = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });

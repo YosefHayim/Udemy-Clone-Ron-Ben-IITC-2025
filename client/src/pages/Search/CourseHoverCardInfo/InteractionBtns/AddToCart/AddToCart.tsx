@@ -58,7 +58,7 @@ const AddToCart: React.FC<{
       }, 2000);
     },
     onError: (error) => {
-      console.error("Error during buying course:", error);
+      console.error("Error during buying course:", error.response.data);
     },
   });
 

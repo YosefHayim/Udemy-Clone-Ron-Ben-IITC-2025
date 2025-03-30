@@ -9,7 +9,7 @@ const updatePersonalInfo = async (dataOfUser: DataOfUser) => {
     const r = axiosClient.post(url, dataOfUser);
 
     if (r) {
-      console.log(r);
+      console.log(r.data.data);
       return r;
     }
   } catch (error) {
