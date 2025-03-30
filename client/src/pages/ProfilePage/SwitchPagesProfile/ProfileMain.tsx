@@ -78,7 +78,7 @@ const ProfileMain = () => {
   };
 
   return (
-    <main className="border border-gray-300">
+    <main className="border-l border-gray-300">
       <div className="bg-white">
 
         {/* title  */}
@@ -88,7 +88,7 @@ const ProfileMain = () => {
         </div>
 
         {/* main content */}
-        <div className="px-32 flex-col my-6">
+        <div className="px-32 flex-col mt-6">
           <b className="font-semibold text-[0.9rem]"> Basics: </b>
           {/* First Name, Last name and Headline */}
           <div className="flex flex-col space-y-4 mb-4 mt-2">
@@ -333,7 +333,7 @@ const ProfileMain = () => {
             <div className="flex w-full justify-start">
               <Button
                 type="submit"
-                className="mt-[1em] rounded-[0.2rem] bg-btnColor px-4 font-mono text-sm font-extrabold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none"
+                className="my-[2em] text-[1.1rem] rounded-[0.2rem] bg-btnColor px-4 font-mono font-extrabold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none"
               >
                 Save
               </Button>

@@ -57,21 +57,16 @@ const ProfilePage = () => {
     }
   };
   return (
-    <div className="flex h-screen my-6 mx-[12rem] border-[1px] border-gray-300">
+    <div className="flex my-6 mx-[12rem] border-[1px] border-gray-300">
       <div className="w-64">
         <SideBarProfile selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
       </div>
-      <div
-        className="custom-scrollbar flex-1 h-screen overflow-y-scroll"
-        style={{
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-        }}
-      >
+      <div className="flex-1"> {/* Removi h-screen e overflow */}
         {renderComponent()}
       </div>
     </div>
   );
+  
 };
 
 export default ProfilePage;
