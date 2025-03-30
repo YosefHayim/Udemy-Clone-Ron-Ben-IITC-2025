@@ -128,7 +128,9 @@ const ItemInCart = ({
             </div>
           </div>
         </div>
-        <div className={`${isFBT && "items-start justify-start"} ${chooseFlex} flex  ${gapPrice}`}>
+        <div
+          className={`${isFBT && "items-start justify-start"} ${chooseFlex} flex  ${gapPrice} w-full`}
+        >
           <div className="flex w-full flex-col items-start gap-[0.5em]">
             <CourseTitle title={data?.courseName} shortcutTitle={shortcutTitle} />
             <div className={`${showInstructor ? "block" : "hidden"}`}>
@@ -157,7 +159,7 @@ const ItemInCart = ({
               />
             </div>
           </div>
-          <div className={hide ? "flex" : "hidden"}>
+          <div className={hide ? "flex w-full" : "hidden"}>
             <div className="flex w-full flex-col items-start text-purpleStatic">
               <button className=" rounded-[0.3em] p-[0.3em] hover:bg-purple-200 focus:outline-none">
                 Remove

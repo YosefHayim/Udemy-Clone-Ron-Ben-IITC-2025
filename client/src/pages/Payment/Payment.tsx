@@ -7,9 +7,12 @@ import OrderDetails from "./OrderDetails/OrderDetails";
 import { useEffect, useState } from "react";
 import Loader from "@/components/Loader/Loader";
 import { usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 const Payment: React.FC = () => {
   document.title = "Checkout | Udemy";
+  const cookie = useSelector((state: RootState) => state?.user?.cookie);
   const [loading, setLoading] = useState(true);
   const [{ options }] = usePayPalScriptReducer();
 
@@ -32,11 +35,16 @@ const Payment: React.FC = () => {
             <div className="w-3/5 p-[10em] pt-[2em]">
               <div className=" flex w-full flex-col items-start justify-start gap-[1em]">
                 <h2 className="font-sans text-[1.5em] font-extrabold">Checkout</h2>
-                <h2 className="font-sans font-extrabold">Billing address</h2>
-                <SelectCountry />
-                <PaymentMethodNLock />
-                <PaymentOptionsRadio />
-                <OrderDetails />
+                <hr className="w-full" />
+                {cookie && (
+                  <div>
+                    <h2 className="font-sans font-extrabold">Billing address</h2>
+                    <SelectCountry />
+                    <PaymentMethodNLock />
+                    <PaymentOptionsRadio />
+                    <OrderDetails />
+                  </div>
+                )}
               </div>
             </div>
             <div className="h-[100vh] w-2/5 bg-[#f6f7f9]">

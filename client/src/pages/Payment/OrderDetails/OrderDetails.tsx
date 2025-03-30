@@ -6,27 +6,28 @@ const OrderDetails: React.FC = () => {
   const coursesIdAdded = useSelector((state: RootState) => state?.cart?.coursesAddedToCart);
 
   return (
-    <div className="flex w-[400px] flex-col items-start justify-start gap-[1em]">
-      <div className="flex  items-start justify-start gap-[0.2em]">
+    <div className="mt-2 flex w-full flex-col items-start justify-start gap-[1em]">
+      <div className="flex w-full items-start justify-start gap-[0.2em]">
         <b>Order details</b>
         <p>({coursesIdAdded.length} Course)</p>
       </div>
-      <div className="flex flex-col items-start justify-start gap-[0.2em]">
+      <div className="flex w-full flex-col items-start justify-start gap-6">
         {coursesIdAdded.length > 0 &&
           coursesIdAdded.map((courseId: string) => (
             <ItemInCart
               showInstructor={false}
               rowPrices={false}
               showHR={false}
-              courseImgSize=""
+              widthChosen={`h-[4em] w-[4em]`}
               key={courseId}
               courseId={courseId}
               hide={false}
               showDisPrice={true}
               shortCutInstructor={true}
+              textSize="text-base"
               shortcutTitle={false}
-              chooseFlex={"flex "}
-              itemsPosition="start"
+              chooseFlex={"flex justify-start w-full"}
+              itemsPosition="items-start"
               textColor="text-bg-black"
             />
           ))}
