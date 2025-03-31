@@ -2,8 +2,8 @@ import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configurati
 
 const getAllCourses = async (searchTerm = "", filterData, limit = 13, page = 1) => {
   if (!searchTerm) {
-    console.warn("Search term is required");
-    return "";
+    console.log("Search term is required");
+    return;
   }
 
   const {

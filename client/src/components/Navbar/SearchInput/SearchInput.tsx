@@ -1,11 +1,12 @@
 import getAllCourses from "@/api/courses/getAllCourses";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import { useMediaQuery } from "react-responsive";
 import SearchInputDesktop from "./SearchInputDesktop/SearchInputDekstop";
 import SearchInputMobile from "@/components/MobileNavbar/SearchInputMobile/SearchInputMobile";
+import { filterContext } from "@/contexts/filterSearch";
 
 const SearchInput: React.FC<{
   isTyping: boolean;
@@ -15,13 +16,14 @@ const SearchInput: React.FC<{
   showSearchMobile;
 }> = ({ isTyping, setIsTyping, extraCSS, setShowSearchMobile, showSearchMobile }) => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
+  const [filterData, setFilterData] = useContext(filterContext);
 
   const navigate = useNavigate();
   const location = useLocation();
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [debouncedTerm, setDebouncedTerm] = useState<string>("");
   const [searchParams] = useSearchParams();
-  const urlSearchTerm: string = searchParams.get("q")?.toLowerCase() || "";
+  const urlSearchTerm: string = searchParams.get("q")?.toLowerCase();
 
   // Sync URL query with `searchTerm` on page load or navigation
   useEffect(() => {
@@ -32,19 +34,19 @@ const SearchInput: React.FC<{
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedTerm(searchTerm);
-    }, 100); // Adjust debounce delay as needed
+    }, 200); // Adjust debounce delay as needed
     return () => clearTimeout(handler);
   }, [searchTerm]);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
     setSearchTerm(input);
-    setIsTyping(input.length > 0);
+    setIsTyping(input && input.length > 0);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (searchTerm.trim().length > 0) {
+    if (searchTerm && searchTerm.trim().length > 0) {
       navigate(`/courses/search?src=ukw&q=${encodeURIComponent(searchTerm)}`);
       searchAlgoLocalStorage(searchTerm);
       setIsTyping(false);
@@ -56,16 +58,13 @@ const SearchInput: React.FC<{
     setIsTyping(false);
   }, [location.pathname]);
 
-  let page: number | null = null;
-  let limit: number | null = null;
-
   const { data } = useQuery({
-    queryKey: ["courses", debouncedTerm, page],
+    queryKey: ["courses", debouncedTerm],
     queryFn: () => {
       if (!debouncedTerm) {
-        throw new Error("Search term is undefined");
+        console.log("Search term is undefined");
       }
-      return getAllCourses(debouncedTerm);
+      return getAllCourses(debouncedTerm, filterData);
     },
     enabled: !!debouncedTerm,
   });
