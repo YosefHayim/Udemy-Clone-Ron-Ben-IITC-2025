@@ -88,7 +88,6 @@ const AppRoutes: React.FC = () => {
       <Routes>
         {/* Rotas que usam Navbar e Footer */}
         <Route path="*" element={<LayoutWithNavbarAndFooter />} />
-
         {/* Rotas sem Navbar */}
         <Route path="/demo-business" element={<UdemyBusinessContact />} />
         <Route path="/payment/checkout/" element={<Payment />} />
