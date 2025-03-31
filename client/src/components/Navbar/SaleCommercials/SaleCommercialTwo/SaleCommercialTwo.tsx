@@ -15,7 +15,7 @@ const SaleCommercialTwo = () => {
     <div
       className={`${
         hiddenCommercial ? "hidden" : "flex w-full flex-grow flex-wrap items-center justify-between"
-      } ] bg-[#5022C2] text-center text-base text-white`}
+      } ] bg-[#5022C2] p-2 text-center text-base text-white`}
     >
       <div className="flex flex-grow items-center justify-center gap-4 text-center">
         <p>
@@ -25,7 +25,7 @@ const SaleCommercialTwo = () => {
       </div>
       <div className="">
         <button
-          className="cursor-pointer rounded-[0.2em] border-none bg-none p-[1em] hover:bg-purple-300 focus:outline-none"
+          className="cursor-pointer rounded-[0.2em] border-none bg-none p-1 hover:bg-purple-300 focus:outline-none"
           onClick={handleCommercial}
         >
           <HiOutlineXMark className="text-[1.5em]" />
