@@ -25,7 +25,7 @@ const SideBarProfile = ({ selectedPage, setSelectedPage }) => {
   ];
 
   return (
-    <div className="w-46  border-borderGrayColor">
+    <div className="w-[14rem]  border-borderGrayColor">
       {/* Picture & Name */}
       <div className="flex flex-col items-center space-y-2">
         <div className="flex h-[8rem] pt-6 w-[8rem] items-center justify-center rounded-full font-sans text-4xl font-extrabold text-white">
