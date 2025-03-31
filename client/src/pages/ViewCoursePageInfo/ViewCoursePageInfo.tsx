@@ -57,7 +57,7 @@ const ViewCoursePageInfo = () => {
   if (isLoading) {
     return (
       <div>
-        <Loader hSize="1000px" useSmallLoading={false} />
+        <Loader hSize="100" useSmallLoading={false} />
       </div>
     );
   }

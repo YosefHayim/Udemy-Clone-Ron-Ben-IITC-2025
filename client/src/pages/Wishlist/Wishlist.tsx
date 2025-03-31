@@ -68,7 +68,7 @@ const Wishlist: React.FC = () => {
       </div>
       {isLoading ? (
         <div className="w-full bg-white">
-          <Loader hSize="1000px" useSmallLoading={false} />
+          <Loader hSize="100" useSmallLoading={false} />
         </div>
       ) : (
         <div

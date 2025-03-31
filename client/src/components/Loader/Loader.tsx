@@ -1,4 +1,3 @@
-import { LoaderProps } from "@/types/types";
 import styles from "./Loader.module.css";
 import smallStyles from "./SmallLoader.module.css";
 import blackSmallStyle from "./SmallLoaderBlack.module.css";
@@ -12,14 +11,14 @@ const Loader: React.FC<{
   useSmallBlackLoading?: boolean;
   purpleLightSmallStyle?: boolean;
 }> = ({
-  hSize = "1000px",
+  hSize = "100",
   useSmallLoading = false,
   paddingSetTo = "25em",
   useSmallBlackLoading = false,
   purpleLightSmallStyle = false,
 }) => {
   return (
-    <div className={`flex items-center justify-center h-[${hSize}] p-[${paddingSetTo}]`}>
+    <div className={`flex items-center justify-center h-[${hSize}vh] p-[${paddingSetTo}]`}>
       <div className={useSmallLoading ? smallStyles.loader : styles.loader}></div>
       <div className={useSmallBlackLoading ? blackSmallStyle.loader : ""}></div>
       <div className={purpleLightSmallStyle ? purpleLightExtraSmallStyle.loader : ""}></div>

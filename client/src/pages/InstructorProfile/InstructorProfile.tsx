@@ -24,7 +24,7 @@ const InstructorProfile = () => {
   if (isPending) {
     return (
       <div>
-        <Loader hSize="1000px" useSmallLoading={false} />
+        <Loader hSize="100" useSmallLoading={false} />
       </div>
     );
   }

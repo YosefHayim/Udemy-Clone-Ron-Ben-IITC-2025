@@ -25,7 +25,7 @@ const Payment: React.FC = () => {
   return (
     <div>
       {loading ? (
-        <Loader hSize="1000px" useSmallLoading={false} />
+        <Loader hSize="100" useSmallLoading={false} />
       ) : (
         <div>
           <div className="flex w-full flex-col items-start justify-between p-[1em] shadow-alertAlgoInfo">

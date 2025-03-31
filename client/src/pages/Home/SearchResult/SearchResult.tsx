@@ -80,11 +80,9 @@ const SearchResult: React.FC<{ title?: string; randomAlgoWord?: string }> = ({
           }}
         >
           {data && data.length >= 1 ? (
-            data.map(
-              (courseCard: CourseTypeProps, index: number) => (
-                console.log(courseCard), (<HomeCourseCard courseCard={courseCard} index={index} />)
-              )
-            )
+            data.map((courseCard: CourseTypeProps, index: number) => (
+              <HomeCourseCard courseCard={courseCard} index={index} />
+            ))
           ) : (
             <div className="w-full">
               <Loader useSmallLoading={false} hSize="" />

@@ -21,7 +21,7 @@ const ShoppingCart: React.FC = () => {
   return (
     <div className="w-full p-10">
       {loading ? (
-        <Loader hSize="1000px" useSmallLoading={false} />
+        <Loader hSize="100" useSmallLoading={false} />
       ) : (
         <div className="flex w-full items-center justify-center p-[1em]">
           <div className="flex w-full items-start justify-start">
