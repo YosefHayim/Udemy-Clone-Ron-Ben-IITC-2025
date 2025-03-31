@@ -34,9 +34,7 @@ const Photo = () => {
     onSuccess: (data) => {
       console.log(data);
       setUserInformation(data.token, dispatch);
-      setTimeout(() => {
-        location.reload();
-      }, 1000);
+      location.reload();
     },
   });
 
@@ -45,18 +43,18 @@ const Photo = () => {
       uploadPhotoMutation.mutate(selectedFile);
       setTimeout(() => {
         refreshUserDataMutation.mutate();
-      }, 2000);
+      }, 1000);
     } else {
       alert("Please select an image first.");
     }
   };
 
   return (
-    <div className="w-full border-l flex-1 min-h-screen">
+    <div className="min-h-screen w-full flex-1 border-l">
       <div className="flex w-full  items-center justify-center gap-4">
         <div className="flex w-full flex-col items-center justify-center border-gray-300 p-[2em]">
           <h2 className="font-sans text-2xl font-bold">Photo</h2>
-          <p className="text-sm pt-2">Add a nice photo of yourself for your profile.</p>
+          <p className="pt-2 text-sm">Add a nice photo of yourself for your profile.</p>
         </div>
       </div>
       <hr className="w-full" />
@@ -73,7 +71,7 @@ const Photo = () => {
           <div className="w-full items-start justify-start">
             <b className="text-[0.85rem] font-bold">Add / Change Image</b>
             <form className="flex w-full flex-col items-start justify-start gap-6">
-              <div className="flex w-full items-start justify-start gap-4 mt-2">
+              <div className="mt-2 flex w-full items-start justify-start gap-4">
                 {/* input oculto */}
                 <input
                   type="file"
@@ -85,7 +83,7 @@ const Photo = () => {
                 {/* botão que ocupa todo o espaço restante */}
                 <label
                   htmlFor="file-upload"
-                  className="flex-grow text-start cursor-pointer rounded-[0.3em] border border-gray-500 bg-white px-4 py-2 text-[1rem] font-medium text-black hover:bg-gray-100 text-opacity-80"
+                  className="flex-grow cursor-pointer rounded-[0.3em] border border-gray-500 bg-white px-4 py-2 text-start text-[1rem] font-medium text-black text-opacity-80 hover:bg-gray-100"
                 >
                   No file selected
                 </label>
@@ -93,7 +91,7 @@ const Photo = () => {
                 {/* botão fixo */}
                 <button
                   type="button"
-                  className="whitespace-nowrap px-4 py-2 text-[1rem]  font-bold text-purple-700 cursor-pointer rounded-[0.3em] border border-purple-700 hover:bg-purpleHoverBtn"
+                  className="cursor-pointer whitespace-nowrap rounded-[0.3em] border  border-purple-700 px-4 py-2 text-[1rem] font-bold text-purple-700 hover:bg-purpleHoverBtn"
                   onClick={handleUpload}
                 >
                   Upload image
@@ -103,14 +101,13 @@ const Photo = () => {
               {/* botão Save */}
               <button
                 type="button"
-                className="rounded-[0.3em] bg-btnColor p-[0.8em] px-[1.5em] text-[0.875rem] font-sans font-extrabold text-white hover:bg-purple-600"
+                className="rounded-[0.3em] bg-btnColor p-[0.8em] px-[1.5em] font-sans text-[0.875rem] font-extrabold text-white hover:bg-purple-600"
                 onClick={handleUpload}
               >
                 Save
               </button>
             </form>
           </div>
-
         </div>
       </div>
     </div>

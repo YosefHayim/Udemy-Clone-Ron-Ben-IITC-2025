@@ -10,22 +10,29 @@ import SideBarProfile from "./SideBarProfile";
 import ProfileMain from "./SwitchPagesProfile/ProfileMain";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import Loader from "@/components/Loader/Loader";
 
 const ProfilePage = () => {
   const [selectedPage, setSelectedPage] = useState("Profile");
+  const [isLoading, setLoading] = useState(false);
+
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
-    if (selectedPage === "Subscriptions") {
-      navigate("/user/manage-subscriptions", { replace: true });
-    }
-    if (selectedPage === "View public profile") {
-      navigate("/user/public-profile", { replace: true });
-    }
-    if (selectedPage === "Payment Methods") {
-      navigate("/user/edit-payment-methods/", { replace: true });
-    }
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      if (selectedPage === "Subscriptions") {
+        navigate("/user/manage-subscriptions", { replace: true });
+      }
+      if (selectedPage === "View public profile") {
+        navigate("/user/public-profile", { replace: true });
+      }
+      if (selectedPage === "Payment Methods") {
+        navigate("/user/edit-payment-methods/", { replace: true });
+      }
+    }, 1000);
   }, [selectedPage]);
 
   const renderComponent = () => {
@@ -50,10 +57,16 @@ const ProfilePage = () => {
   };
   return (
     <div className="mx-[12rem] my-6 flex border-[1px] border-gray-300">
-      <div className="w-[14rem]">
-        <SideBarProfile selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
-      </div>
-      <div className="flex-1">{renderComponent()}</div>
+      {isLoading ? (
+        <div className="flex w-full items-center justify-center">
+          <Loader hSize="100" useSmallLoading={false} />
+        </div>
+      ) : (
+        <div className="flex w-full items-start justify-center">
+          <SideBarProfile selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
+          <div className="flex-1">{renderComponent()}</div>
+        </div>
+      )}
     </div>
   );
 };
