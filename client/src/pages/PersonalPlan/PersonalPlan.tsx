@@ -2,12 +2,13 @@ import { regFullButtonPurpleHover } from "@/utils/stylesStorage";
 import personalPlanBannerPage from "/images/personal-plan-banner-page.png";
 import artWomenRedImage from "/images/curly-women-red-image.jpg";
 import bussinessPersonalPlan from "/images/busienss-personal-plan.jpg";
+import mobileCalculatorImgPlan from "/images/purple-personal-plan-phone.jpg";
 import { IoStar } from "react-icons/io5";
 import TrustedBySection from "../Home/TrustedBySection/TrustedBySection";
 
 const PersonalPlan = () => {
   return (
-    <div className="text-base">
+    <div className="flex w-full flex-col items-start justify-start gap-10 px-7 text-base">
       <div className="flex w-full items-start justify-between">
         <div className="flex w-full flex-col items-start justify-start">
           <b className="mt-10 px-10 font-[lifeLtstd] text-2xl text-purple-600">Personal plan</b>
@@ -51,7 +52,7 @@ const PersonalPlan = () => {
           <p>average course rating</p>
         </div>
         <div className="my-5 flex w-full flex-col items-center justify-center gap-2">
-          <b className="text-5xl">4000+</b>
+          <b className="text-5xl">4,000+</b>
           <p>top instructors</p>
         </div>
       </div>
@@ -82,11 +83,35 @@ const PersonalPlan = () => {
           <b>Flexible</b>
           <h2 className="font-[lifeLtstd] text-5xl font-bold">Freedom to explore and discover</h2>
           <p className="w-full">
-            Test drive a new subject, switch between courses, or pick and
-            <br>choose the lessons that best fit your needs. Personal Plan gives</br> you the power
-            to control what and how you learn.
+            Test drive a new subject, switch between courses, or pick and choose the lessons that
+            best fit your needs. Personal Plan gives <br />
+            you the power to control what and how you learn.
           </p>
         </div>
+      </div>
+      <div className="flex w-full items-center justify-start gap-5">
+        <div>
+          <img src={mobileCalculatorImgPlan} alt="" className="h-full" />
+        </div>
+        <div className="flex w-[450px] flex-col items-start justify-start gap-5">
+          <b>Effective</b>
+          <h2 className="font-[lifeLtstd] text-5xl font-bold">
+            Learning designed to help you start doing
+          </h2>
+          <p>
+            Gain practical knowledge through coding exercises, practice tests and quizzes, plus
+            in-course note taking and Q&A. Once you finish a course, strut your new skills with a
+            certificate of completion.
+          </p>
+        </div>
+      </div>
+      <div className="flex w-full flex-col items-start justify-start">
+        <h2 className="mt-10 font-[lifeLtstd] text-4xl font-bold">Get a peek at the collection</h2>
+        <p>
+          With thousands of our best-rated courses from top Udemy instructors, Personal Plan is your{" "}
+          <br />
+          subscription to success. Explore some of the included content below.
+        </p>
       </div>
     </div>
   );
