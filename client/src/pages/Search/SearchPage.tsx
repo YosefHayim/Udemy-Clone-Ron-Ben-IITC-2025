@@ -61,13 +61,13 @@ const SearchPage: React.FC = () => {
   }, [filterData, currentPage, searchTerm, setSearchParams]);
 
   const { data, isLoading, error, isPending } = useQuery({
-    queryKey: ["courses", searchTerm.toLowerCase(), currentPage, JSON.stringify(filterData)],
+    queryKey: ["courses", searchTerm.toLowerCase(), currentPage, filterData],
     queryFn: () => {
       if (!searchTerm && !currentPage && !limit) {
         throw new Error("Course ID is undefined");
       }
       searchAlgoLocalStorage(searchTerm);
-      return getAllCourses(searchTerm || "", filterData || {}, limit, currentPage);
+      return getAllCourses(searchTerm, filterData, limit, currentPage);
     },
     enabled: !!searchTerm,
   });

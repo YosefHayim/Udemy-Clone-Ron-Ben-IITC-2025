@@ -1,10 +1,8 @@
 import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configuration";
 
-type fn = (searchTerm: string, limit: number, page: number, filterData?: {}) => Promise<any>;
-
-const getAllCourses: fn = async (searchTerm = "", filterData = {}, limit = 13, page = 1) => {
+const getAllCourses = async (searchTerm = "", filterData, limit = 13, page = 1) => {
   if (!searchTerm) {
-    console.log("Search term is required");
+    console.warn("Search term is required");
     return "";
   }
 
@@ -21,35 +19,42 @@ const getAllCourses: fn = async (searchTerm = "", filterData = {}, limit = 13, p
     certificateOnly = "",
   } = filterData;
 
-  const encodedSearchTerm = encodeURIComponent(searchTerm);
+  const encodedSearch = encodeURIComponent(searchTerm);
 
-  // Safely convert Set to strings if they exist
-  const languageStr = language.size ? Array.from(language).join(",") : "";
-  const levelsStr = levels.size ? Array.from(levels).join(",") : "";
-  const topicsStr = topics.size ? Array.from(topics).join(",") : "";
-  const subtitlesStr = subtitles.size ? Array.from(subtitles).join(",") : "";
-  const videosDurationsStr = videosDurations.size ? Array.from(videosDurations).join(",") : "";
+  // Convert sets to comma-separated strings (if not empty)
+  const toCSV = (set) => (set.size ? Array.from(set).join(",") : "");
+  const languageCSV = toCSV(language);
+  const levelsCSV = toCSV(levels);
+  const topicsCSV = toCSV(topics);
+  const subtitlesCSV = toCSV(subtitles);
+  const durationsCSV = toCSV(videosDurations);
 
-  // Construct query string, including only valid parameters
-  const url =
-    `${isProduction ? baseUrl : localhostUrl}/api/course/?search=${encodedSearchTerm}` +
-    (price === "Free" ? `&courseDiscountPrice=0` : "") + // Fix for free courses
-    (price === "Paid" ? `&courseDiscountPrice[gte]=0.01` : "") + // Fix for paid courses
-    (ratings ? `&averageRating[gte]=${ratings}` : "") +
-    (languageStr ? `&courseLanguages=${languageStr}` : "") +
-    (certificateOnly ? `&certificateOnly=${certificateOnly}` : "") +
-    (levelsStr ? `&courseLevel=${levelsStr}` : "") +
-    (topicsStr ? `&courseTopic=${topicsStr}` : "") +
-    (videosDurationsStr ? `&totalCourseDuration[gte]=${videosDurationsStr}` : "") +
-    (sortBy ? `&sort=${sortBy}` : "") +
-    `&page=${page}&limit=${limit}`;
+  // Build query parameters
+  const queryParams = [
+    `search=${encodedSearch}`,
+    price === "Free" && "courseDiscountPrice=0",
+    price === "Paid" && "courseDiscountPrice[gte]=0.01",
+    ratings && `averageRating[gte]=${ratings}`,
+    languageCSV && `courseLanguages=${languageCSV}`,
+    certificateOnly && `certificateOnly=${certificateOnly}`,
+    levelsCSV && `courseLevel=${levelsCSV}`,
+    topicsCSV && `courseTopic=${topicsCSV}`,
+    durationsCSV && `totalCourseDuration[gte]=${durationsCSV}`,
+    sortBy && `sort=${sortBy}`,
+    `page=${page}`,
+    `limit=${limit}`,
+  ]
+    .filter(Boolean) // remove falsy entries
+    .join("&");
+
+  const url = `${isProduction ? baseUrl : localhostUrl}/api/course/?${queryParams}`;
 
   try {
-    const r = await axiosClient.get(url);
-    console.log(r.data);
-    return r.data;
+    const response = await axiosClient.get(url);
+    console.log(response.data);
+    return response.data;
   } catch (error) {
-    console.log("Error fetching courses: ", error.response.data.message);
+    console.error("Error fetching courses:", error?.response?.data?.message || error.message);
     throw error;
   }
 };

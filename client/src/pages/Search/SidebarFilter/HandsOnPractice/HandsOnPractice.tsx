@@ -4,7 +4,6 @@ import { handsOnPractice } from "@/utils/handsOnPractice";
 import { useState } from "react";
 import { useContext } from "react";
 
-
 const HandsOnPractice = () => {
   const [display, setDisplay] = useState<boolean>(false);
   const [filterData, setFilterData] = useContext(filterContext);

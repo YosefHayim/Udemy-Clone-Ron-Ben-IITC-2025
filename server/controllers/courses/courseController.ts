@@ -10,11 +10,8 @@ import mongoose from "mongoose";
 
 const getAllCourses = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    // Apply filters and search but do not paginate for counting total matching courses
-    const countQuery = new APIFeatures(Course.find(), req.query)
-      .filter()
-      .search();
-    const totalCourses = await countQuery.getQuery().countDocuments();
+    const totalCourses = await Course.countDocuments();
+    console.log(totalCourses);
 
     // Apply full pipeline including pagination, passing totalCourses to adjust limit dynamically
     const features = new APIFeatures(Course.find(), req.query)

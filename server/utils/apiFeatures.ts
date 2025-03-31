@@ -29,8 +29,10 @@ class APIFeatures<T> {
       const searchQuery = this.queryString.search;
       this.query = this.query.find({
         $or: [
-          { courseName: { $regex: searchQuery, $options: "i" } },
           { category: { $regex: searchQuery, $options: "i" } },
+          { subCategory: { $regex: searchQuery, $options: "i" } },
+          { courseTopic: { $regex: searchQuery, $options: "i" } },
+          { courseName: { $regex: searchQuery, $options: "i" } },
         ],
       });
     }
@@ -38,12 +40,23 @@ class APIFeatures<T> {
   }
 
   sort(): this {
-    if (this.queryString.sort) {
-      const sortBy = this.queryString.sort.split(",").join(" ");
-      this.query = this.query.sort(sortBy);
-    } else {
+    const sortOption = this.queryString.sort;
+    console.log(this.queryString.sort);
+
+    if (sortOption === "newest") {
       this.query = this.query.sort("-createdAt");
+    } else if (sortOption === "highest-rated") {
+      this.query = this.query.sort("-averageRating");
+    } else if (sortOption === "Most Relevant") {
+      // Placeholder for relevance logic – inject custom sorting logic here
+      // For now, let's say relevance = combo of rating and reviews (example)
+      this.query = this.query.sort("-averageRating -reviewsCount");
+    } else if (sortOption === "most-reviewed") {
+      this.query = this.query.sort("-totalRatings");
+    } else {
+      this.query = this.query.sort("-createdAt"); // default fallback
     }
+
     return this;
   }
 

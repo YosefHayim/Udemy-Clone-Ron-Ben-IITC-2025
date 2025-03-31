@@ -119,7 +119,7 @@ const Filter: React.FC<FilterProps> = ({
               className="flex cursor-pointer gap-[0.5em] py-[0.5em] text-languageText"
             >
               <Checkbox
-                className="rounded-[0.1em] border-2 border-black"
+                className="rounded-[0.1em] border-2 border-black focus:outline-none"
                 onClick={() => handleClickValue(item.name!)}
                 checked={
                   filterTitle === "Language" && filterData.language.has(item.name)
