@@ -57,15 +57,13 @@ const ProfilePage = () => {
   };
   return (
     <div className="mx-[12rem] my-6 flex border-[1px] border-gray-300">
+      <SideBarProfile selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
       {isLoading ? (
         <div className="flex w-full items-center justify-center">
           <Loader hSize="100" useSmallLoading={false} />
         </div>
       ) : (
-        <div className="flex w-full items-start justify-center">
-          <SideBarProfile selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
-          <div className="flex-1">{renderComponent()}</div>
-        </div>
+        <div className="flex-1">{renderComponent()}</div>
       )}
     </div>
   );
