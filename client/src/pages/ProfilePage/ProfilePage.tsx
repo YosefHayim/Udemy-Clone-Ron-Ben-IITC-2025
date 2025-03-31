@@ -15,9 +15,6 @@ const ProfilePage = () => {
   const [selectedPage, setSelectedPage] = useState("Profile");
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user);
-  console.log("📦 Redux user state:", user);
-
-  console.log("🧠 Redux user:", user);
 
   useEffect(() => {
     if (selectedPage === "Subscriptions") {
@@ -29,7 +26,7 @@ const ProfilePage = () => {
     if (selectedPage === "Payment Methods") {
       navigate("/user/edit-payment-methods/", { replace: true });
     }
-  }, [selectedPage, navigate]);
+  }, [selectedPage]);
 
   const renderComponent = () => {
     switch (selectedPage) {
@@ -56,11 +53,7 @@ const ProfilePage = () => {
       <div className="w-64">
         <SideBarProfile selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
       </div>
-      <div className="flex-1">
-        {" "}
-        {/* Removi h-screen e overflow */}
-        {renderComponent()}
-      </div>
+      <div className="flex-1">{renderComponent()}</div>
     </div>
   );
 };
