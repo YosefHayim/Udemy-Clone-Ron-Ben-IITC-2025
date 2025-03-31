@@ -15,6 +15,7 @@ import { setClearAll } from "@/redux/slices/cartSlice";
 
 const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }) => {
   const [isLoading, setLoading] = useState(false);
+  const [navigateFirstCourseBought, setNavigateFirstCourseBought] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,6 +29,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
   const checkOutMutation = useMutation({
     mutationFn: buyCourseById,
     onSuccess: () => {
+      setNavigateFirstCourseBought(coursesIds[0]);
       dispatch(setClearAll());
       setTimeout(() => {
         refreshUserDataMutation.mutate();
@@ -41,7 +43,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
       console.log(data);
       setUserInformation(data.token, dispatch);
       setTimeout(() => {
-        navigate(`/course-view/${coursesIds[0]}`);
+        navigate(`/course-view/${navigateFirstCourseBought}`);
       }, 1000);
     },
   });
