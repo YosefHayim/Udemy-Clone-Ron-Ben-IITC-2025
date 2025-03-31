@@ -50,7 +50,7 @@ const ProfilePage = () => {
   };
   return (
     <div className="mx-[12rem] my-6 flex border-[1px] border-gray-300">
-      <div className="w-64">
+      <div className="w-[14rem]">
         <SideBarProfile selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
       </div>
       <div className="flex-1">{renderComponent()}</div>
