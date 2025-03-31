@@ -9,6 +9,7 @@ import itCertification from "/images/banner.jpg";
 import starYellowBanner from "/images/banner10.jpg";
 import twentyFourHourSale from "/images/banner11.png";
 import cravingSomeFlexibility from "/images/banner12.jpg";
+import jumpIntoLearningForLess from "/images/banner13.jpg";
 import { Link } from "react-router-dom";
 
 export const getBanners = ({
@@ -23,6 +24,18 @@ export const getBanners = ({
   const searchesOfUser = JSON.parse(localStorage.getItem("searchesOfUser") || "[]");
 
   const banners = [
+    {
+      src: jumpIntoLearningForLess,
+      content: () => (
+        <div className="absolute left-16 top-16 flex flex-col items-start gap-3 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
+          <h1 className="w-full font-extrabold">Jump into learning - for less</h1>
+          <p className="pr-2 font-sans text-sm">
+            if you're new to Udemy we've got good news: For a limited time, courses start at just
+            ₪59.90 for new learners! Shop now!.
+          </p>
+        </div>
+      ),
+    },
     {
       src: CertificationTheUltimate,
       content: () => (
@@ -40,7 +53,7 @@ export const getBanners = ({
         <div className="absolute left-16 top-16 flex flex-col items-start gap-3 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
           <h1 className="w-full font-extrabold">Make 2025 the year of your career</h1>
           <p className="pr-2 font-sans text-sm">
-            The skills you need are on sale from 39.90 | Sale ends January 10.
+            The skills you need are on sale from ₪39.90 | Sale ends January 10.
           </p>
         </div>
       ),
