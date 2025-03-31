@@ -11,7 +11,6 @@ import mongoose from "mongoose";
 const getAllCourses = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const totalCourses = await Course.countDocuments();
-    console.log(totalCourses);
 
     // Apply full pipeline including pagination, passing totalCourses to adjust limit dynamically
     const features = new APIFeatures(Course.find(), req.query)

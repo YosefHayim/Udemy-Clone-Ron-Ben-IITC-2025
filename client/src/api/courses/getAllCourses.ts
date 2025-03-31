@@ -32,6 +32,7 @@ const getAllCourses = async (searchTerm = "", filterData, limit = 13, page = 1) 
   // Build query parameters
   const queryParams = [
     `search=${encodedSearch}`,
+    sortBy && `sort=${sortBy}`,
     price === "Free" && "courseDiscountPrice=0",
     price === "Paid" && "courseDiscountPrice[gte]=0.01",
     ratings && `averageRating[gte]=${ratings}`,
@@ -40,8 +41,7 @@ const getAllCourses = async (searchTerm = "", filterData, limit = 13, page = 1) 
     levelsCSV && `courseLevel=${levelsCSV}`,
     topicsCSV && `courseTopic=${topicsCSV}`,
     durationsCSV && `totalCourseDuration[gte]=${durationsCSV}`,
-    sortBy && `sort=${sortBy}`,
-    `page=${page}`,
+    page > 1 && `page=${page}`,
     `limit=${limit}`,
   ]
     .filter(Boolean) // remove falsy entries

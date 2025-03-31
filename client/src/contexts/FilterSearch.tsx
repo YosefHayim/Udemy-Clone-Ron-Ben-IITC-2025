@@ -14,7 +14,6 @@ export const filterContext = createContext([
     certificateOnly: false,
     searchTerm: "",
   },
-  () => {},
 ]);
 
 export const FilterProvider = ({ children }: { children: ReactNode }) => {

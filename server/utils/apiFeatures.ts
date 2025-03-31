@@ -13,6 +13,7 @@ class APIFeatures<T> {
   filter(): this {
     const queryObj = { ...this.queryString };
     const excludeFields = ["page", "sort", "limit", "fields", "search"];
+
     excludeFields.forEach((el) => delete queryObj[el]);
 
     // Advanced filtering (Mongoose operators like $gte, $lte, etc.)
@@ -25,8 +26,15 @@ class APIFeatures<T> {
   }
 
   search(): this {
+    const searchQuery = this.queryString.search;
+
     if (this.queryString.search) {
-      const searchQuery = this.queryString.search;
+      this.query = this.query.find({
+        $or: [{ courseName: { $regex: searchQuery, $options: "i" } }],
+      });
+    }
+
+    if (this.queryString.search && this.queryString.sort === "most-relevant") {
       this.query = this.query.find({
         $or: [
           { category: { $regex: searchQuery, $options: "i" } },
@@ -36,21 +44,17 @@ class APIFeatures<T> {
         ],
       });
     }
+
     return this;
   }
 
   sort(): this {
     const sortOption = this.queryString.sort;
-    console.log(this.queryString.sort);
 
     if (sortOption === "newest") {
       this.query = this.query.sort("-createdAt");
     } else if (sortOption === "highest-rated") {
       this.query = this.query.sort("-averageRating");
-    } else if (sortOption === "Most Relevant") {
-      // Placeholder for relevance logic – inject custom sorting logic here
-      // For now, let's say relevance = combo of rating and reviews (example)
-      this.query = this.query.sort("-averageRating -reviewsCount");
     } else if (sortOption === "most-reviewed") {
       this.query = this.query.sort("-totalRatings");
     } else {
