@@ -1,4 +1,4 @@
-import { baseUrl } from "@/api/configuration";
+import { baseUrl, localhostUrl } from "@/api/configuration";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const ProfilePic: React.FC<{
@@ -16,7 +16,10 @@ const ProfilePic: React.FC<{
   size = "h-[5em] w-[5em]",
   customTextSize = "",
 }) => {
-  const imageUrl = profilePic.startsWith("https") ? profilePic : `${baseUrl}${profilePic}`;
+  const imageUrl = profilePic.startsWith("https")
+    ? `${baseUrl}${profilePic}`
+    : `${localhostUrl}${profilePic}`;
+  console.log(imageUrl, `asd`);
 
   return (
     <div
