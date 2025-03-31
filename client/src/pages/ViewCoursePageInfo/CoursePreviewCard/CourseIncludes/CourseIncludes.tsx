@@ -22,7 +22,7 @@ const CourseIncludes: React.FC = () => {
         </div>
         <div className="flex items-center gap-[0.5em]">
           <IoTrophyOutline />
-          <li>Certificate on completion</li>
+          <li>Certificate of completion</li>
         </div>
       </ul>
     </div>

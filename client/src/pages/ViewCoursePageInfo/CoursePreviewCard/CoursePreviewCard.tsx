@@ -9,12 +9,12 @@ import { useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
 import { AiFillInfoCircle } from "react-icons/ai";
 import { RootState } from "@/redux/store";
-import { CoursePreviewCardProps } from "@/types/types";
 import { IoPlayCircleSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import InteractionsBtns from "@/pages/Search/CourseHoverCardInfo/InteractionBtns/InteractionsBtns";
 import BuyNowBtn from "./AddCartNBuyBtn/BuyNowBtn";
 import InteractionButtonsOfPreviewCard from "./InteractionButtonsOfPreviewCard/InteractionButtonsOfPreviewCard";
+import { regFullButtonPurpleHover } from "@/utils/stylesStorage";
 
 const CoursePreviewCard: React.FC<{
   courseImg: string;
@@ -84,14 +84,14 @@ const CoursePreviewCard: React.FC<{
               <b className="text-[1.3em]">You purchased this course on Aug. 26, 2024</b>
             </div>
             <Button
-              className="w-full rounded-[0.2em] font-sans font-extrabold text-white"
+              className={`${regFullButtonPurpleHover} w-full rounded-sm`}
               onClick={navigateCourseLesson}
             >
               Go to course
             </Button>
           </div>
         )}
-        {!isAlreadyInCart ? (
+        {!isAlreadyInCart && !isAlreadyBought ? (
           <div className="w-full">
             <TimeLeftBuyCourse coursePrice={coursePrice} />
             <InteractionsBtns
@@ -111,10 +111,15 @@ const CoursePreviewCard: React.FC<{
         ) : (
           <div></div>
         )}
+      </div>
+      <div className="px-[1.5em]">
         <MoneyBack />
         <CourseIncludes />
         <InteractionButtonsOfPreviewCard />
-        <CouponArea />
+        {!isAlreadyBought && <CouponArea />}
+      </div>
+      <hr />
+      <div className="px-[1.5em] pb-[1.5em]">
         <UdemyBusiness />
       </div>
     </div>

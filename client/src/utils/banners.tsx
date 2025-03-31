@@ -7,6 +7,7 @@ import subscribeToTheBestOfUdemy from "/images/banner5.jpg";
 import newsletterBanner from "/images/banner8.jpg";
 import itCertification from "/images/banner.jpg";
 import starYellowBanner from "/images/banner10.jpg";
+import twentyFourHourSale from "/images/banner11.png";
 import { Link } from "react-router-dom";
 
 export const getBanners = ({
@@ -158,6 +159,17 @@ export const getBanners = ({
                 Keep learning
               </Link>
               and reap the rewards.
+            </p>
+          </div>
+        ),
+      },
+      {
+        src: twentyFourHourSale,
+        content: () => (
+          <div className="absolute left-16 top-16 flex w-[450px] flex-col items-start gap-3 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
+            <h1 className="w-full font-extrabold">24-Hour Flash Sale</h1>
+            <p className="w-5/6 pr-2 font-sans text-sm">
+              Learn from real-world experts for as low as ₪49.90 Sale ends tonight!
             </p>
           </div>
         ),
