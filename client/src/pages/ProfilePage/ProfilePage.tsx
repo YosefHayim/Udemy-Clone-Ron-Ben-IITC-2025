@@ -14,7 +14,6 @@ import { RootState } from "@/redux/store";
 const ProfilePage = () => {
   const [selectedPage, setSelectedPage] = useState("Profile");
   const navigate = useNavigate();
-  const isUserLoaded = useSelector((state: RootState) => state.user.isUserLoaded);
   const user = useSelector((state: RootState) => state.user);
   console.log("📦 Redux user state:", user);
 
@@ -31,10 +30,6 @@ const ProfilePage = () => {
       navigate("/user/edit-payment-methods/", { replace: true });
     }
   }, [selectedPage, navigate]);
-
-  if (!isUserLoaded) {
-    return <div className="p-8 text-gray-500">Carregando dados do usuário...</div>;
-  }
 
   const renderComponent = () => {
     switch (selectedPage) {
@@ -57,16 +52,17 @@ const ProfilePage = () => {
     }
   };
   return (
-    <div className="flex my-6 mx-[12rem] border-[1px] border-gray-300">
+    <div className="mx-[12rem] my-6 flex border-[1px] border-gray-300">
       <div className="w-64">
         <SideBarProfile selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
       </div>
-      <div className="flex-1"> {/* Removi h-screen e overflow */}
+      <div className="flex-1">
+        {" "}
+        {/* Removi h-screen e overflow */}
         {renderComponent()}
       </div>
     </div>
   );
-  
 };
 
 export default ProfilePage;

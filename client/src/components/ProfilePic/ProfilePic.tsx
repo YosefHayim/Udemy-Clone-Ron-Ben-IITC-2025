@@ -29,7 +29,7 @@ const ProfilePic: React.FC<{
         <AvatarFallback
           className={`${
             isBig ? "text-2xl" : "text-1xl"
-          } bg-black  opacity-90 font-sans font-bold text-white ${customTextSize}`}
+          } bg-black  font-sans font-bold text-white opacity-90 ${customTextSize}`}
         >
           {shortcutName.toUpperCase()}
         </AvatarFallback>
