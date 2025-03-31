@@ -28,8 +28,8 @@ export const getBanners = ({
       src: jumpIntoLearningForLess,
       content: () => (
         <div className="absolute left-16 top-16 flex flex-col items-start gap-3 rounded-sm border-gray-100 bg-white px-5 py-7 text-black shadow-alertAlgoInfo">
-          <h1 className="w-full font-extrabold">Jump into learning - for less</h1>
-          <p className="pr-2 font-sans text-sm">
+          <h1 className="w-[420px] font-extrabold">Jump into learning - for less</h1>
+          <p className="w-[385px] pr-2 font-sans text-sm">
             if you're new to Udemy we've got good news: For a limited time, courses start at just
             ₪59.90 for new learners! Shop now!.
           </p>

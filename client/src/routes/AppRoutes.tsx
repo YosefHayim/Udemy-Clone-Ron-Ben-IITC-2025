@@ -38,6 +38,7 @@ import Messages from "@/pages/Messages/Messages";
 import OrganizationLogin from "@/pages/OrganizationLogin/OrganizationLogin";
 import SignUpOrganization from "@/pages/SignUpOrganization/SignUpOrganization";
 import ProfilePage from "@/pages/ProfilePage/ProfilePage";
+import PersonalPlan from "@/pages/PersonalPlan/PersonalPlan";
 
 const LayoutWithNavbarAndFooter = () => {
   const location = useLocation();
@@ -75,6 +76,7 @@ const LayoutWithNavbarAndFooter = () => {
         <Route path="/not/search/not/found/:searchTerm" element={<SearchNotFound />} />
         <Route path="/course-view/:courseId" element={<ViewCoursePageInfo />} />
         <Route path="/terms-of-use" element={<Terms />} />
+        <Route path="/personal-plan/?locale=en_US" element={<PersonalPlan />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
