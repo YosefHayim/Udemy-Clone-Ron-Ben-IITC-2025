@@ -17,18 +17,6 @@ export interface FilterProps {
   setDisplay: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export interface DataOfUser {
-  fName: string;
-  lName: string;
-  headline: string;
-  bio: string;
-  website: string;
-  xPlatform: string;
-  youtube: string;
-  linkedin: string;
-  facebook: string;
-}
-
 export interface LoginPayload {
   email: string;
   password: string;

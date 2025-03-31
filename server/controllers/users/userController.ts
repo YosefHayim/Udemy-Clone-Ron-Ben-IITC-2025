@@ -510,6 +510,33 @@ const updateUserInfo = catchAsync(
       return next(createError("User not found.", 404));
     }
 
+    const token = generateToken({
+      id: updatedUser._id,
+      fullName: updatedUser.fullName,
+      email: updatedUser.email,
+      profilePic: updatedUser.profilePic,
+      bio: updatedUser.bio,
+      role: updatedUser.role,
+      coursesBought: updatedUser.coursesBought,
+      udemyCredits: updatedUser.udemyCredits,
+      userLinks: updatedUser.links,
+      language: updatedUser.preferredLanguage,
+      headline: updatedUser.headline,
+      fieldLearning: updatedUser.fieldLearning,
+      isLoggedPreviouslyWithGoogle: updatedUser.isLoggedPreviouslyWithGoogle,
+      whenCreated: updatedUser.createdAt,
+      whenUpdated: updatedUser.updatedAt,
+      isAuthActivated: updatedUser.isAuthActivate,
+    });
+
+    res.cookie("cookie", token, {
+      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      maxAge: 90 * 24 * 60 * 60 * 1000,
+    });
+
     res.status(200).json({
       status: "success",
       data: {
