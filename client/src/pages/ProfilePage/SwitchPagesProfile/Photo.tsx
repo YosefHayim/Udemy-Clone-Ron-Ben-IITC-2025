@@ -85,7 +85,7 @@ const Photo = () => {
                 {/* botão que ocupa todo o espaço restante */}
                 <label
                   htmlFor="file-upload"
-                  className="flex-grow text-start cursor-pointer rounded-[0.3em] border border-gray-500 bg-white px-4 py-2 text-lg font-medium text-black hover:bg-gray-100 text-opacity-80"
+                  className="flex-grow text-start cursor-pointer rounded-[0.3em] border border-gray-500 bg-white px-4 py-2 text-[1rem] font-medium text-black hover:bg-gray-100 text-opacity-80"
                 >
                   No file selected
                 </label>
@@ -93,7 +93,7 @@ const Photo = () => {
                 {/* botão fixo */}
                 <button
                   type="button"
-                  className="whitespace-nowrap px-4 py-2 text-lg font-bold text-purple-700 cursor-pointer rounded-[0.3em] border border-purple-700 hover:bg-purpleHoverBtn"
+                  className="whitespace-nowrap px-4 py-2 text-[1rem]  font-bold text-purple-700 cursor-pointer rounded-[0.3em] border border-purple-700 hover:bg-purpleHoverBtn"
                   onClick={handleUpload}
                 >
                   Upload image
