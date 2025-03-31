@@ -48,7 +48,7 @@ const PaginationPages: React.FC<{ totalPages: number }> = ({ totalPages }) => {
               }
               ${page === "..." ? "cursor-default text-gray-500" : "cursor-pointer"}
             `}
-            onClick={() => typeof page === "number" && updatePage(page)}
+            onClick={() => updatePage(page)}
           >
             {page === "..." ? (
               <span className="font-sans font-extrabold tracking-[0.1em] text-[#303141]">...</span>
