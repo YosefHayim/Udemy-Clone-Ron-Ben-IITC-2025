@@ -22,7 +22,7 @@ const SortDropDown = () => {
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newSort = event.target.value;
     setSelectedSort(newSort);
-    setFilterData((prev: any) => ({
+    setFilterData((prev) => ({
       ...prev,
       sortBy: newSort,
     }));

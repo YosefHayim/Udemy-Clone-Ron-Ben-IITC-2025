@@ -13,6 +13,8 @@ export const filterContext = createContext([
     videosDurations: new Set(),
     certificateOnly: false,
     searchTerm: "",
+    page: 1,
+    limit: 20,
   },
 ]);
 

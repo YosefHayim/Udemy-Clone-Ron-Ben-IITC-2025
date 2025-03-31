@@ -43,6 +43,7 @@ const getAllCourses = async (searchTerm = "", filterData, limit = 13, page = 1) 
     durationsCSV && `totalCourseDuration[gte]=${durationsCSV}`,
     page > 1 && `page=${page}`,
     `limit=${limit}`,
+    handsOnPractice && `hands-on=${handsOnPractice}`,
   ]
     .filter(Boolean) // remove falsy entries
     .join("&");

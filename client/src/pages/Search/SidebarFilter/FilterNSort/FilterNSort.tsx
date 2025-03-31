@@ -3,7 +3,6 @@ import FilterBtn from "./FilterBtn/FilterBtn";
 import SortDropDown from "./SortDropDown/SortDropDown";
 import { filterContext } from "@/contexts/filterSearch";
 
-
 const defaultFilters = {
   sortBy: "",
   handsOnPractice: new Set(),
@@ -17,7 +16,7 @@ const defaultFilters = {
   certificateOnly: false,
 };
 
-const convertToComparable = (filters: any) =>
+const convertToComparable = (filters) =>
   JSON.stringify(
     Object.fromEntries(
       Object.entries(filters).map(([key, value]) => [
@@ -29,7 +28,6 @@ const convertToComparable = (filters: any) =>
 
 const FilterNSort = ({ coursesResults, searchTerm }) => {
   const [filterData, setFilterData] = useContext(filterContext);
-
   const isFiltersDefault = convertToComparable(filterData) === convertToComparable(defaultFilters);
 
   return (

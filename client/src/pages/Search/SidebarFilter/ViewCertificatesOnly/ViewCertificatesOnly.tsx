@@ -5,7 +5,6 @@ import { filterContext } from "@/contexts/filterSearch";
 
 const ViewCertificatesOnly = () => {
   const [filterData, setFilterData] = useContext(filterContext);
-
   const [isActive, setIsActive] = useState<boolean | null>(false);
 
   const handleToggle = () => {

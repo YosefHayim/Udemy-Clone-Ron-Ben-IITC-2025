@@ -1,12 +1,9 @@
 import Filter from "@/components/Filter/Filter";
-import { filterContext } from "@/contexts/filterSearch";
 import { prices } from "@/utils/price";
 import { useState } from "react";
-import { useContext } from "react";
 
 const Price = () => {
   const [display, setDisplay] = useState<boolean>(false);
-  const [filterData, setFilterData] = useContext(filterContext);
 
   return (
     <div>

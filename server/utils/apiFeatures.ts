@@ -11,8 +11,16 @@ class APIFeatures<T> {
   }
 
   filter(): this {
-    const queryObj = { ...this.queryString };
-    const excludeFields = ["page", "sort", "limit", "fields", "search"];
+    const queryObj = structuredClone(this.queryString);
+
+    const excludeFields = [
+      "page",
+      "sort",
+      "limit",
+      "fields",
+      "search",
+      "hands-on",
+    ];
 
     excludeFields.forEach((el) => delete queryObj[el]);
 
@@ -20,6 +28,7 @@ class APIFeatures<T> {
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
     const filters = JSON.parse(queryStr);
+    console.log(filters);
 
     this.query = this.query.find(filters);
     return this;

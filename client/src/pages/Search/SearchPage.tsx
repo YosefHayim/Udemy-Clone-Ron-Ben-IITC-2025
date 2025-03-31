@@ -24,18 +24,18 @@ const SearchPage: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchTerm: string | null = searchParams.get("q")?.toLowerCase();
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
-  const limit = 20;
 
   // Update URL dynamically when filterData or page changes
   useEffect(() => {
     const params: Record<string, string> = {
-      q: searchTerm || "",
-      page: currentPage.toString(),
-      limit: limit.toString(),
+      q: searchTerm,
     };
-    if (filterData.sortBy !== undefined) params.sort = filterData.sortBy;
+
+    if (filterData.sortBy !== undefined && filterData.sortBy.length > 1)
+      params.sort = filterData.sortBy;
+
+    if (filterData.page > 1) params.page = filterData.page.toString();
 
     if (filterData.language.size > 0)
       params.courseLanguages = Array.from(filterData.language).join(",");
@@ -51,16 +51,16 @@ const SearchPage: React.FC = () => {
     if (filterData.price) params.price = filterData.price;
 
     setSearchParams(params);
-  }, [filterData, currentPage, searchTerm, setSearchParams]);
+  }, [filterData, filterData.page, searchTerm, setSearchParams]);
 
   const { data, isLoading, error, isPending } = useQuery({
-    queryKey: ["courses", searchTerm.toLowerCase(), currentPage, filterData],
+    queryKey: ["courses", searchTerm.toLowerCase(), filterData.page, filterData],
     queryFn: () => {
-      if (!searchTerm && !currentPage && !limit) {
+      if (!searchTerm) {
         throw new Error("Course ID is undefined");
       }
       searchAlgoLocalStorage(searchTerm);
-      return getAllCourses(searchTerm, filterData, limit, currentPage);
+      return getAllCourses(searchTerm, filterData);
     },
     enabled: !!searchTerm,
   });
@@ -135,11 +135,7 @@ const SearchPage: React.FC = () => {
 
         {/* Paginação */}
         <div className="mt-10">
-          <Pagination
-            totalPages={data?.totalPages}
-            currentPage={currentPage || 1}
-            setCurrentPage={setCurrentPage}
-          />
+          <Pagination totalPages={data?.totalPages} />
         </div>
       </div>
     </div>

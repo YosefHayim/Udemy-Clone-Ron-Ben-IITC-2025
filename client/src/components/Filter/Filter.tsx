@@ -29,7 +29,7 @@ const Filter: React.FC<FilterProps> = ({
       } else {
         filterData.language.add(name); // Add if it doesn't exist
       }
-      structuredClone(filterData);
+      setFilterData(structuredClone(filterData));
     }
 
     if (filterTitle === "Hands-on Practice") {
@@ -38,7 +38,7 @@ const Filter: React.FC<FilterProps> = ({
       } else {
         filterData.handsOnPractice.add(name);
       }
-      structuredClone(filterData);
+      setFilterData(structuredClone(filterData));
     }
 
     if (filterTitle === "Video Duration") {
@@ -47,7 +47,7 @@ const Filter: React.FC<FilterProps> = ({
       } else {
         filterData.videosDurations.add(name);
       }
-      structuredClone(filterData);
+      setFilterData(structuredClone(filterData));
     }
 
     if (filterTitle === "Topics") {
@@ -56,7 +56,7 @@ const Filter: React.FC<FilterProps> = ({
       } else {
         filterData.topics.add(name);
       }
-      structuredClone(filterData);
+      setFilterData(structuredClone(filterData));
     }
 
     if (filterTitle === "Level") {
@@ -65,7 +65,7 @@ const Filter: React.FC<FilterProps> = ({
       } else {
         filterData.levels.add(name);
       }
-      structuredClone(filterData);
+      setFilterData(structuredClone(filterData));
     }
 
     if (filterTitle === "Subtitles") {
@@ -74,7 +74,7 @@ const Filter: React.FC<FilterProps> = ({
       } else {
         filterData.subtitles.add(name);
       }
-      structuredClone(filterData);
+      setFilterData(structuredClone(filterData));
     }
 
     if (filterTitle === "Price") {
@@ -84,7 +84,7 @@ const Filter: React.FC<FilterProps> = ({
         filterData.price = name;
       }
 
-      structuredClone(filterData);
+      setFilterData(structuredClone(filterData));
     }
   };
 

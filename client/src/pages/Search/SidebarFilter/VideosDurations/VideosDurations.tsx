@@ -1,11 +1,9 @@
 import Filter from "@/components/Filter/Filter";
-import { filterContext } from "@/contexts/filterSearch";
 import { videoDurations } from "@/utils/videoDuration";
-import { useContext, useState } from "react";
+import { useState } from "react";
 
 const VideosDurations: React.FC = () => {
   const [display, setDisplay] = useState<boolean>(true);
-  const [filterData, setFilterData] = useContext(filterContext);
 
   return (
     <div>
