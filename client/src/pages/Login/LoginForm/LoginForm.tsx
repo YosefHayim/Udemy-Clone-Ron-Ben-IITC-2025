@@ -10,7 +10,7 @@ import { emailContext } from "@/contexts/EmailContext";
 
 const LoginForm = ({ showOnlyLoginButton = true }) => {
   const emailCtx = useContext(emailContext);
-  const globalEmail = useSelector((state: RootState) => state.user.email);
+  const globalEmail = useSelector((state: RootState) => state?.user?.email);
   if (!emailCtx) throw new Error("emailContext is not provided");
   const [emailUser, setEmailUser, userFullName, setUserFullName] = emailCtx;
 
@@ -32,10 +32,10 @@ const LoginForm = ({ showOnlyLoginButton = true }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const email = (formData.get("email") as string) || globalEmail;
+    const emailSendToLoginApi = (formData.get("email") as string) || globalEmail;
 
-    if (email.length > 1) {
-      const isValidEmail = /^[^\s@]+@[^\s@]+\.(com|co\.il)$/.test(email);
+    if (emailSendToLoginApi.length > 1) {
+      const isValidEmail = /^[^\s@]+@[^\s@]+\.(com|co\.il)$/.test(emailSendToLoginApi);
       if (!isValidEmail) {
         setShowIsError(!isValidEmail);
         return;
@@ -44,9 +44,10 @@ const LoginForm = ({ showOnlyLoginButton = true }) => {
 
     setLoading(true);
     setTimeout(() => {
-      loginMutation.mutate({ email });
+      loginMutation.mutate({ email: emailSendToLoginApi });
       setLoading(false);
     }, 1500);
+    setEmailUser(emailSendToLoginApi);
   };
 
   return (
