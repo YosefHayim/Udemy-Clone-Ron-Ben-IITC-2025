@@ -12,7 +12,6 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { initialOptions } from "./contexts/PaypalContext";
 
 export const googleClient = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-
 socket.on("connect", () => {
   console.log(`✅ Connected to server with ID: ${socket.id}`);
 });

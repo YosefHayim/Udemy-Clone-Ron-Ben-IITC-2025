@@ -1,9 +1,6 @@
 import { createContext, useState, ReactNode } from "react";
-import { FilterDataProps } from "@/types/types";
 
-export const filterContext = createContext<
-  [FilterDataProps, React.Dispatch<React.SetStateAction<FilterDataProps>>]
->([
+export const filterContext = createContext([
   {
     sortBy: "",
     handsOnPractice: new Set(),
@@ -21,7 +18,7 @@ export const filterContext = createContext<
 ]);
 
 export const FilterProvider = ({ children }: { children: ReactNode }) => {
-  const [filterData, setFilterData] = useState<FilterDataProps>({
+  const [filterData, setFilterData] = useState({
     sortBy: "",
     handsOnPractice: new Set(),
     language: new Set(),

@@ -1,5 +1,7 @@
+const paypalClient = import.meta.env.VITE_PAYPAL_CLIENT;
+
 export const initialOptions = {
-  clientId: `AWBvZAvKH5izd24F1JfMsToGlmQP5hvDtnAPLWOP8TJ0qif2nRpYrnKesjNZaDl8IfuJ_QibFfai0ahB`,
+  clientId: paypalClient,
   currency: "USD",
   intent: "capture",
   isPaypal: false,
