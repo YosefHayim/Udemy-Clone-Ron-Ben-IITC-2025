@@ -23,7 +23,7 @@ const AccountSecurity = () => {
 
   return (
     <>
-      <form className="w-full">
+      <form className="w-full mb-4">
         <div className="w-full min-h-screen border-l border-borderGrayColor py-[1em] flex flex-col items-center">
 
           <div className="flex w-full flex-col items-center">
@@ -104,8 +104,8 @@ const AccountSecurity = () => {
             <hr className="w-full border-t border-gray-300 my-[1em]" />
 
             {/* Multi-factor Auth */}
-            <div className="mt-2 flex w-full max-w-[600px] text-[1rem] items-start justify-start">
-              <div className="flex flex-col items-start justify-start pl-4 pr-[7rem] gap-[0.5em] border-[1px] border-gray-100 p-[1em] shadow-alertAlgoInfo">
+            <div className="mt-2 flex w-full max-w-[600px] text-[1rem] items-start justify-start shadow-2xl">
+              <div className="flex flex-col items-start justify-start pl-4 pr-[3rem] gap-[0.5em] border-[1px] border-gray-100 p-[1em] shadow-alertAlgoInfo">
                 <b>Multi-factor Authentication</b>
                 <p>
                   Increase your account security by requiring that a code emailed to you be entered
