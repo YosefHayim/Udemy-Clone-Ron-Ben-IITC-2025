@@ -1,71 +1,54 @@
 import { filterContext } from "@/contexts/filterSearch";
+import { getPageNumbers } from "@/utils/getPageNumbersAlgo";
 import { useContext } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
-const PaginationPages: React.FC<{
-  totalPages: number;
-}> = ({ totalPages }) => {
+const PaginationPages: React.FC<{ totalPages: number }> = ({ totalPages }) => {
   const [filterData, setFilterData] = useContext(filterContext);
 
-  if (!setFilterData.page || totalPages < 1) {
-    return <div></div>;
-  }
+  const currentPage = filterData.page;
+
+  if (!currentPage || totalPages < 1) return null;
+
+  const updatePage = (newPage: number) => {
+    setFilterData((prev) => ({ ...prev, page: newPage }));
+  };
 
   const handleNextPage = () => {
-    if (filterData.page < totalPages) {
-      setFilterData.page = +1;
-    }
+    if (currentPage < totalPages) updatePage(currentPage + 1);
   };
 
   const handlePreviousPage = () => {
-    setFilterData.page((prevPage) => Math.max(prevPage - 1, 1));
-  };
-
-  const getPageNumbers = () => {
-    const pages = [];
-
-    if (totalPages <= 5) {
-      return Array.from({ length: totalPages }, (_, i) => i + 1);
-    }
-
-    if (filterData.page <= 3) {
-      pages.push(1, 2, 3, "...", totalPages);
-    } else if (filterData.page >= totalPages - 2) {
-      pages.push(1, "...", totalPages - 2, totalPages - 1, totalPages);
-    } else {
-      pages.push("...", filterData.page, "...");
-    }
-
-    return pages;
+    if (currentPage > 1) updatePage(currentPage - 1);
   };
 
   return (
-    <div className="mt-[2em] flex  items-center justify-center gap-[1em]">
+    <div className="mt-[2em] flex items-center justify-center gap-[1em]">
       <button
         onClick={handlePreviousPage}
-        disabled={filterData.page === 1}
+        disabled={currentPage === 1}
         className={`rounded-[100em] border border-[#6D28D2] p-[0.5em] hover:bg-hoverDivGray focus:outline-none ${
-          filterData.page === 1 ? "cursor-not-allowed opacity-50" : ""
+          currentPage === 1 ? "cursor-not-allowed opacity-50" : ""
         }`}
       >
         <MdKeyboardArrowLeft size={24} className="text-[#6D28D2]" />
       </button>
 
-      <div className="flex cursor-pointer  items-center gap-[0.5em] text-[#6D28D2]">
-        {getPageNumbers().map((page, index) => (
+      <div className="flex items-center gap-[0.5em] text-[#6D28D2]">
+        {getPageNumbers(currentPage, totalPages).map((page, index) => (
           <b
             key={index}
             className={`rounded-[0.2em] p-[0.5em] text-[1rem] hover:bg-purpleHoverBtn 
               ${
-                filterData.page === page
-                  ? "relative font-sans font-extrabold text-[#6D28D2] content-[''] before:absolute before:bottom-2 before:left-[0.25rem] before:right-[0.2rem] before:h-[0.15rem] before:bg-purple-900"
+                currentPage === page
+                  ? "relative font-sans font-extrabold text-[#6D28D2] before:absolute before:bottom-2 before:left-[0.25rem] before:right-[0.2rem] before:h-[0.15rem] before:bg-purple-900"
                   : page === totalPages
-                    ? "font-sans font-extrabold text-[#303141]" // 🔥 O total de páginas agora está preto
+                    ? "font-sans font-extrabold text-[#303141]"
                     : ""
               }
               ${page === "..." ? "cursor-default text-gray-500" : "cursor-pointer"}
             `}
-            onClick={() => typeof page === "number" && setFilterData.page(page)}
+            onClick={() => typeof page === "number" && updatePage(page)}
           >
             {page === "..." ? (
               <span className="font-sans font-extrabold tracking-[0.1em] text-[#303141]">...</span>

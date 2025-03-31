@@ -31,6 +31,8 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
     videosDurations: new Set(),
     certificateOnly: false,
     searchTerm: "",
+    page: 1,
+    limit: 20,
   });
 
   return (
