@@ -26,10 +26,10 @@ const AccountSecurity = () => {
       <form className="w-full">
         <div className="flex w-full items-start justify-center border border-borderGrayColor py-[1em]">
           <div className="flex w-full flex-col items-center">
-            <h2 className="font-sans font-extrabold">Account</h2>
-            <p className="mb-[1em]">Edit your account settings and change your password here.</p>
+            <h2 className="font-sans text-[1.5rem]"  style={{ fontWeight: 700 }}>Account</h2>
+            <p className="mb-[1em] text-[1rem]" style={{ fontWeight: 500 }}>Edit your account settings and change your password here.</p>
             <hr className="w-full" />
-            <div className="w-[450px] flex-col py-[1.5em]">
+            <div className="w-[610px] flex-col py-[1.5em]">
               <label htmlFor="email" className="font-sans font-extrabold">
                 Email:
               </label>
@@ -48,7 +48,7 @@ const AccountSecurity = () => {
               </div>
             </div>
             <hr className="w-full" />
-            <div className="flex w-[450px] flex-col items-start gap-[1.3em] py-[1.5em]">
+            <div className="flex w-[650px] flex-col items-start gap-[1.3em] py-[1.5em]">
               <input
                 required
                 type="text"
@@ -75,7 +75,7 @@ const AccountSecurity = () => {
           </div>
         </div>
         <div className="flex h-[320px] w-full items-start justify-center border-r p-[1em]">
-          <div className="flex w-[450px] items-start justify-start py-[1em]">
+          <div className="flex w-[650px] items-start justify-start py-[1em]">
             <div className="flex flex-col items-start justify-start gap-[0.5em] border-gray-600 p-[1em] shadow-alertAlgoInfo">
               <b>Multi-factor Authentication</b>
               <p>
