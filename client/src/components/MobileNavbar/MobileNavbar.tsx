@@ -14,7 +14,7 @@ const MobileNavbar = ({ isTyping, setIsTyping }) => {
   useEffect(() => {}, [showSearchMobile]);
 
   return (
-    <div className="fixed z-50 flex w-full flex-col items-center justify-center bg-white px-2 py-2 shadow-carouselShadowBtn">
+    <div className="fixed top-0 z-50 flex w-full flex-col items-center justify-center bg-white px-2 py-2 shadow-carouselShadowBtn">
       {!showSearchMobile && (
         <div className="flex w-full items-center justify-between">
           <div className={`${btnStyleNHover}`} onClick={() => setShowSidebar(true)}>

@@ -9,9 +9,9 @@ const ButtonNavbar: React.FC<{
   insideBtnText: string;
   paragraphText: string;
   to: string;
-}> = ({ buttonName, insideBtnText, paragraphText, to }) => {
+  coursesInProgress: number;
+}> = ({ buttonName, insideBtnText, paragraphText, to, coursesInProgress }) => {
   const [isHovering, setIsHovering] = useState(false);
-  const coursesInProgress = useSelector((state: RootState) => state?.user?.coursesInProgress);
 
   return (
     <div

@@ -22,14 +22,14 @@ const ProfilePic: React.FC<{
     <div
       className={`${
         isHover ? "hover:bg-purple-100" : ""
-      } flex rounded-[0.4em] py-[0.2em] font-sans font-normal text-[#020202] hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300`}
+      } flex rounded-[0.4em] py-[0.2em] font-sans font-normal  text-[#020202] hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300`}
     >
       <Avatar className={`${isBig ? `${size}` : ""}`}>
         <AvatarImage src={imageUrl} className="ml-2 rounded-[100em]" />
         <AvatarFallback
           className={`${
             isBig ? "text-2xl" : "text-1xl"
-          } bg-black font-sans font-bold text-white ${customTextSize}`}
+          } bg-black  opacity-90 font-sans font-bold text-white ${customTextSize}`}
         >
           {shortcutName.toUpperCase()}
         </AvatarFallback>
