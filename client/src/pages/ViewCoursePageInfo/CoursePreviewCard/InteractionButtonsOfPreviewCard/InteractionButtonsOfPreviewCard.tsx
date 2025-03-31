@@ -12,7 +12,7 @@ const InteractionButtonsOfPreviewCard: React.FC = () => {
 
   return (
     <div className=".interaction-button-div">
-      <div className="relative mb-[1em] flex  w-full flex-wrap justify-between text-[0.75rem]">
+      <div className="relative flex  w-full flex-wrap justify-between text-[0.75rem]">
         <div
           onClick={handleClick}
           className="share w-min-max flex cursor-pointer items-center justify-center rounded-sm text-center font-extrabold hover:bg-gray-200"

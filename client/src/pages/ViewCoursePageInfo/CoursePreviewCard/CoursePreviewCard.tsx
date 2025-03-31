@@ -55,7 +55,7 @@ const CoursePreviewCard: React.FC<{
 
   return (
     <div
-      className={`z-[10] w-full  border border-b-gray-100 bg-white shadow-previewCourseCardShadow`}
+      className={`z-[10] flex w-full items-start justify-start border border-b-gray-100 bg-white shadow-previewCourseCardShadow`}
     >
       <div className="relative" onClick={navigateCourseLesson}>
         <img src={courseImg} alt="Image of the course" className="h-full w-full object-cover" />
@@ -68,7 +68,7 @@ const CoursePreviewCard: React.FC<{
         </div>
       </div>
 
-      <div className="p-[1.5em]">
+      <div className="w-full  p-[1.5em]">
         <div className={isAlreadyBought ? "hidden" : "flex"}>
           <CoursePrice
             showFullPrice={true}
@@ -104,7 +104,7 @@ const CoursePreviewCard: React.FC<{
               coursePrice={coursePrice}
               fullPriceCourse={fullPrice}
             />
-            <div className="mt-2 w-full">
+            <div className="w-full">
               <BuyNowBtn courseId={courseId} discountPrice={discountPrice} fullPrice={fullPrice} />
             </div>
           </div>
@@ -112,14 +112,14 @@ const CoursePreviewCard: React.FC<{
           <div></div>
         )}
       </div>
-      <div className="px-[1.5em]">
+      <div className="w-full px-[1.5em]">
         <MoneyBack />
         <CourseIncludes />
         <InteractionButtonsOfPreviewCard />
         {!isAlreadyBought && <CouponArea />}
       </div>
       <hr />
-      <div className="px-[1.5em] pb-[1.5em]">
+      <div className="px-[1.5em]">
         <UdemyBusiness />
       </div>
     </div>
