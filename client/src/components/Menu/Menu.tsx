@@ -29,7 +29,7 @@ const Menu: React.FC = () => {
     searchAlgoLocalStorage(category.toLowerCase());
   };
   return (
-    <div className="font-sans text-[0.8rem] border-t-gray-200 border-t-[1px]">
+    <div className="font-sans text-[0.85rem] border-t-gray-200 border-t-[1px]">
       <hr />
       <div className="relative z-20 bg-white shadow-md" onMouseLeave={handleMouseLeave}>
         <div className="flex items-center justify-center space-x-8 py-[0.8rem]">
@@ -40,7 +40,7 @@ const Menu: React.FC = () => {
               onMouseEnter={() => handleMouseEnter(index)}
             >
               <button
-                className="menu-button font-medium text-gray-800 hover:text-purple-600 focus:outline-none"
+                className="menu-button text-gray-800 text-opacity-90 hover:text-purple-700 focus:outline-none"
                 onClick={() => handleNavigate(category.title)}
               >
                 {category.title}
@@ -64,7 +64,7 @@ const Menu: React.FC = () => {
             ></div>
 
             {/* Submenu Items */}
-            <div className="mx-auto text-[1rem] flex w-full max-w-screen-xl justify-center space-x-8">
+            <div className="mx-auto text-[0.85rem] flex w-full max-w-screen-xl justify-center space-x-8">
               {categories[activeCategory]?.subcategories.map((subcategory, index) => (
                 <div
                   key={index}
