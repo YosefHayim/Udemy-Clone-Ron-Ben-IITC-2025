@@ -23,8 +23,8 @@ const ProfilePic: React.FC<{
   return (
     <div
       className={`${
-        isHover ? "hover:bg-purple-100" : ""
-      } flex rounded-[0.4em] py-[0.2em] font-sans font-normal  text-[#020202] hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300`}
+        isHover ? "px-3 hover:bg-purple-100" : ""
+      } flex items-center justify-center rounded-[0.4em] py-[0.2em] font-sans font-normal text-[#020202] hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300`}
     >
       <Avatar className={`${isBig ? `${size}` : ""}`}>
         <AvatarImage src={imageUrl} className="ml-2 rounded-[100em]" />
