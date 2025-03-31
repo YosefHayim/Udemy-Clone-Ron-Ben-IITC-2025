@@ -19,7 +19,6 @@ import MobileNavbar from "../MobileNavbar/MobileNavbar";
 import Cookies from "js-cookie";
 
 const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
-
   const isMobile = useMediaQuery({ maxWidth: 800 });
   const navigate = useNavigate();
   const [isTyping, setIsTyping] = useState(false);
@@ -28,6 +27,8 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
   const coursesInCart =
     useSelector((state: RootState) => state?.cart?.coursesAddedToCart) ||
     useSelector((state: RootState) => state?.cart?.coursesAddedToWishList);
+
+  const coursesInProgress = useSelector((state: RootState) => state?.user?.coursesInProgress);
 
   useEffect(() => {
     const body = document.querySelector("body");
@@ -56,8 +57,10 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
       {/* <SaleCommercial />dasdsa */}
       <SaleCommercialTwo />
       {!isMobile && (
-        <div className={`relative z-[50] flex w-full items-center justify-between bg-white px-[1rem] pb-[0.9em] pt-[0.2em] ${showMenu ? '' : 'shadow-md shadow-[#bcc0ce]'}`}>
-        <div className="flex w-full items-center justify-between px-[0.25rem] pt-[0.4rem] ">
+        <div
+          className={`relative z-[50] flex w-full items-center justify-between bg-white px-[1rem] pb-[0.9em] pt-[0.2em] ${showMenu ? "" : "shadow-md shadow-[#bcc0ce]"}`}
+        >
+          <div className="flex w-full items-center justify-between px-[0.25rem] pt-[0.4rem] ">
             <Link to="/">
               <Logo />
             </Link>
@@ -83,7 +86,11 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
               />
               {cookie && (
                 <Link to="/wishlist">
-                  <ButtonNavbar buttonName={"My learning"} insideBtnText="Go to my learning" />
+                  <ButtonNavbar
+                    buttonName={"My learning"}
+                    insideBtnText="Go to my learning"
+                    coursesInProgress={coursesInProgress}
+                  />
                 </Link>
               )}
               {cookie && (
