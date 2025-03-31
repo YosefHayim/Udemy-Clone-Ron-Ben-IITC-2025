@@ -28,7 +28,7 @@ const ProfilePage = () => {
       navigate("/user/public-profile", { replace: true });
     }
     if (selectedPage === "Payment Methods") {
-      navigate("/user/payment-methods", { replace: true });
+      navigate("/user/edit-payment-methods/", { replace: true });
     }
   }, [selectedPage, navigate]);
 
