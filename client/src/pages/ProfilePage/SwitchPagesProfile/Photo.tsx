@@ -52,7 +52,7 @@ const Photo = () => {
   };
 
   return (
-    <div className="w-full border-l flex-1">
+    <div className="w-full border-l flex-1 min-h-screen">
       <div className="flex w-full  items-center justify-center gap-4">
         <div className="flex w-full flex-col items-center justify-center border-gray-300 p-[2em]">
           <h2 className="font-sans text-2xl font-bold">Photo</h2>
@@ -61,41 +61,56 @@ const Photo = () => {
       </div>
       <hr className="w-full" />
       <div className="flex w-full flex-col items-center justify-center gap-4">
-        <div className="flex w-[650px] flex-col items-start justify-start gap-4 bg-white">
-          <b className="pt-[1em]">Image preview</b>
-          <div className="w-full border border-gray-400 p-[1em]">
+        <div className="flex w-[600px] flex-col items-start justify-start gap-4 bg-white">
+          <b className="pt-[1em] text-[0.9rem]">Image preview</b>
+          <div className="w-full border border-gray-400 p-[1.3em]">
             <div className="flex w-full items-center justify-center bg-white">
-              <div className="flex w-full items-center justify-center bg-gray-100 p-[1em]">
+              <div className="flex w-full items-center justify-center bg-gray-100 p-[0.5em]">
                 <img src={preview || placeholderPhotoImg} alt="Default user photo image" />
               </div>
             </div>
           </div>
           <div className="w-full items-start justify-start">
-            <b>Add / Change Image</b>
+            <b className="text-[0.85rem] font-bold">Add / Change Image</b>
             <form className="flex w-full flex-col items-start justify-start gap-6">
-              <div className="flex w-full  items-start justify-start gap-4">
-                <Input
+              <div className="flex w-full items-start justify-start gap-4 mt-2">
+                {/* input oculto */}
+                <input
                   type="file"
-                  className="bw-min-max g-white rounded-[0.2em] border border-gray-500 text-black"
+                  id="file-upload"
+                  className="hidden"
                   onChange={handleFileChange}
                 />
+
+                {/* botão que ocupa todo o espaço restante */}
+                <label
+                  htmlFor="file-upload"
+                  className="flex-grow text-start cursor-pointer rounded-[0.3em] border border-gray-500 bg-white px-4 py-2 text-[1rem] font-medium text-black hover:bg-gray-100 text-opacity-80"
+                >
+                  No file selected
+                </label>
+
+                {/* botão fixo */}
                 <button
                   type="button"
-                  className="whitespace-nowrap px-4 text-purple-7 00 text-[1rem] font-bold py-2 cursor-pointer rounded-[0.3em] border border-purple-700 hover:bg-purpleHoverBtn"
+                  className="whitespace-nowrap px-4 py-2 text-[1rem]  font-bold text-purple-700 cursor-pointer rounded-[0.3em] border border-purple-700 hover:bg-purpleHoverBtn"
                   onClick={handleUpload}
                 >
                   Upload image
                 </button>
               </div>
+
+              {/* botão Save */}
               <button
                 type="button"
-                className="rounded-[0.3em] bg-btnColor p-[0.8em] px-[1.5em] font-sans font-extrabold text-white hover:bg-purple-600"
+                className="rounded-[0.3em] bg-btnColor p-[0.8em] px-[1.5em] text-[0.875rem] font-sans font-extrabold text-white hover:bg-purple-600"
                 onClick={handleUpload}
               >
                 Save
               </button>
             </form>
           </div>
+
         </div>
       </div>
     </div>

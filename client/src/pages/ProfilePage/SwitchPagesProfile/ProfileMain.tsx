@@ -325,8 +325,8 @@ const ProfileMain = () => {
               <div className="flex w-full justify-start">
                 <Button
                   type="submit"
-                  className="my-[2em] rounded-[0.2rem] bg-btnColor px-4 font-mono text-[1.1rem] font-extrabold text-white transition duration-150 hover:bg-[#892DE1] focus:outline-none"
-                >
+                  className="rounded-[0.3em] my-6 bg-btnColor p-[0.8em] px-[1.5em] text-[0.875rem] font-sans font-extrabold text-white hover:bg-purple-600"
+                  >
                   Save
                 </Button>
               </div>

@@ -46,7 +46,7 @@ const SideBarProfile = ({ selectedPage, setSelectedPage }) => {
       {/* menu pages */}
       <div className="w-[18rem]  bg-white">
         {/* Menu lateral */}
-        <aside className="w-34">
+        <aside className="w-[14rem]">
           <ul className="py-4">
             {menuItems.map((item, index) => (
               <li
