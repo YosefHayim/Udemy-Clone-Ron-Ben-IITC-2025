@@ -55,8 +55,8 @@ const Photo = () => {
     <div className="w-full border-l flex-1">
       <div className="flex w-full  items-center justify-center gap-4">
         <div className="flex w-full flex-col items-center justify-center border-gray-300 p-[2em]">
-          <h2 className="font-sans font-extrabold">Photo</h2>
-          <p>Add a nice photo of yourself for your profile.</p>
+          <h2 className="font-sans text-2xl font-bold">Photo</h2>
+          <p className="text-sm pt-2">Add a nice photo of yourself for your profile.</p>
         </div>
       </div>
       <hr className="w-full" />
@@ -81,7 +81,7 @@ const Photo = () => {
                 />
                 <button
                   type="button"
-                  className="w-min-max cursor-pointer rounded-[0.3em] border border-purple-700 hover:bg-purpleHoverBtn"
+                  className="whitespace-nowrap px-4 text-purple-7 00 text-[1rem] font-bold py-2 cursor-pointer rounded-[0.3em] border border-purple-700 hover:bg-purpleHoverBtn"
                   onClick={handleUpload}
                 >
                   Upload image
