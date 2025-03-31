@@ -19,7 +19,6 @@ const ProfilePic: React.FC<{
   const imageUrl = profilePic.startsWith("https")
     ? `${baseUrl}${profilePic}`
     : `${localhostUrl}${profilePic}`;
-  console.log(imageUrl, `asd`);
 
   return (
     <div
