@@ -28,35 +28,29 @@ const SearchPage: React.FC = () => {
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
   const limit = 20;
 
+  // Update URL dynamically when filterData or page changes
   useEffect(() => {
-    const queryParts: string[] = [];
+    const params: Record<string, string> = {
+      q: searchTerm || "",
+      page: currentPage.toString(),
+      limit: limit.toString(),
+    };
+    if (filterData.sortBy !== undefined) params.sort = filterData.sortBy;
 
     if (filterData.language.size > 0)
-      queryParts.push(`lang=${Array.from(filterData.language).join(",")}`);
+      params.courseLanguages = Array.from(filterData.language).join(",");
 
-    if (filterData.levels.size > 0)
-      queryParts.push(`instructional_level=${Array.from(filterData.levels).join(",")}`);
+    if (filterData.levels.size > 0) params.courseLevel = Array.from(filterData.levels).join(",");
 
-    if (filterData.topics.size > 0)
-      queryParts.push(`topics=${Array.from(filterData.topics).join(",")}`);
+    if (filterData.topics.size > 0) params.courseTopic = Array.from(filterData.topics).join(",");
 
-    if (filterData.price) queryParts.push(`price=${filterData.price}`);
+    if (filterData.ratings) params.averageRating = filterData.ratings.toString();
 
-    if (filterData.ratings) queryParts.push(`ratings=${filterData.ratings.toString()}`);
+    if (filterData.certificateOnly) params.certificateOnly = "true";
 
-    if (filterData.certificateOnly) queryParts.push(`features=certificate`);
+    if (filterData.price) params.price = filterData.price;
 
-    if (filterData.sortBy) queryParts.push(`sort=${filterData.sortBy}`);
-
-    if (searchTerm) queryParts.push(`q=${searchTerm}`);
-
-    if (currentPage !== 1) queryParts.push(`page=${currentPage}`);
-
-    queryParts.push(`limit=${limit}`);
-
-    const queryString = queryParts.join("&");
-
-    setSearchParams(queryString);
+    setSearchParams(params);
   }, [filterData, currentPage, searchTerm, setSearchParams]);
 
   const { data, isLoading, error, isPending } = useQuery({
