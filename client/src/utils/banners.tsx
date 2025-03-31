@@ -127,7 +127,7 @@ export const getBanners = ({
           <div className="flex w-5/6 flex-col items-start justify-start gap-2 pr-2 font-sans text-sm">
             <p>Explore thousands of highly-rated courses with Personal Plan.</p>
             <button className="w-min-max rounded-[0.3em] bg-btnColor  px-2 py-2 font-sans font-extrabold text-white hover:bg-btnHoverColor focus:outline-none">
-              Start free week
+              <Link to="/personal-plan/?locale=en_US">Start free week</Link>
             </button>
           </div>
         </div>
