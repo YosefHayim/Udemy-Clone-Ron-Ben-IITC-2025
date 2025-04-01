@@ -7,11 +7,12 @@ import CourseRatings from "@/components/CourseCard/CourseRatings/CourseRatings";
 import { useQuery } from "@tanstack/react-query";
 import getCourseCartInfoByCourseId from "@/api/courses/getCourseCartInfoByCourseId";
 import { useDispatch } from "react-redux";
-import { removeCourseFromCart } from "@/redux/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { FaCirclePlay } from "react-icons/fa6";
 import OptionsMyLearning from "./OptionsMyLearning/OptionsMyLearning";
 import CourseImg from "@/components/CourseCard/CourseImg/CourseImg";
+import { removeCourseFromCart, setCoursesAddedToWishList } from "@/redux/slices/cartSlice";
+import { useState } from "react";
 
 const ItemInCart = ({
   isFontThick = false,
@@ -38,8 +39,9 @@ const ItemInCart = ({
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isDisplay, setDisplay] = useState(true);
 
-  const { data, error, isPending } = useQuery({
+  const { data, error } = useQuery({
     queryKey: ["course", courseId],
     queryFn: () => {
       if (!courseId) {
@@ -55,16 +57,12 @@ const ItemInCart = ({
     return;
   }
 
-  const handleCourseView = (courseId: string): void => {
-    navigate(`/course-view/${courseId}`);
-  };
-
   const handleRemove = () => {
     dispatch(
       removeCourseFromCart({
         courseId,
         originalPrice: data?.courseFullPrice || 0,
-        discountPrice: data?.courseDiscountPrice || 0,
+        discountPrice: data?.courseDiscountPrice,
       })
     );
   };
@@ -72,11 +70,13 @@ const ItemInCart = ({
   const handlePreformOperation = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     const btnType = target.tagName === "BUTTON";
+
     if (btnType && target.textContent === "Remove") {
       handleRemove();
     } else if (btnType && target.textContent === "Save for Later") {
-      console.log("Save for Later clicked");
-    } else if (btnType && target.textContent === "Move to Wishlist") {
+      dispatch(setCoursesAddedToWishList(courseId));
+      handleRemove();
+      setDisplay(false);
       console.log("Move to Wishlist clicked");
     } else if (!btnType) {
       navigate(`/course-view/${courseId}`);
@@ -88,7 +88,11 @@ const ItemInCart = ({
   }
 
   return (
-    <div id={courseId} className={` ${width} ${textSize}`} onClick={handlePreformOperation}>
+    <div
+      id={courseId}
+      className={` ${width} ${textSize} ${isDisplay ? "flex" : "hidden"}`}
+      onClick={handlePreformOperation}
+    >
       <div
         id={courseId}
         className={`flex ${
