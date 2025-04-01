@@ -45,7 +45,7 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
 
   return (
     <section className="px-6 py-8">
-      {randomAlgoWord && !title && (
+      {randomAlgoWord && title && (
         <h2 className="mb-6 font-sans text-3xl font-extrabold">
           Because you searched for “
           <Link
