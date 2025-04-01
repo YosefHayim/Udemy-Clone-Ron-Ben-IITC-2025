@@ -339,7 +339,7 @@ const createSections = async () => {
   const sections = [];
 
   for (const course of courses) {
-    const numSections = faker.number.int({ min: 1, max: 3 }); // Random number of sections per course
+    const numSections = faker.number.int({ min: 4, max: 7 }); // Random number of sections per course
     const createdSections = [];
 
     for (let i = 0; i < numSections; i++) {
@@ -404,7 +404,7 @@ const createLessons = async () => {
 
     console.log(`Creating lessons for section: ${section.title}...`);
 
-    const totalLessonsPerSection = faker.number.int({ min: 1, max: 3 }); // Randomize number of lessons
+    const totalLessonsPerSection = faker.number.int({ min: 3, max: 8 }); // Randomize number of lessons
     const createdLessons = [];
     let totalDurationForSection = 0;
 
