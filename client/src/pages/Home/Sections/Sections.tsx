@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
 import { filterContext } from "@/contexts/filterSearch";
+import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
 
 const Sections = () => {
   const navigate = useNavigate();
@@ -22,6 +23,9 @@ const Sections = () => {
   const [isCourseAnimating, setCourseAnimating] = useState(false);
   const [countClick, setCountClick] = useState(0);
   const [countCourseClick, setCourseClick] = useState(0);
+  const [hoveredCourse, setHoveredCourse] = useState(null);
+  const [hoverPosition, setHoverPosition] = useState({ top: 0, left: 0 });
+
 
   const handlePrev = () => {
     if (isAnimating || currentIndex === 0) return;
@@ -190,17 +194,57 @@ const Sections = () => {
                 <div key={groupIndex} className="flex min-w-full flex-shrink-0 gap-4">
 
                   {coursesGroup.map((courseCard, i) => (
+                    // <HomeCourseCard
+                    //   courseCard={courseCard}
+                    //   index={courseCard._id}
+                    //   key={courseCard._id}
+                    // />
                     <HomeCourseCard
+                      key={courseCard._id}
                       courseCard={courseCard}
                       index={courseCard._id}
-                      key={courseCard._id}
+                      onHover={setHoveredCourse}
+                      onPosition={setHoverPosition}
                     />
+
                   ))}
                 </div>
               );
             })}
           </div>
         </div>
+
+        {hoveredCourse && (
+          <div
+            className="absolute z-[1000]"
+            style={{
+              top: `${hoverPosition.top}px`,
+              left: `${hoverPosition.left}px`,
+            }}
+          >
+            <CourseHoverCardInfo
+              courseName={hoveredCourse?.courseName}
+              courseLanguages={hoveredCourse?.courseLanguages}
+              courseTag={hoveredCourse?.courseTag}
+              showCourseLength={true}
+              totalCourseLessons={hoveredCourse?.totalCourseLessons}
+              totalCourseDuration={hoveredCourse?.totalCourseDuration}
+              courseLevel={hoveredCourse?.courseLevel}
+              courseUpdatedAt={hoveredCourse?.updatedAt}
+              courseRecapInfo={hoveredCourse?.courseRecapInfo}
+              positionedRight={true}
+              width="330px"
+              instructorId={hoveredCourse?.courseInstructor?._id}
+              courseTopic={hoveredCourse?.courseTopic}
+              index={hoveredCourse?._id}
+              displayWhatYouLearn={false}
+              whatYouWillLearn={hoveredCourse?.whatYouWillLearn}
+              courseId={hoveredCourse?._id}
+              fullPriceCourse={hoveredCourse?.courseFullPrice}
+              coursePrice={hoveredCourse?.courseDiscountPrice}
+            />
+          </div>
+        )}
 
         <div className="my-2 w-full ml-[11.5rem]">
           <button

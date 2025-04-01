@@ -7,26 +7,34 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
 
-const HomeCourseCard = ({ courseCard, index }) => {
-  const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
-  const [hoverPosition, setHoverPosition] = useState({ top: 0, left: 0 });
+const HomeCourseCard = ({ courseCard, index, onHover, onPosition }) => {
+  // const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
+  // const [hoverPosition, setHoverPosition] = useState({ top: 0, left: 0 });
   const navigate = useNavigate();
 
-  const handleMouseEnter = (id: string, e: React.MouseEvent<HTMLDivElement>) => {
-    const offsetTop = e.currentTarget.offsetTop;
-    const offsetLeft = e.currentTarget.offsetLeft + e.currentTarget.offsetWidth;
-
-    setHoverPosition({
-      top: offsetTop,
-      left: offsetLeft + 12, // esse "12" dá um espacinho
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const hoverWidth = 330;
+  
+    let left = rect.right + 12;
+    if (left + hoverWidth > window.innerWidth) {
+      left = rect.left - hoverWidth - 12;
+    }
+  
+    onPosition({
+      top: rect.top + window.scrollY,
+      left,
     });
-
-    setHoveredCourse(id);
+  
+    onHover(courseCard); // Agora corretamente usando props
   };
+  
+  
 
   const handleMouseLeave = () => {
-    setHoveredCourse(null);
+    onHover(null);
   };
+  
 
   const handleCardClick = (courseId: string) => {
     navigate(`/course-view/${courseId}`);
@@ -35,7 +43,7 @@ const HomeCourseCard = ({ courseCard, index }) => {
   return (
     <div
       onClick={() => handleCardClick(courseCard._id)}
-      onMouseEnter={(e) => handleMouseEnter(courseCard._id, e)}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       id={courseCard?._id}
       className="relative w-[312px] cursor-pointer flex-col items-start rounded-lg border border-borderGrayColor bg-white shadow-sm"
@@ -59,37 +67,7 @@ const HomeCourseCard = ({ courseCard, index }) => {
         />
         <CourseTag tagName={courseCard?.courseTag} />
       </div>
-      {hoveredCourse === courseCard._id && (
-        <div
-          className="absolute z-[1000]"
-          style={{
-            top: `${hoverPosition.top}px`,
-            left: `${hoverPosition.left}px`,
-          }}
-        >
-          <CourseHoverCardInfo
-            courseName={courseCard?.courseName}
-            courseLanguages={courseCard?.courseLanguages}
-            courseTag={courseCard?.courseTag}
-            showCourseLength={true}
-            totalCourseLessons={courseCard?.totalCourseLessons}
-            totalCourseDuration={courseCard?.totalCourseDuration}
-            courseLevel={courseCard?.courseLevel}
-            courseUpdatedAt={courseCard?.updatedAt}
-            courseRecapInfo={courseCard?.courseRecapInfo}
-            positionedRight={true}
-            width="330px"
-            instructorId={courseCard?.courseInstructor?._id}
-            courseTopic={courseCard?.courseTopic}
-            index={index}
-            displayWhatYouLearn={false}
-            whatYouWillLearn={courseCard?.whatYouWillLearn}
-            courseId={courseCard?._id}
-            fullPriceCourse={courseCard?.courseFullPrice}
-            coursePrice={courseCard?.courseDiscountPrice}
-          />
-        </div>
-      )}
+      
     </div>
   );
 };
