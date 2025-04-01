@@ -45,7 +45,7 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
 
   return (
     <section className="px-6 py-8">
-      {randomAlgoWord && !title && (
+      {randomAlgoWord && title && (
         <h2 className="mb-6 font-sans text-3xl font-extrabold">
           Because you searched for “
           <Link
@@ -62,7 +62,7 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
       )}
 
       <div className="relative w-full">
-        {data && data.length > 7 && (
+        {data?.response && data?.response?.length > 7 && (
           <ButtonsCarousel
             handleFnNext={handleNextCourse}
             handleFnPrev={handlePrevCourse}
@@ -77,14 +77,14 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
 
         <div
           className={`flex ${
-            data && data.length > 7
+            data?.response && data.response?.length > 7
               ? "w-max items-center justify-center"
               : "w-full items-center justify-start"
           } z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
           style={{ transform: `translateX(-${courseIndex * 30.5}%)` }}
         >
-          {data && data.length >= 1 ? (
-            data.map((courseCard, index: number) => (
+          {data?.response && data?.response ? (
+            data?.response?.map((courseCard, index: number) => (
               <HomeCourseCard key={courseCard._id || index} courseCard={courseCard} index={index} />
             ))
           ) : (

@@ -1,17 +1,22 @@
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import HotCourseCard from "./HotCourseCard/HotCourseCard";
-import { memo, useState } from "react";
+import { memo, useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
+import { filterContext } from "@/contexts/filterSearch";
+import { useSearchParams } from "react-router-dom";
 
 const HotFreshCourses = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const convertArrayStringToRegArray = JSON.parse(localStorage.getItem("searchesOfUser"));
-  const [arrayAlgo, setArrayAlgo] = useState(convertArrayStringToRegArray);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchTerm: string | null = searchParams.get("q")?.toLowerCase();
+  const { filterData, setSortBy } = useContext(filterContext);
 
-  const randomAlgoWord = arrayAlgo[Math.floor(Math.random() * arrayAlgo.length)];
+  useEffect(() => {
+    setSortBy("most-relevant");
+  });
 
   const handlePrev = () => {
     if (isAnimating || currentIndex === 0) return;
@@ -27,33 +32,42 @@ const HotFreshCourses = () => {
     setTimeout(() => setIsAnimating(false), 2000);
   };
 
-  const { data } = useQuery({
-    queryKey: [`${randomAlgoWord}`, randomAlgoWord],
-    queryFn: () => getAllCourses(randomAlgoWord),
-    enabled: !!randomAlgoWord,
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["hotFreshCourses", searchTerm.toLowerCase(), filterData.page, filterData],
+    queryFn: () => {
+      if (!searchTerm) {
+        throw new Error("Course ID is undefined");
+      }
+      return getAllCourses(searchTerm, filterData, filterData.limit, filterData.page);
+    },
+    enabled: !!searchTerm,
   });
 
-  if (!data) {
-    console.log("No data received");
-    return null;
+  if (isLoading) {
+    return <Loader hSize="100" useSmallLoading={false} />;
+  }
+
+  if (error) {
+    return <div>Error: Unable to fetch data</div>;
   }
 
   return (
     <div className="w-[1000px]">
       <h2 className="my-[0.5em] font-sans text-[1.5em] font-extrabold">Hot and Fresh Courses</h2>
       <div className="relative w-full overflow-hidden">
-        {data.response && data?.response?.length > 7 && (
+        {data?.response && data?.response.length > 7 && (
           <ButtonsCarousel
             handleFnNext={handleNext}
             handleFnPrev={handlePrev}
             state={currentIndex}
             useCustom={true}
             showDirectionalButtonsOnlyOnEdge={false}
-            topPosition="55%"
+            topPosition="40%"
             leftPosition="1%"
             rightPosition="2%"
           />
         )}
+
         <div
           className={`flex ${data.response && data.response?.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-center"}  z-20 h-full gap-4 pb-2 transition-transform duration-1000 ease-in-out`}
           style={{

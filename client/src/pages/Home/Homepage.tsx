@@ -11,7 +11,7 @@ import TrendingNow from "./TrendingNow/TrendingNow";
 import Carousel from "./Carousel/Carousel";
 import Sections from "./Sections/Sections";
 import Welcome from "@/components/LoggedInHome/Welcome";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useMediaQuery } from "react-responsive";
