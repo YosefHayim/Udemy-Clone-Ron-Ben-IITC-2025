@@ -11,7 +11,7 @@ import {
 } from "@/utils/mobileSidebarCategories";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { IoClose, IoCloseOutline } from "react-icons/io5";
+import { IoCloseOutline } from "react-icons/io5";
 
 const style = {
   width: "100%",

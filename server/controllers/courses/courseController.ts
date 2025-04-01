@@ -7,6 +7,7 @@ import { NextFunction, Request, Response } from "express";
 import courseProgress from "../../models/courses/courseProgressModel.ts";
 import { courseBought } from "../../types/types.ts";
 import mongoose from "mongoose";
+import { verifyToken } from "../authorization/authController.ts";
 
 const getAllCourses = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
