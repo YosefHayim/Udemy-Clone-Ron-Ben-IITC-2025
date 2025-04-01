@@ -28,6 +28,8 @@ const getAllCourses = async (searchTerm = "", filterData, limit = 13, page = 1) 
   const topicsCSV = toCSV(topics);
   const subtitlesCSV = toCSV(subtitles);
   const durationsCSV = toCSV(videosDurations);
+  const handsOnCSV =
+    handsOnPractice instanceof Set ? [...handsOnPractice].join(",") : handsOnPractice;
 
   // Build query parameters
   const queryParams = [
@@ -43,7 +45,7 @@ const getAllCourses = async (searchTerm = "", filterData, limit = 13, page = 1) 
     durationsCSV && `totalCourseDuration[gte]=${durationsCSV}`,
     page > 1 && `page=${page}`,
     `limit=${limit}`,
-    handsOnPractice && `hands-on=${handsOnPractice}`,
+    handsOnCSV && `hands-on=${handsOnCSV}`,
   ]
     .filter(Boolean) // remove falsy entries
     .join("&");
