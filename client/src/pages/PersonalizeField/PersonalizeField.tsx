@@ -15,7 +15,7 @@ const PersonalizeField = () => {
   useEffect(() => {}, [personalizeData]);
 
   return (
-    <div>
+    <div className="text-base">
       <div>
         <NavbarPersonalized />
         {personalizeData.currentPage === 1 ? <PersonalizeFieldP1 /> : ""}

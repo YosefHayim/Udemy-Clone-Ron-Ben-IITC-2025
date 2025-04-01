@@ -63,14 +63,14 @@ const FooterPersonalized = () => {
         {personalizeData.currentPage === 4 ? (
           <button
             onClick={handleSubmit}
-            className="mr-4 rounded-md bg-purple-600 px-6 py-[1em] font-sans font-extrabold text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="mr-4 rounded-md bg-purple-600 px-6 py-1 font-sans font-extrabold text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
           >
             Submit
           </button>
         ) : (
           <button
             onClick={handleForward}
-            className="mr-4 rounded-md bg-purple-600 px-6 py-[1em] font-sans font-extrabold text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="mr-4 rounded-md bg-purple-600 px-6 py-1 font-sans font-extrabold text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
           >
             Next
           </button>
