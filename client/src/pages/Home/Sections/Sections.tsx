@@ -90,15 +90,17 @@ const Sections = () => {
   }, [navbarCategory]);
 
   return (
-    <div className="flex w-full flex-col items-start justify-start">
-      <div className="flex w-full flex-col items-start justify-start px-5">
-        <h1 className="mt-12 w-full font-[lifeltstd] text-3xl font-extrabold text-gray-900">
+    <div className="flex w-full flex-col items-center justify-center">
+
+      {/* title and menu */}
+      <div className="flex w-full flex-col items-center justify-center pt-5 px-5">
+        <h1 className="mt-12 w-full font-[lifeltstd] text-[2rem] font-extrabold text-gray-900 flex justify-start ml-[12rem]">
           All the skills you need in one place
         </h1>
-        <p className="mb-6 mt-2 w-full text-base text-gray-600">
+        <p className="mb-6 mt-2 w-full text-[1.2rem] font-[lifeLtstd] text-gray-600 flex justify-start ml-[12rem]">
           From critical skills to technical topics, Udemy supports your professional development.
         </p>
-        <div className="flex w-full items-center justify-start gap-5">
+        <div className="flex w-full items-center justify-start pt-5 gap-5 ml-[12rem]">
           {navbarCategories?.map((category, index) => (
             <div
               onClick={() => setNavbarCategory(category)}
@@ -116,8 +118,11 @@ const Sections = () => {
         </div>
         <hr className="w-full" />
       </div>
-      <div className="flex w-full flex-col items-center justify-center gap-1 p-5 bg-gray-100">
-        <div className="flex w-full">
+
+      <div className="flex w-full flex-col items-center justify-center gap-1 p-5 bg-gray-100"> 
+
+        {/* Circle Categories*/}
+        <div className="flex w-full max-w-[calc(100%-11.5rem)] overflow-clip">
           <ButtonsCarousel
             handleFnNext={handleNext}
             handleFnPrev={handlePrev}
@@ -144,11 +149,10 @@ const Sections = () => {
                     <div
                       key={idx}
                       onClick={() => setChooseTopic(topic)}
-                      className={`${
-                        choseTopic === topic
-                          ? "w-full bg-blackUdemy text-white hover:bg-grayUdemyHover"
-                          : ""
-                      } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
+                      className={`${choseTopic === topic
+                        ? "w-full bg-blackUdemy text-white hover:bg-grayUdemyHover"
+                        : ""
+                        } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
                     >
                       <b className="w-max text-base">{topic}</b>
                       {idx < topics.length - 1 ? <p>{getRandomLearnersAmount()}</p> : null}
@@ -159,7 +163,9 @@ const Sections = () => {
             })}
           </div>
         </div>
-        <div className="relative w-full overflow-visible">
+
+        {/* carrousel courses */}
+        <div className="relative w-full overflow-visible ml-[11.5rem]">
           {data?.response && data?.response?.length > 7 && (
             <ButtonsCarousel
               handleFnNext={handleNextCourse}
@@ -174,9 +180,7 @@ const Sections = () => {
           )}
           <div
             className="flex w-fit items-center justify-start gap-4 py-4 transition-transform duration-1000 ease-in-out"
-            style={{
-              transform: `translateX(-${courseIndex * 100}%)`,
-            }}
+            style={{ transform: `translateX(-${courseIndex * 100}%)` }}
           >
             {[...Array(Math.ceil((data?.response?.length || 0) / 4))].map((_, groupIndex) => {
               const coursesGroup = data?.response?.slice(groupIndex * 4, groupIndex * 4 + 4);
@@ -196,7 +200,7 @@ const Sections = () => {
           </div>
         </div>
 
-        <div className="my-2 w-full">
+        <div className="my-2 w-full ml-[11.5rem]">
           <button
             onClick={handleNavigation}
             className={`${btnStyleNHover} border border-purple-800 font-sans font-extrabold text-purple-800`}
@@ -205,6 +209,7 @@ const Sections = () => {
           </button>
         </div>
       </div>
+
     </div>
   );
 };
