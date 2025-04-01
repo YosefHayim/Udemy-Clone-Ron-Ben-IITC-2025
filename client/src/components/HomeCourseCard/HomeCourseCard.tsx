@@ -13,10 +13,17 @@ const HomeCourseCard = ({ courseCard, index }) => {
   const navigate = useNavigate();
 
   const handleMouseEnter = (id: string, e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setHoverPosition({ top: rect.top - 400, left: rect.right });
+    const offsetTop = e.currentTarget.offsetTop;
+    const offsetLeft = e.currentTarget.offsetLeft + e.currentTarget.offsetWidth;
+  
+    setHoverPosition({
+      top: offsetTop,
+      left: offsetLeft + 12, // esse "12" dá um espacinho
+    });
+  
     setHoveredCourse(id);
   };
+  
 
   const handleMouseLeave = () => {
     setHoveredCourse(null);
@@ -32,7 +39,7 @@ const HomeCourseCard = ({ courseCard, index }) => {
       onMouseEnter={(e) => handleMouseEnter(courseCard._id, e)}
       onMouseLeave={handleMouseLeave}
       id={courseCard?._id}
-      className="w-[300px] cursor-pointer flex-col items-start rounded-lg border border-borderGrayColor bg-white shadow-sm"
+      className="relative w-[300px] cursor-pointer flex-col items-start rounded-lg border border-borderGrayColor bg-white shadow-sm"
     >
       <img
         src={courseCard?.courseImg}
