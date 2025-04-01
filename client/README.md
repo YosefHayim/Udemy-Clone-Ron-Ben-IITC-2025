@@ -21,7 +21,7 @@
 
 - **"Udemy Business" Button**: Link it to the correct Udemy Business page.✅
 - **"My Learning" Button**: Redirect to **Wishlist** (if that's intended).✅
-- **Cart Hover**: Fix design.
+- **Cart Hover**: Fix design.✅
 - **Search Input Bug**: After direct search > course click > search again = input should reset.
 - **Search Dropdown**: Ensure clicking a dropdown suggestion triggers a proper search.
 - **Fix Button Hover**: Make navbar buttons (e.g., notifications) respect absolute positioning.
