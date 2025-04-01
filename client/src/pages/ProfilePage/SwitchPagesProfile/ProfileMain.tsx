@@ -58,16 +58,17 @@ const ProfileMain = () => {
     const bio = formData.get("bio");
 
     mutateUpdatePersonalInfo.mutate({
-      fName,
-      lName,
-      languageChosen,
+      fullName: fName,
       headline,
-      xPlatform,
-      linkedin,
-      youtube,
-      facebook,
-      website,
       bio,
+      preferredLanguage: languageChosen,
+      links: {
+        website,
+        xPlatform,
+        facebook,
+        linkedin,
+        youtube,
+      },
     });
   };
 

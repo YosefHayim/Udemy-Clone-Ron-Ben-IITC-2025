@@ -892,15 +892,15 @@ const generateUpdatedDummyData = async () => {
     // const users = await createUsers();
     // console.log(`${users.length} users created.`);
 
-    console.log("Seeding courses...");
-    const courses = await createCourses({
-      coursesPerTopic: 20,
-      coursesPerInstructor: 7,
-    });
+    // console.log("Seeding courses...");
+    // const courses = await createCourses({
+    //   coursesPerTopic: 20,
+    //   coursesPerInstructor: 7,
+    // });
 
-    if (courses && courses.length > 1) {
-      console.log(`${courses.length} courses created.`);
-    }
+    // if (courses && courses.length > 1) {
+    //   console.log(`${courses.length} courses created.`);
+    // }
 
     await createInstructorProfiles();
     console.log("create instructor profiles completed.");
@@ -916,18 +916,18 @@ const generateUpdatedDummyData = async () => {
     await simulateCoursePurchases();
     console.log("Simulate courses purchases completed");
 
-    console.log("Seeding reviews...");
-    await createReviews();
-    console.log(`reviews created.`);
+    // console.log("Seeding reviews...");
+    // await createReviews();
+    // console.log(`reviews created.`);
 
-    console.log("Seeding reported reviews...");
-    await createReportedReviews();
+    // console.log("Seeding reported reviews...");
+    // await createReportedReviews();
 
-    await addCoursesToWishlistOfUsers();
-    console.log("Simulate courses wishlists completed");
+    // await addCoursesToWishlistOfUsers();
+    // console.log("Simulate courses wishlists completed");
 
-    await generateCouponsForCourses();
-    console.log("Coupon generation completed.");
+    // await generateCouponsForCourses();
+    // console.log("Coupon generation completed.");
 
     console.log("All dummy data seeded successfully!");
     process.exit();

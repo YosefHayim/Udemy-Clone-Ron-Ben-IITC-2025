@@ -469,8 +469,6 @@ const resendEmailVerificationToken = catchAsync(
 
 const updateUserInfo = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.body);
-
     const {
       fullName,
       headline,
