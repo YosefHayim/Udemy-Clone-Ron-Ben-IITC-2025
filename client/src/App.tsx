@@ -7,27 +7,37 @@ import { FilterProvider } from "./contexts/filterSearch";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { initialOptions } from "./contexts/PaypalContext";
 import { SocketProvider } from "./contexts/socket";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
+import store, { persistor } from "./redux/store";
 
 export const googleClient = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <SocketProvider>
-      <QueryClientProvider client={queryClient}>
-        <GoogleOAuthProvider clientId={googleClient}>
-          <EmailProvider>
-            <FilterProvider>
-              <PersonalizeProvider>
-                <PayPalScriptProvider options={initialOptions}>
-                  <AppRoutes />
-                </PayPalScriptProvider>
-              </PersonalizeProvider>
-            </FilterProvider>
-          </EmailProvider>
-        </GoogleOAuthProvider>
-      </QueryClientProvider>
-    </SocketProvider>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            {/* <SocketProvider> */}
+            <GoogleOAuthProvider clientId={googleClient}>
+              <EmailProvider>
+                <FilterProvider>
+                  <PersonalizeProvider>
+                    <PayPalScriptProvider options={initialOptions}>
+                      <AppRoutes />
+                    </PayPalScriptProvider>
+                  </PersonalizeProvider>
+                </FilterProvider>
+              </EmailProvider>
+            </GoogleOAuthProvider>
+            {/* </SocketProvider> */}
+          </PersistGate>
+        </Provider>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 };
 

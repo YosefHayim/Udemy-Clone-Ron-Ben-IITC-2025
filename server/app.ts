@@ -19,7 +19,7 @@ import commentRoute from "./routes/reviews/commentRoute.ts";
 import reviewRoute from "./routes/reviews/reviewRoute.ts";
 import reportReviewRoute from "./routes/reviews/reportReviewRoute.ts";
 import instructorRoute from "./routes/users/instructorRoute.ts";
-import { launchSocket, server } from "./sockets/launchSocket.ts";
+// import { launchSocket, server } from "./sockets/launchSocket.ts";
 
 dotenv.config();
 
@@ -33,9 +33,6 @@ export const allowedOrigins: string[] = [
 export const app: Application = express();
 const PORT: number = Number(process.env.PORT) || 3000;
 
-connectDb();
-launchSocket();
-
 // Serve static images
 app.use("/imgs", express.static("public/imgs"));
 
@@ -43,7 +40,11 @@ app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 app.use(loggerInfo);
+
 // app.use(limiter);
+connectDb();
+
+// launchSocket();
 
 // CORS Configuration
 app.use(
@@ -87,7 +88,7 @@ app.all("*", undefinedRoute);
 
 app.use(errorHandler);
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });
 
