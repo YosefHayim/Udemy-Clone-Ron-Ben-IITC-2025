@@ -42,10 +42,13 @@ const io = new Server(server, {
 const PORT: number = Number(process.env.PORT) || 3000;
 
 io.on("connection", (socket) => {
-  console.log(`A user has been connected: ${socket.id}`);
   if (socket.connected) {
     socket.emit("welcomeToServer", "Welcome to the Udemy clone socket server");
   }
+
+  socket.on("userConnected", ({ username }) => {
+    console.log("User connected:", username);
+  });
 });
 connectDb();
 
