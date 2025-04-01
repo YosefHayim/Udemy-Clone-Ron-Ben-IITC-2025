@@ -4,8 +4,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import dotenv from "dotenv";
-import { Server } from "socket.io";
-import limiter from "./middlewares/rateLimit.ts";
+// import limiter from "./middlewares/rateLimit.ts";
 import errorHandler from "./middlewares/errorHandler.ts";
 import undefinedRoute from "./middlewares/undefinedRoutes.ts";
 import connectDb from "./config/connectDb.ts";
@@ -20,37 +19,22 @@ import commentRoute from "./routes/reviews/commentRoute.ts";
 import reviewRoute from "./routes/reviews/reviewRoute.ts";
 import reportReviewRoute from "./routes/reviews/reportReviewRoute.ts";
 import instructorRoute from "./routes/users/instructorRoute.ts";
-import { createServer } from "node:http";
+import { launchSocket, server } from "./launchSocket.ts";
 
 dotenv.config();
 
 // Allowed CORS origins
-const allowedOrigins: string[] = [
+export const allowedOrigins: string[] = [
   "http://localhost:5173", // Frontend in development
   "https://udemy-clone-ron-and-ben-front.onrender.com", // Frontend in production
   "http://127.0.0.1:5173",
 ];
 
-const app: Application = express();
-const server = createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: allowedOrigins,
-    credentials: true,
-  },
-});
+export const app: Application = express();
 const PORT: number = Number(process.env.PORT) || 3000;
 
-io.on("connection", (socket) => {
-  if (socket.connected) {
-    socket.emit("welcomeToServer", "Welcome to the Udemy clone socket server");
-  }
-
-  socket.on("userConnected", ({ username }) => {
-    console.log("User connected:", username);
-  });
-});
 connectDb();
+launchSocket();
 
 // Serve static images
 app.use("/imgs", express.static("public/imgs"));
