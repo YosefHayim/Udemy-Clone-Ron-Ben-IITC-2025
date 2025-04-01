@@ -1,5 +1,5 @@
 import { btnStyleNHover } from "@/utils/stylesStorage";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { categoriesData } from "@/utils/categoriesData";
 import { navbarCategories } from "@/utils/navbarCategories";
 import { getRandomLearnersAmount } from "@/utils/randomLearnersAmount";
@@ -7,14 +7,15 @@ import { topics } from "@/utils/topics";
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
-import { CourseTypeProps } from "@/types/types";
 import { useNavigate } from "react-router-dom";
 import Loader from "@/components/Loader/Loader";
 import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
+import { filterContext } from "@/contexts/filterSearch";
 
 const Sections = () => {
   const navigate = useNavigate();
+  const [filterData, setFilterData] = useContext(filterContext);
   const [navbarCategory, setNavbarCategory] = useState("Data Science");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [courseIndex, setCourseIndex] = useState(0);
@@ -76,9 +77,16 @@ const Sections = () => {
 
   const { data } = useQuery({
     queryKey: ["courses", choseTopic],
-    queryFn: () => getAllCourses(choseTopic),
+    queryFn: () => getAllCourses(choseTopic, filterContext),
     enabled: !!choseTopic,
   });
+
+  useEffect(() => {
+    setFilterData((prev) => ({
+      ...prev,
+      sortBy: "most-reviewed",
+    }));
+  }, [data]);
 
   useEffect(() => {
     const newDefault = getDefaultTopic();
@@ -175,7 +183,7 @@ const Sections = () => {
             }}
           >
             {data && data.length >= 1 ? (
-              data.map((courseCard: CourseTypeProps, index: number) => (
+              data?.response?.map((courseCard, index: number) => (
                 <HomeCourseCard courseCard={courseCard} index={courseCard._id} key={index + 3} />
               ))
             ) : (

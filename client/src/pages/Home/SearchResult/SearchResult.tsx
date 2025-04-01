@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
@@ -23,6 +23,13 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
     enabled: !!randomAlgoWord,
   });
 
+  useEffect(() => {
+    setFilterData((prev) => ({
+      ...prev,
+      sortBy: "most-reviewed",
+    }));
+  }, [data]);
+
   const handlePrevCourse = () => {
     if (isCourseAnimating || courseIndex === 0) return;
     setCourseAnimating(true);
@@ -38,6 +45,8 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
     setCourseIndex((prevIndex) => prevIndex + 1);
     setTimeout(() => setCourseAnimating(false), 500);
   };
+
+  useEffect(() => {}, [data]);
 
   return (
     <section className="px-6 py-8">

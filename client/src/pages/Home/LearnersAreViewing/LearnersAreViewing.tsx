@@ -12,17 +12,18 @@ const LearnersAreViewing = ({ randomAlgoWord }) => {
   const [countCourseClick, setCourseClick] = useState(0);
   const [filterData, setFilterData] = useContext(filterContext);
 
-  useEffect(() => {
-    setFilterData((prev) => {
-      ...prev,filterData.sortBy = "most-reviewed"
-    })
-  },[])
-
   const { data, isLoading, isPending } = useQuery({
     queryKey: [`${randomAlgoWord}`, randomAlgoWord],
     queryFn: () => getAllCourses(randomAlgoWord, filterContext),
     enabled: !!randomAlgoWord,
   });
+
+  useEffect(() => {
+    setFilterData((prev) => ({
+      ...prev,
+      sortBy: "most-reviewed",
+    }));
+  }, [data]);
 
   const handlePrevCourse = () => {
     if (isCourseAnimating || courseIndex === 0) return;
@@ -68,7 +69,7 @@ const LearnersAreViewing = ({ randomAlgoWord }) => {
         >
           {data.response &&
             data.response?.length > 1 &&
-            data.response.map((courseCard: CourseTypeProps, index: number) => (
+            data?.response.map((courseCard, index: number) => (
               <HomeCourseCard courseCard={courseCard} index={index} key={courseCard?._id} />
             ))}
         </div>
