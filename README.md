@@ -1,6 +1,6 @@
 # Udemy Clone – Project Setup Guide
 
-## 🧩 1. Install Dependencies
+## 1. Install Dependencies
 
 Run this in both frontend and backend directories:
 
@@ -8,7 +8,7 @@ Run this in both frontend and backend directories:
 npm install
 ```
 
-## 🖥️ 2. Frontend Environment Variables
+## 2. Frontend Environment Variables
 
 Create a `.env` file in the **frontend** root directory with the following:
 
@@ -23,7 +23,7 @@ VITE_GOOGLE_CLIENT_ID=""
 VITE_AI_TOKEN=""
 ```
 
-## 🗄️ 3. Backend Environment Variables
+## 3. Backend Environment Variables
 
 Create a `.env` file in the **backend** root directory with the following:
 
@@ -40,7 +40,7 @@ GOOGLE_CLIENT_ID=""
 GOOGLE_CLIENT_SECRET=""
 ```
 
-## 🏁 4. Start the App
+## 4. Start the App
 
 Once the `.env` files are ready and dependencies are installed:
 
@@ -51,9 +51,3 @@ npm run dev
 # Backend
 npm run start:dev
 ```
-
-## 💬 Need Help?
-
-If something breaks, double-check the environment variables and make sure MongoDB access and credentials are valid.
-
-Let me know if you want a `.env.example` file too for versioning 🔐
