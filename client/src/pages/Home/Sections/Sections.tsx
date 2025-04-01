@@ -214,11 +214,13 @@ const Sections = () => {
           </div>
         </div>
 
+
+        {/* hoveredCourse */}
         {hoveredCourse && (
           <div
             className="absolute z-[1000]"
             style={{
-              top: `${hoverPosition.top}px`,
+              top: `${hoverPosition.top - hoverPosition.top / 20}px`,
               left: `${hoverPosition.left}px`,
             }}
           >
