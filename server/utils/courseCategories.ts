@@ -21,11 +21,10 @@ const courseCategories = {
         "Deep Learning",
         "Data Visualization",
         "ChatGPT",
+        "Artificial Intelligence (AI)",
+        "Statistics",
         "Data Science",
         "Machine Learning",
-        "Artificial Intelligence (AI)",
-        "Deep Learning",
-        "Statistics",
         "Natural Language Processing",
       ],
       "Mobile Development": [
@@ -200,16 +199,20 @@ const courseCategories = {
       "Academic Subjects": ["Math", "Science", "English"],
     },
   },
-  "Business Analytics & Intelligence": [
-    "Microsoft Power BI",
-    "SQL",
-    "Data Modeling",
-    "Data Analysis",
-    "Business Analysis",
-    "Tableau",
-    "Business Intelligence(BI)",
-    "Data Analysis (DAX)",
-  ],
+  "Business Analytics & Intelligence": {
+    subCategories: {
+      "Business Analytics & Intelligence": [
+        "Microsoft Power BI",
+        "SQL",
+        "Data Modeling",
+        "Data Analysis",
+        "Business Analysis",
+        "Tableau",
+        "Business Intelligence(BI)",
+        "Data Analysis (DAX)",
+      ],
+    },
+  },
 };
 
 export default courseCategories;
