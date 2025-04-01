@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
-import Loader from "../Loader/Loader";
 
 /**
  * ButtonsCarousel - Navigation arrows for a carousel.
@@ -26,12 +24,10 @@ const ButtonsCarousel: React.FC<{
   leftPosition?: string;
   bottomPosition?: string;
   rightPosition?: string;
-  showLoadingWithinButton?: boolean;
 }> = ({
   handleFnPrev,
   handleFnNext,
   state,
-  showLoadingWithinButton = false,
   useCustom = false,
   showDirectionalButtonsOnlyOnEdge = false,
   topPosition = "67%",
@@ -41,14 +37,6 @@ const ButtonsCarousel: React.FC<{
 }) => {
   const showLeft = !useCustom || (showDirectionalButtonsOnlyOnEdge ? state > 0 : state >= 0);
   const showRight = !useCustom || (showDirectionalButtonsOnlyOnEdge ? state === 0 : state >= 0);
-  const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
 
   return (
     <div>
@@ -61,25 +49,12 @@ const ButtonsCarousel: React.FC<{
             bottom: bottomPosition,
           }}
         >
-          {showLoadingWithinButton ? (
-            <button
-              className="z-[100] h-min rounded-full p-1 hover:bg-gray-200 focus:outline-none"
-              onClick={handleFnPrev}
-            >
-              {isLoading ? (
-                <Loader hSize="5" useSmallLoading={true} />
-              ) : (
-                <RiArrowLeftSLine size={40} />
-              )}
-            </button>
-          ) : (
-            <button
-              className="z-[100] h-min rounded-full p-1 hover:bg-gray-200 focus:outline-none"
-              onClick={handleFnPrev}
-            >
-              <RiArrowLeftSLine size={40} />
-            </button>
-          )}
+          <button
+            className="z-[100] h-min rounded-full p-1 hover:bg-gray-200 focus:outline-none"
+            onClick={handleFnPrev}
+          >
+            <RiArrowLeftSLine size={40} />
+          </button>
         </div>
       )}
 
@@ -92,25 +67,12 @@ const ButtonsCarousel: React.FC<{
             bottom: bottomPosition,
           }}
         >
-          {showLoadingWithinButton ? (
-            <button
-              className="z-[100] h-min rounded-full p-1 hover:bg-gray-200 focus:outline-none"
-              onClick={handleFnNext}
-            >
-              {isLoading ? (
-                <Loader hSize="5" useSmallLoading={true} />
-              ) : (
-                <RiArrowRightSLine size={40} />
-              )}
-            </button>
-          ) : (
-            <button
-              className="z-[100] h-min rounded-full p-1 hover:bg-gray-200 focus:outline-none"
-              onClick={handleFnNext}
-            >
-              <RiArrowRightSLine size={40} />
-            </button>
-          )}
+          <button
+            className="h-min rounded-full p-1 hover:bg-gray-200 focus:outline-none"
+            onClick={handleFnNext}
+          >
+            <RiArrowRightSLine size={40} />
+          </button>
         </div>
       )}
     </div>

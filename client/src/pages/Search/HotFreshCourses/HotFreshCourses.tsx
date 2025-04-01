@@ -57,7 +57,6 @@ const HotFreshCourses = () => {
       <div className="relative w-full overflow-hidden">
         {data?.response && data?.response.length > 7 && (
           <ButtonsCarousel
-            showLoadingWithinButton={true}
             handleFnNext={handleNext}
             handleFnPrev={handlePrev}
             state={currentIndex}
