@@ -47,25 +47,24 @@ const Login = () => {
               <OtherLoginOptions />
             </div>
           )}
-          {prevWGoogle && isDifferentAccount && (
+          {!prevWGoogle && isDifferentAccount && (
             <div>
               <GoogleBtn />
             </div>
           )}
           <div className="flex flex-col items-center justify-center pt-6 text-center">
-            {prevWGoogle ||
-              (isDifferentAccount && (
-                <div
-                  onClick={() => setDifferentAccount(true)}
-                  className={`${isDifferentAccount ? "hidden" : "flex w-full"}`}
-                >
-                  <WebsiteLoginOptions
-                    text={`Log in to a different account`}
-                    to={`/login`}
-                    extraCSS={`font-extrabold text-sm`}
-                  />
-                </div>
-              ))}
+            {!isDifferentAccount && (
+              <div
+                onClick={() => setDifferentAccount(true)}
+                className={`${isDifferentAccount ? "hidden" : "flex w-full"}`}
+              >
+                <WebsiteLoginOptions
+                  text={`Log in to a different account`}
+                  to={`/login`}
+                  extraCSS={`font-extrabold text-sm`}
+                />
+              </div>
+            )}
           </div>
           <hr className="h-[0.1em] w-full bg-gray-300" />
           <WebsiteLoginOptions
