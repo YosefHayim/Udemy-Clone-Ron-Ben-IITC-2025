@@ -3,7 +3,6 @@ import getAllCourses from "@/api/courses/getAllCourses";
 import { useState } from "react";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
-import { CourseTypeProps } from "@/types/types";
 import Loader from "@/components/Loader/Loader";
 
 const LearnersAreViewing = () => {
@@ -45,7 +44,7 @@ const LearnersAreViewing = () => {
     <div className="px-6 py-8">
       <h2 className="mb-6 font-sans text-3xl font-extrabold">Learners are viewing</h2>
       <div className="relative w-full overflow-hidden">
-        {data.response && data?.response?.length > 7 && (
+        {data && data?.length > 7 && (
           <ButtonsCarousel
             handleFnNext={handleNextCourse}
             handleFnPrev={handlePrevCourse}

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { Router, Routes, Route, useLocation } from "react-router-dom";
 import NotFound from "../pages/404/NotFound";
 import LessonPage from "../pages/Lesson/LessonPage";
 import SearchPage from "@/pages/Search/SearchPage";
@@ -86,20 +86,18 @@ const LayoutWithNavbarAndFooter = () => {
 
 const AppRoutes: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        {/* Rotas que usam Navbar e Footer */}
-        <Route path="*" element={<LayoutWithNavbarAndFooter />} />
-        {/* Rotas sem Navbar */}
-        <Route path="/demo-business" element={<UdemyBusinessContact />} />
-        <Route path="/payment/checkout/" element={<Payment />} />
-        <Route path="/course/:courseId/lesson/:id/*" element={<LessonPage />} />
-        <Route path="/personalize/field/" element={<PersonalizeField />} />
-        <Route path="/terms/promotions" element={<Promotions />} />
-        <Route path="/organization/global-login/email" element={<OrganizationLogin />} />
-        <Route path="hc/en-us/requests/new/ticket_form_id" element={<SignUpOrganization />} />
-      </Routes>
-    </Router>
+    <Routes>
+      {/* Routes that use Navbar and Footer */}
+      <Route path="*" element={<LayoutWithNavbarAndFooter />} />
+      {/* Routes without Navbar */}
+      <Route path="/demo-business" element={<UdemyBusinessContact />} />
+      <Route path="/payment/checkout/" element={<Payment />} />
+      <Route path="/course/:courseId/lesson/:id/*" element={<LessonPage />} />
+      <Route path="/personalize/field/" element={<PersonalizeField />} />
+      <Route path="/terms/promotions" element={<Promotions />} />
+      <Route path="/organization/global-login/email" element={<OrganizationLogin />} />
+      <Route path="hc/en-us/requests/new/ticket_form_id" element={<SignUpOrganization />} />
+    </Routes>
   );
 };
 
