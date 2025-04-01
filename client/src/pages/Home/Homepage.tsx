@@ -30,7 +30,9 @@ const Homepage = () => {
 
   const uniqueSearches = [...new Set(parsedSearches)];
 
-  useEffect(() => { }, [cookie]);
+  console.log(uniqueSearches);
+
+  useEffect(() => {}, [cookie]);
 
   return (
     <div>
@@ -42,8 +44,11 @@ const Homepage = () => {
               <Banner isLogin={false} />
               <Sections />
               <TrustedBySection />
-              <LearnersAreViewing randomAlgoWord={uniqueSearches[1]} />
-              <SearchResult title={`placeholder`} randomAlgoWord={uniqueSearches[2]} />
+              <LearnersAreViewing randomAlgoWord={uniqueSearches[0]} />
+              <SearchResult
+                title={`Because you searched for "${uniqueSearches[1]}"`}
+                randomAlgoWord={uniqueSearches[1]}
+              />
               <LearningGoals />
               <PlansSection />
               <Testimonials />
@@ -59,9 +64,23 @@ const Homepage = () => {
               <Banner isLogin={true} />
               <LetsStartLearning />
               <h1 className="pl-4 font-extrabold">What to learn next</h1>
-              <SearchResult title={`placeholder`} randomAlgoWord={uniqueSearches[3]} />
-              <SearchResult title={`placeholder`} randomAlgoWord={uniqueSearches[4]} />
-              <LearnersAreViewing randomAlgoWord={uniqueSearches[5]} />
+              <SearchResult
+                title={`Because you searched for "${uniqueSearches[2]}"`}
+                randomAlgoWord={uniqueSearches[2]}
+              />
+              <SearchResult
+                title={`Because you searched for "${uniqueSearches[3]}"`}
+                randomAlgoWord={uniqueSearches[3]}
+              />
+              <SearchResult
+                title={`Because you searched for "${uniqueSearches[4]}"`}
+                randomAlgoWord={uniqueSearches[4]}
+              />
+              <SearchResult
+                title={`Because you searched for "${uniqueSearches[5]}"`}
+                randomAlgoWord={uniqueSearches[5]}
+              />
+              <LearnersAreViewing randomAlgoWord={uniqueSearches[6]} />
               {uniqueSearches.slice(0, 5).map((search, index) => (
                 <SearchResult
                   key={index}
