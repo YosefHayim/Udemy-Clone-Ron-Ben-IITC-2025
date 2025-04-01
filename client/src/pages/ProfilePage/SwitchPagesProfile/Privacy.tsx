@@ -12,13 +12,17 @@ const Privacy = () => {
   };
 
   return (
-    <main className="flex-1 p-8">
-      <div className="mx-auto max-w-3xl rounded-lg bg-white p-8 shadow-lg">
-        <h2 className="mb-6 font-sans text-2xl font-extrabold text-gray-800">Privacy</h2>
-        <p className="mb-4 text-gray-600">Modify your privacy settings here.</p>
-
+    <main className="flex-1 pt-4 border-l min-h-screen">
+      
+        {/* Título e descrição */}
+        <div className="text-center  border-gray-300 pb-4 mb-6">
+          <h2 className="font-sans text-2xl font-extrabold text-gray-800">Privacy</h2>
+          <p className="text-gray-700 text-[0.875rem] pt-2 pb-4 font-semibold">Modify your privacy settings here.</p>
+        <hr className="w-full"/>
+        </div>
+  
         {/* Profile Page Settings */}
-        <div className="mb-6">
+        <div className="mb-6 ml-[9rem] pt-0">
           <h3 className="mb-4 text-lg font-semibold text-gray-800">Profile page settings</h3>
           <div className="space-y-4">
             {/* Option 1 */}
@@ -34,7 +38,7 @@ const Privacy = () => {
                 Show your profile to logged-in users
               </label>
             </div>
-
+  
             {/* Option 2 */}
             <div className="flex items-center">
               <input
@@ -50,20 +54,20 @@ const Privacy = () => {
             </div>
           </div>
         </div>
-
-        {/* Save Button */}
-        <div className="flex justify-end">
+  
+        {/* Save Button alinhado à esquerda */}
+        <div className="flex justify-start mt-4 ml-[9rem]">
           <button
             type="button"
             onClick={handleSave}
-            className="rounded-md bg-purple-600 px-6 py-2 text-white shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="rounded-md bg-purple-600 px-6 py-2 text-white shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 font-bold"
           >
             Save
           </button>
         </div>
-      </div>
     </main>
   );
+  
 };
 
 export default Privacy;
