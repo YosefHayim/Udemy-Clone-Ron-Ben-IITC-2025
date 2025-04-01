@@ -66,10 +66,10 @@ const SearchPage: React.FC = () => {
   });
 
   useEffect(() => {
-    if (isError || !data) {
+    if (!data) {
       navigate(`/not/search/not/found:${searchTerm.toLowerCase()}`);
     }
-  }, [isError, data, searchTerm, navigate]);
+  }, [data, searchTerm]);
 
   if (isLoading || isPending) {
     return <Loader hSize="100" useSmallLoading={false} />;
@@ -101,7 +101,6 @@ const SearchPage: React.FC = () => {
                   onMouseLeave={() => setHoveredCourse(null)}
                 >
                   <SearchCourseCard course={course} />
-
                   {/* Hover card */}
                   {hoveredCourse === course?._id && (
                     <div
