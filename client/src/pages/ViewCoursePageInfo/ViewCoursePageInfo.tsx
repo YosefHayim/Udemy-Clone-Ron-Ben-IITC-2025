@@ -85,7 +85,7 @@ const ViewCoursePageInfo = () => {
                   totalRatings={data?.totalRatings}
                 />
               )}
-              <StickyCourseMobile />
+              {isMobile && <StickyCourseMobile />}
               <TopicPathMenu
                 category={data?.category}
                 subcategory={data?.subCategory}

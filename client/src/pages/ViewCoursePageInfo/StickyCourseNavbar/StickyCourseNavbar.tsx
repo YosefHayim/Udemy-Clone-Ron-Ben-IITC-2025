@@ -25,7 +25,7 @@ const StickyCourseNavbar: React.FC<{
   return (
     <div
       className={`fixed left-0 w-full ${isVisible ? "top-[0] opacity-100" : "top-[3%] opacity-0"} ${
-        isHighPriority ? "z-[1000]" : "z-[10]"
+        isHighPriority ? "z-[10]" : "z-[10]"
       } w-full bg-blackUdemy px-[1em] py-[1em] text-white`}
     >
       <h2 className="font-sans font-extrabold">{courseName}</h2>
