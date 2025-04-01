@@ -8,8 +8,8 @@ const googleLogin = async (googleCode: string) => {
     const r = await axiosClient.post(url, { code: googleCode });
 
     if (r) {
-      console.log(r.data.data);
-      return r?.data?.token;
+      console.log(r.data);
+      return r?.data;
     }
   } catch (error) {
     console.log(
