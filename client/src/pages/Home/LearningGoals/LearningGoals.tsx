@@ -39,7 +39,8 @@ const LearningGoals = () => {
   ];
 
   return (
-    <div className="lg: flex flex-col items-center gap-8 bg-gray-50 px-8 py-16 lg:items-start">
+    <div className="lg:flex items-center gap-8 bg-gray-50 px-8 py-16">
+      
       {/* Features Section */}
       <div className="flex-1 space-y-6">
         <h2 className="font-sans text-3xl font-extrabold text-gray-900">
