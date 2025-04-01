@@ -53,7 +53,7 @@ const SearchPage: React.FC = () => {
     setSearchParams(params);
   }, [filterData, searchTerm, setSearchParams]);
 
-  const { data, isLoading, isError, isPending } = useQuery({
+  const { data, isLoading, isPending } = useQuery({
     queryKey: ["courses", searchTerm.toLowerCase(), filterData.page, filterData],
     queryFn: () => {
       if (!searchTerm) {

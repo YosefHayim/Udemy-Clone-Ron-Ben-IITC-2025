@@ -6,7 +6,7 @@ import createError from "../../utils/errorFn.ts";
 import { NextFunction, Request, Response } from "express";
 import courseProgress from "../../models/courses/courseProgressModel.ts";
 import { courseBought } from "../../types/types.ts";
-import mongoose from "mongoose";
+import mongoose, { PipelineStage } from "mongoose";
 
 const getAllCourses = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -47,6 +47,60 @@ const getAllCourses = catchAsync(
       totalPages,
       currentPageCoursesAmount: courses.length, // Dynamically adjust to return actual number of items
       response: courses,
+    });
+  }
+);
+
+const getRatingStatsBySearch = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const searchTerm = req.query.search as string;
+
+    console.log("🔍 Search term for rating stats:", searchTerm);
+
+    if (
+      !searchTerm ||
+      typeof searchTerm !== "string" ||
+      searchTerm.trim() === ""
+    ) {
+      return next(
+        createError(
+          "Please provide a valid search term in the query string.",
+          400
+        )
+      );
+    }
+
+    const ratingPipeline: PipelineStage[] = [
+      {
+        $match: {
+          courseName: { $regex: searchTerm, $options: "i" },
+          averageRating: { $in: [3, 3.5, 4, 4.5] },
+        },
+      },
+      {
+        $group: {
+          _id: "$averageRating",
+          count: { $sum: 1 },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          rating: "$_id",
+          count: 1,
+        },
+      },
+      {
+        $sort: { rating: -1 as 1 | -1 }, // 👈 Fix is here
+      },
+    ];
+
+    const ratingStats = await Course.aggregate(ratingPipeline);
+
+    res.status(200).json({
+      status: "success",
+      searchTerm,
+      ratingBreakdown: ratingStats || [],
     });
   }
 );
@@ -609,4 +663,5 @@ export {
   createCourse,
   updateCourse,
   deleteCourse,
+  getRatingStatsBySearch,
 };
