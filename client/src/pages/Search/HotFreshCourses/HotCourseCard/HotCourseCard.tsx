@@ -1,19 +1,17 @@
-import course from "@/db";
+import { useEffect } from "react";
 import CourseImg from "../../../../components/CourseCard/CourseImg/CourseImg";
 import CourseInstructor from "../../../../components/CourseCard/CourseInstructor/CourseInstructor";
 import CoursePrice from "../../../../components/CourseCard/CoursePrice/CoursePrice";
 import CourseRatings from "../../../../components/CourseCard/CourseRatings/CourseRatings";
 import CourseTag from "../../../../components/CourseCard/CourseTag/CourseTag";
 import CourseTitle from "../../../../components/CourseCard/CourseTitle/CourseTitle";
-import hotFreshOne from "/images/hot-fresh-course-1.png";
 
 const HotCourseCard = ({ hotCourseAlgo }) => {
-  console.log(hotCourseAlgo);
-
+  useEffect(() => {}, [hotCourseAlgo]);
   return (
     <div className="flex w-[200px] cursor-pointer  items-center justify-center gap-[2em]">
       <div>
-        <CourseImg courseImg={hotCourseAlgo.courseImg} />
+        <CourseImg courseImg={hotCourseAlgo.courseImg} standCardView={false} imgExplanation={""} />
         <div className="flex flex-col items-start justify-start gap-[0.3em]">
           <CourseTitle title={hotCourseAlgo.courseName} shortcutTitle={true} />
           <CourseInstructor instructor={hotCourseAlgo.courseInstructor.fullName} />

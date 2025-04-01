@@ -16,7 +16,7 @@ const HotFreshCourses = () => {
 
   useEffect(() => {
     setSortBy("most-relevant");
-  });
+  }, [setSortBy]);
 
   const handlePrev = () => {
     if (isAnimating || currentIndex === 0) return;
