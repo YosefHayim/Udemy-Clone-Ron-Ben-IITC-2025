@@ -42,7 +42,7 @@ const ButtonsCarousel: React.FC<{
     <div>
       {showLeft && (
         <div
-          className="absolute z-10 h-min rounded-full bg-white shadow-alertAlgoInfo"
+          className="absolute z-[100] h-min rounded-full bg-white shadow-alertAlgoInfo"
           style={{
             left: leftPosition,
             top: topPosition,
@@ -50,7 +50,7 @@ const ButtonsCarousel: React.FC<{
           }}
         >
           <button
-            className="z-10 h-min rounded-full p-1 hover:bg-gray-200 focus:outline-none"
+            className="z-[100] h-min rounded-full p-1 hover:bg-gray-200 focus:outline-none"
             onClick={handleFnPrev}
           >
             <RiArrowLeftSLine size={30} />

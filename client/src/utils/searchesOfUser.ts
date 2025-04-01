@@ -30,7 +30,13 @@ export const searchAlgoLocalStorage = (searchTerm: string) => {
 
   if (!isValidSearch) return; // Skip saving if no match
 
-  let existingSearches = JSON.parse(localStorage.getItem("searchesOfUser")) || ["web", "python"];
+  let existingSearches = JSON.parse(localStorage.getItem("searchesOfUser")) || [
+    "web",
+    "python",
+    "microsoft",
+    "C#",
+    "js",
+  ];
 
   if (!existingSearches.includes(normalizedTerm)) {
     existingSearches.push(normalizedTerm);

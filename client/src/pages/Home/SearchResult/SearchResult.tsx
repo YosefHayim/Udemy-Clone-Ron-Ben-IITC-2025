@@ -1,29 +1,25 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
-import { CourseTypeProps } from "@/types/types";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
 import Loader from "@/components/Loader/Loader";
+import { filterContext } from "@/contexts/filterSearch";
 
-const SearchResult: React.FC<{ title?: string; randomAlgoWord?: string }> = ({
+const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
   title,
   randomAlgoWord,
 }) => {
   const [courseIndex, setCourseIndex] = useState(0);
+  const [filterData, setFilterData] = useContext(filterContext);
+
   const [isCourseAnimating, setCourseAnimating] = useState(false);
   const [countCourseClick, setCourseClick] = useState(0);
-  const convertArrayStringToRegArray = JSON.parse(localStorage.getItem("searchesOfUser"));
-  const [arrayAlgo, setArrayAlgo] = useState(convertArrayStringToRegArray);
-
-  if (!randomAlgoWord) {
-    randomAlgoWord = arrayAlgo[Math.floor(Math.random() * arrayAlgo.length)];
-  }
 
   const { data } = useQuery({
-    queryKey: [`courses`, randomAlgoWord],
-    queryFn: () => getAllCourses(randomAlgoWord),
+    queryKey: [randomAlgoWord, randomAlgoWord],
+    queryFn: () => getAllCourses(randomAlgoWord, filterData),
     enabled: !!randomAlgoWord,
   });
 
@@ -80,7 +76,7 @@ const SearchResult: React.FC<{ title?: string; randomAlgoWord?: string }> = ({
           }}
         >
           {data && data.length >= 1 ? (
-            data.map((courseCard: CourseTypeProps, index: number) => (
+            data.map((courseCard, index: number) => (
               <HomeCourseCard courseCard={courseCard} index={index} />
             ))
           ) : (

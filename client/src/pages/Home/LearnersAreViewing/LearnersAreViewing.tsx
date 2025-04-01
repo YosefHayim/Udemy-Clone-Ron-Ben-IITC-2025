@@ -1,22 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import Loader from "@/components/Loader/Loader";
+import { filterContext } from "@/contexts/filterSearch";
 
-const LearnersAreViewing = () => {
+const LearnersAreViewing = ({ randomAlgoWord }) => {
   const [courseIndex, setCourseIndex] = useState(0);
   const [isCourseAnimating, setCourseAnimating] = useState(false);
   const [countCourseClick, setCourseClick] = useState(0);
-  const convertArrayStringToRegArray = JSON.parse(localStorage.getItem("searchesOfUser"));
-  const [arrayAlgo, setArrayAlgo] = useState(convertArrayStringToRegArray);
+  const [filterData, setFilterData] = useContext(filterContext);
 
-  const randomAlgoWord = arrayAlgo[Math.floor(Math.random() * arrayAlgo.length)];
+  useEffect(() => {
+    setFilterData((prev) => {
+      ...prev,filterData.sortBy = "most-reviewed"
+    })
+  },[])
 
   const { data, isLoading, isPending } = useQuery({
     queryKey: [`${randomAlgoWord}`, randomAlgoWord],
-    queryFn: () => getAllCourses(randomAlgoWord),
+    queryFn: () => getAllCourses(randomAlgoWord, filterContext),
     enabled: !!randomAlgoWord,
   });
 

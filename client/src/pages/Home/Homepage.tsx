@@ -11,7 +11,7 @@ import TrendingNow from "./TrendingNow/TrendingNow";
 import Carousel from "./Carousel/Carousel";
 import Sections from "./Sections/Sections";
 import Welcome from "@/components/LoggedInHome/Welcome";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { useMediaQuery } from "react-responsive";
@@ -20,10 +20,15 @@ import LetsStartLearning from "./LetsStartLearning/LetsStartLearning";
 
 const Homepage = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
-  searchAlgoLocalStorage("");
-
+  searchAlgoLocalStorage("course");
   document.title = "Online Courses - Learn Anything, On Your Schedule | Udemy";
   const cookie = useSelector((state: RootState) => state.user.cookie);
+  const rawSearches = localStorage.getItem("searchesOfUser");
+  const parsedSearches: string[] = Array.isArray(JSON.parse(rawSearches || "[]"))
+    ? JSON.parse(rawSearches || "[]").filter((s: unknown) => typeof s === "string")
+    : [];
+
+  const uniqueSearches = [...new Set(parsedSearches)];
 
   useEffect(() => {}, [cookie]);
 
@@ -37,8 +42,8 @@ const Homepage = () => {
             <div>
               <Sections />
               <TrustedBySection />
-              <LearnersAreViewing />
-              <SearchResult />
+              <LearnersAreViewing randomAlgoWord={uniqueSearches[1]} />
+              <SearchResult title={`placeholder`} randomAlgoWord={uniqueSearches[2]} />
               <LearningGoals />
               <PlansSection />
               <Testimonials />
@@ -54,14 +59,16 @@ const Homepage = () => {
               <Banner isLogin={true} />
               <LetsStartLearning />
               <h1 className="pl-4 font-extrabold">What to learn next</h1>
-              <SearchResult />
-              <SearchResult />
-              <LearnersAreViewing />
-              <SearchResult title="Short and sweet courses for you" />
-              <SearchResult title="Top courses in Design" />
-              <SearchResult title="Top courses in Development" />
-              <SearchResult title="Top courses in IT & Software" />
-              <SearchResult title="Top courses in Personal Development" />
+              <SearchResult title={`placeholder`} randomAlgoWord={uniqueSearches[3]} />
+              <SearchResult title={`placeholder`} randomAlgoWord={uniqueSearches[4]} />
+              <LearnersAreViewing randomAlgoWord={uniqueSearches[5]} />
+              {uniqueSearches.slice(0, 5).map((search, index) => (
+                <SearchResult
+                  key={index}
+                  title={`Top courses in "${search}"`}
+                  randomAlgoWord={search}
+                />
+              ))}
             </div>
           </div>
         )}
