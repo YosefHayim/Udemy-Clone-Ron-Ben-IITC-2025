@@ -103,7 +103,7 @@ const Sections = () => {
           From critical skills to technical topics, Udemy supports your professional development.
         </p>
         <div className="flex w-full items-center justify-start gap-5">
-          {navbarCategories.map((category, index) => (
+          {navbarCategories?.map((category, index) => (
             <div
               onClick={() => setNavbarCategory(category)}
               className="w-min-max cursor-pointer flex-col items-center justify-center text-base"
@@ -133,7 +133,7 @@ const Sections = () => {
             rightPosition="2%"
           />
           <div className="mt-3 flex w-auto">
-            {categoriesData.map((category, i) => {
+            {categoriesData?.map((category, i) => {
               const match = category?.subcategory.find((sub) => sub?.title === navbarCategory);
               if (!match) return null;
               return (
@@ -148,10 +148,11 @@ const Sections = () => {
                     <div
                       key={idx}
                       onClick={() => setChooseTopic(topic)}
-                      className={`${choseTopic === topic
-                        ? "w-full bg-blackUdemy text-white hover:bg-grayUdemyHover"
-                        : ""
-                        } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
+                      className={`${
+                        choseTopic === topic
+                          ? "w-full bg-blackUdemy text-white hover:bg-grayUdemyHover"
+                          : ""
+                      } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
                     >
                       <b className="w-max text-base">{topic}</b>
                       {idx < topics.length - 1 ? <p>{getRandomLearnersAmount()}</p> : null}
@@ -163,7 +164,7 @@ const Sections = () => {
           </div>
         </div>
         <div className="relative w-full overflow-visible">
-          {data && data?.response?.length > 7 && (
+          {data?.response && data?.response?.length > 7 && (
             <ButtonsCarousel
               handleFnNext={handleNextCourse}
               handleFnPrev={handlePrevCourse}
@@ -181,11 +182,11 @@ const Sections = () => {
               transform: `translateX(-${courseIndex * 100}%)`,
             }}
           >
-            {[...Array(Math.ceil(data.response.length / 5))].map((_, groupIndex) => {
-              const coursesGroup = data.response.slice(groupIndex * 5, groupIndex * 5 + 5);
+            {[...Array(Math.ceil(data?.response?.length / 5))].map((_, groupIndex) => {
+              const coursesGroup = data?.response?.slice(groupIndex * 5, groupIndex * 5 + 5);
 
               return (
-                <div key={groupIndex} className="flex gap-4 w-full flex-shrink-0">
+                <div key={groupIndex} className="flex w-full flex-shrink-0 gap-4">
                   {coursesGroup.map((courseCard, i) => (
                     <HomeCourseCard
                       courseCard={courseCard}
@@ -196,7 +197,6 @@ const Sections = () => {
                 </div>
               );
             })}
-
           </div>
         </div>
 
