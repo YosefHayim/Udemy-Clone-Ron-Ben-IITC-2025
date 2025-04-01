@@ -22,7 +22,7 @@ const StickyCourseMobile = () => {
       return;
     }
 
-    const yOffset = -100; // space for sticky header
+    const yOffset = -100;
     const y = section.getBoundingClientRect().top + window.scrollY + yOffset;
 
     window.scrollTo({
@@ -47,7 +47,9 @@ const StickyCourseMobile = () => {
           ))}
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 z-[1000] flex w-full flex-col items-center justify-center gap-2 bg-white p-2 px-4">
+      <div
+        className={`fixed bottom-0 left-0 z-[1000] flex w-full flex-col items-center justify-center gap-2 bg-white p-2 px-4`}
+      >
         <button className="w-full rounded-[0.3em] bg-btnColor p-3 font-sans text-base font-extrabold text-white hover:bg-btnHoverColor focus:outline-none">
           Try Personal Plan for free
         </button>
