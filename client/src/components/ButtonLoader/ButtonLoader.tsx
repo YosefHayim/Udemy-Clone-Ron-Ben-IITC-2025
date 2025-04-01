@@ -7,7 +7,7 @@ const ButtonLoader: React.FC<{
   stopLoad: boolean;
   text?: string;
   showIcon?: boolean;
-}> = ({ isLoading, stopLoad, text = `Continue with email`, showIcon = true }) => {
+}> = ({ isLoading, stopLoad = false, text = `Continue with email`, showIcon = true }) => {
   return (
     <div className={`${isLoading ? "pointer-events-none" : ""}`}>
       <button
