@@ -47,7 +47,7 @@ const Login = () => {
               <OtherLoginOptions />
             </div>
           )}
-          {!prevWGoogle && isDifferentAccount && (
+          {prevWGoogle && isDifferentAccount && (
             <div>
               <GoogleBtn />
             </div>
