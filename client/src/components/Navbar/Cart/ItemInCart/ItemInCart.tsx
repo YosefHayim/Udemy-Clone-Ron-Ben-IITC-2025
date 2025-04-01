@@ -78,6 +78,8 @@ const ItemInCart = ({
       handleRemove();
       setDisplay(false);
       console.log("Move to Wishlist clicked");
+    } else if (btnType && target.textContent === "Go to Cart") {
+      navigate("/cart");
     } else if (!btnType) {
       navigate(`/course-view/${courseId}`);
     }
