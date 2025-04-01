@@ -16,7 +16,7 @@ const CourseBasicInfo = ({ lastUpdated, courseLanguage, isDisplayMonthName }) =>
         {formattedDate}
       </p>
       {!isDisplayMonthName && <TbWorld />}
-      <p>{courseLanguage}</p>
+      {/* <p>{courseLanguage}</p> */}
     </div>
   );
 };

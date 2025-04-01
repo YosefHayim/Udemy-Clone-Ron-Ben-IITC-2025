@@ -68,7 +68,7 @@ const CourseHoverCardInfo: React.FC<{
               <CourseBasicInfo
                 isDisplayMonthName={true}
                 lastUpdated={courseUpdatedAt}
-                courseLanguage={courseLanguages}
+                courseLanguage={courseLanguages}  
               />
             </div>
           )}
