@@ -14,17 +14,11 @@ const Carousel = () => {
   const slides = [
     {
       id: 1,
-      logo: carrosela_logo1, // Adicionando a imagem como string
+      logo: carrosela_logo1,
       title: "Booz Allen Hamilton Unlocks Talent Retention and Productivity Through Upskilling",
       stats: [
-        {
-          percentage: "93%",
-          text: "retention rate among participating employees",
-        },
-        {
-          percentage: "65%",
-          text: "of learners noted a positive impact on their productivity",
-        },
+        { percentage: "93%", text: "retention rate among participating employees" },
+        { percentage: "65%", text: "of learners noted a positive impact on their productivity" },
       ],
       buttonText: "Read full story",
       image: carrosela1,
@@ -34,14 +28,8 @@ const Carousel = () => {
       logo: carrosela_logo2,
       title: "Capital One Accelerates Transformational Learning through Udemy Business",
       stats: [
-        {
-          percentage: "95%",
-          text: "of learners rated Udemy as 'very helpful' to their success",
-        },
-        {
-          percentage: "65%",
-          text: "increase in retention for in-demand tech roles",
-        },
+        { percentage: "95%", text: "of learners rated Udemy as 'very helpful' to their success" },
+        { percentage: "65%", text: "increase in retention for in-demand tech roles" },
       ],
       buttonText: "Read full story",
       image: carrosela2,
@@ -51,14 +39,8 @@ const Carousel = () => {
       logo: carrosela_logo3,
       title: "Eventbrite Navigates Change Through Skill-Building and Leadership Development",
       stats: [
-        {
-          percentage: "4,800+",
-          text: "increase in employee enrollments for professional development courses",
-        },
-        {
-          percentage: "65%",
-          text: "revenue growth supported by a business model backed by learning",
-        },
+        { percentage: "4,800+", text: "increase in employee enrollments for development courses" },
+        { percentage: "65%", text: "revenue growth backed by learning" },
       ],
       buttonText: "Read full story",
       image: carrosela3,
@@ -86,40 +68,53 @@ const Carousel = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
+  const current = slides[currentSlide];
+
   return (
-    <div className="relative flex items-start justify-between">
-      <div className="text-left">
-        {slides[currentSlide].logo && (
-          <img src={slides[currentSlide].logo} alt="Logo" className="mb-4 h-auto w-32" />
+    <div className="flex flex-col md:flex-row items-center justify-between px-8 py-12 gap-8 relative">
+      {/* Texto fixo baseado no current slide */}
+      <div className="w-full md:w-1/2 text-left">
+        {current.logo && (
+          <img
+            src={current.logo}
+            alt="Logo"
+            className="mb-4 h-auto w-128 opacity-70"
+          />
         )}
         <h2 className="my-4 font-sans text-3xl font-extrabold text-gray-800">
-          {slides[currentSlide].title}
+          {current.title}
         </h2>
-        <div className="my-4 flex space-x-12">
-          {slides[currentSlide].stats.map((stat, index) => (
+        <div className="my-4 flex flex-wrap gap-8">
+          {current.stats.map((stat, index) => (
             <div key={index}>
               <p className="font-sans text-4xl font-extrabold text-gray-900">{stat.percentage}</p>
               <p className="text-gray-700">{stat.text}</p>
             </div>
           ))}
         </div>
-        <button className={`${loginWithEmailBtn} h-[30px] max-w-max px-2 py-0`}>
-          {slides[currentSlide].buttonText}
+        <button className={`${loginWithEmailBtn} h-[30px] text-[1rem] font-semibold font-sans max-w-max px-2 py-0`}>
+          {current.buttonText}
         </button>
       </div>
 
-      <div className="relative">
-        <img
-          src={slides[currentSlide].image}
-          alt={slides[currentSlide].title}
-          className="relative w-full"
-          style={{ height: "400px", width: "600px" }}
-        />
+      {/* Imagem com transição suave */}
+      <div className="w-full md:w-1/2 flex justify-center relative h-[600px] max-w-[900px] overflow-hidden">
+        {slides.map((slide, index) => (
+          <img
+            key={slide.id}
+            src={slide.image}
+            alt={slide.title}
+            className={`absolute transition-opacity duration-700 ease-in-out object-cover w-full h-full rounded ${
+              index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+          />
+        ))}
       </div>
 
-      <div className="absolute bottom-4 left-4 flex items-center space-x-4">
+      {/* Botões de navegação */}
+      <div className="absolute bottom-4 left-4 flex items-center space-x-4 mb-6">
         <button
-          className="z-10 h-min rounded-full p-2 shadow-alertAlgoInfo hover:bg-gray-200 focus:outline-none"
+          className="z-20 h-min rounded-full p-2 shadow-alertAlgoInfo hover:bg-gray-200 focus:outline-none"
           onClick={prevSlide}
         >
           <RiArrowLeftSLine size={30} />
@@ -135,7 +130,7 @@ const Carousel = () => {
           ))}
         </div>
         <button
-          className="z-10 h-min rounded-full p-2 shadow-alertAlgoInfo hover:bg-gray-200 focus:outline-none"
+          className="z-20 h-min rounded-full p-2 shadow-alertAlgoInfo hover:bg-gray-200 focus:outline-none"
           onClick={nextSlide}
         >
           <RiArrowRightSLine size={30} />
