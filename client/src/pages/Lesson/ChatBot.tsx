@@ -5,9 +5,7 @@ import { MdOutlineThumbUp } from "react-icons/md";
 import { MdOutlineThumbDownOffAlt } from "react-icons/md";
 import PulseLoader from "react-spinners/ClipLoader";
 import { FaArrowUp } from "react-icons/fa";
- const AI_TOKEN = import.meta.env.VITE_AI_TOKEN;
-
-
+const AI_TOKEN = import.meta.env.VITE_AI_TOKEN;
 
 const suggestedQuestions = [
   "Explain Node.Js to me as if I was a child",
@@ -18,24 +16,21 @@ const suggestedQuestions = [
 
 const ChatBot = () => {
   const [input, setInput] = useState("");
-  const [chatHistory, setChatHistory] = useState<
-    { from: "user" | "ai"; message: string }[]
-  >([]);
+  const [chatHistory, setChatHistory] = useState<{ from: "user" | "ai"; message: string }[]>([]);
   const [loading, setLoading] = useState(false);
-
 
   const sendMessage = async (userMessage?: string) => {
     const message = userMessage || input;
     if (!message) return;
-  
+
     setChatHistory((prev) => [...prev, { from: "user", message }]);
     setInput("");
     setLoading(true); // show loader
-  
+
     try {
       // simulate loader delay (optional, but looks nicer)
       await new Promise((res) => setTimeout(res, 1000));
-  
+
       const res = await axios.post(
         "https://api-inference.huggingface.co/models/google/flan-t5-base",
         { inputs: message },
@@ -46,7 +41,7 @@ const ChatBot = () => {
           },
         }
       );
-  
+
       const aiMessage = res.data[0]?.generated_text || "No response from model.";
       setChatHistory((prev) => [...prev, { from: "ai", message: aiMessage }]);
     } catch (err: any) {
@@ -58,97 +53,94 @@ const ChatBot = () => {
         },
       ]);
     }
-  
+
     setLoading(false);
   };
-  
+
   return (
-    <div className="flex flex-col  h-screen w-full  p-4 text-sm">
+    <div className="flex h-screen  w-full flex-col  p-4 text-sm">
       {/* Header */}
       <div>
         {chatHistory.length === 0 && (
           <>
-            <h2 className="text-base font-bold">
-              Do you have any questions about this course?
-            </h2>
-            <p className="text-gray-500 text-xs mt-1">
+            <h2 className="text-base font-bold">Do you have any questions about this course?</h2>
+            <p className="mt-1 text-xs text-gray-500">
               Our AI assistant may make mistakes. Verify for accuracy.{" "}
-              <a href="#" className="underline text-purple-600">Terms Apply.</a>
+              <a href="#" className="text-purple-600 underline">
+                Terms Apply.
+              </a>
             </p>
           </>
         )}
       </div>
-  
+
       {/* Chat or Suggestions */}
-      <div className="flex-grow overflow-auto mt-4 space-y-4 pr-1">
+      <div className="mt-4 flex-grow space-y-4 overflow-auto pr-1">
         {chatHistory.length === 0 ? (
           <div className="space-y-2">
             {suggestedQuestions.map((q, i) => (
               <button
                 key={i}
                 onClick={() => sendMessage(q)}
-                className="w-full text-left border border-gray-300 rounded-md px-3 py-2 hover:bg-[#D2CAFF] transition"
+                className="w-full rounded-md border border-gray-300 px-3 py-2 text-left transition hover:bg-[#D2CAFF]"
               >
                 {q}
               </button>
             ))}
-            
           </div>
         ) : (
           chatHistory.map((chat, i) => (
-<div
-  key={i}
-  className={`flex items-start gap-2 ${
-    chat.from === "user" ? "justify-end" : "justify-start"
-  }`}
->
-  {/* AI avatar icon */}
-  {chat.from === "ai" && (
-    <div className="w-8 h-8 flex items-center justify-center bg-purple-600 text-white rounded-full mt-1">
-      <BsStars />
-    </div>
-  )}
+            <div
+              key={i}
+              className={`flex items-start gap-2 ${
+                chat.from === "user" ? "justify-end" : "justify-start"
+              }`}
+            >
+              {/* AI avatar icon */}
+              {chat.from === "ai" && (
+                <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-purple-600 text-white">
+                  <BsStars />
+                </div>
+              )}
 
-  {/* Message bubble */}
-  <div
-    className={`rounded-xl text-lg max-w-xs whitespace-pre-wrap ${
-      chat.from === "user"
-        ? "bg-purple-100 text-right px-4 py-3"
-        : "bg-[#F6F7F9] text-left px-4 py-2"
-    }`}
-  >
-    <div className="flex flex-col">
-      {chat.message}
+              {/* Message bubble */}
+              <div
+                className={`max-w-xs whitespace-pre-wrap rounded-xl text-lg ${
+                  chat.from === "user"
+                    ? "bg-purple-100 px-4 py-3 text-right"
+                    : "bg-[#F6F7F9] px-4 py-2 text-left"
+                }`}
+              >
+                <div className="flex flex-col">
+                  {chat.message}
 
-      {/* 👍 👎 only for AI */}
-      {chat.from === "ai" && (
-        <span className="flex gap-2 pt-2">
-          <MdOutlineThumbUp className="text-[#5022C3] cursor-pointer hover:bg-[#E5DEF4] rounded-sm" />
-          <MdOutlineThumbDownOffAlt className="text-[#5022C3] cursor-pointer hover:bg-[#E5DEF4] rounded-sm" />
-        </span>
-      )}
-    </div>
-  </div>
-</div>
-
+                  {/* 👍 👎 only for AI */}
+                  {chat.from === "ai" && (
+                    <span className="flex gap-2 pt-2">
+                      <MdOutlineThumbUp className="cursor-pointer rounded-sm text-[#5022C3] hover:bg-[#E5DEF4]" />
+                      <MdOutlineThumbDownOffAlt className="cursor-pointer rounded-sm text-[#5022C3] hover:bg-[#E5DEF4]" />
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
           ))
         )}
-        
       </div>
       {loading && (
-  <div className="flex min-h-20 items-start gap-2">
-    <div className="w-8 h-8 flex items-center justify-center bg-purple-600 text-white rounded-full mt-1">
-      <BsStars />
-    </div>
-    <div className="bg-gray-100 px-4 py-3 rounded-xl max-w-xs">
-      <PulseLoader size={18} color="#5022C3" />
-    </div>
-  </div>
-)}
-  
+        <div className="flex min-h-20 items-start gap-2">
+          <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-full bg-purple-600 text-white">
+            <BsStars />
+          </div>
+          <div className="max-w-xs rounded-xl bg-gray-100 px-4 py-3">
+            <PulseLoader size={18} color="#5022C3" />
+          </div>
+        </div>
+      )}
+
       {/* Input Section */}
       <div className="pb-40">
-        <div className="flex items-center border border-gray-300 focus-within:border-purple-500 focus-within:ring-2 focus-within:ring-purple-200 rounded-md overflow-hidden">
+        <div className="flex items-center overflow-hidden rounded-md border border-gray-300 focus-within:border-purple-500 focus-within:ring-2 focus-within:ring-purple-200">
           <input
             type="text"
             className="flex-1 bg-white p-2 text-sm outline-none"
@@ -159,18 +151,15 @@ const ChatBot = () => {
           />
           <button
             onClick={() => sendMessage()}
-            className="bg-[#892DE1] hover:bg-purple-700 text-white px-4 p-4 m-1"
+            className="m-1 bg-[#892DE1] p-4 px-4 text-white hover:bg-purple-700"
           >
             <FaArrowUp />
           </button>
         </div>
-        <div className="mt-2 text-center text-xs text-gray-400">
-          Share feedback
-        </div>
+        <div className="mt-2 text-center text-xs text-gray-400">Share feedback</div>
       </div>
     </div>
   );
-  
 };
 
 export default ChatBot;
