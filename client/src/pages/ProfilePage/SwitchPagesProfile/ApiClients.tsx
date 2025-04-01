@@ -3,15 +3,14 @@ import SideBarProfile from "../SideBarProfile";
 
 const ApiClients = () => {
   return (
-    <main className="flex-1 py-4 border-l min-h-screen">
-      
-      <div className="text-center border-b"> 
+    <main className="min-h-screen flex-1 border-l py-4">
+      <div className="border-b text-center">
         <h2 className="mb-6 font-sans text-2xl font-bold text-gray-800">API Clients</h2>
-        <p className="mb-6  -mt-4 text-[1rem] text-gray-700">Create and list your API clients.</p>
+        <p className="-mt-4  mb-6 text-[1rem] text-gray-700">Create and list your API clients.</p>
       </div>
 
       {/* Affiliate API Section */}
-      <div className="mb-5 mt-4 mx-[9rem]">
+      <div className="mx-[9rem] mb-5 mt-4">
         <h3 className="mb-6 text-[2rem] font-semibold text-gray-700">Affiliate API</h3>
         <p className="mb-4  mr-[5rem] text-[1rem] text-gray-800">
           The Udemy Affiliate API exposes functionalities of Udemy to help developers build client
@@ -23,7 +22,7 @@ const ApiClients = () => {
         </p>
         <button
           type="button"
-          className="rounded-sm text-[0.875rem] font-bold bg-white px-6 py-2 border-[1px] border-[#6d28d2] text-[#6d28d2]  hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="rounded-sm border-[1px] border-[#6d28d2] bg-white px-6 py-2 text-[0.875rem] font-bold text-[#6d28d2]  hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
         >
           Request Affiliate API Client
         </button>
@@ -45,16 +44,8 @@ const ApiClients = () => {
             d="M13 16h-1v-4h-1m1-4h.01M12 8v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <p className="text-sm text-gray-800 font-bold">You don’t have any API clients yet.</p>
+        <p className="text-sm font-bold text-gray-800">You don’t have any API clients yet.</p>
       </div>
-
-
-
-
-
-
-
-
     </main>
   );
 };

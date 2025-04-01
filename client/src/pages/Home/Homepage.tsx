@@ -39,8 +39,8 @@ const Homepage = () => {
       {!isMobile && cookie && <Menu />}
       <div className="font-[lifeLtstd]">
         {!cookie ? (
-          <div className="w-full flex justify-center">
-            <div className="max-w-[calc(100%-6rem)] w-full overflow-clip">
+          <div className="flex w-full justify-center">
+            <div className="w-full max-w-[calc(100%-6rem)] overflow-clip">
               <Banner isLogin={false} />
               <Sections />
               <TrustedBySection />

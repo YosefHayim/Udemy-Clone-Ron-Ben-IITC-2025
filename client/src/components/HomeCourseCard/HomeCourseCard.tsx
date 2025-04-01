@@ -15,15 +15,14 @@ const HomeCourseCard = ({ courseCard, index }) => {
   const handleMouseEnter = (id: string, e: React.MouseEvent<HTMLDivElement>) => {
     const offsetTop = e.currentTarget.offsetTop;
     const offsetLeft = e.currentTarget.offsetLeft + e.currentTarget.offsetWidth;
-  
+
     setHoverPosition({
       top: offsetTop,
       left: offsetLeft + 12, // esse "12" dá um espacinho
     });
-  
+
     setHoveredCourse(id);
   };
-  
 
   const handleMouseLeave = () => {
     setHoveredCourse(null);

@@ -12,7 +12,6 @@ import cravingSomeFlexibility from "/images/banner12.jpg";
 import jumpIntoLearningForLess from "/images/banner13.jpg";
 import { Link } from "react-router-dom";
 
-
 export const getBanners = ({
   coursesBoughtOrJoined = [],
   fullName,
