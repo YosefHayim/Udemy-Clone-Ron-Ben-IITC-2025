@@ -36,7 +36,7 @@ const ProfilePic: React.FC<{
       } flex items-center justify-center rounded-[0.4em] py-[0.2em] font-sans font-normal text-[#020202] hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-300`}
     >
       <Avatar className={`${isBig ? `${size}` : ""}`}>
-        <AvatarImage referrerPolicy="no-referrer" src={imageUrl} className="ml-2 rounded-[100em]" />
+        <AvatarImage referrerPolicy="no-referrer" src={imageUrl} className="" />
         <AvatarFallback
           className={`${
             isBig ? "text-2xl" : "text-1xl"
