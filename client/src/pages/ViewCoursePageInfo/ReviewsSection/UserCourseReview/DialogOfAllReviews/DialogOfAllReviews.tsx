@@ -40,7 +40,10 @@ const DialogOfAllReviews: React.FC<{
     <div>
       <Dialog open={isClicked} onOpenChange={setClicked}>
         <DialogOverlay style={{ backgroundColor: "#1d1e27cc" }} />
-        <DialogContent className="z-[2000]" style={{ maxWidth: "70%", height: "100%" }}>
+        <DialogContent
+          className="z-[2000]"
+          style={{ maxWidth: "70%", height: "100%", marginTop: "10%" }}
+        >
           <DialogHeader>
             <DialogTitle>
               <div className="flex  items-center justify-start">
