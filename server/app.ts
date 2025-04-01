@@ -19,7 +19,7 @@ import commentRoute from "./routes/reviews/commentRoute.ts";
 import reviewRoute from "./routes/reviews/reviewRoute.ts";
 import reportReviewRoute from "./routes/reviews/reportReviewRoute.ts";
 import instructorRoute from "./routes/users/instructorRoute.ts";
-import { launchSocket, server } from "./launchSocket.ts";
+import { launchSocket, server } from "./sockets/launchSocket.ts";
 
 dotenv.config();
 
