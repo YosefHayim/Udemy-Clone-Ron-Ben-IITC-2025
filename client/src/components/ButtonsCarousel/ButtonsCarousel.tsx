@@ -53,7 +53,7 @@ const ButtonsCarousel: React.FC<{
             className="z-[100] h-min rounded-full p-1 hover:bg-gray-200 focus:outline-none"
             onClick={handleFnPrev}
           >
-            <RiArrowLeftSLine size={30} />
+            <RiArrowLeftSLine size={40} />
           </button>
         </div>
       )}
@@ -71,7 +71,7 @@ const ButtonsCarousel: React.FC<{
             className="h-min rounded-full p-1 hover:bg-gray-200 focus:outline-none"
             onClick={handleFnNext}
           >
-            <RiArrowRightSLine size={30} />
+            <RiArrowRightSLine size={40} />
           </button>
         </div>
       )}
