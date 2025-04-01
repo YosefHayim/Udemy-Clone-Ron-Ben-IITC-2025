@@ -149,8 +149,8 @@ const Sections = () => {
                       key={idx}
                       onClick={() => setChooseTopic(topic)}
                       className={`${choseTopic === topic
-                          ? "w-full bg-blackUdemy text-white hover:bg-grayUdemyHover"
-                          : ""
+                        ? "w-full bg-blackUdemy text-white hover:bg-grayUdemyHover"
+                        : ""
                         } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
                     >
                       <b className="w-max text-base">{topic}</b>
@@ -162,7 +162,7 @@ const Sections = () => {
             })}
           </div>
         </div>
-        <div className="relative w-full">
+        <div className="relative w-full overflow-visible">
           {data && data?.response?.length > 7 && (
             <ButtonsCarousel
               handleFnNext={handleNextCourse}
@@ -176,14 +176,27 @@ const Sections = () => {
             />
           )}
           <div
-            className="flex w-fit items-center justify-start gap-4 p-4 transition-transform duration-1000 ease-in-out"
+            className="flex w-fit items-center justify-start gap-4 py-4 transition-transform duration-1000 ease-in-out"
             style={{
-              transform: `translateX(-${courseIndex * 30.5}%)`,
+              transform: `translateX(-${courseIndex * 100}%)`,
             }}
           >
-            {data?.response?.map((courseCard, index: number) => (
-              <HomeCourseCard courseCard={courseCard} index={courseCard._id} key={index + 3} />
-            ))}
+            {[...Array(Math.ceil(data.response.length / 5))].map((_, groupIndex) => {
+              const coursesGroup = data.response.slice(groupIndex * 5, groupIndex * 5 + 5);
+
+              return (
+                <div key={groupIndex} className="flex gap-4 w-full flex-shrink-0">
+                  {coursesGroup.map((courseCard, i) => (
+                    <HomeCourseCard
+                      courseCard={courseCard}
+                      index={courseCard._id}
+                      key={courseCard._id}
+                    />
+                  ))}
+                </div>
+              );
+            })}
+
           </div>
         </div>
 
