@@ -65,7 +65,7 @@ const LearnersAreViewing = ({ randomAlgoWord }) => {
             data?.response && data?.response?.length > 7
               ? "w-max items-center justify-center"
               : "w-full items-center justify-start"
-          } z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+          } z-20 h-full gap-5 transition-transform duration-1000 ease-in-out`}
           style={{ transform: `translateX(-${courseIndex * 30.5}%)` }}
         >
           {data?.response?.length > 1 &&
