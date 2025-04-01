@@ -18,7 +18,8 @@ const CartCoursesNumber = () => {
   if (countOfCourses < 1) return null;
 
   return (
-    <div className="absolute right-[0%] top-[11%]  z-10 flex  h-[1rem] w-[1rem] items-center justify-center rounded-full bg-[#A435F0] text-[0.6rem] leading-none text-white">
+    <div className="absolute right-[0%] top-[11%]  z-10 flex  h-[1.05rem] w-[1.05rem] items-center 
+    justify-center rounded-full bg-[#A435F0] text-[0.6rem] leading-none text-white">
       {countOfCourses}
     </div>
   );
