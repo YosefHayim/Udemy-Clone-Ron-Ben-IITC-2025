@@ -27,7 +27,8 @@ const convertToComparable = (filters) =>
   );
 
 const FilterNSort = ({ coursesResults, searchTerm }) => {
-  const [filterData, setFilterData] = useContext(filterContext);
+  const { filterData, setFilterData } = useContext(filterContext);
+
   const isFiltersDefault = convertToComparable(filterData) === convertToComparable(defaultFilters);
 
   return (
@@ -40,7 +41,12 @@ const FilterNSort = ({ coursesResults, searchTerm }) => {
             <div className="flex items-center">
               <span
                 className="cursor-pointer font-sans font-extrabold text-purpleStatic hover:text-purpleHover"
-                onClick={() => setFilterData(defaultFilters)}
+                onClick={() =>
+                  setFilterData((prev) => ({
+                    ...prev,
+                    ...defaultFilters,
+                  }))
+                }
               >
                 Clear filters
               </span>

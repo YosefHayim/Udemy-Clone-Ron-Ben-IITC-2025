@@ -18,7 +18,7 @@ import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import { filterContext } from "@/contexts/filterSearch";
 
 const SearchPage: React.FC = () => {
-  const [filterData, setFilterData] = useContext(filterContext);
+  const { filterData } = useContext(filterContext);
 
   document.title = "Search results | Udemy";
   const navigate = useNavigate();

@@ -8,14 +8,13 @@ import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import { useNavigate } from "react-router-dom";
-import Loader from "@/components/Loader/Loader";
 import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
 import { filterContext } from "@/contexts/filterSearch";
 
 const Sections = () => {
   const navigate = useNavigate();
-  const [filterData, setFilterData] = useContext(filterContext);
+  const { filterData, setSortBy } = useContext(filterContext);
   const [navbarCategory, setNavbarCategory] = useState("Data Science");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [courseIndex, setCourseIndex] = useState(0);
@@ -82,10 +81,7 @@ const Sections = () => {
   });
 
   useEffect(() => {
-    setFilterData((prev) => ({
-      ...prev,
-      sortBy: "most-relevant",
-    }));
+    setSortBy("most-relevant");
   }, [data]);
 
   useEffect(() => {

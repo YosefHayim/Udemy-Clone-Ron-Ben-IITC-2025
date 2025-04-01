@@ -4,14 +4,14 @@ import { useContext } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 const PaginationPages: React.FC<{ totalPages: number }> = ({ totalPages }) => {
-  const [filterData, setFilterData] = useContext(filterContext);
+  const { filterData, setPage } = useContext(filterContext);
 
   const currentPage = filterData.page;
 
   if (!currentPage || totalPages < 1) return null;
 
   const updatePage = (newPage: number) => {
-    setFilterData((prev) => ({ ...prev, page: newPage }));
+    setPage(newPage);
   };
 
   const handleNextPage = () => {

@@ -7,7 +7,7 @@ import { filterContext } from "@/contexts/filterSearch";
 const RatingsFilter = () => {
   const [isClicked, setClicked] = useState(true);
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
-  const [filterData, setFilterData] = useContext(filterContext);
+  const { filterData, setRatings } = useContext(filterContext);
 
   // Sync selectedRating with filterData on mount
   useEffect(() => {
@@ -16,10 +16,7 @@ const RatingsFilter = () => {
 
   const handleRatingClick = (rating: number) => {
     setSelectedRating(rating);
-    setFilterData((prev: any) => ({
-      ...prev,
-      ratings: rating,
-    }));
+    setRatings(rating);
     console.log("Selected Rating:", rating);
   };
 

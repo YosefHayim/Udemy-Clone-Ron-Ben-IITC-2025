@@ -4,15 +4,11 @@ import { useContext } from "react";
 import { filterContext } from "@/contexts/filterSearch";
 
 const ViewCertificatesOnly = () => {
-  const [filterData, setFilterData] = useContext(filterContext);
+  const { filterData, setCertificateOnly } = useContext(filterContext);
   const [isActive, setIsActive] = useState<boolean | null>(false);
 
   const handleToggle = () => {
-    setFilterData((prev) => ({
-      ...prev,
-      certificateOnly: !prev.certificateOnly,
-    }));
-    console.log(filterData.certificateOnly);
+    setCertificateOnly(!filterData.certificateOnly);
     setIsActive((prev) => !prev);
   };
 
