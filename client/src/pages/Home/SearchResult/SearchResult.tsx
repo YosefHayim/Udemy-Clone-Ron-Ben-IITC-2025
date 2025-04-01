@@ -46,7 +46,7 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
     setTimeout(() => setCourseAnimating(false), 500);
   };
 
-  useEffect(() => {}, [data]);
+  useEffect(() => { }, [data]);
 
   return (
     <section className="px-6 py-8">
@@ -65,7 +65,7 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
       {title && !randomAlgoWord && (
         <h2 className="mb-6 font-sans text-3xl font-extrabold">{title}</h2>
       )}
-      <div className="relative w-full overflow-hidden">
+      <div className="relative w-full">
         {data && data.length > 7 && (
           <ButtonsCarousel
             handleFnNext={handleNextCourse}
@@ -79,10 +79,8 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
           />
         )}
         <div
-          className={`flex ${data && data.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
-          style={{
-            transform: `translateX(-${courseIndex * 30.5}%)`,
-          }}
+          className={`flex ${data && data.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"} z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+          style={{ transform: `translateX(-${courseIndex * 30.5}%)` }}
         >
           {data && data.length >= 1 ? (
             data.map((courseCard, index: number) => (

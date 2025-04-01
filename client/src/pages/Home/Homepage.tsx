@@ -39,9 +39,9 @@ const Homepage = () => {
       {!isMobile && cookie && <Menu />}
       <div className="font-[lifeLtstd]">
         {!cookie ? (
-          <div className="w-full">
-            <Banner isLogin={false} />
-            <div>
+          <div className="w-full flex justify-center">
+            <div className="max-w-[calc(100%-6rem)] w-full overflow-clip">
+              <Banner isLogin={false} />
               <Sections />
               <TrustedBySection />
               <LearnersAreViewing randomAlgoWord={uniqueSearches[0]} />

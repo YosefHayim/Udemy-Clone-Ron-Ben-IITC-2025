@@ -32,7 +32,7 @@ const HomeCourseCard = ({ courseCard, index }) => {
       onMouseEnter={(e) => handleMouseEnter(courseCard._id, e)}
       onMouseLeave={handleMouseLeave}
       id={courseCard?._id}
-      className="w-[300px] cursor-pointer flex-col items-start overflow-hidden rounded-lg border border-borderGrayColor bg-white shadow-sm"
+      className="w-[300px] cursor-pointer flex-col items-start rounded-lg border border-borderGrayColor bg-white shadow-sm"
     >
       <img
         src={courseCard?.courseImg}
