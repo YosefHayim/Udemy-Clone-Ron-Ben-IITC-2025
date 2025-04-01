@@ -28,7 +28,9 @@ const ProfileMain = () => {
 
   const mutateUpdatePersonalInfo = useMutation({
     mutationFn: updatePersonalInfo,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log(data);
+
       setTimeout(() => {
         setUserInformation(cookie, dispatch);
         location.reload();
@@ -204,7 +206,7 @@ const ProfileMain = () => {
                   placeholder={
                     userLinks.website.length > 1 ? userLinks.website : "Website (http(s)://..)"
                   }
-                  className="w-full rounded-[0.2rem] border border-gray-500"
+                  className="w-full rounded-[0.2rem] border border-gray-500 hover:bg-gray-100"
                   style={{ paddingTop: "1.2rem", paddingBottom: "1.2rem" }}
                 />
               </div>
@@ -222,7 +224,7 @@ const ProfileMain = () => {
                     name="facebook"
                     id="facebook"
                     placeholder={userLinks.facebook.length > 1 ? userLinks.facebook : "Username"}
-                    className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
+                    className="h-full w-full rounded-l-none rounded-r-[0.2rem]   bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
                 </div>
                 <p className=" my-[1em] text-gray-600">
@@ -234,7 +236,7 @@ const ProfileMain = () => {
                 <div className="flex h-[45px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
                   <label
                     htmlFor="facebook"
-                    className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
+                    className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black hover:bg-gray-100"
                   >
                     https://www.instagram.com/
                   </label>
@@ -243,7 +245,7 @@ const ProfileMain = () => {
                     name="instagram"
                     id="instagram"
                     placeholder={userLinks.facebook.length > 1 ? userLinks.facebook : "Username"}
-                    className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
+                    className="h-full w-full rounded-l-none rounded-r-[0.2rem]   bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
                 </div>
                 <p className=" my-[1em] text-gray-600">
@@ -255,7 +257,7 @@ const ProfileMain = () => {
                 <div className="flex h-[45px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
                   <label
                     htmlFor="linkedin"
-                    className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
+                    className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black hover:bg-gray-100"
                   >
                     http://www.linkedin.com/
                   </label>
@@ -266,7 +268,7 @@ const ProfileMain = () => {
                     placeholder={
                       userLinks.linkedin.length > 1 ? userLinks.linkedin : "Public Profile URL"
                     }
-                    className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
+                    className="h-full w-full rounded-l-none rounded-r-[0.2rem]   bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
                 </div>
                 <p className=" my-[1em] text-gray-600">
@@ -275,7 +277,7 @@ const ProfileMain = () => {
               </div>
               {/* Tik-Tok  */}
               <div className="flex w-full flex-col items-start justify-start">
-                <div className="flex h-[45px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                <div className="flex h-[45px] w-full items-center  rounded-[0.2rem] border border-gray-400 bg-white hover:bg-gray-100">
                   <label
                     htmlFor="linkedin"
                     className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
@@ -287,7 +289,7 @@ const ProfileMain = () => {
                     name="tiktok"
                     id="tiktok"
                     placeholder={userLinks.linkedin.length > 1 ? userLinks.linkedin : "@Username"}
-                    className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
+                    className="h-full w-full rounded-l-none rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
                 </div>
                 <p className=" my-[1em] text-gray-600">
@@ -308,14 +310,14 @@ const ProfileMain = () => {
                     name="X"
                     id="X"
                     placeholder={userLinks.xPlatform.length > 1 ? userLinks.xPlatform : "Username"}
-                    className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
+                    className="h-full w-full rounded-l-none rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
                 </div>
                 <p className=" my-[1em] text-gray-600">Add your X username (e.g. johnsmith)</p>
               </div>
               {/* Youtube */}
               <div className="flex w-full flex-col items-start justify-start">
-                <div className="flex h-[45px] w-full  items-center rounded-[0.2rem] border border-gray-400 bg-white">
+                <div className="flex h-[45px] w-full items-center rounded-[0.2rem] border border-gray-400 bg-white">
                   <label
                     htmlFor="youtube"
                     className="flex h-full items-center rounded-l-[0.2rem] border-r border-gray-400 bg-gray-100 px-[0.7em] text-base font-normal text-black"
@@ -327,10 +329,10 @@ const ProfileMain = () => {
                     id="youtube"
                     name="youtube"
                     placeholder={userLinks.youtube.length > 1 ? userLinks.youtube : "Username"}
-                    className="h-full w-full rounded-l-none   rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500"
+                    className="h-full w-full rounded-l-none rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
                 </div>
-                <p className=" mt-[0.5em] text-gray-600">
+                <p className="mt-[0.5em] text-gray-600">
                   Input your YouTube username (e.g. johnsmith)
                 </p>
               </div>
