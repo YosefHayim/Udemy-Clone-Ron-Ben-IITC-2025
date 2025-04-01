@@ -480,6 +480,8 @@ const updateUserInfo = catchAsync(
       isAuthActivate,
     } = req.body;
 
+    console.log(req.body);
+
     const updatedUser = await User.findByIdAndUpdate(
       req.user._id,
       {
