@@ -15,11 +15,20 @@ const StickyCourseMobile = () => {
     const topic = button.innerText.trim();
     setSelectedButton(topic);
 
-    if (topic === "Overview") {
-      console.log("Overview clicked");
-    } else {
-      console.log(`${topic} clicked`);
+    const section = document.querySelector(`.${topic.toLowerCase()}`);
+
+    if (!section) {
+      console.warn(`No section found with class: .${topic.toLowerCase()}`);
+      return;
     }
+
+    const yOffset = -100; // space for sticky header
+    const y = section.getBoundingClientRect().top + window.scrollY + yOffset;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth",
+    });
   };
 
   return (

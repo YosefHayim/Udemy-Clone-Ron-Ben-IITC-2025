@@ -22,7 +22,7 @@ const CourseContent: React.FC<CourseContentProps> = ({
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="curriculum flex flex-col">
       <h2 className="mb-[1em] font-sans text-[1.2em] font-extrabold">Course Content</h2>
       <TotalCourseLength
         totalCourseLessons={totalCourseLessons}

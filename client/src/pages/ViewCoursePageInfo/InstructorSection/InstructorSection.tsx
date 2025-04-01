@@ -18,7 +18,7 @@ const InstructorSection: React.FC<{
   instructorId,
 }) => {
   return (
-    <div className="flex flex-col items-start justify-start gap-[1em]">
+    <div className="instructor flex flex-col items-start justify-start gap-[1em]">
       <div>
         <h2 className="font-sans text-[1.5em] font-extrabold">Instructor</h2>
         <Link to={`/user/instructor/${instructorId}`}>

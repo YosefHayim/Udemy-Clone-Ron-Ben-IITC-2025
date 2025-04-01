@@ -17,7 +17,7 @@ const ReviewsSection: React.FC<{
   };
 
   return (
-    <div>
+    <div className="reviews">
       <ReviewSectionTitle totalRated={reviewsToRender.length} avgRating={avgRating} />
       <div className="mb-[2em] grid w-[700px] grid-cols-2 gap-4">
         {reviewsToRender.slice(0, 4).map((review, index) => (

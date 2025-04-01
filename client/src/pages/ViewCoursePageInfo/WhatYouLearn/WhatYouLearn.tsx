@@ -18,7 +18,7 @@ const WhatYouLearn: React.FC<{ prosCourse: string[] }> = ({ prosCourse }) => {
   const secondColumn = prosCourse.slice(half);
 
   return (
-    <div className="border border-gray-300">
+    <div className="overview border border-gray-300">
       <div
         className="flex w-full flex-col items-start justify-start p-2"
         style={{
