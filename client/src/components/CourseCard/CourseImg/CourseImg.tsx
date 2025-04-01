@@ -1,14 +1,28 @@
-import courseImgPlaceholder from "/images/image.png";
-
 const CourseImg: React.FC<{
-  courseImg: string;
+  courseImg?: string;
   widthChosen?: string;
   standCardView: boolean;
   imgExplanation: string;
-}> = ({ courseImg = courseImgPlaceholder, widthChosen = "200px" }) => {
+}> = ({ courseImg, widthChosen = "200px", standCardView, imgExplanation }) => {
+  const showPlaceholder = !courseImg;
+
   return (
-    <div className="border">
-      <img src={courseImg} alt="" className={`w-[30em] ${widthChosen}`} />
+    <div className={`border ${widthChosen}`}>
+      {showPlaceholder ? (
+        <div
+          className="flex h-[200px] w-full items-center justify-center bg-gray-200 text-sm text-gray-500"
+          style={{ width: widthChosen }}
+        >
+          No Image
+        </div>
+      ) : (
+        <img
+          src={courseImg}
+          alt={imgExplanation}
+          className={`w-full object-cover`}
+          style={{ width: widthChosen }}
+        />
+      )}
     </div>
   );
 };
