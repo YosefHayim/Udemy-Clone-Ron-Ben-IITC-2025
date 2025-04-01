@@ -25,15 +25,14 @@ const HeartBtn: React.FC<{
   if (!courseId) return null;
 
   const handleClick = () => {
+    console.log("Clicked heart button");
+
     if (!cookie) {
       navigate("/signup");
       return;
     }
-
-    if (isLoading) return;
     setLoading(true);
     dispatch(setCoursesAddedToWishList(courseId));
-
     setTimeout(() => {
       setLoading(false);
     }, 500);
@@ -48,7 +47,7 @@ const HeartBtn: React.FC<{
       } flex cursor-pointer items-center justify-center rounded-full border border-purple-700 p-3 transition-all duration-300 hover:bg-purpleHoverBtn ${customHeartExtraCSS}`}
     >
       {isLoading ? (
-        <Loader useSmallLoading={true} hSize="0em" paddingSetTo="0em" />
+        <Loader useSmallLoading={true} hSize="5" paddingSetTo="0em" />
       ) : isFavorite ? (
         <IoHeartSharp size={24} className={`text-${iconSize} text-purple-700`} />
       ) : (

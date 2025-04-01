@@ -86,6 +86,7 @@ const CourseHoverCardInfo: React.FC<{
             displayWhatYouLearn={displayWhatYouLearn}
           />
           <InteractionsBtns
+            isDisplayHeart={true}
             instructorId={instructorId}
             courseTopic={courseTopic}
             courseId={courseId}

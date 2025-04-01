@@ -3,7 +3,10 @@ import { getPageNumbers } from "@/utils/getPageNumbersAlgo";
 import { useContext } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
-const PaginationPages: React.FC<{ totalPages: number }> = ({ totalPages, useScrollRef }) => {
+const PaginationPages: React.FC<{ totalPages: number; useScrollRef }> = ({
+  totalPages,
+  useScrollRef,
+}) => {
   const { filterData, setPage } = useContext(filterContext);
 
   const currentPage = filterData.page;

@@ -30,11 +30,6 @@ const InteractionsBtns: React.FC<{
     }, 500);
   };
 
-  if (!courseId && !coursePrice && courseTopic) {
-    console.log("No courseId, coursePrice and courseTopic provided.");
-    return;
-  }
-
   return (
     <div className="w-full">
       <div className="mt-[1em] flex w-full items-center justify-start gap-2">

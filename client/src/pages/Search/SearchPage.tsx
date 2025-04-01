@@ -2,7 +2,7 @@ import SearchCourseCard from "@/pages/Search/SearchCourseCard/SearchCourseCard";
 import SidebarFilter from "./SidebarFilter/SidebarFilter";
 import FilterNSort from "./SidebarFilter/FilterNSort/FilterNSort";
 import Pagination from "./PaginationPages/PaginationPages";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
@@ -66,12 +66,12 @@ const SearchPage: React.FC = () => {
   });
 
   useEffect(() => {
-    if (!data) {
+    if (!isLoading && !isPending && !data) {
       navigate(`/not/search/not/found:${searchTerm.toLowerCase()}`);
     }
-  }, [data, searchTerm]);
+  }, [data, isLoading, isPending]);
 
-  if (isLoading || isPending) {
+  if (isLoading) {
     return <Loader hSize="100" useSmallLoading={false} />;
   }
 
@@ -100,7 +100,9 @@ const SearchPage: React.FC = () => {
                   onMouseEnter={() => setHoveredCourse(course?._id)}
                   onMouseLeave={() => setHoveredCourse(null)}
                 >
-                  <SearchCourseCard course={course} />
+                  <Link to={`/course-view/${course?._id}`}>
+                    <SearchCourseCard course={course} />
+                  </Link>
                   {/* Hover card */}
                   {hoveredCourse === course?._id && (
                     <div
