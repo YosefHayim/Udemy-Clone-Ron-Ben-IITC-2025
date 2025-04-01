@@ -10,19 +10,17 @@ const LearnersAreViewing = ({ randomAlgoWord }) => {
   const [courseIndex, setCourseIndex] = useState(0);
   const [isCourseAnimating, setCourseAnimating] = useState(false);
   const [countCourseClick, setCourseClick] = useState(0);
-  const [filterData, setFilterData] = useContext(filterContext);
+
+  const { filterData, setSortBy } = useContext(filterContext);
 
   const { data, isLoading, isPending } = useQuery({
-    queryKey: [`${randomAlgoWord}`, randomAlgoWord],
-    queryFn: () => getAllCourses(randomAlgoWord, filterContext),
+    queryKey: [randomAlgoWord],
+    queryFn: () => getAllCourses(randomAlgoWord, filterData),
     enabled: !!randomAlgoWord,
   });
 
   useEffect(() => {
-    setFilterData((prev) => ({
-      ...prev,
-      sortBy: "most-reviewed",
-    }));
+    setSortBy("most-reviewed");
   }, [data]);
 
   const handlePrevCourse = () => {
@@ -62,7 +60,11 @@ const LearnersAreViewing = ({ randomAlgoWord }) => {
           />
         )}
         <div
-          className={`flex ${data?.response && data?.response?.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+          className={`flex ${
+            data?.response && data?.response?.length > 7
+              ? "w-max items-center justify-center"
+              : "w-full items-center justify-start"
+          } z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
           style={{ transform: `translateX(-${courseIndex * 30.5}%)` }}
         >
           {data?.response?.length > 1 &&

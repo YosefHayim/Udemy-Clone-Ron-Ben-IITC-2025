@@ -16,7 +16,16 @@ const Filter: React.FC<FilterProps> = ({
   hideIcons,
 }) => {
   const [isClicked, setClicked] = useState(false);
-  const [filterData, setFilterData] = useContext(filterContext);
+  const {
+    filterData,
+    setLanguage,
+    setHandsOnPractice,
+    setVideosDurations,
+    setTopics,
+    setLevels,
+    setSubtitles,
+    setPrice,
+  } = useContext(filterContext);
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = () => {
     setClicked((prev) => !prev);
@@ -24,67 +33,43 @@ const Filter: React.FC<FilterProps> = ({
 
   const handleClickValue = (name: string) => {
     if (filterTitle === "Language") {
-      if (filterData.language.has(name)) {
-        filterData.language.delete(name); // Remove if it exists
-      } else {
-        filterData.language.add(name); // Add if it doesn't exist
-      }
-      setFilterData(structuredClone(filterData));
+      const updated = new Set(filterData.language);
+      updated.has(name) ? updated.delete(name) : updated.add(name);
+      setLanguage(updated);
     }
 
     if (filterTitle === "Hands-on Practice") {
-      if (filterData.handsOnPractice.has(name)) {
-        filterData.handsOnPractice.delete(name);
-      } else {
-        filterData.handsOnPractice.add(name);
-      }
-      setFilterData(structuredClone(filterData));
+      const updated = new Set(filterData.handsOnPractice);
+      updated.has(name) ? updated.delete(name) : updated.add(name);
+      setHandsOnPractice(updated);
     }
 
     if (filterTitle === "Video Duration") {
-      if (filterData.videosDurations.has(name)) {
-        filterData.videosDurations.delete(name);
-      } else {
-        filterData.videosDurations.add(name);
-      }
-      setFilterData(structuredClone(filterData));
+      const updated = new Set(filterData.videosDurations);
+      updated.has(name) ? updated.delete(name) : updated.add(name);
+      setVideosDurations(updated);
     }
 
     if (filterTitle === "Topics") {
-      if (filterData.topics.has(name)) {
-        filterData.topics.delete(name);
-      } else {
-        filterData.topics.add(name);
-      }
-      setFilterData(structuredClone(filterData));
+      const updated = new Set(filterData.topics);
+      updated.has(name) ? updated.delete(name) : updated.add(name);
+      setTopics(updated);
     }
 
     if (filterTitle === "Level") {
-      if (filterData.levels.has(name)) {
-        filterData.levels.delete(name);
-      } else {
-        filterData.levels.add(name);
-      }
-      setFilterData(structuredClone(filterData));
+      const updated = new Set(filterData.levels);
+      updated.has(name) ? updated.delete(name) : updated.add(name);
+      setLevels(updated);
     }
 
     if (filterTitle === "Subtitles") {
-      if (filterData.subtitles.has(name)) {
-        filterData.subtitles.delete(name);
-      } else {
-        filterData.subtitles.add(name);
-      }
-      setFilterData(structuredClone(filterData));
+      const updated = new Set(filterData.subtitles);
+      updated.has(name) ? updated.delete(name) : updated.add(name);
+      setSubtitles(updated);
     }
 
     if (filterTitle === "Price") {
-      if (filterData.price === name) {
-        filterData.price = "";
-      } else {
-        filterData.price = name;
-      }
-
-      setFilterData(structuredClone(filterData));
+      setPrice(filterData.price === name ? "" : name);
     }
   };
 
@@ -137,6 +122,8 @@ const Filter: React.FC<FilterProps> = ({
                             : filterTitle === "Subtitles" && filterData.subtitles.has(item.name)
                               ? true
                               : filterTitle === "Price" && filterData.price === item.name
+                                ? true
+                                : false
                 }
               />
               <span>{item.name}</span>

@@ -12,41 +12,36 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
   randomAlgoWord,
 }) => {
   const [courseIndex, setCourseIndex] = useState(0);
-  const [filterData, setFilterData] = useContext(filterContext);
-
   const [isCourseAnimating, setCourseAnimating] = useState(false);
   const [countCourseClick, setCourseClick] = useState(0);
 
-  const { data } = useQuery({
-    queryKey: [randomAlgoWord, randomAlgoWord],
+  const { filterData, setSortBy } = useContext(filterContext);
+
+  const { data, isLoading } = useQuery({
+    queryKey: [randomAlgoWord],
     queryFn: () => getAllCourses(randomAlgoWord, filterData),
     enabled: !!randomAlgoWord,
   });
 
   useEffect(() => {
-    setFilterData((prev) => ({
-      ...prev,
-      sortBy: "most-relevant",
-    }));
+    setSortBy("most-relevant");
   }, [data]);
 
   const handlePrevCourse = () => {
     if (isCourseAnimating || courseIndex === 0) return;
     setCourseAnimating(true);
-    setCourseClick((prevCount) => prevCount - 1);
-    setCourseIndex((prevIndex) => prevIndex - 1);
+    setCourseClick((prev) => prev - 1);
+    setCourseIndex((prev) => prev - 1);
     setTimeout(() => setCourseAnimating(false), 500);
   };
 
   const handleNextCourse = () => {
     if (isCourseAnimating) return;
-    setCourseClick((prevCount) => prevCount + 1);
+    setCourseClick((prev) => prev + 1);
     setCourseAnimating(true);
-    setCourseIndex((prevIndex) => prevIndex + 1);
+    setCourseIndex((prev) => prev + 1);
     setTimeout(() => setCourseAnimating(false), 500);
   };
-
-  useEffect(() => {}, [data]);
 
   return (
     <section className="px-6 py-8">
@@ -65,6 +60,7 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
       {title && !randomAlgoWord && (
         <h2 className="mb-6 font-sans text-3xl font-extrabold">{title}</h2>
       )}
+
       <div className="relative w-full">
         {data && data.length > 7 && (
           <ButtonsCarousel
@@ -78,13 +74,18 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
             rightPosition="2%"
           />
         )}
+
         <div
-          className={`flex ${data && data.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"} z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+          className={`flex ${
+            data && data.length > 7
+              ? "w-max items-center justify-center"
+              : "w-full items-center justify-start"
+          } z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
           style={{ transform: `translateX(-${courseIndex * 30.5}%)` }}
         >
           {data && data.length >= 1 ? (
             data.map((courseCard, index: number) => (
-              <HomeCourseCard courseCard={courseCard} index={index} />
+              <HomeCourseCard key={courseCard._id || index} courseCard={courseCard} index={index} />
             ))
           ) : (
             <div className="w-full">
