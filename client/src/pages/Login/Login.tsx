@@ -53,7 +53,7 @@ const Login = () => {
             </div>
           )}
           <div className="flex flex-col items-center justify-center pt-6 text-center">
-            {!isDifferentAccount && (
+            {!isDifferentAccount && prevWGoogle && (
               <div
                 onClick={() => setDifferentAccount(true)}
                 className={`${isDifferentAccount ? "hidden" : "flex w-full"}`}

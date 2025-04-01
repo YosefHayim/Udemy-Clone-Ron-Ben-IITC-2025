@@ -64,7 +64,7 @@ const LoginForm = ({ showOnlyLoginButton = true }) => {
           />
         )}
       </div>
-      <ButtonLoader isLoading={isLoading} />
+      <ButtonLoader isLoading={isLoading} stopLoad={isError} />
     </form>
   );
 };

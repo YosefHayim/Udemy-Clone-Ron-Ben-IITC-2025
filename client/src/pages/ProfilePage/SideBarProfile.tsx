@@ -28,7 +28,7 @@ const SideBarProfile = ({ selectedPage, setSelectedPage }) => {
     <div className="w-[14rem]  border-borderGrayColor">
       {/* Picture & Name */}
       <div className="flex flex-col items-center space-y-2">
-        <div className="flex h-[8rem] pt-6 w-[8rem] items-center justify-center rounded-full font-sans text-4xl font-extrabold text-white">
+        <div className="flex h-[8rem] w-[8rem] items-center justify-center rounded-full pt-6 font-sans text-4xl font-extrabold text-white">
           <ProfilePic
             customTextSize={`text-4xl`}
             size={`w-[3.4em] h-[3.4em]`}
@@ -39,7 +39,7 @@ const SideBarProfile = ({ selectedPage, setSelectedPage }) => {
           />
         </div>
         <div>
-          <h2 className="font-sans  pt-3 text-lg font-extrabold text-gray-800">{fullName}</h2>
+          <h2 className="pt-3  font-sans text-lg font-extrabold text-gray-800">{fullName}</h2>
         </div>
       </div>
 

@@ -76,7 +76,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
                 buttonName={"Udemy Business"}
                 insideBtnText="Try Udemy Business"
                 paragraphText="Get your team access to over 27,000 top Udemy courses, anytime, anywhere."
-                to="/udemy-business/request-demo-mx/?ref=account-menu&locale=en_US"
+                to="/demo-business"
               />
               <ButtonNavbar
                 buttonName={"Teach on Udemy"}
@@ -85,13 +85,12 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
                 insideBtnText="Learn more"
               />
               {cookie && (
-                <Link to="/wishlist">
-                  <ButtonNavbar
-                    buttonName={"My learning"}
-                    insideBtnText="Go to my learning"
-                    coursesInProgress={coursesInProgress}
-                  />
-                </Link>
+                <ButtonNavbar
+                  to="/wishlist"
+                  buttonName={"My learning"}
+                  insideBtnText="Go to my learning"
+                  coursesInProgress={coursesInProgress}
+                />
               )}
               {cookie && (
                 <div className="flex items-center">

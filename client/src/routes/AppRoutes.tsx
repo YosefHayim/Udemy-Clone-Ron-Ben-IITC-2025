@@ -1,4 +1,4 @@
-import { Router, Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import NotFound from "../pages/404/NotFound";
 import LessonPage from "../pages/Lesson/LessonPage";
 import SearchPage from "@/pages/Search/SearchPage";
@@ -13,7 +13,6 @@ import Login from "@/pages/Login/Login";
 import Wishlist from "@/pages/Wishlist/Wishlist";
 import Logout from "@/pages/Logout/Logout";
 import Payment from "@/pages/Payment/Payment";
-import ProfileMain from "@/pages/ProfilePage/SwitchPagesProfile/ProfileMain";
 import UdemyCredits from "@/components/Navbar/DropDownMenu/UdemyCredits/UdemyCredits";
 import PurchaseHistory from "@/components/Navbar/DropDownMenu/PurchaseHistory/PurchaseHistory";
 import Subscription from "@/components/Navbar/DropDownMenu/Subscription/Subscription";

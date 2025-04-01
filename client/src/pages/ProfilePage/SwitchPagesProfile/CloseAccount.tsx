@@ -4,11 +4,11 @@ const CloseAccount = () => {
   return (
     <div className="min-h-screen border-l">
       <div className="flex flex-col items-center justify-center">
-        <h1 className="font-sans text-[1.4rem] pt-4 pb-2 font-extrabold">Close Account</h1>
+        <h1 className="pb-2 pt-4 font-sans text-[1.4rem] font-extrabold">Close Account</h1>
         <p className="text-[1rem] opacity-90">Close your account permanently.</p>
       </div>
-        <hr className="my-[1em] w-full" />
-      <div className="flex flex-col items-center text-[1rem] justify-center mt-8">
+      <hr className="my-[1em] w-full" />
+      <div className="mt-8 flex flex-col items-center justify-center text-[1rem]">
         <div className="w-[600px] text-start">
           <p className="mb-[1em]">
             <b className="text-[#d51c0f]">Warning:</b> If you close your account, you will be

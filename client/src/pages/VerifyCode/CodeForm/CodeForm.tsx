@@ -88,7 +88,7 @@ const CodeForm = ({ emailUser, userFullName, isClickedResend }) => {
           </div>
         </div>
         <div className="w-full">
-          <ButtonLoader isLoading={isLoading} text={`Log in`} showIcon={false} />
+          <ButtonLoader isLoading={isLoading} text={`Log in`} showIcon={false} stopLoad={isError} />
         </div>
       </form>
     </div>

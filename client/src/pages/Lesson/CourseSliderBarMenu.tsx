@@ -21,13 +21,13 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
-} from "@/components/ui/navigation-menu"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchCourseProgress, updateLessonProgress } from '@/services/ProgressService';
-import { CourseProgressResponse, LessonProgressPayload } from '@/types';
-import CustomTrigger from '../Lesson/CustomTrigger';
+} from "@/components/ui/navigation-menu";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { fetchCourseProgress, updateLessonProgress } from "@/services/ProgressService";
+import { CourseProgressResponse, LessonProgressPayload } from "@/types";
+import CustomTrigger from "../Lesson/CustomTrigger";
 
 export function CourseSidebarMenu({ courseId }: { courseId: string }) {
   const [hover, setHover] = useState("gray-600");
@@ -106,9 +106,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
 
   return (
     <SidebarMenu className=" min-w-full">
-      <div className="flex items-center  justify-between   font-semibold">
-
-      </div>
+      <div className="flex items-center  justify-between   font-semibold"></div>
       {data?.progress.sections.map((section, index) => (
         <Collapsible
           key={section.sectionId._id}

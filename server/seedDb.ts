@@ -26,89 +26,89 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const specificCourseTopics = [
-  {
-    Development: {
-      subCategories: "Data Science",
-      topics: [
-        "ChatGPT",
-        "Data Science",
-        "Python",
-        "Machine Learning",
-        "Deep Learning",
-        "Artificial Intelligence (AI)",
-        "Statistics",
-        "Natural Language Processing (NLP)",
-      ],
-    },
-  },
-  {
-    "IT & Software": {
-      subCategories: "IT Certifications",
-      topics: [
-        "Amazon AWS",
-        "AWS Certified Cloud Practitioner",
-        "AZ-900: Microsoft Azure Fundamentals",
-        "AWS Certified Solutions Architect - Associate",
-        "Kubernetes",
-        "AWS Certified Developer - Associate",
-        "Cisco Certified Network Associate (CCNA)",
-        "CompTIA Security+",
-      ],
-    },
-  },
-  {
-    Entrepreneurship: {
-      subCategories: "Entrepreneurship",
-      topics: [
-        "Leadership",
-        "Management Skills",
-        "Project Management",
-        "Personal Productivity",
-        "Emotional Intelligence",
-        "Digital Transformation",
-        "Business Strategy",
-        "Conflict Management",
-      ],
-    },
-  },
-  {
-    Development: {
-      subCategories: "Web Development",
-      topics: ["Typescript", "Node.Js", "Next.js"],
-    },
-  },
-  {
-    Teaching: {
-      subCategories: "Analytics & Intelligence",
-      topics: [
-        "Microsoft Excel",
-        "SQL",
-        "Microsoft Power BI",
-        "Data Analysis",
-        "Business Analysis",
-        "Tableau",
-        "Data Visualization",
-        "Data Modeling",
-      ],
-    },
-  },
-  {
-    Entrepreneurship: {
-      subCategories: "Communication",
-      topics: [
-        "Communication Skills",
-        "Presentation Skills",
-        "Public Speaking",
-        "Writing",
-        "PowerPoint",
-        "Business Communication",
-        "Business Writing",
-        "Email Writing and Etiquette",
-      ],
-    },
-  },
-];
+// const specificCourseTopics = [
+//   {
+//     Development: {
+//       subCategories: "Data Science",
+//       topics: [
+//         "ChatGPT",
+//         "Data Science",
+//         "Python",
+//         "Machine Learning",
+//         "Deep Learning",
+//         "Artificial Intelligence (AI)",
+//         "Statistics",
+//         "Natural Language Processing (NLP)",
+//       ],
+//     },
+//   },
+//   {
+//     "IT & Software": {
+//       subCategories: "IT Certifications",
+//       topics: [
+//         "Amazon AWS",
+//         "AWS Certified Cloud Practitioner",
+//         "AZ-900: Microsoft Azure Fundamentals",
+//         "AWS Certified Solutions Architect - Associate",
+//         "Kubernetes",
+//         "AWS Certified Developer - Associate",
+//         "Cisco Certified Network Associate (CCNA)",
+//         "CompTIA Security+",
+//       ],
+//     },
+//   },
+//   {
+//     Entrepreneurship: {
+//       subCategories: "Entrepreneurship",
+//       topics: [
+//         "Leadership",
+//         "Management Skills",
+//         "Project Management",
+//         "Personal Productivity",
+//         "Emotional Intelligence",
+//         "Digital Transformation",
+//         "Business Strategy",
+//         "Conflict Management",
+//       ],
+//     },
+//   },
+//   {
+//     Development: {
+//       subCategories: "Web Development",
+//       topics: ["Typescript", "Node.Js", "Next.js"],
+//     },
+//   },
+//   {
+//     Teaching: {
+//       subCategories: "Analytics & Intelligence",
+//       topics: [
+//         "Microsoft Excel",
+//         "SQL",
+//         "Microsoft Power BI",
+//         "Data Analysis",
+//         "Business Analysis",
+//         "Tableau",
+//         "Data Visualization",
+//         "Data Modeling",
+//       ],
+//     },
+//   },
+//   {
+//     Entrepreneurship: {
+//       subCategories: "Communication",
+//       topics: [
+//         "Communication Skills",
+//         "Presentation Skills",
+//         "Public Speaking",
+//         "Writing",
+//         "PowerPoint",
+//         "Business Communication",
+//         "Business Writing",
+//         "Email Writing and Etiquette",
+//       ],
+//     },
+//   },
+// ];
 
 const clearCollections = async () => {
   await Promise.all([
@@ -195,9 +195,12 @@ const createCourses = async ({
 
   // Flatten topics with category metadata
   const topicMatrix = [];
-  for (const { parentCategory, subCategory, topics } of specificCourseTopics) {
-    for (const topic of topics) {
-      topicMatrix.push({ parentCategory, subCategory, topic });
+  for (const parentCategory of Object.keys(courseCategories)) {
+    const subCategories = courseCategories[parentCategory].subCategories;
+    for (const subCategory of Object.keys(subCategories)) {
+      for (const topic of subCategories[subCategory]) {
+        topicMatrix.push({ parentCategory, subCategory, topic });
+      }
     }
   }
 
@@ -339,7 +342,7 @@ const createSections = async () => {
   const sections = [];
 
   for (const course of courses) {
-    const numSections = faker.number.int({ min: 1, max: 3 }); // Random number of sections per course
+    const numSections = faker.number.int({ min: 4, max: 7 }); // Random number of sections per course
     const createdSections = [];
 
     for (let i = 0; i < numSections; i++) {
@@ -404,7 +407,7 @@ const createLessons = async () => {
 
     console.log(`Creating lessons for section: ${section.title}...`);
 
-    const totalLessonsPerSection = faker.number.int({ min: 1, max: 3 }); // Randomize number of lessons
+    const totalLessonsPerSection = faker.number.int({ min: 3, max: 8 }); // Randomize number of lessons
     const createdLessons = [];
     let totalDurationForSection = 0;
 
@@ -885,22 +888,22 @@ const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
     console.log("Database connection established.");
-    // await clearCollections();
-    // console.log("Deleted all db.");
+    await clearCollections();
+    console.log("Deleted all db.");
 
-    // console.log("Seeding users...");
-    // const users = await createUsers();
-    // console.log(`${users.length} users created.`);
+    console.log("Seeding users...");
+    const users = await createUsers();
+    console.log(`${users.length} users created.`);
 
-    // console.log("Seeding courses...");
-    // const courses = await createCourses({
-    //   coursesPerTopic: 20,
-    //   coursesPerInstructor: 7,
-    // });
+    console.log("Seeding courses...");
+    const courses = await createCourses({
+      coursesPerTopic: 20,
+      coursesPerInstructor: 7,
+    });
 
-    // if (courses && courses.length > 1) {
-    //   console.log(`${courses.length} courses created.`);
-    // }
+    if (courses && courses.length > 1) {
+      console.log(`${courses.length} courses created.`);
+    }
 
     await createInstructorProfiles();
     console.log("create instructor profiles completed.");
@@ -916,18 +919,18 @@ const generateUpdatedDummyData = async () => {
     await simulateCoursePurchases();
     console.log("Simulate courses purchases completed");
 
-    // console.log("Seeding reviews...");
-    // await createReviews();
-    // console.log(`reviews created.`);
+    console.log("Seeding reviews...");
+    await createReviews();
+    console.log(`reviews created.`);
 
-    // console.log("Seeding reported reviews...");
-    // await createReportedReviews();
+    console.log("Seeding reported reviews...");
+    await createReportedReviews();
 
-    // await addCoursesToWishlistOfUsers();
-    // console.log("Simulate courses wishlists completed");
+    await addCoursesToWishlistOfUsers();
+    console.log("Simulate courses wishlists completed");
 
-    // await generateCouponsForCourses();
-    // console.log("Coupon generation completed.");
+    await generateCouponsForCourses();
+    console.log("Coupon generation completed.");
 
     console.log("All dummy data seeded successfully!");
     process.exit();

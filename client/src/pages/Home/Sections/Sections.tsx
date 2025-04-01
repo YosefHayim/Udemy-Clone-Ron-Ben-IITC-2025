@@ -148,10 +148,11 @@ const Sections = () => {
                     <div
                       key={idx}
                       onClick={() => setChooseTopic(topic)}
-                      className={`${choseTopic === topic
+                      className={`${
+                        choseTopic === topic
                           ? "w-full bg-blackUdemy text-white hover:bg-grayUdemyHover"
                           : ""
-                        } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
+                      } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
                     >
                       <b className="w-max text-base">{topic}</b>
                       {idx < topics.length - 1 ? <p>{getRandomLearnersAmount()}</p> : null}
@@ -183,7 +184,6 @@ const Sections = () => {
           >
             {[...Array(Math.ceil((data?.response?.length || 0) / 5))].map((_, groupIndex) => {
               const coursesGroup = data?.response?.slice(groupIndex * 5, groupIndex * 5 + 5);
-
 
               return (
                 <div key={groupIndex} className="flex w-full flex-shrink-0 gap-4">

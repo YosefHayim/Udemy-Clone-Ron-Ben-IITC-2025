@@ -1,50 +1,65 @@
-# React + TypeScript + Vite
+## Bugs to fix:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### General Logic Fixes
 
-Currently, two official plugins are available:
+- **Verify Code**: If an error is shown during verification, stop the loading button.✅
+- **Join by Course ID (API)**: On the server side, wait until all course IDs are checked before proceeding for a specific user.✅
+- **Go to Course**: Ensure course is initialized before reaching the payment stage.✅
+- **If Navigated Course View Is Undefined**: Handle gracefully with a return fallback.✅
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+### Homepage
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **After Login**: Fix the "What to learn next" carousel display.
+- **Homepage Carousel**: Reduce auto-scroll interval to **3 seconds**.✅
+- **"Learners Are Viewing" Carousel**: Fix button interaction.
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+### Navbar
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **"Udemy Business" Button**: Link it to the correct Udemy Business page.✅
+- **"My Learning" Button**: Redirect to **Wishlist** (if that's intended).✅
+- **Cart Hover**: Fix design.✅
+- **Search Input Bug**: After direct search > course click > search again = input should reset.
+- **Search Dropdown**: Ensure clicking a dropdown suggestion triggers a proper search.
+- **Fix Button Hover**: Make navbar buttons (e.g., notifications) respect absolute positioning.
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+---
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
-```
+### Search Page
+
+- **Pagination**: After clicking a page number, scroll to top.
+- **Hot & Fresh Carousel**: Fix loading issue when clicking the right arrow.
+- **Navigation Handling**: If navigating away from search, reset `filterData`.
+- **Total Pages**: Update when filters are applied.
+- **Language Filter**: Add filter functionality.
+
+---
+
+### Course View Page
+
+- **Button Spacing**: Add space between the 3 main action buttons.
+
+---
+
+### Shopping Cart
+
+- **Save for Later**: Implement logic and integrate with **Wishlist**.
+
+---
+
+### My Learning Page
+
+- **Design Overhaul**: Fix layout and implement full logic.
+
+---
+
+### Public Profile Page
+
+- **Navigation**: Ensure user is routed based on `userId`.
+
+---
+
+Let me know if you want this broken into Jira-style tickets or Trello card templates.

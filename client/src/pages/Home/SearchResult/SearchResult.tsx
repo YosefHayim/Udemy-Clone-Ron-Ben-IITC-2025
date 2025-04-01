@@ -46,7 +46,7 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
     setTimeout(() => setCourseAnimating(false), 500);
   };
 
-  useEffect(() => { }, [data]);
+  useEffect(() => {}, [data]);
 
   return (
     <section className="px-6 py-8">

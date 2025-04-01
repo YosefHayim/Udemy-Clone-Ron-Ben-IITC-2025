@@ -5,7 +5,7 @@ import { MdOutlineThumbUp } from "react-icons/md";
 import { MdOutlineThumbDownOffAlt } from "react-icons/md";
 import PulseLoader from "react-spinners/ClipLoader";
 import { FaArrowUp } from "react-icons/fa";
-const AI_TOKEN = import.meta.env.VITE_AI_TOKEN;
+const VITE_AI_TOKEN = import.meta.env.VITE_AI_TOKEN;
 
 const suggestedQuestions = [
   "Explain Node.Js to me as if I was a child",
@@ -36,7 +36,7 @@ const ChatBot = () => {
         { inputs: message },
         {
           headers: {
-            Authorization: `Bearer ${AI_TOKEN}`,
+            Authorization: `Bearer ${VITE_AI_TOKEN}`,
             "Content-Type": "application/json",
           },
         }

@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUserInformation } from "@/utils/setUserInformation";
 import { setClearAll } from "@/redux/slices/cartSlice";
+import { initializeCourseProgress } from "@/services/ProgressService";
 
 const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }) => {
   const [isLoading, setLoading] = useState(false);
@@ -70,12 +71,19 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
   };
 
   const checkOutMultiMutation = useMutation({
-    mutationFn: (courseIds: string[]) => {
+    mutationFn: async (courseIds: string[]) => {
       console.log("Course ids going to purchase: ", courseIds);
 
-      return Promise.all(courseIds.map((id) => buyCourseById(id)));
+      // Add a 1.5s delay before processing
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      return Promise.all(
+        courseIds.map(async (id) => {
+          buyCourseById(id);
+          await initializeCourseProgress(id);
+        })
+      );
     },
-    onSuccess: () => {
+    onSuccess: async () => {
       dispatch(setClearAll());
       setTimeout(() => {
         refreshUserDataMutation.mutate();

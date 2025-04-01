@@ -74,7 +74,7 @@ const SignUpForm = ({ isMobile }) => {
         inputMode={"email"}
       />
       <div className="w-full">
-        <ButtonLoader isLoading={isLoading} />
+        <ButtonLoader isLoading={isLoading} stopLoad={isError} />
       </div>
     </form>
   );
