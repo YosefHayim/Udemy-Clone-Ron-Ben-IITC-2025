@@ -29,13 +29,10 @@ const HomeCourseCard = ({ courseCard, index, onHover, onPosition }) => {
     onHover(courseCard); // Agora corretamente usando props
   };
   
-  
-
   const handleMouseLeave = () => {
     onHover(null);
   };
   
-
   const handleCardClick = (courseId: string) => {
     navigate(`/course-view/${courseId}`);
   };
