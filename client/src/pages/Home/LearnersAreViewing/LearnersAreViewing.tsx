@@ -19,10 +19,6 @@ const LearnersAreViewing = ({ randomAlgoWord }) => {
     enabled: !!randomAlgoWord,
   });
 
-  useEffect(() => {
-    setSortBy("most-reviewed");
-  }, [data]);
-
   const handlePrevCourse = () => {
     if (isCourseAnimating || courseIndex === 0) return;
     setCourseAnimating(true);

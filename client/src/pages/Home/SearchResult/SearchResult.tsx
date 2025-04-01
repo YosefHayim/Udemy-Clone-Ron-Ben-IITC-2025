@@ -23,10 +23,6 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
     enabled: !!randomAlgoWord,
   });
 
-  useEffect(() => {
-    setSortBy("most-relevant");
-  }, [data]);
-
   const handlePrevCourse = () => {
     if (isCourseAnimating || courseIndex === 0) return;
     setCourseAnimating(true);

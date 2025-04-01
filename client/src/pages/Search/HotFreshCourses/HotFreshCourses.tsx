@@ -14,10 +14,6 @@ const HotFreshCourses = () => {
   const searchTerm: string | null = searchParams.get("q")?.toLowerCase();
   const { filterData, setSortBy } = useContext(filterContext);
 
-  useEffect(() => {
-    setSortBy("most-relevant");
-  }, [setSortBy]);
-
   const handlePrev = () => {
     if (isAnimating || currentIndex === 0) return;
     setIsAnimating(true);
