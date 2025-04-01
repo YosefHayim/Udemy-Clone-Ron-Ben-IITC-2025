@@ -23,7 +23,7 @@
 - **"My Learning" Button**: Redirect to **Wishlist** (if that's intended).✅
 - **Cart Hover**: Fix design.✅
 - **Search Input Bug**: After direct search > course click > search again = input should reset. ✅
-- **Search Dropdown**: Ensure clicking a dropdown suggestion triggers a proper search.
+- **Search Dropdown**: Ensure clicking a dropdown suggestion triggers a proper search. ✅
 - **Fix Button Hover**: Make navbar buttons (e.g., notifications) respect absolute positioning.
 
 ---
@@ -31,7 +31,7 @@
 ### Search Page
 
 - **Pagination**: After clicking a page number, scroll to top.✅
-- **Hot & Fresh Carousel**: Fix loading issue when clicking the right arrow.
+- **Hot & Fresh Carousel**: Fix loading issue when clicking the right arrow. ✅
 - **Navigation Handling**: If navigating away from search, reset `filterData`.
 - **Total Pages**: Update when filters are applied.
 - **Language Filter**: Add filter functionality.
@@ -40,7 +40,7 @@
 
 ### Course View Page
 
-- **Button Spacing**: Add space between the 3 main action buttons.
+- **Button Spacing**: Add space between the 3 main action buttons.✅
 
 ---
 

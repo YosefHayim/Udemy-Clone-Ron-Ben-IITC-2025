@@ -1,6 +1,7 @@
 import { SearchResultsProps } from "@/types/types";
 import SearchResultRow from "./SearchResultRow/SearchResultRow";
 import SearchResultsCourseImg from "./SearchResultsCourseImg/SearchResultsCourseImg";
+import { Link } from "react-router-dom";
 
 const SearchResults: React.FC<{
   isTyping: boolean;
@@ -13,27 +14,30 @@ const SearchResults: React.FC<{
         <div
           className={`absolute left-0 top-full z-50 w-full flex-col  border border-gray-300 bg-white py-2 shadow-md`}
         >
-          {data?.response
-            ?.slice(0, 13)
-            .map(
-              (result, index: number) => (
-                console.log(result),
-                (
-                  <div key={result._id}>
-                    {index < 9 ? (
-                      <SearchResultRow algoWord={result.courseName} courseId={result._id} />
-                    ) : (
+          {data?.response?.slice(0, 13).map(
+            (courseCardResult, index: number) => (
+              console.log(courseCardResult),
+              (
+                <div key={courseCardResult._id}>
+                  {index < 9 ? (
+                    <SearchResultRow
+                      algoWord={courseCardResult.courseName}
+                      courseId={courseCardResult._id}
+                    />
+                  ) : (
+                    <Link to={`/course-view/${courseCardResult._id}`}>
                       <SearchResultsCourseImg
-                        courseName={result.courseName}
-                        instructorName={result.courseInstructor.fullName}
-                        courseImg={result.courseImg}
-                        courseId={result._id}
+                        courseName={courseCardResult.courseName}
+                        instructorName={courseCardResult.courseInstructor.fullName}
+                        courseImg={courseCardResult.courseImg}
+                        courseId={courseCardResult._id}
                       />
-                    )}
-                  </div>
-                )
+                    </Link>
+                  )}
+                </div>
               )
-            )}
+            )
+          )}
         </div>
       )}
     </div>

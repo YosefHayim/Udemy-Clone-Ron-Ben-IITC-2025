@@ -37,6 +37,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
       const courseId = target.closest("div")?.id;
       if (courseId) {
         navigate(`/course-view/${courseId}`);
+        setIsTyping(false);
         return;
       } else {
         setIsTyping(false);
