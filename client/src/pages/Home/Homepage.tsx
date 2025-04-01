@@ -40,7 +40,7 @@ const Homepage = () => {
       <div className="font-[lifeLtstd]">
         {!cookie ? (
           <div className="flex w-full justify-center">
-            <div className="w-full max-w-[calc(100%-6rem)] overflow-clip">
+            <div className="w-full max-w-[calc(100%-11.5rem)] overflow-clip">
               <Banner isLogin={false} />
               <Sections />
               <TrustedBySection />
