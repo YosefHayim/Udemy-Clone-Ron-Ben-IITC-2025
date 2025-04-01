@@ -3,8 +3,8 @@
 ### General Logic Fixes
 
 - **Verify Code**: If an error is shown during verification, stop the loading button.✅
-- **Join by Course ID (API)**: On the server side, wait until all course IDs are checked before proceeding for a specific user.
-- **Go to Course**: Ensure course is initialized before reaching the payment stage.
+- **Join by Course ID (API)**: On the server side, wait until all course IDs are checked before proceeding for a specific user.✅
+- **Go to Course**: Ensure course is initialized before reaching the payment stage.✅
 - **If Navigated Course View Is Undefined**: Handle gracefully with a return fallback.
 
 ---
