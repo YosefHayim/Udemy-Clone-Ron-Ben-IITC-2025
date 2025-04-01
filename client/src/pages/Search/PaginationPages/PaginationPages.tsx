@@ -15,6 +15,7 @@ const PaginationPages: React.FC<{ totalPages: number; useScrollRef }> = ({
 
   const updatePage = (newPage: number) => {
     setPage(newPage);
+    useScrollRef?.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleNextPage = () => {

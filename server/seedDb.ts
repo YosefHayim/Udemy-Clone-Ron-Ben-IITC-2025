@@ -126,7 +126,7 @@ const clearCollections = async () => {
   console.log("Cleared all collections.");
 };
 
-const createUsers = async () => {
+const createUsers = async (amountOfUsers: number) => {
   const users = [];
   const generatedEmails = new Set();
 
@@ -135,7 +135,7 @@ const createUsers = async () => {
   existingUsers.forEach((user) => generatedEmails.add(user.email));
 
   // Generate new users
-  for (let i = 0; i < 5000; i++) {
+  for (let i = 0; i < amountOfUsers; i++) {
     let email;
 
     // Ensure the email is unique (not in existing or newly generated emails)
@@ -888,25 +888,25 @@ const generateUpdatedDummyData = async () => {
   try {
     await connectDb();
     console.log("Database connection established.");
-    // await clearCollections();
-    // console.log("Deleted all db.");
+    await clearCollections();
+    console.log("Deleted all db.");
 
-    // console.log("Seeding users...");
-    // const users = await createUsers();
-    // console.log(`${users.length} users created.`);
+    console.log("Seeding users...");
+    const users = await createUsers(200);
+    console.log(`${users.length} users created.`);
 
-    // console.log("Seeding courses...");
-    // const courses = await createCourses({
-    //   coursesPerTopic: 20,
-    //   coursesPerInstructor: 7,
-    // });
+    console.log("Seeding courses...");
+    const courses = await createCourses({
+      coursesPerTopic: 1,
+      coursesPerInstructor: 3,
+    });
 
-    // if (courses && courses.length > 1) {
-    //   console.log(`${courses.length} courses created.`);
-    // }
+    if (courses && courses.length > 1) {
+      console.log(`${courses.length} courses created.`);
+    }
 
-    // await createInstructorProfiles();
-    // console.log("create instructor profiles completed.");
+    await createInstructorProfiles();
+    console.log("create instructor profiles completed.");
 
     console.log("Seeding sections...");
     const sections = await createSections();

@@ -45,7 +45,12 @@ const initializeProgress = async (req: Request, res: Response) => {
 
     // Check if the course and user exist
     const userExists = await User.findById(userObjectId);
-    const courseExists = await Course.findById(courseObjectId);
+    const courseExists = await Course.findById(courseObjectId).populate({
+      path: "sections",
+      populate: {
+        path: "lessons",
+      },
+    });
 
     if (!userExists || !courseExists) {
       return res.status(404).json({ error: "User or course not found" });
@@ -154,11 +159,15 @@ const getCourseProgress = async (req: Request, res: Response) => {
   const { courseId } = req.params;
   const userId = req.user._id;
 
-  console.log(`Getting course progress for userId: ${userId}, courseId: ${courseId}`);
+  console.log(
+    `Getting course progress for userId: ${userId}, courseId: ${courseId}`
+  );
 
   try {
     // Find progress for the user and course
-    console.log("Querying CourseProgress with .lean() and populating related data");
+    console.log(
+      "Querying CourseProgress with .lean() and populating related data"
+    );
     const progress = await CourseProgress.findOne({ userId, courseId })
       .lean()
       .populate({
@@ -171,7 +180,10 @@ const getCourseProgress = async (req: Request, res: Response) => {
           "title videoUrl duration order resources createdAt updatedAt completed", // Select required fields
       });
 
-    console.log("Query completed - result:", progress ? "Data found" : "No data found");
+    console.log(
+      "Query completed - result:",
+      progress ? "Data found" : "No data found"
+    );
 
     if (!progress) {
       console.log("No progress found, returning 404");
@@ -186,40 +198,58 @@ const getCourseProgress = async (req: Request, res: Response) => {
 
     // Add stats for each section
     console.log("Processing sections and calculating stats");
-    const sectionsWithStats = progress.sections.map((section: any, index: number) => {
-      console.log(`Processing section ${index + 1}/${progress.sections.length}`);
-      let sectionTotalLessons = 0;
-      let sectionCompletedLessons = 0;
+    const sectionsWithStats = progress.sections.map(
+      (section: any, index: number) => {
+        console.log(
+          `Processing section ${index + 1}/${progress.sections.length}`
+        );
+        let sectionTotalLessons = 0;
+        let sectionCompletedLessons = 0;
 
-      // Calculate lessons for each section
-      console.log(`Section ${index + 1} has ${section.lessons?.length || 0} lessons`);
-      section.lessons.forEach((lesson: LessonProgressDocument, lessonIndex: number) => {
-        sectionTotalLessons++; // Count all lessons in the section
-        if (lesson.completed) {
-          sectionCompletedLessons++; // Count completed lessons in the section
-          console.log(`Lesson ${lessonIndex + 1} in section ${index + 1} is completed`);
-        }
-      });
+        // Calculate lessons for each section
+        console.log(
+          `Section ${index + 1} has ${section.lessons?.length || 0} lessons`
+        );
+        section.lessons.forEach(
+          (lesson: LessonProgressDocument, lessonIndex: number) => {
+            sectionTotalLessons++; // Count all lessons in the section
+            if (lesson.completed) {
+              sectionCompletedLessons++; // Count completed lessons in the section
+              console.log(
+                `Lesson ${lessonIndex + 1} in section ${index + 1} is completed`
+              );
+            }
+          }
+        );
 
-      // Accumulate to the total lessons and completed lessons
-      totalLessons += sectionTotalLessons;
-      completedLessons += sectionCompletedLessons;
+        // Accumulate to the total lessons and completed lessons
+        totalLessons += sectionTotalLessons;
+        completedLessons += sectionCompletedLessons;
 
-      console.log(`Section ${index + 1}: ${sectionCompletedLessons}/${sectionTotalLessons} lessons completed`);
+        console.log(
+          `Section ${
+            index + 1
+          }: ${sectionCompletedLessons}/${sectionTotalLessons} lessons completed`
+        );
 
-      // Add the stats to the section
-      return {
-        ...section,
-        totalLessonsInSection: sectionTotalLessons,
-        completedLessonsInSection: sectionCompletedLessons,
-      };
-    });
+        // Add the stats to the section
+        return {
+          ...section,
+          totalLessonsInSection: sectionTotalLessons,
+          completedLessonsInSection: sectionCompletedLessons,
+        };
+      }
+    );
 
     // Calculate percentage of completion for the whole course
     const percentageCompleted =
       totalLessons > 0 ? completedLessons / totalLessons : 0;
 
-    console.log(`Overall progress: ${completedLessons}/${totalLessons} lessons completed (${(percentageCompleted * 100).toFixed(2)}%)`);
+    console.log(
+      `Overall progress: ${completedLessons}/${totalLessons} lessons completed (${(
+        percentageCompleted * 100
+      ).toFixed(2)}%)`
+    );
 
     // Add the calculated stats to the response
     console.log("Preparing final response with progress data and stats");
