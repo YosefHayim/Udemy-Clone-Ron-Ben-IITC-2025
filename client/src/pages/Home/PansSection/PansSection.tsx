@@ -63,9 +63,14 @@ const PlansSection = () => {
         Reach goals faster with one of our plans or programs. Try one free today or contact sales to
         learn more.
       </p>
-      <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+  
+      {/* Container flexível responsivo */}
+      <div className="mt-8 flex flex-wrap justify-center gap-6">
         {plans.map((plan, index) => (
-          <div key={index} className={`rounded-lg border p-6 shadow-sm ${plan.borderColor}`}>
+          <div
+            key={index}
+            className={`w-full max-w-sm flex-1 rounded-lg border border-gray-200 bg-white p-6 shadow-sm ${plan.borderColor}`}
+          >
             <div className="mb-4 flex items-center">
               <div className="mr-4 flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-xl">
                 {plan.placeholderIcon}
@@ -93,6 +98,7 @@ const PlansSection = () => {
       </div>
     </div>
   );
+  
 };
 
 export default PlansSection;
