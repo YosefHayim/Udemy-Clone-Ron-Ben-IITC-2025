@@ -38,7 +38,6 @@ export const SocketProvider = ({ children }) => {
       console.log("Connection failed:", err.data.status);
       if (err.data.status === 401) {
         dispatch(clearUser());
-        navigate("/signup");
         console.log("Your account has been deleted or not created please log in.");
       }
     });
