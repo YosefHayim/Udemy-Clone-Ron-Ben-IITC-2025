@@ -34,7 +34,7 @@ const ProfileMain = () => {
       setTimeout(() => {
         setUserInformation(cookie, dispatch);
         location.reload();
-      }, 1000);
+      }, 500);
     },
     onError: (error) => {
       console.log(`Error occurred durning update user information: `, error.response.message);
@@ -47,7 +47,6 @@ const ProfileMain = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const fName = formData.get("fname");
-    const lName = formData.get("lname");
     const languageChosen = formData.get("language");
     const headline = formData.get("headline");
     const xPlatform = formData.get("twitter");
@@ -99,7 +98,7 @@ const ProfileMain = () => {
   };
 
   return (
-    <main className="border-l border-gray-300">
+    <form className="border-l border-gray-300" onSubmit={handleSubmit}>
       <div className="bg-white">
         {/* title  */}
         <div className="min-w-full border-b border-gray-300 p-4 text-center">
@@ -196,7 +195,7 @@ const ProfileMain = () => {
             ))}
           </select>
           <hr />
-          <form className="mt-5" onSubmit={handleSubmit}>
+          <div className="mt-5">
             <b className="text-[0.9rem] font-semibold">Links:</b>
             <div className="mt-2 space-y-4">
               <div>
@@ -205,7 +204,7 @@ const ProfileMain = () => {
                   name="website"
                   id="website"
                   placeholder={
-                    userLinks.website.length > 1 ? userLinks.website : "Website (http(s)://..)"
+                    userLinks?.website?.length > 1 ? userLinks.website : "Website (http(s)://..)"
                   }
                   className="w-full rounded-[0.2rem] border border-gray-500 hover:bg-gray-100"
                   style={{ paddingTop: "1.2rem", paddingBottom: "1.2rem" }}
@@ -224,7 +223,7 @@ const ProfileMain = () => {
                     type="text"
                     name="facebook"
                     id="facebook"
-                    placeholder={userLinks.facebook.length > 1 ? userLinks.facebook : "Username"}
+                    placeholder={userLinks?.facebook?.length > 1 ? userLinks.facebook : "Username"}
                     className="h-full w-full rounded-l-none rounded-r-[0.2rem]   bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
                 </div>
@@ -245,7 +244,7 @@ const ProfileMain = () => {
                     type="text"
                     name="instagram"
                     id="instagram"
-                    placeholder={userLinks.facebook.length > 1 ? userLinks.facebook : "Username"}
+                    placeholder={userLinks?.facebook?.length > 1 ? userLinks.facebook : "Username"}
                     className="h-full w-full rounded-l-none rounded-r-[0.2rem]   bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
                 </div>
@@ -267,7 +266,7 @@ const ProfileMain = () => {
                     name="linkedin"
                     id="linkedin"
                     placeholder={
-                      userLinks.linkedin.length > 1 ? userLinks.linkedin : "Public Profile URL"
+                      userLinks?.linkedin?.length > 1 ? userLinks.linkedin : "Public Profile URL"
                     }
                     className="h-full w-full rounded-l-none rounded-r-[0.2rem]   bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
@@ -289,7 +288,7 @@ const ProfileMain = () => {
                     type="text"
                     name="tiktok"
                     id="tiktok"
-                    placeholder={userLinks.linkedin.length > 1 ? userLinks.linkedin : "@Username"}
+                    placeholder={userLinks?.linkedin?.length > 1 ? userLinks.linkedin : "@Username"}
                     className="h-full w-full rounded-l-none rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
                 </div>
@@ -310,7 +309,9 @@ const ProfileMain = () => {
                     type="text"
                     name="X"
                     id="X"
-                    placeholder={userLinks.xPlatform.length > 1 ? userLinks.xPlatform : "Username"}
+                    placeholder={
+                      userLinks?.xPlatform?.length > 1 ? userLinks.xPlatform : "Username"
+                    }
                     className="h-full w-full rounded-l-none rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
                 </div>
@@ -329,7 +330,7 @@ const ProfileMain = () => {
                     type="text"
                     id="youtube"
                     name="youtube"
-                    placeholder={userLinks.youtube.length > 1 ? userLinks.youtube : "Username"}
+                    placeholder={userLinks?.youtube?.length > 1 ? userLinks.youtube : "Username"}
                     className="h-full w-full rounded-l-none rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
                 </div>
@@ -346,10 +347,10 @@ const ProfileMain = () => {
                 Save
               </Button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
-    </main>
+    </form>
   );
 };
 

@@ -10,7 +10,7 @@ const updatePersonalInfo = async (dataOfUser) => {
     const r = await axiosClient.put(url, dataOfUser);
 
     if (r) {
-      console.log(r.data.data.user);
+      console.log(r.data);
       return r;
     }
   } catch (error) {
