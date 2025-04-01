@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import DropdownMenu from "../DropDownMenu/DropDownMenu";
 import ProfilePic from "@/components/ProfilePic/ProfilePic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Profile = ({ cookie }) => {
   const fullName = useSelector((state: RootState) => state?.user.fullName);
@@ -12,6 +12,8 @@ const Profile = ({ cookie }) => {
 
   const shortcutName =
     (firstWord?.[0]?.toUpperCase() || "") + (secondWord?.[0]?.toUpperCase() || "");
+
+  useEffect(() => {}, [cookie]);
 
   return (
     <div
