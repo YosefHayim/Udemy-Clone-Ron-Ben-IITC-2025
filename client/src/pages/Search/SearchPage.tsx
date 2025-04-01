@@ -10,7 +10,6 @@ import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
 import React, { useContext, useRef, useState } from "react";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
-
 import { useEffect } from "react";
 import RelatedSearches from "./RelatedSearches/RelatedSearches";
 import { getTopValue } from "@/utils/geTopValues";
@@ -54,7 +53,7 @@ const SearchPage: React.FC = () => {
     setSearchParams(params);
   }, [filterData, searchTerm, setSearchParams]);
 
-  const { data, isLoading, error, isPending } = useQuery({
+  const { data, isLoading, isError, isPending } = useQuery({
     queryKey: ["courses", searchTerm.toLowerCase(), filterData.page, filterData],
     queryFn: () => {
       if (!searchTerm) {
@@ -66,12 +65,14 @@ const SearchPage: React.FC = () => {
     enabled: !!searchTerm,
   });
 
+  useEffect(() => {
+    if (!data) {
+      navigate(`/not/search/not/found:${searchTerm.toLowerCase()}`);
+    }
+  }, [data, searchTerm]);
+
   if (isLoading || isPending) {
     return <Loader hSize="100" useSmallLoading={false} />;
-  }
-
-  if (error || !data) {
-    navigate(`/not/search/not/found:${searchTerm.toLowerCase()}`);
   }
 
   return (
@@ -100,7 +101,6 @@ const SearchPage: React.FC = () => {
                   onMouseLeave={() => setHoveredCourse(null)}
                 >
                   <SearchCourseCard course={course} />
-
                   {/* Hover card */}
                   {hoveredCourse === course?._id && (
                     <div

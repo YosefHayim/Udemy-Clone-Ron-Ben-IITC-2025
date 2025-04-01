@@ -69,7 +69,7 @@ const CoursePreviewCard: React.FC<{
         </div>
       </div>
 
-      <div className="w-full  p-[1.5em]">
+      <div className="w-full p-[1.5em]">
         <div className={isAlreadyBought ? "hidden" : "flex"}>
           <CoursePrice
             displayPercent={false}
@@ -94,7 +94,7 @@ const CoursePreviewCard: React.FC<{
           </div>
         )}
         {!isAlreadyInCart && !isAlreadyBought ? (
-          <div className="w-full">
+          <div className="items-col flex w-full flex-wrap gap-1">
             <TimeLeftBuyCourse coursePrice={coursePrice} />
             <InteractionsBtns
               BtnText="Add to cart"
