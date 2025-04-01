@@ -33,8 +33,8 @@ const ProfileMain = () => {
 
       setTimeout(() => {
         setUserInformation(cookie, dispatch);
-        // location.reload();
-      }, 1000);
+        location.reload();
+      }, 500);
     },
     onError: (error) => {
       console.log(`Error occurred durning update user information: `, error.response.message);
@@ -223,7 +223,7 @@ const ProfileMain = () => {
                     type="text"
                     name="facebook"
                     id="facebook"
-                    placeholder={userLinks.facebook.length > 1 ? userLinks.facebook : "Username"}
+                    placeholder={userLinks?.facebook?.length > 1 ? userLinks.facebook : "Username"}
                     className="h-full w-full rounded-l-none rounded-r-[0.2rem]   bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
                 </div>
@@ -244,7 +244,7 @@ const ProfileMain = () => {
                     type="text"
                     name="instagram"
                     id="instagram"
-                    placeholder={userLinks.facebook.length > 1 ? userLinks.facebook : "Username"}
+                    placeholder={userLinks?.facebook?.length > 1 ? userLinks.facebook : "Username"}
                     className="h-full w-full rounded-l-none rounded-r-[0.2rem]   bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
                 </div>
@@ -266,7 +266,7 @@ const ProfileMain = () => {
                     name="linkedin"
                     id="linkedin"
                     placeholder={
-                      userLinks.linkedin.length > 1 ? userLinks.linkedin : "Public Profile URL"
+                      userLinks?.linkedin?.length > 1 ? userLinks.linkedin : "Public Profile URL"
                     }
                     className="h-full w-full rounded-l-none rounded-r-[0.2rem]   bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
@@ -288,7 +288,7 @@ const ProfileMain = () => {
                     type="text"
                     name="tiktok"
                     id="tiktok"
-                    placeholder={userLinks.linkedin.length > 1 ? userLinks.linkedin : "@Username"}
+                    placeholder={userLinks?.linkedin?.length > 1 ? userLinks.linkedin : "@Username"}
                     className="h-full w-full rounded-l-none rounded-r-[0.2rem] bg-white outline-none placeholder:font-medium placeholder:text-gray-500 hover:bg-gray-100"
                   />
                 </div>
