@@ -76,15 +76,15 @@ const Sections = () => {
   const [choseTopic, setChooseTopic] = useState(getDefaultTopic());
 
   const { data } = useQuery({
-    queryKey: [choseTopic, choseTopic],
-    queryFn: () => getAllCourses(choseTopic, filterContext),
+    queryKey: [`Sections`, choseTopic],
+    queryFn: () => getAllCourses(choseTopic, filterData),
     enabled: !!choseTopic,
   });
 
   useEffect(() => {
     setFilterData((prev) => ({
       ...prev,
-      sortBy: "most-reviewed",
+      sortBy: "most-relevant",
     }));
   }, [data]);
 
@@ -96,7 +96,7 @@ const Sections = () => {
   return (
     <div className="flex w-full flex-col items-start justify-start">
       <div className="flex w-full flex-col items-start justify-start px-5">
-        <h1 className="mt-12 w-full font-sans text-3xl font-extrabold text-gray-900">
+        <h1 className="mt-12 w-full font-[lifeltstd] text-3xl font-extrabold text-gray-900">
           All the skills you need in one place
         </h1>
         <p className="mb-6 mt-2 w-full text-base text-gray-600">
@@ -128,7 +128,7 @@ const Sections = () => {
             state={countClick}
             useCustom={true}
             showDirectionalButtonsOnlyOnEdge={true}
-            topPosition="100%"
+            topPosition="75%"
             leftPosition="1%"
             rightPosition="1%"
           />
@@ -163,15 +163,15 @@ const Sections = () => {
             })}
           </div>
         </div>
-        <div className="relative w-full overflow-hidden">
-          {data && data.length > 7 && (
+        <div className="relative w-fit overflow-hidden">
+          {data && data?.response?.length > 7 && (
             <ButtonsCarousel
               handleFnNext={handleNextCourse}
               handleFnPrev={handlePrevCourse}
               state={countCourseClick}
               useCustom={true}
               showDirectionalButtonsOnlyOnEdge={false}
-              topPosition="40%"
+              topPosition="90%"
               leftPosition="1%"
               rightPosition="2%"
             />
@@ -182,13 +182,13 @@ const Sections = () => {
               transform: `translateX(-${courseIndex * 30.5}%)`,
             }}
           >
-            {data && data.length >= 1 ? (
+            {data && data?.response?.length >= 1 ? (
               data?.response?.map((courseCard, index: number) => (
                 <HomeCourseCard courseCard={courseCard} index={courseCard._id} key={index + 3} />
               ))
             ) : (
               <div className="w-full">
-                <Loader useSmallLoading={false} hSize="" />
+                <Loader useSmallLoading={false} hSize="1" />
               </div>
             )}
           </div>

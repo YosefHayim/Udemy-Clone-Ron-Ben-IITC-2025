@@ -26,7 +26,7 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
   useEffect(() => {
     setFilterData((prev) => ({
       ...prev,
-      sortBy: "most-reviewed",
+      sortBy: "most-relevant",
     }));
   }, [data]);
 
