@@ -32,14 +32,14 @@ const Homepage = () => {
 
   console.log(uniqueSearches);
 
-  useEffect(() => { }, [cookie]);
+  useEffect(() => {}, [cookie]);
 
   return (
     <div>
       {!isMobile && cookie && <Menu />}
       <div className="font-[lifeLtstd]">
         {!cookie ? (
-          <div className="flex flex-col items-center w-full justify-center">
+          <div className="flex w-full flex-col items-center justify-center">
             <div className="w-full max-w-[calc(100%-11.5rem)] overflow-clip">
               <Banner isLogin={false} />
             </div>
@@ -94,7 +94,7 @@ const Homepage = () => {
           </div>
         )}
       </div>
-    </div >
+    </div>
   );
 };
 
