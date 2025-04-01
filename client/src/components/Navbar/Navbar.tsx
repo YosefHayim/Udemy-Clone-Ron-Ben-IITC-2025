@@ -55,7 +55,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
   return (
     <div className="w-full">
       {/* <SaleCommercial />dasdsa */}
-      <SaleCommercialTwo />
+      {!isMobile && <SaleCommercialTwo />}
       {!isMobile && (
         <div
           className={`relative z-[50] flex w-full items-center justify-between bg-white px-[1rem] pb-[0.9em] pt-[0.2em] ${showMenu ? "" : "shadow-md shadow-[#bcc0ce]"}`}

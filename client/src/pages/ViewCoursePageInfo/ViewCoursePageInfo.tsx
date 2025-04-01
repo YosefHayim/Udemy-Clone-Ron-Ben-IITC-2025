@@ -23,8 +23,11 @@ import CoursePreviewCard from "./CoursePreviewCard/CoursePreviewCard";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import { CourseData } from "@/types/types";
 import { useRef } from "react";
+import { useMediaQuery } from "react-responsive";
+import StickyCourseMobile from "./StickyCourseMobile/StickyCourseMobile";
 
 const ViewCoursePageInfo = () => {
+  const isMobile = useMediaQuery({ maxWidth: 800 });
   const { courseId } = useParams<{ courseId: string }>();
   const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
   const scrollTargetRef = useRef<HTMLDivElement>(null);
@@ -74,12 +77,15 @@ const ViewCoursePageInfo = () => {
         <div className="flex w-full flex-col items-start justify-start gap-4">
           <div className="flex w-full flex-col items-start justify-start">
             <div className="flex w-full flex-col items-start justify-start gap-5 bg-blackUdemy  p-5">
-              <StickyCourseNavbar
-                courseName={data?.courseName}
-                totalStudents={data?.totalStudentsEnrolled?.count}
-                avgRating={data?.averageRating}
-                totalRatings={data?.totalRatings}
-              />
+              {!isMobile && (
+                <StickyCourseNavbar
+                  courseName={data?.courseName}
+                  totalStudents={data?.totalStudentsEnrolled?.count}
+                  avgRating={data?.averageRating}
+                  totalRatings={data?.totalRatings}
+                />
+              )}
+              <StickyCourseMobile />
               <TopicPathMenu
                 category={data?.category}
                 subcategory={data?.subCategory}
