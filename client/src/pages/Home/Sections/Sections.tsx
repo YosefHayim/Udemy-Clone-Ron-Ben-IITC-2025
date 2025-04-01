@@ -121,7 +121,7 @@ const Sections = () => {
         <hr className="w-full" />
       </div>
       <div className="flex w-full flex-col items-center justify-center gap-1 p-5 ">
-        <div className="flex w-full overflow-hidden ">
+        <div className="flex w-full">
           <ButtonsCarousel
             handleFnNext={handleNext}
             handleFnPrev={handlePrev}
@@ -139,7 +139,7 @@ const Sections = () => {
               return (
                 <div
                   key={i + 2}
-                  className={`flex w-full items-center justify-center gap-2 overflow-hidden transition-transform duration-1000`}
+                  className={`flex w-full items-center justify-center gap-2 transition-transform duration-1000`}
                   style={{
                     transform: `translateX(-${currentIndex * 10.5}%)`,
                   }}
@@ -163,7 +163,7 @@ const Sections = () => {
             })}
           </div>
         </div>
-        <div className="relative w-fit overflow-hidden">
+        <div className="relative w-fit">
           {data && data?.response?.length > 7 && (
             <ButtonsCarousel
               handleFnNext={handleNextCourse}

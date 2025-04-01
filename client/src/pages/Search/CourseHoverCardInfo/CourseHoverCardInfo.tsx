@@ -51,7 +51,7 @@ const CourseHoverCardInfo: React.FC<{
   courseName = "",
 }) => {
   return (
-    <div className="" id={courseId}>
+    <div className="overflow-y-visible" id={courseId}>
       <div id={courseId} className={courseId}>
         <TriangleShape
           index={index}
