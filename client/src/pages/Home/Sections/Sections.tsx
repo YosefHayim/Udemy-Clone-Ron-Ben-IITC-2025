@@ -76,7 +76,7 @@ const Sections = () => {
   const [choseTopic, setChooseTopic] = useState(getDefaultTopic());
 
   const { data } = useQuery({
-    queryKey: ["courses", choseTopic],
+    queryKey: [choseTopic, choseTopic],
     queryFn: () => getAllCourses(choseTopic, filterContext),
     enabled: !!choseTopic,
   });
@@ -128,7 +128,7 @@ const Sections = () => {
             state={countClick}
             useCustom={true}
             showDirectionalButtonsOnlyOnEdge={true}
-            topPosition="70%"
+            topPosition="100%"
             leftPosition="1%"
             rightPosition="1%"
           />
