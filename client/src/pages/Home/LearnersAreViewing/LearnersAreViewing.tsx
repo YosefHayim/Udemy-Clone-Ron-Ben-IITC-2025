@@ -49,7 +49,7 @@ const LearnersAreViewing = ({ randomAlgoWord }) => {
     <div className="px-6 py-8">
       <h2 className="mb-6 font-sans text-3xl font-extrabold">Learners are viewing</h2>
       <div className="relative w-full">
-        {data && data?.length > 7 && (
+        {data && data?.response?.length > 7 && (
           <ButtonsCarousel
             handleFnNext={handleNextCourse}
             handleFnPrev={handlePrevCourse}
@@ -65,9 +65,8 @@ const LearnersAreViewing = ({ randomAlgoWord }) => {
           className={`flex ${data?.response && data?.response?.length > 7 ? "w-max items-center justify-center" : "w-full items-center justify-start"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
           style={{ transform: `translateX(-${courseIndex * 30.5}%)` }}
         >
-          {data.response &&
-            data.response?.length > 1 &&
-            data?.response.map((courseCard, index: number) => (
+          {data?.response?.length > 1 &&
+            data.response.map((courseCard, index: number) => (
               <HomeCourseCard courseCard={courseCard} index={index} key={courseCard?._id} />
             ))}
         </div>

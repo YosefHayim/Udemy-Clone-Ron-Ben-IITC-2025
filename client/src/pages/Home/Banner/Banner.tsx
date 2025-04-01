@@ -40,7 +40,7 @@ const Banner: React.FC<{ isLogin?: boolean }> = ({ isLogin }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       handleNext();
-    }, 15000);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
