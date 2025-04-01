@@ -1,13 +1,22 @@
 import { useState } from "react";
-import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useContext } from "react";
 import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import getRatingStatsBySearch from "@/api/courses/getRatingStatsBySearchTerm";
 import { filterContext } from "@/contexts/filterSearch";
+import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
+
+const ratings = [
+  { rating: "★★★★½", value: 4.5, count: "4,394" },
+  { rating: "★★★★☆", value: 4.0, count: "8,757" },
+  { rating: "★★★½☆", value: 3.5, count: "9,900" },
+  { rating: "★★★☆☆", value: 3, count: "10,000" },
+];
 
 const RatingsFilter = () => {
   const [isClicked, setClicked] = useState(true);
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
-  const { filterData, setRatings } = useContext(filterContext);
+  const { setRatings, filterData } = useContext(filterContext);
 
   // Sync selectedRating with filterData on mount
   useEffect(() => {
@@ -24,13 +33,15 @@ const RatingsFilter = () => {
     setClicked((prev) => !prev);
   };
 
-  // modify ratings to be based on the result received from the backend
-  const ratings = [
-    { rating: "★★★★½", value: 4.5, count: "4,394" },
-    { rating: "★★★★☆", value: 4.0, count: "8,757" },
-    { rating: "★★★½☆", value: 3.5, count: "9,900" },
-    { rating: "★★★☆☆", value: 3, count: "10,000" },
-  ];
+  const { data } = useQuery({
+    queryKey: ["ratingsOfSearch", filterData.searchTerm],
+    queryFn: () => getRatingStatsBySearch(filterData.searchTerm),
+    enabled: !!filterData.searchTerm,
+  });
+
+  if (data) {
+    console.log(data);
+  }
 
   return (
     <div>

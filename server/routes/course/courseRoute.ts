@@ -13,6 +13,7 @@ import {
   getCourseInfoForCart,
   viewCourseById,
   updateCourseProgressById,
+  getRatingStatsBySearch,
 } from "../../controllers/courses/courseController.ts";
 import { grantedAccess } from "../../controllers/authorization/authController.ts";
 
@@ -23,42 +24,58 @@ router.param("id", (req: Request, res: Response, next: NextFunction, val) => {
   next();
 });
 
-// Get all courses and filter by user queries
-router.get("/", getAllCourses);
+//
+// ---------- GET ROUTES ----------
+//
 
-// view course by course id if it is part of the courses you bought
-router.get("/:courseId", viewCourseById);
+// Ratings breakdown for search results
+router.get("/ratings-stats", getRatingStatsBySearch);
 
-// Get course by specific course id
-router.get("/:id", getCourseById);
-
-// Get cart course info by course id
+// Course info for cart
 router.get("/cartInfo/:id", getCourseInfoForCart);
 
-// Get course pros by courseId
+// What you'll learn (pros)
 router.get("/pros/:courseId", getCourseProsById);
 
-// Re-activate course by the authorized creator
-router.post("/re-activate/:id", grantedAccess, reactivateCourseById);
+// All courses (supports filtering, search, sort)
+router.get("/", getAllCourses);
 
-// join course by course id
-router.post("/add/:id", grantedAccess, joinCourseById);
+// View course if user bought it (separate from generic course get)
+router.get("/view/:id", viewCourseById);
 
-// join courses by array of courses ids
-router.post("/multiple/courses", grantedAccess, joinCoursesByIds);
+// Get course by ID
+router.get("/:id", getCourseById);
 
-// leave course by course id
-router.post("/leave/:id", grantedAccess, leaveCourseById);
+//
+// ---------- POST ROUTES ----------
+//
 
-// Create course
+// Create new course
 router.post("/", grantedAccess, createCourse);
 
-// Update course information by course id
+// Re-activate soft-deleted course
+router.post("/re-activate/:id", grantedAccess, reactivateCourseById);
+
+// Join single course
+router.post("/add/:id", grantedAccess, joinCourseById);
+
+// Join multiple courses
+router.post("/multiple/courses", grantedAccess, joinCoursesByIds);
+
+// Leave a course
+router.post("/leave/:id", grantedAccess, leaveCourseById);
+
+//
+// ---------- PUT/PATCH/DELETE ROUTES ----------
+//
+
+// Update entire course
 router.put("/:id", grantedAccess, updateCourse);
 
+// Update user’s course progress
 router.patch("/:id", grantedAccess, updateCourseProgressById);
 
-// Delete course by course id
+// Delete course
 router.delete("/:id", grantedAccess, deleteCourse);
 
 export default router;
