@@ -2,11 +2,11 @@ import CourseRating from "@/pages/ViewCoursePageInfo/CourseRating/CourseRating";
 import { LuDot } from "react-icons/lu";
 import CoursePrice from "@/components/CourseCard/CoursePrice/CoursePrice";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
-import React, { useEffect } from "react";
 import getCourseById from "@/api/courses/getCourseById";
 import { CourseData } from "@/types/types";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "@/components/Loader/Loader";
+import { useEffect } from "react";
 
 const CourseCardInstructorRelated: React.FC<{
   courseId: string;
@@ -24,8 +24,14 @@ const CourseCardInstructorRelated: React.FC<{
     enabled: !!courseId,
   });
 
+  useEffect(() => {}, []);
+
   if (error) {
     console.log("Error durning rendering of instructor courses: ", error);
+  }
+
+  if (!data) {
+    return null;
   }
 
   return (
@@ -36,7 +42,6 @@ const CourseCardInstructorRelated: React.FC<{
         <div className=" flex cursor-pointer flex-col items-start justify-start gap-[0.2em]">
           <img src={data?.courseImg} alt="" className="w-[200px] border border-gray-300" />
           <b className="w-[200px]">{data?.courseName}</b>
-          {/* <p>{fullName}</p> */}
           <div className="flex  items-center">
             <b className="text-[#BB6300]">4.7</b>
             <CourseRating amountOfStars={0} courseRating={data?.courseRating} />

@@ -4,7 +4,10 @@ import { axiosClient, baseUrl, isProduction, localhostUrl } from "../configurati
 type fn = (courseId: string) => Promise<CourseData>;
 
 const getCourseById: fn = async (courseId: string) => {
-  if (!courseId) throw new Error("Please provide courseId in url.");
+  if (!courseId) {
+    console.log("Course Id is undefined or null");
+    return;
+  }
 
   const sanitizedCourseId = courseId.trim();
   const url = `${isProduction ? baseUrl : localhostUrl}/api/course/${sanitizedCourseId}`;
@@ -13,7 +16,7 @@ const getCourseById: fn = async (courseId: string) => {
     const r = await axiosClient.get(url);
 
     if (r) {
-      console.log(r.data.data);
+      // console.log(r.data.data);
       return r?.data?.data;
     }
   } catch (error) {

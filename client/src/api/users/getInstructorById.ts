@@ -4,7 +4,7 @@ const getInstructorById = async (instructorId: string) => {
   if (!instructorId) throw new Error("Please provide instructorId in url.");
 
   try {
-    const url = `${isProduction ? baseUrl : localhostUrl}/api/user/${instructorId}`;
+    const url = `${isProduction ? baseUrl : localhostUrl}/api/instructor/${instructorId}`;
 
     const r = await axiosClient.get(url);
 
