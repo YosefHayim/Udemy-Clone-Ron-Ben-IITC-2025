@@ -4,7 +4,6 @@ import updateProfilePic from "@/api/users/updateProfilePic";
 import refreshMe from "@/api/users/refreshMe";
 import { useDispatch } from "react-redux";
 import placeholderPhotoImg from "/images/placeholder-default-image-user-photo.png";
-import { Input } from "@/components/ui/input";
 import { setUserInformation } from "@/utils/setUserInformation";
 
 const Photo = () => {
@@ -32,18 +31,20 @@ const Photo = () => {
   const refreshUserDataMutation = useMutation({
     mutationFn: refreshMe,
     onSuccess: (data) => {
-      console.log(data);
       setUserInformation(data.token, dispatch);
       location.reload();
     },
   });
 
-  const handleUpload = () => {
+  const handleSave = () => {
     if (selectedFile) {
-      uploadPhotoMutation.mutate(selectedFile);
-      setTimeout(() => {
-        refreshUserDataMutation.mutate();
-      }, 1000);
+      uploadPhotoMutation.mutate(selectedFile, {
+        onSuccess: () => {
+          setTimeout(() => {
+            refreshUserDataMutation.mutate();
+          }, 1000);
+        },
+      });
     } else {
       alert("Please select an image first.");
     }
@@ -51,7 +52,7 @@ const Photo = () => {
 
   return (
     <div className="min-h-screen w-full flex-1 border-l">
-      <div className="flex w-full  items-center justify-center gap-4">
+      <div className="flex w-full items-center justify-center gap-4">
         <div className="flex w-full flex-col items-center justify-center border-gray-300 p-[2em]">
           <h2 className="font-sans text-2xl font-bold">Photo</h2>
           <p className="pt-2 text-sm">Add a nice photo of yourself for your profile.</p>
@@ -72,7 +73,6 @@ const Photo = () => {
             <b className="text-[0.85rem] font-bold">Add / Change Image</b>
             <form className="flex w-full flex-col items-start justify-start gap-6">
               <div className="mt-2 flex w-full items-start justify-start gap-4">
-                {/* input oculto */}
                 <input
                   type="file"
                   id="file-upload"
@@ -80,29 +80,25 @@ const Photo = () => {
                   onChange={handleFileChange}
                 />
 
-                {/* botão que ocupa todo o espaço restante */}
                 <label
                   htmlFor="file-upload"
                   className="flex-grow cursor-pointer rounded-[0.3em] border border-gray-500 bg-white px-4 py-2 text-start text-[1rem] font-medium text-black text-opacity-80 hover:bg-gray-100"
                 >
-                  No file selected
+                  {selectedFile ? selectedFile.name : "No file selected"}
                 </label>
 
-                {/* botão fixo */}
-                <button
-                  type="button"
-                  className="cursor-pointer whitespace-nowrap rounded-[0.3em] border  border-purple-700 px-4 py-2 text-[1rem] font-bold text-purple-700 hover:bg-purpleHoverBtn"
-                  onClick={handleUpload}
+                <label
+                  htmlFor="file-upload"
+                  className="cursor-pointer whitespace-nowrap rounded-[0.3em] border border-purple-700 px-4 py-2 text-[1rem] font-bold text-purple-700 hover:bg-purpleHoverBtn"
                 >
                   Upload image
-                </button>
+                </label>
               </div>
 
-              {/* botão Save */}
               <button
                 type="button"
                 className="rounded-[0.3em] bg-btnColor p-[0.8em] px-[1.5em] font-sans text-[0.875rem] font-extrabold text-white hover:bg-purple-600"
-                onClick={handleUpload}
+                onClick={handleSave}
               >
                 Save
               </button>
