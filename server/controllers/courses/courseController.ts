@@ -10,9 +10,15 @@ import mongoose, { PipelineStage } from "mongoose";
 
 const getAllCourses = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const totalCourses = await Course.countDocuments();
+    // Step 1: Build base query with filters + search (exclude pagination for count)
+    const featuresForCount = new APIFeatures(Course.find(), req.query)
+      .filter()
+      .search();
 
-    // Apply full pipeline including pagination, passing totalCourses to adjust limit dynamically
+    const filteredQuery = featuresForCount.getQuery();
+    const totalCourses = await filteredQuery.clone().countDocuments();
+
+    // Step 2: Now apply full features including pagination
     const features = new APIFeatures(Course.find(), req.query)
       .filter()
       .search()
@@ -24,11 +30,11 @@ const getAllCourses = catchAsync(
 
     if (!courses.length) {
       return next(
-        createError("No Course documents found in the database", 404)
+        createError("No Course documents found matching your criteria.", 404)
       );
     }
 
-    // Get pagination info
+    // Pagination metadata
     const currentPage = req.query.page
       ? parseInt(req.query.page as string, 10)
       : 1;
@@ -36,16 +42,16 @@ const getAllCourses = catchAsync(
       ? parseInt(req.query.limit as string, 10)
       : 20;
     const totalPassed = (currentPage - 1) * resultsPerPage;
-    const totalLeftCourses = Math.max(totalCourses - totalPassed, 0); // Ensure it doesn’t go below 0
-    const totalPages = Math.floor(totalCourses / 20);
+    const totalLeftCourses = Math.max(totalCourses - totalPassed, 0);
+    const totalPages = Math.ceil(totalCourses / resultsPerPage);
 
     res.status(200).json({
       status: "Success",
-      totalCourses, // Total matching courses
-      totalLeftCourses, // Courses left after pagination
+      totalCourses, // ✅ only matched courses
+      totalLeftCourses,
       currentPage,
       totalPages,
-      currentPageCoursesAmount: courses.length, // Dynamically adjust to return actual number of items
+      currentPageCoursesAmount: courses.length,
       response: courses,
     });
   }
