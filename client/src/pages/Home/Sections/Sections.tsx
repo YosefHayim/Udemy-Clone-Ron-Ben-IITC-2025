@@ -80,6 +80,9 @@ const Sections = () => {
     enabled: !!choseTopic,
   });
 
+  useEffect(() => {
+    setSortBy("most-relevant");
+  }, [data]);
 
   useEffect(() => {
     const newDefault = getDefaultTopic();
