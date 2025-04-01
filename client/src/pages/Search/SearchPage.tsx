@@ -8,7 +8,7 @@ import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
 import Commercial from "./Commercial/Commercial";
 import HotFreshCourses from "./HotFreshCourses/HotFreshCourses";
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import CourseHoverCardInfo from "./CourseHoverCardInfo/CourseHoverCardInfo";
 
 import { useEffect } from "react";
@@ -19,6 +19,7 @@ import { filterContext } from "@/contexts/filterSearch";
 
 const SearchPage: React.FC = () => {
   const { filterData } = useContext(filterContext);
+  const useScrollRef = useRef(null);
 
   document.title = "Search results | Udemy";
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ const SearchPage: React.FC = () => {
   }
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-white" ref={useScrollRef}>
       {/* Central container */}
       <div className="mx-auto max-w-screen-xl py-8">
         {/* Filter */}
@@ -135,7 +136,7 @@ const SearchPage: React.FC = () => {
 
         {/* Paginação */}
         <div className="mt-10">
-          <Pagination totalPages={data?.totalPages} />
+          <Pagination totalPages={data?.totalPages} useScrollRef={useScrollRef} />
         </div>
       </div>
     </div>

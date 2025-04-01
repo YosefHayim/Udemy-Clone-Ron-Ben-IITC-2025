@@ -3,7 +3,7 @@ import { getPageNumbers } from "@/utils/getPageNumbersAlgo";
 import { useContext } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
-const PaginationPages: React.FC<{ totalPages: number }> = ({ totalPages }) => {
+const PaginationPages: React.FC<{ totalPages: number }> = ({ totalPages, useScrollRef }) => {
   const { filterData, setPage } = useContext(filterContext);
 
   const currentPage = filterData.page;
@@ -15,11 +15,17 @@ const PaginationPages: React.FC<{ totalPages: number }> = ({ totalPages }) => {
   };
 
   const handleNextPage = () => {
-    if (currentPage < totalPages) updatePage(currentPage + 1);
+    if (currentPage < totalPages) {
+      updatePage(currentPage + 1);
+      useScrollRef?.current?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const handlePreviousPage = () => {
-    if (currentPage > 1) updatePage(currentPage - 1);
+    if (currentPage > 1) {
+      updatePage(currentPage - 1);
+      useScrollRef?.current?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
