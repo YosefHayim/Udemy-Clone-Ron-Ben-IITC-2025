@@ -39,32 +39,38 @@ const NotificationPreferences = () => {
   };
 
   return (
-    <main className="flex-1 p-8">
-      <div className="mx-auto max-w-4xl rounded-lg bg-white p-8 shadow-lg">
-        <h2 className="mb-6 font-sans text-2xl font-extrabold text-gray-800">
-          Notification preferences
-        </h2>
-        <p className="mb-6 text-gray-600">Manage the types of communications you receive.</p>
+    <main className="flex-1 pt-4 border-l min-h-screen">
+      <div className="mx-auto  rounded-lg">
+        <div className="w-full text-center border-b">
+          <h2 className="mb-2 font-sans text-2xl font-extrabold text-gray-800">
+            Notification preferences
+          </h2>
+          <p className="mb-6 text-gray-700 text-[1rem]">Manage the types of communications you receive.</p>
+        </div>
+
+
 
         {/* Updates and Offerings */}
-        <div className="mb-10">
-          <div className="mb-4 flex items-center justify-between">
+        <div className="mb-10 border mx-[10rem] my-[2rem] py-2">
+          
+          <div className="mb-4 flex items-center justify-between px-6">
             <h3 className="text-lg font-semibold text-gray-800">Updates and offerings</h3>
             <button
               onClick={() => toggleCategory("updates")}
-              className={`flex h-6 w-12 items-center rounded-full p-1 ${
-                updatesEnabled ? "bg-purple-600" : "bg-gray-300"
-              }`}
+              className={`flex h-6 w-12 items-center rounded-full p-1 ${updatesEnabled ? "bg-purple-600" : "bg-gray-300"
+                }`}
             >
               <div
-                className={`h-4 w-4 transform rounded-full bg-white shadow-md ${
-                  updatesEnabled ? "translate-x-6" : "translate-x-0"
-                }`}
+                className={`h-4 w-4 transform rounded-full bg-white shadow-md ${updatesEnabled ? "translate-x-6" : "translate-x-0"
+                  }`}
               ></div>
             </button>
           </div>
+
+          <hr className="w-full" />
+          
           {updatesEnabled && (
-            <div className="space-y-4">
+            <div className="space-y-4 px-6 py-4">
               <div className="flex items-center">
                 <input
                   type="checkbox"
@@ -94,24 +100,26 @@ const NotificationPreferences = () => {
         </div>
 
         {/* Your Learning */}
-        <div className="mb-10">
-          <div className="mb-4 flex items-center justify-between">
+        <div className="mb-10 border mx-[10rem] my-[2rem] py-2">
+          
+          <div className="mb-4 flex items-center justify-between px-6">
             <h3 className="text-lg font-semibold text-gray-800">Your learning</h3>
             <button
               onClick={() => toggleCategory("learning")}
-              className={`flex h-6 w-12 items-center rounded-full p-1 ${
-                learningEnabled ? "bg-purple-600" : "bg-gray-300"
-              }`}
+              className={`flex h-6 w-12 items-center rounded-full p-1 ${learningEnabled ? "bg-purple-600" : "bg-gray-300"
+                }`}
             >
               <div
-                className={`h-4 w-4 transform rounded-full bg-white shadow-md ${
-                  learningEnabled ? "translate-x-6" : "translate-x-0"
-                }`}
+                className={`h-4 w-4 transform rounded-full bg-white shadow-md ${learningEnabled ? "translate-x-6" : "translate-x-0"
+                  }`}
               ></div>
             </button>
           </div>
+
+          <hr className="w-full" />
+          
           {learningEnabled && (
-            <div className="space-y-4">
+            <div className="space-y-4 px-6 py-4">
               <div className="flex items-center">
                 <input
                   type="checkbox"
@@ -168,18 +176,18 @@ const NotificationPreferences = () => {
         </div>
 
         {/* Note */}
-        <p className="mb-6 text-sm text-gray-500">
+        <p className="mb-6 mx-[10rem] -mt-4 text-sm text-gray-600">
           Note: It may take a few hours for changes to be reflected in your preferences. You’ll
           still receive transactional emails related to your account and purchases if you
           unsubscribe.
         </p>
 
         {/* Save Button */}
-        <div className="flex justify-end">
+        <div className="flex justify-start mx-[10rem] ">
           <button
             type="button"
             onClick={handleSave}
-            className="rounded-md bg-purple-600 px-6 py-2 text-white shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="rounded-md text-[0.875rem] bg-purple-600 px-6 py-2 text-white shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
           >
             Save
           </button>
