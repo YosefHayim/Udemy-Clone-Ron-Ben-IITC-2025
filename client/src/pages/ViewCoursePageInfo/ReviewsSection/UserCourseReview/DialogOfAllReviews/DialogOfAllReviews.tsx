@@ -40,7 +40,7 @@ const DialogOfAllReviews: React.FC<{
     <div>
       <Dialog open={isClicked} onOpenChange={setClicked}>
         <DialogOverlay style={{ backgroundColor: "#1d1e27cc" }} />
-        <DialogContent className="z-[2000]">
+        <DialogContent className="z-[2000]" style={{ maxWidth: "70%", height: "100%" }}>
           <DialogHeader>
             <DialogTitle>
               <div className="flex  items-center justify-start">
@@ -52,7 +52,7 @@ const DialogOfAllReviews: React.FC<{
                 <b>{data && data.length} ratings</b>
               </div>
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription style={{ height: "100%" }}>
               {isLoading && <Loader hSize="" useSmallLoading={false} />}
               {error && (
                 <div className="text-red-500">Error loading reviews. Please try again later.</div>
@@ -73,7 +73,7 @@ const DialogOfAllReviews: React.FC<{
                       </Button>
                     </form>
                   </div>
-                  <div className="h-[650px] w-2/3 overflow-y-auto">
+                  <div className="w-2/3">
                     {data.map((review: Review) => (
                       <UserCourseReview review={review} key={review._id} widthOfReview={`w-full`} />
                     ))}
