@@ -32,7 +32,7 @@ const HotFreshCourses = () => {
     setTimeout(() => setIsAnimating(false), 2000);
   };
 
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["hotFreshCourses", searchTerm.toLowerCase(), filterData.page, filterData],
     queryFn: () => {
       if (!searchTerm) {
@@ -47,7 +47,7 @@ const HotFreshCourses = () => {
     return <Loader hSize="100" useSmallLoading={false} />;
   }
 
-  if (error) {
+  if (isError) {
     return <div>Error: Unable to fetch data</div>;
   }
 
