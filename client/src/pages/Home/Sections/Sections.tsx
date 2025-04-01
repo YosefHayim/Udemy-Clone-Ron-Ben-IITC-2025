@@ -119,7 +119,7 @@ const Sections = () => {
         <hr className="w-full" />
       </div>
 
-      <div className="flex w-full flex-col items-center justify-center gap-1 p-5 bg-gray-100"> 
+      <div className="flex w-full flex-col items-center justify-center gap-1 p-5 bg-gray-100">
 
         {/* Circle Categories*/}
         <div className="flex w-full max-w-[calc(100%-11.5rem)] overflow-clip">
@@ -179,14 +179,16 @@ const Sections = () => {
             />
           )}
           <div
-            className="flex w-fit items-center justify-start gap-4 py-4 transition-transform duration-1000 ease-in-out"
+            className="flex w-full items-center justify-start gap-4 py-4 transition-transform duration-1000 ease-in-out"
             style={{ transform: `translateX(-${courseIndex * 100}%)` }}
           >
+
             {[...Array(Math.ceil((data?.response?.length || 0) / 4))].map((_, groupIndex) => {
               const coursesGroup = data?.response?.slice(groupIndex * 4, groupIndex * 4 + 4);
 
               return (
-                <div key={groupIndex} className="flex w-full flex-shrink-0 gap-4">
+                <div key={groupIndex} className="flex min-w-full flex-shrink-0 gap-4">
+
                   {coursesGroup.map((courseCard, i) => (
                     <HomeCourseCard
                       courseCard={courseCard}
