@@ -14,6 +14,9 @@ const defaultFilters = {
   topics: new Set(),
   videosDurations: new Set(),
   certificateOnly: false,
+  searchTerm: "",
+  page: 1,
+  limit: 20,
 };
 
 const convertToComparable = (filters) =>
@@ -41,12 +44,7 @@ const FilterNSort = ({ coursesResults, searchTerm }) => {
             <div className="flex items-center">
               <span
                 className="cursor-pointer font-sans font-extrabold text-purpleStatic hover:text-purpleHover"
-                onClick={() =>
-                  setFilterData((prev) => ({
-                    ...prev,
-                    ...defaultFilters,
-                  }))
-                }
+                onClick={() => setFilterData(filterData)}
               >
                 Clear filters
               </span>

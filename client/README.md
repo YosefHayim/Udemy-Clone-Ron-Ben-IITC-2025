@@ -30,7 +30,7 @@
 
 ### Search Page
 
-- **Pagination**: After clicking a page number, scroll to top.
+- **Pagination**: After clicking a page number, scroll to top.✅
 - **Hot & Fresh Carousel**: Fix loading issue when clicking the right arrow.
 - **Navigation Handling**: If navigating away from search, reset `filterData`.
 - **Total Pages**: Update when filters are applied.
