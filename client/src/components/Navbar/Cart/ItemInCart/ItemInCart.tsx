@@ -11,7 +11,16 @@ import { useNavigate } from "react-router-dom";
 import { FaCirclePlay } from "react-icons/fa6";
 import OptionsMyLearning from "./OptionsMyLearning/OptionsMyLearning";
 import CourseImg from "@/components/CourseCard/CourseImg/CourseImg";
-import { removeCourseFromCart, setCoursesAddedToWishList } from "@/redux/slices/cartSlice";
+import {
+  calculateDiscountPercentage,
+  calculateTotalSavings,
+  removeCourseFromCart,
+  setAddCourseToCart,
+  setAmountOfCourses,
+  setCoursesAddedToWishList,
+  setTotalCourseDiscountPrices,
+  setTotalOriginalCoursePrices,
+} from "@/redux/slices/cartSlice";
 import { useState } from "react";
 
 const ItemInCart = ({
@@ -80,6 +89,14 @@ const ItemInCart = ({
       console.log("Move to Wishlist clicked");
     } else if (btnType && target.textContent === "Go to Cart") {
       navigate("/cart");
+    } else if (btnType && target.textContent === "Add to Cart") {
+      dispatch(setAmountOfCourses());
+      dispatch(setTotalCourseDiscountPrices(Number(data.discountPrice)));
+      dispatch(setTotalOriginalCoursePrices(Number(data.fullPriceCourse)));
+      dispatch(calculateTotalSavings());
+      dispatch(calculateDiscountPercentage());
+      dispatch(setAddCourseToCart(courseId));
+      setDisplay(false);
     } else if (!btnType) {
       navigate(`/course-view/${courseId}`);
     }
