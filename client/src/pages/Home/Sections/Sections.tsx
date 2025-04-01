@@ -148,11 +148,10 @@ const Sections = () => {
                     <div
                       key={idx}
                       onClick={() => setChooseTopic(topic)}
-                      className={`${
-                        choseTopic === topic
+                      className={`${choseTopic === topic
                           ? "w-full bg-blackUdemy text-white hover:bg-grayUdemyHover"
                           : ""
-                      } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
+                        } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
                     >
                       <b className="w-max text-base">{topic}</b>
                       {idx < topics.length - 1 ? <p>{getRandomLearnersAmount()}</p> : null}
@@ -163,7 +162,7 @@ const Sections = () => {
             })}
           </div>
         </div>
-        <div className="relative w-fit">
+        <div className="relative w-full">
           {data && data?.response?.length > 7 && (
             <ButtonsCarousel
               handleFnNext={handleNextCourse}
@@ -171,28 +170,23 @@ const Sections = () => {
               state={countCourseClick}
               useCustom={true}
               showDirectionalButtonsOnlyOnEdge={false}
-              topPosition="90%"
-              leftPosition="1%"
-              rightPosition="2%"
+              topPosition="45%"
+              leftPosition="-1%"
+              rightPosition="-1%"
             />
           )}
           <div
-            className={`flex ${data && data.length > 7 ? "w-max items-center justify-center p-4" : "w-full items-center justify-center p-4"}  z-20 h-full gap-4 transition-transform duration-1000 ease-in-out`}
+            className="flex w-fit items-center justify-start gap-4 p-4 transition-transform duration-1000 ease-in-out"
             style={{
               transform: `translateX(-${courseIndex * 30.5}%)`,
             }}
           >
-            {data && data?.response?.length >= 1 ? (
-              data?.response?.map((courseCard, index: number) => (
-                <HomeCourseCard courseCard={courseCard} index={courseCard._id} key={index + 3} />
-              ))
-            ) : (
-              <div className="w-full">
-                <Loader useSmallLoading={false} hSize="1" />
-              </div>
-            )}
+            {data?.response?.map((courseCard, index: number) => (
+              <HomeCourseCard courseCard={courseCard} index={courseCard._id} key={index + 3} />
+            ))}
           </div>
         </div>
+
         <div className="my-2 w-full">
           <button
             onClick={handleNavigation}
