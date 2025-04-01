@@ -38,15 +38,15 @@ const HomeCourseCard = ({ courseCard, index }) => {
       onMouseEnter={(e) => handleMouseEnter(courseCard._id, e)}
       onMouseLeave={handleMouseLeave}
       id={courseCard?._id}
-      className="relative w-[300px] cursor-pointer flex-col items-start rounded-lg border border-borderGrayColor bg-white shadow-sm"
+      className="relative w-[312px] cursor-pointer flex-col items-start rounded-lg border border-borderGrayColor bg-white shadow-sm"
     >
       <img
         src={courseCard?.courseImg}
         alt={courseCard?.courseName}
-        className="h-40 w-full object-cover"
+        className="h-50 w-full object-cover"
       />
       <hr className="h-[0.1em] w-full bg-gray-300" />
-      <div className="flex flex-col items-start justify-start gap-1 p-4">
+      <div className="flex flex-col items-start justify-start gap-1 p-2">
         <CourseTitle title={courseCard.courseName} />
         <CourseInstructor instructor={courseCard?.courseInstructor?.fullName} />
         <CourseRatings

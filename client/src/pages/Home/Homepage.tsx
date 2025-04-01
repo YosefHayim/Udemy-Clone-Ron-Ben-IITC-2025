@@ -32,7 +32,7 @@ const Homepage = () => {
 
   console.log(uniqueSearches);
 
-  useEffect(() => {}, [cookie]);
+  useEffect(() => { }, [cookie]);
 
   return (
     <div>
@@ -42,7 +42,9 @@ const Homepage = () => {
           <div className="flex w-full justify-center">
             <div className="w-full max-w-[calc(100%-11.5rem)] overflow-clip">
               <Banner isLogin={false} />
-              <Sections />
+            </div>
+            <Sections />
+            <div className="w-full max-w-[calc(100%-11.5rem)] overflow-clip">
               <TrustedBySection />
               <LearnersAreViewing randomAlgoWord={uniqueSearches[0]} />
               <SearchResult
@@ -92,7 +94,7 @@ const Homepage = () => {
           </div>
         )}
       </div>
-    </div>
+    </div >
   );
 };
 

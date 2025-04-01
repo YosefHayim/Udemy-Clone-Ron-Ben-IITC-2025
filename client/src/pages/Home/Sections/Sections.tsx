@@ -116,7 +116,7 @@ const Sections = () => {
         </div>
         <hr className="w-full" />
       </div>
-      <div className="flex w-full flex-col items-center justify-center gap-1 p-5 ">
+      <div className="flex w-full flex-col items-center justify-center gap-1 p-5 bg-gray-100">
         <div className="flex w-full">
           <ButtonsCarousel
             handleFnNext={handleNext}
@@ -124,9 +124,9 @@ const Sections = () => {
             state={countClick}
             useCustom={true}
             showDirectionalButtonsOnlyOnEdge={true}
-            topPosition="97%"
-            leftPosition="2%"
-            rightPosition="2%"
+            topPosition="93%"
+            leftPosition="4.5%"
+            rightPosition="4.5%"
           />
           <div className="mt-3 flex w-auto">
             {categoriesData?.map((category, i) => {
@@ -178,8 +178,8 @@ const Sections = () => {
               transform: `translateX(-${courseIndex * 100}%)`,
             }}
           >
-            {[...Array(Math.ceil((data?.response?.length || 0) / 5))].map((_, groupIndex) => {
-              const coursesGroup = data?.response?.slice(groupIndex * 5, groupIndex * 5 + 5);
+            {[...Array(Math.ceil((data?.response?.length || 0) / 4))].map((_, groupIndex) => {
+              const coursesGroup = data?.response?.slice(groupIndex * 4, groupIndex * 4 + 4);
 
               return (
                 <div key={groupIndex} className="flex w-full flex-shrink-0 gap-4">
