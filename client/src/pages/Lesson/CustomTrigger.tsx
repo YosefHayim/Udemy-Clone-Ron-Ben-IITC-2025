@@ -44,9 +44,9 @@ const CustomTrigger: React.FC<CustomTriggerProps> = ({
             onClick={handleSidebarToggle}
             className={`z-40 ${
               isInsideSidebar
-                ? "flex items-center rounded-none border-b  bg-transparent pb-[0.7rem]  pr-2  text-2xl font-semibold text-gray-700  focus:outline-none"
-                : "rounded-ts group   top-40 flex w-10 items-center  overflow-hidden border bg-purple-500 bg-opacity-60 py-3 pl-2 text-2xl text-white transition-all duration-300 hover:w-80 hover:border-0 hover:bg-[##892DE1]"
-            } transform transition-all duration-300 ${isInsideSidebar ? "" : "absolute"}`}
+                ? 'flex items-center bg-transparent text-2xl  font-semibold border-b   pr-2  rounded-none pb-[0.7rem] focus:outline-none  text-gray-700'
+                : 'rounded-ts group   top-40 flex w-10 items-center  overflow-hidden border bg-purple-500 bg-opacity-60 py-3 pl-2 text-2xl text-white transition-all duration-300 hover:w-80 hover:border-0 hover:bg-[##892DE1]'
+            } transform transition-all  duration-300 ${isInsideSidebar ? '' : 'absolute'}`}
           >
             {open ? (
               isInsideSidebar ? (

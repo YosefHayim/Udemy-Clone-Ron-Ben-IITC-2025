@@ -541,6 +541,7 @@ const updateUserInfo = catchAsync(
       status: "success",
       data: {
         user: updatedUser,
+        token,
       },
     });
   }

@@ -21,13 +21,13 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { fetchCourseProgress, updateLessonProgress } from "@/services/ProgressService";
-import CustomTrigger from "../Lesson/CustomTrigger";
-import { CourseProgressResponse } from "@/types/types";
+} from "@/components/ui/navigation-menu"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { fetchCourseProgress, updateLessonProgress } from '@/services/ProgressService';
+import { CourseProgressResponse, LessonProgressPayload } from '@/types';
+import CustomTrigger from '../Lesson/CustomTrigger';
 
 export function CourseSidebarMenu({ courseId }: { courseId: string }) {
   const [hover, setHover] = useState("gray-600");
@@ -44,7 +44,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
 
   // Mutation for updating lesson progress with optimistic updates
   const mutation = useMutation({
-    mutationFn: ({ lessonId, payload }: { lessonId: string; payload: {} }) =>
+    mutationFn: ({ lessonId, payload }: { lessonId: string; payload: LessonProgressPayload }) =>
       updateLessonProgress(courseId, lessonId, payload),
     onMutate: async ({ lessonId, payload }) => {
       // Cancel ongoing queries
@@ -105,12 +105,14 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
   let lessonCounter = 0;
 
   return (
-    <SidebarMenu className=" ">
-      <div className="flex items-center  justify-between border-b-2  font-semibold"></div>
+    <SidebarMenu className=" min-w-full">
+      <div className="flex items-center  justify-between   font-semibold">
+
+      </div>
       {data?.progress.sections.map((section, index) => (
         <Collapsible
           key={section.sectionId._id}
-          className="group/collapsible  w-full border-2  border-t-0 bg-[#F6F7F9] pt-10 group-open:pb-0   group-data-[state=open]/collapsible:pb-0"
+          className="group/collapsible  w-full border-2 border-t-0 bg-[#F6F7F9] pt-10 group-open:pb-0   group-data-[state=open]/collapsible:pb-0"
         >
           <SidebarMenuItem>
             <CollapsibleTrigger
@@ -149,7 +151,7 @@ export function CourseSidebarMenu({ courseId }: { courseId: string }) {
                       }
                       key={lesson.lessonId._id}
                     >
-                      <div className="  group w-full  overflow-visible ">
+                      <div className="  group w-full  overflow-visible p-4">
                         <SidebarMenuSubButton className="overflow-visible hover:bg-[#94A3B8]">
                           <div className="flex  h-full items-center">
                             <Checkbox
