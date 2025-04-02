@@ -22,16 +22,39 @@ import WhatYouLearn from "./WhatYouLearn/WhatYouLearn";
 import CoursePreviewCard from "./CoursePreviewCard/CoursePreviewCard";
 import CourseTag from "@/components/CourseCard/CourseTag/CourseTag";
 import { CourseData } from "@/types/types";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import StickyCourseMobile from "./StickyCourseMobile/StickyCourseMobile";
 
 const ViewCoursePageInfo = () => {
+  const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: 800 });
   const { courseId } = useParams<{ courseId: string }>();
   const sanitizedCourseId = courseId?.trim().replace(/^:/, "");
   const scrollTargetRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
+  const viewportRef = useRef(null);
+  const [currentPosition, setCurrentPosition] = useState(0);
+  const [fixedCourseCard, setCourseCard] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (viewportRef.current) {
+        const courseCardViewport = viewportRef.current.getBoundingClientRect();
+
+        if (courseCardViewport.top <= -251) {
+          setCourseCard(true);
+          console.log(courseCardViewport.top);
+        } else if (courseCardViewport.top <= -2713) {
+          setCourseCard(false);
+
+          setCurrentPosition(courseCardViewport.top);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [currentPosition]);
 
   const { data, isLoading, error } = useQuery<CourseData>({
     queryKey: ["course", sanitizedCourseId],
@@ -45,7 +68,7 @@ const ViewCoursePageInfo = () => {
   });
 
   const handleScroll = () => {
-    const offset = 100; // height of sticky navbar
+    const offset = 100;
     const element = scrollTargetRef.current;
     if (element) {
       const y = element.getBoundingClientRect().top + window.pageYOffset - offset;
@@ -68,8 +91,6 @@ const ViewCoursePageInfo = () => {
   if (error) {
     return navigate("/not/found");
   }
-
-  console.log(data);
 
   return (
     <div>
@@ -150,8 +171,10 @@ const ViewCoursePageInfo = () => {
           </div>
         </div>
         <div>
-          <div className="absolute right-[10%] top-[10%] w-1/4">
+          <div className="absolute right-[10%] top-[10%] w-1/4" ref={viewportRef}>
             <CoursePreviewCard
+              currentPosition={currentPosition}
+              fixedCourseCard={fixedCourseCard}
               courseTopic={data?.courseTopic}
               instructorId={data?.courseInstructor?._id}
               firstLessonId={data?.sections?.[0]?.lessons?.[0]?._id}
