@@ -11,6 +11,8 @@ import mongoose, { PipelineStage } from "mongoose";
 const getAllCourses = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     // Step 1: Build base query with filters + search (exclude pagination for count)
+    console.log("req query request within controller: ", req.query);
+
     const featuresForCount = new APIFeatures(Course.find(), req.query)
       .filter()
       .search();
