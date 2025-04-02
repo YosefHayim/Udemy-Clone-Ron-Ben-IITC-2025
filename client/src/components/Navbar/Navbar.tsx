@@ -51,7 +51,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
     };
   });
 
-  useEffect(() => {}, [cookie]);
+  useEffect(() => { }, [cookie]);
 
   return (
     <div className="w-full">
@@ -59,11 +59,10 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
       {!isMobile && <SaleCommercialTwo />}
       {!isMobile && (
         <div
-          className={`relative z-[50] flex w-full items-center justify-between bg-white px-[1rem] pb-[0.9em] pt-[0.2em] ${
-            !isMobile || !showMenu ? "shadow-md shadow-[#bcc0ce]" : ""
-          }`}
+          className={`relative z-[50] flex w-full items-center justify-between bg-white pl-[1.7rem] pr-[0.5rem] pb-[0.9em] pt-[0.2em] 
+          ${showMenu ? "" : "shadow-md shadow-[#bcc0ce]"}`}
         >
-          <div className="flex w-full items-center justify-between px-[0.25rem] pt-[0.4rem] ">
+          <div className="flex w-full items-center justify-between pl-[0rem] pt-[0.4rem] ">
             <Link to="/">
               <Logo />
             </Link>

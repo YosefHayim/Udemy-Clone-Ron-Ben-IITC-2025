@@ -29,10 +29,10 @@ const Menu: React.FC = () => {
     searchAlgoLocalStorage(category.toLowerCase());
   };
   return (
-    <div className="border-t-[1px] border-t-gray-200 font-sans text-[0.85rem]">
+    <div className="border-t-[1px] border-t-gray-200 font-sans text-[0.87rem]">
       <hr />
       <div className="relative z-20 bg-white shadow-md" onMouseLeave={handleMouseLeave}>
-        <div className="flex items-center justify-center space-x-8 py-[0.8rem]">
+        <div className="flex items-center justify-center space-x-[1.6rem] py-[0.8rem]">
           {categories.map((category, index) => (
             <div
               key={index}
