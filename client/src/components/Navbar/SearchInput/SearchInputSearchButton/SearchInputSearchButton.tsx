@@ -4,7 +4,7 @@ const SearchInputSearchButton = ({ searchTerm }) => {
   return (
     <button
       type="submit"
-      className={`${searchTerm && searchTerm.length > 1 && "cursor-not-allowed"} cursor-pointer rounded-md p-2 hover:bg-purple-100 focus:outline-none`}
+      className={`${searchTerm && searchTerm.length > 1 && "cursor-not-allowed"} text-gray-400 cursor-pointer rounded-md p-2 hover:bg-purple-100 focus:outline-none`}
     >
       <MdOutlineSearch size={20} />
     </button>
