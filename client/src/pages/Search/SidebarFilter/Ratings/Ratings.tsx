@@ -33,15 +33,15 @@ const RatingsFilter = () => {
     setClicked((prev) => !prev);
   };
 
-  const { data } = useQuery({
-    queryKey: ["ratingsOfSearch", filterData.searchTerm],
-    queryFn: () => getRatingStatsBySearch(filterData.searchTerm),
-    enabled: !!filterData.searchTerm,
-  });
+  // const { data } = useQuery({
+  //   queryKey: ["ratingsOfSearch", filterData.searchTerm],
+  //   queryFn: () => getRatingStatsBySearch(filterData.searchTerm),
+  //   enabled: !!filterData.searchTerm,
+  // });
 
-  if (data) {
-    console.log(data);
-  }
+  // if (!data) {
+  //   return;
+  // }
 
   return (
     <div>

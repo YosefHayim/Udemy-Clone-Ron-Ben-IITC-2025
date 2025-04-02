@@ -69,7 +69,7 @@ const SearchPage: React.FC = () => {
     if (!isLoading && !isPending && !data) {
       navigate(`/not/search/not/found:${searchTerm.toLowerCase()}`);
     }
-  }, [data, isLoading, isPending]);
+  }, [data, filterData]);
 
   if (isLoading) {
     return <Loader hSize="100" useSmallLoading={false} />;

@@ -13,22 +13,13 @@ class APIFeatures<T> {
   filter(): this {
     const queryObj = structuredClone(this.queryString);
 
-    const excludeFields = [
-      "page",
-      "sort",
-      "limit",
-      "fields",
-      "search",
-      "hands-on",
-    ];
+    const excludeFields = ["page", "sort", "limit", "fields", "search"];
 
     excludeFields.forEach((el) => delete queryObj[el]);
 
-    // Advanced filtering (Mongoose operators like $gte, $lte, etc.)
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
     const filters = JSON.parse(queryStr);
-    console.log(filters);
 
     this.query = this.query.find(filters);
     return this;
