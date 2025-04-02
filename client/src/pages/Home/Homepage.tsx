@@ -32,7 +32,7 @@ const Homepage = () => {
 
   console.log(uniqueSearches);
 
-  useEffect(() => {}, [cookie]);
+  useEffect(() => { }, [cookie]);
 
   return (
     <div>
@@ -64,32 +64,35 @@ const Homepage = () => {
             <div className="flex flex-col  gap-4 px-24 py-8">
               <Welcome />
               <Banner isLogin={true} />
-              <LetsStartLearning />
-              <h1 className="pl-4 font-extrabold">What to learn next</h1>
-              <SearchResult
-                title={`Because you searched for "${uniqueSearches[2]}"`}
-                randomAlgoWord={uniqueSearches[2]}
-              />
-              <SearchResult
-                title={`Because you searched for "${uniqueSearches[3]}"`}
-                randomAlgoWord={uniqueSearches[3]}
-              />
-              <SearchResult
-                title={`Because you searched for "${uniqueSearches[4]}"`}
-                randomAlgoWord={uniqueSearches[4]}
-              />
-              <SearchResult
-                title={`Because you searched for "${uniqueSearches[5]}"`}
-                randomAlgoWord={uniqueSearches[5]}
-              />
-              <LearnersAreViewing randomAlgoWord={uniqueSearches[6]} />
-              {uniqueSearches.slice(0, 5).map((search, index) => (
+              <div className="mx-4">
+
+                <LetsStartLearning />
+                <h1 className="pl-4 font-extrabold">What to learn next</h1>
                 <SearchResult
-                  key={index}
-                  title={`Top courses in "${search}"`}
-                  randomAlgoWord={search}
+                  title={`Because you searched for "${uniqueSearches[2]}"`}
+                  randomAlgoWord={uniqueSearches[2]}
                 />
-              ))}
+                <SearchResult
+                  title={`Because you searched for "${uniqueSearches[3]}"`}
+                  randomAlgoWord={uniqueSearches[3]}
+                />
+                <SearchResult
+                  title={`Because you searched for "${uniqueSearches[4]}"`}
+                  randomAlgoWord={uniqueSearches[4]}
+                />
+                <SearchResult
+                  title={`Because you searched for "${uniqueSearches[5]}"`}
+                  randomAlgoWord={uniqueSearches[5]}
+                />
+                <LearnersAreViewing randomAlgoWord={uniqueSearches[6]} />
+                {uniqueSearches.slice(0, 5).map((search, index) => (
+                  <SearchResult
+                    key={index}
+                    title={`Top courses in "${search}"`}
+                    randomAlgoWord={search}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         )}
