@@ -64,7 +64,7 @@ const Homepage = () => {
             <div className="flex flex-col  gap-4 px-24 py-8">
               <Welcome />
               <Banner isLogin={true} />
-              <div className="mx-4">
+              <div className="mx-2">
 
                 <LetsStartLearning />
                 <h1 className="pl-4 font-extrabold">What to learn next</h1>
