@@ -30,7 +30,7 @@ const LetsStartLearning = () => {
   };
 
   return (
-    <div className="flex w-full flex-col items-stretch justify-start gap-6 pl-4">
+    <div className="flex w-full flex-col items-stretch justify-start gap-6 pl-4 overflow-x-clip">
       <div className="flex w-full  items-center justify-between">
         <h1 className="font-extrabold">Let's start learning</h1>
         <div>

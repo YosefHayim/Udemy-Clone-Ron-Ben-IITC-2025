@@ -42,7 +42,7 @@ const ButtonsCarousel: React.FC<{
     <div>
       {showLeft && (
         <div
-          className="absolute z-[100] h-min rounded-full bg-white shadow-alertAlgoInfo"
+          className="absolute z-[999] h-min rounded-full bg-white shadow-alertAlgoInfo"
           style={{
             left: leftPosition,
             top: topPosition,
