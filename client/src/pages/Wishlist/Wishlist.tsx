@@ -80,10 +80,9 @@ const Wishlist: React.FC = () => {
         >
           {coursesBought && coursesBought.length > 0 ? (
             <div className="flex w-full flex-col items-start justify-start">
-              <div className="mt-[1em] flex items-center justify-between gap-[1em] px-[3em]">
+              <div className="mt-[1em] flex w-full items-center justify-between gap-[1em] px-[3em]">
                 <div className="flex w-full  items-center justify-center gap-[1em]">
                   <div className="flex flex-col items-start justify-start gap-[0.5em]">
-                    <p>Sort by</p>
                     <DropdownMenu>
                       <DropdownMenuTrigger className="flex  items-center gap-[0.5em]  rounded-[0.2em] border border-btnColor p-[0.7em] font-sans font-extrabold text-btnColor hover:bg-purpleHoverBtn">
                         Recently Accessed
@@ -106,7 +105,6 @@ const Wishlist: React.FC = () => {
                     </DropdownMenu>
                   </div>
                   <div className="flex flex-col items-start justify-start gap-[0.5em]">
-                    <p>Filter by</p>
                     <DropdownMenu>
                       <DropdownMenuTrigger className="flex w-min  items-center gap-[0.5em] rounded-[0.2em] border border-btnColor p-[0.7em] font-sans font-extrabold text-btnColor hover:bg-purpleHoverBtn">
                         Categories
@@ -181,7 +179,7 @@ const Wishlist: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="grid w-full grid-cols-4 gap-4 p-[5em] text-center">
+              <div className="grid w-full grid-cols-4 gap-2 p-[5em] text-center">
                 {[...coursesBought]
                   .sort(
                     (a, b) =>
@@ -189,7 +187,7 @@ const Wishlist: React.FC = () => {
                       new Date(a.boughtAt).getTime()
                   )
                   .map((courseBought) => (
-                    <div key={courseBought.courseId}>
+                    <div key={courseBought.courseId} className=" w-max">
                       <ItemInCart
                         showInstructor={false}
                         rowPrices={false}

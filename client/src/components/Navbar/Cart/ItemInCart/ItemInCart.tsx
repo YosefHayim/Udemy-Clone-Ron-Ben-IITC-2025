@@ -116,7 +116,7 @@ const ItemInCart = ({
         id={courseId}
         className={`flex ${
           isColCourseBox ? "flex-col" : "flex-row"
-        } w-full cursor-pointer items-start justify-start gap-[1em]`}
+        } w-max cursor-pointer items-start justify-start gap-[1em]`}
       >
         <div>
           <div className="relative">
