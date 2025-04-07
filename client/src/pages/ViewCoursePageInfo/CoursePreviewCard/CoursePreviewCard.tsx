@@ -27,6 +27,7 @@ const CoursePreviewCard: React.FC<{
   discountPrice: number;
   fixedCourseCard: boolean;
   currentPosition: number;
+  restoreTop: boolean;
 }> = ({
   courseImg,
   coursePrice,
@@ -37,6 +38,7 @@ const CoursePreviewCard: React.FC<{
   instructorId,
   discountPrice,
   fixedCourseCard,
+  restoreTop,
   currentPosition,
 }) => {
   const [isAlreadyBought, setAlreadyBought] = useState(false);
@@ -61,7 +63,7 @@ const CoursePreviewCard: React.FC<{
 
   return (
     <div
-      className={`${fixedCourseCard ? `fixed` : "absolute"} z-[10] flex w-[320px] flex-col items-start justify-between border border-b-gray-100 bg-white shadow-previewCourseCardShadow`}
+      className={`${fixedCourseCard ? `fixed` : "absolute top-[2570px]"} transition-sticky z-[10] flex w-[320px] flex-col items-start justify-between border border-b-gray-100 bg-white shadow-previewCourseCardShadow`}
     >
       <div className="relative" onClick={navigateCourseLesson}>
         <img src={courseImg} alt="Image of the course" className="h-full w-full object-cover" />

@@ -35,26 +35,37 @@ const ViewCoursePageInfo = () => {
   const viewportRef = useRef(null);
   const [currentPosition, setCurrentPosition] = useState(0);
   const [fixedCourseCard, setCourseCard] = useState(false);
+  const [restoreTop, setRestoreTop] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (viewportRef.current) {
-        const courseCardViewport = viewportRef.current.getBoundingClientRect();
+      if (!viewportRef.current) return;
 
-        if (courseCardViewport.top <= -251) {
-          setCourseCard(true);
-          console.log(courseCardViewport.top);
-        } else if (courseCardViewport.top <= -2713) {
-          setCourseCard(false);
+      const courseCardViewport = viewportRef.current.getBoundingClientRect();
+      const top = courseCardViewport.top;
 
-          setCurrentPosition(courseCardViewport.top);
-        }
+      // When scrolling down into sticky range
+      if (top <= -251 && top > -2570 && !fixedCourseCard) {
+        setRestoreTop(viewportRef.current.offsetTop); // store original absolute top
+        setCourseCard(true); // switch to fixed
       }
+
+      // When scrolling down far enough, stop sticking
+      if (top <= -2570 && fixedCourseCard) {
+        setCourseCard(false);
+      }
+
+      // When scrolling back up above sticky threshold
+      if (top > -251 && fixedCourseCard) {
+        setCourseCard(false); // switch to absolute again
+      }
+
+      setCurrentPosition(top);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [currentPosition]);
+  }, [fixedCourseCard]);
 
   const { data, isLoading, error } = useQuery<CourseData>({
     queryKey: ["course", sanitizedCourseId],
@@ -173,6 +184,7 @@ const ViewCoursePageInfo = () => {
         <div>
           <div className="absolute right-[10%] top-[10%] w-1/4" ref={viewportRef}>
             <CoursePreviewCard
+              restoreTop={restoreTop}
               currentPosition={currentPosition}
               fixedCourseCard={fixedCourseCard}
               courseTopic={data?.courseTopic}
