@@ -63,7 +63,7 @@ const CoursePreviewCard: React.FC<{
 
   return (
     <div
-      className={`${fixedCourseCard && `fixed`} transition-sticky z-[100] flex w-[320px] flex-col items-start justify-between border border-b-gray-100 bg-white shadow-previewCourseCardShadow`}
+      className={`${fixedCourseCard && `fixed`} z-[100] flex w-[320px] flex-col items-start justify-between border border-b-gray-100 bg-white shadow-previewCourseCardShadow`}
     >
       <div className="relative" onClick={navigateCourseLesson}>
         <img src={courseImg} alt="Image of the course" className="h-full w-full object-cover" />
