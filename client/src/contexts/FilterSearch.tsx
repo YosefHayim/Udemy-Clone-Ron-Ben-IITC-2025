@@ -34,7 +34,7 @@ type FilterContextType = {
   setSubtitles: (val: Set<string>) => void;
 };
 
-export const filterContext = createContext<FilterContextType>({} as FilterContextType);
+export const FilterContext = createContext<FilterContextType>({} as FilterContextType);
 
 export const FilterProvider = ({ children }: { children: ReactNode }) => {
   const [filterData, setFilterData] = useState<FilterData>({
@@ -71,7 +71,7 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
   const setSubtitles = (val: Set<string>) => setFilterData((prev) => ({ ...prev, subtitles: val }));
 
   return (
-    <filterContext.Provider
+    <FilterContext.Provider
       value={{
         filterData,
         setFilterData,
@@ -91,6 +91,6 @@ export const FilterProvider = ({ children }: { children: ReactNode }) => {
       }}
     >
       {children}
-    </filterContext.Provider>
+    </FilterContext.Provider>
   );
 };
