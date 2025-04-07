@@ -10,7 +10,7 @@ import getAllCourses from "@/api/courses/getAllCourses";
 import { useNavigate } from "react-router-dom";
 import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
-import { FilterContext } from "@/Contexts/FilterSearch";
+import { FilterContext } from "@/contexts/FilterSearch";
 import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
 
 const Sections = () => {

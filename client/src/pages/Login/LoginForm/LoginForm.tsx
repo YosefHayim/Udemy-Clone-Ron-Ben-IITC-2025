@@ -6,7 +6,7 @@ import CustomInput from "@/components/CustomInput/CustomInput";
 import ButtonLoader from "@/components/ButtonLoader/ButtonLoader";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { emailContext } from "@/Contexts/EmailContext";
+import { emailContext } from "@/contexts/EmailContext";
 
 const LoginForm = ({ showOnlyLoginButton = true }) => {
   const emailCtx = useContext(emailContext);

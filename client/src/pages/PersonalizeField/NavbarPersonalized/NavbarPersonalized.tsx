@@ -1,6 +1,6 @@
 import Logo from "@/components/Logo/Logo";
 import ChangeLanguage from "@/components/Navbar/DropDownMenu/ChangeLanguage/ChangeLanguage";
-import { personalizeContent } from "@/Contexts/PersonalizeContext";
+import { personalizeContent } from "@/contexts/PersonalizeContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 

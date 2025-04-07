@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getRatingStatsBySearch from "@/api/courses/getRatingStatsBySearchTerm";
-import { FilterContext } from "@/Contexts/FilterSearch";
+import { FilterContext } from "@/contexts/FilterSearch";
 import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 const ratings = [

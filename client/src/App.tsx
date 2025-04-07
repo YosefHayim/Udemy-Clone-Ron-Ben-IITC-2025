@@ -1,11 +1,11 @@
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { EmailProvider } from "@/Contexts/EmailContext";
-import { PersonalizeProvider } from "@/Contexts/PersonalizeContext";
+import { EmailProvider } from "@/contexts/EmailContext";
+import { PersonalizeProvider } from "@/contexts/PersonalizeContext";
 import AppRoutes from "@/routes/AppRoutes";
-import { FilterProvider } from "./Contexts/FilterSearch";
+import { FilterProvider } from "./contexts/FilterSearch";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import { initialOptions } from "./Contexts/PaypalContext";
+import { initialOptions } from "./contexts/PaypalContext";
 // import { SocketProvider } from "./Contexts/Socket";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";

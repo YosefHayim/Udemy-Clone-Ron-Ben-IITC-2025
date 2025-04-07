@@ -1,4 +1,4 @@
-import { FilterContext } from "@/Contexts/FilterSearch";
+import { FilterContext } from "@/contexts/FilterSearch";
 import { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 

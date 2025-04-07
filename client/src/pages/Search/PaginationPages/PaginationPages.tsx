@@ -1,4 +1,4 @@
-import { FilterContext } from "@/Contexts/FilterSearch";
+import { FilterContext } from "@/contexts/FilterSearch";
 import { getPageNumbers } from "@/utils/getPageNumbersAlgo";
 import { useContext } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";

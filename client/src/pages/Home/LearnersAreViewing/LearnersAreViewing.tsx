@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import Loader from "@/components/Loader/Loader";
-import { FilterContext } from "@/Contexts/FilterSearch";
+import { FilterContext } from "@/contexts/FilterSearch";
 import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
 
 const LearnersAreViewing = ({ randomAlgoWord }) => {

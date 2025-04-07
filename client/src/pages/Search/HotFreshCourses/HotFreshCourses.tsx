@@ -4,7 +4,7 @@ import { memo, useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
-import { FilterContext } from "@/Contexts/FilterSearch";
+import { FilterContext } from "@/contexts/FilterSearch";
 import { useSearchParams } from "react-router-dom";
 
 const HotFreshCourses = () => {

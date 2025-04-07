@@ -14,7 +14,7 @@ import { useEffect } from "react";
 import RelatedSearches from "./RelatedSearches/RelatedSearches";
 import { getTopValue } from "@/utils/geTopValues";
 import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
-import { FilterContext } from "@/Contexts/FilterSearch";
+import { FilterContext } from "@/contexts/FilterSearch";
 
 const SearchPage: React.FC = () => {
   const { filterData } = useContext(FilterContext);
