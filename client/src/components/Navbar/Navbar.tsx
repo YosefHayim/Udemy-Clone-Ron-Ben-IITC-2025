@@ -67,11 +67,11 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
               <Logo />
             </Link>
             <CategoriesMenu />
-            <div className={"w-full flex-grow items-center p-1 px-[0.25rem]"}>
+            <div className={"w-full flex-grow items-center p-1"}>
               <SearchInput isTyping={isTyping} setIsTyping={setIsTyping} />
             </div>
             <div
-              className="flex w-full items-end justify-end gap-1"
+              className="flex w-full items-end justify-end"
               style={{ maxWidth: "min-content" }}
             >
               <ButtonNavbar
