@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { EmailProvider } from "@/contexts/EmailContext";
 import { PersonalizeProvider } from "@/contexts/PersonalizeContext";
 import AppRoutes from "@/routes/AppRoutes";
-import { FilterProvider } from "./contexts/filterSearch";
+import { FilterProvider } from "./contexts/FilterSearch";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { initialOptions } from "./contexts/PaypalContext";
 // import { SocketProvider } from "./contexts/socket";
