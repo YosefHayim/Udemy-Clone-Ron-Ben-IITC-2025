@@ -128,7 +128,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
                 </Link>
               )}
               {!cookie && (
-                <div>
+                <div className="mx-2">
                   <ChangeLanguage
                     size={20}
                     isClicked={isClicked}
