@@ -49,7 +49,7 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
     },
   });
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (!coursesIds.length) {
       console.log("No courses available for checkout.");
       return;
@@ -65,8 +65,10 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
         return;
       }
       checkOutMutation.mutate(courseId);
+      await initializeCourseProgress(courseId);
     } else {
       checkOutMultiMutation.mutate(coursesIds);
+      return Promise.all(coursesIds.map((id) => initializeCourseProgress(id)));
     }
   };
 
@@ -74,12 +76,9 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
     mutationFn: async (courseIds: string[]) => {
       console.log("Course ids going to purchase: ", courseIds);
 
-      // Add a 1.5s delay before processing
-      await new Promise((resolve) => setTimeout(resolve, 1500));
       return Promise.all(
         courseIds.map(async (id) => {
           buyCourseById(id);
-          await initializeCourseProgress(id);
         })
       );
     },

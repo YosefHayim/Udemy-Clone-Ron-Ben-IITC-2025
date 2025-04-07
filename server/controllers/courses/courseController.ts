@@ -188,11 +188,6 @@ const joinCourseById = catchAsync(
         boughtAt: new Date(),
       });
 
-      const initCourseProgress = await courseProgress.create({
-        userId: user._id,
-        courseId: courseId,
-      });
-
       if (typeof user.udemyCredits !== "number") {
         return next(createError("User credits not initialized properly", 500));
       }
@@ -203,7 +198,6 @@ const joinCourseById = catchAsync(
       res.status(201).json({
         status: "success",
         message: `Successfully joined ${course.courseName}`,
-        courseProgress: initCourseProgress,
       });
     } catch (error) {
       console.log("Error in joinCourseById:", error);

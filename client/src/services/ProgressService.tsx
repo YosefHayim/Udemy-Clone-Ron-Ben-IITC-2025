@@ -95,11 +95,11 @@ const initializeCourseProgress: InitializeProgressFn = async (courseId) => {
   try {
     const response = await axiosClient.post(url);
 
-    if (!response?.data) {
+    if (response?.data) {
       console.warn("No data returned from initializing course progress.");
       throw new Error("Failed to initialize course progress.");
     }
-  } catch (error: any) {
+  } catch (error) {
     console.log(`Error initializing progress for course ID ${courseId}:`, error);
     throw new Error(
       error.response?.data?.message || `Failed to initialize progress for course ID ${courseId}`
