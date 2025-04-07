@@ -11,7 +11,7 @@ const Cart = () => {
   const handleMouseLeave = () => setShowCartHover(false);
 
   return (
-    <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div className="relative mx-1" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <div className={`${btnStyleNHover}`}>
         <MdOutlineShoppingCart className="h-5 w-5" />
         <CartCoursesNumber />

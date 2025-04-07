@@ -42,7 +42,7 @@ const ChangeLanguage: React.FC<{
   return (
     <Dialog>
       <DialogOverlay style={{ backgroundColor: "#1d1e27cc" }} />
-      <DialogTrigger open={isClicked} onOpenChange={setClicked}>
+      <DialogTrigger open={isClicked} onOpenChange={setClicked} className="focus:outline-none">
         {showIcon && (
           <div>
             <p>Language</p>

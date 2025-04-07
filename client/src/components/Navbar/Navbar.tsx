@@ -51,7 +51,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
     };
   });
 
-  useEffect(() => { }, [cookie]);
+  useEffect(() => {}, [cookie]);
 
   return (
     <div className="w-full">
@@ -59,7 +59,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
       {!isMobile && <SaleCommercialTwo />}
       {!isMobile && (
         <div
-          className={`relative z-[50] flex w-full items-center justify-between bg-white pl-[1.7rem] pr-[0.5rem] pb-[0.9em] pt-[0.2em] 
+          className={`relative z-[50] flex w-full items-center justify-between bg-white pb-[0.9em] pl-[1.7rem] pr-[0.5rem] pt-[0.2em] 
           ${showMenu ? "" : "shadow-md shadow-[#bcc0ce]"}`}
         >
           <div className="flex w-full items-center justify-between pl-[0rem] pt-[0.4rem] ">
@@ -70,10 +70,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
             <div className={"w-full flex-grow items-center p-1"}>
               <SearchInput isTyping={isTyping} setIsTyping={setIsTyping} />
             </div>
-            <div
-              className="flex w-full items-end justify-end"
-              style={{ maxWidth: "min-content" }}
-            >
+            <div className="flex w-full items-end justify-end" style={{ maxWidth: "min-content" }}>
               <ButtonNavbar
                 buttonName={"Udemy Business"}
                 insideBtnText="Try Udemy Business"

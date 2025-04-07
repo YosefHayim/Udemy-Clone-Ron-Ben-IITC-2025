@@ -66,8 +66,10 @@ const SearchPage: React.FC = () => {
   });
 
   useEffect(() => {
-    if (!isLoading && !isPending && !data) {
-      navigate(`/not/search/not/found:${searchTerm.toLowerCase()}`);
+    if (!data) {
+      setTimeout(() => {
+        navigate(`/not/search/not/found:${searchTerm.toLowerCase()}`);
+      }, 2000);
     }
   }, [data]);
 
