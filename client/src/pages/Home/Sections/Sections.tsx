@@ -10,12 +10,12 @@ import getAllCourses from "@/api/courses/getAllCourses";
 import { useNavigate } from "react-router-dom";
 import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
-import { filterContext } from "@/Contexts/filterSearch";
+import { FilterContext } from "@/Contexts/FilterSearch";
 import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
 
 const Sections = () => {
   const navigate = useNavigate();
-  const { filterData, setSortBy } = useContext(filterContext);
+  const { filterData, setSortBy } = useContext(FilterContext);
   const [navbarCategory, setNavbarCategory] = useState("Data Science");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [courseIndex, setCourseIndex] = useState(0);

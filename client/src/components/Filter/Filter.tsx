@@ -1,5 +1,5 @@
 import { Checkbox } from "@/components/ui/checkbox";
-import { filterContext } from "@/Contexts/filterSearch";
+import { FilterContext } from "@/Contexts/FilterSearch";
 import { DummyData, FilterProps } from "@/types/types";
 import { btnStyleNHover } from "@/utils/stylesStorage";
 import { useContext, useState } from "react";
@@ -25,7 +25,7 @@ const Filter: React.FC<FilterProps> = ({
     setLevels,
     setSubtitles,
     setPrice,
-  } = useContext(filterContext);
+  } = useContext(FilterContext);
 
   const handleClick: React.MouseEventHandler<HTMLDivElement> = () => {
     setClicked((prev) => !prev);

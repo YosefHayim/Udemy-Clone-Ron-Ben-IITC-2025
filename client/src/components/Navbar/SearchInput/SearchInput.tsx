@@ -6,7 +6,7 @@ import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import { useMediaQuery } from "react-responsive";
 import SearchInputDesktop from "./SearchInputDesktop/SearchInputDekstop";
 import SearchInputMobile from "@/components/MobileNavbar/SearchInputMobile/SearchInputMobile";
-import { filterContext } from "@/Contexts/filterSearch";
+import { FilterContext } from "@/Contexts/FilterSearch";
 
 const SearchInput: React.FC<{
   isTyping: boolean;
@@ -17,7 +17,7 @@ const SearchInput: React.FC<{
 }> = ({ isTyping, setIsTyping, extraCSS = "", setShowSearchMobile, showSearchMobile }) => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
 
-  const { filterData, setSearchTerm } = useContext(filterContext);
+  const { filterData, setSearchTerm } = useContext(FilterContext);
   const { searchTerm } = filterData;
 
   const navigate = useNavigate();

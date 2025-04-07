@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import Loader from "@/components/Loader/Loader";
-import { filterContext } from "@/Contexts/filterSearch";
+import { FilterContext } from "@/Contexts/FilterSearch";
 import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
 
 const LearnersAreViewing = ({ randomAlgoWord }) => {
@@ -15,7 +15,7 @@ const LearnersAreViewing = ({ randomAlgoWord }) => {
   const [hoveredCourse, setHoveredCourse] = useState(null);
   const [hoverPosition, setHoverPosition] = useState({ top: 0, left: 0 });
 
-  const { filterData, setSortBy } = useContext(filterContext);
+  const { filterData, setSortBy } = useContext(FilterContext);
 
   const { data, isLoading, isPending } = useQuery({
     queryKey: [randomAlgoWord],

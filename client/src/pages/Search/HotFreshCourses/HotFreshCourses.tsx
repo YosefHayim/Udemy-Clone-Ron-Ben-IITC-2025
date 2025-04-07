@@ -4,7 +4,7 @@ import { memo, useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
-import { filterContext } from "@/Contexts/filterSearch";
+import { FilterContext } from "@/Contexts/FilterSearch";
 import { useSearchParams } from "react-router-dom";
 
 const HotFreshCourses = () => {
@@ -12,7 +12,7 @@ const HotFreshCourses = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchTerm: string | null = searchParams.get("q")?.toLowerCase();
-  const { filterData, setSortBy } = useContext(filterContext);
+  const { filterData, setSortBy } = useContext(FilterContext);
 
   const handlePrev = () => {
     if (isAnimating || currentIndex === 0) return;

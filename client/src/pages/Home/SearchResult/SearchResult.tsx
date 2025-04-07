@@ -5,7 +5,7 @@ import getAllCourses from "@/api/courses/getAllCourses";
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
 import Loader from "@/components/Loader/Loader";
-import { filterContext } from "@/Contexts/filterSearch";
+import { FilterContext } from "@/Contexts/FilterSearch";
 
 const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
   title,
@@ -15,7 +15,7 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
   const [isCourseAnimating, setCourseAnimating] = useState(false);
   const [countCourseClick, setCourseClick] = useState(0);
 
-  const { filterData, setSortBy } = useContext(filterContext);
+  const { filterData, setSortBy } = useContext(FilterContext);
 
   const { data, isLoading } = useQuery({
     queryKey: [randomAlgoWord],

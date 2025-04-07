@@ -14,10 +14,10 @@ import { useEffect } from "react";
 import RelatedSearches from "./RelatedSearches/RelatedSearches";
 import { getTopValue } from "@/utils/geTopValues";
 import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
-import { filterContext } from "@/Contexts/filterSearch";
+import { FilterContext } from "@/Contexts/FilterSearch";
 
 const SearchPage: React.FC = () => {
-  const { filterData } = useContext(filterContext);
+  const { filterData } = useContext(FilterContext);
   const useScrollRef = useRef(null);
 
   document.title = "Search results | Udemy";

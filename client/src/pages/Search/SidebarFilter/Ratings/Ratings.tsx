@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getRatingStatsBySearch from "@/api/courses/getRatingStatsBySearchTerm";
-import { filterContext } from "@/Contexts/filterSearch";
+import { FilterContext } from "@/Contexts/FilterSearch";
 import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 const ratings = [
@@ -16,7 +16,7 @@ const ratings = [
 const RatingsFilter = () => {
   const [isClicked, setClicked] = useState(true);
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
-  const { setRatings, filterData } = useContext(filterContext);
+  const { setRatings, filterData } = useContext(FilterContext);
 
   // Sync selectedRating with filterData on mount
   useEffect(() => {

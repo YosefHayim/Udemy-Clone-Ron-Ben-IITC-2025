@@ -1,4 +1,4 @@
-import { filterContext } from "@/Contexts/filterSearch";
+import { FilterContext } from "@/Contexts/FilterSearch";
 import { getPageNumbers } from "@/utils/getPageNumbersAlgo";
 import { useContext } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
@@ -7,7 +7,7 @@ const PaginationPages: React.FC<{ totalPages: number; useScrollRef }> = ({
   totalPages,
   useScrollRef,
 }) => {
-  const { filterData, setPage } = useContext(filterContext);
+  const { filterData, setPage } = useContext(FilterContext);
 
   const currentPage = filterData.page;
 

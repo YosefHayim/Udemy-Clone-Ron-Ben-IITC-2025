@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import FilterBtn from "./FilterBtn/FilterBtn";
 import SortDropDown from "./SortDropDown/SortDropDown";
-import { filterContext } from "@/Contexts/filterSearch";
+import { FilterContext } from "@/Contexts/FilterSearch";
 
 const defaultFilters = {
   sortBy: "",
@@ -30,7 +30,7 @@ const convertToComparable = (filters) =>
   );
 
 const FilterNSort = ({ coursesResults, searchTerm }) => {
-  const { filterData, setFilterData } = useContext(filterContext);
+  const { filterData, setFilterData } = useContext(FilterContext);
 
   const isFiltersDefault = convertToComparable(filterData) === convertToComparable(defaultFilters);
 

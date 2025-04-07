@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { BsToggleOn, BsToggleOff } from "react-icons/bs";
 import { useContext } from "react";
-import { filterContext } from "@/Contexts/filterSearch";
+import { FilterContext } from "@/Contexts/FilterSearch";
 
 const ViewCertificatesOnly = () => {
-  const { filterData, setCertificateOnly } = useContext(filterContext);
+  const { filterData, setCertificateOnly } = useContext(FilterContext);
   const [isActive, setIsActive] = useState<boolean | null>(false);
 
   const handleToggle = () => {
