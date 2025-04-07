@@ -66,8 +66,8 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
             useCustom={true}
             showDirectionalButtonsOnlyOnEdge={false}
             topPosition="40%"
-            leftPosition="-1.5%"
-            rightPosition="2%"
+            leftPosition="-1.8%"
+            rightPosition="-1.5%"
           />
         )}
         <div className="overflow-x-clip">
