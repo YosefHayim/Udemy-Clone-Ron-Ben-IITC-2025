@@ -6,7 +6,7 @@ import AppRoutes from "@/routes/AppRoutes";
 import { FilterProvider } from "./contexts/filterSearch";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { initialOptions } from "./contexts/PaypalContext";
-import { SocketProvider } from "./contexts/socket";
+// import { SocketProvider } from "./contexts/socket";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
