@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import FilterBtn from "./FilterBtn/FilterBtn";
 import SortDropDown from "./SortDropDown/SortDropDown";
-import { filterContext } from "@/contexts/filterSearch";
+import { filterContext } from "@/Contexts/filterSearch";
 
 const defaultFilters = {
   sortBy: "",

@@ -5,7 +5,7 @@ import getAllCourses from "@/api/courses/getAllCourses";
 import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
 import Loader from "@/components/Loader/Loader";
-import { filterContext } from "@/contexts/filterSearch";
+import { filterContext } from "@/Contexts/filterSearch";
 
 const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
   title,

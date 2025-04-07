@@ -6,7 +6,7 @@ import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
 import { useMediaQuery } from "react-responsive";
 import SearchInputDesktop from "./SearchInputDesktop/SearchInputDekstop";
 import SearchInputMobile from "@/components/MobileNavbar/SearchInputMobile/SearchInputMobile";
-import { filterContext } from "@/contexts/filterSearch";
+import { filterContext } from "@/Contexts/filterSearch";
 
 const SearchInput: React.FC<{
   isTyping: boolean;

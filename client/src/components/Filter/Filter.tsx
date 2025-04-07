@@ -1,5 +1,5 @@
 import { Checkbox } from "@/components/ui/checkbox";
-import { filterContext } from "@/contexts/filterSearch";
+import { filterContext } from "@/Contexts/filterSearch";
 import { DummyData, FilterProps } from "@/types/types";
 import { btnStyleNHover } from "@/utils/stylesStorage";
 import { useContext, useState } from "react";

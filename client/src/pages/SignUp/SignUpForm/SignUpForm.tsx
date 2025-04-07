@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import CheckboxSpecialOffer from "./CheckboxSpecialOffer/CheckboxSpecialOffer";
 import ButtonLoader from "@/components/ButtonLoader/ButtonLoader";
 import CustomInput from "@/components/CustomInput/CustomInput";
-import { emailContext } from "@/contexts/EmailContext";
+import { emailContext } from "@/Contexts/EmailContext";
 
 const SignUpForm = ({ isMobile }) => {
   const [isLoading, setLoading] = useState(false);

@@ -6,7 +6,7 @@ import DidntReceiveCode from "./CodeForm/DidntReceiveCode/DidntReceiveCode";
 import EnterCodeSendTo from "./CodeForm/EnterCodeSendTo/EnterCodeSendTo";
 import { useMediaQuery } from "react-responsive";
 import MobileLoginImg from "../Login/MobileLoginImg/MobileLoginImg";
-import { emailContext } from "@/contexts/EmailContext";
+import { emailContext } from "@/Contexts/EmailContext";
 
 const VerifyCode = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });

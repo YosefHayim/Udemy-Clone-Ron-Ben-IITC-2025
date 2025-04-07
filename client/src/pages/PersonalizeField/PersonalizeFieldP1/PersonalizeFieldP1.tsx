@@ -1,5 +1,5 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { personalizeContent } from "@/contexts/PersonalizeContext";
+import { personalizeContent } from "@/Contexts/PersonalizeContext";
 import { useContext } from "react";
 import { FaUserEdit } from "react-icons/fa";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BsToggleOn, BsToggleOff } from "react-icons/bs";
 import { useContext } from "react";
-import { filterContext } from "@/contexts/filterSearch";
+import { filterContext } from "@/Contexts/filterSearch";
 
 const ViewCertificatesOnly = () => {
   const { filterData, setCertificateOnly } = useContext(filterContext);

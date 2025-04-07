@@ -1,5 +1,5 @@
 import updatePersonalizeUserField from "@/api/users/updatePersonalizeField";
-import { personalizeContent } from "@/contexts/PersonalizeContext";
+import { personalizeContent } from "@/Contexts/PersonalizeContext";
 import { useMutation } from "@tanstack/react-query";
 import { useContext, useEffect } from "react";
 
