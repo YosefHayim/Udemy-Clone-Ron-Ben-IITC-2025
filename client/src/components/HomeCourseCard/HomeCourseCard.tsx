@@ -8,8 +8,7 @@ import { useState } from "react";
 import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
 
 const HomeCourseCard = ({ courseCard, index, onHover, onPosition }) => {
-  // const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
-  // const [hoverPosition, setHoverPosition] = useState({ top: 0, left: 0 });
+  
   const navigate = useNavigate();
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -26,7 +25,7 @@ const HomeCourseCard = ({ courseCard, index, onHover, onPosition }) => {
       left,
     });
 
-    onHover(courseCard); // Agora corretamente usando props
+    onHover(courseCard); 
   };
 
   const handleMouseLeave = () => {
