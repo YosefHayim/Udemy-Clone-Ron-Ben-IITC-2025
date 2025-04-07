@@ -71,26 +71,28 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
           />
         )}
         <div className="overflow-x-clip">
-
           <div
             className={`flex
-            ${data?.response && data.response?.length > 7 ?
-                "w-max items-center justify-center"
-                : "w-full items-center justify-start"} z-20 h-full gap-5 transition-transform duration-1000 ease-in-out`
-            }
+            ${
+              data?.response && data.response?.length > 7
+                ? "w-max items-center justify-center"
+                : "w-full items-center justify-start"
+            } z-20 h-full gap-5 transition-transform duration-1000 ease-in-out`}
             style={{ transform: `translateX(-${courseIndex * 30}%)` }}
           >
             {data?.response && data?.response ? (
               data?.response?.map((courseCard, index: number) => (
-                <HomeCourseCard key={courseCard._id || index} courseCard={courseCard} index={index} />
+                <HomeCourseCard
+                  key={courseCard._id || index}
+                  courseCard={courseCard}
+                  index={index}
+                />
               ))
-            ) :
-
-              (
-                <div className="w-full">
-                  <Loader useSmallLoading={false} hSize="" />
-                </div>
-              )}
+            ) : (
+              <div className="w-full">
+                <Loader useSmallLoading={false} hSize="" />
+              </div>
+            )}
           </div>
         </div>
       </div>

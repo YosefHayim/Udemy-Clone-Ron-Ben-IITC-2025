@@ -26,7 +26,6 @@ const Sections = () => {
   const [hoveredCourse, setHoveredCourse] = useState(null);
   const [hoverPosition, setHoverPosition] = useState({ top: 0, left: 0 });
 
-
   const handlePrev = () => {
     if (isAnimating || currentIndex === 0) return;
     setIsAnimating(true);
@@ -95,16 +94,15 @@ const Sections = () => {
 
   return (
     <div className="flex w-full flex-col items-center justify-center">
-
       {/* title and menu */}
-      <div className="flex w-full flex-col items-center justify-center pt-5 px-5">
-        <h1 className="mt-12 w-full font-[Armin Grotesk] text-[2rem] font-extrabold text-gray-900 flex justify-start ml-[12rem]">
+      <div className="flex w-full flex-col items-center justify-center px-5 pt-5">
+        <h1 className="font-[Armin Grotesk] ml-[12rem] mt-12 flex w-full justify-start text-[2rem] font-extrabold text-gray-900">
           All the skills you need in one place
         </h1>
-        <p className="mb-6 mt-2 w-full text-[1.2rem] font-[Armin Grotesk] text-gray-600 flex justify-start ml-[12rem]">
+        <p className="font-[Armin Grotesk] mb-6 ml-[12rem] mt-2 flex w-full justify-start text-[1.2rem] text-gray-600">
           From critical skills to technical topics, Udemy supports your professional development.
         </p>
-        <div className="flex w-full items-center justify-start pt-5 gap-5 ml-[12rem]">
+        <div className="ml-[12rem] flex w-full items-center justify-start gap-5 pt-5">
           {navbarCategories?.map((category, index) => (
             <div
               onClick={() => setNavbarCategory(category)}
@@ -123,8 +121,7 @@ const Sections = () => {
         <hr className="w-full" />
       </div>
 
-      <div className="flex w-full flex-col items-center justify-center gap-1 p-5 bg-gray-100">
-
+      <div className="flex w-full flex-col items-center justify-center gap-1 bg-gray-100 p-5">
         {/* Circle Categories*/}
         <div className="flex w-full max-w-[calc(100%-11.5rem)] overflow-clip">
           <ButtonsCarousel
@@ -153,10 +150,11 @@ const Sections = () => {
                     <div
                       key={idx}
                       onClick={() => setChooseTopic(topic)}
-                      className={`${choseTopic === topic
-                        ? "w-full bg-blackUdemy text-white hover:bg-grayUdemyHover"
-                        : ""
-                        } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
+                      className={`${
+                        choseTopic === topic
+                          ? "w-full bg-blackUdemy text-white hover:bg-grayUdemyHover"
+                          : ""
+                      } flex w-max cursor-pointer flex-col items-start justify-start rounded-full bg-[#e9eaf2] p-5 text-blackUdemy hover:bg-grayUdemy`}
                     >
                       <b className="w-max text-base">{topic}</b>
                       {idx < topics.length - 1 ? <p>{getRandomLearnersAmount()}</p> : null}
@@ -169,7 +167,7 @@ const Sections = () => {
         </div>
 
         {/* carrousel courses */}
-        <div className="relative w-full overflow-visible ml-[11.5rem]">
+        <div className="relative ml-[11.5rem] w-full overflow-visible">
           {data?.response && data?.response?.length > 7 && (
             <ButtonsCarousel
               handleFnNext={handleNextCourse}
@@ -186,13 +184,11 @@ const Sections = () => {
             className="flex w-full items-center justify-start gap-4 py-4 transition-transform duration-1000 ease-in-out"
             style={{ transform: `translateX(-${courseIndex * 100}%)` }}
           >
-
             {[...Array(Math.ceil((data?.response?.length || 0) / 4))].map((_, groupIndex) => {
               const coursesGroup = data?.response?.slice(groupIndex * 4, groupIndex * 4 + 4);
 
               return (
                 <div key={groupIndex} className="flex min-w-full flex-shrink-0 gap-4">
-
                   {coursesGroup.map((courseCard, i) => (
                     // <HomeCourseCard
                     //   courseCard={courseCard}
@@ -206,14 +202,12 @@ const Sections = () => {
                       onHover={setHoveredCourse}
                       onPosition={setHoverPosition}
                     />
-
                   ))}
                 </div>
               );
             })}
           </div>
         </div>
-
 
         {/* hoveredCourse */}
         {hoveredCourse && (
@@ -248,7 +242,7 @@ const Sections = () => {
           </div>
         )}
 
-        <div className="my-2 w-full ml-[11.5rem]">
+        <div className="my-2 ml-[11.5rem] w-full">
           <button
             onClick={handleNavigation}
             className={`${btnStyleNHover} border border-purple-800 font-sans text-[0.875rem] font-bold text-purple-800`}
@@ -257,7 +251,6 @@ const Sections = () => {
           </button>
         </div>
       </div>
-
     </div>
   );
 };

@@ -51,7 +51,7 @@ const CourseHoverCardInfo: React.FC<{
   courseName = "",
 }) => {
   return (
-    <div className="overflow-y-visible text-[1rem] max-w-[320px]" id={courseId}>
+    <div className="max-w-[320px] overflow-y-visible text-[1rem]" id={courseId}>
       <div id={courseId} className={courseId}>
         <TriangleShape
           index={index}
@@ -60,15 +60,15 @@ const CourseHoverCardInfo: React.FC<{
         />
         <div className={`w-[${width}] rounded-[0.5em]  bg-white p-[1.5em] shadow-alertAlgoInfo `}>
           <div className="text-[1.2rem]">
-          <CourseTitle title={courseName} />
+            <CourseTitle title={courseName} />
           </div>
           {showCourseLength && (
-            <div className="flex  text-[0.875rem] w-max items-center justify-start">
+            <div className="flex  w-max items-center justify-start text-[0.875rem]">
               <CourseTag tagName={courseTag} />
               <CourseBasicInfo
                 isDisplayMonthName={true}
                 lastUpdated={courseUpdatedAt}
-                courseLanguage={courseLanguages}  
+                courseLanguage={courseLanguages}
               />
             </div>
           )}

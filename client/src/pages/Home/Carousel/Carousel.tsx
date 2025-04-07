@@ -71,19 +71,13 @@ const Carousel = () => {
   const current = slides[currentSlide];
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between px-8 py-12 gap-8 relative">
+    <div className="relative flex flex-col items-center justify-between gap-8 px-8 py-12 md:flex-row">
       {/* Texto fixo baseado no current slide */}
-      <div className="w-full md:w-1/2 text-left">
+      <div className="w-full text-left md:w-1/2">
         {current.logo && (
-          <img
-            src={current.logo}
-            alt="Logo"
-            className="mb-4 h-auto w-128 opacity-70"
-          />
+          <img src={current.logo} alt="Logo" className="w-128 mb-4 h-auto opacity-70" />
         )}
-        <h2 className="my-4 font-sans text-3xl font-extrabold text-gray-800">
-          {current.title}
-        </h2>
+        <h2 className="my-4 font-sans text-3xl font-extrabold text-gray-800">{current.title}</h2>
         <div className="my-4 flex flex-wrap gap-8">
           {current.stats.map((stat, index) => (
             <div key={index}>
@@ -92,27 +86,29 @@ const Carousel = () => {
             </div>
           ))}
         </div>
-        <button className={`${loginWithEmailBtn} h-[30px] text-[1rem] font-semibold font-sans max-w-max px-2 py-0`}>
+        <button
+          className={`${loginWithEmailBtn} h-[30px] max-w-max px-2 py-0 font-sans text-[1rem] font-semibold`}
+        >
           {current.buttonText}
         </button>
       </div>
 
       {/* Imagem com transição suave */}
-      <div className="w-full md:w-1/2 flex justify-center relative h-[600px] max-w-[900px] overflow-hidden">
+      <div className="relative flex h-[600px] w-full max-w-[900px] justify-center overflow-hidden md:w-1/2">
         {slides.map((slide, index) => (
           <img
             key={slide.id}
             src={slide.image}
             alt={slide.title}
-            className={`absolute transition-opacity duration-700 ease-in-out object-cover w-full h-full rounded ${
-              index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+            className={`absolute h-full w-full rounded object-cover transition-opacity duration-700 ease-in-out ${
+              index === currentSlide ? "z-10 opacity-100" : "z-0 opacity-0"
             }`}
           />
         ))}
       </div>
 
       {/* Botões de navegação */}
-      <div className="absolute bottom-4 left-4 flex items-center space-x-4 mb-6">
+      <div className="absolute bottom-4 left-4 mb-6 flex items-center space-x-4">
         <button
           className="z-20 h-min rounded-full p-2 shadow-alertAlgoInfo hover:bg-gray-200 focus:outline-none"
           onClick={prevSlide}

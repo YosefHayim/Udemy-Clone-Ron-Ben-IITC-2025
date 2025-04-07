@@ -15,24 +15,24 @@ const HomeCourseCard = ({ courseCard, index, onHover, onPosition }) => {
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const hoverWidth = 330;
-  
+
     let left = rect.right + 12;
     if (left + hoverWidth > window.innerWidth) {
       left = rect.left - hoverWidth - 12;
     }
-  
+
     onPosition({
       top: rect.top + window.scrollY,
       left,
     });
-  
+
     onHover(courseCard); // Agora corretamente usando props
   };
-  
+
   const handleMouseLeave = () => {
     onHover(null);
   };
-  
+
   const handleCardClick = (courseId: string) => {
     navigate(`/course-view/${courseId}`);
   };
@@ -64,7 +64,6 @@ const HomeCourseCard = ({ courseCard, index, onHover, onPosition }) => {
         />
         <CourseTag tagName={courseCard?.courseTag} />
       </div>
-      
     </div>
   );
 };

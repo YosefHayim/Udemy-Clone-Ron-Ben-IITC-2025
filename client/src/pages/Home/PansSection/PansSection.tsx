@@ -63,7 +63,7 @@ const PlansSection = () => {
         Reach goals faster with one of our plans or programs. Try one free today or contact sales to
         learn more.
       </p>
-  
+
       {/* Container flexível responsivo */}
       <div className="mt-8 flex flex-wrap justify-center gap-6">
         {plans.map((plan, index) => (
@@ -98,7 +98,6 @@ const PlansSection = () => {
       </div>
     </div>
   );
-  
 };
 
 export default PlansSection;

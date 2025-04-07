@@ -32,7 +32,7 @@ const Homepage = () => {
 
   console.log(uniqueSearches);
 
-  useEffect(() => { }, [cookie]);
+  useEffect(() => {}, [cookie]);
 
   return (
     <div>
@@ -65,7 +65,6 @@ const Homepage = () => {
               <Welcome />
               <Banner isLogin={true} />
               <div className="mx-2">
-
                 <LetsStartLearning />
                 <h1 className="pl-4 font-extrabold">What to learn next</h1>
                 <SearchResult

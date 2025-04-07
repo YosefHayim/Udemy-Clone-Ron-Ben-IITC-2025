@@ -24,7 +24,7 @@ const TrendsReport = () => {
           alt="2025 Global Learning & Skills Trends Report"
           className="max-w-16xl w-full object-contain"
           style={{
-            transform: "translateX(5%)", 
+            transform: "translateX(5%)",
           }}
         />
       </div>
