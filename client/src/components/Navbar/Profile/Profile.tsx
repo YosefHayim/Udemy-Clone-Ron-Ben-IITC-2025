@@ -17,7 +17,7 @@ const Profile = ({ cookie }) => {
 
   return (
     <div
-      className="group relative px-[0.2rem] pr-[1rem]"
+      className="group relative pr-[1rem] mx-[-0.5rem]"
       onMouseEnter={() => setShowDropDown(true)}
       onMouseLeave={() => setShowDropDown(false)}
     >
