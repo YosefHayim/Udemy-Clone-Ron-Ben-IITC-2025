@@ -8,10 +8,11 @@ import {
   setTotalCourseDiscountPrices,
   setTotalOriginalCoursePrices,
 } from "@/redux/slices/cartSlice";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Loader from "@/components/Loader/Loader";
 
 const BuyNowBtn: React.FC<{
   courseId: string;
@@ -20,10 +21,12 @@ const BuyNowBtn: React.FC<{
 }> = ({ courseId, discountPrice, fullPrice }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isLoading, setLoading] = useState(false);
   const cookie = useSelector((state: RootState) => state.user.cookie);
 
   const handleClick = (courseId: string) => {
     if (cookie) {
+      setLoading(true);
       setTimeout(() => {
         dispatch(setAmountOfCourses());
         if (!discountPrice || isNaN(discountPrice)) {
@@ -35,10 +38,11 @@ const BuyNowBtn: React.FC<{
         dispatch(calculateTotalSavings());
         dispatch(calculateDiscountPercentage());
         dispatch(setAddCourseToCart(courseId));
-        navigate("/payment/checkout/");
-      }, 1000);
+        // navigate("/payment/checkout/");
+        setLoading(false);
+      }, 1500);
     } else {
-      navigate("/login");
+      // navigate("/login");
     }
   };
   return (
@@ -47,7 +51,7 @@ const BuyNowBtn: React.FC<{
       onClick={() => handleClick(courseId)}
       className={`w-full rounded-[0.2em] border border-purple-700 bg-white py-[1.5em] font-sans font-extrabold text-purple-700 hover:bg-hoverDivGray focus:outline-none`}
     >
-      Buy now
+      {isLoading ? <Loader hSize="" useSmallBlackLoading={true} /> : "Buy now"}
     </Button>
   );
 };

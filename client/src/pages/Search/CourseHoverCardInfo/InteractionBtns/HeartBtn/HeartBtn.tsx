@@ -47,7 +47,7 @@ const HeartBtn: React.FC<{
       } flex cursor-pointer items-center justify-center rounded-full border border-purple-700 p-3 transition-all duration-300 hover:bg-purpleHoverBtn ${customHeartExtraCSS}`}
     >
       {isLoading ? (
-        <Loader useSmallLoading={true} hSize="5" paddingSetTo="0em" />
+        <Loader useSmallBlackLoading={true} hSize="5" paddingSetTo="0.2em" />
       ) : isFavorite ? (
         <IoHeartSharp size={24} className={`text-${iconSize} text-purple-700`} />
       ) : (
