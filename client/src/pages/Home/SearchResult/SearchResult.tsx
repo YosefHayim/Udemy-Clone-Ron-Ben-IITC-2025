@@ -105,7 +105,7 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
         <div
           className="absolute z-50"
           style={{
-            top: hoverPosition.top,
+            top: hoverPosition.top  - 50,
             left: hoverPosition.left,
           }}
           onMouseLeave={() => setHoveredCourse(null)}
