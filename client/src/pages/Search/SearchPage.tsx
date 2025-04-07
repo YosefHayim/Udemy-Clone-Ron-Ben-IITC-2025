@@ -2,7 +2,7 @@ import SearchCourseCard from "@/pages/Search/SearchCourseCard/SearchCourseCard";
 import SidebarFilter from "./SidebarFilter/SidebarFilter";
 import FilterNSort from "./SidebarFilter/FilterNSort/FilterNSort";
 import Pagination from "./PaginationPages/PaginationPages";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import getAllCourses from "@/api/courses/getAllCourses";
 import Loader from "@/components/Loader/Loader";
@@ -21,7 +21,6 @@ const SearchPage: React.FC = () => {
   const useScrollRef = useRef(null);
 
   document.title = "Search results | Udemy";
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchTerm: string | null = searchParams.get("q")?.toLowerCase();
   const [hoveredCourse, setHoveredCourse] = useState<string | null>(null);
@@ -53,7 +52,7 @@ const SearchPage: React.FC = () => {
     setSearchParams(params);
   }, [filterData, searchTerm, setSearchParams]);
 
-  const { data, isLoading, isPending } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["courses", searchTerm.toLowerCase(), filterData.page, filterData],
     queryFn: () => {
       if (!searchTerm) {
@@ -64,14 +63,6 @@ const SearchPage: React.FC = () => {
     },
     enabled: !!searchTerm,
   });
-
-  useEffect(() => {
-    if (!data) {
-      setTimeout(() => {
-        navigate(`/not/search/not/found:${searchTerm.toLowerCase()}`);
-      }, 2000);
-    }
-  }, [data]);
 
   if (isLoading) {
     return <Loader hSize="100" useSmallLoading={false} />;

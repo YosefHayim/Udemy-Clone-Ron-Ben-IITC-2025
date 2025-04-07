@@ -182,7 +182,10 @@ const ViewCoursePageInfo = () => {
           </div>
         </div>
         <div>
-          <div className="absolute right-[10%] top-[10%] w-1/4" ref={viewportRef}>
+          <div
+            className={`${currentPosition <= -970 ? `absolute top-[${currentPosition}px]` : "absolute"} right-[10%] top-[10%] w-1/4`}
+            ref={viewportRef}
+          >
             <CoursePreviewCard
               restoreTop={restoreTop}
               currentPosition={currentPosition}
