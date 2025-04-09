@@ -22,7 +22,7 @@ const Profile = ({ cookie }) => {
       onMouseLeave={() => setShowDropDown(false)}
     >
       {cookie && (
-        <div className="cursor-pointer">
+        <div className="cursor-pointer ml-[0.32rem]">
           <ProfilePic
             shortcutName={shortcutName}
             profilePic={profilePic}

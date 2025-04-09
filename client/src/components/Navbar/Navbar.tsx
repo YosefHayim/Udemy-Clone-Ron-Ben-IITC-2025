@@ -97,7 +97,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
                 </div>
               )}
               <Link to="/cart">
-                <div className="relative flex items-center">
+                <div className="relative flex items-center mr-[0.3rem]">
                   <Cart />
                 </div>
               </Link>
@@ -119,7 +119,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
                   <div className="relative inline-block">
                     <Profile cookie={cookie} />
                     {coursesInCart.length >= 1 && (
-                      <div className="absolute right-[33.5%] top-[5%] z-10 h-[0.85rem] w-[0.85rem] rounded-full bg-[#A435F0]"></div>
+                      <div className="absolute right-[28.5%] top-[5%] z-10 h-[0.85rem] w-[0.85rem] rounded-full bg-[#A435F0]"></div>
                     )}
                   </div>
                 </Link>
