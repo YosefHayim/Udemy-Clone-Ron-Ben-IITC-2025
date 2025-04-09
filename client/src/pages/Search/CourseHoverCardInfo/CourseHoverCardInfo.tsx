@@ -36,7 +36,7 @@ const CourseHoverCardInfo: React.FC<{
   index,
   courseTopic,
   instructorId,
-  width = "400px",
+  width = "32rem",
   positionedLeft = false,
   positionedRight = false,
   showCourseLength = false,

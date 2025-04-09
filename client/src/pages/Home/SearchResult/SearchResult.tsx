@@ -6,6 +6,7 @@ import ButtonsCarousel from "@/components/ButtonsCarousel/ButtonsCarousel";
 import HomeCourseCard from "@/components/HomeCourseCard/HomeCourseCard";
 import Loader from "@/components/Loader/Loader";
 import { FilterContext } from "@/contexts/FilterSearch";
+import CourseHoverCardInfo from "@/pages/Search/CourseHoverCardInfo/CourseHoverCardInfo";
 
 const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
   title,
@@ -14,6 +15,9 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
   const [courseIndex, setCourseIndex] = useState(0);
   const [isCourseAnimating, setCourseAnimating] = useState(false);
   const [countCourseClick, setCourseClick] = useState(0);
+  const [hoveredCourse, setHoveredCourse] = useState(null);
+  const [hoverPosition, setHoverPosition] = useState({ top: 0, left: 0 });
+
 
   const { filterData, setSortBy } = useContext(FilterContext);
 
@@ -66,19 +70,18 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
             useCustom={true}
             showDirectionalButtonsOnlyOnEdge={false}
             topPosition="40%"
-            leftPosition="-1.5%"
-            rightPosition="2%"
+            leftPosition="-1.8%"
+            rightPosition="-1.5%"
           />
         )}
         <div className="overflow-x-clip">
           <div
             className={`flex
-            ${
-              data?.response && data.response?.length > 7
+            ${data?.response && data.response?.length > 7
                 ? "w-max items-center justify-center"
                 : "w-full items-center justify-start"
-            } z-20 h-full gap-5 transition-transform duration-1000 ease-in-out`}
-            style={{ transform: `translateX(-${courseIndex * 30}%)` }}
+              } z-20 h-full gap-5 transition-transform duration-1000 ease-in-out`}
+            style={{ transform: `translateX(-${courseIndex * 30.90875}%)` }}
           >
             {data?.response && data?.response ? (
               data?.response?.map((courseCard, index: number) => (
@@ -86,6 +89,8 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
                   key={courseCard._id || index}
                   courseCard={courseCard}
                   index={index}
+                  onHover={setHoveredCourse}
+                  onPosition={setHoverPosition}
                 />
               ))
             ) : (
@@ -96,6 +101,37 @@ const SearchResult: React.FC<{ title: string; randomAlgoWord: string }> = ({
           </div>
         </div>
       </div>
+      {hoveredCourse && (
+        <div
+          className="absolute z-50"
+          style={{
+            top: hoverPosition.top  - 50,
+            left: hoverPosition.left,
+          }}
+          onMouseLeave={() => setHoveredCourse(null)}
+          onMouseEnter={() => setHoveredCourse(hoveredCourse)}
+        >
+          <CourseHoverCardInfo
+            whatYouWillLearn={hoveredCourse.whatYouWillLearn}
+            courseName={hoveredCourse.courseName}
+            courseId={hoveredCourse._id}
+            coursePrice={hoveredCourse.courseDiscountPrice}
+            fullPriceCourse={hoveredCourse.courseFullPrice}
+            index={0}
+            courseTopic={hoveredCourse.courseTopic}
+            instructorId={hoveredCourse.courseInstructor?._id}
+            showCourseLength={true}
+            courseLevel={hoveredCourse.courseLevel}
+            totalCourseDuration={hoveredCourse.totalDuration}
+            totalCourseLessons={hoveredCourse.totalLectures}
+            courseUpdatedAt={new Date(hoveredCourse.updatedAt)}
+            courseTag={hoveredCourse.courseTag}
+            courseLanguages={hoveredCourse.courseLanguages}
+            courseRecapInfo={hoveredCourse.courseRecapInfo}
+          />
+        </div>
+      )}
+
     </section>
   );
 };
