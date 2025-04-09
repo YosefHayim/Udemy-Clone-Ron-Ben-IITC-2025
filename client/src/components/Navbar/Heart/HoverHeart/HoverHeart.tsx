@@ -10,17 +10,18 @@ import {
   calculateTotalSavings,
   setAddCourseToCart,
   setAmountOfCourses,
+  setCoursesAddedToWishList,
   setTotalCourseDiscountPrices,
   setTotalOriginalCoursePrices,
 } from "@/redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
+import ItemsInCart from "@/pages/ShoppingCart/ItemsInCart/ItemsInCart";
 
 const HoverHeart = () => {
   const dispatch = useDispatch();
   const totalCourses = useSelector((state: RootState) => state.cart.coursesAddedToWishList);
   const discountPrice = useSelector((state: RootState) => state.cart.totalCourseDiscountPrices);
   const fullPriceCourse = useSelector((state: RootState) => state.cart.totalCoursesOriginalPrices);
-  useEffect(() => {}, [totalCourses]);
 
   const handleWishlistCart = () => {
     dispatch(setAmountOfCourses()); // Increment the amount of courses
@@ -29,14 +30,17 @@ const HoverHeart = () => {
     dispatch(calculateTotalSavings());
     dispatch(calculateDiscountPercentage());
     dispatch(setAddCourseToCart(totalCourses[0])); // Add course to the cart
+    dispatch(setCoursesAddedToWishList());
   };
+
+  useEffect(() => {}, [totalCourses]);
 
   return (
     <div>
       <div className="absolute right-[0em] top-[1em] z-[1000] flex w-[300px] cursor-pointer flex-col items-start justify-center rounded-t-lg border border-gray-300 bg-white shadow-alertAlgoInfo">
         {totalCourses.length > 0 ? (
           totalCourses.map((courseId: string) => (
-            <div>
+            <div className="w-full p-2" key={courseId} id={courseId}>
               <ItemInCart
                 key={courseId}
                 isFontThick={true}
@@ -53,14 +57,16 @@ const HoverHeart = () => {
                 textColor="text-bg-black"
                 gapPrice="gap-[0em]"
               />
-              <div className="w-full p-3" onClick={handleWishlistCart}>
-                <AddToCart
-                  isWhite={true}
-                  courseId={totalCourses[0]}
-                  discountPrice={2}
-                  fullPriceCourse={2}
-                  doYouWantPurpleLoading={true}
-                />
+              <div className="w-full p-3" onClick={handleWishlistCart} id={courseId}>
+                {ItemsInCart.length >= 1 && (
+                  <AddToCart
+                    isWhite={true}
+                    courseId={totalCourses[0]}
+                    discountPrice={2}
+                    fullPriceCourse={2}
+                    doYouWantPurpleLoading={true}
+                  />
+                )}
               </div>
               <hr />
             </div>
