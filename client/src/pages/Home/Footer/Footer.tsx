@@ -21,12 +21,12 @@ const Footer: React.FC = () => {
           <footer className="text-white">
             {/* Top Section */}
             <div className="bg-blackUdemy">
-              <div className="flex items-center justify-between border-y-[0.5px]  border-y-[#9DA3A7] px-12 py-6 font-sans font-extrabold">
+              <div className="flex flex-wrap items-center justify-between border-y-[0.5px]  border-y-[#9DA3A7] px-12 py-6 font-sans font-extrabold">
                 <p className="text-[18px]">
                   Welcome back! Explore <span className="text-[#C0C4FC]">Udemy Business</span> and
                   keep growing your skills.
                 </p>
-                <div className="flex space-x-6">
+                <div className="flex flex-wrap space-x-6">
                   <img src={Nasdaq} alt="Nasdaq Logo" className="h-11 w-auto" />
                   <img src={Wolkswagen} alt="Volkswagen Logo" className="h-11 w-auto" />
                   <img src={Box} alt="Box Logo" className="h-11 w-auto" />
