@@ -28,23 +28,25 @@ const HoverCart = () => {
         <div className="w-full">
           {coursesIdAdded.length > 0 ? (
             coursesIdAdded.map((courseId: string) => (
-              <ItemInCart
-                isFBT={false}
-                widthChosen={`w-[5em]`}
-                key={courseId}
-                courseImgSize={`h-[5em] w-[5em] rounded-[0.5em]`}
-                courseId={courseId}
-                hide={false}
-                isMyLearning={false}
-                showDisPrice={true}
-                showFullPrice={false}
-                shortCutInstructor={true}
-                shortcutTitle={true}
-                chooseFlex={"w-full flex flex-col justify-start"}
-                itemsPosition="items-start"
-                textColor="text-bg-black"
-                gapPrice="gap-[0em]"
-              />
+              <div className="w-full p-2">
+                <ItemInCart
+                  isFBT={false}
+                  widthChosen={`w-[9em]`}
+                  key={courseId}
+                  courseImgSize={`h-[5em] w-[5em] rounded-[0.5em]`}
+                  courseId={courseId}
+                  hide={false}
+                  isMyLearning={false}
+                  showDisPrice={true}
+                  showFullPrice={false}
+                  shortCutInstructor={true}
+                  shortcutTitle={true}
+                  chooseFlex={"w-full flex flex-col justify-start"}
+                  itemsPosition="items-start w-full"
+                  textColor="text-bg-black"
+                  gapPrice="gap-[0em]"
+                />
+              </div>
             ))
           ) : (
             <div className="mt-3 flex w-full flex-col items-center justify-center text-center">
