@@ -10,9 +10,9 @@ const CourseBasicInfo = ({ lastUpdated, courseLanguage, isDisplayMonthName }) =>
     : `Last updated ${date.getMonth() + 1}/${date.getFullYear()}`;
 
   return (
-    <div className="flex w-full items-center justify-start gap-2 text-white">
+    <div className="flex w-full items-center justify-start  text-white">
       <TbInfoHexagonFilled />
-      <p className={`${isDisplayMonthName ? "font-sans font-extrabold text-[#206241]" : ""}`}>
+      <p className={`${isDisplayMonthName ? "font-sans text-[0.75rem] font-extrabold text-[#206241]" : ""}`}>
         {formattedDate}
       </p>
       {!isDisplayMonthName && <TbWorld />}

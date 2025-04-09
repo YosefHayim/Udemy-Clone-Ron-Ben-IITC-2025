@@ -6,11 +6,6 @@ const CoursePros: React.FC<{
 }> = ({ whatYouWillLearn, displayWhatYouLearn }) => {
   return (
     <ul className="flex w-full flex-col items-center justify-start">
-      {displayWhatYouLearn && (
-        <div>
-          <span className="font-sans font-extrabold">What you’ll learn</span>
-        </div>
-      )}
       <div className="mt-1">
         {whatYouWillLearn.slice(0, 3).map((pro, index) => (
           <li key={index}>

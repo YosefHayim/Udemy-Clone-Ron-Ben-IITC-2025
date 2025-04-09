@@ -50,55 +50,57 @@ const CourseHoverCardInfo: React.FC<{
   displayWhatYouLearn = true,
   courseName = "",
 }) => {
-  return (
-    <div className="max-w-[320px] overflow-y-visible text-[1rem]" id={courseId}>
-      <div id={courseId} className={courseId}>
-        <TriangleShape
-          index={index}
-          positionedRight={positionedRight}
-          positionedLeft={positionedLeft}
-        />
-        <div className={`w-[${width}] rounded-[0.5em]  bg-white p-[1.5em] shadow-alertAlgoInfo `}>
-          <div className="text-[1.2rem]">
-            <CourseTitle title={courseName} />
+    return (
+      <div className="max-w-[320px] overflow-y-visible text-[0.875rem]" id={courseId}>
+        <div id={courseId} className={`${courseId} relative`}>
+          <div className="absolute top-1/2 left-0 -translate-y-1/2 bg-white">
+            <TriangleShape
+              index={index}
+              positionedRight={positionedRight}
+              positionedLeft={positionedLeft}
+            />
           </div>
-          {showCourseLength && (
-            <div className="flex  w-max items-center justify-start text-[0.875rem]">
-              <CourseTag tagName={courseTag} />
-              <CourseBasicInfo
-                isDisplayMonthName={true}
-                lastUpdated={courseUpdatedAt}
-                courseLanguage={courseLanguages}
-              />
+          <div className={`w-[${width}] rounded-[0.5em]  bg-white p-[1.5em] shadow-alertAlgoInfo `}>
+            <div className="text-[1rem] font-bold opacity-95 pb-3">
+              <CourseTitle title={courseName} />
             </div>
-          )}
-          {showCourseLength && (
-            <div className="my-1">
-              <CourseLength
-                isSmallText={true}
-                courseLevel={courseLevel}
-                totalMinutes={totalCourseDuration}
-                totalLectures={totalCourseLessons}
-              />
-            </div>
-          )}
-          {showCourseLength && <CourseRecap recapInfo={courseRecapInfo} />}
-          <CoursePros
-            whatYouWillLearn={whatYouWillLearn}
-            displayWhatYouLearn={displayWhatYouLearn}
-          />
-          <InteractionsBtns
-            isDisplayHeart={true}
-            instructorId={instructorId}
-            courseTopic={courseTopic}
-            courseId={courseId}
-            coursePrice={coursePrice}
-            fullPriceCourse={fullPriceCourse}
-          />
+            {showCourseLength && (
+              <div className="flex  w-max items-center justify-start pb-1">
+                <CourseTag tagName={courseTag} />
+                <CourseBasicInfo
+                  isDisplayMonthName={true}
+                  lastUpdated={courseUpdatedAt}
+                  courseLanguage={courseLanguages}
+                />
+              </div>
+            )}
+            {showCourseLength && (
+              <div className="my-1">
+                <CourseLength
+                  isSmallText={true}
+                  courseLevel={courseLevel}
+                  totalMinutes={totalCourseDuration}
+                  totalLectures={totalCourseLessons}
+                />
+              </div>
+            )}
+            {showCourseLength && <CourseRecap recapInfo={courseRecapInfo} />}
+            <CoursePros
+              whatYouWillLearn={whatYouWillLearn}
+              displayWhatYouLearn={displayWhatYouLearn}
+            />
+            <InteractionsBtns
+              isDisplayHeart={true}
+              instructorId={instructorId}
+              courseTopic={courseTopic}
+              courseId={courseId}
+              coursePrice={coursePrice}
+              fullPriceCourse={fullPriceCourse}
+            />
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
 export default CourseHoverCardInfo;
