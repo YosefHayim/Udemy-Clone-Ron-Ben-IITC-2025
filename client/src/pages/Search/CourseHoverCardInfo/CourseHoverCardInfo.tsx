@@ -36,7 +36,7 @@ const CourseHoverCardInfo: React.FC<{
   index,
   courseTopic,
   instructorId,
-  width = "32rem",
+  width = "40rem",
   positionedLeft = false,
   positionedRight = false,
   showCourseLength = false,
@@ -51,7 +51,7 @@ const CourseHoverCardInfo: React.FC<{
   courseName = "",
 }) => {
     return (
-      <div className="max-w-[320px] overflow-y-visible text-[0.875rem]" id={courseId}>
+      <div className="max-w-[340px] overflow-y-visible text-[0.875rem]" id={courseId}>
         <div id={courseId} className={`${courseId} relative`}>
           <div className="absolute top-1/2 left-0 -translate-y-1/2 bg-white">
             <TriangleShape
