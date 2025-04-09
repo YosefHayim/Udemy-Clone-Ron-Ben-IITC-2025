@@ -1,10 +1,9 @@
-import { CourseContentProps } from "@/types/types";
 import Description from "../Description/Description";
 import Requirements from "../Requirements/Requirements";
 import Section from "../Section/Section";
 import TotalCourseLength from "../TotalCourseLength/TotalCourseLength";
 
-const CourseContent: React.FC<CourseContentProps> = ({
+const CourseContent = ({
   description,
   whoThisFor,
   requirements,
@@ -13,13 +12,15 @@ const CourseContent: React.FC<CourseContentProps> = ({
   totalCourseSections,
   sectionsOfCourse,
 }) => {
-  if (sectionsOfCourse.length === 0) {
+  if (!sectionsOfCourse.lessons) {
     return (
       <div>
         <b>This course has no sections and lessons yet</b>
       </div>
     );
   }
+
+  console.log(sectionsOfCourse);
 
   return (
     <div className="curriculum flex flex-col">

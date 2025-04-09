@@ -4,7 +4,7 @@ import ButtonInsideHover from "../ButtonInsideHover/ButtonInsideHover";
 
 const WrapperButtonParagraph = ({ paragraphText, to, insideBtnText }) => {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex w-full flex-col items-center justify-center">
       <ParagraphInside paragraphText={paragraphText} />
       <ButtonInsideHover insideBtnText={insideBtnText} to={to} />
     </div>

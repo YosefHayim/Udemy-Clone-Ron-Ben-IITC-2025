@@ -61,7 +61,7 @@ const HoverCart = () => {
           <div className="flex w-full flex-col p-3">
             <div>
               <b className="text-[1.5em]">Total: ₪{totalToPay > 0 && totalToPay.toFixed(2)}</b>
-              <Button className="mt-[1em] w-full rounded-[0.3em] bg-btnColor py-[1.7em] font-sans font-extrabold hover:bg-btnHoverColor focus:outline-none">
+              <Button className="mt-[1em] w-full rounded-[0.3em] bg-btnColor py-[1.2em] font-sans font-extrabold hover:bg-btnHoverColor focus:outline-none">
                 <Link to="/cart" className="cursor-pointer">
                   Go to cart
                 </Link>
