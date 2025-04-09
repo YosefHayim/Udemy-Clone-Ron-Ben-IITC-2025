@@ -28,7 +28,7 @@ const HoverCart = () => {
         <div className="w-full">
           {coursesIdAdded.length > 0 ? (
             coursesIdAdded.map((courseId: string) => (
-              <div className="w-full p-2">
+              <div className="w-full p-2" key={courseId}>
                 <ItemInCart
                   isFBT={false}
                   widthChosen={`w-[9em]`}

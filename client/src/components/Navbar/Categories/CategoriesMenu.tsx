@@ -1,4 +1,3 @@
-import AtagBtn from "@/components/ButtonNavbar/ButtonNavbar";
 import { Category, Subcategory } from "@/types/types";
 import { categoriesData } from "@/utils/categoriesData";
 import { searchAlgoLocalStorage } from "@/utils/searchesOfUser";
@@ -137,7 +136,7 @@ const CategoriesMenu = () => {
                 onMouseLeave={handleSubMenuLeave}
               >
                 {getCategoryData(hoveredMenu)?.subcategory.map((subCategory, index) => (
-                  <div key={index}>
+                  <div key={index + 1}>
                     {/* Adiciona o título "Popular Issuers" antes de "Amazon Web Services (AWS) Certifications" */}
                     {subCategory.title === "Amazon Web Services (AWS) Certifications" && (
                       <div className="px-4 py-2 font-sans font-extrabold text-gray-400">
@@ -189,7 +188,7 @@ const CategoriesMenu = () => {
                   (topic: any, index: number) => (
                     <div
                       onClick={() => handleNavigate(topic)}
-                      key={index}
+                      key={index + 2}
                       onMouseEnter={() =>
                         setHoveredTopic(typeof topic === "string" ? topic : topic.title)
                       }
