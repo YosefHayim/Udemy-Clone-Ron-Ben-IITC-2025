@@ -16,14 +16,13 @@ import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
 import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercialTwo";
 import { useMediaQuery } from "react-responsive";
 import MobileNavbar from "../MobileNavbar/MobileNavbar";
-import Cookies from "js-cookie";
 
 const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
   const navigate = useNavigate();
   const [isTyping, setIsTyping] = useState(false);
   const [isClicked, setClicked] = useState(false);
-  const cookie = Cookies.get("cookie");
+  const cookie = useSelector((state: RootState) => state?.user?.cookie);
   const coursesInCart =
     useSelector((state: RootState) => state?.cart?.coursesAddedToCart) ||
     useSelector((state: RootState) => state?.cart?.coursesAddedToWishList);

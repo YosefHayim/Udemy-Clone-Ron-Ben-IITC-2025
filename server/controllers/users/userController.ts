@@ -162,7 +162,7 @@ const signUp = catchAsync(
       status: "success",
       message:
         "User created successfully. Please confirm your email to log in.",
-      token,
+      // token,
     });
   }
 );
@@ -239,7 +239,7 @@ const login = catchAsync(
       codeVerification: loginCode,
       status: "success",
       message: "Login verified proceed to code verification.",
-      token,
+      // token,
     });
   }
 );
