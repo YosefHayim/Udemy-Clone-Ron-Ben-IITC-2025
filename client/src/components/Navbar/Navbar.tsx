@@ -51,7 +51,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
     };
   });
 
-  useEffect(() => {}, [cookie]);
+  useEffect(() => { }, [cookie]);
 
   return (
     <div className="w-full">
@@ -84,12 +84,14 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
                 insideBtnText="Learn more"
               />
               {cookie && (
-                <ButtonNavbar
-                  to="/wishlist"
-                  buttonName={"My learning"}
-                  insideBtnText="Go to my learning"
-                  coursesInProgress={coursesInProgress}
-                />
+                <Link to="/wishlist">
+                  <ButtonNavbar
+                    to="/wishlist"
+                    buttonName={"My learning"}
+                    insideBtnText="Go to my learning"
+                    coursesInProgress={coursesInProgress}
+                  />
+                </Link>
               )}
               {cookie && (
                 <div className="flex items-center">
