@@ -38,11 +38,11 @@ const BuyNowBtn: React.FC<{
         dispatch(calculateTotalSavings());
         dispatch(calculateDiscountPercentage());
         dispatch(setAddCourseToCart(courseId));
-        // navigate("/payment/checkout/");
+        navigate("/payment/checkout/");
         setLoading(false);
-      }, 1500);
+      }, 500);
     } else {
-      // navigate("/login");
+      navigate("/login");
     }
   };
   return (
