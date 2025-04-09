@@ -44,10 +44,10 @@ const LearnersAreViewing = ({ randomAlgoWord }) => {
   }
 
   return (
-    <div className="px-6 py-8">
+    <div className="py-8">
       <h2 className="mb-6 font-sans text-3xl font-extrabold">Learners are viewing</h2>
       <div className="relative w-full">
-        {data && data?.response?.length > 7 && (
+        {data?.response && data?.response?.length > 7 && (
           <ButtonsCarousel
             handleFnNext={handleNextCourse}
             handleFnPrev={handlePrevCourse}
@@ -55,63 +55,67 @@ const LearnersAreViewing = ({ randomAlgoWord }) => {
             useCustom={true}
             showDirectionalButtonsOnlyOnEdge={false}
             topPosition="40%"
-            leftPosition="1%"
-            rightPosition="2%"
+            leftPosition="-1.8%"
+            rightPosition="-1.5%"
           />
         )}
-
-        <div
-          className={`flex ${
-            data?.response && data?.response?.length > 7
-              ? "w-max items-center justify-center"
-              : "w-full items-center justify-start"
-          } z-20 h-full gap-5 transition-transform duration-1000 ease-in-out`}
-          style={{ transform: `translateX(-${courseIndex * 30.5}%)` }}
-        >
-          {data?.response?.length > 1 &&
-            data.response.map((courseCard, index: number) => (
-              <HomeCourseCard
-                courseCard={courseCard}
-                index={index}
-                key={courseCard?._id}
-                onHover={setHoveredCourse}
-                onPosition={setHoverPosition}
-              />
-            ))}
-        </div>
-
-        {hoveredCourse && (
+        <div className="overflow-x-clip">
           <div
-            className="absolute z-[1000]"
-            style={{
-              top: `${hoverPosition.top - hoverPosition.top / 20}px`,
-              left: `${hoverPosition.left}px`,
-            }}
+            className={`flex
+            ${data?.response && data.response?.length > 7
+                ? "w-max items-center justify-center"
+                : "w-full items-center justify-start"
+              } z-20 h-full gap-5 transition-transform duration-1000 ease-in-out`}
+            style={{ transform: `translateX(-${courseIndex * 30.90875}%)` }}
           >
-            <CourseHoverCardInfo
-              courseName={hoveredCourse.courseName}
-              courseLanguages={hoveredCourse.courseLanguages}
-              courseTag={hoveredCourse.courseTag}
-              showCourseLength={true}
-              totalCourseLessons={hoveredCourse.totalCourseLessons}
-              totalCourseDuration={hoveredCourse.totalCourseDuration}
-              courseLevel={hoveredCourse.courseLevel}
-              courseUpdatedAt={hoveredCourse.updatedAt}
-              courseRecapInfo={hoveredCourse.courseRecapInfo}
-              positionedRight={true}
-              width="330px"
-              instructorId={hoveredCourse.courseInstructor?._id}
-              courseTopic={hoveredCourse.courseTopic}
-              index={hoveredCourse._id}
-              displayWhatYouLearn={false}
-              whatYouWillLearn={hoveredCourse.whatYouWillLearn}
-              courseId={hoveredCourse._id}
-              fullPriceCourse={hoveredCourse.courseFullPrice}
-              coursePrice={hoveredCourse.courseDiscountPrice}
-            />
+            {data?.response && data?.response ? (
+              data?.response?.map((courseCard, index: number) => (
+                <HomeCourseCard
+                  key={courseCard._id || index}
+                  courseCard={courseCard}
+                  index={index}
+                  onHover={setHoveredCourse}
+                  onPosition={setHoverPosition}
+                />
+              ))
+            ) : (
+              <div className="w-full">
+                <Loader useSmallLoading={false} hSize="" />
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
+      {hoveredCourse && (
+        <div
+          className="absolute z-50"
+          style={{
+            top: hoverPosition.top - 50,
+            left: hoverPosition.left,
+          }}
+          onMouseLeave={() => setHoveredCourse(null)}
+          onMouseEnter={() => setHoveredCourse(hoveredCourse)}
+        >
+          <CourseHoverCardInfo
+            whatYouWillLearn={hoveredCourse.whatYouWillLearn}
+            courseName={hoveredCourse.courseName}
+            courseId={hoveredCourse._id}
+            coursePrice={hoveredCourse.courseDiscountPrice}
+            fullPriceCourse={hoveredCourse.courseFullPrice}
+            index={0}
+            courseTopic={hoveredCourse.courseTopic}
+            instructorId={hoveredCourse.courseInstructor?._id}
+            showCourseLength={true}
+            courseLevel={hoveredCourse.courseLevel}
+            totalCourseDuration={hoveredCourse.totalDuration}
+            totalCourseLessons={hoveredCourse.totalLectures}
+            courseUpdatedAt={new Date(hoveredCourse.updatedAt)}
+            courseTag={hoveredCourse.courseTag}
+            courseLanguages={hoveredCourse.courseLanguages}
+            courseRecapInfo={hoveredCourse.courseRecapInfo}
+          />
+        </div>
+      )}
     </div>
   );
 };
