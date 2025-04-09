@@ -15,9 +15,9 @@ const HomeCourseCard = ({ courseCard, index, onHover, onPosition }) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const hoverWidth = 330;
 
-    let left = rect.right + 12;
+    let left = rect.right;
     if (left + hoverWidth > window.innerWidth) {
-      left = rect.left - hoverWidth - 12;
+      left = rect.left - hoverWidth -10;
     }
 
     onPosition({
