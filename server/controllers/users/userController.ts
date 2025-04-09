@@ -311,11 +311,10 @@ const verifyCode = catchAsync(
     });
 
     res.cookie("cookie", token, {
-      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
+      httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      httpOnly: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      maxAge: 90 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
@@ -366,11 +365,10 @@ const confirmEmailAddress = catchAsync(
 const logout = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     res.cookie("cookie", "", {
-      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
+      httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      httpOnly: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      maxAge: 90 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
@@ -530,11 +528,10 @@ const updateUserInfo = catchAsync(
     });
 
     res.cookie("cookie", token, {
-      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
+      httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      httpOnly: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      maxAge: 90 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({
@@ -698,11 +695,10 @@ const googleLoginOrSignUp = catchAsync(
       });
 
       res.cookie("cookie", token, {
-        expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+        maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
+        httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        httpOnly: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-        maxAge: 90 * 24 * 60 * 60 * 1000,
       });
 
       // Send success response
@@ -744,11 +740,10 @@ const updateMe = catchAsync(
     });
 
     res.cookie("cookie", token, {
-      expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+      maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
+      httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      httpOnly: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      maxAge: 90 * 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({

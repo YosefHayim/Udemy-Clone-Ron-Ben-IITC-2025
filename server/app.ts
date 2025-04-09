@@ -34,17 +34,10 @@ export const allowedOrigins: string[] = [
 
 export const app: Application = express();
 
-// CORS Configuration
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true, // Allow cookies
+    origin: "https://your-frontend-url.onrender.com",
+    credentials: true,
   })
 );
 // Serve static images
