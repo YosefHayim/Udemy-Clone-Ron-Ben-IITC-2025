@@ -49,7 +49,7 @@ const getAllCourses = catchAsync(
 
     res.status(200).json({
       status: "Success",
-      totalCourses, // ✅ only matched courses
+      totalCourses,
       totalLeftCourses,
       currentPage,
       totalPages,

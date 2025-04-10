@@ -8,12 +8,6 @@ const CourseImg: React.FC<{
 }> = ({ courseImg, widthChosen = "200px", standCardView, imgExplanation }) => {
   const showPlaceholder = !courseImg;
 
-  const getImageSrc = () => {
-    if (!courseImg) return "";
-    const isAbsoluteUrl = courseImg.startsWith("http://") || courseImg.startsWith("https://");
-    return isAbsoluteUrl ? courseImg : `${isProduction ? baseUrl : localhostUrl}/${courseImg}`;
-  };
-
   return (
     <div className={`border ${widthChosen}`}>
       {showPlaceholder ? (
@@ -25,7 +19,7 @@ const CourseImg: React.FC<{
         </div>
       ) : (
         <img
-          src={getImageSrc()}
+          src={courseImg}
           alt={imgExplanation}
           className="w-full object-cover"
           style={{ width: widthChosen }}
