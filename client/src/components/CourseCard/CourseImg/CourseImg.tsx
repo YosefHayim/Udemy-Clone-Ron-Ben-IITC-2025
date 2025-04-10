@@ -1,3 +1,5 @@
+import { isProduction, baseUrl, localhostUrl } from "@/api/configuration";
+
 const CourseImg: React.FC<{
   courseImg?: string;
   widthChosen?: string;
@@ -5,6 +7,12 @@ const CourseImg: React.FC<{
   imgExplanation: string;
 }> = ({ courseImg, widthChosen = "200px", standCardView, imgExplanation }) => {
   const showPlaceholder = !courseImg;
+
+  const getImageSrc = () => {
+    if (!courseImg) return "";
+    const isAbsoluteUrl = courseImg.startsWith("http://") || courseImg.startsWith("https://");
+    return isAbsoluteUrl ? courseImg : `${isProduction ? baseUrl : localhostUrl}/${courseImg}`;
+  };
 
   return (
     <div className={`border ${widthChosen}`}>
@@ -17,9 +25,9 @@ const CourseImg: React.FC<{
         </div>
       ) : (
         <img
-          src={courseImg}
+          src={getImageSrc()}
           alt={imgExplanation}
-          className={`w-full object-cover`}
+          className="w-full object-cover"
           style={{ width: widthChosen }}
         />
       )}
