@@ -59,7 +59,7 @@ const LearnersAreViewing = ({ randomAlgoWord }) => {
             rightPosition="-1.5%"
           />
         )}
-        <div className="overflow-x-clip">
+        <div className="overflow-x-hidden">
           <div
             className={`flex
             ${data?.response && data.response?.length > 7
