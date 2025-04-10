@@ -17,7 +17,7 @@ import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercia
 import { useMediaQuery } from "react-responsive";
 import MobileNavbar from "../MobileNavbar/MobileNavbar";
 
-const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
+const Navbar = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
   const navigate = useNavigate();
   const [isTyping, setIsTyping] = useState(false);
@@ -50,7 +50,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
     };
   });
 
-  useEffect(() => { }, [cookie]);
+  useEffect(() => {}, [cookie]);
 
   return (
     <div className="w-full">
@@ -59,7 +59,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
       {!isMobile && (
         <div
           className={`relative z-[50] flex w-full items-center justify-between bg-white pb-[0.9em] pl-[1.7rem] pr-[0.5rem] pt-[0.2em] 
-          ${showMenu ? "" : "shadow-md shadow-[#bcc0ce]"}`}
+          ${"shadow-md shadow-[#bcc0ce]"}`}
         >
           <div className="flex w-full items-center justify-between pl-[0rem] pt-[0.4rem] ">
             <Link to="/">
@@ -98,7 +98,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
                 </div>
               )}
               <Link to="/cart">
-                <div className="relative flex items-center mr-[0.3rem]">
+                <div className="relative mr-[0.3rem] flex items-center">
                   <Cart />
                 </div>
               </Link>

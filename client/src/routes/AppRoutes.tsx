@@ -42,6 +42,7 @@ import PersonalPlan from "@/pages/PersonalPlan/PersonalPlan";
 const LayoutWithNavbarAndFooter = () => {
   return (
     <>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/dashboard/credit-history" element={<UdemyCredits />} />
