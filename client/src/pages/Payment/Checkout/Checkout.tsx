@@ -30,7 +30,6 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
   const checkOutMutation = useMutation({
     mutationFn: buyCourseById,
     onSuccess: () => {
-      setNavigateFirstCourseBought(coursesIds[0]);
       dispatch(setClearAll());
       setTimeout(() => {
         refreshUserDataMutation.mutate();
@@ -66,8 +65,12 @@ const Checkout: React.FC<{ isPaypal: ReactPayPalScriptOptions }> = ({ isPaypal }
       }
       checkOutMutation.mutate(courseId);
       await initializeCourseProgress(courseId);
+      setNavigateFirstCourseBought(courseId);
+      console.log(`single course navigate purchase: `, navigateFirstCourseBought);
     } else {
       checkOutMultiMutation.mutate(coursesIds);
+      setNavigateFirstCourseBought(coursesIds[0]);
+      console.log(`multiple course navigate purchases: `, navigateFirstCourseBought);
       return Promise.all(coursesIds.map((id) => initializeCourseProgress(id)));
     }
   };

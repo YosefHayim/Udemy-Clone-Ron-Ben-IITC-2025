@@ -12,7 +12,7 @@ const CourseContent = ({
   totalCourseSections,
   sectionsOfCourse,
 }) => {
-  if (!sectionsOfCourse.lessons) {
+  if (sectionsOfCourse?.lessons?.length === 0) {
     return (
       <div>
         <b>This course has no sections and lessons yet</b>
