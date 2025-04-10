@@ -40,12 +40,8 @@ import ProfilePage from "@/pages/ProfilePage/ProfilePage";
 import PersonalPlan from "@/pages/PersonalPlan/PersonalPlan";
 
 const LayoutWithNavbarAndFooter = () => {
-  const location = useLocation();
-  const isHomepage = location.pathname === "/";
-
   return (
     <>
-      <Navbar showMenu={isHomepage} />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/dashboard/credit-history" element={<UdemyCredits />} />
@@ -85,18 +81,20 @@ const LayoutWithNavbarAndFooter = () => {
 
 const AppRoutes: React.FC = () => {
   return (
-    <Routes>
-      {/* Routes that use Navbar and Footer */}
-      <Route path="*" element={<LayoutWithNavbarAndFooter />} />
-      {/* Routes without Navbar */}
-      <Route path="/demo-business" element={<UdemyBusinessContact />} />
-      <Route path="/payment/checkout/" element={<Payment />} />
-      <Route path="/course/:courseId/lesson/:id/*" element={<LessonPage />} />
-      <Route path="/personalize/field/" element={<PersonalizeField />} />
-      <Route path="/terms/promotions" element={<Promotions />} />
-      <Route path="/organization/global-login/email" element={<OrganizationLogin />} />
-      <Route path="hc/en-us/requests/new/ticket_form_id" element={<SignUpOrganization />} />
-    </Routes>
+    <>
+      <Routes>
+        {/* Routes that use Navbar and Footer */}
+        <Route path="*" element={<LayoutWithNavbarAndFooter />} />
+        {/* Routes without Navbar */}
+        <Route path="/demo-business" element={<UdemyBusinessContact />} />
+        <Route path="/payment/checkout/" element={<Payment />} />
+        <Route path="/course/:courseId/lesson/:id/*" element={<LessonPage />} />
+        <Route path="/personalize/field/" element={<PersonalizeField />} />
+        <Route path="/terms/promotions" element={<Promotions />} />
+        <Route path="/organization/global-login/email" element={<OrganizationLogin />} />
+        <Route path="hc/en-us/requests/new/ticket_form_id" element={<SignUpOrganization />} />
+      </Routes>
+    </>
   );
 };
 
