@@ -25,8 +25,8 @@ dotenv.config();
 
 // Allowed CORS origins
 export const allowedOrigins: string[] = [
-  "http://localhost:5173", // Frontend in development
-  "https://udemy-clone-ron-and-ben-front.onrender.com", // Frontend in production
+  "http://localhost:5173", 
+  "https://udemy-clone-ron-and-ben-front.onrender.com", 
   "http://127.0.0.1:5173",
 ];
 

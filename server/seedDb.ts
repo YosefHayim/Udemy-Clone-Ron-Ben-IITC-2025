@@ -892,13 +892,13 @@ const generateUpdatedDummyData = async () => {
     console.log("Deleted all db.");
 
     console.log("Seeding users...");
-    const users = await createUsers(200);
+    const users = await createUsers(10000);
     console.log(`${users.length} users created.`);
 
     console.log("Seeding courses...");
     const courses = await createCourses({
-      coursesPerTopic: 1,
-      coursesPerInstructor: 3,
+      coursesPerTopic: 15,
+      coursesPerInstructor: 10,
     });
 
     if (courses && courses.length > 1) {
