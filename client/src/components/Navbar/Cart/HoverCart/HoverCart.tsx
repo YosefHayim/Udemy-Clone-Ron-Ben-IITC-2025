@@ -28,23 +28,25 @@ const HoverCart = () => {
         <div className="w-full">
           {coursesIdAdded.length > 0 ? (
             coursesIdAdded.map((courseId: string) => (
-              <ItemInCart
-                isFBT={false}
-                widthChosen={`w-[5em]`}
-                key={courseId}
-                courseImgSize={`h-[5em] w-[5em] rounded-[0.5em]`}
-                courseId={courseId}
-                hide={false}
-                isMyLearning={false}
-                showDisPrice={true}
-                showFullPrice={false}
-                shortCutInstructor={true}
-                shortcutTitle={true}
-                chooseFlex={"w-full flex flex-col justify-start"}
-                itemsPosition="items-start"
-                textColor="text-bg-black"
-                gapPrice="gap-[0em]"
-              />
+              <div className="w-full p-2" key={courseId}>
+                <ItemInCart
+                  isFBT={false}
+                  widthChosen={`w-[9em]`}
+                  key={courseId}
+                  courseImgSize={`h-[5em] w-[5em] rounded-[0.5em]`}
+                  courseId={courseId}
+                  hide={false}
+                  isMyLearning={false}
+                  showDisPrice={true}
+                  showFullPrice={false}
+                  shortCutInstructor={true}
+                  shortcutTitle={true}
+                  chooseFlex={"w-full flex flex-col justify-start"}
+                  itemsPosition="items-start w-full"
+                  textColor="text-bg-black"
+                  gapPrice="gap-[0em]"
+                />
+              </div>
             ))
           ) : (
             <div className="mt-3 flex w-full flex-col items-center justify-center text-center">
@@ -59,7 +61,7 @@ const HoverCart = () => {
           <div className="flex w-full flex-col p-3">
             <div>
               <b className="text-[1.5em]">Total: ₪{totalToPay > 0 && totalToPay.toFixed(2)}</b>
-              <Button className="mt-[1em] w-full rounded-[0.3em] bg-btnColor py-[1.7em] font-sans font-extrabold hover:bg-btnHoverColor focus:outline-none">
+              <Button className="mt-[1em] w-full rounded-[0.3em] bg-btnColor py-[1.2em] font-sans font-extrabold hover:bg-btnHoverColor focus:outline-none">
                 <Link to="/cart" className="cursor-pointer">
                   Go to cart
                 </Link>

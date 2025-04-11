@@ -57,7 +57,10 @@ const CoursePreviewCard: React.FC<{
   }, [coursesBought, courseId]);
 
   const navigateCourseLesson = () => {
-    if (!firstLessonId) alert("This course has no course content");
+    if (!firstLessonId) {
+      alert("This course has no course content");
+      return;
+    }
     navigate(`/course/${courseId}/lesson/${firstLessonId}/overview`);
   };
 

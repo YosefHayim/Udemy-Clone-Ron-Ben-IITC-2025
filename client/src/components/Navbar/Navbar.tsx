@@ -16,14 +16,13 @@ import ChangeLanguage from "./DropDownMenu/ChangeLanguage/ChangeLanguage";
 import SaleCommercialTwo from "./SaleCommercials/SaleCommercialTwo/SaleCommercialTwo";
 import { useMediaQuery } from "react-responsive";
 import MobileNavbar from "../MobileNavbar/MobileNavbar";
-import Cookies from "js-cookie";
 
-const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
+const Navbar = () => {
   const isMobile = useMediaQuery({ maxWidth: 800 });
   const navigate = useNavigate();
   const [isTyping, setIsTyping] = useState(false);
   const [isClicked, setClicked] = useState(false);
-  const cookie = Cookies.get("cookie");
+  const cookie = useSelector((state: RootState) => state?.user?.cookie);
   const coursesInCart =
     useSelector((state: RootState) => state?.cart?.coursesAddedToCart) ||
     useSelector((state: RootState) => state?.cart?.coursesAddedToWishList);
@@ -60,7 +59,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
       {!isMobile && (
         <div
           className={`relative z-[50] flex w-full items-center justify-between bg-white pb-[0.9em] pl-[1.7rem] pr-[0.5rem] pt-[0.2em] 
-          ${showMenu ? "" : "shadow-md shadow-[#bcc0ce]"}`}
+          ${"shadow-md shadow-[#bcc0ce]"}`}
         >
           <div className="flex w-full items-center justify-between pl-[0rem] pt-[0.4rem] ">
             <Link to="/">
@@ -84,12 +83,14 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
                 insideBtnText="Learn more"
               />
               {cookie && (
-                <ButtonNavbar
-                  to="/wishlist"
-                  buttonName={"My learning"}
-                  insideBtnText="Go to my learning"
-                  coursesInProgress={coursesInProgress}
-                />
+                <Link to="/wishlist">
+                  <ButtonNavbar
+                    to="/wishlist"
+                    buttonName={"My learning"}
+                    insideBtnText="Go to my learning"
+                    coursesInProgress={coursesInProgress}
+                  />
+                </Link>
               )}
               {cookie && (
                 <div className="flex items-center">
@@ -97,7 +98,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
                 </div>
               )}
               <Link to="/cart">
-                <div className="relative flex items-center">
+                <div className="relative mr-[0.3rem] flex items-center">
                   <Cart />
                 </div>
               </Link>
@@ -119,7 +120,7 @@ const Navbar = ({ showMenu }: { showMenu?: boolean }) => {
                   <div className="relative inline-block">
                     <Profile cookie={cookie} />
                     {coursesInCart.length >= 1 && (
-                      <div className="absolute right-[33.5%] top-[5%] z-10 h-[0.85rem] w-[0.85rem] rounded-full bg-[#A435F0]"></div>
+                      <div className="absolute right-[28.5%] top-[5%] z-10 h-[0.85rem] w-[0.85rem] rounded-full bg-[#A435F0]"></div>
                     )}
                   </div>
                 </Link>

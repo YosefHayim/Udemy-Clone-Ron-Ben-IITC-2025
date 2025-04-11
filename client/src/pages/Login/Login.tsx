@@ -47,11 +47,7 @@ const Login = () => {
               <OtherLoginOptions />
             </div>
           )}
-          {prevWGoogle && isDifferentAccount && (
-            <div>
-              <GoogleBtn />
-            </div>
-          )}
+          {prevWGoogle && !isDifferentAccount && <div>{/* <GoogleBtn /> */}</div>}
           <div className="flex flex-col items-center justify-center pt-6 text-center">
             {!isDifferentAccount && prevWGoogle && (
               <div

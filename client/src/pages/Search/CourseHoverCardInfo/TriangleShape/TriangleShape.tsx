@@ -8,17 +8,17 @@ const TriangleShape: React.FC<{
       {/* // This is when hovering left */}
       {index >= 0 && positionedLeft && (
         <div
-          className={`-translate-x-1/2" absolute right-[94.1%] top-[45%] z-10 flex -rotate-90 transform items-center justify-center`}
+          className="absolute right-[94.1%] top-1/2 z-10 flex -rotate-90 -translate-y-1/2 transform items-center justify-center"
         >
-          <div className="flex w-[50px] items-center justify-center ">
-            {/* Wrapper triangle with thick gray border and white fill */}
+          <div className="flex w-[50px] items-center justify-center">
             <div className="relative flex items-center justify-center">
-              <div className="h-0 w-full border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-gray-100 border-l-transparent border-r-transparent"></div>
-              <div className="w- absolute h-0 border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-white border-l-transparent border-r-transparent"></div>
+              <div className="h-0 w-full border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-gray-300 border-l-transparent border-r-transparent"></div>
+              <div className="absolute h-0 w-full border-b-[11.875px] border-l-[5.625px] border-r-[5.625px] border-white border-l-transparent border-r-transparent"></div>
             </div>
           </div>
         </div>
       )}
+
       {/* // This is when hovering right */}
       {index >= 0 && positionedRight && (
         <div

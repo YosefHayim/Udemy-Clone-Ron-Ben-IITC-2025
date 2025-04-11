@@ -28,6 +28,7 @@ const FrequentlyCourseCard: React.FC<{
   totalRatings?: number;
   setDisplayFBT: React.Dispatch<React.SetStateAction<number>>;
   setCoursesAdded: React.Dispatch<React.SetStateAction<any[]>>;
+  onAddToCartSuccess: () => void;
 }> = ({
   courseImg,
   courseName,
@@ -38,6 +39,7 @@ const FrequentlyCourseCard: React.FC<{
   courseId,
   setDisplayFBT,
   setCoursesAdded,
+  onAddToCartSuccess,
 }) => {
   const dispatch = useDispatch();
   const [isLoading, setLoading] = useState(false);
@@ -103,6 +105,3 @@ const FrequentlyCourseCard: React.FC<{
 };
 
 export default FrequentlyCourseCard;
-function onAddToCartSuccess() {
-  throw new Error("Function not implemented.");
-}

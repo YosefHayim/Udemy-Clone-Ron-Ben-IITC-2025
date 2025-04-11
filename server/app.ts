@@ -22,29 +22,17 @@ import instructorRoute from "./routes/users/instructorRoute.ts";
 // import { launchSocket, server } from "./sockets/launchSocket.ts";
 
 dotenv.config();
+const PORT: number = Number(process.env.PORT) || 3000;
 
 // Allowed CORS origins
 export const allowedOrigins: string[] = [
   "http://localhost:5173", 
   "https://udemy-clone-ron-and-ben-front.onrender.com", 
   "http://127.0.0.1:5173",
+  "http://localhost:4173",
 ];
 
 export const app: Application = express();
-const PORT: number = Number(process.env.PORT) || 3000;
-
-// Serve static images
-app.use("/imgs", express.static("public/imgs"));
-
-app.use(helmet());
-app.use(express.json());
-app.use(cookieParser());
-app.use(loggerInfo);
-
-// app.use(limiter);
-connectDb();
-
-// launchSocket();
 
 // CORS Configuration
 app.use(
@@ -59,6 +47,18 @@ app.use(
     credentials: true, // Allow cookies
   })
 );
+// Serve static images
+app.use("/imgs", express.static("public/imgs"));
+
+app.use(helmet());
+app.use(express.json());
+app.use(cookieParser());
+app.use(loggerInfo);
+
+// app.use(limiter);
+connectDb();
+
+// launchSocket();
 
 // Logging middleware
 app.use(morgan("dev"));

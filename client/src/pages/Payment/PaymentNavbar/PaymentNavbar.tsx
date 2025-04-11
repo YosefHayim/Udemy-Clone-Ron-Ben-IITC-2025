@@ -8,9 +8,9 @@ const PaymentNavbar: React.FC = () => {
       <Link to="/" className="cursor-pointer">
         <Logo CustomCssSize="w-[7em]" />
       </Link>
-      <b className={`${btnStyleNHover}`}>
-        <Link to="/cart">Cancel</Link>
-      </b>
+      <Link to="/cart" className={`${btnStyleNHover} font-bold`}>
+        Cancel
+      </Link>
     </div>
   );
 };

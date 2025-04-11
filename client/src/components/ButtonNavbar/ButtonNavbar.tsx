@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { btnStyleNHover } from "@/utils/stylesStorage";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
 import WrapperButtonParagraph from "./WrapperButtonParagraph/WrapperButtonParagraph";
 
 const ButtonNavbar: React.FC<{

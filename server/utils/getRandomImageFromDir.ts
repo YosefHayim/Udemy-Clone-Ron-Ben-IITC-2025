@@ -15,7 +15,7 @@ export const getRandomImageFromDir = (dirPath: string) => {
   // Return relative PUBLIC path (this will work in frontend)
   return `${
     process.env.NODE_ENV === "production"
-      ? "https://udemy-clone-ron-and-ben-front.onrender.com"
+      ? "https://udemy-clone-ron-ben.onrender.com"
       : "http://localhost:3000"
   }/imgs/courses/${randomFile}`;
 };

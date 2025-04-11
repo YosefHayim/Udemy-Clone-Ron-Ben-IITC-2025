@@ -116,7 +116,7 @@ const ItemInCart = ({
         id={courseId}
         className={`flex ${
           isColCourseBox ? "flex-col" : "flex-row"
-        } w-max cursor-pointer items-start justify-start gap-[1em]`}
+        } w-full cursor-pointer items-start justify-start gap-[1em]`}
       >
         <div>
           <div className="relative">
@@ -196,7 +196,7 @@ const ItemInCart = ({
             </div>
           </div>
           <div>
-            <div className={`flex flex-row items-center justify-center gap-[0.2em] ${textColor}`}>
+            <div className={`flex flex-row items-start justify-start gap-[0.2em] ${textColor}`}>
               <div className="flex flex-col items-start justify-start">
                 <div className={hide ? "flex flex-row items-center gap-[0.2em]" : "hidden"}>
                   <b>₪{data?.courseDiscountPrice}</b>

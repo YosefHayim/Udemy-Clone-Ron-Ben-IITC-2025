@@ -1,3 +1,5 @@
+import { isProduction, baseUrl, localhostUrl } from "@/api/configuration";
+
 const CourseImg: React.FC<{
   courseImg?: string;
   widthChosen?: string;
