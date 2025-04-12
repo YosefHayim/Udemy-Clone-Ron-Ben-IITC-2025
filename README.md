@@ -1,16 +1,47 @@
-# Udemy Clone – Project Setup Guide
+# Udemy Clone – Setup Guide
+
+## Deployed Links
+
+- **Frontend URL:** [https://pdf-extractor-data-helping-mom-fronted.onrender.com](https://pdf-extractor-data-helping-mom-fronted.onrender.com)
+- **Backend URL:** [https://udemy-clone-ron-ben.onrender.com](https://udemy-clone-ron-ben.onrender.com)
+
+---
+
+## Tech Stack
+
+### Backend – `Node.js + TypeScript + Express + MongoDB`
+
+- Core: `Express`, `TypeScript`, `Mongoose`, `Socket.IO`
+- Security: `Helmet`, `JWT`, `bcrypt`, `express-rate-limit`, `cookie-parser`
+- File Handling: `Multer`, `Sharp`
+- Auth: `Google Auth`, `JWT`
+- Emails: `Nodemailer`
+- Utils: `UUID`, `dotenv`, `faker`, `winston`, `morgan`
+
+### Frontend – `React + Vite + Tailwind + Redux Toolkit + Radix UI + MUI`
+
+- Core: `React`, `Vite`, `TailwindCSS`, `Redux Toolkit`, `React Router`
+- UI: `MUI`, `Radix UI`, `Heroicons`, `Lucide`, `FontAwesome`
+- State: `Redux Persist`, `TanStack Query`
+- Payments: `PayPal SDK`
+- Media: `Video.js`, `React Player`
+- Auth: `Google OAuth`, `jwt-decode`
+
+---
 
 ## 1. Install Dependencies
 
-Run this in both frontend and backend directories:
+Run this in both **frontend** and **backend** directories:
 
 ```bash
 npm install
 ```
 
+---
+
 ## 2. Frontend Environment Variables
 
-Create a `.env` file in the **frontend** root directory with the following:
+Create a `.env` file in the **frontend** root directory with:
 
 ```env
 VITE_CLIENT_ID=""
@@ -23,9 +54,11 @@ VITE_GOOGLE_CLIENT_ID=""
 VITE_AI_TOKEN=""
 ```
 
+---
+
 ## 3. Backend Environment Variables
 
-Create a `.env` file in the **backend** root directory with the following:
+Create a `.env` file in the **backend** root directory with:
 
 ```env
 PORT=""
@@ -40,9 +73,11 @@ GOOGLE_CLIENT_ID=""
 GOOGLE_CLIENT_SECRET=""
 ```
 
+---
+
 ## 4. Start the App
 
-Once the `.env` files are ready and dependencies are installed:
+Once the `.env` files are configured and dependencies installed:
 
 ```bash
 # Frontend
