@@ -3,7 +3,7 @@ import ReactPlayer from "react-player";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateLessonProgress } from "@/services/ProgressService";
 import { useSidebar } from "@/components/ui/sidebar";
-import CustomTrigger from "../Lesson/CustomTrigger";
+import CustomTrigger from "./CustomTrigger";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { PlayIcon } from "lucide-react";
 import CircularProgress from "@mui/material/CircularProgress";
