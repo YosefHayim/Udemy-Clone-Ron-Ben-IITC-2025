@@ -3,7 +3,7 @@
 ## Deployed Links
 
 - **Frontend URL:** [https://udemy-clone-ron-and-ben-front.onrender.com/](https://udemy-clone-ron-and-ben-front.onrender.com/)
-- **Backend URL:** [https://udemy-clone-ron-and-ben-front.onrender.com/](https://udemy-clone-ron-and-ben-front.onrender.com/)
+- **Backend URL:** [https://udemy-clone-ron-ben.onrender.com/](https://udemy-clone-ron-ben.onrender.com/)
 
 ---
 
